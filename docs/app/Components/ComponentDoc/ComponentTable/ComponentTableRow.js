@@ -2,13 +2,13 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Table } from 'semantic-ui-react'
 
-import ComponentPropsDefaultValue from './ComponentPropsDefaultValue'
-import ComponentPropsDescription from './ComponentPropsDescription'
-import ComponentPropsEnum from './ComponentPropsEnum'
-import ComponentPropsFunctionSignature from './ComponentPropsFunctionSignature'
-import ComponentPropsName from './ComponentPropsName'
+import ComponentPropDefaultValue from '../ComponentProp/ComponentPropDefaultValue'
+import ComponentPropDescription from '../ComponentProp/ComponentPropDescription'
+import ComponentPropEnum from '../ComponentProp/ComponentPropEnum'
+import ComponentPropFunctionSignature from '../ComponentProp/ComponentPropFunctionSignature'
+import ComponentPropName from '../ComponentProp/ComponentPropName'
 
-export default class ComponentPropsRow extends Component {
+export default class ComponentTableRow extends Component {
   static propTypes = {
     defaultValue: PropTypes.string,
     description: PropTypes.string,
@@ -33,16 +33,16 @@ export default class ComponentPropsRow extends Component {
     return (
       <Table.Row key={name}>
         <Table.Cell collapsing>
-          <ComponentPropsName name={name} required={required} />
+          <ComponentPropName name={name} required={required} />
         </Table.Cell>
         <Table.Cell collapsing>
-          <ComponentPropsDefaultValue value={defaultValue} />
+          <ComponentPropDefaultValue value={defaultValue} />
         </Table.Cell>
         <Table.Cell collapsing>{`{${type}}`}</Table.Cell>
         <Table.Cell>
-          <ComponentPropsDescription description={description} />
-          <ComponentPropsFunctionSignature name={name} tags={tags} />
-          <ComponentPropsEnum
+          <ComponentPropDescription description={description} />
+          <ComponentPropFunctionSignature name={name} tags={tags} />
+          <ComponentPropEnum
             showAll={showEnums}
             toggle={this.toggleEnums}
             type={type}

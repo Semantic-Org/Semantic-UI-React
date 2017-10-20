@@ -6,7 +6,7 @@ import { pure } from 'docs/app/HOC'
 
 const popupStyle = { padding: '0.5em' }
 
-const ComponentPropsName = ({ name, required }) => (
+const ComponentPropName = ({ name, required }) => (
   <div>
     <code>{name}</code>
     {required && (
@@ -22,9 +22,9 @@ const ComponentPropsName = ({ name, required }) => (
   </div>
 )
 
-ComponentPropsName.propTypes = {
+ComponentPropName.propTypes = {
   name: PropTypes.string,
   required: PropTypes.bool,
 }
 
-export default pure(ComponentPropsName)
+export default pure(ComponentPropName)

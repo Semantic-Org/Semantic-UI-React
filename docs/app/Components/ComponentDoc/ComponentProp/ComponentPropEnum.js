@@ -3,20 +3,20 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import { updateForKeys } from 'docs/app/HOC'
-import ComponentPropsExtra from './ComponentPropsExtra'
-import ComponentPropsToggle from './ComponentPropsEnumToggle'
-import ComponentPropsValue from './ComponentPropsEnumValue'
+import ComponentPropExtra from './ComponentPropExtra'
+import ComponentPropToggle from './ComponentPropEnumToggle'
+import ComponentPropValue from './ComponentPropEnumValue'
 
-const ComponentPropsEnum = ({ limit, showAll, toggle, type, values }) => {
+const ComponentPropEnum = ({ limit, showAll, toggle, type, values }) => {
   if (!_.includes(type, 'enum') || !values) return null
 
   const exceeds = values.length > limit
   const sliced = showAll ? values : _.slice(values, 0, limit)
 
   return (
-    <ComponentPropsExtra inline title='Enums: '>
+    <ComponentPropExtra inline title='Enums: '>
       {exceeds && (
-        <ComponentPropsToggle
+        <ComponentPropToggle
           toggle={toggle}
           total={values.length}
           showAll={showAll}
@@ -24,18 +24,18 @@ const ComponentPropsEnum = ({ limit, showAll, toggle, type, values }) => {
       )}
 
       <div>
-        {_.map(sliced, value => <ComponentPropsValue key={value}>{value}</ComponentPropsValue>)}
+        {_.map(sliced, value => <ComponentPropValue key={value}>{value}</ComponentPropValue>)}
         {exceeds && !showAll && '...'}
       </div>
-    </ComponentPropsExtra>
+    </ComponentPropExtra>
   )
 }
 
-ComponentPropsEnum.defaultProps = {
+ComponentPropEnum.defaultProps = {
   limit: 50,
 }
 
-ComponentPropsEnum.propTypes = {
+ComponentPropEnum.propTypes = {
   limit: PropTypes.number,
   showAll: PropTypes.bool,
   toggle: PropTypes.func,
@@ -43,4 +43,4 @@ ComponentPropsEnum.propTypes = {
   values: PropTypes.array,
 }
 
-export default updateForKeys(['showAll'])(ComponentPropsEnum)
+export default updateForKeys(['showAll'])(ComponentPropEnum)
