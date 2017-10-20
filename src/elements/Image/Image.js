@@ -168,7 +168,7 @@ Image.propTypes = {
 
   /** An image may appear rounded. */
   rounded: PropTypes.bool,
-  
+
   /** An image may appear at different sizes. */
   size: PropTypes.oneOf(SUI.SIZES),
 
