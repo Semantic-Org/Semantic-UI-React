@@ -8,14 +8,14 @@ const spanStyle = {
   paddingRight: '0.2em',
 }
 
-const ComponentPropsEnumValue = ({ children }) => (
+const ComponentPropEnumValue = ({ children }) => (
   <span style={spanStyle}>
     <code>{children}</code>
   </span>
 )
 
-ComponentPropsEnumValue.propTypes = {
+ComponentPropEnumValue.propTypes = {
   children: PropTypes.node,
 }
 
-export default neverUpdate(ComponentPropsEnumValue)
+export default neverUpdate(ComponentPropEnumValue)
