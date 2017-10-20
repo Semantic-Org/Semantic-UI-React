@@ -123,7 +123,7 @@ Image.propTypes = {
 
   /** Primary content. */
   children: PropTypes.node,
-  
+
   /** An image may appear circular. */
   circular: PropTypes.bool,
 
@@ -135,7 +135,7 @@ Image.propTypes = {
 
   /** An image can show that it is disabled and cannot be selected. */
   disabled: PropTypes.bool,
-  
+
   /** Shorthand for Dimmer. */
   dimmer: customPropTypes.itemShorthand,
 
