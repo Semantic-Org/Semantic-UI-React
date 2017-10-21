@@ -8,6 +8,9 @@ import { default as PopupHeader, PopupHeaderProps } from './PopupHeader';
 export interface PopupProps extends PortalProps {
   [key: string]: any;
 
+  /** An element type to render as (string or function). */
+  as?: any;
+
   /** Display the popup without the pointing arrow */
   basic?: boolean;
 
@@ -20,7 +23,7 @@ export interface PopupProps extends PortalProps {
   /** Simple text content for the popover. */
   content?: SemanticShorthandItem<PopupContentProps>;
 
-  /** A Flowing popup have no maximum width and continue to flow to fit its content. */
+  /** A flowing Popup has no maximum width and continues to flow to fit its content. */
   flowing?: boolean;
 
   /** Header displayed above the content in bold. */

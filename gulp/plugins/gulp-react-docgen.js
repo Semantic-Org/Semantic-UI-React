@@ -27,7 +27,7 @@ export default (filename) => {
     }
 
     try {
-      const relativePath = file.path.replace(`${process.cwd()}/`, '')
+      const componentName = path.basename(file.path, '.js')
       const parsed = parse(file.contents, null, [
         ...defaultHandlers,
         parserCustomHandler,
@@ -52,9 +52,13 @@ export default (filename) => {
           type: name,
         }
       })
+
+      parsed.path = file.path
+        .replace(new RegExp(_.escapeRegExp(path.sep), 'g'), '/')
+        .replace(`${process.cwd()}/`, '')
       parsed.props = _.sortBy(parsed.props, 'name')
 
-      result[relativePath] = parsed
+      result[componentName] = parsed
 
       cb()
     } catch (err) {

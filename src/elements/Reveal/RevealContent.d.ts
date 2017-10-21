@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface RevealContentProps {
   [key: string]: any;
@@ -11,6 +12,9 @@ export interface RevealContentProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A reveal may contain content that is visible before interaction. */
   hidden?: boolean;

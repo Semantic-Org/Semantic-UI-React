@@ -9,7 +9,9 @@ import * as common from 'test/specs/commonTests'
 describe('Feed', () => {
   common.isConformant(Feed)
   common.hasUIClassName(Feed)
-  common.rendersChildren(Feed)
+  common.rendersChildren(Feed, {
+    rendersContent: false,
+  })
 
   common.propValueOnlyToClassName(Feed, 'size',
     _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),

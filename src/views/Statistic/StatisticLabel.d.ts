@@ -14,7 +14,7 @@ export interface StatisticLabelProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  label?: SemanticShorthandContent;
+  content?: SemanticShorthandContent;
 }
 
 declare const StatisticLabel: React.StatelessComponent<StatisticLabelProps>;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -19,6 +20,7 @@ function Container(props) {
   const {
     children,
     className,
+    content,
     fluid,
     text,
     textAlign,
@@ -34,7 +36,11 @@ function Container(props) {
   const rest = getUnhandledProps(Container, props)
   const ElementType = getElementType(Container, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 Container._meta = {
@@ -51,6 +57,9 @@ Container.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Container has no maximum width. */
   fluid: PropTypes.bool,

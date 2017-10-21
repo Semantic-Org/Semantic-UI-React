@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -60,11 +61,13 @@ export default class BreadcrumbSection extends Component {
     parent: 'Breadcrumb',
   }
 
-  handleClick = (e) => {
-    const { onClick } = this.props
+  computeElementType = () => {
+    const { link, onClick } = this.props
 
-    if (onClick) onClick(e, this.props)
+    if (link || onClick) return 'a'
   }
+
+  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const {
@@ -73,8 +76,6 @@ export default class BreadcrumbSection extends Component {
       className,
       content,
       href,
-      link,
-      onClick,
     } = this.props
 
     const classes = cx(
@@ -83,9 +84,7 @@ export default class BreadcrumbSection extends Component {
       className,
     )
     const rest = getUnhandledProps(BreadcrumbSection, this.props)
-    const ElementType = getElementType(BreadcrumbSection, this.props, () => {
-      if (link || onClick) return 'a'
-    })
+    const ElementType = getElementType(BreadcrumbSection, this.props, this.computeElementType)
 
     return (
       <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   SemanticCOLORS,
   SemanticFLOATS,
+  SemanticShorthandContent,
   SemanticSIZES,
   SemanticWIDTHS
 } from '../..';
@@ -29,6 +30,9 @@ export interface ButtonGroupProps {
 
   /** Groups can reduce their padding to fit into tighter spaces. */
   compact?: boolean;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Groups can be aligned to the left or right of its container. */
   floated?: SemanticFLOATS;

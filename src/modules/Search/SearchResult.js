@@ -38,11 +38,17 @@ export default class SearchResult extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** Additional text with less emphasis. */
     description: PropTypes.string,
 
     /** A unique identifier. */
-    id: PropTypes.number,
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /** Add an image to the item. */
     image: PropTypes.string,

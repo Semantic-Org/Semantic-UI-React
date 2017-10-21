@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SemanticTEXTALIGNMENTS } from '../..';
+import { SemanticShorthandContent, SemanticTEXTALIGNMENTS } from '../..';
 
 export interface ContainerProps {
   [key: string]: any;
@@ -12,6 +12,9 @@ export interface ContainerProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Container has no maximum width. */
   fluid?: boolean;

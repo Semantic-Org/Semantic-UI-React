@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -13,12 +14,16 @@ import {
  * A comment can contain content.
  */
 function CommentContent(props) {
-  const { className, children } = props
+  const { className, children, content } = props
   const classes = cx(className, 'content')
   const rest = getUnhandledProps(CommentContent, props)
   const ElementType = getElementType(CommentContent, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 CommentContent._meta = {
@@ -36,6 +41,9 @@ CommentContent.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 export default CommentContent

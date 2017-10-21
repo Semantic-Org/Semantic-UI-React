@@ -1,11 +1,9 @@
-import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 import DocumentTitle from 'react-document-title'
-import { withRouter } from 'react-router'
 import { Grid } from 'semantic-ui-react'
 
-import { scrollToAnchor } from 'docs/app/utils'
+import { withDocInfo } from 'docs/app/HOC'
 import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
@@ -13,78 +11,47 @@ import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 import ComponentSidebar from './ComponentSidebar'
 
-const topRowStyle = { margin: '1em' }
+const ComponentDoc = ({ componentGroup, componentName, description, ghLink, path, seeItems, suiLink }) => (
+  <DocumentTitle title={`${componentName} | Semantic UI React`}>
+    <div>
+      <Grid padded columns='1'>
+        <Grid.Column>
+          <ComponentDocHeader componentName={componentName} description={description} />
+          <ComponentDocSee items={seeItems} />
+          <ComponentDocLinks
+            componentName={componentName}
+            ghLink={ghLink}
+            path={path}
+            suiLink={suiLink}
+          />
+          <ComponentProps componentGroup={componentGroup} componentName={componentName} />
+        </Grid.Column>
+      </Grid>
 
-class ComponentDoc extends Component {
-  static childContextTypes = {
-    onPassed: PropTypes.func,
-  }
+      <ComponentExamples componentName={componentName} />
+    </div>
+  </DocumentTitle>
+)
 
-  static propTypes = {
-    _meta: PropTypes.object,
-    history: PropTypes.object.isRequired,
-  }
-
-  state = {}
-
-  getChildContext() {
-    return {
-      onPassed: this.handleExamplePassed,
-    }
-  }
-
-  componentWillReceiveProps() {
-    this.setState({ activePath: undefined })
-  }
-
-  handleExamplePassed = (e, { examplePath }) => this.setState({ activePath: examplePath })
-
-  handleExamplesRef = examplesRef => this.setState({ examplesRef })
-
-  handleSidebarItemClick = (e, { path }) => {
-    const { history } = this.props
-    const aPath = _.kebabCase(_.last(path.split('/')))
-
-    history.replace(`${location.pathname}#${aPath}`)
-    scrollToAnchor()
-  }
-
-  render() {
-    const { _meta } = this.props
-    const { activePath, examplesRef } = this.state
-
-    return (
-      <DocumentTitle title={`${_meta.name} | Semantic UI React`}>
-        <Grid>
-          <Grid.Row columns='equal' style={topRowStyle}>
-            <Grid.Column>
-              <ComponentDocHeader componentName={_meta.name} />
-              <ComponentDocSee componentName={_meta.name} />
-              <ComponentDocLinks componentName={_meta.parent || _meta.name} type={_meta.type} />
-              <ComponentProps componentName={_meta.name} />
-            </Grid.Column>
-            <Grid.Column computer={5} largeScreen={4} widescreen={4} />
-          </Grid.Row>
-
-          <Grid.Row columns='equal'>
-            <Grid.Column>
-              <div ref={this.handleExamplesRef}>
-                <ComponentExamples componentName={_meta.name} />
-              </div>
-            </Grid.Column>
-            <Grid.Column computer={5} largeScreen={4} widescreen={4}>
-              <ComponentSidebar
-                activePath={activePath}
-                componentName={_meta.parent || _meta.name}
-                examplesRef={examplesRef}
-                onItemClick={this.handleSidebarItemClick}
-              />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </DocumentTitle>
-    )
-  }
+ComponentDoc.propTypes = {
+  componentGroup: PropTypes.arrayOf(
+    PropTypes.shape({
+      description: PropTypes.string,
+      props: PropTypes.object,
+    }),
+  ),
+  componentName: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  ghLink: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  seeItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      description: PropTypes.string,
+      name: PropTypes.string,
+      type: PropTypes.string,
+    }),
+  ).isRequired,
+  suiLink: PropTypes.string,
 }
 
-export default withRouter(ComponentDoc)
+export default withDocInfo(ComponentDoc)

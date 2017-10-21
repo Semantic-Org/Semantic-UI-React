@@ -1,7 +1,9 @@
 import copyToClipboard from 'copy-to-clipboard'
-import React, { Component } from 'react'
 import _ from 'lodash/fp'
-import { SUI, leven } from 'src/lib'
+import leven from 'leven'
+import React, { Component } from 'react'
+
+import { SUI } from 'src/lib'
 import {
   Form,
   Grid,

@@ -10,8 +10,6 @@ const StepExampleActive = () => (
         <Step.Description>Enter billing information</Step.Description>
       </Step.Content>
     </Step>
-
-    <Step active icon='credit card' title='Billing' description='Enter billing information' />
   </Step.Group>
 )
 

@@ -5,7 +5,9 @@ import * as common from 'test/specs/commonTests'
 describe('MessageList', () => {
   common.isConformant(MessageList)
   common.implementsCreateMethod(MessageList)
-  common.rendersChildren(MessageList)
+  common.rendersChildren(MessageList, {
+    rendersContent: false,
+  })
 
   it('renders an ul tag', () => {
     shallow(<MessageList />)

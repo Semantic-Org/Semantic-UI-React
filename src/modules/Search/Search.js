@@ -16,6 +16,7 @@ import {
   META,
   objectDiff,
   partitionHTMLInputProps,
+  shallowEqual,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -210,19 +211,19 @@ export default class Search extends Component {
     if (open) this.open()
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !_.isEqual(nextProps, this.props) || !_.isEqual(nextState, this.state)
-  }
-
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
     debug('changed props:', objectDiff(nextProps, this.props))
 
-    if (!_.isEqual(nextProps.value, this.props.value)) {
+    if (!shallowEqual(nextProps.value, this.props.value)) {
       debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(nextProps, this.props) || !shallowEqual(nextState, this.state)
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity

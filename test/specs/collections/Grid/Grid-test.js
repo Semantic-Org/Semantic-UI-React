@@ -9,7 +9,9 @@ describe('Grid', () => {
   common.isConformant(Grid)
   common.hasSubComponents(Grid, [GridRow, GridColumn])
   common.hasUIClassName(Grid)
-  common.rendersChildren(Grid)
+  common.rendersChildren(Grid, {
+    rendersContent: false,
+  })
 
   common.implementsTextAlignProp(Grid)
   common.implementsVerticalAlignProp(Grid)

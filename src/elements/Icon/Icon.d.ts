@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { SemanticCOLORS } from '../..';
-import { default as IconGroup } from './IconGroup';
+import { SemanticCOLORS, SemanticICONS } from '../..';
+import IconGroup from './IconGroup';
 
 export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 
@@ -45,7 +45,7 @@ export interface IconProps {
   loading?: boolean;
 
   /** Name of the icon. */
-  name?: string;
+  name?: SemanticICONS;
 
   /** Icon can rotated. */
   rotated?: 'clockwise' | 'counterclockwise';

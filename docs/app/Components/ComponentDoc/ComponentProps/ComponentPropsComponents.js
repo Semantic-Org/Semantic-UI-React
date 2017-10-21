@@ -7,9 +7,9 @@ import { updateForKeys } from 'docs/app/HOC'
 import ComponentPropsSubComponent from './ComponentPropsComponent'
 
 const ComponentPropsComponents = ({ activeName, components, onItemClick, parent }) =>
-  components.length > 0 && (
+  components.length > 1 && (
     <Menu color='green' compact size='small' secondary>
-      {_.map([parent, ...components], component => (
+      {_.map(components, component => (
         <ComponentPropsSubComponent
           active={activeName === component}
           key={component}
@@ -28,7 +28,7 @@ ComponentPropsComponents.propTypes = {
   ]),
   components: PropTypes.array,
   onItemClick: PropTypes.func,
-  parent: PropTypes.string,
+  parent: PropTypes.string.isRequired,
 }
 
 export default updateForKeys(['activeName', 'parent'])(ComponentPropsComponents)

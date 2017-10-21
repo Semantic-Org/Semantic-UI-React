@@ -10,6 +10,11 @@ const PortalTypesExamples = () => (
       description='A basic portal.'
       examplePath='addons/Portal/Types/PortalExamplePortal'
     />
+    <ComponentExample
+      title='Controlled'
+      description='A controlled portal.'
+      examplePath='addons/Portal/Types/PortalExampleControlled'
+    />
   </ExampleSection>
 )
 

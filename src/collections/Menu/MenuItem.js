@@ -132,7 +132,7 @@ export default class MenuItem extends Component {
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
         {Icon.create(icon)}
-        {content || _.startCase(name)}
+        {childrenUtils.isNil(content) ? _.startCase(name) : content}
       </ElementType>
     )
   }

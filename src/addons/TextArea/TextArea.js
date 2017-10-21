@@ -115,7 +115,9 @@ class TextArea extends Component {
 
     // Measure the scrollHeight and update the height to match.
     this.ref.style.height = 'auto'
+    this.ref.style.overflowY = 'hidden'
     this.ref.style.height = `${Math.max(parseFloat(minHeight), Math.ceil(this.ref.scrollHeight + borderHeight))}px`
+    this.ref.style.overflowY = ''
   }
 
   render() {
