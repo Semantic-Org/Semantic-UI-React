@@ -41,6 +41,9 @@ class Progress extends Component {
     /** A progress bar can have different colors. */
     color: PropTypes.oneOf(SUI.COLORS),
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** A progress bar be disabled. */
     disabled: PropTypes.bool,
 
@@ -113,7 +116,7 @@ class Progress extends Component {
     const { percent, total, value } = this.props
 
     if (!_.isUndefined(percent)) return percent
-    if (!_.isUndefined(total) && !_.isUndefined(value)) return value / total * 100
+    if (!_.isUndefined(total) && !_.isUndefined(value)) return (value / total) * 100
   }
 
   getPercent = () => {
@@ -131,13 +134,14 @@ class Progress extends Component {
   }
 
   renderLabel = () => {
-    const { children, label } = this.props
+    const { children, content, label } = this.props
 
     if (!childrenUtils.isNil(children)) return <div className='label'>{children}</div>
+    if (!childrenUtils.isNil(content)) return <div className='label'>{content}</div>
     return createHTMLDivision(label, { defaultProps: { className: 'label' } })
   }
 
-  renderProgress = percent => {
+  renderProgress = (percent) => {
     const {
       precision,
       progress,

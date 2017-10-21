@@ -68,7 +68,10 @@ class Form extends Component {
     /** Automatically show any success Message children. */
     success: PropTypes.bool,
 
-    /** Automatically show any warning Message children .*/
+    /** A form can prevent itself from stacking on mobile. */
+    unstackable: PropTypes.bool,
+
+    /** Automatically show any warning Message children. */
     warning: PropTypes.bool,
 
     /** Forms can automatically divide fields to be equal width. */
@@ -99,7 +102,7 @@ class Form extends Component {
 
     // Heads up! Third party libs can pass own data as first argument, we need to check that it has preventDefault()
     // method.
-    if (!action) _.invoke(e, 'preventDefault')
+    if (typeof action !== 'string') _.invoke(e, 'preventDefault')
     _.invoke(this.props, 'onSubmit', e, this.props, ...args)
   }
 
@@ -114,6 +117,7 @@ class Form extends Component {
       reply,
       size,
       success,
+      unstackable,
       warning,
       widths,
     } = this.props
@@ -126,6 +130,7 @@ class Form extends Component {
       useKeyOnly(loading, 'loading'),
       useKeyOnly(reply, 'reply'),
       useKeyOnly(success, 'success'),
+      useKeyOnly(unstackable, 'unstackable'),
       useKeyOnly(warning, 'warning'),
       useWidthProp(widths, null, true),
       'form',

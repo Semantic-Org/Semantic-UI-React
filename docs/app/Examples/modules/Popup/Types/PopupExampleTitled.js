@@ -18,16 +18,22 @@ const users = [
     avatar: '/assets/images/avatar/small/matt.jpg',
   },
 ]
+/* TODO: Remove <div> wrapper after all our components will be classes */
+const PopupExampleTitled = () => (
+  <div>
+    {users.map(user => (
+      <Popup
+        key={user.name}
+        trigger={(
+          <div>
+            <Image src={user.avatar} avatar />
+          </div>
+        )}
+        header={user.name}
+        content={user.bio}
+      />
+    ))}
+  </div>
+)
 
-export default function PopupExampleTitled() {
-  const avatars = users.map((user, index) =>
-    <Popup
-      key={user.name}
-      trigger={<Image src={user.avatar} avatar />}
-      header={user.name}
-      content={user.bio}
-    />
-  )
-
-  return <div>{avatars}</div>
-}
+export default PopupExampleTitled

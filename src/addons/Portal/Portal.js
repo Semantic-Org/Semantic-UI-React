@@ -1,15 +1,17 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import { Children, cloneElement } from 'react'
+import React, { Children, cloneElement } from 'react'
 import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
+  eventStack,
   isBrowser,
   keyboardKey,
   makeDebugger,
   META,
 } from '../../lib'
+import Ref from '../Ref'
 
 const debug = makeDebugger('portal')
 
@@ -60,6 +62,9 @@ class Portal extends Component {
 
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
+
+    /** Event pool namespace that is used to handle component events */
+    eventPool: PropTypes.string,
 
     /** The node where the portal should mount. */
     mountNode: PropTypes.any,
@@ -124,6 +129,7 @@ class Portal extends Component {
   static defaultProps = {
     closeOnDocumentClick: true,
     closeOnEscape: true,
+    eventPool: 'default',
     openOnTriggerClick: true,
   }
 
@@ -180,7 +186,7 @@ class Portal extends Component {
 
     const didClickInRootNode = this.rootNode.contains(e.target)
 
-    if (closeOnDocumentClick && !didClickInRootNode || closeOnRootNodeClick && didClickInRootNode) {
+    if ((closeOnDocumentClick && !didClickInRootNode) || (closeOnRootNodeClick && didClickInRootNode)) {
       debug('handleDocumentClick()')
 
       this.close(e)
@@ -209,7 +215,7 @@ class Portal extends Component {
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
   }
 
-  handlePortalMouseEnter = (e) => {
+  handlePortalMouseEnter = () => {
     // In order to enable mousing from the trigger to the portal, we need to
     // clear the mouseleave timer that was set when leaving the trigger.
     const { closeOnPortalMouseLeave } = this.props
@@ -348,8 +354,8 @@ class Portal extends Component {
 
     // when re-rendering, first remove listeners before re-adding them to the new node
     if (this.portalNode) {
-      this.portalNode.removeEventListener('mouseleave', this.handlePortalMouseLeave)
-      this.portalNode.removeEventListener('mouseenter', this.handlePortalMouseEnter)
+      eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { target: this.portalNode })
+      eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { target: this.portalNode })
     }
 
     ReactDOM.unstable_renderSubtreeIntoContainer(
@@ -359,9 +365,9 @@ class Portal extends Component {
       () => {
         this.portalNode = this.rootNode.firstElementChild
 
-        this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
-        this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
-      }
+        eventStack.sub('mouseleave', this.handlePortalMouseLeave, { target: this.portalNode })
+        eventStack.sub('mouseenter', this.handlePortalMouseEnter, { target: this.portalNode })
+      },
     )
   }
 
@@ -371,6 +377,7 @@ class Portal extends Component {
     debug('mountPortal()')
 
     const {
+      eventPool,
       mountNode = isBrowser ? document.body : null,
       prepend,
     } = this.props
@@ -383,51 +390,48 @@ class Portal extends Component {
       mountNode.appendChild(this.rootNode)
     }
 
-    document.addEventListener('click', this.handleDocumentClick)
-    document.addEventListener('keydown', this.handleEscape)
-
-    const { onMount } = this.props
-    if (onMount) onMount(null, this.props)
+    eventStack.sub('click', this.handleDocumentClick, eventPool)
+    eventStack.sub('keydown', this.handleEscape, eventPool)
+    _.invoke(this.props, 'onMount', null, this.props)
   }
 
   unmountPortal = () => {
     if (!isBrowser || !this.rootNode) return
 
     debug('unmountPortal()')
+    const { eventPool } = this.props
 
     ReactDOM.unmountComponentAtNode(this.rootNode)
     this.rootNode.parentNode.removeChild(this.rootNode)
 
-    this.portalNode.removeEventListener('mouseleave', this.handlePortalMouseLeave)
-    this.portalNode.removeEventListener('mouseenter', this.handlePortalMouseEnter)
+    eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { target: this.portalNode })
+    eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { target: this.portalNode })
 
     this.rootNode = null
     this.portalNode = null
 
-    document.removeEventListener('click', this.handleDocumentClick)
-    document.removeEventListener('keydown', this.handleEscape)
-
-    const { onUnmount } = this.props
-    if (onUnmount) onUnmount(null, this.props)
+    eventStack.unsub('click', this.handleDocumentClick, eventPool)
+    eventStack.unsub('keydown', this.handleEscape, eventPool)
+    _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
-  handleRef = c => {
-    this.triggerNode = ReactDOM.findDOMNode(c)
-  }
+  handleRef = c => (this.triggerNode = c)
 
   render() {
     const { trigger } = this.props
 
     if (!trigger) return null
-
-    return cloneElement(trigger, {
-      ref: this.handleRef,
-      onBlur: this.handleTriggerBlur,
-      onClick: this.handleTriggerClick,
-      onFocus: this.handleTriggerFocus,
-      onMouseLeave: this.handleTriggerMouseLeave,
-      onMouseEnter: this.handleTriggerMouseEnter,
-    })
+    return (
+      <Ref innerRef={this.handleRef}>
+        {cloneElement(trigger, {
+          onBlur: this.handleTriggerBlur,
+          onClick: this.handleTriggerClick,
+          onFocus: this.handleTriggerFocus,
+          onMouseLeave: this.handleTriggerMouseLeave,
+          onMouseEnter: this.handleTriggerMouseEnter,
+        })}
+      </Ref>
+    )
   }
 }
 

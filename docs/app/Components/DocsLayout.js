@@ -22,7 +22,7 @@ export default class DocsLayout extends Component {
     this.resetPage()
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this.resetPage()
   }
 
@@ -46,7 +46,7 @@ export default class DocsLayout extends Component {
     this.pathname = location.pathname
   }
 
-  renderChildren = props => {
+  renderChildren = (props) => {
     const { component: Children, render } = this.props
 
     if (render) return render()

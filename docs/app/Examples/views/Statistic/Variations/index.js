@@ -2,6 +2,7 @@ import React from 'react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 const Variations = () => (
   <ExampleSection title='Variations'>
@@ -10,6 +11,7 @@ const Variations = () => (
       description='A statistic can present its measurement horizontally.'
       examplePath='views/Statistic/Variations/StatisticExampleHorizontal'
     />
+    <ShorthandExample examplePath='views/Statistic/Variations/StatisticExampleHorizontalShorthand' />
     <ComponentExample examplePath='views/Statistic/Variations/StatisticExampleHorizontalGroup' />
 
     <ComponentExample
@@ -17,11 +19,21 @@ const Variations = () => (
       description='A statistic can be formatted to be different colors.'
       examplePath='views/Statistic/Variations/StatisticExampleColored'
     />
+    <ComponentExample
+      title='Colored Group'
+      description='A group of colored statistics.'
+      examplePath='views/Statistic/Variations/StatisticExampleColoredGroup'
+    />
 
     <ComponentExample
       title='Inverted'
       description='A statistic can be formatted to fit on a dark background.'
       examplePath='views/Statistic/Variations/StatisticExampleInverted'
+    />
+    <ComponentExample
+      title='Inverted Group'
+      description='A group of statistics can be formatted to fit on a dark background.'
+      examplePath='views/Statistic/Variations/StatisticExampleInvertedGroup'
     />
 
     <ComponentExample
@@ -29,7 +41,6 @@ const Variations = () => (
       description='A statistic group can have its items divided evenly.'
       examplePath='views/Statistic/Variations/StatisticExampleEvenlyDivided'
     />
-
     <ComponentExample
       title='Floated'
       description='An statistic can sit to the left or right of other content.'
@@ -42,6 +53,11 @@ const Variations = () => (
       examplePath='views/Statistic/Variations/StatisticExampleSize'
     />
     <ComponentExample examplePath='views/Statistic/Variations/StatisticExampleSizeDivided' />
+    <ComponentExample
+      title='Group Size'
+      description='A group of statistics can vary in size.'
+      examplePath='views/Statistic/Variations/StatisticExampleSizeGroup'
+    />
   </ExampleSection>
 )
 

@@ -1,6 +1,8 @@
 import React from 'react'
+
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 const ButtonGroupVariationsExamples = () => (
   <ExampleSection title='Group Variations'>
@@ -19,7 +21,7 @@ const ButtonGroupVariationsExamples = () => (
       description='Groups can be formatted as icons.'
       examplePath='elements/Button/GroupVariations/ButtonExampleGroupIcon'
     />
-    <ComponentExample
+    <ShorthandExample
       description='Using shorthand icons formats each individual button as an icon button.'
       examplePath='elements/Button/GroupVariations/ButtonExampleGroupIconShorthand'
     />

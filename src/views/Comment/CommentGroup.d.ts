@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface CommentGroupProps {
   [key: string]: any;
@@ -14,6 +15,9 @@ export interface CommentGroupProps {
 
   /** Comments can be collapsed, or hidden from view. */
   collapsed?: boolean;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Comments can hide extra information unless a user shows intent to interact with a comment */
   minimal?: boolean;

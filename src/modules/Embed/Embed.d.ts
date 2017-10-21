@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandItem } from '../..';
+import { HtmlIframeProps, SemanticShorthandContent, SemanticShorthandItem } from '../..';
 import { IconProps } from '../../elements/Icon';
 
 export interface EmbedProps {
@@ -30,6 +30,9 @@ export interface EmbedProps {
   /** Specifies a default chrome color with Vimeo or YouTube. */
   color?: string;
 
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
   /** Initial value of active. */
   defaultActive?: boolean;
 
@@ -41,6 +44,9 @@ export interface EmbedProps {
 
   /** Specifies an id for source. */
   id?: string;
+
+  /** Shorthand for HTML iframe. */
+  iframe?: SemanticShorthandItem<HtmlIframeProps>;
 
   /**
    * Сalled on click.

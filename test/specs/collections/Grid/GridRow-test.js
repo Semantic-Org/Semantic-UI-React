@@ -4,7 +4,9 @@ import * as common from 'test/specs/commonTests'
 
 describe('GridRow', () => {
   common.isConformant(GridRow)
-  common.rendersChildren(GridRow)
+  common.rendersChildren(GridRow, {
+    rendersContent: false,
+  })
 
   common.implementsOnlyProp(GridRow)
   common.implementsTextAlignProp(GridRow)

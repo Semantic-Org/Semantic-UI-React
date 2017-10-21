@@ -87,7 +87,7 @@ describe('TextArea', () => {
           autoHeight
           style={style}
           value={'line1\nline2\nline3\nline4'}
-        />
+        />,
       )
       assertHeight('40px') // 4 lines
     })
@@ -136,6 +136,20 @@ describe('TextArea', () => {
 
       wrapperShallow(<TextArea {...props} />)
       wrapper.find('textarea').simulate('change', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+    })
+  })
+
+  describe('onInput', () => {
+    it('is called with (e, data) on input', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { 'data-foo': 'bar', onInput: spy }
+
+      wrapperShallow(<TextArea {...props} />)
+      wrapper.find('textarea').simulate('input', e)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })

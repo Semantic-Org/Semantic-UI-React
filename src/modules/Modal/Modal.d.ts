@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { SemanticShorthandItem } from '../..';
 import { PortalProps } from '../../addons/Portal';
-import { default as ModalActions } from './ModalActions';
+import { default as ModalActions, ModalActionsProps } from './ModalActions';
 import { default as ModalContent, ModalContentProps } from './ModalContent';
 import { default as ModalDescription } from './ModalDescription';
 import { default as ModalHeader, ModalHeaderProps } from './ModalHeader';
@@ -13,8 +13,8 @@ export interface ModalProps extends PortalProps {
   /** An element type to render as (string or function). */
   as?: any;
 
-  /** A Modal can be passed action buttons via shorthand. */
-  actions?: Array<any>;
+  /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
+  actions?: SemanticShorthandItem<ModalActionsProps>;
 
   /** A Modal can reduce its complexity */
   basic?: boolean;
@@ -43,11 +43,22 @@ export interface ModalProps extends PortalProps {
   /** A modal can appear in a dimmer. */
   dimmer?: boolean | 'blurring' | 'inverted';
 
+  /** Event pool namespace that is used to handle component events */
+  eventPool?: string;
+
   /** A Modal can be passed header via shorthand. */
   header?: SemanticShorthandItem<ModalHeaderProps>;
 
   /** The node where the modal should mount. Defaults to document.body. */
   mountNode?: any;
+
+  /**
+   * Action onClick handler when using shorthand `actions`.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onActionClick?: (event: React.MouseEvent<HTMLElement>, data: ModalProps) => void;
 
   /**
    * Called when a close event happens.

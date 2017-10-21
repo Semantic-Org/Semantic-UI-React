@@ -15,7 +15,9 @@ describe('Table', () => {
   common.isConformant(Table)
   common.hasSubComponents(Table, [TableBody, TableCell, TableFooter, TableHeader, TableHeaderCell, TableRow])
   common.hasUIClassName(Table)
-  common.rendersChildren(Table)
+  common.rendersChildren(Table, {
+    rendersContent: false,
+  })
 
   common.implementsWidthProp(Table, SUI.WIDTHS, {
     canEqual: false,
@@ -48,7 +50,7 @@ describe('Table', () => {
 
   common.propValueOnlyToClassName(Table, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Table, 'size',
-    _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')
+    _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
   )
 
   it('renders as a table by default', () => {

@@ -4,7 +4,7 @@ import { Popup, Button, Header, Image, Modal } from 'semantic-ui-react'
 class ModalExampleDimmer extends Component {
   state = { open: false }
 
-  show = (dimmer) => () => this.setState({ dimmer, open: true })
+  show = dimmer => () => this.setState({ dimmer, open: true })
   close = () => this.setState({ open: false })
 
   render() {

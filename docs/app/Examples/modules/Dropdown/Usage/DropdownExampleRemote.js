@@ -21,7 +21,7 @@ class DropdownExampleRemote extends Component {
   }
 
   handleChange = (e, { value }) => this.setState({ value })
-  handleSearchChange = (e, value) => this.setState({ searchQuery: value })
+  handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
 
   fetchOptions = () => {
     this.setState({ isFetching: true })
@@ -38,7 +38,7 @@ class DropdownExampleRemote extends Component {
     this.setState({ value: multiple ? [value] : value })
   }
 
-  toggleSearch = (e) => this.setState({ search: e.target.checked })
+  toggleSearch = e => this.setState({ search: e.target.checked })
 
   toggleMultiple = (e) => {
     const { value } = this.state

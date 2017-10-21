@@ -14,7 +14,9 @@ import * as common from 'test/specs/commonTests'
 describe('Item', () => {
   common.isConformant(Item)
   common.hasSubComponents(Item, [ItemContent, ItemDescription, ItemExtra, ItemGroup, ItemHeader, ItemImage, ItemMeta])
-  common.rendersChildren(Item)
+  common.rendersChildren(Item, {
+    rendersContent: false,
+  })
 
   common.implementsShorthandProp(Item, {
     propKey: 'image',

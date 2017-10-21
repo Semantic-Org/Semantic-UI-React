@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import { SemanticShorthandContent } from '../..';
 import { SegmentSizeProp } from './Segment';
 
 export interface SegmentGroupProps {
@@ -15,6 +17,9 @@ export interface SegmentGroupProps {
 
   /** A segment may take up only as much space as is necessary. */
   compact?: boolean;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Formats content to be aligned horizontally. */
   horizontal?: boolean;

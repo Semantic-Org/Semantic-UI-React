@@ -1,5 +1,4 @@
 import React from 'react'
-import { findDOMNode } from 'react-dom'
 
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
@@ -22,7 +21,7 @@ describe('Checkbox', () => {
   })
 
   describe('aria', () => {
-    ['aria-label', 'role'].forEach(propName => {
+    ['aria-label', 'role'].forEach((propName) => {
       it(`passes "${propName}" to the <input>`, () => {
         shallow(<Checkbox {...{ [propName]: 'foo' }} />)
           .find('input')
@@ -35,16 +34,36 @@ describe('Checkbox', () => {
     it('can be checked and unchecked', () => {
       const wrapper = shallow(<Checkbox />)
 
-      wrapper.find('input').should.not.be.checked()
-      wrapper.simulate('click').find('input').should.be.checked()
-      wrapper.simulate('click').find('input').should.not.be.checked()
+      wrapper
+        .find('input')
+        .should.not.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.not.be.checked()
     })
     it('can be checked but not unchecked when radio', () => {
       const wrapper = shallow(<Checkbox radio />)
 
-      wrapper.find('input').should.not.be.checked()
-      wrapper.simulate('click').find('input').should.be.checked()
-      wrapper.simulate('click').find('input').should.be.checked()
+      wrapper
+        .find('input')
+        .should.not.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.be.checked()
     })
   })
 
@@ -59,8 +78,7 @@ describe('Checkbox', () => {
   describe('indeterminate', () => {
     it('can be indeterminate', () => {
       const wrapper = mount(<Checkbox indeterminate />)
-
-      const checkboxNode = findDOMNode(wrapper.instance())
+      const checkboxNode = wrapper.getDOMNode()
       const input = checkboxNode.querySelector('input')
 
       input.indeterminate.should.be.true()
@@ -70,8 +88,7 @@ describe('Checkbox', () => {
     })
     it('can not be indeterminate', () => {
       const wrapper = mount(<Checkbox indeterminate={false} />)
-
-      const checkboxNode = findDOMNode(wrapper.instance())
+      const checkboxNode = wrapper.getDOMNode()
       const input = checkboxNode.querySelector('input')
 
       input.indeterminate.should.be.false()
@@ -84,8 +101,7 @@ describe('Checkbox', () => {
   describe('defaultIndeterminate', () => {
     it('sets the initial indeterminate state', () => {
       const wrapper = mount(<Checkbox defaultIndeterminate />)
-
-      const checkboxNode = findDOMNode(wrapper.instance())
+      const checkboxNode = wrapper.getDOMNode()
       const input = checkboxNode.querySelector('input')
 
       input.indeterminate.should.be.true()
@@ -93,9 +109,8 @@ describe('Checkbox', () => {
 
     it('unsets indeterminate state on any click', () => {
       const wrapper = mount(<Checkbox defaultIndeterminate />)
-
-      const checkboxNode = findDOMNode(wrapper.instance())
-      const input = findDOMNode(checkboxNode.querySelector('input'))
+      const checkboxNode = wrapper.getDOMNode()
+      const input = checkboxNode.querySelector('input')
 
       input.indeterminate.should.be.true()
 
@@ -109,14 +124,18 @@ describe('Checkbox', () => {
 
   describe('disabled', () => {
     it('cannot be checked', () => {
-      shallow(<Checkbox disabled />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox disabled />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.not.be.checked()
     })
     it('cannot be unchecked', () => {
-      shallow(<Checkbox disabled defaultChecked />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox defaultChecked disabled />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.be.checked()
     })
@@ -160,7 +179,7 @@ describe('Checkbox', () => {
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch({}, {
         ...expectProps,
-        checked: expectProps.checked,
+        checked: !expectProps.checked,
         indeterminate: expectProps.indeterminate,
       })
     })
@@ -209,14 +228,18 @@ describe('Checkbox', () => {
 
   describe('readOnly', () => {
     it('cannot be checked', () => {
-      shallow(<Checkbox readOnly />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox readOnly />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.not.be.checked()
     })
     it('cannot be unchecked', () => {
-      shallow(<Checkbox readOnly defaultChecked />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox defaultChecked readOnly />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.be.checked()
     })

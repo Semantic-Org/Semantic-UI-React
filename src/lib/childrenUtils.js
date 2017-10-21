@@ -22,8 +22,6 @@ export const findByType = (children, type) => _.find(Children.toArray(children),
  * @param {Object} children The children prop of a component.
  * @returns {Boolean}
  */
-export const isNil = children => {
-  return children === null
+export const isNil = children => children === null
     || children === undefined
-    || Array.isArray(children) && children.length === 0
-}
+    || (Array.isArray(children) && children.length === 0)

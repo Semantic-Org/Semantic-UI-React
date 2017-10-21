@@ -53,6 +53,26 @@ describe('Tab', () => {
       wrapper.childAt(0).shallow().should.match('Segment')
       wrapper.childAt(1).should.match('Menu')
     })
+
+    it("renders right of the pane when tabular='right'", () => {
+      const wrapper = shallow(<Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={panes} />)
+
+      wrapper.childAt(0).should.match('Grid')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).shallow().should.match('Segment')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).should.match('Menu')
+    })
+
+    it("renders left of the pane when tabular='true'", () => {
+      const wrapper = shallow(<Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />)
+
+      wrapper.childAt(0).should.match('Grid')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).should.match('Menu')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).shallow().should.match('Segment')
+    })
   })
 
   describe('activeIndex', () => {
@@ -68,7 +88,7 @@ describe('Tab', () => {
       const wrapper = mount(<Tab panes={panes} />)
 
       wrapper
-        .find('.active.tab')
+        .find('TabPane[active]')
         .should.contain.text('Tab 1 Content')
 
       wrapper
@@ -77,7 +97,7 @@ describe('Tab', () => {
         .simulate('click')
 
       wrapper
-        .find('.active.tab')
+        .find('TabPane[active]')
         .should.contain.text('Tab 2 Content')
     })
 
@@ -85,12 +105,12 @@ describe('Tab', () => {
       const wrapper = mount(<Tab panes={panes} activeIndex={1} />)
 
       wrapper
-        .find('.active.tab')
+        .find('TabPane[active]')
         .should.contain.text('Tab 2 Content')
 
       wrapper
         .setProps({ activeIndex: 2 })
-        .find('.active.tab')
+        .find('TabPane[active]')
         .should.contain.text('Tab 3 Content')
     })
 
@@ -145,6 +165,22 @@ describe('Tab', () => {
       items.at(2).simulate('click')
       spy.should.have.callCount(3)
       spy.lastCall.args[1].should.have.property('activeIndex', 2)
+    })
+  })
+
+  describe('renderActiveOnly', () => {
+    it('renders all tabs when false', () => {
+      const textPanes = [
+        { pane: 'Tab 1' },
+        { pane: 'Tab 2' },
+        { pane: 'Tab 3' },
+      ]
+      const items = mount(<Tab panes={textPanes} renderActiveOnly={false} />).find('TabPane')
+
+      items.should.have.lengthOf(3)
+      items.at(0).should.contain.text('Tab 1')
+      items.at(1).should.contain.text('Tab 2')
+      items.at(2).should.contain.text('Tab 3')
     })
   })
 })

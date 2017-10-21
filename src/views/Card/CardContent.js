@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -9,7 +10,9 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
   useKeyOnly,
+  useTextAlignProp,
 } from '../../lib'
 import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
@@ -22,23 +25,25 @@ function CardContent(props) {
   const {
     children,
     className,
+    content,
     description,
     extra,
     header,
     meta,
+    textAlign,
   } = props
 
   const classes = cx(
-    className,
     useKeyOnly(extra, 'extra'),
+    useTextAlignProp(textAlign),
     'content',
+    className,
   )
   const rest = getUnhandledProps(CardContent, props)
   const ElementType = getElementType(CardContent, props)
 
-  if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>
@@ -65,6 +70,9 @@ CardContent.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
   /** Shorthand for CardDescription. */
   description: customPropTypes.itemShorthand,
 
@@ -76,6 +84,9 @@ CardContent.propTypes = {
 
   /** Shorthand for CardMeta. */
   meta: customPropTypes.itemShorthand,
+
+  /** A card content can adjust its text alignment. */
+  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
 export default CardContent

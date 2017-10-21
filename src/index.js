@@ -1,7 +1,9 @@
 // Addons
+export { default as Responsive } from './addons/Responsive'
 export { default as Confirm } from './addons/Confirm'
 export { default as Portal } from './addons/Portal'
 export { default as Radio } from './addons/Radio'
+export { default as Ref } from './addons/Ref'
 export { default as Select } from './addons/Select'
 export { default as TextArea } from './addons/TextArea'
 
@@ -101,6 +103,7 @@ export { default as StepTitle } from './elements/Step/StepTitle'
 
 // Modules
 export { default as Accordion } from './modules/Accordion/Accordion'
+export { default as AccordionAccordion } from './modules/Accordion/AccordionAccordion'
 export { default as AccordionContent } from './modules/Accordion/AccordionContent'
 export { default as AccordionTitle } from './modules/Accordion/AccordionTitle'
 
@@ -142,8 +145,13 @@ export { default as Sidebar } from './modules/Sidebar'
 export { default as SidebarPushable } from './modules/Sidebar/SidebarPushable'
 export { default as SidebarPusher } from './modules/Sidebar/SidebarPusher'
 
+export { default as Sticky } from './modules/Sticky'
+
 export { default as Tab } from './modules/Tab'
 export { default as TabPane } from './modules/Tab/TabPane'
+
+export { default as Transition } from './modules/Transition'
+export { default as TransitionGroup } from './modules/Transition/TransitionGroup'
 
 // Views
 export { default as Advertisement } from './views/Advertisement'

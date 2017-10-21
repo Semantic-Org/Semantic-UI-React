@@ -1,4 +1,3 @@
-import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
@@ -11,9 +10,24 @@ import * as common from 'test/specs/commonTests'
 
 describe('Statistic', () => {
   common.isConformant(Statistic)
+  common.implementsCreateMethod(Statistic)
   common.hasSubComponents(Statistic, [StatisticGroup, StatisticLabel, StatisticValue])
   common.hasUIClassName(Statistic)
   common.rendersChildren(Statistic)
+
+  common.implementsShorthandProp(Statistic, {
+    propKey: 'label',
+    ShorthandComponent: StatisticLabel,
+    mapValueToProps: content => ({ content }),
+  })
+  common.implementsShorthandProp(Statistic, {
+    propKey: 'value',
+    ShorthandComponent: StatisticValue,
+    mapValueToProps: content => ({ content }),
+    shorthandDefaultProps: {
+      text: undefined,
+    },
+  })
 
   common.propKeyAndValueToClassName(Statistic, 'floated', SUI.FLOATS)
 
@@ -23,38 +37,13 @@ describe('Statistic', () => {
   common.propValueOnlyToClassName(Statistic, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Statistic, 'size', _.without(SUI.SIZES, 'big', 'massive', 'medium'))
 
-  it('renders an div element', () => {
-    shallow(<Statistic />)
-      .should.have.tagName('div')
-  })
-
-  it('renders StatisticLabel component with `label` prop', () => {
-    const text = faker.hacker.phrase()
-    const wrapper = mount(<Statistic label={text} />)
-    const label = wrapper.find('StatisticLabel').first()
-
-    wrapper.should.have.exactly(1).descendants('StatisticLabel')
-    label.should.contain.text(text)
-  })
-
-  it('renders StatisticValue component and passes `text` prop', () => {
-    const text = faker.hacker.phrase()
-    const wrapper = mount(<Statistic value={text} text />)
-    const value = wrapper.find('StatisticValue').first()
-
-    wrapper.should.have.exactly(1).descendants('StatisticValue')
-    value.should.contain.text(text)
-    value.should.have.prop('text', true)
-  })
-
-  it('renders StatisticValue component', () => {
-    const text = faker.hacker.phrase()
-    const wrapper = mount(<Statistic value={text} />)
-    const value = wrapper.find('StatisticValue').first()
-
-    wrapper.should.have.exactly(1).descendants('StatisticValue')
-    value.should.contain.text(text)
-    value.should.not.have.prop('text')
+  describe('text', () => {
+    it('passes value to StatisticValue', () => {
+      shallow(<Statistic text value='foo' />)
+        .find('StatisticValue')
+        .first()
+        .should.have.prop('text', true)
+    })
   })
 })
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface SearchResultProps {
   [key: string]: any;
@@ -12,11 +13,14 @@ export interface SearchResultProps {
   /** Additional classes. */
   className?: string;
 
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
   /** Additional text with less emphasis. */
   description?: string;
 
   /** A unique identifier. */
-  id?: number;
+  id?: number | string;
 
   /** Add an image to the item. */
   image?: string;

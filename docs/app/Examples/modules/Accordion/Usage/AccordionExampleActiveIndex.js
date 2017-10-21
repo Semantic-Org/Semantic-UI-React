@@ -1,44 +1,44 @@
 import faker from 'faker'
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Accordion } from 'semantic-ui-react'
+import { Accordion, Segment } from 'semantic-ui-react'
 
 const panels = _.times(3, () => ({
   title: faker.lorem.sentence(),
   content: faker.lorem.paragraphs(),
 }))
 
-class AccordionExampleActiveIndex extends Component {
+export default class AccordionExampleActiveIndex extends Component {
   state = { activeIndex: 0 }
 
-  handleSliderChange = (e) => this.setState({
-    activeIndex: Number(e.target.value),
-  })
+  handleSliderChange = e => this.setState({ activeIndex: Number(e.target.value) })
 
-  handleTitleClick = (e, i) => this.setState({
-    activeIndex: this.state.activeIndex === i ? -1 : i,
-  })
+  handleTitleClick = (e, itemProps) => {
+    const { index } = itemProps
+    const { activeIndex } = this.state
+    const newIndex = activeIndex === index ? -1 : index
+
+    this.setState({ activeIndex: newIndex })
+  }
 
   render() {
     const { activeIndex } = this.state
+
     return (
       <div>
-        <div>activeIndex: {activeIndex}</div>
-        <input
-          type='range'
-          min='-1'
-          max={panels.length - 1}
-          value={activeIndex}
-          onChange={this.handleSliderChange}
-        />
-        <Accordion
-          activeIndex={activeIndex}
-          panels={panels}
-          onTitleClick={this.handleTitleClick}
-        />
+        <Segment secondary>
+          <div>activeIndex: {activeIndex}</div>
+          <input
+            type='range'
+            min='-1'
+            max={panels.length - 1}
+            value={activeIndex}
+            onChange={this.handleSliderChange}
+          />
+        </Segment>
+
+        <Accordion activeIndex={activeIndex} panels={panels} onTitleClick={this.handleTitleClick} />
       </div>
     )
   }
 }
-
-export default AccordionExampleActiveIndex

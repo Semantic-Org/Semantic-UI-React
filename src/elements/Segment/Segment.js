@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -29,6 +30,7 @@ function Segment(props) {
     clearing,
     color,
     compact,
+    content,
     disabled,
     floated,
     inverted,
@@ -71,7 +73,11 @@ function Segment(props) {
   const rest = getUnhandledProps(Segment, props)
   const ElementType = getElementType(Segment, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 Segment.Group = SegmentGroup
@@ -111,6 +117,9 @@ Segment.propTypes = {
 
   /** A segment may take up only as much space as is necessary. */
   compact: PropTypes.bool,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A segment may show its content is disabled. */
   disabled: PropTypes.bool,

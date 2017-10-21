@@ -21,6 +21,7 @@ function ItemGroup(props) {
   const {
     children,
     className,
+    content,
     divided,
     items,
     link,
@@ -40,11 +41,10 @@ function ItemGroup(props) {
   const rest = getUnhandledProps(ItemGroup, props)
   const ElementType = getElementType(ItemGroup, props)
 
-  if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
-  const itemsJSX = _.map(items, item => {
+  const itemsJSX = _.map(items, (item) => {
     const { childKey, ...itemProps } = item
     const finalKey = childKey || [itemProps.content, itemProps.description, itemProps.header, itemProps.meta].join('-')
 
@@ -69,6 +69,9 @@ ItemGroup.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Items can be divided to better distinguish between grouped content. */
   divided: PropTypes.bool,
