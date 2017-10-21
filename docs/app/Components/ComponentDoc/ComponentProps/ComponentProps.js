@@ -7,7 +7,7 @@ import ComponentPropsComponents from './ComponentPropsComponents'
 import ComponentPropsDescription from './ComponentPropsDescription'
 import ComponentPropsHeader from './ComponentPropsHeader'
 
-const propsTableContainerStyle = { overflowX: 'auto' }
+const propsContainerStyle = { overflowX: 'auto' }
 
 export default class ComponentProps extends Component {
   static propTypes = {
@@ -52,7 +52,7 @@ export default class ComponentProps extends Component {
         />
 
         {activeName && (
-          <div style={propsTableContainerStyle}>
+          <div style={propsContainerStyle}>
             <ComponentPropsDescription description={description} />
             <ComponentTable name={activeName} props={props} />
           </div>
