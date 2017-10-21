@@ -702,6 +702,9 @@ describe('Dropdown', () => {
       const inputText = 'FLORÉŞTI'
       const textToFind = 'FLORESTI'
 
+      // Add this in case the default 'no results text' changes.
+      const noResultsText = 'NoResultsFound'
+
       const opts = [
         { text: textToFind, value: '1' },
         { text: `SANTU ${textToFind}`, value: '2' },
@@ -709,14 +712,14 @@ describe('Dropdown', () => {
       ]
 
       // search for 'floresti'
-      wrapperMount(<Dropdown options={opts} search selection />)
+      wrapperMount(<Dropdown options={opts} search selection noResultsMessage={noResultsText} />)
         .simulate('click')
         .find('input.search')
         .simulate('change', { target: { value: inputText } })
 
       wrapper
-        .find('.selected')
-        .should.not.contain.text(textToFind)
+        .find('.message')
+        .should.contain.text(noResultsText)
     })
     it('still works after encountering "no results"', () => {
       const opts = [
