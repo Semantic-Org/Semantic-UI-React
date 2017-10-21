@@ -4,7 +4,6 @@ import * as semanticUIReact from 'src'
 import { META } from 'src/lib'
 
 export * from './constants'
-export * from './docs'
 export getComponentGroup from './getComponentGroup'
 export getSeeItems from './getSeeItems'
 export scrollToAnchor from './scrollToAnchor'

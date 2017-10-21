@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Accordion, Menu, Sticky } from 'semantic-ui-react'
 
-import { pure } from 'docs/app/HOC'
 import menuInfo from 'docs/app/menuInfo.json'
 import ComponentSideBarSection from './ComponentSidebarSection'
 
@@ -76,4 +75,4 @@ class ComponentSidebar extends Component {
   }
 }
 
-export default pure(ComponentSidebar)
+export default ComponentSidebar
