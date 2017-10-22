@@ -402,6 +402,7 @@ class ComponentExample extends Component {
     const { controlsVisible, exampleElement, isActive, showCode, showHTML } = this.state
 
     const exampleStyle = {
+      marginBottom: '1em',
       boxShadow: isActive && '0 0 30px #ccc',
     }
 

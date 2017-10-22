@@ -14,6 +14,7 @@ import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 import ComponentSidebar from './ComponentSidebar'
 
+const gridStyle = { paddingBottom: '10em' }
 const topRowStyle = { margin: '1em' }
 
 class ComponentDoc extends Component {
@@ -75,7 +76,7 @@ class ComponentDoc extends Component {
 
     return (
       <DocumentTitle title={`${componentName} | Semantic UI React`}>
-        <Grid>
+        <Grid style={gridStyle}>
           <Grid.Row columns='equal' style={topRowStyle}>
             <Grid.Column>
               <ComponentDocHeader componentName={componentName} description={description} />
