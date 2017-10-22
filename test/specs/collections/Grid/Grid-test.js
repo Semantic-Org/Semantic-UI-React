@@ -13,16 +13,15 @@ describe('Grid', () => {
     rendersContent: false,
   })
 
+  common.implementsMultipleProp(GridRow, 'reversed', [
+    'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
+  ])
   common.implementsTextAlignProp(Grid)
   common.implementsVerticalAlignProp(Grid)
   common.implementsWidthProp(Grid, SUI.WIDTHS, {
     propKey: 'columns',
     widthClass: 'column',
   })
-
-  common.propKeyAndValueToClassName(Grid, 'reversed', [
-    'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
-  ])
 
   common.propKeyOnlyToClassName(Grid, 'centered')
   common.propKeyOnlyToClassName(Grid, 'container')
