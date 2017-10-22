@@ -106,6 +106,11 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleDeburrSearch'
     />
     <ComponentExample
+      title='Custom Search Function'
+      description='A dropdown allows you to provide your own search function.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleCustomSearchFunction'
+    />
+    <ComponentExample
       title='Upward'
       description='A dropdown can open its menu upward.'
       examplePath='modules/Dropdown/Usage/DropdownExampleUpwardSelection'
