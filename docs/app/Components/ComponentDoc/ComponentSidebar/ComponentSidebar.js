@@ -38,14 +38,6 @@ class ComponentSidebar extends Component {
 
   handleItemClick = (e, { path }) => _.invoke(this.props, 'onItemClick', e, { path })
 
-  handleTitleClick = (e, { name }) => {
-    const { sections } = this.state
-    const { examples } = _.find(sections, { name })
-    const { path } = _.head(examples)
-
-    _.invoke(this.props, 'onItemClick', e, { path })
-  }
-
   render() {
     const { activePath, examplesRef } = this.props
     const { sections } = this.state
@@ -66,7 +58,6 @@ class ComponentSidebar extends Component {
               key={name}
               name={name}
               onItemClick={this.handleItemClick}
-              onTitleClick={this.handleTitleClick}
             />
           ))}
         </Menu>

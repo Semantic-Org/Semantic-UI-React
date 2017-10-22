@@ -15,13 +15,30 @@ class ComponentSidebarSection extends Component {
     onTitleClick: PropTypes.func,
   }
 
+  state = {}
+
+  componentWillReceiveProps(nextProps) {
+    const { activePath, examples } = nextProps
+    const isActiveByProps = _.find(examples, { path: activePath })
+
+    const didCloseByProps = this.state.isActiveByProps && !isActiveByProps
+
+    // We allow the user to open accordions, but we close them when we scroll passed them
+    this.setState(prevState => ({
+      isActiveByProps,
+      isActiveByUser: didCloseByProps ? false : prevState.isActiveByUser,
+    }))
+  }
+
   handleItemClick = (e, itemProps) => _.invoke(this.props, 'onItemClick', e, itemProps)
 
-  handleTitleClick = e => _.invoke(this.props, 'onTitleClick', e, this.props)
+  handleTitleClick = () => this.setState(prevState => ({ isActiveByUser: !prevState.isActiveByUser }))
 
   render() {
     const { activePath, examples, name } = this.props
-    const active = _.find(examples, { path: activePath })
+    const { isActiveByProps, isActiveByUser } = this.state
+
+    const active = isActiveByUser || isActiveByProps
 
     return (
       <Menu.Item>
