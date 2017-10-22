@@ -103,7 +103,12 @@ class ComponentExample extends Component {
     copyToClipboard(location.href)
   }
 
-  handleMouseEnter = () => this.setState({ controlsVisible: true })
+  handleMouseMove = _.throttle(() => {
+    const { controlsVisible } = this.state
+    if (controlsVisible) return
+
+    this.setState({ controlsVisible: true })
+  }, 200, { trailing: false })
 
   handleMouseLeave = () => this.setState({ controlsVisible: false })
 
@@ -414,7 +419,7 @@ class ComponentExample extends Component {
         <Grid
           className='docs-example'
           id={this.anchorName}
-          onMouseEnter={this.handleMouseEnter}
+          onMouseMove={this.handleMouseMove}
           onMouseLeave={this.handleMouseLeave}
           style={exampleStyle}
         >
