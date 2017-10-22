@@ -76,9 +76,7 @@ class ComponentExample extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { showCode, showHTML } = this.state
-
-    const isActive = showCode || showHTML || nextProps.location.hash === `#${this.anchorName}`
+    const isActive = nextProps.location.hash === `#${this.anchorName}`
 
     this.setState(() => ({ isActive }))
   }
@@ -112,21 +110,23 @@ class ComponentExample extends Component {
   handleShowCodeClick = (e) => {
     e.preventDefault()
 
-    const { showCode } = this.state
+    const { showCode, showHTML } = this.state
+
     this.setState({ showCode: !showCode })
 
     if (!showCode) this.setHashAndScroll()
-    else this.removeHash()
+    else if (!showHTML) this.removeHash()
   }
 
   handleShowHTMLClick = (e) => {
     e.preventDefault()
 
-    const { showHTML } = this.state
+    const { showCode, showHTML } = this.state
+
     this.setState({ showHTML: !showHTML })
 
     if (!showHTML) this.setHashAndScroll()
-    else this.removeHash()
+    else if (!showCode) this.removeHash()
   }
 
   handlePass = () => {
