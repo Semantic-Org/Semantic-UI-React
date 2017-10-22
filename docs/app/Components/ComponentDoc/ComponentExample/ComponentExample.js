@@ -57,7 +57,7 @@ class ComponentExample extends Component {
   }
 
   componentWillMount() {
-    const { examplePath } = this.props
+    const { examplePath, location } = this.props
     const sourceCode = this.getOriginalSourceCode()
 
     this.anchorName = _.kebabCase(_.last(examplePath.split('/')))
@@ -75,23 +75,33 @@ class ComponentExample extends Component {
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { location } = this.props
+    const { showCode, showHTML } = this.state
+
+    const isActive = showCode || showHTML || location.hash === `#${this.anchorName}`
+
+    this.setState(() => ({ isActive }))
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return !shallowEqual(this.state, nextState)
   }
 
   setHashAndScroll = () => {
-    const { history } = this.props
+    const { history, location } = this.props
 
     history.replace(`${location.pathname}#${this.anchorName}`)
     scrollToAnchor()
   }
 
   removeHash = () => {
-    const { history } = this.props
+    const { history, location } = this.props
     history.replace(location.pathname)
   }
 
   handleDirectLinkClick = () => {
+    const { location } = this.props
     this.setHashAndScroll()
     copyToClipboard(location.href)
   }
@@ -256,7 +266,7 @@ class ComponentExample extends Component {
   }
 
   setGitHubHrefs = () => {
-    const { examplePath } = this.props
+    const { examplePath, location } = this.props
 
     if (this.ghEditHref && this.ghBugHref) return
 
@@ -287,7 +297,7 @@ class ComponentExample extends Component {
           `The ${componentName} does not do this`,
           '',
           '**Testcase**',
-          `If the docs show the issue, use: ${window.location.href}`,
+          `If the docs show the issue, use: ${location.href}`,
           'Otherwise, fork this to get started: http://codepen.io/levithomason/pen/ZpBaJX',
         ].join('\n'),
       }, (val, key) => `${key}=${encodeURIComponent(val)}`).join('&'),
@@ -389,11 +399,10 @@ class ComponentExample extends Component {
 
   render() {
     const { children, description, suiVersion, title } = this.props
-    const { controlsVisible, exampleElement, showCode, showHTML } = this.state
-    const exampleStyle = {}
+    const { controlsVisible, exampleElement, isActive, showCode, showHTML } = this.state
 
-    if (showCode || showHTML || location.hash === `#${this.anchorName}`) {
-      exampleStyle.boxShadow = '0 0 30px #ccc'
+    const exampleStyle = {
+      boxShadow: isActive && '0 0 30px #ccc',
     }
 
     return (
