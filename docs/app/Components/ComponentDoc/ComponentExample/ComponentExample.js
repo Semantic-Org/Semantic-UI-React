@@ -76,10 +76,9 @@ class ComponentExample extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { location } = this.props
     const { showCode, showHTML } = this.state
 
-    const isActive = showCode || showHTML || location.hash === `#${this.anchorName}`
+    const isActive = showCode || showHTML || nextProps.location.hash === `#${this.anchorName}`
 
     this.setState(() => ({ isActive }))
   }
