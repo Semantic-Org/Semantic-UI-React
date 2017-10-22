@@ -19,10 +19,6 @@ export default class DocsLayout extends Component {
     sidebar: PropTypes.bool,
   }
 
-  static defaultProps = {
-    sidebar: true,
-  }
-
   componentDidMount() {
     this.resetPage()
   }
