@@ -572,7 +572,7 @@ const ResponsiveLayout = () => (
             <Table.Cell>
               <Header as='h4' image>
                 <Image
-                  shape='rounded'
+                  rounded
                   size='mini'
                   src='/assets/images/wireframe/square-image.png'
                 />
@@ -590,7 +590,7 @@ const ResponsiveLayout = () => (
             <Table.Cell>
               <Header as='h4' image>
                 <Image
-                  shape='rounded'
+                  rounded
                   size='mini'
                   src='/assets/images/wireframe/square-image.png'
                 />
@@ -608,7 +608,7 @@ const ResponsiveLayout = () => (
             <Table.Cell>
               <Header as='h4' image>
                 <Image
-                  shape='rounded'
+                  rounded
                   size='mini'
                   src='/assets/images/wireframe/square-image.png'
                 />
@@ -626,7 +626,7 @@ const ResponsiveLayout = () => (
             <Table.Cell>
               <Header as='h4' image>
                 <Image
-                  shape='rounded'
+                  rounded
                   size='mini'
                   src='/assets/images/wireframe/square-image.png'
                 />

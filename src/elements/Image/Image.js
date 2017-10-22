@@ -32,6 +32,7 @@ function Image(props) {
     bordered,
     centered,
     children,
+    circular,
     className,
     content,
     dimmer,
@@ -43,7 +44,7 @@ function Image(props) {
     href,
     inline,
     label,
-    shape,
+    rounded,
     size,
     spaced,
     src,
@@ -56,14 +57,15 @@ function Image(props) {
   const classes = cx(
     useKeyOnly(ui, 'ui'),
     size,
-    shape,
     useKeyOnly(avatar, 'avatar'),
     useKeyOnly(bordered, 'bordered'),
+    useKeyOnly(circular, 'circular'),
     useKeyOnly(centered, 'centered'),
     useKeyOnly(disabled, 'disabled'),
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(hidden, 'hidden'),
     useKeyOnly(inline, 'inline'),
+    useKeyOnly(rounded, 'rounded'),
     useKeyOrValueAndKey(spaced, 'spaced'),
     useValueAndKey(floated, 'floated'),
     useVerticalAlignProp(verticalAlign, 'aligned'),
@@ -122,6 +124,9 @@ Image.propTypes = {
   /** Primary content. */
   children: PropTypes.node,
 
+  /** An image may appear circular. */
+  circular: PropTypes.bool,
+
   /** Additional classes. */
   className: PropTypes.string,
 
@@ -161,8 +166,8 @@ Image.propTypes = {
   /** Shorthand for Label. */
   label: customPropTypes.itemShorthand,
 
-  /** An image may appear rounded or circular. */
-  shape: PropTypes.oneOf(['rounded', 'circular']),
+  /** An image may appear rounded. */
+  rounded: PropTypes.bool,
 
   /** An image may appear at different sizes. */
   size: PropTypes.oneOf(SUI.SIZES),
