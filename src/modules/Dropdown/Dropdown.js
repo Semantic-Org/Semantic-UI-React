@@ -791,7 +791,7 @@ export default class Dropdown extends Component {
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
   getMenuOptions = (value = this.state.value, options = this.props.options) => {
-    const { multiple, search, allowAdditions, additionPosition, additionLabel, deburr } = this.props
+    const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
     const { searchQuery } = this.state
 
     let filteredOptions = options
@@ -806,7 +806,7 @@ export default class Dropdown extends Component {
       if (_.isFunction(search)) {
         filteredOptions = search(filteredOptions, searchQuery)
       } else {
-        // remove diacritics on search
+        // remove diacritics on search input and options, if deburr prop is set
         const strippedQuery = deburr ? _.deburr(searchQuery) : searchQuery
 
         const re = new RegExp(_.escapeRegExp(strippedQuery), 'i')

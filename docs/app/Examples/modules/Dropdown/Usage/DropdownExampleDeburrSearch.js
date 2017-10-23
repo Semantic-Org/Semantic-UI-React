@@ -12,12 +12,12 @@ const options = [
 
 const DropdownExampleSearchSelection = () => (
   <Dropdown
-    placeholder='Try to search for "Deja vu"'
+    deburr
     fluid
+    options={options}
+    placeholder='Try to search for "Deja vu"'
     search
     selection
-    deburr
-    options={options}
   />
 )
 

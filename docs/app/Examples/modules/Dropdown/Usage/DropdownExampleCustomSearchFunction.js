@@ -1,5 +1,5 @@
-import React from 'react'
 import _ from 'lodash'
+import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 const caseSensitiveSearch = (options, query) => {
@@ -14,11 +14,11 @@ const options = [
 
 const DropdownExampleCustomSearchFunction = () => (
   <Dropdown
+    fluid
     options={options}
+    placeholder={'Try to search for case or CASE'}
     search={caseSensitiveSearch}
     selection
-    fluid
-    placeholder={'Try to search for case or CASE'}
   />
 )
 
