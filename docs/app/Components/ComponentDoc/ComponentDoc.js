@@ -33,14 +33,14 @@ const ComponentDoc = ({ componentGroup, componentName, description, ghLink, path
 )
 
 ComponentDoc.propTypes = {
-  componentGroup: PropTypes.arrayOf(
+  componentGroup: PropTypes.objectOf(
     PropTypes.shape({
-      description: PropTypes.string,
-      props: PropTypes.object,
+      description: PropTypes.arrayOf(PropTypes.string),
+      props: PropTypes.array,
     }),
   ),
   componentName: PropTypes.string.isRequired,
-  description: PropTypes.string,
+  description: PropTypes.arrayOf(PropTypes.string),
   ghLink: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   seeItems: PropTypes.arrayOf(

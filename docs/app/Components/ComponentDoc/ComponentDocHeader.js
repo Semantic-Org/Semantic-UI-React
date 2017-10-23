@@ -11,13 +11,13 @@ const ComponentDocHeader = ({ componentName, description }) => (
     as='h1'
     content={componentName}
     style={headerStyle}
-    subheader={description}
+    subheader={description.join(' ')}
   />
 )
 
 ComponentDocHeader.propTypes = {
   componentName: PropTypes.string.isRequired,
-  description: PropTypes.string,
+  description: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default pure(ComponentDocHeader)

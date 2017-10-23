@@ -22,7 +22,7 @@ const ComponentPropsComponents = ({ activeName, components, onItemClick, parent 
   )
 
 ComponentPropsComponents.propTypes = {
-  activeName: PropTypes.oneOf([
+  activeName: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
   ]),
