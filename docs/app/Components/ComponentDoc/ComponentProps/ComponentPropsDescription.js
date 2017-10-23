@@ -5,19 +5,19 @@ import { Divider } from 'semantic-ui-react'
 import { pure } from 'docs/app/HOC'
 
 const descriptionStyle = {
-  fontSize: '1.08em',
   color: '#777',
+  fontSize: '1.08em',
 }
 
 const ComponentPropsDescription = ({ description }) => (
   <div style={descriptionStyle}>
-    {description}
+    {description.join(' ')}
     <Divider />
   </div>
 )
 
 ComponentPropsDescription.propTypes = {
-  description: PropTypes.string,
+  description: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default pure(ComponentPropsDescription)

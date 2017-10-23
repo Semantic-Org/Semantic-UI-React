@@ -11,10 +11,10 @@ import ComponentPropName from '../ComponentProp/ComponentPropName'
 export default class ComponentTableRow extends Component {
   static propTypes = {
     defaultValue: PropTypes.string,
-    description: PropTypes.string,
+    description: PropTypes.arrayOf(PropTypes.string),
     name: PropTypes.string,
     required: PropTypes.bool,
-    tags: PropTypes.object,
+    tags: PropTypes.array,
     type: PropTypes.string,
     value: PropTypes.oneOfType([
       PropTypes.string,
