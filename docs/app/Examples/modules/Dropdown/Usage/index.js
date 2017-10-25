@@ -30,7 +30,11 @@ const DropdownUsageExamples = () => (
       description='A dropdown can choose whether or not to change the value when navigating the menu with arrow keys.'
       examplePath='modules/Dropdown/Usage/DropdownExampleSelectOnNavigation'
     />
-
+    <ComponentExample
+      title='Controlled'
+      description='A dropdown can behave like an controlled input.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleControlled'
+    />
     <ComponentExample
       title='Uncontrolled'
       description='A dropdown can behave like an uncontrolled input.'
