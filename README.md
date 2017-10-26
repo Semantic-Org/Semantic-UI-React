@@ -66,6 +66,7 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - http://www.aircip.ir
 - http://platform.nazarbazaar.ir
 - https://build.games
+- https://platform.forecastcycles.com
 
 ## Example Projects
 
