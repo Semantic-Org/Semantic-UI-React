@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOMServer from 'react-dom/server'
 
 import Modal from 'src/modules/Modal/Modal'
 import ModalHeader from 'src/modules/Modal/ModalHeader'
@@ -536,6 +537,30 @@ describe('Modal', () => {
         assertBodyClasses('scrolling', false)
         done()
       })
+    })
+  })
+
+  describe('server-side', () => {
+    let modalIsBrowser
+
+    before(() => {
+      modalIsBrowser = Modal.isBrowser
+      Modal.isBrowser = false
+    })
+
+    after(() => {
+      Modal.isBrowser = modalIsBrowser
+      modalIsBrowser = null
+    })
+
+    it('renders empty content when trigger is not a valid component', () => {
+      const markup = ReactDOMServer.renderToStaticMarkup(<Modal />)
+      markup.should.equal('')
+    })
+
+    it('renders a valid trigger component', () => {
+      const markup = ReactDOMServer.renderToStaticMarkup(<Modal trigger={<div id='trigger' />} />)
+      markup.should.equal('<div id="trigger"></div>')
     })
   })
 })

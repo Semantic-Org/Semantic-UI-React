@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { isValidElement } from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -128,6 +128,9 @@ class Modal extends Component {
     /** Custom styles. */
     style: PropTypes.object,
 
+    /** Element to be rendered in-place where the portal is defined. */
+    trigger: PropTypes.node,
+
     /**
      * NOTE: Any unhandled props that are defined in Portal are passed-through
      * to the wrapping Portal.
@@ -155,13 +158,16 @@ class Modal extends Component {
   static Description = ModalDescription
   static Actions = ModalActions
 
+  // expose for testing
+  static isBrowser = isBrowser
+
   componentWillUnmount() {
     debug('componentWillUnmount()')
     this.handlePortalUnmount()
   }
 
   // Do not access document when server side rendering
-  getMountNode = () => (isBrowser ? this.props.mountNode || document.body : null)
+  getMountNode = () => (Modal.isBrowser ? this.props.mountNode || document.body : null)
 
   handleActionsOverrides = predefinedProps => ({
     onActionClick: (e, actionProps) => {
@@ -317,11 +323,13 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool } = this.props
+    const { closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
-    if (!isBrowser) return null
+    if (!Modal.isBrowser) {
+      return isValidElement(trigger) ? trigger : null
+    }
 
     const unhandled = getUnhandledProps(Modal, this.props)
     const portalPropNames = Portal.handledProps
@@ -358,6 +366,7 @@ class Modal extends Component {
         closeOnDocumentClick={closeOnDocumentClick}
         closeOnRootNodeClick={closeOnDimmerClick}
         {...portalProps}
+        trigger={trigger}
         className={dimmerClasses}
         eventPool={eventPool}
         mountNode={mountNode}
