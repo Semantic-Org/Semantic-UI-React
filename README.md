@@ -97,7 +97,7 @@ Yes.  Semantic UI React includes components that render valid Semantic UI HTML, 
 Here are some helpful links:
 
 - [Building CSS with Webpack][24]
-- [Building CSS with Meteor][26]
+- [Building CSS with Meteor][30]
 - [Creating a standalone theme][25]
 
 ## Voice Your Opinion
@@ -197,11 +197,11 @@ Big thanks to our [contributors][20], especially:
 [23]: https://react.semantic-ui.com/usage#css
 [24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
 [25]: http://learnsemantic.com/themes/creating.html
-[26]: https://github.com/Semantic-Org/Semantic-UI-Meteor
 [26]: https://github.com/levithomason
 [27]: https://github.com/layershifter
 [28]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack1
 [29]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack2
+[30]: https://github.com/Semantic-Org/Semantic-UI-Meteor
 
 <!-- Examples -->
 [100]: https://github.com/wyc/semantic-ui-react-todos
