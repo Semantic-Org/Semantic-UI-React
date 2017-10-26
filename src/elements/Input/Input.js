@@ -198,7 +198,7 @@ class Input extends Component {
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(loading, 'loading'),
       useKeyOnly(transparent, 'transparent'),
-      useValueAndKey(actionPosition, 'action') || useKeyOnly(action, 'action'),
+      useKeyOnly(action, useValueAndKey(actionPosition, 'action') || 'action'),
       useValueAndKey(iconPosition, 'icon') || useKeyOnly(icon || loading, 'icon'),
       useValueAndKey(labelPosition, 'labeled') || useKeyOnly(label, 'labeled'),
       'input',
