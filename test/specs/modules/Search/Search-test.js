@@ -147,6 +147,7 @@ describe('Search', () => {
 
       // arrow to second
       domEvent.keyDown(document, { key: 'ArrowDown' })
+      wrapper.update()
 
       // selection moved to second item
       wrapper
@@ -168,6 +169,7 @@ describe('Search', () => {
 
       // arrow up
       domEvent.keyDown(document, { key: 'ArrowUp' })
+      wrapper.update()
 
       // selection moved to last item
       wrapper
@@ -295,6 +297,7 @@ describe('Search', () => {
 
       // arrow to new category
       _.times(categoryResultsLength, () => domEvent.keyDown(document, { key: 'ArrowDown' }))
+      wrapper.update()
 
       // selection moved to second item
       wrapper
@@ -326,6 +329,7 @@ describe('Search', () => {
 
       // arrow up
       domEvent.keyDown(document, { key: 'ArrowUp' })
+      wrapper.update()
 
       // selection moved to last item
       wrapper

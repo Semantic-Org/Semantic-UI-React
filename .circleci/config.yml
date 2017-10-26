@@ -12,7 +12,7 @@ jobs:
       # Chrome HeadlessBrowser is missing deps on Debian, see:
       # https://github.com/GoogleChrome/puppeteer/issues/290
       - run:
-          name: Update Pupeteer Dependencies
+          name: Update Puppeteer Dependencies
           command: |
             sudo apt-get update
             sudo apt-get install --yes --quiet gconf-service libasound2 libatk1.0-0 libc6 \

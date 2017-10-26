@@ -48,7 +48,7 @@ const AttachedContentLayout = () => (
         </Grid.Column>
 
         <Grid.Column>
-          <Table attached='top' basic verticalAllign='top'>
+          <Table attached='top' basic verticalAlign='top'>
             <Table.Header>
               <Table.HeaderCell>Header</Table.HeaderCell>
               <Table.HeaderCell>Header</Table.HeaderCell>

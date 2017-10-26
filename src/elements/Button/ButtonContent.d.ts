@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface ButtonContentProps {
   [key: string]: any;
@@ -11,6 +12,9 @@ export interface ButtonContentProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Initially hidden, visible on hover. */
   hidden?: boolean;

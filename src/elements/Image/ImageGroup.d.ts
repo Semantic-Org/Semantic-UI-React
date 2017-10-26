@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SemanticSIZES } from '../..';
+import { SemanticSIZES, SemanticShorthandContent } from '../..';
 
 export interface ImageGroupProps {
   [key: string]: any;
@@ -12,6 +12,9 @@ export interface ImageGroupProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A group of images can be formatted to have the same size. */
   size?: SemanticSIZES;

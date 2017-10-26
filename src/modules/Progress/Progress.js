@@ -41,6 +41,9 @@ class Progress extends Component {
     /** A progress bar can have different colors. */
     color: PropTypes.oneOf(SUI.COLORS),
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** A progress bar be disabled. */
     disabled: PropTypes.bool,
 
@@ -131,9 +134,10 @@ class Progress extends Component {
   }
 
   renderLabel = () => {
-    const { children, label } = this.props
+    const { children, content, label } = this.props
 
     if (!childrenUtils.isNil(children)) return <div className='label'>{children}</div>
+    if (!childrenUtils.isNil(content)) return <div className='label'>{content}</div>
     return createHTMLDivision(label, { defaultProps: { className: 'label' } })
   }
 

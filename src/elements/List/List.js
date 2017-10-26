@@ -45,6 +45,9 @@ class List extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** A list can show divisions between content. */
     divided: PropTypes.bool,
 
@@ -119,6 +122,7 @@ class List extends Component {
       celled,
       children,
       className,
+      content,
       divided,
       floated,
       horizontal,
@@ -155,6 +159,10 @@ class List extends Component {
 
     if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} role='list' className={classes}>{children}</ElementType>
+    }
+
+    if (!childrenUtils.isNil(content)) {
+      return <ElementType {...rest} role='list' className={classes}>{content}</ElementType>
     }
 
     return (

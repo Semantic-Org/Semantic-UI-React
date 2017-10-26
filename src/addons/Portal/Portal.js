@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import { Children, cloneElement } from 'react'
+import React, { Children, cloneElement } from 'react'
 import ReactDOM from 'react-dom'
 
 import {
@@ -11,6 +11,7 @@ import {
   makeDebugger,
   META,
 } from '../../lib'
+import Ref from '../Ref'
 
 const debug = makeDebugger('portal')
 
@@ -414,24 +415,23 @@ class Portal extends Component {
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
-  handleRef = (c) => {
-    // TODO: Replace findDOMNode with Ref component when it will be merged
-    this.triggerNode = ReactDOM.findDOMNode(c) // eslint-disable-line react/no-find-dom-node
-  }
+  handleRef = c => (this.triggerNode = c)
 
   render() {
     const { trigger } = this.props
 
     if (!trigger) return null
-
-    return cloneElement(trigger, {
-      ref: this.handleRef,
-      onBlur: this.handleTriggerBlur,
-      onClick: this.handleTriggerClick,
-      onFocus: this.handleTriggerFocus,
-      onMouseLeave: this.handleTriggerMouseLeave,
-      onMouseEnter: this.handleTriggerMouseEnter,
-    })
+    return (
+      <Ref innerRef={this.handleRef}>
+        {cloneElement(trigger, {
+          onBlur: this.handleTriggerBlur,
+          onClick: this.handleTriggerClick,
+          onFocus: this.handleTriggerFocus,
+          onMouseLeave: this.handleTriggerMouseLeave,
+          onMouseEnter: this.handleTriggerMouseEnter,
+        })}
+      </Ref>
+    )
   }
 }
 

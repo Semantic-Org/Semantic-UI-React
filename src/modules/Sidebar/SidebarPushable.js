@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -13,12 +14,16 @@ import {
  * A pushable sub-component for Sidebar.
  */
 function SidebarPushable(props) {
-  const { className, children } = props
+  const { className, children, content } = props
   const classes = cx('pushable', className)
   const rest = getUnhandledProps(SidebarPushable, props)
   const ElementType = getElementType(SidebarPushable, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 SidebarPushable._meta = {
@@ -36,6 +41,9 @@ SidebarPushable.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 export default SidebarPushable

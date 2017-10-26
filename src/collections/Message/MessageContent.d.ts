@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface MessageContentProps {
   [key: string]: any;
@@ -11,6 +12,9 @@ export interface MessageContentProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 }
 
 declare const MessageContent: React.StatelessComponent<MessageContentProps>;

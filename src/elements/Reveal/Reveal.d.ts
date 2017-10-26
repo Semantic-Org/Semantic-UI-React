@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import { SemanticShorthandContent } from '../..';
 import { default as RevealContent } from './RevealContent';
 
 export interface RevealProps {
@@ -20,6 +22,9 @@ export interface RevealProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A disabled reveal will not animate when hovered. */
   disabled?: boolean;

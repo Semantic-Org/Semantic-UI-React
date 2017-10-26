@@ -8,7 +8,9 @@ import Flag from 'src/elements/Flag'
 
 describe('DropdownItem', () => {
   common.isConformant(DropdownItem)
-  common.rendersChildren(DropdownItem)
+  common.rendersChildren(DropdownItem, {
+    rendersContent: false,
+  })
 
   common.propKeyOnlyToClassName(DropdownItem, 'selected')
   common.propKeyOnlyToClassName(DropdownItem, 'active')

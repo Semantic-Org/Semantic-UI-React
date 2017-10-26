@@ -12,6 +12,30 @@ export const as = (...args) => PropTypes.oneOfType([
   PropTypes.func,
 ])(...args)
 
+/* eslint-disable max-nested-callbacks */
+const findBestSuggestions = _.memoize((propValueWords, suggestions) => _.flow(
+  _.map((suggestion) => {
+    const suggestionWords = suggestion.split(' ')
+
+    const propValueScore = _.flow(
+      _.map(x => _.map(y => leven(x, y), suggestionWords)),
+      _.map(_.min),
+      _.sum,
+    )(propValueWords)
+
+    const suggestionScore = _.flow(
+      _.map(x => _.map(y => leven(x, y), propValueWords)),
+      _.map(_.min),
+      _.sum,
+    )(suggestionWords)
+
+    return { suggestion, score: propValueScore + suggestionScore }
+  }),
+  _.sortBy(['score', 'suggestion']),
+  _.take(3),
+)(suggestions))
+/* eslint-enable max-nested-callbacks */
+
 /**
  * Similar to PropTypes.oneOf but shows closest matches.
  * Word order is ignored allowing `left chevron` to match `chevron left`.
@@ -32,30 +56,7 @@ export const suggest = suggestions => (props, propName, componentName) => {
 
   // find best suggestions
   const propValueWords = propValue.split(' ')
-
-  /* eslint-disable max-nested-callbacks */
-  const bestMatches = _.flow(
-    _.map((suggestion) => {
-      const suggestionWords = suggestion.split(' ')
-
-      const propValueScore = _.flow(
-        _.map(x => _.map(y => leven(x, y), suggestionWords)),
-        _.map(_.min),
-        _.sum,
-      )(propValueWords)
-
-      const suggestionScore = _.flow(
-        _.map(x => _.map(y => leven(x, y), propValueWords)),
-        _.map(_.min),
-        _.sum,
-      )(suggestionWords)
-
-      return { suggestion, score: propValueScore + suggestionScore }
-    }),
-    _.sortBy(['score', 'suggestion']),
-    _.take(3),
-  )(suggestions)
-  /* eslint-enable max-nested-callbacks */
+  const bestMatches = findBestSuggestions(propValueWords, suggestions)
 
   // skip if a match scored 0
   // since we're matching on words (classNames) this allows any word order to pass validation
@@ -71,7 +72,7 @@ export const suggest = suggestions => (props, propName, componentName) => {
 }
 
 /**
- * Disallow other props form being defined with this prop.
+ * Disallow other props from being defined with this prop.
  * @param {string[]} disallowedProps An array of props that cannot be used with this prop.
  */
 export const disallow = disallowedProps => (props, propName, componentName) => {
@@ -225,10 +226,10 @@ export const demand = requiredProps => (props, propName, componentName) => {
 }
 
 /**
- * Ensure an only prop contains a string with only possible values.
+ * Ensure an multiple prop contains a string with only possible values.
  * @param {string[]} possible An array of possible values to prop.
  */
-export const onlyProp = possible => (props, propName, componentName) => {
+export const multipleProp = possible => (props, propName, componentName) => {
   if (!Array.isArray(possible)) {
     throw new Error([
       'Invalid argument supplied to some, expected an instance of array.',
@@ -243,6 +244,7 @@ export const onlyProp = possible => (props, propName, componentName) => {
 
   const values = propValue
     .replace('large screen', 'large-screen')
+    .replace(/ vertically/g, '-vertically')
     .split(' ')
     .map(val => _.trim(val).replace('-', ' '))
   const invalid = _.difference(values, possible)
