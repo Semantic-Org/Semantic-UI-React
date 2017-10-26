@@ -289,8 +289,8 @@ export default class Popup extends Component {
 
   handleClose = (e) => {
     debug('handleClose()')
-    const { onClose } = this.props
-    if (onClose) onClose(e, this.props)
+
+    _.invoke(this.props, 'onClose', e, this.props)
   }
 
   handleOpen = (e) => {
