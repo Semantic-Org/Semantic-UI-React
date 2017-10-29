@@ -175,10 +175,8 @@ class Modal extends Component {
   handleClose = (e) => {
     debug('close()')
 
-    const { onClose } = this.props
-    if (onClose) onClose(e, this.props)
-
-    this.trySetState({ open: false }, { scrolling: false })
+    _.invoke(this.props, 'onClose', e, this.props)
+    this.trySetState({ open: false })
   }
 
   handleIconOverrides = predefinedProps => ({
@@ -191,19 +189,17 @@ class Modal extends Component {
   handleOpen = (e) => {
     debug('open()')
 
-    const { onOpen } = this.props
-    if (onOpen) onOpen(e, this.props)
-
+    _.invoke(this.props, 'onOpen', e, this.props)
     this.trySetState({ open: true })
   }
 
   handlePortalMount = (e) => {
     debug('handlePortalMount()')
 
+    this.setState({ scrolling: false })
     this.setPositionAndClassNames()
 
-    const { onMount } = this.props
-    if (onMount) onMount(e, this.props)
+    _.invoke(this.props, 'onMount', e, this.props)
   }
 
   handlePortalUnmount = (e) => {
@@ -221,9 +217,7 @@ class Modal extends Component {
     mountNode.classList.remove('scrolling')
 
     cancelAnimationFrame(this.animationRequestId)
-
-    const { onUnmount } = this.props
-    if (onUnmount) onUnmount(e, this.props)
+    _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
   handleRef = c => (this.ref = c)
