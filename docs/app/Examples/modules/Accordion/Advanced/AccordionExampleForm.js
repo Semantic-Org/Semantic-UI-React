@@ -18,7 +18,7 @@ const AccordionExampleForm = () => (
     <Form>
       <Form.Group widths={2}>
         <Form.Input label='First Name' placeholder='First Name' />
-        <Form.Input label='First Name' placeholder='Last Name' />
+        <Form.Input label='Last Name' placeholder='Last Name' />
       </Form.Group>
       <Accordion as={Form.Field} panels={panels} />
 

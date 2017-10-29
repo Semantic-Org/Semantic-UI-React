@@ -32,7 +32,7 @@ export default class Message extends Component {
     /** A message can be formatted to attach itself to other content. */
     attached: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(['bottom']),
+      PropTypes.oneOf(['bottom', 'top']),
     ]),
 
     /** Primary content. */

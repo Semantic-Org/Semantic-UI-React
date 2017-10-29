@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -20,6 +21,7 @@ function Reveal(props) {
     animated,
     children,
     className,
+    content,
     disabled,
     instant,
   } = props
@@ -36,7 +38,11 @@ function Reveal(props) {
   const rest = getUnhandledProps(Reveal, props)
   const ElementType = getElementType(Reveal, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 Reveal._meta = {
@@ -63,6 +69,9 @@ Reveal.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A disabled reveal will not animate when hovered. */
   disabled: PropTypes.bool,

@@ -34,16 +34,36 @@ describe('Checkbox', () => {
     it('can be checked and unchecked', () => {
       const wrapper = shallow(<Checkbox />)
 
-      wrapper.find('input').should.not.be.checked()
-      wrapper.simulate('click').find('input').should.be.checked()
-      wrapper.simulate('click').find('input').should.not.be.checked()
+      wrapper
+        .find('input')
+        .should.not.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.not.be.checked()
     })
     it('can be checked but not unchecked when radio', () => {
       const wrapper = shallow(<Checkbox radio />)
 
-      wrapper.find('input').should.not.be.checked()
-      wrapper.simulate('click').find('input').should.be.checked()
-      wrapper.simulate('click').find('input').should.be.checked()
+      wrapper
+        .find('input')
+        .should.not.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.be.checked()
     })
   })
 
@@ -104,14 +124,18 @@ describe('Checkbox', () => {
 
   describe('disabled', () => {
     it('cannot be checked', () => {
-      shallow(<Checkbox disabled />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox disabled />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.not.be.checked()
     })
     it('cannot be unchecked', () => {
-      shallow(<Checkbox disabled defaultChecked />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox defaultChecked disabled />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.be.checked()
     })
@@ -204,14 +228,18 @@ describe('Checkbox', () => {
 
   describe('readOnly', () => {
     it('cannot be checked', () => {
-      shallow(<Checkbox readOnly />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox readOnly />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.not.be.checked()
     })
     it('cannot be unchecked', () => {
-      shallow(<Checkbox readOnly defaultChecked />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox defaultChecked readOnly />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.be.checked()
     })

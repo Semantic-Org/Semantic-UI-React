@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import { Children, cloneElement } from 'react'
+import React, { Children, cloneElement } from 'react'
 import ReactDOM from 'react-dom'
 
 import {
@@ -11,6 +11,7 @@ import {
   makeDebugger,
   META,
 } from '../../lib'
+import Ref from '../Ref'
 
 const debug = makeDebugger('portal')
 
@@ -225,11 +226,11 @@ class Portal extends Component {
     clearTimeout(this.mouseLeaveTimer)
   }
 
-  handleTriggerBlur = (e) => {
+  handleTriggerBlur = (e, ...rest) => {
     const { trigger, closeOnTriggerBlur } = this.props
 
     // Call original event handler
-    _.invoke(trigger, 'props.onBlur', e)
+    _.invoke(trigger, 'props.onBlur', e, ...rest)
 
     // do not close if focus is given to the portal
     const didFocusPortal = _.invoke(this, 'rootNode.contains', e.relatedTarget)
@@ -240,12 +241,12 @@ class Portal extends Component {
     this.close(e)
   }
 
-  handleTriggerClick = (e) => {
+  handleTriggerClick = (e, ...rest) => {
     const { trigger, closeOnTriggerClick, openOnTriggerClick } = this.props
     const { open } = this.state
 
     // Call original event handler
-    _.invoke(trigger, 'props.onClick', e)
+    _.invoke(trigger, 'props.onClick', e, ...rest)
 
     if (open && closeOnTriggerClick) {
       debug('handleTriggerClick() - close')
@@ -258,11 +259,11 @@ class Portal extends Component {
     }
   }
 
-  handleTriggerFocus = (e) => {
+  handleTriggerFocus = (e, ...rest) => {
     const { trigger, openOnTriggerFocus } = this.props
 
     // Call original event handler
-    _.invoke(trigger, 'props.onFocus', e)
+    _.invoke(trigger, 'props.onFocus', e, ...rest)
 
     if (!openOnTriggerFocus) return
 
@@ -270,13 +271,13 @@ class Portal extends Component {
     this.open(e)
   }
 
-  handleTriggerMouseLeave = (e) => {
+  handleTriggerMouseLeave = (e, ...rest) => {
     clearTimeout(this.mouseEnterTimer)
 
     const { trigger, closeOnTriggerMouseLeave, mouseLeaveDelay } = this.props
 
     // Call original event handler
-    _.invoke(trigger, 'props.onMouseLeave', e)
+    _.invoke(trigger, 'props.onMouseLeave', e, ...rest)
 
     if (!closeOnTriggerMouseLeave) return
 
@@ -284,13 +285,13 @@ class Portal extends Component {
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
   }
 
-  handleTriggerMouseEnter = (e) => {
+  handleTriggerMouseEnter = (e, ...rest) => {
     clearTimeout(this.mouseLeaveTimer)
 
     const { trigger, mouseEnterDelay, openOnTriggerMouseEnter } = this.props
 
     // Call original event handler
-    _.invoke(trigger, 'props.onMouseEnter', this.handleTriggerMouseEnter)
+    _.invoke(trigger, 'props.onMouseEnter', e, ...rest)
 
     if (!openOnTriggerMouseEnter) return
 
@@ -414,24 +415,23 @@ class Portal extends Component {
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
-  handleRef = (c) => {
-    // TODO: Replace findDOMNode with Ref component when it will be merged
-    this.triggerNode = ReactDOM.findDOMNode(c) // eslint-disable-line react/no-find-dom-node
-  }
+  handleRef = c => (this.triggerNode = c)
 
   render() {
     const { trigger } = this.props
 
     if (!trigger) return null
-
-    return cloneElement(trigger, {
-      ref: this.handleRef,
-      onBlur: this.handleTriggerBlur,
-      onClick: this.handleTriggerClick,
-      onFocus: this.handleTriggerFocus,
-      onMouseLeave: this.handleTriggerMouseLeave,
-      onMouseEnter: this.handleTriggerMouseEnter,
-    })
+    return (
+      <Ref innerRef={this.handleRef}>
+        {cloneElement(trigger, {
+          onBlur: this.handleTriggerBlur,
+          onClick: this.handleTriggerClick,
+          onFocus: this.handleTriggerFocus,
+          onMouseLeave: this.handleTriggerMouseLeave,
+          onMouseEnter: this.handleTriggerMouseEnter,
+        })}
+      </Ref>
+    )
   }
 }
 

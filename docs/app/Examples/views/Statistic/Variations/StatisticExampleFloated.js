@@ -3,7 +3,10 @@ import { Segment, Statistic } from 'semantic-ui-react'
 
 const StatisticExampleFloated = () => (
   <Segment>
-    <Statistic floated='right' label='Views' value='2,204' />
+    <Statistic floated='right'>
+      <Statistic.Value>2,204</Statistic.Value>
+      <Statistic.Label>Views</Statistic.Label>
+    </Statistic>
 
     <p>
       Te eum doming eirmod, nominati pertinacia argumentum ad his. Ex eam alia facete scriptorem, est autem aliquip
@@ -17,7 +20,10 @@ const StatisticExampleFloated = () => (
       vivendum maiestatis in.
     </p>
 
-    <Statistic floated='left' label='Views' value='2,204' />
+    <Statistic floated='left'>
+      <Statistic.Value>2,204</Statistic.Value>
+      <Statistic.Label>Views</Statistic.Label>
+    </Statistic>
 
     <p>
       Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id. Mei ut facer dolores adolescens, no illum

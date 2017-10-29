@@ -58,10 +58,6 @@ describe('Header', () => {
   })
 
   describe('content', () => {
-    it('adds child text', () => {
-      shallow(<Header content='foo' />)
-        .should.contain.text('foo')
-    })
     it('is wrapped in HeaderContent when there is an image src', () => {
       shallow(<Header image='foo.png' content='Bar' />)
         .find('HeaderContent')

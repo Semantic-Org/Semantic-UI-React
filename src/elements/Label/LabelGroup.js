@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -20,6 +21,7 @@ function LabelGroup(props) {
     circular,
     className,
     color,
+    content,
     size,
     tag,
   } = props
@@ -36,7 +38,11 @@ function LabelGroup(props) {
   const rest = getUnhandledProps(LabelGroup, props)
   const ElementType = getElementType(LabelGroup, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 LabelGroup._meta = {
@@ -60,6 +66,9 @@ LabelGroup.propTypes = {
 
   /** Label group can share colors together. */
   color: PropTypes.oneOf(SUI.COLORS),
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Label group can share sizes together. */
   size: PropTypes.oneOf(SUI.SIZES),

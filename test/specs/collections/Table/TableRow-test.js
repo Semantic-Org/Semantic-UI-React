@@ -5,7 +5,9 @@ import TableRow from 'src/collections/Table/TableRow'
 
 describe('TableRow', () => {
   common.isConformant(TableRow)
-  common.rendersChildren(TableRow)
+  common.rendersChildren(TableRow, {
+    rendersContent: false,
+  })
 
   common.implementsCreateMethod(TableRow)
   common.implementsTextAlignProp(TableRow, ['left', 'center', 'right'])

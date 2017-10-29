@@ -612,13 +612,9 @@ export default class Dropdown extends Component {
     const optionSize = _.size(this.getMenuOptions())
     if (search && optionSize === 0) return
 
-    const item = this.getSelectedItem()
-    const isAdditionItem = item['data-additional']
-
     this.makeSelectedItemActive(e)
     this.closeOnChange(e)
-
-    if (isAdditionItem || optionSize === 1) this.clearSearchQuery()
+    this.clearSearchQuery()
     if (search && this.searchRef) this.searchRef.focus()
   }
 

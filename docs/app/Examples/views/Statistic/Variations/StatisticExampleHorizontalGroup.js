@@ -1,12 +1,21 @@
 import React from 'react'
 import { Statistic } from 'semantic-ui-react'
 
-const items = [
-  { label: 'Views', value: '2,204' },
-  { label: 'Downloads', value: '3,322' },
-  { label: 'Tasks', value: '22' },
-]
-
-const StatisticExampleHorizontalGroup = () => <Statistic.Group horizontal items={items} />
+const StatisticExampleHorizontalGroup = () => (
+  <Statistic.Group horizontal>
+    <Statistic>
+      <Statistic.Value>2,204</Statistic.Value>
+      <Statistic.Label>Views</Statistic.Label>
+    </Statistic>
+    <Statistic>
+      <Statistic.Value>3,322</Statistic.Value>
+      <Statistic.Label>Downloads</Statistic.Label>
+    </Statistic>
+    <Statistic>
+      <Statistic.Value>22</Statistic.Value>
+      <Statistic.Label>Tasks</Statistic.Label>
+    </Statistic>
+  </Statistic.Group>
+)
 
 export default StatisticExampleHorizontalGroup

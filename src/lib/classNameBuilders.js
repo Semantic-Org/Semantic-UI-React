@@ -52,9 +52,10 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
 //
 
 /**
- * The "only" prop implements control of visibility classes for Grid subcomponents.
+ * The "multiple" prop implements control of visibility and reserved classes for Grid subcomponents.
  *
- * @param {*} val The value of the "only" prop
+ * @param {*} val The value of the "multiple" prop
+ * @param {*} key A props key
  *
  * @example
  * <Grid.Row only='mobile' />
@@ -62,12 +63,14 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
  * <div class="mobile only row"></div>
  * <div class="mobile only tablet only row"></div>
  */
-export const useOnlyProp = (val) => {
+export const useMultipleProp = (val, key) => {
   if (!val || val === true) return null
 
-  return val.replace('large screen', 'large-screen')
+  return val
+    .replace('large screen', 'large-screen')
+    .replace(/ vertically/g, '-vertically')
     .split(' ')
-    .map(prop => `${prop.replace('-', ' ')} only`)
+    .map(prop => `${prop.replace('-', ' ')} ${key}`)
     .join(' ')
 }
 

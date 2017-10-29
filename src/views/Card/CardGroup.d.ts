@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandCollection, SemanticWIDTHS } from '../..';
+import { SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..';
 import { CardProps } from './Card';
 
 export interface CardGroupProps {
@@ -14,6 +14,9 @@ export interface CardGroupProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A group of cards can double its column width for mobile. */
   doubling?: boolean;

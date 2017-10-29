@@ -52,6 +52,9 @@ export default class Embed extends Component {
       PropTypes.string,
     ]),
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** Initial value of active. */
     defaultActive: PropTypes.bool,
 
@@ -183,11 +186,12 @@ export default class Embed extends Component {
   }
 
   renderEmbed() {
-    const { children, iframe, source } = this.props
+    const { children, content, iframe, source } = this.props
     const { active } = this.state
 
     if (!active) return null
     if (!childrenUtils.isNil(children)) return <div className='embed'>{children}</div>
+    if (!childrenUtils.isNil(content)) return <div className='embed'>{content}</div>
 
     return (
       <div className='embed'>

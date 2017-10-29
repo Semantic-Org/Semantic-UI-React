@@ -13,7 +13,9 @@ describe('Message', () => {
   common.isConformant(Message)
   common.hasSubComponents(Message, [MessageContent, MessageHeader, MessageList])
   common.hasUIClassName(Message)
-  common.rendersChildren(Message)
+  common.rendersChildren(Message, {
+    rendersContent: false,
+  })
 
   common.implementsIconProp(Message)
   common.implementsShorthandProp(Message, {
@@ -44,7 +46,7 @@ describe('Message', () => {
   common.propKeyOnlyToClassName(Message, 'visible')
   common.propKeyOnlyToClassName(Message, 'warning')
 
-  common.propKeyOrValueAndKeyToClassName(Message, 'attached', ['bottom'])
+  common.propKeyOrValueAndKeyToClassName(Message, 'attached', ['bottom', 'top'])
 
   common.propValueOnlyToClassName(Message, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Message, 'size', _.without(SUI.SIZES, 'medium'))
