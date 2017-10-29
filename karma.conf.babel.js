@@ -50,7 +50,7 @@ export default (karmaConfig) => {
           '--disable-setuid-sandbox',
           '--no-sandbox',
           // Avoid "Maximum call stack size exceeded" errors on CircleCI
-          '--stack-trace-limit 50000',
+          '--stack-trace-limit 200000',
         ],
       },
     },
