@@ -158,16 +158,13 @@ class Modal extends Component {
   static Description = ModalDescription
   static Actions = ModalActions
 
-  // expose for testing
-  static isBrowser = isBrowser
-
   componentWillUnmount() {
     debug('componentWillUnmount()')
     this.handlePortalUnmount()
   }
 
   // Do not access document when server side rendering
-  getMountNode = () => (Modal.isBrowser ? this.props.mountNode || document.body : null)
+  getMountNode = () => (isBrowser() ? this.props.mountNode || document.body : null)
 
   handleActionsOverrides = predefinedProps => ({
     onActionClick: (e, actionProps) => {
@@ -327,7 +324,7 @@ class Modal extends Component {
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
-    if (!Modal.isBrowser) {
+    if (!isBrowser()) {
       return isValidElement(trigger) ? trigger : null
     }
 

@@ -10,6 +10,7 @@ import Portal from 'src/addons/Portal/Portal'
 
 import { assertNodeContains, assertBodyClasses, assertBodyContains, domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
+import isBrowser from 'src/lib/isBrowser'
 
 // ----------------------------------------
 // Wrapper
@@ -541,16 +542,12 @@ describe('Modal', () => {
   })
 
   describe('server-side', () => {
-    let modalIsBrowser
-
     before(() => {
-      modalIsBrowser = Modal.isBrowser
-      Modal.isBrowser = false
+      isBrowser.override = false
     })
 
     after(() => {
-      Modal.isBrowser = modalIsBrowser
-      modalIsBrowser = null
+      isBrowser.override = null
     })
 
     it('renders empty content when trigger is not a valid component', () => {

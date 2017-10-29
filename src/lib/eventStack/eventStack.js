@@ -34,7 +34,7 @@ class EventStack {
   // ------------------------------------
 
   sub = (name, handlers, options = {}) => {
-    if (!isBrowser) return
+    if (!isBrowser()) return
 
     const { target = document, pool = 'default' } = options
     const eventTarget = this._find(target)
@@ -43,7 +43,7 @@ class EventStack {
   }
 
   unsub = (name, handlers, options = {}) => {
-    if (!isBrowser) return
+    if (!isBrowser()) return
 
     const { target = document, pool = 'default' } = options
     const eventTarget = this._find(target, false)

@@ -80,7 +80,7 @@ export default class Sticky extends Component {
     active: true,
     bottomOffset: 0,
     offset: 0,
-    scrollContext: isBrowser ? window : null,
+    scrollContext: isBrowser() ? window : null,
   }
 
   static _meta = {
@@ -93,7 +93,7 @@ export default class Sticky extends Component {
   }
 
   componentDidMount() {
-    if (!isBrowser) return
+    if (!isBrowser()) return
     const { active } = this.props
 
     if (active) {
@@ -117,7 +117,7 @@ export default class Sticky extends Component {
   }
 
   componentWillUnmount() {
-    if (!isBrowser) return
+    if (!isBrowser()) return
     const { active } = this.props
 
     if (active) this.removeListeners()
