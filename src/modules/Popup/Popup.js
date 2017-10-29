@@ -151,7 +151,7 @@ export default class Popup extends Component {
     const style = { position: 'absolute' }
 
     // Do not access window/document when server side rendering
-    if (!isBrowser) return style
+    if (!isBrowser()) return style
 
     const { offset } = this.props
     const { pageYOffset, pageXOffset } = window

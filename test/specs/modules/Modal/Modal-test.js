@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOMServer from 'react-dom/server'
 
 import Modal from 'src/modules/Modal/Modal'
 import ModalHeader from 'src/modules/Modal/ModalHeader'
@@ -9,6 +10,7 @@ import Portal from 'src/addons/Portal/Portal'
 
 import { assertNodeContains, assertBodyClasses, assertBodyContains, domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
+import isBrowser from 'src/lib/isBrowser'
 
 // ----------------------------------------
 // Wrapper
@@ -536,6 +538,26 @@ describe('Modal', () => {
         assertBodyClasses('scrolling', false)
         done()
       })
+    })
+  })
+
+  describe('server-side', () => {
+    before(() => {
+      isBrowser.override = false
+    })
+
+    after(() => {
+      isBrowser.override = null
+    })
+
+    it('renders empty content when trigger is not a valid component', () => {
+      const markup = ReactDOMServer.renderToStaticMarkup(<Modal />)
+      markup.should.equal('')
+    })
+
+    it('renders a valid trigger component', () => {
+      const markup = ReactDOMServer.renderToStaticMarkup(<Modal trigger={<div id='trigger' />} />)
+      markup.should.equal('<div id="trigger"></div>')
     })
   })
 })

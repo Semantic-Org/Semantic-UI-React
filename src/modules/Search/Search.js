@@ -472,7 +472,7 @@ export default class Search extends Component {
   scrollSelectedItemIntoView = () => {
     debug('scrollSelectedItemIntoView()')
     // Do not access document when server side rendering
-    if (!isBrowser) return
+    if (!isBrowser()) return
     const menu = document.querySelector('.ui.search.active.visible .results.visible')
     const item = menu.querySelector('.result.active')
     if (!item) return

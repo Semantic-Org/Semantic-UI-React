@@ -348,7 +348,7 @@ class Portal extends Component {
     this.mountPortal()
 
     // Server side rendering
-    if (!isBrowser) return null
+    if (!isBrowser()) return null
 
     this.rootNode.className = className || ''
 
@@ -372,13 +372,13 @@ class Portal extends Component {
   }
 
   mountPortal = () => {
-    if (!isBrowser || this.rootNode) return
+    if (!isBrowser() || this.rootNode) return
 
     debug('mountPortal()')
 
     const {
       eventPool,
-      mountNode = isBrowser ? document.body : null,
+      mountNode = isBrowser() ? document.body : null,
       prepend,
     } = this.props
 
@@ -396,7 +396,7 @@ class Portal extends Component {
   }
 
   unmountPortal = () => {
-    if (!isBrowser || !this.rootNode) return
+    if (!isBrowser() || !this.rootNode) return
 
     debug('unmountPortal()')
     const { eventPool } = this.props
