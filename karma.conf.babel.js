@@ -29,7 +29,7 @@ const formatError = (msg) => {
 export default (karmaConfig) => {
   karmaConfig.set({
     basePath: process.cwd(),
-    browsers: ['ChromeHeadless'],
+    browsers: ['puppeteer'],
     client: {
       mocha: {
         reporter: 'html', // change Karma's debug.html to mocha web reporter
@@ -47,6 +47,8 @@ export default (karmaConfig) => {
       puppeteer: {
         base: 'ChromeHeadless',
         flags: [
+          '--disable-setuid-sandbox',
+          '--no-sandbox',
           // Avoid "Maximum call stack size exceeded" errors on CircleCI
           '--stack-trace-limit 50000',
         ],
