@@ -15,7 +15,7 @@ export interface TransitionablePortalProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and internal state.
    */
-  onClose?: (event: React.MouseEvent<HTMLElement>, data: PortalProps & TransitionablePortalState) => void;
+  onClose?: (nothing: null, data: PortalProps & TransitionablePortalState) => void;
 
   /**
    * Callback on each transition that changes visibility to hidden.
@@ -31,7 +31,7 @@ export interface TransitionablePortalProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and internal state.
    */
-  onOpen?: (event: React.MouseEvent<HTMLElement>, data: PortalProps & TransitionablePortalState) => void;
+  onOpen?: (nothing: null, data: PortalProps & TransitionablePortalState) => void;
 
   /**
    * Callback on animation start.

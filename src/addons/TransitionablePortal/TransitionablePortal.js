@@ -23,7 +23,7 @@ export default class TransitionablePortal extends Component {
     children: PropTypes.node.isRequired,
 
     /**
-     * Called when a close event happens
+     * Called when a close event happens.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props and internal state.
@@ -88,7 +88,8 @@ export default class TransitionablePortal extends Component {
   componentWillReceiveProps({ open }) {
     debug('componentWillReceiveProps()', { open })
 
-    // Heads up! We apply `open` prop only when it's defined, otherwise it will break autocontrolled Portal
+    // Heads up! We apply `open` prop only when it's defined, otherwise it will break
+    // autocontrolled Portal
     if (!_.isNil(open)) this.setState({ portalOpen: open })
   }
 
@@ -96,46 +97,45 @@ export default class TransitionablePortal extends Component {
   // Callback handling
   // ----------------------------------------
 
-  handlePortalClose = (e, data) => {
+  handlePortalClose = () => {
     debug('handlePortalClose()')
     const { open } = this.props
-    const { portalOpen, transitionVisible } = this.state
+    const { portalOpen } = this.state
 
     // Heads up! We simply call `onClose` when component is controlled with `open` prop.
     // But, when it's autocontrolled we should change the state to opposite to keep the transition
     // queue
-    if (!_.isNil(open)) {
-      _.invoke(this.props, 'onClose', e, { ...data, transitionVisible, portalOpen: false })
-      return
-    }
-
-    this.setState({ portalOpen: !portalOpen })
-    _.invoke(this.props, 'onClose', e, { ...data, portalOpen: !portalOpen, transitionVisible })
+    if (_.isNil(open)) this.setState({ portalOpen: !portalOpen })
   }
 
-  handlePortalOpen = (e, data) => {
+  handlePortalOpen = () => {
     debug('handlePortalOpen()')
-    const { transitionVisible } = this.state
 
     this.setState({ portalOpen: true })
-    _.invoke(this.props, 'onOpen', e, { ...data, transitionVisible, portalOpen: true })
   }
 
-  handleTransitionHide = (e, data) => {
+  handleTransitionHide = (nothing, data) => {
     debug('handleTransitionHide()')
     const { portalOpen } = this.state
 
     this.setState({ transitionVisible: false })
-    _.invoke(this.props, 'onHide', e, { ...data, portalOpen, transitionVisible: false })
+    _.invoke(this.props, 'onClose', null, { ...data, portalOpen: false, transitionVisible: false })
+    _.invoke(this.props, 'onHide', null, { ...data, portalOpen, transitionVisible: false })
   }
 
-  handleTransitionStart = (e, data) => {
+  handleTransitionStart = (nothing, data) => {
     debug('handleTransitionStart()')
     const { portalOpen } = this.state
     const { status } = data
+    const transitionVisible = status === Transition.ENTERING
 
-    if (status === Transition.ENTERING) this.setState({ transitionVisible: true })
-    _.invoke(this.props, 'onStart', e, { ...data, portalOpen, transitionVisible: true })
+    _.invoke(this.props, 'onStart', null, { ...data, portalOpen, transitionVisible })
+
+    // Heads up! TransitionablePortal fires onOpen callback on the start of transition animation
+    if (!transitionVisible) return
+
+    this.setState({ transitionVisible })
+    _.invoke(this.props, 'onOpen', null, { ...data, transitionVisible, portalOpen: true })
   }
 
   // ----------------------------------------

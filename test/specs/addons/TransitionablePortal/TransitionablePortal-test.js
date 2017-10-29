@@ -62,7 +62,7 @@ describe('TransitionablePortal', () => {
   })
 
   describe('onClose', () => {
-    it('is called with (null, data) when Portal closes', () => {
+    it('is called with (null, data) when Portal closes', (done) => {
       const onClose = sandbox.spy()
       const trigger = <button />
       wrapperMount(
@@ -77,8 +77,12 @@ describe('TransitionablePortal', () => {
       wrapper.find('button').simulate('click')
       domEvent.click(document.body)
 
-      onClose.should.have.been.calledOnce()
-      onClose.should.have.been.calledWithMatch({}, { portalOpen: false })
+      setTimeout(() => {
+        onClose.should.have.been.calledOnce()
+        onClose.should.have.been.calledWithMatch(null, { portalOpen: false })
+
+        done()
+      }, 10)
     })
 
     it('changes `portalOpen` to false', () => {
@@ -122,16 +126,15 @@ describe('TransitionablePortal', () => {
 
   describe('onOpen', () => {
     it('is called with (null, data) when Portal opens', () => {
-      const event = { target: null }
       const onOpen = sandbox.spy()
       const trigger = <button />
 
       wrapperMount(<TransitionablePortal {...requiredProps} onOpen={onOpen} trigger={trigger} />)
         .find('button')
-        .simulate('click', event)
+        .simulate('click')
 
       onOpen.should.have.been.calledOnce()
-      onOpen.should.have.been.calledWithMatch(event, { portalOpen: true })
+      onOpen.should.have.been.calledWithMatch(null, { portalOpen: true })
     })
 
     it('changes `portalOpen` to true', () => {
@@ -139,6 +142,16 @@ describe('TransitionablePortal', () => {
       wrapperMount(<TransitionablePortal {...requiredProps} trigger={trigger} />)
 
       wrapper.find('button').simulate('click', event)
+      wrapper.should.have.state('portalOpen', true)
+    })
+  })
+
+  describe('open', () => {
+    it('blocks update of state on Portal close', () => {
+      wrapperMount(<TransitionablePortal {...requiredProps} open />)
+      wrapper.should.have.state('portalOpen', true)
+
+      domEvent.click(document.body)
       wrapper.should.have.state('portalOpen', true)
     })
   })

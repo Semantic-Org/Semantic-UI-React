@@ -14,6 +14,8 @@ export default class TransitionablePortalExamplePortal extends Component {
     return (
       <TransitionablePortal
         closeOnTriggerClick
+        onOpen={this.handleOpen}
+        onClose={this.handleClose}
         openOnTriggerClick
         trigger={(
           <Button
@@ -22,8 +24,6 @@ export default class TransitionablePortalExamplePortal extends Component {
             positive={!open}
           />
         )}
-        onOpen={this.handleOpen}
-        onClose={this.handleClose}
       >
         <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
           <Header>This is an example portal</Header>
