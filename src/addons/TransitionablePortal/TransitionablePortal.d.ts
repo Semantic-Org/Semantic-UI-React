@@ -48,7 +48,7 @@ export interface TransitionablePortalProps {
   transition?: TransitionProps;
 }
 
-interface TransitionablePortalState {
+export interface TransitionablePortalState {
   portalOpen: boolean;
   transitionVisible: boolean;
 }
