@@ -3,7 +3,7 @@ import React from 'react'
 import DocumentTitle from 'react-document-title'
 import { Grid } from 'semantic-ui-react'
 
-import { withDocInfo } from 'docs/app/HOC'
+import withDocInfo from 'docs/app/HOC/withDocInfo'
 import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'

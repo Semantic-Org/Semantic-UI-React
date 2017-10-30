@@ -6,6 +6,7 @@ export { default as Radio } from './addons/Radio'
 export { default as Ref } from './addons/Ref'
 export { default as Select } from './addons/Select'
 export { default as TextArea } from './addons/TextArea'
+export { default as TransitionablePortal } from './addons/TransitionablePortal'
 
 // Behaviors
 export { default as Visibility } from './behaviors/Visibility'

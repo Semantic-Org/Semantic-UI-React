@@ -57,7 +57,7 @@ export default class Responsive extends Component {
   constructor(...args) {
     super(...args)
 
-    this.state = { width: isBrowser ? window.innerWidth : 0 }
+    this.state = { width: isBrowser() ? window.innerWidth : 0 }
   }
 
   componentDidMount() {
