@@ -79,8 +79,8 @@ describe('Popup', () => {
     assertInBody('.ui.popup.visible.some-class')
   })
 
-  describe('offest', () => {
-    it('accepts an offest to the left', () => {
+  describe('offset', () => {
+    it('accepts an offset as number', () => {
       wrapperMount(
         <Popup
           offset={50}
@@ -93,11 +93,12 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
-    it('accepts an offest to the right', () => {
+
+    it('accepts an offset as array', () => {
       wrapperMount(
         <Popup
-          offset={50}
-          position='bottom left'
+          offset={[50, 50]}
+          position='bottom right'
           content='foo'
           trigger={<button>foo</button>}
         />,
