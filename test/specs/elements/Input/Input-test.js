@@ -5,6 +5,11 @@ import { htmlInputProps, SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
+import {
+  noClassNameFromBoolProps,
+  noDefaultClassNameFromProp,
+} from 'test/specs/commonTests/classNameHelpers'
+
 describe('Input', () => {
   common.isConformant(Input, {
     eventTargets: {
@@ -68,7 +73,6 @@ describe('Input', () => {
     shorthandDefaultProps: { type: 'text' },
   })
 
-  common.propKeyAndValueToClassName(Input, 'actionPosition', ['left'], { className: 'action' })
   common.propKeyAndValueToClassName(Input, 'iconPosition', ['left'], { className: 'icon' })
   common.propKeyAndValueToClassName(Input, 'labelPosition', ['left', 'right', 'left corner', 'right corner'], {
     className: 'labeled',
@@ -258,5 +262,22 @@ describe('Input', () => {
         .find('input')
         .should.have.prop('tabIndex', 123)
     })
+  })
+
+  describe('actionPosition', () => {
+    it('does not add "left action" to className if there is no action', () => {
+      shallow(<Input actionPosition='left' />)
+        .should.not.have.className('left action')
+    })
+
+    it('adds "left action" to className if there is also an action', () => {
+      shallow(<Input actionPosition='left' action />)
+        .should.have.className('left action')
+    })
+  })
+
+  describe('actionPosition (common)', () => {
+    noDefaultClassNameFromProp(Input, 'actionPosition', ['left'], { className: 'action' })
+    noClassNameFromBoolProps(Input, 'actionPosition', ['left'], { className: 'action' })
   })
 })
