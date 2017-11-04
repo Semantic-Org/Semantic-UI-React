@@ -69,6 +69,7 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - https://build.games
 - https://platform.forecastcycles.com
 - https://www.findlectures.com
+- https://github.com/ayastreb/bandwidth-hero
 
 ## Example Projects
 
