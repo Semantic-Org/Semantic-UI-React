@@ -80,8 +80,8 @@ Our example project right [here][28] in this repo.
 ### [webpack2][29]
 Our example project right [here][29] in this repo.
  
-### [react-semantic.ui-starter][102]
-Production-ready, performance-first, optimized, robust, fully-featured boilerplate/example for your new Progressive Web App.
+### [SUIcrux][102]
+Advanced universal starter with Semantic-UI-React. React/Redux/Lazy-loading/SSR/PWA.
 
 ### [semantic-ui-react-todos][100]
 This example modifies the well-known [react-redux Todo List][101] to use Semantic UI components. There is also a write-up on the process in the project README.
