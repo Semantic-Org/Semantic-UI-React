@@ -452,6 +452,30 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('setSelectedIndex', () => {
+    it('will call setSelectedIndex if options change', () => {
+      wrapperMount(<Dropdown options={options} />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'setSelectedIndex')
+
+      wrapper.setProps({ options: [] })
+
+      instance.setSelectedIndex.should.have.been.calledOnce()
+    })
+
+    it('will not call setSelectedIndex if options have not changed', () => {
+      wrapperMount(<Dropdown options={options} />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'setSelectedIndex')
+
+      wrapper.setProps({ options })
+
+      instance.setSelectedIndex.should.not.have.been.calledOnce()
+    })
+  })
+
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
       wrapperShallow(<Dropdown />)
