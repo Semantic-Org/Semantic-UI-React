@@ -50,6 +50,9 @@ export interface DropdownProps {
   /** A compact dropdown has no minimum width. */
   compact?: boolean;
 
+  /** Whether or not the dropdown should strip diacritics in options and input search */
+  deburr?: boolean;
+
   /** Initial value of open. */
   defaultOpen?: boolean;
 

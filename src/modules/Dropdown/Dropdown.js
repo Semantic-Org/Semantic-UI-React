@@ -90,6 +90,9 @@ export default class Dropdown extends Component {
     /** A compact dropdown has no minimum width. */
     compact: PropTypes.bool,
 
+    /** Whether or not the dropdown should strip diacritics in options and input search */
+    deburr: PropTypes.bool,
+
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
@@ -354,6 +357,7 @@ export default class Dropdown extends Component {
     additionLabel: 'Add ',
     additionPosition: 'top',
     closeOnBlur: true,
+    deburr: false,
     icon: 'dropdown',
     minCharacters: 1,
     noResultsMessage: 'No results found.',
@@ -787,7 +791,7 @@ export default class Dropdown extends Component {
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
   getMenuOptions = (value = this.state.value, options = this.props.options) => {
-    const { multiple, search, allowAdditions, additionPosition, additionLabel } = this.props
+    const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
     const { searchQuery } = this.state
 
     let filteredOptions = options
@@ -802,9 +806,13 @@ export default class Dropdown extends Component {
       if (_.isFunction(search)) {
         filteredOptions = search(filteredOptions, searchQuery)
       } else {
-        const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-        // remove diacritics on search
-        filteredOptions = _.filter(filteredOptions, opt => re.test(_.deburr(opt.text)))
+        // remove diacritics on search input and options, if deburr prop is set
+        const strippedQuery = deburr ? _.deburr(searchQuery) : searchQuery
+
+        const re = new RegExp(_.escapeRegExp(strippedQuery), 'i')
+
+        filteredOptions = _.filter(filteredOptions, opt =>
+          re.test(deburr ? _.deburr(opt.text) : opt.text))
       }
     }
 
