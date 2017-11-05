@@ -19,11 +19,11 @@ export {
   debug,
   makeDebugger,
 } from './debug'
+export ElementType from './ElementType'
 export eventStack from './eventStack'
 
 export * from './factories'
-export { default as getUnhandledProps } from './getUnhandledProps'
-export { default as getElementType } from './getElementType'
+export getUnhandledProps from './getUnhandledProps'
 
 export {
   htmlInputAttrs,

@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -65,7 +65,6 @@ function ButtonGroup(props) {
     className,
   )
   const rest = getUnhandledProps(ButtonGroup, props)
-  const ElementType = getElementType(ButtonGroup, props)
 
   return (
     <ElementType {...rest} className={classes}>

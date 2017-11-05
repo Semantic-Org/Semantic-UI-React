@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -42,7 +42,6 @@ function StatisticGroup(props) {
     className,
   )
   const rest = getUnhandledProps(StatisticGroup, props)
-  const ElementType = getElementType(StatisticGroup, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
   if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>

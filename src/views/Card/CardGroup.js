@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -41,7 +41,6 @@ function CardGroup(props) {
     className,
   )
   const rest = getUnhandledProps(CardGroup, props)
-  const ElementType = getElementType(CardGroup, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
   if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>

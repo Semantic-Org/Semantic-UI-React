@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthand,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -25,7 +25,6 @@ function FeedMeta(props) {
 
   const classes = cx('meta', className)
   const rest = getUnhandledProps(FeedMeta, props)
-  const ElementType = getElementType(FeedMeta, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

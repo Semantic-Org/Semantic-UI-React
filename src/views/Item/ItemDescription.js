@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -18,7 +18,6 @@ function ItemDescription(props) {
   const { children, className, content } = props
   const classes = cx('description', className)
   const rest = getUnhandledProps(ItemDescription, props)
-  const ElementType = getElementType(ItemDescription, props)
 
   return (
     <ElementType {...rest} className={classes}>

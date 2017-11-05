@@ -4,8 +4,8 @@ import React, { cloneElement } from 'react'
 
 import {
   customPropTypes,
+  ElementType,
   getChildMapping,
-  getElementType,
   getUnhandledProps,
   makeDebugger,
   mergeChildMappings,
@@ -139,7 +139,6 @@ export default class TransitionGroup extends React.Component {
     debug('state', this.state)
 
     const { children } = this.state
-    const ElementType = getElementType(TransitionGroup, this.props)
     const rest = getUnhandledProps(TransitionGroup, this.props)
 
     return <ElementType {...rest}>{_.values(children)}</ElementType>

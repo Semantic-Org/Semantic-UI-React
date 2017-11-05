@@ -7,8 +7,8 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  ElementType,
   eventStack,
-  getElementType,
   getUnhandledProps,
   keyboardKey,
   makeDebugger,
@@ -1308,7 +1308,6 @@ export default class Dropdown extends Component {
       className,
     )
     const rest = getUnhandledProps(Dropdown, this.props)
-    const ElementType = getElementType(Dropdown, this.props)
     const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
 
     return (
@@ -1316,13 +1315,13 @@ export default class Dropdown extends Component {
         {...rest}
         {...ariaOptions}
         className={classes}
+        innerRef={this.handleRef}
         onBlur={this.handleBlur}
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onFocus={this.handleFocus}
         onChange={this.handleChange}
         tabIndex={this.computeTabIndex()}
-        ref={this.handleRef}
       >
         {this.renderLabels()}
         {this.renderSearchInput()}

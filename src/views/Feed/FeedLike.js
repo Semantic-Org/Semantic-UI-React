@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -24,7 +24,6 @@ function FeedLike(props) {
 
   const classes = cx('like', className)
   const rest = getUnhandledProps(FeedLike, props)
-  const ElementType = getElementType(FeedLike, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

@@ -68,9 +68,11 @@ describe('Message', () => {
       const node = <div id='foo' />
 
       shallow(<Message icon>{text}</Message>)
+        .dive()
         .should.have.text(text)
 
       shallow(<Message icon>{node}</Message>)
+        .dive()
         .should.contain(node)
     })
   })
@@ -101,7 +103,8 @@ describe('Message', () => {
       const wrapper = mount(<Message {...props} onDismiss={spy} />)
 
       wrapper.should.have.descendants('.close.icon')
-      wrapper.find('.close.icon')
+      wrapper
+        .find('.close.icon')
         .simulate('click', event)
 
       spy.should.have.been.calledOnce()

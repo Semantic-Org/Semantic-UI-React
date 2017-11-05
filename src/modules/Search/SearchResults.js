@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -14,7 +14,6 @@ function SearchResults(props) {
   const { children, className, content } = props
   const classes = cx('results transition', className)
   const rest = getUnhandledProps(SearchResults, props)
-  const ElementType = getElementType(SearchResults, props)
 
   return (
     <ElementType {...rest} className={classes}>

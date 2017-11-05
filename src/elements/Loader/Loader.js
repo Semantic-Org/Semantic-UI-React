@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -43,7 +43,6 @@ function Loader(props) {
     className,
   )
   const rest = getUnhandledProps(Loader, props)
-  const ElementType = getElementType(Loader, props)
 
   return (
     <ElementType {...rest} className={classes}>

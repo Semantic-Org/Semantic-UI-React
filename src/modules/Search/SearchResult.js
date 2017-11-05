@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import {
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -105,7 +105,6 @@ export default class SearchResult extends Component {
       className,
     )
     const rest = getUnhandledProps(SearchResult, this.props)
-    const ElementType = getElementType(SearchResult, this.props)
 
     // Note: You technically only need the 'content' wrapper when there's an
     // image. However, optionally wrapping it makes this function a lot more

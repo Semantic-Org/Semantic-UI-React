@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import {
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   shallowEqual,
@@ -119,9 +119,8 @@ class Icon extends Component {
       className,
     )
     const rest = getUnhandledProps(Icon, this.props)
-    const ElementType = getElementType(Icon, this.props)
 
-    return <ElementType {...rest} aria-hidden='true' className={classes} />
+    return <ElementType {...rest} aria-hidden='true' className={classes} component={Icon} />
   }
 }
 

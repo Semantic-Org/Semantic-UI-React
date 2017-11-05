@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -155,7 +155,6 @@ class List extends Component {
       className,
     )
     const rest = getUnhandledProps(List, this.props)
-    const ElementType = getElementType(List, this.props)
 
     if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} role='list' className={classes}>{children}</ElementType>

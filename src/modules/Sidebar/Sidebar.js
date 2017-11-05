@@ -6,8 +6,8 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
-  getElementType,
   META,
   useKeyOnly,
 } from '../../lib'
@@ -99,9 +99,7 @@ class Sidebar extends Component {
       'sidebar',
       className,
     )
-
     const rest = getUnhandledProps(Sidebar, this.props)
-    const ElementType = getElementType(Sidebar, this.props)
 
     return (
       <ElementType {...rest} className={classes}>

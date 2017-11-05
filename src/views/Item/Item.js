@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -34,7 +34,6 @@ function Item(props) {
 
   const classes = cx('item', className)
   const rest = getUnhandledProps(Item, props)
-  const ElementType = getElementType(Item, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

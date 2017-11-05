@@ -8,7 +8,7 @@ import {
   createShorthand,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -24,7 +24,7 @@ import LabelGroup from './LabelGroup'
 /**
  * A label displays content classification.
  */
-export default class Label extends Component {
+class Label extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -191,7 +191,6 @@ export default class Label extends Component {
       className,
     )
     const rest = getUnhandledProps(Label, this.props)
-    const ElementType = getElementType(Label, this.props)
 
     if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
@@ -212,3 +211,5 @@ export default class Label extends Component {
 }
 
 Label.create = createShorthandFactory(Label, value => ({ content: value }))
+
+export default Label

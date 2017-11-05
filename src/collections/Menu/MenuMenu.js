@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -22,7 +22,6 @@ function MenuMenu(props) {
     className,
   )
   const rest = getUnhandledProps(MenuMenu, props)
-  const ElementType = getElementType(MenuMenu, props)
 
   return (
     <ElementType {...rest} className={classes}>

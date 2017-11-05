@@ -1,11 +1,12 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -89,11 +90,13 @@ export default class Card extends Component {
   static Header = CardHeader
   static Meta = CardMeta
 
-  handleClick = (e) => {
+  computeType = () => {
     const { onClick } = this.props
 
-    if (onClick) onClick(e, this.props)
+    if (onClick) return 'a'
   }
+
+  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const {
@@ -110,7 +113,6 @@ export default class Card extends Component {
       image,
       link,
       meta,
-      onClick,
       raised,
     } = this.props
 
@@ -125,19 +127,36 @@ export default class Card extends Component {
       className,
     )
     const rest = getUnhandledProps(Card, this.props)
-    const ElementType = getElementType(Card, this.props, () => {
-      if (onClick) return 'a'
-    })
 
     if (!childrenUtils.isNil(children)) {
-      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType
+          {...rest}
+          className={classes}
+          computeType={this.computeType}
+          href={href}
+          onClick={this.handleClick}
+        >
+          {children}
+        </ElementType>
+      )
     }
     if (!childrenUtils.isNil(content)) {
-      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{content}</ElementType>
+      return (
+        <ElementType
+          {...rest}
+          className={classes}
+          computeType={this.computeType}
+          href={href}
+          onClick={this.handleClick}
+        >
+          {content}
+        </ElementType>
+      )
     }
 
     return (
-      <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
+      <ElementType{...rest} className={classes} computeType={this.computeType} href={href} onClick={this.handleClick}>
         {Image.create(image)}
         {(description || header || meta) && (
           <CardContent description={description} header={header} meta={meta} />

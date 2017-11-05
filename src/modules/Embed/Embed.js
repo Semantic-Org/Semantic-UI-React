@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLIframe,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -174,7 +174,6 @@ export default class Embed extends Component {
       className,
     )
     const rest = getUnhandledProps(Embed, this.props)
-    const ElementType = getElementType(Embed, this.props)
 
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>

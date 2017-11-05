@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -22,7 +22,6 @@ function DropdownMenu(props) {
     className,
   )
   const rest = getUnhandledProps(DropdownMenu, props)
-  const ElementType = getElementType(DropdownMenu, props)
 
   return (
     <ElementType {...rest} className={classes}>

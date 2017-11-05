@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -24,7 +24,6 @@ function CardMeta(props) {
     className,
   )
   const rest = getUnhandledProps(CardMeta, props)
-  const ElementType = getElementType(CardMeta, props)
 
   return (
     <ElementType {...rest} className={classes}>

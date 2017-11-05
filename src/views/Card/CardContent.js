@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthand,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -40,7 +40,6 @@ function CardContent(props) {
     className,
   )
   const rest = getUnhandledProps(CardContent, props)
-  const ElementType = getElementType(CardContent, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
   if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>

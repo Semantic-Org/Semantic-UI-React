@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ function CommentMetadata(props) {
   const { className, children, content } = props
   const classes = cx('metadata', className)
   const rest = getUnhandledProps(CommentMetadata, props)
-  const ElementType = getElementType(CommentMetadata, props)
 
   return (
     <ElementType {...rest} className={classes}>

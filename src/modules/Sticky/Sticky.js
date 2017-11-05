@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import {
   eventStack,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   isBrowser,
   META,
@@ -291,7 +291,6 @@ export default class Sticky extends Component {
   render() {
     const { children, className } = this.props
     const rest = getUnhandledProps(Sticky, this.props)
-    const ElementType = getElementType(Sticky, this.props)
 
     return (
       <ElementType {...rest} className={className}>

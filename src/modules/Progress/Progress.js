@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLDivision,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -188,7 +188,6 @@ class Progress extends Component {
       className,
     )
     const rest = getUnhandledProps(Progress, this.props)
-    const ElementType = getElementType(Progress, this.props)
     const percent = this.getPercent()
 
     return (

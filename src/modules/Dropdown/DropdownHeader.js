@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -25,7 +25,6 @@ function DropdownHeader(props) {
 
   const classes = cx('header', className)
   const rest = getUnhandledProps(DropdownHeader, props)
-  const ElementType = getElementType(DropdownHeader, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 

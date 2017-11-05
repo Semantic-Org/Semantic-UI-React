@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -61,7 +61,6 @@ function Grid(props) {
     className,
   )
   const rest = getUnhandledProps(Grid, props)
-  const ElementType = getElementType(Grid, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

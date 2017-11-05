@@ -226,7 +226,7 @@ export default (Component, options = {}) => {
           'data-simulate-event-here': true,
         }
 
-        const wrapper = shallow(<Component {...props} />)
+        const wrapper = shallow(<Component {...props} />).dive()
 
         const eventTarget = eventTargets[listenerName]
           ? wrapper.find(eventTargets[listenerName])

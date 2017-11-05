@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -104,7 +104,6 @@ export default class RatingIcon extends Component {
       className,
     )
     const rest = getUnhandledProps(RatingIcon, this.props)
-    const ElementType = getElementType(RatingIcon, this.props)
 
     return (
       <ElementType

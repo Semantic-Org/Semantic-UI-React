@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -36,7 +36,6 @@ function LabelGroup(props) {
     className,
   )
   const rest = getUnhandledProps(LabelGroup, props)
-  const ElementType = getElementType(LabelGroup, props)
 
   return (
     <ElementType {...rest} className={classes}>

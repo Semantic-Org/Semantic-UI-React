@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -18,7 +18,6 @@ function ModalHeader(props) {
   const { children, className, content } = props
   const classes = cx(className, 'header')
   const rest = getUnhandledProps(ModalHeader, props)
-  const ElementType = getElementType(ModalHeader, props)
 
   return (
     <ElementType {...rest} className={classes}>

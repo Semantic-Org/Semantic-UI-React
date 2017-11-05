@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -26,7 +26,6 @@ function FeedLabel(props) {
 
   const classes = cx('label', className)
   const rest = getUnhandledProps(FeedLabel, props)
-  const ElementType = getElementType(FeedLabel, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

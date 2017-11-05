@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   numberToWordMap,
@@ -52,7 +52,6 @@ function StepGroup(props) {
     className,
   )
   const rest = getUnhandledProps(StepGroup, props)
-  const ElementType = getElementType(StepGroup, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
   if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>

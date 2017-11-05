@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -26,7 +26,6 @@ function TabPane(props) {
     className,
   )
   const rest = getUnhandledProps(TabPane, props)
-  const ElementType = getElementType(TabPane, props)
 
   const calculatedDefaultProps = {}
   if (ElementType === Segment) {

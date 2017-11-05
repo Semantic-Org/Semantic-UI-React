@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -42,7 +42,6 @@ function Rail(props) {
     className,
   )
   const rest = getUnhandledProps(Rail, props)
-  const ElementType = getElementType(Rail, props)
 
   return (
     <ElementType {...rest} className={classes}>

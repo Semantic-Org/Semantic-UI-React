@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -20,7 +20,6 @@ function StepContent(props) {
   const { children, className, content, description, title } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(StepContent, props)
-  const ElementType = getElementType(StepContent, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
   if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>

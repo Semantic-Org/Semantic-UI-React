@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -15,7 +15,13 @@ import {
  * A dimmable sub-component for Dimmer.
  */
 function DimmerDimmable(props) {
-  const { blurring, className, children, content, dimmed } = props
+  const {
+    blurring,
+    className,
+    children,
+    content,
+    dimmed,
+  } = props
 
   const classes = cx(
     useKeyOnly(blurring, 'blurring'),
@@ -24,7 +30,6 @@ function DimmerDimmable(props) {
     className,
   )
   const rest = getUnhandledProps(DimmerDimmable, props)
-  const ElementType = getElementType(DimmerDimmable, props)
 
   return (
     <ElementType {...rest} className={classes}>

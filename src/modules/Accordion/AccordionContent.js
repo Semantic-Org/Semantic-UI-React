@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -23,10 +23,9 @@ function AccordionContent(props) {
     className,
   )
   const rest = getUnhandledProps(AccordionContent, props)
-  const ElementType = getElementType(AccordionContent, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} component={AccordionContent} className={classes}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )

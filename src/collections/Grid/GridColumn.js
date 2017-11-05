@@ -5,7 +5,7 @@ import React from 'react'
 import {
   customPropTypes,
   createShorthandFactory,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -55,7 +55,6 @@ function GridColumn(props) {
     className,
   )
   const rest = getUnhandledProps(GridColumn, props)
-  const ElementType = getElementType(GridColumn, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

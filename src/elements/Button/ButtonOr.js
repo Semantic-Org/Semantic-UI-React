@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -16,7 +16,6 @@ function ButtonOr(props) {
   const { className, text } = props
   const classes = cx('or', className)
   const rest = getUnhandledProps(ButtonOr, props)
-  const ElementType = getElementType(ButtonOr, props)
 
   return <ElementType {...rest} className={classes} data-text={text} />
 }

@@ -5,7 +5,7 @@ import React from 'react'
 import {
   createShorthand,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -31,7 +31,6 @@ function FeedEvent(props) {
 
   const classes = cx('event', className)
   const rest = getUnhandledProps(FeedEvent, props)
-  const ElementType = getElementType(FeedEvent, props)
 
   const hasContentProp = content || date || extraImages || extraText || meta || summary
   const contentProps = { content, date, extraImages, extraText, meta, summary }

@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -57,7 +57,6 @@ function TableCell(props) {
     className,
   )
   const rest = getUnhandledProps(TableCell, props)
-  const ElementType = getElementType(TableCell, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

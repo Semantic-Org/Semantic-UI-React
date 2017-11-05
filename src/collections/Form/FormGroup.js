@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -35,7 +35,6 @@ function FormGroup(props) {
     className,
   )
   const rest = getUnhandledProps(FormGroup, props)
-  const ElementType = getElementType(FormGroup, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

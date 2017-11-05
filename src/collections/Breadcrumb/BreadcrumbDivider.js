@@ -7,8 +7,8 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
-  getElementType,
   META,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -26,7 +26,6 @@ function BreadcrumbDivider(props) {
 
   const classes = cx('divider', className)
   const rest = getUnhandledProps(BreadcrumbDivider, props)
-  const ElementType = getElementType(BreadcrumbDivider, props)
 
   if (!_.isNil(icon)) return Icon.create(icon, { defaultProps: { ...rest, className: classes } })
   if (!_.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>

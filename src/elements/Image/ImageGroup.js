@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -18,7 +18,6 @@ function ImageGroup(props) {
   const { children, className, content, size } = props
   const classes = cx('ui', size, className, 'images')
   const rest = getUnhandledProps(ImageGroup, props)
-  const ElementType = getElementType(ImageGroup, props)
 
   return (
     <ElementType {...rest} className={classes}>

@@ -4,8 +4,8 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
+  ElementType,
   eventStack,
-  getElementType,
   getUnhandledProps,
   isBrowser,
   META,
@@ -119,8 +119,6 @@ export default class Responsive extends Component {
 
   render() {
     const { children } = this.props
-
-    const ElementType = getElementType(Responsive, this.props)
     const rest = getUnhandledProps(Responsive, this.props)
 
     if (this.isVisible()) return <ElementType {...rest}>{children}</ElementType>

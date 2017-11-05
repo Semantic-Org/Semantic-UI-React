@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ function ModalDescription(props) {
   const { children, className, content } = props
   const classes = cx('description', className)
   const rest = getUnhandledProps(ModalDescription, props)
-  const ElementType = getElementType(ModalDescription, props)
 
   return (
     <ElementType {...rest} className={classes}>

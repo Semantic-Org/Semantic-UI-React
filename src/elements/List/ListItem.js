@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -106,15 +106,14 @@ class ListItem extends Component {
       value,
     } = this.props
 
-    const ElementType = getElementType(ListItem, this.props)
     const classes = cx(
       useKeyOnly(active, 'active'),
       useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(ElementType !== 'li', 'item'),
+      useKeyOnly(ElementType.original !== 'li', 'item'),
       className,
     )
     const rest = getUnhandledProps(ListItem, this.props)
-    const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
+    const valueProp = ElementType.original === 'li' ? { value } : { 'data-value': value }
 
     if (!childrenUtils.isNil(children)) {
       return (

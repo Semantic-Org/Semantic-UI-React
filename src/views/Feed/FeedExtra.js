@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -31,7 +31,6 @@ function FeedExtra(props) {
     className,
   )
   const rest = getUnhandledProps(FeedExtra, props)
-  const ElementType = getElementType(FeedExtra, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

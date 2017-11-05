@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -18,7 +18,6 @@ export default function PopupContent(props) {
   const { children, className, content } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(PopupContent, props)
-  const ElementType = getElementType(PopupContent, props)
 
   return (
     <ElementType {...rest} className={classes}>

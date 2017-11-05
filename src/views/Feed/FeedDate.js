@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ function FeedDate(props) {
   const { children, className, content } = props
   const classes = cx('date', className)
   const rest = getUnhandledProps(FeedDate, props)
-  const ElementType = getElementType(FeedDate, props)
 
   return (
     <ElementType {...rest} className={classes}>

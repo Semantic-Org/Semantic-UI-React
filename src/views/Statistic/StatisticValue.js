@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -17,14 +17,12 @@ import {
  */
 function StatisticValue(props) {
   const { children, className, content, text } = props
-
   const classes = cx(
     useKeyOnly(text, 'text'),
     'value',
     className,
   )
   const rest = getUnhandledProps(StatisticValue, props)
-  const ElementType = getElementType(StatisticValue, props)
 
   return (
     <ElementType {...rest} className={classes}>

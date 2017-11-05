@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -14,7 +14,6 @@ function LabelDetail(props) {
   const { children, className, content } = props
   const classes = cx('detail', className)
   const rest = getUnhandledProps(LabelDetail, props)
-  const ElementType = getElementType(LabelDetail, props)
 
   return (
     <ElementType {...rest} className={classes}>

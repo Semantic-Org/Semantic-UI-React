@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -33,7 +33,6 @@ function Advertisement(props) {
     className,
   )
   const rest = getUnhandledProps(Advertisement, props)
-  const ElementType = getElementType(Advertisement, props)
 
   return (
     <ElementType {...rest} className={classes} data-text={test}>

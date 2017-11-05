@@ -2,7 +2,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ import FormField from './FormField'
 function FormTextArea(props) {
   const { control } = props
   const rest = getUnhandledProps(FormTextArea, props)
-  const ElementType = getElementType(FormTextArea, props)
 
   return <ElementType {...rest} control={control} />
 }

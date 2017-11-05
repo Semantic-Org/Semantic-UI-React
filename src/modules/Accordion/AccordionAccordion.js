@@ -7,7 +7,7 @@ import {
   AutoControlledComponent as Component,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -141,10 +141,9 @@ export default class AccordionAccordion extends Component {
 
     const classes = cx('accordion', className)
     const rest = getUnhandledProps(AccordionAccordion, this.props)
-    const ElementType = getElementType(AccordionAccordion, this.props)
 
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} component={AccordionAccordion} className={classes}>
         {_.isNil(children) ? this.renderPanels() : children}
       </ElementType>
     )

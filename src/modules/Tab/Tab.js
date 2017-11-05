@@ -5,7 +5,7 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -138,7 +138,6 @@ class Tab extends Component {
   render() {
     const menu = this.renderMenu()
     const rest = getUnhandledProps(Tab, this.props)
-    const ElementType = getElementType(Tab, this.props)
 
     if (menu.props.vertical) {
       return <ElementType {...rest}>{this.renderVertical(menu)}</ElementType>

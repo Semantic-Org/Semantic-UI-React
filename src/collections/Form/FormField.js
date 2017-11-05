@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLLabel,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -53,7 +53,6 @@ function FormField(props) {
     className,
   )
   const rest = getUnhandledProps(FormField, props)
-  const ElementType = getElementType(FormField, props)
 
   // ----------------------------------------
   // No Control

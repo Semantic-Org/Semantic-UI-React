@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -62,7 +62,6 @@ export default class ModalActions extends Component {
     const { actions, children, className, content } = this.props
     const classes = cx('actions', className)
     const rest = getUnhandledProps(ModalActions, this.props)
-    const ElementType = getElementType(ModalActions, this.props)
 
     if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
     if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>

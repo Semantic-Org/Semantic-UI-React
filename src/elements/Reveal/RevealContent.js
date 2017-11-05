@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -31,7 +31,6 @@ function RevealContent(props) {
     className,
   )
   const rest = getUnhandledProps(RevealContent, props)
-  const ElementType = getElementType(RevealContent, props)
 
   return (
     <ElementType {...rest} className={classes}>

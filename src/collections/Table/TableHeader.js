@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -21,7 +21,6 @@ function TableHeader(props) {
     className,
   )
   const rest = getUnhandledProps(TableHeader, props)
-  const ElementType = getElementType(TableHeader, props)
 
   return (
     <ElementType {...rest} className={classes}>

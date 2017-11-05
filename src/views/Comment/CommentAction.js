@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -22,7 +22,6 @@ function CommentAction(props) {
     className,
   )
   const rest = getUnhandledProps(CommentAction, props)
-  const ElementType = getElementType(CommentAction, props)
 
   return (
     <ElementType {...rest} className={classes}>

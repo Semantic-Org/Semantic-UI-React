@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ function SidebarPushable(props) {
   const { className, children, content } = props
   const classes = cx('pushable', className)
   const rest = getUnhandledProps(SidebarPushable, props)
-  const ElementType = getElementType(SidebarPushable, props)
 
   return (
     <ElementType {...rest} className={classes}>

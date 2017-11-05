@@ -7,7 +7,7 @@ import {
   eventStack,
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   isBrowser,
   makeDebugger,
@@ -362,10 +362,9 @@ export default class Popup extends Component {
       return acc
     }, {})
     const portalProps = _.pick(unhandled, portalPropNames)
-    const ElementType = getElementType(Popup, this.props)
 
     const popupJSX = (
-      <ElementType {...rest} className={classes} style={style} ref={this.handlePopupRef}>
+      <ElementType {...rest} className={classes} style={style} innerRef={this.handlePopupRef}>
         {children}
         {childrenUtils.isNil(children) && PopupHeader.create(header)}
         {childrenUtils.isNil(children) && PopupContent.create(content)}

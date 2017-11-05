@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -18,7 +18,6 @@ function StatisticLabel(props) {
   const { children, className, content } = props
   const classes = cx('label', className)
   const rest = getUnhandledProps(StatisticLabel, props)
-  const ElementType = getElementType(StatisticLabel, props)
 
   return (
     <ElementType {...rest} className={classes}>

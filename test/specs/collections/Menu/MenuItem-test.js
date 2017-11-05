@@ -31,6 +31,7 @@ describe('MenuItem', () => {
   describe('name', () => {
     it('uses the name prop as Start Cased child text', () => {
       shallow(<MenuItem name='upcomingEvents' />)
+        .dive()
         .should.contain.text('Upcoming Events')
     })
   })

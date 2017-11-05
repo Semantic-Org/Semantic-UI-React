@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ function CommentAuthor(props) {
   const { className, children, content } = props
   const classes = cx('author', className)
   const rest = getUnhandledProps(CommentAuthor, props)
-  const ElementType = getElementType(CommentAuthor, props)
 
   return (
     <ElementType {...rest} className={classes}>

@@ -5,7 +5,7 @@ import React from 'react'
 import {
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ function CommentAvatar(props) {
   const { className, src } = props
   const classes = cx('avatar', className)
   const rest = getUnhandledProps(CommentAvatar, props)
-  const ElementType = getElementType(CommentAvatar, props)
 
   return <ElementType {...rest} className={classes}>{createHTMLImage(src)}</ElementType>
 }

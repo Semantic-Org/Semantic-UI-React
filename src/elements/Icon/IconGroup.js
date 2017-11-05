@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -23,7 +23,6 @@ function IconGroup(props) {
     className,
   )
   const rest = getUnhandledProps(IconGroup, props)
-  const ElementType = getElementType(IconGroup, props)
 
   return (
     <ElementType {...rest} className={classes}>

@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -31,7 +31,6 @@ function ModalContent(props) {
     'content',
   )
   const rest = getUnhandledProps(ModalContent, props)
-  const ElementType = getElementType(ModalContent, props)
 
   return (
     <ElementType {...rest} className={classes}>

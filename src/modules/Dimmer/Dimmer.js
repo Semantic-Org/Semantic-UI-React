@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   isBrowser,
   META,
@@ -18,7 +18,7 @@ import DimmerDimmable from './DimmerDimmable'
 /**
  * A dimmer hides distractions to focus attention on particular content.
  */
-export default class Dimmer extends Component {
+class Dimmer extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -120,7 +120,6 @@ export default class Dimmer extends Component {
       className,
     )
     const rest = getUnhandledProps(Dimmer, this.props)
-    const ElementType = getElementType(Dimmer, this.props)
 
     const childrenContent = childrenUtils.isNil(children) ? content : children
 
@@ -156,3 +155,5 @@ export default class Dimmer extends Component {
 }
 
 Dimmer.create = createShorthandFactory(Dimmer, value => ({ content: value }))
+
+export default Dimmer

@@ -6,8 +6,8 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
+  ElementType,
   eventStack,
-  getElementType,
   getUnhandledProps,
   htmlInputAttrs,
   isBrowser,
@@ -642,7 +642,6 @@ export default class Search extends Component {
       className,
     )
     const unhandled = getUnhandledProps(Search, this.props)
-    const ElementType = getElementType(Search, this.props)
     const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, {
       htmlProps: htmlInputAttrs,
     })

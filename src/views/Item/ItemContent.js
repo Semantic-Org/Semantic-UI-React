@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -37,7 +37,6 @@ function ItemContent(props) {
     className,
   )
   const rest = getUnhandledProps(ItemContent, props)
-  const ElementType = getElementType(ItemContent, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

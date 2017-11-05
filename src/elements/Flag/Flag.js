@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import {
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   shallowEqual,
@@ -87,7 +87,6 @@ class Flag extends Component {
     const { className, name } = this.props
     const classes = cx(name, 'flag', className)
     const rest = getUnhandledProps(Flag, this.props)
-    const ElementType = getElementType(Flag, this.props)
 
     return <ElementType {...rest} className={classes} />
   }

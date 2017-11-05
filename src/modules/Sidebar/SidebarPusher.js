@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -23,7 +23,6 @@ function SidebarPusher(props) {
     className,
   )
   const rest = getUnhandledProps(SidebarPusher, props)
-  const ElementType = getElementType(SidebarPusher, props)
 
   return (
     <ElementType {...rest} className={classes}>

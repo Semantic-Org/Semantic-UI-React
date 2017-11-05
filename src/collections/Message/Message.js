@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLParagraph,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -164,7 +164,6 @@ export default class Message extends Component {
 
     const dismissIcon = onDismiss && <Icon name='close' onClick={this.handleDismiss} />
     const rest = getUnhandledProps(Message, this.props)
-    const ElementType = getElementType(Message, this.props)
 
     if (!childrenUtils.isNil(children)) {
       return (

@@ -8,7 +8,7 @@ import {
   childrenUtils,
   customPropTypes,
   createShorthandFactory,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -213,7 +213,6 @@ class Menu extends Component {
       'menu',
     )
     const rest = getUnhandledProps(Menu, this.props)
-    const ElementType = getElementType(Menu, this.props)
 
     return (
       <ElementType {...rest} className={classes}>

@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -123,16 +123,14 @@ class TextArea extends Component {
   render() {
     const { autoHeight, rows, style, value } = this.props
     const rest = getUnhandledProps(TextArea, this.props)
-    const ElementType = getElementType(TextArea, this.props)
-
     const resize = autoHeight ? 'none' : ''
 
     return (
       <ElementType
         {...rest}
+        innerRef={this.handleRef}
         onChange={this.handleChange}
         onInput={this.handleInput}
-        ref={this.handleRef}
         rows={rows}
         style={{ resize, ...style }}
         value={value}

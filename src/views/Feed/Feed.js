@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -39,7 +39,6 @@ function Feed(props) {
     className,
   )
   const rest = getUnhandledProps(Feed, props)
-  const ElementType = getElementType(Feed, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

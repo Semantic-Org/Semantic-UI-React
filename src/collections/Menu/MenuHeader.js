@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ function MenuHeader(props) {
   const { children, className, content } = props
   const classes = cx('header', className)
   const rest = getUnhandledProps(MenuHeader, props)
-  const ElementType = getElementType(MenuHeader, props)
 
   return (
     <ElementType {...rest} className={classes}>

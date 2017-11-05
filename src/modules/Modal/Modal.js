@@ -7,7 +7,7 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   isBrowser,
   makeDebugger,
@@ -288,14 +288,13 @@ class Modal extends Component {
       'modal transition visible active',
       className,
     )
-    const ElementType = getElementType(Modal, this.props)
 
     const closeIconName = closeIcon === true ? 'close' : closeIcon
     const closeIconJSX = Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })
 
     if (!childrenUtils.isNil(children)) {
       return (
-        <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
+        <ElementType {...rest} className={classes} style={{ marginTop, ...style }} innerRef={this.handleRef}>
           {closeIconJSX}
           {children}
         </ElementType>
@@ -303,7 +302,7 @@ class Modal extends Component {
     }
 
     return (
-      <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
+      <ElementType {...rest} className={classes} style={{ marginTop, ...style }} innerRef={this.handleRef}>
         {closeIconJSX}
         {ModalHeader.create(header)}
         {ModalContent.create(content)}

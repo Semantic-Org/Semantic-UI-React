@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -137,7 +137,6 @@ class Form extends Component {
       className,
     )
     const rest = getUnhandledProps(Form, this.props)
-    const ElementType = getElementType(Form, this.props)
 
     return (
       <ElementType

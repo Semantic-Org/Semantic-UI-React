@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -37,7 +37,6 @@ function CommentGroup(props) {
     className,
   )
   const rest = getUnhandledProps(CommentGroup, props)
-  const ElementType = getElementType(CommentGroup, props)
 
   return (
     <ElementType {...rest} className={classes}>

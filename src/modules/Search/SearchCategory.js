@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -19,7 +19,6 @@ function SearchCategory(props) {
     className,
   )
   const rest = getUnhandledProps(SearchCategory, props)
-  const ElementType = getElementType(SearchCategory, props)
 
   return (
     <ElementType {...rest} className={classes}>

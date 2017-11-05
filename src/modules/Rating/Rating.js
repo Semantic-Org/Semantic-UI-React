@@ -6,7 +6,7 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -141,7 +141,6 @@ export default class Rating extends Component {
       className,
     )
     const rest = getUnhandledProps(Rating, this.props)
-    const ElementType = getElementType(Rating, this.props)
 
     return (
       <ElementType {...rest} className={classes} role='radiogroup' onMouseLeave={this.handleMouseLeave}>

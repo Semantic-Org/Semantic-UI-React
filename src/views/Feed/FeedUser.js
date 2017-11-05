@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ function FeedUser(props) {
   const { children, className, content } = props
   const classes = cx('user', className)
   const rest = getUnhandledProps(FeedUser, props)
-  const ElementType = getElementType(FeedUser, props)
 
   return (
     <ElementType {...rest} className={classes}>

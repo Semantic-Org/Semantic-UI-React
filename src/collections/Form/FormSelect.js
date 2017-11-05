@@ -2,7 +2,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ import FormField from './FormField'
 function FormSelect(props) {
   const { control } = props
   const rest = getUnhandledProps(FormSelect, props)
-  const ElementType = getElementType(FormSelect, props)
 
   return <ElementType {...rest} control={control} />
 }
