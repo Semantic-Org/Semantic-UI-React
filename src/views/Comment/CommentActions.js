@@ -5,12 +5,10 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A comment can contain an list of actions a user may perform related to this comment.

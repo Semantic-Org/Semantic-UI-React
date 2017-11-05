@@ -7,8 +7,8 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  ElementType,
   eventStack,
-  getElementType,
   getUnhandledProps,
   keyboardKey,
   makeDebugger,
@@ -1308,7 +1308,6 @@ export default class Dropdown extends Component {
       className,
     )
     const rest = getUnhandledProps(Dropdown, this.props)
-    const ElementType = getElementType(Dropdown, this.props)
     const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
 
     return (

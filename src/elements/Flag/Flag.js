@@ -5,10 +5,10 @@ import React, { Component } from 'react'
 import {
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   shallowEqual,
-  withElementType,
 } from '../../lib'
 
 export const names = [
@@ -84,7 +84,7 @@ class Flag extends Component {
   }
 
   render() {
-    const { as: ElementType, className, name } = this.props
+    const { className, name } = this.props
     const classes = cx(name, 'flag', className)
     const rest = getUnhandledProps(Flag, this.props)
 
@@ -94,4 +94,4 @@ class Flag extends Component {
 
 Flag.create = createShorthandFactory(Flag, value => ({ name: value }))
 
-export default withElementType(Flag)
+export default Flag

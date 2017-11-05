@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -37,7 +37,6 @@ function ListContent(props) {
     className,
   )
   const rest = getUnhandledProps(ListContent, props)
-  const ElementType = getElementType(ListContent, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 

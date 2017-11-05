@@ -6,8 +6,8 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
+  ElementType,
   eventStack,
-  getElementType,
   getUnhandledProps,
   htmlInputAttrs,
   isBrowser,
@@ -27,7 +27,6 @@ import SearchResult from './SearchResult'
 import SearchResults from './SearchResults'
 
 const debug = makeDebugger('search')
-const ElementType = getElementType()
 
 /**
  * A search module allows a user to query for results from a selection of data

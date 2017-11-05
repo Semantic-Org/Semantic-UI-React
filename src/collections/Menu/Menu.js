@@ -8,7 +8,7 @@ import {
   childrenUtils,
   customPropTypes,
   createShorthandFactory,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -20,8 +20,6 @@ import {
 import MenuHeader from './MenuHeader'
 import MenuItem from './MenuItem'
 import MenuMenu from './MenuMenu'
-
-const ElementType = getElementType()
 
 /**
  * A menu displays grouped navigation actions.

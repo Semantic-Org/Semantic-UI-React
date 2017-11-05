@@ -6,12 +6,10 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A modal can have a header.

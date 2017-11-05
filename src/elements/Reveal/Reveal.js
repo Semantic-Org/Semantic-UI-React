@@ -5,10 +5,10 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
-  withElementType,
 } from '../../lib'
 import RevealContent from './RevealContent'
 
@@ -17,7 +17,6 @@ import RevealContent from './RevealContent'
  */
 function Reveal(props) {
   const {
-    as: ElementType,
     active,
     animated,
     children,
@@ -82,4 +81,4 @@ Reveal.propTypes = {
 
 Reveal.Content = RevealContent
 
-export default withElementType(Reveal)
+export default Reveal

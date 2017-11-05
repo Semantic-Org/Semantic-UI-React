@@ -8,8 +8,8 @@ import {
   createShorthand,
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   META,
-  getElementType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -17,8 +17,6 @@ import Flag from '../../elements/Flag'
 import Icon from '../../elements/Icon'
 import Image from '../../elements/Image'
 import Label from '../../elements/Label'
-
-const ElementType = getElementType()
 
 /**
  * An item sub-component for Dropdown component.

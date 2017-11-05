@@ -5,17 +5,17 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
-  withElementType,
 } from '../../lib'
 
 /**
  * A group of images.
  */
 function ImageGroup(props) {
-  const { as: ElementType, children, className, content, size } = props
+  const { children, className, content, size } = props
   const classes = cx('ui', size, className, 'images')
   const rest = getUnhandledProps(ImageGroup, props)
 
@@ -49,4 +49,4 @@ ImageGroup.propTypes = {
   size: PropTypes.oneOf(SUI.SIZES),
 }
 
-export default withElementType(ImageGroup)
+export default ImageGroup

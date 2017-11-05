@@ -5,14 +5,12 @@ import React from 'react'
 import {
   createShorthand,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
-
-const ElementType = getElementType()
 
 /**
  * A feed contains an event.

@@ -5,12 +5,10 @@ import React from 'react'
 import {
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A comment can contain an image or avatar.

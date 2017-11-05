@@ -7,7 +7,7 @@ import {
   AutoControlledComponent as Component,
   createHTMLLabel,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   makeDebugger,
   META,
@@ -215,7 +215,6 @@ export default class Checkbox extends Component {
       className,
     )
     const unhandled = getUnhandledProps(Checkbox, this.props)
-    const ElementType = getElementType(Checkbox, this.props)
     const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, { htmlProps: [] })
 
     return (

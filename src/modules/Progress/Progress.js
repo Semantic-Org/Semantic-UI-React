@@ -7,15 +7,13 @@ import {
   childrenUtils,
   createHTMLDivision,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A progress bar shows the progression of a task.

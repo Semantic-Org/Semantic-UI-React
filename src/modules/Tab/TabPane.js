@@ -6,14 +6,12 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
 import Segment from '../../elements/Segment/Segment'
-
-const ElementType = getElementType()
 
 /**
  * A tab pane holds the content of a tab.

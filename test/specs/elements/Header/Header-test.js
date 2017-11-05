@@ -62,16 +62,18 @@ describe('Header', () => {
       shallow(<Header image='foo.png' content='Bar' />)
         .find('HeaderContent')
         .shallow()
+        .dive()
         .should.contain.text('Bar')
     })
     it('is wrapped in HeaderContent when there is an icon name', () => {
       shallow(<Header icon='users' content='Friends' />)
         .find('HeaderContent')
         .shallow()
+        .dive()
         .should.contain.text('Friends')
     })
     it('is not wrapped in HeaderContent when icon is true', () => {
-      const wrapper = shallow(<Header icon content='Friends' />)
+      const wrapper = shallow(<Header icon content='Friends' />).dive()
 
       wrapper.should.contain.text('Friends')
       wrapper.should.not.have.descendants('HeaderContent')

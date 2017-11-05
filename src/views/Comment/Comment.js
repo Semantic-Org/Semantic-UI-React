@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -18,8 +18,6 @@ import CommentContent from './CommentContent'
 import CommentGroup from './CommentGroup'
 import CommentMetadata from './CommentMetadata'
 import CommentText from './CommentText'
-
-const ElementType = getElementType()
 
 /**
  * A comment displays user feedback to site content.

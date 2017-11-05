@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -16,8 +16,6 @@ import {
  */
 function ListList(props) {
   const { children, className, content } = props
-
-  const ElementType = getElementType(ListList, props)
   const classes = cx(
     useKeyOnly(ElementType.original !== 'ul' && ElementType.original !== 'ol', 'list'),
     className,

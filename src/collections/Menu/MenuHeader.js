@@ -5,12 +5,10 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A menu item may include a header or may itself be a header.

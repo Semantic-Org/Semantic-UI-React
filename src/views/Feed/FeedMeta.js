@@ -6,13 +6,11 @@ import {
   childrenUtils,
   createShorthand,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
 import FeedLike from './FeedLike'
-
-const ElementType = getElementType()
 
 /**
  * A feed can contain a meta.

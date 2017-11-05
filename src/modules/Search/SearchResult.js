@@ -5,13 +5,11 @@ import React, { Component } from 'react'
 import {
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 // Note: You technically only need the 'content' wrapper when there's an
 // image. However, optionally wrapping it makes this function a lot more

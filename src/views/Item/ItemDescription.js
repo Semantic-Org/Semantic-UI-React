@@ -6,12 +6,10 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * An item can contain a description with a single or multiple paragraphs.

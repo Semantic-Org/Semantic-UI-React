@@ -5,10 +5,10 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
-  withElementType,
 } from '../../lib'
 
 /**
@@ -16,7 +16,6 @@ import {
  */
 function DimmerDimmable(props) {
   const {
-    as: ElementType,
     blurring,
     className,
     children,
@@ -65,4 +64,4 @@ DimmerDimmable.propTypes = {
   dimmed: PropTypes.bool,
 }
 
-export default withElementType(DimmerDimmable)
+export default DimmerDimmable

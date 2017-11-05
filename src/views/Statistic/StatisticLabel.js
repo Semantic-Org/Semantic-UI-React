@@ -6,16 +6,16 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
-  withElementType,
 } from '../../lib'
 
 /**
  * A statistic can contain a label to help provide context for the presented value.
  */
 function StatisticLabel(props) {
-  const { as: ElementType, children, className, content } = props
+  const { children, className, content } = props
   const classes = cx('label', className)
   const rest = getUnhandledProps(StatisticLabel, props)
 
@@ -48,4 +48,4 @@ StatisticLabel.propTypes = {
 
 StatisticLabel.create = createShorthandFactory(StatisticLabel, content => ({ content }))
 
-export default withElementType(StatisticLabel)
+export default StatisticLabel

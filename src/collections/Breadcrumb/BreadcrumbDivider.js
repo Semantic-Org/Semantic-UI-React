@@ -7,13 +7,11 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
-  getElementType,
   META,
 } from '../../lib'
 import Icon from '../../elements/Icon'
-
-const ElementType = getElementType()
 
 /**
  * A divider sub-component for Breadcrumb component.

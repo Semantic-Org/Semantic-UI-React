@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -15,8 +15,6 @@ import ItemHeader from './ItemHeader'
 import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'
 import ItemMeta from './ItemMeta'
-
-const ElementType = getElementType()
 
 /**
  * An item can contain content.

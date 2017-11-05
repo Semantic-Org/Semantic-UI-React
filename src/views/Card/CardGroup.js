@@ -6,13 +6,13 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useTextAlignProp,
   useWidthProp,
-  withElementType,
 } from '../../lib'
 import Card from './Card'
 
@@ -21,7 +21,6 @@ import Card from './Card'
  */
 function CardGroup(props) {
   const {
-    as: ElementType,
     children,
     className,
     content,
@@ -89,4 +88,4 @@ CardGroup.propTypes = {
   textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
-export default withElementType(CardGroup)
+export default CardGroup

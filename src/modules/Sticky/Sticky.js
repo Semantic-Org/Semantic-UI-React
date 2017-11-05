@@ -5,13 +5,11 @@ import React, { Component } from 'react'
 import {
   eventStack,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   isBrowser,
   META,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * Sticky content stays fixed to the browser viewport while another column of content is visible on the page.

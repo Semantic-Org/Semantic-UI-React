@@ -7,14 +7,12 @@ import {
   childrenUtils,
   createHTMLIframe,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
-
-const ElementType = getElementType()
 
 /**
  * An embed displays content from other websites like YouTube videos or Google Maps.

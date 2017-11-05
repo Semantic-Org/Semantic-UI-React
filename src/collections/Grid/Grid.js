@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -17,8 +17,6 @@ import {
 } from '../../lib'
 import GridColumn from './GridColumn'
 import GridRow from './GridRow'
-
-const ElementType = getElementType()
 
 /**
  * A grid is used to harmonize negative space in a layout.

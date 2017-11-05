@@ -20,17 +20,20 @@ export default (Component, options = {}) => {
     it('renders child text', () => {
       const text = faker.hacker.phrase()
       shallow(createElement(Component, requiredProps, text))
+        .dive()
         .should.contain.text(text)
     })
 
     it('renders child components', () => {
       const child = <div data-child={faker.hacker.noun()} />
       shallow(createElement(Component, requiredProps, child))
+        .dive()
         .should.contain(child)
     })
 
     it('renders child number with 0 value', () => {
       shallow(createElement(Component, requiredProps, 0))
+        .dive()
         .should.contain.text('0')
     })
   })
@@ -40,17 +43,20 @@ export default (Component, options = {}) => {
       it('renders child text', () => {
         const text = faker.hacker.phrase()
         shallow(createElement(Component, { ...requiredProps, content: text }))
+          .dive()
           .should.contain.text(text)
       })
 
       it('renders child components', () => {
         const child = <div data-child={faker.hacker.noun()} />
         shallow(createElement(Component, { ...requiredProps, content: child }))
+          .dive()
           .should.contain(child)
       })
 
       it('renders child number with 0 value', () => {
         shallow(createElement(Component, { ...requiredProps, content: 0 }))
+          .dive()
           .should.contain.text('0')
       })
     })

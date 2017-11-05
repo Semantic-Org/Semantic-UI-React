@@ -29,16 +29,19 @@ describe('MessageList', () => {
       wrapper
         .childAt(0)
         .shallow()
+        .dive()
         .should.have.text(items[0])
 
       wrapper
         .childAt(1)
         .shallow()
+        .dive()
         .should.have.text(items[1])
 
       wrapper
         .childAt(2)
         .shallow()
+        .dive()
         .should.have.text(items[2])
     })
   })

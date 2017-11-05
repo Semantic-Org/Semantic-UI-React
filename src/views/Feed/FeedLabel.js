@@ -6,13 +6,11 @@ import {
   childrenUtils,
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
 import Icon from '../../elements/Icon'
-
-const ElementType = getElementType()
 
 /**
  * An event can contain an image or icon label.

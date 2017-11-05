@@ -8,13 +8,13 @@ import {
   createShorthand,
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
   useValueAndKey,
-  withElementType,
 } from '../../lib'
 import Icon from '../Icon/Icon'
 import Image from '../Image/Image'
@@ -191,7 +191,6 @@ class Label extends Component {
       className,
     )
     const rest = getUnhandledProps(Label, this.props)
-    const ElementType = getElementType(Label, this.props)
 
     if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
@@ -213,4 +212,4 @@ class Label extends Component {
 
 Label.create = createShorthandFactory(Label, value => ({ content: value }))
 
-export default withElementType(Label)
+export default Label

@@ -6,15 +6,13 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
 import Item from './Item'
-
-const ElementType = getElementType()
 
 /**
  * A group of items.

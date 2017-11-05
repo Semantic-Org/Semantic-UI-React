@@ -6,18 +6,18 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useTextAlignProp,
-  withElementType,
 } from '../../lib'
 
 /**
  * A card can contain content metadata.
  */
 function CardMeta(props) {
-  const { as: ElementType, children, className, content, textAlign } = props
+  const { children, className, content, textAlign } = props
   const classes = cx(
     useTextAlignProp(textAlign),
     'meta',
@@ -55,4 +55,4 @@ CardMeta.propTypes = {
   textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
-export default withElementType(CardMeta)
+export default CardMeta

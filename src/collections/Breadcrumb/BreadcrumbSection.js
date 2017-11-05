@@ -7,13 +7,11 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
-  getElementType,
   META,
   useKeyOnly,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A section sub-component for Breadcrumb component.
@@ -63,7 +61,7 @@ export default class BreadcrumbSection extends Component {
     parent: 'Breadcrumb',
   }
 
-  computeElementType = () => {
+  computeType = () => {
     const { link, onClick } = this.props
 
     if (link || onClick) return 'a'
@@ -86,10 +84,9 @@ export default class BreadcrumbSection extends Component {
       className,
     )
     const rest = getUnhandledProps(BreadcrumbSection, this.props)
-    const ElementType = getElementType(BreadcrumbSection, this.props, this.computeElementType)
 
     return (
-      <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
+      <ElementType {...rest} className={classes} computeType={this.computeType} href={href} onClick={this.handleClick}>
         {childrenUtils.isNil(children) ? content : children}
       </ElementType>
     )

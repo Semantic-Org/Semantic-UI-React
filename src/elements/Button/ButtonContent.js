@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -29,7 +29,6 @@ function ButtonContent(props) {
     className,
   )
   const rest = getUnhandledProps(ButtonContent, props)
-  const ElementType = getElementType(ButtonContent, props)
 
   return (
     <ElementType {...rest} className={classes}>

@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -41,7 +41,6 @@ function Divider(props) {
     className,
   )
   const rest = getUnhandledProps(Divider, props)
-  const ElementType = getElementType(Divider, props)
 
   return (
     <ElementType {...rest} className={classes}>

@@ -6,12 +6,12 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
-  withElementType,
 } from '../../lib'
 
 /**
@@ -19,7 +19,6 @@ import {
  */
 function Rail(props) {
   const {
-    as: ElementType,
     attached,
     children,
     className,
@@ -91,4 +90,4 @@ Rail.propTypes = {
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 }
 
-export default withElementType(Rail)
+export default Rail

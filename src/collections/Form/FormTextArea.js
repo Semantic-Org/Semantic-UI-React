@@ -2,14 +2,12 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
 import TextArea from '../../addons/TextArea'
 import FormField from './FormField'
-
-const ElementType = getElementType()
 
 /**
  * Sugar for <Form.Field control={TextArea} />.

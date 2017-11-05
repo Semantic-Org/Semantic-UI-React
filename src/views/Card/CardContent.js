@@ -7,12 +7,12 @@ import {
   childrenUtils,
   createShorthand,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useTextAlignProp,
-  withElementType,
 } from '../../lib'
 import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
@@ -23,7 +23,6 @@ import CardMeta from './CardMeta'
  */
 function CardContent(props) {
   const {
-    as: ElementType,
     children,
     className,
     content,
@@ -89,4 +88,4 @@ CardContent.propTypes = {
   textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
-export default withElementType(CardContent)
+export default CardContent

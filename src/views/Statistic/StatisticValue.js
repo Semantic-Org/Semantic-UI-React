@@ -6,24 +6,17 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
-import withElementType from '../../lib/withElementType'
 
 /**
  * A statistic can contain a numeric, icon, image, or text value.
  */
 function StatisticValue(props) {
-  const {
-    as: ElementType,
-    children,
-    className,
-    content,
-    text,
-  } = props
-
+  const { children, className, content, text } = props
   const classes = cx(
     useKeyOnly(text, 'text'),
     'value',
@@ -63,4 +56,4 @@ StatisticValue.propTypes = {
 
 StatisticValue.create = createShorthandFactory(StatisticValue, content => ({ content }))
 
-export default withElementType(StatisticValue)
+export default StatisticValue

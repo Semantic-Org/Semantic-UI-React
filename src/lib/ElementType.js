@@ -6,8 +6,8 @@ import computeElementType from './computeElementType'
 
 export default class ElementType extends Component {
   static propTypes = {
-    defaultAs: customPropTypes.as,
-    typeComputer: PropTypes.string,
+    computeType: PropTypes.func,
+    defaultElement: customPropTypes.as,
     /**
      * Called when componentDidMount.
      *
@@ -17,19 +17,9 @@ export default class ElementType extends Component {
   }
 
   render() {
-    const { defaultAs, innerRef, typeComputer, ...rest } = this.props
-    const Child = computeElementType({ defaultProps: { as: defaultAs }}, rest, typeComputer)
-console.log(Child)
-    // if (typeof Child === 'string') return <Child {...rest} ref={innerRef}/>
-    // if (Child._meta) return <Child {...rest} innerRef={innerRef}/>
-    this.default = defaultAs
-    this.as = Child
+    const { as, defaultType, computeType, href, innerRef, ...rest } = this.props
+    const Child = computeElementType(as, href, defaultType, computeType)
 
     return <Child {...rest} ref={innerRef} />
-    // return (
-    //   <Ref innerRef={innerRef}>
-    //     <Child {...rest} />
-    //   </Ref>
-    // )
   }
 }

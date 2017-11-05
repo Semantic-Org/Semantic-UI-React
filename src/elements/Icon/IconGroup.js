@@ -6,17 +6,17 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
-  withElementType,
 } from '../../lib'
 
 /**
  * Several icons can be used together as a group.
  */
 function IconGroup(props) {
-  const { as: ElementType, children, className, content, size } = props
+  const { children, className, content, size } = props
   const classes = cx(
     size,
     'icons',
@@ -58,4 +58,4 @@ IconGroup.defaultProps = {
   as: 'i',
 }
 
-export default withElementType(IconGroup)
+export default IconGroup

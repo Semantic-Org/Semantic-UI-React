@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -14,8 +14,6 @@ import {
   useVerticalAlignProp,
   useWidthProp,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A row sub-component for Grid.

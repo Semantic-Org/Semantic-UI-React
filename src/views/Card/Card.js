@@ -1,10 +1,12 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -88,17 +90,13 @@ export default class Card extends Component {
   static Header = CardHeader
   static Meta = CardMeta
 
-  computeElementType = () => {
+  computeType = () => {
     const { onClick } = this.props
 
     if (onClick) return 'a'
   }
 
-  handleClick = (e) => {
-    const { onClick } = this.props
-
-    if (onClick) onClick(e, this.props)
-  }
+  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const {
@@ -135,26 +133,30 @@ export default class Card extends Component {
         <ElementType
           {...rest}
           className={classes}
+          computeType={this.computeType}
           href={href}
           onClick={this.handleClick}
-          typeComputer={this.computeElementType}
         >
           {children}
         </ElementType>
       )
     }
     if (!childrenUtils.isNil(content)) {
-      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{content}</ElementType>
+      return (
+        <ElementType
+          {...rest}
+          className={classes}
+          computeType={this.computeType}
+          href={href}
+          onClick={this.handleClick}
+        >
+          {content}
+        </ElementType>
+      )
     }
 
     return (
-      <ElementType
-        {...rest}
-        className={classes}
-        href={href}
-        onClick={this.handleClick}
-        typeComputer={this.computeElementType}
-      >
+      <ElementType{...rest} className={classes} computeType={this.computeType} href={href} onClick={this.handleClick}>
         {Image.create(image)}
         {(description || header || meta) && (
           <CardContent description={description} header={header} meta={meta} />

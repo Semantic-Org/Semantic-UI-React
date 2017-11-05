@@ -6,14 +6,12 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * Comments can be grouped.

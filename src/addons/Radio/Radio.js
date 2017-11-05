@@ -12,7 +12,6 @@ import Checkbox from '../../modules/Checkbox'
 function Radio(props) {
   const { slider, toggle, type } = props
   const rest = getUnhandledProps(Radio, props)
-  // const ElementType = getElementType(Radio, props)
   // radio, slider, toggle are exclusive
   // use an undefined radio if slider or toggle are present
   const radio = !(slider || toggle) || undefined

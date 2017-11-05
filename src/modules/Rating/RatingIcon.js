@@ -4,14 +4,12 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
   keyboardKey,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * An internal icon sub-component for Rating component

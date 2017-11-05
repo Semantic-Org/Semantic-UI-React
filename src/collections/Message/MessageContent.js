@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -17,7 +17,6 @@ function MessageContent(props) {
   const { children, className, content } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(MessageContent, props)
-  const ElementType = getElementType(MessageContent, props)
 
   return (
     <ElementType {...rest} className={classes}>

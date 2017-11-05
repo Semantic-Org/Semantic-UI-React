@@ -19,10 +19,10 @@ export {
   debug,
   makeDebugger,
 } from './debug'
+export ElementType from './ElementType'
 export eventStack from './eventStack'
 
 export * from './factories'
-export getElementType from './getElementType'
 export getUnhandledProps from './getUnhandledProps'
 
 export {
@@ -43,5 +43,3 @@ export normalizeOffset from './normalizeOffset'
 export normalizeTransitionDuration from './normalizeTransitionDuration'
 export { default as objectDiff } from './objectDiff'
 export shallowEqual from './shallowEqual'
-
-export withElementType from './withElementType'

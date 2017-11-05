@@ -4,12 +4,10 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A TextArea can be used to allow for extended user input.

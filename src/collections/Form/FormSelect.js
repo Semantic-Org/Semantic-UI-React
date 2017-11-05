@@ -2,14 +2,12 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
 import Select from '../../addons/Select'
 import FormField from './FormField'
-
-const ElementType = getElementType()
 
 /**
  * Sugar for <Form.Field control={Select} />.

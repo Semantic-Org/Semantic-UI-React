@@ -4,12 +4,10 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A dropdown menu can contain dividers to separate related content.

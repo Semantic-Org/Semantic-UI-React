@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLLabel,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -16,8 +16,6 @@ import {
 } from '../../lib'
 import Checkbox from '../../modules/Checkbox'
 import Radio from '../../addons/Radio'
-
-const ElementType = getElementType()
 
 /**
  * A field is a form element containing a label and an input.

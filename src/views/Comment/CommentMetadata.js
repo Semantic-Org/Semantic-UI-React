@@ -5,12 +5,10 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A comment can contain metadata about the comment, an arbitrary amount of metadata may be defined.

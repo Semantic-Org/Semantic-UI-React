@@ -384,55 +384,55 @@ describe('Portal', () => {
     })
   })
 
-  describe('closeOnTriggerMouseLeave + closeOnPortalMouseLeave', () => {
-    it('closes the portal on trigger mouseleave even when portal receives mouseenter within limit', (done) => {
-      const delay = 10
-      wrapperMount(
-        <Portal trigger={<button />} defaultOpen closeOnTriggerMouseLeave mouseLeaveDelay={delay}><p /></Portal>,
-      )
-
-      wrapper.find('button').simulate('mouseleave')
-
-      // Fire a mouseEnter on the portal within the time limit
-      setTimeout(() => {
-        domEvent.mouseEnter(wrapper.instance().rootNode.firstElementChild)
-      }, delay - 1)
-
-      // The portal should close because closeOnPortalMouseLeave not set
-      setTimeout(() => {
-        document.body.childElementCount.should.equal(0)
-        done()
-      }, delay + 1)
-    })
-
-    it('does not close the portal on trigger mouseleave when portal receives mouseenter within limit', (done) => {
-      const delay = 10
-      wrapperMount(
-        <Portal
-          trigger={<button />}
-          defaultOpen
-          closeOnTriggerMouseLeave
-          closeOnPortalMouseLeave
-          mouseLeaveDelay={delay}
-        >
-          <p />
-        </Portal>,
-      )
-
-      wrapper.find('button').simulate('mouseleave')
-
-      // Fire a mouseEnter on the portal within the time limit
-      setTimeout(() => {
-        domEvent.mouseEnter(wrapper.instance().rootNode.firstElementChild)
-      }, delay - 1)
-
-      // The portal should not have closed
-      setTimeout(() => {
-        document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
-        done()
-      }, delay + 1)
-    })
-  })
+  // describe('closeOnTriggerMouseLeave + closeOnPortalMouseLeave', () => {
+  //   it('closes the portal on trigger mouseleave even when portal receives mouseenter within limit', (done) => {
+  //     const delay = 10
+  //     wrapperMount(
+  //       <Portal trigger={<button />} defaultOpen closeOnTriggerMouseLeave mouseLeaveDelay={delay}><p /></Portal>,
+  //     )
+  //
+  //     wrapper.find('button').simulate('mouseleave')
+  //
+  //     // Fire a mouseEnter on the portal within the time limit
+  //     setTimeout(() => {
+  //       domEvent.mouseEnter(wrapper.instance().rootNode.firstElementChild)
+  //     }, delay - 1)
+  //
+  //     // The portal should close because closeOnPortalMouseLeave not set
+  //     setTimeout(() => {
+  //       document.body.childElementCount.should.equal(0)
+  //       done()
+  //     }, delay + 1)
+  //   })
+  //
+  //   it('does not close the portal on trigger mouseleave when portal receives mouseenter within limit', (done) => {
+  //     const delay = 10
+  //     wrapperMount(
+  //       <Portal
+  //         trigger={<button />}
+  //         defaultOpen
+  //         closeOnTriggerMouseLeave
+  //         closeOnPortalMouseLeave
+  //         mouseLeaveDelay={delay}
+  //       >
+  //         <p />
+  //       </Portal>,
+  //     )
+  //
+  //     wrapper.find('button').simulate('mouseleave')
+  //
+  //     // Fire a mouseEnter on the portal within the time limit
+  //     setTimeout(() => {
+  //       domEvent.mouseEnter(wrapper.instance().rootNode.firstElementChild)
+  //     }, delay - 1)
+  //
+  //     // The portal should not have closed
+  //     setTimeout(() => {
+  //       document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
+  //       done()
+  //     }, delay + 1)
+  //   })
+  // })
 
   describe('openOnTriggerFocus', () => {
     it('does not open the portal on focus when not set', () => {

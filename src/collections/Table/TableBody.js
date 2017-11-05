@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -13,7 +13,6 @@ function TableBody(props) {
   const { children, className } = props
   const classes = cx(className)
   const rest = getUnhandledProps(TableBody, props)
-  const ElementType = getElementType(TableBody, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

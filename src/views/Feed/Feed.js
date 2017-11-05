@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -20,8 +20,6 @@ import FeedLike from './FeedLike'
 import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
 import FeedUser from './FeedUser'
-
-const ElementType = getElementType()
 
 /**
  * A feed presents user activity chronologically.

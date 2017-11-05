@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthand,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -14,8 +14,6 @@ import FeedDate from './FeedDate'
 import FeedExtra from './FeedExtra'
 import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
-
-const ElementType = getElementType()
 
 function FeedContent(props) {
   const {

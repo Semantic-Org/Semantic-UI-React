@@ -7,7 +7,7 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   isBrowser,
   makeDebugger,
@@ -22,7 +22,6 @@ import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
 
 const debug = makeDebugger('modal')
-const ElementType = getElementType()
 
 /**
  * A modal displays content that temporarily blocks interactions with the main view of a site.

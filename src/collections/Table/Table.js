@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -84,7 +84,6 @@ function Table(props) {
     className,
   )
   const rest = getUnhandledProps(Table, props)
-  const ElementType = getElementType(Table, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

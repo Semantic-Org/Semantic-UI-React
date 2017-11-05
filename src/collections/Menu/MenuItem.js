@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -15,8 +15,6 @@ import {
   useKeyOrValueAndKey,
 } from '../../lib'
 import Icon from '../../elements/Icon'
-
-const ElementType = getElementType()
 
 /**
  * A menu can contain an item.
@@ -87,7 +85,7 @@ export default class MenuItem extends Component {
     parent: 'Menu',
   }
 
-  computeElementType = () => {
+  computeType = () => {
     const { onClick } = this.props
 
     if (onClick) return 'a'
@@ -130,11 +128,15 @@ export default class MenuItem extends Component {
     const rest = getUnhandledProps(MenuItem, this.props)
 
     if (!childrenUtils.isNil(children)) {
-      return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType {...rest} className={classes} computeType={this.computeType} onClick={this.handleClick}>
+          {children}
+        </ElementType>
+      )
     }
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
+      <ElementType {...rest} className={classes} computeType={this.computeType} onClick={this.handleClick}>
         {Icon.create(icon)}
         {childrenUtils.isNil(content) ? _.startCase(name) : content}
       </ElementType>

@@ -6,15 +6,13 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
-  getElementType,
   META,
   useKeyOnly,
 } from '../../lib'
 import SidebarPushable from './SidebarPushable'
 import SidebarPusher from './SidebarPusher'
-
-const ElementType = getElementType()
 
 /**
  * A sidebar hides additional content beside a page.

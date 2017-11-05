@@ -7,13 +7,11 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
 import Button from '../../elements/Button'
-
-const ElementType = getElementType()
 
 /**
  * A modal can contain a row of actions.

@@ -6,12 +6,12 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useWidthProp,
-  withElementType,
 } from '../../lib'
 import Statistic from './Statistic'
 
@@ -20,7 +20,6 @@ import Statistic from './Statistic'
  */
 function StatisticGroup(props) {
   const {
-    as: ElementType,
     children,
     className,
     color,
@@ -92,4 +91,4 @@ StatisticGroup.propTypes = {
   widths: PropTypes.oneOf(SUI.WIDTHS),
 }
 
-export default withElementType(StatisticGroup)
+export default StatisticGroup

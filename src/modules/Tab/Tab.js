@@ -5,7 +5,7 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -13,8 +13,6 @@ import Grid from '../../collections/Grid/Grid'
 import GridColumn from '../../collections/Grid/GridColumn'
 import Menu from '../../collections/Menu/Menu'
 import TabPane from './TabPane'
-
-const ElementType = getElementType()
 
 /**
  * A Tab is a hidden section of content activated by a Menu.

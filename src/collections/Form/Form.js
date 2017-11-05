@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -21,9 +21,6 @@ import FormInput from './FormInput'
 import FormRadio from './FormRadio'
 import FormSelect from './FormSelect'
 import FormTextArea from './FormTextArea'
-
-const defaultAs = 'form'
-const ElementType = getElementType(defaultAs)
 
 /**
  * A Form displays a set of related user input fields in a structured way.
@@ -82,7 +79,7 @@ class Form extends Component {
   }
 
   static defaultProps = {
-    as: defaultAs,
+    as: 'form',
   }
 
   static _meta = {

@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -41,7 +41,6 @@ function SegmentGroup(props) {
     className,
   )
   const rest = getUnhandledProps(SegmentGroup, props)
-  const ElementType = getElementType(SegmentGroup, props)
 
   return (
     <ElementType {...rest} className={classes}>

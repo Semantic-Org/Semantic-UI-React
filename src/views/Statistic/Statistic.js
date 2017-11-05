@@ -7,12 +7,12 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useValueAndKey,
-  withElementType,
 } from '../../lib'
 import StatisticGroup from './StatisticGroup'
 import StatisticLabel from './StatisticLabel'
@@ -23,7 +23,6 @@ import StatisticValue from './StatisticValue'
  */
 function Statistic(props) {
   const {
-    as: ElementType,
     children,
     className,
     color,
@@ -111,4 +110,4 @@ Statistic.Value = StatisticValue
 
 Statistic.create = createShorthandFactory(Statistic, content => ({ content }))
 
-export default withElementType(Statistic)
+export default Statistic

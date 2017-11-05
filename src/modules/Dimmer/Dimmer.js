@@ -6,11 +6,11 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   isBrowser,
   META,
   useKeyOnly,
-  withElementType,
 } from '../../lib'
 import Portal from '../../addons/Portal'
 import DimmerDimmable from './DimmerDimmable'
@@ -99,7 +99,6 @@ class Dimmer extends Component {
 
   render() {
     const {
-      as: ElementType,
       active,
       children,
       className,
@@ -157,4 +156,4 @@ class Dimmer extends Component {
 
 Dimmer.create = createShorthandFactory(Dimmer, value => ({ content: value }))
 
-export default withElementType(Dimmer)
+export default Dimmer

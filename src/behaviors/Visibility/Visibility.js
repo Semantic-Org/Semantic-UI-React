@@ -5,14 +5,12 @@ import React, { Component } from 'react'
 import {
   eventStack,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   normalizeOffset,
   isBrowser,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * Visibility provides a set of callbacks for when a content appears in the viewport.

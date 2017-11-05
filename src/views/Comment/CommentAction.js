@@ -5,13 +5,11 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A comment can contain an action.

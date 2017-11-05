@@ -135,7 +135,10 @@ describe('TextArea', () => {
       const props = { 'data-foo': 'bar', onChange: spy }
 
       wrapperShallow(<TextArea {...props} />)
-      wrapper.find('textarea').simulate('change', e)
+      wrapper
+        .dive()
+        .find('textarea')
+        .simulate('change', e)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
@@ -149,7 +152,10 @@ describe('TextArea', () => {
       const props = { 'data-foo': 'bar', onInput: spy }
 
       wrapperShallow(<TextArea {...props} />)
-      wrapper.find('textarea').simulate('input', e)
+      wrapper
+        .dive()
+        .find('textarea')
+        .simulate('input', e)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })

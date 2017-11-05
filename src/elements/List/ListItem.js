@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -106,7 +106,6 @@ class ListItem extends Component {
       value,
     } = this.props
 
-    const ElementType = getElementType(ListItem, this.props)
     const classes = cx(
       useKeyOnly(active, 'active'),
       useKeyOnly(disabled, 'disabled'),

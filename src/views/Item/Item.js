@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -16,8 +16,6 @@ import ItemGroup from './ItemGroup'
 import ItemHeader from './ItemHeader'
 import ItemImage from './ItemImage'
 import ItemMeta from './ItemMeta'
-
-const ElementType = getElementType()
 
 /**
  * An item view presents large collections of site content for display.

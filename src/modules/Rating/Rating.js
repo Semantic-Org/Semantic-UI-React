@@ -6,15 +6,13 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
 } from '../../lib'
 import RatingIcon from './RatingIcon'
-
-const ElementType = getElementType()
 
 /**
  * A rating indicates user interest in content.

@@ -7,7 +7,7 @@ import {
   eventStack,
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   isBrowser,
   makeDebugger,
@@ -21,7 +21,6 @@ import PopupContent from './PopupContent'
 import PopupHeader from './PopupHeader'
 
 const debug = makeDebugger('popup')
-const ElementType = getElementType()
 
 export const POSITIONS = [
   'top left',

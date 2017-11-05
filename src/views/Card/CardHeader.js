@@ -6,18 +6,18 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useTextAlignProp,
-  withElementType,
 } from '../../lib'
 
 /**
  * A card can contain a header.
  */
 function CardHeader(props) {
-  const { as: ElementType, children, className, content, textAlign } = props
+  const { children, className, content, textAlign } = props
   const classes = cx(
     useTextAlignProp(textAlign),
     'header',
@@ -55,4 +55,4 @@ CardHeader.propTypes = {
   textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
-export default withElementType(CardHeader)
+export default CardHeader

@@ -4,8 +4,8 @@ import React, { cloneElement } from 'react'
 
 import {
   customPropTypes,
+  ElementType,
   getChildMapping,
-  getElementType,
   getUnhandledProps,
   makeDebugger,
   mergeChildMappings,
@@ -15,7 +15,6 @@ import {
 import Transition from './Transition'
 
 const debug = makeDebugger('transition_group')
-const ElementType = getElementType()
 
 /**
  * A Transition.Group animates children as they mount and unmount.

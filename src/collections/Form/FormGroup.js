@@ -4,15 +4,13 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useWidthProp,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A set of fields can appear grouped together.

@@ -5,10 +5,10 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
-  withElementType,
 } from '../../lib'
 
 /**
@@ -16,7 +16,6 @@ import {
  */
 function Advertisement(props) {
   const {
-    as: ElementType,
     centered,
     children,
     className,
@@ -85,4 +84,4 @@ Advertisement.propTypes = {
 
 }
 
-export default withElementType(Advertisement)
+export default Advertisement

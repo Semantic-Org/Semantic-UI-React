@@ -8,7 +8,7 @@ import {
   createHTMLInput,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   partitionHTMLInputProps,
@@ -204,7 +204,6 @@ class Input extends Component {
       'input',
       className,
     )
-    const ElementType = getElementType(Input, this.props)
     const [htmlInputProps, rest] = this.partitionProps()
 
     // Render with children

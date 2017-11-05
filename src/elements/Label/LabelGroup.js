@@ -5,11 +5,11 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
-  withElementType,
 } from '../../lib'
 
 /**
@@ -17,7 +17,6 @@ import {
  */
 function LabelGroup(props) {
   const {
-    as: ElementType,
     children,
     circular,
     className,
@@ -77,4 +76,4 @@ LabelGroup.propTypes = {
   tag: PropTypes.bool,
 }
 
-export default withElementType(LabelGroup)
+export default LabelGroup

@@ -7,13 +7,11 @@ import {
   childrenUtils,
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A feed can contain an extra content.

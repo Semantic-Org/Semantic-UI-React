@@ -5,9 +5,9 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
-  withElementType,
 } from '../../lib'
 
 function LabelDetail(props) {
@@ -42,4 +42,4 @@ LabelDetail.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-export default withElementType(LabelDetail)
+export default LabelDetail

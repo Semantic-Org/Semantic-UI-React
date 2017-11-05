@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -17,7 +17,6 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import Image from '../../elements/Image'
-
 import HeaderSubheader from './HeaderSubheader'
 import HeaderContent from './HeaderContent'
 
@@ -62,7 +61,6 @@ function Header(props) {
     className,
   )
   const rest = getUnhandledProps(Header, props)
-  const ElementType = getElementType(Header, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

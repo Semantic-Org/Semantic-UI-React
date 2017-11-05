@@ -6,13 +6,13 @@ import React, { Component } from 'react'
 import {
   createShorthandFactory,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
   META,
   shallowEqual,
   SUI,
   useKeyOnly,
   useValueAndKey,
-  withElementType,
 } from '../../lib'
 import IconGroup from './IconGroup'
 
@@ -85,7 +85,6 @@ class Icon extends Component {
 
   render() {
     const {
-      as: ElementType,
       bordered,
       circular,
       className,
@@ -127,4 +126,4 @@ class Icon extends Component {
 
 Icon.create = createShorthandFactory(Icon, value => ({ name: value }))
 
-export default withElementType(Icon)
+export default Icon

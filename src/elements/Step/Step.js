@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -83,7 +83,7 @@ class Step extends Component {
   static Group = StepGroup
   static Title = StepTitle
 
-  computeElementType = () => {
+  computeType = () => {
     const { onClick } = this.props
 
     if (onClick) return 'a'
@@ -119,18 +119,37 @@ class Step extends Component {
       className,
     )
     const rest = getUnhandledProps(Step, this.props)
-    const ElementType = getElementType(Step, this.props, this.computeElementType)
 
     if (!childrenUtils.isNil(children)) {
-      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType
+          {...rest}
+          className={classes}
+          computeType={this.computeType}
+          href={href}
+          onClick={this.handleClick}
+        >
+          {children}
+        </ElementType>
+      )
     }
 
     if (!childrenUtils.isNil(content)) {
-      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{content}</ElementType>
+      return (
+        <ElementType
+          {...rest}
+          className={classes}
+          computeType={this.computeType}
+          href={href}
+          onClick={this.handleClick}
+        >
+          {content}
+        </ElementType>
+      )
     }
 
     return (
-      <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
+      <ElementType{...rest} className={classes} computeType={this.computeType} href={href} onClick={this.handleClick}>
         {Icon.create(icon)}
         {StepContent.create({ description, title })}
       </ElementType>

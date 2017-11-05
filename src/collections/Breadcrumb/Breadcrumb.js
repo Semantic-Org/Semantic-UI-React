@@ -6,15 +6,13 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
+  ElementType,
   getUnhandledProps,
-  getElementType,
   META,
   SUI,
 } from '../../lib'
 import BreadcrumbDivider from './BreadcrumbDivider'
 import BreadcrumbSection from './BreadcrumbSection'
-
-const ElementType = getElementType()
 
 /**
  * A breadcrumb is used to show hierarchy between content.

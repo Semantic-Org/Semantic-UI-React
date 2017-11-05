@@ -7,7 +7,7 @@ import {
   childrenUtils,
   customPropTypes,
   createShorthandFactory,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -162,13 +162,13 @@ class Button extends Component {
   static Group = ButtonGroup
   static Or = ButtonOr
 
-  computeElementType = () => {
+  computeType = () => {
     const { attached, label } = this.props
 
     if (!_.isNil(attached) || !_.isNil(label)) return 'div'
   }
 
-  computeTabIndex = (ElementType) => {
+  computeTabIndex = () => {
     const { disabled, tabIndex } = this.props
 
     if (!_.isNil(tabIndex)) return tabIndex
@@ -252,9 +252,7 @@ class Button extends Component {
       useKeyOnly(disabled, 'disabled'),
       useValueAndKey(floated, 'floated'),
     )
-
     const rest = getUnhandledProps(Button, this.props)
-    const ElementType = getElementType(Button, this.props, this.computeElementType)
     const tabIndex = this.computeTabIndex(ElementType.original)
 
     if (!_.isNil(label)) {
@@ -266,7 +264,7 @@ class Button extends Component {
       } })
 
       return (
-        <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
+        <ElementType {...rest} className={containerClasses} computeType={this.computeType} onClick={this.handleClick}>
           {labelPosition === 'left' && labelElement}
           <button className={buttonClasses} disabled={disabled} ref={this.handleRef} tabIndex={tabIndex}>
             {Icon.create(icon)} {content}
@@ -283,6 +281,7 @@ class Button extends Component {
       <ElementType
         {...rest}
         className={classes}
+        computeType={this.computeType}
         disabled={(disabled && ElementType.original === 'button') || undefined}
         innerRef={this.handleRef}
         onClick={this.handleClick}

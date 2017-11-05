@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -20,7 +20,6 @@ function MessageList(props) {
   const { children, className, items } = props
   const classes = cx('list', className)
   const rest = getUnhandledProps(MessageList, props)
-  const ElementType = getElementType(MessageList, props)
 
   return (
     <ElementType {...rest} className={classes}>
