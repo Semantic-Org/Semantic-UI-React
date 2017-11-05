@@ -1,24 +1,24 @@
+import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import * as semanticUIReact from 'semantic-ui-react'
 
 import { META } from 'src/lib'
-import { consoleUtil, getOriginalComponent, sandbox, syntheticEvent } from 'test/utils'
+import { assertBodyContains, consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
 import componentInfo from './componentInfo'
 import hasValidTypings from './hasValidTypings'
 
 /**
  * Assert Component conforms to guidelines that are applicable to all components.
- * @param {React.Component|Function} RawComponent A component that should conform.
+ * @param {React.Component|Function} Component A component that should conform.
  * @param {Object} [options={}]
  * @param {Object} [options.eventTargets={}] Map of events and the child component to target.
  * @param {array} [options.rendersPortal=false] Does this component render a Portal powered component?
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
-export default (RawComponent, options = {}) => {
-  const Component = getOriginalComponent(RawComponent)
+export default (Component, options = {}) => {
   const { eventTargets = {}, requiredProps = {}, rendersPortal = false } = options
   const { throwError } = helpers('isConformant', Component)
 
@@ -33,7 +33,12 @@ export default (RawComponent, options = {}) => {
 
   // extract componentInfo for this component
   const extractedInfo = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
-  const { _meta, constructorName, filenameWithoutExt } = extractedInfo
+  const {
+    _meta,
+    constructorName,
+    componentClassName,
+    filenameWithoutExt,
+  } = extractedInfo
 
   // ----------------------------------------
   // Class and file name
@@ -101,22 +106,13 @@ export default (RawComponent, options = {}) => {
   }
 
   // ----------------------------------------
-  // HOCs
-  // ----------------------------------------
-  it('is wrapped with hoc', () => {
-    const originalType = typeof RawComponent.originalComponent
-
-    originalType.should.be.equal('function', `${constructorName} should be wrapped with a HOC component`)
-  })
-
-  // ----------------------------------------
   // Props
   // ----------------------------------------
   it('spreads user props', () => {
     const propName = 'data-is-conformant-spread-props'
     const props = { [propName]: true }
 
-    shallow(<RawComponent {...requiredProps} {...props} />)
+    shallow(<Component {...requiredProps} {...props} />)
       .should.have.descendants(props)
   })
 
@@ -129,12 +125,12 @@ export default (RawComponent, options = {}) => {
         const tags = ['a', 'em', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i', 'p', 'span', 'strong']
         try {
           tags.forEach((tag) => {
-            shallow(<RawComponent {...requiredProps} as={tag} />)
+            shallow(<Component {...requiredProps} as={tag} />)
               .should.have.tagName(tag)
           })
         } catch (err) {
           tags.forEach((tag) => {
-            const wrapper = shallow(<RawComponent {...requiredProps} as={tag} />)
+            const wrapper = shallow(<Component {...requiredProps} as={tag} />)
             wrapper.type().should.not.equal(Component)
             wrapper.should.have.prop('as', tag)
           })
@@ -145,12 +141,11 @@ export default (RawComponent, options = {}) => {
         const MyComponent = () => null
 
         try {
-          shallow(<RawComponent {...requiredProps} as={MyComponent} />)
-            .dive()
+          shallow(<Component {...requiredProps} as={MyComponent} />)
             .type()
             .should.equal(MyComponent)
         } catch (err) {
-          const wrapper = shallow(<RawComponent {...requiredProps} as={MyComponent} />)
+          const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
           wrapper.type().should.not.equal(Component)
           wrapper.should.have.prop('as', MyComponent)
         }
@@ -164,12 +159,11 @@ export default (RawComponent, options = {}) => {
         }
 
         try {
-          shallow(<RawComponent {...requiredProps} as={MyComponent} />)
-            .dive()
+          shallow(<Component {...requiredProps} as={MyComponent} />)
             .type()
             .should.equal(MyComponent)
         } catch (err) {
-          const wrapper = shallow(<RawComponent {...requiredProps} as={MyComponent} />)
+          const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
           wrapper.type().should.not.equal(Component)
           wrapper.should.have.prop('as', MyComponent)
         }
@@ -178,7 +172,7 @@ export default (RawComponent, options = {}) => {
       it('passes extra props to the component it is renders as', () => {
         const MyComponent = () => null
 
-        shallow(<RawComponent {...requiredProps} as={MyComponent} data-extra-prop='foo' />)
+        shallow(<Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />)
           .should.have.descendants('[data-extra-prop="foo"]')
       })
     })
@@ -232,7 +226,7 @@ export default (RawComponent, options = {}) => {
           'data-simulate-event-here': true,
         }
 
-        const wrapper = shallow(<RawComponent {...props} />)
+        const wrapper = shallow(<Component {...props} />)
 
         const eventTarget = eventTargets[listenerName]
           ? wrapper.find(eventTargets[listenerName])
@@ -291,11 +285,11 @@ export default (RawComponent, options = {}) => {
       })
     })
     if (_.has(_meta, 'parent')) {
-      // describe('parent', () => {
-      //   it('matches some component name', () => {
-      //     expect(_.map(semanticUIReact, c => c.prototype.constructor.name)).to.contain(_meta.parent)
-      //   })
-      // })
+      describe('parent', () => {
+        it('matches some component name', () => {
+          expect(_.map(semanticUIReact, c => c.prototype.constructor.name)).to.contain(_meta.parent)
+        })
+      })
     }
     describe('type', () => {
       it('is defined', () => {
@@ -307,7 +301,61 @@ export default (RawComponent, options = {}) => {
     })
   })
 
+  // ----------------------------------------
+  // Handles className
+  // ----------------------------------------
+  describe('className (common)', () => {
+    it(`has the Semantic UI className "${componentClassName}"`, () => {
+      const wrapper = render(<Component {...requiredProps} />)
+      // don't test components with no className at all (i.e. MessageItem)
+      if (wrapper.prop('className')) {
+        wrapper.should.have.className(componentClassName)
+      }
+    })
 
+    it("applies user's className to root component", () => {
+      const className = 'is-conformant-class-string'
+
+      // Portal powered components can render to two elements, a trigger and the actual component
+      // The actual component is shown when the portal is open
+      // If a trigger is rendered, open the portal and make assertions on the portal element
+      if (rendersPortal) {
+        const mountNode = document.createElement('div')
+        document.body.appendChild(mountNode)
+
+        const wrapper = mount(<Component {...requiredProps} className={className} />, { attachTo: mountNode })
+        wrapper.setProps({ open: true })
+
+        // portals/popups/etc may render the component to somewhere besides descendants
+        // we look for the component anywhere in the DOM
+        assertBodyContains(`.${className}`)
+
+        wrapper.detach()
+        document.body.removeChild(mountNode)
+      } else {
+        shallow(<Component {...requiredProps} className={className} />)
+          .should.have.className(className)
+      }
+    })
+
+    it("user's className does not override the default classes", () => {
+      const defaultClasses = shallow(<Component {...requiredProps} />)
+        .prop('className')
+
+      if (!defaultClasses) return
+
+      const userClasses = faker.hacker.verb()
+      const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />)
+        .prop('className')
+
+      defaultClasses.split(' ').forEach((defaultClass) => {
+        mixedClasses.should.include(defaultClass, [
+          'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+          'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+        ].join(' '))
+      })
+    })
+  })
 
   // ----------------------------------------
   // Test typings

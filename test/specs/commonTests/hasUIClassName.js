@@ -15,7 +15,6 @@ export default (Component, options = {}) => {
     assertRequired(Component, 'a `Component`')
 
     shallow(<Component {...requiredProps} />)
-      .dive()
       .should.have.className('ui')
   })
 }

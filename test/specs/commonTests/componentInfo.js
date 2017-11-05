@@ -4,7 +4,6 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 
 import { META } from 'src/lib'
-import { getOriginalComponent } from 'test/utils'
 import helpers from './commonHelpers'
 
 const componentCtx = require.context(
@@ -14,9 +13,7 @@ const componentCtx = require.context(
 )
 
 const componentInfo = componentCtx.keys().map((key) => {
-  const RawComponent = componentCtx(key).default
-  const Component = getOriginalComponent(RawComponent)
-
+  const Component = componentCtx(key).default
   const componentType = typeof Component
   const { throwError } = helpers('componentInfo', Component)
 

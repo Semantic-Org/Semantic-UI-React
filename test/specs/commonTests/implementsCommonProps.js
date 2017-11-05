@@ -1,6 +1,6 @@
 import React, { createElement } from 'react'
 
-// import Button from 'src/elements/Button'
+import Button from 'src/elements/Button'
 import Icon from 'src/elements/Icon'
 import Image from 'src/elements/Image'
 import Label from 'src/elements/Label'
@@ -21,14 +21,14 @@ import helpers from './commonHelpers'
  * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
  * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
-// export const implementsButtonProp = (Component, options = {}) => {
-//   implementsShorthandProp(Component, {
-//     propKey: 'button',
-//     ShorthandComponent: Button,
-//     mapValueToProps: val => ({ content: val }),
-//     ...options,
-//   })
-// }
+export const implementsButtonProp = (Component, options = {}) => {
+  implementsShorthandProp(Component, {
+    propKey: 'button',
+    ShorthandComponent: Button,
+    mapValueToProps: val => ({ content: val }),
+    ...options,
+  })
+}
 
 /**
  * Assert that a Component correctly implements an HTML iframe shorthand prop.
