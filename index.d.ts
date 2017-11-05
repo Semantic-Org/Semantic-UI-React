@@ -10,6 +10,11 @@ export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
 export { default as Ref, RefProps } from './dist/commonjs/addons/Ref';
 export { default as Select, SelectProps } from './dist/commonjs/addons/Select';
 export { default as TextArea, TextAreaProps } from './dist/commonjs/addons/TextArea';
+export {
+  default as TransitionablePortal,
+  TransitionablePortalProps,
+  TransitionablePortalState
+} from './dist/commonjs/addons/TransitionablePortal';
 
 // Behaviors
 export {

@@ -18,17 +18,13 @@ const users = [
     avatar: '/assets/images/avatar/small/matt.jpg',
   },
 ]
-/* TODO: Remove <div> wrapper after all our components will be classes */
+
 const PopupExampleTitled = () => (
   <div>
     {users.map(user => (
       <Popup
         key={user.name}
-        trigger={(
-          <div>
-            <Image src={user.avatar} avatar />
-          </div>
-        )}
+        trigger={<Image src={user.avatar} avatar />}
         header={user.name}
         content={user.bio}
       />

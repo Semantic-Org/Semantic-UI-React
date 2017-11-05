@@ -10,8 +10,8 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  useMultipleProp,
   useTextAlignProp,
-  useValueAndKey,
   useVerticalAlignProp,
   useWidthProp,
 } from '../../lib'
@@ -55,8 +55,8 @@ function Grid(props) {
     useKeyOrValueAndKey(divided, 'divided'),
     useKeyOrValueAndKey(padded, 'padded'),
     useKeyOrValueAndKey(relaxed, 'relaxed'),
+    useMultipleProp(reversed, 'reversed'),
     useTextAlignProp(textAlign),
-    useValueAndKey(reversed, 'reversed'),
     useVerticalAlignProp(verticalAlign),
     useWidthProp(columns, 'column', true),
     'grid',
@@ -125,7 +125,7 @@ Grid.propTypes = {
   ]),
 
   /** A grid can specify that its columns should reverse order at different device sizes. */
-  reversed: PropTypes.oneOf([
+  reversed: customPropTypes.multipleProp([
     'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
   ]),
 

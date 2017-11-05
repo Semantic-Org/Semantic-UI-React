@@ -26,7 +26,7 @@ const StatisticExampleValue = () => (
 
     <Statistic>
       <Statistic.Value>
-        <Image src='/assets/images/avatar/small/joe.jpg' inline shape='circular' />
+        <Image src='/assets/images/avatar/small/joe.jpg' inline circular />
         42
       </Statistic.Value>
       <Statistic.Label>Team Members</Statistic.Label>

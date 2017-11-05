@@ -27,14 +27,15 @@ describe('Image', () => {
   common.propKeyOnlyToClassName(Image, 'avatar')
   common.propKeyOnlyToClassName(Image, 'bordered')
   common.propKeyOnlyToClassName(Image, 'centered')
+  common.propKeyOnlyToClassName(Image, 'circular')
   common.propKeyOnlyToClassName(Image, 'disabled')
   common.propKeyOnlyToClassName(Image, 'fluid')
   common.propKeyOnlyToClassName(Image, 'hidden')
   common.propKeyOnlyToClassName(Image, 'inline')
+  common.propKeyOnlyToClassName(Image, 'rounded')
 
   common.propKeyOrValueAndKeyToClassName(Image, 'spaced', ['left', 'right'])
 
-  common.propValueOnlyToClassName(Image, 'shape', ['rounded', 'circular'])
   common.propValueOnlyToClassName(Image, 'size', SUI.SIZES)
 
   it('renders an img tag', () => {

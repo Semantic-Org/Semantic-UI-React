@@ -162,7 +162,7 @@ export default class Visibility extends Component {
   }
 
   static defaultProps = {
-    context: isBrowser ? window : null,
+    context: isBrowser() ? window : null,
     continuous: false,
     offset: [0, 0],
     once: true,
@@ -198,7 +198,7 @@ export default class Visibility extends Component {
   }
 
   componentDidMount() {
-    if (!isBrowser) return
+    if (!isBrowser()) return
     const { context, fireOnMount } = this.props
 
     this.pageYOffset = window.pageYOffset

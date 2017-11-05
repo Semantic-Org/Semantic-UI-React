@@ -17,6 +17,22 @@ describe('Responsive', () => {
     })
   })
 
+  describe('fireOnMount', () => {
+    it('do not fire onUpdate by default', () => {
+      const onUpdate = sandbox.spy()
+      mount(<Responsive onUpdate={onUpdate} />)
+
+      onUpdate.should.have.not.been.called()
+    })
+
+    it('fires onUpdate after mount when true', () => {
+      const onUpdate = sandbox.spy()
+      mount(<Responsive fireOnMount onUpdate={onUpdate} />)
+
+      onUpdate.should.have.been.calledOnce()
+    })
+  })
+
   describe('maxWidth', () => {
     it('renders when fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.maxWidth)
