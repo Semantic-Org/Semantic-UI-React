@@ -26,7 +26,7 @@ import ImageGroup from './ImageGroup'
  */
 function Image(props) {
   const {
-    as: customPropTypes.as,
+    as: ElementType,
     alt,
     avatar,
     bordered,
@@ -50,7 +50,6 @@ function Image(props) {
     src,
     verticalAlign,
     width,
-    wrapped,
     ui,
   } = props
 
@@ -73,9 +72,6 @@ function Image(props) {
     className,
   )
   const rest = getUnhandledProps(Image, props)
-  const ElementType = getElementType(Image, props, () => {
-    if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)) return 'div'
-  })
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
@@ -200,72 +196,6 @@ Image.propTypes = {
 Image.defaultProps = {
   as: 'img',
   ui: true,
-}
-
-  static Group = ImageGroup
-
-  render() {
-    const {
-      as: ElementType,
-      alt,
-      avatar,
-      bordered,
-      centered,
-      children,
-      className,
-      dimmer,
-      disabled,
-      floated,
-      fluid,
-      height,
-      hidden,
-      href,
-      inline,
-      label,
-      shape,
-      size,
-      spaced,
-      src,
-      verticalAlign,
-      width,
-      ui,
-    } = this.props
-
-    const classes = cx(
-      useKeyOnly(ui, 'ui'),
-      size,
-      shape,
-      useKeyOnly(avatar, 'avatar'),
-      useKeyOnly(bordered, 'bordered'),
-      useKeyOnly(centered, 'centered'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(fluid, 'fluid'),
-      useKeyOnly(hidden, 'hidden'),
-      useKeyOnly(inline, 'inline'),
-      useKeyOrValueAndKey(spaced, 'spaced'),
-      useValueAndKey(floated, 'floated'),
-      useVerticalAlignProp(verticalAlign, 'aligned'),
-      'image',
-      className,
-    )
-    const rest = getUnhandledProps(Image, this.props)
-
-    if (!childrenUtils.isNil(children)) {
-      return <ElementType {...rest} className={classes}>{children}</ElementType>
-    }
-
-    const rootProps = { ...rest, className: classes }
-    const imgTagProps = { alt, src, height, width }
-
-    if (ElementType.original !== 'div') return <ElementType {...rootProps} {...imgTagProps} />
-    return (
-      <ElementType {...rootProps} href={href}>
-        {Dimmer.create(dimmer)}
-        {Label.create(label)}
-        <img {...imgTagProps} />
-      </ElementType>
-    )
-  }
 }
 
 Image.create = createShorthandFactory(Image, value => ({ src: value }))
