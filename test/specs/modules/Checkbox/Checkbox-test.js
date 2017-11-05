@@ -1,5 +1,7 @@
+import _ from 'lodash'
 import React from 'react'
 
+import { htmlInputAttrs } from 'src/lib'
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
@@ -138,6 +140,39 @@ describe('Checkbox', () => {
       wrapper
         .find('input')
         .should.be.checked()
+    })
+  })
+
+  describe('id', () => {
+    it('passes value to the input', () => {
+      shallow(<Checkbox id='foo' />)
+        .find('input')
+        .should.have.prop('id', 'foo')
+    })
+
+    it('adds htmlFor prop to the label', () => {
+      shallow(<Checkbox id='foo' />)
+        .find('label')
+        .should.have.prop('htmlFor', 'foo')
+    })
+
+    it('adds htmlFor prop to the label when it is empty', () => {
+      shallow(<Checkbox id='foo' label={null} />)
+        .find('label')
+        .should.have.prop('htmlFor', 'foo')
+    })
+  })
+
+  describe('input', () => {
+    // Heads up! Input handles some of html props
+    const props = _.without(htmlInputAttrs, 'defaultChecked', 'disabled')
+
+    _.forEach(props, (propName) => {
+      it(`passes "${propName}" to the input`, () => {
+        shallow(<Checkbox {...{ [propName]: 'radio' }} />)
+          .find('input')
+          .should.have.prop(propName)
+      })
     })
   })
 

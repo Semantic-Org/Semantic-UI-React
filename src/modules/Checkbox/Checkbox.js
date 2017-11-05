@@ -9,6 +9,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  htmlInputAttrs,
   makeDebugger,
   META,
   partitionHTMLInputProps,
@@ -216,7 +217,8 @@ export default class Checkbox extends Component {
     )
     const unhandled = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
-    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, { htmlProps: [] })
+    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, { htmlProps: htmlInputAttrs })
+    const id = _.get(htmlInputProps, 'id')
 
     return (
       <ElementType
@@ -241,7 +243,7 @@ export default class Checkbox extends Component {
          Heads Up!
          Do not remove empty labels, they are required by SUI CSS
          */}
-        {createHTMLLabel(label) || <label />}
+        {createHTMLLabel(label, { defaultProps: { htmlFor: id } }) || <label htmlFor={id} />}
       </ElementType>
     )
   }
