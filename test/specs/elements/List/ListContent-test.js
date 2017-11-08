@@ -2,6 +2,8 @@ import faker from 'faker'
 import React from 'react'
 
 import ListContent from 'src/elements/List/ListContent'
+import ListDescription from 'src/elements/List/ListDescription'
+import ListHeader from 'src/elements/List/ListHeader'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 
@@ -10,7 +12,6 @@ describe('ListContent', () => {
   common.rendersChildren(ListContent)
 
   common.implementsCreateMethod(ListContent)
-
   common.implementsVerticalAlignProp(ListContent)
 
   common.propKeyAndValueToClassName(ListContent, 'floated', SUI.FLOATS)
@@ -23,11 +24,11 @@ describe('ListContent', () => {
     }
 
     it('renders content without wrapping ListContent', () => {
-      const wrapper = shallow(<ListContent {...baseProps} />)
+      const wrapper = shallow(<ListContent {...baseProps} />).dive()
 
-      wrapper.find('ListHeader').should.have.prop('content', baseProps.header)
-      wrapper.find('ListDescription').should.have.prop('content', baseProps.description)
-      wrapper.should.contain.text(baseProps.content)
+      wrapper.find(ListHeader).should.have.prop('content', baseProps.header)
+      wrapper.find(ListDescription).should.have.prop('content', baseProps.description)
+      wrapper.dive().should.contain.text(baseProps.content)
     })
   })
 })

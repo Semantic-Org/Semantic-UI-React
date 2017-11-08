@@ -35,7 +35,8 @@ export default (Component, extractedInfo, options = {}) => {
     _meta: { name: componentName },
     filenameWithoutExt,
     filePath,
-  } = extractedInfo || _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
+    originalComponent,
+  } = extractedInfo || _.find(componentInfo, i => i._meta.name === Component._meta.name)
   const { ignoredTypingsProps = [], requiredProps } = options
 
   const tsFile = `${filenameWithoutExt}.d.ts`
@@ -71,7 +72,7 @@ export default (Component, extractedInfo, options = {}) => {
       })
 
       it('are correctly defined', () => {
-        const componentPropTypes = _.get(Component, 'propTypes')
+        const componentPropTypes = _.get(originalComponent || Component, 'propTypes')
         const componentProps = _.keys(componentPropTypes)
         const interfaceProps = _.without(_.map(props, 'name'), ...ignoredTypingsProps)
 
@@ -116,7 +117,7 @@ export default (Component, extractedInfo, options = {}) => {
 
     describe('shorthands', () => {
       const { shorthands } = interfaceObject
-      const componentPropTypes = _.get(Component, 'propTypes')
+      const componentPropTypes = _.get(originalComponent || Component, 'propTypes')
       const componentShorthands = _.pickBy(componentPropTypes, isShorthand)
 
       _.forEach(componentShorthands, (propType, propName) => {

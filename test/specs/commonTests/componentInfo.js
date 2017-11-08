@@ -24,7 +24,7 @@ const componentInfo = componentCtx.keys().map((key) => {
     ].join(' '))
   }
 
-  const { _meta, prototype } = Component
+  const { _meta, originalComponent } = Component
 
   if (!_meta) {
     throwError([
@@ -33,7 +33,6 @@ const componentInfo = componentCtx.keys().map((key) => {
     ].join('\n'))
   }
 
-  const constructorName = prototype.constructor.name
   const filePath = key
   const filename = path.basename(key)
   const filenameWithoutExt = path.basename(key, '.js')
@@ -51,12 +50,12 @@ const componentInfo = componentCtx.keys().map((key) => {
   return {
     _meta,
     Component,
-    constructorName,
     componentClassName,
-    subComponentName,
-    filePath,
     filename,
     filenameWithoutExt,
+    filePath,
+    originalComponent,
+    subComponentName,
   }
 })
 

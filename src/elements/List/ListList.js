@@ -5,39 +5,33 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
+  withComputedType,
 } from '../../lib'
 
 /**
  * A list can contain a sub list.
  */
-function ListList(props) {
-  const { children, className, content } = props
+const InnerListList = (props) => {
+  const { as, children, className, content } = props
 
-  const rest = getUnhandledProps(ListList, props)
-  const ElementType = getElementType(ListList, props)
+  const rest = getUnhandledProps(InnerListList, props)
   const classes = cx(
-    useKeyOnly(ElementType !== 'ul' && ElementType !== 'ol', 'list'),
+    useKeyOnly(as !== 'ul' && as !== 'ol', 'list'),
     className,
   )
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} as={as} className={classes}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
 }
 
-ListList._meta = {
-  name: 'ListList',
-  parent: 'List',
-  type: META.TYPES.ELEMENT,
-}
-
-ListList.propTypes = {
+InnerListList.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
@@ -49,6 +43,14 @@ ListList.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
+}
+
+const ListList = withComputedType()(InnerListList)
+
+ListList._meta = {
+  name: 'ListList',
+  parent: 'List',
+  type: META.TYPES.ELEMENT,
 }
 
 export default ListList

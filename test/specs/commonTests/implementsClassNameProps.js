@@ -50,16 +50,35 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
     noDefaultClassNameFromProp(Component, propKey, [], options)
 
     it('adds prop name to className', () => {
-      shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
-        .should.have.className(className)
+      consoleUtil.disableOnce()
+      // Heads up! It's a temporary solution until all other components will be wrapped with
+      // the new <ElementType> component and withComputedType HOC
+      // TODO: Remove this after all components will be updated
+      try {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
+          .should.have.className(className)
+      } catch (e) {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
+          .dive()
+          .should.have.className(className)
+      }
     })
 
     it('does not add prop value to className', () => {
       consoleUtil.disableOnce()
-
       const value = 'foo-bar-baz'
-      shallow(createElement(Component, { ...requiredProps, [propKey]: value }))
-        .should.not.have.className(value)
+
+      // Heads up! It's a temporary solution until all other components will be wrapped with
+      // the new <ElementType> component and withComputedType HOC
+      // TODO: Remove this after all components will be updated
+      try {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: value }))
+          .should.not.have.className(value)
+      } catch (e) {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: value }))
+          .dive()
+          .should.not.have.className(value)
+      }
     })
   })
 }
@@ -89,20 +108,44 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
     })
 
     it('adds only the name to className when true', () => {
-      shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
-        .should.have.className(className)
+      // Heads up! It's a temporary solution until all other components will be wrapped with
+      // the new <ElementType> component and withComputedType HOC
+      // TODO: Remove this after all components will be updated
+      try {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
+          .should.have.className(className)
+      } catch (e) {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
+          .dive()
+          .should.have.className(className)
+      }
     })
 
     it('adds no className when false', () => {
-      const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: false }))
+      // Heads up! It's a temporary solution until all other components will be wrapped with
+      // the new <ElementType> component and withComputedType HOC
+      // TODO: Remove this after all components will be updated
+      try {
+        const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: false }))
 
-      wrapper.should.not.have.className(className)
-      wrapper.should.not.have.className('true')
-      wrapper.should.not.have.className('false')
+        wrapper.should.not.have.className(className)
+        wrapper.should.not.have.className('true')
+        wrapper.should.not.have.className('false')
 
-      _.each(propValues, (propVal) => {
-        wrapper.should.not.have.className(propVal)
-      })
+        _.each(propValues, (propVal) => {
+          wrapper.should.not.have.className(propVal)
+        })
+      } catch (e) {
+        const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: false })).dive()
+
+        wrapper.should.not.have.className(className)
+        wrapper.should.not.have.className('true')
+        wrapper.should.not.have.className('false')
+
+        _.each(propValues, (propVal) => {
+          wrapper.should.not.have.className(propVal)
+        })
+      }
     })
   })
 }
@@ -129,8 +172,17 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
 
     it('adds prop value to className', () => {
       propValues.forEach((propValue) => {
-        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
-          .should.have.className(propValue)
+        // Heads up! It's a temporary solution until all other components will be wrapped with
+        // the new <ElementType> component and withComputedType HOC
+        // TODO: Remove this after all components will be updated
+        try {
+          shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
+            .should.have.className(propValue)
+        } catch (e) {
+          shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
+            .dive()
+            .should.have.className(propValue)
+        }
       })
     })
 
@@ -138,8 +190,17 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
       consoleUtil.disableOnce()
 
       propValues.forEach((propValue) => {
-        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
-          .should.not.have.className(propKey)
+        // Heads up! It's a temporary solution until all other components will be wrapped with
+        // the new <ElementType> component and withComputedType HOC
+        // TODO: Remove this after all components will be updated
+        try {
+          shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
+            .should.not.have.className(propKey)
+        } catch (e) {
+          shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
+            .dive()
+            .should.not.have.className(propKey)
+        }
       })
     })
   })

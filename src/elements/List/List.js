@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -14,6 +14,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
   useVerticalAlignProp,
+  withComputedType,
 } from '../../lib'
 import ListContent from './ListContent'
 import ListDescription from './ListDescription'
@@ -25,7 +26,7 @@ import ListList from './ListList'
 /**
  * A list groups related content.
  */
-class List extends Component {
+class InnerList extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -96,18 +97,6 @@ class List extends Component {
     verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
   }
 
-  static _meta = {
-    name: 'List',
-    type: META.TYPES.ELEMENT,
-  }
-
-  static Content = ListContent
-  static Description = ListDescription
-  static Header = ListHeader
-  static Icon = ListIcon
-  static Item = ListItem
-  static List = ListList
-
   handleItemOverrides = predefinedProps => ({
     onClick: (e, itemProps) => {
       _.invoke(predefinedProps, 'onClick', e, itemProps)
@@ -154,8 +143,7 @@ class List extends Component {
       'list',
       className,
     )
-    const rest = getUnhandledProps(List, this.props)
-    const ElementType = getElementType(List, this.props)
+    const rest = getUnhandledProps(InnerList, this.props, { passAs: true })
 
     if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} role='list' className={classes}>{children}</ElementType>
@@ -172,5 +160,19 @@ class List extends Component {
     )
   }
 }
+
+const List = withComputedType()(InnerList)
+
+List._meta = {
+  name: 'List',
+  type: META.TYPES.ELEMENT,
+}
+
+List.Content = ListContent
+List.Description = ListDescription
+List.Header = ListHeader
+List.Icon = ListIcon
+List.Item = ListItem
+List.List = ListList
 
 export default List

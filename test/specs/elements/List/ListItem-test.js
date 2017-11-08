@@ -2,6 +2,8 @@ import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
+import Image from 'src/elements/Image/Image'
+import ListIcon from 'src/elements/List/ListIcon'
 import ListItem from 'src/elements/List/ListItem'
 import ListContent from 'src/elements/List/ListContent'
 import * as common from 'test/specs/commonTests'
@@ -26,20 +28,19 @@ describe('ListItem', () => {
       const onClick = sandbox.spy()
       const event = { target: null }
       const props = { onClick, 'data-foo': 'bar' }
+      const wrapper = mount(<ListItem {...props} />)
 
-      shallow(<ListItem {...props} />)
-        .simulate('click', event)
-
+      wrapper.simulate('click', event)
       onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithExactly(event, props)
+      onClick.should.have.been.calledWithMatch(event, props)
     })
 
     it('is not called when is disabled', () => {
       const onClick = sandbox.spy()
+      const wrapper = mount(<ListItem disabled onClick={onClick} />)
 
-      shallow(<ListItem disabled onClick={onClick} />)
-        .simulate('click')
-      onClick.should.have.callCount(0)
+      wrapper.simulate('click')
+      onClick.should.have.not.been.called()
     })
   })
 
@@ -67,9 +68,9 @@ describe('ListItem', () => {
     }
 
     it('renders without wrapping ListContent', () => {
-      const wrapper = shallow(<ListItem {...baseProps} />)
-
-      wrapper.find('ListContent').should.have.lengthOf(0)
+      shallow(<ListItem {...baseProps} />)
+        .dive()
+        .find('ListContent').should.have.lengthOf(0)
     })
 
     it('renders without wrapping ListContent when content passed as element', () => {
@@ -80,43 +81,54 @@ describe('ListItem', () => {
     })
 
     it('renders wrapping ListContent when content passed as props', () => {
-      const wrapper = shallow(<ListItem content={baseProps} />)
-
-      wrapper.find('ListContent').should.have.lengthOf(1)
+      shallow(<ListItem content={baseProps} />)
+        .dive()
+        .should.have.exactly(1).descendants(ListContent)
     })
 
     _.each(baseProps, (value, key) => {
       it(`renders wrapping ListContent when icon and ${key} present`, () => {
-        const wrapper = shallow(<ListItem {..._.pick(baseProps, key)} icon='user' />)
+        const wrapper = shallow(<ListItem {..._.pick(baseProps, key)} icon='user' />).dive()
 
-        wrapper.find('ListIcon').should.have.lengthOf(1)
-        wrapper.find('ListContent').should.have.lengthOf(1)
+        wrapper.should.have.exactly(1).descendants(ListIcon)
+        wrapper.should.have.exactly(1).descendants(ListContent)
       })
 
       it(`renders wrapping ListContent when image and ${key} present`, () => {
-        const wrapper = shallow(<ListItem {..._.pick(baseProps, key)} image='foo.png' />)
+        const wrapper = shallow(<ListItem {..._.pick(baseProps, key)} image='foo.png' />).dive()
 
-        wrapper.find('Image').should.have.lengthOf(1)
-        wrapper.find('ListContent').should.have.lengthOf(1)
+        wrapper.should.have.exactly(1).descendants(Image)
+        wrapper.should.have.exactly(1).descendants(ListContent)
       })
     })
   })
 
   describe('role', () => {
-    it('adds role=listitem', () => {
+    it('adds role="listitem"', () => {
       shallow(<ListItem />)
+        .dive()
         .should.have.prop('role', 'listitem')
     })
-    it('adds role=listitem with children', () => {
-      shallow(<ListItem><div>Test</div></ListItem>)
+
+    it('adds role="listitem" with children', () => {
+      shallow(
+        <ListItem>
+          <div>Test</div>
+        </ListItem>,
+      )
+        .dive()
         .should.have.prop('role', 'listitem')
     })
-    it('adds role=listitem with content', () => {
+
+    it('adds role="listitem" with content', () => {
       shallow(<ListItem content={<div />} />)
+        .dive()
         .should.have.prop('role', 'listitem')
     })
-    it('adds role=listitem with icon', () => {
+
+    it('adds role="listitem" with icon', () => {
       shallow(<ListItem icon='user' />)
+        .dive()
         .should.have.prop('role', 'listitem')
     })
   })

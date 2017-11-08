@@ -1,14 +1,17 @@
 import React from 'react'
 
+import Image from 'src/elements/Image/Image'
 import ItemImage from 'src/views/Item/ItemImage'
 import * as common from 'test/specs/commonTests'
 
 describe('ItemImage', () => {
   common.implementsCreateMethod(ItemImage)
 
-  it('renders Image component', () => {
-    shallow(<ItemImage />)
-      .should.have.descendants('Image')
+  describe('children', () => {
+    it('renders Image component', () => {
+      mount(<ItemImage />)
+        .should.have.descendants(Image)
+    })
   })
 
   it('is wrapped without ui', () => {

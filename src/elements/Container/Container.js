@@ -5,18 +5,19 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useTextAlignProp,
+  withComputedType,
 } from '../../lib'
 
 /**
  * A container limits content to a maximum width.
  */
-function Container(props) {
+const InnerContainer = (props) => {
   const {
     children,
     className,
@@ -33,8 +34,7 @@ function Container(props) {
     'container',
     className,
   )
-  const rest = getUnhandledProps(Container, props)
-  const ElementType = getElementType(Container, props)
+  const rest = getUnhandledProps(InnerContainer, props, { passAs: true })
 
   return (
     <ElementType {...rest} className={classes}>
@@ -43,12 +43,7 @@ function Container(props) {
   )
 }
 
-Container._meta = {
-  name: 'Container',
-  type: META.TYPES.ELEMENT,
-}
-
-Container.propTypes = {
+InnerContainer.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
@@ -69,6 +64,13 @@ Container.propTypes = {
 
   /** Align container text. */
   textAlign: PropTypes.oneOf(SUI.TEXT_ALIGNMENTS),
+}
+
+const Container = withComputedType()(InnerContainer)
+
+Container._meta = {
+  name: 'Container',
+  type: META.TYPES.ELEMENT,
 }
 
 export default Container

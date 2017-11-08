@@ -6,19 +6,19 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
+  withComputedType,
 } from '../../lib'
 
 /**
  * A list item can contain a header.
  */
-function ListHeader(props) {
+const InnerListHeader = (props) => {
   const { children, className, content } = props
   const classes = cx('header', className)
-  const rest = getUnhandledProps(ListHeader, props)
-  const ElementType = getElementType(ListHeader, props)
+  const rest = getUnhandledProps(InnerListHeader, props, { passAs: true })
 
   return (
     <ElementType {...rest} className={classes}>
@@ -27,13 +27,7 @@ function ListHeader(props) {
   )
 }
 
-ListHeader._meta = {
-  name: 'ListHeader',
-  parent: 'List',
-  type: META.TYPES.ELEMENT,
-}
-
-ListHeader.propTypes = {
+InnerListHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
@@ -45,6 +39,14 @@ ListHeader.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
+}
+
+const ListHeader = withComputedType()(InnerListHeader)
+
+ListHeader._meta = {
+  name: 'ListHeader',
+  parent: 'List',
+  type: META.TYPES.ELEMENT,
 }
 
 ListHeader.create = createShorthandFactory(ListHeader, content => ({ content }))

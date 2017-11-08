@@ -160,6 +160,7 @@ export const implementsLabelProp = (Component, options = {}) => {
  * Assert that a Component correctly implements the "only" prop.
  * @param {React.Component|Function} Component The component to test.
  * @param {String} propKey A props key.
+ * @param {Array} propValues An array of possible values.
  */
 export const implementsMultipleProp = (Component, propKey, propValues) => {
   const { assertRequired } = helpers('propKeyAndValueToClassName', Component)
@@ -207,18 +208,36 @@ export const implementsTextAlignProp = (Component, alignments = SUI.TEXT_ALIGNME
     alignments.forEach((propVal) => {
       if (propVal === 'justified') {
         it('adds "justified" without "aligned" to className', () => {
-          shallow(<Component {...requiredProps} textAlign='justified' />)
-            .should.have.className('justified')
+          const wrapper = shallow(<Component {...requiredProps} textAlign='justified' />)
 
-          shallow(<Component {...requiredProps} textAlign='justified' />)
-            .should.not.have.className('aligned')
+          // Heads up! It's a temporary solution until all other components will be wrapped with
+          // the new <ElementType> component and withComputedType HOC
+          // TODO: Remove this after all components will be updated
+          try {
+            wrapper.should.have.className('justified')
+            wrapper.should.not.have.className('aligned')
+          } catch (e) {
+            wrapper.dive().should.have.className('justified')
+            wrapper.dive().should.not.have.className('aligned')
+          }
         })
-      } else {
-        it(`adds "${propVal} aligned" to className`, () => {
+
+        return
+      }
+
+      it(`adds "${propVal} aligned" to className`, () => {
+        // Heads up! It's a temporary solution until all other components will be wrapped with
+        // the new <ElementType> component and withComputedType HOC
+        // TODO: Remove this after all components will be updated
+        try {
           shallow(<Component {...requiredProps} textAlign={propVal} />)
             .should.have.className(`${propVal} ${'aligned'}`)
-        })
-      }
+        } catch (e) {
+          shallow(<Component {...requiredProps} textAlign={propVal} />)
+            .dive()
+            .should.have.className(`${propVal} ${'aligned'}`)
+        }
+      })
     })
   })
 }
@@ -242,8 +261,17 @@ export const implementsVerticalAlignProp = (Component, alignments = SUI.VERTICAL
 
     alignments.forEach((propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
-        shallow(<Component {...requiredProps} verticalAlign={propVal} />)
-          .should.have.className(`${propVal} ${'aligned'}`)
+        // Heads up! It's a temporary solution until all other components will be wrapped with
+        // the new <ElementType> component and withComputedType HOC
+        // TODO: Remove this after all components will be updated
+        try {
+          shallow(<Component {...requiredProps} verticalAlign={propVal} />)
+            .should.have.className(`${propVal} ${'aligned'}`)
+        } catch (e) {
+          shallow(<Component {...requiredProps} verticalAlign={propVal} />)
+            .dive()
+            .should.have.className(`${propVal} ${'aligned'}`)
+        }
       })
     })
   })

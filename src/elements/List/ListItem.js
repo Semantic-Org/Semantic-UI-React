@@ -7,10 +7,11 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
+  withComputedType,
 } from '../../lib'
 import Image from '../../elements/Image'
 import ListContent from './ListContent'
@@ -21,7 +22,7 @@ import ListIcon from './ListIcon'
 /**
  * A list item can contain a set of items.
  */
-class ListItem extends Component {
+class InnerListItem extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -80,12 +81,6 @@ class ListItem extends Component {
     value: PropTypes.string,
   }
 
-  static _meta = {
-    name: 'ListItem',
-    parent: 'List',
-    type: META.TYPES.ELEMENT,
-  }
-
   handleClick = (e) => {
     const { disabled } = this.props
 
@@ -94,6 +89,7 @@ class ListItem extends Component {
 
   render() {
     const {
+      as,
       active,
       children,
       className,
@@ -106,19 +102,18 @@ class ListItem extends Component {
       value,
     } = this.props
 
-    const ElementType = getElementType(ListItem, this.props)
     const classes = cx(
       useKeyOnly(active, 'active'),
       useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(ElementType !== 'li', 'item'),
+      useKeyOnly(as !== 'li', 'item'),
       className,
     )
-    const rest = getUnhandledProps(ListItem, this.props)
-    const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
+    const rest = getUnhandledProps(InnerListItem, this.props, { passAs: true })
+    const valueProp = as === 'li' ? { value } : { 'data-value': value }
 
     if (!childrenUtils.isNil(children)) {
       return (
-        <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={this.handleClick}>
+        <ElementType {...rest} {...valueProp} as={as} className={classes} onClick={this.handleClick} role='listitem'>
           {children}
         </ElementType>
       )
@@ -130,7 +125,7 @@ class ListItem extends Component {
     // See description of `content` prop for explanation about why this is necessary.
     if (!isValidElement(content) && _.isPlainObject(content)) {
       return (
-        <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={this.handleClick}>
+        <ElementType {...rest} {...valueProp} as={as} className={classes} onClick={this.handleClick} role='listitem'>
           {iconElement || imageElement}
           {ListContent.create(content, { header, description })}
         </ElementType>
@@ -139,9 +134,10 @@ class ListItem extends Component {
 
     const headerElement = ListHeader.create(header)
     const descriptionElement = ListDescription.create(description)
+
     if (iconElement || imageElement) {
       return (
-        <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={this.handleClick}>
+        <ElementType {...rest} {...valueProp} as={as} className={classes} onClick={this.handleClick} role='listitem'>
           {iconElement || imageElement}
           {(content || headerElement || descriptionElement) && (
             <ListContent>
@@ -155,13 +151,21 @@ class ListItem extends Component {
     }
 
     return (
-      <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={this.handleClick}>
+      <ElementType {...rest} {...valueProp} as={as} className={classes} onClick={this.handleClick} role='listitem'>
         {headerElement}
         {descriptionElement}
         {content}
       </ElementType>
     )
   }
+}
+
+const ListItem = withComputedType()(InnerListItem)
+
+ListItem._meta = {
+  name: 'ListItem',
+  parent: 'List',
+  type: META.TYPES.ELEMENT,
 }
 
 ListItem.create = createShorthandFactory(ListItem, content => ({ content }))

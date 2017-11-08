@@ -14,7 +14,7 @@ import Icon from '../Icon/Icon'
 /**
  * A list item can contain an icon.
  */
-function ListIcon(props) {
+const ListIcon = (props) => {
   const { className, verticalAlign } = props
   const classes = cx(
     useVerticalAlignProp(verticalAlign),

@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -15,6 +15,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
   useVerticalAlignProp,
+  withComputedType,
 } from '../../lib'
 import Dimmer from '../../modules/Dimmer'
 import Label from '../Label/Label'
@@ -25,8 +26,9 @@ import ImageGroup from './ImageGroup'
  * An image is a graphic representation of something.
  * @see Icon
  */
-function Image(props) {
+const InnerImage = (props) => {
   const {
+    as,
     alt,
     avatar,
     bordered,
@@ -50,7 +52,6 @@ function Image(props) {
     src,
     verticalAlign,
     width,
-    wrapped,
     ui,
   } = props
 
@@ -72,22 +73,19 @@ function Image(props) {
     'image',
     className,
   )
-  const rest = getUnhandledProps(Image, props)
-  const ElementType = getElementType(Image, props, () => {
-    if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)) return 'div'
-  })
+  const rest = getUnhandledProps(InnerImage, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return <ElementType {...rest} as={as} className={classes}>{children}</ElementType>
   }
   if (!childrenUtils.isNil(content)) {
-    return <ElementType {...rest} className={classes}>{content}</ElementType>
+    return <ElementType {...rest} as={as} className={classes}>{content}</ElementType>
   }
 
-  const rootProps = { ...rest, className: classes }
+  const rootProps = { ...rest, as, className: classes }
   const imgTagProps = { alt, src, height, width }
 
-  if (ElementType === 'img') return <ElementType {...rootProps} {...imgTagProps} />
+  if (as === 'img') return <ElementType {...rootProps} {...imgTagProps} />
 
   return (
     <ElementType {...rootProps} href={href}>
@@ -98,14 +96,7 @@ function Image(props) {
   )
 }
 
-Image.Group = ImageGroup
-
-Image._meta = {
-  name: 'Image',
-  type: META.TYPES.ELEMENT,
-}
-
-Image.propTypes = {
+InnerImage.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
@@ -197,9 +188,22 @@ Image.propTypes = {
   wrapped: PropTypes.bool,
 }
 
-Image.defaultProps = {
+InnerImage.defaultProps = {
   as: 'img',
   ui: true,
+}
+
+const computeType = ({ children, dimmer, label, wrapped }) => {
+  if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)) return 'div'
+}
+
+const Image = withComputedType(computeType)(InnerImage)
+
+Image.Group = ImageGroup
+
+Image._meta = {
+  name: 'Image',
+  type: META.TYPES.ELEMENT,
 }
 
 Image.create = createShorthandFactory(Image, value => ({ src: value }))
