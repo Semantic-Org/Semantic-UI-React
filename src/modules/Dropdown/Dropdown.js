@@ -130,6 +130,9 @@ export default class Dropdown extends Component {
     /** A dropdown can take the full width of its parent */
     fluid: PropTypes.bool,
 
+    /** Detemine if a selection is auto selected if an item isn't directly selected */
+    forceSelection: PropTypes.bool,
+
     /** A dropdown menu can contain a header. */
     header: PropTypes.node,
 
@@ -358,6 +361,7 @@ export default class Dropdown extends Component {
     additionPosition: 'top',
     closeOnBlur: true,
     deburr: false,
+    forceSelection: false,
     icon: 'dropdown',
     minCharacters: 1,
     noResultsMessage: 'No results found.',
@@ -910,17 +914,20 @@ export default class Dropdown extends Component {
   }
 
   setSelectedIndex = (value = this.state.value, optionsProps = this.props.options) => {
-    const { multiple } = this.props
+    const { forceSelection, multiple } = this.props
     const { selectedIndex } = this.state
     const options = this.getMenuOptions(value, optionsProps)
     const enabledIndicies = this.getEnabledIndices(options)
 
     let newSelectedIndex
 
-    // update the selected index
-    if (!selectedIndex || selectedIndex < 0) {
-      const firstIndex = enabledIndicies[0]
+    const firstIndex = enabledIndicies[0];
 
+    // update the selected index
+    
+    // if no selection is made, will default to the first element if
+    if ( (!selectedIndex || selectedIndex < 0) && forceSelection) {
+      
       // Select the currently active item, if none, use the first item.
       // Multiple selects remove active items from the list,
       // their initial selected index should be 0.
@@ -941,8 +948,10 @@ export default class Dropdown extends Component {
       newSelectedIndex = _.includes(enabledIndicies, activeIndex) ? activeIndex : undefined
     }
 
-    if (!newSelectedIndex || newSelectedIndex < 0) {
-      newSelectedIndex = enabledIndicies[0]
+    // if no selection is made and forceSelection is true, default to the first
+    // element
+    if (forceSelection && (!newSelectedIndex || newSelectedIndex < 0)) {
+      newSelectedIndex = firstIndex
     }
 
     this.setState({ selectedIndex: newSelectedIndex })

@@ -77,6 +77,9 @@ export interface DropdownProps {
   /** A dropdown can take the full width of its parent */
   fluid?: boolean;
 
+  /** Detemine if a selection is auto selected if an item isn't directly selected */
+  forceSelection?: boolean,
+  
   /** A dropdown menu can contain a header. */
   header?: React.ReactNode;
 
