@@ -860,7 +860,9 @@ export default class Dropdown extends Component {
   getItemByValue = (value) => {
     const { options } = this.props
 
-    return _.find(options, { value })
+    // The added item might not be in the provided options
+    // in which case we just assume the value/text are the same
+    return _.find(options, { value }) || { text: value, value }
   }
 
   getMenuItemIndexByValue = (value, givenOptions) => {

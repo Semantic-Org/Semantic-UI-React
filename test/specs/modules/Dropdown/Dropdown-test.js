@@ -1361,6 +1361,22 @@ describe('Dropdown', () => {
         .find('Label')
         .should.have.prop('content', activeItem.text)
     })
+    it('displays a label for active items that are not in options', () => {
+      // select a random item, expect a label with the item's text
+      const activeItem = _.sample(options)
+      wrapperShallow(<Dropdown options={options} selection value={[activeItem.value, 'not-in-options']} multiple />)
+        .should.have.descendants('Label')
+
+      wrapper
+        .find('Label')
+        .at(0)
+        .should.have.prop('content', activeItem.text)
+
+      wrapper
+        .find('Label')
+        .at(1)
+        .should.have.prop('content', 'not-in-options')
+    })
     it('keeps the selection within the range of remaining options', () => {
       // items are removed as they are made active
       // the selection should move if the last item is made active
