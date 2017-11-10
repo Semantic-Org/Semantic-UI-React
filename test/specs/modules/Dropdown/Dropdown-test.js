@@ -474,6 +474,28 @@ describe('Dropdown', () => {
 
       instance.setSelectedIndex.should.not.have.been.calledOnce()
     })
+
+    it('will only set the selectedIndex to the first element if forceSelection is set to true (default)', () => {
+      wrapperMount(<Dropdown options={options} />)
+      
+      const instance = wrapper.instance()
+      wrapper.setState({ selectedIndex: undefined })
+      wrapper.setProps({ options: [] })
+      
+      wrapper.should.have.state("selectedIndex",0)
+    })
+
+    it('will only not set the selectedIndex to the first element if forceSelection is set to false', () => {
+      wrapperMount(<Dropdown options={options} forceSelection={false} />)
+
+      const instance = wrapper.instance()
+      wrapper.setProps({
+         options:[],
+      })
+      
+      wrapper.setState({ selectedIndex: undefined })
+      wrapper.should.have.state("selectedIndex",undefined)
+    })
   })
 
   describe('isMouseDown', () => {
