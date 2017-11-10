@@ -921,13 +921,11 @@ export default class Dropdown extends Component {
 
     let newSelectedIndex
 
-    const firstIndex = enabledIndicies[0];
+    const firstIndex = enabledIndicies[0]
 
     // update the selected index
-    
     // if no selection is made, will default to the first element if
-    if ( (!selectedIndex || selectedIndex < 0) && forceSelection) {
-      
+    if ((!selectedIndex || selectedIndex < 0) && forceSelection) {
       // Select the currently active item, if none, use the first item.
       // Multiple selects remove active items from the list,
       // their initial selected index should be 0.
