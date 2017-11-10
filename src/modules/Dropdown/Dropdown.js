@@ -361,7 +361,7 @@ export default class Dropdown extends Component {
     additionPosition: 'top',
     closeOnBlur: true,
     deburr: false,
-    forceSelection: false,
+    forceSelection: true,
     icon: 'dropdown',
     minCharacters: 1,
     noResultsMessage: 'No results found.',

@@ -78,8 +78,8 @@ export interface DropdownProps {
   fluid?: boolean;
 
   /** Detemine if a selection is auto selected if an item isn't directly selected */
-  forceSelection?: boolean,
-  
+  forceSelection?: boolean;
+
   /** A dropdown menu can contain a header. */
   header?: React.ReactNode;
 
