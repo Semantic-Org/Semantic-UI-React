@@ -50,7 +50,7 @@ export type SemanticShorthandItem<T> = React.ReactNode | T;
 // ======================================================
 
 export type SemanticCOLORS = 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'teal' | 'blue' | 'violet' | 'purple' |
-  'pink' | 'brown' | 'grey' | 'black';
+  'pink' | 'brown' | 'grey' | 'black' | 'white' ;
 export type SemanticSIZES = 'mini' | 'tiny' | 'small' | 'medium' | 'large' | 'big' | 'huge' | 'massive';
 
 // ======================================================
