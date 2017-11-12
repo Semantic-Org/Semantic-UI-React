@@ -5,7 +5,7 @@ import DocumentTitle from 'react-document-title'
 import { withRouter } from 'react-router'
 import { Grid } from 'semantic-ui-react'
 
-import { withDocInfo } from 'docs/app/HOC'
+import withDocInfo from 'docs/app/HOC/withDocInfo'
 import { scrollToAnchor } from 'docs/app/utils'
 import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
@@ -23,14 +23,14 @@ class ComponentDoc extends Component {
   }
 
   static propTypes = {
-    componentGroup: PropTypes.arrayOf(
+    componentGroup: PropTypes.objectOf(
       PropTypes.shape({
-        description: PropTypes.string,
-        props: PropTypes.object,
+        description: PropTypes.arrayOf(PropTypes.string),
+        props: PropTypes.array,
       }),
     ),
     componentName: PropTypes.string.isRequired,
-    description: PropTypes.string,
+    description: PropTypes.arrayOf(PropTypes.string),
     ghLink: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
     path: PropTypes.string.isRequired,

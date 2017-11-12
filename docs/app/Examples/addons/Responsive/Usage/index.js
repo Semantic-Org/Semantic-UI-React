@@ -15,6 +15,11 @@ const ResponsiveUsageExamples = () => (
       description='Responsive listens for window resize events and calls event handler.'
       examplePath='addons/Responsive/Usage/ResponsiveExampleOnUpdate'
     />
+    <ComponentExample
+      title='Fire on mount'
+      description='Responsive can fire callbacks immediately after mount.'
+      examplePath='addons/Responsive/Usage/ResponsiveExampleFireOnMount'
+    />
   </ExampleSection>
 )
 

@@ -159,28 +159,30 @@ export const implementsLabelProp = (Component, options = {}) => {
 /**
  * Assert that a Component correctly implements the "only" prop.
  * @param {React.Component|Function} Component The component to test.
+ * @param {String} propKey A props key.
  */
-export const implementsOnlyProp = (Component) => {
+export const implementsMultipleProp = (Component, propKey, propValues) => {
   const { assertRequired } = helpers('propKeyAndValueToClassName', Component)
-  const propValues = SUI.VISIBILITY
 
-  describe('only (common)', () => {
+  describe(`${propKey} (common)`, () => {
     assertRequired(Component, 'a `Component`')
 
-    noDefaultClassNameFromProp(Component, 'only', propValues)
-    noClassNameFromBoolProps(Component, 'only', propValues)
+    noDefaultClassNameFromProp(Component, propKey, propValues)
+    noClassNameFromBoolProps(Component, propKey, propValues)
 
     propValues.forEach((propVal) => {
-      it(`adds "${propVal} only" to className`, () => {
-        shallow(createElement(Component, { only: propVal })).should.have.className(`${propVal} only`)
+      it(`adds "${propVal} ${propKey}" to className`, () => {
+        shallow(createElement(Component, { [propKey]: propVal }))
+          .should.have.className(`${propVal} ${propKey}`)
       })
     })
 
     it('adds all possible values to className', () => {
-      const className = propValues.map(prop => `${prop} only`).join(' ')
+      const className = propValues.map(prop => `${prop} ${propKey}`).join(' ')
       const propValue = propValues.join(' ')
 
-      shallow(createElement(Component, { only: propValue })).should.have.className(className)
+      shallow(createElement(Component, { [propKey]: propValue }))
+        .should.have.className(className)
     })
   })
 }

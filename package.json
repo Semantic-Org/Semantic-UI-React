@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "0.75.1",
+  "version": "0.76.0",
   "description": "The official Semantic-UI-React integration.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
@@ -59,6 +59,7 @@
   "dependencies": {
     "babel-runtime": "^6.25.0",
     "classnames": "^2.2.5",
+    "fbjs": "^0.8.16",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10"
   },

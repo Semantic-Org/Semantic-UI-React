@@ -7,9 +7,16 @@ import ComponentPropsComponents from './ComponentPropsComponents'
 import ComponentPropsDescription from './ComponentPropsDescription'
 import ComponentPropsHeader from './ComponentPropsHeader'
 
+const propsContainerStyle = { overflowX: 'auto' }
+
 export default class ComponentProps extends Component {
   static propTypes = {
-    componentGroup: PropTypes.arrayOf(PropTypes.object),
+    componentGroup: PropTypes.objectOf(
+      PropTypes.shape({
+        description: PropTypes.arrayOf(PropTypes.string),
+        props: PropTypes.array,
+      }),
+    ),
     componentName: PropTypes.string,
     props: PropTypes.arrayOf(PropTypes.object),
   }
@@ -34,23 +41,24 @@ export default class ComponentProps extends Component {
     const { componentGroup, componentName } = this.props
     const { activeName } = this.state
     const { description, props } = componentGroup[activeName] || {}
+    const componentNames = _.keys(componentGroup)
 
     return (
       <div>
         <ComponentPropsHeader
-          hasSubComponents={componentGroup.length > 1}
-          showProps={activeName}
+          hasSubComponents={componentNames.length > 1}
+          showProps={!!activeName}
           onClick={this.handleToggle}
         />
         <ComponentPropsComponents
           activeName={activeName}
-          components={_.keys(componentGroup)}
+          components={componentNames}
           onItemClick={this.handleComponentClick}
           parent={componentName}
         />
 
         {activeName && (
-          <div>
+          <div style={propsContainerStyle}>
             <ComponentPropsDescription description={description} />
             <ComponentTable name={activeName} props={props} />
           </div>

@@ -226,10 +226,10 @@ export const demand = requiredProps => (props, propName, componentName) => {
 }
 
 /**
- * Ensure an only prop contains a string with only possible values.
+ * Ensure an multiple prop contains a string with only possible values.
  * @param {string[]} possible An array of possible values to prop.
  */
-export const onlyProp = possible => (props, propName, componentName) => {
+export const multipleProp = possible => (props, propName, componentName) => {
   if (!Array.isArray(possible)) {
     throw new Error([
       'Invalid argument supplied to some, expected an instance of array.',
@@ -244,6 +244,7 @@ export const onlyProp = possible => (props, propName, componentName) => {
 
   const values = propValue
     .replace('large screen', 'large-screen')
+    .replace(/ vertically/g, '-vertically')
     .split(' ')
     .map(val => _.trim(val).replace('-', ' '))
   const invalid = _.difference(values, possible)

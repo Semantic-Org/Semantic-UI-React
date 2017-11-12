@@ -59,7 +59,7 @@ const ComponentPropFunctionSignature = ({ name, tags }) => {
 
 ComponentPropFunctionSignature.propTypes = {
   name: PropTypes.string,
-  tags: PropTypes.object,
+  tags: PropTypes.array,
 }
 
 export default neverUpdate(ComponentPropFunctionSignature)

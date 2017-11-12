@@ -8,17 +8,16 @@ describe('GridRow', () => {
     rendersContent: false,
   })
 
-  common.implementsOnlyProp(GridRow)
+  common.implementsMultipleProp(GridRow, 'only', SUI.VISIBILITY)
+  common.implementsMultipleProp(GridRow, 'reversed', [
+    'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
+  ])
   common.implementsTextAlignProp(GridRow)
   common.implementsVerticalAlignProp(GridRow)
   common.implementsWidthProp(GridRow, SUI.WIDTHS, {
     propKey: 'columns',
     widthClass: 'column',
   })
-
-  common.propKeyAndValueToClassName(GridRow, 'reversed', [
-    ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
-  ])
 
   common.propKeyOnlyToClassName(GridRow, 'centered')
   common.propKeyOnlyToClassName(GridRow, 'divided')
