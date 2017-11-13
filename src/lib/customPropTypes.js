@@ -12,29 +12,6 @@ export const as = (...args) => PropTypes.oneOfType([
   PropTypes.func,
 ])(...args)
 
-/* eslint-disable max-nested-callbacks */
-const findBestSuggestions = _.memoize((propValueWords, suggestions) => _.flow(
-  _.map((suggestion) => {
-    const suggestionWords = suggestion.split(' ')
-
-    const propValueScore = _.flow(
-      _.map(x => _.map(y => leven(x, y), suggestionWords)),
-      _.map(_.min),
-      _.sum,
-    )(propValueWords)
-
-    const suggestionScore = _.flow(
-      _.map(x => _.map(y => leven(x, y), propValueWords)),
-      _.map(_.min),
-      _.sum,
-    )(suggestionWords)
-
-    return { suggestion, score: propValueScore + suggestionScore }
-  }),
-  _.sortBy(['score', 'suggestion']),
-  _.take(3),
-)(suggestions))
-/* eslint-enable max-nested-callbacks */
 
 /**
  * Similar to PropTypes.oneOf but shows closest matches.
@@ -42,33 +19,73 @@ const findBestSuggestions = _.memoize((propValueWords, suggestions) => _.flow(
  * Useful for very large lists of options (e.g. Icon name, Flag name, etc.)
  * @param {string[]} suggestions An array of allowed values.
  */
-export const suggest = suggestions => (props, propName, componentName) => {
+export const suggest = (suggestions) => {
   if (!Array.isArray(suggestions)) {
-    throw new Error([
-      'Invalid argument supplied to suggest, expected an instance of array.',
-      ` See \`${propName}\` prop in \`${componentName}\`.`,
+    throw new Error('Invalid argument supplied to suggest, expected an instance of array.')
+  }
+
+  /* eslint-disable max-nested-callbacks */
+  const findBestSuggestions = _.memoize((str) => {
+    const propValueWords = str.split(' ')
+
+    return _.flow(
+      _.map((suggestion) => {
+        const suggestionWords = suggestion.split(' ')
+
+        const propValueScore = _.flow(
+          _.map(x => _.map(y => leven(x, y), suggestionWords)),
+          _.map(_.min),
+          _.sum,
+        )(propValueWords)
+
+        const suggestionScore = _.flow(
+          _.map(x => _.map(y => leven(x, y), propValueWords)),
+          _.map(_.min),
+          _.sum,
+        )(suggestionWords)
+
+        return { suggestion, score: propValueScore + suggestionScore }
+      }),
+      _.sortBy(['score', 'suggestion']),
+      _.take(3),
+    )(suggestions)
+  })
+  /* eslint-enable max-nested-callbacks */
+
+  // Convert the suggestions list into a hash map for O(n) lookup times. Ensure
+  // the words in each key are sorted alphabetically so that we have a consistent
+  // way of looking up a value in the map, i.e. we can sort the words in the
+  // incoming propValue and look that up without having to check all permutations.
+  const suggestionsLookup = suggestions.reduce((acc, key) => {
+    acc[key.split(' ').sort().join(' ')] = true
+    return acc
+  }, {})
+
+  return (props, propName, componentName) => {
+    const propValue = props[propName]
+
+    // skip if prop is undefined or is included in the suggestions
+    if (!propValue || suggestionsLookup[propValue]) return
+
+    // check if the words were correct but ordered differently.
+    // Since we're matching for classNames we need to allow any word order
+    // to pass validation, e.g. `left chevron` vs `chevron left`.
+    const propValueSorted = propValue.split(' ').sort().join(' ')
+    if (suggestionsLookup[propValueSorted]) return
+
+    // find best suggestions
+    const bestMatches = findBestSuggestions(propValue)
+
+    // skip if a match scored 0
+    if (bestMatches.some(x => x.score === 0)) return
+
+    return new Error([
+      `Invalid prop \`${propName}\` of value \`${propValue}\` supplied to \`${componentName}\`.`,
+      `\n\nInstead of \`${propValue}\`, did you mean:`,
+      bestMatches.map(x => `\n  - ${x.suggestion}`).join(''),
+      '\n',
     ].join(''))
   }
-  const propValue = props[propName]
-
-  // skip if prop is undefined or is included in the suggestions
-  if (_.isNil(propValue) || propValue === false || _.includes(propValue, suggestions)) return
-
-  // find best suggestions
-  const propValueWords = propValue.split(' ')
-  const bestMatches = findBestSuggestions(propValueWords, suggestions)
-
-  // skip if a match scored 0
-  // since we're matching on words (classNames) this allows any word order to pass validation
-  // e.g. `left chevron` vs `chevron left`
-  if (bestMatches.some(x => x.score === 0)) return
-
-  return new Error([
-    `Invalid prop \`${propName}\` of value \`${propValue}\` supplied to \`${componentName}\`.`,
-    `\n\nInstead of \`${propValue}\`, did you mean:`,
-    bestMatches.map(x => `\n  - ${x.suggestion}`).join(''),
-    '\n',
-  ].join(''))
 }
 
 /**
