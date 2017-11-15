@@ -58,7 +58,7 @@ export default class Embed extends Component {
     /** Initial value of active. */
     defaultActive: PropTypes.bool,
 
-    /** Whether to prefer HD content */
+    /** Whether to prefer HD content. */
     hd: customPropTypes.every([
       customPropTypes.demand(['source']),
       PropTypes.bool,

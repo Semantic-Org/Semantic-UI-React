@@ -36,7 +36,7 @@ export interface EmbedProps {
   /** Initial value of active. */
   defaultActive?: boolean;
 
-  /** Whether to prefer HD content */
+  /** Whether to prefer HD content. */
   hd?: boolean;
 
   /** Specifies an icon to use with placeholder content. */
