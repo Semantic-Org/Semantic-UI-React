@@ -4,7 +4,6 @@ import { Embed } from 'semantic-ui-react'
 const EmbedExampleIframe = () => (
   <Embed
     autoplay={false}
-    brandedUI={false}
     color='white'
     hd={false}
     id='gJscrxxl_Bg'

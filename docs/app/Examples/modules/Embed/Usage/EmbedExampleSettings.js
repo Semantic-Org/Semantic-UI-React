@@ -4,7 +4,7 @@ import { Embed } from 'semantic-ui-react'
 const EmbedExampleSettings = () => (
   <Embed
     autoplay={false}
-    brandedUI={false}
+    brandedUI
     color='white'
     hd={false}
     id='D0WnZyxp_Wo'
