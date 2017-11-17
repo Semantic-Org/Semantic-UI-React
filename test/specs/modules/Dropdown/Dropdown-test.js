@@ -2645,4 +2645,52 @@ describe('Dropdown', () => {
         .should.have.prop('selected', true)
     })
   })
+
+  describe('maxSelections', () => {
+    it('shows max selection message when maxSelections cap is reached', () => {
+      const maxSelections = 3
+      const maxSelectionsText = `Max ${maxSelections} selections`
+
+      const samples = _.sampleSize(options, maxSelections)
+      wrapperMount(<Dropdown options={options} multiple selection maxSelections={maxSelections} value={samples} />)
+
+      wrapper
+        .find('.message')
+        .should.have.text(maxSelectionsText)
+    })
+
+    it('shows singular max selection message when maxSelections={1} and cap is reached', () => {
+      const maxSelections = 1
+      const maxSelectionsText = 'Max 1 selection'
+
+      const samples = _.sampleSize(options, maxSelections)
+      wrapperMount(<Dropdown options={options} multiple selection maxSelections={maxSelections} value={samples} />)
+
+      wrapper
+        .find('.message')
+        .should.have.text(maxSelectionsText)
+    })
+
+    it('prevents more items from being selected when reaching maxSelections cap when using enter', () => {
+      const maxSelections = 2
+
+      wrapperMount(<Dropdown options={options} multiple selection maxSelections={maxSelections} />)
+        .simulate('click')
+
+      // Select item
+      domEvent.keyDown(document, { key: 'Enter' })
+      wrapper.state('value')
+        .should.have.length(1)
+
+      // Select item
+      domEvent.keyDown(document, { key: 'Enter' })
+      wrapper.state('value')
+        .should.have.length(2)
+
+      // Select item, no item should be added
+      domEvent.keyDown(document, { key: 'Enter' })
+      wrapper.state('value')
+        .should.have.length(2)
+    })
+  })
 })

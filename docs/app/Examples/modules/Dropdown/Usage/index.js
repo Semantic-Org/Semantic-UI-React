@@ -132,6 +132,11 @@ const DropdownUsageExamples = () => (
     <ComponentExample
       examplePath='modules/Dropdown/Usage/DropdownExampleUpward'
     />
+    <ComponentExample
+      title='Max Selections'
+      description='A dropdown allows the search to set the maximum number of allowed selections.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleMaxSelections'
+    />
 
   </ExampleSection>
 )

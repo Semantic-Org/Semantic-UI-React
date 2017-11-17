@@ -155,6 +155,9 @@ export default class Dropdown extends Component {
     /** A dropdown can show that it is currently loading data. */
     loading: PropTypes.bool,
 
+    /** A dropdown can allow a maximum number of selections. */
+    maxSelections: PropTypes.number,
+
     /** The minimum characters for a search to begin showing results. */
     minCharacters: PropTypes.number,
 
@@ -593,7 +596,7 @@ export default class Dropdown extends Component {
 
   makeSelectedItemActive = (e) => {
     const { open } = this.state
-    const { multiple } = this.props
+    const { maxSelections, multiple } = this.props
 
     const item = this.getSelectedItem()
     const value = _.get(item, 'value')
@@ -601,6 +604,9 @@ export default class Dropdown extends Component {
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
     if (_.isNil(value) || !open) return
+
+    // prevent selecting item if maxSelections is reached
+    if (!_.isNil(maxSelections) && this.state.value.length >= maxSelections) return
 
     // state value may be undefined
     const newValue = multiple ? _.union(this.state.value, [value]) : value
@@ -722,7 +728,7 @@ export default class Dropdown extends Component {
   handleItemClick = (e, item) => {
     debug('handleItemClick()', item)
 
-    const { multiple, search } = this.props
+    const { maxSelections, multiple, search } = this.props
     const { value } = item
 
     // prevent toggle() in handleClick()
@@ -730,6 +736,10 @@ export default class Dropdown extends Component {
     // prevent closeOnDocumentClick() if multiple or item is disabled
     if (multiple || item.disabled) e.nativeEvent.stopImmediatePropagation()
     if (item.disabled) return
+
+    // prevent the selection of more items if we have reached the cap
+    if (!_.isNil(maxSelections) && this.state.value.length >= maxSelections) return
+
 
     const isAdditionItem = item['data-additional']
     const newValue = multiple ? _.union(this.state.value, [value]) : value
@@ -1226,9 +1236,13 @@ export default class Dropdown extends Component {
   }
 
   renderOptions = () => {
-    const { multiple, search, noResultsMessage } = this.props
+    const { maxSelections, multiple, search, noResultsMessage } = this.props
     const { selectedIndex, value } = this.state
     const options = this.getMenuOptions()
+
+    if (!_.isNil(maxSelections) && value.length >= maxSelections) {
+      return <div className='message'>Max {maxSelections} selection{maxSelections > 1 && 's'}</div>
+    }
 
     if (noResultsMessage !== null && search && _.isEmpty(options)) {
       return <div className='message'>{noResultsMessage}</div>

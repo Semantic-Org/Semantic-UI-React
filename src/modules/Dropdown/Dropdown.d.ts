@@ -98,6 +98,9 @@ export interface DropdownProps {
   /** A dropdown can show that it is currently loading data. */
   loading?: boolean;
 
+  /** A dropdown can allow a maximum number of selections. */
+  maxSelections?: number;
+
   /** The minimum characters for a search to begin showing results. */
   minCharacters?: number;
 
