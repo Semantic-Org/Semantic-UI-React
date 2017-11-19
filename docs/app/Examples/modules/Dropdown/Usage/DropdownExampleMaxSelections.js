@@ -22,8 +22,15 @@ const options = [
   { key: 'ux', text: 'User Experience', value: 'ux' },
 ]
 
-const DropdownExampleMultipleSelection = () => (
-  <Dropdown fluid multiple selection search options={options} maxSelections={3} />
+const DropdownExampleMaxSelections = () => (
+  <Dropdown
+    fluid
+    maxSelections={3}
+    multiple
+    search
+    selection
+    options={options}
+  />
 )
 
-export default DropdownExampleMultipleSelection
+export default DropdownExampleMaxSelections
