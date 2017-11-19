@@ -156,7 +156,10 @@ export default class Dropdown extends Component {
     loading: PropTypes.bool,
 
     /** A dropdown can allow a maximum number of selections. */
-    maxSelections: PropTypes.number,
+    maxSelections: customPropTypes.every([
+      customPropTypes.demand(['multiple', 'selection']),
+      PropTypes.number,
+    ]),
 
     /** The minimum characters for a search to begin showing results. */
     minCharacters: PropTypes.number,
