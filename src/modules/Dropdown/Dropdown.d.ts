@@ -77,7 +77,7 @@ export interface DropdownProps {
   /** A dropdown can take the full width of its parent */
   fluid?: boolean;
 
-  /** Detemine if a selection is auto selected if an item isn't directly selected */
+  /** 	Whether search selection will force currently selected choice when element is blurred. */
   forceSelection?: boolean;
 
   /** A dropdown menu can contain a header. */

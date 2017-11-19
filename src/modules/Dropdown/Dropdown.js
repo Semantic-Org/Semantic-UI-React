@@ -130,7 +130,7 @@ export default class Dropdown extends Component {
     /** A dropdown can take the full width of its parent */
     fluid: PropTypes.bool,
 
-    /** Detemine if a selection is auto selected if an item isn't directly selected */
+    /** Whether search selection will force currently selected choice when element is blurred. */
     forceSelection: PropTypes.bool,
 
     /** A dropdown menu can contain a header. */
@@ -920,7 +920,6 @@ export default class Dropdown extends Component {
     const enabledIndicies = this.getEnabledIndices(options)
 
     let newSelectedIndex
-
     const firstIndex = enabledIndicies[0]
 
     // update the selected index
@@ -946,8 +945,7 @@ export default class Dropdown extends Component {
       newSelectedIndex = _.includes(enabledIndicies, activeIndex) ? activeIndex : undefined
     }
 
-    // if no selection is made and forceSelection is true, default to the first
-    // element
+    // if no selection is made and forceSelection is true, default to the first element
     if (forceSelection && (!newSelectedIndex || newSelectedIndex < 0)) {
       newSelectedIndex = firstIndex
     }
