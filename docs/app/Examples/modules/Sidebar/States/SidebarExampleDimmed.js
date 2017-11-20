@@ -1,18 +1,29 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
-class SidebarBottomPush extends Component {
+export default class SidebarExampleDimmed extends Component {
   state = { visible: false }
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
     const { visible } = this.state
+
     return (
       <div>
-        <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
+        <Button onClick={this.toggleVisibility}>Toggle visibility</Button>
+
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='push' direction='bottom' visible={visible} inverted>
+          <Sidebar
+            as={Menu}
+            animation='overlay'
+            icon='labeled'
+            inverted
+            onHide={this.toggleVisibility}
+            vertical
+            visible={visible}
+            width='thin'
+          >
             <Menu.Item name='home'>
               <Icon name='home' />
               Home
@@ -26,7 +37,8 @@ class SidebarBottomPush extends Component {
               Channels
             </Menu.Item>
           </Sidebar>
-          <Sidebar.Pusher>
+
+          <Sidebar.Pusher dimmed={visible}>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
               <Image src='/assets/images/wireframe/paragraph.png' />
@@ -37,5 +49,3 @@ class SidebarBottomPush extends Component {
     )
   }
 }
-
-export default SidebarBottomPush

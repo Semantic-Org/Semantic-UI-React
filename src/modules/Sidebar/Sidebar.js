@@ -1,12 +1,14 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
-import ReactDOM from 'react-dom'
 
+import Ref from '../../addons/Ref'
 import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  eventStack,
   getUnhandledProps,
   getElementType,
   META,
@@ -32,6 +34,9 @@ class Sidebar extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Controls whether or not to close sidebar when click outside. */
+    closable: PropTypes.bool,
+
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
 
@@ -41,21 +46,62 @@ class Sidebar extends Component {
     /** Direction the sidebar should appear on. */
     direction: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
+    /** Duration of sidebar animation. */
+    duration: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * Called when a sidebar begins to hide or show.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onChange: PropTypes.func,
+
+    /**
+     * Called before a sidebar begins to animate out.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onHide: PropTypes.func,
+
+    /**
+     * Called after a sidebar has finished animating out.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onHidden: PropTypes.func,
+
+    /**
+     * Called when a sidebar has finished animating in.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onShow: PropTypes.func,
+
+    /** Called when a sidebar begins animating in.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onVisible: PropTypes.func,
+
     /** Controls whether or not the sidebar is visible on the page. */
     visible: PropTypes.bool,
 
     /** Sidebar width. */
     width: PropTypes.oneOf(['very thin', 'thin', 'wide', 'very wide']),
-
-    /** Controls whether or not to close sidebar when click outside */
-    closable: PropTypes.bool,
-
-    /** Function to change "visible" prop */
-    toggleVisibility: PropTypes.func,
   }
 
   static defaultProps = {
+    closable: true,
     direction: 'left',
+    duration: 500,
   }
 
   static autoControlledProps = [
@@ -70,55 +116,61 @@ class Sidebar extends Component {
   static Pushable = SidebarPushable
   static Pusher = SidebarPusher
 
-  startAnimating = (duration = 500) => {
-    clearTimeout(this.stopAnimatingTimer)
-
-    this.setState({ animating: true })
-
-    this.stopAnimatingTimer = setTimeout(() => this.setState({ animating: false }), duration)
-  }
-
   componentDidMount() {
-    const { visible, closable } = this.props
+    const { visible } = this.state
 
-    if (visible && closable) {
-      document.addEventListener('click', this.handleDocumentClick)
-    }
+    if (visible) eventStack.sub('click', this.handleDocumentClick)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible !== this.props.visible) {
-      this.startAnimating()
-      if (nextProps.visible && this.props.closable) {
-        document.addEventListener('click', this.handleDocumentClick)
-      } else {
-        document.removeEventListener('click', this.handleDocumentClick)
-      }
-    }
+  componentWillUnmount() {
+    const { visible } = this.state
+
+    if (visible) eventStack.unsub('click', this.handleDocumentClick)
   }
 
-  handleRef = c => { this.ref = c }
+  componentDidUpdate(prevProps, { visible: prev }) {
+    const { visible: next } = this.state
+
+    if (prev === next) return
+
+    this.handleAnimationStart()
+    if (next) eventStack.sub('click', this.handleDocumentClick)
+    if (!next) eventStack.unsub('click', this.handleDocumentClick)
+  }
+
+  handleAnimationStart = () => {
+    const { duration } = this.props
+
+    this.setState({ animating: true }, () => {
+      clearTimeout(this.stopAnimatingTimer)
+      this.stopAnimatingTimer = setTimeout(this.handleAnimationEnd, duration)
+    })
+  }
+
+  handleAnimationEnd = () => {
+    const { visible } = this.state
+    const callback = visible ? 'onShow' : 'onHidden'
+
+    this.setState({ animating: false })
+    _.invoke(this.props, callback, null, this.props)
+  }
 
   handleDocumentClick = (e) => {
-    const sidebarDOMNode = ReactDOM.findDOMNode(this.ref)
-    // close Sidebar if e.target is outside of Sidebar
-    if (!sidebarDOMNode.contains(e.target)) {
-      this.trySetState({ visible: false })
-      this.props.toggleVisibility()
-    }
+    const { target } = e
+    const { visible } = this.state
+
+    if (!visible || this.ref.contains(target)) return
+
+    this.trySetState({ visible: false })
+    _.invoke(this.props, 'onChange', e, { ...this.props, visible: false })
+    _.invoke(this.props, 'onHide', e, { ...this.props, visible: false })
   }
 
+  handleRef = c => (this.ref = c)
+
   render() {
-    const {
-      animation,
-      className,
-      children,
-      content,
-      direction,
-      visible,
-      width,
-    } = this.props
-    const { animating } = this.state
+    const { animation, className, children, content, direction, width } = this.props
+    const { animating, visible } = this.state
 
     const classes = cx(
       'ui',
@@ -130,14 +182,15 @@ class Sidebar extends Component {
       'sidebar',
       className,
     )
-
     const rest = getUnhandledProps(Sidebar, this.props)
     const ElementType = getElementType(Sidebar, this.props)
 
     return (
-      <ElementType {...rest} className={classes} ref={this.handleRef}>
-        {childrenUtils.isNil(children) ? content : children}
-      </ElementType>
+      <Ref innerRef={this.handleRef}>
+        <ElementType {...rest} className={classes}>
+          {childrenUtils.isNil(children) ? content : children}
+        </ElementType>
+      </Ref>
     )
   }
 }
