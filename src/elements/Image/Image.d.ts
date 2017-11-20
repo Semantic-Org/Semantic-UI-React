@@ -88,7 +88,7 @@ export interface ImageProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 
   /** The img element width attribute. */
-  width?: SemanticWIDTHS;
+  width?: string | number;
 
   /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
   wrapped?: boolean;
