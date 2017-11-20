@@ -38,7 +38,7 @@ const InlineStyle = () => (
   `}</style>
 )
 
-const GridLayout = () =>
+const GridLayout = () => (
   <div>
     <InlineStyle />
 
@@ -359,5 +359,6 @@ const GridLayout = () =>
       </Grid>
     </Container>
   </div>
+)
 
 export default GridLayout

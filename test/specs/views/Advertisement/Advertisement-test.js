@@ -26,7 +26,7 @@ describe('Advertisement', () => {
   ])
 
   it('renders a <div> by default', () => {
-    shallow(<Advertisement { ...requiredProps } />)
+    shallow(<Advertisement {...requiredProps} />)
       .should.have.tagName('div')
   })
 })

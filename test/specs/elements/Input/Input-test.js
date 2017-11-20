@@ -51,12 +51,15 @@ describe('Input', () => {
     },
   })
   common.hasUIClassName(Input)
-  common.rendersChildren(Input)
+  common.rendersChildren(Input, {
+    rendersContent: false,
+  })
 
   common.implementsButtonProp(Input, {
     propKey: 'action',
   })
   common.implementsCreateMethod(Input)
+  common.implementsIconProp(Input)
   common.implementsLabelProp(Input, {
     shorthandDefaultProps: { className: 'label' },
   })
@@ -83,19 +86,18 @@ describe('Input', () => {
   common.propKeyOnlyToClassName(Input, 'loading', { className: 'icon' })
   common.propKeyOnlyToClassName(Input, 'transparent')
   common.propKeyOnlyToClassName(Input, 'icon')
-  common.propKeyOnlyToClassName(Input, 'icon')
 
   common.propValueOnlyToClassName(Input, 'size', SUI.SIZES)
 
   it('renders with conditional children', () => {
     shallow(
       <Input>
-        {true && <span></span>}
-        {false && <div></div>}
+        {true && <span />}
+        {false && <div />}
       </Input>,
     )
-      .should.contain(<span></span>)
-      .should.not.contain(<div></div>)
+      .should.contain(<span />)
+      .should.not.contain(<div />)
   })
 
   it('renders a text <input> by default', () => {
@@ -105,7 +107,7 @@ describe('Input', () => {
   })
 
   describe('input props', () => {
-    htmlInputProps.forEach(propName => {
+    htmlInputProps.forEach((propName) => {
       it(`passes \`${propName}\` to the <input>`, () => {
         const propValue = propName === 'onChange' ? () => null : 'foo'
         const wrapper = shallow(<Input {...{ [propName]: propValue }} />)

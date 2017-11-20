@@ -9,11 +9,17 @@ export interface VisibilityProps {
   /** Primary content. */
   children?: React.ReactNode;
 
+  /** Context which sticky element should stick to. */
+  context?: object;
+
   /**
    * When set to true a callback will occur anytime an element passes a condition not just immediately after the
    * threshold is met.
    */
   continuous?: boolean;
+
+  /** Fires callbacks immediately after mount. */
+  fireOnMount?: boolean;
 
   /**
    * Element's bottom edge has passed top of screen.
@@ -46,6 +52,12 @@ export interface VisibilityProps {
    * @param {object} data - All props.
    */
   onBottomVisibleReverse?: (nothing: null, data: VisibilityEventData) => void;
+
+  /**
+   * Value that context should be adjusted in pixels. Useful for making content appear below content fixed to the
+   * page.
+   */
+  offset?: number | string | Array<number|string>;
 
   /** When set to false a callback will occur each time an element passes the threshold for a condition. */
   once?: boolean;
@@ -129,6 +141,7 @@ export interface VisibilityProps {
 export interface VisibilityCalculations {
   bottomPassed: boolean;
   bottomVisible: boolean;
+  direction: 'down' | 'up';
   fits: boolean;
   height: number;
   passing: boolean;

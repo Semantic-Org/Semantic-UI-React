@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import path from 'path'
 
+import { customPropTypes } from 'src/lib'
 import componentInfo from './componentInfo'
 import {
   getNodes,
@@ -8,7 +9,6 @@ import {
   hasAnySignature,
   requireTs,
 } from './tsHelpers'
-import { customPropTypes } from 'src/lib'
 
 const isShorthand = propType => _.includes([
   customPropTypes.collectionShorthand,
@@ -38,7 +38,7 @@ export default (Component, extractedInfo, options = {}) => {
   } = extractedInfo || _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
   const { ignoredTypingsProps = [], requiredProps } = options
 
-  const tsFile = filenameWithoutExt + '.d.ts'
+  const tsFile = `${filenameWithoutExt}.d.ts`
   const tsContent = requireTs(path.join(path.dirname(filePath), tsFile))
 
   describe('typings', () => {
@@ -75,14 +75,42 @@ export default (Component, extractedInfo, options = {}) => {
         const componentProps = _.keys(componentPropTypes)
         const interfaceProps = _.without(_.map(props, 'name'), ...ignoredTypingsProps)
 
-        componentProps.should.to.deep.equal(interfaceProps)
+        componentProps.forEach((propName, index) => {
+          interfaceProps.should.include(
+            propName,
+            `propTypes define "${propName}" but it is missing in typings`,
+          )
+          interfaceProps[index].should.equal(
+            propName,
+            `propTypes define "${propName}" but its order doesn't match typings`,
+          )
+        })
+
+        interfaceProps.forEach((propName) => {
+          componentProps.should.include(
+            propName,
+            `Typings define prop "${propName}" but it is missing in propTypes`,
+          )
+        })
       })
 
       it('only necessary are required', () => {
         const componentRequired = _.keys(requiredProps)
-        const interfaceRequired = _.filter(props, ['required', true])
+        const interfaceRequired = _.map(_.filter(props, ['required', true]), 'name')
 
-        componentRequired.should.to.deep.equal(_.map(interfaceRequired, 'name'))
+        componentRequired.forEach((propName) => {
+          interfaceRequired.should.include(
+            propName,
+            `Tests require prop "${propName}" but it is optional in typings`,
+          )
+        })
+
+        interfaceRequired.forEach((propName) => {
+          componentRequired.should.include(
+            propName,
+            `Typings require "${propName}" but it is optional in tests`,
+          )
+        })
       })
     })
 

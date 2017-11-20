@@ -4,6 +4,7 @@ import React from 'react'
 import Radio from 'src/addons/Radio/Radio'
 import FormField from 'src/collections/Form/FormField'
 import { SUI } from 'src/lib'
+import Button from 'src/elements/Button/Button'
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 
@@ -28,7 +29,7 @@ describe('FormField', () => {
     it('adds an HTML element child of the same type', () => {
       const controls = ['button', 'input', 'select', 'textarea']
 
-      controls.forEach(control => {
+      controls.forEach((control) => {
         shallow(<FormField control={control} />)
           .should.have.descendants(control)
       })
@@ -80,13 +81,54 @@ describe('FormField', () => {
     })
   })
 
+  describe('disabled', () => {
+    it('is not set by default', () => {
+      const wrapper = shallow(<FormField control='input' />)
+      const input = wrapper.find('input')
+
+      wrapper.should.have.exactly(1).descendants('input')
+      input.should.not.have.prop('disabled')
+    })
+    it('is passed to the control', () => {
+      const wrapper = shallow(<FormField control='input' disabled />)
+      const input = wrapper.find('input')
+
+      wrapper.should.have.exactly(1).descendants('input')
+      input.should.have.prop('disabled', true)
+    })
+  })
+
   describe('required', () => {
+    it('is not set by default', () => {
+      const wrapper = shallow(<FormField control='input' />)
+      const input = wrapper.find('input')
+
+      wrapper.should.have.exactly(1).descendants('input')
+      input.should.not.have.prop('required')
+    })
     it('is passed to the control', () => {
       const wrapper = shallow(<FormField control='input' required />)
       const input = wrapper.find('input')
 
       wrapper.should.have.exactly(1).descendants('input')
       input.should.have.prop('required', true)
+    })
+  })
+
+  describe('content', () => {
+    it('is not set by default', () => {
+      const wrapper = shallow(<FormField control={Button} />)
+      const button = wrapper.find('Button')
+
+      wrapper.should.have.exactly(1).descendants('Button')
+      button.should.not.have.prop('content')
+    })
+    it('is passed to the control', () => {
+      const wrapper = shallow(<FormField control={Button} content='Click Me' />)
+      const button = wrapper.find('Button')
+
+      wrapper.should.have.exactly(1).descendants('Button')
+      button.should.have.prop('content', 'Click Me')
     })
   })
 })

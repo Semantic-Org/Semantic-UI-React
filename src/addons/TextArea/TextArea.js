@@ -14,8 +14,6 @@ import {
  * @see Form
  */
 class TextArea extends Component {
-  state = {}
-
   static _meta = {
     name: 'TextArea',
     type: META.TYPES.ADDON,
@@ -34,6 +32,13 @@ class TextArea extends Component {
      * @param {object} data - All props and the event value.
      */
     onChange: PropTypes.func,
+
+    /**
+     * Called on input.
+     * @param {SyntheticEvent} event - The React SyntheticEvent object
+     * @param {object} data - All props and the event value.
+     */
+    onInput: PropTypes.func,
 
     /** Indicates row count for a TextArea. */
     rows: PropTypes.oneOfType([
@@ -60,23 +65,29 @@ class TextArea extends Component {
     this.updateHeight()
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     // removed autoHeight
     if (!this.props.autoHeight && prevProps.autoHeight) {
       this.removeAutoHeightStyles()
     }
     // added autoHeight or value changed
-    if (this.props.autoHeight && !prevProps.autoHeight || prevProps.value !== this.props.value) {
+    if ((this.props.autoHeight && !prevProps.autoHeight) || prevProps.value !== this.props.value) {
       this.updateHeight()
     }
   }
 
   focus = () => (this.ref.focus())
 
-  handleChange = e => {
+  handleChange = (e) => {
     const value = _.get(e, 'target.value')
 
     _.invoke(this.props, 'onChange', e, { ...this.props, value })
+  }
+
+  handleInput = (e) => {
+    const value = _.get(e, 'target.value')
+
+    _.invoke(this.props, 'onInput', e, { ...this.props, value })
     this.updateHeight()
   }
 
@@ -92,33 +103,25 @@ class TextArea extends Component {
     if (!this.ref || !autoHeight) return
 
     const {
+      minHeight,
       borderBottomWidth,
       borderTopWidth,
-      lineHeight,
-      minHeight,
-      paddingBottom,
-      paddingTop,
     } = window.getComputedStyle(this.ref)
 
-    const boxModelHeight = _.sum([
+    const borderHeight = _.sum([
       borderBottomWidth,
       borderTopWidth,
-      paddingBottom,
-      paddingTop,
     ].map(x => parseFloat(x)))
-    const textRows = Math.max(this.ref.rows, this.ref.value.split('\n').length)
-    const textHeight = parseFloat(lineHeight) * textRows
 
-    // respect style.minHeight
-    this.setState((prevState, props) => ({
-      height: Math.max(parseFloat(minHeight), Math.ceil(boxModelHeight + textHeight)) + 'px',
-    }))
+    // Measure the scrollHeight and update the height to match.
+    this.ref.style.height = 'auto'
+    this.ref.style.overflowY = 'hidden'
+    this.ref.style.height = `${Math.max(parseFloat(minHeight), Math.ceil(this.ref.scrollHeight + borderHeight))}px`
+    this.ref.style.overflowY = ''
   }
 
   render() {
     const { autoHeight, rows, style, value } = this.props
-    const { height } = this.state
-
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
 
@@ -128,9 +131,10 @@ class TextArea extends Component {
       <ElementType
         {...rest}
         onChange={this.handleChange}
+        onInput={this.handleInput}
         ref={this.handleRef}
         rows={rows}
-        style={{ height, resize, ...style }}
+        style={{ resize, ...style }}
         value={value}
       />
     )

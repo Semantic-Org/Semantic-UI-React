@@ -1,5 +1,5 @@
-const webpack = require('webpack')
-const config = require('./config')
+import webpack from 'webpack'
+import config from './config'
 
 const { paths } = config
 const webpackDllConfig = { module: {} }
@@ -30,4 +30,4 @@ webpackDllConfig.plugins = [
   }),
 ]
 
-module.exports = webpackDllConfig
+export default webpackDllConfig

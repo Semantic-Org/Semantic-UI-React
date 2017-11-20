@@ -14,7 +14,7 @@ import {
   Table,
 } from 'semantic-ui-react'
 
-const BootstrapMigrationLayout = () =>
+const BootstrapMigrationLayout = () => (
   <Grid container style={{ padding: '5em 0em' }}>
     <Grid.Row>
       <Grid.Column>
@@ -447,5 +447,6 @@ const BootstrapMigrationLayout = () =>
       </Grid.Column>
     </Grid.Row>
   </Grid>
+)
 
 export default BootstrapMigrationLayout

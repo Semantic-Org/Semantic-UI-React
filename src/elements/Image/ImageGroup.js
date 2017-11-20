@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -14,12 +15,16 @@ import {
  * A group of images.
  */
 function ImageGroup(props) {
-  const { children, className, size } = props
+  const { children, className, content, size } = props
   const classes = cx('ui', size, className, 'images')
   const rest = getUnhandledProps(ImageGroup, props)
   const ElementType = getElementType(ImageGroup, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 ImageGroup._meta = {
@@ -37,6 +42,9 @@ ImageGroup.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A group of images can be formatted to have the same size. */
   size: PropTypes.oneOf(SUI.SIZES),

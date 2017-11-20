@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="shortcut icon" type="image/x-icon" href='/logo.png' />
   <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
   <title>Semantic UI React</title>
   <script>
+    // Redirect to HTTPs
+    // We need poor-mans client side redirects because we persist app router urls in localStorage
+    if (location.hostname === 'react.semantic-ui.com' && location.protocol !== 'https:') {
+      location.href = location.href.replace('http:', 'https:')
+    }
     // Apply gh-pages SPA redirect that was applied in 404.html
     // ----------------------------------------
     (function() {
@@ -64,10 +70,10 @@
   <script src="//cdn.jsdelivr.net/faker.js/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/<%= htmlWebpackPlugin.options.versions.jsBeautify %>/beautify-html.min.js"></script>
   <!-- Use unminified React when not in production so we get errors and warnings -->
-  <script src="//unpkg.com/prop-types@<%= htmlWebpackPlugin.options.versions.propTypes %>/prop-types.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.react %>/react<%= __PROD__ ? '.min' : '' %>.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.reactDOM %>/react-dom.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.reactDOM %>/react-dom-server.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/prop-types/<%= htmlWebpackPlugin.options.versions.propTypes %>/prop-types<%= __PROD__ ? '.min' : '' %>.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.react %>/umd/react<%= __PROD__ ? '.production.min' : '.development' %>.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/<%= htmlWebpackPlugin.options.versions.reactDOM %>/umd/react-dom<%= __PROD__ ? '.production.min' : '.development' %>.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/react-dom/<%= htmlWebpackPlugin.options.versions.reactDOM %>/umd/react-dom-server.browser<%= __PROD__ ? '.production.min' : '.development' %>.js"></script>
   <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <style>
     html, body {
@@ -112,13 +118,11 @@
     }
 
     code:not(.hljs) {
-      padding: 0;
-      padding-top: 0.1em;
-      padding-bottom: 0.2em;
-      margin: 0;
       font-size: 87.5%;
       background-color: rgba(0, 0, 0, 0.04);
       border-radius: 3px;
+      white-space: pre;
+      display: inline-block;
     }
 
     code:not(.hljs)::before {
@@ -157,36 +161,6 @@
 
     .docs-icon-set-column:hover > .icon {
       transform: scale(1.5);
-    }
-
-    /* Examples */
-
-    .docs-example-menu {
-      transition: opacity 200ms;
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      opacity: 0;
-    }
-
-    .docs-example:hover .docs-example-menu {
-      opacity: 1;
-    }
-
-    .docs-example {
-      margin-bottom: 2em !important;
-      padding-bottom: 1em !important;
-      transition: box-shadow 300ms;
-    }
-
-    /* Layout Examples */
-
-    body.login {
-      background-color: #dadada;
-    }
-
-    body.login > div, body.login > div > div {
-      height: 100%;
     }
   </style>
 </body>

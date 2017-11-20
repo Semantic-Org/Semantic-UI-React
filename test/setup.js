@@ -4,9 +4,10 @@
  */
 import chai from 'chai'
 import chaiEnzyme from 'chai-enzyme'
+import enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 import dirtyChai from 'dirty-chai'
 import sinonChai from 'sinon-chai'
-import * as enzyme from 'enzyme'
 
 //
 // Enzyme
@@ -15,6 +16,11 @@ global.enzyme = enzyme
 global.shallow = enzyme.shallow
 global.render = enzyme.render
 global.mount = enzyme.mount
+
+enzyme.configure({
+  adapter: new Adapter(),
+  disableLifecycleMethods: true,
+})
 
 //
 // Mocha

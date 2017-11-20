@@ -26,6 +26,9 @@ export interface StatisticProps {
   /** A statistic can be formatted to be different colors. */
   color?: SemanticCOLORS;
 
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
   /** A statistic can sit to the left or right of other content. */
   floated?: SemanticFLOATS;
 
@@ -33,7 +36,7 @@ export interface StatisticProps {
   horizontal?: boolean;
 
   /** A statistic can be formatted to fit on a dark background. */
-  inverted?: string;
+  inverted?: boolean;
 
   /** Label content of the Statistic. */
   label?: SemanticShorthandContent;

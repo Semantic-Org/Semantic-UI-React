@@ -1,6 +1,8 @@
 import React from 'react'
 import pkg from 'package.json'
 import { NavLink } from 'react-router-dom'
+
+import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/app/utils'
 import {
   Button,
   Container,
@@ -10,7 +12,6 @@ import {
   Segment,
 } from 'src'
 import Logo from '../Components/Logo/Logo'
-import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/app/utils'
 
 const suiCSSVersion = pkg.devDependencies['semantic-ui-css'].replace(/[~^]/, '')
 
@@ -29,10 +30,10 @@ const Usage = () => (
     <Segment basic padded>
       <Header as='h2' dividing>JavaScript</Header>
       <p>
-        The Semantic UI React package can be installed via NPM:
+        The Semantic UI React package can be installed via Yarn:
       </p>
       <Segment>
-        <pre>$ npm install {pkg.name} --save</pre>
+        <pre>$ yarn add {pkg.name}</pre>
       </Segment>
       <p>
         Installing Semantic UI React provides the JavaScript for your components.
@@ -96,12 +97,12 @@ const Usage = () => (
         main Semantic UI repository to provide a lightweight CSS only version of Semantic UI.
       </p>
       <p>
-        Semantic UI CSS can be installed as a package in your project using NPM. You won't be able to
+        Semantic UI CSS can be installed as a package in your project using Yarn. You won't be able to
         use custom themes with this method.
       </p>
       <Segment>
         <pre>
-          $ npm install semantic-ui-css --save
+          $ yarn add semantic-ui-css
         </pre>
       </Segment>
       <p>
@@ -130,9 +131,7 @@ const Usage = () => (
         provided <a href={`${semanticUIDocsURL}usage/theming.html`}>here</a>.
       </p>
       <Segment>
-        <pre>
-          $ npm install semantic-ui --save-dev
-        </pre>
+        <pre>$ yarn add semantic-ui --dev</pre>
       </Segment>
       <p>
         After building the project with Gulp, you'll need to include the minified CSS file
@@ -190,19 +189,51 @@ const Usage = () => (
         <List>
           <List.Item
             icon='github'
-            content={ <a href='https://github.com/webpack/webpack/issues/1750' target='_blank'>webpack/webpack#1750</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/1750'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#1750
+              </a>
+            )}
           />
           <List.Item
             icon='github'
-            content={ <a href='https://github.com/webpack/webpack/issues/2867' target='_blank'>webpack/webpack#2867</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/2867'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#2867
+              </a>
+            )}
           />
           <List.Item
             icon='github'
-            content={<a href='https://github.com/webpack/webpack/issues/2899' target='_blank'>webpack/webpack#2899</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/2899'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#2899
+              </a>
+            )}
           />
           <List.Item
             icon='github'
-            content={<a href='https://github.com/webpack/webpack/issues/3092' target='_blank'>webpack/webpack#3092</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/3092'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#3092
+              </a>
+            )}
           />
         </List>
         <p>

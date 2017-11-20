@@ -32,7 +32,9 @@ function Image(props) {
     bordered,
     centered,
     children,
+    circular,
     className,
+    content,
     dimmer,
     disabled,
     floated,
@@ -42,7 +44,7 @@ function Image(props) {
     href,
     inline,
     label,
-    shape,
+    rounded,
     size,
     spaced,
     src,
@@ -55,14 +57,15 @@ function Image(props) {
   const classes = cx(
     useKeyOnly(ui, 'ui'),
     size,
-    shape,
     useKeyOnly(avatar, 'avatar'),
     useKeyOnly(bordered, 'bordered'),
+    useKeyOnly(circular, 'circular'),
     useKeyOnly(centered, 'centered'),
     useKeyOnly(disabled, 'disabled'),
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(hidden, 'hidden'),
     useKeyOnly(inline, 'inline'),
+    useKeyOnly(rounded, 'rounded'),
     useKeyOrValueAndKey(spaced, 'spaced'),
     useValueAndKey(floated, 'floated'),
     useVerticalAlignProp(verticalAlign, 'aligned'),
@@ -76,6 +79,9 @@ function Image(props) {
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+  if (!childrenUtils.isNil(content)) {
+    return <ElementType {...rest} className={classes}>{content}</ElementType>
   }
 
   const rootProps = { ...rest, className: classes }
@@ -118,8 +124,14 @@ Image.propTypes = {
   /** Primary content. */
   children: PropTypes.node,
 
+  /** An image may appear circular. */
+  circular: PropTypes.bool,
+
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** An image can show that it is disabled and cannot be selected. */
   disabled: PropTypes.bool,
@@ -154,8 +166,8 @@ Image.propTypes = {
   /** Shorthand for Label. */
   label: customPropTypes.itemShorthand,
 
-  /** An image may appear rounded or circular. */
-  shape: PropTypes.oneOf(['rounded', 'circular']),
+  /** An image may appear rounded. */
+  rounded: PropTypes.bool,
 
   /** An image may appear at different sizes. */
   size: PropTypes.oneOf(SUI.SIZES),
@@ -182,11 +194,7 @@ Image.propTypes = {
   ]),
 
   /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
-  wrapped: customPropTypes.every([
-    PropTypes.bool,
-    // these props wrap the image in an a tag already
-    customPropTypes.disallow(['href']),
-  ]),
+  wrapped: PropTypes.bool,
 }
 
 Image.defaultProps = {

@@ -50,8 +50,14 @@ export interface DropdownProps {
   /** A compact dropdown has no minimum width. */
   compact?: boolean;
 
+  /** Whether or not the dropdown should strip diacritics in options and input search */
+  deburr?: boolean;
+
   /** Initial value of open. */
   defaultOpen?: boolean;
+
+  /** Initial value of searchQuery. */
+  defaultSearchQuery?: string;
 
   /** Currently selected label in multi-select. */
   defaultSelectedLabel?: number | string;
@@ -174,9 +180,9 @@ export interface DropdownProps {
    * Called on search input change.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {string} value - Current value of search input.
+   * @param {object} data - All props, includes current value of searchQuery.
    */
-  onSearchChange?: (event: React.SyntheticEvent<HTMLElement>, value: string) => void;
+  onSearchChange?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownOnSearchChangeData) => void;
 
   /** Controls whether or not the dropdown menu is displayed. */
   open?: boolean;
@@ -216,8 +222,14 @@ export interface DropdownProps {
   /** A shorthand for a search input. */
   searchInput?: any;
 
+  /** Current value of searchQuery. Creates a controlled component. */
+  searchQuery?: string;
+
   /** Define whether the highlighted item should be selected on blur. */
   selectOnBlur?: boolean;
+
+  /** Whether dropdown should select new option when using keyboard shortcuts. Setting to false will require enter or left click to confirm a choice. */
+  selectOnNavigation?: boolean;
 
   /** Currently selected label in multi-select. */
   selectedLabel?: number | string;
@@ -242,6 +254,13 @@ export interface DropdownProps {
 
   /** A dropdown can open upward. */
   upward?: boolean;
+}
+
+/* TODO: replace with DropdownProps when #1829 will be fixed:
+ * https://github.com/Semantic-Org/Semantic-UI-React/issues/1829
+ */
+export interface DropdownOnSearchChangeData extends DropdownProps {
+  searchQuery: string;
 }
 
 interface DropdownComponent extends React.ComponentClass<DropdownProps> {

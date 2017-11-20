@@ -1,12 +1,12 @@
-const gutil = require('gulp-util')
-const _ = require('lodash')
-const path = require('path')
-const docgen = require('react-docgen')
-const through = require('through2')
+import gutil from 'gulp-util'
+import _ from 'lodash'
+import path from 'path'
+import { defaultHandlers, parse } from 'react-docgen'
+import through from 'through2'
 
-const { parseDocBlock, parseType } = require('./util')
+import { parseDefaultValue, parseDocBlock, parserCustomHandler, parseType } from './util'
 
-module.exports = (filename) => {
+export default (filename) => {
   const defaultFilename = 'docgenInfo.json'
   const result = {}
   const pluginName = 'gulp-react-docgen'
@@ -27,8 +27,11 @@ module.exports = (filename) => {
     }
 
     try {
-      const relativePath = file.path.replace(`${process.cwd()}/`, '')
-      const parsed = docgen.parse(file.contents)
+      const componentName = path.basename(file.path, '.js')
+      const parsed = parse(file.contents, null, [
+        ...defaultHandlers,
+        parserCustomHandler,
+      ])
 
       // replace the component`description` string with a parsed doc block object
       parsed.docBlock = parseDocBlock(parsed.description)
@@ -36,13 +39,26 @@ module.exports = (filename) => {
 
       // replace prop `description` strings with a parsed doc block object and updated `type`
       _.each(parsed.props, (propDef, propName) => {
-        parsed.props[propName].docBlock = parseDocBlock(propDef.description)
-        parsed.props[propName].type = parseType(propDef)
+        const { description, tags } = parseDocBlock(propDef.description)
+        const { name, value } = parseType(propDef)
 
-        delete parsed.props[propName].description
+        parsed.props[propName] = {
+          ...propDef,
+          description,
+          tags,
+          value,
+          defaultValue: parseDefaultValue(propDef),
+          name: propName,
+          type: name,
+        }
       })
 
-      result[relativePath] = parsed
+      parsed.path = file.path
+        .replace(new RegExp(_.escapeRegExp(path.sep), 'g'), '/')
+        .replace(`${process.cwd()}/`, '')
+      parsed.props = _.sortBy(parsed.props, 'name')
+
+      result[componentName] = parsed
 
       cb()
     } catch (err) {

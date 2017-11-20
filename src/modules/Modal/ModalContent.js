@@ -28,7 +28,7 @@ function ModalContent(props) {
     className,
     useKeyOnly(image, 'image'),
     useKeyOnly(scrolling, 'scrolling'),
-    'content'
+    'content',
   )
   const rest = getUnhandledProps(ModalContent, props)
   const ElementType = getElementType(ModalContent, props)

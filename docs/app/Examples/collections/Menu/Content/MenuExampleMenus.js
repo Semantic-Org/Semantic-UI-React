@@ -19,15 +19,15 @@ export default class MenuExampleMenus extends Component {
           Submit
         </Menu.Item>
 
-       <Menu.Menu position='right'>
-         <Menu.Item name='signup' active={activeItem === 'signup'} onClick={this.handleItemClick}>
+        <Menu.Menu position='right'>
+          <Menu.Item name='signup' active={activeItem === 'signup'} onClick={this.handleItemClick}>
            Sign Up
-         </Menu.Item>
+          </Menu.Item>
 
-         <Menu.Item name='help' active={activeItem === 'help'} onClick={this.handleItemClick}>
+          <Menu.Item name='help' active={activeItem === 'help'} onClick={this.handleItemClick}>
            Help
-         </Menu.Item>
-       </Menu.Menu>
+          </Menu.Item>
+        </Menu.Menu>
       </Menu>
     )
   }

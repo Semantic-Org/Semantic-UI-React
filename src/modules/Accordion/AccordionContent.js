@@ -4,12 +4,12 @@ import React from 'react'
 
 import {
   childrenUtils,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
-  createShorthandFactory,
 } from '../../lib'
 
 /**
@@ -20,7 +20,7 @@ function AccordionContent(props) {
   const classes = cx(
     'content',
     useKeyOnly(active, 'active'),
-    className
+    className,
   )
   const rest = getUnhandledProps(AccordionContent, props)
   const ElementType = getElementType(AccordionContent, props)

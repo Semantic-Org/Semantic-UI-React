@@ -17,7 +17,7 @@ function TableHeaderCell(props) {
   const { as, className, sorted } = props
   const classes = cx(
     useValueAndKey(sorted, 'sorted'),
-    className
+    className,
   )
   const rest = getUnhandledProps(TableHeaderCell, props)
 

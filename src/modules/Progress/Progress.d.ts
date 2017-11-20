@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   HtmlLabelProps,
   SemanticCOLORS,
+  SemanticShorthandContent,
   SemanticShorthandItem
 } from '../..';
 
@@ -29,6 +30,9 @@ export interface ProgressProps {
   /** A progress bar can have different colors. */
   color?: SemanticCOLORS;
 
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
   /** A progress bar be disabled. */
   disabled?: boolean;
 
@@ -39,7 +43,7 @@ export interface ProgressProps {
   indicating?: boolean;
 
   /** A progress bar can have its colors inverted. */
-  inverted?: string;
+  inverted?: boolean;
 
   /** Can be set to either to display progress as percent or ratio. */
   label?: SemanticShorthandItem<HtmlLabelProps>;

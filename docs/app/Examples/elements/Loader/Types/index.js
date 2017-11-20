@@ -3,6 +3,7 @@ import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 const LoaderTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -21,10 +22,7 @@ const LoaderTypesExamples = () => (
       description='A loader can contain text.'
       examplePath='elements/Loader/Types/LoaderExampleText'
     />
-    <ComponentExample
-      description='A loader can contain text with shorthand prop.'
-      examplePath='elements/Loader/Types/LoaderExampleTextShorthand'
-    />
+    <ShorthandExample examplePath='elements/Loader/Types/LoaderExampleTextShorthand' />
   </ExampleSection>
 )
 

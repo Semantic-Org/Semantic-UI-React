@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {
   SemanticFLOATS,
+  SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticSIZES,
   SemanticVERTICALALIGNMENTS,
@@ -32,8 +33,14 @@ export interface ImageProps {
   /** Primary content. */
   children?: React.ReactNode;
 
+  /** An image may appear circular. */
+  circular?: boolean;
+
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** An image can show that it is disabled and cannot be selected. */
   disabled?: boolean;
@@ -62,8 +69,8 @@ export interface ImageProps {
   /** Shorthand for Label. */
   label?: SemanticShorthandItem<LabelProps>;
 
-  /** An image may appear rounded or circular. */
-  shape?: 'rounded'|'circular';
+  /** An image may appear rounded. */
+  rounded?: boolean;
 
   /** An image may appear at different sizes. */
   size?: SemanticSIZES;
@@ -81,7 +88,7 @@ export interface ImageProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 
   /** The img element width attribute. */
-  width?: SemanticWIDTHS;
+  width?: string | number;
 
   /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
   wrapped?: boolean;

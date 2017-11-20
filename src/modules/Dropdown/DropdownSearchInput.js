@@ -50,7 +50,7 @@ class DropdownSearchInput extends Component {
     type: META.TYPES.MODULE,
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     const value = _.get(e, 'target.value')
 
     _.invoke(this.props, 'onChange', e, { ...this.props, value })

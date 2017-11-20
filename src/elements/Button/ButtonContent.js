@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -17,6 +18,7 @@ function ButtonContent(props) {
   const {
     children,
     className,
+    content,
     hidden,
     visible,
   } = props
@@ -29,7 +31,11 @@ function ButtonContent(props) {
   const rest = getUnhandledProps(ButtonContent, props)
   const ElementType = getElementType(ButtonContent, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 ButtonContent._meta = {
@@ -47,6 +53,9 @@ ButtonContent.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Initially hidden, visible on hover. */
   hidden: PropTypes.bool,

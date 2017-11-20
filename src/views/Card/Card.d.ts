@@ -30,6 +30,9 @@ export interface CardProps {
   /** A Card can be formatted to display different colors. */
   color?: SemanticCOLORS;
 
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
   /** Shorthand for CardDescription. */
   description?: SemanticShorthandItem<CardDescriptionProps>;
 

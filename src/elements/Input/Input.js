@@ -53,7 +53,7 @@ class Input extends Component {
     /** An Input field can show the data contains errors. */
     error: PropTypes.bool,
 
-    /** Take on the size of it's container. */
+    /** Take on the size of its container. */
     fluid: PropTypes.bool,
 
     /** An Input field can show a user is currently interacting with it. */
@@ -141,7 +141,7 @@ class Input extends Component {
   handleChildOverrides = (child, defaultProps) => ({
     ...defaultProps,
     ...child.props,
-    ref: c => {
+    ref: (c) => {
       _.invoke(child, 'ref', c)
       this.handleInputRef(c)
     },
@@ -222,7 +222,6 @@ class Input extends Component {
     // Render Shorthand
     // ----------------------------------------
     const actionElement = Button.create(action)
-    const iconElement = Icon.create(this.computeIcon())
     const labelElement = Label.create(label, {
       defaultProps: {
         className: cx(
@@ -236,11 +235,10 @@ class Input extends Component {
     return (
       <ElementType {...rest} className={classes}>
         {actionPosition === 'left' && actionElement}
-        {iconPosition === 'left' && iconElement}
         {labelPosition !== 'right' && labelElement}
         {createHTMLInput(input || type, { defaultProps: htmlInputProps })}
         {actionPosition !== 'left' && actionElement}
-        {iconPosition !== 'left' && iconElement}
+        {Icon.create(this.computeIcon())}
         {labelPosition === 'right' && labelElement}
       </ElementType>
     )

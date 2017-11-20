@@ -22,12 +22,7 @@ describe('ListItem', () => {
   })
 
   describe('onClick', () => {
-    it('can be omitted', () => {
-      const click = () => shallow(<ListItem />).simulate('click')
-      expect(click).to.not.throw()
-    })
-
-    it('is called with (e, props) when clicked', () => {
+    it('is called with (e, data) when clicked', () => {
       const onClick = sandbox.spy()
       const event = { target: null }
       const props = { onClick, 'data-foo': 'bar' }
@@ -37,6 +32,14 @@ describe('ListItem', () => {
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithExactly(event, props)
+    })
+
+    it('is not called when is disabled', () => {
+      const onClick = sandbox.spy()
+
+      shallow(<ListItem disabled onClick={onClick} />)
+        .simulate('click')
+      onClick.should.have.callCount(0)
     })
   })
 

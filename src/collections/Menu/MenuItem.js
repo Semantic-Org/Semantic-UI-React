@@ -86,9 +86,9 @@ export default class MenuItem extends Component {
   }
 
   handleClick = (e) => {
-    const { onClick } = this.props
+    const { disabled } = this.props
 
-    if (onClick) onClick(e, this.props)
+    if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {
@@ -113,7 +113,7 @@ export default class MenuItem extends Component {
       position,
       useKeyOnly(active, 'active'),
       useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(icon === true || icon && !(name || content), 'icon'),
+      useKeyOnly(icon === true || (icon && !(name || content)), 'icon'),
       useKeyOnly(header, 'header'),
       useKeyOnly(link, 'link'),
       useKeyOrValueAndKey(fitted, 'fitted'),
@@ -132,7 +132,7 @@ export default class MenuItem extends Component {
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
         {Icon.create(icon)}
-        {content || _.startCase(name)}
+        {childrenUtils.isNil(content) ? _.startCase(name) : content}
       </ElementType>
     )
   }

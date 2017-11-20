@@ -15,6 +15,9 @@ export interface CardHeaderProps {
 
   /** Shorthand for primary content. */
   content?: SemanticShorthandContent;
+
+  /** A card header can adjust its text alignment. */
+  textAlign?: 'center' | 'left' | 'right';
 }
 
 declare const CardHeader: React.StatelessComponent<CardHeaderProps>;

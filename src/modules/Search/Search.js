@@ -6,6 +6,7 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
+  eventStack,
   getElementType,
   getUnhandledProps,
   htmlInputAttrs,
@@ -15,6 +16,7 @@ import {
   META,
   objectDiff,
   partitionHTMLInputProps,
+  shallowEqual,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -145,6 +147,14 @@ export default class Search extends Component {
      */
     onSearchChange: PropTypes.func,
 
+    /**
+     * Called when the active selection index is changed.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onSelectionChange: PropTypes.func,
+
     // ------------------------------------
     // Style
     // ------------------------------------
@@ -190,9 +200,7 @@ export default class Search extends Component {
   }
 
   static Category = SearchCategory
-
   static Result = SearchResult
-
   static Results = SearchResults
 
   componentWillMount() {
@@ -203,29 +211,24 @@ export default class Search extends Component {
     if (open) this.open()
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !_.isEqual(nextProps, this.props) || !_.isEqual(nextState, this.state)
-  }
-
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
-    // TODO objectDiff still runs in prod, stop it
     debug('changed props:', objectDiff(nextProps, this.props))
 
-    if (!_.isEqual(nextProps.value, this.props.value)) {
+    if (!shallowEqual(nextProps.value, this.props.value)) {
       debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(nextProps, this.props) || !shallowEqual(nextState, this.state)
+  }
+
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
     debug('componentDidUpdate()')
-    // TODO objectDiff still runs in prod, stop it
     debug('to state:', objectDiff(prevState, this.state))
-
-    // Do not access document when server side rendering
-    if (!isBrowser) return
 
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
@@ -235,8 +238,7 @@ export default class Search extends Component {
         this.tryOpen()
       }
       if (this.state.open) {
-        document.addEventListener('keydown', this.moveSelectionOnKeyDown)
-        document.addEventListener('keydown', this.selectItemOnEnter)
+        eventStack.sub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
       }
     } else if (prevState.focus && !this.state.focus) {
       debug('search blurred')
@@ -244,38 +246,28 @@ export default class Search extends Component {
         debug('mouse is not down, closing')
         this.close()
       }
-      document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
-      document.removeEventListener('keydown', this.selectItemOnEnter)
+      eventStack.unsub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
     }
 
     // opened / closed
     if (!prevState.open && this.state.open) {
       debug('search opened')
       this.open()
-      document.addEventListener('keydown', this.closeOnEscape)
-      document.addEventListener('keydown', this.moveSelectionOnKeyDown)
-      document.addEventListener('keydown', this.selectItemOnEnter)
-      document.addEventListener('click', this.closeOnDocumentClick)
+      eventStack.sub('click', this.closeOnDocumentClick)
+      eventStack.sub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
     } else if (prevState.open && !this.state.open) {
       debug('search closed')
       this.close()
-      document.removeEventListener('keydown', this.closeOnEscape)
-      document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
-      document.removeEventListener('keydown', this.selectItemOnEnter)
-      document.removeEventListener('click', this.closeOnDocumentClick)
+      eventStack.unsub('click', this.closeOnDocumentClick)
+      eventStack.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
     }
   }
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
 
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-
-    document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
-    document.removeEventListener('keydown', this.selectItemOnEnter)
-    document.removeEventListener('keydown', this.closeOnEscape)
-    document.removeEventListener('click', this.closeOnDocumentClick)
+    eventStack.unsub('click', this.closeOnDocumentClick)
+    eventStack.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
   }
 
   // ----------------------------------------
@@ -287,6 +279,13 @@ export default class Search extends Component {
     debug(result)
 
     _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
+  }
+
+  handleSelectionChange = (e) => {
+    debug('handleSelectionChange()')
+
+    const result = this.getSelectedResult()
+    _.invoke(this.props, 'onSelectionChange', e, { ...this.props, result })
   }
 
   closeOnEscape = (e) => {
@@ -301,11 +300,11 @@ export default class Search extends Component {
     switch (keyboardKey.getCode(e)) {
       case keyboardKey.ArrowDown:
         e.preventDefault()
-        this.moveSelectionBy(1)
+        this.moveSelectionBy(e, 1)
         break
       case keyboardKey.ArrowUp:
         e.preventDefault()
-        this.moveSelectionBy(-1)
+        this.moveSelectionBy(e, -1)
         break
       default:
         break
@@ -342,20 +341,17 @@ export default class Search extends Component {
 
   handleMouseDown = (e) => {
     debug('handleMouseDown()')
-    const { onMouseDown } = this.props
-    if (onMouseDown) onMouseDown(e, this.props)
+
     this.isMouseDown = true
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-    document.addEventListener('mouseup', this.handleDocumentMouseUp)
+    _.invoke(this.props, 'onMouseDown', e, this.props)
+    eventStack.sub('mouseup', this.handleDocumentMouseUp)
   }
 
   handleDocumentMouseUp = () => {
     debug('handleDocumentMouseUp()')
+
     this.isMouseDown = false
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-    document.removeEventListener('mouseup', this.handleDocumentMouseUp)
+    eventStack.unsub('mouseup', this.handleDocumentMouseUp)
   }
 
   handleInputClick = (e) => {
@@ -424,9 +420,9 @@ export default class Search extends Component {
     const { category, results } = this.props
 
     return !category ? results : _.reduce(results,
-        (memo, categoryData) => memo.concat(categoryData.results),
-        []
-      )
+      (memo, categoryData) => memo.concat(categoryData.results),
+      [],
+    )
   }
 
   getSelectedResult = (index = this.state.selectedIndex) => {
@@ -446,11 +442,11 @@ export default class Search extends Component {
 
     this.trySetState(
       { value },
-      { selectedIndex: selectFirstResult ? 0 : -1 }
+      { selectedIndex: selectFirstResult ? 0 : -1 },
     )
   }
 
-  moveSelectionBy = (offset) => {
+  moveSelectionBy = (e, offset) => {
     debug('moveSelectionBy()')
     debug(`offset: ${offset}`)
     const { selectedIndex } = this.state
@@ -466,6 +462,7 @@ export default class Search extends Component {
 
     this.setState({ selectedIndex: nextIndex })
     this.scrollSelectedItemIntoView()
+    this.handleSelectionChange(e)
   }
 
   // ----------------------------------------
@@ -475,7 +472,7 @@ export default class Search extends Component {
   scrollSelectedItemIntoView = () => {
     debug('scrollSelectedItemIntoView()')
     // Do not access document when server side rendering
-    if (!isBrowser) return
+    if (!isBrowser()) return
     const menu = document.querySelector('.ui.search.active.visible .results.visible')
     const item = menu.querySelector('.result.active')
     if (!item) return
@@ -487,7 +484,7 @@ export default class Search extends Component {
     if (isOutOfUpperView) {
       menu.scrollTop = item.offsetTop
     } else if (isOutOfLowerView) {
-      menu.scrollTop = item.offsetTop + item.clientHeight - menu.clientHeight
+      menu.scrollTop = (item.offsetTop + item.clientHeight) - menu.clientHeight
     }
   }
 
@@ -515,7 +512,7 @@ export default class Search extends Component {
   // Render
   // ----------------------------------------
 
-  renderSearchInput = rest => {
+  renderSearchInput = (rest) => {
     const { icon, input } = this.props
     const { value } = this.state
 
@@ -523,10 +520,8 @@ export default class Search extends Component {
       ...rest,
       icon,
       input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
-      onBlur: this.handleBlur,
       onChange: this.handleSearchChange,
       onClick: this.handleInputClick,
-      onFocus: this.handleFocus,
       value,
     } })
   }
@@ -578,7 +573,7 @@ export default class Search extends Component {
 
     let count = 0
 
-    return _.map(categories, ({ childKey, ...category }, name, index) => {
+    return _.map(categories, ({ childKey, ...category }) => {
       const categoryProps = {
         key: childKey || category.name,
         active: _.inRange(selectedIndex, count, count + category.results.length),
@@ -587,7 +582,7 @@ export default class Search extends Component {
       }
       const renderFn = _.partialRight(this.renderResult, count)
 
-      count = count + category.results.length
+      count += category.results.length
 
       return (
         <SearchCategory {...categoryProps}>
