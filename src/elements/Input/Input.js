@@ -222,7 +222,6 @@ class Input extends Component {
     // Render Shorthand
     // ----------------------------------------
     const actionElement = Button.create(action)
-    const iconElement = Icon.create(this.computeIcon())
     const labelElement = Label.create(label, {
       defaultProps: {
         className: cx(
@@ -236,11 +235,10 @@ class Input extends Component {
     return (
       <ElementType {...rest} className={classes}>
         {actionPosition === 'left' && actionElement}
-        {iconPosition === 'left' && iconElement}
         {labelPosition !== 'right' && labelElement}
         {createHTMLInput(input || type, { defaultProps: htmlInputProps })}
         {actionPosition !== 'left' && actionElement}
-        {iconPosition !== 'left' && iconElement}
+        {Icon.create(this.computeIcon())}
         {labelPosition === 'right' && labelElement}
       </ElementType>
     )

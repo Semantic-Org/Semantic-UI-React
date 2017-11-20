@@ -343,7 +343,7 @@ class Portal extends Component {
     if (!this.state.open) return
     debug('renderPortal()')
 
-    const { children, className } = this.props
+    const { children, className, eventPool } = this.props
 
     this.mountPortal()
 
@@ -354,8 +354,8 @@ class Portal extends Component {
 
     // when re-rendering, first remove listeners before re-adding them to the new node
     if (this.portalNode) {
-      eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { target: this.portalNode })
-      eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { target: this.portalNode })
+      eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target: this.portalNode })
+      eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target: this.portalNode })
     }
 
     ReactDOM.unstable_renderSubtreeIntoContainer(
@@ -365,8 +365,8 @@ class Portal extends Component {
       () => {
         this.portalNode = this.rootNode.firstElementChild
 
-        eventStack.sub('mouseleave', this.handlePortalMouseLeave, { target: this.portalNode })
-        eventStack.sub('mouseenter', this.handlePortalMouseEnter, { target: this.portalNode })
+        eventStack.sub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target: this.portalNode })
+        eventStack.sub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target: this.portalNode })
       },
     )
   }
@@ -390,8 +390,8 @@ class Portal extends Component {
       mountNode.appendChild(this.rootNode)
     }
 
-    eventStack.sub('click', this.handleDocumentClick, eventPool)
-    eventStack.sub('keydown', this.handleEscape, eventPool)
+    eventStack.sub('click', this.handleDocumentClick, { pool: eventPool })
+    eventStack.sub('keydown', this.handleEscape, { pool: eventPool })
     _.invoke(this.props, 'onMount', null, this.props)
   }
 
@@ -404,14 +404,14 @@ class Portal extends Component {
     ReactDOM.unmountComponentAtNode(this.rootNode)
     this.rootNode.parentNode.removeChild(this.rootNode)
 
-    eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { target: this.portalNode })
-    eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { target: this.portalNode })
+    eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target: this.portalNode })
+    eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target: this.portalNode })
 
     this.rootNode = null
     this.portalNode = null
 
-    eventStack.unsub('click', this.handleDocumentClick, eventPool)
-    eventStack.unsub('keydown', this.handleEscape, eventPool)
+    eventStack.unsub('click', this.handleDocumentClick, { pool: eventPool })
+    eventStack.unsub('keydown', this.handleEscape, { pool: eventPool })
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
