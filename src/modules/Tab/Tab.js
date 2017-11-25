@@ -53,14 +53,11 @@ class Tab extends Component {
 
     /**
      * Array of objects describing each Menu.Item and Tab.Pane:
-     * { menuItem: 'Home', render: () => <Tab.Pane /> }
-     * or
      * { menuItem: 'Home', pane: 'Welcome' }
      */
     panes: PropTypes.arrayOf(PropTypes.shape({
       menuItem: customPropTypes.itemShorthand,
       pane: customPropTypes.itemShorthand,
-      render: PropTypes.func,
     })),
 
     /** A Tab can render only active pane. */
@@ -74,7 +71,7 @@ class Tab extends Component {
   static defaultProps = {
     grid: { paneWidth: 12, tabWidth: 4 },
     menu: { attached: true, tabular: true },
-    renderActiveOnly: true,
+    renderActiveOnly: false,
   }
 
   static _meta = {
@@ -97,7 +94,11 @@ class Tab extends Component {
     const { panes, renderActiveOnly } = this.props
     const { activeIndex } = this.state
 
-    if (renderActiveOnly) return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props)
+    if (renderActiveOnly) {
+      return TabPane.create(_.get(panes, `${activeIndex}.pane`), {
+        overrideProps: { active: true },
+      })
+    }
     return _.map(panes, ({ pane }, index) => TabPane.create(pane, {
       overrideProps: {
         active: index === activeIndex,
@@ -111,9 +112,9 @@ class Tab extends Component {
 
     return Menu.create(menu, {
       overrideProps: {
+        activeIndex,
         items: _.map(panes, 'menuItem'),
         onItemClick: this.handleItemClick,
-        activeIndex,
       },
     })
   }
@@ -126,9 +127,9 @@ class Tab extends Component {
       <Grid {...gridProps}>
         {menu.props.tabular !== 'right' && GridColumn.create({ width: tabWidth, children: menu })}
         {GridColumn.create({
-          width: paneWidth,
           children: this.renderItems(),
           stretched: true,
+          width: paneWidth,
         })}
         {menu.props.tabular === 'right' && GridColumn.create({ width: tabWidth, children: menu })}
       </Grid>

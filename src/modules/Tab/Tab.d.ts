@@ -37,16 +37,10 @@ export interface TabProps {
    *   menuItem: 'Home',
    *   render: () => <Tab.Pane>Welcome!</Tab.Pane>,
    * }
-   * or
-   * {
-   *   menuItem: 'Home',
-   *   pane: 'Welcome',
-   * }
    */
   panes?: Array<{
-    content?: SemanticShorthandItem<TabPaneProps>;
     menuItem?: any;
-    render?: () => React.ReactNode;
+    pane?: SemanticShorthandItem<TabPaneProps>;
   }>;
 
   /** A Tab can render only active pane. */
