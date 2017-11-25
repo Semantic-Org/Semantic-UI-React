@@ -190,6 +190,22 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('forceSelection', () => {
+    it('will set selectedIndex to the first element when is true', () => {
+      wrapperMount(<Dropdown options={[]} selection />)
+
+      wrapper.setProps({ options: getOptions() })
+      wrapper.should.have.state('selectedIndex', 0)
+    })
+
+    it('will not set the selectedIndex if forceSelection is false', () => {
+      wrapperMount(<Dropdown forceSelection={false} options={[]} selection />)
+
+      wrapper.setProps({ options: getOptions() })
+      wrapper.should.have.not.state('selectedIndex')
+    })
+  })
+
   describe('tabIndex', () => {
     it('defaults to 0', () => {
       shallow(<Dropdown options={options} />)

@@ -15,7 +15,7 @@ const DropdownUsageExamples = () => (
 
     <ComponentExample
       title='Close On Blur'
-      description='A dropdown that closes when it blurs'
+      description='A dropdown that closes when it blurs.'
       examplePath='modules/Dropdown/Usage/DropdownExampleCloseOnBlur'
     />
 
@@ -23,6 +23,11 @@ const DropdownUsageExamples = () => (
       title='Close On Change'
       description='A multiple selection dropdown can close when the user changes its value.'
       examplePath='modules/Dropdown/Usage/DropdownExampleCloseOnChange'
+    />
+    <ComponentExample
+      title='Force Selection'
+      description='Whether search selection will force currently selected choice when element is blurred.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleForceSelection'
     />
 
     <ComponentExample

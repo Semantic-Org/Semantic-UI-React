@@ -77,6 +77,9 @@ export interface DropdownProps {
   /** A dropdown can take the full width of its parent */
   fluid?: boolean;
 
+  /** 	Whether search selection will force currently selected choice when element is blurred. */
+  forceSelection?: boolean;
+
   /** A dropdown menu can contain a header. */
   header?: React.ReactNode;
 
