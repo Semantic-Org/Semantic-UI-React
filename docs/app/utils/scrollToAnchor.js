@@ -5,7 +5,7 @@ const mathSign = Math.sign || function (x) {
   return val > 0 ? 1 : -1
 }
 
-const scrollToAnchor = () => {
+const scrollToAnchor = (lastOffsetY) => {
   const anchor = location.hash && document.querySelector(location.hash)
   const offsetY = window.scrollY || window.pageYOffset
 
@@ -13,20 +13,15 @@ const scrollToAnchor = () => {
   if (!anchor) return
 
   const elementTop = Math.round(anchor.getBoundingClientRect().top)
-
-  // scrolled to element, stop
-  if (elementTop === 0) return
-
-  // hit max scroll boundaries, stop
-  const isScrolledToTop = offsetY === 0
-  const isScrolledToBottom = offsetY + document.body.clientHeight === document.body.scrollHeight
   const scrollStep = Math.ceil((Math.abs(elementTop / 8))) * mathSign(elementTop)
 
-  if ((isScrolledToBottom && scrollStep > 0) || (isScrolledToTop && scrollStep < 0)) return
+  // if our last step was not applied, stop
+  // we've either hit the top, bottom, or arrived at the element
+  if (lastOffsetY === offsetY) return
 
   // more scrolling to do!
   scrollBy(0, scrollStep)
-  requestAnimationFrame(scrollToAnchor)
+  requestAnimationFrame(() => scrollToAnchor(offsetY))
 }
 
 export default scrollToAnchor
