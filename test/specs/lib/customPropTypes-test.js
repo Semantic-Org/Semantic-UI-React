@@ -2,8 +2,7 @@ import { customPropTypes } from 'src/lib'
 
 describe('suggest prop type', () => {
   it('should throw error when non-array argument given', () => {
-    const propType = customPropTypes.suggest('foo')
-    expect(() => propType({ name: 'bar' }, 'name', 'FooComponent')).to.throw(
+    expect(() => customPropTypes.suggest('foo')).to.throw(
       Error,
       /Invalid argument supplied to suggest, expected an instance of array./,
     )
