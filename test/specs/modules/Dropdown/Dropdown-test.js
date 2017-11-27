@@ -9,6 +9,7 @@ import DropdownDivider from 'src/modules/Dropdown/DropdownDivider'
 import DropdownHeader from 'src/modules/Dropdown/DropdownHeader'
 import DropdownItem from 'src/modules/Dropdown/DropdownItem'
 import DropdownMenu from 'src/modules/Dropdown/DropdownMenu'
+import DropdownMessage from 'src/modules/Dropdown/DropdownMessage'
 import DropdownSearchInput from 'src/modules/Dropdown/DropdownSearchInput'
 
 let attachTo
@@ -85,7 +86,7 @@ describe('Dropdown', () => {
 
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
-  common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu, DropdownSearchInput])
+  common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu, DropdownMessage, DropdownSearchInput])
 
   common.implementsIconProp(Dropdown, {
     assertExactMatch: false,

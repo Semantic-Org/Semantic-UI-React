@@ -148,6 +148,7 @@ export { default as DropdownDivider, DropdownDividerProps } from './dist/commonj
 export { default as DropdownHeader, DropdownHeaderProps } from './dist/commonjs/modules/Dropdown/DropdownHeader';
 export { default as DropdownItem, DropdownItemProps } from './dist/commonjs/modules/Dropdown/DropdownItem';
 export { default as DropdownMenu, DropdownMenuProps } from './dist/commonjs/modules/Dropdown/DropdownMenu';
+export { default as DropdownMessage, DropdownMessageProps } from './dist/commonjs/modules/Dropdown/DropdownMessage';
 export {
   default as DropdownSearchInput,
   DropdownSearchInputProps

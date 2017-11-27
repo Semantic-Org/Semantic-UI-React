@@ -121,6 +121,7 @@ export { default as DropdownDivider } from './modules/Dropdown/DropdownDivider'
 export { default as DropdownHeader } from './modules/Dropdown/DropdownHeader'
 export { default as DropdownItem } from './modules/Dropdown/DropdownItem'
 export { default as DropdownMenu } from './modules/Dropdown/DropdownMenu'
+export { default as DropdownMessage } from './modules/Dropdown/DropdownMessage'
 export { default as DropdownSearchInput } from './modules/Dropdown/DropdownSearchInput'
 
 export { default as Embed } from './modules/Embed'

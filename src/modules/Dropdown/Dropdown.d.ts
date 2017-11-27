@@ -5,6 +5,7 @@ import { default as DropdownDivider } from './DropdownDivider';
 import { default as DropdownHeader } from './DropdownHeader';
 import { default as DropdownItem, DropdownItemProps } from './DropdownItem';
 import { default as DropdownMenu } from './DropdownMenu';
+import { default as DropdownMessage } from './DropdownMessage';
 import { default as DropdownSearchInput } from './DropdownSearchInput';
 
 export interface DropdownProps {
@@ -280,6 +281,7 @@ interface DropdownComponent extends React.ComponentClass<DropdownProps> {
   Header: typeof DropdownHeader;
   Item: typeof DropdownItem;
   Menu: typeof DropdownMenu;
+  Message: typeof DropdownMessage;
   SearchInput: typeof DropdownSearchInput;
 }
 

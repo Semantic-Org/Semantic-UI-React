@@ -26,6 +26,7 @@ import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
+import DropdownMessage from './DropdownMessage'
 
 const debug = makeDebugger('dropdown')
 
@@ -403,6 +404,7 @@ export default class Dropdown extends Component {
   static Header = DropdownHeader
   static Item = DropdownItem
   static Menu = DropdownMenu
+  static Message = DropdownMessage
   static SearchInput = DropdownSearchInput
 
   getInitialAutoControlledState() {
@@ -1244,11 +1246,11 @@ export default class Dropdown extends Component {
     const options = this.getMenuOptions()
 
     if (!_.isNil(maxSelections) && value.length >= maxSelections) {
-      return <div className='message'>Max {maxSelections} selection{maxSelections > 1 && 's'}</div>
+      return <DropdownMessage type={'maxSelections'} value={maxSelections} />
     }
 
     if (noResultsMessage !== null && search && _.isEmpty(options)) {
-      return <div className='message'>{noResultsMessage}</div>
+      return <DropdownMessage type={'noResultsMessage'} noResultsMessage={noResultsMessage} />
     }
 
     const isActive = multiple
