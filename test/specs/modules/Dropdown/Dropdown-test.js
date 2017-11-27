@@ -86,7 +86,14 @@ describe('Dropdown', () => {
 
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
-  common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu, DropdownMessage, DropdownSearchInput])
+  common.hasSubComponents(Dropdown, [
+    DropdownDivider,
+    DropdownHeader,
+    DropdownItem,
+    DropdownMenu,
+    DropdownMessage,
+    DropdownSearchInput,
+  ])
 
   common.implementsIconProp(Dropdown, {
     assertExactMatch: false,
