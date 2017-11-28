@@ -10,6 +10,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  partitionHTMLProps,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -18,8 +19,9 @@ import {
 } from '../../lib'
 import Dimmer from '../../modules/Dimmer'
 import Label from '../Label/Label'
-
 import ImageGroup from './ImageGroup'
+
+const imageProps = ['alt', 'height', 'src', 'srcSet', 'width']
 
 /**
  * An image is a graphic representation of something.
@@ -27,7 +29,6 @@ import ImageGroup from './ImageGroup'
  */
 function Image(props) {
   const {
-    alt,
     avatar,
     bordered,
     centered,
@@ -39,7 +40,6 @@ function Image(props) {
     disabled,
     floated,
     fluid,
-    height,
     hidden,
     href,
     inline,
@@ -47,9 +47,7 @@ function Image(props) {
     rounded,
     size,
     spaced,
-    src,
     verticalAlign,
-    width,
     wrapped,
     ui,
   } = props
@@ -73,6 +71,7 @@ function Image(props) {
     className,
   )
   const rest = getUnhandledProps(Image, props)
+  const [imgTagProps, rootProps] = partitionHTMLProps(rest, { htmlProps: imageProps })
   const ElementType = getElementType(Image, props, () => {
     if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)) return 'div'
   })
@@ -84,13 +83,9 @@ function Image(props) {
     return <ElementType {...rest} className={classes}>{content}</ElementType>
   }
 
-  const rootProps = { ...rest, className: classes }
-  const imgTagProps = { alt, src, height, width }
-
-  if (ElementType === 'img') return <ElementType {...rootProps} {...imgTagProps} />
-
+  if (ElementType === 'img') return <ElementType {...rootProps} {...imgTagProps} className={classes} />
   return (
-    <ElementType {...rootProps} href={href}>
+    <ElementType {...rootProps} className={classes} href={href}>
       {Dimmer.create(dimmer)}
       {Label.create(label)}
       <img {...imgTagProps} />
@@ -108,9 +103,6 @@ Image._meta = {
 Image.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
-
-  /** Alternate text for the image specified. */
-  alt: PropTypes.string,
 
   /** An image may be formatted to appear inline with text as an avatar. */
   avatar: PropTypes.bool,
@@ -148,12 +140,6 @@ Image.propTypes = {
     customPropTypes.disallow(['size']),
   ]),
 
-  /** The img element height attribute. */
-  height: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-
   /** An image can be hidden. */
   hidden: PropTypes.bool,
 
@@ -178,20 +164,11 @@ Image.propTypes = {
     PropTypes.oneOf(['left', 'right']),
   ]),
 
-  /** Specifies the URL of the image. */
-  src: PropTypes.string,
-
   /** Whether or not to add the ui className. */
   ui: PropTypes.bool,
 
   /** An image can specify its vertical alignment. */
   verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
-
-  /** The img element width attribute. */
-  width: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
 
   /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
   wrapped: PropTypes.bool,
