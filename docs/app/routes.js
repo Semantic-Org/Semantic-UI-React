@@ -27,9 +27,9 @@ const Router = () => (
         <DocsLayout exact path='/' render={RedirectToIntro} />
         <DocsLayout exact path='/introduction' component={Introduction} />
         <DocsLayout exact path='/layouts' component={Layouts} />
-        <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} />
+        <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} sidebar />
         <DocsLayout exact path='/usage' component={Usage} />
-        <DocsLayout exact path='/:type/:name' component={DocsRoot} />
+        <DocsLayout exact path='/:type/:name' component={DocsRoot} sidebar />
         <DocsLayout exact path='/*' component={PageNotFound} />
       </Switch>
     </Switch>
