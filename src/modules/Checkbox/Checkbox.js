@@ -12,7 +12,7 @@ import {
   htmlInputAttrs,
   makeDebugger,
   META,
-  partitionHTMLInputProps,
+  partitionHTMLProps,
   useKeyOnly,
 } from '../../lib'
 
@@ -217,7 +217,7 @@ export default class Checkbox extends Component {
     )
     const unhandled = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
-    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, { htmlProps: htmlInputAttrs })
+    const [htmlInputProps, rest] = partitionHTMLProps(unhandled, { htmlProps: htmlInputAttrs })
     const id = _.get(htmlInputProps, 'id')
 
     return (

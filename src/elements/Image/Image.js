@@ -10,7 +10,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-  partitionHTMLInputProps,
+  partitionHTMLProps,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -71,7 +71,7 @@ function Image(props) {
     className,
   )
   const rest = getUnhandledProps(Image, props)
-  const [imgTagProps, rootProps] = partitionHTMLInputProps(rest, { htmlProps: imageProps })
+  const [imgTagProps, rootProps] = partitionHTMLProps(rest, { htmlProps: imageProps })
   const ElementType = getElementType(Image, props, () => {
     if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)) return 'div'
   })

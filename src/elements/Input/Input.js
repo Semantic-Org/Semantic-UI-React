@@ -11,7 +11,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-  partitionHTMLInputProps,
+  partitionHTMLProps,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -154,7 +154,7 @@ class Input extends Component {
 
     const tabIndex = this.computeTabIndex()
     const unhandled = getUnhandledProps(Input, this.props)
-    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled)
+    const [htmlInputProps, rest] = partitionHTMLProps(unhandled)
 
     return [{
       ...htmlInputProps,
