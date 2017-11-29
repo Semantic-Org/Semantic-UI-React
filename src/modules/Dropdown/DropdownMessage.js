@@ -49,7 +49,7 @@ DropdownMessage.propTypes = {
   noResultsMessage: PropTypes.string,
 
   /** The message type. */
-  type: PropTypes.oneOf('maxSelections', 'noResultsMessage'),
+  type: PropTypes.oneOf(['maxSelections', 'noResultsMessage']).isRequired,
 
   /** The maxSelections value. */
   value: PropTypes.oneOfType([

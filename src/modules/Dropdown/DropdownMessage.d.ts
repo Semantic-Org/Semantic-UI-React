@@ -13,7 +13,7 @@ export interface DropdownMessageProps {
   noResultsMessage?: string;
 
   /** The message type. */
-  type?: 'noResultsMessage' | 'maxSelections';
+  type: 'noResultsMessage' | 'maxSelections';
 
   /** The maxSelections value. */
   value?: number | string;
