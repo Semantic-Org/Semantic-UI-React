@@ -6,49 +6,10 @@ import {
   AutoControlledComponent as Component,
   customPropTypes,
   META,
+  paginationFactory,
 } from '../../lib'
 import Menu from '../../collections/Menu'
 import PaginationItem from './PaginationItem'
-
-const makeRange = (start, end) => {
-  const range = []
-
-  for(let i = start; i <= end; i++) {
-    range.push(i)
-  }
-
-    return range
-}
-
-export const computeR = (activePage, displayRange, marginRange, totalPages) => {
-  const minOffset = marginRange + displayRange
-  let rangeStart = activePage - displayRange
-  let rangeEnd = activePage + displayRange
-
-  if (rangeEnd > totalPages) {
-    rangeEnd = totalPages;
-    rangeStart = totalPages - displayRange * 2
-    rangeStart = rangeStart < 1 ? 1 : rangeStart
-  }
-
-  if (rangeStart <= marginRange) {
-    rangeStart = 1;
-    rangeEnd = Math.min(displayRange * 2 + marginRange + 1, totalPages)
-  }
-
-  console.log(activePage, rangeStart, rangeEnd, minOffset)
-
-  const startEnd = Math.min(marginRange, rangeStart - marginRange)
-  const startRange = rangeStart > marginRange ? [...makeRange(1, startEnd), null] : []
-  const iRange = makeRange(rangeStart, rangeEnd)
-  const endRange = rangeEnd < totalPages - marginRange ? [null, ...makeRange(totalPages - marginRange + 1, totalPages)] : []
-
-  return [
-    ...startRange,
-    ...iRange,
-    ...endRange,
-  ]
-}
 
 /**
  * A component to render a pagination.
@@ -80,10 +41,7 @@ export default class Pagination extends Component {
 
     onChange: PropTypes.func,
 
-    pageCount: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]).isRequired,
+    totalPages: PropTypes.number.isRequired,
   }
 
   static autoControlledProps = [
@@ -92,11 +50,11 @@ export default class Pagination extends Component {
 
   static defaultProps = {
     displayRange: 2,
-    firstItem: '«',
-    lastItem: '»',
+    // firstItem: '«',
+    // lastItem: '»',
     marginRange: 2,
-    nextItem: '⟩',
-    prevItem: '⟨',
+    // nextItem: '⟩',
+    // prevItem: '⟨',
   }
 
   static _meta = {
@@ -112,30 +70,23 @@ export default class Pagination extends Component {
     const { pageCount } = this.props
     const { activePage } = this.state
 
-    if(nextPage === 'first') return 1
-    if(nextPage === 'last') return pageCount
+    if (nextPage === 'first') return 1
+    if (nextPage === 'last') return pageCount
 
-    if(nextPage === 'prev') return activePage - 1
-    if(nextPage === 'next') return activePage + 1
+    if (nextPage === 'prev') return activePage - 1
+    if (nextPage === 'next') return activePage + 1
 
     return nextPage
-  }
-
-  computeRange = () => {
-    const { displayRange, marginRange, pageCount } = this.props
-    const { activePage } = this.state
-
-    return  computeR(activePage, displayRange, marginRange, pageCount)
   }
 
   computeTabIndex = (pageName) => {
     const { pageCount } = this.props
 
-    if(pageName === 'first') return 0
-    if(pageName === 'prev') return 1
+    if (pageName === 'first') return 0
+    if (pageName === 'prev') return 1
 
-    if(pageName === 'next') return pageCount + 1
-    if(pageName === 'last') return pageCount + 2
+    if (pageName === 'next') return pageCount + 1
+    if (pageName === 'last') return pageCount + 2
 
     return pageName
   }
@@ -169,7 +120,7 @@ export default class Pagination extends Component {
   // Overrides
   // ----------------------------------------
 
-  handleItemOverrides = pageName => predefinedProps => {
+  handleItemOverrides = pageName => (predefinedProps) => {
     const { activePage } = this.state
 
     return {
@@ -182,7 +133,7 @@ export default class Pagination extends Component {
       },
       onLeftKeyDown: this.handleItemLeft,
       onRightKeyDown: this.handleItemRight,
-      tabIndex: this.computeTabIndex(pageName)
+      tabIndex: this.computeTabIndex(pageName),
     }
   }
 
@@ -191,19 +142,23 @@ export default class Pagination extends Component {
   // ----------------------------------------
 
   render() {
-    const { displayRange, firstItem, lastItem, navItem, nextItem, pageCount, prevItem } = this.props
+    const { displayRange, firstItem, lastItem, navItem, nextItem, pageCount, prevItem, totalPages } = this.props
+    const items = paginationFactory({
+      current: activePage,
+      total: totalPages,
+    })
 
     const { marginRange } = this.props
     const { activePage } = this.state
 
-    //console.log(computePrevRange(activePage, displayRange, marginRange))
+    // console.log(computePrevRange(activePage, displayRange, marginRange))
 
     return (
-      <Menu aria-label="Pagination Navigation" pagination role="navigation">
+      <Menu aria-label='Pagination Navigation' pagination role='navigation'>
         {PaginationItem.create(firstItem, { overrideProps: this.handleItemOverrides('first') })}
         {PaginationItem.create(prevItem, { overrideProps: this.handleItemOverrides('prev') })}
 
-        {_.map(this.computeRange(), (index) => PaginationItem.create(navItem || '', {
+        {_.map(items, index => PaginationItem.create(navItem || '', {
           defaultProps: {
             content: index,
           },

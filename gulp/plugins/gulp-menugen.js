@@ -6,7 +6,7 @@ import through from 'through2'
 import config from '../../config'
 import { parseDocExample, parseDocSection } from './util'
 
-const examplesPath = `${config.paths.docsSrc()}/Examples/`
+const examplesPath = path.join(config.paths.docsSrc(), 'Examples', path.sep)
 
 const normalizeResult = result => JSON.stringify(_.mapValues(
   result,
@@ -38,7 +38,7 @@ export default (filename) => {
 
     try {
       const relativePath = file.path.replace(examplesPath, '')
-      const [, component, section] = _.split(relativePath, '/')
+      const [, component, section] = _.split(relativePath, path.sep)
 
       if (section === 'index.js') {
         result[component] = parseDocExample(file.contents)

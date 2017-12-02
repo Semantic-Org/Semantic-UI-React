@@ -35,6 +35,7 @@ export {
 export { default as isBrowser } from './isBrowser'
 export { default as leven } from './leven'
 export * as META from './META'
+export paginationFactory from './paginationFactory'
 export * as SUI from './SUI'
 
 export { default as keyboardKey } from './keyboardKey'
