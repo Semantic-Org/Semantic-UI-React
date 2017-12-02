@@ -1,6 +1,7 @@
 import * as React from 'react';
+
 import { ButtonProps } from '../../elements/Button';
-import { SemanticShorthandCollection } from '../..';
+import { SemanticShorthandCollection, SemanticShorthandContent } from '../..';
 
 export interface ModalActionsProps {
   [key: string]: any;
@@ -16,6 +17,9 @@ export interface ModalActionsProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /**
    * onClick handler for an action. Mutually exclusive with children.

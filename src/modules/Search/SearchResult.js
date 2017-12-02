@@ -38,6 +38,9 @@ export default class SearchResult extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** Additional text with less emphasis. */
     description: PropTypes.string,
 

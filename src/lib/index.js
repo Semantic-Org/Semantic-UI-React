@@ -7,7 +7,7 @@ export {
   useKeyOrValueAndKey,
   useValueAndKey,
 
-  useOnlyProp,
+  useMultipleProp,
   useTextAlignProp,
   useVerticalAlignProp,
   useWidthProp,
@@ -29,8 +29,8 @@ export {
   htmlInputAttrs,
   htmlInputEvents,
   htmlInputProps,
-  partitionHTMLInputProps,
-} from './htmlInputPropsUtils'
+  partitionHTMLProps,
+} from './htmlPropsUtils'
 
 export { default as isBrowser } from './isBrowser'
 export { default as leven } from './leven'

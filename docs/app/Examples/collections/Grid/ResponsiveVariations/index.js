@@ -36,6 +36,10 @@ const GridResponsiveVariationsExamples = () => (
     <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridExampleReversedComputerVertically' />
     <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridExampleReversedTabletVertically' />
     <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridExampleReversedMobileVertically' />
+    <ComponentExample
+      description='A grid or row can specify that its columns should reverse order on multiple device sizes.'
+      examplePath='collections/Grid/ResponsiveVariations/GridExampleReversedMultiple'
+    />
 
     <ComponentExample
       title='Device Visibility'

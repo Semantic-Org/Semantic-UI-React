@@ -30,7 +30,11 @@ const DropdownUsageExamples = () => (
       description='A dropdown can choose whether or not to change the value when navigating the menu with arrow keys.'
       examplePath='modules/Dropdown/Usage/DropdownExampleSelectOnNavigation'
     />
-
+    <ComponentExample
+      title='Controlled'
+      description='A dropdown can behave like an controlled input.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleControlled'
+    />
     <ComponentExample
       title='Uncontrolled'
       description='A dropdown can behave like an uncontrolled input.'
@@ -100,6 +104,16 @@ const DropdownUsageExamples = () => (
         selection.
       </Message>
     </ComponentExample>
+    <ComponentExample
+      title='Search Deburr'
+      description='A dropdown allows the search to ignore diacritics.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleDeburrSearch'
+    />
+    <ComponentExample
+      title='Custom Search Function'
+      description='A dropdown allows you to provide your own search function.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleCustomSearchFunction'
+    />
     <ComponentExample
       title='Upward'
       description='A dropdown can open its menu upward.'

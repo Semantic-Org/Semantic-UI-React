@@ -163,14 +163,21 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
 
-      document.body.scrollTop = 100
-
-      const evt = document.createEvent('CustomEvent')
-      evt.initCustomEvent('scroll', false, false, null)
-
-      window.dispatchEvent(evt)
-
+      domEvent.scroll(window)
       assertInBody('.ui.popup.visible', false)
+    })
+
+    it('is called with (e, props) when scroll', () => {
+      const onClose = sandbox.spy()
+      const trigger = <button>foo</button>
+
+      wrapperMount(<Popup content='foo' hideOnScroll onClose={onClose} trigger={trigger} />)
+        .find('button')
+        .simulate('click')
+
+      domEvent.scroll(window)
+      onClose.should.have.been.calledOnce()
+      onClose.should.have.been.calledWithMatch({}, { content: 'foo', onClose, trigger })
     })
   })
 

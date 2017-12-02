@@ -40,12 +40,49 @@ Hey, we're in development. Prior to reaching [v1.0.0][6]:
 
 See the [Documentation][2] for an introduction, usage information, and extensive examples.
 
+## Built With Semantic UI React
+
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/amazon-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/netflix-logo.png" />
+<a href="https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md">
+  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/add-yours.png" />
+</a>
+
+These great products are built on Semantic UI React. Add yours [here][22].
+
+- Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
+- Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
+- https://gitconnected.com - The community for developers and software engineers
+- http://stoplight.io
+- https://roadmap.space
+- https://edabit.com
+- https://blackship.com
+- http://www.brewhousesolutions.com
+- https://www.seeuletter.com
+- https://www.stackforge.co
+- https://sublimefund.org
+- https://thefaithcircle.com
+- https://appfollow.io
+- http://according.to.localsourc.es
+- http://www.aircip.ir
+- http://platform.nazarbazaar.ir
+- https://build.games
+- https://platform.forecastcycles.com
+- https://www.findlectures.com
+- https://github.com/ayastreb/bandwidth-hero
+
 ## Example Projects
 
 This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
 
-### [react-semantic.ui-starter][102]
-Production-ready, performance-first, optimized, robust, fully-featured boilerplate/example for your new Progressive Web App.
+### [webpack1][28]
+Our example project right [here][28] in this repo.
+ 
+### [webpack2][29]
+Our example project right [here][29] in this repo.
+ 
+### [SUIcrux][102]
+Advanced universal starter with Semantic-UI-React. React/Redux/Lazy-loading/SSR/PWA.
 
 ### [semantic-ui-react-todos][100]
 This example modifies the well-known [react-redux Todo List][101] to use Semantic UI components. There is also a write-up on the process in the project README.
@@ -64,27 +101,8 @@ Yes.  Semantic UI React includes components that render valid Semantic UI HTML, 
 Here are some helpful links:
 
 - [Building CSS with Webpack][24]
-- [Building CSS with Meteor][26]
+- [Building CSS with Meteor][30]
 - [Creating a standalone theme][25]
-
-## Built With Semantic UI React
-
-These great products are built on Semantic UI React. Add yours [here][22].
-
-- Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
-- Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
-- http://stoplight.io
-- https://roadmap.space
-- https://edabit.com
-- https://blackship.com
-- http://www.brewhousesolutions.com
-- https://www.seeuletter.com
-- https://www.stackforge.co
-- https://sublimefund.org
-- https://thefaithcircle.com
-- https://appfollow.io
-- http://according.to.localsourc.es
-
 
 ## Voice Your Opinion
 
@@ -94,9 +112,9 @@ Help shape this library by weighing in on our [RFC (request for comments)][19] i
 
 Our [CONTRIBUTING.md][1] is a step-by-step setup and development guide. It is meant to be read from top to bottom.  Once you're up to speed, each issue here includes more information on how you can help:
 
-### [Good First Contribution][21]
+### [Good First Issue][21]
 
-Issues labeled [`good first contribution`][21] are a great way to ease into development on this project. 
+Issues labeled [`good first issue`][21] are a great way to ease into development on this project. 
 
 ### [Missing Components][17]
 
@@ -106,7 +124,7 @@ We're seeking component parity with Semantic UI, plus some addons.  There is an 
 
 Any other issue labeled [`help wanted`][4] is ready for a PR.
 
-## Support
+## 100% Semantic UI Support
 
 |    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
 |-----------------|-----------------|-----------------|-----------------|--------------------|
@@ -126,9 +144,7 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 | ✓ Segment       |                 |                 | ✓ Tab           |                    |
 | ✓ Step          |                 |                 | ✓ Transition    |                    |
 
-## Our Principles
-
-[TechnologyAdvice][9] has been [dogfooding][10] Semantic UI React in production since fall of 2015.  These are the guiding principles that have developed as a result:
+## Principles
 
 - No jQuery dependency
 - No animation dependencies
@@ -149,20 +165,7 @@ yarn release:minor
 yarn release:patch
 ```
 
-Deploy the docs:
-
-```sh
-yarn deploy:docs
-```
-
-Update the changelog (requires [github_changelog_generator][15]):
-
-```sh
-github_changelog_generator
-git add CHANGELOG.md
-git commit -m 'docs(changelog): update changelog [ci skip]'
-git push
-```
+Releasing will update the changelog which requires [github_changelog_generator][15].
 
 ## Credit
 
@@ -170,8 +173,8 @@ Originally made for [@TechnologyAdvice][9] by [@levithomason][26].
 
 Big thanks to our [contributors][20], especially:
 
-- @layershifter for bringing momentum and continual support
-- @jcarbo for thoughtful engineering and continual support
+- [@layershifter][27] for essentially taking over during [@levithomason][26]'s unavailability
+- @jcarbo for thoughtful engineering
 - @jamiehill for early engineering and support
 
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
@@ -193,13 +196,16 @@ Big thanks to our [contributors][20], especially:
 [18]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md
 [19]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+RFC+label%3ARFC
 [20]: https://github.com/Semantic-Org/Semantic-UI-React/graphs/contributors
-[21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20contribution
+[21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20issue
 [22]: https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md
 [23]: https://react.semantic-ui.com/usage#css
 [24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
 [25]: http://learnsemantic.com/themes/creating.html
-[26]: https://github.com/Semantic-Org/Semantic-UI-Meteor
 [26]: https://github.com/levithomason
+[27]: https://github.com/layershifter
+[28]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack1
+[29]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack2
+[30]: https://github.com/Semantic-Org/Semantic-UI-Meteor
 
 <!-- Examples -->
 [100]: https://github.com/wyc/semantic-ui-react-todos

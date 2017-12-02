@@ -23,7 +23,7 @@ export interface PopupProps extends PortalProps {
   /** Simple text content for the popover. */
   content?: SemanticShorthandItem<PopupContentProps>;
 
-  /** A Flowing popup have no maximum width and continue to flow to fit its content. */
+  /** A flowing Popup has no maximum width and continues to flow to fit its content. */
   flowing?: boolean;
 
   /** Header displayed above the content in bold. */

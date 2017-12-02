@@ -4,9 +4,11 @@ import * as common from 'test/specs/commonTests'
 
 describe('GridColumn', () => {
   common.isConformant(GridColumn)
-  common.rendersChildren(GridColumn)
+  common.rendersChildren(GridColumn, {
+    rendersContent: false,
+  })
 
-  common.implementsOnlyProp(GridColumn)
+  common.implementsMultipleProp(GridColumn, 'only', SUI.VISIBILITY)
   common.implementsTextAlignProp(GridColumn)
   common.implementsVerticalAlignProp(GridColumn)
 

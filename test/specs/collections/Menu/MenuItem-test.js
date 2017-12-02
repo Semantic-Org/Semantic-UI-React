@@ -1,4 +1,3 @@
-import faker from 'faker'
 import React from 'react'
 
 import MenuItem from 'src/collections/Menu/MenuItem'
@@ -27,15 +26,6 @@ describe('MenuItem', () => {
   it('renders a `div` by default', () => {
     shallow(<MenuItem />)
       .should.have.tagName('div')
-  })
-
-  describe('content', () => {
-    it('renders text', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<MenuItem content={text} />)
-        .should.contain.text(text)
-    })
   })
 
   describe('name', () => {

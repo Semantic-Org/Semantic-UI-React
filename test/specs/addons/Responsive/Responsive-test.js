@@ -6,12 +6,30 @@ import { domEvent, sandbox } from 'test/utils'
 
 describe('Responsive', () => {
   common.isConformant(Responsive)
-  common.rendersChildren(Responsive)
+  common.rendersChildren(Responsive, {
+    rendersContent: false,
+  })
 
   describe('children', () => {
     it('renders by default', () => {
       shallow(<Responsive />)
         .should.be.present()
+    })
+  })
+
+  describe('fireOnMount', () => {
+    it('do not fire onUpdate by default', () => {
+      const onUpdate = sandbox.spy()
+      mount(<Responsive onUpdate={onUpdate} />)
+
+      onUpdate.should.have.not.been.called()
+    })
+
+    it('fires onUpdate after mount when true', () => {
+      const onUpdate = sandbox.spy()
+      mount(<Responsive fireOnMount onUpdate={onUpdate} />)
+
+      onUpdate.should.have.been.calledOnce()
     })
   })
 
@@ -46,7 +64,7 @@ describe('Responsive', () => {
   describe('onUpdate', () => {
     it('listens for resize', (done) => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
-      const wrapper = mount(<Responsive {...Responsive.onlyMobile} />)
+      const wrapper = shallow(<Responsive {...Responsive.onlyMobile} />)
       wrapper.should.be.present()
 
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)

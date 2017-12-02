@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface DimmerDimmableProps {
   [key: string]: any;
@@ -14,6 +15,9 @@ export interface DimmerDimmableProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Controls whether or not the dim is displayed. */
   dimmed?: boolean;

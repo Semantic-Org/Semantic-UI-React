@@ -4,6 +4,7 @@ import React from 'react'
 import Radio from 'src/addons/Radio/Radio'
 import FormField from 'src/collections/Form/FormField'
 import { SUI } from 'src/lib'
+import Button from 'src/elements/Button/Button'
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 
@@ -111,6 +112,23 @@ describe('FormField', () => {
 
       wrapper.should.have.exactly(1).descendants('input')
       input.should.have.prop('required', true)
+    })
+  })
+
+  describe('content', () => {
+    it('is not set by default', () => {
+      const wrapper = shallow(<FormField control={Button} />)
+      const button = wrapper.find('Button')
+
+      wrapper.should.have.exactly(1).descendants('Button')
+      button.should.not.have.prop('content')
+    })
+    it('is passed to the control', () => {
+      const wrapper = shallow(<FormField control={Button} content='Click Me' />)
+      const button = wrapper.find('Button')
+
+      wrapper.should.have.exactly(1).descendants('Button')
+      button.should.have.prop('content', 'Click Me')
     })
   })
 })

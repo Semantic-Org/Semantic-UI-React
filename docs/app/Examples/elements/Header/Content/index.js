@@ -31,7 +31,7 @@ const HeaderContentExamples = () => (
       examplePath='elements/Header/Content/HeaderExampleSubheader'
     />
     <ComponentExample
-      description='You can pass an Subheader content to the Header subheader prop.'
+      description='You can pass any Subheader content to the Header subheader prop.'
       examplePath='elements/Header/Content/HeaderExampleSubheaderProp'
     />
   </ExampleSection>

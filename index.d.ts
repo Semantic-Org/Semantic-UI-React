@@ -10,6 +10,11 @@ export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
 export { default as Ref, RefProps } from './dist/commonjs/addons/Ref';
 export { default as Select, SelectProps } from './dist/commonjs/addons/Select';
 export { default as TextArea, TextAreaProps } from './dist/commonjs/addons/TextArea';
+export {
+  default as TransitionablePortal,
+  TransitionablePortalProps,
+  TransitionablePortalState
+} from './dist/commonjs/addons/TransitionablePortal';
 
 // Behaviors
 export {
@@ -135,7 +140,7 @@ export { default as Checkbox, CheckboxProps } from './dist/commonjs/modules/Chec
 export { default as Dimmer, DimmerProps } from './dist/commonjs/modules/Dimmer';
 export { default as DimmerDimmable, DimmerDimmableProps } from './dist/commonjs/modules/Dimmer/DimmerDimmable';
 
-export { default as Dropdown, DropdownProps } from './dist/commonjs/modules/Dropdown';
+export { default as Dropdown, DropdownProps, DropdownOnSearchChangeData } from './dist/commonjs/modules/Dropdown';
 export { default as DropdownDivider, DropdownDividerProps } from './dist/commonjs/modules/Dropdown/DropdownDivider';
 export { default as DropdownHeader, DropdownHeaderProps } from './dist/commonjs/modules/Dropdown/DropdownHeader';
 export { default as DropdownItem, DropdownItemProps } from './dist/commonjs/modules/Dropdown/DropdownItem';

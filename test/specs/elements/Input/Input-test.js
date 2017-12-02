@@ -51,12 +51,15 @@ describe('Input', () => {
     },
   })
   common.hasUIClassName(Input)
-  common.rendersChildren(Input)
+  common.rendersChildren(Input, {
+    rendersContent: false,
+  })
 
   common.implementsButtonProp(Input, {
     propKey: 'action',
   })
   common.implementsCreateMethod(Input)
+  common.implementsIconProp(Input)
   common.implementsLabelProp(Input, {
     shorthandDefaultProps: { className: 'label' },
   })
@@ -82,7 +85,6 @@ describe('Input', () => {
   common.propKeyOnlyToClassName(Input, 'loading')
   common.propKeyOnlyToClassName(Input, 'loading', { className: 'icon' })
   common.propKeyOnlyToClassName(Input, 'transparent')
-  common.propKeyOnlyToClassName(Input, 'icon')
   common.propKeyOnlyToClassName(Input, 'icon')
 
   common.propValueOnlyToClassName(Input, 'size', SUI.SIZES)

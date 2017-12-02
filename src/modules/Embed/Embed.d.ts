@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { HtmlIframeProps, SemanticShorthandItem } from '../..';
+import { HtmlIframeProps, SemanticShorthandContent, SemanticShorthandItem } from '../..';
 import { IconProps } from '../../elements/Icon';
 
 export interface EmbedProps {
@@ -30,10 +30,13 @@ export interface EmbedProps {
   /** Specifies a default chrome color with Vimeo or YouTube. */
   color?: string;
 
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
   /** Initial value of active. */
   defaultActive?: boolean;
 
-  /** Whether to show networks branded UI like title cards, or after video calls to action. */
+  /** Whether to prefer HD content. */
   hd?: boolean;
 
   /** Specifies an icon to use with placeholder content. */

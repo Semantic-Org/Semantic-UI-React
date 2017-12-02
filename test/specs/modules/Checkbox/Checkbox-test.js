@@ -1,5 +1,7 @@
+import _ from 'lodash'
 import React from 'react'
 
+import { htmlInputAttrs } from 'src/lib'
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
@@ -34,16 +36,36 @@ describe('Checkbox', () => {
     it('can be checked and unchecked', () => {
       const wrapper = shallow(<Checkbox />)
 
-      wrapper.find('input').should.not.be.checked()
-      wrapper.simulate('click').find('input').should.be.checked()
-      wrapper.simulate('click').find('input').should.not.be.checked()
+      wrapper
+        .find('input')
+        .should.not.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.not.be.checked()
     })
     it('can be checked but not unchecked when radio', () => {
       const wrapper = shallow(<Checkbox radio />)
 
-      wrapper.find('input').should.not.be.checked()
-      wrapper.simulate('click').find('input').should.be.checked()
-      wrapper.simulate('click').find('input').should.be.checked()
+      wrapper
+        .find('input')
+        .should.not.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.be.checked()
+
+      wrapper.simulate('click')
+      wrapper
+        .find('input')
+        .should.be.checked()
     })
   })
 
@@ -104,16 +126,53 @@ describe('Checkbox', () => {
 
   describe('disabled', () => {
     it('cannot be checked', () => {
-      shallow(<Checkbox disabled />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox disabled />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.not.be.checked()
     })
     it('cannot be unchecked', () => {
-      shallow(<Checkbox disabled defaultChecked />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox defaultChecked disabled />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.be.checked()
+    })
+  })
+
+  describe('id', () => {
+    it('passes value to the input', () => {
+      shallow(<Checkbox id='foo' />)
+        .find('input')
+        .should.have.prop('id', 'foo')
+    })
+
+    it('adds htmlFor prop to the label', () => {
+      shallow(<Checkbox id='foo' />)
+        .find('label')
+        .should.have.prop('htmlFor', 'foo')
+    })
+
+    it('adds htmlFor prop to the label when it is empty', () => {
+      shallow(<Checkbox id='foo' label={null} />)
+        .find('label')
+        .should.have.prop('htmlFor', 'foo')
+    })
+  })
+
+  describe('input', () => {
+    // Heads up! Input handles some of html props
+    const props = _.without(htmlInputAttrs, 'defaultChecked', 'disabled')
+
+    _.forEach(props, (propName) => {
+      it(`passes "${propName}" to the input`, () => {
+        shallow(<Checkbox {...{ [propName]: 'radio' }} />)
+          .find('input')
+          .should.have.prop(propName)
+      })
     })
   })
 
@@ -204,14 +263,18 @@ describe('Checkbox', () => {
 
   describe('readOnly', () => {
     it('cannot be checked', () => {
-      shallow(<Checkbox readOnly />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox readOnly />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.not.be.checked()
     })
     it('cannot be unchecked', () => {
-      shallow(<Checkbox readOnly defaultChecked />)
-        .simulate('click')
+      const wrapper = shallow(<Checkbox defaultChecked readOnly />)
+
+      wrapper.simulate('click')
+      wrapper
         .find('input')
         .should.be.checked()
     })
