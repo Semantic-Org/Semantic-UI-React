@@ -40,7 +40,7 @@ export default (filename) => {
       // replace prop `description` strings with a parsed doc block object and updated `type`
       _.each(parsed.props, (propDef, propName) => {
         const { description, tags } = parseDocBlock(propDef.description)
-        const { name, value } = parseType(propDef)
+        const { name, value } = parseType(propName, propDef)
 
         parsed.props[propName] = {
           ...propDef,
