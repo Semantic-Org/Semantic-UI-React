@@ -54,8 +54,8 @@ export default (filename) => {
       })
 
       parsed.path = file.path
+        .replace(`${process.cwd()}${path.sep}`, '')
         .replace(new RegExp(_.escapeRegExp(path.sep), 'g'), '/')
-        .replace(`${process.cwd()}/`, '')
       parsed.props = _.sortBy(parsed.props, 'name')
 
       result[componentName] = parsed
