@@ -4,9 +4,10 @@ import React from 'react'
 
 import {
   AutoControlledComponent as Component,
+  createPaginationItems,
   customPropTypes,
+  getUnhandledProps,
   META,
-  paginationFactory,
 } from '../../lib'
 import Menu from '../../collections/Menu'
 import PaginationItem from './PaginationItem'
@@ -16,32 +17,73 @@ import PaginationItem from './PaginationItem'
  */
 export default class Pagination extends Component {
   static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    /** A pagination item can have an aria label. */
+    ariaLabel: PropTypes.string,
 
+    /** Initial activePage value. */
     defaultActivePage: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
 
+    /** Index of the currently active page. */
     activePage: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
 
-    displayRange: PropTypes.oneOfType([
+    /** Number of always visible pages at the beginning and end. */
+    boundaryRange: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
 
-    marginRange: PropTypes.oneOfType([
+    /** A shorthand for PaginationItem. */
+    ellipsisItem: customPropTypes.itemShorthand,
+
+    /** A shorthand for PaginationItem. */
+    firstItem: customPropTypes.itemShorthand,
+
+    /** A shorthand for PaginationItem. */
+    lastItem: customPropTypes.itemShorthand,
+
+    /** A shorthand for PaginationItem. */
+    nextItem: customPropTypes.itemShorthand,
+
+    /** A shorthand for PaginationItem. */
+    pageItem: customPropTypes.itemShorthand,
+
+    /** A shorthand for PaginationItem. */
+    prevItem: customPropTypes.itemShorthand,
+
+    /**
+     * Called on change of an active page.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onPageChange: PropTypes.func,
+
+    /** Boolean flag to show ellipsis. */
+    showEllipsis: PropTypes.bool,
+
+    /** Boolean flag to hide first and last page links. */
+    showFirstAndLast: PropTypes.bool,
+
+    /** Boolean flag to show previous and next page links. */
+    showPreviousAndNext: PropTypes.bool,
+
+    /** Number of always visible pages before and after the current one. */
+    siblingRange: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
 
-    onChange: PropTypes.func,
-
-    totalPages: PropTypes.number.isRequired,
+    /** Total number of pages. */
+    totalPages: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
   }
 
   static autoControlledProps = [
@@ -49,12 +91,30 @@ export default class Pagination extends Component {
   ]
 
   static defaultProps = {
-    displayRange: 2,
-    // firstItem: '«',
-    // lastItem: '»',
-    marginRange: 2,
-    // nextItem: '⟩',
-    // prevItem: '⟨',
+    ariaLabel: 'Pagination Navigation',
+    boundaryRange: 1,
+    ellipsisItem: '...',
+    firstItem: {
+      ariaLabel: 'First item',
+      content: '«',
+    },
+    lastItem: {
+      ariaLabel: 'Last item',
+      content: '»',
+    },
+    nextItem: {
+      ariaLabel: 'Next item',
+      content: '⟩',
+    },
+    pageItem: null,
+    prevItem: {
+      ariaLabel: 'Previous item',
+      content: '⟨',
+    },
+    showEllipsis: true,
+    showFirstAndLast: false,
+    showPreviousAndNext: true,
+    siblingRange: 1,
   }
 
   static _meta = {
@@ -62,111 +122,54 @@ export default class Pagination extends Component {
     type: META.TYPES.ADDON,
   }
 
-  // ----------------------------------------
-  // Helpers
-  // ----------------------------------------
+  static Item = PaginationItem
 
-  computeNextActivePage = (nextPage) => {
-    const { pageCount } = this.props
-    const { activePage } = this.state
-
-    if (nextPage === 'first') return 1
-    if (nextPage === 'last') return pageCount
-
-    if (nextPage === 'prev') return activePage - 1
-    if (nextPage === 'next') return activePage + 1
-
-    return nextPage
+  handleItemClick = (e, { value }) => {
+    this.trySetState({ activePage: value })
+    _.invoke(this.props, 'onPageChange', e, { ...this.props, activePage: value })
   }
 
-  computeTabIndex = (pageName) => {
-    const { pageCount } = this.props
-
-    if (pageName === 'first') return 0
-    if (pageName === 'prev') return 1
-
-    if (pageName === 'next') return pageCount + 1
-    if (pageName === 'last') return pageCount + 2
-
-    return pageName
-  }
-
-  // ----------------------------------------
-  // Event handlers
-  // ----------------------------------------
-
-  handleItemClick = (e, { name }) => {
-    const nextActivePage = this.computeNextActivePage(name)
-
-    this.trySetState({ activePage: nextActivePage })
-    _.invoke(this.props, 'onChange', e, { ...this.props, activePage: nextActivePage })
-  }
-
-  handleItemLeft = (e) => {
-    const nextActivePage = this.computeNextActivePage('prev')
-
-    this.trySetState({ activePage: nextActivePage })
-    _.invoke(this.props, 'onChange', e, { ...this.props, activePage: nextActivePage })
-  }
-
-  handleItemRight = (e) => {
-    const nextActivePage = this.computeNextActivePage('next')
-
-    this.trySetState({ activePage: nextActivePage })
-    _.invoke(this.props, 'onChange', e, { ...this.props, activePage: nextActivePage })
-  }
-
-  // ----------------------------------------
-  // Overrides
-  // ----------------------------------------
-
-  handleItemOverrides = pageName => (predefinedProps) => {
-    const { activePage } = this.state
-
-    return {
-      active: activePage === pageName,
-      key: pageName,
-      name: pageName,
-      onClick: (e, itemProps) => {
-        _.invoke(predefinedProps, 'onClick', e, itemProps)
-        this.handleItemClick(e, itemProps)
-      },
-      onLeftKeyDown: this.handleItemLeft,
-      onRightKeyDown: this.handleItemRight,
-      tabIndex: this.computeTabIndex(pageName),
-    }
-  }
-
-  // ----------------------------------------
-  // Render
-  // ----------------------------------------
+  handleItemOverrides = (active, type, value) => predefinedProps => ({
+    active,
+    type,
+    key: `${type}-${value}`,
+    onClick: (e, itemProps) => {
+      _.invoke(predefinedProps, 'onClick', e, itemProps)
+      this.handleItemClick(e, itemProps)
+    },
+  })
 
   render() {
-    const { displayRange, firstItem, lastItem, navItem, nextItem, pageCount, prevItem, totalPages } = this.props
-    const items = paginationFactory({
-      current: activePage,
-      total: totalPages,
-    })
-
-    const { marginRange } = this.props
+    const {
+      ariaLabel,
+      boundaryRange,
+      showEllipsis,
+      showFirstAndLast,
+      showPreviousAndNext,
+      siblingRange,
+      totalPages,
+    } = this.props
     const { activePage } = this.state
 
-    // console.log(computePrevRange(activePage, displayRange, marginRange))
+    const items = createPaginationItems({
+      activePage,
+      boundaryRange,
+      showEllipsis,
+      showFirstAndLast,
+      showPreviousAndNext,
+      siblingRange,
+      totalPages,
+    })
+    const rest = getUnhandledProps(Pagination, this.props)
 
     return (
-      <Menu aria-label='Pagination Navigation' pagination role='navigation'>
-        {PaginationItem.create(firstItem, { overrideProps: this.handleItemOverrides('first') })}
-        {PaginationItem.create(prevItem, { overrideProps: this.handleItemOverrides('prev') })}
-
-        {_.map(items, index => PaginationItem.create(navItem || '', {
-          defaultProps: {
-            content: index,
+      <Menu {...rest} aria-label={ariaLabel} pagination role='navigation'>
+        {_.map(items, ({ active, type, value }) => PaginationItem.create(
+          this.props[type] || value, {
+            defaultProps: { value },
+            overrideProps: this.handleItemOverrides(active, type, value),
           },
-          overrideProps: this.handleItemOverrides(index),
-        }))}
-
-        {PaginationItem.create(nextItem, { overrideProps: this.handleItemOverrides('next') })}
-        {PaginationItem.create(lastItem, { overrideProps: this.handleItemOverrides('last') })}
+        ))}
       </Menu>
     )
   }

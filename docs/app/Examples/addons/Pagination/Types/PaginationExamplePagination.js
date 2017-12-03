@@ -2,7 +2,7 @@ import React from 'react'
 import { Pagination } from 'semantic-ui-react'
 
 const PaginationExamplePagination = () => (
-  <Pagination defaultActivePage={5} pageCount={10} />
+  <Pagination defaultActivePage={5} totalPages={10} />
 )
 
 export default PaginationExamplePagination

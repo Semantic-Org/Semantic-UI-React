@@ -1,13 +1,15 @@
 // Addons
+export { default as Confirm, ConfirmProps } from './dist/commonjs/addons/Confirm';
+export { default as Pagination, PaginationProps } from './dist/commonjs/addons/Pagination';
+export { default as PaginationItem, PaginationItemProps } from './dist/commonjs/addons/Pagination/PaginationItem';
+export { default as Portal, PortalProps } from './dist/commonjs/addons/Portal';
+export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
+export { default as Ref, RefProps } from './dist/commonjs/addons/Ref';
 export {
   default as Responsive,
   ResponsiveProps,
   ResponsiveWidthShorthand
 } from './dist/commonjs/addons/Responsive';
-export { default as Confirm, ConfirmProps } from './dist/commonjs/addons/Confirm';
-export { default as Portal, PortalProps } from './dist/commonjs/addons/Portal';
-export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
-export { default as Ref, RefProps } from './dist/commonjs/addons/Ref';
 export { default as Select, SelectProps } from './dist/commonjs/addons/Select';
 export { default as TextArea, TextAreaProps } from './dist/commonjs/addons/TextArea';
 export {

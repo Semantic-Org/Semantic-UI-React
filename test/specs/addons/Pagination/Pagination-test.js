@@ -1,63 +1,38 @@
 import React from 'react'
 
-import Pagination, { computeR } from 'src/addons/Pagination/Pagination'
+import Pagination from 'src/addons/Pagination/Pagination'
+import PaginationItem from 'src/addons/Pagination/PaginationItem'
+import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('Pagination', () => {
-  describe('computePrevRange', () => {
-    it('1', () => {
-      const range = computeR(10, 2, 2, 20)
-      console.log(range)
-      // 1 2 null 8 9 10 11 12 null
-      // range.should.have.lengthOf(2)
-      range.should.deep.equal([1, 2, null, 8, 9, 10, 11, 12, null, 19, 20])
-    })
+  common.isConformant(Pagination, { requiredProps: {
+    totalPages: 0,
+  } })
+  common.hasSubComponents(Pagination, [PaginationItem])
 
-    it('2', () => {
-      const range = computeR(1, 2, 2, 20)
-      console.log(range)
+  describe('onPageChange', () => {
+    it('is called with (e, data) when clicked on a pagination item', () => {
+      const event = { target: null }
+      const onPageChange = sandbox.spy()
+      const onPageItemClick = sandbox.spy()
 
-      // range.should.have.lengthOf(2)
-      range.should.deep.equal([1, 2, 3, 4, 5, 6, 7, null, 19, 20])
-    })
+      mount(
+        <Pagination
+          activePage={1}
+          onPageChange={onPageChange}
+          pageItem={{ onClick: onPageItemClick }}
+          totalPages={3}
+        />,
+      )
+        .find('PaginationItem')
+        .at(3)
+        .simulate('click', event)
 
-    it('3', () => {
-      const range = computeR(3, 2, 2, 20)
-      console.log(range)
-
-      // range.should.have.lengthOf(2)
-      range.should.deep.equal([1, 2, 3, 4, 5, 6, 7, null, 19, 20])
-    })
-
-    it('4', () => {
-      const range = computeR(4, 2, 2, 20)
-      console.log(range)
-
-      // range.should.have.lengthOf(2)
-      range.should.deep.equal([1, 2, 3, 4, 5, 6, 7, null, 19, 20])
-    })
-
-    it('5', () => {
-      const range = computeR(5, 2, 2, 20)
-      console.log(range)
-
-      // range.should.have.lengthOf(2)
-      range.should.deep.equal([1, null, 3, 4, 5, 6, 7, null, 19, 20])
-    })
-
-    it('6', () => {
-      const range = computeR(6, 2, 2, 20)
-      console.log(range)
-
-      // range.should.have.lengthOf(2)
-      range.should.deep.equal([1, 2, null, 4, 5, 6, 7, 8, null, 19, 20])
-    })
-
-    it('20', () => {
-      const range = computeR(20, 2, 2, 20)
-      console.log(range)
-
-      // range.should.have.lengthOf(2)
-      range.should.deep.equal([1, 2, null, 16, 17, 18, 19, 20])
+      onPageChange.should.have.been.calledOnce()
+      onPageChange.should.have.been.calledWithMatch(event, { activePage: 3 })
+      onPageItemClick.should.have.been.calledOnce()
+      onPageItemClick.should.have.been.calledWithMatch(event, { value: 3 })
     })
   })
 })

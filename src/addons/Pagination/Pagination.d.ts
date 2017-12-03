@@ -1,13 +1,67 @@
 import * as React from 'react';
 
+import { SemanticShorthandItem } from '../..';
+import { default as PaginationItem, PaginationItemProps } from './PaginationItem';
+
 export interface PaginationProps {
   [key: string]: any;
 
-  /** An element type to render as (string or function). */
-  as?: any;
+  /** A pagination item can have an aria label. */
+  ariaLabel?: string;
+
+  /** Initial activePage value. */
+  defaultActivePage?: number | string;
+
+  /** Index of the currently active page. */
+  activePage?: number | string;
+
+  /** Number of always visible pages at the beginning and end. */
+  boundaryRange?: number | string;
+
+  /** A shorthand for PaginationItem. */
+  ellipsisItem?: SemanticShorthandItem<PaginationItemProps>;
+
+  /** A shorthand for PaginationItem. */
+  firstItem?: SemanticShorthandItem<PaginationItemProps>;
+
+  /** A shorthand for PaginationItem. */
+  lastItem?: SemanticShorthandItem<PaginationItemProps>;
+
+  /** A shorthand for PaginationItem. */
+  nextItem?: SemanticShorthandItem<PaginationItemProps>;
+
+  /** A shorthand for PaginationItem. */
+  pageItem?: SemanticShorthandItem<PaginationItemProps>;
+
+  /** A shorthand for PaginationItem. */
+  prevItem?: SemanticShorthandItem<PaginationItemProps>;
+
+  /**
+   * Called on change of an active page.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onPageChange?: (event: React.MouseEvent<HTMLAnchorElement>, data: PaginationProps) => void;
+
+  /** Boolean flag to show ellipsis. */
+  showEllipsis?: boolean;
+
+  /** Boolean flag to hide first and last page links. */
+  showFirstAndLast?: boolean;
+
+  /** Boolean flag to show previous and next page links. */
+  showPreviousAndNext?: boolean;
+
+  /** Number of always visible pages before and after the current one. */
+  siblingRange?: number | string;
+
+  /** Total number of pages. */
+  totalPages: number | string;
 }
 
 declare class Pagination extends React.Component<PaginationProps, {}> {
+  static Item: typeof PaginationItem;
 }
 
 export default Pagination;
