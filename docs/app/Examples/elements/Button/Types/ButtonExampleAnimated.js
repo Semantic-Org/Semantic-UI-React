@@ -9,14 +9,12 @@ const ButtonExampleAnimated = () => (
         <Icon name='right arrow' />
       </Button.Content>
     </Button>
-
     <Button animated='vertical'>
       <Button.Content hidden>Shop</Button.Content>
       <Button.Content visible>
         <Icon name='shop' />
       </Button.Content>
     </Button>
-
     <Button animated='fade'>
       <Button.Content visible>
         Sign-up for a Pro account
