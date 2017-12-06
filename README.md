@@ -65,6 +65,7 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - https://appfollow.io
 - http://according.to.localsourc.es
 - http://www.aircip.ir
+- https://www.bailfacile.fr
 - http://platform.nazarbazaar.ir
 - https://build.games
 - https://platform.forecastcycles.com
