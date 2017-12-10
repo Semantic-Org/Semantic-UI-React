@@ -104,7 +104,7 @@ ButtonGroup.propTypes = {
   /** Groups can be less pronounced. */
   basic: PropTypes.bool,
 
-  /** Shorthand array of props for Button. */
+  /** Array of shorthand values Buttons. */
   buttons: customPropTypes.collectionShorthand,
 
   /** Primary content. */
