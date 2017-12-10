@@ -1,3 +1,5 @@
+import React from 'react'
+
 import ButtonGroup from 'src/elements/Button/ButtonGroup'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
@@ -24,8 +26,6 @@ describe('ButtonGroup', () => {
   common.propKeyOnlyToClassName(ButtonGroup, 'negative')
   common.propKeyOnlyToClassName(ButtonGroup, 'positive')
   common.propKeyOnlyToClassName(ButtonGroup, 'primary')
-  common.propKeyOnlyToClassName(ButtonGroup, 'primary')
-  common.propKeyOnlyToClassName(ButtonGroup, 'secondary')
   common.propKeyOnlyToClassName(ButtonGroup, 'secondary')
   common.propKeyOnlyToClassName(ButtonGroup, 'toggle')
   common.propKeyOnlyToClassName(ButtonGroup, 'vertical')
@@ -34,4 +34,15 @@ describe('ButtonGroup', () => {
 
   common.propValueOnlyToClassName(ButtonGroup, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(ButtonGroup, 'size', SUI.SIZES)
+
+  describe('buttons', () => {
+    it('renders shorthand collection', () => {
+      const wrapper = shallow(<ButtonGroup buttons={['one', 'two']} />)
+      const buttons = wrapper.children()
+
+      wrapper.should.have.exactly(2).descendants('Button')
+      buttons.at(0).should.have.prop('content', 'one')
+      buttons.at(1).should.have.prop('content', 'two')
+    })
+  })
 })

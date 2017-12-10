@@ -1,11 +1,14 @@
 import * as React from 'react';
+
 import {
   SemanticCOLORS,
   SemanticFLOATS,
   SemanticShorthandContent,
+  SemanticShorthandCollection,
   SemanticSIZES,
   SemanticWIDTHS
 } from '../..';
+import { ButtonProps } from './Button';
 
 export interface ButtonGroupProps {
   [key: string]: any;
@@ -18,6 +21,9 @@ export interface ButtonGroupProps {
 
   /** Groups can be less pronounced. */
   basic?: boolean;
+
+  /** Array of shorthand Button values. */
+  buttons?: SemanticShorthandCollection<ButtonProps>;
 
   /** Primary content. */
   children?: React.ReactNode;
