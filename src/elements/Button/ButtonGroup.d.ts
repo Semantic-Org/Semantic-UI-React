@@ -22,7 +22,7 @@ export interface ButtonGroupProps {
   /** Groups can be less pronounced. */
   basic?: boolean;
 
-  /** Shorthand array of props for Button. */
+  /** Array of shorthand Button values. */
   buttons?: SemanticShorthandCollection<ButtonProps>;
 
   /** Primary content. */
