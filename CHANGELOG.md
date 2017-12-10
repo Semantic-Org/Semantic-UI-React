@@ -1,5 +1,35 @@
 # Change Log
 
+## [v0.77.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.77.1) (2017-12-10)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.77.0...v0.77.1)
+
+**Implemented enhancements:**
+
+- RFC: Button.Group shorthand to render an array of buttons with a 'buttons' prop [\#2310](https://github.com/Semantic-Org/Semantic-UI-React/issues/2310)
+- feat\(Button\): add `buttons` shorthand to ButtonGroup [\#2361](https://github.com/Semantic-Org/Semantic-UI-React/pull/2361) ([layershifter](https://github.com/layershifter))
+- feat\(Image\): improve handling of HTML props [\#2316](https://github.com/Semantic-Org/Semantic-UI-React/pull/2316) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- Transition: Not working properly when 'show' duration is less than 'hide' [\#2347](https://github.com/Semantic-Org/Semantic-UI-React/issues/2347)
+
+**Closed issues:**
+
+- RFC: Be able to define fallback order for Popup position [\#2359](https://github.com/Semantic-Org/Semantic-UI-React/issues/2359)
+- Two Sidebars [\#2354](https://github.com/Semantic-Org/Semantic-UI-React/issues/2354)
+- fix\(Dropdown\): Dropdown with an Input \(text\) Item closed when clicked [\#2353](https://github.com/Semantic-Org/Semantic-UI-React/issues/2353)
+- Controlled Popup doesn't handle hideOnScroll [\#2346](https://github.com/Semantic-Org/Semantic-UI-React/issues/2346)
+- fix\(TransitionablePortal\): your description [\#2342](https://github.com/Semantic-Org/Semantic-UI-React/issues/2342)
+
+**Merged pull requests:**
+
+- docs\(Step\): fix display of an icon in StepExampleEvenlyDivided [\#2365](https://github.com/Semantic-Org/Semantic-UI-React/pull/2365) ([jeroenvervaeke](https://github.com/jeroenvervaeke))
+- docs\(README.md\): add bailfacile.fr to list of websites using Semantic UI React [\#2357](https://github.com/Semantic-Org/Semantic-UI-React/pull/2357) ([potioventures](https://github.com/potioventures))
+- docs\(README.md\): add re.yomeshgupta.com to the build with list [\#2351](https://github.com/Semantic-Org/Semantic-UI-React/pull/2351) ([yomeshgupta](https://github.com/yomeshgupta))
+- fix\(Transition\): fix of the choice of duration [\#2350](https://github.com/Semantic-Org/Semantic-UI-React/pull/2350) ([layershifter](https://github.com/layershifter))
+- chore\(docgen|menugen\): fix problems with paths on Windows [\#2349](https://github.com/Semantic-Org/Semantic-UI-React/pull/2349) ([layershifter](https://github.com/layershifter))
+- chore\(docgen\): add a friendly exception [\#2348](https://github.com/Semantic-Org/Semantic-UI-React/pull/2348) ([layershifter](https://github.com/layershifter))
+
 ## [v0.77.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.77.0) (2017-11-25)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.76.0...v0.77.0)
 
@@ -506,7 +536,6 @@
 - website is down? [\#1854](https://github.com/Semantic-Org/Semantic-UI-React/issues/1854)
 - SUI: release 2.2.11 [\#1851](https://github.com/Semantic-Org/Semantic-UI-React/issues/1851)
 - Search: examples broken [\#1846](https://github.com/Semantic-Org/Semantic-UI-React/issues/1846)
-- RFC: New types for typings [\#1289](https://github.com/Semantic-Org/Semantic-UI-React/issues/1289)
 
 **Merged pull requests:**
 
@@ -1017,7 +1046,6 @@
 - style\(Accordion\): update typings [\#1333](https://github.com/Semantic-Org/Semantic-UI-React/pull/1333) ([layershifter](https://github.com/layershifter))
 - style\(Search\): update typings [\#1332](https://github.com/Semantic-Org/Semantic-UI-React/pull/1332) ([layershifter](https://github.com/layershifter))
 - style\(Form\): update typings and propTypes usage [\#1320](https://github.com/Semantic-Org/Semantic-UI-React/pull/1320) ([layershifter](https://github.com/layershifter))
-- feat\(Accordion\): support panel's title as custom element \#1144 [\#1281](https://github.com/Semantic-Org/Semantic-UI-React/pull/1281) ([rkostrzewski](https://github.com/rkostrzewski))
 
 ## [v0.65.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.65.0) (2017-02-17)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.8...v0.65.0)
@@ -1054,25 +1082,12 @@
 ## [v0.64.8](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.8) (2017-02-11)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.7...v0.64.8)
 
-**Implemented enhancements:**
-
-- feat\(Confirm\): use shorthands for content and buttons definition [\#1290](https://github.com/Semantic-Org/Semantic-UI-React/issues/1290)
-- style\(Confirm\): refactor, update typings and propTypes usage [\#1282](https://github.com/Semantic-Org/Semantic-UI-React/pull/1282) ([layershifter](https://github.com/layershifter))
-
-**Fixed bugs:**
-
-- bug\(Dropdown\): Arrow keys are not working after `No results found.` [\#1275](https://github.com/Semantic-Org/Semantic-UI-React/issues/1275)
-
 **Closed issues:**
 
 - Feature Request: AllowAdditions in dropdown to retain text on focus [\#1305](https://github.com/Semantic-Org/Semantic-UI-React/issues/1305)
 - Programatically set value for Dropdown? [\#1302](https://github.com/Semantic-Org/Semantic-UI-React/issues/1302)
 - Dropping Component on runtime  [\#1295](https://github.com/Semantic-Org/Semantic-UI-React/issues/1295)
 - fix\(Label\): Label not appearing as it is shown in the example [\#1291](https://github.com/Semantic-Org/Semantic-UI-React/issues/1291)
-- fix\(Form\): your description [\#1288](https://github.com/Semantic-Org/Semantic-UI-React/issues/1288)
-- Menu onClick reloads page with react-router [\#1286](https://github.com/Semantic-Org/Semantic-UI-React/issues/1286)
-- Dropdown performance [\#1278](https://github.com/Semantic-Org/Semantic-UI-React/issues/1278)
-- label is not changing style if field is inline [\#1277](https://github.com/Semantic-Org/Semantic-UI-React/issues/1277)
 
 **Merged pull requests:**
 
@@ -1082,37 +1097,12 @@
 - style\(Sidebar\): update typings and propTypes usage [\#1296](https://github.com/Semantic-Org/Semantic-UI-React/pull/1296) ([layershifter](https://github.com/layershifter))
 - style\(Item\): update typings and propTypes usage [\#1294](https://github.com/Semantic-Org/Semantic-UI-React/pull/1294) ([layershifter](https://github.com/layershifter))
 - style\(Comment\): update typings and propTypes usage [\#1293](https://github.com/Semantic-Org/Semantic-UI-React/pull/1293) ([layershifter](https://github.com/layershifter))
-- style\(Feed\): update typings and propTypes usage [\#1285](https://github.com/Semantic-Org/Semantic-UI-React/pull/1285) ([layershifter](https://github.com/layershifter))
-- style\(Card\): update typings and propTypes usage [\#1284](https://github.com/Semantic-Org/Semantic-UI-React/pull/1284) ([layershifter](https://github.com/layershifter))
-- chore\(coverage\): remove docs from coverage reports [\#1283](https://github.com/Semantic-Org/Semantic-UI-React/pull/1283) ([layershifter](https://github.com/layershifter))
-- fix\(Dropdown\): fix arrow keys after no results [\#1279](https://github.com/Semantic-Org/Semantic-UI-React/pull/1279) ([levithomason](https://github.com/levithomason))
 
 ## [v0.64.7](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.7) (2017-02-02)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.6...v0.64.7)
 
 ## [v0.64.6](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.6) (2017-02-02)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.5...v0.64.6)
-
-**Fixed bugs:**
-
-- fix\(Portal\): focus is stolen when clicking away to close [\#1271](https://github.com/Semantic-Org/Semantic-UI-React/issues/1271)
-- bug\(Menu\): incorrect inheritance in MenuItemProps typings [\#1262](https://github.com/Semantic-Org/Semantic-UI-React/issues/1262)
-
-**Closed issues:**
-
-- Dropdown laggy if there are more than 1000 elements [\#1268](https://github.com/Semantic-Org/Semantic-UI-React/issues/1268)
-
-**Merged pull requests:**
-
-- fix\(Modal\): add missing typings [\#1274](https://github.com/Semantic-Org/Semantic-UI-React/pull/1274) ([levithomason](https://github.com/levithomason))
-- fix\(Portal\): fix several event related behaviors [\#1273](https://github.com/Semantic-Org/Semantic-UI-React/pull/1273) ([levithomason](https://github.com/levithomason))
-- style\(List\): update typings and remove propTypes [\#1270](https://github.com/Semantic-Org/Semantic-UI-React/pull/1270) ([layershifter](https://github.com/layershifter))
-- style\(Progress\): refactor, update typings and remove propTypes [\#1269](https://github.com/Semantic-Org/Semantic-UI-React/pull/1269) ([layershifter](https://github.com/layershifter))
-- fix\(Portal\): evaulate mountNode at runtime in Portal component [\#1267](https://github.com/Semantic-Org/Semantic-UI-React/pull/1267) ([SirWaddles](https://github.com/SirWaddles))
-- feat\(docs\): restore enum expansion on docs page [\#1266](https://github.com/Semantic-Org/Semantic-UI-React/pull/1266) ([fracmak](https://github.com/fracmak))
-- style\(Label\): update typings and remove propTypes [\#1265](https://github.com/Semantic-Org/Semantic-UI-React/pull/1265) ([layershifter](https://github.com/layershifter))
-- style\(Menu\): update typings and remove propTypes [\#1264](https://github.com/Semantic-Org/Semantic-UI-React/pull/1264) ([layershifter](https://github.com/layershifter))
-- fix\(docs\): fix checkbox inputType docs to use correct props [\#1263](https://github.com/Semantic-Org/Semantic-UI-React/pull/1263) ([fracmak](https://github.com/fracmak))
 
 ## [v0.64.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.5) (2017-01-31)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.4...v0.64.5)
