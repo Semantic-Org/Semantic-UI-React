@@ -1095,6 +1095,7 @@ export default class Dropdown extends Component {
     if (search && this.searchRef) this.searchRef.focus()
     if (onOpen) onOpen(e, this.props)
 
+    this.setSelectedIndex()
     this.trySetState({ open: true })
     this.scrollSelectedItemIntoView()
   }
