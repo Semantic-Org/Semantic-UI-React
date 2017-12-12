@@ -479,6 +479,11 @@ export default class Dropdown extends Component {
       ])
     }
 
+    // Search Query Change
+    if (prevState.searchQuery !== this.state.searchQuery) {
+      this.scrollSelectedItemIntoView()
+    }
+
     // opened / closed
     if (!prevState.open && this.state.open) {
       debug('dropdown opened')
