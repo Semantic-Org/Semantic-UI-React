@@ -1097,7 +1097,6 @@ export default class Dropdown extends Component {
 
     this.setSelectedIndex()
     this.trySetState({ open: true })
-    this.scrollSelectedItemIntoView()
   }
 
   close = (e) => {
