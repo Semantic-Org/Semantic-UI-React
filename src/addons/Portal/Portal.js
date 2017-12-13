@@ -147,6 +147,18 @@ class Portal extends Component {
     this.renderPortal()
   }
 
+  componentWillReceiveProps(nextProps) {
+    super.componentWillReceiveProps(nextProps)
+    if (nextProps.open !== this.props.open) {
+      if (nextProps.open && nextProps.onOpen) {
+        nextProps.onOpen(null, nextProps)
+      }
+      if (!nextProps.open && nextProps.onClose) {
+        nextProps.onClose(null, nextProps)
+      }
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     debug('componentDidUpdate()')
     // NOTE: Ideally the portal rendering would happen in the render() function
