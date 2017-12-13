@@ -85,6 +85,14 @@ describe('Portal', () => {
       document.body.lastElementChild.should.equal(instance.rootNode)
       document.body.childElementCount.should.equal(1)
     })
+    it('calls onOpen when toggled from false to true', () => {
+      const spy = sandbox.spy()
+      wrapperMount(<Portal open={false} onOpen={spy}><p /></Portal>)
+
+      // Enzyme docs say it merges previous props but without children, react complains
+      wrapper.setProps({ open: true, children: <p /> })
+      spy.should.have.been.called()
+    })
 
     it('closes the portal when toggled from true to false ', () => {
       wrapperMount(<Portal open><p /></Portal>)
@@ -95,6 +103,15 @@ describe('Portal', () => {
 
       wrapper.setProps({ open: false, children: <p /> })
       document.body.childElementCount.should.equal(0)
+    })
+
+    it('calls onClose when toggled from true to false', () => {
+      const spy = sandbox.spy()
+      wrapperMount(<Portal open onClose={spy}><p /></Portal>)
+
+      // Enzyme docs say it merges previous props but without children, react complains
+      wrapper.setProps({ open: false, children: <p /> })
+      spy.should.have.been.called()
     })
   })
 
