@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
+  doesNodeContainClick,
   eventStack,
   isBrowser,
   keyboardKey,
@@ -180,11 +181,11 @@ class Portal extends Component {
     if (
       !this.rootNode                                      // not mounted
       || !this.portalNode                                 // no portal
-      || _.invoke(this, 'triggerNode.contains', e.target) // event happened in trigger (delegate to trigger handlers)
-      || _.invoke(this, 'portalNode.contains', e.target)  // event happened in the portal
+      || doesNodeContainClick(this.triggerNode, e)        // event happened in trigger (delegate to trigger handlers)
+      || doesNodeContainClick(this.portalNode, e)         // event happened in the portal
     ) return                                              // ignore the click
 
-    const didClickInRootNode = this.rootNode.contains(e.target)
+    const didClickInRootNode = doesNodeContainClick(this.rootNode, e)
 
     if ((closeOnDocumentClick && !didClickInRootNode) || (closeOnRootNodeClick && didClickInRootNode)) {
       debug('handleDocumentClick()')

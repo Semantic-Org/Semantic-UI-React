@@ -6,6 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
+  doesNodeContainClick,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -91,7 +92,7 @@ export default class Dimmer extends Component {
     const { onClick, onClickOutside } = this.props
 
     if (onClick) onClick(e, this.props)
-    if (this.centerRef && (this.centerRef !== e.target && this.centerRef.contains(e.target))) return
+    if (this.centerRef && (this.centerRef !== e.target && doesNodeContainClick(this.centerRef, e))) return
     if (onClickOutside) onClickOutside(e, this.props)
   }
 
