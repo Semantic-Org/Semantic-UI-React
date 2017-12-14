@@ -150,13 +150,13 @@ class Progress extends Component {
     } = this.props
 
     if (!progress && _.isUndefined(precision)) return
-    
+
     let text
-    
-    if(progress === 'value') text = value
-    else if(progress === 'percent') text = `${percent}%`
-    else if(progress === 'ratio') text = `${value}/${total}`
-    
+
+    if (progress === 'value') text = value
+    else if (progress === 'percent') text = `${percent}%`
+    else if (progress === 'ratio') text = `${value}/${total}`
+
     return (
       <div className='progress'>
         { text }
