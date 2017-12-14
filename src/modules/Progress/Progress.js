@@ -74,7 +74,7 @@ class Progress extends Component {
     /** A progress bar can contain a text value indicating current progress. */
     progress: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(['percent', 'ratio']),
+      PropTypes.oneOf(['percent', 'ratio', 'value']),
     ]),
 
     /** A progress bar can vary in size. */
@@ -150,9 +150,16 @@ class Progress extends Component {
     } = this.props
 
     if (!progress && _.isUndefined(precision)) return
+    
+    let text
+    
+    if(progress === 'value') text = value
+    else if(progress === 'percent') text = `${percent}%`
+    else if(progress === 'ratio') text = `${value}/${total}`
+    
     return (
       <div className='progress'>
-        { progress !== 'ratio' ? `${percent}%` : `${value}/${total}` }
+        { text }
       </div>
     )
   }
