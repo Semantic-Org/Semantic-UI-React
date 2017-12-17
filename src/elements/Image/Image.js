@@ -31,7 +31,6 @@ const imageProps = ['alt', 'height', 'src', 'srcSet', 'width']
 const InnerImage = (props) => {
   const {
     as,
-    alt,
     avatar,
     bordered,
     centered,
@@ -51,7 +50,6 @@ const InnerImage = (props) => {
     size,
     spaced,
     verticalAlign,
-    wrapped,
     ui,
   } = props
 
@@ -83,9 +81,9 @@ const InnerImage = (props) => {
     return <ElementType {...rest} as={as} className={classes}>{content}</ElementType>
   }
 
-  if (as === 'img') return <ElementType {...rootProps} {...imgTagProps} className={classes} />
+  if (as === 'img') return <ElementType {...rootProps} {...imgTagProps} as={as} className={classes} />
   return (
-    <ElementType {...rootProps} className={classes} href={href}>
+    <ElementType {...rootProps} as={as} className={classes} href={href}>
       {Dimmer.create(dimmer)}
       {Label.create(label)}
       <img {...imgTagProps} />

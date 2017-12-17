@@ -69,6 +69,7 @@ describe('Image', () => {
 
       it(`passes "${propName}" to the img tag when wrapped`, () => {
         shallow(<Image wrapped {...{ [propName]: 'foo' }} />)
+          .dive()
           .find('img')
           .should.have.prop(propName, 'foo')
       })
@@ -98,6 +99,8 @@ describe('Image', () => {
   describe('wrapped', () => {
     it('renders an div tag when true', () => {
       shallow(<Image wrapped />)
+        .dive()
+        .dive()
         .type()
         .should.equal('div')
     })
