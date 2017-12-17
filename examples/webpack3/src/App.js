@@ -61,7 +61,7 @@ const App = () => (
 
           <Header as='h4'>LESS loader</Header>
           <p>
-            Semantic UI is powered by LESS, so we need it to enable its powerfull theming. We also
+            Semantic UI is powered by LESS, so we need it to enable its powerful theming. We also
             enabled {' '}
             <a href='https://github.com/css-modules/css-modules' rel='noopener noreferrer' target='_blank'>
               CSS modules
@@ -71,7 +71,7 @@ const App = () => (
 
           <Header as='h4'>Bundle analyzer and direct imports</Header>
           <p>
-            Semantic UI React is very powerfull, but in most cases you do not need all its modules. In fact, unused
+            Semantic UI React is very powerful, but in most cases you do not need all its modules. In fact, unused
             modules should be removed by{' '}
             <a href='https://webpack.js.org/guides/tree-shaking/' rel='noopener noreferrer' target='_blank'>
               Tree Shaking
@@ -93,7 +93,7 @@ const App = () => (
           <Header as='h3'>Themed <code>Button</code></Header>
           <p>
             Semantic UI React does not have own theming and fully relies on CSS part of Semantic UI. It is normal,
-            Semantic UI theming is very powerfull, it allows you fully modify the look of your app using theming
+            Semantic UI theming is very powerful, it allows you fully modify the look of your app using theming
             variables.
           </p>
           <p>

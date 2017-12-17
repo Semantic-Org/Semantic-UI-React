@@ -15,7 +15,7 @@ const LayoutsExample = () => (
       <Header as='h2' content='Preface' dividing />
       <p>
         Semantic UI React does not have own styling system and fully relies on the theming of Semantic UI. It's really
-        powerfull, you don't need to know LESS or CSS you can simply update values of variables or use styles from
+        powerful, you don't need to know LESS or CSS you can simply update values of variables or use styles from
         predefined themes.
       </p>
       <p>
@@ -38,7 +38,7 @@ const LayoutsExample = () => (
 
       <Header as='h2' content='Quick start' dividing />
       <p>
-        Semantic UI offers own build system that uses Gulp and produces prepared CSS files. It makes sence to use it
+        Semantic UI offers its own build system that uses Gulp and produces prepared CSS files. It makes sense to use it
         with Create React App as it does not support LESS loader.
       </p>
       <p>
@@ -63,8 +63,8 @@ const LayoutsExample = () => (
 
       <Header as='h2' content='Boilerplate' dividing />
       <p>
-        If you are looking a boilerplate, we prepared it. It powered by latest Webpack and includes the all required
-        things for quick start like preconfigured theming and hot module reload.
+        The boilerplate we prepared is powered by the latest Webpack and includes the all required things for quick
+        start like preconfigured theming and hot module reload.
       </p>
       <p>
         The boilerplate is optimized for usage with Semantic UI React and Semantic UI LESS, it also contains examples
