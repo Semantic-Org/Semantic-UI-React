@@ -5,9 +5,6 @@ describe('createPaginationItems', () => {
     createPaginationItems({
       activePage: 15,
       boundaryRange: 2,
-      showEllipsis: true,
-      showFirstAndLast: true,
-      showPreviousAndNext: true,
       siblingRange: 2,
       totalPages: 30,
     }).should.deep.equal([

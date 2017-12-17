@@ -7,8 +7,8 @@ export default class PaginationExampleCustomization extends Component {
     boundaryRange: 1,
     siblingRange: 1,
     showEllipsis: true,
-    showFirstAndLast: true,
-    showPreviousAndNext: true,
+    showFirstAndLastNav: true,
+    showPreviousAndNextNav: true,
     totalPages: 50,
   }
 
@@ -24,8 +24,8 @@ export default class PaginationExampleCustomization extends Component {
       boundaryRange,
       siblingRange,
       showEllipsis,
-      showFirstAndLast,
-      showPreviousAndNext,
+      showFirstAndLastNav,
+      showPreviousAndNextNav,
       totalPages,
     } = this.state
 
@@ -36,12 +36,14 @@ export default class PaginationExampleCustomization extends Component {
             activePage={activePage}
             boundaryRange={boundaryRange}
             onPageChange={this.handlePaginationChange}
-            showEllipsis={showEllipsis}
-            showFirstAndLast={showFirstAndLast}
-            showPreviousAndNext={showPreviousAndNext}
-            siblingRange={siblingRange}
             size='mini'
             totalPages={totalPages}
+            // Heads up! All items are powered by shorthands, if you want to hide one of them, just pass `null` as value
+            ellipsisItem={showEllipsis ? undefined : null}
+            firstItem={showFirstAndLastNav ? undefined : null}
+            lastItem={showFirstAndLastNav ? undefined : null}
+            prevItem={showPreviousAndNextNav ? undefined : null}
+            nextItem={showPreviousAndNextNav ? undefined : null}
           />
         </Grid.Column>
 
@@ -69,7 +71,7 @@ export default class PaginationExampleCustomization extends Component {
               <Form.Input
                 label='Boundary pages range'
                 name='boundaryRange'
-                min={1}
+                min={0}
                 onChange={this.handleInputChange}
                 type='number'
                 value={boundaryRange}
@@ -77,7 +79,7 @@ export default class PaginationExampleCustomization extends Component {
               <Form.Input
                 label='Sibling pages range'
                 name='siblingRange'
-                min={1}
+                min={0}
                 onChange={this.handleInputChange}
                 type='number'
                 value={siblingRange}
@@ -91,15 +93,15 @@ export default class PaginationExampleCustomization extends Component {
                 onChange={this.handleCheckboxChange}
               />
               <Form.Checkbox
-                checked={showFirstAndLast}
-                label='Show first and last pages'
-                name='showFirstAndLast'
+                checked={showFirstAndLastNav}
+                label='Show first and last nav pages'
+                name='showFirstAndLastNav'
                 onChange={this.handleCheckboxChange}
               />
               <Form.Checkbox
-                checked={showPreviousAndNext}
-                label='Show previous and next pages'
-                name='showPreviousAndNext'
+                checked={showPreviousAndNextNav}
+                label='Show previous and next nav pages'
+                name='showPreviousAndNextNav'
                 onChange={this.handleCheckboxChange}
               />
             </Form.Group>

@@ -11,7 +11,6 @@ export const createInnerPrefix = (firstGroupEnd, innerGroupStart, pageFactory) =
 export const createInnerSuffix = (innerGroupEnd, lastGroupStart, pageFactory) => {
   const suffixPage = innerGroupEnd + 1
   const showEllipsis = suffixPage !== (lastGroupStart - 1)
-
   const suffixFactory = showEllipsis ? createEllipsisItem : pageFactory
 
   return suffixFactory(suffixPage)

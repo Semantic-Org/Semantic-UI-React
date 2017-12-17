@@ -12,15 +12,12 @@ import { isSimplePagination, typifyOptions } from './paginationUtils'
  * @param {object} rawOptions
  * @param {number} rawOptions.activePage
  * @param {number} rawOptions.boundaryRange Number of always visible pages at the beginning and end.
- * @param {bool} rawOptions.showEllipsis Boolean flag to show ellipsis.
- * @param {bool} rawOptions.showFirstAndLast Boolean flag to hide first and last page links.
- * @param {bool} rawOptions.showPreviousAndNext Boolean flag to show previous and next page links.
  * @param {number} rawOptions.siblingRange Number of always visible pages before and after the current one.
  * @param {number} rawOptions.totalPages Total number of pages.
  */
 const createPaginationItems = (rawOptions) => {
   const options = typifyOptions(rawOptions)
-  const { activePage, showFirstAndLast, showPreviousAndNext, totalPages } = options
+  const { activePage, totalPages } = options
 
   const pageFactory = createPageFactory(activePage)
   const innerRange = isSimplePagination(options)
@@ -28,12 +25,12 @@ const createPaginationItems = (rawOptions) => {
     : createComplexRange(options, pageFactory)
 
   return [
-    showFirstAndLast && createFirstPage(),
-    showPreviousAndNext && createPrevItem(activePage),
+    createFirstPage(),
+    createPrevItem(activePage),
     ...innerRange,
-    showPreviousAndNext && createNextItem(activePage, totalPages),
-    showFirstAndLast && createLastItem(totalPages),
-  ].filter(Boolean)
+    createNextItem(activePage, totalPages),
+    createLastItem(totalPages),
+  ]
 }
 
 export default createPaginationItems

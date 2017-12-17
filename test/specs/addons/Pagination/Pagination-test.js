@@ -26,7 +26,7 @@ describe('Pagination', () => {
         />,
       )
         .find('PaginationItem')
-        .at(3)
+        .at(4)
         .simulate('click', event)
 
       onPageChange.should.have.been.calledOnce()

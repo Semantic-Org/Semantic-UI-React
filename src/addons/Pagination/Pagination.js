@@ -64,15 +64,6 @@ export default class Pagination extends Component {
      */
     onPageChange: PropTypes.func,
 
-    /** Boolean flag to show ellipsis. */
-    showEllipsis: PropTypes.bool,
-
-    /** Boolean flag to hide first and last page links. */
-    showFirstAndLast: PropTypes.bool,
-
-    /** Boolean flag to show previous and next page links. */
-    showPreviousAndNext: PropTypes.bool,
-
     /** Number of always visible pages before and after the current one. */
     siblingRange: PropTypes.oneOfType([
       PropTypes.number,
@@ -106,14 +97,11 @@ export default class Pagination extends Component {
       ariaLabel: 'Next item',
       content: '⟩',
     },
-    pageItem: null,
+    pageItem: {},
     prevItem: {
       ariaLabel: 'Previous item',
       content: '⟨',
     },
-    showEllipsis: true,
-    showFirstAndLast: false,
-    showPreviousAndNext: true,
     siblingRange: 1,
   }
 
@@ -140,36 +128,21 @@ export default class Pagination extends Component {
   })
 
   render() {
-    const {
-      ariaLabel,
-      boundaryRange,
-      showEllipsis,
-      showFirstAndLast,
-      showPreviousAndNext,
-      siblingRange,
-      totalPages,
-    } = this.props
+    const { ariaLabel, boundaryRange, siblingRange, totalPages } = this.props
     const { activePage } = this.state
 
-    const items = createPaginationItems({
-      activePage,
-      boundaryRange,
-      showEllipsis,
-      showFirstAndLast,
-      showPreviousAndNext,
-      siblingRange,
-      totalPages,
-    })
+    const items = createPaginationItems({ activePage, boundaryRange, siblingRange, totalPages })
     const rest = getUnhandledProps(Pagination, this.props)
 
     return (
       <Menu {...rest} aria-label={ariaLabel} pagination role='navigation'>
-        {_.map(items, ({ active, type, value }) => PaginationItem.create(
-          this.props[type] || value, {
-            defaultProps: { value },
-            overrideProps: this.handleItemOverrides(active, type, value),
+        {_.map(items, ({ active, type, value }) => PaginationItem.create(this.props[type], {
+          defaultProps: {
+            content: value,
+            value,
           },
-        ))}
+          overrideProps: this.handleItemOverrides(active, type, value),
+        }))}
       </Menu>
     )
   }

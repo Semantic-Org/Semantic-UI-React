@@ -7,14 +7,6 @@ import {
   createPrevItem,
 } from 'src/lib/createPaginationItems/itemFactories'
 
-//
-// export const createPageFactory = current => page => ({
-//   active: current === page,
-//   type: 'pageItem',
-//   value: page,
-// })
-//
-
 describe('itemFactories', () => {
   describe('createEllipsisItem', () => {
     it('"active" is always false', () => {

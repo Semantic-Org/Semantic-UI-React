@@ -44,15 +44,6 @@ export interface PaginationProps {
    */
   onPageChange?: (event: React.MouseEvent<HTMLAnchorElement>, data: PaginationProps) => void;
 
-  /** Boolean flag to show ellipsis. */
-  showEllipsis?: boolean;
-
-  /** Boolean flag to hide first and last page links. */
-  showFirstAndLast?: boolean;
-
-  /** Boolean flag to show previous and next page links. */
-  showPreviousAndNext?: boolean;
-
   /** Number of always visible pages before and after the current one. */
   siblingRange?: number | string;
 

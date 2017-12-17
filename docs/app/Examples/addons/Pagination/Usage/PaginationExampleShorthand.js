@@ -9,7 +9,6 @@ const PaginationExampleShorthand = () => (
     lastItem={{ content: <Icon name='angle double right' />, icon: true }}
     prevItem={{ content: <Icon name='angle left' />, icon: true }}
     nextItem={{ content: <Icon name='angle right' />, icon: true }}
-    showFirstAndLast
     totalPages={10}
   />
 )
