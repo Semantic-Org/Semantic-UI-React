@@ -8,6 +8,7 @@ import WebpackDevMiddleware from 'webpack-dev-middleware'
 import WebpackHotMiddleware from 'webpack-hot-middleware'
 
 import config from '../../config'
+import gulpMenuGen from '../plugins/gulp-menugen'
 import gulpReactDocgen from '../plugins/gulp-react-docgen'
 
 const g = loadPlugins()
@@ -43,6 +44,16 @@ task('build:docs:docgen', () => src([
     this.emit('end')
   }))
   .pipe(gulpReactDocgen())
+  .pipe(dest(config.paths.docsSrc())))
+
+task('build:docs:menugen', () => src(`${config.paths.docsSrc()}/Examples/**/index.js`)
+  // do not remove the function keyword
+  // we need 'this' scope here
+  .pipe(g.plumber(function handleError(err) {
+    log(err.toString())
+    this.emit('end')
+  }))
+  .pipe(gulpMenuGen())
   .pipe(dest(config.paths.docsSrc())))
 
 task('build:docs:html', () => src(config.paths.docsSrc('404.html'))
@@ -83,6 +94,7 @@ task('build:docs', series(
       'clean:docs',
       parallel(
         'build:docs:docgen',
+        'build:docs:menugen',
         'build:docs:html',
         'build:docs:images',
       ),

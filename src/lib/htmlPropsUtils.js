@@ -43,7 +43,7 @@ export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents]
  * @param {boolean} [options.includeAria] Includes all input props that starts with "aria-"
  * @returns {[{}, {}]} An array of objects
  */
-export const partitionHTMLInputProps = (props, options = {}) => {
+export const partitionHTMLProps = (props, options = {}) => {
   const {
     htmlProps = htmlInputProps,
     includeAria = true,

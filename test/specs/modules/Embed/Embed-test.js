@@ -73,9 +73,14 @@ describe('Embed', () => {
   })
 
   describe('brandedUI', () => {
-    it('generates url part for source', () => {
+    it('generates "modestbranding" url parameter', () => {
       assertIframeSrc({ brandedUI: true }, '&amp;modestbranding=true')
       assertIframeSrc({ brandedUI: false }, '&amp;modestbranding=false')
+    })
+
+    it('generates "rel" url parameter', () => {
+      assertIframeSrc({ brandedUI: true }, '&amp;rel=0')
+      assertIframeSrc({ brandedUI: false }, '&amp;rel=1')
     })
   })
 

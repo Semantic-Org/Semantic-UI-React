@@ -9,21 +9,19 @@ import ComponentControlsMaximize from './ComponentControlsMaximize'
 import ComponentControlsShowHtml from './ComponentControlsShowHtml'
 
 const ComponentControls = (props) => {
-  const {
-    anchorName, showHTML, showCode,
-    onCopyLink, onShowHTML, onShowCode,
-    visible,
-  } = props
+  const { anchorName, showHTML, showCode, onCopyLink, onShowHTML, onShowCode, visible } = props
 
   return (
     <Transition
+      duration={200}
       transitionOnMount
       visible={!!visible}
       unmountOnHide
     >
-      {/* Heads up! Don't remove this `div`, visible Transition applies `display: block`,
-          while Menu should have `display: inline-flex`
-        */}
+      {/*
+        Heads up! Don't remove this `div`, visible Transition applies `display: block`,
+        while Menu should have `display: inline-flex`
+      */}
       <div>
         <Menu
           color='green'

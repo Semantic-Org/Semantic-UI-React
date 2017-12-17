@@ -1,10 +1,16 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { Button, Icon } from 'semantic-ui-react'
 
 const ButtonExampleLabeledIcon = () => (
   <div>
-    <Button content='Pause' icon='pause' labelPosition='left' />
-    <Button content='Next' icon='right arrow' labelPosition='right' />
+    <Button icon labelPosition='left'>
+      <Icon name='pause' />
+      Pause
+    </Button>
+    <Button icon labelPosition='right'>
+      Next
+      <Icon name='right arrow' />
+    </Button>
   </div>
 )
 

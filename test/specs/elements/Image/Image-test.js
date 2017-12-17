@@ -58,6 +58,23 @@ describe('Image', () => {
     })
   })
 
+  describe('image props', () => {
+    _.forEach(['alt', 'height', 'src', 'srcSet', 'width'], (propName) => {
+      it(`keeps "${propName}" on root element by default`, () => {
+        const wrapper = shallow(<Image {...{ [propName]: 'foo' }} />)
+
+        wrapper.should.have.tagName('img')
+        wrapper.should.have.prop(propName, 'foo')
+      })
+
+      it(`passes "${propName}" to the img tag when wrapped`, () => {
+        shallow(<Image wrapped {...{ [propName]: 'foo' }} />)
+          .find('img')
+          .should.have.prop(propName, 'foo')
+      })
+    })
+  })
+
   describe('ui', () => {
     it('adds the "ui" className by default', () => {
       shallow(<Image />)
@@ -79,6 +96,12 @@ describe('Image', () => {
   })
 
   describe('wrapped', () => {
+    it('renders an div tag when true', () => {
+      shallow(<Image wrapped />)
+        .type()
+        .should.equal('div')
+    })
+
     it('applies all img attribute props to the img tag', () => {
       const props = { src: 'http://g.co', alt: 'alt text', width: 10, height: '10' }
       const img = shallow(<Image {...props} wrapped />)

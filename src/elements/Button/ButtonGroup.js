@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -14,6 +15,7 @@ import {
   useValueAndKey,
   useWidthProp,
 } from '../../lib'
+import Button from './Button'
 
 /**
  * Buttons can be grouped.
@@ -22,6 +24,7 @@ function ButtonGroup(props) {
   const {
     attached,
     basic,
+    buttons,
     children,
     className,
     color,
@@ -67,9 +70,17 @@ function ButtonGroup(props) {
   const rest = getUnhandledProps(ButtonGroup, props)
   const ElementType = getElementType(ButtonGroup, props)
 
+  if (_.isNil(buttons)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {childrenUtils.isNil(children) ? content : children}
+      </ElementType>
+    )
+  }
+
   return (
     <ElementType {...rest} className={classes}>
-      {childrenUtils.isNil(children) ? content : children}
+      {_.map(buttons, button => Button.create(button))}
     </ElementType>
   )
 }
@@ -92,6 +103,9 @@ ButtonGroup.propTypes = {
 
   /** Groups can be less pronounced. */
   basic: PropTypes.bool,
+
+  /** Array of shorthand Button values. */
+  buttons: customPropTypes.collectionShorthand,
 
   /** Primary content. */
   children: PropTypes.node,

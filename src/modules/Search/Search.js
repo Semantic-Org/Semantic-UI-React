@@ -15,7 +15,7 @@ import {
   makeDebugger,
   META,
   objectDiff,
-  partitionHTMLInputProps,
+  partitionHTMLProps,
   shallowEqual,
   SUI,
   useKeyOnly,
@@ -643,7 +643,7 @@ export default class Search extends Component {
     )
     const unhandled = getUnhandledProps(Search, this.props)
     const ElementType = getElementType(Search, this.props)
-    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, {
+    const [htmlInputProps, rest] = partitionHTMLProps(unhandled, {
       htmlProps: htmlInputAttrs,
     })
 

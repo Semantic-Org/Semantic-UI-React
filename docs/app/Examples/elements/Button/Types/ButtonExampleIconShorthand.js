@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
 
-const ButtonExampleIconProp = () => (
+const ButtonExampleIconShorthand = () => (
   <Button icon='world' />
 )
 
-export default ButtonExampleIconProp
+export default ButtonExampleIconShorthand

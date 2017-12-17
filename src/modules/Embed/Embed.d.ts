@@ -36,7 +36,7 @@ export interface EmbedProps {
   /** Initial value of active. */
   defaultActive?: boolean;
 
-  /** Whether to show networks branded UI like title cards, or after video calls to action. */
+  /** Whether to prefer HD content. */
   hd?: boolean;
 
   /** Specifies an icon to use with placeholder content. */

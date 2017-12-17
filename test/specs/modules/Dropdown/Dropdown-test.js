@@ -145,6 +145,20 @@ describe('Dropdown', () => {
       .should.have.been.calledOnce()
   })
 
+  it('blurs the Dropdown node on close by clicking outside component', () => {
+    wrapperMount(<Dropdown options={options} selection defaultOpen />)
+
+    const instance = wrapper.instance()
+    sandbox.spy(instance.ref, 'blur')
+
+    dropdownMenuIsOpen()
+    document.body.click()
+    dropdownMenuIsClosed()
+
+    instance.ref.blur
+      .should.have.been.calledOnce()
+  })
+
   it('does not close on click when search is true and options are empty', () => {
     wrapperMount(<Dropdown options={{}} search selection defaultOpen />)
 
