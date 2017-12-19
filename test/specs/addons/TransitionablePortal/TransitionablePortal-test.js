@@ -147,12 +147,12 @@ describe('TransitionablePortal', () => {
   })
 
   describe('open', () => {
-    it('blocks update of state on Portal close', () => {
+    it('does not block update of state on Portal close', () => {
       wrapperMount(<TransitionablePortal {...requiredProps} open />)
       wrapper.should.have.state('portalOpen', true)
 
       domEvent.click(document.body)
-      wrapper.should.have.state('portalOpen', true)
+      wrapper.should.have.state('portalOpen', false)
     })
   })
 })
