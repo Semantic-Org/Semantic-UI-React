@@ -3,6 +3,9 @@ import _ from 'lodash'
 const doesNodeContainClick = (node, e) => {
   if (_.some([e, node], _.isNil)) return false
 
+  // first check if the node contains the e.target, simplest use case
+  if (node.contains(e.target)) return true
+
   // return early if the event properties aren't available
   // prevent measuring the node and repainting if we don't need to
   const { clientX, clientY } = e
