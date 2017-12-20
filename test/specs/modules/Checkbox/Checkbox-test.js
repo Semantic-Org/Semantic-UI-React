@@ -150,17 +150,6 @@ describe('Checkbox', () => {
         .should.have.prop('id', 'foo')
     })
 
-    it('adds htmlFor prop to the label', () => {
-      shallow(<Checkbox id='foo' />)
-        .find('label')
-        .should.have.prop('htmlFor', 'foo')
-    })
-
-    it('adds htmlFor prop to the label when it is empty', () => {
-      shallow(<Checkbox id='foo' label={null} />)
-        .find('label')
-        .should.have.prop('htmlFor', 'foo')
-    })
   })
 
   describe('input', () => {
