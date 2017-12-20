@@ -149,7 +149,6 @@ describe('Checkbox', () => {
         .find('input')
         .should.have.prop('id', 'foo')
     })
-
   })
 
   describe('input', () => {

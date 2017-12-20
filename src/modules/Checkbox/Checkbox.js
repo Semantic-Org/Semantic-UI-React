@@ -218,7 +218,6 @@ export default class Checkbox extends Component {
     const unhandled = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
     const [htmlInputProps, rest] = partitionHTMLProps(unhandled, { htmlProps: htmlInputAttrs })
-    const id = _.get(htmlInputProps, 'id')
 
     return (
       <ElementType
