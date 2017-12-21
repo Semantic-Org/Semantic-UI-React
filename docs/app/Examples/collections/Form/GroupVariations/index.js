@@ -1,6 +1,7 @@
 import React from 'react'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import { Message } from 'src'
 
 const FormGroupVariationsExamples = () => (
   <ExampleSection title='Group Variations'>
@@ -8,7 +9,13 @@ const FormGroupVariationsExamples = () => (
       title='Evenly Divided'
       description='Fields can have their widths divided evenly.'
       examplePath='collections/Form/GroupVariations/FormExampleEvenlyDividedGroup'
-    />
+    >
+      <Message info>
+        When using the <code>widths='even'</code> prop declaration on a <code>Form.Group</code>,
+        all child <code>Form.Dropdown</code>, <code>Form.Input</code>, <code>Form.Select</code>
+        components must be rendered with a <code>fluid</code> prop to work correctly.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       title='Inline'
       description='Multiple fields may be inline in a row.'
