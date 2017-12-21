@@ -6,15 +6,15 @@ const FormExampleEvenlyDividedGroup = () => (
     <Form.Group widths='equal'>
       <Form.Field>
         <label>First name</label>
-        <Input placeholder='First name' />
+        <Input fluid placeholder='First name' />
       </Form.Field>
       <Form.Field>
         <label>Middle name</label>
-        <Input placeholder='Middle name' />
+        <Input fluid placeholder='Middle name' />
       </Form.Field>
       <Form.Field>
         <label>Last name</label>
-        <Input placeholder='Last name' />
+        <Input fluid placeholder='Last name' />
       </Form.Field>
     </Form.Group>
   </Form>
