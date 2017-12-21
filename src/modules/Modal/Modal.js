@@ -158,6 +158,8 @@ class Modal extends Component {
   static Description = ModalDescription
   static Actions = ModalActions
 
+  scrollingWasDefinedAtMountTime = false
+
   componentWillUnmount() {
     debug('componentWillUnmount()')
     this.handlePortalUnmount()
@@ -217,7 +219,13 @@ class Modal extends Component {
     mountNode.classList.remove('blurring')
     mountNode.classList.remove('dimmable')
     mountNode.classList.remove('dimmed')
-    mountNode.classList.remove('scrolling')
+
+    // Restore scrolling to original value before mount.
+    if (this.scrollingWasDefinedAtMountTime) {
+      mountNode.classList.add('scrolling')
+    } else {
+      mountNode.classList.remove('scrolling')
+    }
 
     cancelAnimationFrame(this.animationRequestId)
     _.invoke(this.props, 'onUnmount', e, this.props)
@@ -228,6 +236,8 @@ class Modal extends Component {
   setPositionAndClassNames = () => {
     const { dimmer } = this.props
     const mountNode = this.getMountNode()
+
+    this.scrollingWasDefinedAtMountTime = mountNode.classList.contains('scrolling')
 
     if (dimmer) {
       mountNode.classList.add('dimmable')

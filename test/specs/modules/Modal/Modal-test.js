@@ -62,6 +62,7 @@ describe('Modal', () => {
   it('renders to the document body', () => {
     wrapperMount(<Modal open />)
     assertBodyContains('.ui.modal')
+    wrapper.unmount()
   })
 
   it('renders child text', () => {
@@ -70,6 +71,7 @@ describe('Modal', () => {
     document.querySelector('.ui.modal')
       .innerText
       .should.equal('child text')
+    wrapper.unmount()
   })
 
   it('renders child components', () => {
@@ -80,6 +82,7 @@ describe('Modal', () => {
       .querySelector('.ui.modal')
       .querySelector('[data-child]')
       .should.not.equal(null, 'Modal did not render the child component.')
+    wrapper.unmount()
   })
 
   it("spreads the user's style prop on the Modal", () => {
@@ -90,6 +93,7 @@ describe('Modal', () => {
 
     element.style.should.have.property('marginTop', '1em')
     element.style.should.have.property('top', '0px')
+    wrapper.unmount()
   })
 
   describe('actions', () => {
@@ -99,6 +103,7 @@ describe('Modal', () => {
       assertBodyContains('.ui.modal')
       domEvent.click('.ui.modal .actions .button')
       assertBodyContains('.ui.modal', false)
+      wrapper.unmount()
     })
 
     it('calls shorthand onActionClick callback', () => {
@@ -109,6 +114,7 @@ describe('Modal', () => {
       onActionClick.should.not.have.been.called()
       domEvent.click('.ui.modal .actions .button')
       onActionClick.should.have.been.calledOnce()
+      wrapper.unmount()
     })
   })
 
@@ -123,6 +129,7 @@ describe('Modal', () => {
 
       onActionClick.should.have.been.calledOnce()
       onActionClick.should.have.been.calledWithMatch(event, props)
+      wrapper.unmount()
     })
   })
 
@@ -130,6 +137,7 @@ describe('Modal', () => {
     it('is not open by default', () => {
       wrapperMount(<Modal />)
       assertBodyContains('.ui.modal.open', false)
+      wrapper.unmount()
     })
 
     it('is passed to Portal open', () => {
@@ -157,21 +165,25 @@ describe('Modal', () => {
     it('does not show the modal when false', () => {
       wrapperMount(<Modal open={false} />)
       assertBodyContains('.ui.modal', false)
+      wrapper.unmount()
     })
 
     it('does not show the dimmer when false', () => {
       wrapperMount(<Modal open={false} />)
       assertBodyContains('.ui.dimmer', false)
+      wrapper.unmount()
     })
 
     it('shows the dimmer when true', () => {
       wrapperMount(<Modal open dimmer />)
       assertBodyContains('.ui.dimmer')
+      wrapper.unmount()
     })
 
     it('shows the modal when true', () => {
       wrapperMount(<Modal open />)
       assertBodyContains('.ui.modal')
+      wrapper.unmount()
     })
 
     it('shows the modal and dimmer on changing from false to true', () => {
@@ -183,6 +195,7 @@ describe('Modal', () => {
 
       assertBodyContains('.ui.modal')
       assertBodyContains('.ui.dimmer')
+      wrapper.unmount()
     })
 
     it('hides the modal and dimmer on changing from true to false', () => {
@@ -194,6 +207,7 @@ describe('Modal', () => {
 
       assertBodyContains('.ui.modal', false)
       assertBodyContains('.ui.dimmer', false)
+      wrapper.unmount()
     })
   })
 
@@ -201,6 +215,7 @@ describe('Modal', () => {
     it('adds basic to the modal className', () => {
       wrapperMount(<Modal basic open />)
       assertBodyContains('.ui.basic.modal')
+      wrapper.unmount()
     })
   })
 
@@ -211,6 +226,7 @@ describe('Modal', () => {
       sizes.forEach((size) => {
         wrapperMount(<Modal size={size} open />)
         assertBodyContains(`.ui.${size}.modal`)
+        wrapper.unmount()
       })
     })
   })
@@ -225,6 +241,7 @@ describe('Modal', () => {
       it('is present by default', () => {
         wrapperMount(<Modal open />)
         assertBodyContains('.ui.dimmer')
+        wrapper.unmount()
       })
     })
 
@@ -242,6 +259,7 @@ describe('Modal', () => {
       it('adds a dimmer to the body', () => {
         wrapperMount(<Modal open dimmer />)
         assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
+        wrapper.unmount()
       })
     })
 
@@ -249,11 +267,13 @@ describe('Modal', () => {
       it('does not render a dimmer', () => {
         wrapperMount(<Modal open dimmer={false} />)
         assertBodyClasses('dimmable dimmed blurring', false)
+        wrapper.unmount()
       })
 
       it('does not add any dimmer classes to the body', () => {
         wrapperMount(<Modal open dimmer={false} />)
         assertBodyClasses('dimmable dimmed blurring', false)
+        wrapper.unmount()
       })
     })
 
@@ -271,6 +291,7 @@ describe('Modal', () => {
       it('adds a dimmer to the body', () => {
         wrapperMount(<Modal open dimmer='blurring' />)
         assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
+        wrapper.unmount()
       })
     })
 
@@ -288,6 +309,7 @@ describe('Modal', () => {
       it('adds an inverted dimmer to the body', () => {
         wrapperMount(<Modal open dimmer='inverted' />)
         assertBodyContains('.ui.inverted.page.modals.dimmer.transition.visible.active')
+        wrapper.unmount()
       })
     })
   })
@@ -299,6 +321,7 @@ describe('Modal', () => {
 
       wrapper.find('#trigger').simulate('click')
       spy.should.have.been.calledOnce()
+      wrapper.unmount()
     })
 
     it('is not called on body click', () => {
@@ -307,6 +330,7 @@ describe('Modal', () => {
 
       domEvent.click('body')
       spy.should.not.have.been.called()
+      wrapper.unmount()
     })
   })
 
@@ -322,6 +346,7 @@ describe('Modal', () => {
 
       domEvent.click('.ui.dimmer')
       spy.should.have.been.calledOnce()
+      wrapper.unmount()
     })
 
     it('is called on click outside of the modal', () => {
@@ -329,6 +354,7 @@ describe('Modal', () => {
 
       domEvent.click(document.querySelector('.ui.modal').parentNode)
       spy.should.have.been.calledOnce()
+      wrapper.unmount()
     })
 
     it('is not called on click inside of the modal', () => {
@@ -336,6 +362,7 @@ describe('Modal', () => {
 
       domEvent.click(document.querySelector('.ui.modal'))
       spy.should.not.have.been.called()
+      wrapper.unmount()
     })
 
     it('is not called on body click', () => {
@@ -343,6 +370,7 @@ describe('Modal', () => {
 
       domEvent.click('body')
       spy.should.not.have.been.calledOnce()
+      wrapper.unmount()
     })
 
     it('is called when pressing escape', () => {
@@ -350,6 +378,7 @@ describe('Modal', () => {
 
       domEvent.keyDown(document, { key: 'Escape' })
       spy.should.have.been.calledOnce()
+      wrapper.unmount()
     })
 
     it('is not called when the open prop changes to false', () => {
@@ -357,6 +386,7 @@ describe('Modal', () => {
 
       wrapper.setProps({ open: false })
       spy.should.not.have.been.called()
+      wrapper.unmount()
     })
 
     it('is not called when open changes to false programmatically', () => {
@@ -364,6 +394,7 @@ describe('Modal', () => {
 
       wrapper.setProps({ open: false })
       spy.should.not.have.been.called()
+      wrapper.unmount()
     })
 
     it('is not called on dimmer click when closeOnDimmerClick is false', () => {
@@ -371,6 +402,7 @@ describe('Modal', () => {
 
       domEvent.click('.ui.dimmer')
       spy.should.not.have.been.called()
+      wrapper.unmount()
     })
 
     it('is not called on body click when closeOnDocumentClick is false', () => {
@@ -378,6 +410,7 @@ describe('Modal', () => {
 
       domEvent.click(document.body)
       spy.should.not.have.been.called()
+      wrapper.unmount()
     })
   })
 
@@ -388,6 +421,7 @@ describe('Modal', () => {
       document.body.childElementCount.should.equal(1)
       domEvent.keyDown(document, { key: 'Escape' })
       document.body.childElementCount.should.equal(0)
+      wrapper.unmount()
     })
 
     it('closes the modal when true and Escape is pressed', () => {
@@ -396,6 +430,7 @@ describe('Modal', () => {
       document.body.childElementCount.should.equal(1)
       domEvent.keyDown(document, { key: 'Escape' })
       document.body.childElementCount.should.equal(0)
+      wrapper.unmount()
     })
 
     it('does not close the modal when false and Escape is pressed', () => {
@@ -404,6 +439,7 @@ describe('Modal', () => {
       document.body.childElementCount.should.equal(1)
       domEvent.keyDown(document, { key: 'Escape' })
       document.body.childElementCount.should.equal(1)
+      wrapper.unmount()
     })
   })
 
@@ -417,6 +453,7 @@ describe('Modal', () => {
       document.body.childElementCount.should.equal(1)
       domEvent.click(document.body)
       document.body.childElementCount.should.equal(0)
+      wrapper.unmount()
     })
     it('does not close the modal on document click when false', () => {
       wrapperMount(<Modal defaultOpen closeOnDocumentClick={false} />)
@@ -424,6 +461,7 @@ describe('Modal', () => {
       document.body.childElementCount.should.equal(1)
       domEvent.click(document.body)
       document.body.childElementCount.should.equal(1)
+      wrapper.unmount()
     })
   })
 
@@ -434,6 +472,7 @@ describe('Modal', () => {
 
       wrapperMount(<Modal mountNode={mountNode} open>foo</Modal>)
       assertNodeContains(mountNode, '.ui.modal')
+      wrapper.unmount()
     })
   })
 
@@ -441,16 +480,19 @@ describe('Modal', () => {
     it('is not present by default', () => {
       wrapperMount(<Modal open>foo</Modal>)
       assertBodyContains('.ui.modal .icon', false)
+      wrapper.unmount()
     })
 
     it('defaults to `close` when boolean', () => {
       wrapperMount(<Modal open closeIcon>foo</Modal>)
       assertBodyContains('.ui.modal .icon.close')
+      wrapper.unmount()
     })
 
     it('is present when passed', () => {
       wrapperMount(<Modal open closeIcon='bullseye'>foo</Modal>)
       assertBodyContains('.ui.modal .icon.bullseye')
+      wrapper.unmount()
     })
 
     it('triggers onClose when clicked', () => {
@@ -459,6 +501,7 @@ describe('Modal', () => {
       wrapperMount(<Modal onClose={spy} open closeIcon='bullseye'>foo</Modal>)
       domEvent.click('.ui.modal .icon.bullseye')
       spy.should.have.been.calledOnce()
+      wrapper.unmount()
     })
   })
 
@@ -476,6 +519,7 @@ describe('Modal', () => {
     it('does not add the scrolling class to the body by default', () => {
       wrapperMount(<Modal open />)
       assertBodyClasses('scrolling', false)
+      wrapper.unmount()
     })
 
     it('adds the scrolling class to the body when taller than the window', (done) => {
@@ -484,6 +528,7 @@ describe('Modal', () => {
 
       requestAnimationFrame(() => {
         assertBodyClasses('scrolling')
+        wrapper.unmount()
         done()
       })
     })
@@ -500,6 +545,7 @@ describe('Modal', () => {
 
         requestAnimationFrame(() => {
           assertBodyClasses('scrolling', false)
+          wrapper.unmount()
           done()
         })
       })
@@ -520,6 +566,7 @@ describe('Modal', () => {
         wrapper.setProps({ open: true })
         requestAnimationFrame(() => {
           assertBodyClasses('scrolling')
+          wrapper.unmount()
           done()
         })
       })
