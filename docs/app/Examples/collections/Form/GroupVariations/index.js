@@ -1,7 +1,8 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
+
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import { Message } from 'src'
 
 const FormGroupVariationsExamples = () => (
   <ExampleSection title='Group Variations'>
