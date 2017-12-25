@@ -11,6 +11,7 @@ import {
   makeDebugger,
   META,
 } from '../../lib'
+import isNodeInEventBubblePath from '../../lib/isNodeInEventBubblePath'
 import Ref from '../Ref'
 
 const debug = makeDebugger('portal')
@@ -184,7 +185,7 @@ class Portal extends Component {
       || _.invoke(this, 'portalNode.contains', e.target)  // event happened in the portal
     ) return                                              // ignore the click
 
-    const didClickInRootNode = this.rootNode.contains(e.target)
+    const didClickInRootNode = isNodeInEventBubblePath(this.rootNode, e)
 
     if ((closeOnDocumentClick && !didClickInRootNode) || (closeOnRootNodeClick && didClickInRootNode)) {
       debug('handleDocumentClick()')
