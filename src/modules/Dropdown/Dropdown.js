@@ -331,7 +331,10 @@ export default class Dropdown extends Component {
     ]),
 
     /** The text displayed in the dropdown, usually for the active item. */
-    text: PropTypes.string,
+    text: PropTypes.oneOfTypes([
+      PropsTypes.string,
+      PropTypes.element,
+    ]),
 
     /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
     trigger: customPropTypes.every([
