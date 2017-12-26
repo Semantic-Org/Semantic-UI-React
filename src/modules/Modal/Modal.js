@@ -256,7 +256,12 @@ class Modal extends Component {
         if (scrolling) {
           mountNode.classList.add('scrolling')
         } else {
-          mountNode.classList.remove('scrolling')
+          // Check if another modal exists before removing the scolling
+          const anotherModal = document.getElementsByClassName('ui page modals').length
+          // Only remove scrolling class if there is no other modals active
+          if (anotherModal === 0) {
+            mountNode.classList.remove('scrolling')
+          }
         }
       }
 
