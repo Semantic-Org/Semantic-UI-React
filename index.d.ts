@@ -5,6 +5,7 @@ export {
   ResponsiveWidthShorthand
 } from './dist/commonjs/addons/Responsive';
 export { default as Confirm, ConfirmProps } from './dist/commonjs/addons/Confirm';
+export { default as MountNode, MountNodeProps } from './dist/commonjs/addons/MountNode';
 export { default as Portal, PortalProps } from './dist/commonjs/addons/Portal';
 export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
 export { default as Ref, RefProps } from './dist/commonjs/addons/Ref';
