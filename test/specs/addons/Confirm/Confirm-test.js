@@ -15,7 +15,6 @@ let wrapper
 // we need to unmount the modal after every test to remove it from the document
 // wrap the render methods to update a global wrapper that is unmounted after each test
 const wrapperMount = (...args) => (wrapper = mount(...args))
-const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Confirm', () => {
   beforeEach(() => {
@@ -40,13 +39,26 @@ describe('Confirm', () => {
     mapValueToProps: content => ({ content }),
   })
 
-  it('renders a small Modal', () => {
-    wrapperShallow(<Confirm />)
-    wrapper
-      .type()
-      .should.equal(Modal)
-    wrapper
-      .should.have.prop('size', 'small')
+  describe('children', () => {
+    it('renders a Modal', () => {
+      shallow(<Confirm />)
+        .type()
+        .should.equal(Modal)
+    })
+  })
+
+  describe('size', () => {
+    it('has "small" size by default', () => {
+      shallow(<Confirm />)
+        .should.have.prop('size', 'small')
+    })
+
+    _.forEach(['fullscreen', 'large', 'mini', 'small', 'tiny'], (size) => {
+      it(`applies ${size} size`, () => {
+        shallow(<Confirm size={size} />)
+          .should.have.prop('size', size)
+      })
+    })
   })
 
   describe('cancelButton', () => {
