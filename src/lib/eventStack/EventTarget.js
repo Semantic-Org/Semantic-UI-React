@@ -40,8 +40,10 @@ export default class EventTarget {
   }
 
   _unlisten = (name) => {
+    const handler = this._handlers[name]
+
     if (_.some(this._pools, name)) return
-    const { [name]: handler } = this._handlers
+    if (!handler) return
 
     this.target.removeEventListener(name, handler)
     delete this._handlers[name]
