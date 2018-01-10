@@ -7,6 +7,7 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  doesNodeContainClick,
   eventStack,
   getElementType,
   getUnhandledProps,
@@ -643,7 +644,7 @@ export default class Dropdown extends Component {
     if (!this.props.closeOnBlur) return
 
     // If event happened in the dropdown, ignore it
-    if (this.ref && _.isFunction(this.ref.contains) && this.ref.contains(e.target)) return
+    if (this.ref && doesNodeContainClick(this.ref, e)) return
 
     this.close()
   }
