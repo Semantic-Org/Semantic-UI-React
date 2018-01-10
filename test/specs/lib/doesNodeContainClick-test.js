@@ -6,6 +6,7 @@ const makeEvent = event => ({ clientX: 0, clientY: 0, ...event })
 const makeRect = rect => ({ top: 0, bottom: 1, left: 0, right: 1, ...rect })
 
 const makeNode = (rect, node) => ({
+  contains: sandbox.spy(),
   offsetWidth: 1,
   offsetHeight: 1,
   getClientRects: sandbox.spy(() => ({ length: 1, 0: makeRect(rect) })),

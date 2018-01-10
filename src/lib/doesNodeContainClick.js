@@ -1,5 +1,14 @@
 import _ from 'lodash'
 
+/**
+ * Determines if a click's coordinates are within the bounds of a node.
+ *
+ * @see https://github.com/Semantic-Org/Semantic-UI-React/pull/2384
+ *
+ * @param {object} node - A DOM node.
+ * @param {object} e - A SyntheticEvent or DOM Event.
+ * @returns {boolean}
+ */
 const doesNodeContainClick = (node, e) => {
   if (_.some([e, node], _.isNil)) return false
 
