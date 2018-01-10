@@ -36,6 +36,7 @@ export { default as isBrowser } from './isBrowser'
 export { default as doesNodeContainClick } from './doesNodeContainClick'
 export { default as leven } from './leven'
 export * as META from './META'
+export createPaginationItems from './createPaginationItems'
 export * as SUI from './SUI'
 
 export { default as keyboardKey } from './keyboardKey'
