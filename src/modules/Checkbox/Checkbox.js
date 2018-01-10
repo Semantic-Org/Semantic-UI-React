@@ -46,6 +46,12 @@ export default class Checkbox extends Component {
     /** Removes padding for a label. Auto applied when there is no label. */
     fitted: PropTypes.bool,
 
+    /** A unique identifier. */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     /** Whether or not checkbox is indeterminate. */
     indeterminate: PropTypes.bool,
 
@@ -152,6 +158,18 @@ export default class Checkbox extends Component {
     return disabled ? -1 : 0
   }
 
+  handleContainerClick = (e) => {
+    const { id } = this.props
+
+    if (_.isNil(id)) this.handleClick(e)
+  }
+
+  handleInputClick = (e) => {
+    const { id } = this.props
+
+    if (id) this.handleClick(e)
+  }
+
   handleInputRef = c => (this.inputRef = c)
 
   handleClick = (e) => {
@@ -190,6 +208,7 @@ export default class Checkbox extends Component {
       className,
       disabled,
       label,
+      id,
       name,
       radio,
       readOnly,
@@ -218,21 +237,22 @@ export default class Checkbox extends Component {
     const unhandled = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
     const [htmlInputProps, rest] = partitionHTMLProps(unhandled, { htmlProps: htmlInputAttrs })
-    const id = _.get(htmlInputProps, 'id')
 
     return (
       <ElementType
         {...rest}
         className={classes}
-        onChange={this.handleClick}
-        onClick={this.handleClick}
+        onClick={this.handleContainerClick}
+        onChange={this.handleContainerClick}
         onMouseDown={this.handleMouseDown}
       >
         <input
           {...htmlInputProps}
           checked={checked}
           className='hidden'
+          id={id}
           name={name}
+          onClick={this.handleInputClick}
           readOnly
           ref={this.handleInputRef}
           tabIndex={this.computeTabIndex()}
