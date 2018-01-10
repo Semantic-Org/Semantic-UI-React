@@ -55,7 +55,7 @@ export interface ProgressProps {
   precision?: number;
 
   /** A progress bar can contain a text value indicating current progress. */
-  progress?: boolean | 'percent' | 'ratio';
+  progress?: boolean | 'percent' | 'ratio' | 'value';
 
   /** A progress bar can vary in size. */
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'big';

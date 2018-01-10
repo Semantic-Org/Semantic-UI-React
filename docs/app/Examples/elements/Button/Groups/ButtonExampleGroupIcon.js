@@ -1,19 +1,33 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { Button, Icon } from 'semantic-ui-react'
 
 const ButtonExampleGroupIcon = () => (
   <div>
     <Button.Group>
-      <Button icon='align left' />
-      <Button icon='align center' />
-      <Button icon='align right' />
-      <Button icon='align justify' />
+      <Button icon>
+        <Icon name='align left' />
+      </Button>
+      <Button icon>
+        <Icon name='align center' />
+      </Button>
+      <Button icon>
+        <Icon name='align right' />
+      </Button>
+      <Button icon>
+        <Icon name='align justify' />
+      </Button>
     </Button.Group>
     {' '}
     <Button.Group>
-      <Button icon='bold' />
-      <Button icon='underline' />
-      <Button icon='text width' />
+      <Button icon>
+        <Icon name='bold' />
+      </Button>
+      <Button icon>
+        <Icon name='underline' />
+      </Button>
+      <Button icon>
+        <Icon name='text width' />
+      </Button>
     </Button.Group>
   </div>
 )

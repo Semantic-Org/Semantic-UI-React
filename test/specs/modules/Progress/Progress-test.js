@@ -159,6 +159,12 @@ describe('Progress', () => {
         .find('.progress')
         .should.contain.text('50%')
     })
+    it('displays the progress as text when set to "value"', () => {
+      shallow(<Progress progress='value' value={1} total={2} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('1')
+    })
     it('shows the percent complete', () => {
       shallow(<Progress percent={72} progress />)
         .children()

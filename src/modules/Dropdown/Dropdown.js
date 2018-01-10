@@ -7,6 +7,7 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  doesNodeContainClick,
   eventStack,
   getElementType,
   getUnhandledProps,
@@ -89,6 +90,9 @@ export default class Dropdown extends Component {
 
     /** A compact dropdown has no minimum width. */
     compact: PropTypes.bool,
+
+    /** Whether or not the dropdown should strip diacritics in options and input search */
+    deburr: PropTypes.bool,
 
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
@@ -354,6 +358,7 @@ export default class Dropdown extends Component {
     additionLabel: 'Add ',
     additionPosition: 'top',
     closeOnBlur: true,
+    deburr: false,
     icon: 'dropdown',
     minCharacters: 1,
     noResultsMessage: 'No results found.',
@@ -393,7 +398,10 @@ export default class Dropdown extends Component {
     this.setValue(value)
     this.setSelectedIndex(value)
 
-    if (open) this.open()
+    if (open) {
+      this.open()
+      this.attachHandlersOnOpen()
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -427,7 +435,7 @@ export default class Dropdown extends Component {
       this.setSelectedIndex(nextProps.value)
     }
 
-    if (!shallowEqual(nextProps.options, this.props.options)) {
+    if (!_.isEqual(nextProps.options, this.props.options)) {
       this.setSelectedIndex(undefined, nextProps.options)
     }
   }
@@ -475,14 +483,7 @@ export default class Dropdown extends Component {
     // opened / closed
     if (!prevState.open && this.state.open) {
       debug('dropdown opened')
-      eventStack.sub('keydown', [
-        this.closeOnEscape,
-        this.moveSelectionOnKeyDown,
-        this.selectItemOnEnter,
-        this.removeItemOnBackspace,
-      ])
-      eventStack.sub('click', this.closeOnDocumentClick)
-      eventStack.unsub('keydown', [this.openOnArrow, this.openOnSpace])
+      this.attachHandlersOnOpen()
       this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
@@ -643,9 +644,20 @@ export default class Dropdown extends Component {
     if (!this.props.closeOnBlur) return
 
     // If event happened in the dropdown, ignore it
-    if (this.ref && _.isFunction(this.ref.contains) && this.ref.contains(e.target)) return
+    if (this.ref && doesNodeContainClick(this.ref, e)) return
 
     this.close()
+  }
+
+  attachHandlersOnOpen = () => {
+    eventStack.sub('keydown', [
+      this.closeOnEscape,
+      this.moveSelectionOnKeyDown,
+      this.selectItemOnEnter,
+      this.removeItemOnBackspace,
+    ])
+    eventStack.sub('click', this.closeOnDocumentClick)
+    eventStack.unsub('keydown', [this.openOnArrow, this.openOnSpace])
   }
 
   // ----------------------------------------
@@ -787,7 +799,7 @@ export default class Dropdown extends Component {
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
   getMenuOptions = (value = this.state.value, options = this.props.options) => {
-    const { multiple, search, allowAdditions, additionPosition, additionLabel } = this.props
+    const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
     const { searchQuery } = this.state
 
     let filteredOptions = options
@@ -802,9 +814,13 @@ export default class Dropdown extends Component {
       if (_.isFunction(search)) {
         filteredOptions = search(filteredOptions, searchQuery)
       } else {
-        const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-        // remove diacritics on search
-        filteredOptions = _.filter(filteredOptions, opt => re.test(_.deburr(opt.text)))
+        // remove diacritics on search input and options, if deburr prop is set
+        const strippedQuery = deburr ? _.deburr(searchQuery) : searchQuery
+
+        const re = new RegExp(_.escapeRegExp(strippedQuery), 'i')
+
+        filteredOptions = _.filter(filteredOptions, opt =>
+          re.test(deburr ? _.deburr(opt.text) : opt.text))
       }
     }
 

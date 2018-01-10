@@ -8,7 +8,8 @@ import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
-import { Divider, Grid, Menu } from 'src'
+import { Divider, Grid, Menu, Visibility } from 'src'
+import { shallowEqual } from 'src/lib'
 import Editor from 'docs/app/Components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
@@ -40,6 +41,10 @@ const errorStyle = {
  * Allows toggling the the raw `code` code block.
  */
 class ComponentExample extends Component {
+  static contextTypes = {
+    onPassed: PropTypes.func,
+  }
+
   static propTypes = {
     children: PropTypes.node,
     description: PropTypes.node,
@@ -52,7 +57,7 @@ class ComponentExample extends Component {
   }
 
   componentWillMount() {
-    const { examplePath } = this.props
+    const { examplePath, location } = this.props
     const sourceCode = this.getOriginalSourceCode()
 
     this.anchorName = _.kebabCase(_.last(examplePath.split('/')))
@@ -70,44 +75,69 @@ class ComponentExample extends Component {
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    const isActive = nextProps.location.hash === `#${this.anchorName}`
+
+    this.setState(() => ({ isActive }))
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(this.state, nextState)
+  }
+
   setHashAndScroll = () => {
-    const { history } = this.props
+    const { history, location } = this.props
+
     history.replace(`${location.pathname}#${this.anchorName}`)
     scrollToAnchor()
   }
 
   removeHash = () => {
-    const { history } = this.props
+    const { history, location } = this.props
     history.replace(location.pathname)
   }
 
   handleDirectLinkClick = () => {
+    const { location } = this.props
     this.setHashAndScroll()
     copyToClipboard(location.href)
   }
 
-  handleMouseEnter = () => this.setState({ controlsVisible: true })
+  handleMouseMove = _.throttle(() => {
+    const { controlsVisible } = this.state
+    if (controlsVisible) return
+
+    this.setState({ controlsVisible: true })
+  }, 200, { trailing: false })
 
   handleMouseLeave = () => this.setState({ controlsVisible: false })
 
   handleShowCodeClick = (e) => {
     e.preventDefault()
 
-    const { showCode } = this.state
+    const { showCode, showHTML } = this.state
+
     this.setState({ showCode: !showCode })
 
     if (!showCode) this.setHashAndScroll()
-    else this.removeHash()
+    else if (!showHTML) this.removeHash()
   }
 
   handleShowHTMLClick = (e) => {
     e.preventDefault()
 
-    const { showHTML } = this.state
+    const { showCode, showHTML } = this.state
+
     this.setState({ showHTML: !showHTML })
 
     if (!showHTML) this.setHashAndScroll()
-    else this.removeHash()
+    else if (!showCode) this.removeHash()
+  }
+
+  handlePass = () => {
+    const { title } = this.props
+
+    if (title) _.invoke(this.context, 'onPassed', null, this.props)
   }
 
   copyJSX = () => {
@@ -240,7 +270,7 @@ class ComponentExample extends Component {
   }
 
   setGitHubHrefs = () => {
-    const { examplePath } = this.props
+    const { examplePath, location } = this.props
 
     if (this.ghEditHref && this.ghBugHref) return
 
@@ -271,7 +301,7 @@ class ComponentExample extends Component {
           `The ${componentName} does not do this`,
           '',
           '**Testcase**',
-          `If the docs show the issue, use: ${window.location.href}`,
+          `If the docs show the issue, use: ${location.href}`,
           'Otherwise, fork this to get started: http://codepen.io/levithomason/pen/ZpBaJX',
         ].join('\n'),
       }, (val, key) => `${key}=${encodeURIComponent(val)}`).join('&'),
@@ -373,60 +403,66 @@ class ComponentExample extends Component {
 
   render() {
     const { children, description, suiVersion, title } = this.props
-    const { controlsVisible, exampleElement, showCode, showHTML } = this.state
-    const exampleStyle = {}
+    const { controlsVisible, exampleElement, isActive, showCode, showHTML } = this.state
 
-    if (showCode || showHTML || location.hash === `#${this.anchorName}`) {
-      exampleStyle.boxShadow = '0 0 30px #ccc'
+    const exampleStyle = {
+      marginBottom: '1em',
+      boxShadow: isActive && '0 0 30px #ccc',
     }
 
     return (
-      <Grid
-        className='docs-example'
-        id={this.anchorName}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
-        style={exampleStyle}
+      <Visibility
+        once={false}
+        onTopPassed={this.handlePass}
+        onTopPassedReverse={this.handlePass}
       >
-        <Grid.Row>
-          <Grid.Column style={headerColumnStyle} width={12}>
-            <ComponentExampleTitle
-              description={description}
-              title={title}
-              suiVersion={suiVersion}
-            />
-          </Grid.Column>
-          <Grid.Column textAlign='right' width={4}>
-            <ComponentControls
-              anchorName={this.anchorName}
-              onCopyLink={this.handleDirectLinkClick}
-              onShowCode={this.handleShowCodeClick}
-              onShowHTML={this.handleShowHTMLClick}
-              showCode={showCode}
-              showHTML={showHTML}
-              visible={controlsVisible}
-            />
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row columns={1}>
-          {children && (
-            <Grid.Column style={childrenStyle}>
-              {children}
+        <Grid
+          className='docs-example'
+          id={this.anchorName}
+          onMouseMove={this.handleMouseMove}
+          onMouseLeave={this.handleMouseLeave}
+          style={exampleStyle}
+        >
+          <Grid.Row>
+            <Grid.Column style={headerColumnStyle} width={12}>
+              <ComponentExampleTitle
+                description={description}
+                title={title}
+                suiVersion={suiVersion}
+              />
             </Grid.Column>
-          )}
-        </Grid.Row>
+            <Grid.Column textAlign='right' width={4}>
+              <ComponentControls
+                anchorName={this.anchorName}
+                onCopyLink={this.handleDirectLinkClick}
+                onShowCode={this.handleShowCodeClick}
+                onShowHTML={this.handleShowHTMLClick}
+                showCode={showCode}
+                showHTML={showHTML}
+                visible={controlsVisible}
+              />
+            </Grid.Column>
+          </Grid.Row>
 
-        <Grid.Row columns={1}>
-          <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
-            {exampleElement}
-          </Grid.Column>
-          <Grid.Column>
-            {this.renderJSX()}
-            {this.renderHTML()}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+          <Grid.Row columns={1}>
+            {children && (
+              <Grid.Column style={childrenStyle}>
+                {children}
+              </Grid.Column>
+            )}
+          </Grid.Row>
+
+          <Grid.Row columns={1}>
+            <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
+              {exampleElement}
+            </Grid.Column>
+            <Grid.Column>
+              {this.renderJSX()}
+              {this.renderHTML()}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Visibility>
     )
   }
 }

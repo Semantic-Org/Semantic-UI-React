@@ -30,11 +30,10 @@ const Usage = () => (
     <Segment basic padded>
       <Header as='h2' dividing>JavaScript</Header>
       <p>
-        The Semantic UI React package can be installed via NPM:
+        The Semantic UI React package can be installed via Yarn:
       </p>
       <Segment>
         <pre>$ yarn add {pkg.name}</pre>
-        <pre>$ npm install {pkg.name} --save</pre>
       </Segment>
       <p>
         Installing Semantic UI React provides the JavaScript for your components.
@@ -98,12 +97,12 @@ const Usage = () => (
         main Semantic UI repository to provide a lightweight CSS only version of Semantic UI.
       </p>
       <p>
-        Semantic UI CSS can be installed as a package in your project using NPM. You won't be able to
+        Semantic UI CSS can be installed as a package in your project using Yarn. You won't be able to
         use custom themes with this method.
       </p>
       <Segment>
         <pre>
-          $ npm install semantic-ui-css --save
+          $ yarn add semantic-ui-css
         </pre>
       </Segment>
       <p>
@@ -133,7 +132,6 @@ const Usage = () => (
       </p>
       <Segment>
         <pre>$ yarn add semantic-ui --dev</pre>
-        <pre>$ npm install semantic-ui --save-dev</pre>
       </Segment>
       <p>
         After building the project with Gulp, you'll need to include the minified CSS file

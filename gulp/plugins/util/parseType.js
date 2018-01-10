@@ -40,7 +40,14 @@ const parsers = {
   union: parseUnion,
 }
 
-export default ({ type }) => {
+export default (propName, { type }) => {
+  if (type === undefined) {
+    throw new Error([
+      `The prop "${propName}" does not contain propType definition. This happens if the property is in the `,
+      'defaultProps, but it is not in the propTypes',
+    ].join(' '))
+  }
+
   const parser = parsers[type.name]
 
   return parser ? parser(type) : type

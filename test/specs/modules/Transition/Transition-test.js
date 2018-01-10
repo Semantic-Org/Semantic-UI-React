@@ -327,6 +327,28 @@ describe('Transition', () => {
       )
       wrapper.setProps({ visible: false })
     })
+
+    it('depends on the specified duration', (done) => {
+      const onHide = sandbox.spy()
+      wrapperMount(
+        <Transition duration={{ hide: 200 }} onHide={onHide} transitionOnMount={false}>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setProps({ visible: false })
+      wrapper.should.have.state('status', Transition.EXITING)
+
+      setTimeout(() => {
+        wrapper.should.have.state('status', Transition.EXITING)
+      }, 100)
+      setTimeout(() => {
+        onHide.should.have.been.calledOnce()
+        wrapper.should.have.state('status', Transition.EXITED)
+
+        done()
+      }, 200)
+    })
   })
 
   describe('onShow', () => {
@@ -350,6 +372,27 @@ describe('Transition', () => {
           <p />
         </Transition>,
       )
+    })
+
+    it('depends on the specified duration', (done) => {
+      const onShow = sandbox.spy()
+      wrapperMount(
+        <Transition duration={{ show: 200 }} onShow={onShow} transitionOnMount>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.should.have.state('status', Transition.ENTERING)
+
+      setTimeout(() => {
+        wrapper.should.have.state('status', Transition.ENTERING)
+      }, 100)
+      setTimeout(() => {
+        onShow.should.have.been.calledOnce()
+        wrapper.should.have.state('status', Transition.ENTERED)
+
+        done()
+      }, 200)
     })
   })
 

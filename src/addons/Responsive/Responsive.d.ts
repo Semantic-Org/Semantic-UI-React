@@ -9,6 +9,9 @@ export interface ResponsiveProps {
   /** Primary content. */
   children?: React.ReactNode;
 
+  /** Fires callbacks immediately after mount. */
+  fireOnMount?: boolean;
+
   /** The maximum width at which content will be displayed. */
   maxWidth?: number | string;
 

@@ -145,6 +145,20 @@ describe('Dropdown', () => {
       .should.have.been.calledOnce()
   })
 
+  it('blurs the Dropdown node on close by clicking outside component', () => {
+    wrapperMount(<Dropdown options={options} selection defaultOpen />)
+
+    const instance = wrapper.instance()
+    sandbox.spy(instance.ref, 'blur')
+
+    dropdownMenuIsOpen()
+    document.body.click()
+    dropdownMenuIsClosed()
+
+    instance.ref.blur
+      .should.have.been.calledOnce()
+  })
+
   it('does not close on click when search is true and options are empty', () => {
     wrapperMount(<Dropdown options={[]} search selection defaultOpen />)
 
@@ -452,6 +466,30 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('setSelectedIndex', () => {
+    it('will call setSelectedIndex if options change', () => {
+      wrapperMount(<Dropdown options={options} />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'setSelectedIndex')
+
+      wrapper.setProps({ options: [] })
+
+      instance.setSelectedIndex.should.have.been.calledOnce()
+    })
+
+    it('will not call setSelectedIndex if options have not changed', () => {
+      wrapperMount(<Dropdown options={options} />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'setSelectedIndex')
+
+      wrapper.setProps({ options })
+
+      instance.setSelectedIndex.should.not.have.been.calledOnce()
+    })
+  })
+
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
       wrapperShallow(<Dropdown />)
@@ -658,22 +696,68 @@ describe('Dropdown', () => {
         .find('.selected')
         .should.contain.text('a2')
     })
-    it('filter after diacritics', () => {
+    it('filters diacritics on options when using deburr prop', () => {
+      const inputText = 'floresti'
+      const textToFind = 'FLOREŞTI'
+
       const opts = [
-        { text: 'FLOREŞTI', value: '1' },
-        { text: 'ŞANŢU FLOREŞTI', value: '2' },
-        { text: 'FLOREŞTI Alba', value: '3' },
+        { text: textToFind, value: '1' },
+        { text: `ŞANŢU ${textToFind}`, value: '2' },
+        { text: `${textToFind} Alba`, value: '3' },
       ]
 
       // search for 'floresti'
-      wrapperMount(<Dropdown options={opts} search selection />)
+      wrapperMount(<Dropdown options={opts} search deburr selection />)
         .simulate('click')
         .find('input.search')
-        .simulate('change', { target: { value: 'floresti' } })
+        .simulate('change', { target: { value: inputText } })
 
       wrapper
         .find('.selected')
-        .should.contain.text('FLOREŞTI')
+        .should.contain.text(textToFind)
+    })
+    it('filters diacritics on input when using deburr prop', () => {
+      const inputText = 'FLORÉŞTI'
+      const textToFind = 'FLORESTI'
+
+      const opts = [
+        { text: textToFind, value: '1' },
+        { text: `SANTU ${textToFind}`, value: '2' },
+        { text: `${textToFind} Alba`, value: '3' },
+      ]
+
+      // search for 'floresti'
+      wrapperMount(<Dropdown options={opts} search deburr selection />)
+        .simulate('click')
+        .find('input.search')
+        .simulate('change', { target: { value: inputText } })
+
+      wrapper
+        .find('.selected')
+        .should.contain.text(textToFind)
+    })
+    it('should not filter diacritics when deburr is not set', () => {
+      const inputText = 'FLORÉŞTI'
+      const textToFind = 'FLORESTI'
+
+      // Add this in case the default 'no results text' changes.
+      const noResultsText = 'NoResultsFound'
+
+      const opts = [
+        { text: textToFind, value: '1' },
+        { text: `SANTU ${textToFind}`, value: '2' },
+        { text: `${textToFind} Alba`, value: '3' },
+      ]
+
+      // search for 'floresti'
+      wrapperMount(<Dropdown options={opts} search selection noResultsMessage={noResultsText} />)
+        .simulate('click')
+        .find('input.search')
+        .simulate('change', { target: { value: inputText } })
+
+      wrapper
+        .find('.message')
+        .should.contain.text(noResultsText)
     })
     it('still works after encountering "no results"', () => {
       const opts = [

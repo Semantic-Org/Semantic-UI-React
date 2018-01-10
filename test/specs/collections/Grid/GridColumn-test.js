@@ -8,7 +8,7 @@ describe('GridColumn', () => {
     rendersContent: false,
   })
 
-  common.implementsOnlyProp(GridColumn)
+  common.implementsMultipleProp(GridColumn, 'only', SUI.VISIBILITY)
   common.implementsTextAlignProp(GridColumn)
   common.implementsVerticalAlignProp(GridColumn)
 
