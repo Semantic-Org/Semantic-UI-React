@@ -15,6 +15,7 @@ import React, { cloneElement, isValidElement } from 'react'
  * @param {Object} [options={}]
  * @param {object} [options.defaultProps={}] Default props object
  * @param {object|function} [options.overrideProps={}] Override props object or function (called with regular props)
+ * @param {boolean} [options.generateKey=true] Whether or not automatic key generation is allowed
  * @returns {object|null}
  */
 export function createShorthand(Component, mapValueToProps, val, options = {}) {
@@ -81,12 +82,13 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   // Use key, childKey, or generate key
   if (_.isNil(props.key)) {
     const { childKey } = props
+    const { generateKey = true } = options
 
     if (!_.isNil(childKey)) {
       // apply and consume the childKey
       props.key = typeof childKey === 'function' ? childKey(props) : childKey
       delete props.childKey
-    } else if (valIsString || valIsNumber) {
+    } else if (generateKey && (valIsString || valIsNumber)) {
       // use string/number shorthand values as the key
       props.key = val
     }

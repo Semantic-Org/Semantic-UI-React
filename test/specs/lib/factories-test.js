@@ -16,8 +16,9 @@ const getShorthand = ({
   defaultProps,
   mapValueToProps = () => ({}),
   overrideProps,
+  generateKey,
   value,
-}) => createShorthand(Component, mapValueToProps, value, { defaultProps, overrideProps })
+}) => createShorthand(Component, mapValueToProps, value, { defaultProps, overrideProps, generateKey })
 
 // ----------------------------------------
 // Common tests
@@ -394,6 +395,18 @@ describe('factories', () => {
       itOverridesDefaultPropsWithFalseyProps('mapValueToProps', {
         value: 'a string',
         mapValueToProps: () => ({ undef: undefined, nil: null, zero: 0, empty: '' }),
+      })
+
+      describe('key', () => {
+        it('is generated from the value', () => {
+          getShorthand({ value: 'foo' })
+            .should.have.property('key', 'foo')
+        })
+
+        it('is not generated if generateKey is false', () => {
+          getShorthand({ value: 'foo', generateKey: false })
+            .should.have.property('key', null)
+        })
       })
     })
 
