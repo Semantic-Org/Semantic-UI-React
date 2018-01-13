@@ -19,6 +19,11 @@ const ConfirmVariationsExamples = () => (
       description='A confirm can customize button text.'
       examplePath='addons/Confirm/Variations/ConfirmExampleButtons'
     />
+    <ComponentExample
+      title='Confirm Size'
+      description='A confirm can define size.'
+      examplePath='addons/Confirm/Variations/ConfirmExampleSize'
+    />
   </ExampleSection>
 )
 
