@@ -28,6 +28,9 @@ export interface SidebarProps {
   /** Direction the sidebar should appear on. */
   direction?: 'top' | 'right' | 'bottom' | 'left';
 
+  /** Called when the user clicks away from the sidebar. */
+  onSidebarBlur?: () => void;
+
   /** Controls whether or not the sidebar is visible on the page. */
   visible?: boolean;
 
