@@ -1,7 +1,38 @@
-import React from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import Sidebar from 'src/modules/Sidebar/Sidebar'
 import * as common from 'test/specs/commonTests'
+
+class TestComponent extends Component {
+  static propTypes = {
+    visible: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    visible: false,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      visible: props.visible,
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <Sidebar
+          visible={this.state.visible}
+          closable
+        >
+          <div className='inside' />
+        </Sidebar>
+      </div>
+    )
+  }
+}
 
 describe('Sidebar', () => {
   common.isConformant(Sidebar)
@@ -19,5 +50,43 @@ describe('Sidebar', () => {
   it('renders a <div /> element', () => {
     shallow(<Sidebar />)
       .should.have.tagName('div')
+  })
+
+  it('close Sidebar when clicking outside', () => {
+    const wrapper = mount(<TestComponent visible />)
+    const SidebarComponent = wrapper.find('Sidebar')
+    SidebarComponent.should.have.prop('visible', true)
+    document.body.click()
+    SidebarComponent.should.have.prop('visible', false)
+  })
+
+  it('doesn\'t close when clicking on element inside Sidebar', () => {
+    const wrapper = mount(<TestComponent visible />)
+    const SidebarComponent = wrapper.find('Sidebar')
+    SidebarComponent.should.have.prop('visible', true)
+    SidebarComponent.find('.inside').simulate('click')
+    SidebarComponent.should.have.prop('visible', true)
+  })
+
+  it('doesn\'t close when clicking on Sidebar', () => {
+    const wrapper = mount(<TestComponent visible />)
+    const SidebarComponent = wrapper.find('Sidebar')
+
+    SidebarComponent.should.have.prop('visible', true)
+    SidebarComponent.simulate('click')
+    SidebarComponent.should.have.prop('visible', true)
+  })
+
+  it('close Sidebar after opening and then clicking outside', () => {
+    const wrapper = mount(<TestComponent />)
+    const SidebarComponent = wrapper.find('Sidebar')
+
+    SidebarComponent.should.have.prop('visible', false)
+
+    wrapper.setState({ visible: true })
+    SidebarComponent.should.have.prop('visible', true)
+
+    document.body.click()
+    SidebarComponent.should.have.prop('visible', false)
   })
 })
