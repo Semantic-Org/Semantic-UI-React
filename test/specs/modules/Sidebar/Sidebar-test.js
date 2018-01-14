@@ -37,17 +37,11 @@ class TestComponent extends Component {
 }
 
 describe('Sidebar', () => {
-  common.isConformant(Sidebar)
-  common.hasUIClassName(Sidebar)
-  common.rendersChildren(Sidebar)
-
-  common.propKeyOnlyToClassName(Sidebar, 'visible')
-
-  common.propValueOnlyToClassName(Sidebar, 'animation', [
-    'overlay', 'push', 'scale down', 'uncover', 'slide out', 'slide along',
-  ])
-  common.propValueOnlyToClassName(Sidebar, 'direction', ['top', 'right', 'bottom', 'left'])
-  common.propValueOnlyToClassName(Sidebar, 'width', ['very thin', 'thin', 'wide', 'very wide'])
+  it('has ui className', () => {
+    const wrapper = mount(<TestComponent visible />)
+    const SidebarComponent = wrapper.find('Sidebar')
+    common.hasUIClassName(SidebarComponent)
+  })
 
   it('renders a <div /> element', () => {
     shallow(<Sidebar />)
