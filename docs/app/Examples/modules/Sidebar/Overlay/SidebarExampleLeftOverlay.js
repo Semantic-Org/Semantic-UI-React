@@ -6,13 +6,24 @@ class SidebarLeftOverlay extends Component {
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
+  handleBlur = () => this.setState({ visible: false })
+
   render() {
     const { visible } = this.state
     return (
       <div>
         <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
+          <Sidebar
+            as={Menu}
+            animation='overlay'
+            onSidebarBlur={this.handleBlur}
+            width='thin'
+            visible={visible}
+            icon='labeled'
+            vertical
+            inverted
+          >
             <Menu.Item name='home'>
               <Icon name='home' />
               Home
@@ -26,7 +37,7 @@ class SidebarLeftOverlay extends Component {
               Channels
             </Menu.Item>
           </Sidebar>
-          <Sidebar.Pusher>
+          <Sidebar.Pusher dimmed={visible}>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
               <Image src='/assets/images/wireframe/paragraph.png' />

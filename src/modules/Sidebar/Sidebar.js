@@ -3,6 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import Ref from '../../addons/Ref'
 import {
   AutoControlledComponent as Component,
   childrenUtils,
@@ -134,9 +135,11 @@ class Sidebar extends Component {
     const ElementType = getElementType(Sidebar, this.props)
 
     return (
-      <ElementType {...rest} className={classes}>
-        {childrenUtils.isNil(children) ? content : children}
-      </ElementType>
+      <Ref innerRef={this.handleRef}>
+        <ElementType {...rest} className={classes}>
+          {childrenUtils.isNil(children) ? content : children}
+        </ElementType>
+      </Ref>
     )
   }
 }
