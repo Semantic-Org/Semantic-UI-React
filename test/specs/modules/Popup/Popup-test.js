@@ -79,24 +79,11 @@ describe('Popup', () => {
     assertInBody('.ui.popup.visible.some-class')
   })
 
-  describe('offest', () => {
-    it('accepts an offest to the left', () => {
+  describe('offset', () => {
+    it('accepts an offset to the left', () => {
       wrapperMount(
         <Popup
-          offset={50}
-          position='bottom right'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
-
-      wrapper.find('button').simulate('click')
-      assertInBody('.ui.popup.visible')
-    })
-    it('accepts an offest to the right', () => {
-      wrapperMount(
-        <Popup
-          offset={50}
+          offset={100}
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
@@ -104,6 +91,66 @@ describe('Popup', () => {
       )
 
       wrapper.find('button').simulate('click')
+
+      const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+      const { left } = rect
+
+      expect(left).to.be.at.least(100)
+      assertInBody('.ui.popup.visible')
+    })
+    it('accepts an offset to the left', () => {
+      wrapperMount(
+        <Popup
+          offset={[100, 0]}
+          position='bottom left'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+
+      const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+      const { left } = rect
+
+      expect(left).to.be.at.least(100)
+      assertInBody('.ui.popup.visible')
+    })
+    it('accepts an offset to the top', () => {
+      wrapperMount(
+        <Popup
+          offset={[0, 100]}
+          position='bottom left'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+
+      const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+      const { top } = rect
+
+      expect(top).to.be.at.least(100)
+      assertInBody('.ui.popup.visible')
+    })
+    it('accepts an offset to both top and left', () => {
+      wrapperMount(
+        <Popup
+          offset={[100, 100]}
+          position='bottom left'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+
+      const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+      const { top, left } = rect
+
+      expect(top).to.be.at.least(100)
+      expect(left).to.be.at.least(100)
       assertInBody('.ui.popup.visible')
     })
   })
