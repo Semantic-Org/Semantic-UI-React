@@ -359,6 +359,10 @@ class Portal extends Component {
       eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target: this.portalNode })
     }
 
+    // Prevent race condition bug
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/2401
+    if (!this.rootNode) return null
+
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
       Children.only(children),
