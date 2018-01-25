@@ -24,11 +24,13 @@ const shorthandComponentName = (ShorthandComponent) => {
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
  * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
+ * @param {boolean} [options.autoGenerateKey=true] Whether or not automatic key generation is allowed for the shorthand component.
  */
 export default (Component, options = {}) => {
   const {
     alwaysPresent,
     assertExactMatch = true,
+    autoGenerateKey = false,
     mapValueToProps,
     propKey,
     ShorthandComponent,
@@ -47,13 +49,21 @@ export default (Component, options = {}) => {
 
     const name = shorthandComponentName(ShorthandComponent)
     const assertValidShorthand = (value) => {
-      const shorthandElement = createShorthand(ShorthandComponent, mapValueToProps, value, {
+      const expectedShorthandElement = createShorthand(ShorthandComponent, mapValueToProps, value, {
         defaultProps: shorthandDefaultProps,
         overrideProps: shorthandOverrideProps,
+        autoGenerateKey,
       })
       const element = createElement(Component, { ...requiredProps, [propKey]: value })
+      const wrapper = shallow(element)
 
-      shallow(element).should[assertMethod](shorthandElement)
+      wrapper.should[assertMethod](expectedShorthandElement)
+
+      // Enzyme's .key() method is not consistent with React for elements with
+      // no key (`undefined` vs `null`), so use the underlying element instead
+      // Will fail if more than one element of this type is found
+      const shorthandElement = wrapper.find(ShorthandComponent).getElement()
+      expect(shorthandElement.key).to.equal(expectedShorthandElement.key, "key doesn't match")
     }
 
     if (alwaysPresent || (Component.defaultProps && Component.defaultProps[propKey])) {
