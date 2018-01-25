@@ -20,11 +20,12 @@ const shorthandComponentName = (ShorthandComponent) => {
  * @param {string|function} options.ShorthandComponent The component that should be rendered from the shorthand value.
  * @param {boolean} [options.alwaysPresent] Whether or not the shorthand exists by default.
  * @param {boolean} [options.assertExactMatch] Selects an assertion method, `contain` will be used if true.
+ * @param {boolean} [options.autoGenerateKey=false] Whether or not automatic key generation is
+ *   allowed for the shorthand component.
  * @param {function} options.mapValueToProps A function that maps a primitive value to the Component props.
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
  * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
- * @param {boolean} [options.autoGenerateKey=true] Whether or not automatic key generation is allowed for the shorthand component.
  */
 export default (Component, options = {}) => {
   const {
