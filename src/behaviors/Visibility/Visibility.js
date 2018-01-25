@@ -188,11 +188,16 @@ export default class Visibility extends Component {
   // Lifecycle
   // ----------------------------------------
 
-  componentWillReceiveProps({ continuous, once }) {
+  componentWillReceiveProps({ continuous, once, context }) {
     const cleanHappened = continuous !== this.props.continuous || once !== this.props.once
 
     // Heads up! We should clean up array of happened callbacks, if values of these props are changed
     if (cleanHappened) this.firedCallbacks = []
+
+    if (this.props.context !== context) {
+      this.unattachHandlers(this.props.context)
+      this.attachHandlers(context)
+    }
   }
 
   componentDidMount() {
@@ -200,8 +205,7 @@ export default class Visibility extends Component {
     const { context, fireOnMount } = this.props
 
     this.pageYOffset = window.pageYOffset
-    eventStack.sub('resize', this.handleUpdate, { target: context })
-    eventStack.sub('scroll', this.handleUpdate, { target: context })
+    this.attachHandlers(context)
 
     if (fireOnMount) this.update()
   }
@@ -209,8 +213,21 @@ export default class Visibility extends Component {
   componentWillUnmount() {
     const { context } = this.props
 
-    eventStack.unsub('resize', this.handleUpdate, { target: context })
-    eventStack.unsub('scroll', this.handleUpdate, { target: context })
+    this.unattachHandlers(context)
+  }
+
+  attachHandlers(context) {
+    if (context) {
+      eventStack.sub('resize', this.handleUpdate, { target: context })
+      eventStack.sub('scroll', this.handleUpdate, { target: context })
+    }
+  }
+
+  unattachHandlers(context) {
+    if (context) {
+      eventStack.unsub('resize', this.handleUpdate, { target: context })
+      eventStack.unsub('scroll', this.handleUpdate, { target: context })
+    }
   }
 
   // ----------------------------------------

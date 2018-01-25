@@ -300,6 +300,38 @@ describe('Visibility', () => {
       domEvent.scroll(div)
       onUpdate.should.have.been.called()
     })
+
+    it('should not call onUpdate when context is null', () => {
+      const onUpdate = sandbox.spy()
+      mount(<Visibility context={null} onUpdate={onUpdate} />)
+
+      domEvent.scroll(document)
+      onUpdate.should.not.have.been.called()
+    })
+
+    it('should call onUpdate when context changes', () => {
+      const div = document.createElement('div')
+      const onUpdate = sandbox.spy()
+      const renderedComponent = mount(<Visibility context={null} onUpdate={onUpdate} />)
+      renderedComponent.setProps({ context: div })
+
+      domEvent.scroll(div)
+      onUpdate.should.have.been.called()
+    })
+
+    it('should not call onUpdate when context changes and component is unmounted', () => {
+      const div = document.createElement('div')
+      const onUpdate = sandbox.spy()
+      const renderedComponent = mount(<Visibility context={null} onUpdate={onUpdate} />)
+      renderedComponent.setProps({ context: div })
+      renderedComponent.unmount()
+
+      domEvent.scroll(div)
+      onUpdate.should.not.have.been.called()
+
+      domEvent.scroll(document)
+      onUpdate.should.not.have.been.called()
+    })
   })
 
   describe('fireOnMount', () => {
