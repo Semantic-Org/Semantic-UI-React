@@ -56,8 +56,9 @@ function Statistic(props) {
     <ElementType {...rest} className={classes}>
       {StatisticValue.create(value, {
         defaultProps: { text },
+        autoGenerateKey: false,
       })}
-      {StatisticLabel.create(label)}
+      {StatisticLabel.create(label, { autoGenerateKey: false })}
     </ElementType>
   )
 }

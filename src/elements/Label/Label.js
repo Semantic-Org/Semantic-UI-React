@@ -201,10 +201,10 @@ export default class Label extends Component {
 
     return (
       <ElementType className={classes} onClick={this.handleClick} {...rest}>
-        {Icon.create(icon)}
-        {typeof image !== 'boolean' && Image.create(image)}
+        {Icon.create(icon, { autoGenerateKey: false })}
+        {typeof image !== 'boolean' && Image.create(image, { autoGenerateKey: false })}
         {content}
-        {createShorthand(LabelDetail, val => ({ content: val }), detail)}
+        {createShorthand(LabelDetail, val => ({ content: val }), detail, { autoGenerateKey: false })}
         {onRemove && Icon.create(removeIconShorthand, { overrideProps: this.handleIconOverrides })}
       </ElementType>
     )

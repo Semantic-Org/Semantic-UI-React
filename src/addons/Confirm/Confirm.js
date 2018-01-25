@@ -100,8 +100,8 @@ class Confirm extends Component {
 
     return (
       <Modal {...rest} {...openProp} size={size} onClose={this.handleCancel}>
-        {Modal.Header.create(header)}
-        {Modal.Content.create(content)}
+        {Modal.Header.create(header, { autoGenerateKey: false })}
+        {Modal.Content.create(content, { autoGenerateKey: false })}
         <Modal.Actions>
           {Button.create(cancelButton, { overrideProps: this.handleCancelOverrides })}
           {Button.create(confirmButton, {

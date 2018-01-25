@@ -42,7 +42,7 @@ function Item(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {ItemImage.create(image)}
+      {ItemImage.create(image, { autoGenerateKey: false })}
 
       <ItemContent
         content={content}

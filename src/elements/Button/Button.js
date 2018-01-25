@@ -260,16 +260,16 @@ class Button extends Component {
     if (!_.isNil(label)) {
       const buttonClasses = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
-      const labelElement = Label.create(label, { defaultProps: {
-        basic: true,
-        pointing: labelPosition === 'left' ? 'right' : 'left',
-      } })
+      const labelElement = Label.create(label, {
+        defaultProps: { basic: true, pointing: labelPosition === 'left' ? 'right' : 'left' },
+        autoGenerateKey: false,
+      })
 
       return (
         <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
           {labelPosition === 'left' && labelElement}
           <button className={buttonClasses} disabled={disabled} ref={this.handleRef} tabIndex={tabIndex}>
-            {Icon.create(icon)} {content}
+            {Icon.create(icon, { autoGenerateKey: false })} {content}
           </button>
           {(labelPosition === 'right' || !labelPosition) && labelElement}
         </ElementType>
@@ -290,7 +290,7 @@ class Button extends Component {
         tabIndex={tabIndex}
       >
         {hasChildren && children}
-        {!hasChildren && Icon.create(icon)}
+        {!hasChildren && Icon.create(icon, { autoGenerateKey: false })}
         {!hasChildren && content}
       </ElementType>
     )

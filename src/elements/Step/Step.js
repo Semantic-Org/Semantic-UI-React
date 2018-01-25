@@ -131,7 +131,7 @@ class Step extends Component {
 
     return (
       <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-        {Icon.create(icon)}
+        {Icon.create(icon, { autoGenerateKey: false })}
         {StepContent.create({ description, title })}
       </ElementType>
     )

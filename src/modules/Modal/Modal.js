@@ -305,8 +305,8 @@ class Modal extends Component {
     return (
       <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
         {closeIconJSX}
-        {ModalHeader.create(header)}
-        {ModalContent.create(content)}
+        {ModalHeader.create(header, { autoGenerateKey: false })}
+        {ModalContent.create(content, { autoGenerateKey: false })}
         {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
       </ElementType>
     )
