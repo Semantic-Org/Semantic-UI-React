@@ -103,10 +103,17 @@ export default class Sticky extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { active: current } = this.props
-    const { active: next } = nextProps
+    const { active: current, scrollContext: currentScrollContext } = this.props
+    const { active: next, scrollContext: nextScrollContext } = nextProps
 
-    if (current === next) return
+
+    if (current === next) {
+      if (currentScrollContext !== nextScrollContext) {
+        this.removeListeners()
+        this.addListeners(nextProps)
+      }
+      return
+    }
     if (next) {
       this.handleUpdate()
       this.addListeners(nextProps)
@@ -130,15 +137,19 @@ export default class Sticky extends Component {
   addListeners = (props) => {
     const { scrollContext } = props
 
-    eventStack.sub('resize', this.handleUpdate, { target: scrollContext })
-    eventStack.sub('scroll', this.handleUpdate, { target: scrollContext })
+    if (scrollContext) {
+      eventStack.sub('resize', this.handleUpdate, { target: scrollContext })
+      eventStack.sub('scroll', this.handleUpdate, { target: scrollContext })
+    }
   }
 
   removeListeners = () => {
     const { scrollContext } = this.props
 
-    eventStack.unsub('resize', this.handleUpdate, { target: scrollContext })
-    eventStack.unsub('scroll', this.handleUpdate, { target: scrollContext })
+    if (scrollContext) {
+      eventStack.unsub('resize', this.handleUpdate, { target: scrollContext })
+      eventStack.unsub('scroll', this.handleUpdate, { target: scrollContext })
+    }
   }
 
   // ----------------------------------------
