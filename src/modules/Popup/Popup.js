@@ -72,11 +72,11 @@ export default class Popup extends Component {
     /** Invert the colors of the Popup. */
     inverted: PropTypes.bool,
 
-    /** Offset in pixels to be applied to the Popup. */
-    offset: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.arrayOf(PropTypes.number),
-    ]),
+    /** Horizontal Offset in pixels to be applied to the Popup. */
+    horizontalOffset: PropTypes.number,
+
+    /** Vertical Offset in pixels to be applied to the Popup. */
+    verticalOffset: PropTypes.number,
 
     /** Events triggering the popup. */
     on: PropTypes.oneOfType([
@@ -138,7 +138,8 @@ export default class Popup extends Component {
   static defaultProps = {
     position: 'top left',
     on: 'hover',
-    offset: 0,
+    horizontalOffset: 0,
+    verticalOffset: 0,
   }
 
   static _meta = {
@@ -195,11 +196,10 @@ export default class Popup extends Component {
   }
 
   applyOffset = (style) => {
-    const { offset } = this.props
-    const [horizontal, vertical] = _.isNumber(offset) ? [offset, 0] : [...offset]
+    const { horizontalOffset, verticalOffset } = this.props
     return {
-      ...this.applyHorizontalOffset(style, horizontal),
-      ...this.applyVeriticalOffset(style, vertical),
+      ...this.applyHorizontalOffset(style, horizontalOffset),
+      ...this.applyVeriticalOffset(style, verticalOffset),
     }
   }
 

@@ -79,11 +79,11 @@ describe('Popup', () => {
     assertInBody('.ui.popup.visible.some-class')
   })
 
-  describe('offset', () => {
+  describe('Offset', () => {
     it('accepts an offset to the left', () => {
       wrapperMount(
         <Popup
-          offset={100}
+          horizontalOffset={1000}
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
@@ -95,13 +95,14 @@ describe('Popup', () => {
       const rect = document.querySelector('.popup.ui').getBoundingClientRect()
       const { left } = rect
 
-      expect(left).to.be.at.least(100)
+      expect(left).to.equal(1000)
       assertInBody('.ui.popup.visible')
     })
     it('accepts an offset to the left', () => {
       wrapperMount(
         <Popup
-          offset={[100, 0]}
+          horizontalOffset={1000}
+          verticalOffset={0}
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
@@ -113,13 +114,14 @@ describe('Popup', () => {
       const rect = document.querySelector('.popup.ui').getBoundingClientRect()
       const { left } = rect
 
-      expect(left).to.be.at.least(100)
+      expect(left).to.equal(1000)
       assertInBody('.ui.popup.visible')
     })
     it('accepts an offset to the top', () => {
       wrapperMount(
         <Popup
-          offset={[0, 100]}
+          horizontalOffset={0}
+          verticalOffset={1000}
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
@@ -131,13 +133,14 @@ describe('Popup', () => {
       const rect = document.querySelector('.popup.ui').getBoundingClientRect()
       const { top } = rect
 
-      expect(top).to.be.at.least(100)
+      expect(top).to.equal(1000)
       assertInBody('.ui.popup.visible')
     })
     it('accepts an offset to both top and left', () => {
       wrapperMount(
         <Popup
-          offset={[100, 100]}
+          horizontalOffset={1000}
+          verticalOffset={1000}
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
@@ -149,8 +152,8 @@ describe('Popup', () => {
       const rect = document.querySelector('.popup.ui').getBoundingClientRect()
       const { top, left } = rect
 
-      expect(top).to.be.at.least(100)
-      expect(left).to.be.at.least(100)
+      expect(top).to.equal(1000)
+      expect(left).to.equal(1000)
       assertInBody('.ui.popup.visible')
     })
   })
@@ -183,7 +186,7 @@ describe('Popup', () => {
             position={position}
             trigger={<button>foo</button>}
             on='click'
-            offset={999}
+            horizontalOffset={999}
           />,
         )
         wrapper.find('button').simulate('click')
