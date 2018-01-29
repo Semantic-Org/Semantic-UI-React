@@ -106,7 +106,6 @@ export default class Sticky extends Component {
     const { active: current, scrollContext: currentScrollContext } = this.props
     const { active: next, scrollContext: nextScrollContext } = nextProps
 
-
     if (current === next) {
       if (currentScrollContext !== nextScrollContext) {
         this.removeListeners()
@@ -114,11 +113,13 @@ export default class Sticky extends Component {
       }
       return
     }
+
     if (next) {
       this.handleUpdate()
       this.addListeners(nextProps)
       return
     }
+
     this.removeListeners()
     this.setState({ sticky: false })
   }
