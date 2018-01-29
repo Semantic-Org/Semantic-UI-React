@@ -22,7 +22,7 @@ const Variations = () => (
     />
     <ComponentExample
       title='Group Centered'
-      description='A group of cards can center itself inside its container'
+      description='A group of cards can center itself inside its container.'
       examplePath='views/Card/Variations/CardExampleGroupCentered'
     />
   </ExampleSection>
