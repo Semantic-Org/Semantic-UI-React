@@ -14,8 +14,8 @@ const items = [
   },
 ]
 
-const CardExampleGroupProps = () => (
+const CardExampleGroupCentered = () => (
   <Card.Group centered items={items} />
 )
 
-export default CardExampleGroupProps
+export default CardExampleGroupCentered
