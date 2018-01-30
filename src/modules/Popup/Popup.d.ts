@@ -39,7 +39,7 @@ export interface PopupProps extends PortalProps {
   inverted?: boolean;
 
   /** Horizontal offset in pixels to be applied to the popup. */
-  offset?: number;
+  horizontalOffset?: number;
 
   /** Vertical offset in pixels to be applied to the popup. */
   verticalOffset?: number;

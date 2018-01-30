@@ -83,7 +83,7 @@ describe('Popup', () => {
     it('accepts an offest to the left', () => {
       wrapperMount(
         <Popup
-          offset={50}
+          horizontalOffset={50}
           position='bottom right'
           content='foo'
           trigger={<button>foo</button>}
@@ -96,7 +96,7 @@ describe('Popup', () => {
     it('accepts an offest to the right', () => {
       wrapperMount(
         <Popup
-          offset={50}
+          horizontalOffset={50}
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
@@ -165,7 +165,7 @@ describe('Popup', () => {
             position={position}
             trigger={<button>foo</button>}
             on='click'
-            offset={999}
+            horizontalOffset={999}
           />,
         )
         wrapper.find('button').simulate('click')
