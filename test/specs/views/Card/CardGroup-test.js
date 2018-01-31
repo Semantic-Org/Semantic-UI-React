@@ -14,6 +14,7 @@ describe('CardGroup', () => {
   common.implementsTextAlignProp(CardGroup, _.without(SUI.TEXT_ALIGNMENTS, 'justified'))
   common.implementsWidthProp(CardGroup, SUI.WIDTHS, { propKey: 'itemsPerRow', canEqual: false })
 
+  common.propKeyOnlyToClassName(CardGroup, 'centered')
   common.propKeyOnlyToClassName(CardGroup, 'doubling')
   common.propKeyOnlyToClassName(CardGroup, 'stackable')
 
