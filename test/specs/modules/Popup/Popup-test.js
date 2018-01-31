@@ -83,7 +83,7 @@ describe('Popup', () => {
     it('accepts an offset to the left', () => {
       wrapperMount(
         <Popup
-          horizontalOffset={1000}
+          horizontalOffset={-1000}
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
@@ -101,7 +101,7 @@ describe('Popup', () => {
     it('accepts an offset to the left', () => {
       wrapperMount(
         <Popup
-          horizontalOffset={1000}
+          horizontalOffset={-1000}
           verticalOffset={0}
           position='bottom left'
           content='foo'
@@ -121,7 +121,7 @@ describe('Popup', () => {
       wrapperMount(
         <Popup
           horizontalOffset={0}
-          verticalOffset={1000}
+          verticalOffset={-1000}
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
@@ -139,8 +139,8 @@ describe('Popup', () => {
     it('accepts an offset to both top and left', () => {
       wrapperMount(
         <Popup
-          horizontalOffset={1000}
-          verticalOffset={1000}
+          horizontalOffset={-1000}
+          verticalOffset={-1000}
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}

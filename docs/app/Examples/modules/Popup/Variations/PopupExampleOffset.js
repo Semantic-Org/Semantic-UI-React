@@ -36,7 +36,7 @@ const PopupExampleOffset = () => (
         <Popup
           trigger={<Icon name='heart' size='large' circular />}
           content='I am positioned to the left center but, I am now way off to the left if I fit in viewport'
-          horizontalOffset={400}
+          horizontalOffset={100}
           position='left center'
         />
       </Grid.Column>
@@ -44,7 +44,7 @@ const PopupExampleOffset = () => (
         <Popup
           trigger={<Icon name='heart' size='large' circular />}
           content='I am positioned to the right center but, I am now way off to right if I fit in viewport'
-          horizontalOffset={400}
+          horizontalOffset={100}
           position='right center'
         />
       </Grid.Column>
@@ -55,7 +55,7 @@ const PopupExampleOffset = () => (
           trigger={<Icon name='heart' size='large' circular />}
           content='I am positioned to the bottom left but, I am now way off to bottom and left if I fit in viewport'
           horizontalOffset={100}
-          verticalOffset={100}
+          verticalOffset={-100}
           position='bottom left'
         />
       </Grid.Column>
@@ -63,7 +63,7 @@ const PopupExampleOffset = () => (
         <Popup
           trigger={<Icon name='heart' size='large' circular />}
           content='I am positioned to the bottom center but, I am now way off to the bottom if I fit in viewport'
-          verticalOffset={100}
+          verticalOffset={-100}
           position='bottom center'
         />
       </Grid.Column>
@@ -72,7 +72,7 @@ const PopupExampleOffset = () => (
           trigger={<Icon name='heart' size='large' circular />}
           content='I am positioned to the bottom right but, I am now way off to bottom and right if I fit in viewport'
           horizontalOffset={100}
-          verticalOffset={100}
+          verticalOffset={-100}
           position='bottom right'
         />
       </Grid.Column>

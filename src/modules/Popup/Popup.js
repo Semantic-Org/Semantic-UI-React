@@ -204,13 +204,13 @@ export default class Popup extends Component {
   }
 
   applyVeriticalOffset = ({ top, bottom }, offset) => {
-    if (_.isNumber(top)) return { bottom, top: top + offset }
+    if (_.isNumber(top)) return { bottom, top: top - offset }
     return { top, bottom: bottom + offset }
   }
 
   applyHorizontalOffset = ({ right, left }, offset) => {
-    if (_.isNumber(right)) return { left, right: right + offset }
-    return { right, left: left + offset }
+    if (_.isNumber(right)) return { left, right: right - offset }
+    return { right, left: left - offset }
   }
 
   // check if the style would display
