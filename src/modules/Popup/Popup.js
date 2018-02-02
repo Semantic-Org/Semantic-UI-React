@@ -72,8 +72,11 @@ export default class Popup extends Component {
     /** Invert the colors of the Popup. */
     inverted: PropTypes.bool,
 
-    /** Horizontal offset in pixels to be applied to the Popup. */
-    offset: PropTypes.number,
+    /** Horizontal Offset in pixels to be applied to the Popup. */
+    horizontalOffset: PropTypes.number,
+
+    /** Vertical Offset in pixels to be applied to the Popup. */
+    verticalOffset: PropTypes.number,
 
     /** Events triggering the popup. */
     on: PropTypes.oneOfType([
@@ -135,6 +138,8 @@ export default class Popup extends Component {
   static defaultProps = {
     position: 'top left',
     on: 'hover',
+    horizontalOffset: 0,
+    verticalOffset: 0,
   }
 
   static _meta = {
@@ -153,7 +158,6 @@ export default class Popup extends Component {
     // Do not access window/document when server side rendering
     if (!isBrowser()) return style
 
-    const { offset } = this.props
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement
 
@@ -188,15 +192,25 @@ export default class Popup extends Component {
       }
     }
 
-    if (offset) {
-      if (_.isNumber(style.right)) {
-        style.right -= offset
-      } else {
-        style.left -= offset
-      }
-    }
+    return { ...style, ...this.applyOffset(style) }
+  }
 
-    return style
+  applyOffset = (style) => {
+    const { horizontalOffset, verticalOffset } = this.props
+    return {
+      ...this.applyHorizontalOffset(style, horizontalOffset),
+      ...this.applyVeriticalOffset(style, verticalOffset),
+    }
+  }
+
+  applyVeriticalOffset = ({ top, bottom }, offset) => {
+    if (_.isNumber(top)) return { bottom, top: top - offset }
+    return { top, bottom: bottom + offset }
+  }
+
+  applyHorizontalOffset = ({ right, left }, offset) => {
+    if (_.isNumber(right)) return { left, right: right - offset }
+    return { right, left: left - offset }
   }
 
   // check if the style would display

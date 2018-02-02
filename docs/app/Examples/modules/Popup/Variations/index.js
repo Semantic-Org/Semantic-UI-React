@@ -36,7 +36,8 @@ const PopupVariationsExamples = () => (
     />
     <ComponentExample
       title='Offset'
-      description='A popup position can be adjusted manually by specifying an offset property.'
+      description='A popup position can be adjusted manually by specifying either
+                    horizontalOffset or verticalOffset or even both properties.'
       examplePath='modules/Popup/Variations/PopupExampleOffset'
     />
     <ComponentExample
