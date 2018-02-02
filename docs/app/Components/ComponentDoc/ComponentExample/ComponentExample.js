@@ -237,7 +237,7 @@ class ComponentExample extends Component {
     // remove `export` statements except `export default class|function`
     const body = _.get(/export\sdefault\sclass[\s\S]*/.exec(sourceCode), '[0]', '')
       .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '')  // remove `export default Foo` statements
-      .replace(/export\s+default\s+/, '')                                 // remove `export default ...`                            // remove `export default ...`
+      .replace(/export\s+default\s+/, '')                                 // remove `export default ...`
 
     const IIFE = `(function() {\n${imports}${body}return ${defaultExport}\n}())`
 
