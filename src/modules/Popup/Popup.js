@@ -201,7 +201,7 @@ export default class Popup extends Component {
 
     if (verticalOffset) {
       if (_.isNumber(style.top)) {
-        style.top -= verticalOffset
+        style.top += verticalOffset
       } else {
         style.bottom += verticalOffset
       }
