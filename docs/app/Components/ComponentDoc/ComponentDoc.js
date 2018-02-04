@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
 import { withRouter } from 'react-router'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Icon } from 'semantic-ui-react'
 
 import withDocInfo from 'docs/app/HOC/withDocInfo'
 import { scrollToAnchor } from 'docs/app/utils'
@@ -14,8 +14,12 @@ import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 import ComponentSidebar from './ComponentSidebar'
 
-const gridStyle = { paddingBottom: '10em' }
 const topRowStyle = { margin: '1em' }
+const exampleEndStyle = {
+  textAlign: 'center',
+  opacity: 0.5,
+  paddingTop: '50vh',
+}
 
 class ComponentDoc extends Component {
   static childContextTypes = {
@@ -76,7 +80,7 @@ class ComponentDoc extends Component {
 
     return (
       <DocumentTitle title={`${componentName} | Semantic UI React`}>
-        <Grid style={gridStyle}>
+        <Grid>
           <Grid.Row columns='equal' style={topRowStyle}>
             <Grid.Column>
               <ComponentDocHeader componentName={componentName} description={description} />
@@ -96,6 +100,9 @@ class ComponentDoc extends Component {
             <Grid.Column>
               <div ref={this.handleExamplesRef}>
                 <ComponentExamples componentName={componentName} />
+              </div>
+              <div style={exampleEndStyle}>
+                This is the bottom <Icon name='pointing down' />
               </div>
             </Grid.Column>
             <Grid.Column computer={5} largeScreen={4} widescreen={4}>

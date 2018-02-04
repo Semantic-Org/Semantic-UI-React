@@ -18,7 +18,7 @@ class ComponentSidebar extends Component {
   static propTypes = {
     activePath: PropTypes.string,
     componentName: PropTypes.string,
-    examplesRef: PropTypes.func,
+    examplesRef: PropTypes.object,
     onItemClick: PropTypes.func,
   }
 
