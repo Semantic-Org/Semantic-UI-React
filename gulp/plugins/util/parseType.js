@@ -35,8 +35,13 @@ const parseUnion = (union) => {
   }
 }
 
-export default ({ type }) => {
-  if (!type) return null
+export default (propName, { type }) => {
+  if (type === undefined) {
+    throw new Error([
+      `The prop "${propName}" does not contain propType definition. This happens if the property is in the `,
+      'defaultProps, but it is not in the propTypes',
+    ].join(' '))
+  }
   if (type.name === 'enum') return parseEnum(type)
   if (type.name === 'union') return parseUnion(type)
 

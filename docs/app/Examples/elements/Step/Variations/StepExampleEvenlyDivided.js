@@ -4,7 +4,7 @@ import { Icon, Step } from 'semantic-ui-react'
 const StepExampleEvenlyDivided = () => (
   <Step.Group widths={3}>
     <Step>
-      <Icon icon='truck' />
+      <Icon name='truck' />
       <Step.Content>
         <Step.Title>Shipping</Step.Title>
       </Step.Content>

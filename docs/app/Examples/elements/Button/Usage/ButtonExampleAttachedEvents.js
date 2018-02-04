@@ -23,7 +23,7 @@ export default class ButtonExampleAttachedEvents extends Component {
       <Grid>
         <Grid.Column width={8}>
           <Segment attached='top'>
-            The button bellow accepts clicks with mouse and key presses with Space Bar or Enter.
+            The button below accepts clicks with mouse and key presses with Space Bar or Enter.
           </Segment>
           <Button
             attached='bottom'

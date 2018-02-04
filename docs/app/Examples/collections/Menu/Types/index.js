@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { Message } from 'semantic-ui-react'
 
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
@@ -67,7 +69,11 @@ const Types = () => (
       title='Pagination'
       description='A pagination menu is specially formatted to present links to pages of content.'
       examplePath='collections/Menu/Types/MenuExamplePagination'
-    />
+    >
+      <Message info>
+          For fully featured pagination, see <Link to='/addons/pagination'>Pagination</Link> addon.
+      </Message>
+    </ComponentExample>
   </ExampleSection>
 )
 

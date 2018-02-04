@@ -10,8 +10,8 @@ const MessageExampleAttached = () => (
     />
     <Form className='attached fluid segment'>
       <Form.Group widths='equal'>
-        <Form.Input label='First Name' placeholder='First Name' type='text' />
-        <Form.Input label='Last Name' placeholder='Last Name' type='text' />
+        <Form.Input fluid label='First Name' placeholder='First Name' type='text' />
+        <Form.Input fluid label='Last Name' placeholder='Last Name' type='text' />
       </Form.Group>
       <Form.Input label='Username' placeholder='Username' type='text' />
       <Form.Input label='Password' type='password' />

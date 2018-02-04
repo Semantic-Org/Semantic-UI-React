@@ -73,7 +73,10 @@ export default class Popup extends Component {
     inverted: PropTypes.bool,
 
     /** Horizontal offset in pixels to be applied to the Popup. */
-    offset: PropTypes.number,
+    horizontalOffset: PropTypes.number,
+
+    /** Vertical offset in pixels to be applied to the Popup. */
+    verticalOffset: PropTypes.number,
 
     /** Events triggering the popup. */
     on: PropTypes.oneOfType([
@@ -151,9 +154,9 @@ export default class Popup extends Component {
     const style = { position: 'absolute' }
 
     // Do not access window/document when server side rendering
-    if (!isBrowser) return style
+    if (!isBrowser()) return style
 
-    const { offset } = this.props
+    const { horizontalOffset, verticalOffset } = this.props
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement
 
@@ -188,11 +191,19 @@ export default class Popup extends Component {
       }
     }
 
-    if (offset) {
+    if (horizontalOffset) {
       if (_.isNumber(style.right)) {
-        style.right -= offset
+        style.right -= horizontalOffset
       } else {
-        style.left -= offset
+        style.left -= horizontalOffset
+      }
+    }
+
+    if (verticalOffset) {
+      if (_.isNumber(style.top)) {
+        style.top += verticalOffset
+      } else {
+        style.bottom += verticalOffset
       }
     }
 
@@ -278,17 +289,19 @@ export default class Popup extends Component {
     return portalProps
   }
 
-  hideOnScroll = () => {
+  hideOnScroll = (e) => {
     this.setState({ closed: true })
 
     eventStack.unsub('scroll', this.hideOnScroll, { target: window })
     setTimeout(() => this.setState({ closed: false }), 50)
+
+    this.handleClose(e)
   }
 
   handleClose = (e) => {
     debug('handleClose()')
-    const { onClose } = this.props
-    if (onClose) onClose(e, this.props)
+
+    _.invoke(this.props, 'onClose', e, this.props)
   }
 
   handleOpen = (e) => {

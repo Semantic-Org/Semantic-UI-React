@@ -52,6 +52,7 @@ These great products are built on Semantic UI React. Add yours [here][22].
 
 - Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
 - Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
+- https://gitconnected.com - The community for developers and software engineers
 - http://stoplight.io
 - https://roadmap.space
 - https://edabit.com
@@ -64,8 +65,16 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - https://appfollow.io
 - http://according.to.localsourc.es
 - http://www.aircip.ir
+- https://www.bailfacile.fr
 - http://platform.nazarbazaar.ir
 - https://build.games
+- https://platform.forecastcycles.com
+- https://www.findlectures.com
+- https://github.com/ayastreb/bandwidth-hero
+- https://re.yomeshgupta.com
+- https://moneytracker.cc
+- https://tax.cryptact.com
+- https://www.hurriyetoto.com
 
 ## Example Projects
 
@@ -77,8 +86,8 @@ Our example project right [here][28] in this repo.
 ### [webpack2][29]
 Our example project right [here][29] in this repo.
  
-### [react-semantic.ui-starter][102]
-Production-ready, performance-first, optimized, robust, fully-featured boilerplate/example for your new Progressive Web App.
+### [SUIcrux][102]
+Advanced universal starter with Semantic-UI-React. React/Redux/Lazy-loading/SSR/PWA.
 
 ### [semantic-ui-react-todos][100]
 This example modifies the well-known [react-redux Todo List][101] to use Semantic UI components. There is also a write-up on the process in the project README.
@@ -97,7 +106,7 @@ Yes.  Semantic UI React includes components that render valid Semantic UI HTML, 
 Here are some helpful links:
 
 - [Building CSS with Webpack][24]
-- [Building CSS with Meteor][26]
+- [Building CSS with Meteor][30]
 - [Creating a standalone theme][25]
 
 ## Voice Your Opinion
@@ -197,11 +206,11 @@ Big thanks to our [contributors][20], especially:
 [23]: https://react.semantic-ui.com/usage#css
 [24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
 [25]: http://learnsemantic.com/themes/creating.html
-[26]: https://github.com/Semantic-Org/Semantic-UI-Meteor
 [26]: https://github.com/levithomason
 [27]: https://github.com/layershifter
 [28]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack1
 [29]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack2
+[30]: https://github.com/Semantic-Org/Semantic-UI-Meteor
 
 <!-- Examples -->
 [100]: https://github.com/wyc/semantic-ui-react-todos

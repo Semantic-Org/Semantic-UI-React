@@ -1,5 +1,6 @@
+import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Component } from 'react'
 import { unmountComponentAtNode } from 'react-dom'
 
 import * as common from 'test/specs/commonTests'
@@ -8,6 +9,20 @@ import Portal from 'src/addons/Portal/Portal'
 
 let attachTo
 let wrapper
+
+const createHandlingComponent = eventName => class HandlingComponent extends Component {
+  static propTypes = {
+    handler: PropTypes.func,
+  }
+
+  handleEvent = e => this.props.handler(e, this.props)
+
+  render() {
+    const buttonProps = { [eventName]: this.handleEvent }
+
+    return <button {...buttonProps} />
+  }
+}
 
 const wrapperMount = (node, opts) => {
   wrapper = mount(node, opts)
@@ -37,6 +52,14 @@ describe('Portal', () => {
     const instance = wrapper.instance()
 
     expect(instance.rootNode).to.equal(undefined)
+  })
+
+  it('attachRenderSubTreeSubscribers returns null if rootNode is lost', () => {
+    wrapperMount(<Portal open><p /></Portal>)
+    const instance = wrapper.instance()
+    instance.rootNode = null
+    expect(() => instance.attachRenderSubTreeSubscribers()).to.not.throw()
+    expect(instance.attachRenderSubTreeSubscribers()).to.equal(null)
   })
 
   it('appends portal with children to the document.body', () => {
@@ -188,9 +211,9 @@ describe('Portal', () => {
     })
 
     it('maintains ref to DOM node with React component', () => {
-      const Component = () => <p />
+      const EmptyComponent = () => <p />
 
-      wrapperMount(<Portal open><Component /></Portal>)
+      wrapperMount(<Portal open><EmptyComponent /></Portal>)
       wrapper.instance().portalNode.tagName.should.equal('P')
     })
   })
@@ -208,6 +231,25 @@ describe('Portal', () => {
       wrapperMount(<Portal trigger={trigger}><p /></Portal>)
 
       wrapper.text().should.equal(text)
+    })
+
+    _.forEach(['onBlur', 'onClick', 'onFocus', 'onMouseLeave', 'onMouseEnter'], (handlerName) => {
+      it(`handles ${handlerName} on trigger and passes all arguments`, () => {
+        const event = { target: null }
+        const handler = sandbox.spy()
+        const Trigger = createHandlingComponent(handlerName)
+        const trigger = <Trigger color='blue' handler={handler} />
+
+        wrapperMount(<Portal trigger={trigger}><p /></Portal>)
+          .find('button')
+          .simulate(_.toLower(handlerName.substring(2)), event)
+
+        handler.should.have.been.calledOnce()
+        handler.should.have.been.calledWithMatch(event, {
+          handler,
+          color: 'blue',
+        })
+      })
     })
   })
 

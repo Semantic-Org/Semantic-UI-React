@@ -18,9 +18,6 @@ export interface ImageProps {
   /** An element type to render as (string or function). */
   as?: any;
 
-  /** Alternate text for the image specified. */
-  alt?: string;
-
   /** An image may be formatted to appear inline with text as an avatar. */
   avatar?: boolean;
 
@@ -32,6 +29,9 @@ export interface ImageProps {
 
   /** Primary content. */
   children?: React.ReactNode;
+
+  /** An image may appear circular. */
+  circular?: boolean;
 
   /** Additional classes. */
   className?: string;
@@ -51,9 +51,6 @@ export interface ImageProps {
   /** An image can take up the width of its container. */
   fluid?: boolean;
 
-  /** The img element height attribute. */
-  height?: string | number;
-
   /** An image can be hidden. */
   hidden?: boolean;
 
@@ -66,26 +63,20 @@ export interface ImageProps {
   /** Shorthand for Label. */
   label?: SemanticShorthandItem<LabelProps>;
 
-  /** An image may appear rounded or circular. */
-  shape?: 'rounded'|'circular';
+  /** An image may appear rounded. */
+  rounded?: boolean;
 
   /** An image may appear at different sizes. */
   size?: SemanticSIZES;
 
   /** An image can specify that it needs an additional spacing to separate it from nearby content. */
-  spaced?: boolean|'left'|'right';
-
-  /** Specifies the URL of the image. */
-  src?: string;
+  spaced?: boolean | 'left' | 'right';
 
   /** Whether or not to add the ui className. */
   ui?: boolean;
 
   /** An image can specify its vertical alignment. */
   verticalAlign?: SemanticVERTICALALIGNMENTS;
-
-  /** The img element width attribute. */
-  width?: SemanticWIDTHS;
 
   /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
   wrapped?: boolean;

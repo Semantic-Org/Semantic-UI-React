@@ -27,7 +27,7 @@ export default (filename) => {
     }
 
     try {
-      const relativePath = file.path.replace(`${process.cwd()}/`, '')
+      const componentName = path.basename(file.path, '.js')
       const parsed = parse(file.contents, null, [
         ...defaultHandlers,
         parserCustomHandler,
@@ -40,7 +40,7 @@ export default (filename) => {
       // replace prop `description` strings with a parsed doc block object and updated `type`
       _.each(parsed.props, (propDef, propName) => {
         const { description, tags } = parseDocBlock(propDef.description)
-        const { name, value } = parseType(propDef) || {}
+        const { name, value } = parseType(propName, propDef) || {}
 
         parsed.props[propName] = {
           ...propDef,
@@ -52,9 +52,13 @@ export default (filename) => {
           type: name,
         }
       })
+
+      parsed.path = file.path
+        .replace(`${process.cwd()}${path.sep}`, '')
+        .replace(new RegExp(_.escapeRegExp(path.sep), 'g'), '/')
       parsed.props = _.sortBy(parsed.props, 'name')
 
-      result[relativePath] = parsed
+      result[componentName] = parsed
 
       cb()
     } catch (err) {

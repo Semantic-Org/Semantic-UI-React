@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="shortcut icon" type="image/x-icon" href='/logo.png' />
   <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
@@ -69,7 +70,7 @@
   <script src="//cdn.jsdelivr.net/faker.js/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/<%= htmlWebpackPlugin.options.versions.jsBeautify %>/beautify-html.min.js"></script>
   <!-- Use unminified React when not in production so we get errors and warnings -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/prop-types/<%= htmlWebpackPlugin.options.versions.propTypes %>/prop-types<%= __PROD__ ? 'min' : '' %>.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/prop-types/<%= htmlWebpackPlugin.options.versions.propTypes %>/prop-types<%= __PROD__ ? '.min' : '' %>.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.react %>/umd/react<%= __PROD__ ? '.production.min' : '.development' %>.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/<%= htmlWebpackPlugin.options.versions.reactDOM %>/umd/react-dom<%= __PROD__ ? '.production.min' : '.development' %>.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/react-dom/<%= htmlWebpackPlugin.options.versions.reactDOM %>/umd/react-dom-server.browser<%= __PROD__ ? '.production.min' : '.development' %>.js"></script>
@@ -117,13 +118,11 @@
     }
 
     code:not(.hljs) {
-      padding: 0;
-      padding-top: 0.1em;
-      padding-bottom: 0.2em;
-      margin: 0;
       font-size: 87.5%;
       background-color: rgba(0, 0, 0, 0.04);
       border-radius: 3px;
+      white-space: pre;
+      display: inline-block;
     }
 
     code:not(.hljs)::before {

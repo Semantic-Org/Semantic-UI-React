@@ -305,6 +305,46 @@ describe('Sticky', () => {
       domEvent.scroll(div)
       onStick.should.have.been.called()
     })
+
+    it('should not call onStick when context is null', () => {
+      const onStick = sandbox.spy()
+      const instance = mount(<Sticky scrollContext={null} onStick={onStick} />).instance()
+
+      instance.triggerRef = mockRect({ top: -1 })
+
+      domEvent.scroll(document)
+      onStick.should.not.have.been.called()
+    })
+
+    it('should call onStick when scrollContext changes', () => {
+      const div = document.createElement('div')
+      const onStick = sandbox.spy()
+      const renderedComponent = mount(<Sticky scrollContext={null} onStick={onStick} />)
+      const instance = renderedComponent.instance()
+
+      instance.triggerRef = mockRect({ top: -1 })
+      renderedComponent.setProps({ scrollContext: div })
+
+      domEvent.scroll(div)
+      onStick.should.have.been.called()
+    })
+
+    it('should not call onStick when scrollContext changes and component is unmounted', () => {
+      const div = document.createElement('div')
+      const onStick = sandbox.spy()
+      const renderedComponent = mount(<Sticky scrollContext={null} onStick={onStick} />)
+      const instance = renderedComponent.instance()
+
+      instance.triggerRef = mockRect({ top: -1 })
+      renderedComponent.setProps({ scrollContext: div })
+      renderedComponent.unmount()
+
+      domEvent.scroll(div)
+      onStick.should.not.have.been.called()
+
+      domEvent.scroll(document)
+      onStick.should.not.have.been.called()
+    })
   })
 
   describe('update', () => {

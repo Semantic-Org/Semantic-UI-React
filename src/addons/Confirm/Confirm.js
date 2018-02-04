@@ -46,12 +46,16 @@ class Confirm extends Component {
 
     /** Whether or not the modal is visible. */
     open: PropTypes.bool,
+
+    /** A Confirm can vary in size */
+    size: PropTypes.oneOf(['fullscreen', 'large', 'mini', 'small', 'tiny']),
   }
 
   static defaultProps = {
     cancelButton: 'Cancel',
     confirmButton: 'OK',
     content: 'Are you sure?',
+    size: 'small',
   }
 
   static _meta = {
@@ -84,6 +88,7 @@ class Confirm extends Component {
       content,
       header,
       open,
+      size,
     } = this.props
     const rest = getUnhandledProps(Confirm, this.props)
 
@@ -94,7 +99,7 @@ class Confirm extends Component {
     if (_.has(this.props, 'open')) openProp.open = open
 
     return (
-      <Modal {...rest} {...openProp} size='small' onClose={this.handleCancel}>
+      <Modal {...rest} {...openProp} size={size} onClose={this.handleCancel}>
         {Modal.Header.create(header)}
         {Modal.Content.create(content)}
         <Modal.Actions>

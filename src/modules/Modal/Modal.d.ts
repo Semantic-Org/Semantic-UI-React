@@ -100,6 +100,9 @@ export interface ModalProps extends PortalProps {
 
   /** Custom styles. */
   style?: React.CSSProperties;
+
+  /** Element to be rendered in-place where the portal is defined. */
+  trigger?: React.ReactNode;
 }
 
 interface ModalComponent extends React.ComponentClass<ModalProps> {

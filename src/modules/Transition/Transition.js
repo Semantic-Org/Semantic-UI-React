@@ -160,8 +160,11 @@ export default class Transition extends Component {
 
     this.nextStatus = null
     this.setSafeState({ status, animating: true }, () => {
+      const durationType = TRANSITION_TYPE[status]
+      const durationValue = normalizeTransitionDuration(duration, durationType)
+
       _.invoke(this.props, 'onStart', null, { ...this.props, status })
-      setTimeout(this.handleComplete, normalizeTransitionDuration(duration, 'show'))
+      setTimeout(this.handleComplete, durationValue)
     })
   }
 

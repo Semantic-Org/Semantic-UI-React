@@ -74,7 +74,7 @@ class Progress extends Component {
     /** A progress bar can contain a text value indicating current progress. */
     progress: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(['percent', 'ratio']),
+      PropTypes.oneOf(['percent', 'ratio', 'value']),
     ]),
 
     /** A progress bar can vary in size. */
@@ -95,7 +95,6 @@ class Progress extends Component {
 
     /** For use with total. Together, these will calculate the percent. Mutually excludes percent. */
     value: customPropTypes.every([
-      customPropTypes.demand(['total']),
       customPropTypes.disallow(['percent']),
       PropTypes.oneOfType([
         PropTypes.number,
@@ -119,10 +118,19 @@ class Progress extends Component {
     if (!_.isUndefined(total) && !_.isUndefined(value)) return (value / total) * 100
   }
 
+  computeValueText = (percent) => {
+    const { progress, total, value } = this.props
+
+    if (progress === 'value') return value
+    if (progress === 'ratio') return `${value}/${total}`
+    return `${percent}%`
+  }
+
   getPercent = () => {
-    const { precision } = this.props
+    const { precision, progress, value } = this.props
     const percent = _.clamp(this.calculatePercent(), 0, 100)
 
+    if (progress === 'value') return value
     if (_.isUndefined(precision)) return percent
     return _.round(percent, precision)
   }
@@ -142,17 +150,12 @@ class Progress extends Component {
   }
 
   renderProgress = (percent) => {
-    const {
-      precision,
-      progress,
-      total,
-      value,
-    } = this.props
+    const { precision, progress } = this.props
 
     if (!progress && _.isUndefined(precision)) return
     return (
       <div className='progress'>
-        { progress !== 'ratio' ? `${percent}%` : `${value}/${total}` }
+        {this.computeValueText(percent)}
       </div>
     )
   }

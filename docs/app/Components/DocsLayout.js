@@ -1,6 +1,7 @@
 import AnchorJS from 'anchor-js'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 
 import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
@@ -12,10 +13,14 @@ const anchors = new AnchorJS({
   icon: '#',
 })
 
-export default class DocsLayout extends Component {
+class DocsLayout extends Component {
   static propTypes = {
     component: PropTypes.func,
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
     render: PropTypes.func,
+    sidebar: PropTypes.bool,
   }
 
   componentDidMount() {
@@ -31,6 +36,7 @@ export default class DocsLayout extends Component {
   }
 
   resetPage = () => {
+    const { location } = this.props
     // only reset the page when changing routes
     if (this.pathname === location.pathname) return
 
@@ -47,13 +53,14 @@ export default class DocsLayout extends Component {
   }
 
   renderChildren = (props) => {
-    const { component: Children, render } = this.props
+    const { component: Children, render, sidebar } = this.props
+    const mainStyle = sidebar ? style.sidebarMain : style.main
 
     if (render) return render()
     return (
       <div style={style.container}>
         <Sidebar style={style.menu} />
-        <div style={style.main}>
+        <div style={mainStyle}>
           <Children {...props} />
         </div>
       </div>
@@ -66,3 +73,5 @@ export default class DocsLayout extends Component {
     return <Route {...rest} render={this.renderChildren} />
   }
 }
+
+export default withRouter(DocsLayout)
