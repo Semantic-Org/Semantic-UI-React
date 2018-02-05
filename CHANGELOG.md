@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.78.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.78.1) (2018-02-05)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.78.0...v0.78.1)
+
+**Closed issues:**
+
+- Modal calls onClose when it opens [\#2493](https://github.com/Semantic-Org/Semantic-UI-React/issues/2493)
+
+**Merged pull requests:**
+
+- fix\(doesNodeContainClick\): only use x/y if !e.target [\#2494](https://github.com/Semantic-Org/Semantic-UI-React/pull/2494) ([levithomason](https://github.com/levithomason))
+
 ## [v0.78.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.78.0) (2018-02-04)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.77.2...v0.78.0)
 
@@ -911,7 +922,6 @@
 
 - Support autocorrect on input [\#1572](https://github.com/Semantic-Org/Semantic-UI-React/issues/1572)
 - feat\(Input\): add autoCorrect to Input props [\#1573](https://github.com/Semantic-Org/Semantic-UI-React/pull/1573) ([layershifter](https://github.com/layershifter))
-- feat\(factories\): add overrideProps [\#1428](https://github.com/Semantic-Org/Semantic-UI-React/pull/1428) ([layershifter](https://github.com/layershifter))
 
 **Fixed bugs:**
 
@@ -1000,7 +1010,6 @@
 **Closed issues:**
 
 - Examples with images in React Docs are broken due to protocol change [\#1441](https://github.com/Semantic-Org/Semantic-UI-React/issues/1441)
-- The http://react.semantic-ui.com website is down [\#1429](https://github.com/Semantic-Org/Semantic-UI-React/issues/1429)
 
 **Merged pull requests:**
 
