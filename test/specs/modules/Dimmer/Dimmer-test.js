@@ -40,7 +40,9 @@ describe('Dimmer', () => {
 
     it('omitted when click on children', () => {
       const spy = sandbox.spy()
-      const wrapper = mount(<Dimmer onClickOutside={spy}><div>{faker.hacker.phrase()}</div></Dimmer>)
+      const wrapper = mount(<Dimmer onClickOutside={spy}><div>{faker.hacker.phrase()}</div></Dimmer>, {
+        attachTo: document.body,
+      })
 
       wrapper.find('div.center').childAt(0).simulate('click')
       spy.should.have.been.callCount(0)
