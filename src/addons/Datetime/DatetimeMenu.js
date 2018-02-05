@@ -4,9 +4,9 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
+  dateUtils,
   getElementType,
   getUnhandledProps,
-  dateUtils,
   META,
 } from '../../lib'
 
@@ -104,7 +104,7 @@ export default class DatetimeMenu extends Component {
     ])
 
     return (
-      <ElementType compact fluid secondary widths={items.length + 2} {...rest}>
+      <ElementType fluid secondary widths={items.length + 2} {...rest}>
         <Menu.Item icon='angle double left' onClick={onPreviousPage} />
         {items}
         <Menu.Item icon='angle double right' onClick={onNextPage} />

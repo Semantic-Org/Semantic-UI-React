@@ -36,6 +36,9 @@ export default class DatetimeCalendar extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
+    /** Enables date selection. */
+    date: PropTypes.bool,
+
     /**
      * Formats the date string in the input and calendar.
      * A function that receives a date argument and returns a formatted date

@@ -6,6 +6,7 @@ import Table from '../../collections/Table'
 import {
   customPropTypes,
   META,
+  SUI,
 } from '../../lib'
 
 const pointingStyle = { cursor: 'pointer' }
@@ -72,15 +73,33 @@ DatetimeGrid.propTypes = {
 
   /** Inline styles for the Table. */
   style: PropTypes.object,
+
+  /** A DatetimeGrid can reduce its complexity to increase readability. */
+  basic: PropTypes.oneOfType([
+    PropTypes.oneOf(['very']),
+    PropTypes.bool,
+  ]),
+
+  /** A DatetimeGrid can specify that its cell contents should remain on a single line and not wrap. */
+  singleLine: PropTypes.bool,
+
+  /** A DatetimeGrid can also be small or large. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')),
+
+  /** A DatetimeGrid can adjust its text alignment. */
+  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
+
+  /** A DatetimeGrid can specify how it stacks table content responsively. */
+  unstackable: PropTypes.bool,
 }
 
 DatetimeGrid.defaultProps = {
   as: Table,
-  basic: true,
+  basic: 'very',
   singleLine: true,
-  unstackable: true,
   size: 'small',
   textAlign: 'center',
+  unstackable: true,
 }
 
 export default DatetimeGrid
