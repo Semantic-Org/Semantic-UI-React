@@ -35,6 +35,7 @@ export default class PaginationExampleCustomization extends Component {
           <Pagination
             activePage={activePage}
             boundaryRange={boundaryRange}
+            siblingRange={siblingRange}
             onPageChange={this.handlePaginationChange}
             size='mini'
             totalPages={totalPages}
