@@ -35,9 +35,9 @@ export default class PaginationExampleCustomization extends Component {
           <Pagination
             activePage={activePage}
             boundaryRange={boundaryRange}
-            siblingRange={siblingRange}
             onPageChange={this.handlePaginationChange}
             size='mini'
+            siblingRange={siblingRange}
             totalPages={totalPages}
             // Heads up! All items are powered by shorthands, if you want to hide one of them, just pass `null` as value
             ellipsisItem={showEllipsis ? undefined : null}
