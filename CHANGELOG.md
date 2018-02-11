@@ -1,5 +1,32 @@
 # Change Log
 
+## [v0.78.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.78.2) (2018-02-06)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.78.1...v0.78.2)
+
+**Implemented enhancements:**
+
+- Form onSubmit should accept HTMLFormElement event [\#2500](https://github.com/Semantic-Org/Semantic-UI-React/issues/2500)
+
+**Closed issues:**
+
+- No clear documentation on using menu\(s\) HELP WANTED\*\*\* [\#2496](https://github.com/Semantic-Org/Semantic-UI-React/issues/2496)
+- Modal will autoclose with an opened Portal [\#2446](https://github.com/Semantic-Org/Semantic-UI-React/issues/2446)
+
+**Merged pull requests:**
+
+- Accept HTMLFormElement form event [\#2501](https://github.com/Semantic-Org/Semantic-UI-React/pull/2501) ([corydeppen](https://github.com/corydeppen))
+
+## [v0.78.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.78.1) (2018-02-05)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.78.0...v0.78.1)
+
+**Closed issues:**
+
+- Modal calls onClose when it opens [\#2493](https://github.com/Semantic-Org/Semantic-UI-React/issues/2493)
+
+**Merged pull requests:**
+
+- fix\(doesNodeContainClick\): only use x/y if !e.target [\#2494](https://github.com/Semantic-Org/Semantic-UI-React/pull/2494) ([levithomason](https://github.com/levithomason))
+
 ## [v0.78.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.78.0) (2018-02-04)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.77.2...v0.78.0)
 
@@ -17,7 +44,6 @@
 
 **Closed issues:**
 
-- Dropdown: Clicking in and out of it after having selected an item automatically selects other [\#2490](https://github.com/Semantic-Org/Semantic-UI-React/issues/2490)
 - Dropdown: Multiple repetitive line entries erroneously added to the dropdown list [\#2489](https://github.com/Semantic-Org/Semantic-UI-React/issues/2489)
 - Dropdown: clicking outside the dropdown should not add new item to the list [\#2488](https://github.com/Semantic-Org/Semantic-UI-React/issues/2488)
 - Using Custom Component as a Modal Trigger? [\#2487](https://github.com/Semantic-Org/Semantic-UI-React/issues/2487)
@@ -911,7 +937,6 @@
 
 - Support autocorrect on input [\#1572](https://github.com/Semantic-Org/Semantic-UI-React/issues/1572)
 - feat\(Input\): add autoCorrect to Input props [\#1573](https://github.com/Semantic-Org/Semantic-UI-React/pull/1573) ([layershifter](https://github.com/layershifter))
-- feat\(factories\): add overrideProps [\#1428](https://github.com/Semantic-Org/Semantic-UI-React/pull/1428) ([layershifter](https://github.com/layershifter))
 
 **Fixed bugs:**
 
@@ -1000,7 +1025,6 @@
 **Closed issues:**
 
 - Examples with images in React Docs are broken due to protocol change [\#1441](https://github.com/Semantic-Org/Semantic-UI-React/issues/1441)
-- The http://react.semantic-ui.com website is down [\#1429](https://github.com/Semantic-Org/Semantic-UI-React/issues/1429)
 
 **Merged pull requests:**
 
@@ -1010,9 +1034,6 @@
 - docs\(callbacks\): updates in typings [\#1446](https://github.com/Semantic-Org/Semantic-UI-React/pull/1446) ([layershifter](https://github.com/layershifter))
 - docs\(callbacks\): document remaining callbacks [\#1445](https://github.com/Semantic-Org/Semantic-UI-React/pull/1445) ([levithomason](https://github.com/levithomason))
 - Update react-router to version 4.0.0 🚀 [\#1438](https://github.com/Semantic-Org/Semantic-UI-React/pull/1438) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- Update css-loader to version 0.27.1 🚀 [\#1434](https://github.com/Semantic-Org/Semantic-UI-React/pull/1434) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- style\(Form\): convert component to stateless [\#1433](https://github.com/Semantic-Org/Semantic-UI-React/pull/1433) ([layershifter](https://github.com/layershifter))
-- Update yargs to version 7.0.2 🚀 [\#1431](https://github.com/Semantic-Org/Semantic-UI-React/pull/1431) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
 ## [v0.67.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.67.0) (2017-03-01)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.66.0...v0.67.0)

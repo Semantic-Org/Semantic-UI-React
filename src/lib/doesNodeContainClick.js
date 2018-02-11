@@ -12,8 +12,19 @@ import _ from 'lodash'
 const doesNodeContainClick = (node, e) => {
   if (_.some([e, node], _.isNil)) return false
 
-  // first check if the node contains the e.target, simplest use case
-  if (node.contains(e.target)) return true
+  // if there is an e.target and it is in the document, use a simple node.contains() check
+  if (e.target) {
+    _.invoke(e.target, 'setAttribute', 'data-suir-click-target', true)
+
+    if (document.querySelector('[data-suir-click-target=true]')) {
+      _.invoke(e.target, 'removeAttribute', 'data-suir-click-target')
+      return node.contains(e.target)
+    }
+  }
+
+  // Below logic handles cases where the e.target is no longer in the document.
+  // The result of the click likely has removed the e.target node.
+  // Instead of node.contains(), we'll identify the click by X/Y position.
 
   // return early if the event properties aren't available
   // prevent measuring the node and repainting if we don't need to
