@@ -11,20 +11,43 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
+import Transition from '../Transition'
 
 /**
  * A content sub-component for Accordion component.
  */
 function AccordionContent(props) {
-  const { active, children, className, content } = props
+  const {
+    active,
+    animation,
+    children,
+    className,
+    content,
+    transitionDuration,
+  } = props
+  const rest = getUnhandledProps(AccordionContent, props)
+  const ElementType = getElementType(AccordionContent, props)
+
+  if (transitionDuration) {
+    const classes = cx(
+      'content',
+      className,
+    )
+    return (
+      <Transition.Group animation={animation} duration={transitionDuration}>
+        {active && (
+          <ElementType {...rest} className={classes}>
+            {childrenUtils.isNil(children) ? content : children}
+          </ElementType>
+        )}
+      </Transition.Group>
+    )
+  }
   const classes = cx(
     'content',
     useKeyOnly(active, 'active'),
     className,
   )
-  const rest = getUnhandledProps(AccordionContent, props)
-  const ElementType = getElementType(AccordionContent, props)
-
   return (
     <ElementType {...rest} className={classes}>
       {childrenUtils.isNil(children) ? content : children}
@@ -47,6 +70,17 @@ AccordionContent.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
+
+  /** Animation type */
+  animation: PropTypes.string,
+
+  /** Animation type */
+  transitionDuration: PropTypes.number,
+}
+
+AccordionContent.defaultProps = {
+  animation: 'slide down',
+  transitionDuration: 0,
 }
 
 AccordionContent._meta = {

@@ -3,24 +3,23 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  customPropTypes,
+  useKeyOnly,
   getUnhandledProps,
   META,
-  useKeyOnly,
 } from '../../lib'
 import AccordionAccordion from './AccordionAccordion'
-import AccordionAnimated from './AccordionAnimated'
-import AccordionContent from './AccordionContent'
-import AccordionTitle from './AccordionTitle'
 
 /**
  * An accordion allows users to toggle the display of sections of content.
  */
-function Accordion(props) {
+function AccordionAnimated(props) {
   const {
     className,
     fluid,
     inverted,
     styled,
+    panels,
   } = props
 
   const classes = cx(
@@ -30,17 +29,24 @@ function Accordion(props) {
     useKeyOnly(styled, 'styled'),
     className,
   )
-  const rest = getUnhandledProps(Accordion, props)
-
-  return <AccordionAccordion {...rest} className={classes} />
+  const rest = getUnhandledProps(AccordionAnimated, props)
+  const animatedPanels = panels.map(panel => ({
+    content: {
+      ...panel.content,
+      animation: 'fade down',
+      transitionDuration: 300,
+    },
+    title: panel.title,
+  }))
+  return <AccordionAccordion {...rest} panels={animatedPanels} className={classes} />
 }
 
-Accordion._meta = {
-  name: 'Accordion',
+AccordionAnimated._meta = {
+  name: 'AccordionAnimated',
   type: META.TYPES.MODULE,
 }
 
-Accordion.propTypes = {
+AccordionAnimated.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
@@ -52,11 +58,17 @@ Accordion.propTypes = {
 
   /** Adds some basic styling to accordion panels. */
   styled: PropTypes.bool,
+
+  /** Shorthand array of props for Accordion. */
+  panels: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        content: customPropTypes.itemShorthand,
+        title: customPropTypes.itemShorthand,
+      }),
+    ),
+  ]),
 }
 
-Accordion.Accordion = AccordionAccordion
-Accordion.Animated = AccordionAnimated
-Accordion.Content = AccordionContent
-Accordion.Title = AccordionTitle
-
-export default Accordion
+export default AccordionAnimated

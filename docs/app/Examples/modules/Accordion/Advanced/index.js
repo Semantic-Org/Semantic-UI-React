@@ -28,6 +28,16 @@ const AccordionAdvancedExamples = () => (
       description='Panels of Accordion can be rendered via shorthand prop.'
       examplePath='modules/Accordion/Advanced/AccordionExampleShorthand'
     />
+    <ComponentExample
+      title='Animated Accordion'
+      description='The accordion content will render with an animation.'
+      examplePath='modules/Accordion/Advanced/AccordionExampleAnimated'
+    />
+    <ComponentExample
+      title='Animated Accordion Content'
+      description='The accordion content will render with an animation.'
+      examplePath='modules/Accordion/Advanced/AccordionExampleAnimatedContent'
+    />
   </ExampleSection>
 )
 
