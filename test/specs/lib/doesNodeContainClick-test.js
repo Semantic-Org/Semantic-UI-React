@@ -26,6 +26,35 @@ describe('doesNodeContainClick', () => {
     })
   })
 
+  describe('e.target', () => {
+    it('returns node.contains(e.target) if exists', () => {
+      const node = makeNode()
+      const target = document.createElement('div')
+      document.body.appendChild(target)
+      const event = makeEvent({ target })
+
+      node.contains.should.not.have.been.called()
+
+      doesNodeContainClick(node, event)
+
+      node.contains.should.have.been.calledOnce()
+      node.contains.should.have.been.calledWithExactly(event.target)
+      document.body.removeChild(target)
+    })
+
+    it("does not call node.contains(e.target) if doesn't exist", () => {
+      const node = makeNode()
+      const target = null
+      const event = makeEvent({ target })
+
+      node.contains.should.not.have.been.called()
+
+      doesNodeContainClick(node, event)
+
+      node.contains.should.not.have.been.called()
+    })
+  })
+
   describe('nil event properties', () => {
     it('returns false if the e.clientX is nil', () => {
       doesNodeContainClick(makeNode(), { clientX: null }).should.equal(false)
