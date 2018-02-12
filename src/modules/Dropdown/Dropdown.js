@@ -917,6 +917,8 @@ export default class Dropdown extends Component {
     this.trySetState({ value })
   }
 
+  checkForEnabledIndices = enabledIndicies => enabledIndicies[0] || 0
+
   setSelectedIndex = (value = this.state.value, optionsProps = this.props.options) => {
     const { multiple } = this.props
     const { selectedIndex } = this.state
@@ -950,7 +952,7 @@ export default class Dropdown extends Component {
     }
 
     if (!newSelectedIndex || newSelectedIndex < 0) {
-      newSelectedIndex = enabledIndicies[0]
+      newSelectedIndex = this.checkForEnabledIndices(enabledIndicies)
     }
 
     this.setState({ selectedIndex: newSelectedIndex })
