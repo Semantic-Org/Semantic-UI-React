@@ -917,7 +917,10 @@ export default class Dropdown extends Component {
     this.trySetState({ value })
   }
 
-  setSelectedIndex = (value = this.state.value, optionsProps = this.props.options, searchQuery = this.state.searchQuery) => {
+  setSelectedIndex = (
+    value = this.state.value,
+    optionsProps = this.props.options,
+    searchQuery = this.state.searchQuery) => {
     const { multiple } = this.props
     const { selectedIndex } = this.state
     const options = this.getMenuOptions(value, optionsProps, searchQuery)
