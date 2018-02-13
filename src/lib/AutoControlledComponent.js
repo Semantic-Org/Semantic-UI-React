@@ -152,8 +152,9 @@ export default class AutoControlledComponent extends Component {
     this.state = { ...state, ...initialAutoControlledState }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, callback) {
     const { autoControlledProps } = this.constructor
+    const afterStateCallback = typeof callback === 'function' ? callback : undefined
 
     // Solve the next state for autoControlledProps
     const newState = autoControlledProps.reduce((acc, prop) => {
@@ -169,7 +170,9 @@ export default class AutoControlledComponent extends Component {
       return acc
     }, {})
 
-    if (Object.keys(newState).length > 0) this.setState(newState)
+    if (Object.keys(newState).length > 0) {
+      this.setState(newState, afterStateCallback)
+    } else if (afterStateCallback) afterStateCallback()
   }
 
   /**
