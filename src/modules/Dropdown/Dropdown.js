@@ -726,8 +726,8 @@ export default class Dropdown extends Component {
     this.setValue(newValue)
     this.setSelectedIndex(value)
 
-    const optionSize = _.size(this.getMenuOptions())
-    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
+    const optionSize = _.size(this.getMenuOptions(value))
+    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery(value)
 
     this.handleChange(e, newValue)
     this.closeOnChange(e)
@@ -906,10 +906,10 @@ export default class Dropdown extends Component {
   // Setters
   // ----------------------------------------
 
-  clearSearchQuery = () => {
+  clearSearchQuery = (value = this.state.value) => {
     debug('clearSearchQuery()')
     this.trySetState({ searchQuery: '' })
-    this.setSelectedIndex(undefined, undefined, '')
+    this.setSelectedIndex(value, undefined, '')
   }
 
   setValue = (value) => {
