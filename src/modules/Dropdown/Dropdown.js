@@ -405,7 +405,6 @@ export default class Dropdown extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
     debug('to props:', objectDiff(this.props, nextProps))
 
@@ -429,15 +428,17 @@ export default class Dropdown extends Component {
     }
     /* eslint-enable no-console */
 
-    if (!shallowEqual(nextProps.value, this.props.value)) {
-      debug('value changed, setting', nextProps.value)
-      this.setValue(nextProps.value)
-      this.setSelectedIndex(nextProps.value)
-    }
-
-    if (!_.isEqual(nextProps.options, this.props.options)) {
-      this.setSelectedIndex(undefined, nextProps.options)
-    }
+    super.componentWillReceiveProps(nextProps, () => {
+      if (!shallowEqual(nextProps.value, this.props.value)) {
+        debug('value changed, setting', nextProps.value)
+        this.setValue(nextProps.value)
+        this.setSelectedIndex(nextProps.value)
+      }
+  
+      if (!_.isEqual(nextProps.options, this.props.options)) {
+        this.setSelectedIndex(undefined, nextProps.options)
+      }
+    })
   }
 
   shouldComponentUpdate(nextProps, nextState) {
