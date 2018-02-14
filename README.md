@@ -81,11 +81,8 @@ These great products are built on Semantic UI React. Add yours [here][22].
 
 This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
 
-### [webpack1][28]
-Our example project right [here][28] in this repo.
- 
-### [webpack2][29]
-Our example project right [here][29] in this repo.
+### [webpack][28]
+Our example project right [here][28] in this repo. Includes theming examples.
  
 ### [SUIcrux][102]
 Advanced universal starter with Semantic-UI-React. React/Redux/Lazy-loading/SSR/PWA.
@@ -205,12 +202,11 @@ Big thanks to our [contributors][20], especially:
 [21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20issue
 [22]: https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md
 [23]: https://react.semantic-ui.com/usage#css
-[24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
+[24]: https://medium.com/webmonkeys/webpack-2-semantic-ui-theming-a216ddf60daf
 [25]: http://learnsemantic.com/themes/creating.html
 [26]: https://github.com/levithomason
 [27]: https://github.com/layershifter
-[28]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack1
-[29]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack2
+[28]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3
 [30]: https://github.com/Semantic-Org/Semantic-UI-Meteor
 
 <!-- Examples -->
