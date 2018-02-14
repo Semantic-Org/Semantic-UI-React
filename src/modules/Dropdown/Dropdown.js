@@ -479,13 +479,13 @@ export default class Dropdown extends Component {
       ])
     }
 
-    // Search Query Change
+    // Value Change
     if (prevState.value !== this.state.value) {
       this.setSelectedIndex()
     }
 
-    // Selected index change
-    if (prevState.selectedIndex !== this.state.selectedIndex) {
+    // Scroll selected item into view
+    if (prevState.selectedIndex !== this.state.selectedIndex || prevState.searchQuery !== this.state.searchQuery) {
       this.scrollSelectedItemIntoView()
     }
 
