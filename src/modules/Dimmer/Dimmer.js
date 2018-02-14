@@ -10,6 +10,7 @@ import {
   getUnhandledProps,
   isBrowser,
   META,
+  SUI,
   useKeyOnly,
 } from '../../lib'
 import Portal from '../../addons/Portal'
@@ -64,13 +65,19 @@ export default class Dimmer extends Component {
 
     /** A dimmer can be controlled with simple prop. */
     simple: PropTypes.bool,
+
+    /** Shorthand for the Transition, if the Dimmer will use Transitions. */
+    transition: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.object,
+    ]),
   }
 
   static defaultProps = {
     transition: {
       animation: 'fade',
       duration: '5000',
-    }
+    },
   }
 
   static _meta = {
@@ -159,7 +166,7 @@ export default class Dimmer extends Component {
       defaultProps: {
         children: dimmerJSX,
         visible: active,
-      }
+      },
     })
   }
 }
