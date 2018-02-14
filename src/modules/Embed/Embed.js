@@ -52,10 +52,13 @@ export default class Embed extends Component {
       PropTypes.string,
     ]),
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** Initial value of active. */
     defaultActive: PropTypes.bool,
 
-    /** Whether to show networks branded UI like title cards, or after video calls to action. */
+    /** Whether to prefer HD content. */
     hd: customPropTypes.every([
       customPropTypes.demand(['source']),
       PropTypes.bool,
@@ -133,6 +136,7 @@ export default class Embed extends Component {
         `&amp;hq=${hd}`,
         '&amp;jsapi=false',
         `&amp;modestbranding=${brandedUI}`,
+        `&amp;rel=${brandedUI ? 0 : 1}`,
       ].join('')
     }
 
@@ -183,11 +187,12 @@ export default class Embed extends Component {
   }
 
   renderEmbed() {
-    const { children, iframe, source } = this.props
+    const { children, content, iframe, source } = this.props
     const { active } = this.state
 
     if (!active) return null
     if (!childrenUtils.isNil(children)) return <div className='embed'>{children}</div>
+    if (!childrenUtils.isNil(content)) return <div className='embed'>{content}</div>
 
     return (
       <div className='embed'>

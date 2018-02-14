@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -17,6 +18,7 @@ function RevealContent(props) {
   const {
     children,
     className,
+    content,
     hidden,
     visible,
   } = props
@@ -31,7 +33,11 @@ function RevealContent(props) {
   const rest = getUnhandledProps(RevealContent, props)
   const ElementType = getElementType(RevealContent, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 RevealContent._meta = {
@@ -49,6 +55,9 @@ RevealContent.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A reveal may contain content that is visible before interaction. */
   hidden: PropTypes.bool,

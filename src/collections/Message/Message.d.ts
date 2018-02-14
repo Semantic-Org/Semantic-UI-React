@@ -18,7 +18,7 @@ export interface MessageProps {
   as?: any;
 
   /** A message can be formatted to attach itself to other content. */
-  attached?: boolean | 'bottom';
+  attached?: boolean | 'bottom' | 'top';
 
   /** Primary content. */
   children?: React.ReactNode;

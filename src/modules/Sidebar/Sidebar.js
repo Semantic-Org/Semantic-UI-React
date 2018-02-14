@@ -4,6 +4,7 @@ import React from 'react'
 
 import {
   AutoControlledComponent as Component,
+  childrenUtils,
   customPropTypes,
   getUnhandledProps,
   getElementType,
@@ -29,6 +30,9 @@ class Sidebar extends Component {
 
     /** Additional classes. */
     className: PropTypes.string,
+
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
 
     /** Initial value of visible. */
     defaultVisible: PropTypes.bool,
@@ -78,6 +82,7 @@ class Sidebar extends Component {
       animation,
       className,
       children,
+      content,
       direction,
       visible,
       width,
@@ -98,7 +103,11 @@ class Sidebar extends Component {
     const rest = getUnhandledProps(Sidebar, this.props)
     const ElementType = getElementType(Sidebar, this.props)
 
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {childrenUtils.isNil(children) ? content : children}
+      </ElementType>
+    )
   }
 }
 

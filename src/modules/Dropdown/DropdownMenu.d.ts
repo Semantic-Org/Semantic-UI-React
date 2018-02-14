@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface DropdownMenuProps {
   [key: string]: any;
@@ -11,6 +12,9 @@ export interface DropdownMenuProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A dropdown menu can scroll. */
   scrolling?: boolean;

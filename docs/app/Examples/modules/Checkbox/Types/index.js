@@ -3,6 +3,7 @@ import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 const CheckboxTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -17,11 +18,11 @@ const CheckboxTypesExamples = () => (
       description='A box for checking.'
       examplePath='modules/Checkbox/Types/CheckboxExampleCheckbox'
     />
-    <ComponentExample
+    <ShorthandExample
       description='You can define a label with a props object.'
       examplePath='modules/Checkbox/Types/CheckboxExampleShorthandObject'
     />
-    <ComponentExample
+    <ShorthandExample
       description='You can define a label by passing your own element.'
       examplePath='modules/Checkbox/Types/CheckboxExampleShorthandElement'
     />

@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import { NavLink, Route } from 'react-router-dom'
 
 import { Button } from 'src'
@@ -62,9 +63,9 @@ export default class LayoutsLayout extends Component {
           <Button
             as={NavLink}
             to={`${repoURL}/blob/master/docs/app/Layouts/${filename}`}
-            color='secondary'
             icon='github'
             content='Source'
+            secondary
             target='_blank'
           />
         </div>

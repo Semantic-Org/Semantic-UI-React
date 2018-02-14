@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandCollection, SemanticWIDTHS } from '../..';
+import { SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..';
 import { CardProps } from './Card';
 
 export interface CardGroupProps {
@@ -9,11 +9,17 @@ export interface CardGroupProps {
   /** An element type to render as (string or function). */
   as?: any;
 
+  /** A group of cards can center itself inside its container. */
+  centered?: boolean;
+
   /** Primary content. */
   children?: React.ReactNode;
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A group of cards can double its column width for mobile. */
   doubling?: boolean;
@@ -26,6 +32,9 @@ export interface CardGroupProps {
 
   /** A group of cards can automatically stack rows to a single columns on mobile devices. */
   stackable?: boolean;
+
+  /** A card group can adjust its text alignment. */
+  textAlign?: 'center' | 'left' | 'right';
 }
 
 declare const CardGroup: React.StatelessComponent<CardGroupProps>;

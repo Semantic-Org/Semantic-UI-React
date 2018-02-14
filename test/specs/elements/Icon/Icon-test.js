@@ -28,8 +28,6 @@ describe('Icon', () => {
   common.propValueOnlyToClassName(Icon, 'name', ['money'])
   common.propValueOnlyToClassName(Icon, 'size', _.without(SUI.SIZES, 'medium'))
 
-  common.rendersChildren(Icon)
-
   it('renders as an <i> by default', () => {
     shallow(<Icon />)
       .should.have.tagName('i')

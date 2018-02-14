@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface CommentTextProps {
   [key: string]: any;
@@ -11,6 +12,9 @@ export interface CommentTextProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 }
 
 declare const CommentText: React.StatelessComponent<CommentTextProps>;

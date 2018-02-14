@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { SemanticShorthandContent } from '../..';
 import { default as CommentAction } from './CommentAction';
 import { default as CommentActions } from './CommentActions';
 import { default as CommentAuthor } from './CommentAuthor';
@@ -23,6 +24,9 @@ export interface CommentProps {
 
   /** Comment can be collapsed, or hidden from view. */
   collapsed?: boolean;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 }
 
 interface CommentComponent extends React.StatelessComponent<CommentProps> {

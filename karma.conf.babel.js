@@ -1,5 +1,12 @@
+import puppeteerPkg from 'puppeteer/package.json'
+import Downloader from 'puppeteer/utils/ChromiumDownloader'
 import config from './config'
 import webpackConfig from './webpack.config.babel'
+
+const revision = puppeteerPkg.puppeteer.chromium_revision
+const revisionInfo = Downloader.revisionInfo(Downloader.currentPlatform(), revision)
+
+process.env.CHROME_BIN = revisionInfo.executablePath
 
 const formatError = (msg) => {
   // filter out empty lines and node_modules
@@ -22,7 +29,7 @@ const formatError = (msg) => {
 export default (karmaConfig) => {
   karmaConfig.set({
     basePath: process.cwd(),
-    browsers: ['PhantomJS'],
+    browsers: ['puppeteer'],
     client: {
       mocha: {
         reporter: 'html', // change Karma's debug.html to mocha web reporter
@@ -36,12 +43,22 @@ export default (karmaConfig) => {
       ],
       includeAllSources: true,
     },
+    customLaunchers: {
+      puppeteer: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--disable-setuid-sandbox',
+          '--no-sandbox',
+          // Avoid "Maximum call stack size exceeded" errors on CircleCI
+          '--stack-trace-limit 200000',
+        ],
+      },
+    },
     files: [
-      'node_modules/es6-shim/es6-shim.js',
       './test/tests.bundle.js',
     ],
     formatError,
-    frameworks: ['phantomjs-shim', 'mocha'],
+    frameworks: ['mocha'],
     reporters: ['mocha', 'coverage'],
     singleRun: true,
     preprocessors: {

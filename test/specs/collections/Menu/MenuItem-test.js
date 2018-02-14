@@ -1,4 +1,3 @@
-import faker from 'faker'
 import React from 'react'
 
 import MenuItem from 'src/collections/Menu/MenuItem'
@@ -29,15 +28,6 @@ describe('MenuItem', () => {
       .should.have.tagName('div')
   })
 
-  describe('content', () => {
-    it('renders text', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<MenuItem content={text} />)
-        .should.contain.text(text)
-    })
-  })
-
   describe('name', () => {
     it('uses the name prop as Start Cased child text', () => {
       shallow(<MenuItem name='upcomingEvents' />)
@@ -61,21 +51,24 @@ describe('MenuItem', () => {
   })
 
   describe('onClick', () => {
-    it('omitted when not defined', () => {
-      const click = () => shallow(<MenuItem />).simulate('click')
-      expect(click).to.not.throw()
-    })
-
-    it('is called with (e, { name, index }) when clicked', () => {
-      const spy = sandbox.spy()
+    it('is called with (e, data) when clicked', () => {
+      const onClick = sandbox.spy()
       const event = { target: null }
       const props = { name: 'home', index: 0 }
 
-      shallow(<MenuItem onClick={spy} {...props} />)
+      shallow(<MenuItem onClick={onClick} {...props} />)
         .simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch(event, props)
+    })
+
+    it('is not called when is disabled', () => {
+      const onClick = sandbox.spy()
+
+      shallow(<MenuItem disabled onClick={onClick} />)
+        .simulate('click')
+      onClick.should.have.callCount(0)
     })
 
     it('renders an `a` tag', () => {

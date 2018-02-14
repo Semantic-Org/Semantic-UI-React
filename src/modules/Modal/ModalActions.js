@@ -21,11 +21,8 @@ export default class ModalActions extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Elements to render as Modal action buttons. */
-    actions: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.arrayOf(customPropTypes.itemShorthand),
-    ]),
+    /** Array of shorthand buttons. */
+    actions: customPropTypes.collectionShorthand,
 
     /** Primary content. */
     children: PropTypes.node,
@@ -33,11 +30,14 @@ export default class ModalActions extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /**
-     * onClick handler for an action. Mutually exclusive with children.
+     * Action onClick handler when using shorthand `actions`.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All item props.
+     * @param {object} data - All props from the clicked action.
      */
     onActionClick: customPropTypes.every([
       customPropTypes.disallow(['children']),
@@ -59,12 +59,13 @@ export default class ModalActions extends Component {
   })
 
   render() {
-    const { actions, children, className } = this.props
+    const { actions, children, className, content } = this.props
     const classes = cx('actions', className)
     const rest = getUnhandledProps(ModalActions, this.props)
     const ElementType = getElementType(ModalActions, this.props)
 
     if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+    if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
     return (
       <ElementType {...rest} className={classes}>

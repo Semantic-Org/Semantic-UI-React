@@ -9,7 +9,9 @@ describe('Breadcrumb', () => {
   common.isConformant(Breadcrumb)
   common.hasSubComponents(Breadcrumb, [BreadcrumbDivider, BreadcrumbSection])
   common.hasUIClassName(Breadcrumb)
-  common.rendersChildren(Breadcrumb)
+  common.rendersChildren(Breadcrumb, {
+    rendersContent: false,
+  })
 
   it('renders a <div /> element', () => {
     shallow(<Breadcrumb />)

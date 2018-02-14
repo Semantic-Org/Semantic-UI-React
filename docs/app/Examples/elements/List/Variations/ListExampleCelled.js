@@ -14,7 +14,7 @@ const ListExampleCelled = () => (
       <Image avatar src='/assets/images/avatar/small/daniel.jpg' />
       <List.Content>
         <List.Header>Poodle</List.Header>
-        A poodle, its pretty basic
+        A poodle, it's pretty basic
       </List.Content>
     </List.Item>
     <List.Item>

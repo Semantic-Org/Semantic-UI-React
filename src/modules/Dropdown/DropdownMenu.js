@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -14,7 +15,7 @@ import {
  * A dropdown menu can contain a menu.
  */
 function DropdownMenu(props) {
-  const { children, className, scrolling } = props
+  const { children, className, content, scrolling } = props
   const classes = cx(
     useKeyOnly(scrolling, 'scrolling'),
     'menu transition',
@@ -23,7 +24,11 @@ function DropdownMenu(props) {
   const rest = getUnhandledProps(DropdownMenu, props)
   const ElementType = getElementType(DropdownMenu, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 DropdownMenu._meta = {
@@ -41,6 +46,9 @@ DropdownMenu.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A dropdown menu can scroll. */
   scrolling: PropTypes.bool,

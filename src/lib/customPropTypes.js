@@ -8,8 +8,9 @@ const typeOf = (...args) => Object.prototype.toString.call(...args)
  * Ensure a component can render as a give prop value.
  */
 export const as = (...args) => PropTypes.oneOfType([
-  PropTypes.string,
   PropTypes.func,
+  PropTypes.string,
+  PropTypes.symbol,
 ])(...args)
 
 /**
@@ -18,60 +19,77 @@ export const as = (...args) => PropTypes.oneOfType([
  * Useful for very large lists of options (e.g. Icon name, Flag name, etc.)
  * @param {string[]} suggestions An array of allowed values.
  */
-export const suggest = suggestions => (props, propName, componentName) => {
+export const suggest = (suggestions) => {
   if (!Array.isArray(suggestions)) {
-    throw new Error([
-      'Invalid argument supplied to suggest, expected an instance of array.',
-      ` See \`${propName}\` prop in \`${componentName}\`.`,
-    ].join(''))
+    throw new Error('Invalid argument supplied to suggest, expected an instance of array.')
   }
-  const propValue = props[propName]
-
-  // skip if prop is undefined or is included in the suggestions
-  if (_.isNil(propValue) || propValue === false || _.includes(propValue, suggestions)) return
-
-  // find best suggestions
-  const propValueWords = propValue.split(' ')
 
   /* eslint-disable max-nested-callbacks */
-  const bestMatches = _.flow(
-    _.map((suggestion) => {
-      const suggestionWords = suggestion.split(' ')
+  const findBestSuggestions = _.memoize((str) => {
+    const propValueWords = str.split(' ')
 
-      const propValueScore = _.flow(
-        _.map(x => _.map(y => leven(x, y), suggestionWords)),
-        _.map(_.min),
-        _.sum,
-      )(propValueWords)
+    return _.flow(
+      _.map((suggestion) => {
+        const suggestionWords = suggestion.split(' ')
 
-      const suggestionScore = _.flow(
-        _.map(x => _.map(y => leven(x, y), propValueWords)),
-        _.map(_.min),
-        _.sum,
-      )(suggestionWords)
+        const propValueScore = _.flow(
+          _.map(x => _.map(y => leven(x, y), suggestionWords)),
+          _.map(_.min),
+          _.sum,
+        )(propValueWords)
 
-      return { suggestion, score: propValueScore + suggestionScore }
-    }),
-    _.sortBy(['score', 'suggestion']),
-    _.take(3),
-  )(suggestions)
+        const suggestionScore = _.flow(
+          _.map(x => _.map(y => leven(x, y), propValueWords)),
+          _.map(_.min),
+          _.sum,
+        )(suggestionWords)
+
+        return { suggestion, score: propValueScore + suggestionScore }
+      }),
+      _.sortBy(['score', 'suggestion']),
+      _.take(3),
+    )(suggestions)
+  })
   /* eslint-enable max-nested-callbacks */
 
-  // skip if a match scored 0
-  // since we're matching on words (classNames) this allows any word order to pass validation
-  // e.g. `left chevron` vs `chevron left`
-  if (bestMatches.some(x => x.score === 0)) return
+  // Convert the suggestions list into a hash map for O(n) lookup times. Ensure
+  // the words in each key are sorted alphabetically so that we have a consistent
+  // way of looking up a value in the map, i.e. we can sort the words in the
+  // incoming propValue and look that up without having to check all permutations.
+  const suggestionsLookup = suggestions.reduce((acc, key) => {
+    acc[key.split(' ').sort().join(' ')] = true
+    return acc
+  }, {})
 
-  return new Error([
-    `Invalid prop \`${propName}\` of value \`${propValue}\` supplied to \`${componentName}\`.`,
-    `\n\nInstead of \`${propValue}\`, did you mean:`,
-    bestMatches.map(x => `\n  - ${x.suggestion}`).join(''),
-    '\n',
-  ].join(''))
+  return (props, propName, componentName) => {
+    const propValue = props[propName]
+
+    // skip if prop is undefined or is included in the suggestions
+    if (!propValue || suggestionsLookup[propValue]) return
+
+    // check if the words were correct but ordered differently.
+    // Since we're matching for classNames we need to allow any word order
+    // to pass validation, e.g. `left chevron` vs `chevron left`.
+    const propValueSorted = propValue.split(' ').sort().join(' ')
+    if (suggestionsLookup[propValueSorted]) return
+
+    // find best suggestions
+    const bestMatches = findBestSuggestions(propValue)
+
+    // skip if a match scored 0
+    if (bestMatches.some(x => x.score === 0)) return
+
+    return new Error([
+      `Invalid prop \`${propName}\` of value \`${propValue}\` supplied to \`${componentName}\`.`,
+      `\n\nInstead of \`${propValue}\`, did you mean:`,
+      bestMatches.map(x => `\n  - ${x.suggestion}`).join(''),
+      '\n',
+    ].join(''))
+  }
 }
 
 /**
- * Disallow other props form being defined with this prop.
+ * Disallow other props from being defined with this prop.
  * @param {string[]} disallowedProps An array of props that cannot be used with this prop.
  */
 export const disallow = disallowedProps => (props, propName, componentName) => {
@@ -225,10 +243,10 @@ export const demand = requiredProps => (props, propName, componentName) => {
 }
 
 /**
- * Ensure an only prop contains a string with only possible values.
+ * Ensure an multiple prop contains a string with only possible values.
  * @param {string[]} possible An array of possible values to prop.
  */
-export const onlyProp = possible => (props, propName, componentName) => {
+export const multipleProp = possible => (props, propName, componentName) => {
   if (!Array.isArray(possible)) {
     throw new Error([
       'Invalid argument supplied to some, expected an instance of array.',
@@ -243,6 +261,7 @@ export const onlyProp = possible => (props, propName, componentName) => {
 
   const values = propValue
     .replace('large screen', 'large-screen')
+    .replace(/ vertically/g, '-vertically')
     .split(' ')
     .map(val => _.trim(val).replace('-', ' '))
   const invalid = _.difference(values, possible)
@@ -270,6 +289,12 @@ export const itemShorthand = (...args) => every([
   PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.object,
+      ]),
+    ),
   ]),
 ])(...args)
 

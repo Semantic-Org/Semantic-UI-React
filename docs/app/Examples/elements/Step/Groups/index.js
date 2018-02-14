@@ -3,13 +3,14 @@ import { Icon, Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 const StepGroupsExamples = () => (
   <ExampleSection title='Groups'>
     <ComponentExample
       title='Steps'
       description='A set of steps.'
-      examplePath='elements/Step/Groups/StepExampleGroups'
+      examplePath='elements/Step/Groups/StepExampleGroup'
     >
       <Message positive icon>
         <Icon name='mobile' />
@@ -20,6 +21,7 @@ const StepGroupsExamples = () => (
         </Message.Content>
       </Message>
     </ComponentExample>
+    <ShorthandExample examplePath='elements/Step/Groups/StepExampleGroupShorthand' />
 
     <ComponentExample
       title='Ordered'

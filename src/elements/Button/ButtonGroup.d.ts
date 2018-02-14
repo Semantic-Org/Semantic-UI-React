@@ -1,10 +1,14 @@
 import * as React from 'react';
+
 import {
   SemanticCOLORS,
   SemanticFLOATS,
+  SemanticShorthandContent,
+  SemanticShorthandCollection,
   SemanticSIZES,
   SemanticWIDTHS
 } from '../..';
+import { ButtonProps } from './Button';
 
 export interface ButtonGroupProps {
   [key: string]: any;
@@ -12,11 +16,14 @@ export interface ButtonGroupProps {
   /** An element type to render as (string or function). */
   as?: any;
 
-  /** A button can be attached to the top or bottom of other content. */
-  attached?: 'left' | 'right' | 'top' | 'bottom';
+  /** Groups can be attached to other content. */
+  attached?: boolean | 'left' | 'right' | 'top' | 'bottom';
 
   /** Groups can be less pronounced. */
   basic?: boolean;
+
+  /** Array of shorthand Button values. */
+  buttons?: SemanticShorthandCollection<ButtonProps>;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -29,6 +36,9 @@ export interface ButtonGroupProps {
 
   /** Groups can reduce their padding to fit into tighter spaces. */
   compact?: boolean;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Groups can be aligned to the left or right of its container. */
   floated?: SemanticFLOATS;

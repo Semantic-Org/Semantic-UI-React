@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -15,7 +16,7 @@ import {
  * Several icons can be used together as a group.
  */
 function IconGroup(props) {
-  const { children, className, size } = props
+  const { children, className, content, size } = props
   const classes = cx(
     size,
     'icons',
@@ -24,7 +25,11 @@ function IconGroup(props) {
   const rest = getUnhandledProps(IconGroup, props)
   const ElementType = getElementType(IconGroup, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 IconGroup._meta = {
@@ -42,6 +47,9 @@ IconGroup.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Size of the icon group. */
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),

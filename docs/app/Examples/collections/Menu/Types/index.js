@@ -1,7 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { Message } from 'semantic-ui-react'
 
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 // TODO: Add example with <Popup> after it will be added
 
@@ -12,10 +15,7 @@ const Types = () => (
       description='A menu.'
       examplePath='collections/Menu/Types/MenuExampleBasic'
     />
-    <ComponentExample
-      description='Menu can be rendered via shorthand prop.'
-      examplePath='collections/Menu/Types/MenuExampleProps'
-    />
+    <ShorthandExample examplePath='collections/Menu/Types/MenuExampleProps' />
     <ComponentExample
       description='Menu item text can be defined with the content prop.'
       examplePath='collections/Menu/Types/MenuExampleContentProp'
@@ -69,7 +69,11 @@ const Types = () => (
       title='Pagination'
       description='A pagination menu is specially formatted to present links to pages of content.'
       examplePath='collections/Menu/Types/MenuExamplePagination'
-    />
+    >
+      <Message info>
+          For fully featured pagination, see <Link to='/addons/pagination'>Pagination</Link> addon.
+      </Message>
+    </ComponentExample>
   </ExampleSection>
 )
 

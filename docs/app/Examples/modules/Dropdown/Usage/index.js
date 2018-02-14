@@ -1,6 +1,9 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
+
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 const DropdownUsageExamples = () => (
   <ExampleSection title='Usage'>
@@ -22,6 +25,16 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleCloseOnChange'
     />
 
+    <ComponentExample
+      title='Select On Navigation'
+      description='A dropdown can choose whether or not to change the value when navigating the menu with arrow keys.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleSelectOnNavigation'
+    />
+    <ComponentExample
+      title='Controlled'
+      description='A dropdown can behave like an controlled input.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleControlled'
+    />
     <ComponentExample
       title='Uncontrolled'
       description='A dropdown can behave like an uncontrolled input.'
@@ -76,10 +89,30 @@ const DropdownUsageExamples = () => (
       description='A dropdown item can be rendered differently inside the menu.'
       examplePath='modules/Dropdown/Usage/DropdownExampleItemContent'
     />
-    <ComponentExample
+    <ShorthandExample
       title='Search Input'
       description='A dropdown implements a search input shorthand.'
       examplePath='modules/Dropdown/Usage/DropdownExampleSearchInput'
+    />
+    <ComponentExample
+      title='Search Query'
+      description='A dropdown allows to pass you the search query.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleSearchQuery'
+    >
+      <Message info>
+        This example also shows how to override default bevahiour of the search query and keep entered value after
+        selection.
+      </Message>
+    </ComponentExample>
+    <ComponentExample
+      title='Search Deburr'
+      description='A dropdown allows the search to ignore diacritics.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleDeburrSearch'
+    />
+    <ComponentExample
+      title='Custom Search Function'
+      description='A dropdown allows you to provide your own search function.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleCustomSearchFunction'
     />
     <ComponentExample
       title='Upward'

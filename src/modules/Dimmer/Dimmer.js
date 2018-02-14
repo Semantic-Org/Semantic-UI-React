@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import {
   createShorthandFactory,
   customPropTypes,
+  doesNodeContainClick,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -80,7 +81,7 @@ export default class Dimmer extends Component {
   static Dimmable = DimmerDimmable
 
   handlePortalMount = () => {
-    if (!isBrowser) return
+    if (!isBrowser()) return
 
     // Heads up, IE doesn't support second argument in add()
     document.body.classList.add('dimmed')
@@ -88,7 +89,7 @@ export default class Dimmer extends Component {
   }
 
   handlePortalUnmount = () => {
-    if (!isBrowser) return
+    if (!isBrowser()) return
 
     // Heads up, IE doesn't support second argument in add()
     document.body.classList.remove('dimmed')
@@ -99,7 +100,7 @@ export default class Dimmer extends Component {
     const { onClick, onClickOutside } = this.props
 
     if (onClick) onClick(e, this.props)
-    if (this.centerRef && (this.centerRef !== e.target && this.centerRef.contains(e.target))) return
+    if (this.centerRef && (this.centerRef !== e.target && doesNodeContainClick(this.centerRef, e))) return
     if (onClickOutside) onClickOutside(e, this.props)
   }
 

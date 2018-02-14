@@ -8,7 +8,7 @@ import {
 import { default as GridColumn } from './GridColumn';
 import { default as GridRow } from './GridRow';
 
-export type GridReversedProp = 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
+export type GridReversedProp = string | 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
 
 export interface GridProps {
   [key: string]: any;

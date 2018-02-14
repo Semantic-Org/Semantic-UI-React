@@ -30,10 +30,10 @@ const Usage = () => (
     <Segment basic padded>
       <Header as='h2' dividing>JavaScript</Header>
       <p>
-        The Semantic UI React package can be installed via NPM:
+        The Semantic UI React package can be installed via Yarn:
       </p>
       <Segment>
-        <pre>$ npm install {pkg.name} --save</pre>
+        <pre>$ yarn add {pkg.name}</pre>
       </Segment>
       <p>
         Installing Semantic UI React provides the JavaScript for your components.
@@ -97,12 +97,12 @@ const Usage = () => (
         main Semantic UI repository to provide a lightweight CSS only version of Semantic UI.
       </p>
       <p>
-        Semantic UI CSS can be installed as a package in your project using NPM. You won't be able to
+        Semantic UI CSS can be installed as a package in your project using Yarn. You won't be able to
         use custom themes with this method.
       </p>
       <Segment>
         <pre>
-          $ npm install semantic-ui-css --save
+          $ yarn add semantic-ui-css
         </pre>
       </Segment>
       <p>
@@ -131,9 +131,7 @@ const Usage = () => (
         provided <a href={`${semanticUIDocsURL}usage/theming.html`}>here</a>.
       </p>
       <Segment>
-        <pre>
-          $ npm install semantic-ui --save-dev
-        </pre>
+        <pre>$ yarn add semantic-ui --dev</pre>
       </Segment>
       <p>
         After building the project with Gulp, you'll need to include the minified CSS file
@@ -153,33 +151,9 @@ const Usage = () => (
         of them. You can use them as start point for your projects.
       </p>
 
-      <Header as='h3'>Webpack 1</Header>
+      <Header as='h3'>Webpack 3</Header>
       <p>
-        Webpack 1 fully supports Semantic UI React, however we don't recommend to use it because it's deprecated.
-        Please ensure that you build your app in production mode before release, it will strip <code>propTypes</code>
-        from your build.
-      </p>
-      <p>
-        Because Webpack 1 doesn't support tree shaking we recommend to use <code>babel-plugin-lodash</code> in your
-        builds. You can find example configuration in <code>examples</code> directory of Semantic UI React.
-      </p>
-
-      <Button
-        content='Example configuration'
-        href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack1'
-        icon='github'
-        labelPosition='left'
-      />
-      <Button
-        content='babel-plugin-lodash'
-        href='https://github.com/lodash/babel-plugin-lodash'
-        icon='github'
-        labelPosition='left'
-      />
-
-      <Header as='h3'>Webpack 2</Header>
-      <p>
-        Webpack 2 fully supports Semantic UI React, it also supports tree shaking. Please ensure that you build your app
+        Webpack 3 fully supports Semantic UI React, it also supports Tree Shaking. Please ensure that you build your app
         in production mode before release, it will strip <code>propTypes</code> from your build.
       </p>
 
@@ -239,20 +213,27 @@ const Usage = () => (
           />
         </List>
         <p>
-          Semantic UI React imports will be not optimized, so we recommend to use <code>babel-plugin-lodash</code> in
-          your builds. You can find example configuration in <code>examples</code> directory.
+          Semantic UI React imports will be not optimized, so we recommend to use
+          <code>babel-plugin-direct-import</code> in your builds. You can find example configuration in
+          <code>examples/webpack3</code> directory.
         </p>
       </Message>
 
       <Button
-        content='Example configuration'
-        href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack2'
+        content='Webpack boilerplate'
+        href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3'
         icon='github'
         labelPosition='left'
       />
       <Button
-        content='babel-plugin-lodash'
-        href='https://github.com/lodash/babel-plugin-lodash'
+        content='Example configuration of plugin'
+        href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3/.babelrc'
+        icon='github'
+        labelPosition='left'
+      />
+      <Button
+        content='babel-plugin-direct-import'
+        href='https://github.com/umidbekkarimov/babel-plugin-direct-import'
         icon='github'
         labelPosition='left'
       />

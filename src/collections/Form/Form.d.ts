@@ -35,7 +35,7 @@ export interface FormProps {
   loading?: boolean;
 
   /** The HTML form submit handler. */
-  onSubmit?: (event: React.FormEvent<HTMLElement>, data: FormProps) => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>, data: FormProps) => void;
 
   /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
   reply?: boolean;

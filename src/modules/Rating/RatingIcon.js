@@ -56,7 +56,7 @@ export default class RatingIcon extends Component {
     selected: PropTypes.bool,
   }
 
-  defaultProps = {
+  static defaultProps = {
     as: 'i',
   }
 

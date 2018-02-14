@@ -94,5 +94,12 @@ describe('childMapping', () => {
         four: true,
       })
     })
+
+    it('should prefer next value of key over prev', () => {
+      const prev = { one: true }
+      const next = { one: false }
+
+      mergeChildMappings(prev, next).should.deep.equal({ one: false })
+    })
   })
 })

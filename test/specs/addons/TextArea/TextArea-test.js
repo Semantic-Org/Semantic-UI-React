@@ -142,6 +142,20 @@ describe('TextArea', () => {
     })
   })
 
+  describe('onInput', () => {
+    it('is called with (e, data) on input', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { 'data-foo': 'bar', onInput: spy }
+
+      wrapperShallow(<TextArea {...props} />)
+      wrapper.find('textarea').simulate('input', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+    })
+  })
+
   describe('rows', () => {
     it('has default value', () => {
       shallow(<TextArea />)
