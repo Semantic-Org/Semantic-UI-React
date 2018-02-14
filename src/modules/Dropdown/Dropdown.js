@@ -432,11 +432,11 @@ export default class Dropdown extends Component {
     if (!shallowEqual(nextProps.value, this.props.value)) {
       debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
-      this.setSelectedIndex(nextProps.value)
+      this.setSelectedIndex(nextProps.value, nextProps.options, nextProps.searchQuery)
     }
 
     if (!_.isEqual(nextProps.options, this.props.options)) {
-      this.setSelectedIndex(undefined, nextProps.options)
+      this.setSelectedIndex(undefined, nextProps.options, nextProps.searchQuery)
     }
   }
 
@@ -726,8 +726,8 @@ export default class Dropdown extends Component {
     this.setValue(newValue)
     this.setSelectedIndex(value)
 
-    const optionSize = _.size(this.getMenuOptions())
-    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
+    const optionSize = _.size(this.getMenuOptions(value))
+    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery(value)
 
     this.handleChange(e, newValue)
     this.closeOnChange(e)
@@ -798,9 +798,8 @@ export default class Dropdown extends Component {
 
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
-  getMenuOptions = (value = this.state.value, options = this.props.options) => {
+  getMenuOptions = (value = this.state.value, options = this.props.options, searchQuery = this.state.searchQuery) => {
     const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
-    const { searchQuery } = this.state
 
     let filteredOptions = options
 
@@ -907,9 +906,10 @@ export default class Dropdown extends Component {
   // Setters
   // ----------------------------------------
 
-  clearSearchQuery = () => {
+  clearSearchQuery = (value = this.state.value) => {
     debug('clearSearchQuery()')
     this.trySetState({ searchQuery: '' })
+    this.setSelectedIndex(value, undefined, '')
   }
 
   setValue = (value) => {
@@ -917,10 +917,13 @@ export default class Dropdown extends Component {
     this.trySetState({ value })
   }
 
-  setSelectedIndex = (value = this.state.value, optionsProps = this.props.options) => {
+  setSelectedIndex = (
+    value = this.state.value,
+    optionsProps = this.props.options,
+    searchQuery = this.state.searchQuery) => {
     const { multiple } = this.props
     const { selectedIndex } = this.state
-    const options = this.getMenuOptions(value, optionsProps)
+    const options = this.getMenuOptions(value, optionsProps, searchQuery)
     const enabledIndicies = this.getEnabledIndices(options)
 
     let newSelectedIndex
