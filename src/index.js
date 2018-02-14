@@ -122,6 +122,16 @@ export { default as DropdownItem } from './modules/Dropdown/DropdownItem'
 export { default as DropdownMenu } from './modules/Dropdown/DropdownMenu'
 export { default as DropdownSearchInput } from './modules/Dropdown/DropdownSearchInput'
 
+export { default as Datetime } from './addons/Datetime'
+export { default as DatetimeGrid } from './addons/Datetime/DatetimeGrid'
+export { default as DatetimeMenu } from './addons/Datetime/DatetimeMenu'
+export { default as DatetimeCalendar } from './addons/Datetime/DatetimeCalendar'
+export { default as DatetimeYears } from './addons/Datetime/DatetimeYears'
+export { default as DatetimeMonths } from './addons/Datetime/DatetimeMonths'
+export { default as DatetimeDays } from './addons/Datetime/DatetimeDays'
+export { default as DatetimeHours } from './addons/Datetime/DatetimeHours'
+export { default as DatetimeMinutes } from './addons/Datetime/DatetimeMinutes'
+
 export { default as Embed } from './modules/Embed'
 
 export { default as Modal } from './modules/Modal'

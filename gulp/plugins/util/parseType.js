@@ -35,11 +35,6 @@ const parseUnion = (union) => {
   }
 }
 
-const parsers = {
-  enum: parseEnum,
-  union: parseUnion,
-}
-
 export default (propName, { type }) => {
   if (type === undefined) {
     throw new Error([
@@ -47,8 +42,8 @@ export default (propName, { type }) => {
       'defaultProps, but it is not in the propTypes',
     ].join(' '))
   }
+  if (type.name === 'enum') return parseEnum(type)
+  if (type.name === 'union') return parseUnion(type)
 
-  const parser = parsers[type.name]
-
-  return parser ? parser(type) : type
+  return type
 }
