@@ -1,8 +1,10 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -19,6 +21,7 @@ function SegmentGroup(props) {
     children,
     className,
     compact,
+    content,
     horizontal,
     piled,
     raised,
@@ -40,7 +43,11 @@ function SegmentGroup(props) {
   const rest = getUnhandledProps(SegmentGroup, props)
   const ElementType = getElementType(SegmentGroup, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 SegmentGroup._meta = {
@@ -61,6 +68,9 @@ SegmentGroup.propTypes = {
 
   /** A segment may take up only as much space as is necessary. */
   compact: PropTypes.bool,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Formats content to be aligned horizontally. */
   horizontal: PropTypes.bool,

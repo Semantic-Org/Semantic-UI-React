@@ -29,6 +29,19 @@ export const WIDTHS = [
   ..._.values(numberToWordMap),
 ]
 
+export const DIRECTIONAL_TRANSITIONS = [
+  'scale',
+  'fade', 'fade up', 'fade down', 'fade left', 'fade right',
+  'horizontal flip', 'vertical flip',
+  'drop',
+  'fly left', 'fly right', 'fly up', 'fly down',
+  'swing left', 'swing right', 'swing up', 'swing down',
+  'browse', 'browse right',
+  'slide down', 'slide up', 'slide right',
+]
+export const STATIC_TRANSITIONS = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce']
+export const TRANSITIONS = [...DIRECTIONAL_TRANSITIONS, ...STATIC_TRANSITIONS]
+
 // Generated from:
 // https://github.com/Semantic-Org/Semantic-UI/blob/master/dist/components/icon.css
 export const WEB_CONTENT_ICONS = [
@@ -238,7 +251,7 @@ export const ICONS_AND_ALIASES = [
 // Their CSS rules are defined by a specific component's CSS.
 // We don't want to show name warnings for those usages so we add them as valid names here.
 export const COMPONENT_CONTEXT_SPECIFIC_ICONS = [
-  'left dropdown',      // nested dropdown menu direction icon
+  'left dropdown', // nested dropdown menu direction icon
 ]
 export const ALL_ICONS_IN_ALL_CONTEXTS = [
   ...ICONS_AND_ALIASES,

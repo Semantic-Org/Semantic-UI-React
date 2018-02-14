@@ -71,15 +71,69 @@ describe('Button', () => {
     })
   })
 
+  describe('disabled', () => {
+    it('is not set by default', () => {
+      shallow(<Button />)
+        .should.not.have.prop('disabled')
+    })
+
+    it('applied when defined', () => {
+      shallow(<Button disabled />)
+        .should.have.prop('disabled', true)
+    })
+
+    it("don't apply when the element's type isn't button", () => {
+      shallow(<Button as='div' disabled />)
+        .should.not.have.prop('disabled')
+    })
+
+    it('is not set by default when has a label', () => {
+      shallow(<Button label='foo' />)
+        .find('button')
+        .should.not.have.prop('disabled')
+    })
+
+    it('applied when defined and has a label', () => {
+      shallow(<Button disabled label='foo' />)
+        .find('button')
+        .should.have.prop('disabled', true)
+    })
+  })
+
+  describe('focus', () => {
+    it('can be set via a ref', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<Button />, { attachTo: mountNode })
+      wrapper.instance().focus()
+
+      const button = document.querySelector('button')
+      document.activeElement.should.equal(button)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+  })
+
   describe('icon', () => {
     it('adds className icon', () => {
       shallow(<Button icon='user' />)
         .should.have.className('icon')
     })
+
+    it('adds className icon when true', () => {
+      shallow(<Button icon />)
+        .should.have.className('icon')
+    })
+
     it('does not add className icon when there is content', () => {
+      shallow(<Button icon='user' content={0} />)
+        .should.not.have.className('icon')
       shallow(<Button icon='user' content='Yo' />)
         .should.not.have.className('icon')
     })
+
     it('adds className icon given labelPosition and content', () => {
       shallow(<Button labelPosition='left' icon='user' content='My Account' />)
         .should.have.className('icon')
@@ -155,22 +209,22 @@ describe('Button', () => {
   })
 
   describe('onClick', () => {
-    it('is called when clicked', () => {
-      const handleClick = sandbox.spy()
+    it('is called with (e, data) when clicked', () => {
+      const onClick = sandbox.spy()
 
-      shallow(<Button type='submit' onClick={handleClick} />)
+      shallow(<Button onClick={onClick} />)
         .simulate('click', syntheticEvent)
 
-      handleClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithExactly(syntheticEvent, { onClick, as: 'button' })
     })
 
-    it('is not called when button is disabled', () => {
-      const handleClick = sandbox.spy()
+    it('is not called when is disabled', () => {
+      const onClick = sandbox.spy()
 
-      shallow(<Button type='submit' disabled onClick={handleClick} />)
+      shallow(<Button disabled onClick={onClick} />)
         .simulate('click', syntheticEvent)
-
-      handleClick.should.not.have.been.calledOnce()
+      onClick.should.have.callCount(0)
     })
   })
 

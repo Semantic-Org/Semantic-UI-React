@@ -60,6 +60,12 @@ const GridVariationsExamples = () => (
     <ComponentExample examplePath='collections/Grid/Variations/GridExampleColoredRow' />
 
     <ComponentExample
+      title='Inverted'
+      description='A grid can be inverted to allow dividers to be seen with a dark background.'
+      examplePath='collections/Grid/Variations/GridExampleInverted'
+    />
+
+    <ComponentExample
       title='Centered'
       description='A grid can have its columns centered.'
       examplePath='collections/Grid/Variations/GridExampleCentered'

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface MenuMenuProps {
   [key: string]: any;
@@ -12,8 +13,11 @@ export interface MenuMenuProps {
   /** Additional classes. */
   className?: string;
 
-  /** A sub menu can take right position. */
-  position?: 'right';
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
+  /** A sub menu can take left or right position. */
+  position?: 'left' | 'right';
 }
 
 declare const MenuMenu: React.StatelessComponent<MenuMenuProps>;

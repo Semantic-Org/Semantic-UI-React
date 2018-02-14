@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import { SemanticShorthandContent } from '../..';
 import { default as RevealContent } from './RevealContent';
 
 export interface RevealProps {
@@ -15,11 +17,14 @@ export interface RevealProps {
     | 'move' | 'move right' | 'move up' | 'move down'
     | 'rotate' | 'rotate left';
 
+  /** Primary content. */
+  children?: React.ReactNode;
+
   /** Additional classes. */
   className?: string;
 
-  /** Primary content. */
-  children?: React.ReactNode;
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A disabled reveal will not animate when hovered. */
   disabled?: boolean;

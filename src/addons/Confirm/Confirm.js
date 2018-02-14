@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   customPropTypes,
@@ -45,12 +46,16 @@ class Confirm extends Component {
 
     /** Whether or not the modal is visible. */
     open: PropTypes.bool,
+
+    /** A Confirm can vary in size */
+    size: PropTypes.oneOf(['fullscreen', 'large', 'mini', 'small', 'tiny']),
   }
 
   static defaultProps = {
     cancelButton: 'Cancel',
     confirmButton: 'OK',
     content: 'Are you sure?',
+    size: 'small',
   }
 
   static _meta = {
@@ -58,17 +63,23 @@ class Confirm extends Component {
     type: META.TYPES.ADDON,
   }
 
-  handleCancel = e => {
-    const { onCancel } = this.props
-
-    if (onCancel) onCancel(e, this.props)
+  handleCancel = (e) => {
+    _.invoke(this.props, 'onCancel', e, this.props)
   }
 
-  handleConfirm = e => {
-    const { onConfirm } = this.props
+  handleCancelOverrides = predefinedProps => ({
+    onClick: (e, buttonProps) => {
+      _.invoke(predefinedProps, 'onClick', e, buttonProps)
+      this.handleCancel(e)
+    },
+  })
 
-    if (onConfirm) onConfirm(e, this.props)
-  }
+  handleConfirmOverrides = predefinedProps => ({
+    onClick: (e, buttonProps) => {
+      _.invoke(predefinedProps, 'onClick', e, buttonProps)
+      _.invoke(this.props, 'onConfirm', e, this.props)
+    },
+  })
 
   render() {
     const {
@@ -77,6 +88,7 @@ class Confirm extends Component {
       content,
       header,
       open,
+      size,
     } = this.props
     const rest = getUnhandledProps(Confirm, this.props)
 
@@ -87,14 +99,14 @@ class Confirm extends Component {
     if (_.has(this.props, 'open')) openProp.open = open
 
     return (
-      <Modal {...rest} {...openProp} size='small' onClose={this.handleCancel}>
+      <Modal {...rest} {...openProp} size={size} onClose={this.handleCancel}>
         {Modal.Header.create(header)}
         {Modal.Content.create(content)}
         <Modal.Actions>
-          {Button.create(cancelButton, { onClick: this.handleCancel })}
+          {Button.create(cancelButton, { overrideProps: this.handleCancelOverrides })}
           {Button.create(confirmButton, {
-            onClick: this.handleConfirm,
-            primary: true,
+            defaultProps: { primary: true },
+            overrideProps: this.handleConfirmOverrides,
           })}
         </Modal.Actions>
       </Modal>

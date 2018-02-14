@@ -1,18 +1,16 @@
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { Label } from 'semantic-ui-react'
 
 import SearchExampleCategory from './SearchExampleCategory'
 
-const categoryRenderer = ({ name }) =>
-  <Label as={'span'} content={name} />
+const categoryRenderer = ({ name }) => <Label as={'span'} content={name} />
 
 categoryRenderer.propTypes = {
   name: PropTypes.string,
 }
 
-const resultRenderer = ({ title, description }) => (
-  <Label content={title} />
-)
+const resultRenderer = ({ title }) => <Label content={title} />
 
 resultRenderer.propTypes = {
   title: PropTypes.string,

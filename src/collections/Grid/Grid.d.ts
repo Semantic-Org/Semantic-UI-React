@@ -8,7 +8,7 @@ import {
 import { default as GridColumn } from './GridColumn';
 import { default as GridRow } from './GridRow';
 
-export type GridReversedProp = 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
+export type GridReversedProp = string | 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
 
 export interface GridProps {
   [key: string]: any;
@@ -39,6 +39,9 @@ export interface GridProps {
 
   /** A grid can double its column width on tablet and mobile sizes. */
   doubling?: boolean;
+
+  /** A grid's colors can be inverted. */
+  inverted?: boolean;
 
   /** A grid can preserve its vertical and horizontal gutters on first and last columns. */
   padded?: boolean | 'horizontally' | 'vertically';

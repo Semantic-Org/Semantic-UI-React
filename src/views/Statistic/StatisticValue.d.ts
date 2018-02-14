@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface StatisticValueProps {
   [key: string]: any;
@@ -12,11 +13,11 @@ export interface StatisticValueProps {
   /** Additional classes. */
   className?: string;
 
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
   /** Format the value with smaller font size to fit nicely beside number values. */
   text?: boolean;
-
-  /** Primary content of the StatisticValue. Mutually exclusive with the children prop. */
-  value?: React.ReactNode;
 }
 
 declare const StatisticValue: React.StatelessComponent<StatisticValueProps>;

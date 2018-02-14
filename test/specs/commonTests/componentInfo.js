@@ -9,10 +9,10 @@ import helpers from './commonHelpers'
 const componentCtx = require.context(
   '../../../src/',
   true,
-  /(addons|collections|elements|modules|views).\w+.(?!index)\w+.js/
+  /(addons|behaviors|collections|elements|modules|views).\w+.(?!index)\w+.js/,
 )
 
-const componentInfo = componentCtx.keys().map(key => {
+const componentInfo = componentCtx.keys().map((key) => {
   const Component = componentCtx(key).default
   const componentType = typeof Component
   const { throwError } = helpers('componentInfo', Component)

@@ -16,3 +16,12 @@ export const someByType = (children, type) => _.some(Children.toArray(children),
  * @returns {undefined|Object}
  */
 export const findByType = (children, type) => _.find(Children.toArray(children), { type })
+
+/**
+ * Tests if children are nil in React and Preact.
+ * @param {Object} children The children prop of a component.
+ * @returns {Boolean}
+ */
+export const isNil = children => children === null
+    || children === undefined
+    || (Array.isArray(children) && children.length === 0)

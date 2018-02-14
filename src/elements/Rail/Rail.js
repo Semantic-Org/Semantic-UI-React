@@ -1,8 +1,10 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -21,6 +23,7 @@ function Rail(props) {
     children,
     className,
     close,
+    content,
     dividing,
     internal,
     position,
@@ -41,7 +44,11 @@ function Rail(props) {
   const rest = getUnhandledProps(Rail, props)
   const ElementType = getElementType(Rail, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 Rail._meta = {
@@ -67,6 +74,9 @@ Rail.propTypes = {
     PropTypes.bool,
     PropTypes.oneOf(['very']),
   ]),
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A rail can create a division between itself and a container. */
   dividing: PropTypes.bool,

@@ -22,15 +22,6 @@ describe('Dimmer', () => {
   common.propKeyOnlyToClassName(Dimmer, 'inverted')
   common.propKeyOnlyToClassName(Dimmer, 'simple')
 
-  describe('content', () => {
-    it('renders text', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<Dimmer content={text} />)
-        .should.contain.text(text)
-    })
-  })
-
   describe('onClickOutside', () => {
     it('omitted when not defined', () => {
       const wrapper = shallow(<Dimmer>{faker.hacker.phrase()}</Dimmer>)
@@ -49,7 +40,9 @@ describe('Dimmer', () => {
 
     it('omitted when click on children', () => {
       const spy = sandbox.spy()
-      const wrapper = mount(<Dimmer onClickOutside={spy}><div>{faker.hacker.phrase()}</div></Dimmer>)
+      const wrapper = mount(<Dimmer onClickOutside={spy}><div>{faker.hacker.phrase()}</div></Dimmer>, {
+        attachTo: document.body,
+      })
 
       wrapper.find('div.center').childAt(0).simulate('click')
       spy.should.have.been.callCount(0)

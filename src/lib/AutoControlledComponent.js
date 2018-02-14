@@ -26,7 +26,7 @@
 import _ from 'lodash'
 import { Component } from 'react'
 
-const getDefaultPropName = (prop) => `default${prop[0].toUpperCase() + prop.slice(1)}`
+const getDefaultPropName = prop => `default${prop[0].toUpperCase() + prop.slice(1)}`
 
 /**
  * Return the auto controlled state value for a give prop. The initial value is chosen in this order:
@@ -68,8 +68,11 @@ export const getAutoControlledStateValue = (propName, props, state, includeDefau
 }
 
 export default class AutoControlledComponent extends Component {
-  componentWillMount() {
+  constructor(...args) {
+    super(...args)
+
     const { autoControlledProps } = this.constructor
+    const state = _.invoke(this, 'getInitialAutoControlledState', this.props) || {}
 
     if (process.env.NODE_ENV !== 'production') {
       const { defaultProps, name, propTypes } = this.constructor
@@ -130,15 +133,15 @@ export default class AutoControlledComponent extends Component {
     // Also look for the default prop for any auto controlled props (foo => defaultFoo)
     // so we can set initial values from defaults.
     const initialAutoControlledState = autoControlledProps.reduce((acc, prop) => {
-      acc[prop] = getAutoControlledStateValue(prop, this.props, this.state, true)
+      acc[prop] = getAutoControlledStateValue(prop, this.props, state, true)
 
       if (process.env.NODE_ENV !== 'production') {
         const defaultPropName = getDefaultPropName(prop)
         const { name } = this.constructor
         // prevent defaultFoo={} along side foo={}
-        if (defaultPropName in this.props && prop in this.props) {
+        if (!_.isUndefined(this.props[defaultPropName]) && !_.isUndefined(this.props[prop])) {
           console.error(
-            `${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`
+            `${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`,
           )
         }
       }
@@ -146,7 +149,7 @@ export default class AutoControlledComponent extends Component {
       return acc
     }, {})
 
-    this.state = { ...this.state, ...initialAutoControlledState }
+    this.state = { ...state, ...initialAutoControlledState }
   }
 
   componentWillReceiveProps(nextProps) {

@@ -1,8 +1,10 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -39,11 +41,11 @@ function Feed(props) {
   const rest = getUnhandledProps(Feed, props)
   const ElementType = getElementType(Feed, props)
 
-  if (!_.isNil(children)) {
+  if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const eventElements = _.map(events, eventProps => {
+  const eventElements = _.map(events, (eventProps) => {
     const { childKey, date, meta, summary, ...eventData } = eventProps
     const finalKey = childKey || [date, meta, summary].join('-')
 

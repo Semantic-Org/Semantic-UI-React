@@ -1,9 +1,11 @@
 import cx from 'classnames'
-import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   AutoControlledComponent as Component,
+  childrenUtils,
+  createHTMLIframe,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -26,7 +28,7 @@ export default class Embed extends Component {
     /** An embed can specify an alternative aspect ratio. */
     aspectRatio: PropTypes.oneOf(['4:3', '16:9', '21:9']),
 
-     /** Setting to true or false will force autoplay. */
+    /** Setting to true or false will force autoplay. */
     autoplay: customPropTypes.every([
       customPropTypes.demand(['source']),
       PropTypes.bool,
@@ -50,22 +52,31 @@ export default class Embed extends Component {
       PropTypes.string,
     ]),
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** Initial value of active. */
     defaultActive: PropTypes.bool,
 
-    /** Whether to show networks branded UI like title cards, or after video calls to action. */
+    /** Whether to prefer HD content. */
     hd: customPropTypes.every([
       customPropTypes.demand(['source']),
       PropTypes.bool,
     ]),
 
-     /** Specifies an icon to use with placeholder content. */
+    /** Specifies an icon to use with placeholder content. */
     icon: customPropTypes.itemShorthand,
 
     /** Specifies an id for source. */
     id: customPropTypes.every([
       customPropTypes.demand(['source']),
       PropTypes.string,
+    ]),
+
+    /** Shorthand for HTML iframe. */
+    iframe: customPropTypes.every([
+      customPropTypes.demand(['source']),
+      customPropTypes.itemShorthand,
     ]),
 
     /**
@@ -105,8 +116,6 @@ export default class Embed extends Component {
     type: META.TYPES.MODULE,
   }
 
-  state = {}
-
   getSrc() {
     const {
       autoplay = true,
@@ -127,6 +136,7 @@ export default class Embed extends Component {
         `&amp;hq=${hd}`,
         '&amp;jsapi=false',
         `&amp;modestbranding=${brandedUI}`,
+        `&amp;rel=${brandedUI ? 0 : 1}`,
       ].join('')
     }
 
@@ -177,22 +187,26 @@ export default class Embed extends Component {
   }
 
   renderEmbed() {
-    const { children } = this.props
+    const { children, content, iframe, source } = this.props
     const { active } = this.state
 
     if (!active) return null
-    if (!_.isNil(children)) return <div className='embed'>{children}</div>
+    if (!childrenUtils.isNil(children)) return <div className='embed'>{children}</div>
+    if (!childrenUtils.isNil(content)) return <div className='embed'>{content}</div>
 
     return (
       <div className='embed'>
-        <iframe
-          allowFullScreen=''
-          frameBorder='0'
-          height='100%'
-          scrolling='no'
-          src={this.getSrc()}
-          width='100%'
-        />
+        {createHTMLIframe(childrenUtils.isNil(iframe) ? this.getSrc() : iframe, {
+          defaultProps: {
+            allowFullScreen: false,
+            frameBorder: 0,
+            height: '100%',
+            scrolling: 'no',
+            src: this.getSrc(),
+            title: `Embedded content from ${source}.`,
+            width: '100%',
+          },
+        })}
       </div>
     )
   }

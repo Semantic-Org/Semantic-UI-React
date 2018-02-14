@@ -1,1 +1,1 @@
-export { default, ItemProps } from './Item'
+export { default, ItemProps } from './Item';

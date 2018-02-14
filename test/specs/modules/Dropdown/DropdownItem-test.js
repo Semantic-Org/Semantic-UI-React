@@ -8,11 +8,14 @@ import Flag from 'src/elements/Flag'
 
 describe('DropdownItem', () => {
   common.isConformant(DropdownItem)
-  common.rendersChildren(DropdownItem)
+  common.rendersChildren(DropdownItem, {
+    rendersContent: false,
+  })
 
   common.propKeyOnlyToClassName(DropdownItem, 'selected')
   common.propKeyOnlyToClassName(DropdownItem, 'active')
 
+  common.implementsCreateMethod(DropdownItem)
   common.implementsIconProp(DropdownItem)
   common.implementsLabelProp(DropdownItem)
   common.implementsImageProp(DropdownItem)
@@ -27,14 +30,14 @@ describe('DropdownItem', () => {
     propKey: 'description',
     ShorthandComponent: 'span',
     mapValueToProps: children => ({ children }),
-    shorthandDefaultProps: props => ({ className: 'description' }),
+    shorthandDefaultProps: { className: 'description' },
   })
 
   common.implementsShorthandProp(DropdownItem, {
     propKey: 'text',
     ShorthandComponent: 'span',
     mapValueToProps: children => ({ children }),
-    shorthandDefaultProps: props => ({ className: 'text' }),
+    shorthandDefaultProps: { className: 'text' },
   })
 
   describe('aria', () => {

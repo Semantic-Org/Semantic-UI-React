@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createShorthandFactory,
@@ -17,7 +18,7 @@ function ListIcon(props) {
   const { className, verticalAlign } = props
   const classes = cx(
     useVerticalAlignProp(verticalAlign),
-    className
+    className,
   )
   const rest = getUnhandledProps(ListIcon, props)
 

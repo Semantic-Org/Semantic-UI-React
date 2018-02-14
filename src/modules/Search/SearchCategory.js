@@ -1,7 +1,9 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -10,11 +12,11 @@ import {
 } from '../../lib'
 
 function SearchCategory(props) {
-  const { active, children, className, renderer } = props
+  const { active, children, className, content, renderer } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
     'category',
-    className
+    className,
   )
   const rest = getUnhandledProps(SearchCategory, props)
   const ElementType = getElementType(SearchCategory, props)
@@ -24,7 +26,7 @@ function SearchCategory(props) {
       <div className='name'>
         {renderer(props)}
       </div>
-      {children}
+      {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
 }
@@ -51,6 +53,9 @@ SearchCategory.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Display name. */
   name: PropTypes.string,

@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -144,7 +145,7 @@ export default class Rating extends Component {
 
     return (
       <ElementType {...rest} className={classes} role='radiogroup' onMouseLeave={this.handleMouseLeave}>
-        {_.times(maxRating, (i) => (
+        {_.times(maxRating, i => (
           <RatingIcon
             active={rating >= i + 1}
             aria-checked={rating === i + 1}
@@ -154,7 +155,7 @@ export default class Rating extends Component {
             key={i}
             onClick={this.handleIconClick}
             onMouseEnter={this.handleIconMouseEnter}
-            selected={selectedIndex >= i && isSelecting }
+            selected={selectedIndex >= i && isSelecting}
           />
         ))}
       </ElementType>

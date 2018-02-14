@@ -1,10 +1,13 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   AutoControlledComponent as Component,
+  childrenUtils,
   customPropTypes,
+  createShorthandFactory,
   getElementType,
   getUnhandledProps,
   META,
@@ -28,7 +31,10 @@ class Menu extends Component {
     as: customPropTypes.as,
 
     /** Index of the currently active item. */
-    activeIndex: PropTypes.number,
+    activeIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /** A menu may be attached to other content segments. */
     attached: PropTypes.oneOfType([
@@ -52,7 +58,10 @@ class Menu extends Component {
     compact: PropTypes.bool,
 
     /** Initial activeIndex value. */
-    defaultActiveIndex: PropTypes.number,
+    defaultActiveIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /** A menu can be fixed to a side of its context. */
     fixed: PropTypes.oneOf(['left', 'right', 'bottom', 'top']),
@@ -133,24 +142,27 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
-  handleItemClick = (e, itemProps) => {
-    const { index } = itemProps
-    const { items, onItemClick } = this.props
+  handleItemOverrides = predefinedProps => ({
+    onClick: (e, itemProps) => {
+      const { index } = itemProps
 
-    this.trySetState({ activeIndex: index })
+      this.trySetState({ activeIndex: index })
 
-    if (_.get(items[index], 'onClick')) items[index].onClick(e, itemProps)
-    if (onItemClick) onItemClick(e, itemProps)
-  }
+      _.invoke(predefinedProps, 'onClick', e, itemProps)
+      _.invoke(this.props, 'onItemClick', e, itemProps)
+    },
+  })
 
   renderItems() {
     const { items } = this.props
     const { activeIndex } = this.state
 
     return _.map(items, (item, index) => MenuItem.create(item, {
-      active: activeIndex === index,
-      index,
-      onClick: this.handleItemClick,
+      defaultProps: {
+        active: parseInt(activeIndex, 10) === index,
+        index,
+      },
+      overrideProps: this.handleItemOverrides,
     }))
   }
 
@@ -198,17 +210,19 @@ class Menu extends Component {
       useValueAndKey(fixed, 'fixed'),
       useWidthProp(widths, 'item'),
       className,
-      'menu'
+      'menu',
     )
     const rest = getUnhandledProps(Menu, this.props)
     const ElementType = getElementType(Menu, this.props)
 
     return (
       <ElementType {...rest} className={classes}>
-        {_.isNil(children) ? this.renderItems() : children}
+        {childrenUtils.isNil(children) ? this.renderItems() : children}
       </ElementType>
     )
   }
 }
+
+Menu.create = createShorthandFactory(Menu, items => ({ items }))
 
 export default Menu

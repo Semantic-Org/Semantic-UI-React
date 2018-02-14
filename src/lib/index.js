@@ -1,4 +1,5 @@
 export { default as AutoControlledComponent } from './AutoControlledComponent'
+export { getChildMapping, mergeChildMappings } from './childMapping'
 export * as childrenUtils from './childrenUtils'
 
 export {
@@ -6,7 +7,7 @@ export {
   useKeyOrValueAndKey,
   useValueAndKey,
 
-  useOnlyProp,
+  useMultipleProp,
   useTextAlignProp,
   useVerticalAlignProp,
   useWidthProp,
@@ -18,6 +19,7 @@ export {
   debug,
   makeDebugger,
 } from './debug'
+export eventStack from './eventStack'
 
 export * from './factories'
 export { default as getUnhandledProps } from './getUnhandledProps'
@@ -27,14 +29,19 @@ export {
   htmlInputAttrs,
   htmlInputEvents,
   htmlInputProps,
-  partitionHTMLInputProps,
-} from './htmlInputPropsUtils'
+  partitionHTMLProps,
+} from './htmlPropsUtils'
 
 export { default as isBrowser } from './isBrowser'
+export { default as doesNodeContainClick } from './doesNodeContainClick'
 export { default as leven } from './leven'
 export * as META from './META'
+export createPaginationItems from './createPaginationItems'
 export * as SUI from './SUI'
 
 export { default as keyboardKey } from './keyboardKey'
 export { numberToWordMap, numberToWord } from './numberToWord'
-export { objectDiff } from './objectDiff'
+export normalizeOffset from './normalizeOffset'
+export normalizeTransitionDuration from './normalizeTransitionDuration'
+export { default as objectDiff } from './objectDiff'
+export shallowEqual from './shallowEqual'

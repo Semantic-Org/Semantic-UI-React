@@ -1,8 +1,10 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { createElement, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { createElement } from 'react'
 
 import {
+  childrenUtils,
   createHTMLLabel,
   customPropTypes,
   getElementType,
@@ -24,12 +26,13 @@ import Radio from '../../addons/Radio'
  * @see Input
  * @see Radio
  * @see Select
- * @see TextArea
+ * @see Visibility
  */
 function FormField(props) {
   const {
     children,
     className,
+    content,
     control,
     disabled,
     error,
@@ -57,7 +60,13 @@ function FormField(props) {
   // ----------------------------------------
 
   if (_.isNil(control)) {
-    if (_.isNil(label)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+    if (_.isNil(label)) {
+      return (
+        <ElementType {...rest} className={classes}>
+          {childrenUtils.isNil(children) ? content : children}
+        </ElementType>
+      )
+    }
 
     return <ElementType {...rest} className={classes}>{createHTMLLabel(label)}</ElementType>
   }
@@ -65,7 +74,7 @@ function FormField(props) {
   // ----------------------------------------
   // Checkbox/Radio Control
   // ----------------------------------------
-  const controlProps = { ...rest, children, required, type }
+  const controlProps = { ...rest, content, children, disabled, required, type }
 
   // wrap HTML checkboxes/radios in the label
   if (control === 'input' && (type === 'checkbox' || type === 'radio')) {
@@ -93,7 +102,9 @@ function FormField(props) {
 
   return (
     <ElementType className={classes}>
-      {createHTMLLabel(label)}
+      {createHTMLLabel(label, { defaultProps: {
+        htmlFor: _.get(controlProps, 'id') },
+      })}
       {createElement(control, controlProps)}
     </ElementType>
   )
@@ -114,6 +125,9 @@ FormField.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /**
    * A form control component (i.e. Dropdown) or HTML tagName (i.e. 'input').

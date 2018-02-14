@@ -16,9 +16,12 @@
     }]
   ],
   "env": {
+    "development": {
+      "plugins": "react-hot-loader/babel"
+    },
     "test": {
       "plugins": [
-        ["__coverage__", { "only": "src/" }]
+        ["istanbul", { "include": ["src"] }]
       ]
     }
   }

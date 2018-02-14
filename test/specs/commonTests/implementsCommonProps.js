@@ -18,15 +18,35 @@ import helpers from './commonHelpers'
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsButtonProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'button',
     ShorthandComponent: Button,
     mapValueToProps: val => ({ content: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
+    ...options,
+  })
+}
+
+/**
+ * Assert that a Component correctly implements an HTML iframe shorthand prop.
+ *
+ * @param {function} Component The component to test.
+ * @param {object} [options={}]
+ * @param {string} [options.propKey='icon'] The name of the shorthand prop.
+ * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
+ * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
+ */
+export const implementsHTMLIFrameProp = (Component, options = {}) => {
+  implementsShorthandProp(Component, {
+    propKey: 'iframe',
+    ShorthandComponent: 'iframe',
+    mapValueToProps: src => ({ src }),
     ...options,
   })
 }
@@ -40,15 +60,14 @@ export const implementsButtonProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsHTMLInputProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'input',
     ShorthandComponent: 'input',
     mapValueToProps: val => ({ type: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }
@@ -62,15 +81,14 @@ export const implementsHTMLInputProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsHTMLLabelProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'label',
     ShorthandComponent: 'label',
     mapValueToProps: val => ({ children: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }
@@ -84,15 +102,14 @@ export const implementsHTMLLabelProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsIconProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'icon',
     ShorthandComponent: Icon,
     mapValueToProps: val => ({ name: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }
@@ -106,15 +123,14 @@ export const implementsIconProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsImageProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'image',
     ShorthandComponent: Image,
     mapValueToProps: val => ({ src: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }
@@ -128,15 +144,14 @@ export const implementsImageProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsLabelProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'label',
     ShorthandComponent: Label,
     mapValueToProps: val => ({ content: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }
@@ -144,28 +159,30 @@ export const implementsLabelProp = (Component, options = {}) => {
 /**
  * Assert that a Component correctly implements the "only" prop.
  * @param {React.Component|Function} Component The component to test.
+ * @param {String} propKey A props key.
  */
-export const implementsOnlyProp = Component => {
+export const implementsMultipleProp = (Component, propKey, propValues) => {
   const { assertRequired } = helpers('propKeyAndValueToClassName', Component)
-  const propValues = SUI.VISIBILITY
 
-  describe('only (common)', () => {
+  describe(`${propKey} (common)`, () => {
     assertRequired(Component, 'a `Component`')
 
-    noDefaultClassNameFromProp(Component, 'only', propValues)
-    noClassNameFromBoolProps(Component, 'only', propValues)
+    noDefaultClassNameFromProp(Component, propKey, propValues)
+    noClassNameFromBoolProps(Component, propKey, propValues)
 
-    propValues.forEach(propVal => {
-      it(`adds "${propVal} only" to className`, () => {
-        shallow(createElement(Component, { only: propVal })).should.have.className(`${propVal} only`)
+    propValues.forEach((propVal) => {
+      it(`adds "${propVal} ${propKey}" to className`, () => {
+        shallow(createElement(Component, { [propKey]: propVal }))
+          .should.have.className(`${propVal} ${propKey}`)
       })
     })
 
     it('adds all possible values to className', () => {
-      const className = propValues.map(prop => `${prop} only`).join(' ')
+      const className = propValues.map(prop => `${prop} ${propKey}`).join(' ')
       const propValue = propValues.join(' ')
 
-      shallow(createElement(Component, { only: propValue })).should.have.className(className)
+      shallow(createElement(Component, { [propKey]: propValue }))
+        .should.have.className(className)
     })
   })
 }
@@ -187,18 +204,18 @@ export const implementsTextAlignProp = (Component, alignments = SUI.TEXT_ALIGNME
     noClassNameFromBoolProps(Component, 'textAlign', alignments, options)
     noDefaultClassNameFromProp(Component, 'textAlign', alignments, options)
 
-    alignments.forEach(propVal => {
+    alignments.forEach((propVal) => {
       if (propVal === 'justified') {
         it('adds "justified" without "aligned" to className', () => {
-          shallow(<Component { ...requiredProps } textAlign='justified' />)
+          shallow(<Component {...requiredProps} textAlign='justified' />)
             .should.have.className('justified')
 
-          shallow(<Component { ...requiredProps } textAlign='justified' />)
+          shallow(<Component {...requiredProps} textAlign='justified' />)
             .should.not.have.className('aligned')
         })
       } else {
         it(`adds "${propVal} aligned" to className`, () => {
-          shallow(<Component { ...requiredProps } textAlign={propVal} />)
+          shallow(<Component {...requiredProps} textAlign={propVal} />)
             .should.have.className(`${propVal} ${'aligned'}`)
         })
       }
@@ -223,9 +240,9 @@ export const implementsVerticalAlignProp = (Component, alignments = SUI.VERTICAL
     noClassNameFromBoolProps(Component, 'verticalAlign', alignments, options)
     noDefaultClassNameFromProp(Component, 'verticalAlign', alignments, options)
 
-    alignments.forEach(propVal => {
+    alignments.forEach((propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
-        shallow(<Component { ...requiredProps } verticalAlign={propVal} />)
+        shallow(<Component {...requiredProps} verticalAlign={propVal} />)
           .should.have.className(`${propVal} ${'aligned'}`)
       })
     })
@@ -260,7 +277,7 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
     noDefaultClassNameFromProp(Component, propKey, propValues, options)
 
     it('adds numberToWord value to className', () => {
-      widths.forEach(width => {
+      widths.forEach((width) => {
         const expectClass = widthClass ? `${numberToWord(width)} ${widthClass}` : numberToWord(width)
 
         shallow(createElement(Component, { ...requiredProps, [propKey]: width }))
@@ -274,5 +291,28 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
           .should.have.className('equal width')
       })
     }
+  })
+}
+
+/**
+ * Assert that a Components with a label correctly implements the "id" and "htmlFor" props.
+ * @param {React.Component|Function} Component The component to test.
+ */
+export const labelImplementsHtmlForProp = (Component) => {
+  const { assertRequired } = helpers('labelImplementsHtmlForProp', Component)
+
+  describe('htmlFor (common)', () => {
+    assertRequired(Component, 'a `Component`')
+
+    it('adds htmlFor to label', () => {
+      const id = 'id-for-test'
+      const label = 'label-for-test'
+
+      const wrapper = mount(<Component id={id} label={label} />)
+      const labelNode = wrapper.find('label')
+
+      wrapper.should.to.have.descendants(`#${id}`)
+      labelNode.should.have.prop('htmlFor', id)
+    })
   })
 }

@@ -1,13 +1,13 @@
 <!-- Logo -->
 <p align="center">
-  <a href="http://react.semantic-ui.com">
+  <a href="https://react.semantic-ui.com">
     <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/logo.png">
   </a>
 </p>
 
 <!-- Name -->
 <h1 align="center">
-  <a href="http://react.semantic-ui.com/">Semantic UI React</a>
+  <a href="https://react.semantic-ui.com/">Semantic UI React</a>
 </h1>
 
 <!-- Badges -->
@@ -15,14 +15,14 @@
   <a href="https://gitter.im/Semantic-Org/Semantic-UI-React">
     <img alt="Gitter" src="https://img.shields.io/badge/gitter-join_chat-1dce73.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSI1IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI1Ii8%2BPHJlY3QgeD0iMiIgeT0iNiIgZmlsbD0iI2ZmZiIgd2lkdGg9IjEiIGhlaWdodD0iNyIvPjxyZWN0IHg9IjQiIHk9IjYiIGZpbGw9IiNmZmYiIHdpZHRoPSIxIiBoZWlnaHQ9IjciLz48cmVjdCB4PSI2IiB5PSI2IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI0Ii8%2BPC9zdmc%2B&logoWidth=8&style=flat-square&maxAge=2592000" />
   </a>
-  <a href="ttps://circleci.com/gh/Semantic-Org/Semantic-UI-React/tree/master">
+  <a href="https://circleci.com/gh/Semantic-Org/Semantic-UI-React/tree/master">
     <img alt="Circle" src="https://img.shields.io/circleci/project/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square" />
   </a>
   <a href="https://codecov.io/gh/Semantic-Org/Semantic-UI-React">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square" />
   </a>
-  <a href="https://gemnasium.com/Semantic-Org/Semantic-UI-React">
-    <img alt="Gemnasium" src="https://img.shields.io/gemnasium/Semantic-Org/Semantic-UI-React.svg?style=flat-square" />
+  <a href="https://david-dm.org/Semantic-Org/Semantic-UI-React">
+    <img alt="David" src="https://img.shields.io/david/Semantic-Org/Semantic-UI-React.svg?style=flat-square" />
   </a>
   <a href="https://www.npmjs.com/package/semantic-ui-react">
     <img alt="npm" src="https://img.shields.io/npm/v/semantic-ui-react.svg?style=flat-square" />
@@ -40,9 +40,52 @@ Hey, we're in development. Prior to reaching [v1.0.0][6]:
 
 See the [Documentation][2] for an introduction, usage information, and extensive examples.
 
+## Built With Semantic UI React
+
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/amazon-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/netflix-logo.png" />
+<a href="https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md">
+  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/add-yours.png" />
+</a>
+
+These great products are built on Semantic UI React. Add yours [here][22].
+
+- Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
+- Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
+- https://gitconnected.com - The community for developers and software engineers
+- http://stoplight.io
+- https://roadmap.space
+- https://edabit.com
+- https://blackship.com
+- http://www.brewhousesolutions.com
+- https://www.seeuletter.com
+- https://www.stackforge.co
+- https://sublimefund.org
+- https://thefaithcircle.com
+- https://appfollow.io
+- http://according.to.localsourc.es
+- http://www.aircip.ir
+- https://www.bailfacile.fr
+- http://platform.nazarbazaar.ir
+- https://build.games
+- https://platform.forecastcycles.com
+- https://www.findlectures.com
+- https://github.com/ayastreb/bandwidth-hero
+- https://re.yomeshgupta.com
+- https://moneytracker.cc
+- https://tax.cryptact.com
+- https://www.hurriyetoto.com
+- https://173app.com
+
 ## Example Projects
 
 This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
+
+### [webpack][28]
+Our example project right [here][28] in this repo. Includes theming examples.
+ 
+### [SUIcrux][102]
+Advanced universal starter with Semantic-UI-React. React/Redux/Lazy-loading/SSR/PWA.
 
 ### [semantic-ui-react-todos][100]
 This example modifies the well-known [react-redux Todo List][101] to use Semantic UI components. There is also a write-up on the process in the project README.
@@ -55,25 +98,14 @@ Yes.  Just use `<Icon className='my-icon' />` instead of `<Icon name='my-icon' /
 ### How do I setup CSS?
 There are several options.  Refer to our doc on [CSS Usage][23].
 
-### Can I use a customize CSS theme?
+### Can I use a custom CSS theme?
 Yes.  Semantic UI React includes components that render valid Semantic UI HTML, no CSS is included.  This allows you to load any Semantic UI CSS theme on top of your Semantic UI React app.
 
 Here are some helpful links:
 
 - [Building CSS with Webpack][24]
-- [Building CSS with Meteor][26]
+- [Building CSS with Meteor][30]
 - [Creating a standalone theme][25]
-
-## Built With Semantic UI React
-
-These great products are built on Semantic UI React. Add yours [here][22].
-
-- http://stoplight.io
-- https://roadmap.space
-- https://edabit.com
-- https://blackship.com
-- http://www.brewhousesolutions.com
-- https://www.lifebot.fr
 
 ## Voice Your Opinion
 
@@ -83,9 +115,9 @@ Help shape this library by weighing in on our [RFC (request for comments)][19] i
 
 Our [CONTRIBUTING.md][1] is a step-by-step setup and development guide. It is meant to be read from top to bottom.  Once you're up to speed, each issue here includes more information on how you can help:
 
-### [Good First Contribution][21]
+### [Good First Issue][21]
 
-Issues labeled [`good first contribution`][21] are a great way to ease into development on this project. 
+Issues labeled [`good first issue`][21] are a great way to ease into development on this project. 
 
 ### [Missing Components][17]
 
@@ -95,25 +127,13 @@ We're seeking component parity with Semantic UI, plus some addons.  There is an 
 
 Any other issue labeled [`help wanted`][4] is ready for a PR.
 
-## Debugger
-
-We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can turn debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
-
-```js
-localStorage.debug = 'semanticUIReact:*'         // default, debug all components
-localStorage.debug = 'semanticUIReact:dropdown'  // debug only the dropdown
-localStorage.debug = null                        // turn debug off
-```
-
-Once you change the flag, you need to refresh your browser to see the changes in debug output.
-
-## Support
+## 100% Semantic UI Support
 
 |    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
 |-----------------|-----------------|-----------------|-----------------|--------------------|
 | ✓ Button        | ✓ Breadcrumb    | ✓ Advertisement | ✓ Accordion     |   Form Validation  |
 | ✓ Container     | ✓ Form          | ✓ Card          | ✓ Checkbox      | *API (NA)*         |
-| ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | *Visibility (NA)*  |
+| ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | ✓ Visibility       |
 | ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
 | ✓ Header        | ✓ Message       | ✓ Item          | ✓ Embed         |                    |
 | ✓ Icon          | ✓ Table         | ✓ Statistic     | ✓ Modal         |                    |
@@ -123,13 +143,11 @@ Once you change the flag, you need to refresh your browser to see the changes in
 | ✓ List          |                 |                 | ✓ Search        |                    |
 | ✓ Loader        |                 |                 |   Shape         |                    |
 | ✓ Rail          |                 |                 | ✓ Sidebar       |                    |
-| ✓ Reveal        |                 |                 |   Sticky        |                    |
-| ✓ Segment       |                 |                 |   Tab           |                    |
-| ✓ Step          |                 |                 |   Transition    |                    |
+| ✓ Reveal        |                 |                 | ✓ Sticky        |                    |
+| ✓ Segment       |                 |                 | ✓ Tab           |                    |
+| ✓ Step          |                 |                 | ✓ Transition    |                    |
 
-## Our Principles
-
-[TechnologyAdvice][9] has been [dogfooding][10] Semantic UI React in production since fall of 2015.  These are the guiding principles that have developed as a result:
+## Principles
 
 - No jQuery dependency
 - No animation dependencies
@@ -145,38 +163,25 @@ Once you change the flag, you need to refresh your browser to see the changes in
 On the latest clean `master`:
 
 ```sh
-npm run release:major
-npm run release:minor
-npm run release:patch
+yarn release:major
+yarn release:minor
+yarn release:patch
 ```
 
-Deploy the docs:
-
-```sh
-npm run deploy:docs
-```
-
-Update the changelog (requires [github_changelog_generator][15]):
-
-```sh
-github_changelog_generator
-git add CHANGELOG.md
-git commit -m 'docs(changelog): update changelog [ci skip]'
-git push
-```
+Releasing will update the changelog which requires [github_changelog_generator][15].
 
 ## Credit
 
-Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
+Originally made for [@TechnologyAdvice][9] by [@levithomason][26].
 
 Big thanks to our [contributors][20], especially:
 
+- [@layershifter][27] for essentially taking over during [@levithomason][26]'s unavailability
+- @jcarbo for thoughtful engineering
 - @jamiehill for early engineering and support
-- @jcarbo for thoughtful engineering and continual support
-- @layershifter for bringing momentum and continual support
 
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
-[2]: http://react.semantic-ui.com/
+[2]: https://react.semantic-ui.com/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
 [5]: https://semantic-ui.com/
@@ -190,17 +195,21 @@ Big thanks to our [contributors][20], especially:
 [13]: https://webpack.github.io
 [14]: https://github.com/Semantic-Org/Semantic-UI-React/issues
 [15]: https://github.com/skywinder/github-changelog-generator
-[16]: http://technologyadvice.com/careers
 [17]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+component%22
 [18]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md
 [19]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+RFC+label%3ARFC
 [20]: https://github.com/Semantic-Org/Semantic-UI-React/graphs/contributors
-[21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20contribution
+[21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20issue
 [22]: https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md
-[23]: http://react.semantic-ui.com/usage#css
-[24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
+[23]: https://react.semantic-ui.com/usage#css
+[24]: https://medium.com/webmonkeys/webpack-2-semantic-ui-theming-a216ddf60daf
 [25]: http://learnsemantic.com/themes/creating.html
-[26]: https://github.com/Semantic-Org/Semantic-UI-Meteor
+[26]: https://github.com/levithomason
+[27]: https://github.com/layershifter
+[28]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3
+[30]: https://github.com/Semantic-Org/Semantic-UI-Meteor
+
 <!-- Examples -->
 [100]: https://github.com/wyc/semantic-ui-react-todos
 [101]: https://github.com/reactjs/redux/tree/master/examples/todos
+[102]: https://github.com/Metnew/react-semantic.ui-starter

@@ -1,8 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   createShorthand,
   customPropTypes,
   getElementType,
@@ -28,7 +29,7 @@ function FeedSummary(props) {
   const rest = getUnhandledProps(FeedSummary, props)
   const ElementType = getElementType(FeedSummary, props)
 
-  if (!_.isNil(children)) {
+  if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

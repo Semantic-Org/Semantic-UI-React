@@ -1,15 +1,14 @@
-const path = require('path')
-const yargs = require('yargs')
+import path from 'path'
 
-const { argv } = yargs
-
+// ------------------------------------
+// Environment vars
+// ------------------------------------
 const env = process.env.NODE_ENV || 'development'
 const __DEV__ = env === 'development'
-const __STAGING__ = env === 'staging'
 const __TEST__ = env === 'test'
 const __PROD__ = env === 'production'
 
-let config = {
+const envConfig = {
   env,
 
   // ----------------------------------
@@ -18,30 +17,29 @@ let config = {
   path_base: __dirname,
   dir_src: 'src',
   dir_dist: 'dist',
-  dir_docs_root: 'docs',
-  dir_docs_src: 'docs/app',
+  dir_dll: 'dll',
   dir_docs_dist: 'docs/build',
+  dir_docs_src: 'docs/app',
   dir_umd_dist: 'dist/umd',
-  dir_server: 'server',
-  dir_test: 'test',
 }
 
 // ------------------------------------
 // Paths
 // ------------------------------------
-const base = (...args) => path.resolve(...[config.path_base, ...args])
+const base = (...args) => path.resolve(...[envConfig.path_base, ...args])
 
 const paths = {
   base,
-  src: base.bind(null, config.dir_src),
-  dist: base.bind(null, config.dir_dist),
-  test: base.bind(null, config.dir_test),
-  docsDist: base.bind(null, config.dir_docs_dist),
-  umdDist: base.bind(null, config.dir_umd_dist),
-  docsSrc: base.bind(null, config.dir_docs_src),
+  src: base.bind(null, envConfig.dir_src),
+  dist: base.bind(null, envConfig.dir_dist),
+  dll: base.bind(null, envConfig.dir_dll),
+  docsDist: base.bind(null, envConfig.dir_docs_dist),
+  docsSrc: base.bind(null, envConfig.dir_docs_src),
+  umdDist: base.bind(null, envConfig.dir_umd_dist),
 }
 
-config = Object.assign({}, config, {
+const config = {
+  ...envConfig,
   paths,
 
   // ----------------------------------
@@ -53,30 +51,20 @@ config = Object.assign({}, config, {
   // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
-  compiler_devtool: __DEV__ && 'cheap-source-map'
-  || __TEST__ && 'cheap-source-map'
-  || __STAGING__ && 'source-map',
+  compiler_devtool: (__DEV__ || __TEST__) && 'cheap-source-map',
+  compiler_globals: {
+    'process.env': {
+      NODE_ENV: JSON.stringify(env),
+    },
+    __DEV__,
+    __PATH_SEP__: JSON.stringify(path.sep),
+    __TEST__,
+    __PROD__,
+  },
   compiler_hash_type: __PROD__ ? 'chunkhash' : 'hash',
-  compiler_inline_manifest: false,
   compiler_fail_on_warning: __TEST__ || __PROD__,
-  compiler_lint: argv.lint !== false,
-  compiler_quiet: false,
-  compiler_output_path: paths.base(config.dir_docs_dist),
-  compiler_public_path: __PROD__ ? '//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/' : '/',
-  compiler_vendor: [
-    'babel-standalone',
-    'brace',
-    'brace/ext/language_tools',
-    'brace/mode/jsx',
-    'brace/mode/html',
-    'brace/theme/tomorrow',
-    'classnames',
-    'copy-to-clipboard',
-    'faker',
-    'react',
-    'react-ace',
-    'react-dom',
-  ],
+  compiler_output_path: paths.base(envConfig.dir_docs_dist),
+  compiler_public_path: '/',
   compiler_stats: {
     hash: false,            // the hash of the compilation
     version: false,         // webpack version info
@@ -95,19 +83,20 @@ config = Object.assign({}, config, {
     chunksSort: '',         // (string) sort the chunks by that field
     assetsSort: '',         // (string) sort the assets by that field
   },
-  compiler_globals: {
-    process: {
-      env: {
-        NODE_ENV: JSON.stringify(env),
-      },
-    },
-    __DEV__,
-    __DEBUG__: !!argv.debug,
-    __STAGING__,
-    __PATH_SEP__: JSON.stringify(path.sep),
-    __TEST__,
-    __PROD__,
-  },
-})
+  compiler_vendor: [
+    'babel-standalone',
+    'brace',
+    'brace/ext/language_tools',
+    'brace/mode/jsx',
+    'brace/mode/html',
+    'brace/theme/tomorrow',
+    'classnames',
+    'copy-to-clipboard',
+    'faker',
+    'react',
+    'react-ace',
+    'react-dom',
+  ],
+}
 
-module.exports = config
+export default config

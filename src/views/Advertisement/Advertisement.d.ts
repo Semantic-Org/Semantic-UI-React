@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface AdvertisementProps {
   [key: string]: any;
@@ -9,14 +10,20 @@ export interface AdvertisementProps {
   /** Center the advertisement. */
   centered?: boolean;
 
+  /** Primary content. */
+  children?: React.ReactNode;
+
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Text to be displayed on the advertisement. */
   test?: boolean | string | number;
 
   /** Varies the size of the advertisement. */
-  unit?: 'medium rectangle' | 'large rectangle' | 'vertical rectangle' | 'small rectangle' |
+  unit: 'medium rectangle' | 'large rectangle' | 'vertical rectangle' | 'small rectangle' |
   'mobile banner' | 'banner' | 'vertical banner' | 'top banner' | 'half banner'|
   'button' | 'square button' | 'small button'|
   'skyscraper' | 'wide skyscraper' |

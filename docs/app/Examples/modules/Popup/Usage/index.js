@@ -25,6 +25,11 @@ const PopupUsageExamples = () => (
       examplePath='modules/Popup/Usage/PopupExampleNested'
     />
     <ComponentExample
+      title='Multiple'
+      description='A popup can be triggered on multiple events.'
+      examplePath='modules/Popup/Usage/PopupExampleMultiple'
+    />
+    <ComponentExample
       title='Controlled'
       description='A popup can have its visibility controlled from outside.'
       examplePath='modules/Popup/Usage/PopupExampleControlled'

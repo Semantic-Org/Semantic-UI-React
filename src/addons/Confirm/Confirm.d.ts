@@ -1,18 +1,25 @@
 import * as React from 'react';
+
+import { SemanticShorthandItem } from '../..';
+import { ButtonProps } from '../../elements/Button';
 import { ModalProps } from '../../modules/Modal';
+import { ModalContentProps } from '../../modules/Modal/ModalContent';
+import { ModalHeaderProps } from '../../modules/Modal/ModalHeader';
 
 export interface ConfirmProps extends ModalProps {
+  [key: string]: any;
+
   /** The cancel button text. */
-  cancelButton?: any;
+  cancelButton?: SemanticShorthandItem<ButtonProps>;
 
   /** The OK button text. */
-  confirmButton?: any;
+  confirmButton?: SemanticShorthandItem<ButtonProps>;
 
   /** The ModalContent text. */
-  content?: any;
+  content?: SemanticShorthandItem<ModalContentProps>;
 
   /** The ModalHeader text. */
-  header?: any;
+  header?: SemanticShorthandItem<ModalHeaderProps>;
 
   /**
    * Called when the Modal is closed without clicking confirm.
@@ -32,6 +39,9 @@ export interface ConfirmProps extends ModalProps {
 
   /** Whether or not the modal is visible. */
   open?: boolean;
+
+  /** A confirm can vary in size. */
+  size?: 'fullscreen' | 'large' | 'mini' | 'small' | 'tiny';
 }
 
 declare const Confirm: React.ComponentClass<ConfirmProps>;

@@ -10,7 +10,7 @@ describe('StatisticGroup', () => {
   common.hasUIClassName(StatisticGroup)
   common.rendersChildren(StatisticGroup)
 
-  common.implementsWidthProp(StatisticGroup, _.without(SUI.SIZES, 'big', 'massive', 'medium'), {
+  common.implementsWidthProp(StatisticGroup, SUI.WIDTHS, {
     canEqual: false,
     propKey: 'widths',
   })
@@ -21,18 +21,14 @@ describe('StatisticGroup', () => {
   common.propValueOnlyToClassName(StatisticGroup, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(StatisticGroup, 'size', _.without(SUI.SIZES, 'big', 'massive', 'medium'))
 
-  it('renders an div element', () => {
-    shallow(<StatisticGroup />)
-      .should.have.tagName('div')
-  })
+  describe('items', () => {
+    it('renders children', () => {
+      const wrapper = shallow(<StatisticGroup items={['foo', 'bar']} />)
+      const items = wrapper.children()
 
-  it('renders children with `items` prop', () => {
-    const items = [
-      { label: 'Faves', value: 22 },
-      { label: 'Views', value: '31,200' },
-    ]
-
-    shallow(<StatisticGroup items={items} />)
-      .should.have.exactly(2).descendants('Statistic')
+      wrapper.should.have.exactly(2).descendants('Statistic')
+      items.at(0).should.have.prop('content', 'foo')
+      items.at(1).should.have.prop('content', 'bar')
+    })
   })
 })

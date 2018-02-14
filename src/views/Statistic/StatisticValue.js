@@ -1,8 +1,10 @@
 import cx from 'classnames'
-import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -14,12 +16,7 @@ import {
  * A statistic can contain a numeric, icon, image, or text value.
  */
 function StatisticValue(props) {
-  const {
-    children,
-    className,
-    text,
-    value,
-  } = props
+  const { children, className, content, text } = props
 
   const classes = cx(
     useKeyOnly(text, 'text'),
@@ -31,7 +28,7 @@ function StatisticValue(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? value : children}
+      {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
 }
@@ -52,11 +49,13 @@ StatisticValue.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
   /** Format the value with smaller font size to fit nicely beside number values. */
   text: PropTypes.bool,
-
-  /** Primary content of the StatisticValue. Mutually exclusive with the children prop. */
-  value: customPropTypes.contentShorthand,
 }
+
+StatisticValue.create = createShorthandFactory(StatisticValue, content => ({ content }))
 
 export default StatisticValue

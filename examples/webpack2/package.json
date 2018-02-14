@@ -1,0 +1,30 @@
+{
+  "name": "semantic-ui-react-example-webpack2",
+  "version": "1.0.0",
+  "description": "Get started with Semantic UI React and Webpack 2",
+  "main": "index.js",
+  "scripts": {
+    "analyze": "cross-env ANALYZE_ENV=true yarn build",
+    "analyze:production": "cross-env ANALYZE_ENV=true yarn build:production",
+    "build": "webpack",
+    "build:production": "cross-env NODE_ENV=production yarn build"
+  },
+  "author": "Alexander Fedyashov <a@fedyashov.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-lodash": "^3.2.11",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "semantic-ui-react": "^0.74.2",
+    "webpack": "^2.7.0"
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^2.8.2"
+  }
+}

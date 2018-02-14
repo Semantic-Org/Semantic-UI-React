@@ -1,8 +1,10 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -48,13 +50,13 @@ function TableRow(props) {
   const rest = getUnhandledProps(TableRow, props)
   const ElementType = getElementType(TableRow, props)
 
-  if (!_.isNil(children)) {
+  if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(cells, (cell) => TableCell.create(cell, { as: cellAs }))}
+      {_.map(cells, cell => TableCell.create(cell, { defaultProps: { as: cellAs } }))}
     </ElementType>
   )
 }
@@ -111,6 +113,6 @@ TableRow.propTypes = {
   warning: PropTypes.bool,
 }
 
-TableRow.create = createShorthandFactory(TableRow, cells => ({ cells }), true)
+TableRow.create = createShorthandFactory(TableRow, cells => ({ cells }))
 
 export default TableRow

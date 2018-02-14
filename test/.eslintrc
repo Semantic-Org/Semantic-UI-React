@@ -1,36 +1,21 @@
 {
-  "extends": "ta/frontend/test",
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
   "globals": {
     "enzyme": false,
+    "expect": false,
+    "mount": false,
     "shallow": false,
-    "render": false,
-    "mount": false
+    "render": false
   },
+  "plugins": [
+    "mocha"
+  ],
   "rules": {
-    "jsx-a11y/anchor-has-content": 0,
-    "jsx-a11y/aria-props": 0,
-    "jsx-a11y/aria-proptypes": 0,
-    "jsx-a11y/aria-role": 0,
-    "jsx-a11y/aria-unsupported-elements": 0,
-    "jsx-a11y/click-events-have-key-events": 0,
-    "jsx-a11y/heading-has-content": 0,
-    "jsx-a11y/href-no-hash": 0,
-    "jsx-a11y/html-has-lang": 0,
-    "jsx-a11y/img-has-alt": 0,
-    "jsx-a11y/img-redundant-alt": 0,
-    "jsx-a11y/label-has-for": 0,
-    "jsx-a11y/lang": 0,
-    "jsx-a11y/mouse-events-have-key-events": 0,
-    "jsx-a11y/no-access-key": 0,
-    "jsx-a11y/no-marquee": 0,
-    "jsx-a11y/no-onchange": 0,
-    "jsx-a11y/no-static-element-interactions": 0,
-    "jsx-a11y/onclick-has-focus": 0,
-    "jsx-a11y/onclick-has-role": 0,
-    "jsx-a11y/role-has-required-aria-props": 0,
-    "jsx-a11y/role-supports-aria-props": 0,
-    "jsx-a11y/scope": 0,
-    "jsx-a11y/tabindex-no-positive": 0,
-    "react/jsx-curly-spacing": 0
+    "jsx-a11y/alt-text": 0,
+    "jsx-a11y/tabindex-no-positive": 0
   }
 }

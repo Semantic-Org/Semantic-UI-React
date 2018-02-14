@@ -1,10 +1,12 @@
 import cx from 'classnames'
-import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
+  doesNodeContainClick,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -71,18 +73,26 @@ export default class Dimmer extends Component {
   static Dimmable = DimmerDimmable
 
   handlePortalMount = () => {
-    if (isBrowser) document.body.classList.add('dimmed', 'dimmable')
+    if (!isBrowser()) return
+
+    // Heads up, IE doesn't support second argument in add()
+    document.body.classList.add('dimmed')
+    document.body.classList.add('dimmable')
   }
 
   handlePortalUnmount = () => {
-    if (isBrowser) document.body.classList.remove('dimmed', 'dimmable')
+    if (!isBrowser()) return
+
+    // Heads up, IE doesn't support second argument in add()
+    document.body.classList.remove('dimmed')
+    document.body.classList.remove('dimmable')
   }
 
   handleClick = (e) => {
     const { onClick, onClickOutside } = this.props
 
     if (onClick) onClick(e, this.props)
-    if (this.centerRef && (this.centerRef !== e.target && this.centerRef.contains(e.target))) return
+    if (this.centerRef && (this.centerRef !== e.target && doesNodeContainClick(this.centerRef, e))) return
     if (onClickOutside) onClickOutside(e, this.props)
   }
 
@@ -113,7 +123,7 @@ export default class Dimmer extends Component {
     const rest = getUnhandledProps(Dimmer, this.props)
     const ElementType = getElementType(Dimmer, this.props)
 
-    const childrenContent = _.isNil(children) ? content : children
+    const childrenContent = childrenUtils.isNil(children) ? content : children
 
     const dimmerElement = (
       <ElementType{...rest} className={classes} onClick={this.handleClick}>

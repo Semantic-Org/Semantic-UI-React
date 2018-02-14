@@ -8,7 +8,9 @@ import * as common from 'test/specs/commonTests'
 
 describe('FeedEvent', () => {
   common.isConformant(FeedEvent)
-  common.rendersChildren(FeedEvent)
+  common.rendersChildren(FeedEvent, {
+    rendersContent: false,
+  })
 
   common.implementsShorthandProp(FeedEvent, {
     propKey: 'icon',
@@ -30,7 +32,7 @@ describe('FeedEvent', () => {
     it('renders <FeedContent> with other content props', () => {
       const contentProps = ['content', 'date', 'extraText', 'meta', 'summary']
 
-      contentProps.forEach(propKey => {
+      contentProps.forEach((propKey) => {
         const props = { [propKey]: faker.hacker.phrase() }
         shallow(<FeedEvent {...props} />).should.have.descendants('FeedContent')
       })

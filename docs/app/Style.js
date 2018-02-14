@@ -17,9 +17,13 @@ style.menu = {
   overflowY: 'scroll',
 }
 
-style.main = {
+style.sidebarMain = {
   marginLeft: sidebarWidth,
   minWidth: parseInt(sidebarWidth, 10) + 300,
+}
+
+style.main = {
+  ...style.sidebarMain,
   maxWidth: parseInt(sidebarWidth, 10) + 900,
 }
 

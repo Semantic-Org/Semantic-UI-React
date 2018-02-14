@@ -8,7 +8,7 @@ import _ from 'lodash'
 export default (Component, subComponents) => {
   const staticValues = _.values(Component)
 
-  _.each(subComponents, subComponent => {
+  _.each(subComponents, (subComponent) => {
     it(`has sub component ${subComponent._meta.name}`, () => {
       staticValues.should.contain(subComponent)
     })

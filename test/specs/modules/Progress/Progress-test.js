@@ -86,6 +86,33 @@ describe('Progress', () => {
         .find('.bar')
         .should.have.style('width', '0%')
     })
+    it('has a width equal to the percentage of the value of the total, when progress="value"', () => {
+      shallow(<Progress progress='value' value={5} total={10} />)
+        .find('.bar')
+        .should.have.style('width', '50%')
+    })
+  })
+
+  describe('data-percent', () => {
+    it('adds prop by default', () => {
+      shallow(<Progress />)
+        .should.have.data('percent')
+    })
+
+    it('passes value of percent prop', () => {
+      shallow(<Progress percent={10} />)
+        .should.have.data('percent', 10)
+    })
+
+    it('floors the value of percent prop', () => {
+      shallow(<Progress percent={8.28} />)
+        .should.have.data('percent', 8)
+    })
+
+    it('floors the results value and total props', () => {
+      shallow(<Progress value={828} total={10000} />)
+        .should.have.data('percent', 8)
+    })
   })
 
   describe('indicating', () => {
@@ -136,6 +163,12 @@ describe('Progress', () => {
         .children()
         .find('.progress')
         .should.contain.text('50%')
+    })
+    it('displays the progress as text when set to "value"', () => {
+      shallow(<Progress progress='value' value={1} total={2} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('1')
     })
     it('shows the percent complete', () => {
       shallow(<Progress percent={72} progress />)

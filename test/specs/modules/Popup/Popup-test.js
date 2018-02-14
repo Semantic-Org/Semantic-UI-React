@@ -35,7 +35,9 @@ describe('Popup', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
+  common.isConformant(Popup, { rendersPortal: true })
   common.hasSubComponents(Popup, [PopupHeader, PopupContent])
+  common.hasValidTypings(Popup)
 
   // Heads up!
   //
@@ -81,11 +83,11 @@ describe('Popup', () => {
     it('accepts an offest to the left', () => {
       wrapperMount(
         <Popup
-          offset={50}
+          horizontalOffset={50}
           position='bottom right'
           content='foo'
           trigger={<button>foo</button>}
-        />
+        />,
       )
 
       wrapper.find('button').simulate('click')
@@ -94,11 +96,40 @@ describe('Popup', () => {
     it('accepts an offest to the right', () => {
       wrapperMount(
         <Popup
-          offset={50}
+          horizontalOffset={50}
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
-        />
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+      assertInBody('.ui.popup.visible')
+    })
+  })
+
+  describe('verticalOffest', () => {
+    it('accepts a vertical offest to the top', () => {
+      wrapperMount(
+        <Popup
+          verticalOffset={50}
+          position='bottom right'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+      assertInBody('.ui.popup.visible')
+    })
+    it('accepts a vertical offest to the bottom', () => {
+      wrapperMount(
+        <Popup
+          verticalOffset={50}
+          position='top left'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
       )
 
       wrapper.find('button').simulate('click')
@@ -107,7 +138,7 @@ describe('Popup', () => {
   })
 
   describe('position', () => {
-    POSITIONS.forEach(position => {
+    POSITIONS.forEach((position) => {
       it('is always within the viewport', () => {
         wrapperMount(
           <Popup
@@ -115,7 +146,7 @@ describe('Popup', () => {
             position={position}
             trigger={<button>foo</button>}
             on='click'
-          />
+          />,
         )
         wrapper.find('button').simulate('click')
 
@@ -126,6 +157,37 @@ describe('Popup', () => {
         expect(left).to.be.at.least(0)
         expect(bottom).to.be.at.most(document.documentElement.clientHeight)
         expect(right).to.be.at.most(document.documentElement.clientWidth)
+      })
+      it('is the original if no horizontal position fits within the viewport', () => {
+        wrapperMount(
+          <Popup
+            content='_'
+            position={position}
+            trigger={<button>foo</button>}
+            on='click'
+            horizontalOffset={999}
+          />,
+        )
+        wrapper.find('button').simulate('click')
+        const selectedPosition = wrapper.state('position')
+
+        expect(selectedPosition).to.equal(position)
+      })
+
+      it('is the original if no vertical position fits within the viewport', () => {
+        wrapperMount(
+          <Popup
+            content='_'
+            position={position}
+            trigger={<button>foo</button>}
+            on='click'
+            verticalOffset={3000}
+          />,
+        )
+        wrapper.find('button').simulate('click')
+        const selectedPosition = wrapper.state('position')
+
+        expect(selectedPosition).to.equal(position)
       })
     })
   })
@@ -146,14 +208,21 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
 
-      document.body.scrollTop = 100
-
-      const evt = document.createEvent('CustomEvent')
-      evt.initCustomEvent('scroll', false, false, null)
-
-      window.dispatchEvent(evt)
-
+      domEvent.scroll(window)
       assertInBody('.ui.popup.visible', false)
+    })
+
+    it('is called with (e, props) when scroll', () => {
+      const onClose = sandbox.spy()
+      const trigger = <button>foo</button>
+
+      wrapperMount(<Popup content='foo' hideOnScroll onClose={onClose} trigger={trigger} />)
+        .find('button')
+        .simulate('click')
+
+      domEvent.scroll(window)
+      onClose.should.have.been.calledOnce()
+      onClose.should.have.been.calledWithMatch({}, { content: 'foo', onClose, trigger })
     })
   })
 
@@ -183,6 +252,23 @@ describe('Popup', () => {
 
       wrapper.find('input').simulate('focus')
       assertInBody('.ui.popup.visible')
+    })
+
+    it('it appears on multiple', (done) => {
+      const trigger = <button>foo</button>
+      const button = wrapperMount(<Popup on={['click', 'hover']} content='foo' header='bar' trigger={trigger} />)
+        .find('button')
+
+      button.simulate('click')
+      assertInBody('.ui.popup.visible')
+
+      domEvent.click('body')
+
+      button.simulate('mouseenter')
+      setTimeout(() => {
+        assertInBody('.ui.popup.visible')
+        done()
+      }, 51)
     })
   })
 
@@ -264,7 +350,7 @@ describe('Popup', () => {
   describe('size', () => {
     const sizes = _.without(SUI.SIZES, 'medium', 'big', 'massive')
 
-    sizes.forEach(size => {
+    sizes.forEach((size) => {
       it(`adds the ${size} to the popup className`, () => {
         wrapperMount(<Popup size={size} open />)
         assertInBody(`.ui.${size}.popup`)

@@ -1,8 +1,9 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -21,7 +22,7 @@ function HeaderSubheader(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? content : children}
+      {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
 }

@@ -1,7 +1,9 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -13,7 +15,7 @@ import {
  * A pushable sub-component for Sidebar.
  */
 function SidebarPusher(props) {
-  const { className, dimmed, children } = props
+  const { className, dimmed, children, content } = props
 
   const classes = cx(
     'pusher',
@@ -23,7 +25,11 @@ function SidebarPusher(props) {
   const rest = getUnhandledProps(SidebarPusher, props)
   const ElementType = getElementType(SidebarPusher, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 SidebarPusher._meta = {
@@ -41,6 +47,9 @@ SidebarPusher.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Controls whether or not the dim is displayed. */
   dimmed: PropTypes.bool,

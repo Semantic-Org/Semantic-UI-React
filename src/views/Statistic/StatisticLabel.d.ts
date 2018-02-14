@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface StatisticLabelProps {
   [key: string]: any;
@@ -13,7 +14,7 @@ export interface StatisticLabelProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  label?: React.ReactNode;
+  content?: SemanticShorthandContent;
 }
 
 declare const StatisticLabel: React.StatelessComponent<StatisticLabelProps>;

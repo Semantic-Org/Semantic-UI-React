@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   createShorthandFactory,
@@ -7,9 +8,10 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  shallowEqual,
 } from '../../lib'
 
-const names = [
+export const names = [
   'ad', 'andorra', 'ae', 'united arab emirates', 'uae', 'af', 'afghanistan', 'ag', 'antigua', 'ai', 'anguilla', 'al',
   'albania', 'am', 'armenia', 'an', 'netherlands antilles', 'ao', 'angola', 'ar', 'argentina', 'as', 'american samoa',
   'at', 'austria', 'au', 'australia', 'aw', 'aruba', 'ax', 'aland islands', 'az', 'azerbaijan', 'ba', 'bosnia', 'bb',
@@ -56,33 +58,39 @@ const names = [
 /**
  * A flag is is used to represent a political state.
  */
-function Flag(props) {
-  const { className, name } = props
-  const classes = cx(name, 'flag', className)
-  const rest = getUnhandledProps(Flag, props)
-  const ElementType = getElementType(Flag, props)
+class Flag extends Component {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
 
-  return <ElementType {...rest} className={classes} />
-}
+    /** Additional classes. */
+    className: PropTypes.string,
 
-Flag._meta = {
-  name: 'Flag',
-  type: META.TYPES.ELEMENT,
-}
+    /** Flag name, can use the two digit country code, the full name, or a common alias. */
+    name: customPropTypes.suggest(names),
+  }
 
-Flag.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  static defaultProps = {
+    as: 'i',
+  }
 
-  /** Additional classes. */
-  className: PropTypes.string,
+  static _meta = {
+    name: 'Flag',
+    type: META.TYPES.ELEMENT,
+  }
 
-  /** Flag name, can use the two digit country code, the full name, or a common alias. */
-  name: customPropTypes.suggest(names),
-}
+  shouldComponentUpdate(nextProps) {
+    return !shallowEqual(this.props, nextProps)
+  }
 
-Flag.defaultProps = {
-  as: 'i',
+  render() {
+    const { className, name } = this.props
+    const classes = cx(name, 'flag', className)
+    const rest = getUnhandledProps(Flag, this.props)
+    const ElementType = getElementType(Flag, this.props)
+
+    return <ElementType {...rest} className={classes} />
+  }
 }
 
 Flag.create = createShorthandFactory(Flag, value => ({ name: value }))

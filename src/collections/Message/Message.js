@@ -1,9 +1,11 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
-  createShorthand,
+  childrenUtils,
+  createHTMLParagraph,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -30,7 +32,7 @@ export default class Message extends Component {
     /** A message can be formatted to attach itself to other content. */
     attached: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(['bottom']),
+      PropTypes.oneOf(['bottom', 'top']),
     ]),
 
     /** Primary content. */
@@ -87,11 +89,11 @@ export default class Message extends Component {
     /** A message may be formatted to display a positive message.  Same as `success`. */
     positive: PropTypes.bool,
 
-    /** A message may be formatted to display a positive message.  Same as `positive`. */
-    success: PropTypes.bool,
-
     /** A message can have different sizes. */
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+
+    /** A message may be formatted to display a positive message.  Same as `positive`. */
+    success: PropTypes.bool,
 
     /** A message can be set to visible to force itself to be shown. */
     visible: PropTypes.bool,
@@ -110,7 +112,7 @@ export default class Message extends Component {
   static List = MessageList
   static Item = MessageItem
 
-  handleDismiss = e => {
+  handleDismiss = (e) => {
     const { onDismiss } = this.props
 
     if (onDismiss) onDismiss(e, this.props)
@@ -164,7 +166,7 @@ export default class Message extends Component {
     const rest = getUnhandledProps(Message, this.props)
     const ElementType = getElementType(Message, this.props)
 
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       return (
         <ElementType {...rest} className={classes}>
           {dismissIcon}
@@ -181,7 +183,7 @@ export default class Message extends Component {
           <MessageContent>
             {MessageHeader.create(header)}
             {MessageList.create(list)}
-            {createShorthand('p', val => ({ children: val }), content)}
+            {createHTMLParagraph(content)}
           </MessageContent>
         )}
       </ElementType>

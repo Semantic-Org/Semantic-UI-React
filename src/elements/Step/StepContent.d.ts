@@ -1,5 +1,9 @@
 import * as React from 'react';
 
+import { SemanticShorthandItem, SemanticShorthandContent } from '../..';
+import { StepDescriptionProps } from './StepDescription';
+import { StepTitleProps } from './StepTitle';
+
 export interface StepContentProps {
   [key: string]: any;
 
@@ -12,11 +16,14 @@ export interface StepContentProps {
   /** Additional classes. */
   className?: string;
 
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
   /** Shorthand for StepDescription. */
-  description?: React.ReactNode;
+  description?: SemanticShorthandItem<StepDescriptionProps>;
 
   /** Shorthand for StepTitle. */
-  title?: any;
+  title?: SemanticShorthandItem<StepTitleProps>;
 }
 
 declare const StepContent: React.StatelessComponent<StepContentProps>;

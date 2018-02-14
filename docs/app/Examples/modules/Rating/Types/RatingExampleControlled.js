@@ -4,7 +4,7 @@ import { Rating } from 'semantic-ui-react'
 export default class RatingExampleControlled extends Component {
   state = { rating: 0 }
 
-  handleChange = (e) => this.setState({ rating: e.target.value })
+  handleChange = e => this.setState({ rating: e.target.value })
 
   render() {
     const { rating } = this.state

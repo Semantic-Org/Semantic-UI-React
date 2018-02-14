@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface CardMetaProps {
   [key: string]: any;
@@ -13,7 +14,10 @@ export interface CardMetaProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
+
+  /** A card meta can adjust its text alignment. */
+  textAlign?: 'center' | 'left' | 'right';
 }
 
 declare const CardMeta: React.StatelessComponent<CardMetaProps>;

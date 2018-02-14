@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { SemanticWIDTHS } from '../..';
+import {
+  HtmlLabelProps,
+  SemanticShorthandContent,
+  SemanticShorthandItem,
+  SemanticWIDTHS
+} from '../..';
 
 export interface FormFieldProps {
   [key: string]: any;
@@ -12,6 +17,9 @@ export interface FormFieldProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /**
    * A form control component (i.e. Dropdown) or HTML tagName (i.e. 'input').
@@ -30,7 +38,7 @@ export interface FormFieldProps {
   inline?: boolean;
 
   /** Mutually exclusive with children. */
-  label?: any;
+  label?: SemanticShorthandItem<HtmlLabelProps>;
 
   /** A field can show that input is mandatory.  Requires a label. */
   required?: any;

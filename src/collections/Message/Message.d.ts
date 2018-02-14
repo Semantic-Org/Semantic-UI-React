@@ -1,19 +1,24 @@
 import * as React from 'react';
 
-import { SemanticCOLORS } from '../..';
+import {
+  SemanticCOLORS,
+  SemanticShorthandCollection,
+  SemanticShorthandContent,
+  SemanticShorthandItem
+} from '../..';
 import { default as MessageContent } from './MessageContent';
-import { default as MessageHeader } from './MessageHeader';
-import { default as MessageItem } from './MessageItem';
+import { default as MessageHeader, MessageHeaderProps } from './MessageHeader';
+import { default as MessageItem, MessageItemProps } from './MessageItem';
 import { default as MessageList } from './MessageList';
 
 export interface MessageProps {
   [key: string]: any;
 
-	/** An element type to render as (string or function). */
+  /** An element type to render as (string or function). */
   as?: any;
 
   /** A message can be formatted to attach itself to other content. */
-  attached?: boolean | 'bottom';
+  attached?: boolean | 'bottom' | 'top';
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -28,7 +33,7 @@ export interface MessageProps {
   compact?: boolean;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** A message may be formatted to display a negative message. Same as `negative`. */
   error?: boolean;
@@ -37,7 +42,7 @@ export interface MessageProps {
   floating?: boolean;
 
   /** Shorthand for MessageHeader. */
-  header?: any;
+  header?: SemanticShorthandItem<MessageHeaderProps>;
 
   /** A message can be hidden. */
   hidden?: boolean;
@@ -49,7 +54,7 @@ export interface MessageProps {
   info?: boolean;
 
   /** Array shorthand items for the MessageList. Mutually exclusive with children. */
-  list?: any;
+  list?: SemanticShorthandCollection<MessageItemProps>;
 
   /** A message may be formatted to display a negative message. Same as `error`. */
   negative?: boolean;

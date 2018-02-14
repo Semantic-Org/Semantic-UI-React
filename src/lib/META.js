@@ -2,6 +2,7 @@ import _ from 'lodash/fp'
 
 export const TYPES = {
   ADDON: 'addon',
+  BEHAVIOR: 'behavior',
   COLLECTION: 'collection',
   ELEMENT: 'element',
   VIEW: 'view',
@@ -17,7 +18,7 @@ const TYPE_VALUES = _.values(TYPES)
  * @param {Object} _meta A proposed component _meta object.
  * @returns {Boolean}
  */
-export const isMeta = (_meta) => (
+export const isMeta = _meta => (
   _.includes(_.get('type', _meta), TYPE_VALUES)
 )
 

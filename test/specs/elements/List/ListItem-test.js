@@ -14,10 +14,32 @@ describe('ListItem', () => {
   common.propKeyOnlyToClassName(ListItem, 'active')
   common.propKeyOnlyToClassName(ListItem, 'disabled')
 
-  describe('list', () => {
-    it('omitted when rendered as `li`', () => {
+  describe('as', () => {
+    it('omits className `list` when rendered as `li`', () => {
       shallow(<ListItem as='li' />)
         .should.not.have.className('item')
+    })
+  })
+
+  describe('onClick', () => {
+    it('is called with (e, data) when clicked', () => {
+      const onClick = sandbox.spy()
+      const event = { target: null }
+      const props = { onClick, 'data-foo': 'bar' }
+
+      shallow(<ListItem {...props} />)
+        .simulate('click', event)
+
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithExactly(event, props)
+    })
+
+    it('is not called when is disabled', () => {
+      const onClick = sandbox.spy()
+
+      shallow(<ListItem disabled onClick={onClick} />)
+        .simulate('click')
+      onClick.should.have.callCount(0)
     })
   })
 

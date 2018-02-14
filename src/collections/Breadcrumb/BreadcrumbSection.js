@@ -1,8 +1,10 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getUnhandledProps,
@@ -59,11 +61,13 @@ export default class BreadcrumbSection extends Component {
     parent: 'Breadcrumb',
   }
 
-  handleClick = (e) => {
-    const { onClick } = this.props
+  computeElementType = () => {
+    const { link, onClick } = this.props
 
-    if (onClick) onClick(e, this.props)
+    if (link || onClick) return 'a'
   }
+
+  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const {
@@ -72,8 +76,6 @@ export default class BreadcrumbSection extends Component {
       className,
       content,
       href,
-      link,
-      onClick,
     } = this.props
 
     const classes = cx(
@@ -82,16 +84,14 @@ export default class BreadcrumbSection extends Component {
       className,
     )
     const rest = getUnhandledProps(BreadcrumbSection, this.props)
-    const ElementType = getElementType(BreadcrumbSection, this.props, () => {
-      if (link || onClick) return 'a'
-    })
+    const ElementType = getElementType(BreadcrumbSection, this.props, this.computeElementType)
 
     return (
       <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-        {_.isNil(children) ? content : children}
+        {childrenUtils.isNil(children) ? content : children}
       </ElementType>
     )
   }
 }
 
-BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, content => ({ content, link: true }), true)
+BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, content => ({ content, link: true }))

@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOMServer from 'react-dom/server'
 
 import Modal from 'src/modules/Modal/Modal'
 import ModalHeader from 'src/modules/Modal/ModalHeader'
@@ -7,8 +8,9 @@ import ModalActions from 'src/modules/Modal/ModalActions'
 import ModalDescription from 'src/modules/Modal/ModalDescription'
 import Portal from 'src/addons/Portal/Portal'
 
-import { assertNodeContains, assertBodyContains, domEvent, sandbox } from 'test/utils'
+import { assertNodeContains, assertBodyClasses, assertBodyContains, domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
+import isBrowser from 'src/lib/isBrowser'
 
 // ----------------------------------------
 // Wrapper
@@ -20,20 +22,6 @@ let wrapper
 const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
-const assertBodyClasses = (...rest) => {
-  const hasClasses = typeof rest[rest.length - 1] === 'boolean' ? rest.pop() : true
-
-  rest.forEach(className => {
-    const didFind = document.body.classList.contains(className)
-    const message = [
-      `document.body ${didFind ? 'has' : 'does not have'} class "${className}".`,
-      `It has class="${document.body.classList}"`,
-    ].join(' ')
-
-    didFind.should.equal(hasClasses, message)
-  })
-}
-
 describe('Modal', () => {
   beforeEach(() => {
     wrapper = undefined
@@ -44,7 +32,20 @@ describe('Modal', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
+  common.isConformant(Modal, { rendersPortal: true })
   common.hasSubComponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
+  common.hasValidTypings(Modal)
+
+  common.implementsShorthandProp(Modal, {
+    propKey: 'header',
+    ShorthandComponent: ModalHeader,
+    mapValueToProps: content => ({ content }),
+  })
+  common.implementsShorthandProp(Modal, {
+    propKey: 'content',
+    ShorthandComponent: ModalContent,
+    mapValueToProps: content => ({ content }),
+  })
 
   // Heads up!
   //
@@ -89,6 +90,40 @@ describe('Modal', () => {
 
     element.style.should.have.property('marginTop', '1em')
     element.style.should.have.property('top', '0px')
+  })
+
+  describe('actions', () => {
+    it('closes the modal on action click', () => {
+      wrapperMount(<Modal actions={['OK']} defaultOpen />)
+
+      assertBodyContains('.ui.modal')
+      domEvent.click('.ui.modal .actions .button')
+      assertBodyContains('.ui.modal', false)
+    })
+
+    it('calls shorthand onActionClick callback', () => {
+      const onActionClick = sandbox.spy()
+      const modalActions = { onActionClick, actions: [{ key: 'ok', content: 'OK' }] }
+      wrapperMount(<Modal actions={modalActions} defaultOpen />)
+
+      onActionClick.should.not.have.been.called()
+      domEvent.click('.ui.modal .actions .button')
+      onActionClick.should.have.been.calledOnce()
+    })
+  })
+
+  describe('onActionClick', () => {
+    it('is called when an action is clicked', () => {
+      const onActionClick = sandbox.spy()
+      const event = { target: null }
+      const props = { actions: ['OK'], defaultOpen: true, onActionClick }
+
+      wrapperMount(<Modal {...props} />)
+      domEvent.click('.ui.modal .actions .button')
+
+      onActionClick.should.have.been.calledOnce()
+      onActionClick.should.have.been.calledWithMatch(event, props)
+    })
   })
 
   describe('open', () => {
@@ -171,9 +206,9 @@ describe('Modal', () => {
 
   describe('size', () => {
     it('adds the size to the modal className', () => {
-      const sizes = ['fullscreen', 'large', 'small']
+      const sizes = ['fullscreen', 'large', 'mini', 'small', 'tiny']
 
-      sizes.forEach(size => {
+      sizes.forEach((size) => {
         wrapperMount(<Modal size={size} open />)
         assertBodyContains(`.ui.${size}.modal`)
       })
@@ -194,9 +229,14 @@ describe('Modal', () => {
     })
 
     describe('true', () => {
-      it('adds classes "dimmable dimmed" to the body', () => {
+      it('adds/removes body classes "dimmable dimmed" on mount/unmount', () => {
+        assertBodyClasses('dimmable dimmed', false)
+
         wrapperMount(<Modal open dimmer />)
-        assertBodyClasses('dimmable', 'dimmed')
+        assertBodyClasses('dimmable dimmed')
+
+        wrapper.unmount()
+        assertBodyClasses('dimmable dimmed', false)
       })
 
       it('adds a dimmer to the body', () => {
@@ -208,19 +248,24 @@ describe('Modal', () => {
     describe('false', () => {
       it('does not render a dimmer', () => {
         wrapperMount(<Modal open dimmer={false} />)
-        assertBodyClasses('dimmable', 'dimmed', 'blurring', false)
+        assertBodyClasses('dimmable dimmed blurring', false)
       })
 
       it('does not add any dimmer classes to the body', () => {
         wrapperMount(<Modal open dimmer={false} />)
-        assertBodyClasses('dimmable', 'dimmed', 'blurring', false)
+        assertBodyClasses('dimmable dimmed blurring', false)
       })
     })
 
     describe('blurring', () => {
-      it('adds class "dimmable dimmed blurring" to the body', () => {
+      it('adds/removes body classes "dimmable dimmed blurring" on mount/unmount', () => {
+        assertBodyClasses('dimmable dimmed blurring', false)
+
         wrapperMount(<Modal open dimmer='blurring' />)
-        assertBodyClasses('dimmable', 'dimmed', 'blurring')
+        assertBodyClasses('dimmable dimmed blurring')
+
+        wrapper.unmount()
+        assertBodyClasses('dimmable dimmed blurring', false)
       })
 
       it('adds a dimmer to the body', () => {
@@ -230,10 +275,14 @@ describe('Modal', () => {
     })
 
     describe('inverted', () => {
-      it('adds class "dimmable dimmed" to the body', () => {
-        wrapperMount(<Modal open dimmer='inverted' />)
-        assertBodyClasses('dimmable', 'dimmed')
-        assertBodyClasses('inverted', false)
+      it('adds/removes body classes "dimmable dimmed" on mount/unmount', () => {
+        assertBodyClasses('dimmable dimmed', false)
+
+        wrapperMount(<Modal open dimmer />)
+        assertBodyClasses('dimmable dimmed')
+
+        wrapper.unmount()
+        assertBodyClasses('dimmable dimmed', false)
       })
 
       it('adds an inverted dimmer to the body', () => {
@@ -414,8 +463,14 @@ describe('Modal', () => {
   })
 
   describe('scrolling', () => {
+    const innerHeight = window.innerHeight
+
     afterEach(() => {
       document.body.classList.remove('scrolling')
+    })
+
+    after(() => {
+      window.innerHeight = innerHeight
     })
 
     it('does not add the scrolling class to the body by default', () => {
@@ -424,9 +479,8 @@ describe('Modal', () => {
     })
 
     it('adds the scrolling class to the body when taller than the window', (done) => {
-      wrapperMount(<Modal open>foo</Modal>)
-
       window.innerHeight = 10
+      wrapperMount(<Modal open>foo</Modal>)
 
       requestAnimationFrame(() => {
         assertBodyClasses('scrolling')
@@ -434,7 +488,7 @@ describe('Modal', () => {
       })
     })
 
-    it('removes the scrolling class from the body when the window grows taller', (done) => {
+    it('adds/removes the scrolling class to the body when the window grows/shrinks', (done) => {
       assertBodyClasses('scrolling', false)
 
       wrapperMount(<Modal open>foo</Modal>)
@@ -449,6 +503,61 @@ describe('Modal', () => {
           done()
         })
       })
+    })
+
+    it('adds the scrolling class to the body after re-open', (done) => {
+      assertBodyClasses('scrolling', false)
+
+      window.innerHeight = 10
+      wrapperMount(<Modal defaultOpen>foo</Modal>)
+
+      requestAnimationFrame(() => {
+        assertBodyClasses('scrolling')
+        domEvent.click('.ui.dimmer')
+
+        assertBodyClasses('scrolling', false)
+
+        wrapper.setProps({ open: true })
+        requestAnimationFrame(() => {
+          assertBodyClasses('scrolling')
+          done()
+        })
+      })
+    })
+
+    it('removes the scrolling class from the body on unmount', (done) => {
+      assertBodyClasses('scrolling', false)
+
+      window.innerHeight = 10
+      wrapperMount(<Modal open>foo</Modal>)
+
+      requestAnimationFrame(() => {
+        assertBodyClasses('scrolling')
+        wrapper.unmount()
+
+        assertBodyClasses('scrolling', false)
+        done()
+      })
+    })
+  })
+
+  describe('server-side', () => {
+    before(() => {
+      isBrowser.override = false
+    })
+
+    after(() => {
+      isBrowser.override = null
+    })
+
+    it('renders empty content when trigger is not a valid component', () => {
+      const markup = ReactDOMServer.renderToStaticMarkup(<Modal />)
+      markup.should.equal('')
+    })
+
+    it('renders a valid trigger component', () => {
+      const markup = ReactDOMServer.renderToStaticMarkup(<Modal trigger={<div id='trigger' />} />)
+      markup.should.equal('<div id="trigger"></div>')
     })
   })
 })

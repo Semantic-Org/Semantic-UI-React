@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
+import { IconProps } from '../../elements/Icon';
+
 export interface BreadcrumbDividerProps {
   [key: string]: any;
 
@@ -13,10 +16,10 @@ export interface BreadcrumbDividerProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** Render as an `Icon` component with `divider` class instead of a `div`. */
-  icon?: any;
+  icon?: SemanticShorthandItem<IconProps>;
 }
 
 declare const BreadcrumbDivider: React.StatelessComponent<BreadcrumbDividerProps>;

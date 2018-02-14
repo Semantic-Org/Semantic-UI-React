@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
@@ -43,25 +44,25 @@ Compare.propTypes = {
 const FormTypesExamples = () => (
   <ExampleSection title='Shorthand'>
     <ComponentExample
-      title='Form Sub Components'
+      title='Form Subcomponents'
       description={[
         'Render a field containing a label and form control.',
         'All form control components are available.',
       ].join(' ')}
-      examplePath='collections/Form/Shorthand/FormExampleSubComponentControl'
+      examplePath='collections/Form/Shorthand/FormExampleSubcomponentControl'
     >
-      <Compare { ...subComponentComparison } />
+      <Compare {...subComponentComparison} />
     </ComponentExample>
 
     <ComponentExample
       title='Field with Custom Control'
       description={[
         'Render a field containing a label and custom form control.',
-        'Use any component form any library, or your own.',
+        'Use any component from any library, or your own.',
       ].join(' ')}
       examplePath='collections/Form/Shorthand/FormExampleFieldControl'
     >
-      <Compare { ...componentPropComparison } />
+      <Compare {...componentPropComparison} />
     </ComponentExample>
 
     <ComponentExample
@@ -79,8 +80,19 @@ const FormTypesExamples = () => (
       description='The field control prop also works with HTML tags.'
       examplePath='collections/Form/Shorthand/FormExampleFieldControlHTML'
     >
-      <Compare { ...htmlComparison } />
+      <Compare {...htmlComparison} />
     </ComponentExample>
+
+    <ComponentExample
+      title='Accessible Labels'
+      description='Adding an id to a shorthand Form.Field adds a matching htmlFor prop to the label.'
+      examplePath='collections/Form/Shorthand/FormExampleFieldControlId'
+    />
+
+    <ComponentExample
+      description='Adding an id to a Form subcomponent adds a matching htmlFor prop to the label.'
+      examplePath='collections/Form/Shorthand/FormExampleSubcomponentId'
+    />
   </ExampleSection>
 )
 

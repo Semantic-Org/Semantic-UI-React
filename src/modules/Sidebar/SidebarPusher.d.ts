@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface SidebarPusherProps {
   [key: string]: any;
@@ -11,6 +12,9 @@ export interface SidebarPusherProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Controls whether or not the dim is displayed. */
   dimmed?: boolean;

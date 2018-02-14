@@ -1,4 +1,3 @@
-import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
@@ -70,20 +69,22 @@ describe('Label', () => {
         .find('Icon')
         .should.have.prop('data-foo', true)
     })
-  })
 
-  describe('content', () => {
-    it('has no content by default', () => {
-      shallow(<Label />)
-        .text()
-        .should.be.empty()
-    })
+    it('handles events on Label and Icon', () => {
+      const event = { target: null }
+      const iconSpy = sandbox.spy()
+      const labelSpy = sandbox.spy()
 
-    it('adds the value as children', () => {
-      const text = faker.hacker.phrase()
+      const iconProps = { 'data-foo': true, onClick: iconSpy }
+      const labelProps = { onRemove: labelSpy, removeIcon: iconProps }
 
-      shallow(<Label content={text} />)
-        .should.contain.text(text)
+      mount(<Label {...labelProps} />)
+        .find('Icon')
+        .simulate('click', event)
+
+      iconSpy.should.have.been.calledOnce()
+      labelSpy.should.have.been.calledOnce()
+      labelSpy.should.have.been.calledWithMatch(event, labelProps)
     })
   })
 

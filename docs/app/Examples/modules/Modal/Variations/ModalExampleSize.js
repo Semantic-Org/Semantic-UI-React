@@ -4,7 +4,7 @@ import { Button, Modal } from 'semantic-ui-react'
 class ModalExampleSize extends Component {
   state = { open: false }
 
-  show = (size) => () => this.setState({ size, open: true })
+  show = size => () => this.setState({ size, open: true })
   close = () => this.setState({ open: false })
 
   render() {
@@ -12,6 +12,8 @@ class ModalExampleSize extends Component {
 
     return (
       <div>
+        <Button onClick={this.show('mini')}>Mini</Button>
+        <Button onClick={this.show('tiny')}>Tiny</Button>
         <Button onClick={this.show('small')}>Small</Button>
         <Button onClick={this.show('large')}>Large</Button>
         <Button onClick={this.show('fullscreen')}>Fullscreen</Button>

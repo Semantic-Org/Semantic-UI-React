@@ -5,19 +5,21 @@ import ReactDOMServer from 'react-dom/server'
 import * as semanticUIReact from 'semantic-ui-react'
 
 import { META } from 'src/lib'
+import { assertBodyContains, consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
 import componentInfo from './componentInfo'
-import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
+import hasValidTypings from './hasValidTypings'
 
 /**
  * Assert Component conforms to guidelines that are applicable to all components.
  * @param {React.Component|Function} Component A component that should conform.
  * @param {Object} [options={}]
  * @param {Object} [options.eventTargets={}] Map of events and the child component to target.
+ * @param {array} [options.rendersPortal=false] Does this component render a Portal powered component?
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
 export default (Component, options = {}) => {
-  const { eventTargets = {}, requiredProps = {} } = options
+  const { eventTargets = {}, requiredProps = {}, rendersPortal = false } = options
   const { throwError } = helpers('isConformant', Component)
 
   // tests depend on Component constructor names, enforce them
@@ -30,12 +32,13 @@ export default (Component, options = {}) => {
   }
 
   // extract componentInfo for this component
+  const extractedInfo = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
   const {
     _meta,
     constructorName,
     componentClassName,
     filenameWithoutExt,
-  } = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
+  } = extractedInfo
 
   // ----------------------------------------
   // Class and file name
@@ -73,13 +76,13 @@ export default (Component, options = {}) => {
       expect(isTopLevelAPIProp).to.equal(
         false,
         `"${constructorName}" is private (starts with  "_").` +
-        ' It cannot be exposed on the top level API'
+        ' It cannot be exposed on the top level API',
       )
 
       expect(isSubComponent).to.equal(
         false,
         `"${constructorName}" is private (starts with "_").` +
-        ' It cannot be a static prop of another component (sub-component)'
+        ' It cannot be a static prop of another component (sub-component)',
       )
     })
   } else {
@@ -97,7 +100,7 @@ export default (Component, options = {}) => {
       expect(isSubComponent).to.equal(
         true,
         `\`${constructorName}\` is a child component (has a _meta.parent).` +
-        ` It must be a static prop of its parent \`${_meta.parent}\``
+        ` It must be a static prop of its parent \`${_meta.parent}\``,
       )
     })
   }
@@ -106,79 +109,74 @@ export default (Component, options = {}) => {
   // Props
   // ----------------------------------------
   it('spreads user props', () => {
-    // JSX does not render custom html attributes so we prefix them with data-*.
-    // https://facebook.github.io/react/docs/jsx-gotchas.html#custom-html-attributes
-    const props = {
-      [`data-${_.kebabCase(faker.hacker.noun())}`]: faker.hacker.verb(),
-    }
+    const propName = 'data-is-conformant-spread-props'
+    const props = { [propName]: true }
 
-    // descendants() accepts an enzyme <selector>
-    // props should be spread on some descendant
-    // we find the descendant with spread props via a matching props object selector
-    // we do not test Component for props, of course they exist as we are spreading them
     shallow(<Component {...requiredProps} {...props} />)
       .should.have.descendants(props)
   })
 
-  describe('"as" prop (common)', () => {
-    it('renders the component as HTML tags or passes "as" to the next component', () => {
-      // silence element nesting warnings
-      consoleUtil.disableOnce()
+  if (!rendersPortal) {
+    describe('"as" prop (common)', () => {
+      it('renders the component as HTML tags or passes "as" to the next component', () => {
+        // silence element nesting warnings
+        consoleUtil.disableOnce()
 
-      const tags = ['a', 'em', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i', 'p', 'span', 'strong']
-      try {
-        tags.forEach((tag) => {
-          shallow(<Component as={tag} />)
-            .should.have.tagName(tag)
-        })
-      } catch (err) {
-        tags.forEach((tag) => {
-          const wrapper = shallow(<Component as={tag} />)
-          wrapper.type().should.not.equal(Component)
-          wrapper.should.have.prop('as', tag)
-        })
-      }
-    })
-
-    it('renders as a functional component or passes "as" to the next component', () => {
-      const MyComponent = () => null
-
-      try {
-        shallow(<Component as={MyComponent} />)
-          .type()
-          .should.equal(MyComponent)
-      } catch (err) {
-        const wrapper = shallow(<Component as={MyComponent} />)
-        wrapper.type().should.not.equal(Component)
-        wrapper.should.have.prop('as', MyComponent)
-      }
-    })
-
-    it('renders as a ReactClass or passes "as" to the next component', () => {
-      class MyComponent extends React.Component {
-        render() {
-          return <div data-my-react-class />
+        const tags = ['a', 'em', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i', 'p', 'span', 'strong']
+        try {
+          tags.forEach((tag) => {
+            shallow(<Component {...requiredProps} as={tag} />)
+              .should.have.tagName(tag)
+          })
+        } catch (err) {
+          tags.forEach((tag) => {
+            const wrapper = shallow(<Component {...requiredProps} as={tag} />)
+            wrapper.type().should.not.equal(Component)
+            wrapper.should.have.prop('as', tag)
+          })
         }
-      }
+      })
 
-      try {
-        shallow(<Component as={MyComponent} />)
-          .type()
-          .should.equal(MyComponent)
-      } catch (err) {
-        const wrapper = shallow(<Component as={MyComponent} />)
-        wrapper.type().should.not.equal(Component)
-        wrapper.should.have.prop('as', MyComponent)
-      }
+      it('renders as a functional component or passes "as" to the next component', () => {
+        const MyComponent = () => null
+
+        try {
+          shallow(<Component {...requiredProps} as={MyComponent} />)
+            .type()
+            .should.equal(MyComponent)
+        } catch (err) {
+          const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
+          wrapper.type().should.not.equal(Component)
+          wrapper.should.have.prop('as', MyComponent)
+        }
+      })
+
+      it('renders as a ReactClass or passes "as" to the next component', () => {
+        class MyComponent extends React.Component { // eslint-disable-line react/prefer-stateless-function
+          render() {
+            return <div data-my-react-class />
+          }
+        }
+
+        try {
+          shallow(<Component {...requiredProps} as={MyComponent} />)
+            .type()
+            .should.equal(MyComponent)
+        } catch (err) {
+          const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
+          wrapper.type().should.not.equal(Component)
+          wrapper.should.have.prop('as', MyComponent)
+        }
+      })
+
+      it('passes extra props to the component it is renders as', () => {
+        const MyComponent = () => null
+
+        shallow(<Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />)
+          .should.have.descendants('[data-extra-prop="foo"]')
+      })
     })
-
-    it('passes extra props to the component it is renders as', () => {
-      const MyComponent = () => null
-
-      shallow(<Component as={MyComponent} data-extra-prop='foo' />)
-        .should.have.descendants('[data-extra-prop="foo"]')
-    })
-  })
+  }
 
   describe('handles props', () => {
     it('defines handled props in Component.handledProps', () => {
@@ -196,7 +194,7 @@ export default (Component, options = {}) => {
 
       Component.handledProps.should.to.deep.equal(expectedProps,
         'It seems that not all props were defined in Component.handledProps, you need to check that they are equal ' +
-        'to the union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes'
+        'to the union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes',
       )
     })
   })
@@ -214,7 +212,7 @@ export default (Component, options = {}) => {
     // This test catches the case where a developer forgot to call the event prop
     // after handling it internally. It also catch cases where the synthetic event was not passed back.
     _.each(syntheticEvent.types, ({ eventShape, listeners }) => {
-      _.each(listeners, listenerName => {
+      _.each(listeners, (listenerName) => {
         // onKeyDown => keyDown
         const eventName = _.camelCase(listenerName.replace('on', ''))
 
@@ -248,7 +246,7 @@ export default (Component, options = {}) => {
         handlerSpy.calledOnce.should.equal(true,
           `<${constructorName} ${listenerName}={${handlerName}} />\n` +
           `${leftPad} ^ was not called once on "${eventName}".` +
-          'You may need to hoist your event handlers up to the root element.\n'
+          'You may need to hoist your event handlers up to the root element.\n',
         )
 
         let expectedArgs = [eventShape]
@@ -260,12 +258,12 @@ export default (Component, options = {}) => {
         }
 
         // Components should return the event first, then any data
-        handlerSpy.calledWithMatch(...expectedArgs).should.equal(true,
-          `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ ${errorMessage}\n` +
-          'It was called with args:\n' +
-          JSON.stringify(handlerSpy.args, null, 2)
-        )
+        handlerSpy.calledWithMatch(...expectedArgs).should.equal(true, [
+          `<${constructorName} ${listenerName}={${handlerName}} />\n`,
+          `${leftPad} ^ ${errorMessage}`,
+          'It was called with args:',
+          JSON.stringify(handlerSpy.args, null, 2),
+        ].join('\n'))
       })
     })
   })
@@ -316,9 +314,28 @@ export default (Component, options = {}) => {
     })
 
     it("applies user's className to root component", () => {
-      const classes = faker.hacker.phrase()
-      shallow(<Component {...requiredProps} className={classes} />)
-        .should.have.className(classes)
+      const className = 'is-conformant-class-string'
+
+      // Portal powered components can render to two elements, a trigger and the actual component
+      // The actual component is shown when the portal is open
+      // If a trigger is rendered, open the portal and make assertions on the portal element
+      if (rendersPortal) {
+        const mountNode = document.createElement('div')
+        document.body.appendChild(mountNode)
+
+        const wrapper = mount(<Component {...requiredProps} className={className} />, { attachTo: mountNode })
+        wrapper.setProps({ open: true })
+
+        // portals/popups/etc may render the component to somewhere besides descendants
+        // we look for the component anywhere in the DOM
+        assertBodyContains(`.${className}`)
+
+        wrapper.detach()
+        document.body.removeChild(mountNode)
+      } else {
+        shallow(<Component {...requiredProps} className={className} />)
+          .should.have.className(className)
+      }
     })
 
     it("user's className does not override the default classes", () => {
@@ -339,4 +356,9 @@ export default (Component, options = {}) => {
       })
     })
   })
+
+  // ----------------------------------------
+  // Test typings
+  // ----------------------------------------
+  hasValidTypings(Component, extractedInfo, options)
 }

@@ -1,8 +1,10 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -21,6 +23,7 @@ function StatisticGroup(props) {
     children,
     className,
     color,
+    content,
     horizontal,
     inverted,
     items,
@@ -41,13 +44,14 @@ function StatisticGroup(props) {
   const rest = getUnhandledProps(StatisticGroup, props)
   const ElementType = getElementType(StatisticGroup, props)
 
-  if (!_.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
-  const itemsJSX = _.map(items, item => (
-    <Statistic key={item.childKey || [item.label, item.title].join('-')} {...item} />
-  ))
-
-  return <ElementType {...rest} className={classes}>{itemsJSX}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.map(items, item => Statistic.create(item))}
+    </ElementType>
+  )
 }
 
 StatisticGroup._meta = {
@@ -68,6 +72,9 @@ StatisticGroup.propTypes = {
 
   /** A statistic group can be formatted to be different colors. */
   color: PropTypes.oneOf(SUI.COLORS),
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A statistic group can present its measurement horizontally. */
   horizontal: PropTypes.bool,

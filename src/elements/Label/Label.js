@@ -1,8 +1,10 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createShorthand,
   createShorthandFactory,
   customPropTypes,
@@ -133,11 +135,12 @@ export default class Label extends Component {
     if (onClick) onClick(e, this.props)
   }
 
-  handleRemove = (e) => {
-    const { onRemove } = this.props
-
-    if (onRemove) onRemove(e, this.props)
-  }
+  handleIconOverrides = predefinedProps => ({
+    onClick: (e) => {
+      _.invoke(predefinedProps, 'onClick', e)
+      _.invoke(this.props, 'onRemove', e, this.props)
+    },
+  })
 
   render() {
     const {
@@ -164,9 +167,9 @@ export default class Label extends Component {
       tag,
     } = this.props
 
-    const pointingClass = pointing === true && 'pointing'
-      || (pointing === 'left' || pointing === 'right') && `${pointing} pointing`
-      || (pointing === 'above' || pointing === 'below') && `pointing ${pointing}`
+    const pointingClass = (pointing === true && 'pointing')
+      || ((pointing === 'left' || pointing === 'right') && `${pointing} pointing`)
+      || ((pointing === 'above' || pointing === 'below') && `pointing ${pointing}`)
 
     const classes = cx(
       'ui',
@@ -190,7 +193,7 @@ export default class Label extends Component {
     const rest = getUnhandledProps(Label, this.props)
     const ElementType = getElementType(Label, this.props)
 
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
     }
 
@@ -202,7 +205,7 @@ export default class Label extends Component {
         {typeof image !== 'boolean' && Image.create(image)}
         {content}
         {createShorthand(LabelDetail, val => ({ content: val }), detail)}
-        {onRemove && Icon.create(removeIconShorthand, { onClick: this.handleRemove })}
+        {onRemove && Icon.create(removeIconShorthand, { overrideProps: this.handleIconOverrides })}
       </ElementType>
     )
   }

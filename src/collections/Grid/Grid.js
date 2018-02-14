@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -9,8 +10,8 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  useMultipleProp,
   useTextAlignProp,
-  useValueAndKey,
   useVerticalAlignProp,
   useWidthProp,
 } from '../../lib'
@@ -30,6 +31,7 @@ function Grid(props) {
     container,
     divided,
     doubling,
+    inverted,
     padded,
     relaxed,
     reversed,
@@ -44,14 +46,15 @@ function Grid(props) {
     useKeyOnly(centered, 'centered'),
     useKeyOnly(container, 'container'),
     useKeyOnly(doubling, 'doubling'),
+    useKeyOnly(inverted, 'inverted'),
     useKeyOnly(stackable, 'stackable'),
     useKeyOnly(stretched, 'stretched'),
     useKeyOrValueAndKey(celled, 'celled'),
     useKeyOrValueAndKey(divided, 'divided'),
     useKeyOrValueAndKey(padded, 'padded'),
     useKeyOrValueAndKey(relaxed, 'relaxed'),
+    useMultipleProp(reversed, 'reversed'),
     useTextAlignProp(textAlign),
-    useValueAndKey(reversed, 'reversed'),
     useVerticalAlignProp(verticalAlign),
     useWidthProp(columns, 'column', true),
     'grid',
@@ -105,6 +108,9 @@ Grid.propTypes = {
   /** A grid can double its column width on tablet and mobile sizes. */
   doubling: PropTypes.bool,
 
+  /** A grid's colors can be inverted. */
+  inverted: PropTypes.bool,
+
   /** A grid can preserve its vertical and horizontal gutters on first and last columns. */
   padded: PropTypes.oneOfType([
     PropTypes.bool,
@@ -118,7 +124,7 @@ Grid.propTypes = {
   ]),
 
   /** A grid can specify that its columns should reverse order at different device sizes. */
-  reversed: PropTypes.oneOf([
+  reversed: customPropTypes.multipleProp([
     'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
   ]),
 

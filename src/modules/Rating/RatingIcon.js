@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   customPropTypes,
@@ -55,7 +56,7 @@ export default class RatingIcon extends Component {
     selected: PropTypes.bool,
   }
 
-  defaultProps = {
+  static defaultProps = {
     as: 'i',
   }
 
@@ -84,7 +85,6 @@ export default class RatingIcon extends Component {
           onClick(e, this.props)
           break
         default:
-          return
       }
     }
   }

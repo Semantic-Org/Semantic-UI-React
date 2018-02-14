@@ -1,8 +1,11 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
+  childrenUtils,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -19,7 +22,7 @@ import StepTitle from './StepTitle'
 /**
  * A step shows the completion status of an activity in a series of activities.
  */
-export default class Step extends Component {
+class Step extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -35,6 +38,9 @@ export default class Step extends Component {
 
     /** A step can show that a user has completed it. */
     completed: PropTypes.bool,
+
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
 
     /** Shorthand for StepDescription. */
     description: customPropTypes.itemShorthand,
@@ -77,10 +83,16 @@ export default class Step extends Component {
   static Group = StepGroup
   static Title = StepTitle
 
-  handleClick = (e) => {
+  computeElementType = () => {
     const { onClick } = this.props
 
-    if (onClick) onClick(e, this.props)
+    if (onClick) return 'a'
+  }
+
+  handleClick = (e) => {
+    const { disabled } = this.props
+
+    if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {
@@ -89,12 +101,12 @@ export default class Step extends Component {
       children,
       className,
       completed,
+      content,
       description,
       disabled,
       href,
       icon,
       link,
-      onClick,
       title,
     } = this.props
 
@@ -107,19 +119,25 @@ export default class Step extends Component {
       className,
     )
     const rest = getUnhandledProps(Step, this.props)
-    const ElementType = getElementType(Step, this.props, () => {
-      if (onClick) return 'a'
-    })
+    const ElementType = getElementType(Step, this.props, this.computeElementType)
 
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{children}</ElementType>
+    }
+
+    if (!childrenUtils.isNil(content)) {
+      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{content}</ElementType>
     }
 
     return (
       <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
         {Icon.create(icon)}
-        <StepContent description={description} title={title} />
+        {StepContent.create({ description, title })}
       </ElementType>
     )
   }
 }
+
+Step.create = createShorthandFactory(Step, content => ({ content }))
+
+export default Step

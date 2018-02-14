@@ -17,16 +17,16 @@ export default class SearchExampleStandard extends Component {
 
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
 
-  handleResultSelect = (e, result) => this.setState({ value: result.title })
+  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
 
-  handleSearchChange = (e, value) => {
+  handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value })
 
     setTimeout(() => {
       if (this.state.value.length < 1) return this.resetComponent()
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = (result) => re.test(result.title)
+      const isMatch = result => re.test(result.title)
 
       this.setState({
         isLoading: false,

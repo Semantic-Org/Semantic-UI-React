@@ -1,8 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -38,9 +39,7 @@ function ListContent(props) {
   const rest = getUnhandledProps(ListContent, props)
   const ElementType = getElementType(ListContent, props)
 
-  if (!_.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>

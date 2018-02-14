@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { SemanticSIZES } from '../..';
+
+import {
+  HtmlInputrops,
+  SemanticShorthandItem,
+  SemanticSIZES
+} from '../..';
+import { LabelProps } from '../Label';
 
 export interface InputProps {
   [key: string]: any;
@@ -25,26 +31,26 @@ export interface InputProps {
   /** An Input field can show the data contains errors. */
   error?: boolean;
 
-  /** Take on the size of it's container. */
+  /** Take on the size of its container. */
   fluid?: boolean;
 
   /** An Input field can show a user is currently interacting with it. */
   focus?: boolean;
 
   /** Optional Icon to display inside the Input. */
-  icon?: any | boolean;
+  icon?: any | SemanticShorthandItem<InputProps>;
 
   /** An Icon can appear inside an Input on the left. */
   iconPosition?: 'left';
 
   /** Shorthand for creating the HTML Input. */
-  input?: any;
+  input?: SemanticShorthandItem<HtmlInputrops>;
 
   /** Format to appear on dark backgrounds. */
   inverted?: boolean;
 
   /** Optional Label to display along side the Input. */
-  label?: any;
+  label?:  SemanticShorthandItem<LabelProps>;
 
   /** A Label can appear outside an Input on the left or right. */
   labelPosition?: 'left' | 'right' | 'left corner' | 'right corner';
@@ -77,6 +83,8 @@ export interface InputOnChangeData extends InputProps {
   value: string;
 }
 
-declare const Input: React.StatelessComponent<InputProps>;
+declare class Input extends React.Component<InputProps, {}> {
+  focus: () => void;
+}
 
 export default Input;

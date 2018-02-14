@@ -1,8 +1,10 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -19,6 +21,7 @@ function CommentGroup(props) {
     className,
     children,
     collapsed,
+    content,
     minimal,
     size,
     threaded,
@@ -36,7 +39,11 @@ function CommentGroup(props) {
   const rest = getUnhandledProps(CommentGroup, props)
   const ElementType = getElementType(CommentGroup, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 CommentGroup._meta = {
@@ -57,6 +64,9 @@ CommentGroup.propTypes = {
 
   /** Comments can be collapsed, or hidden from view. */
   collapsed: PropTypes.bool,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Comments can hide extra information unless a user shows intent to interact with a comment. */
   minimal: PropTypes.bool,

@@ -1,8 +1,11 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -23,6 +26,7 @@ function Statistic(props) {
     children,
     className,
     color,
+    content,
     floated,
     horizontal,
     inverted,
@@ -45,12 +49,15 @@ function Statistic(props) {
   const rest = getUnhandledProps(Statistic, props)
   const ElementType = getElementType(Statistic, props)
 
-  if (!_.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>
-      <StatisticValue text={text} value={value} />
-      <StatisticLabel label={label} />
+      {StatisticValue.create(value, {
+        defaultProps: { text },
+      })}
+      {StatisticLabel.create(label)}
     </ElementType>
   )
 }
@@ -72,6 +79,9 @@ Statistic.propTypes = {
 
   /** A statistic can be formatted to be different colors. */
   color: PropTypes.oneOf(SUI.COLORS),
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A statistic can sit to the left or right of other content. */
   floated: PropTypes.oneOf(SUI.FLOATS),
@@ -98,5 +108,7 @@ Statistic.propTypes = {
 Statistic.Group = StatisticGroup
 Statistic.Label = StatisticLabel
 Statistic.Value = StatisticValue
+
+Statistic.create = createShorthandFactory(Statistic, content => ({ content }))
 
 export default Statistic

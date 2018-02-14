@@ -10,11 +10,11 @@ describe('StepContent', () => {
   common.implementsShorthandProp(StepContent, {
     propKey: 'title',
     ShorthandComponent: StepTitle,
-    mapValueToProps: val => ({ title: val }),
+    mapValueToProps: content => ({ content }),
   })
   common.implementsShorthandProp(StepContent, {
     propKey: 'description',
     ShorthandComponent: StepDescription,
-    mapValueToProps: val => ({ description: val }),
+    mapValueToProps: content => ({ content }),
   })
 })

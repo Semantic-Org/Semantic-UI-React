@@ -7,6 +7,7 @@ import { default as DropdownItem } from '../../modules/Dropdown/DropdownItem';
 import { default as DropdownMenu } from '../../modules/Dropdown/DropdownMenu';
 
 export interface SelectProps extends DropdownProps {
+  [key: string]: any;
 }
 
 interface SelectComponent extends React.StatelessComponent<SelectProps> {

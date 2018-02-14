@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import {
   SemanticFLOATS,
+  SemanticShorthandCollection,
+  SemanticShorthandContent,
   SemanticSIZES,
   SemanticVERTICALALIGNMENTS
 } from '../..';
@@ -9,7 +11,7 @@ import { default as ListContent } from './ListContent';
 import { default as ListDescription } from './ListDescription';
 import { default as ListHeader } from './ListHeader';
 import { default as ListIcon } from './ListIcon';
-import { default as ListItem } from './ListItem';
+import { default as ListItem, ListItemProps } from './ListItem';
 import { default as ListList } from './ListList';
 
 export interface ListProps {
@@ -33,6 +35,9 @@ export interface ListProps {
   /** Additional classes. */
   className?: string;
 
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
   /** A list can show divisions between content. */
   divided?: boolean;
 
@@ -46,10 +51,18 @@ export interface ListProps {
   inverted?: boolean;
 
   /** Shorthand array of props for ListItem. */
-  items?: Array<any>;
+  items?: SemanticShorthandCollection<ListItemProps>;
 
   /** A list can be specially formatted for navigation links. */
   link?: boolean;
+
+  /**
+   * onClick handler for ListItem. Mutually exclusive with children.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All item props.
+   */
+  onItemClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: ListItemProps) => void;
 
   /** A list can be ordered numerically. */
   ordered?: boolean;

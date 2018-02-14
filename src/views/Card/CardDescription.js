@@ -1,26 +1,34 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
+  useTextAlignProp,
 } from '../../lib'
 
 /**
  * A card can contain a description with one or more paragraphs.
  */
 function CardDescription(props) {
-  const { children, className, content } = props
-  const classes = cx(className, 'description')
+  const { children, className, content, textAlign } = props
+  const classes = cx(
+    useTextAlignProp(textAlign),
+    'description',
+    className,
+  )
   const rest = getUnhandledProps(CardDescription, props)
   const ElementType = getElementType(CardDescription, props)
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? content : children}
+      {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
 }
@@ -43,6 +51,9 @@ CardDescription.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
+
+  /** A card content can adjust its text alignment. */
+  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
 export default CardDescription

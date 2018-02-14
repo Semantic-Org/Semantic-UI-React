@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface CardDescriptionProps {
   [key: string]: any;
@@ -13,7 +14,10 @@ export interface CardDescriptionProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
+
+  /** A card description can adjust its text alignment. */
+  textAlign?: 'center' | 'left' | 'right';
 }
 
 declare const CardDescription: React.StatelessComponent<CardDescriptionProps>;

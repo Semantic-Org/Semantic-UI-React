@@ -40,21 +40,6 @@ describe('TextArea', () => {
     },
   })
 
-  describe('onChange', () => {
-    it('is called with (e, data) on change', () => {
-      const spy = sandbox.spy()
-      const e = { target: { value: 'name' } }
-      const props = { 'data-foo': 'bar', onChange: spy }
-
-      wrapperShallow(<TextArea {...props} />)
-
-      wrapper.find('textarea').simulate('change', e)
-
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
-    })
-  })
-
   describe('autoHeight', () => {
     // simplify styles to make height assertions easier
     const style = { padding: 0, fontSize: '10px', lineHeight: 1, border: 'none' }
@@ -63,15 +48,11 @@ describe('TextArea', () => {
       const element = document.querySelector('textarea')
 
       if (!height) {
-        element.should.not.have.property('rows', 1)
-        element.style.should.have.property('minHeight', '')
         element.style.should.have.property('resize', '')
         element.style.should.have.property('height', '')
         return
       }
 
-      element.should.have.property('rows', 1)
-      element.style.should.have.property('minHeight', '0px')
       element.style.should.have.property('resize', 'none')
 
       // CI renders textareas with an extra pixel
@@ -81,46 +62,119 @@ describe('TextArea', () => {
     }
 
     it('sets styles when true', () => {
-      wrapperMount(<TextArea style={style} autoHeight />)
-
-      assertHeight('10px') // 1 line
-    })
-    it('sets styles when there is a multiline value', () => {
-      wrapperMount(<TextArea style={style} autoHeight value={'line1\nline2\nline3'} />)
-
+      wrapperMount(<TextArea autoHeight style={style} />)
       assertHeight('30px') // 3 lines
     })
+
     it('does not set styles when not set', () => {
       wrapperMount(<TextArea style={style} />)
-
       assertHeight('') // no height
     })
+
+    it('depends on minHeight value of style', () => {
+      wrapperMount(<TextArea autoHeight style={{ ...style, minHeight: '50px' }} />)
+      assertHeight('50px')
+    })
+
+    it('depends on rows value', () => {
+      wrapperMount(<TextArea autoHeight style={style} rows={1} />)
+      assertHeight('10px') // 1 line
+    })
+
+    it('sets styles when there is a multiline value', () => {
+      wrapperMount(
+        <TextArea
+          autoHeight
+          style={style}
+          value={'line1\nline2\nline3\nline4'}
+        />,
+      )
+      assertHeight('40px') // 4 lines
+    })
+
     it('updates the height on change', () => {
-      wrapperMount(<TextArea style={style} autoHeight />)
+      wrapperMount(<TextArea autoHeight style={style} />)
 
       // initial height
-      const element = document.querySelector('textarea')
-      element.style.height.should.equal('10px')
+      assertHeight('30px') // 3 lines
 
       // update the value and fire a change event
-      element.value = 'line1\nline2\nline3'
-      wrapper.simulate('change')
-
-      assertHeight('30px') // 3 lines
+      wrapper.setProps({ value: 'line1\nline2\nline3\nline4' })
+      assertHeight('40px') // 4 lines
     })
+
     it('adds styles when toggled to true', () => {
       wrapperMount(<TextArea style={style} />)
-
-      wrapper.setProps({ autoHeight: true })
+      wrapper.setProps({ autoHeight: true, rows: 1 })
 
       assertHeight('10px') // 1 line
     })
-    it('removes styles when toggled to false', () => {
-      wrapperMount(<TextArea style={style} autoHeight />)
 
+    it('removes styles when toggled to false', () => {
+      wrapperMount(<TextArea autoHeight style={style} />)
       wrapper.setProps({ autoHeight: false })
 
       assertHeight('') // no height
+    })
+  })
+
+  describe('focus', () => {
+    it('can be set via a ref', () => {
+      wrapperMount(<TextArea />)
+      const element = document.querySelector('textarea')
+
+      wrapper.instance().focus()
+      document.activeElement.should.equal(element)
+    })
+  })
+
+  describe('onChange', () => {
+    it('is called with (e, data) on change', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { 'data-foo': 'bar', onChange: spy }
+
+      wrapperShallow(<TextArea {...props} />)
+      wrapper.find('textarea').simulate('change', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+    })
+  })
+
+  describe('onInput', () => {
+    it('is called with (e, data) on input', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { 'data-foo': 'bar', onInput: spy }
+
+      wrapperShallow(<TextArea {...props} />)
+      wrapper.find('textarea').simulate('input', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+    })
+  })
+
+  describe('rows', () => {
+    it('has default value', () => {
+      shallow(<TextArea />)
+        .should.have.prop('rows', 3)
+    })
+
+    it('sets prop', () => {
+      shallow(<TextArea rows={1} />)
+        .should.have.prop('rows', 1)
+    })
+  })
+
+  describe('style', () => {
+    it('applies defined style', () => {
+      const style = { marginTop: '1em', top: 0 }
+
+      wrapperShallow(<TextArea style={style} />)
+      wrapper.should.have.style('margin-top', '1em')
+      wrapper.should.have.style('top', '0')
     })
   })
 })

@@ -1,8 +1,10 @@
 import cx from 'classnames'
-import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -13,14 +15,14 @@ import {
  * A step can contain a title.
  */
 function StepTitle(props) {
-  const { children, className, title } = props
+  const { children, className, content } = props
   const classes = cx('title', className)
   const rest = getUnhandledProps(StepTitle, props)
   const ElementType = getElementType(StepTitle, props)
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? title : children}
+      {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
 }
@@ -35,14 +37,16 @@ StepTitle.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Additional classes. */
-  className: PropTypes.string,
-
   /** Primary content. */
   children: PropTypes.node,
 
+  /** Additional classes. */
+  className: PropTypes.string,
+
   /** Shorthand for primary content. */
-  title: customPropTypes.contentShorthand,
+  content: customPropTypes.contentShorthand,
 }
+
+StepTitle.create = createShorthandFactory(StepTitle, content => ({ content }))
 
 export default StepTitle

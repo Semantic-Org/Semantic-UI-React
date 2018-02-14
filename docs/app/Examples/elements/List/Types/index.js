@@ -3,6 +3,7 @@ import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 const ListTypes = () => (
   <ExampleSection title='Types'>
@@ -11,19 +12,13 @@ const ListTypes = () => (
       description='A list groups related content'
       examplePath='elements/List/Types/ListExampleBasic'
     />
-    <ComponentExample
-      description='You can also pass an array of items as props'
-      examplePath='elements/List/Types/ListExampleBasicShorthand'
-    />
+    <ShorthandExample examplePath='elements/List/Types/ListExampleBasicShorthand' />
 
     <ComponentExample
       description='A list item can contain an icon'
       examplePath='elements/List/Types/ListExampleIcon'
     />
-    <ComponentExample
-      description='You can also define a list item icon via props'
-      examplePath='elements/List/Types/ListExampleIconShorthand'
-    />
+    <ShorthandExample examplePath='elements/List/Types/ListExampleIconShorthand' />
 
     <ComponentExample examplePath='elements/List/Types/ListExampleDivided' />
     <ComponentExample examplePath='elements/List/Types/ListExampleTree' />

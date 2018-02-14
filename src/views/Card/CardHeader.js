@@ -1,26 +1,34 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
+  useTextAlignProp,
 } from '../../lib'
 
 /**
  * A card can contain a header.
  */
 function CardHeader(props) {
-  const { children, className, content } = props
-  const classes = cx(className, 'header')
+  const { children, className, content, textAlign } = props
+  const classes = cx(
+    useTextAlignProp(textAlign),
+    'header',
+    className,
+  )
   const rest = getUnhandledProps(CardHeader, props)
   const ElementType = getElementType(CardHeader, props)
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? content : children}
+      {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
 }
@@ -43,6 +51,9 @@ CardHeader.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
+
+  /** A card header can adjust its text alignment. */
+  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
 export default CardHeader

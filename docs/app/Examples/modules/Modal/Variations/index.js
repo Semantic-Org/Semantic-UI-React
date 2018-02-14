@@ -1,4 +1,5 @@
 import React from 'react'
+
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
@@ -8,6 +9,12 @@ const ModalExamples = () => (
       title='Size'
       description='A modal can vary in size.'
       examplePath='modules/Modal/Variations/ModalExampleSize'
+    />
+    <ComponentExample
+      title='Scrolling Content'
+      description='A modal can use the entire size of the screen.'
+      examplePath='modules/Modal/Variations/ModalExampleScrollingContent'
+      suiVersion='2.2.11'
     />
     <ComponentExample
       title='Dimmer Variations'

@@ -1,8 +1,10 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   createHTMLImage,
   customPropTypes,
   getElementType,
@@ -31,7 +33,7 @@ function FeedExtra(props) {
   const rest = getUnhandledProps(FeedExtra, props)
   const ElementType = getElementType(FeedExtra, props)
 
-  if (!_.isNil(children)) {
+  if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

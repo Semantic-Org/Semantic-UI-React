@@ -1,1 +1,1 @@
-export { default, StatisticProps } from './Statictic'
+export { default, StatisticProps } from './Statistic';

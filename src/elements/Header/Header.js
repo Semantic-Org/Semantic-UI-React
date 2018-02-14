@@ -1,8 +1,10 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -62,7 +64,7 @@ function Header(props) {
   const rest = getUnhandledProps(Header, props)
   const ElementType = getElementType(Header, props)
 
-  if (!_.isNil(children)) {
+  if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
@@ -153,7 +155,7 @@ Header.propTypes = {
   inverted: PropTypes.bool,
 
   /** Content headings are sized with em and are based on the font-size of their container. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'big', 'massive')),
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'big', 'massive', 'mini')),
 
   /** Headers may be formatted to label smaller or de-emphasized content. */
   sub: PropTypes.bool,

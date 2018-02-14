@@ -1,10 +1,11 @@
 import * as React from 'react';
 
+import { SemanticShorthandItem } from '../..';
 import { PortalProps } from '../../addons/Portal';
-import { default as ModalActions } from './ModalActions';
-import { default as ModalContent } from './ModalContent';
+import { default as ModalActions, ModalActionsProps } from './ModalActions';
+import { default as ModalContent, ModalContentProps } from './ModalContent';
 import { default as ModalDescription } from './ModalDescription';
-import { default as ModalHeader } from './ModalHeader';
+import { default as ModalHeader, ModalHeaderProps } from './ModalHeader';
 
 export interface ModalProps extends PortalProps {
   [key: string]: any;
@@ -12,7 +13,10 @@ export interface ModalProps extends PortalProps {
   /** An element type to render as (string or function). */
   as?: any;
 
-  /** A modal can reduce its complexity */
+  /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
+  actions?: SemanticShorthandItem<ModalActionsProps>;
+
+  /** A Modal can reduce its complexity */
   basic?: boolean;
 
   /** Primary content. */
@@ -30,14 +34,31 @@ export interface ModalProps extends PortalProps {
   /** Whether or not the Modal should close when the document is clicked. */
   closeOnDocumentClick?: boolean;
 
+  /** A Modal can be passed content via shorthand. */
+  content?: SemanticShorthandItem<ModalContentProps>;
+
   /** Initial value of open. */
   defaultOpen?: boolean;
 
   /** A modal can appear in a dimmer. */
   dimmer?: boolean | 'blurring' | 'inverted';
 
+  /** Event pool namespace that is used to handle component events */
+  eventPool?: string;
+
+  /** A Modal can be passed header via shorthand. */
+  header?: SemanticShorthandItem<ModalHeaderProps>;
+
   /** The node where the modal should mount. Defaults to document.body. */
   mountNode?: any;
+
+  /**
+   * Action onClick handler when using shorthand `actions`.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onActionClick?: (event: React.MouseEvent<HTMLElement>, data: ModalProps) => void;
 
   /**
    * Called when a close event happens.
@@ -75,10 +96,13 @@ export interface ModalProps extends PortalProps {
   open?: boolean;
 
   /** A modal can vary in size. */
-  size?: 'fullscreen' | 'large' | 'small';
+  size?: 'fullscreen' | 'large' | 'mini' | 'small' | 'tiny';
 
   /** Custom styles. */
   style?: React.CSSProperties;
+
+  /** Element to be rendered in-place where the portal is defined. */
+  trigger?: React.ReactNode;
 }
 
 interface ModalComponent extends React.ComponentClass<ModalProps> {

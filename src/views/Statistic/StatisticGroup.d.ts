@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { SemanticCOLORS, SemanticWIDTHS } from '../..';
-import { StatisticSizeProp } from './Statictic';
+import { SemanticCOLORS, SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..';
+import { StatisticProps, StatisticSizeProp } from './Statistic';
 
 export interface StatisticGroupProps {
   [key: string]: any;
@@ -18,6 +18,9 @@ export interface StatisticGroupProps {
   /** A statistic group can be formatted to be different colors. */
   color?: SemanticCOLORS;
 
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
+
   /** A statistic group can present its measurement horizontally. */
   horizontal?: boolean;
 
@@ -25,7 +28,7 @@ export interface StatisticGroupProps {
   inverted?:boolean;
 
   /** Array of props for Statistic. */
-  items?: any;
+  items?: SemanticShorthandCollection<StatisticProps>;
 
   /** A statistic group can vary in size. */
   size?: StatisticSizeProp;

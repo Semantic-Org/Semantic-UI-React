@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SemanticCOLORS, SemanticSIZES } from '../..';
+import { SemanticCOLORS, SemanticShorthandContent, SemanticSIZES } from '../..';
 
 export interface LabelGroupProps {
   [key: string]: any;
@@ -11,13 +11,16 @@ export interface LabelGroupProps {
   children?: React.ReactNode;
 
   /** Labels can share shapes. */
-  circular: boolean;
+  circular?: boolean;
 
   /** Additional classes. */
   className?: string;
 
   /** Label group can share colors together. */
   color?: SemanticCOLORS;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Label group can share sizes together. */
   size?: SemanticSIZES;

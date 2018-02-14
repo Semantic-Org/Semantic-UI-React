@@ -3,12 +3,30 @@ import { Statistic } from 'semantic-ui-react'
 
 const StatisticExampleSize = () => (
   <div>
-    <Statistic size='mini' label='Views' value='2,204' />
-    <Statistic size='tiny' label='Views' value='2,204' />
-    <Statistic size='small' label='Views' value='2,204' />
-    <Statistic label='Views' value='2,204' />
-    <Statistic size='large' label='Views' value='2,204' />
-    <Statistic size='huge' label='Views' value='2,204' />
+    <Statistic size='mini'>
+      <Statistic.Label>Views</Statistic.Label>
+      <Statistic.Value>2,204</Statistic.Value>
+    </Statistic>
+    <Statistic size='tiny'>
+      <Statistic.Label>Views</Statistic.Label>
+      <Statistic.Value>2,204</Statistic.Value>
+    </Statistic>
+    <Statistic size='small'>
+      <Statistic.Label>Views</Statistic.Label>
+      <Statistic.Value>2,204</Statistic.Value>
+    </Statistic>
+    <Statistic>
+      <Statistic.Label>Views</Statistic.Label>
+      <Statistic.Value>2,204</Statistic.Value>
+    </Statistic>
+    <Statistic size='large'>
+      <Statistic.Label>Views</Statistic.Label>
+      <Statistic.Value>2,204</Statistic.Value>
+    </Statistic>
+    <Statistic size='huge'>
+      <Statistic.Label>Views</Statistic.Label>
+      <Statistic.Value>2,204</Statistic.Value>
+    </Statistic>
   </div>
 )
 

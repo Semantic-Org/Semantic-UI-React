@@ -1,8 +1,10 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -57,7 +59,7 @@ function TableCell(props) {
   const rest = getUnhandledProps(TableCell, props)
   const ElementType = getElementType(TableCell, props)
 
-  if (!_.isNil(children)) {
+  if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
@@ -132,6 +134,6 @@ TableCell.propTypes = {
   width: PropTypes.oneOf(SUI.WIDTHS),
 }
 
-TableCell.create = createShorthandFactory(TableCell, content => ({ content }), true)
+TableCell.create = createShorthandFactory(TableCell, content => ({ content }))
 
 export default TableCell

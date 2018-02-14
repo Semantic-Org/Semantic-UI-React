@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox, Form, Input, Select } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 
 const options = [
   { key: 'm', text: 'Male', value: 'male' },
@@ -9,8 +9,8 @@ const options = [
 const FormExampleFieldError = () => (
   <Form>
     <Form.Group widths='equal'>
-      <Form.Input label='First name' placeholder='First name' error />
-      <Form.Input label='Last name' placeholder='Last name' />
+      <Form.Input fluid label='First name' placeholder='First name' error />
+      <Form.Input fluid label='Last name' placeholder='Last name' />
     </Form.Group>
     <Form.Select options={options} placeholder='Gender' error />
     <Form.Checkbox label='I agree to the Terms and Conditions' error />
