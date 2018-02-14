@@ -480,7 +480,12 @@ export default class Dropdown extends Component {
     }
 
     // Search Query Change
-    if (prevState.searchQuery !== this.state.searchQuery) {
+    if (prevState.value !== this.state.value) {
+      this.setSelectedIndex()
+    }
+
+    // Selected index change
+    if (prevState.selectedIndex !== this.state.selectedIndex) {
       this.scrollSelectedItemIntoView()
     }
 
@@ -599,7 +604,6 @@ export default class Dropdown extends Component {
 
     // notify the onChange prop that the user is trying to change value
     this.setValue(newValue)
-    this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
 
     // Heads up! This event handler should be called after `onChange`
@@ -637,7 +641,6 @@ export default class Dropdown extends Component {
     const newValue = _.dropRight(value)
 
     this.setValue(newValue)
-    this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
 
@@ -728,7 +731,6 @@ export default class Dropdown extends Component {
 
     // notify the onChange prop that the user is trying to change value
     this.setValue(newValue)
-    this.setSelectedIndex(value)
 
     const optionSize = _.size(this.getMenuOptions())
     if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
@@ -816,7 +818,20 @@ export default class Dropdown extends Component {
     // filter by search query
     if (search && searchQuery) {
       if (_.isFunction(search)) {
-        filteredOptions = search(filteredOptions, searchQuery)
+        // poor man's memoization
+        // if the value, options, and search function are referentially equal to the last call
+        // just return the last value
+        const { lastValue, lastOptions, lastSearch } = this.getMenuOptions
+
+        if (lastValue === value && lastOptions === options && lastSearch === search) {
+          filteredOptions = this.getMenuOptions.lastReturn
+        } else {
+          this.getMenuOptions.lastValue = value
+          this.getMenuOptions.lastOptions = options
+          this.getMenuOptions.lastSearch = search
+
+          filteredOptions = search(filteredOptions, searchQuery)
+        }
       } else {
         // remove diacritics on search input and options, if deburr prop is set
         const strippedQuery = deburr ? _.deburr(searchQuery) : searchQuery
@@ -849,6 +864,8 @@ export default class Dropdown extends Component {
       if (additionPosition === 'top') filteredOptions.unshift(addItem)
       else filteredOptions.push(addItem)
     }
+
+    this.getMenuOptions.lastReturn = filteredOptions
 
     return filteredOptions
   }
@@ -983,7 +1000,6 @@ export default class Dropdown extends Component {
     debug('new value:', newValue)
 
     this.setValue(newValue)
-    this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
 
@@ -1010,7 +1026,6 @@ export default class Dropdown extends Component {
     }
 
     this.setState({ selectedIndex: nextIndex })
-    this.scrollSelectedItemIntoView()
   }
 
   // ----------------------------------------
@@ -1100,7 +1115,6 @@ export default class Dropdown extends Component {
     if (search && this.searchRef) this.searchRef.focus()
     if (onOpen) onOpen(e, this.props)
 
-    this.setSelectedIndex()
     this.trySetState({ open: true })
   }
 

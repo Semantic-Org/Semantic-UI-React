@@ -34,8 +34,8 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // Options
 // ----------------------------------------
 const getOptions = (count = 5) => _.times(count, (i) => {
-  const text = `${i}-${faker.hacker.noun}`
-  const value = `${i}-${_.snakeCase(text)}`
+  const text = `${i}-item-text`
+  const value = `${i}-item-value`
   return { text, value }
 })
 
@@ -1978,6 +1978,31 @@ describe('Dropdown', () => {
       search.simulate('change', { target: { value: faker.hacker.noun() } })
 
       wrapper.should.have.state('selectedIndex', 0)
+    })
+
+    it('set right selected index when click on option with search', () => {
+      wrapperMount(<Dropdown options={options} search selection />)
+
+      // avoid testing item index 0, it is selected by default
+      const itemIndex = 1
+
+      // open the menu
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      // search for specific item, filtering the list and changing the index order
+      const search = wrapper.find('input.search')
+      search.simulate('change', { target: { value: `${itemIndex}-item` } })
+
+      // click the item
+      wrapper.find('DropdownItem').simulate('click')
+
+      // open the menu again
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      // our selectedIndex should match that items index in the full list of items
+      wrapper.state('selectedIndex').should.equal(itemIndex)
     })
 
     it('still allows moving selection after blur/focus', () => {
