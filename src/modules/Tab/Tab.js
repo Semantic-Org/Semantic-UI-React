@@ -73,7 +73,8 @@ class Tab extends Component {
 
   static defaultProps = {
     grid: { paneWidth: 12, tabWidth: 4 },
-    menu: { attached: true, tabular: true, aligned: 'left' },
+    menu: { attached: true, tabular: true },
+    tab : {menuAligned : 'left'},
     renderActiveOnly: true,
   }
 
@@ -119,18 +120,18 @@ class Tab extends Component {
   }
 
   renderVertical(menu) {
-    const { grid } = this.props
+    const { grid,tab} = this.props
     const { paneWidth, tabWidth, ...gridProps } = grid
 
     return (
       <Grid {...gridProps}>
-        {menu.props.aligned !== 'right' && GridColumn.create({ width: tabWidth, children: menu })}
+        {tab.menuAligned !== 'right' && GridColumn.create({ width: tabWidth, children: menu })}
         {GridColumn.create({
           width: paneWidth,
           children: this.renderItems(),
           stretched: true,
         })}
-        {menu.props.aligned === 'right' && GridColumn.create({ width: tabWidth, children: menu })}
+        {tab.menuAligned === 'right' && GridColumn.create({ width: tabWidth, children: menu })}
       </Grid>
     )
   }
