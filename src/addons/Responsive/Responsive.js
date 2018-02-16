@@ -60,7 +60,7 @@ export default class Responsive extends Component {
   constructor(...args) {
     super(...args)
 
-    this.state = { width: isBrowser() ? window.innerWidth : 0 }
+    this.state = { width: isBrowser() ? document.documentElement.clientWidth : 0 }
   }
 
   componentDidMount() {
@@ -112,7 +112,7 @@ export default class Responsive extends Component {
 
   handleUpdate = (e) => {
     this.ticking = false
-    const width = window.innerWidth
+    const width = document.documentElement.clientWidth
 
     this.setSafeState({ width })
     _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
