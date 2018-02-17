@@ -687,7 +687,7 @@ describe('Dropdown', () => {
       wrapper.update()
 
       // selection should not move to last item
-      //should keep on first instead
+      // should keep on first instead
       wrapper
         .find('DropdownItem')
         .first()
@@ -700,8 +700,8 @@ describe('Dropdown', () => {
     it('does not move down on arrow down when last item is selected when open when \'wrapSelection\' is on', () => {
       wrapperMount(<Dropdown options={options} selection wrapSelection />)
 
-      //make last item selected
-      wrapper.setState({ selectedIndex: options.length - 1 });
+      // make last item selected
+      wrapper.setState({ selectedIndex: options.length - 1 })
       // open
       wrapper
         .simulate('click')

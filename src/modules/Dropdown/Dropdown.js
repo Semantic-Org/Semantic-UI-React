@@ -1005,15 +1005,13 @@ export default class Dropdown extends Component {
     let nextIndex = startIndex + offset
 
     /*
-    * if 'wrapSelection' is set and selection 
+    * if 'wrapSelection' is set and selection
     * is after last or before first, it just does not change
     */
-    if (wrapSelection && (nextIndex > lastIndex || nextIndex < 0))
-      nextIndex = startIndex;
-    else {
-      if (nextIndex > lastIndex) nextIndex = 0
-      else if (nextIndex < 0) nextIndex = lastIndex
-    }
+    if (wrapSelection && (nextIndex > lastIndex || nextIndex < 0)) {
+      nextIndex = startIndex
+    } else if (nextIndex > lastIndex) nextIndex = 0
+    else if (nextIndex < 0) nextIndex = lastIndex
 
     if (options[nextIndex].disabled) {
       this.moveSelectionBy(offset, nextIndex)
@@ -1296,7 +1294,6 @@ export default class Dropdown extends Component {
       simple,
       trigger,
       upward,
-      wrapSelection
     } = this.props
     const { open } = this.state
 
