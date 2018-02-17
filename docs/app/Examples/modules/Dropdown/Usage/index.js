@@ -120,6 +120,11 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleUpwardSelection'
     />
     <ComponentExample
+      title='Wrap Selection'
+      description='A dropdown can wrap its selection to disable "infinite" selection'
+      examplePath='modules/Dropdown/Usage/DropdownExampleWrapSelection'
+    />
+    <ComponentExample
       examplePath='modules/Dropdown/Usage/DropdownExampleUpwardInline'
     />
     <ComponentExample
