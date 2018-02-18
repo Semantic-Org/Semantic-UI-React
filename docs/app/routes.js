@@ -15,6 +15,7 @@ import LayoutsRoot from './Components/LayoutsRoot'
 import Introduction from './Views/Introduction'
 import Layouts from './Views/Layouts'
 import PageNotFound from './Views/PageNotFound'
+import Theming from './Views/Theming'
 import Usage from './Views/Usage'
 
 const RedirectToIntro = () => <Redirect to='/introduction' />
@@ -28,6 +29,7 @@ const Router = () => (
         <DocsLayout exact path='/introduction' component={Introduction} />
         <DocsLayout exact path='/layouts' component={Layouts} />
         <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} sidebar />
+        <DocsLayout exact path='/theming' component={Theming} />
         <DocsLayout exact path='/usage' component={Usage} />
         <DocsLayout exact path='/:type/:name' component={DocsRoot} sidebar />
         <DocsLayout exact path='/*' component={PageNotFound} />

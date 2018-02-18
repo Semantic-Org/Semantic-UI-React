@@ -197,6 +197,9 @@ class Sidebar extends Component {
             <Menu.Item as={NavLink} to='/usage' activeClassName='active'>
               Usage
             </Menu.Item>
+            <Menu.Item as={NavLink} to='/theming' activeClassName='active'>
+              Theming
+            </Menu.Item>
             <Menu.Item as={NavLink} to='/layouts' activeClassName='active'>
               Layouts
             </Menu.Item>
