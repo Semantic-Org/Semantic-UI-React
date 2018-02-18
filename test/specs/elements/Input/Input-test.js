@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Input from 'src/elements/Input/Input'
+import Icon from 'src/elements/Icon/Icon'
 import { htmlInputProps, SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
@@ -257,6 +258,48 @@ describe('Input', () => {
       shallow(<Input tabIndex={123} disabled />)
         .find('input')
         .should.have.prop('tabIndex', 123)
+    })
+  })
+
+  describe('icon', () => {
+    it('is not first child', () => {
+      shallow(<Input icon='search' />)
+        .children()
+        .first()
+        .is(Icon)
+        .should.not.be.true()
+    })
+
+    it('is not first child with action positioned left', () => {
+      shallow(<Input icon='search' action='foo' actionPosition='left' />)
+        .children()
+        .first()
+        .is(Icon)
+        .should.not.be.true()
+    })
+
+    it('is not first child with label', () => {
+      shallow(<Input icon='search' label='foo' />)
+        .children()
+        .first()
+        .is(Icon)
+        .should.not.be.true()
+    })
+
+    it('is not last child if contains action', () => {
+      shallow(<Input icon='search' iconPosition='left' action='foo' />)
+        .children()
+        .last()
+        .is(Icon)
+        .should.not.be.true()
+    })
+
+    it('is not last child if contains label positioned right', () => {
+      shallow(<Input icon='search' iconPosition='left' label='foo' labelPosition='right' />)
+        .children()
+        .last()
+        .is(Icon)
+        .should.not.be.true()
     })
   })
 })

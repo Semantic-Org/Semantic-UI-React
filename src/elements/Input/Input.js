@@ -237,8 +237,8 @@ class Input extends Component {
         {actionPosition === 'left' && actionElement}
         {labelPosition !== 'right' && labelElement}
         {createHTMLInput(input || type, { defaultProps: htmlInputProps })}
-        {actionPosition !== 'left' && actionElement}
         {Icon.create(this.computeIcon())}
+        {actionPosition !== 'left' && actionElement}
         {labelPosition === 'right' && labelElement}
       </ElementType>
     )
