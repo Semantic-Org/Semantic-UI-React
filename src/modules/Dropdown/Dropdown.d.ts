@@ -65,6 +65,9 @@ export interface DropdownProps {
   /** Initial value or value array if multiple. */
   defaultValue?: string | number | Array<number | string>;
 
+  /** A dropdown menu can open to the left or to the right. */
+  direction?: 'left'  | 'right';
+
   /** A disabled dropdown menu or item does not allow user interaction. */
   disabled?: boolean;
 

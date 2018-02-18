@@ -1,29 +1,19 @@
 import React from 'react'
-import { Dropdown, Icon } from 'semantic-ui-react'
+import { Menu, Dropdown } from 'semantic-ui-react'
+
+const options = [
+  { key: 1, text: 'This is a super long item', value: 1 },
+  { key: 2, text: 'Dropdown direction can help', value: 2 },
+  { key: 3, text: 'Items are kept within view', value: 3 },
+]
 
 const DropdownExampleMenuDirection = () => (
-  <Dropdown text='Menu' floating labeled button className='icon'>
-    <Dropdown.Menu>
-      <Dropdown.Item>
-        <Icon name='left dropdown' />
-        <span className='text'>Left</span>
-        <Dropdown.Menu className='left'>
-          <Dropdown.Item>1</Dropdown.Item>
-          <Dropdown.Item>2</Dropdown.Item>
-          <Dropdown.Item>3</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown.Item>
-      <Dropdown.Item>
-        <Icon name='dropdown' />
-        <span className='text'>Right</span>
-        <Dropdown.Menu className='right'>
-          <Dropdown.Item>1</Dropdown.Item>
-          <Dropdown.Item>2</Dropdown.Item>
-          <Dropdown.Item>3</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown.Item>
-    </Dropdown.Menu>
-  </Dropdown>
+  <Menu>
+    <Dropdown item simple text='Left menu' direction='right' options={options} />
+    <Menu.Menu position='right'>
+      <Dropdown item simple text='Right menu' direction='right' options={options} />
+    </Menu.Menu>
+  </Menu>
 )
 
 export default DropdownExampleMenuDirection
