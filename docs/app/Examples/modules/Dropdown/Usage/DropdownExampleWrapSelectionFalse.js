@@ -7,8 +7,8 @@ const options = [
   { key: 3, text: 'Three', value: 3 },
 ]
 
-const DropdownExampleWrapSelection = () => (
-  <Dropdown search selection wrapSelection options={options} placeholder='Choose an option' />
+const DropdownExampleWrapSelectionFalse = () => (
+  <Dropdown search selection wrapSelection={false} options={options} placeholder='Choose an option' />
 )
 
-export default DropdownExampleWrapSelection
+export default DropdownExampleWrapSelectionFalse

@@ -256,8 +256,8 @@ export interface DropdownProps {
   upward?: boolean;
 
   /**
-   * A dropdown won't go to the last element when ArrowUp is pressed on the first,
-   *  nor go to the first when ArrowDown is pressed on the last(aka infinite selection)
+   * A dropdown will go to the last element when ArrowUp is pressed on the first,
+   * or go to the first when ArrowDown is pressed on the last( aka infinite selection )
    */
   wrapSelection?: boolean;
 }

@@ -672,58 +672,6 @@ describe('Dropdown', () => {
         .at(options.length - 1)
         .should.have.prop('selected', true)
     })
-    it('does not move up on arrow up when first item is selected when open when \'wrapSelection\' is on', () => {
-      wrapperMount(<Dropdown options={options} selection wrapSelection />)
-
-      // open
-      wrapper
-        .simulate('click')
-        .find('DropdownItem')
-        .first()
-        .should.have.prop('selected', true)
-
-      // arrow up
-      domEvent.keyDown(document, { key: 'ArrowUp' })
-      wrapper.update()
-
-      // selection should not move to last item
-      // should keep on first instead
-      wrapper
-        .find('DropdownItem')
-        .first()
-        .should.have.prop('selected', true)
-      wrapper
-        .find('DropdownItem')
-        .at(options.length - 1)
-        .should.have.prop('selected', false)
-    })
-    it('does not move down on arrow down when last item is selected when open when \'wrapSelection\' is on', () => {
-      wrapperMount(<Dropdown options={options} selection wrapSelection />)
-
-      // make last item selected
-      wrapper.setState({ selectedIndex: options.length - 1 })
-      // open
-      wrapper
-        .simulate('click')
-        .find('DropdownItem')
-        .at(options.length - 1)
-        .should.have.prop('selected', true)
-
-      // arrow down
-      domEvent.keyDown(document, { key: 'ArrowDown' })
-      wrapper.update()
-
-      // selection should not move to first item
-      // should keep on last instead
-      wrapper
-        .find('DropdownItem')
-        .first()
-        .should.have.prop('selected', false)
-      wrapper
-        .find('DropdownItem')
-        .at(options.length - 1)
-        .should.have.prop('selected', true)
-    })
     it('skips over items filtered by search', () => {
       const opts = [
         { text: 'a1', value: 'a1' },
@@ -2626,6 +2574,61 @@ describe('Dropdown', () => {
 
       spy.should.not.have.been.called()
       wrapper.should.have.state('value', value)
+    })
+  })
+
+  describe('wrapSelection', () => {
+    it("does not move up on arrow up when first item is selected when open and 'wrapSelection' is false", () => {
+      wrapperMount(<Dropdown options={options} selection wrapSelection={false} />)
+
+      // open
+      wrapper
+        .simulate('click')
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('selected', true)
+
+      // arrow up
+      domEvent.keyDown(document, { key: 'ArrowUp' })
+      wrapper.update()
+
+      // selection should not move to last item
+      // should keep on first instead
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('selected', true)
+      wrapper
+        .find('DropdownItem')
+        .at(options.length - 1)
+        .should.have.prop('selected', false)
+    })
+    it("does not move down on arrow down when last item is selected when open and 'wrapSelection' is false", () => {
+      wrapperMount(<Dropdown options={options} selection wrapSelection={false} />)
+
+      // make last item selected
+      wrapper.setState({ selectedIndex: options.length - 1 })
+      // open
+      wrapper
+        .simulate('click')
+        .find('DropdownItem')
+        .at(options.length - 1)
+        .should.have.prop('selected', true)
+
+      // arrow down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      wrapper.update()
+
+      // selection should not move to first item
+      // should keep on last instead
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('selected', false)
+      wrapper
+        .find('DropdownItem')
+        .at(options.length - 1)
+        .should.have.prop('selected', true)
     })
   })
 })
