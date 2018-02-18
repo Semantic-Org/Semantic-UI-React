@@ -14,6 +14,18 @@ export const as = (...args) => PropTypes.oneOfType([
 ])(...args)
 
 /**
+ * Ensure a prop is a valid DOM node.
+ */
+export const domNode = (props, propName) => {
+  // skip if prop is undefined
+  if (props[propName] === undefined) return
+  // skip if prop is valid
+  if (props[propName] instanceof Element) return
+
+  throw new Error(`Invalid prop "${propName}" supplied, expected a DOM node.`)
+}
+
+/**
  * Similar to PropTypes.oneOf but shows closest matches.
  * Word order is ignored allowing `left chevron` to match `chevron left`.
  * Useful for very large lists of options (e.g. Icon name, Flag name, etc.)

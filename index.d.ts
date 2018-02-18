@@ -1,5 +1,6 @@
 // Addons
 export { default as Confirm, ConfirmProps } from './dist/commonjs/addons/Confirm';
+export { default as MountNode, MountNodeProps } from './dist/commonjs/addons/MountNode';
 export { default as Pagination, PaginationProps } from './dist/commonjs/addons/Pagination';
 export { default as PaginationItem, PaginationItemProps } from './dist/commonjs/addons/Pagination/PaginationItem';
 export { default as Portal, PortalProps } from './dist/commonjs/addons/Portal';
