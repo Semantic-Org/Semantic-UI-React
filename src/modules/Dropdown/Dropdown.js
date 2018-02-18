@@ -247,10 +247,15 @@ export default class Dropdown extends Component {
     /** Whether or not the menu should open when the dropdown is focused. */
     openOnFocus: PropTypes.bool,
 
-    /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
+    /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }`
+     * Or component props e.g. `{ component: <Dropdown.Divider /> }`
+     */
     options: customPropTypes.every([
       customPropTypes.disallow(['children']),
-      PropTypes.arrayOf(PropTypes.shape(DropdownItem.propTypes)),
+      PropTypes.arrayOf(PropTypes.oneOf([
+        PropTypes.shape(DropdownItem.propTypes),
+        PropTypes.shape({ component: PropTypes.node }),
+      ])),
     ]),
 
     /** Placeholder text. */
@@ -802,7 +807,7 @@ export default class Dropdown extends Component {
     const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
     const { searchQuery } = this.state
 
-    let filteredOptions = options
+    let filteredOptions = options || _.get(this.props.menu, 'items')
 
     // filter out active options
     if (multiple) {
@@ -811,6 +816,9 @@ export default class Dropdown extends Component {
 
     // filter by search query
     if (search && searchQuery) {
+      // filter any component elements like Header or Divider
+      filteredOptions = _.filter(filteredOptions, opt => !opt.component)
+
       if (_.isFunction(search)) {
         filteredOptions = search(filteredOptions, searchQuery)
       } else {
@@ -1208,6 +1216,15 @@ export default class Dropdown extends Component {
     })
   }
 
+  renderComponent = (component, props) => {
+    switch (component) {
+      case Dropdown.Divider:
+        return DropdownDivider(props)
+      case Dropdown.Header:
+        return DropdownHeader(props)
+    }
+  }
+
   renderOptions = () => {
     const { multiple, search, noResultsMessage } = this.props
     const { selectedIndex, value } = this.state
@@ -1221,19 +1238,26 @@ export default class Dropdown extends Component {
       ? optValue => _.includes(value, optValue)
       : optValue => optValue === value
 
-    return _.map(options, (opt, i) => DropdownItem.create({
-      active: isActive(opt.value),
-      onClick: this.handleItemClick,
-      selected: selectedIndex === i,
-      ...opt,
-      key: getKeyOrValue(opt.key, opt.value),
-      // Needed for handling click events on disabled items
-      style: { ...opt.style, pointerEvents: 'all' },
-    }))
+    return _.map(options, (opt, i) => {
+      if (opt.component) {
+        const { component, ...componentProps } = opt
+        return this.renderComponent(component, { ...componentProps, key: i })
+      } else {
+        return DropdownItem.create({
+          active: isActive(opt.value),
+          onClick: this.handleItemClick,
+          selected: selectedIndex === i,
+          ...opt,
+          key: getKeyOrValue(opt.key, opt.value),
+          // Needed for handling click events on disabled items
+          style: { ...opt.style, pointerEvents: 'all' },
+        })
+      }
+    })
   }
 
   renderMenu = () => {
-    const { children, header } = this.props
+    const { children, header, menu } = this.props
     const { open } = this.state
     const menuClasses = open ? 'visible' : ''
     const ariaOptions = this.getDropdownMenuAriaOptions()
@@ -1244,6 +1268,16 @@ export default class Dropdown extends Component {
       const className = cx(menuClasses, menuChild.props.className)
 
       return cloneElement(menuChild, { className, ...ariaOptions })
+    }
+
+    if (menu) {
+      const { items, className, ...menuProps } = menu
+      return (
+        <DropdownMenu {...ariaOptions} className={cx(menuClasses, className)} {...menuProps}>
+          {DropdownHeader.create(header)}
+          {this.renderOptions()}
+        </DropdownMenu>
+      )
     }
 
     return (
