@@ -4,13 +4,15 @@ import React from 'react'
 import { Menu } from 'semantic-ui-react'
 
 import { updateForKeys } from 'docs/app/HOC'
-import ComponentPropsSubComponent from './ComponentPropsComponent'
+import ComponentPropsComponent from './ComponentPropsComponent'
 
-const ComponentPropsComponents = ({ activeName, components, onItemClick, parent }) =>
-  components.length > 1 && (
+const ComponentPropsComponents = ({ activeName, components, onItemClick, parent }) => {
+  if (components.length === 1) return
+
+  return (
     <Menu color='green' compact size='small' secondary>
       {_.map(components, component => (
-        <ComponentPropsSubComponent
+        <ComponentPropsComponent
           active={activeName === component}
           key={component}
           name={component}
@@ -20,6 +22,7 @@ const ComponentPropsComponents = ({ activeName, components, onItemClick, parent 
       ))}
     </Menu>
   )
+}
 
 ComponentPropsComponents.propTypes = {
   activeName: PropTypes.oneOfType([
