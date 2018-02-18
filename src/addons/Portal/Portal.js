@@ -363,13 +363,19 @@ class Portal extends Component {
       this,
       Children.only(children),
       this.rootNode,
-      () => {
-        this.portalNode = this.rootNode.firstElementChild
-
-        eventStack.sub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target: this.portalNode })
-        eventStack.sub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target: this.portalNode })
-      },
+      () => this.attachRenderSubTreeSubscribers(eventPool),
     )
+  }
+
+  attachRenderSubTreeSubscribers = (eventPool) => {
+    // Prevent race condition bug
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/2401
+    if (!this.rootNode) return null
+
+    this.portalNode = this.rootNode.firstElementChild
+
+    eventStack.sub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target: this.portalNode })
+    eventStack.sub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target: this.portalNode })
   }
 
   mountPortal = () => {
