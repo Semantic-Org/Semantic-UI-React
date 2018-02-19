@@ -66,7 +66,7 @@ class PaginationItem extends Component {
 
   render() {
     const { active, ariaLabel, type, ...rest } = this.props
-    const disabled = type === 'ellipsisItem'
+    const disabled = rest.disabled || type === 'ellipsisItem'
 
     return MenuItem.create({
       ...rest,
