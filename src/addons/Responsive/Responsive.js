@@ -60,6 +60,8 @@ export default class Responsive extends Component {
   constructor(...args) {
     super(...args)
 
+    // Measure the root element dimension to handle gesture transitions on iOS safely
+    // https://github.com/Semantic-Org/Semantic-UI-React/pull/2531
     this.state = { width: isBrowser() ? document.documentElement.clientWidth : 0 }
   }
 
