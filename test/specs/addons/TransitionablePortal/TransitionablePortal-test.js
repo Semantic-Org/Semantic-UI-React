@@ -2,7 +2,7 @@ import React from 'react'
 
 import TransitionablePortal from 'src/addons/TransitionablePortal/TransitionablePortal'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent, sandbox, assertWithTimeout } from 'test/utils'
 
 // ----------------------------------------
 // Wrapper
@@ -77,12 +77,10 @@ describe('TransitionablePortal', () => {
       wrapper.find('button').simulate('click')
       domEvent.click(document.body)
 
-      setTimeout(() => {
+      assertWithTimeout(() => {
         onClose.should.have.been.calledOnce()
         onClose.should.have.been.calledWithMatch(null, { portalOpen: false })
-
-        done()
-      }, 10)
+      }, done)
     })
 
     it('changes `portalOpen` to false', () => {
@@ -111,16 +109,14 @@ describe('TransitionablePortal', () => {
       )
 
       wrapper.setProps({ open: false })
-      setTimeout(() => {
+      assertWithTimeout(() => {
         onHide.should.have.been.calledOnce()
         onHide.should.have.been.calledWithMatch(null, {
           ...quickTransition,
           portalOpen: false,
           transitionVisible: false,
         })
-
-        done()
-      }, 10)
+      }, done)
     })
   })
 
