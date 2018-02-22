@@ -1,5 +1,6 @@
 // Addons
 export { default as Confirm } from './addons/Confirm'
+export { default as MountNode } from './addons/MountNode'
 export { default as Pagination } from './addons/Pagination'
 export { default as PaginationItem } from './addons/Pagination/PaginationItem'
 export { default as Portal } from './addons/Portal'

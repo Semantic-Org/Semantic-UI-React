@@ -43,16 +43,30 @@ const getOptions = (count = 5) => _.times(count, (i) => {
 // Common Assertions
 // -------------------------------
 const dropdownMenuIsClosed = () => {
-  const menu = wrapper.find('DropdownMenu')
   wrapper.should.not.have.className('visible')
-  menu.should.not.have.className('visible')
+
+  const menu = wrapper.find('DropdownMenu')
+  try {
+    // when shallow rendered
+    menu.should.not.have.prop('open', true)
+  } catch (err) {
+    // when mounted
+    menu.should.not.have.className('visible')
+  }
 }
 
 const dropdownMenuIsOpen = () => {
-  const menu = wrapper.find('DropdownMenu')
   wrapper.should.have.className('active')
   wrapper.should.have.className('visible')
-  menu.should.have.className('visible')
+
+  const menu = wrapper.find('DropdownMenu')
+  try {
+    // when shallow rendered
+    menu.should.have.prop('open', true)
+  } catch (err) {
+    // when mounted
+    menu.should.have.className('visible')
+  }
 }
 
 const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }

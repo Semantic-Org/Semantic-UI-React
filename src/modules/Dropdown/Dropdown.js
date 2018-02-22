@@ -119,6 +119,9 @@ export default class Dropdown extends Component {
       ])),
     ]),
 
+    /** A dropdown menu can open to the left or to the right. */
+    direction: PropTypes.oneOf(['left', 'right']),
+
     /** A disabled dropdown menu or item does not allow user interaction. */
     disabled: PropTypes.bool,
 
@@ -1233,21 +1236,24 @@ export default class Dropdown extends Component {
   }
 
   renderMenu = () => {
-    const { children, header } = this.props
+    const { children, direction, header } = this.props
     const { open } = this.state
-    const menuClasses = open ? 'visible' : ''
     const ariaOptions = this.getDropdownMenuAriaOptions()
 
     // single menu child
     if (!childrenUtils.isNil(children)) {
       const menuChild = Children.only(children)
-      const className = cx(menuClasses, menuChild.props.className)
+      const className = cx(
+        direction,
+        useKeyOnly(open, 'visible'),
+        menuChild.props.className,
+      )
 
       return cloneElement(menuChild, { className, ...ariaOptions })
     }
 
     return (
-      <DropdownMenu {...ariaOptions} className={menuClasses}>
+      <DropdownMenu {...ariaOptions} direction={direction} open={open}>
         {DropdownHeader.create(header)}
         {this.renderOptions()}
       </DropdownMenu>
