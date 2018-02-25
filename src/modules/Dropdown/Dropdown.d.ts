@@ -257,6 +257,12 @@ export interface DropdownProps {
 
   /** A dropdown can open upward. */
   upward?: boolean;
+
+  /**
+   * A dropdown will go to the last element when ArrowUp is pressed on the first,
+   * or go to the first when ArrowDown is pressed on the last( aka infinite selection )
+   */
+  wrapSelection?: boolean;
 }
 
 /* TODO: replace with DropdownProps when #1829 will be fixed:

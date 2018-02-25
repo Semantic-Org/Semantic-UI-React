@@ -355,6 +355,12 @@ export default class Dropdown extends Component {
 
     /** A dropdown can open upward. */
     upward: PropTypes.bool,
+
+    /**
+     * A dropdown will go to the last element when ArrowUp is pressed on the first,
+     * or go to the first when ArrowDown is pressed on the last( aka infinite selection )
+     */
+    wrapSelection: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -370,6 +376,7 @@ export default class Dropdown extends Component {
     searchInput: 'text',
     selectOnBlur: true,
     selectOnNavigation: true,
+    wrapSelection: true,
   }
 
   static autoControlledProps = [
@@ -997,10 +1004,15 @@ export default class Dropdown extends Component {
     if (options === undefined || _.every(options, 'disabled')) return
 
     const lastIndex = options.length - 1
+    const { wrapSelection } = this.props
     // next is after last, wrap to beginning
     // next is before first, wrap to end
     let nextIndex = startIndex + offset
-    if (nextIndex > lastIndex) nextIndex = 0
+
+    // if 'wrapSelection' is set to false and selection is after last or before first, it just does not change
+    if (!wrapSelection && (nextIndex > lastIndex || nextIndex < 0)) {
+      nextIndex = startIndex
+    } else if (nextIndex > lastIndex) nextIndex = 0
     else if (nextIndex < 0) nextIndex = lastIndex
 
     if (options[nextIndex].disabled) {

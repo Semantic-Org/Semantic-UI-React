@@ -120,6 +120,13 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleUpwardSelection'
     />
     <ComponentExample
+      title='Wrap Selection'
+      description={[
+        'A dropdown can enable or disable wrapping the selection to the start',
+        ' when it reaches the end and vice versa'].join('')}
+      examplePath='modules/Dropdown/Usage/DropdownExampleWrapSelectionFalse'
+    />
+    <ComponentExample
       examplePath='modules/Dropdown/Usage/DropdownExampleUpwardInline'
     />
     <ComponentExample
