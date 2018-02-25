@@ -29,9 +29,9 @@ export interface AccordionAccordionProps {
    * Called when a panel title is clicked.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {number} index - The index of the clicked panel.
+   * @param {AccordionTitleProps} data - All item props.
    */
-  onTitleClick?: (event: React.MouseEvent<HTMLDivElement>, index: number | number[]) => void;
+  onTitleClick?: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void;
 
   /** Shorthand array of props for Accordion. */
   panels?: SemanticShorthandCollection<AccordionPanelProps>;
