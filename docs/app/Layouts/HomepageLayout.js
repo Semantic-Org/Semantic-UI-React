@@ -69,7 +69,7 @@ class DesktopContainer extends Component {
     const { fixed } = this.state
 
     return (
-      <Responsive {...Responsive.onlyComputer}>
+      <Responsive {...Responsive.onlyComputer} minWidth={768}>
         <Visibility once={false} onBottomPassed={this.showFixedMenu} onBottomPassedReverse={this.hideFixedMenu}>
           <Segment inverted textAlign='center' style={{ minHeight: 700, padding: '1em 0em' }} vertical>
             <Menu
@@ -114,7 +114,7 @@ class MobileContainer extends Component {
     const { sidebarOpened } = this.state
 
     return (
-      <Responsive {...Responsive.onlyMobile}>
+      <Responsive {...Responsive.onlyMobile} minWidth={0}>
         <Sidebar.Pushable>
           <Sidebar as={Menu} animation='uncover' inverted vertical visible={sidebarOpened}>
             <Menu.Item as='a' active>Home</Menu.Item>
