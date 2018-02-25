@@ -253,7 +253,7 @@ export interface DropdownProps {
   trigger?: React.ReactNode;
 
   /** Current value or value array if multiple. Creates a controlled component. */
-  value?: number | string | Array<number | string>;
+  value?: boolean | number | string | Array<boolean | number | string>;
 
   /** A dropdown can open upward. */
   upward?: boolean;

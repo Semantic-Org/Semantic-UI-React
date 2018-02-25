@@ -345,9 +345,11 @@ export default class Dropdown extends Component {
 
     /** Current value or value array if multiple. Creates a controlled component. */
     value: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.string,
       PropTypes.number,
       PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.bool,
         PropTypes.string,
         PropTypes.number,
       ])),
