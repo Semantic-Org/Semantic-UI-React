@@ -111,7 +111,7 @@ export default class Label extends Component {
     /** A label can appear as a ribbon attaching itself to an element. */
     ribbon: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(['right']),
+      PropTypes.oneOf(['left', 'right']),
     ]),
 
     /** A label can have different sizes. */
