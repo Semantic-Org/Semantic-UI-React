@@ -7,7 +7,7 @@ import { updateForKeys } from 'docs/app/HOC'
 import ComponentPropsComponent from './ComponentPropsComponent'
 
 const ComponentPropsComponents = ({ activeName, components, onItemClick, parent }) => {
-  if (components.length === 1) return
+  if (components.length === 1) return null
 
   return (
     <Menu color='green' compact size='small' secondary>
