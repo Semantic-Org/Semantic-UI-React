@@ -1,5 +1,63 @@
 # Change Log
 
+## [v0.78.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.78.3) (2018-02-26)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.78.2...v0.78.3)
+
+**Implemented enhancements:**
+
+- Dropdown: item clipped if positioned right of a Menu [\#1897](https://github.com/Semantic-Org/Semantic-UI-React/issues/1897)
+- feat\(MountNode\): add component [\#2407](https://github.com/Semantic-Org/Semantic-UI-React/pull/2407) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- React Semantic : why slide left transition is not available in \<Transition\> ? Any alternative to use custom animation in this? [\#2573](https://github.com/Semantic-Org/Semantic-UI-React/issues/2573)
+- Dropdown value/defaultValue boolean [\#2564](https://github.com/Semantic-Org/Semantic-UI-React/issues/2564)
+- Accordion: onTitleClick typings are incorrect [\#2557](https://github.com/Semantic-Org/Semantic-UI-React/issues/2557)
+- V/H Centering of Modal Broken \(After Upgrade to SUI 2.3\) [\#2549](https://github.com/Semantic-Org/Semantic-UI-React/issues/2549)
+- Modal: scrolling issue when using sub-modals [\#2248](https://github.com/Semantic-Org/Semantic-UI-React/issues/2248)
+- Dismissable Message Component inside a Popup closes the Popup itself [\#1580](https://github.com/Semantic-Org/Semantic-UI-React/issues/1580)
+
+**Closed issues:**
+
+- Failed prop type: Prop `trigger` in `Dropdown` conflicts with props: `selection`. [\#2575](https://github.com/Semantic-Org/Semantic-UI-React/issues/2575)
+- Grey vs. Gray [\#2574](https://github.com/Semantic-Org/Semantic-UI-React/issues/2574)
+- Accomodate mobx arrays [\#2566](https://github.com/Semantic-Org/Semantic-UI-React/issues/2566)
+- Example \#3 is not running [\#2559](https://github.com/Semantic-Org/Semantic-UI-React/issues/2559)
+- Duplicate key in dropdown if option text === description [\#2556](https://github.com/Semantic-Org/Semantic-UI-React/issues/2556)
+- fix\(Table\): Responsive mode causes an extra line to appear in footer [\#2535](https://github.com/Semantic-Org/Semantic-UI-React/issues/2535)
+- Thoughts on adding displayName? [\#2532](https://github.com/Semantic-Org/Semantic-UI-React/issues/2532)
+- fix\(Dropdown\): searchQuery not visible  [\#2527](https://github.com/Semantic-Org/Semantic-UI-React/issues/2527)
+- Dropdown - 'value' attribute must return the full object instead of just the value property  [\#2519](https://github.com/Semantic-Org/Semantic-UI-React/issues/2519)
+- Browser support? [\#2515](https://github.com/Semantic-Org/Semantic-UI-React/issues/2515)
+- Docs: not clickable tabs in right zone [\#2513](https://github.com/Semantic-Org/Semantic-UI-React/issues/2513)
+- Sticky Cannot read property 'getBoundingClientRect' of null [\#2509](https://github.com/Semantic-Org/Semantic-UI-React/issues/2509)
+- Popup min-width doesn't work in IE11 and Edge [\#2508](https://github.com/Semantic-Org/Semantic-UI-React/issues/2508)
+- Dropdown: off screen style [\#2504](https://github.com/Semantic-Org/Semantic-UI-React/issues/2504)
+- Progress: if progress is set to `value` and both value and total are set, display progress bar at the percentage of value/total [\#2502](https://github.com/Semantic-Org/Semantic-UI-React/issues/2502)
+- Replace manually constructed keys with factory keys [\#1533](https://github.com/Semantic-Org/Semantic-UI-React/issues/1533)
+
+**Merged pull requests:**
+
+- fix\(Transition\): add slide left [\#2576](https://github.com/Semantic-Org/Semantic-UI-React/pull/2576) ([levithomason](https://github.com/levithomason))
+- fix\(Dropdown\): allow bool item value [\#2572](https://github.com/Semantic-Org/Semantic-UI-React/pull/2572) ([levithomason](https://github.com/levithomason))
+- fix\(Accordion\): update signature of `onTitleClick` in typings [\#2568](https://github.com/Semantic-Org/Semantic-UI-React/pull/2568) ([layershifter](https://github.com/layershifter))
+- fix\(examples\): add `react-hot-loader` to deps in webpack3 example [\#2567](https://github.com/Semantic-Org/Semantic-UI-React/pull/2567) ([layershifter](https://github.com/layershifter))
+- fix\(Card\): fix typo in CardExampleLinkCardProp [\#2562](https://github.com/Semantic-Org/Semantic-UI-React/pull/2562) ([ryanpcmcquen](https://github.com/ryanpcmcquen))
+- fix\(examples\): fix in webpack3 examples [\#2561](https://github.com/Semantic-Org/Semantic-UI-React/pull/2561) ([layershifter](https://github.com/layershifter))
+- fix\(Layouts\): fix typo in HomepageLayout [\#2554](https://github.com/Semantic-Org/Semantic-UI-React/pull/2554) ([jbraithwaite](https://github.com/jbraithwaite))
+- test\(Portal\): fix tests with timeouts [\#2538](https://github.com/Semantic-Org/Semantic-UI-React/pull/2538) ([levithomason](https://github.com/levithomason))
+- fix\(Pagination\): allow to override props in PaginationItem [\#2537](https://github.com/Semantic-Org/Semantic-UI-React/pull/2537) ([aivins](https://github.com/aivins))
+- feat\(Dropdown\): add direction prop [\#2536](https://github.com/Semantic-Org/Semantic-UI-React/pull/2536) ([levithomason](https://github.com/levithomason))
+- docs\(TableExamplePagination\): order icon names per docs [\#2534](https://github.com/Semantic-Org/Semantic-UI-React/pull/2534) ([searene](https://github.com/searene))
+- feat\(Dropdown\): 'wrapSelecion' prop: option to disable "infinity" list [\#2533](https://github.com/Semantic-Org/Semantic-UI-React/pull/2533) ([GCrispino](https://github.com/GCrispino))
+- fix\(Responsive\): use root element client width [\#2531](https://github.com/Semantic-Org/Semantic-UI-React/pull/2531) ([Autarc](https://github.com/Autarc))
+- fix\(ComponentDoc\): clickable subcomponent props menu [\#2526](https://github.com/Semantic-Org/Semantic-UI-React/pull/2526) ([levithomason](https://github.com/levithomason))
+- docs\(Pagination\): add missing prop in PaginationExampleOptions [\#2510](https://github.com/Semantic-Org/Semantic-UI-React/pull/2510) ([Elliott32](https://github.com/Elliott32))
+- fix\(Progress\): use correct width for value/total [\#2503](https://github.com/Semantic-Org/Semantic-UI-React/pull/2503) ([rachelslurs](https://github.com/rachelslurs))
+- docs\(README\): add 173app to the built with list [\#2495](https://github.com/Semantic-Org/Semantic-UI-React/pull/2495) ([Carrotzpc](https://github.com/Carrotzpc))
+- docs\(ComponentExample\): fix code editor body regex [\#2481](https://github.com/Semantic-Org/Semantic-UI-React/pull/2481) ([nieroda](https://github.com/nieroda))
+- docs\(webpack\): add webpack3 boilerplate with theming [\#2371](https://github.com/Semantic-Org/Semantic-UI-React/pull/2371) ([layershifter](https://github.com/layershifter))
+
 ## [v0.78.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.78.2) (2018-02-06)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.78.1...v0.78.2)
 
@@ -430,7 +488,6 @@
 - Card subcomponents are missing `textAlign` props [\#2027](https://github.com/Semantic-Org/Semantic-UI-React/issues/2027)
 - Visibility: onOnScreen doesn't fire if element is onScreen on first render [\#1911](https://github.com/Semantic-Org/Semantic-UI-React/issues/1911)
 - RFC: ability to make Table columns resizable [\#1513](https://github.com/Semantic-Org/Semantic-UI-React/issues/1513)
-- TextArea autoHeight initialState with SSR [\#1478](https://github.com/Semantic-Org/Semantic-UI-React/issues/1478)
 - feat\(Card\): add textAlign prop to Card subcomponents [\#2038](https://github.com/Semantic-Org/Semantic-UI-React/pull/2038) ([itamar244](https://github.com/itamar244))
 - feat\(Dropdown\): remove diacritics on filter [\#2021](https://github.com/Semantic-Org/Semantic-UI-React/pull/2021) ([AgentChris](https://github.com/AgentChris))
 - feat\(Visibility\): add fireOnMount [\#2018](https://github.com/Semantic-Org/Semantic-UI-React/pull/2018) ([layershifter](https://github.com/layershifter))
@@ -584,7 +641,6 @@
 
 - Embed: add shorthand for iframe [\#1804](https://github.com/Semantic-Org/Semantic-UI-React/issues/1804)
 - feat\(Sticky\): add component [\#1747](https://github.com/Semantic-Org/Semantic-UI-React/pull/1747) ([mariolamacchia](https://github.com/mariolamacchia))
-- feat\(Transition\): add component [\#1435](https://github.com/Semantic-Org/Semantic-UI-React/pull/1435) ([layershifter](https://github.com/layershifter))
 
 **Fixed bugs:**
 
@@ -593,10 +649,6 @@
 - TextArea: wrong autoHeight counting [\#1843](https://github.com/Semantic-Org/Semantic-UI-React/issues/1843)
 - Dropdown: problems with minCharacters [\#1787](https://github.com/Semantic-Org/Semantic-UI-React/issues/1787)
 
-**Closed issues:**
-
-- Popup position is not respected when near corner of window [\#1482](https://github.com/Semantic-Org/Semantic-UI-React/issues/1482)
-
 **Merged pull requests:**
 
 - fix\(Header\): remove absent `mini` size [\#1904](https://github.com/Semantic-Org/Semantic-UI-React/pull/1904) ([layershifter](https://github.com/layershifter))
@@ -604,7 +656,6 @@
 - fix\(TextArea\): update autoHeight on text wrap [\#1898](https://github.com/Semantic-Org/Semantic-UI-React/pull/1898) ([slunecniborecek](https://github.com/slunecniborecek))
 - feat\(Embed\): add iframe shorthand [\#1810](https://github.com/Semantic-Org/Semantic-UI-React/pull/1810) ([layershifter](https://github.com/layershifter))
 - fix\(Dropdown\): fix multiple problems [\#1795](https://github.com/Semantic-Org/Semantic-UI-React/pull/1795) ([layershifter](https://github.com/layershifter))
-- fix\(Popup\): use original position if none fit in viewport [\#1483](https://github.com/Semantic-Org/Semantic-UI-React/pull/1483) ([MindFreeze](https://github.com/MindFreeze))
 
 ## [v0.71.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.71.2) (2017-07-25)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.71.1...v0.71.2)
@@ -745,7 +796,6 @@
 - Checkbox|Input: aria-\* attributes incorrectly applied [\#1750](https://github.com/Semantic-Org/Semantic-UI-React/issues/1750)
 - Missing attributes in html [\#1743](https://github.com/Semantic-Org/Semantic-UI-React/issues/1743)
 - Dropdown: minCharacters breaks search input [\#1718](https://github.com/Semantic-Org/Semantic-UI-React/issues/1718)
-- Dropdown: change active item on keyboard up/down [\#1487](https://github.com/Semantic-Org/Semantic-UI-React/issues/1487)
 
 **Closed issues:**
 
@@ -847,7 +897,6 @@
 - Update gh-pages to version 1.0.0 🚀 [\#1662](https://github.com/Semantic-Org/Semantic-UI-React/pull/1662) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - fix\(docs\): fix compatibility with IE [\#1659](https://github.com/Semantic-Org/Semantic-UI-React/pull/1659) ([layershifter](https://github.com/layershifter))
 - fix\(Dropdown\): fix key handling for options [\#1639](https://github.com/Semantic-Org/Semantic-UI-React/pull/1639) ([davezuko](https://github.com/davezuko))
-- docs\(bundlers\): add webpack 2 example [\#1497](https://github.com/Semantic-Org/Semantic-UI-React/pull/1497) ([layershifter](https://github.com/layershifter))
 
 ## [v0.68.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.68.3) (2017-05-06)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.68.2...v0.68.3)
@@ -928,7 +977,6 @@
 - docs\(Container\): Fix a typo [\#1589](https://github.com/Semantic-Org/Semantic-UI-React/pull/1589) ([eu42](https://github.com/eu42))
 - fix\(Dropdown\): fix warning on PropTypes with React \>= 15.5.0 [\#1588](https://github.com/Semantic-Org/Semantic-UI-React/pull/1588) ([g1eny0ung](https://github.com/g1eny0ung))
 - fix\(Form\): pass shorthand ids to the label's htmlFor prop [\#1517](https://github.com/Semantic-Org/Semantic-UI-React/pull/1517) ([pedrocostadev](https://github.com/pedrocostadev))
-- feat\(Modal\): Create a Modal using shorthand props [\#1508](https://github.com/Semantic-Org/Semantic-UI-React/pull/1508) ([josie11](https://github.com/josie11))
 
 ## [v0.68.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.68.0) (2017-04-16)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.67.2...v0.68.0)
@@ -951,8 +999,6 @@
 - fix\(Divider\): Vertical Divider on docs rendered incorrectly [\#1544](https://github.com/Semantic-Org/Semantic-UI-React/issues/1544)
 - Modal breaks SSR [\#1531](https://github.com/Semantic-Org/Semantic-UI-React/issues/1531)
 - Dropdown does not repopulate without clicking away from the component. [\#1523](https://github.com/Semantic-Org/Semantic-UI-React/issues/1523)
-- Wrong submit [\#1511](https://github.com/Semantic-Org/Semantic-UI-React/issues/1511)
-- Add `required` Form.Field example [\#1444](https://github.com/Semantic-Org/Semantic-UI-React/issues/1444)
 
 **Merged pull requests:**
 
@@ -975,65 +1021,12 @@
 - docs\(Form\): add data usage examples [\#1521](https://github.com/Semantic-Org/Semantic-UI-React/pull/1521) ([levithomason](https://github.com/levithomason))
 - docs\(Form\): add required and width examples [\#1515](https://github.com/Semantic-Org/Semantic-UI-React/pull/1515) ([layershifter](https://github.com/layershifter))
 - babel-standalone@6.24.0 untested ⚠️ [\#1512](https://github.com/Semantic-Org/Semantic-UI-React/pull/1512) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- chore\(package\): update to webpack 2 [\#1502](https://github.com/Semantic-Org/Semantic-UI-React/pull/1502) ([layershifter](https://github.com/layershifter))
 
 ## [v0.67.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.67.2) (2017-03-25)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.67.1...v0.67.2)
 
-**Implemented enhancements:**
-
-- Add focus method to Input component [\#1475](https://github.com/Semantic-Org/Semantic-UI-React/issues/1475)
-- Suggestion : change Button.Or text for i18n [\#1461](https://github.com/Semantic-Org/Semantic-UI-React/issues/1461)
-- Cannot pass `name` props to Search component [\#1437](https://github.com/Semantic-Org/Semantic-UI-React/issues/1437)
-- fix\(Portal\): make compatible with React Fiber [\#1470](https://github.com/Semantic-Org/Semantic-UI-React/pull/1470) ([cpunion](https://github.com/cpunion))
-- feat\(Button\): add text prop to ButtonOr [\#1466](https://github.com/Semantic-Org/Semantic-UI-React/pull/1466) ([layershifter](https://github.com/layershifter))
-- feat\(Search\): add handling of html input props [\#1442](https://github.com/Semantic-Org/Semantic-UI-React/pull/1442) ([layershifter](https://github.com/layershifter))
-
-**Fixed bugs:**
-
-- Button: floated doesn't work for Labeled Button [\#1488](https://github.com/Semantic-Org/Semantic-UI-React/issues/1488)
-- TypeScript definition errors in v0.67.1 [\#1456](https://github.com/Semantic-Org/Semantic-UI-React/issues/1456)
-- Dropdown: Clicking on "No results found." leads to hard to remove text from input [\#1451](https://github.com/Semantic-Org/Semantic-UI-React/issues/1451)
-
-**Closed issues:**
-
-- Modal\(Portal\) not compatible with React Fiber \(react@16\) [\#1458](https://github.com/Semantic-Org/Semantic-UI-React/issues/1458)
-
-**Merged pull requests:**
-
-- style\(tests\): refactor tests [\#1501](https://github.com/Semantic-Org/Semantic-UI-React/pull/1501) ([layershifter](https://github.com/layershifter))
-- fix\(Modal\): spread the user's style prop on the Modal [\#1492](https://github.com/Semantic-Org/Semantic-UI-React/pull/1492) ([rajchourasia](https://github.com/rajchourasia))
-- fix\(Form\): relax the label propType validator on FormField [\#1491](https://github.com/Semantic-Org/Semantic-UI-React/pull/1491) ([rajchourasia](https://github.com/rajchourasia))
-- fix\(Dropdown\): do not close on click when search is empty [\#1490](https://github.com/Semantic-Org/Semantic-UI-React/pull/1490) ([rajchourasia](https://github.com/rajchourasia))
-- fix\(Button\): update handling of floated prop [\#1489](https://github.com/Semantic-Org/Semantic-UI-React/pull/1489) ([layershifter](https://github.com/layershifter))
-- docs\(readme\): add FAQ [\#1480](https://github.com/Semantic-Org/Semantic-UI-React/pull/1480) ([levithomason](https://github.com/levithomason))
-- feat\(Input\): add focus\(\) method [\#1477](https://github.com/Semantic-Org/Semantic-UI-React/pull/1477) ([levithomason](https://github.com/levithomason))
-- fix\(docs\): images, anchors, show html [\#1471](https://github.com/Semantic-Org/Semantic-UI-React/pull/1471) ([levithomason](https://github.com/levithomason))
-- docs\(readme\): add Examples & Tutorials [\#1469](https://github.com/Semantic-Org/Semantic-UI-React/pull/1469) ([wyc](https://github.com/wyc))
-- docs\(Menu\): add vertical fitted menu example [\#1468](https://github.com/Semantic-Org/Semantic-UI-React/pull/1468) ([levithomason](https://github.com/levithomason))
-- style\(typings\): export all props interfaces [\#1467](https://github.com/Semantic-Org/Semantic-UI-React/pull/1467) ([layershifter](https://github.com/layershifter))
-- fix\(Dropdown\):make active dropdown item scroll into view on open [\#1465](https://github.com/Semantic-Org/Semantic-UI-React/pull/1465) ([mchirkin](https://github.com/mchirkin))
-- chore\(package\): update sinon to version 2.0.0 [\#1464](https://github.com/Semantic-Org/Semantic-UI-React/pull/1464) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- Update style-loader to version 0.14.0 🚀 [\#1463](https://github.com/Semantic-Org/Semantic-UI-React/pull/1463) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- style\(typings\): fix import errors, remove dependency [\#1460](https://github.com/Semantic-Org/Semantic-UI-React/pull/1460) ([layershifter](https://github.com/layershifter))
-- debug@2.6.3 untested ⚠️ [\#1455](https://github.com/Semantic-Org/Semantic-UI-React/pull/1455) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- docs\(bundlers\): add webpack 1 example [\#1452](https://github.com/Semantic-Org/Semantic-UI-React/pull/1452) ([layershifter](https://github.com/layershifter))
-
 ## [v0.67.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.67.1) (2017-03-13)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.67.0...v0.67.1)
-
-**Closed issues:**
-
-- Examples with images in React Docs are broken due to protocol change [\#1441](https://github.com/Semantic-Org/Semantic-UI-React/issues/1441)
-
-**Merged pull requests:**
-
-- docs\(Progress\): fix incorrect example names [\#1450](https://github.com/Semantic-Org/Semantic-UI-React/pull/1450) ([yangshun](https://github.com/yangshun))
-- docs\(examples\): direct links, maximize, better props [\#1448](https://github.com/Semantic-Org/Semantic-UI-React/pull/1448) ([levithomason](https://github.com/levithomason))
-- docs\(readme\): add Advertisement component to list [\#1447](https://github.com/Semantic-Org/Semantic-UI-React/pull/1447) ([layershifter](https://github.com/layershifter))
-- docs\(callbacks\): updates in typings [\#1446](https://github.com/Semantic-Org/Semantic-UI-React/pull/1446) ([layershifter](https://github.com/layershifter))
-- docs\(callbacks\): document remaining callbacks [\#1445](https://github.com/Semantic-Org/Semantic-UI-React/pull/1445) ([levithomason](https://github.com/levithomason))
-- Update react-router to version 4.0.0 🚀 [\#1438](https://github.com/Semantic-Org/Semantic-UI-React/pull/1438) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
 ## [v0.67.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.67.0) (2017-03-01)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.66.0...v0.67.0)
