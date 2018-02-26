@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { Form, Grid, Image, Transition } from 'semantic-ui-react'
 
 const transitions = [
-  'scale',
-  'fade', 'fade up', 'fade down', 'fade left', 'fade right',
-  'horizontal flip', 'vertical flip',
-  'drop',
-  'fly left', 'fly right', 'fly up', 'fly down',
-  'swing left', 'swing right', 'swing up', 'swing down',
   'browse', 'browse right',
-  'slide down', 'slide up', 'slide right',
+  'drop',
+  'fade', 'fade up', 'fade down', 'fade left', 'fade right',
+  'fly up', 'fly down', 'fly left', 'fly right',
+  'horizontal flip', 'vertical flip',
+  'scale',
+  'slide up', 'slide down', 'slide left', 'slide right',
+  'swing up', 'swing down', 'swing left', 'swing right',
 ]
 const options = transitions.map(name => ({ key: name, text: name, value: name }))
 
