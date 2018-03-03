@@ -11,7 +11,7 @@ const plugins = env === 'build' || env === 'build-es' ? [
 
 module.exports = {
   presets: [
-    ['es2015', options],
+    ['env', options],
   ],
   plugins,
 }

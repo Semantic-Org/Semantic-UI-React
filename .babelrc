@@ -1,6 +1,6 @@
 {
   "presets": [
-    "./build/preset-es2015",
+    "./build/preset-env",
     "react",
     "stage-1"
   ],
