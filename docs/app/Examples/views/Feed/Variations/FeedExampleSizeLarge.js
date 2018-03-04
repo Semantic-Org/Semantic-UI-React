@@ -13,7 +13,8 @@ const FeedExampleSizeLarge = () => (
         <Feed.Meta>
           <Feed.Like>
             <Icon name='like' />
-            4 Likes</Feed.Like>
+            4 Likes
+          </Feed.Like>
         </Feed.Meta>
       </Feed.Content>
     </Feed.Event>

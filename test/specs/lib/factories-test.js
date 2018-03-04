@@ -90,8 +90,12 @@ const itOverridesDefaultProps = (propsSource, defaultProps, expectedProps, short
 
 const itOverridesDefaultPropsWithFalseyProps = (propsSource, shorthandConfig) => {
   it(`overrides defaultProps with falsey ${propsSource} props`, () => {
-    const defaultProps = { undef: '-', nil: '-', zero: '-', empty: '-' }
-    const expectedProps = { undef: undefined, nil: null, zero: 0, empty: '' }
+    const defaultProps = {
+      undef: '-', nil: '-', zero: '-', empty: '-',
+    }
+    const expectedProps = {
+      undef: undefined, nil: null, zero: 0, empty: '',
+    }
 
     shallow(getShorthand({ defaultProps, ...shorthandConfig }))
       .props()
@@ -326,7 +330,9 @@ describe('factories', () => {
         const value = 'foo'
         const mapValueToProps = val => ({ 'data-mapped': val })
 
-        shallow(getShorthand({ defaultProps, mapValueToProps, overrideProps, value }))
+        shallow(getShorthand({
+          defaultProps, mapValueToProps, overrideProps, value,
+        }))
         overrideProps.should.have.been.calledWith({ ...defaultProps, ...mapValueToProps(value) })
       })
     })
@@ -393,7 +399,9 @@ describe('factories', () => {
 
       itOverridesDefaultPropsWithFalseyProps('mapValueToProps', {
         value: 'a string',
-        mapValueToProps: () => ({ undef: undefined, nil: null, zero: 0, empty: '' }),
+        mapValueToProps: () => ({
+          undef: undefined, nil: null, zero: 0, empty: '',
+        }),
       })
     })
 
@@ -415,7 +423,9 @@ describe('factories', () => {
       )
 
       itOverridesDefaultPropsWithFalseyProps('props object', {
-        value: { undef: undefined, nil: null, zero: 0, empty: '' },
+        value: {
+          undef: undefined, nil: null, zero: 0, empty: '',
+        },
       })
     })
 
@@ -444,7 +454,9 @@ describe('factories', () => {
 
       itOverridesDefaultPropsWithFalseyProps('mapValueToProps', {
         value: ['an array'],
-        mapValueToProps: () => ({ undef: undefined, nil: null, zero: 0, empty: '' }),
+        mapValueToProps: () => ({
+          undef: undefined, nil: null, zero: 0, empty: '',
+        }),
       })
     })
 

@@ -248,9 +248,7 @@ export const demand = requiredProps => (props, propName, componentName) => {
 
   const missingRequired = requiredProps.filter(requiredProp => props[requiredProp] === undefined)
   if (missingRequired.length > 0) {
-    return new Error(
-      `\`${propName}\` prop in \`${componentName}\` requires props: \`${missingRequired.join('`, `')}\`.`,
-    )
+    return new Error(`\`${propName}\` prop in \`${componentName}\` requires props: \`${missingRequired.join('`, `')}\`.`)
   }
 }
 
@@ -301,12 +299,10 @@ export const itemShorthand = (...args) => every([
   PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.object,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.object,
-      ]),
-    ),
+    PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.object,
+    ])),
   ]),
 ])(...args)
 

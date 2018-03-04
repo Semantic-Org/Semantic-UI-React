@@ -7,11 +7,9 @@ import { sandbox } from 'test/utils'
 import { CompositeClass, CompositeFunction, DOMClass, DOMFunction } from './fixtures'
 
 const mountNode = (Component, innerRef) => (
-  mount(
-    <Ref innerRef={innerRef}>
-      <Component />
-    </Ref>,
-  )
+  mount(<Ref innerRef={innerRef}>
+    <Component />
+        </Ref>)
     .find('#node')
     .getDOMNode()
 )

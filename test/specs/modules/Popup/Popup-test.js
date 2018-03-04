@@ -81,27 +81,23 @@ describe('Popup', () => {
 
   describe('offest', () => {
     it('accepts an offest to the left', () => {
-      wrapperMount(
-        <Popup
-          horizontalOffset={50}
-          position='bottom right'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
+      wrapperMount(<Popup
+        horizontalOffset={50}
+        position='bottom right'
+        content='foo'
+        trigger={<button>foo</button>}
+      />)
 
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
     it('accepts an offest to the right', () => {
-      wrapperMount(
-        <Popup
-          horizontalOffset={50}
-          position='bottom left'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
+      wrapperMount(<Popup
+        horizontalOffset={50}
+        position='bottom left'
+        content='foo'
+        trigger={<button>foo</button>}
+      />)
 
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
@@ -110,27 +106,23 @@ describe('Popup', () => {
 
   describe('verticalOffest', () => {
     it('accepts a vertical offest to the top', () => {
-      wrapperMount(
-        <Popup
-          verticalOffset={50}
-          position='bottom right'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
+      wrapperMount(<Popup
+        verticalOffset={50}
+        position='bottom right'
+        content='foo'
+        trigger={<button>foo</button>}
+      />)
 
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
     it('accepts a vertical offest to the bottom', () => {
-      wrapperMount(
-        <Popup
-          verticalOffset={50}
-          position='top left'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
+      wrapperMount(<Popup
+        verticalOffset={50}
+        position='top left'
+        content='foo'
+        trigger={<button>foo</button>}
+      />)
 
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
@@ -140,18 +132,18 @@ describe('Popup', () => {
   describe('position', () => {
     POSITIONS.forEach((position) => {
       it('is always within the viewport', () => {
-        wrapperMount(
-          <Popup
-            content='_'
-            position={position}
-            trigger={<button>foo</button>}
-            on='click'
-          />,
-        )
+        wrapperMount(<Popup
+          content='_'
+          position={position}
+          trigger={<button>foo</button>}
+          on='click'
+        />)
         wrapper.find('button').simulate('click')
 
         const rect = document.querySelector('.popup.ui').getBoundingClientRect()
-        const { top, right, bottom, left } = rect
+        const {
+          top, right, bottom, left,
+        } = rect
 
         expect(top).to.be.at.least(0)
         expect(left).to.be.at.least(0)
@@ -159,15 +151,13 @@ describe('Popup', () => {
         expect(right).to.be.at.most(document.documentElement.clientWidth)
       })
       it('is the original if no horizontal position fits within the viewport', () => {
-        wrapperMount(
-          <Popup
-            content='_'
-            position={position}
-            trigger={<button>foo</button>}
-            on='click'
-            horizontalOffset={999}
-          />,
-        )
+        wrapperMount(<Popup
+          content='_'
+          position={position}
+          trigger={<button>foo</button>}
+          on='click'
+          horizontalOffset={999}
+        />)
         wrapper.find('button').simulate('click')
         const selectedPosition = wrapper.state('position')
 
@@ -175,15 +165,13 @@ describe('Popup', () => {
       })
 
       it('is the original if no vertical position fits within the viewport', () => {
-        wrapperMount(
-          <Popup
-            content='_'
-            position={position}
-            trigger={<button>foo</button>}
-            on='click'
-            verticalOffset={3000}
-          />,
-        )
+        wrapperMount(<Popup
+          content='_'
+          position={position}
+          trigger={<button>foo</button>}
+          on='click'
+          verticalOffset={3000}
+        />)
         wrapper.find('button').simulate('click')
         const selectedPosition = wrapper.state('position')
 

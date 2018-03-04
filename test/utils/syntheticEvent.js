@@ -128,7 +128,9 @@ export const types = {
   },
   wheel: {
     listeners: ['onWheel'],
-    eventShape: { ...baseShape, deltaMode: null, deltaX: null, deltaY: null, deltaZ: null },
+    eventShape: {
+      ...baseShape, deltaMode: null, deltaX: null, deltaY: null, deltaZ: null,
+    },
   },
   media: {
     listeners: [
@@ -164,11 +166,15 @@ export const types = {
   },
   animation: {
     listeners: ['onAnimationStart', 'onAnimationEnd', 'onAnimationIteration'],
-    eventShape: { ...baseShape, animationName: null, pseudoElement: null, elapsedTime: null },
+    eventShape: {
+      ...baseShape, animationName: null, pseudoElement: null, elapsedTime: null,
+    },
   },
   transition: {
     listeners: ['onTransitionEnd'],
-    eventShape: { ...baseShape, propertyName: null, pseudoElement: null, elapsedTime: null },
+    eventShape: {
+      ...baseShape, propertyName: null, pseudoElement: null, elapsedTime: null,
+    },
   },
 }
 // ------------------------------------

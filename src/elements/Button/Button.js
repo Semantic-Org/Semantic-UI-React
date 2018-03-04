@@ -192,7 +192,9 @@ class Button extends Component {
   handleRef = c => (this.ref = c)
 
   hasIconClass = () => {
-    const { labelPosition, children, content, icon } = this.props
+    const {
+      labelPosition, children, content, icon,
+    } = this.props
 
     if (icon === true) return true
     return icon && (labelPosition || (childrenUtils.isNil(children) && _.isNil(content)))
@@ -245,9 +247,7 @@ class Button extends Component {
       useKeyOrValueAndKey(animated, 'animated'),
       useKeyOrValueAndKey(attached, 'attached'),
     )
-    const labeledClasses = cx(
-      useKeyOrValueAndKey(labelPosition || !!label, 'labeled'),
-    )
+    const labeledClasses = cx(useKeyOrValueAndKey(labelPosition || !!label, 'labeled'))
     const wrapperClasses = cx(
       useKeyOnly(disabled, 'disabled'),
       useValueAndKey(floated, 'floated'),
@@ -260,10 +260,12 @@ class Button extends Component {
     if (!_.isNil(label)) {
       const buttonClasses = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
-      const labelElement = Label.create(label, { defaultProps: {
-        basic: true,
-        pointing: labelPosition === 'left' ? 'right' : 'left',
-      } })
+      const labelElement = Label.create(label, {
+        defaultProps: {
+          basic: true,
+          pointing: labelPosition === 'left' ? 'right' : 'left',
+        },
+      })
 
       return (
         <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>

@@ -49,7 +49,8 @@ describe('Table', () => {
   common.propKeyOrValueAndKeyToClassName(Table, 'padded', ['very'])
 
   common.propValueOnlyToClassName(Table, 'color', SUI.COLORS)
-  common.propValueOnlyToClassName(Table, 'size',
+  common.propValueOnlyToClassName(
+    Table, 'size',
     _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
   )
 
@@ -108,7 +109,9 @@ describe('Table', () => {
     })
 
     it('renders the table', () => {
-      wrapperMount({ headerRow, renderBodyRow, footerRow, tableData })
+      wrapperMount({
+        headerRow, renderBodyRow, footerRow, tableData,
+      })
 
       thead.should.have.lengthOf(1)
       thead.find('tr').should.have.lengthOf(1)

@@ -23,7 +23,8 @@ const style = (
         50% { transform: translateY(0.35em); }
         100% { transform: translateY(0); }
     }
-  `}</style>
+  `}
+  </style>
 )
 
 export default class LayoutsLayout extends Component {

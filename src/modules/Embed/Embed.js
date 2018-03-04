@@ -164,7 +164,9 @@ export default class Embed extends Component {
   }
 
   render() {
-    const { aspectRatio, className, icon, placeholder } = this.props
+    const {
+      aspectRatio, className, icon, placeholder,
+    } = this.props
     const { active } = this.state
 
     const classes = cx(
@@ -187,7 +189,9 @@ export default class Embed extends Component {
   }
 
   renderEmbed() {
-    const { children, content, iframe, source } = this.props
+    const {
+      children, content, iframe, source,
+    } = this.props
     const { active } = this.state
 
     if (!active) return null

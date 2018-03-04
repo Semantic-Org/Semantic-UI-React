@@ -27,7 +27,9 @@ export default class ComponentTableRow extends Component {
   toggleEnums = () => this.setState({ showEnums: !this.state.showEnums })
 
   render() {
-    const { defaultValue, description, name, required, tags, type, value } = this.props
+    const {
+      defaultValue, description, name, required, tags, type, value,
+    } = this.props
     const { showEnums } = this.state
 
     return (

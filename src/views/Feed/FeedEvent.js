@@ -34,7 +34,9 @@ function FeedEvent(props) {
   const ElementType = getElementType(FeedEvent, props)
 
   const hasContentProp = content || date || extraImages || extraText || meta || summary
-  const contentProps = { content, date, extraImages, extraText, meta, summary }
+  const contentProps = {
+    content, date, extraImages, extraText, meta, summary,
+  }
 
   return (
     <ElementType {...rest} className={classes}>

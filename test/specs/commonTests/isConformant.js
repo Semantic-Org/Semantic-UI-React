@@ -20,7 +20,9 @@ import hasValidTypings from './hasValidTypings'
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
 export default (Component, options = {}) => {
-  const { eventTargets = {}, requiredProps = {}, rendersChildren = true, rendersPortal = false } = options
+  const {
+    eventTargets = {}, requiredProps = {}, rendersChildren = true, rendersPortal = false,
+  } = options
   const { throwError } = helpers('isConformant', Component)
 
   // tests depend on Component constructor names, enforce them
@@ -195,7 +197,8 @@ export default (Component, options = {}) => {
       )
       const expectedProps = _.uniq(computedProps).sort()
 
-      Component.handledProps.should.to.deep.equal(expectedProps,
+      Component.handledProps.should.to.deep.equal(
+        expectedProps,
         'It seems that not all props were defined in Component.handledProps, you need to check that they are equal ' +
         'to the union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes',
       )
@@ -247,7 +250,8 @@ export default (Component, options = {}) => {
           //                   ^ was not called once on "blur"
           const leftPad = ' '.repeat(constructorName.length + listenerName.length + 3)
 
-          handlerSpy.calledOnce.should.equal(true,
+          handlerSpy.calledOnce.should.equal(
+            true,
             `<${constructorName} ${listenerName}={${handlerName}} />\n` +
             `${leftPad} ^ was not called once on "${eventName}".` +
             'You may need to hoist your event handlers up to the root element.\n',

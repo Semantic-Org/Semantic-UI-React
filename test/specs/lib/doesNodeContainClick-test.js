@@ -3,7 +3,9 @@ import { sandbox } from '../../utils'
 
 const makeEvent = event => ({ clientX: 0, clientY: 0, ...event })
 
-const makeRect = rect => ({ top: 0, bottom: 1, left: 0, right: 1, ...rect })
+const makeRect = rect => ({
+  top: 0, bottom: 1, left: 0, right: 1, ...rect,
+})
 
 const makeNode = (rect, node) => ({
   contains: sandbox.spy(),
@@ -183,14 +185,18 @@ describe('doesNodeContainClick', () => {
 
   describe('decimal event and node rect values', () => {
     it('returns true when click is inside node rect', () => {
-      const node = makeNode({ top: 0.1, bottom: 0.9, left: 0.1, right: 0.9 })
+      const node = makeNode({
+        top: 0.1, bottom: 0.9, left: 0.1, right: 0.9,
+      })
       const event = makeEvent({ clientX: 0.5, clientY: 0.5 })
 
       doesNodeContainClick(node, event).should.equal(true)
     })
 
     it('returns false when click is outside node rect', () => {
-      const node = makeNode({ top: 0.1, bottom: 0.9, left: 0.1, right: 0.9 })
+      const node = makeNode({
+        top: 0.1, bottom: 0.9, left: 0.1, right: 0.9,
+      })
       const event = makeEvent({ clientX: 1.1, clientY: 1.1 })
 
       doesNodeContainClick(node, event).should.equal(false)

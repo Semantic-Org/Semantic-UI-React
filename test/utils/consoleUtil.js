@@ -1,7 +1,9 @@
 const noop = () => undefined
 
 const original = { ...console }
-const disabled = { log: noop, error: noop, debug: noop, warn: noop, info: noop }
+const disabled = {
+  log: noop, error: noop, debug: noop, warn: noop, info: noop,
+}
 
 let isDisabledOnce
 

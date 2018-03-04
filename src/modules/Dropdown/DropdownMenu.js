@@ -15,7 +15,9 @@ import {
  * A dropdown menu can contain a menu.
  */
 function DropdownMenu(props) {
-  const { children, className, content, direction, open, scrolling } = props
+  const {
+    children, className, content, direction, open, scrolling,
+  } = props
   const classes = cx(
     direction,
     useKeyOnly(open, 'visible'),

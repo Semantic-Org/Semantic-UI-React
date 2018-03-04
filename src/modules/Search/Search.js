@@ -419,7 +419,8 @@ export default class Search extends Component {
   getFlattenedResults = () => {
     const { category, results } = this.props
 
-    return !category ? results : _.reduce(results,
+    return !category ? results : _.reduce(
+      results,
       (memo, categoryData) => memo.concat(categoryData.results),
       [],
     )
@@ -516,14 +517,16 @@ export default class Search extends Component {
     const { icon, input } = this.props
     const { value } = this.state
 
-    return Input.create(input, { defaultProps: {
-      ...rest,
-      icon,
-      input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
-      onChange: this.handleSearchChange,
-      onClick: this.handleInputClick,
-      value,
-    } })
+    return Input.create(input, {
+      defaultProps: {
+        ...rest,
+        icon,
+        input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
+        onChange: this.handleSearchChange,
+        onClick: this.handleInputClick,
+        value,
+      },
+    })
   }
 
   renderNoResults = () => {

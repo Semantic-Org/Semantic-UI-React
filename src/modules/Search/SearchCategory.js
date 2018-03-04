@@ -12,7 +12,9 @@ import {
 } from '../../lib'
 
 function SearchCategory(props) {
-  const { active, children, className, content, renderer } = props
+  const {
+    active, children, className, content, renderer,
+  } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
     'category',

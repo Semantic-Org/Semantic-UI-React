@@ -15,7 +15,9 @@ import {
  * A group of images.
  */
 function ImageGroup(props) {
-  const { children, className, content, size } = props
+  const {
+    children, className, content, size,
+  } = props
   const classes = cx('ui', size, className, 'images')
   const rest = getUnhandledProps(ImageGroup, props)
   const ElementType = getElementType(ImageGroup, props)

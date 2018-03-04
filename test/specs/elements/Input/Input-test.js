@@ -90,12 +90,10 @@ describe('Input', () => {
   common.propValueOnlyToClassName(Input, 'size', SUI.SIZES)
 
   it('renders with conditional children', () => {
-    shallow(
-      <Input>
-        {true && <span />}
-        {false && <div />}
-      </Input>,
-    )
+    shallow(<Input>
+      {true && <span />}
+      {false && <div />}
+            </Input>)
       .should.contain(<span />)
       .should.not.contain(<div />)
   })
@@ -124,11 +122,9 @@ describe('Input', () => {
 
       it(`passes \`${propName}\` to the <input> when using children`, () => {
         const propValue = propName === 'onChange' ? () => null : 'foo'
-        const wrapper = shallow(
-          <Input {...{ [propName]: propValue }}>
-            <input />
-          </Input>,
-        )
+        const wrapper = shallow(<Input {...{ [propName]: propValue }}>
+          <input />
+                                </Input>)
 
         // account for overloading the onChange prop
         const expectedValue = propName === 'onChange'
@@ -191,11 +187,9 @@ describe('Input', () => {
       const e = { target: { value: 'name' } }
       const props = { 'data-foo': 'bar', onChange: spy }
 
-      const wrapper = shallow(
-        <Input {...props}>
-          <input />
-        </Input>,
-      )
+      const wrapper = shallow(<Input {...props}>
+        <input />
+                              </Input>)
 
       wrapper.find('input').simulate('change', e)
 

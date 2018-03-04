@@ -13,7 +13,8 @@ describe('Feed', () => {
     rendersContent: false,
   })
 
-  common.propValueOnlyToClassName(Feed, 'size',
+  common.propValueOnlyToClassName(
+    Feed, 'size',
     _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
   )
 

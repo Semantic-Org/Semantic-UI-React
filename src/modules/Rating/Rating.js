@@ -88,7 +88,9 @@ export default class Rating extends Component {
   static Icon = RatingIcon
 
   handleIconClick = (e, { index }) => {
-    const { clearable, disabled, maxRating, onRate } = this.props
+    const {
+      clearable, disabled, maxRating, onRate,
+    } = this.props
     const { rating } = this.state
     if (disabled) return
 

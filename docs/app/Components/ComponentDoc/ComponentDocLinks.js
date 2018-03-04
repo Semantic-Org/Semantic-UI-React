@@ -14,7 +14,9 @@ const linkListStyle = {
   top: '0',
 }
 
-const ComponentDocLinks = ({ componentName, ghLink, path, suiLink }) => (
+const ComponentDocLinks = ({
+  componentName, ghLink, path, suiLink,
+}) => (
   <List link style={linkListStyle}>
     <List.Item
       content={(

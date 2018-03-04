@@ -38,7 +38,9 @@ const semanticUIReactCompleter = {
 languageTools.addCompleter(semanticUIReactCompleter)
 
 function Editor(props) {
-  const { id, mode, value, ...rest } = props
+  const {
+    id, mode, value, ...rest
+  } = props
 
   return (
     <AceEditor

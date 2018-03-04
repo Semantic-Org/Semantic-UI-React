@@ -59,7 +59,9 @@ class DropdownSearchInput extends Component {
   handleRef = c => _.invoke(this.props, 'inputRef', c)
 
   render() {
-    const { className, tabIndex, type, value } = this.props
+    const {
+      className, tabIndex, type, value,
+    } = this.props
     const classes = cx('search', className)
     const rest = getUnhandledProps(DropdownSearchInput, this.props)
 

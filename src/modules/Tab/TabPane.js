@@ -17,7 +17,9 @@ import Segment from '../../elements/Segment/Segment'
  * A tab pane holds the content of a tab.
  */
 function TabPane(props) {
-  const { active, children, className, content, loading } = props
+  const {
+    active, children, className, content, loading,
+  } = props
 
   const classes = cx(
     useKeyOnly(active, 'active'),

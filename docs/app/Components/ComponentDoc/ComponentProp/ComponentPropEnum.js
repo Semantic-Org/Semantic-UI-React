@@ -7,7 +7,9 @@ import ComponentPropExtra from './ComponentPropExtra'
 import ComponentPropToggle from './ComponentPropEnumToggle'
 import ComponentPropValue from './ComponentPropEnumValue'
 
-const ComponentPropEnum = ({ limit, showAll, toggle, type, values }) => {
+const ComponentPropEnum = ({
+  limit, showAll, toggle, type, values,
+}) => {
   if (!_.includes(type, 'enum') || !values) return null
 
   const exceeds = values.length > limit

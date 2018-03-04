@@ -6,7 +6,9 @@ import { Menu } from 'semantic-ui-react'
 import { updateForKeys } from 'docs/app/HOC'
 import ComponentPropsComponent from './ComponentPropsComponent'
 
-const ComponentPropsComponents = ({ activeName, components, onItemClick, parent }) => {
+const ComponentPropsComponents = ({
+  activeName, components, onItemClick, parent,
+}) => {
   if (components.length === 1) return null
 
   return (

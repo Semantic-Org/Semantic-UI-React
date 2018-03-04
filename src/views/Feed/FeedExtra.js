@@ -17,7 +17,8 @@ import {
  * A feed can contain an extra content.
  */
 function FeedExtra(props) {
-  const { children,
+  const {
+    children,
     className,
     content,
     images,

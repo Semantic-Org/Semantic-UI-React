@@ -14,7 +14,9 @@ const LabelExampleCorner = () => (
     <Grid.Column>
       <Image
         fluid
-        label={{ as: 'a', color: 'red', corner: 'right', icon: 'save' }}
+        label={{
+ as: 'a', color: 'red', corner: 'right', icon: 'save',
+}}
         src='/assets/images/wireframe/image.png'
       />
     </Grid.Column>

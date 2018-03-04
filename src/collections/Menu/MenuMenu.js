@@ -14,7 +14,9 @@ import {
  * A menu can contain a sub menu.
  */
 function MenuMenu(props) {
-  const { children, className, content, position } = props
+  const {
+    children, className, content, position,
+  } = props
 
   const classes = cx(
     position,

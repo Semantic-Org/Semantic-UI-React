@@ -305,7 +305,9 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
+    const {
+      closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger,
+    } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering

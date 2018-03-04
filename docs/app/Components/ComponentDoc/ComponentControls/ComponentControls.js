@@ -9,7 +9,9 @@ import ComponentControlsMaximize from './ComponentControlsMaximize'
 import ComponentControlsShowHtml from './ComponentControlsShowHtml'
 
 const ComponentControls = (props) => {
-  const { anchorName, showHTML, showCode, onCopyLink, onShowHTML, onShowCode, visible } = props
+  const {
+    anchorName, showHTML, showCode, onCopyLink, onShowHTML, onShowCode, visible,
+  } = props
 
   return (
     <Transition

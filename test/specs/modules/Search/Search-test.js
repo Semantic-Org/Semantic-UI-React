@@ -215,9 +215,7 @@ describe('Search', () => {
 
       // menu should be completely scrolled to the bottom
       const isMenuScrolledToBottom = menu.scrollTop + menu.clientHeight === menu.scrollHeight
-      isMenuScrolledToBottom.should.be.true(
-        'When the last item in the list was selected, SearchResults did not scroll to bottom.',
-      )
+      isMenuScrolledToBottom.should.be.true('When the last item in the list was selected, SearchResults did not scroll to bottom.')
 
       //
       // Scrolls back to top
@@ -235,9 +233,7 @@ describe('Search', () => {
       // to find the item's offsetTop and ensure it's at the top.
       const selectedItem = document.querySelector('.ui.search .results.visible .result.active')
       const isMenuScrolledToTop = menu.scrollTop === selectedItem.offsetTop
-      isMenuScrolledToTop.should.be.true(
-        'When the first item in the list was selected, SearchResults did not scroll to top.',
-      )
+      isMenuScrolledToTop.should.be.true('When the first item in the list was selected, SearchResults did not scroll to top.')
     })
     it('closes the menu', () => {
       wrapperMount(<Search results={options} minCharacters={0} selectFirstResult />)
@@ -251,9 +247,7 @@ describe('Search', () => {
     })
     it('uses custom renderer', () => {
       const resultSpy = sandbox.spy(() => <div className='custom-result' />)
-      wrapperRender(
-        <Search results={options} minCharacters={0} resultRenderer={resultSpy} />,
-      )
+      wrapperRender(<Search results={options} minCharacters={0} resultRenderer={resultSpy} />)
 
       resultSpy.should.have.been.called.exactly(options.length)
 
@@ -355,15 +349,13 @@ describe('Search', () => {
     it('uses custom renderer', () => {
       const categorySpy = sandbox.spy(() => <div className='custom-category' />)
       const resultSpy = sandbox.spy(() => <div className='custom-result' />)
-      wrapperRender(
-        <Search
-          results={categoryOptions}
-          category
-          minCharacters={0}
-          categoryRenderer={categorySpy}
-          resultRenderer={resultSpy}
-        />,
-      )
+      wrapperRender(<Search
+        results={categoryOptions}
+        category
+        minCharacters={0}
+        categoryRenderer={categorySpy}
+        resultRenderer={resultSpy}
+      />)
 
       categorySpy.should.have.been.called.exactly(categoryLength + 1)
       resultSpy.should.have.been.called.exactly(categoryLength * categoryResultsLength)
@@ -633,14 +625,12 @@ describe('Search', () => {
     it('is called with (event, data) when the active selection index is changed', () => {
       const onSelectionChange = sandbox.spy()
 
-      wrapperMount(
-        <Search
-          minCharacters={0}
-          onSelectionChange={onSelectionChange}
-          results={options}
-          selectFirstResult
-        />,
-      )
+      wrapperMount(<Search
+        minCharacters={0}
+        onSelectionChange={onSelectionChange}
+        results={options}
+        selectFirstResult
+      />)
       openSearchResults()
       domEvent.keyDown(document, { key: 'ArrowDown' })
 

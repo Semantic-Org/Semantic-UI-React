@@ -81,9 +81,7 @@ const GridVariationsExamples = () => (
 
     <ComponentExample
       title='Vertical Alignment'
-      description={
-        'A grid, row, or column can specify its vertical alignment to have all its columns vertically centered.'
-      }
+      description='A grid, row, or column can specify its vertical alignment to have all its columns vertically centered.'
       examplePath='collections/Grid/Variations/GridExampleVerticalAlignment'
     />
     <ComponentExample examplePath='collections/Grid/Variations/GridExampleVerticalAlignmentRow' />

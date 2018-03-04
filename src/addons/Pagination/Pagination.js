@@ -128,10 +128,14 @@ export default class Pagination extends Component {
   })
 
   render() {
-    const { ariaLabel, boundaryRange, siblingRange, totalPages } = this.props
+    const {
+      ariaLabel, boundaryRange, siblingRange, totalPages,
+    } = this.props
     const { activePage } = this.state
 
-    const items = createPaginationItems({ activePage, boundaryRange, siblingRange, totalPages })
+    const items = createPaginationItems({
+      activePage, boundaryRange, siblingRange, totalPages,
+    })
     const rest = getUnhandledProps(Pagination, this.props)
 
     return (
