@@ -14,7 +14,8 @@ const LoginForm = () => (
       body > div > div > div.login-form {
         height: 100%;
       }
-    `}</style>
+    `}
+    </style>
     <Grid
       textAlign='center'
       style={{ height: '100%' }}

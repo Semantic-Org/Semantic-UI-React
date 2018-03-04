@@ -5,7 +5,9 @@ import { Icon, Image, Menu, Sidebar } from 'semantic-ui-react'
 import logo from 'resources/logo.png'
 import * as styles from './NavbarMobile.less'
 
-const NavbarMobile = ({ children, leftItems, onPusherClick, onToggle, rightItems, visible }) => (
+const NavbarMobile = ({
+  children, leftItems, onPusherClick, onToggle, rightItems, visible
+}) => (
   <Sidebar.Pushable>
     <Sidebar
       as={Menu}

@@ -340,7 +340,9 @@ export default class Visibility extends Component {
 
   computeCalculations() {
     const { offset } = this.props
-    const { bottom, height, top, width } = this.ref.getBoundingClientRect()
+    const {
+      bottom, height, top, width,
+    } = this.ref.getBoundingClientRect()
     const [topOffset, bottomOffset] = normalizeOffset(offset)
 
     const direction = window.pageYOffset > this.pageYOffset ? 'down' : 'up'

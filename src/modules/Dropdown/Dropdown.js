@@ -428,15 +428,11 @@ export default class Dropdown extends Component {
       const hasValue = _.has(nextProps, 'value')
 
       if (hasValue && nextProps.multiple && !isNextValueArray) {
-        console.error(
-          'Dropdown `value` must be an array when `multiple` is set.' +
-          ` Received type: \`${Object.prototype.toString.call(nextProps.value)}\`.`,
-        )
+        console.error('Dropdown `value` must be an array when `multiple` is set.' +
+          ` Received type: \`${Object.prototype.toString.call(nextProps.value)}\`.`)
       } else if (hasValue && !nextProps.multiple && isNextValueArray) {
-        console.error(
-          'Dropdown `value` must not be an array when `multiple` is not set.' +
-          ' Either set `multiple={true}` or use a string or number value.',
-        )
+        console.error('Dropdown `value` must not be an array when `multiple` is not set.' +
+          ' Either set `multiple={true}` or use a string or number value.')
       }
     }
     /* eslint-enable no-console */
@@ -769,7 +765,9 @@ export default class Dropdown extends Component {
     const currentTarget = _.get(e, 'currentTarget')
     if (currentTarget && currentTarget.contains(document.activeElement)) return
 
-    const { closeOnBlur, multiple, onBlur, selectOnBlur } = this.props
+    const {
+      closeOnBlur, multiple, onBlur, selectOnBlur,
+    } = this.props
     // do not "blur" when the mouse is down inside of the Dropdown
     if (this.isMouseDown) return
     if (onBlur) onBlur(e, this.props)
@@ -811,7 +809,9 @@ export default class Dropdown extends Component {
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
   getMenuOptions = (value = this.state.value, options = this.props.options) => {
-    const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
+    const {
+      additionLabel, additionPosition, allowAdditions, deburr, multiple, search,
+    } = this.props
     const { searchQuery } = this.state
 
     let filteredOptions = options
@@ -890,7 +890,9 @@ export default class Dropdown extends Component {
   }
 
   getDropdownAriaOptions = () => {
-    const { loading, disabled, search, multiple } = this.props
+    const {
+      loading, disabled, search, multiple,
+    } = this.props
     const { open } = this.state
     const ariaOptions = {
       role: search ? 'combobox' : 'listbox',
@@ -1150,7 +1152,9 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   renderText = () => {
-    const { multiple, placeholder, search, text } = this.props
+    const {
+      multiple, placeholder, search, text,
+    } = this.props
     const { searchQuery, value, open } = this.state
     const hasValue = multiple
       ? !_.isEmpty(value)
@@ -1180,13 +1184,15 @@ export default class Dropdown extends Component {
     const { searchQuery } = this.state
 
     if (!search) return null
-    return DropdownSearchInput.create(searchInput, { defaultProps: {
-      inputRef: this.handleSearchRef,
-      onChange: this.handleSearchChange,
-      style: { width: this.computeSearchInputWidth() },
-      tabIndex: this.computeSearchInputTabIndex(),
-      value: searchQuery,
-    } })
+    return DropdownSearchInput.create(searchInput, {
+      defaultProps: {
+        inputRef: this.handleSearchRef,
+        onChange: this.handleSearchChange,
+        style: { width: this.computeSearchInputWidth() },
+        tabIndex: this.computeSearchInputTabIndex(),
+        value: searchQuery,
+      },
+    })
   }
 
   renderSearchSizer = () => {

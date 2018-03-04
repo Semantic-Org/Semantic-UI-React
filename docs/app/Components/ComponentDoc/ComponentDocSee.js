@@ -28,13 +28,11 @@ const ComponentDocSee = ({ items }) => (
 )
 
 ComponentDocSee.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      description: PropTypes.string,
-      name: PropTypes.string,
-      type: PropTypes.string,
-    }),
-  ).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape({
+    description: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string,
+  })).isRequired,
 }
 
 export default ComponentDocSee

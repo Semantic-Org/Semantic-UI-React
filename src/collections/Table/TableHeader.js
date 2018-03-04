@@ -15,7 +15,9 @@ import {
  * A table can have a header.
  */
 function TableHeader(props) {
-  const { children, className, content, fullWidth } = props
+  const {
+    children, className, content, fullWidth,
+  } = props
   const classes = cx(
     useKeyOnly(fullWidth, 'full-width'),
     className,

@@ -74,7 +74,9 @@ function FormField(props) {
   // ----------------------------------------
   // Checkbox/Radio Control
   // ----------------------------------------
-  const controlProps = { ...rest, content, children, disabled, required, type }
+  const controlProps = {
+    ...rest, content, children, disabled, required, type,
+  }
 
   // wrap HTML checkboxes/radios in the label
   if (control === 'input' && (type === 'checkbox' || type === 'radio')) {
@@ -102,8 +104,8 @@ function FormField(props) {
 
   return (
     <ElementType className={classes}>
-      {createHTMLLabel(label, { defaultProps: {
-        htmlFor: _.get(controlProps, 'id') },
+      {createHTMLLabel(label, {
+ defaultProps: { htmlFor: _.get(controlProps, 'id') },
       })}
       {createElement(control, controlProps)}
     </ElementType>

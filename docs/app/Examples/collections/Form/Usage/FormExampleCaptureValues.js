@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 
 class FormExampleCaptureValues extends Component {
-  state = { name: '', email: '', submittedName: '', submittedEmail: '' }
+  state = {
+    name: '', email: '', submittedName: '', submittedEmail: '',
+  }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
@@ -13,7 +15,9 @@ class FormExampleCaptureValues extends Component {
   }
 
   render() {
-    const { name, email, submittedName, submittedEmail } = this.state
+    const {
+      name, email, submittedName, submittedEmail,
+    } = this.state
 
     return (
       <div>

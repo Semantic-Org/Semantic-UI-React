@@ -28,7 +28,9 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
   toggleContinuous = () => this.setState({ continuous: !this.state.continuous })
 
   render() {
-    const { continuous, contextRef, log, logCount, once } = this.state
+    const {
+      continuous, contextRef, log, logCount, once,
+    } = this.state
 
     return (
       <div ref={this.handleContextRef}>

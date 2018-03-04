@@ -49,7 +49,9 @@ class DropdownExampleRemote extends Component {
   }
 
   render() {
-    const { multiple, options, isFetching, search, value } = this.state
+    const {
+      multiple, options, isFetching, search, value,
+    } = this.state
 
     return (
       <Grid>

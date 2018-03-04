@@ -16,7 +16,9 @@ import {
  * Several icons can be used together as a group.
  */
 function IconGroup(props) {
-  const { children, className, content, size } = props
+  const {
+    children, className, content, size,
+  } = props
   const classes = cx(
     size,
     'icons',

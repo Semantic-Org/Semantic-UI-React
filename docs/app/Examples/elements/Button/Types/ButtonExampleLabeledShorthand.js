@@ -12,7 +12,9 @@ const ButtonExampleLabeledShorthand = () => (
     <Button
       content='Like'
       icon='heart'
-      label={{ as: 'a', basic: true, pointing: 'right', content: '2,048' }}
+      label={{
+ as: 'a', basic: true, pointing: 'right', content: '2,048',
+}}
       labelPosition='left'
     />
     <Button

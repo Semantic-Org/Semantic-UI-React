@@ -22,7 +22,8 @@ const Types = () => (
         used as a wrapper for third party ad network content
         like <a href='http://www.google.com/adsense/start/'>AdSense </a>
         or <a href='http://www.google.com/doubleclick/publishers/welcome/'>
-        DoubleClick</a>.
+        DoubleClick
+        </a>.
       </Message>
     </ComponentExample>
     <ComponentExample

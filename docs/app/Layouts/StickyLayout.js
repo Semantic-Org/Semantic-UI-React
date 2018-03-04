@@ -1,8 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import {
-  Container, Divider, Dropdown, Grid, Header, Icon, Image, List, Menu, Segment, Visibility,
-} from 'semantic-ui-react'
+import { Container, Divider, Dropdown, Grid, Header, Icon, Image, List, Menu, Segment, Visibility } from 'semantic-ui-react'
 
 const menuStyle = {
   border: 'none',
@@ -107,7 +105,8 @@ export default class StickyLayout extends Component {
           html, body {
             background: #fff;
           }
-        `}</style>
+        `}
+        </style>
 
         <Container text style={{ marginTop: '2em' }}>
           <Header as='h1'>Sticky Example</Header>

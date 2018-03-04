@@ -26,11 +26,9 @@ describe('Transition', () => {
   describe('animation', () => {
     SUI.DIRECTIONAL_TRANSITIONS.forEach((animation) => {
       it(`directional ${animation}`, () => {
-        wrapperShallow(
-          <Transition animation={animation} transitionOnMount={false}>
-            <p />
-          </Transition>,
-        )
+        wrapperShallow(<Transition animation={animation} transitionOnMount={false}>
+          <p />
+        </Transition>)
 
         wrapper.setState({ status: Transition.ENTERING })
         wrapper.should.have.className(animation)
@@ -44,11 +42,9 @@ describe('Transition', () => {
 
     SUI.STATIC_TRANSITIONS.forEach((animation) => {
       it(`static ${animation}`, () => {
-        wrapperShallow(
-          <Transition animation={animation} transitionOnMount={false}>
-            <p />
-          </Transition>,
-        )
+        wrapperShallow(<Transition animation={animation} transitionOnMount={false}>
+          <p />
+        </Transition>)
 
         wrapper.setState({ status: Transition.ENTERING })
         wrapper.should.have.className(animation)
@@ -63,11 +59,9 @@ describe('Transition', () => {
 
   describe('className', () => {
     it("passes element's className", () => {
-      wrapperShallow(
-        <Transition>
-          <p className='foo bar' />
-        </Transition>,
-      )
+      wrapperShallow(<Transition>
+        <p className='foo bar' />
+      </Transition>)
 
       wrapper.should.have.className('foo')
       wrapper.should.have.className('bar')
@@ -109,19 +103,15 @@ describe('Transition', () => {
 
   describe('children', () => {
     it('clones element', () => {
-      wrapperShallow(
-        <Transition>
-          <p className='foo' />
-        </Transition>,
-      ).should.have.descendants('p.foo')
+      wrapperShallow(<Transition>
+        <p className='foo' />
+                     </Transition>).should.have.descendants('p.foo')
     })
 
     it('returns null when UNMOUNTED', () => {
-      wrapperShallow(
-        <Transition>
-          <p className='foo bar' />
-        </Transition>,
-      )
+      wrapperShallow(<Transition>
+        <p className='foo bar' />
+                     </Transition>)
 
       wrapper.setState({ status: Transition.UNMOUNTED })
       wrapper.should.be.blank()
@@ -144,15 +134,13 @@ describe('Transition', () => {
     })
 
     it('sets statuses when mount is disabled', () => {
-      wrapperShallow(
-        <Transition
-          visible={false}
-          mountOnShow={false}
-          unmountOnHide={false}
-        >
-          <p />
-        </Transition>,
-      )
+      wrapperShallow(<Transition
+        visible={false}
+        mountOnShow={false}
+        unmountOnHide={false}
+      >
+        <p />
+                     </Transition>)
 
       wrapper.should.have.state('status', Transition.EXITED)
       wrapper.instance().should.include({ nextStatus: undefined })
@@ -225,11 +213,9 @@ describe('Transition', () => {
     })
 
     it('updates status when set to false while ENTERED', () => {
-      wrapperShallow(
-        <Transition transitionOnMount={false}>
-          <p />
-        </Transition>,
-      )
+      wrapperShallow(<Transition transitionOnMount={false}>
+        <p />
+                     </Transition>)
       wrapper.should.have.state('status', Transition.ENTERED)
 
       wrapper.setProps({ visible: false })
@@ -237,11 +223,9 @@ describe('Transition', () => {
     })
 
     it('updates status when set to true while UNMOUNTED', () => {
-      wrapperShallow(
-        <Transition visible={false}>
-          <p />
-        </Transition>,
-      )
+      wrapperShallow(<Transition visible={false}>
+        <p />
+                     </Transition>)
       wrapper.should.have.state('status', Transition.UNMOUNTED)
 
       wrapper.instance().mounted = true
@@ -251,15 +235,13 @@ describe('Transition', () => {
     })
 
     it('updates next status when set to true while performs an ENTERING transition', (done) => {
-      wrapperMount(
-        <Transition
-          duration={10}
-          transitionOnMount
-          onHide={done}
-        >
-          <p />
-        </Transition>,
-      )
+      wrapperMount(<Transition
+        duration={10}
+        transitionOnMount
+        onHide={done}
+      >
+        <p />
+                   </Transition>)
       wrapper.setProps({ visible: false })
 
       wrapper.should.have.state('status', Transition.ENTERING)
@@ -267,11 +249,9 @@ describe('Transition', () => {
     })
 
     it('updates next status when set to true while performs an EXITING transition', (done) => {
-      wrapperMount(
-        <Transition duration={10} onShow={done}>
-          <p />
-        </Transition>,
-      )
+      wrapperMount(<Transition duration={10} onShow={done}>
+        <p />
+                   </Transition>)
       wrapper.setProps({ visible: false })
       wrapper.setProps({ visible: true })
 
@@ -292,15 +272,13 @@ describe('Transition', () => {
         done()
       }
 
-      wrapperMount(
-        <Transition
-          duration={0}
-          onComplete={handleComplete}
-          transitionOnMount
-        >
-          <p />
-        </Transition>,
-      )
+      wrapperMount(<Transition
+        duration={0}
+        onComplete={handleComplete}
+        transitionOnMount
+      >
+        <p />
+      </Transition>)
     })
   })
 
@@ -316,25 +294,21 @@ describe('Transition', () => {
         done()
       }
 
-      wrapperMount(
-        <Transition
-          duration={0}
-          onHide={handleHide}
-          transitionOnMount={false}
-        >
-          <p />
-        </Transition>,
-      )
+      wrapperMount(<Transition
+        duration={0}
+        onHide={handleHide}
+        transitionOnMount={false}
+      >
+        <p />
+      </Transition>)
       wrapper.setProps({ visible: false })
     })
 
     it('depends on the specified duration', (done) => {
       const onHide = sandbox.spy()
-      wrapperMount(
-        <Transition duration={{ hide: 200 }} onHide={onHide} transitionOnMount={false}>
-          <p />
-        </Transition>,
-      )
+      wrapperMount(<Transition duration={{ hide: 200 }} onHide={onHide} transitionOnMount={false}>
+        <p />
+                   </Transition>)
 
       wrapper.setProps({ visible: false })
       wrapper.should.have.state('status', Transition.EXITING)
@@ -363,24 +337,20 @@ describe('Transition', () => {
         done()
       }
 
-      wrapperMount(
-        <Transition
-          duration={0}
-          onShow={handleShow}
-          transitionOnMount
-        >
-          <p />
-        </Transition>,
-      )
+      wrapperMount(<Transition
+        duration={0}
+        onShow={handleShow}
+        transitionOnMount
+      >
+        <p />
+                   </Transition>)
     })
 
     it('depends on the specified duration', (done) => {
       const onShow = sandbox.spy()
-      wrapperMount(
-        <Transition duration={{ show: 200 }} onShow={onShow} transitionOnMount>
-          <p />
-        </Transition>,
-      )
+      wrapperMount(<Transition duration={{ show: 200 }} onShow={onShow} transitionOnMount>
+        <p />
+                   </Transition>)
 
       wrapper.should.have.state('status', Transition.ENTERING)
 
@@ -408,25 +378,21 @@ describe('Transition', () => {
         done()
       }
 
-      wrapperMount(
-        <Transition
-          duration={0}
-          onStart={handleStart}
-          transitionOnMount
-        >
-          <p />
-        </Transition>,
-      )
+      wrapperMount(<Transition
+        duration={0}
+        onStart={handleStart}
+        transitionOnMount
+      >
+        <p />
+      </Transition>)
     })
   })
 
   describe('style', () => {
     it("passes element's style", () => {
-      wrapperShallow(
-        <Transition>
-          <p style={{ bottom: 5, top: 10 }} />
-        </Transition>,
-      )
+      wrapperShallow(<Transition>
+        <p style={{ bottom: 5, top: 10 }} />
+      </Transition>)
 
       wrapper.should.have.style('bottom', '5px')
       wrapper.should.have.style('top', '10px')
@@ -435,22 +401,18 @@ describe('Transition', () => {
 
   describe('transitionOnMount', () => {
     it('sets statuses when is true', () => {
-      wrapperShallow(
-        <Transition transitionOnMount>
-          <p />
-        </Transition>,
-      )
+      wrapperShallow(<Transition transitionOnMount>
+        <p />
+                     </Transition>)
 
       wrapper.should.have.state('status', Transition.EXITED)
       wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
     })
 
     it('updates status after mount when is true', () => {
-      wrapperMount(
-        <Transition transitionOnMount>
-          <p />
-        </Transition>,
-      ).should.have.state('status', Transition.ENTERING)
+      wrapperMount(<Transition transitionOnMount>
+        <p />
+                   </Transition>).should.have.state('status', Transition.ENTERING)
     })
   })
 
@@ -461,16 +423,14 @@ describe('Transition', () => {
         done()
       }
 
-      wrapperMount(
-        <Transition
-          duration={0}
-          onHide={onHide}
-          transitionOnMount={false}
-          unmountOnHide
-        >
-          <p />
-        </Transition>,
-      )
+      wrapperMount(<Transition
+        duration={0}
+        onHide={onHide}
+        transitionOnMount={false}
+        unmountOnHide
+      >
+        <p />
+                   </Transition>)
       wrapper.setProps({ visible: false })
     })
 
@@ -480,16 +440,14 @@ describe('Transition', () => {
         done()
       }
 
-      wrapperMount(
-        <Transition
-          duration={5}
-          onHide={onHide}
-          transitionOnMount={false}
-          unmountOnHide={false}
-        >
-          <p />
-        </Transition>,
-      )
+      wrapperMount(<Transition
+        duration={5}
+        onHide={onHide}
+        transitionOnMount={false}
+        unmountOnHide={false}
+      >
+        <p />
+      </Transition>)
       wrapper.setProps({ visible: false })
     })
   })

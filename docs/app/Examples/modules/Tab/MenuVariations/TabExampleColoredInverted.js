@@ -30,7 +30,9 @@ class TabExampleColoredInverted extends Component {
         <Divider hidden />
 
         <Tab
-          menu={{ color, inverted: true, attached: false, tabular: false }}
+          menu={{
+ color, inverted: true, attached: false, tabular: false,
+}}
           panes={panes}
         />
       </div>

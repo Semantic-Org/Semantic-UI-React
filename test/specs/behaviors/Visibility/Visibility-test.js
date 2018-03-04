@@ -350,7 +350,9 @@ describe('Visibility', () => {
   })
 
   describe('offset', () => {
-    _.forEach(_.filter(expectations, 'callbackName'), ({ callbackName, falsy, name, truthy }) => {
+    _.forEach(_.filter(expectations, 'callbackName'), ({
+      callbackName, falsy, name, truthy,
+    }) => {
       it(`fires ${name} when offset is number`, () => {
         const callback = sandbox.spy()
         const opts = { [callbackName]: callback }

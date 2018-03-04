@@ -65,14 +65,12 @@ describe('TransitionablePortal', () => {
     it('is called with (null, data) when Portal closes', (done) => {
       const onClose = sandbox.spy()
       const trigger = <button />
-      wrapperMount(
-        <TransitionablePortal
-          {...requiredProps}
-          onClose={onClose}
-          transition={quickTransition}
-          trigger={trigger}
-        />,
-      )
+      wrapperMount(<TransitionablePortal
+        {...requiredProps}
+        onClose={onClose}
+        transition={quickTransition}
+        trigger={trigger}
+      />)
 
       wrapper.find('button').simulate('click')
       domEvent.click(document.body)
@@ -98,15 +96,13 @@ describe('TransitionablePortal', () => {
     it('is called with (null, data) when exiting transition finished', (done) => {
       const onHide = sandbox.spy()
       const trigger = <button />
-      wrapperMount(
-        <TransitionablePortal
-          {...requiredProps}
-          onHide={onHide}
-          open
-          transition={quickTransition}
-          trigger={trigger}
-        />,
-      )
+      wrapperMount(<TransitionablePortal
+        {...requiredProps}
+        onHide={onHide}
+        open
+        transition={quickTransition}
+        trigger={trigger}
+      />)
 
       wrapper.setProps({ open: false })
       assertWithTimeout(() => {

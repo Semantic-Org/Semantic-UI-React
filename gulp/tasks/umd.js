@@ -57,6 +57,4 @@ task('build:umd', series(
 // Default
 // ----------------------------------------
 
-task('umd', series(
-  'build:umd',
-))
+task('umd', series('build:umd'))

@@ -16,7 +16,9 @@ import {
  * A statistic can contain a numeric, icon, image, or text value.
  */
 function StatisticValue(props) {
-  const { children, className, content, text } = props
+  const {
+    children, className, content, text,
+  } = props
 
   const classes = cx(
     useKeyOnly(text, 'text'),

@@ -85,8 +85,12 @@ describe('Menu', () => {
   describe('items', () => {
     const spy = sandbox.spy()
     const items = [
-      { key: 'home', name: 'home', onClick: spy, 'data-foo': 'something' },
-      { key: 'users', name: 'users', active: true, 'data-foo': 'something' },
+      {
+        key: 'home', name: 'home', onClick: spy, 'data-foo': 'something',
+      },
+      {
+        key: 'users', name: 'users', active: true, 'data-foo': 'something',
+      },
     ]
     const children = mount(<Menu items={items} />).find('MenuItem')
 

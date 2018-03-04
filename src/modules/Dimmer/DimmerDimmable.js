@@ -15,7 +15,9 @@ import {
  * A dimmable sub-component for Dimmer.
  */
 function DimmerDimmable(props) {
-  const { blurring, className, children, content, dimmed } = props
+  const {
+    blurring, className, children, content, dimmed,
+  } = props
 
   const classes = cx(
     useKeyOnly(blurring, 'blurring'),

@@ -17,7 +17,9 @@ import {
  * A card can contain content metadata.
  */
 function CardMeta(props) {
-  const { children, className, content, textAlign } = props
+  const {
+    children, className, content, textAlign,
+  } = props
   const classes = cx(
     useTextAlignProp(textAlign),
     'meta',

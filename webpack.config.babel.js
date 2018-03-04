@@ -107,8 +107,7 @@ if (!__TEST__) {
     // https://github.com/webpack-contrib/karma-webpack/issues/22
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor'],
-    }),
-  )
+    }))
 }
 
 if (__DEV__) {

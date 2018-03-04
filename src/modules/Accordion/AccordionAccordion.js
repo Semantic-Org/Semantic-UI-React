@@ -63,12 +63,10 @@ export default class AccordionAccordion extends Component {
     /** Shorthand array of props for Accordion. */
     panels: customPropTypes.every([
       customPropTypes.disallow(['children']),
-      PropTypes.arrayOf(
-        PropTypes.shape({
-          content: customPropTypes.itemShorthand,
-          title: customPropTypes.itemShorthand,
-        }),
-      ),
+      PropTypes.arrayOf(PropTypes.shape({
+        content: customPropTypes.itemShorthand,
+        title: customPropTypes.itemShorthand,
+      })),
     ]),
   }
 

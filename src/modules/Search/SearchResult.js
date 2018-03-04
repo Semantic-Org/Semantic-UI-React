@@ -18,7 +18,9 @@ import {
 //
 // Note: To avoid requiring a wrapping div, we return an array here so to
 // prevent rendering issues each node needs a unique key.
-const defaultRenderer = ({ image, price, title, description }) => [
+const defaultRenderer = ({
+  image, price, title, description,
+}) => [
   image && <div key='image' className='image'>{createHTMLImage(image)}</div>,
   <div key='content' className='content'>
     {price && <div className='price'>{price}</div>}

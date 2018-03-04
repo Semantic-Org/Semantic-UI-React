@@ -211,7 +211,9 @@ describe('Checkbox', () => {
   describe('onChange', () => {
     it('is called with (event { name, value, !checked }) on click', () => {
       const spy = sandbox.spy()
-      const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
+      const expectProps = {
+        name: 'foo', value: 'bar', checked: false, indeterminate: true,
+      }
       mount(<Checkbox onChange={spy} {...expectProps} />)
         .simulate('click')
 
@@ -246,7 +248,9 @@ describe('Checkbox', () => {
   describe('onClick', () => {
     it('is called with (event { name, value, checked }) on label click', () => {
       const spy = sandbox.spy()
-      const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
+      const expectProps = {
+        name: 'foo', value: 'bar', checked: false, indeterminate: true,
+      }
       mount(<Checkbox onClick={spy} {...expectProps} />)
         .simulate('click')
 
@@ -281,7 +285,9 @@ describe('Checkbox', () => {
   describe('onMouseDown', () => {
     it('is called with (event { name, value, checked }) on label mouse down', () => {
       const onMousedDown = sandbox.spy()
-      const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
+      const expectProps = {
+        name: 'foo', value: 'bar', checked: false, indeterminate: true,
+      }
       mount(<Checkbox onMouseDown={onMousedDown} {...expectProps} />)
         .simulate('mousedown')
 

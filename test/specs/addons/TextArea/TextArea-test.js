@@ -42,7 +42,9 @@ describe('TextArea', () => {
 
   describe('autoHeight', () => {
     // simplify styles to make height assertions easier
-    const style = { padding: 0, fontSize: '10px', lineHeight: 1, border: 'none' }
+    const style = {
+      padding: 0, fontSize: '10px', lineHeight: 1, border: 'none',
+    }
 
     const assertHeight = (height) => {
       const element = document.querySelector('textarea')
@@ -82,13 +84,11 @@ describe('TextArea', () => {
     })
 
     it('sets styles when there is a multiline value', () => {
-      wrapperMount(
-        <TextArea
-          autoHeight
-          style={style}
-          value={'line1\nline2\nline3\nline4'}
-        />,
-      )
+      wrapperMount(<TextArea
+        autoHeight
+        style={style}
+        value={'line1\nline2\nline3\nline4'}
+      />)
       assertHeight('40px') // 4 lines
     })
 

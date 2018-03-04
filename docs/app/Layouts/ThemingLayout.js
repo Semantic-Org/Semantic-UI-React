@@ -94,7 +94,9 @@ const ThemingLayout = () => (
           items={[
             { key: 'l1', name: 'link-1', content: 'Link' },
             { key: 'l2', name: 'link-2', content: 'Link' },
-            { key: 't1', name: 'text-1', content: 'Right text', position: 'right' },
+            {
+ key: 't1', name: 'text-1', content: 'Right text', position: 'right',
+},
           ]}
           pointing
         />

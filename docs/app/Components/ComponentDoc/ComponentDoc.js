@@ -27,24 +27,20 @@ class ComponentDoc extends Component {
   }
 
   static propTypes = {
-    componentGroup: PropTypes.objectOf(
-      PropTypes.shape({
-        description: PropTypes.arrayOf(PropTypes.string),
-        props: PropTypes.array,
-      }),
-    ),
+    componentGroup: PropTypes.objectOf(PropTypes.shape({
+      description: PropTypes.arrayOf(PropTypes.string),
+      props: PropTypes.array,
+    })),
     componentName: PropTypes.string.isRequired,
     description: PropTypes.arrayOf(PropTypes.string),
     ghLink: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
     path: PropTypes.string.isRequired,
-    seeItems: PropTypes.arrayOf(
-      PropTypes.shape({
-        description: PropTypes.string,
-        name: PropTypes.string,
-        type: PropTypes.string,
-      }),
-    ).isRequired,
+    seeItems: PropTypes.arrayOf(PropTypes.shape({
+      description: PropTypes.string,
+      name: PropTypes.string,
+      type: PropTypes.string,
+    })).isRequired,
     suiLink: PropTypes.string,
   }
 
@@ -75,7 +71,9 @@ class ComponentDoc extends Component {
   }
 
   render() {
-    const { componentGroup, componentName, description, ghLink, path, seeItems, suiLink } = this.props
+    const {
+      componentGroup, componentName, description, ghLink, path, seeItems, suiLink,
+    } = this.props
     const { activePath, examplesRef } = this.state
 
     return (

@@ -11,12 +11,10 @@ const propsContainerStyle = { overflowX: 'auto' }
 
 export default class ComponentProps extends Component {
   static propTypes = {
-    componentGroup: PropTypes.objectOf(
-      PropTypes.shape({
-        description: PropTypes.arrayOf(PropTypes.string),
-        props: PropTypes.array,
-      }),
-    ),
+    componentGroup: PropTypes.objectOf(PropTypes.shape({
+      description: PropTypes.arrayOf(PropTypes.string),
+      props: PropTypes.array,
+    })),
     componentName: PropTypes.string,
     props: PropTypes.arrayOf(PropTypes.object),
   }

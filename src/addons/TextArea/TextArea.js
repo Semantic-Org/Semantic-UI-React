@@ -121,7 +121,9 @@ class TextArea extends Component {
   }
 
   render() {
-    const { autoHeight, rows, style, value } = this.props
+    const {
+      autoHeight, rows, style, value,
+    } = this.props
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
 

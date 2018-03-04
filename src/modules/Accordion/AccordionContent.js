@@ -16,7 +16,9 @@ import {
  * A content sub-component for Accordion component.
  */
 function AccordionContent(props) {
-  const { active, children, className, content } = props
+  const {
+    active, children, className, content,
+  } = props
   const classes = cx(
     'content',
     useKeyOnly(active, 'active'),

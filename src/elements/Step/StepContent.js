@@ -17,7 +17,9 @@ import StepTitle from './StepTitle'
  * A step can contain a content.
  */
 function StepContent(props) {
-  const { children, className, content, description, title } = props
+  const {
+    children, className, content, description, title,
+  } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(StepContent, props)
   const ElementType = getElementType(StepContent, props)

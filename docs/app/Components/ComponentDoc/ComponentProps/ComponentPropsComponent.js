@@ -4,7 +4,9 @@ import { Menu } from 'semantic-ui-react'
 
 import { updateForKeys } from 'docs/app/HOC'
 
-const ComponentPropsComponent = ({ active, name, onClick, parent }) => (
+const ComponentPropsComponent = ({
+  active, name, onClick, parent,
+}) => (
   <Menu.Item
     active={active}
     content={name === parent ? name : name.replace(parent, `${parent}.`)}

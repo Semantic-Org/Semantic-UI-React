@@ -23,7 +23,9 @@ const renderBodyRow = ({ name, status, notes }, i) => ({
       ? { key: 'status', icon: 'attention', content: status }
       : 'Unknown',
     notes
-      ? { key: 'notes', icon: 'attention', content: notes, warning: true }
+      ? {
+        key: 'notes', icon: 'attention', content: notes, warning: true,
+      }
       : 'None',
   ],
 })

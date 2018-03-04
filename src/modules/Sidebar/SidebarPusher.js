@@ -15,7 +15,9 @@ import {
  * A pushable sub-component for Sidebar.
  */
 function SidebarPusher(props) {
-  const { className, dimmed, children, content } = props
+  const {
+    className, dimmed, children, content,
+  } = props
 
   const classes = cx(
     'pusher',

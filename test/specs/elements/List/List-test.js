@@ -49,7 +49,9 @@ describe('List', () => {
       const event = { target: null }
 
       const callbackData = { content: 'Notes', 'data-foo': 'bar' }
-      const itemProps = { key: 'notes', content: 'Notes', 'data-foo': 'bar', onClick }
+      const itemProps = {
+        key: 'notes', content: 'Notes', 'data-foo': 'bar', onClick,
+      }
 
       shallow(<List items={[itemProps]} onItemClick={onItemClick} />)
         .find('ListItem')

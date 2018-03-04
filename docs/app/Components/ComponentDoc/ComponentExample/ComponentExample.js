@@ -400,8 +400,12 @@ class ComponentExample extends Component {
   }
 
   render() {
-    const { children, description, suiVersion, title } = this.props
-    const { controlsVisible, exampleElement, isActive, showCode, showHTML } = this.state
+    const {
+      children, description, suiVersion, title,
+    } = this.props
+    const {
+      controlsVisible, exampleElement, isActive, showCode, showHTML,
+    } = this.state
 
     const exampleStyle = {
       marginBottom: '1em',

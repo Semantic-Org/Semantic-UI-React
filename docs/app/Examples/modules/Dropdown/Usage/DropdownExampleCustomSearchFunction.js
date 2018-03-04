@@ -16,7 +16,7 @@ const DropdownExampleCustomSearchFunction = () => (
   <Dropdown
     fluid
     options={options}
-    placeholder={'Try to search for case or CASE'}
+    placeholder='Try to search for case or CASE'
     search={caseSensitiveSearch}
     selection
   />

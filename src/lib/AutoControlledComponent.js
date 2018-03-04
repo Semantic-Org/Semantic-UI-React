@@ -140,9 +140,7 @@ export default class AutoControlledComponent extends Component {
         const { name } = this.constructor
         // prevent defaultFoo={} along side foo={}
         if (!_.isUndefined(this.props[defaultPropName]) && !_.isUndefined(this.props[prop])) {
-          console.error(
-            `${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`,
-          )
+          console.error(`${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`)
         }
       }
 

@@ -6,9 +6,11 @@ import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
 describe('Pagination', () => {
-  common.isConformant(Pagination, { requiredProps: {
-    totalPages: 0,
-  } })
+  common.isConformant(Pagination, {
+    requiredProps: {
+      totalPages: 0,
+    },
+  })
   common.hasSubComponents(Pagination, [PaginationItem])
 
   describe('onPageChange', () => {
@@ -17,14 +19,12 @@ describe('Pagination', () => {
       const onPageChange = sandbox.spy()
       const onPageItemClick = sandbox.spy()
 
-      mount(
-        <Pagination
-          activePage={1}
-          onPageChange={onPageChange}
-          pageItem={{ onClick: onPageItemClick }}
-          totalPages={3}
-        />,
-      )
+      mount(<Pagination
+        activePage={1}
+        onPageChange={onPageChange}
+        pageItem={{ onClick: onPageItemClick }}
+        totalPages={3}
+      />)
         .find('PaginationItem')
         .at(4)
         .simulate('click', event)

@@ -134,9 +134,7 @@ const Variations = () => (
 
     <ComponentExample
       title='Full-Width Header / Footer'
-      description={
-        'A definition table can have a full width header or footer, filling in the gap left by the first column.'
-      }
+      description='A definition table can have a full width header or footer, filling in the gap left by the first column.'
       examplePath='collections/Table/Variations/TableExampleFullWidth'
     />
 

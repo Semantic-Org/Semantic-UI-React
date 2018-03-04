@@ -23,7 +23,9 @@ import CommentText from './CommentText'
  * A comment displays user feedback to site content.
  */
 function Comment(props) {
-  const { className, children, collapsed, content } = props
+  const {
+    className, children, collapsed, content,
+  } = props
 
   const classes = cx(
     useKeyOnly(collapsed, 'collapsed'),

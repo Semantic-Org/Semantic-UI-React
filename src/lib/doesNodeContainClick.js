@@ -39,7 +39,9 @@ const doesNodeContainClick = (node, e) => {
   if (!node.offsetWidth || !node.offsetHeight || !clientRects || !clientRects.length) return false
 
   // false if the node doesn't have a valid bounding rect
-  const { top, bottom, left, right } = _.first(clientRects)
+  const {
+    top, bottom, left, right,
+  } = _.first(clientRects)
   if (_.some([top, bottom, left, right], _.isNil)) return false
 
   // we add a small decimal to the upper bound just to make it inclusive

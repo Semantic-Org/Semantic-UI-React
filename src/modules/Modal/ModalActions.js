@@ -59,7 +59,9 @@ export default class ModalActions extends Component {
   })
 
   render() {
-    const { actions, children, className, content } = this.props
+    const {
+      actions, children, className, content,
+    } = this.props
     const classes = cx('actions', className)
     const rest = getUnhandledProps(ModalActions, this.props)
     const ElementType = getElementType(ModalActions, this.props)

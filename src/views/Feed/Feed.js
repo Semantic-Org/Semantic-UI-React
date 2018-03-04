@@ -46,7 +46,9 @@ function Feed(props) {
   }
 
   const eventElements = _.map(events, (eventProps) => {
-    const { childKey, date, meta, summary, ...eventData } = eventProps
+    const {
+      childKey, date, meta, summary, ...eventData
+    } = eventProps
     const finalKey = childKey || [date, meta, summary].join('-')
 
     return (

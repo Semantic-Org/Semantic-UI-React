@@ -4,7 +4,9 @@ import { createInnerPrefix, createInnerSuffix } from './suffixFactories'
 export const createSimpleRange = (start, end, pageFactory) => _.map(_.range(start, end + 1), pageFactory)
 
 export const createComplexRange = (options, pageFactory) => {
-  const { activePage, boundaryRange, siblingRange, totalPages } = options
+  const {
+    activePage, boundaryRange, siblingRange, totalPages,
+  } = options
 
   const firstGroupEnd = boundaryRange
   const firstGroup = createSimpleRange(1, firstGroupEnd, pageFactory)

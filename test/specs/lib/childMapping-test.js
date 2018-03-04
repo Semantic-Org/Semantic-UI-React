@@ -63,8 +63,12 @@ describe('childMapping', () => {
     })
 
     it('should reconcile overlapping insertions and deletions', () => {
-      const prev = { one: true, two: true, four: true, five: true }
-      const next = { one: true, two: true, three: true, five: true }
+      const prev = {
+        one: true, two: true, four: true, five: true,
+      }
+      const next = {
+        one: true, two: true, three: true, five: true,
+      }
 
       mergeChildMappings(prev, next).should.deep.equal({
         one: true,
