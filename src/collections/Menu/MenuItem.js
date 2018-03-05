@@ -130,7 +130,11 @@ export default class MenuItem extends Component {
     const rest = getUnhandledProps(MenuItem, this.props)
 
     if (!childrenUtils.isNil(children)) {
-      return <ElementType {...rest} aria-label={ariaLabel} className={classes} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType {...rest} aria-label={ariaLabel} className={classes} onClick={this.handleClick}>
+          {children}
+        </ElementType>
+      )
     }
 
     return (
