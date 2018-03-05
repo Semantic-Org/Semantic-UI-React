@@ -12,7 +12,7 @@ export interface MenuItemProps {
 
   /** An element type to render as (string or function). */
   as?: any;
-  
+
   /** A menu item can have an aria label. */
   ariaLabel?: string;
 
