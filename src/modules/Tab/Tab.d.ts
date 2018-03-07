@@ -18,6 +18,9 @@ export interface TabProps {
   /** Shorthand props for the Menu. */
   menu?: any;
 
+  /** The alignment of the menu */
+  menuAligned?: string,
+
   /** Shorthand props for the Grid. */
   grid?: any;
 

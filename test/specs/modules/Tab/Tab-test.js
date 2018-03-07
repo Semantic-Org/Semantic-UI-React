@@ -19,7 +19,9 @@ describe('Tab', () => {
     it('defaults to an attached left aligned tabular menu', () => {
       Tab.defaultProps
         .should.have.property('menu')
-        .which.deep.equals({ attached: true, tabular: true, aligned: 'left' })
+        .which.deep.equals({ attached: true, tabular: true })
+      Tab.defaultProps
+        .should.have.property('menuAligned', 'left')
     })
 
     it('passes the props to the Menu', () => {
@@ -55,7 +57,7 @@ describe('Tab', () => {
     })
 
     it("renders right of the pane when aligned='right'", () => {
-      const wrapper = shallow(<Tab menu={{ fluid: true, vertical: true, aligned: 'right' }} panes={panes} />)
+      const wrapper = shallow(<Tab menu={{ fluid: true, vertical: true }} menuAligned='right' panes={panes} />)
 
       wrapper.childAt(0).should.match('Grid')
       wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
