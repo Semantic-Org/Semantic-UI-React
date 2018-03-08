@@ -36,13 +36,13 @@ describe('Responsive', () => {
   describe('maxWidth', () => {
     it('renders when fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.maxWidth)
-      shallow(<Responsive {...Responsive.onlyMobile} />)
-        .should.be.present()
+      shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>)
+        .should.not.be.blank()
     })
 
     it('do not render when not fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.maxWidth)
-      shallow(<Responsive {...Responsive.onlyMobile} />)
+      shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>)
         .should.be.blank()
     })
   })
@@ -50,13 +50,13 @@ describe('Responsive', () => {
   describe('minWidth', () => {
     it('renders when fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
-      shallow(<Responsive {...Responsive.onlyMobile} />)
-        .should.be.present()
+      shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>)
+        .should.not.be.blank()
     })
 
     it('do not render when not fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
-      shallow(<Responsive {...Responsive.onlyMobile} />)
+      shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>)
         .should.be.blank()
     })
   })
@@ -64,13 +64,14 @@ describe('Responsive', () => {
   describe('onUpdate', () => {
     it('listens for resize', (done) => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
-      const wrapper = shallow(<Responsive {...Responsive.onlyMobile} />)
-      wrapper.should.be.present()
+      const wrapper = mount(<Responsive {...Responsive.onlyMobile}>Mobile only</Responsive>)
+      wrapper.should.be.not.be.blank()
 
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
       domEvent.fire(window, 'resize')
 
       requestAnimationFrame(() => {
+        wrapper.update()
         wrapper.should.be.blank()
         done()
       })
