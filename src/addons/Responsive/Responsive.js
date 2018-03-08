@@ -87,6 +87,11 @@ export default class Responsive extends Component {
     eventStack.unsub('resize', this.handleResize, { target: 'window' })
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    // Update when any prop changes or the width changes. If width does not change, no update is required.
+    return !_.isEqual(nextProps, this.props) || nextState.width !== this.state.width
+  }
+
   // ----------------------------------------
   // Helpers
   // ----------------------------------------

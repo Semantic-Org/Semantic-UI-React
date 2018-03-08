@@ -62,8 +62,8 @@ describe('Responsive', () => {
     })
   })
 
-  describe('onUpdate', () => {
-    it('listens for resize', (done) => {
+  describe('on window.resize', () => {
+    it('renders using new width', (done) => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
       const wrapper = mount(<Responsive {...Responsive.onlyMobile}>Mobile only</Responsive>)
       wrapper.should.be.not.be.blank()
@@ -77,7 +77,50 @@ describe('Responsive', () => {
         done()
       })
     })
+  })
 
+  describe('shouldComponentUpdate', () => {
+    it('returns true when width changes', (done) => {
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
+      const wrapper = mount(<Responsive />)
+      const instance = wrapper.instance()
+      const spy = sandbox.spy(instance, 'shouldComponentUpdate')
+
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
+      domEvent.fire(window, 'resize')
+
+      requestAnimationFrame(() => {
+        spy.should.have.returned(true)
+        done()
+      })
+    })
+
+    it('returns false when width stays the same', (done) => {
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
+      const wrapper = mount(<Responsive />)
+      const instance = wrapper.instance()
+      const spy = sandbox.spy(instance, 'shouldComponentUpdate')
+
+      domEvent.fire(window, 'resize')
+
+      requestAnimationFrame(() => {
+        spy.should.have.returned(false)
+        done()
+      })
+    })
+
+    it('returns true when props change', () => {
+      const wrapper = mount(<Responsive {...Responsive.onlyMobile} />)
+      const instance = wrapper.instance()
+      const spy = sandbox.spy(instance, 'shouldComponentUpdate')
+
+      wrapper.setProps({ ...Responsive.onlyTablet })
+
+      spy.should.have.returned(true)
+    })
+  })
+
+  describe('onUpdate', () => {
     it('is called with (e, data) when window was resized', (done) => {
       const onUpdate = sandbox.spy()
       const width = Responsive.onlyTablet.minWidth
