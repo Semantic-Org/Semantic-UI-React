@@ -25,6 +25,12 @@ export interface ResponsiveProps {
    * @param {object} data - All props and the event value.
    */
   onUpdate?: (event: React.SyntheticEvent<HTMLElement>, data: ResponsiveOnUpdateData) => void;
+
+  /**
+   * Called to get width of screen. Defaults to using `window.innerWidth` when in a browser;
+   * otherwise, assumes a width of 0.
+   */
+  getWidth?: () => number;
 }
 
 export interface ResponsiveOnUpdateData extends ResponsiveProps {

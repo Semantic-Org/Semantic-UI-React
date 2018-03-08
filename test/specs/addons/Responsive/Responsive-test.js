@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Responsive from 'src/addons/Responsive/Responsive'
+import { isBrowser } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
 
@@ -90,6 +91,50 @@ describe('Responsive', () => {
         onUpdate.should.have.been.calledWithMatch({}, { ...Responsive.onlyMobile, width })
 
         done()
+      })
+    })
+  })
+
+  describe('getWidth', () => {
+    it('defaults browser to use window.innerWidth', () => {
+      const width = 500
+      sandbox.stub(window, 'innerWidth').value(width)
+
+      const wrapper = shallow(<Responsive />)
+
+      wrapper.state('width').should.equal(width)
+    })
+
+    it('defaults non-browser to use 0', () => {
+      isBrowser.override = false
+
+      const wrapper = shallow(<Responsive />)
+
+      wrapper.state('width').should.equal(0)
+
+      isBrowser.override = null
+    })
+
+    it('allows a custom function that returns a number', () => {
+      const getWidth = () => 500
+      const wrapper = shallow(<Responsive getWidth={getWidth} />)
+
+      wrapper.state('width').should.equal(500)
+    })
+
+    it('is called on resize', () => {
+      const getWidth = sandbox.stub()
+
+      const wrapper = mount(<Responsive getWidth={getWidth} />)
+      getWidth.should.have.been.calledOnce()
+      getWidth.reset()
+
+      getWidth.returns(500)
+      domEvent.fire(window, 'resize')
+
+      requestAnimationFrame(() => {
+        getWidth.should.have.been.calledOnce()
+        wrapper.state('width').should.equal(500)
       })
     })
   })

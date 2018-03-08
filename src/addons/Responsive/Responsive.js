@@ -44,6 +44,16 @@ export default class Responsive extends Component {
      * @param {object} data - All props and the event value.
      */
     onUpdate: PropTypes.func,
+
+    /**
+     * Called to get width of screen. Defaults to using `window.innerWidth` when in a browser;
+     * otherwise, assumes a width of 0.
+     */
+    getWidth: PropTypes.func,
+  }
+
+  static defaultProps = {
+    getWidth: () => (isBrowser() ? window.innerWidth : 0),
   }
 
   static _meta = {
@@ -60,7 +70,7 @@ export default class Responsive extends Component {
   constructor(...args) {
     super(...args)
 
-    this.state = { width: isBrowser() ? window.innerWidth : 0 }
+    this.state = { width: this.props.getWidth() }
   }
 
   componentDidMount() {
@@ -112,7 +122,7 @@ export default class Responsive extends Component {
 
   handleUpdate = (e) => {
     this.ticking = false
-    const width = window.innerWidth
+    const width = this.props.getWidth()
 
     this.setSafeState({ width })
     _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
