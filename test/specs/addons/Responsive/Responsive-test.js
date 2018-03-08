@@ -81,7 +81,7 @@ describe('Responsive', () => {
       const width = Responsive.onlyTablet.minWidth
       mount(<Responsive {...Responsive.onlyMobile} onUpdate={onUpdate} />)
 
-      sandbox.stub(document.documentElement, 'clientWidth').value(width)
+      sandbox.stub(window, 'innerWidth').value(width)
       domEvent.fire(window, 'resize')
 
       requestAnimationFrame(() => {
