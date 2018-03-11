@@ -107,6 +107,12 @@ DesktopContainer.propTypes = {
 class MobileContainer extends Component {
   state = {}
 
+  handlePusherClick = () => {
+    const { sidebarOpened } = this.state
+
+    if (sidebarOpened) this.setState({ sidebarOpened: false })
+  }
+
   handleToggle = () => this.setState({ sidebarOpened: !this.state.sidebarOpened })
 
   render() {
@@ -122,10 +128,10 @@ class MobileContainer extends Component {
             <Menu.Item as='a'>Company</Menu.Item>
             <Menu.Item as='a'>Careers</Menu.Item>
             <Menu.Item as='a'>Log in</Menu.Item>
-            <Menu.Item as='a' primary>Sign Up</Menu.Item>
+            <Menu.Item as='a'>Sign Up</Menu.Item>
           </Sidebar>
 
-          <Sidebar.Pusher dimmed={sidebarOpened} onClick={this.handleToggle} style={{ minHeight: '100vh' }}>
+          <Sidebar.Pusher dimmed={sidebarOpened} onClick={this.handlePusherClick} style={{ minHeight: '100vh' }}>
             <Segment inverted textAlign='center' style={{ minHeight: 350, padding: '1em 0em' }} vertical>
               <Container>
                 <Menu inverted pointing secondary size='large'>
