@@ -7,7 +7,7 @@ export interface PaginationProps {
   [key: string]: any;
 
   /** A pagination item can have an aria label. */
-  ariaLabel?: string;
+  'aria-label'?: string;
 
   /** Initial activePage value. */
   defaultActivePage?: number | string;

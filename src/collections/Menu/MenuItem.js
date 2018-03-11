@@ -24,9 +24,6 @@ export default class MenuItem extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** A menu item can have an aria label. */
-    ariaLabel: PropTypes.string,
-
     /** A menu item can be active. */
     active: PropTypes.bool,
 
@@ -96,7 +93,6 @@ export default class MenuItem extends Component {
 
   render() {
     const {
-      ariaLabel,
       active,
       children,
       className,
@@ -131,14 +127,14 @@ export default class MenuItem extends Component {
 
     if (!childrenUtils.isNil(children)) {
       return (
-        <ElementType {...rest} aria-label={ariaLabel} className={classes} onClick={this.handleClick}>
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
           {children}
         </ElementType>
       )
     }
 
     return (
-      <ElementType {...rest} aria-label={ariaLabel} className={classes} onClick={this.handleClick}>
+      <ElementType {...rest} className={classes} onClick={this.handleClick}>
         {Icon.create(icon)}
         {childrenUtils.isNil(content) ? _.startCase(name) : content}
       </ElementType>
