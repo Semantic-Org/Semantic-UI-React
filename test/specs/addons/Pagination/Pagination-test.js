@@ -34,5 +34,24 @@ describe('Pagination', () => {
       onPageItemClick.should.have.been.calledOnce()
       onPageItemClick.should.have.been.calledWithMatch(event, { value: 3 })
     })
+
+    it('will be omitted if occurred for the same pagination item as the current', () => {
+      const onPageChange = sandbox.spy()
+      const wrapper = mount(
+        <Pagination
+          activePage={1}
+          firstItem={null}
+          onPageChange={onPageChange}
+          prevItem={null}
+          totalPages={3}
+        />,
+      )
+
+      wrapper
+        .find('PaginationItem')
+        .at(0)
+        .simulate('click')
+      onPageChange.should.have.not.been.called()
+    })
   })
 })

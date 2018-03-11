@@ -214,6 +214,7 @@ export default class Visibility extends Component {
     const { context } = this.props
 
     this.unattachHandlers(context)
+    if (this.frameId) cancelAnimationFrame(this.frameId)
   }
 
   attachHandlers(context) {
@@ -284,7 +285,7 @@ export default class Visibility extends Component {
     if (this.ticking) return
 
     this.ticking = true
-    requestAnimationFrame(this.update)
+    this.frameId = requestAnimationFrame(this.update)
   }
 
   update = () => {

@@ -105,7 +105,10 @@ describe('Visibility', () => {
 
   before(() => {
     requestAnimationFrame = window.requestAnimationFrame
-    window.requestAnimationFrame = fn => fn()
+    window.requestAnimationFrame = (fn) => {
+      fn()
+      return true
+    }
   })
 
   after(() => {
@@ -331,6 +334,18 @@ describe('Visibility', () => {
 
       domEvent.scroll(document)
       onUpdate.should.not.have.been.called()
+    })
+  })
+
+  describe('componentWillUnmount', () => {
+    it('will cancel requestAnimationFrame', () => {
+      const cancelAnimationFrame = sandbox.spy(window, 'cancelAnimationFrame')
+      wrapperMount(<Visibility />)
+
+      mockScroll(0, 0)
+      wrapper.unmount()
+
+      cancelAnimationFrame.should.have.been.calledOnce()
     })
   })
 
