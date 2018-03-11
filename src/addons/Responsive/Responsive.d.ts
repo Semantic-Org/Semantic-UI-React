@@ -28,12 +28,12 @@ export interface ResponsiveProps {
 }
 
 export interface ResponsiveOnUpdateData extends ResponsiveProps {
-  width: string;
+  width: number;
 }
 
 export interface ResponsiveWidthShorthand {
-  minWidth: number;
-  maxWidth?: number;
+  minWidth?: number | string;
+  maxWidth?: number | string;
 }
 
 declare class Responsive extends React.Component<ResponsiveProps, {}> {
