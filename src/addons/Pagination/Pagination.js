@@ -112,9 +112,14 @@ export default class Pagination extends Component {
 
   static Item = PaginationItem
 
-  handleItemClick = (e, { value }) => {
-    this.trySetState({ activePage: value })
-    _.invoke(this.props, 'onPageChange', e, { ...this.props, activePage: value })
+  handleItemClick = (e, { value: nextActivePage }) => {
+    const { activePage: prevActivePage } = this.state
+
+    // Heads up! We need the cast to the "number" type there, as `activePage` can be a string
+    if (+prevActivePage === +nextActivePage) return
+
+    this.trySetState({ activePage: nextActivePage })
+    _.invoke(this.props, 'onPageChange', e, { ...this.props, activePage: nextActivePage })
   }
 
   handleItemOverrides = (active, type, value) => predefinedProps => ({
