@@ -17,9 +17,6 @@ class PaginationItem extends Component {
     /** A pagination item can be active. */
     active: PropTypes.bool,
 
-    /** A pagination item can have an aria label. */
-    ariaLabel: PropTypes.string,
-
     /** A pagination item can be disabled. */
     disabled: PropTypes.bool,
 
@@ -73,7 +70,7 @@ class PaginationItem extends Component {
   })
 
   render() {
-    const { active, ariaLabel, type } = this.props
+    const { active, type } = this.props
     const disabled = this.props.disabled || type === 'ellipsisItem'
 
     return MenuItem.create(this.props, {
@@ -81,7 +78,6 @@ class PaginationItem extends Component {
         active,
         disabled,
         'aria-current': active,
-        'aria-label': ariaLabel,
         onClick: this.handleClick,
         onKeyDown: this.handleKeyDown,
         tabIndex: disabled ? -1 : 0,
