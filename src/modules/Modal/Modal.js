@@ -21,6 +21,7 @@ import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
+import Ref from '../../addons/Ref'
 
 const debug = makeDebugger('modal')
 
@@ -281,25 +282,31 @@ class Modal extends Component {
     const closeIconJSX = Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })
 
     if (!childrenUtils.isNil(children)) {
+      // TODO: remove when ref with "as" is resolved: PR #2306
       return (
-        <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
-          <MountNode className={mountClasses} node={mountNode} />
+        <Ref innerRef={this.handleRef}>
+          <ElementType {...rest} className={classes} style={{ marginTop, ...style }}>
+            <MountNode className={mountClasses} node={mountNode} />
 
-          {closeIconJSX}
-          {children}
-        </ElementType>
+            {closeIconJSX}
+            {children}
+          </ElementType>
+        </Ref>
       )
     }
 
+    // TODO: remove when ref with "as" is resolved: PR #2306
     return (
-      <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
-        <MountNode className={mountClasses} node={mountNode} />
+      <Ref innerRef={this.handleRef}>
+        <ElementType {...rest} className={classes} style={{ marginTop, ...style }}>
+          <MountNode className={mountClasses} node={mountNode} />
 
-        {closeIconJSX}
-        {ModalHeader.create(header)}
-        {ModalContent.create(content)}
-        {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
-      </ElementType>
+          {closeIconJSX}
+          {ModalHeader.create(header)}
+          {ModalContent.create(content)}
+          {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
+        </ElementType>
+      </Ref>
     )
   }
 
