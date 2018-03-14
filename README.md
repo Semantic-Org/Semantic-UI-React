@@ -1,3 +1,5 @@
+⚠️NOTE: Currently Semantic UI React is not yet compatible with the latest 2.3 version of Semantic UI styles. See [#2250](https://github.com/Semantic-Org/Semantic-UI-React/issues/2550) for more info.
+
 <!-- Logo -->
 <p align="center">
   <a href="https://react.semantic-ui.com">
