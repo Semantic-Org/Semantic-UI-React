@@ -19,7 +19,7 @@ import React, { cloneElement, isValidElement } from 'react'
  */
 export function createShorthand(Component, mapValueToProps, val, options = {}) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
-    throw new Error('createShorthandFactory() Component must be a string or function.')
+    throw new Error('createShorthand() Component must be a string or function.')
   }
   // short circuit noop values
   if (_.isNil(val) || _.isBoolean(val)) return null
