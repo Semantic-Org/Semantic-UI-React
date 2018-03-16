@@ -63,7 +63,7 @@ export default class SearchExampleCategory extends Component {
             category
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, { 'leading': true })}
+            onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
             results={results}
             value={value}
             {...this.props}
