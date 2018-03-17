@@ -78,6 +78,7 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - https://tax.cryptact.com
 - https://www.hurriyetoto.com
 - https://173app.com
+- https://disten.se
 
 ## Example Projects
 
