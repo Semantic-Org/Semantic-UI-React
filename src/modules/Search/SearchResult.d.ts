@@ -45,7 +45,7 @@ export interface SearchResultProps {
   renderer?: (props: SearchResultProps) => Array<React.ReactElement<any>>;
 
   /** Display title. */
-  title?: string;
+  title: string;
 }
 
 declare const SearchResult: React.ComponentClass<SearchResultProps>;
