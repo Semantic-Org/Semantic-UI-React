@@ -38,8 +38,9 @@ export const DIRECTIONAL_TRANSITIONS = [
   'scale',
   'slide up', 'slide down', 'slide left', 'slide right',
   'swing up', 'swing down', 'swing left', 'swing right',
+  'zoom',
 ]
-export const STATIC_TRANSITIONS = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce']
+export const STATIC_TRANSITIONS = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce', 'glow']
 export const TRANSITIONS = [...DIRECTIONAL_TRANSITIONS, ...STATIC_TRANSITIONS]
 
 // Generated from:
