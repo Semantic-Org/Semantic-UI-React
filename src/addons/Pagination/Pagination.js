@@ -18,7 +18,7 @@ import PaginationItem from './PaginationItem'
 export default class Pagination extends Component {
   static propTypes = {
     /** A pagination item can have an aria label. */
-    ariaLabel: PropTypes.string,
+    'aria-label': PropTypes.string,
 
     /** Initial activePage value. */
     defaultActivePage: PropTypes.oneOfType([
@@ -82,24 +82,24 @@ export default class Pagination extends Component {
   ]
 
   static defaultProps = {
-    ariaLabel: 'Pagination Navigation',
+    'aria-label': 'Pagination Navigation',
     boundaryRange: 1,
     ellipsisItem: '...',
     firstItem: {
-      ariaLabel: 'First item',
+      'aria-label': 'First item',
       content: '«',
     },
     lastItem: {
-      ariaLabel: 'Last item',
+      'aria-label': 'Last item',
       content: '»',
     },
     nextItem: {
-      ariaLabel: 'Next item',
+      'aria-label': 'Next item',
       content: '⟩',
     },
     pageItem: {},
     prevItem: {
-      ariaLabel: 'Previous item',
+      'aria-label': 'Previous item',
       content: '⟨',
     },
     siblingRange: 1,
@@ -133,7 +133,7 @@ export default class Pagination extends Component {
   })
 
   render() {
-    const { ariaLabel, boundaryRange, siblingRange, totalPages } = this.props
+    const { 'aria-label': ariaLabel, boundaryRange, siblingRange, totalPages } = this.props
     const { activePage } = this.state
 
     const items = createPaginationItems({ activePage, boundaryRange, siblingRange, totalPages })
