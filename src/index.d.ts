@@ -64,8 +64,9 @@ type SemanticDIRECTIONALTRANSITIONS =  'browse' | 'browse right' |
   'horizontal flip' | 'vertical flip' |
   'scale' |
   'slide up' | 'slide down' | 'slide left' | 'slide right' |
-  'swing up' | 'swing down' | 'swing left' | 'swing right';
-type SemanticSTATICTRANSITIONS = 'jiggle' | 'flash' | 'shake' | 'pulse' | 'tada' | 'bounce';
+  'swing up' | 'swing down' | 'swing left' | 'swing right' |
+  'zoom';
+type SemanticSTATICTRANSITIONS = 'jiggle' | 'flash' | 'shake' | 'pulse' | 'tada' | 'bounce' | 'glow';
 
 export type SemanticTRANSITIONS = SemanticDIRECTIONALTRANSITIONS | SemanticSTATICTRANSITIONS;
 
