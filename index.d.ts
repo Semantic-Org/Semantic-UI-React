@@ -142,6 +142,7 @@ export { default as Checkbox, CheckboxProps } from './dist/commonjs/modules/Chec
 
 export { default as Dimmer, DimmerProps } from './dist/commonjs/modules/Dimmer';
 export { default as DimmerDimmable, DimmerDimmableProps } from './dist/commonjs/modules/Dimmer/DimmerDimmable';
+export { default as DimmerInner, DimmerInnerProps } from './dist/commonjs/modules/Dimmer/DimmerInner';
 
 export { default as Dropdown, DropdownProps, DropdownOnSearchChangeData } from './dist/commonjs/modules/Dropdown';
 export { default as DropdownDivider, DropdownDividerProps } from './dist/commonjs/modules/Dropdown/DropdownDivider';

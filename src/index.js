@@ -115,6 +115,7 @@ export { default as Checkbox } from './modules/Checkbox'
 
 export { default as Dimmer } from './modules/Dimmer'
 export { default as DimmerDimmable } from './modules/Dimmer/DimmerDimmable'
+export { default as DimmerInner } from './modules/Dimmer/DimmerInner'
 
 export { default as Dropdown } from './modules/Dropdown'
 export { default as DropdownDivider } from './modules/Dropdown/DropdownDivider'
