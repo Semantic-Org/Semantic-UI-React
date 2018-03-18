@@ -206,6 +206,13 @@ describe('Checkbox', () => {
       shallow(<Checkbox name='firstName' />)
         .should.have.className('fitted')
     })
+
+    it('does not add the "fitted" class when falsey but not null', () => {
+      shallow(<Checkbox name='firstName' label='' />)
+        .should.not.have.className('fitted')
+      shallow(<Checkbox name='firstName' label={0} />)
+        .should.not.have.className('fitted')
+    })
   })
 
   describe('onChange', () => {
