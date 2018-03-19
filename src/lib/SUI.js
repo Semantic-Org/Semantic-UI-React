@@ -44,203 +44,263 @@ export const TRANSITIONS = [...DIRECTIONAL_TRANSITIONS, ...STATIC_TRANSITIONS]
 
 // Generated from:
 // https://github.com/Semantic-Org/Semantic-UI/blob/master/dist/components/icon.css
-export const WEB_CONTENT_ICONS = [
-  'search', 'mail outline', 'signal', 'setting', 'home', 'inbox', 'browser', 'tag', 'tags', 'image', 'calendar',
-  'comment', 'shop', 'comments', 'external', 'privacy', 'settings', 'comments', 'external', 'trophy', 'payment', 'feed',
-  'alarm outline', 'tasks', 'cloud', 'lab', 'mail', 'dashboard', 'comment outline', 'comments outline', 'sitemap',
-  'idea', 'alarm', 'terminal', 'code', 'protect', 'calendar outline', 'ticket', 'external square', 'bug', 'mail square',
-  'history', 'options', 'text telephone', 'find', 'wifi', 'alarm mute', 'alarm mute outline', 'copyright', 'at',
-  'eyedropper', 'paint brush', 'heartbeat', 'mouse pointer', 'hourglass empty', 'hourglass start', 'hourglass half',
-  'hourglass end', 'hourglass full', 'hand pointer', 'trademark', 'registered', 'creative commons', 'add to calendar',
-  'remove from calendar', 'delete calendar', 'checked calendar', 'industry', 'shopping bag', 'shopping basket',
-  'hashtag', 'percent', 'address book', 'address book outline', 'address card', 'address card outline', 'id badge',
-  'id card', 'id card outline', 'podcast', 'window close', 'window close outline', 'window maximize', 'window minimize',
-  'window restore',
-]
-export const USER_ACTIONS_ICONS = [
-  'wait', 'download', 'repeat', 'refresh', 'lock', 'bookmark', 'print', 'write', 'adjust', 'theme', 'edit',
-  'external share', 'ban', 'mail forward', 'share', 'expand', 'compress', 'unhide', 'hide', 'random', 'retweet',
-  'sign out', 'pin', 'sign in', 'upload', 'call', 'remove bookmark', 'call square', 'unlock', 'configure', 'filter',
-  'wizard', 'undo', 'exchange', 'cloud download', 'cloud upload', 'reply', 'reply all', 'erase', 'unlock alternate',
-  'write square', 'share square', 'archive', 'translate', 'recycle', 'send', 'send outline', 'share alternate',
-  'share alternate square', 'add to cart', 'in cart', 'add user', 'remove user', 'object group', 'object ungroup',
-  'clone', 'talk', 'talk outline',
-]
-export const MESSAGES_ICONS = [
-  'help circle', 'info circle', 'warning circle', 'warning sign', 'announcement', 'help', 'info', 'warning', 'birthday',
-  'help circle outline',
-]
-export const USERS_ICONS = [
-  'user', 'users', 'doctor', 'handicap', 'student', 'child', 'spy', 'user circle', 'user circle outline',
-  'user outline',
-]
-export const GENDER_SEXUALITY_ICONS = [
-  'female', 'male', 'woman', 'man', 'non binary transgender', 'intergender', 'transgender', 'lesbian', 'gay',
-  'heterosexual', 'other gender', 'other gender vertical', 'other gender horizontal', 'neuter', 'genderless',
-]
+// See our gulp tasks for details.
 export const ACCESSIBILITY_ICONS = [
-  'universal access', 'wheelchair', 'blind', 'audio description', 'volume control phone', 'braille', 'asl',
-  'assistive listening systems', 'deafness', 'sign language', 'low vision',
+  'american sign language interpreting', 'assistive listening systems', 'audio description', 'blind', 'braille',
+  'closed captioning outline', 'closed captioning', 'deaf', 'low vision', 'phone volume', 'question circle outline',
+  'question circle', 'sign language', 'tty', 'universal access', 'wheelchair',
 ]
-export const VIEW_ADJUSTMENT_ICONS = [
-  'block layout', 'grid layout', 'list layout', 'zoom', 'zoom out', 'resize vertical', 'resize horizontal', 'maximize',
-  'crop',
+export const ARROWS_ICONS = [
+  'angle double down', 'angle double left', 'angle double right', 'angle double up', 'angle down', 'angle left',
+  'angle right', 'angle up', 'arrow alternate circle down outline', 'arrow alternate circle down',
+  'arrow alternate circle left outline', 'arrow alternate circle left', 'arrow alternate circle right outline',
+  'arrow alternate circle right', 'arrow alternate circle up outline', 'arrow alternate circle up', 'arrow circle down',
+  'arrow circle left', 'arrow circle right', 'arrow circle up', 'arrow down', 'arrow left', 'arrow right', 'arrow up',
+  'arrows alternate horizontal', 'arrows alternate vertical', 'arrows alternate', 'caret down', 'caret left',
+  'caret right', 'caret square down outline', 'caret square down', 'caret square left outline', 'caret square left',
+  'caret square right outline', 'caret square right', 'caret square up outline', 'caret square up', 'caret up',
+  'cart arrow down', 'chart line', 'chevron circle down', 'chevron circle left', 'chevron circle right',
+  'chevron circle up', 'chevron down', 'chevron left', 'chevron right', 'chevron up', 'cloud download alternate',
+  'cloud upload alternate', 'download', 'exchange alternate', 'expand arrows alternate', 'external link alternate',
+  'external link square alternate', 'hand point down outline', 'hand point down', 'hand point left outline',
+  'hand point left', 'hand point right outline', 'hand point right', 'hand point up outline', 'hand point up',
+  'hand pointer outline', 'hand pointer', 'history', 'level down alternate', 'level up alternate', 'location arrow',
+  'long arrow alternate down', 'long arrow alternate left', 'long arrow alternate right', 'long arrow alternate up',
+  'mouse pointer', 'play', 'random', 'recycle', 'redo alternate', 'redo', 'reply all', 'reply', 'retweet',
+  'share square outline', 'share square', 'share', 'sign in alternate', 'sign out alternate', 'sort alphabet down',
+  'sort alphabet up', 'sort amount down', 'sort amount up', 'sort down', 'sort numeric down', 'sort numeric up',
+  'sort up', 'sort', 'sync alternate', 'sync', 'text height', 'text width', 'undo alternate', 'undo', 'upload',
 ]
-export const LITERAL_OBJECTS_ICONS = [
-  'cocktail', 'road', 'flag', 'book', 'gift', 'leaf', 'fire', 'plane', 'magnet', 'lemon', 'world', 'travel', 'shipping',
-  'money', 'legal', 'lightning', 'umbrella', 'treatment', 'suitcase', 'bar', 'flag outline', 'flag checkered', 'puzzle',
-  'fire extinguisher', 'rocket', 'anchor', 'bullseye', 'sun', 'moon', 'fax', 'life ring', 'bomb', 'soccer',
-  'calculator', 'diamond', 'sticky note', 'sticky note outline', 'law', 'hand peace', 'hand rock', 'hand paper',
-  'hand scissors', 'hand lizard', 'hand spock', 'tv', 'thermometer empty', 'thermometer full', 'thermometer half',
-  'thermometer quarter', 'thermometer three quarters', 'bath', 'snowflake outline',
+export const AUDIO_VIDEO_ICONS = [
+  'backward', 'circle outline', 'circle', 'compress', 'eject', 'expand', 'fast backward', 'fast forward',
+  'file audio outline', 'file audio', 'file video outline', 'file video', 'film', 'forward', 'headphones',
+  'microphone slash', 'microphone', 'music', 'pause circle outline', 'pause circle', 'pause', 'play circle outline',
+  'play circle', 'podcast', 'rss square', 'rss', 'step backward', 'step forward', 'stop circle outline', 'stop circle',
+  'stop', 'video', 'volume down', 'volume off', 'volume up',
 ]
-export const SHAPES_ICONS = [
-  'crosshairs', 'asterisk', 'square outline', 'certificate', 'square', 'quote left', 'quote right', 'spinner', 'circle',
-  'ellipsis horizontal', 'ellipsis vertical', 'cube', 'cubes', 'circle notched', 'circle thin',
+export const BUSINESS_ICONS = [
+  'address book outline', 'address book', 'address card outline', 'address card', 'archive', 'balance scale',
+  'birthday cake', 'book', 'briefcase', 'building outline', 'building', 'bullhorn', 'calculator',
+  'calendar alternate outline', 'calendar alternate', 'calendar outline', 'calendar', 'certificate', 'chart area',
+  'chart bar outline', 'chart bar', 'chart pie', 'clipboard outline', 'clipboard', 'coffee', 'columns',
+  'compass outline', 'compass', 'copy outline', 'copy', 'copyright outline', 'copyright', 'cut', 'edit outline',
+  'edit', 'envelope open outline', 'envelope open', 'envelope outline', 'envelope square', 'envelope', 'eraser', 'fax',
+  'file alternate outline', 'file alternate', 'file outline', 'file', 'folder open outline', 'folder open',
+  'folder outline', 'folder', 'globe', 'industry', 'paperclip', 'paste', 'pen square', 'pencil alternate', 'percent',
+  'phone square', 'phone', 'registered outline', 'registered', 'save outline', 'save', 'sitemap', 'sticky note outline',
+  'sticky note', 'suitcase', 'table', 'tag', 'tags', 'tasks', 'thumbtack', 'trademark',
 ]
-export const ITEM_SELECTION_ICONS = [
-  'checkmark', 'remove', 'checkmark box', 'move', 'add circle', 'minus circle', 'remove circle', 'check circle',
-  'remove circle outline', 'check circle outline', 'plus', 'minus', 'add square', 'radio', 'minus square',
-  'minus square outline', 'check square', 'selected radio', 'plus square outline', 'toggle off', 'toggle on',
+export const CHESS_ICONS = [
+  'chess', 'chess bishop', 'chess board', 'chess king', 'chess knight', 'chess pawn', 'chess queen', 'chess rock',
+  'square full',
 ]
-export const MEDIA_ICONS = [
-  'film', 'sound', 'photo', 'bar chart', 'camera retro', 'newspaper', 'area chart', 'pie chart', 'line chart',
+export const CODE_ICONS = [
+  'barcode', 'bath', 'bug', 'code', 'code branch', 'file code outline', 'file code', 'filter', 'fire extinguisher',
+  'keyboard outline', 'keyboard', 'microchip', 'qrcode', 'shield alternate', 'terminal', 'user secret',
+  'window close outline', 'window close', 'window maximize outline', 'window maximize', 'window minimize outline',
+  'window minimize', 'window restore outline', 'window restore',
 ]
-export const POINTERS_ICONS = [
-  'arrow circle outline down', 'arrow circle outline up', 'chevron left', 'chevron right', 'arrow left', 'arrow right',
-  'arrow up', 'arrow down', 'chevron up', 'chevron down', 'pointing right', 'pointing left', 'pointing up',
-  'pointing down', 'arrow circle left', 'arrow circle right', 'arrow circle up', 'arrow circle down', 'caret down',
-  'caret up', 'caret left', 'caret right', 'angle double left', 'angle double right', 'angle double up',
-  'angle double down', 'angle left', 'angle right', 'angle up', 'angle down', 'chevron circle left',
-  'chevron circle right', 'chevron circle up', 'chevron circle down', 'toggle down', 'toggle up', 'toggle right',
-  'long arrow down', 'long arrow up', 'long arrow left', 'long arrow right', 'arrow circle outline right',
-  'arrow circle outline left', 'toggle left',
+export const COMMUNICATION_ICONS = [
+  'at', 'bell outline', 'bell slash outline', 'bell slash', 'bell', 'comment alternate outline', 'comment alternate',
+  'comment outline', 'comment', 'comments outline', 'comments', 'inbox', 'language', 'mobile alternate', 'mobile',
+  'paper plane outline', 'paper plane', 'wifi',
 ]
-export const MOBILE_ICONS = [
-  'tablet', 'mobile', 'battery full', 'battery high', 'battery medium', 'battery low', 'battery empty',
-]
-export const COMPUTER_ICONS = [
-  'power', 'trash outline', 'disk outline', 'desktop', 'laptop', 'game', 'keyboard', 'plug',
-]
-export const FILE_SYSTEM_ICONS = [
-  'trash', 'file outline', 'folder', 'folder open', 'file text outline', 'folder outline', 'folder open outline',
-  'level up', 'level down', 'file', 'file text', 'file pdf outline', 'file word outline', 'file excel outline',
-  'file powerpoint outline', 'file image outline', 'file archive outline', 'file audio outline', 'file video outline',
-  'file code outline',
-]
-export const TECHNOLOGIES_ICONS = [
-  'qrcode', 'barcode', 'rss', 'fork', 'html5', 'css3', 'rss square', 'openid', 'database', 'server', 'usb', 'bluetooth',
-  'bluetooth alternative', 'microchip',
-]
-export const RATING_ICONS = [
-  'heart', 'star', 'empty star', 'thumbs outline up', 'thumbs outline down', 'star half', 'empty heart', 'smile',
-  'frown', 'meh', 'star half empty', 'thumbs up', 'thumbs down',
-]
-export const AUDIO_ICONS = [
-  'music', 'video play outline', 'volume off', 'volume down', 'volume up', 'record', 'step backward', 'fast backward',
-  'backward', 'play', 'pause', 'stop', 'forward', 'fast forward', 'step forward', 'eject', 'unmute', 'mute',
-  'video play', 'closed captioning', 'pause circle', 'pause circle outline', 'stop circle', 'stop circle outline',
-]
-export const MAP_LOCATIONS_TRANSPORTATION_ICONS = [
-  'marker', 'coffee', 'food', 'building outline', 'hospital', 'emergency', 'first aid', 'military', 'h',
-  'location arrow', 'compass', 'space shuttle', 'university', 'building', 'paw', 'spoon', 'car', 'taxi', 'tree',
-  'bicycle', 'bus', 'ship', 'motorcycle', 'street view', 'hotel', 'train', 'subway', 'map pin', 'map signs',
-  'map outline', 'map',
-]
-export const TABLES_ICONS = [
-  'table', 'columns', 'sort', 'sort descending', 'sort ascending', 'sort alphabet ascending',
-  'sort alphabet descending', 'sort content ascending', 'sort content descending', 'sort numeric ascending',
-  'sort numeric descending',
-]
-export const TEXT_EDITOR_ICONS = [
-  'font', 'bold', 'italic', 'text height', 'text width', 'align left', 'align center', 'align right', 'align justify',
-  'list', 'outdent', 'indent', 'linkify', 'cut', 'copy', 'attach', 'save', 'content', 'unordered list', 'ordered list',
-  'strikethrough', 'underline', 'paste', 'unlinkify', 'superscript', 'subscript', 'header', 'paragraph', 'text cursor',
+export const COMPUTERS_ICONS = [
+  'desktop', 'hdd outline', 'hdd', 'laptop', 'plug', 'power off', 'print', 'server', 'tablet alternate', 'tablet', 'tv',
 ]
 export const CURRENCY_ICONS = [
-  'euro', 'pound', 'dollar', 'rupee', 'yen', 'ruble', 'won', 'bitcoin', 'lira', 'shekel',
+  'dollar sign', 'euro sign', 'lira sign', 'money bill alternate outline', 'money bill alternate', 'pound sign',
+  'ruble sign', 'rupee sign', 'shekel sign', 'won sign', 'yen sign',
 ]
-export const PAYMENT_OPTIONS_ICONS = [
-  'paypal', 'google wallet', 'visa', 'mastercard', 'discover', 'american express', 'paypal card', 'stripe',
-  'japan credit bureau', 'diners club', 'credit card alternative',
+export const DATE_TIME_ICONS = [
+  'calendar check outline', 'calendar check', 'calendar minus outline', 'calendar minus', 'calendar plus outline',
+  'calendar plus', 'calendar times outline', 'calendar times', 'clock outline', 'clock', 'hourglass end',
+  'hourglass half', 'hourglass outline', 'hourglass start', 'hourglass', 'stopwatch',
 ]
-export const NETWORKS_AND_WEBSITE_ICONS = [
-  'twitter square', 'facebook square', 'linkedin square', 'github square', 'twitter', 'facebook f', 'github',
-  'pinterest', 'pinterest square', 'google plus square', 'google plus', 'linkedin', 'github alternate', 'maxcdn',
-  'youtube square', 'youtube', 'xing', 'xing square', 'youtube play', 'dropbox', 'stack overflow', 'instagram',
-  'flickr', 'adn', 'bitbucket', 'bitbucket square', 'tumblr', 'tumblr square', 'apple', 'windows', 'android', 'linux',
-  'dribble', 'skype', 'foursquare', 'trello', 'gittip', 'vk', 'weibo', 'renren', 'pagelines', 'stack exchange',
-  'vimeo square', 'slack', 'wordpress', 'yahoo', 'google', 'reddit', 'reddit square', 'stumbleupon circle',
-  'stumbleupon', 'delicious', 'digg', 'pied piper', 'pied piper alternate', 'drupal', 'joomla', 'behance',
-  'behance square', 'steam', 'steam square', 'spotify', 'deviantart', 'soundcloud', 'vine', 'codepen', 'jsfiddle',
-  'rebel', 'empire', 'git square', 'git', 'hacker news', 'tencent weibo', 'qq', 'wechat', 'slideshare', 'twitch',
-  'yelp', 'lastfm', 'lastfm square', 'ioxhost', 'angellist', 'meanpath', 'buysellads', 'connectdevelop', 'dashcube',
-  'forumbee', 'leanpub', 'sellsy', 'shirtsinbulk', 'simplybuilt', 'skyatlas', 'facebook', 'pinterest', 'whatsapp',
-  'viacoin', 'medium', 'y combinator', 'optinmonster', 'opencart', 'expeditedssl', 'gg', 'gg circle', 'tripadvisor',
-  'odnoklassniki', 'odnoklassniki square', 'pocket', 'wikipedia', 'safari', 'chrome', 'firefox', 'opera',
-  'internet explorer', 'contao', '500px', 'amazon', 'houzz', 'vimeo', 'black tie', 'fonticons', 'reddit alien',
-  'microsoft edge', 'codiepie', 'modx', 'fort awesome', 'product hunt', 'mixcloud', 'scribd', 'gitlab', 'wpbeginner',
-  'wpforms', 'envira gallery', 'glide', 'glide g', 'viadeo', 'viadeo square', 'snapchat', 'snapchat ghost',
-  'snapchat square', 'pied piper hat', 'first order', 'yoast', 'themeisle', 'google plus circle', 'font awesome',
-  'bandcamp', 'eercast', 'etsy', 'free code camp', 'grav', 'imdb', 'linode', 'meetup', 'quora', 'ravelry',
-  'superpowers', 'telegram', 'wpexplorer',
+export const DESIGN_ICONS = [
+  'adjust', 'clone outline', 'clone', 'crop', 'crosshairs', 'eye dropper', 'eye slash outline', 'eye slash', 'eye',
+  'object group outline', 'object group', 'object ungroup outline', 'object ungroup', 'paint brush', 'tint',
 ]
-export const ICONS = [
-  ...WEB_CONTENT_ICONS,
-  ...USER_ACTIONS_ICONS,
-  ...MESSAGES_ICONS,
-  ...USERS_ICONS,
-  ...GENDER_SEXUALITY_ICONS,
-  ...ACCESSIBILITY_ICONS,
-  ...VIEW_ADJUSTMENT_ICONS,
-  ...LITERAL_OBJECTS_ICONS,
-  ...SHAPES_ICONS,
-  ...ITEM_SELECTION_ICONS,
-  ...MEDIA_ICONS,
-  ...POINTERS_ICONS,
-  ...MOBILE_ICONS,
-  ...COMPUTER_ICONS,
-  ...FILE_SYSTEM_ICONS,
-  ...TECHNOLOGIES_ICONS,
-  ...RATING_ICONS,
-  ...AUDIO_ICONS,
-  ...MAP_LOCATIONS_TRANSPORTATION_ICONS,
-  ...TABLES_ICONS,
-  ...TEXT_EDITOR_ICONS,
-  ...CURRENCY_ICONS,
-  ...PAYMENT_OPTIONS_ICONS,
-  ...NETWORKS_AND_WEBSITE_ICONS,
+export const EDITORS_ICONS = [
+  'align center', 'align justify', 'align left', 'align right', 'bold', 'font', 'heading', 'cursor', 'indent', 'italic',
+  'link', 'list alternate outline', 'list alternate', 'ordered list', 'unordered list', 'list', 'outdent', 'paragraph',
+  'quote left', 'quote right', 'strikethrough', 'subscript', 'superscript', 'th large', 'th list', 'th',
+  'trash alternate outline', 'trash alternate', 'trash', 'underline', 'unlink',
+]
+export const FILES_ICONS = [
+  'file archive outline', 'file archive', 'file excel outline', 'file excel', 'file image outline', 'file image',
+  'file pdf outline', 'file pdf', 'file powerpoint outline', 'file powerpoint', 'file word outline', 'file word',
+]
+export const GENDERS_ICONS = [
+  'genderless', 'mars double', 'mars stroke horizontal', 'mars stroke vertical', 'mars stroke', 'mars', 'mercury',
+  'neuter', 'transgender alternate', 'transgender', 'venus double', 'venus mars', 'venus',
+]
+export const HANDS_ICONS = [
+  'hand lizard outline', 'hand lizard', 'hand paper outline', 'hand paper', 'hand peace outline', 'hand peace',
+  'hand rock outline', 'hand rock', 'hand scissors outline', 'hand scissors', 'hand spock outline', 'hand spock',
+  'handshake outline', 'handshake', 'thumbs down outline', 'thumbs down', 'thumbs up outline', 'thumbs up',
+]
+export const HEALTH_ICONS = [
+  'ambulance', 'h square', 'heart outline', 'heart', 'heartbeat', 'hospital outline', 'hospital', 'medkit',
+  'plus square outline', 'plus square', 'stethoscope', 'user doctor',
+]
+export const IMAGES_ICONS = [
+  'bolt', 'camera retro', 'camera', 'id badge outline', 'id badge', 'id card outline', 'id card', 'image outline',
+  'image', 'images outline', 'images', 'sliders horizontal',
+]
+export const INTERFACES_ICONS = [
+  'ban', 'bars', 'beer', 'bullseye', 'check circle outline', 'check circle', 'check square outline', 'check square',
+  'check', 'cloud', 'cog', 'cogs', 'database', 'dot circle outline', 'dot circle', 'ellipsis horizontal',
+  'ellipsis vertical', 'exclamation circle', 'exclamation triangle', 'exclamation', 'flag checkered', 'flag outline',
+  'flag', 'frown outline', 'frown', 'hashtag', 'home', 'info circle', 'info', 'magic', 'meh outline', 'meh',
+  'minus circle', 'minus square outline', 'minus square', 'minus', 'plus circle', 'plus', 'question', 'search minus',
+  'search plus', 'search', 'share alternate square', 'share alternate', 'shield', 'signal', 'smile outline', 'smile',
+  'star half outline', 'star half', 'star outline', 'star', 'times circle outline', 'times circle', 'times',
+  'toggle off', 'toggle on', 'trophy', 'user circle outline', 'user circle', 'user outline', 'user',
+]
+export const MAPS_ICONS = [
+  'anchor', 'bed', 'bicycle', 'binoculars', 'bomb', 'bookmark outline', 'bookmark', 'car', 'fighter jet', 'fire',
+  'flask', 'gamepad', 'gavel', 'gift', 'glass martini', 'graduation cap', 'key', 'leaf', 'lemon outline', 'lemon',
+  'life ring outline', 'life ring', 'lightbulb outline', 'lightbulb', 'magnet', 'male', 'map marker alternate',
+  'map marker', 'map outline', 'map pin', 'map signs', 'map', 'motorcycle', 'newspaper outline', 'newspaper', 'paw',
+  'plane', 'road', 'rocket', 'ship', 'shopping bag', 'shopping basket', 'shopping cart', 'shower', 'street view',
+  'subway', 'taxi', 'ticket alternate', 'train', 'tree', 'truck', 'umbrella', 'university', 'utensil spoon', 'utensils',
+  'wrench',
+]
+export const OBJECTS_ICONS = [
+  'bus', 'cube', 'cubes', 'futbol outline', 'futbol', 'gem outline', 'gem', 'lock open', 'lock', 'moon outline', 'moon',
+  'puzzle', 'snowflake outline', 'snowflake', 'space shuttle', 'sun outline', 'sun', 'tachometer alternate',
+  'unlock alternate', 'unlock',
+]
+export const PAYMENTS_SHOPPING_ICONS = ['cart plus', 'credit card outline', 'credit card']
+export const SHAPES_ICONS = ['square outline', 'square']
+export const SPINNERS_ICONS = ['asterisk', 'circle notch', 'spinner']
+export const SPORTS_ICONS = [
+  'baseball ball', 'basketball ball', 'bowling ball', 'football ball', 'golf ball', 'hockey puck', 'quidditch',
+  'table tennis', 'volleyball ball',
+]
+export const STATUS_ICONS = [
+  'battery empty', 'battery full', 'battery half', 'battery quarter', 'battery three quarters', 'thermometer empty',
+  'thermometer full', 'thermometer half', 'thermometer quarter', 'thermometer three quarters',
+]
+export const USERS_PEOPLE_ICONS = ['child', 'female', 'user circle outline', 'user plus', 'user times', 'users']
+export const BRANDS_ICONS = [
+  '500px', 'accessible icon', 'accusoft', 'adn', 'adversal', 'affiliatetheme', 'algolia', 'amazon pay', 'amazon',
+  'amilia', 'android', 'angellist', 'angrycreative', 'angular', 'app store ios', 'app store', 'apper', 'apple pay',
+  'apple', 'asymmetrik', 'audible', 'autoprefixer', 'avianex', 'aviato', 'aws', 'bandcamp', 'behance square', 'behance',
+  'bimobject', 'bitbucket', 'bitcoin', 'bity', 'black tie', 'blackberry', 'blogger b', 'blogger', 'bluetooth b',
+  'bluetooth', 'btc', 'buromobelexperte', 'buysellads', 'credit card amazon pay', 'credit card american express',
+  'credit card apple pay', 'credit card diners club', 'credit card discover', 'credit card jcb',
+  'credit card mastercard', 'credit card paypal', 'credit card stripe', 'credit card visa', 'centercode', 'chrome',
+  'cloudscale', 'cloudsmith', 'cloudversify', 'codepen', 'codiepie', 'connectdevelop', 'contao', 'cpanel',
+  'creative commons', 'css3 alternate', 'css3', 'cuttlefish', 'd and d', 'dashcube', 'delicious', 'deploydog',
+  'deskpro', 'deviantart', 'digg', 'digital ocean', 'discord', 'discourse', 'dochub', 'docker', 'draft2digital',
+  'dribbble square', 'dribbble', 'dropbox', 'drupal', 'dyalog', 'earlybirds', 'edge', 'elementor', 'ember', 'empire',
+  'envira', 'erlang', 'ethereum', 'etsy', 'expeditedssl', 'facebook f', 'facebook messenger', 'facebook square',
+  'facebook', 'firefox', 'first order', 'firstdraft', 'flickr', 'flipboard', 'fly', 'font awesome alternate',
+  'font awesome flag', 'font awesome', 'fonticons fi', 'fonticons', 'fort awesome alternate', 'fort awesome',
+  'forumbee', 'foursquare', 'free code camp', 'freebsd', 'get pocket', 'gg circle', 'gg', 'git square', 'git',
+  'github alternate', 'github square', 'github', 'gitkraken', 'gitlab', 'gitter', 'glide g', 'glide', 'gofore',
+  'goodreads g', 'goodreads', 'google drive', 'google play', 'google plus g', 'google plus square', 'google plus',
+  'google wallet', 'google', 'gratipay', 'grav', 'gripfire', 'grunt', 'gulp', 'hacker news square', 'hacker news',
+  'hips', 'hire a helper', 'hooli', 'hotjar', 'houzz', 'html5', 'hubspot', 'imdb', 'instagram', 'internet explorer',
+  'ioxhost', 'itunes note', 'itunes', 'jenkins', 'joget', 'joomla', 'js square', 'js', 'jsfiddle', 'keycdn',
+  'kickstarter k', 'kickstarter', 'korvue', 'laravel', 'lastfm square', 'lastfm', 'leanpub', 'less', 'line',
+  'linkedin in', 'linkedin', 'linode', 'linux', 'lyft', 'magento', 'maxcdn', 'medapps', 'medium m', 'medium', 'medrt',
+  'meetup', 'microsoft', 'mix', 'mixcloud', 'mizuni', 'modx', 'monero', 'napster', 'nintendo switch', 'node js', 'node',
+  'npm', 'ns8', 'nutritionix', 'odnoklassniksquare', 'odnoklassniki', 'opencart', 'openid', 'opera', 'optin monster',
+  'osi', 'page4', 'pagelines', 'palfed', 'patreon', 'paypal', 'periscope', 'phabricator', 'phoenix framework', 'php',
+  'pied piper alternate', 'pied piper pp', 'pied piper', 'pinterest p', 'pinterest square', 'pinterest', 'playstation',
+  'product hunt', 'pushed', 'python', 'qq', 'quinscape', 'quora', 'ravelry', 'react', 'rebel', 'redriver',
+  'reddit alien', 'reddit square', 'reddit', 'rendact', 'renren', 'replyd', 'resolving', 'rocketchat', 'rockrms',
+  'safari', 'sass', 'schlix', 'scribd', 'searchengin', 'sellcast', 'sellsy', 'servicestack', 'shirtsinbulk',
+  'simplybuilt', 'sistrix', 'skyatlas', 'skype', 'slack hash', 'slack', 'slideshare', 'snapchat ghost',
+  'snapchat square', 'snapchat', 'soundcloud', 'speakap', 'spotify', 'stack exchange', 'stack overflow', 'staylinked',
+  'steam square', 'steam symbol', 'steam', 'sticker mule', 'strava', 'stripe s', 'stripe', 'studiovinari',
+  'stumbleupon circle', 'stumbleupon', 'superpowers', 'supple', 'telegram plane', 'telegram', 'tencent weibo',
+  'themeisle', 'trello', 'tripadvisor', 'tumblr square', 'tumblr', 'twitch', 'twitter square', 'twitter', 'typo3',
+  'uber', 'uikit', 'uniregistry', 'untappd', 'usb', 'ussunnah', 'vaadin', 'viacoin', 'viadeo square', 'viadeo', 'viber',
+  'vimeo square', 'vimeo v', 'vimeo', 'vine', 'vk', 'vnv', 'vuejs', 'weibo', 'weixin', 'whatsapp square', 'whatsapp',
+  'whmcs', 'wikipedia w', 'windows', 'wordpress simple', 'wordpress', 'wpbeginner', 'wpexplorer', 'wpforms', 'xbox',
+  'xing square', 'xing', 'y combinator', 'yahoo', 'yandex international', 'yandex', 'yelp', 'yoast', 'youtube square',
+  'youtube',
 ]
 export const ICON_ALIASES = [
-  'like', 'favorite', 'video', 'check', 'close', 'cancel', 'delete', 'x', 'zoom in', 'magnify', 'shutdown', 'clock',
-  'time', 'play circle outline', 'headphone', 'camera', 'video camera', 'picture', 'pencil', 'compose', 'point', 'tint',
-  'signup', 'plus circle', 'question circle', 'dont', 'minimize', 'add', 'exclamation circle', 'attention', 'eye',
-  'exclamation triangle', 'shuffle', 'chat', 'cart', 'shopping cart', 'bar graph', 'key', 'cogs', 'discussions',
-  'like outline', 'dislike outline', 'heart outline', 'log out', 'thumb tack', 'winner', 'phone', 'bookmark outline',
-  'phone square', 'credit card', 'hdd outline', 'bullhorn', 'bell outline', 'hand outline right', 'hand outline left',
-  'hand outline up', 'hand outline down', 'globe', 'wrench', 'briefcase', 'group', 'linkify', 'chain', 'flask',
-  'sidebar', 'bars', 'list ul', 'list ol', 'numbered list', 'magic', 'truck', 'currency', 'triangle down', 'dropdown',
-  'triangle up', 'triangle left', 'triangle right', 'envelope', 'conversation', 'rain', 'clipboard', 'lightbulb',
-  'bell', 'ambulance', 'medkit', 'fighter jet', 'beer', 'plus square', 'computer', 'circle outline', 'gamepad',
-  'star half full', 'broken chain', 'question', 'exclamation', 'eraser', 'microphone', 'microphone slash', 'shield',
-  'target', 'play circle', 'pencil square', 'eur', 'gbp', 'usd', 'inr', 'cny', 'rmb', 'jpy', 'rouble', 'rub', 'krw',
-  'btc', 'gratipay', 'zip', 'dot circle outline', 'try', 'graduation', 'circle outline', 'sliders', 'weixin', 'tty',
-  'teletype', 'binoculars', 'power cord', 'wifi', 'visa card', 'mastercard card', 'discover card', 'amex',
-  'american express card', 'stripe card', 'bell slash', 'bell slash outline', 'area graph', 'pie graph', 'line graph',
-  'cc', 'sheqel', 'ils', 'plus cart', 'arrow down cart', 'detective', 'venus', 'mars', 'mercury', 'intersex',
-  'venus double', 'female homosexual', 'mars double', 'male homosexual', 'venus mars', 'mars stroke', 'mars alternate',
-  'mars vertical', 'mars stroke vertical', 'mars horizontal', 'mars stroke horizontal', 'asexual', 'facebook official',
-  'user plus', 'user times', 'user close', 'user cancel', 'user delete', 'user x', 'bed', 'yc', 'ycombinator',
-  'battery four', 'battery three', 'battery three quarters', 'battery two', 'battery half', 'battery one',
-  'battery quarter', 'battery zero', 'i cursor', 'jcb', 'japan credit bureau card', 'diners club card', 'balance',
-  'hourglass outline', 'hourglass zero', 'hourglass one', 'hourglass two', 'hourglass three', 'hourglass four', 'grab',
-  'hand victory', 'tm', 'r circle', 'television', 'five hundred pixels', 'calendar plus', 'calendar minus',
-  'calendar times', 'calendar check', 'factory', 'commenting', 'commenting outline', 'edge', 'ms edge',
-  'wordpress beginner', 'wordpress forms', 'envira', 'question circle outline', 'assistive listening devices', 'als',
-  'ald', 'asl interpreting', 'deaf', 'american sign language interpreting', 'hard of hearing', 'signing',
-  'new pied piper', 'theme isle', 'google plus official', 'fa', 'bathtub', 'drivers license', 'drivers license outline',
-  's15', 'thermometer', 'times rectangle', 'times rectangle outline', 'vcard', 'vcard outline',
+  'add circle', 'add square', 'add to calendar', 'add to cart', 'add user', 'add', 'alarm mute', 'alarm', 'ald', 'als',
+  'american express card', 'american express', 'amex', 'announcement', 'area chart', 'area graph', 'arrow down cart',
+  'asexual', 'asl interpreting', 'asl', 'assistive listening devices', 'attach', 'attention', 'balance', 'bar chart',
+  'bar graph', 'bar', 'bathtub', 'battery four', 'battery high', 'battery low', 'battery medium', 'battery one',
+  'battery three', 'battery two', 'battery zero', 'birthday', 'block layout', 'bluetooth alternative', 'broken chain',
+  'browser', 'call square', 'call', 'cancel', 'cart', 'cc', 'chain', 'chat', 'checked calendar', 'checkmark',
+  'circle notched', 'close', 'cny', 'cocktail', 'commenting', 'computer', 'configure', 'content', 'deafness',
+  'delete calendar', 'delete', 'detective', 'diners club card', 'diners club', 'discover card', 'discover',
+  'discussions', 'doctor', 'dollar', 'dont', 'dribble', 'drivers license', 'dropdown', 'eercast', 'emergency',
+  'envira gallery', 'erase', 'eur', 'euro', 'eyedropper', 'fa', 'factory', 'favorite', 'feed', 'female homosexual',
+  'file text', 'find', 'first aid', 'five hundred pixels', 'fork', 'game', 'gay', 'gbp', 'gittip', 'google plus circle',
+  'google plus official', 'grab', 'graduation', 'grid layout', 'group', 'h', 'hand victory', 'handicap',
+  'hard of hearing', 'header', 'help circle', 'help', 'heterosexual', 'hide', 'hotel', 'hourglass four',
+  'hourglass full', 'hourglass one', 'hourglass three', 'hourglass two', 'idea', 'ils', 'in cart', 'inr', 'intergender',
+  'intersex', 'japan credit bureau card', 'japan credit bureau', 'jcb', 'jpy', 'krw', 'lab', 'law', 'legal', 'lesbian',
+  'lightning', 'like', 'line chart', 'line graph', 'linkedin square', 'linkify', 'lira', 'list layout', 'magnify',
+  'mail forward', 'mail square', 'mail', 'male homosexual', 'man', 'marker', 'mars alternate', 'mars horizontal',
+  'mars vertical', 'mastercard card', 'mastercard', 'maximize', 'microsoft edge', 'military', 'minimize', 'ms edge',
+  'mute', 'new pied piper', 'non binary transgender', 'numbered list', 'optinmonster', 'options',
+  'other gender horizontal', 'other gender vertical', 'other gender', 'payment', 'paypal card', 'pencil square',
+  'photo', 'picture', 'pie chart', 'pie graph', 'pied piper hat', 'pin', 'plus cart', 'pocket', 'point',
+  'pointing down', 'pointing left', 'pointing right', 'pointing up', 'pound', 'power cord', 'power', 'privacy',
+  'r circle', 'rain', 'record', 'refresh', 'remove circle', 'remove from calendar', 'remove user', 'remove', 'repeat',
+  'rmb', 'rouble', 'rub', 'ruble', 'rupee', 's15', 'selected radio', 'send', 'setting', 'settings', 'shekel', 'sheqel',
+  'shipping', 'shop', 'shuffle', 'shutdown', 'sidebar', 'signing', 'signup', 'sliders', 'soccer',
+  'sort alphabet ascending', 'sort alphabet descending', 'sort ascending', 'sort content ascending',
+  'sort content descending', 'sort descending', 'sort numeric ascending', 'sort numeric descending', 'sound', 'spy',
+  'stripe card', 'student', 'talk', 'target', 'teletype', 'television', 'text cursor', 'text telephone', 'theme isle',
+  'theme', 'thermometer', 'thumb tack', 'time', 'tm', 'toggle down', 'toggle left', 'toggle right', 'toggle up',
+  'translate', 'travel', 'treatment', 'triangle down', 'triangle left', 'triangle right', 'triangle up', 'try',
+  'unhide', 'unlinkify', 'unmute', 'usd', 'user cancel', 'user close', 'user delete', 'user x', 'vcard', 'video camera',
+  'video play', 'visa card', 'visa', 'volume control phone', 'wait', 'warning circle', 'warning sign', 'warning',
+  'wechat', 'wi-fi', 'wikipedia', 'winner', 'wizard', 'woman', 'won', 'wordpress beginner', 'wordpress forms', 'world',
+  'write square', 'x', 'yc', 'ycombinator', 'yen', 'zip', 'zoom in', 'zoom out', 'zoom',
 ]
+export const DEPRECATED = [
+  'bitbucket square', 'checkmark box', 'circle thin', 'cloud download', 'cloud upload', 'compose', 'conversation',
+  'credit card alternative', 'currency', 'dashboard', 'diamond', 'disk outline', 'disk', 'exchange', 'external share',
+  'external square', 'external', 'facebook official', 'food', 'heart empty', 'hourglass zero', 'level down',
+  'level up', 'log out', 'meanpath', 'money', 'move', 'pencil', 'protect', 'radio', 'remove bookmark',
+  'resize horizontal', 'resize vertical', 'sign in', 'sign out', 'spoon', 'star empty', 'star half empty',
+  'star half full', 'ticket', 'times rectangle', 'write', 'youtube play',
+]
+
+export const ICONS = [
+  ...ACCESSIBILITY_ICONS,
+  ...ARROWS_ICONS,
+  ...AUDIO_VIDEO_ICONS,
+  ...BUSINESS_ICONS,
+  ...CHESS_ICONS,
+  ...CODE_ICONS,
+  ...COMMUNICATION_ICONS,
+  ...COMPUTERS_ICONS,
+  ...CURRENCY_ICONS,
+  ...DATE_TIME_ICONS,
+  ...DESIGN_ICONS,
+  ...EDITORS_ICONS,
+  ...FILES_ICONS,
+  ...GENDERS_ICONS,
+  ...HANDS_ICONS,
+  ...HEALTH_ICONS,
+  ...IMAGES_ICONS,
+  ...INTERFACES_ICONS,
+  ...MAPS_ICONS,
+  ...OBJECTS_ICONS,
+  ...PAYMENTS_SHOPPING_ICONS,
+  ...SHAPES_ICONS,
+  ...SPINNERS_ICONS,
+  ...SPORTS_ICONS,
+  ...STATUS_ICONS,
+  ...USERS_PEOPLE_ICONS,
+  ...BRANDS_ICONS,
+  ...DEPRECATED,
+]
+
 export const ICONS_AND_ALIASES = [
   ...ICONS,
   ...ICON_ALIASES,
