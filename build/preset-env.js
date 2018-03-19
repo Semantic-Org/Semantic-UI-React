@@ -19,11 +19,9 @@ const browsers = [
 ]
 
 const envOptions = {
-    targets: { browsers },
+  targets: { browsers },
 }
-if (env === 'build-es') {
-    envOptions.modules = false
-}
+if (env === 'build-es') envOptions.modules = false
 
 module.exports = {
   presets: [['env', envOptions]],
