@@ -18,9 +18,12 @@ const browsers = [
   'not ie_mob <= 11',
 ]
 
+const envOptions = {
+  targets: { browsers },
+}
+if (env === 'build-es') envOptions.modules = false
+
 module.exports = {
-  presets: [['env', {
-    targets: { browsers },
-  }]],
+  presets: [['env', envOptions]],
   plugins,
 }
