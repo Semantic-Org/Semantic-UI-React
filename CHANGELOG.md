@@ -1,5 +1,30 @@
 # Change Log
 
+## [v0.79.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.79.0) (2018-03-19)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.78.3...v0.79.0)
+
+**Merged pull requests:**
+
+- docs\(carbonads\): setup carbon ads [\#2664](https://github.com/Semantic-Org/Semantic-UI-React/pull/2664) ([levithomason](https://github.com/levithomason))
+- chore\(package\): restore babel option `modules: false` for ESM builds [\#2663](https://github.com/Semantic-Org/Semantic-UI-React/pull/2663) ([thetric](https://github.com/thetric))
+- fix\(Checkbox\): only add "fitted" class if label is nil [\#2660](https://github.com/Semantic-Org/Semantic-UI-React/pull/2660) ([SimonKinds](https://github.com/SimonKinds))
+- docs\(changelog\): capture all PRs [\#2659](https://github.com/Semantic-Org/Semantic-UI-React/pull/2659) ([levithomason](https://github.com/levithomason))
+- docs\(readme\): add Distense to the built with list [\#2655](https://github.com/Semantic-Org/Semantic-UI-React/pull/2655) ([JohnAllen](https://github.com/JohnAllen))
+- docs\(Responsive\): fix spelling [\#2653](https://github.com/Semantic-Org/Semantic-UI-React/pull/2653) ([cptbrkfst](https://github.com/cptbrkfst))
+- docs\(Search\): debounce search change handler [\#2650](https://github.com/Semantic-Org/Semantic-UI-React/pull/2650) ([ryanflowers](https://github.com/ryanflowers))
+- fix\(Input\): add missing accept prop [\#2647](https://github.com/Semantic-Org/Semantic-UI-React/pull/2647) ([fastman](https://github.com/fastman))
+- fix\(factories\): fix typo in exception [\#2645](https://github.com/Semantic-Org/Semantic-UI-React/pull/2645) ([eightnoteight](https://github.com/eightnoteight))
+- Update README.md [\#2644](https://github.com/Semantic-Org/Semantic-UI-React/pull/2644) ([brianespinosa](https://github.com/brianespinosa))
+- fix\(Visibility\): cancel RAF on component unmount [\#2635](https://github.com/Semantic-Org/Semantic-UI-React/pull/2635) ([layershifter](https://github.com/layershifter))
+- fix\(Layouts\): fix behaviour of Sidebar in mobile view [\#2634](https://github.com/Semantic-Org/Semantic-UI-React/pull/2634) ([layershifter](https://github.com/layershifter))
+- fix\(Responsive\): fix types in typings [\#2633](https://github.com/Semantic-Org/Semantic-UI-React/pull/2633) ([layershifter](https://github.com/layershifter))
+- fix\(Pagination\): call `onPageChange` only when change is occurred [\#2632](https://github.com/Semantic-Org/Semantic-UI-React/pull/2632) ([layershifter](https://github.com/layershifter))
+- docs\(Layouts\): fix typo in StickyLayout [\#2630](https://github.com/Semantic-Org/Semantic-UI-React/pull/2630) ([felippenardi](https://github.com/felippenardi))
+- fix\(Modal\): fix positioning when "as" prop is a component [\#2623](https://github.com/Semantic-Org/Semantic-UI-React/pull/2623) ([trevorharwell](https://github.com/trevorharwell))
+- breaking\(Pagination\): rename `ariaLabel` prop `aria-label` [\#2607](https://github.com/Semantic-Org/Semantic-UI-React/pull/2607) ([AndreiEnache](https://github.com/AndreiEnache))
+- chore\(package\): switch to `babel-preset-env` [\#2594](https://github.com/Semantic-Org/Semantic-UI-React/pull/2594) ([thetric](https://github.com/thetric))
+- fix\(docs\): fix return in ComponentPropsComponents [\#2581](https://github.com/Semantic-Org/Semantic-UI-React/pull/2581) ([layershifter](https://github.com/layershifter))
+
 ## [v0.78.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.78.3) (2018-02-26)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.78.2...v0.78.3)
 
@@ -456,21 +481,6 @@
 - fix\(Dropdown\): fix key handling for options [\#1639](https://github.com/Semantic-Org/Semantic-UI-React/pull/1639) ([davezuko](https://github.com/davezuko))
 - docs\(bundlers\): add webpack 2 example [\#1497](https://github.com/Semantic-Org/Semantic-UI-React/pull/1497) ([layershifter](https://github.com/layershifter))
 - feat\(Visibility\): add component [\#1174](https://github.com/Semantic-Org/Semantic-UI-React/pull/1174) ([mariolamacchia](https://github.com/mariolamacchia))
-
-## [v0.68.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.68.3) (2017-05-06)
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.68.2...v0.68.3)
-
-**Merged pull requests:**
-
-- fix\(Progress\): indicating progressbar does not change its color [\#1653](https://github.com/Semantic-Org/Semantic-UI-React/pull/1653) ([Bebersohl](https://github.com/Bebersohl))
-- docs\(Search\): add example of input shorthand  [\#1649](https://github.com/Semantic-Org/Semantic-UI-React/pull/1649) ([josie11](https://github.com/josie11))
-- fix\(MenuExampleText\): activeItem logic [\#1641](https://github.com/Semantic-Org/Semantic-UI-React/pull/1641) ([aabustamante](https://github.com/aabustamante))
-- chore\(package\): update typescript@2.3.1 [\#1637](https://github.com/Semantic-Org/Semantic-UI-React/pull/1637) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- fix\(ComponentExample\): typo "loose" to "lose" [\#1635](https://github.com/Semantic-Org/Semantic-UI-React/pull/1635) ([mikelyons](https://github.com/mikelyons))
-- docs\(README\): add React-Semantic.UI-Starter [\#1626](https://github.com/Semantic-Org/Semantic-UI-React/pull/1626) ([layershifter](https://github.com/layershifter))
-- test\(typings\): add rendering test [\#1625](https://github.com/Semantic-Org/Semantic-UI-React/pull/1625) ([layershifter](https://github.com/layershifter))
-- test\(typings\): additional tests for typings and fixes [\#1624](https://github.com/Semantic-Org/Semantic-UI-React/pull/1624) ([layershifter](https://github.com/layershifter))
-- fix\(Input\): replace disabled class with disabled attribute [\#1591](https://github.com/Semantic-Org/Semantic-UI-React/pull/1591) ([davezuko](https://github.com/davezuko))
 
 
 
