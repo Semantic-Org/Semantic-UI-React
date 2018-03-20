@@ -66,6 +66,9 @@ class Icon extends Component {
 
     /** Size of the icon. */
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+
+    /** Icon can have an aria label. */
+    'aria-label': PropTypes.string,
   }
 
   static defaultProps = {
@@ -81,6 +84,17 @@ class Icon extends Component {
 
   shouldComponentUpdate(nextProps) {
     return !shallowEqual(this.props, nextProps)
+  }
+
+  getIconAriaOptions() {
+    const ariaOptions = {}
+    const { 'aria-label': ariaLabel } = this.props
+
+    if (!ariaLabel) {
+      ariaOptions['aria-hidden'] = 'true'
+    }
+
+    return ariaOptions
   }
 
   render() {
@@ -120,8 +134,9 @@ class Icon extends Component {
     )
     const rest = getUnhandledProps(Icon, this.props)
     const ElementType = getElementType(Icon, this.props)
+    const ariaOptions = this.getIconAriaOptions()
 
-    return <ElementType {...rest} aria-hidden='true' className={classes} />
+    return <ElementType {...rest} {...ariaOptions} className={classes} />
   }
 }
 
