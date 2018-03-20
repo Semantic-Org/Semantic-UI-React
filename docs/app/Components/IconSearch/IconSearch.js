@@ -18,31 +18,125 @@ const gridStyle = {
 }
 
 const iconKeyToHeaderMap = {
-  WEB_CONTENT_ICONS: 'Web Content',
-  USER_ACTIONS_ICONS: 'User Actions',
-  MESSAGES_ICONS: 'Messages',
-  USERS_ICONS: 'Users',
-  GENDER_SEXUALITY_ICONS: 'Gender & Sexuality',
-  ACCESSIBILITY_ICONS: 'Accessibility',
-  VIEW_ADJUSTMENT_ICONS: 'View Adjustment',
-  LITERAL_OBJECTS_ICONS: 'Literal Objects',
-  SHAPES_ICONS: 'Shapes',
-  ITEM_SELECTION_ICONS: 'Item Selection',
-  MEDIA_ICONS: 'Media',
-  POINTERS_ICONS: 'Pointers',
-  MOBILE_ICONS: 'Mobile',
-  COMPUTER_ICONS: 'Computer',
-  FILE_SYSTEM_ICONS: 'File System',
-  TECHNOLOGIES_ICONS: 'Technologies',
-  RATING_ICONS: 'Rating',
-  AUDIO_ICONS: 'Audio',
-  MAP_LOCATIONS_TRANSPORTATION_ICONS: 'Map, Locations & Transportation',
-  TABLES_ICONS: 'Tables',
-  TEXT_EDITOR_ICONS: 'Text Editor',
-  CURRENCY_ICONS: 'Currency',
-  PAYMENT_OPTIONS_ICONS: 'Payment Options',
-  NETWORKS_AND_WEBSITE_ICONS: 'Networks And Website',
-  ICON_ALIASES: 'Icon Aliases',
+  ACCESSIBILITY_ICONS: {
+    title: 'Accessibility',
+    description: 'Icons can represent accessibility standards.',
+  },
+  ARROWS_ICONS: {
+    title: 'Arrows',
+    description: 'Icons can be used to indicate a direction.',
+  },
+  AUDIO_VIDEO_ICONS: {
+    title: 'Audio & Video',
+    description: 'Icons can be used to represent common ways to interact with audio and video.',
+  },
+  BUSINESS_ICONS: {
+    title: 'Business',
+    description: 'Icons can be used to represent business and common business actions.',
+  },
+  CHESS_ICONS: {
+    title: 'Chess',
+    description: 'Icons which represent the game chess.',
+  },
+  CODE_ICONS: {
+    title: 'Code',
+    description: 'Icons can represent programming and programming tools.',
+  },
+  COMMUNICATION_ICONS: {
+    title: 'Communication',
+    description: 'Icons which represent common ways of communication.',
+  },
+  COMPUTERS_ICONS: {
+    title: 'Computers',
+    description: 'Icons can represent computing devices, or types of content found on a computer.',
+  },
+  CURRENCY_ICONS: {
+    title: 'Currency',
+    description: 'Icons can represent units of currency.',
+  },
+  DATE_TIME_ICONS: {
+    title: 'Date & Time',
+    description: 'Icons that represent common ways of showing date and time.',
+  },
+  DESIGN_ICONS: {
+    title: 'Design',
+    description: 'Icons can represent common design related symbols or techniques.',
+  },
+  EDITORS_ICONS: {
+    title: 'Editors',
+    description: 'Icons can represent text editors and common editor actions.',
+  },
+  FILES_ICONS: {
+    title: 'Files',
+    description: 'Icons can represent elements of a computer and its file system.',
+  },
+  GENDERS_ICONS: {
+    title: 'Genders',
+    description: 'Icons can represent genders or types of sexuality.',
+  },
+  HANDS_ICONS: {
+    title: 'Hands & Gestures',
+    description: 'Icons can represent hand signals and gestures.',
+  },
+  HEALTH_ICONS: {
+    title: 'Health',
+    description: 'Icons which represent common health symbols.',
+  },
+  IMAGES_ICONS: {
+    title: 'Images',
+    description: 'Icons that represent common image symbols and actions.',
+  },
+  INTERFACES_ICONS: {
+    title: 'Interfaces',
+    description: 'Icons can represent common actions a user can take or use.',
+  },
+  MAPS_ICONS: {
+    title: 'Maps',
+    description: 'Icons can be used to represent elements on a map.',
+  },
+  OBJECTS_ICONS: {
+    title: 'Objects',
+    description: 'Icons can be used to represent common objects.',
+  },
+  PAYMENTS_SHOPPING_ICONS: {
+    title: 'Payments & Shopping',
+    description: 'Icons can represent common forms of payment and shopping actions.',
+  },
+  SHAPES_ICONS: {
+    title: 'Shapes',
+    description: 'Icons can be used to create shapes.',
+  },
+  SPINNERS_ICONS: {
+    title: 'Spinners',
+    description: 'Icons can represent loading.',
+  },
+  SPORTS_ICONS: {
+    title: 'Sports',
+    description: 'Icons which represent sports.',
+  },
+  STATUS_ICONS: {
+    title: 'Status',
+    description: 'Icons can represent different states.',
+  },
+  USERS_PEOPLE_ICONS: {
+    title: 'Users & People',
+    description: 'Icons can represent users or people.',
+  },
+  BRANDS_ICONS: {
+    title: 'Brands',
+    description: 'Icons can represent logos to common brands.',
+  },
+  ICON_ALIASES: {
+    title: 'Icon Aliases',
+    description: 'Some of icons have usefull aliases.',
+  },
+  DEPRECATED: {
+    title: 'Deprecated',
+    description: [
+      'Icons which where removed in FontAwesome 5, but pointed them to another icon which matches or is similar for ',
+      'compatibility reasons.',
+    ].join(''),
+  },
 }
 
 const similarityScore = (strA, strB) => {
@@ -104,9 +198,13 @@ export default class IconSearch extends Component {
       return iconKeys.map(iconKey => (
         <Grid key={iconKey} columns={5} doubling>
           <Grid.Column width={16}>
-            <Header as='h3' textAlign='left' dividing>
-              {iconKeyToHeaderMap[iconKey]}
-            </Header>
+            <Header
+              as='h3'
+              content={iconKeyToHeaderMap[iconKey].title}
+              dividing
+              subheader={iconKeyToHeaderMap[iconKey].description}
+              textAlign='left'
+            />
           </Grid.Column>
           {SUI[iconKey].map(this.renderIconColumn)}
         </Grid>
@@ -153,10 +251,10 @@ export default class IconSearch extends Component {
 
           <Message>
             Semantic includes a complete port of{' '}
-            <a href='http://fontawesome.io/whats-new/' rel='noopener noreferrer' target='_blank'>Font Awesome 4.7.0</a>
-            {' '}designed by{' '}
-            <a href='http://www.twitter.com/davegandy' rel='noopener noreferrer'>Dave Gandy</a> for its standard icon
-            set.
+            <a href='https://fontawesome.com/' rel='noopener noreferrer' target='_blank'>Font Awesome 5.0.8</a>
+            {' '}designed by the{' '}
+            <a href='https://twitter.com/fontawesome' rel='noopener noreferrer'>FontAwesome</a> for its standard icon
+            {' '}set.
           </Message>
 
           <Form>
