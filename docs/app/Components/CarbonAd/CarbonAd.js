@@ -129,7 +129,7 @@ class CarbonAd extends Component {
 
     const style = {
       transition: `opacity ${TRANSITION_TIME}ms`,
-      minHeight: 173,
+      minHeight: 199,
       background: '#000',
       opacity: isBlockingAds ? 1 : opacity,
     }
