@@ -617,17 +617,18 @@ export default class Dropdown extends Component {
 
   selectItemOnEnter = (e) => {
     debug('selectItemOnEnter()', keyboardKey.getName(e))
-    const { search } = this.props
+    const { search, multiple } = this.props
 
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
 
     const optionSize = _.size(this.getMenuOptions())
     if (search && optionSize === 0) return
-
     this.makeSelectedItemActive(e)
     this.closeOnChange(e)
-    this.clearSearchQuery()
+    if (!multiple) {
+      this.clearSearchQuery()
+    }
     if (search && this.searchRef) this.searchRef.focus()
   }
 
