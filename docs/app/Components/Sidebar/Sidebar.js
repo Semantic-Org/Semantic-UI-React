@@ -35,7 +35,6 @@ MenuItem.defaultProps = {
   className: 'item',
 }
 const selectedItemLabel = <span style={{ color: '#35bdb2', float: 'right' }}>Press Enter</span>
-const adItemStyle = { background: '#000' }
 
 class Sidebar extends Component {
   static propTypes = {
@@ -190,9 +189,7 @@ class Sidebar extends Component {
             <small><em>{pkg.version}</em></small>
           </strong>
         </Menu.Item>
-        <Menu.Item style={adItemStyle}>
-          <CarbonAd />
-        </Menu.Item>
+        <CarbonAd />
         <Menu.Item>
           <Menu.Header>Getting Started</Menu.Header>
           <Menu.Menu>

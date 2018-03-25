@@ -1,19 +1,39 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Header, Icon, Segment } from 'semantic-ui-react'
+import { Button, Header, Icon, Menu, Segment } from 'semantic-ui-react'
 
-const transitionTime = 200
+const TRANSITION_TIME = 200
+const PREFERENCE_EXPIRATION_MS = 1000 //* 60 * 60 * 24 * 14
 
 class CarbonAd extends Component {
   state = {
     opacity: 1,
   }
 
+  componentWillMount() {
+    try {
+      this.setState({ hiddenAt: window.localStorage.getItem('hideAds') || 0 })
+    } catch (e) {
+      /* eslint-disable no-console */
+      console.error('Semantic-UI-React could not retrieve ad settings.  LocalStorage failed.')
+      console.error(e)
+      /* eslint-enable no-console */
+    }
+  }
+
   componentDidMount() {
     this.lastHref = location.href
 
     this.refresh()
-    this.watchForAdBlock()
+
+    // We look at whether FuckAdBlock already exists.
+    if (typeof fuckAdBlock !== 'undefined' || typeof FuckAdBlock !== 'undefined') {
+      // If this is the case, it means that something tries to usurp our identity
+      // So, considering that it is a detection
+      this.adBlockDetected()
+    } else {
+      this.loadFuckAdBlock()
+    }
   }
 
   componentDidUpdate() {
@@ -26,15 +46,30 @@ class CarbonAd extends Component {
   componentWillUnmount() {
     window.clearTimeout(this.refreshTimerStart)
     window.clearTimeout(this.refreshTimerEnd)
-    window.clearTimeout(this.watchTimer)
-    window.clearInterval(this.watchInterval)
+  }
+
+  adBlockDetected = () => {
+    this.setState({ isBlockingAds: true })
+  }
+
+  adBlockNotDetected = () => {
+    this.setState({ isBlockingAds: false })
+  }
+
+  loadFuckAdBlock = () => {
+    const script = document.createElement('script')
+    script.onload = () => {
+      window.fuckAdBlock.onDetected(this.adBlockDetected)
+      window.fuckAdBlock.onNotDetected(this.adBlockNotDetected)
+    }
+    script.onerror = this.adBlockDetected
+    script.integrity = 'sha256-xjwKUY/NgkPjZZBOtOxRYtK20GaqTwUCf7WYCJ1z69w='
+    script.crossOrigin = 'anonymous'
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js'
+    document.head.appendChild(script)
   }
 
   refresh = () => {
-    const { isBlockingAds } = this.state
-
-    if (isBlockingAds) return
-
     this.setState({ opacity: 0 })
 
     this.refreshTimerStart = setTimeout(() => {
@@ -42,18 +77,8 @@ class CarbonAd extends Component {
 
       this.refreshTimerEnd = setTimeout(() => {
         this.setState({ opacity: 1 })
-      }, transitionTime)
-    }, transitionTime)
-  }
-
-  watchForAdBlock = () => {
-    this.watchTimer = setTimeout(() => {
-      this.watchInterval = setInterval(() => {
-        const isBlockingAds = !document.querySelector('#docs-carbonads > #carbonads')
-
-        this.setState({ isBlockingAds })
-      }, 1000)
-    }, 5000)
+      }, TRANSITION_TIME)
+    }, TRANSITION_TIME)
   }
 
   renderAd = () => (
@@ -67,31 +92,52 @@ class CarbonAd extends Component {
     />
   )
 
+  hideAds = () => {
+    const time = Date.now()
+
+    this.setState({ hiddenAt: time })
+
+    try {
+      window.localStorage.setItem('hideAds', `${time}`)
+    } catch (e) {
+      /* eslint-disable no-console */
+      console.error('Semantic-UI-React could not save ad settings.  LocalStorage failed.')
+      console.error(e)
+      /* eslint-enable no-console */
+    }
+  }
+
   renderMessage = () => (
     <Segment inverted color='pink' textAlign='center' size='large'>
       <Header icon size='small'>
         <Icon name='heart' />
-        We love you
+        Support Us
       </Header>
       <p>
-        We're not funded.  Enabling ads would be super appreciated.
+        We're not funded. Enable ads to support us.
       </p>
+      <Button fluid inverted compact color='pink' onClick={this.hideAds}>No thanks</Button>
     </Segment>
   )
 
   render() {
-    const { opacity, isBlockingAds } = this.state
+    const { opacity, hiddenAt, isBlockingAds } = this.state
+
+    const preferenceExpired = Date.now() - hiddenAt > PREFERENCE_EXPIRATION_MS
+
+    if (isBlockingAds && !preferenceExpired) return null
 
     const style = {
-      transition: `opacity ${transitionTime}ms`,
+      transition: `opacity ${TRANSITION_TIME}ms`,
       minHeight: 173,
-      opacity,
+      background: '#000',
+      opacity: isBlockingAds ? 1 : opacity,
     }
 
     return (
-      <div id='docs-carbonads' style={style}>
+      <Menu.Item id='docs-carbonads' style={style}>
         {isBlockingAds ? this.renderMessage() : this.renderAd()}
-      </div>
+      </Menu.Item>
     )
   }
 }
