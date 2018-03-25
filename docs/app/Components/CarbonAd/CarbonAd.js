@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Button, Header, Icon, Menu, Segment } from 'semantic-ui-react'
 
 const TRANSITION_TIME = 200
-const PREFERENCE_EXPIRATION_MS = 1000 //* 60 * 60 * 24 * 14
+const PREFERENCE_EXPIRATION_MS = 1000 * 60 * 60 * 24 * 14
 
 class CarbonAd extends Component {
   state = {
