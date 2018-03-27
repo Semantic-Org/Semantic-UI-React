@@ -39,6 +39,9 @@ export interface ConfirmProps extends ModalProps {
 
   /** Whether or not the modal is visible. */
   open?: boolean;
+
+  /** A confirm can vary in size. */
+  size?: 'fullscreen' | 'large' | 'mini' | 'small' | 'tiny';
 }
 
 declare const Confirm: React.ComponentClass<ConfirmProps>;

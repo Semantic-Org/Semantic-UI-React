@@ -4,16 +4,17 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import { NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router'
-
-import pkg from 'package.json'
-import { typeOrder, parentComponents, repoURL } from 'docs/app/utils'
-import { keyboardKey, META } from 'src/lib'
-import Logo from 'docs/app/Components/Logo/Logo'
 import {
   Menu,
   Icon,
   Input,
-} from 'src'
+} from 'semantic-ui-react'
+
+import CarbonAd from 'docs/app/Components/CarbonAd/CarbonAd'
+import Logo from 'docs/app/Components/Logo/Logo'
+import { typeOrder, parentComponents, repoURL } from 'docs/app/utils'
+import pkg from 'package.json'
+import { keyboardKey, META } from 'src/lib'
 
 const getRoute = _meta => `/${_meta.type}s/${_.kebabCase(_meta.name)}`
 
@@ -188,6 +189,7 @@ class Sidebar extends Component {
             <small><em>{pkg.version}</em></small>
           </strong>
         </Menu.Item>
+        <CarbonAd />
         <Menu.Item>
           <Menu.Header>Getting Started</Menu.Header>
           <Menu.Menu>
@@ -197,13 +199,16 @@ class Sidebar extends Component {
             <Menu.Item as={NavLink} to='/usage' activeClassName='active'>
               Usage
             </Menu.Item>
+            <Menu.Item as={NavLink} to='/theming' activeClassName='active'>
+              Theming
+            </Menu.Item>
             <Menu.Item as={NavLink} to='/layouts' activeClassName='active'>
               Layouts
             </Menu.Item>
-            <Menu.Item as='a' href={repoURL}>
+            <Menu.Item as='a' href={repoURL} target='_blank' rel='noopener noreferrer'>
               <Icon name='github' /> GitHub
             </Menu.Item>
-            <Menu.Item as='a' href={`${repoURL}/blob/master/CHANGELOG.md`}>
+            <Menu.Item as='a' href={`${repoURL}/blob/master/CHANGELOG.md`} target='_blank' rel='noopener noreferrer'>
               <Icon name='file text outline' /> CHANGELOG
             </Menu.Item>
           </Menu.Menu>

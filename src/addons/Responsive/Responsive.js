@@ -60,17 +60,22 @@ export default class Responsive extends Component {
   constructor(...args) {
     super(...args)
 
-    this.state = { width: isBrowser() ? window.innerWidth : 0 }
+    // Measure the root element dimension to handle gesture transitions on iOS safely
+    // https://github.com/Semantic-Org/Semantic-UI-React/pull/2531
+    this.state = { width: isBrowser() ? document.documentElement.clientWidth : 0 }
   }
 
   componentDidMount() {
     const { fireOnMount } = this.props
+
+    this.mounted = true
 
     eventStack.sub('resize', this.handleResize, { target: 'window' })
     if (fireOnMount) this.handleUpdate()
   }
 
   componentWillUnmount() {
+    this.mounted = false
     eventStack.unsub('resize', this.handleResize, { target: 'window' })
   }
 
@@ -92,6 +97,8 @@ export default class Responsive extends Component {
     return _.isNil(minWidth) ? true : width >= minWidth
   }
 
+  setSafeState = (...args) => this.mounted && this.setState(...args)
+
   isVisible = () => this.fitsMinWidth() && this.fitsMaxWidth()
 
   // ----------------------------------------
@@ -107,9 +114,9 @@ export default class Responsive extends Component {
 
   handleUpdate = (e) => {
     this.ticking = false
-    const width = window.innerWidth
+    const width = document.documentElement.clientWidth
 
-    this.setState({ width })
+    this.setSafeState({ width })
     _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
   }
 

@@ -8,10 +8,22 @@ const typeOf = (...args) => Object.prototype.toString.call(...args)
  * Ensure a component can render as a give prop value.
  */
 export const as = (...args) => PropTypes.oneOfType([
-  PropTypes.string,
   PropTypes.func,
+  PropTypes.string,
+  PropTypes.symbol,
 ])(...args)
 
+/**
+ * Ensure a prop is a valid DOM node.
+ */
+export const domNode = (props, propName) => {
+  // skip if prop is undefined
+  if (props[propName] === undefined) return
+  // skip if prop is valid
+  if (props[propName] instanceof Element) return
+
+  throw new Error(`Invalid prop "${propName}" supplied, expected a DOM node.`)
+}
 
 /**
  * Similar to PropTypes.oneOf but shows closest matches.

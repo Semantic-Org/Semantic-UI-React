@@ -5,5 +5,7 @@ describe('DropdownMenu', () => {
   common.isConformant(DropdownMenu)
   common.rendersChildren(DropdownMenu)
 
+  common.propValueOnlyToClassName(DropdownMenu, 'direction', ['left', 'right'])
+  common.propKeyOnlyToClassName(DropdownMenu, 'open', { className: 'visible' })
   common.propKeyOnlyToClassName(DropdownMenu, 'scrolling')
 })

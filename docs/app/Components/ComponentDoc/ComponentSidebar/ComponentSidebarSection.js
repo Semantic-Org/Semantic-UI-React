@@ -9,7 +9,10 @@ import ComponentSidebarItem from './ComponentSidebarItem'
 class ComponentSidebarSection extends Component {
   static propTypes = {
     activePath: PropTypes.string,
-    examples: PropTypes.object,
+    examples: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string,
+      path: PropTypes.string,
+    })),
     name: PropTypes.string,
     onItemClick: PropTypes.func,
     onTitleClick: PropTypes.func,
@@ -19,7 +22,7 @@ class ComponentSidebarSection extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { activePath, examples } = nextProps
-    const isActiveByProps = _.find(examples, { path: activePath })
+    const isActiveByProps = !!_.find(examples, { path: activePath })
 
     const didCloseByProps = this.state.isActiveByProps && !isActiveByProps
 

@@ -25,6 +25,9 @@ export interface CheckboxProps {
   /** Removes padding for a label. Auto applied when there is no label. */
   fitted?: boolean;
 
+  /** A unique identifier. */
+  id?: number | string;
+
   /** Whether or not checkbox is indeterminate. */
   indeterminate?: boolean;
 
