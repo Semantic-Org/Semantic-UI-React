@@ -204,7 +204,7 @@ const GridLayout = () => (
 
       <Divider horizontal section>Vertically Divided Grid</Divider>
 
-      <Grid divided='verticallly'>
+      <Grid divided='vertically'>
         <Grid.Row>
           <Grid.Column width={4} />
           <Grid.Column width={4} />
