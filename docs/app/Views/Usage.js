@@ -74,7 +74,7 @@ const Usage = () => (
       <Header as='h3'>Content Delivery Network (CDN)</Header>
       <p>
         You can use the default Semantic UI stylesheet by including a Semantic UI CDN link in your
-        <em>index.html</em> file.
+        <em> index.html</em> file.
       </p>
       <p>
         This is the quickest way to get started with Semantic UI React. You won't be able to use
