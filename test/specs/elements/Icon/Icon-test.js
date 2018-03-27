@@ -39,5 +39,11 @@ describe('Icon', () => {
 
       wrapper.should.have.prop('aria-hidden', 'true')
     })
+
+    it('should omit aria-hidden when aria-label is set', () => {
+      const wrapper = shallow(<Icon aria-label='icon' />)
+
+      wrapper.should.not.have.prop('aria-hidden')
+    })
   })
 })
