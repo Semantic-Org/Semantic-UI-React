@@ -192,6 +192,54 @@ describe('Popup', () => {
     })
   })
 
+  describe('keepInViewPort', () => {
+    it('will not alter the position and render outside the viewport if set to false', () => {
+      wrapperMount(
+        <Popup
+          content='_'
+          position='top center'
+          trigger={<button>foo</button>}
+          on='click'
+          keepInViewPort={false}
+        />,
+      )
+      wrapper.find('button').simulate('click')
+
+      const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+      const { top } = rect
+
+      const selectedPosition = wrapper.state('position')
+
+      expect(selectedPosition).to.equal('top center')
+      expect(top).to.be.below(0)
+    })
+
+    it('is enabled by default', () => {
+      expect(Popup.defaultProps.keepInViewPort).to.equal(true)
+    })
+
+    it('alters the position when true and renders withing the viewport', () => {
+      wrapperMount(
+        <Popup
+          content='_'
+          position='top center'
+          trigger={<button>foo</button>}
+          on='click'
+          keepInViewPort
+        />,
+      )
+      wrapper.find('button').simulate('click')
+
+      const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+      const { top } = rect
+
+      const selectedPosition = wrapper.state('position')
+
+      expect(selectedPosition).to.not.equal('top center')
+      expect(top).to.be.at.least(0)
+    })
+  })
+
   describe('hoverable', () => {
     it('can be set to stay visible while hovering the popup', () => {
       shallow(<Popup hoverable open />)

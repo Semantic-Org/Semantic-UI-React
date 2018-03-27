@@ -96,6 +96,9 @@ export interface PopupProps extends PortalProps {
 
   /** Popup width. */
   wide?: boolean | 'very';
+
+  /** Element to be rendered within the confines of the viewport whenever possible. */
+  keepInViewPort?: boolean;
 }
 
 interface PopupComponent extends React.ComponentClass<PopupProps> {
