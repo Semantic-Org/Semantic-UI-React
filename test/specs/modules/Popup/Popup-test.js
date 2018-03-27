@@ -218,7 +218,7 @@ describe('Popup', () => {
       expect(Popup.defaultProps.keepInViewPort).to.equal(true)
     })
 
-    it('alters the position when true and renders withing the viewport', () => {
+    it('alters the position when true and renders within the viewport', () => {
       wrapperMount(
         <Popup
           content='_'
