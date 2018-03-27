@@ -71,7 +71,7 @@ export default class Search extends Component {
      */
     results: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.shape(SearchResult.propTypes)),
-      PropTypes.object,
+      PropTypes.shape(SearchCategory.propTypes),
     ]),
 
     /** Whether the search should automatically select the first result after searching. */
