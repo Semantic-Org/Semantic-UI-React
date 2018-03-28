@@ -6394,9 +6394,9 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-semantic-ui-css@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/semantic-ui-css/-/semantic-ui-css-2.3.0.tgz#e96d0d4069499eafff9ba0c84274bc23d2b084e7"
+semantic-ui-css@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/semantic-ui-css/-/semantic-ui-css-2.3.1.tgz#a5485c640c98cce29d8ddde3eff3434566a068e0"
   dependencies:
     jquery x.*
 
