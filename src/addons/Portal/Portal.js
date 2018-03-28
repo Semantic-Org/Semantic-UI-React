@@ -2,6 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Children, cloneElement } from 'react'
 import ReactDOM from 'react-dom'
+import toInlineStyle from '@f/to-inline-style'
 
 import {
   AutoControlledComponent as Component,
@@ -122,6 +123,9 @@ class Portal extends Component {
 
     /** Controls whether the portal should be prepended to the mountNode instead of appended. */
     prepend: PropTypes.bool,
+
+    /** Any inline styles to the Portal container. */
+    style: PropTypes.object,
 
     /** Element to be rendered in-place where the portal is defined. */
     trigger: PropTypes.node,
@@ -344,7 +348,7 @@ class Portal extends Component {
     if (!this.state.open) return
     debug('renderPortal()')
 
-    const { children, className, eventPool } = this.props
+    const { children, className, eventPool, style } = this.props
 
     this.mountPortal()
 
@@ -352,6 +356,7 @@ class Portal extends Component {
     if (!isBrowser()) return null
 
     this.rootNode.className = className || ''
+    this.rootNode.style = style ? toInlineStyle(style) : ''
 
     // when re-rendering, first remove listeners before re-adding them to the new node
     if (this.portalNode) {

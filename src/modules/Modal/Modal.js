@@ -41,6 +41,9 @@ class Modal extends Component {
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
 
+    /** A modal can be vertically centered in the viewport */
+    centered: PropTypes.bool,
+
     /** Primary content. */
     children: PropTypes.node,
 
@@ -140,6 +143,7 @@ class Modal extends Component {
   }
 
   static defaultProps = {
+    centered: true,
     dimmer: true,
     closeOnDimmerClick: true,
     closeOnDocumentClick: false,
@@ -315,7 +319,7 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
+    const { centered, closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -339,6 +343,7 @@ class Modal extends Component {
       : cx(
         'ui',
         dimmer === 'inverted' && 'inverted',
+        !centered && 'top aligned',
         'page modals dimmer transition visible active',
       )
 
@@ -367,6 +372,7 @@ class Modal extends Component {
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
+        style={{ display: 'flex !important' }}
       >
         {this.renderContent(rest)}
       </Portal>
