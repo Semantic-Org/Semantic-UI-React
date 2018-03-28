@@ -233,7 +233,10 @@ class Modal extends Component {
     if (this.ref) {
       const { height } = this.ref.getBoundingClientRect()
 
-      const marginTop = -Math.round(height / 2)
+      // Leaving the old calculation here since we may need it as an older browser fallback
+      // SEE: https://github.com/Semantic-Org/Semantic-UI/issues/6185#issuecomment-376725956
+      // const marginTop = -Math.round(height / 2)
+      const marginTop = 0
       const scrolling = height >= window.innerHeight
 
       if (this.state.marginTop !== marginTop) {
