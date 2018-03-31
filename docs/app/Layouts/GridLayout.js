@@ -82,7 +82,7 @@ const GridLayout = () => (
       <Header as='h3'>Text Container</Header>
       <p>
         Sometimes you just need to put a single column of centered text on a page. A <code>text container</code> is
-        a special type of container optimized for a single flowing column of text, like this instructions on this page.
+        a special type of container optimized for a single flowing column of text, like these instructions on this page.
       </p>
       <p>Text containers <b>do not need to use grids</b> and help simplify basic page layouts.</p>
 
