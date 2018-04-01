@@ -117,6 +117,7 @@
     "leven": "^2.1.0",
     "mocha": "^3.5.0",
     "node-sass": "^4.5.3",
+    "prettier": "^1.11.1",
     "puppeteer": "^0.10.1",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
