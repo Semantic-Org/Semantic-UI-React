@@ -13,7 +13,7 @@ const ListContentVariations = () => (
 
     <ComponentExample
       title='Floated'
-      description='An list, or an element inside a list can be floated left or right'
+      description='A list, or an element inside a list can be floated left or right'
       examplePath='elements/List/ContentVariations/ListExampleFloated'
     />
     <ComponentExample examplePath='elements/List/ContentVariations/ListExampleFloatedHorizontal' />
