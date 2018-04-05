@@ -189,7 +189,6 @@ class Sidebar extends Component {
             <small><em>{pkg.version}</em></small>
           </strong>
         </Menu.Item>
-        <CarbonAd />
         <Menu.Item>
           <Menu.Header>Getting Started</Menu.Header>
           <Menu.Menu>
@@ -214,10 +213,13 @@ class Sidebar extends Component {
           </Menu.Menu>
         </Menu.Item>
         <Menu.Item>
+          <CarbonAd />
+        </Menu.Item>
+        <Menu.Item active>
           <Input
             className='transparent inverted icon'
             icon='search'
-            placeholder='Start typing...'
+            placeholder='Search components...'
             value={query}
             onChange={this.handleSearchChange}
             onKeyDown={this.handleSearchKeyDown}
