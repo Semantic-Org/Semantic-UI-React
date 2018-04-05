@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 
+const style = { minHeight: 173 }
+
 class CarbonAd extends Component {
   componentDidMount() {
     this.lastHref = location.href
@@ -27,7 +29,7 @@ class CarbonAd extends Component {
   }
 
   render() {
-    return <div id='docs-carbonads' />
+    return <div id='docs-carbonads' style={style} />
   }
 }
 
