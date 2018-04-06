@@ -1,6 +1,5 @@
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
-
-import { keyboardKey } from 'src/lib'
 
 const _wrongReturn = (method, arg, ret) =>
   `keyboardKey.${method}(${arg}) should return key name "${ret}"\n`
