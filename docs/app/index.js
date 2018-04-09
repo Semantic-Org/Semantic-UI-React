@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Router from './routes'
+import Provider from '../../src/addons/Provider'
 
 // ----------------------------------------
 // Rendering
@@ -10,7 +11,12 @@ import Router from './routes'
 const mountNode = document.createElement('div')
 document.body.appendChild(mountNode)
 
-const render = NewApp => ReactDOM.render(<NewApp />, mountNode)
+const render = NewApp => ReactDOM.render(
+  <Provider>
+    <NewApp />
+  </Provider>,
+  mountNode,
+)
 
 // ----------------------------------------
 // HMR

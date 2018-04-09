@@ -1,14 +1,14 @@
 import * as Babel from 'babel-standalone'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, createElement, isValidElement } from 'react'
+import React, { Component, isValidElement } from 'react'
 import { withRouter } from 'react-router'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
-import { Divider, Grid, Menu, Visibility } from 'src'
+import { Divider, Grid, Menu, Provider, Visibility } from 'src'
 import { shallowEqual } from 'src/lib'
 import Editor from 'docs/app/Components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
@@ -119,8 +119,9 @@ class ComponentExample extends Component {
 
     this.setState({ showCode: !showCode })
 
-    if (!showCode) this.setHashAndScroll()
-    else if (!showHTML) this.removeHash()
+    if (!showCode) {
+      this.setHashAndScroll()
+    } else if (!showHTML) this.removeHash()
   }
 
   handleShowHTMLClick = (e) => {
@@ -130,8 +131,9 @@ class ComponentExample extends Component {
 
     this.setState({ showHTML: !showHTML })
 
-    if (!showHTML) this.setHashAndScroll()
-    else if (!showCode) this.removeHash()
+    if (!showHTML) {
+      this.setHashAndScroll()
+    } else if (!showCode) this.removeHash()
   }
 
   handlePass = () => {
@@ -175,7 +177,9 @@ class ComponentExample extends Component {
 
   renderOriginalExample = () => {
     const { examplePath } = this.props
-    return createElement(exampleContext(`./${examplePath}.js`).default)
+    const ExampleComponent = exampleContext(`./${examplePath}.js`).default
+
+    return this.renderWithProvider(ExampleComponent)
   }
 
   renderSourceCode = _.debounce(() => {
@@ -242,7 +246,7 @@ class ComponentExample extends Component {
     try {
       const { code } = Babel.transform(IIFE, babelConfig)
       const Example = eval(code) // eslint-disable-line no-eval
-      const exampleElement = _.isFunction(Example) ? <Example /> : Example
+      const exampleElement = _.isFunction(Example) ? this.renderWithProvider(Example) : Example
 
       if (!isValidElement(exampleElement)) {
         this.renderError(`Default export is not a valid element. Type:${{}.toString.call(exampleElement)}`)
@@ -261,6 +265,12 @@ class ComponentExample extends Component {
       this.renderError(err.message)
     }
   }, 100)
+
+  renderWithProvider = (UIComponent) => (
+    <Provider>
+      <UIComponent />
+    </Provider>
+  )
 
   handleChangeCode = (sourceCode) => {
     this.setState({ sourceCode })

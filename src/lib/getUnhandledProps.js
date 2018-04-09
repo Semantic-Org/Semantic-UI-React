@@ -10,8 +10,17 @@ const getUnhandledProps = (Component, props) => {
   const { handledProps = [] } = Component
 
   return Object.keys(props).reduce((acc, prop) => {
-    if (prop === 'childKey') return acc
+    const isKnownProp = prop === 'ElementType'
+      || prop === 'childKey'
+      || prop === 'rest'
+      || prop === 'rules'
+      || prop === 'styles'
+      || prop === 'variables'
+
+    if (isKnownProp) return acc
+
     if (handledProps.indexOf(prop) === -1) acc[prop] = props[prop]
+
     return acc
   }, {})
 }

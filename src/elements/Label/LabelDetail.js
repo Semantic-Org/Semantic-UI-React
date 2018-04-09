@@ -4,17 +4,17 @@ import React from 'react'
 
 import {
   childrenUtils,
+  createComponent,
   customPropTypes,
-  getElementType,
-  getUnhandledProps,
   META,
 } from '../../lib'
 
+import variables from './variables'
+import * as rules from './rules'
+
 function LabelDetail(props) {
-  const { children, className, content } = props
-  const classes = cx('detail', className)
-  const rest = getUnhandledProps(LabelDetail, props)
-  const ElementType = getElementType(LabelDetail, props)
+  const { children, className, content, ElementType, rest, styles } = props
+  const classes = cx(styles.__detail, className)
 
   return (
     <ElementType {...rest} className={classes}>
@@ -30,6 +30,13 @@ LabelDetail._meta = {
 }
 
 LabelDetail.propTypes = {
+  styles: PropTypes.objectOf(PropTypes.string),
+  ElementType: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string,
+  ]),
+  rest: PropTypes.object,
+
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
@@ -43,4 +50,9 @@ LabelDetail.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-export default LabelDetail
+export default createComponent({
+  Component: LabelDetail,
+  shorthand: val => ({ content: val }),
+  rules,
+  variables,
+})
