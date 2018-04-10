@@ -47,7 +47,7 @@ module.exports = (siteVars) => {
 
   /* Content */
   vars.contentDistance = '0.5em'
-  vars.contentLineHeight = `${vars.itemLineHeight}`
+  vars.contentLineHeight = vars.itemLineHeight
   vars.contentLineHeightOffset = `calc(${vars.contentLineHeight} - 1em) / 2`
   vars.contentVerticalAlign = 'top'
 
@@ -64,8 +64,8 @@ module.exports = (siteVars) => {
   vars.itemLinkHoverColor = siteVars.linkHoverColor
 
   /* Header Link */
-  vars.itemHeaderLinkColor = `${vars.itemLinkColor}`
-  vars.itemHeaderLinkHoverColor = `${vars.itemLinkHoverColor}`
+  vars.itemHeaderLinkColor = vars.itemLinkColor
+  vars.itemHeaderLinkHoverColor = vars.itemLinkHoverColor
 
   /* Linked Icon */
   vars.itemLinkIconColor = siteVars.lightTextColor
@@ -159,7 +159,7 @@ module.exports = (siteVars) => {
   vars.bulletColor = 'inherit'
   vars.bulletLinkColor = siteVars.textColor
   vars.bulletVerticalAlign = 'top'
-  vars.bulletChildDistance = `${vars.bulletDistance}`
+  vars.bulletChildDistance = vars.bulletDistance
 
   /* Horizontal Bullets */
   vars.horizontalBulletColor = siteVars.textColor

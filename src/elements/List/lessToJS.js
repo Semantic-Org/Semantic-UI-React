@@ -53,7 +53,7 @@ exports.varsFile = (type, name, filepath) => {
     // Then, fix any doubly single quoted strings
     .replace(/= ([\S\s]+?);/gm, '= `$1`;')       // back tick ALL values
     .replace(/= `([^$]+?)`;/gm, "= '$1';")       // single quote non tpls
-    .replace(/`\${(siteVars\.\w+)}`/gm, '$1')    // remove unnecessary back ticks
+    .replace(/`\${([\w.]+)}`/gm, '$1')           // remove unnecessary back ticks
     .replace(/''([\S\s]+?)''/g, "'$1'")          // fix nested single quotes
 
     // PARENS
