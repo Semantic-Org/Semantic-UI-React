@@ -5,6 +5,7 @@ import React from 'react'
 import { Provider as RendererProvider, ThemeProvider } from 'react-fela'
 
 import * as defaultSiteVariables from '../../lib/styles/defaultSiteVariables'
+import { META } from '../../lib'
 
 // ----------------------------------------
 // Style Renderer
@@ -21,6 +22,9 @@ const config = {
 
 const renderer = createRenderer(config)
 
+/**
+ * A Provider provides the render and theme to all components.
+ */
 const Provider = ({ children }) => (
   <RendererProvider renderer={renderer}>
     <ThemeProvider theme={defaultSiteVariables}>
@@ -30,7 +34,13 @@ const Provider = ({ children }) => (
 )
 
 Provider.propTypes = {
+  /** Typically your application root. */
   children: PropTypes.node,
+}
+
+Provider._meta = {
+  type: META.TYPES.ADDON,
+  name: 'Provider',
 }
 
 export default Provider

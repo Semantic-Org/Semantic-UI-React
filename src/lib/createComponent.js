@@ -8,7 +8,7 @@ import getElementType from './getElementType'
 import { getUnhandledProps } from './index'
 
 const createComponent = ({ Component, rules, variables, shorthand, getDefaultElement }) => {
-  const StyledComponent = hoistNonReactStatics(connect(rules)(Component), Component)
+  const StyledComponent = connect(rules)(Component)
 
   const UIComponent = props => (
     <FelaTheme
@@ -39,7 +39,7 @@ const createComponent = ({ Component, rules, variables, shorthand, getDefaultEle
     variables: PropTypes.object,
   }
 
-  return hoistNonReactStatics(UIComponent, StyledComponent)
+  return hoistNonReactStatics(UIComponent, Component)
 }
 
 export default createComponent

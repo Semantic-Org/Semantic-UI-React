@@ -21,7 +21,7 @@ import variables from './variables'
 /**
  * A label displays content classification.
  */
-class Component extends React.Component {
+class Label extends React.Component {
   static contextTypes = {
     renderer: PropTypes.any,
   }
@@ -252,7 +252,7 @@ class Component extends React.Component {
 }
 
 export default createComponent({
-  Component,
+  Component: Label,
   shorthand: value => ({ content: value }),
   rules,
   variables,
