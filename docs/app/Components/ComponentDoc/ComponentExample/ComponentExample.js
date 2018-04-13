@@ -200,7 +200,7 @@ class ComponentExample extends Component {
     // which can be rendered in this ComponentExample's render() method
 
     // rewrite imports to const statements against the UPPERCASE module names
-    const imports = _.get(/(^import[\s\S]*from[\s\S]*['"]\n)/.exec(sourceCode), '[1]', '')
+    const imports = _.get(/(^[\s\S])*import[\s\S]*from[\s\S]*['"]\n/.exec(sourceCode), '[0]', '')
       .replace(/[\s\n]+/g, ' ')         // normalize spaces and make one line
       .replace(/ import/g, '\nimport')  // one import per line
       .split('\n')                      // split lines
