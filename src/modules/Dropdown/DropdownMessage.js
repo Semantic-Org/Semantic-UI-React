@@ -37,10 +37,7 @@ class DropdownMessage extends Component {
     type: PropTypes.oneOf(['maxSelectionsMessage', 'noResultsMessage']).isRequired,
 
     /** The maxSelections value. */
-    value: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    value: PropTypes.number,
   }
 
   static defaultProps = {
