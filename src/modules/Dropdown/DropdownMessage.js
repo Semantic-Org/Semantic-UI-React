@@ -41,8 +41,8 @@ class DropdownMessage extends Component {
   }
 
   static defaultProps = {
-    noResultsMessage: 'No results found.',
     maxSelectionsMessage: 'Max {value} selection{suffix}.',
+    noResultsMessage: 'No results found.',
   }
 
   /**
