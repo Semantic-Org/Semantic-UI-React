@@ -102,6 +102,9 @@ export interface DropdownProps {
   /** A dropdown can allow a maximum number of selections. */
   maxSelections?: number;
 
+  /** A dropdown can have a localized maxSelections message. */
+  maxSelectionsMessage?: React.ReactNode;
+
   /** The minimum characters for a search to begin showing results. */
   minCharacters?: number;
 
@@ -109,7 +112,7 @@ export interface DropdownProps {
   multiple?: boolean;
 
   /** Message to display when there are no results. */
-  noResultsMessage?: string;
+  noResultsMessage?: React.ReactNode;
 
   /**
    * Called when a user adds a new item. Use this to update the options list.

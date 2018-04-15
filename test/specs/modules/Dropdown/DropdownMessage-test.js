@@ -5,4 +5,6 @@ const requiredProps = { type: 'noResultsMessage' }
 
 describe('DropdownMessage', () => {
   common.isConformant(DropdownMessage, { requiredProps })
+
+  common.implementsCreateMethod(DropdownMessage)
 })

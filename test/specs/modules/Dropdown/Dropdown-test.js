@@ -2657,7 +2657,7 @@ describe('Dropdown', () => {
   describe('maxSelections', () => {
     it('shows max selection message when maxSelections cap is reached', () => {
       const maxSelections = 3
-      const maxSelectionsText = `Max ${maxSelections} selections`
+      const maxSelectionsText = `Max ${maxSelections} selections.`
 
       const samples = _.sampleSize(options, maxSelections)
       wrapperMount(<Dropdown options={options} multiple selection maxSelections={maxSelections} value={samples} />)
@@ -2669,7 +2669,7 @@ describe('Dropdown', () => {
 
     it('shows singular max selection message when maxSelections={1} and cap is reached', () => {
       const maxSelections = 1
-      const maxSelectionsText = 'Max 1 selection'
+      const maxSelectionsText = 'Max 1 selection.'
 
       const samples = _.sampleSize(options, maxSelections)
       wrapperMount(<Dropdown options={options} multiple selection maxSelections={maxSelections} value={samples} />)

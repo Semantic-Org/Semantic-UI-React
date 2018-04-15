@@ -162,6 +162,12 @@ export default class Dropdown extends Component {
       PropTypes.number,
     ]),
 
+    /** A dropdown can have a localized maxSelections message. */
+    maxSelectionsMessage: customPropTypes.every([
+      customPropTypes.demand(['maxSelections']),
+      PropTypes.node,
+    ]),
+
     /** The minimum characters for a search to begin showing results. */
     minCharacters: PropTypes.number,
 
@@ -169,7 +175,7 @@ export default class Dropdown extends Component {
     multiple: PropTypes.bool,
 
     /** Message to display when there are no results. */
-    noResultsMessage: PropTypes.string,
+    noResultsMessage: PropTypes.node,
 
     /**
      * Called when a user adds a new item. Use this to update the options list.
@@ -378,8 +384,9 @@ export default class Dropdown extends Component {
     closeOnBlur: true,
     deburr: false,
     icon: 'dropdown',
+    maxSelectionsMessage: undefined,
     minCharacters: 1,
-    noResultsMessage: 'No results found.',
+    noResultsMessage: undefined,
     openOnFocus: true,
     renderLabel: ({ text }) => text,
     searchInput: 'text',
@@ -1241,16 +1248,26 @@ export default class Dropdown extends Component {
   }
 
   renderOptions = () => {
-    const { maxSelections, multiple, search, noResultsMessage } = this.props
+    const { maxSelections, maxSelectionsMessage, multiple, search, noResultsMessage } = this.props
     const { selectedIndex, value } = this.state
     const options = this.getMenuOptions()
 
     if (!_.isNil(maxSelections) && value.length >= maxSelections) {
-      return <DropdownMessage type={'maxSelections'} value={maxSelections} />
+
+      return DropdownMessage.create('maxSelectionsMessage', {
+        defaultProps: {
+          value: maxSelections,
+          maxSelectionsMessage,
+        },
+      })
     }
 
     if (noResultsMessage !== null && search && _.isEmpty(options)) {
-      return <DropdownMessage type={'noResultsMessage'} noResultsMessage={noResultsMessage} />
+      return DropdownMessage.create('noResultsMessage', {
+        defaultProps: {
+          noResultsMessage,
+        },
+      })
     }
 
     const isActive = multiple
