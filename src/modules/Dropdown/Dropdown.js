@@ -1253,7 +1253,6 @@ export default class Dropdown extends Component {
     const options = this.getMenuOptions()
 
     if (!_.isNil(maxSelections) && value.length >= maxSelections) {
-
       return DropdownMessage.create('maxSelectionsMessage', {
         defaultProps: {
           value: maxSelections,
