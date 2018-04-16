@@ -2,6 +2,29 @@
 # yarn lockfile v1
 
 
+"@f/css-default-units@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@f/css-default-units/-/css-default-units-1.0.1.tgz#5f1758b86a392591d979f6b1024e0080744b6eaa"
+  dependencies:
+    "@f/css-unitless" "^1.0.1"
+
+"@f/css-unitless@^1.0.1":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@f/css-unitless/-/css-unitless-1.0.2.tgz#8da6e884a57e4d27798b744584e094862aa503e9"
+  dependencies:
+    "@f/hyphenate" "^1.0.0"
+
+"@f/hyphenate@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@f/hyphenate/-/hyphenate-1.0.0.tgz#dc1633324d05636da20e25fe66d6de01a1ffedd8"
+
+"@f/to-inline-style@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@f/to-inline-style/-/to-inline-style-0.1.4.tgz#2e7bf7d386e808b93b68473e8d5974a819313711"
+  dependencies:
+    "@f/css-default-units" "^1.0.1"
+    "@f/hyphenate" "^1.0.0"
+
 "@types/node@*":
   version "8.0.53"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
@@ -6394,9 +6417,9 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-semantic-ui-css@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/semantic-ui-css/-/semantic-ui-css-2.3.0.tgz#e96d0d4069499eafff9ba0c84274bc23d2b084e7"
+semantic-ui-css@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/semantic-ui-css/-/semantic-ui-css-2.3.1.tgz#a5485c640c98cce29d8ddde3eff3434566a068e0"
   dependencies:
     jquery x.*
 

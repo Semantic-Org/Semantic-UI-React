@@ -19,6 +19,11 @@ const ModalExamples = () => (
       examplePath='modules/Modal/Types/ModalExampleBasic'
     />
     <ComponentExample
+      title='Top Aligned'
+      description='A modal can be top aligned.'
+      examplePath='modules/Modal/Types/ModalExampleTopAligned'
+    />
+    <ComponentExample
       title='Scrolling Modal'
       description={[
         'When your modal content exceeds the height of the browser the scrollable area will automatically',

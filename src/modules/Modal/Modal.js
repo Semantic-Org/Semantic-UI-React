@@ -41,6 +41,9 @@ class Modal extends Component {
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
 
+    /** A modal can be vertically centered in the viewport */
+    centered: PropTypes.bool,
+
     /** Primary content. */
     children: PropTypes.node,
 
@@ -140,6 +143,7 @@ class Modal extends Component {
   }
 
   static defaultProps = {
+    centered: true,
     dimmer: true,
     closeOnDimmerClick: true,
     closeOnDocumentClick: false,
@@ -216,6 +220,18 @@ class Modal extends Component {
 
   handleRef = c => (this.ref = c)
 
+  handlePortalRef = c => (this.portalRef = c)
+
+  setRootNodeStyle = () => {
+    debug('setRootNodeStyle()')
+
+    if (!this.portalRef) return
+
+    if (this.portalRef) {
+      this.portalRef.rootNode.style.setProperty('display', 'flex', 'important')
+    }
+  }
+
   setPositionAndClassNames = () => {
     const { dimmer } = this.props
     let classes
@@ -233,7 +249,10 @@ class Modal extends Component {
     if (this.ref) {
       const { height } = this.ref.getBoundingClientRect()
 
-      const marginTop = -Math.round(height / 2)
+      // Leaving the old calculation here since we may need it as an older browser fallback
+      // SEE: https://github.com/Semantic-Org/Semantic-UI/issues/6185#issuecomment-376725956
+      // const marginTop = -Math.round(height / 2)
+      const marginTop = null
       const scrolling = height >= window.innerHeight
 
       if (this.state.marginTop !== marginTop) {
@@ -251,6 +270,8 @@ class Modal extends Component {
     if (!_.isEmpty(newState)) this.setState(newState)
 
     this.animationRequestId = requestAnimationFrame(this.setPositionAndClassNames)
+
+    this.setRootNodeStyle()
   }
 
   renderContent = (rest) => {
@@ -312,7 +333,7 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
+    const { centered, closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -336,6 +357,7 @@ class Modal extends Component {
       : cx(
         'ui',
         dimmer === 'inverted' && 'inverted',
+        !centered && 'top aligned',
         'page modals dimmer transition visible active',
       )
 
@@ -364,6 +386,7 @@ class Modal extends Component {
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
+        ref={this.handlePortalRef}
       >
         {this.renderContent(rest)}
       </Portal>

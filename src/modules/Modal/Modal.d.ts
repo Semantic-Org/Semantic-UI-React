@@ -19,6 +19,9 @@ export interface ModalProps extends PortalProps {
   /** A Modal can reduce its complexity */
   basic?: boolean;
 
+  /** A modal can be vertically centered in the viewport */
+  centered?: boolean;
+
   /** Primary content. */
   children?: React.ReactNode;
 
