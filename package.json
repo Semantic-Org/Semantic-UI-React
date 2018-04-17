@@ -28,6 +28,9 @@
     "deploy:docs": "gh-pages -d docs/build -m 'deploy docs [ci skip]'",
     "lint": "cross-env NODE_ENV=production eslint .",
     "lint:fix": "yarn lint --fix",
+    "prettier": "prettier --list-different \"**/*.{js,jsx,ts,tsx}\"",
+    "prettier:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "precommit": "lint-staged",
     "prerelease": "yarn lint && yarn tsd:lint && yarn tsd:test && yarn test && cross-env NODE_ENV=production yarn build",
     "postrelease": "yarn deploy:docs",
     "release:major": "yarn prerelease && ta-script npm/release major && yarn postrelease",
@@ -43,6 +46,18 @@
     "tsd:lint": "tslint './index.d.ts' './src/**/*.d.ts' './src/**/*.tsx' './test/**/*.d.ts' './test/**/*.tsx'",
     "tsd:lint:fix": "yarn tsd:lint --fix",
     "tsd:test": "yarn tsd && tsc -p ./ && rm test/typings.js"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "**/*.{ts,tsx}": [
+      "prettier --write",
+      "tslint --fix",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -104,6 +119,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-util": "^3.0.8",
     "html-webpack-plugin": "^2.30.1",
+    "husky": "^0.14.3",
     "imports-loader": "^0.7.1",
     "js-beautify": "^1.6.14",
     "json-loader": "^0.5.7",
@@ -115,8 +131,10 @@
     "karma-mocha-reporter": "^2.2.3",
     "karma-webpack-with-fast-source-maps": "^1.10.2",
     "leven": "^2.1.0",
+    "lint-staged": "^7.0.2",
     "mocha": "^3.5.0",
     "node-sass": "^4.5.3",
+    "prettier": "1.12.0",
     "puppeteer": "^0.10.1",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
