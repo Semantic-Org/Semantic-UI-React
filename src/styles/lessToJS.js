@@ -7,7 +7,7 @@ const gutil = require('gulp-util')
 const gulp = require('gulp')
 const through2 = require('through2')
 
-const wrapLessVariablesFile = content => `module.exports = (theme) => {
+const wrapLessVariablesFile = content => `module.exports = (siteVars) => {
   const vars = {}
 
 ${content}
@@ -29,7 +29,6 @@ exports.definitionFile = (filepath) => {
   const lessContent = fs.readFileSync(absPath, 'utf8').toString()
 
   const jsContent = lessContent
-    .replace(/\/\*![\s\S]+?\*\/\n+/gm, '')   // strip header
     .replace(/^(.*)$/gm, '// $1')           // just comment out every line for manual migration
 
   return wrapLessDefinitionFile(jsContent)
@@ -60,7 +59,7 @@ exports.variablesFile = (filepath) => {
     //
     // Variables used in the value position can be defined locally or globally.
     // Determine if a variable has been defined in this file prior to its use.
-    // Properly reference the variable from vars (local) or theme (global).
+    // Properly reference the variable from vars (local) or siteVars (global).
     // Handle both LESS interpolation @{foo} and vars @foo
     .replace(/@{?(\w+)}?/gm, (match, g1, offset, string) => {
       const precedingContent = string.substr(0, offset)
@@ -68,7 +67,7 @@ exports.variablesFile = (filepath) => {
       const localVarRegExp = new RegExp(localVar, 'g')
       const isLocalVar = localVarRegExp.test(precedingContent)
 
-      const prefix = isLocalVar ? 'vars' : 'theme'
+      const prefix = isLocalVar ? 'vars' : 'siteVars'
 
       return `\${${prefix}.${g1}}`
     })
@@ -89,7 +88,7 @@ exports.variablesFile = (filepath) => {
     .replace(/^(.+)/gm, '  $1')                             // indent lines
     .replace(/;/g, '')                                      // remove semis
 
-  // return 'const theme = {}\nconst vars = {}\n' + jsContent
+  // return 'const siteVars = {}\nconst vars = {}\n' + jsContent
   return wrapLessVariablesFile(jsContent)
 }
 
@@ -102,9 +101,13 @@ exports.variablesFile = (filepath) => {
  * @param filepath
  * @returns {*}
  */
-exports.definitionFilepath = filepath => filepath
-  .replace('.less', '-rules.js')
-  .replace('/less/', '/js/')
+exports.definitionFilepath = (filepath) => {
+  const { base, name } = path.parse(filepath)
+
+  return filepath
+    .replace(base, `${_.camelCase(`${name}Rules`)}.js`)
+    .replace('/less/', '/js/')
+}
 
 /**
  * Heads up!
@@ -115,10 +118,13 @@ exports.definitionFilepath = filepath => filepath
  * @param filepath
  * @returns {*}
  */
-exports.variablesFilepath = filepath => filepath
-  .replace('.variables', '-variables.js')
-  .replace('/less/', '/js/')
+exports.variablesFilepath = (filepath) => {
+  const { base, name } = path.parse(filepath)
 
+  return filepath
+    .replace(base, `${_.camelCase(`${name}Variables`)}.js`)
+    .replace('/less/', '/js/')
+}
 //
 // Map parsers to file extensions
 //
@@ -136,7 +142,11 @@ const PATH_PARSERS = {
 // Usage
 // -----------------------------------------
 // Convert Rules
-gulp.src('./less/**/*.{less,variables}')
+gulp.src([
+  './less/definitions/**/*.{less,variables}',
+  './less/themes/default/**/*.{less,variables}',
+  '!./less/site/**',
+])
   .pipe(through2.obj((file, enc, cb) => {
     if (file.isNull()) {
       cb(null, file)
