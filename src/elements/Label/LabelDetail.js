@@ -9,8 +9,8 @@ import {
   META,
 } from '../../lib'
 
-import variables from './variables'
-import * as rules from './rules'
+import variables from './labelVariables'
+import * as rules from './labelRules'
 
 function LabelDetail(props) {
   const { children, className, content, ElementType, rest, styles } = props

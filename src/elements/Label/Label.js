@@ -15,8 +15,8 @@ import Image from '../Image/Image'
 import LabelDetail from './LabelDetail'
 import LabelGroup from './LabelGroup'
 
-import * as rules from './rules'
-import variables from './variables'
+import * as labelRules from './labelRules'
+import labelVariables from './labelVariables'
 
 /**
  * A label displays content classification.
@@ -254,7 +254,7 @@ class Label extends React.Component {
 export default createComponent({
   Component: Label,
   shorthand: value => ({ content: value }),
-  rules,
-  variables,
+  rules: labelRules,
+  variables: labelVariables,
   // getDefaultElement: (props) => 'div',
 })
