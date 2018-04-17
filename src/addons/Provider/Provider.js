@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Provider as RendererProvider, ThemeProvider } from 'react-fela'
 
-import * as defaultSiteVariables from '../../lib/styles/defaultSiteVariables'
+import * as siteVariables from '../../lib/styles/siteVariables'
 import { META } from '../../lib'
 
 // ----------------------------------------
@@ -27,7 +27,7 @@ const renderer = createRenderer(config)
  */
 const Provider = ({ children }) => (
   <RendererProvider renderer={renderer}>
-    <ThemeProvider theme={defaultSiteVariables}>
+    <ThemeProvider theme={siteVariables}>
       {children}
     </ThemeProvider>
   </RendererProvider>

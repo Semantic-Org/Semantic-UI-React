@@ -5,24 +5,34 @@ import React, { Component, isValidElement } from 'react'
 
 import {
   childrenUtils,
-  createShorthandFactory,
+  // createShorthandFactory,
+  createComponent,
   customPropTypes,
-  getElementType,
-  getUnhandledProps,
+  // getElementType,
+  // getUnhandledProps,
   META,
-  useKeyOnly,
+  // useKeyOnly,
 } from '../../lib'
 import Image from '../../elements/Image'
 import ListContent from './ListContent'
 import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'
 import ListIcon from './ListIcon'
+import * as listRules from './listRules'
+import listVariables from './listVariables'
 
 /**
  * A list item can contain a set of items.
  */
 class ListItem extends Component {
   static propTypes = {
+    styles: PropTypes.objectOf(PropTypes.string),
+    ElementType: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]),
+    rest: PropTypes.object,
+
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
@@ -104,16 +114,23 @@ class ListItem extends Component {
       icon,
       image,
       value,
+
+      ElementType,
+      rest,
+      styles,
     } = this.props
 
-    const ElementType = getElementType(ListItem, this.props)
+    // const ElementType = getElementType(ListItem, this.props)
+    // const classes = cx(
+    //   useKeyOnly(active, 'active'),
+    //   useKeyOnly(disabled, 'disabled'),
+    //   useKeyOnly(ElementType !== 'li', 'item'),
+    //   className,
+    // )
+    // const rest = getUnhandledProps(ListItem, this.props)
     const classes = cx(
-      useKeyOnly(active, 'active'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(ElementType !== 'li', 'item'),
-      className,
+      styles.listItem,
     )
-    const rest = getUnhandledProps(ListItem, this.props)
     const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
     if (!childrenUtils.isNil(children)) {
@@ -164,6 +181,9 @@ class ListItem extends Component {
   }
 }
 
-ListItem.create = createShorthandFactory(ListItem, content => ({ content }))
-
-export default ListItem
+export default createComponent({
+  Component: ListItem,
+  shorthand: content => ({ content }),
+  rules: listRules,
+  variables: listVariables,
+})

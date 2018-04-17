@@ -8,13 +8,13 @@ import {
   customPropTypes,
   createComponent,
   // getElementType,
-  getUnhandledProps,
+  // getUnhandledProps,
   META,
   SUI,
-  useKeyOnly,
-  useKeyOrValueAndKey,
-  useValueAndKey,
-  useVerticalAlignProp,
+  // useKeyOnly,
+  // useKeyOrValueAndKey,
+  // useValueAndKey,
+  // useVerticalAlignProp,
 } from '../../lib'
 import ListContent from './ListContent'
 import ListDescription from './ListDescription'
@@ -22,12 +22,21 @@ import ListHeader from './ListHeader'
 import ListIcon from './ListIcon'
 import ListItem from './ListItem'
 import ListList from './ListList'
+import * as listRules from './listRules'
+import listVariables from './listVariables'
 
 /**
  * A list groups related content.
  */
 class List extends Component {
   static propTypes = {
+    styles: PropTypes.objectOf(PropTypes.string),
+    ElementType: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]),
+    rest: PropTypes.object,
+
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
@@ -118,23 +127,23 @@ class List extends Component {
 
   render() {
     const {
-      animated,
-      bulleted,
-      celled,
+      // animated,
+      // bulleted,
+      // celled,
       children,
-      className,
+      // className,
       content,
-      divided,
-      floated,
-      horizontal,
-      inverted,
+      // divided,
+      // floated,
+      // horizontal,
+      // inverted,
       items,
-      link,
-      ordered,
-      relaxed,
-      selection,
-      size,
-      verticalAlign,
+      // link,
+      // ordered,
+      // relaxed,
+      // selection,
+      // size,
+      // verticalAlign,
 
       ElementType,
       rest,
@@ -184,6 +193,6 @@ class List extends Component {
 
 export default createComponent({
   Component: List,
-  variables: require('../../styles/js/themes/default/elements/list-variables'),
-  rules: require('../../styles/js/definitions/elements/list-rules'),
+  variables: listVariables,
+  rules: listRules,
 })

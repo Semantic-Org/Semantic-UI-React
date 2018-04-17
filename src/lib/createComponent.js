@@ -14,6 +14,15 @@ const createComponent = ({ Component, rules, variables, shorthand, getDefaultEle
     <FelaTheme
       render={(siteVars) => {
         const mergedVariables = { ...variables(siteVars), ...props.variables }
+        console.log({
+          siteVars: siteVars.relativeLarge,
+          props: props.variables && props.variables.relativeLarge,
+          merged: {
+            itemPadding: mergedVariables.itemPadding,
+            itemLineHeight: mergedVariables.itemLineHeight,
+            relativeLarge: mergedVariables.relativeLarge,
+          },
+        })
         const rest = getUnhandledProps(Component, props)
         const ElementType = getElementType(Component, props, getDefaultElement)
 
@@ -29,7 +38,9 @@ const createComponent = ({ Component, rules, variables, shorthand, getDefaultEle
     />
   )
 
-  UIComponent.create = createShorthandFactory(UIComponent, shorthand)
+  if (shorthand) {
+    UIComponent.create = createShorthandFactory(UIComponent, shorthand)
+  }
 
   UIComponent.contextTypes = { renderer: PropTypes.any }
 
