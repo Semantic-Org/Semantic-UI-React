@@ -6,7 +6,8 @@ import React, { Component } from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  createComponent,
+  // getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -134,28 +135,36 @@ class List extends Component {
       selection,
       size,
       verticalAlign,
+
+      ElementType,
+      rest,
+      styles,
     } = this.props
 
+    // const classes = cx(
+    //   'ui',
+    //   size,
+    //   useKeyOnly(animated, 'animated'),
+    //   useKeyOnly(bulleted, 'bulleted'),
+    //   useKeyOnly(celled, 'celled'),
+    //   useKeyOnly(divided, 'divided'),
+    //   useKeyOnly(horizontal, 'horizontal'),
+    //   useKeyOnly(inverted, 'inverted'),
+    //   useKeyOnly(link, 'link'),
+    //   useKeyOnly(ordered, 'ordered'),
+    //   useKeyOnly(selection, 'selection'),
+    //   useKeyOrValueAndKey(relaxed, 'relaxed'),
+    //   useValueAndKey(floated, 'floated'),
+    //   useVerticalAlignProp(verticalAlign),
+    //   'list',
+    //   className,
+    // )
+    // const rest = getUnhandledProps(List, this.props)
+    // const ElementType = getElementType(List, this.props)
+
     const classes = cx(
-      'ui',
-      size,
-      useKeyOnly(animated, 'animated'),
-      useKeyOnly(bulleted, 'bulleted'),
-      useKeyOnly(celled, 'celled'),
-      useKeyOnly(divided, 'divided'),
-      useKeyOnly(horizontal, 'horizontal'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(link, 'link'),
-      useKeyOnly(ordered, 'ordered'),
-      useKeyOnly(selection, 'selection'),
-      useKeyOrValueAndKey(relaxed, 'relaxed'),
-      useValueAndKey(floated, 'floated'),
-      useVerticalAlignProp(verticalAlign),
-      'list',
-      className,
+      styles.list,
     )
-    const rest = getUnhandledProps(List, this.props)
-    const ElementType = getElementType(List, this.props)
 
     if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} role='list' className={classes}>{children}</ElementType>
@@ -173,4 +182,8 @@ class List extends Component {
   }
 }
 
-export default List
+export default createComponent({
+  Component: List,
+  variables: require('../../styles/js/themes/default/elements/list-variables'),
+  rules: require('../../styles/js/definitions/elements/list-rules'),
+})
