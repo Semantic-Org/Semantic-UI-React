@@ -1,31 +1,38 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
-  createShorthand,
-  createShorthandFactory,
+  createComponent,
   customPropTypes,
-  getElementType,
-  getUnhandledProps,
   META,
   SUI,
-  useKeyOnly,
-  useKeyOrValueAndKey,
-  useValueAndKey,
 } from '../../lib'
 import Icon from '../Icon/Icon'
 import Image from '../Image/Image'
 import LabelDetail from './LabelDetail'
 import LabelGroup from './LabelGroup'
 
+import * as rules from './rules'
+import variables from './variables'
+
 /**
  * A label displays content classification.
  */
-export default class Label extends Component {
+class Label extends React.Component {
+  static contextTypes = {
+    renderer: PropTypes.any,
+  }
   static propTypes = {
+    styles: PropTypes.objectOf(PropTypes.string),
+    ElementType: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]),
+    rest: PropTypes.object,
+
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
@@ -108,6 +115,18 @@ export default class Label extends Component {
     /** Shorthand for Icon to appear as the last child and trigger onRemove. */
     removeIcon: customPropTypes.itemShorthand,
 
+    /** A function to render the content part. */
+    renderContent: PropTypes.func,
+
+    /** A function to render the detail part. */
+    renderDetail: PropTypes.func,
+
+    /** A function to render the icon part. */
+    renderIcon: PropTypes.func,
+
+    /** A function to render the image part. */
+    renderImage: PropTypes.func,
+
     /** A label can appear as a ribbon attaching itself to an element. */
     ribbon: PropTypes.oneOfType([
       PropTypes.bool,
@@ -119,6 +138,13 @@ export default class Label extends Component {
 
     /** A label can appear as a tag. */
     tag: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    renderContent: ({ content }) => content,
+    renderDetail: ({ detail }) => LabelDetail.create(detail),
+    renderIcon: ({ icon }) => Icon.create(icon),
+    renderImage: ({ image }) => Image.create(image),
   }
 
   static _meta = {
@@ -144,54 +170,68 @@ export default class Label extends Component {
 
   render() {
     const {
-      active,
-      attached,
-      basic,
+      // active,
+      // attached,
+      // basic,
       children,
-      circular,
+      // circular,
       className,
-      color,
+      // color,
       content,
-      corner,
+      // corner,
       detail,
-      empty,
-      floating,
-      horizontal,
+      // empty,
+      // floating,
+      // horizontal,
       icon,
       image,
       onRemove,
-      pointing,
+      // pointing,
       removeIcon,
-      ribbon,
-      size,
-      tag,
+      renderContent,
+      renderDetail,
+      renderIcon,
+      renderImage,
+      // ribbon,
+      // size,
+      // tag,
+      styles,
+      ElementType,
+      rest,
     } = this.props
 
-    const pointingClass = (pointing === true && 'pointing')
-      || ((pointing === 'left' || pointing === 'right') && `${pointing} pointing`)
-      || ((pointing === 'above' || pointing === 'below') && `pointing ${pointing}`)
+    // const pointingClass = (pointing === true && 'pointing')
+    //   || ((pointing === 'left' || pointing === 'right') && `${pointing} pointing`)
+    //   || ((pointing === 'above' || pointing === 'below') && `pointing ${pointing}`)
+    //
+    // const classes = cx(
+    //   'ui',
+    //   color,
+    //   pointingClass,
+    //   size,
+    //   useKeyOnly(active, 'active'),
+    //   useKeyOnly(basic, 'basic'),
+    //   useKeyOnly(circular, 'circular'),
+    //   useKeyOnly(empty, 'empty'),
+    //   useKeyOnly(floating, 'floating'),
+    //   useKeyOnly(horizontal, 'horizontal'),
+    //   useKeyOnly(image === true, 'image'),
+    //   useKeyOnly(tag, 'tag'),
+    //   useKeyOrValueAndKey(corner, 'corner'),
+    //   useKeyOrValueAndKey(ribbon, 'ribbon'),
+    //   useValueAndKey(attached, 'attached'),
+    //   'label',
+    //   className,
+    // )
 
     const classes = cx(
-      'ui',
-      color,
-      pointingClass,
-      size,
-      useKeyOnly(active, 'active'),
-      useKeyOnly(basic, 'basic'),
-      useKeyOnly(circular, 'circular'),
-      useKeyOnly(empty, 'empty'),
-      useKeyOnly(floating, 'floating'),
-      useKeyOnly(horizontal, 'horizontal'),
-      useKeyOnly(image === true, 'image'),
-      useKeyOnly(tag, 'tag'),
-      useKeyOrValueAndKey(corner, 'corner'),
-      useKeyOrValueAndKey(ribbon, 'ribbon'),
-      useValueAndKey(attached, 'attached'),
-      'label',
+      styles.label,
+      {
+        [styles.link]: ElementType === 'a',
+        [styles.image]: image === true,
+      },
       className,
     )
-    const rest = getUnhandledProps(Label, this.props)
-    const ElementType = getElementType(Label, this.props)
 
     if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
@@ -201,14 +241,20 @@ export default class Label extends Component {
 
     return (
       <ElementType className={classes} onClick={this.handleClick} {...rest}>
-        {Icon.create(icon)}
-        {typeof image !== 'boolean' && Image.create(image)}
-        {content}
-        {createShorthand(LabelDetail, val => ({ content: val }), detail)}
-        {onRemove && Icon.create(removeIconShorthand, { overrideProps: this.handleIconOverrides })}
+        {renderIcon(this.props)}
+        {renderImage(this.props)}
+        {renderContent(this.props)}
+        {renderDetail(this.props)}
+        {(onRemove && Icon.create(removeIconShorthand, { overrideProps: this.handleIconOverrides }))}
       </ElementType>
     )
   }
 }
 
-Label.create = createShorthandFactory(Label, value => ({ content: value }))
+export default createComponent({
+  Component: Label,
+  shorthand: value => ({ content: value }),
+  rules,
+  variables,
+  // getDefaultElement: (props) => 'div',
+})

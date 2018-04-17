@@ -58,8 +58,12 @@
     "babel-runtime": "^6.25.0",
     "classnames": "^2.2.5",
     "fbjs": "^0.8.16",
+    "fela": "^6.1.7",
+    "fela-monolithic": "^5.0.21",
+    "hoist-non-react-statics": "^2.5.0",
     "lodash": "^4.17.4",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react-fela": "^7.2.0"
   },
   "devDependencies": {
     "@types/react": "^16.0.0",
@@ -132,6 +136,7 @@
     "rimraf": "^2.6.1",
     "satisfied": "^1.1.1",
     "semantic-ui-css": "^2.2.12",
+    "semantic-ui-less": "^2.3.1",
     "simulant": "^0.2.2",
     "sinon": "^3.2.0",
     "sinon-chai": "^2.13.0",
