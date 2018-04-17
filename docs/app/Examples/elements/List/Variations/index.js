@@ -5,7 +5,7 @@ import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
 const ListVariations = () => (
-  <ExampleSection title='Types'>
+  <ExampleSection title='Variations'>
     <ComponentExample
       title='Horizontal'
       description='A list can be formatted to have items appear horizontally'
