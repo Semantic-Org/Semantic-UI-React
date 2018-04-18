@@ -5,7 +5,7 @@ const CardExampleHeaderCard = () => (
   <Card.Group>
     <Card>
       <Card.Content>
-        <Card.Header>Matthew Harris</Card.Header>
+        <Card.Header>Matthew213123123123123123123123123123123 Harris</Card.Header>
         <Card.Meta>Co-Worker</Card.Meta>
         <Card.Description>Matthew is a pianist living in Nashville.</Card.Description>
       </Card.Content>
