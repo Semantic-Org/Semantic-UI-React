@@ -12,7 +12,7 @@ const Types = () => (
     />
     <ComponentExample examplePath='collections/Table/Types/TableExamplePadded' />
     <ComponentExample examplePath='collections/Table/Types/TableExampleCollapsing' />
-    <ComponentExample examplePath='collections/Table/Types/TableExampleStriped' />
+    <ComponentExample examplePath='collections/Table/Types/TableExampleCelledStriped' />
 
     <ComponentExample
       title='Definition'
