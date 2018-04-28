@@ -1,9 +1,10 @@
 version: 2
+general:
+  branches:
+    ignore:
+      - gh-pages
 jobs:
   build:
-    filters:
-      branches:
-        ignore: gh-pages
     docker:
       - image: circleci/node:8
     environment:
