@@ -24,8 +24,8 @@ const CheckboxStatesExamples = () => (
           target='_blank'
         >
           <code>defaultChecked</code>
-        </a>
-        {' '}as you normally would to set default form values.
+        </a>{' '}
+        as you normally would to set default form values.
       </Message>
     </ComponentExample>
     <ComponentExample
@@ -37,11 +37,6 @@ const CheckboxStatesExamples = () => (
       title='Disabled'
       description='A checkbox can be read-only and unable to change states.'
       examplePath='modules/Checkbox/States/CheckboxExampleDisabled'
-    />
-    <ComponentExample
-      title='Remote Control'
-      description='You can trigger events remotely.'
-      examplePath='modules/Checkbox/States/CheckboxExampleRemoteControl'
     />
   </ExampleSection>
 )

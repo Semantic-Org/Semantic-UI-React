@@ -47,10 +47,7 @@ export default class Checkbox extends Component {
     fitted: PropTypes.bool,
 
     /** A unique identifier. */
-    id: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Whether or not checkbox is indeterminate. */
     indeterminate: PropTypes.bool,
@@ -85,51 +82,41 @@ export default class Checkbox extends Component {
      */
     onMouseDown: PropTypes.func,
 
+    /**
+     * Called when the user releases the mouse.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and current checked/indeterminate state.
+     */
+    onMouseUp: PropTypes.func,
+
     /** Format as a radio element. This means it is an exclusive option. */
-    radio: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['slider', 'toggle']),
-    ]),
+    radio: customPropTypes.every([PropTypes.bool, customPropTypes.disallow(['slider', 'toggle'])]),
 
     /** A checkbox can be read-only and unable to change states. */
     readOnly: PropTypes.bool,
 
     /** Format to emphasize the current selection state. */
-    slider: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['radio', 'toggle']),
-    ]),
+    slider: customPropTypes.every([PropTypes.bool, customPropTypes.disallow(['radio', 'toggle'])]),
 
     /** A checkbox can receive focus. */
-    tabIndex: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Format to show an on or off choice. */
-    toggle: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['radio', 'slider']),
-    ]),
+    toggle: customPropTypes.every([PropTypes.bool, customPropTypes.disallow(['radio', 'slider'])]),
 
     /** HTML input type, either checkbox or radio. */
     type: PropTypes.oneOf(['checkbox', 'radio']),
 
     /** The HTML input value. */
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }
 
   static defaultProps = {
     type: 'checkbox',
   }
 
-  static autoControlledProps = [
-    'checked',
-    'indeterminate',
-  ]
+  static autoControlledProps = ['checked', 'indeterminate']
 
   static _meta = {
     name: 'Checkbox',
@@ -194,6 +181,15 @@ export default class Checkbox extends Component {
     e.preventDefault()
   }
 
+  handleMouseUp = (e) => {
+    debug('handleMouseUp()')
+    const { checked, indeterminate } = this.state
+
+    _.invoke(this.props, 'onMouseUp', e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
+
+    this.handleClick(e)
+  }
+
   // Note: You can't directly set the indeterminate prop on the input, so we
   // need to maintain a ref to the input and set it manually whenever the
   // component updates.
@@ -204,19 +200,7 @@ export default class Checkbox extends Component {
   }
 
   render() {
-    const {
-      className,
-      disabled,
-      label,
-      id,
-      name,
-      radio,
-      readOnly,
-      slider,
-      toggle,
-      type,
-      value,
-    } = this.props
+    const { className, disabled, label, id, name, radio, readOnly, slider, toggle, type, value } = this.props
     const { checked, indeterminate } = this.state
 
     const classes = cx(
@@ -242,9 +226,9 @@ export default class Checkbox extends Component {
       <ElementType
         {...rest}
         className={classes}
-        onClick={this.handleContainerClick}
         onChange={this.handleContainerClick}
         onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
       >
         <input
           {...htmlInputProps}
@@ -252,7 +236,7 @@ export default class Checkbox extends Component {
           className='hidden'
           id={id}
           name={name}
-          onClick={this.handleInputClick}
+          onChange={this.handleInputClick}
           readOnly
           ref={this.handleInputRef}
           tabIndex={this.computeTabIndex()}
