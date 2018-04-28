@@ -5,7 +5,7 @@ import hoistNonReactStatics from 'hoist-non-react-statics'
 
 import { createShorthandFactory } from './factories'
 import getElementType from './getElementType'
-import { getUnhandledProps } from './index'
+import getUnhandledProps from './getUnhandledProps'
 
 const createComponent = ({ Component, rules, variables, shorthand, getDefaultElement }) => {
   const StyledComponent = connect(rules)(Component)
@@ -14,15 +14,6 @@ const createComponent = ({ Component, rules, variables, shorthand, getDefaultEle
     <FelaTheme
       render={(siteVars) => {
         const mergedVariables = { ...variables(siteVars), ...props.variables }
-        console.log({
-          siteVars: siteVars.relativeLarge,
-          props: props.variables && props.variables.relativeLarge,
-          merged: {
-            itemPadding: mergedVariables.itemPadding,
-            itemLineHeight: mergedVariables.itemLineHeight,
-            relativeLarge: mergedVariables.relativeLarge,
-          },
-        })
         const rest = getUnhandledProps(Component, props)
         const ElementType = getElementType(Component, props, getDefaultElement)
 

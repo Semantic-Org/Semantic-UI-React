@@ -16,7 +16,7 @@ Goals:
 
 ## What changed?
 
-In support of the goals, the following changes were made
+In support of the goals, the following changes were made (initially).
 
 | File                                          | Responsibility                              |
 |-----------------------------------------------|---------------------------------------------|
@@ -125,3 +125,69 @@ I've included `'&:first-child': {}` rules in this first run, but I'm entertainin
 ```
 
 This would allow users to better handle cases where a component is first or last, but not necessarily so in the DOM. 
+
+# Isolation vs Cascading
+
+We're fixing issues with parent components reaching in and breaking the style of child components.  However, we've had issues requesting certain styles to cascade, such as inverted:
+https://github.com/Semantic-Org/Semantic-UI-React/issues/2741
+
+This is an excerpt from that conversation and includes considerations for both patterns.
+
+### Case for isolation
+
+When we design modular code we adhere to principles like the law of demeter, limited awareness, encapsulation, and black boxes. In functional programming, we employ pure functions, avoid side effects, and never reach outside scope. These principles (and their friends) make our code portable, reusable, easy to reason about, easy to test, and most importantly they make systems that are predictable and maintainable.
+
+It seems to me that when it comes to styling we too easily throw these principles out. We are quick to entangle the styling of components with the implementation details of their potential neighbors.
+
+The output of a function ought to be owned by the function alone. I see components as functions and style as output. The style of a component then ought to be owned by that component alone. A component should provide arguments for changing the style. Just as a good function provides arguments for changing its output.
+
+Consider this analogy of an inverted Segment with a Menu inside:
+
+const menu = () => {
+  return inverted ? 'inverted menu' : 'menu'
+}
+
+const segment = () => {
+  const inverted = true
+
+  return Menu()
+}
+What's wrong? The menu() is relying on an out of scope variable to exist. Most PR reviewers would call this out for correction. Why? First, inverted is not defined in the menu's scope and will throw. OK, let's strictly fix the undefined issue:
+
+const menu = () => {
+  return typeof inverted === 'undefined' ? 'menu' : 'inverted menu'
+}
+
+const segment = () => {
+  const inverted = true
+
+  return Menu()
+}
+Still, PR reviewers would likely call this out. Why? It is not pure! The output is not predictable nor consistent. Depending on where you call this function, it will behave differently even though you used the exact same arguments. This may seem helpful in an isolated case, but a system built on these kinds of blocks will be unreasonable chaos.
+
+In order to be pure, the menu must be honest about it's dependencies and own the value it is referencing. It needs to accept it as an argument:
+
+const menu = (inverted = false) => {
+  return inverted ? 'inverted menu' : 'menu'
+}
+
+const segment = () => {
+  const inverted = true
+
+  return Menu(inverted)
+}
+Cool, now this is testable, reusable, moveable, predictable, consistent, intuitive, and simple. Most PR reviewers would accept this code. I hope the correlation is clear, but here it is in JSX just in case:
+
+<Segment inverted>
+  <Menu />
+</Segment>
+Ask ourselves, should the Menu be inverted? I'm thinking no. Segment should not know about Menu and vice versa. Segment should not be allowed to reach into implementation details (styling) of Menu and change them. Segment and Menu both should be pure, rending the exact same UI when given the same props, no matter when or where they are rendered.
+
+We have a real problem currently with how many child component styles are completely changed when placed in the context of a parent. Menu's do this to Labels when used in a Menu Item. The Label props are largely ignored and the Menu overrides their style. This is not good and something we will get away from.
+
+### Case for cascading
+There are limited scenarios when globals are acceptable, such as base theme information. It is clear that some aspects of styling should not be global or cascade, like borders and shadows. This is harder to answer for some aspects of styling, like sizing.
+
+My counter thought to the isolation argument is that the concept of inverted may in fact be nothing more than a dark theme. Theme is an acceptable global and should also be configurable at any point in the tree. We can imagine changing the theme from light to dark for a given branch in the tree and expecting all components in that branch to take on the theme.
+
+In the CSS in JS conversion, it may be that inverted goes away and we instead embrace it as a theme variant. It is also valid that we keep the concept of inverted and treat it as a theme parameter, passing it through context.
