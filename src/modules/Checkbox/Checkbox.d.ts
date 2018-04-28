@@ -61,6 +61,14 @@ export interface CheckboxProps {
    */
   onMouseDown?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void;
 
+  /**
+   * Called when the user releases the mouse.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and current checked/indeterminate state.
+   */
+  onMouseUp?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void;
+
   /** Format as a radio element. This means it is an exclusive option. */
   radio?: boolean;
 
@@ -80,7 +88,7 @@ export interface CheckboxProps {
   type?: 'checkbox' | 'radio';
 
   /** The HTML input value. */
-  value?: number|string;
+  value?: number | string;
 }
 
 declare const Checkbox: React.ComponentClass<CheckboxProps>;
