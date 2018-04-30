@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -11,7 +12,6 @@ import {
   getUnhandledProps,
   htmlInputAttrs,
   isBrowser,
-  keyboardKey,
   makeDebugger,
   META,
   objectDiff,
@@ -47,10 +47,7 @@ export default class Search extends Component {
     defaultValue: PropTypes.string,
 
     /** Shorthand for Icon. */
-    icon: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.object,
-    ]),
+    icon: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
 
     /** Minimum characters to query for results */
     minCharacters: PropTypes.number,
@@ -189,10 +186,7 @@ export default class Search extends Component {
     showNoResults: true,
   }
 
-  static autoControlledProps = [
-    'open',
-    'value',
-  ]
+  static autoControlledProps = ['open', 'value']
 
   static _meta = {
     name: 'Search',
@@ -226,7 +220,8 @@ export default class Search extends Component {
     return !shallowEqual(nextProps, this.props) || !shallowEqual(nextState, this.state)
   }
 
-  componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
+  componentDidUpdate(prevProps, prevState) {
+    // eslint-disable-line complexity
     debug('componentDidUpdate()')
     debug('to state:', objectDiff(prevState, this.state))
 
@@ -296,7 +291,7 @@ export default class Search extends Component {
 
   moveSelectionOnKeyDown = (e) => {
     debug('moveSelectionOnKeyDown()')
-    debug(keyboardKey.getName(e))
+    debug(keyboardKey.getKey(e))
     switch (keyboardKey.getCode(e)) {
       case keyboardKey.ArrowDown:
         e.preventDefault()
@@ -313,7 +308,7 @@ export default class Search extends Component {
 
   selectItemOnEnter = (e) => {
     debug('selectItemOnEnter()')
-    debug(keyboardKey.getName(e))
+    debug(keyboardKey.getKey(e))
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
 
     const result = this.getSelectedResult()
@@ -419,10 +414,7 @@ export default class Search extends Component {
   getFlattenedResults = () => {
     const { category, results } = this.props
 
-    return !category ? results : _.reduce(results,
-      (memo, categoryData) => memo.concat(categoryData.results),
-      [],
-    )
+    return !category ? results : _.reduce(results, (memo, categoryData) => memo.concat(categoryData.results), [])
   }
 
   getSelectedResult = (index = this.state.selectedIndex) => {
@@ -440,10 +432,7 @@ export default class Search extends Component {
 
     const { selectFirstResult } = this.props
 
-    this.trySetState(
-      { value },
-      { selectedIndex: selectFirstResult ? 0 : -1 },
-    )
+    this.trySetState({ value }, { selectedIndex: selectFirstResult ? 0 : -1 })
   }
 
   moveSelectionBy = (e, offset) => {
@@ -479,12 +468,12 @@ export default class Search extends Component {
     debug(`menu (results): ${menu}`)
     debug(`item (result): ${item}`)
     const isOutOfUpperView = item.offsetTop < menu.scrollTop
-    const isOutOfLowerView = (item.offsetTop + item.clientHeight) > menu.scrollTop + menu.clientHeight
+    const isOutOfLowerView = item.offsetTop + item.clientHeight > menu.scrollTop + menu.clientHeight
 
     if (isOutOfUpperView) {
       menu.scrollTop = item.offsetTop
     } else if (isOutOfLowerView) {
-      menu.scrollTop = (item.offsetTop + item.clientHeight) - menu.clientHeight
+      menu.scrollTop = item.offsetTop + item.clientHeight - menu.clientHeight
     }
   }
 
@@ -516,14 +505,16 @@ export default class Search extends Component {
     const { icon, input } = this.props
     const { value } = this.state
 
-    return Input.create(input, { defaultProps: {
-      ...rest,
-      icon,
-      input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
-      onChange: this.handleSearchChange,
-      onClick: this.handleInputClick,
-      value,
-    } })
+    return Input.create(input, {
+      defaultProps: {
+        ...rest,
+        icon,
+        input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
+        onChange: this.handleSearchChange,
+        onClick: this.handleInputClick,
+        value,
+      },
+    })
   }
 
   renderNoResults = () => {
@@ -532,9 +523,7 @@ export default class Search extends Component {
     return (
       <div className='message empty'>
         <div className='header'>{noResultsMessage}</div>
-        {noResultsDescription && (
-          <div className='description'>{noResultsDescription}</div>
-        )}
+        {noResultsDescription && <div className='description'>{noResultsDescription}</div>}
       </div>
     )
   }
@@ -584,11 +573,7 @@ export default class Search extends Component {
 
       count += category.results.length
 
-      return (
-        <SearchCategory {...categoryProps}>
-          {category.results.map(renderFn)}
-        </SearchCategory>
-      )
+      return <SearchCategory {...categoryProps}>{category.results.map(renderFn)}</SearchCategory>
     })
   }
 
@@ -618,14 +603,7 @@ export default class Search extends Component {
     debug('state', this.state)
     const { searchClasses, focus, open } = this.state
 
-    const {
-      aligned,
-      category,
-      className,
-      fluid,
-      loading,
-      size,
-    } = this.props
+    const { aligned, category, className, fluid, loading, size } = this.props
 
     // Classes
     const classes = cx(

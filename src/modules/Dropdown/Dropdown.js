@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Children, cloneElement } from 'react'
@@ -11,7 +12,6 @@ import {
   eventStack,
   getElementType,
   getUnhandledProps,
-  keyboardKey,
   makeDebugger,
   META,
   objectDiff,
@@ -505,7 +505,7 @@ export default class Dropdown extends Component {
   }
 
   moveSelectionOnKeyDown = (e) => {
-    debug('moveSelectionOnKeyDown()', keyboardKey.getName(e))
+    debug('moveSelectionOnKeyDown()', keyboardKey.getKey(e))
 
     const { multiple, selectOnNavigation } = this.props
     const moves = {
@@ -568,7 +568,7 @@ export default class Dropdown extends Component {
   }
 
   selectItemOnEnter = (e) => {
-    debug('selectItemOnEnter()', keyboardKey.getName(e))
+    debug('selectItemOnEnter()', keyboardKey.getKey(e))
     const { search } = this.props
 
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
@@ -584,7 +584,7 @@ export default class Dropdown extends Component {
   }
 
   removeItemOnBackspace = (e) => {
-    debug('removeItemOnBackspace()', keyboardKey.getName(e))
+    debug('removeItemOnBackspace()', keyboardKey.getKey(e))
 
     const { multiple, search } = this.props
     const { searchQuery, value } = this.state

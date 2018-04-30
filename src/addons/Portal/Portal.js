@@ -1,3 +1,4 @@
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Children, cloneElement } from 'react'
@@ -8,7 +9,6 @@ import {
   doesNodeContainClick,
   eventStack,
   isBrowser,
-  keyboardKey,
   makeDebugger,
   META,
 } from '../../lib'
@@ -134,9 +134,7 @@ class Portal extends Component {
     openOnTriggerClick: true,
   }
 
-  static autoControlledProps = [
-    'open',
-  ]
+  static autoControlledProps = ['open']
 
   static _meta = {
     name: 'Portal',
@@ -179,11 +177,11 @@ class Portal extends Component {
     const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
     if (
-      !this.rootNode                                      // not mounted
-      || !this.portalNode                                 // no portal
-      || doesNodeContainClick(this.triggerNode, e)        // event happened in trigger (delegate to trigger handlers)
-      || doesNodeContainClick(this.portalNode, e)         // event happened in the portal
-    ) return                                              // ignore the click
+      !this.rootNode || // not mounted
+      !this.portalNode || // no portal
+      doesNodeContainClick(this.triggerNode, e) || // event happened in trigger (delegate to trigger handlers)
+      doesNodeContainClick(this.portalNode, e) // event happened in the portal
+    ) { return } // ignore the click
 
     const didClickInRootNode = doesNodeContainClick(this.rootNode, e)
 
@@ -359,11 +357,8 @@ class Portal extends Component {
       eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target: this.portalNode })
     }
 
-    ReactDOM.unstable_renderSubtreeIntoContainer(
-      this,
-      Children.only(children),
-      this.rootNode,
-      () => this.attachRenderSubTreeSubscribers(eventPool),
+    ReactDOM.unstable_renderSubtreeIntoContainer(this, Children.only(children), this.rootNode, () =>
+      this.attachRenderSubTreeSubscribers(eventPool),
     )
   }
 
@@ -383,11 +378,7 @@ class Portal extends Component {
 
     debug('mountPortal()')
 
-    const {
-      eventPool,
-      mountNode = isBrowser() ? document.body : null,
-      prepend,
-    } = this.props
+    const { eventPool, mountNode = isBrowser() ? document.body : null, prepend } = this.props
 
     this.rootNode = document.createElement('div')
 

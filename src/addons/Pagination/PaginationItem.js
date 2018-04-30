@@ -1,12 +1,9 @@
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import { Component } from 'react'
 
-import {
-  createShorthandFactory,
-  keyboardKey,
-  META,
-} from '../../lib'
+import { createShorthandFactory, META } from '../../lib'
 import MenuItem from '../../collections/Menu/MenuItem'
 
 /**
@@ -37,14 +34,7 @@ class PaginationItem extends Component {
     onKeyDown: PropTypes.func,
 
     /** A pagination should have a type. */
-    type: PropTypes.oneOf([
-      'ellipsisItem',
-      'firstItem',
-      'prevItem',
-      'pageItem',
-      'nextItem',
-      'lastItem',
-    ]),
+    type: PropTypes.oneOf(['ellipsisItem', 'firstItem', 'prevItem', 'pageItem', 'nextItem', 'lastItem']),
   }
 
   static _meta = {
