@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json.schemastore.org/prettierrc",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": "*.{ts,tsx}",
+      "options": {
+        "semi": true
+      }
+    }
+  ]
+}
