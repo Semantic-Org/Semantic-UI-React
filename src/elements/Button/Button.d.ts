@@ -1,12 +1,6 @@
 import * as React from 'react';
 
-import {
-  SemanticCOLORS,
-  SemanticFLOATS,
-  SemanticShorthandContent,
-  SemanticShorthandItem,
-  SemanticSIZES
-} from '../..';
+import { SemanticCOLORS, SemanticFLOATS, SemanticShorthandContent, SemanticShorthandItem, SemanticSIZES } from '../..';
 import { LabelProps } from '../Label';
 import { default as ButtonContent } from './ButtonContent';
 import { default as ButtonGroup } from './ButtonGroup';
@@ -87,6 +81,9 @@ export interface ButtonProps {
 
   /** A button can be formatted to show different levels of emphasis. */
   primary?: boolean;
+
+  /** The role of the HTML element. */
+  role?: string;
 
   /** A button can be formatted to show different levels of emphasis. */
   secondary?: boolean;
