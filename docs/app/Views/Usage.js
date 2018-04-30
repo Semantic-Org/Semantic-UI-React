@@ -134,8 +134,8 @@ const Usage = () => (
         <pre>$ yarn add semantic-ui --dev</pre>
       </Segment>
       <p>
-        After building the project with Gulp, you'll need to include the minified CSS file in your <em>index.js</em>{' '}
-        file:
+        After building the project with Gulp, you'll need to include the minified CSS file in your <em>index.js</em>
+        {' '}file:
       </p>
       <Segment>
         <pre>import '../semantic/dist/semantic.min.css';</pre>
