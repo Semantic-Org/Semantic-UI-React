@@ -1,0 +1,16 @@
+.github/
+
+# editor configs
+.idea/
+.vscode/
+
+
+coverage/
+
+dist/
+dll/
+docs/app/docgenInfo.json
+docs/app/menuInfo.jso
+docs/build/
+
+package.json

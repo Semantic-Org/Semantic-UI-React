@@ -1,61 +1,35 @@
-import React, { Component } from 'react'
 import _ from 'lodash'
+import React, { Component } from 'react'
 
-const transitionTime = 200
+const style = { minHeight: 173 }
 
 class CarbonAd extends Component {
-  state = {
-    opacity: 1,
-  }
-
   componentDidMount() {
-    this.lastPath = location.pathname
+    this.lastHref = location.href
 
-    this.refresh()
+    const script = document.createElement('script')
+    script.async = true
+    script.id = '_carbonads_js'
+    script.type = 'text/javascript'
+    script.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=reactsemanticuicom'
+
+    this.ifRef(ref => ref.appendChild(script))
   }
 
-  componentDidUpdate() {
-    if (location.pathname !== this.lastPath) {
-      this.lastPath = location.pathname
-      this.refresh()
+  componentWillUpdate() {
+    if (location.href !== this.lastHref) {
+      this.lastHref = location.href
+      _.invoke(window._carbonads, 'refresh')
     }
   }
 
-  refresh = () => {
-    this.setState({ opacity: 0 })
-
-    setTimeout(() => {
-      _.invoke(window._carbonads, 'refresh')
-
-      setTimeout(() => {
-        this.setState({ opacity: 1 })
-      }, transitionTime)
-    }, transitionTime)
+  ifRef = (cb) => {
+    const ref = document.querySelector('#docs-carbonads')
+    if (ref) cb(ref)
   }
 
   render() {
-    const { opacity } = this.state
-
-    const style = {
-      transition: `opacity ${transitionTime}ms`,
-      minHeight: 173,
-      opacity,
-    }
-
-    return (
-      <div style={style}>
-        {/*
-          Heads up!
-          This script is loaded in index.html. The script requires the markup here to match in order to work.
-        */}
-        <script
-          async
-          id='_carbonads_js'
-          type='text/javascript'
-          src='//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=reactsemanticuicom'
-        />
-      </div>
-    )
+    return <div id='docs-carbonads' style={style} />
   }
 }
 

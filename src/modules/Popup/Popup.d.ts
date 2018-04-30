@@ -80,10 +80,15 @@ export interface PopupProps extends PortalProps {
   onUnmount?: (nothing: null, data: PopupProps) => void;
 
   /** Position for the popover. */
-  position?: 'top left' | 'top right' |
-    'bottom right' | 'bottom left' |
-    'right center' | 'left center' |
-    'top center' | 'bottom center';
+  position?:
+    | 'top left'
+    | 'top right'
+    | 'bottom right'
+    | 'bottom left'
+    | 'right center'
+    | 'left center'
+    | 'top center'
+    | 'bottom center';
 
   /** Popup size. */
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge';
@@ -96,6 +101,9 @@ export interface PopupProps extends PortalProps {
 
   /** Popup width. */
   wide?: boolean | 'very';
+
+  /** Element to be rendered within the confines of the viewport whenever possible. */
+  keepInViewPort?: boolean;
 }
 
 interface PopupComponent extends React.ComponentClass<PopupProps> {

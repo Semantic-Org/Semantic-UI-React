@@ -25,14 +25,14 @@ const LayoutsExample = () => (
         content='Learn more about theming'
         labelPosition='right'
         href='https://semantic-ui.com/usage/theming.html'
-        icon='external alternate'
+        icon='external'
         target='_blank'
       />
       <Button
         content='Creating themes'
         labelPosition='right'
         href='http://learnsemantic.com/themes/creating.html'
-        icon='external alternate'
+        icon='external'
         target='_blank'
       />
 

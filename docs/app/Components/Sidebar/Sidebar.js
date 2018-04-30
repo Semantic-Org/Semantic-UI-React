@@ -190,9 +190,6 @@ class Sidebar extends Component {
           </strong>
         </Menu.Item>
         <Menu.Item>
-          <CarbonAd />
-        </Menu.Item>
-        <Menu.Item>
           <Menu.Header>Getting Started</Menu.Header>
           <Menu.Menu>
             <Menu.Item as={NavLink} to='/introduction' activeClassName='active'>
@@ -216,10 +213,13 @@ class Sidebar extends Component {
           </Menu.Menu>
         </Menu.Item>
         <Menu.Item>
+          <CarbonAd />
+        </Menu.Item>
+        <Menu.Item active>
           <Input
             className='transparent inverted icon'
             icon='search'
-            placeholder='Start typing...'
+            placeholder='Search components...'
             value={query}
             onChange={this.handleSearchChange}
             onKeyDown={this.handleSearchKeyDown}

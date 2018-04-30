@@ -6,6 +6,9 @@ export interface DropdownSearchInputProps {
   /** An element type to render as (string or function). */
   as?: any;
 
+  /** An input can have the auto complete. */
+  autoComplete?: string;
+
   /** Additional classes. */
   className?: string;
 

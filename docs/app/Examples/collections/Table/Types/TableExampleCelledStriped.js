@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Table } from 'semantic-ui-react'
 
-const TableExampleStriped = () => (
+const TableExampleCelledStriped = () => (
   <Table celled striped>
     <Table.Header>
       <Table.Row>
@@ -15,7 +15,9 @@ const TableExampleStriped = () => (
           <Icon name='folder' /> node_modules
         </Table.Cell>
         <Table.Cell>Initial commit</Table.Cell>
-        <Table.Cell collapsing textAlign='right'>10 hours ago</Table.Cell>
+        <Table.Cell collapsing textAlign='right'>
+          10 hours ago
+        </Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell>
@@ -49,4 +51,4 @@ const TableExampleStriped = () => (
   </Table>
 )
 
-export default TableExampleStriped
+export default TableExampleCelledStriped

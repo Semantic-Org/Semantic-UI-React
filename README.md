@@ -46,6 +46,7 @@ See the [Documentation][2] for an introduction, usage information, and extensive
 
 <img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/amazon-logo.png" />
 <img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/netflix-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/microsoft-logo.png" />
 <a href="https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md">
   <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/add-yours.png" />
 </a>
@@ -54,6 +55,7 @@ These great products are built on Semantic UI React. Add yours [here][22].
 
 - Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
 - Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
+- Microsoft's [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
 - https://gitconnected.com - The community for developers and software engineers
 - http://stoplight.io
 - https://roadmap.space
