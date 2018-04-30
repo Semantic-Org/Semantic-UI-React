@@ -158,18 +158,6 @@ export default class Checkbox extends Component {
     return disabled ? -1 : 0
   }
 
-  handleContainerClick = (e) => {
-    const { id } = this.props
-
-    if (_.isNil(id)) this.handleClick(e)
-  }
-
-  handleInputClick = (e) => {
-    const { id } = this.props
-
-    if (id) this.handleClick(e)
-  }
-
   handleInputRef = c => (this.inputRef = c)
 
   handleClick = (e) => {
@@ -208,7 +196,6 @@ export default class Checkbox extends Component {
       className,
       disabled,
       label,
-      id,
       name,
       radio,
       readOnly,
@@ -237,33 +224,36 @@ export default class Checkbox extends Component {
     const unhandled = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
     const [htmlInputProps, rest] = partitionHTMLProps(unhandled, { htmlProps: htmlInputAttrs })
+    const id = _.get(htmlInputProps, 'id')
+    const defaultLabelProps = {
+      htmlFor: id,
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/2370
+      // when there is an id, the htmlFor prop transfers the click the hidden input
+      // let the hidden input handle it so we don't get double click events
+      onClick: id ? undefined : this.handleClick,
+      onMouseDown: this.handleMouseDown,
+    }
 
     return (
-      <ElementType
-        {...rest}
-        className={classes}
-        onClick={this.handleContainerClick}
-        onChange={this.handleContainerClick}
-        onMouseDown={this.handleMouseDown}
-      >
+      <ElementType {...rest} className={classes}>
         <input
           {...htmlInputProps}
           checked={checked}
           className='hidden'
-          id={id}
           name={name}
-          onClick={this.handleInputClick}
           readOnly
           ref={this.handleInputRef}
+          onClick={this.handleClick}
           tabIndex={this.computeTabIndex()}
           type={type}
           value={value}
         />
-        {/*
-         Heads Up!
-         Do not remove empty labels, they are required by SUI CSS
-         */}
-        {createHTMLLabel(label, { defaultProps: { htmlFor: id } }) || <label htmlFor={id} />}
+        {
+          // Heads Up!
+          // Do not remove empty labels, they are required by SUI CSS
+          // eslint-disable-next-line jsx-a11y/label-has-for
+          createHTMLLabel(label, { defaultProps: defaultLabelProps }) || <label {...defaultLabelProps} />
+        }
       </ElementType>
     )
   }

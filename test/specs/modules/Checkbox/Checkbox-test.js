@@ -22,7 +22,7 @@ const wrapperMount = (element, opts) => {
 }
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
-describe('Checkbox', () => {
+describe.only('Checkbox', () => {
   common.isConformant(Checkbox)
   common.hasUIClassName(Checkbox)
 
