@@ -39,7 +39,6 @@ export * as META from './META'
 export createPaginationItems from './createPaginationItems'
 export * as SUI from './SUI'
 
-export { default as keyboardKey } from './keyboardKey'
 export { numberToWordMap, numberToWord } from './numberToWord'
 export normalizeOffset from './normalizeOffset'
 export normalizeTransitionDuration from './normalizeTransitionDuration'

@@ -1,3 +1,4 @@
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -14,7 +15,7 @@ import CarbonAd from 'docs/app/Components/CarbonAd/CarbonAd'
 import Logo from 'docs/app/Components/Logo/Logo'
 import { typeOrder, parentComponents, repoURL } from 'docs/app/utils'
 import pkg from 'package.json'
-import { keyboardKey, META } from 'src/lib'
+import { META } from 'src/lib'
 
 const getRoute = _meta => `/${_meta.type}s/${_.kebabCase(_meta.name)}`
 
