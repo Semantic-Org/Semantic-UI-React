@@ -85,12 +85,7 @@ class ComponentDoc extends Component {
             <Grid.Column>
               <ComponentDocHeader componentName={componentName} description={description} />
               <ComponentDocSee items={seeItems} />
-              <ComponentDocLinks
-                componentName={componentName}
-                ghLink={ghLink}
-                path={path}
-                suiLink={suiLink}
-              />
+              <ComponentDocLinks componentName={componentName} ghLink={ghLink} path={path} suiLink={suiLink} />
               <ComponentProps componentGroup={componentGroup} componentName={componentName} />
             </Grid.Column>
           </Grid.Row>
@@ -101,7 +96,7 @@ class ComponentDoc extends Component {
                 <ComponentExamples componentName={componentName} />
               </div>
               <div style={exampleEndStyle}>
-                This is the bottom <Icon name='pointing down' />
+                This is the bottom <Icon name='sort down' />
               </div>
             </Grid.Column>
             <Grid.Column computer={5} largeScreen={4} widescreen={4}>

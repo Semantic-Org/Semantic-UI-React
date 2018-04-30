@@ -4,11 +4,7 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import { NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import {
-  Menu,
-  Icon,
-  Input,
-} from 'semantic-ui-react'
+import { Menu, Icon, Input } from 'semantic-ui-react'
 
 import CarbonAd from 'docs/app/Components/CarbonAd/CarbonAd'
 import Logo from 'docs/app/Components/Logo/Logo'
@@ -80,10 +76,11 @@ class Sidebar extends Component {
     if (document.activeElement === this._searchInput) this._searchInput.blur()
   }
 
-  handleSearchChange = e => this.setState({
-    selectedItemIndex: 0,
-    query: e.target.value,
-  })
+  handleSearchChange = e =>
+    this.setState({
+      selectedItemIndex: 0,
+      query: e.target.value,
+    })
 
   handleSearchKeyDown = (e) => {
     const { history } = this.props
@@ -186,7 +183,9 @@ class Sidebar extends Component {
           <Logo spaced='right' size='mini' />
           <strong>
             Semantic UI React &nbsp;
-            <small><em>{pkg.version}</em></small>
+            <small>
+              <em>{pkg.version}</em>
+            </small>
           </strong>
         </Menu.Item>
         <Menu.Item>
@@ -208,7 +207,7 @@ class Sidebar extends Component {
               <Icon name='github' /> GitHub
             </Menu.Item>
             <Menu.Item as='a' href={`${repoURL}/blob/master/CHANGELOG.md`} target='_blank' rel='noopener noreferrer'>
-              <Icon name='file text outline' /> CHANGELOG
+              <Icon name='file outline' /> CHANGELOG
             </Menu.Item>
           </Menu.Menu>
         </Menu.Item>

@@ -4,150 +4,61 @@ import leven from 'leven'
 import React, { Component } from 'react'
 
 import { SUI } from 'src/lib'
-import {
-  Form,
-  Grid,
-  Header,
-  Icon,
-  Message,
-  Popup,
-} from 'src'
+import { Form, Grid, Header, Icon, Message, Popup } from 'src'
 
 const gridStyle = {
   background: '#fff',
 }
 
 const iconKeyToHeaderMap = {
-  ACCESSIBILITY_ICONS: {
-    title: 'Accessibility',
-    description: 'Icons can represent accessibility standards.',
-  },
-  ARROWS_ICONS: {
-    title: 'Arrows',
-    description: 'Icons can be used to indicate a direction.',
-  },
-  AUDIO_VIDEO_ICONS: {
+  ACCESSIBILITY: { title: 'Accessibility', description: 'Icons can represent accessibility standards' },
+  ARROWS: { title: 'Arrows', description: 'Icons can be used to indicate a direction' },
+  AUDIO_VIDEO: {
     title: 'Audio & Video',
-    description: 'Icons can be used to represent common ways to interact with audio and video.',
+    description: 'Icons can be used to represent common ways to interact with audio and video',
   },
-  BUSINESS_ICONS: {
-    title: 'Business',
-    description: 'Icons can be used to represent business and common business actions.',
-  },
-  CHESS_ICONS: {
-    title: 'Chess',
-    description: 'Icons which represent the game chess.',
-  },
-  CODE_ICONS: {
-    title: 'Code',
-    description: 'Icons can represent programming and programming tools.',
-  },
-  COMMUNICATION_ICONS: {
-    title: 'Communication',
-    description: 'Icons which represent common ways of communication.',
-  },
-  COMPUTERS_ICONS: {
+  BUSINESS: { title: 'Business', description: 'Icons can be used to represent business and common business actions' },
+  CHESS: { title: 'Chess', description: 'Icons which represent the game chess' },
+  CODE: { title: 'Code', description: 'Icons can represent programming and programming tools' },
+  COMMUNICATION: { title: 'Communication', description: 'Icons which represent common ways of communication' },
+  COMPUTERS: {
     title: 'Computers',
-    description: 'Icons can represent computing devices, or types of content found on a computer.',
+    description: 'Icons can represent computing devices, or types of content found on a computer',
   },
-  CURRENCY_ICONS: {
-    title: 'Currency',
-    description: 'Icons can represent units of currency.',
-  },
-  DATE_TIME_ICONS: {
-    title: 'Date & Time',
-    description: 'Icons that represent common ways of showing date and time.',
-  },
-  DESIGN_ICONS: {
-    title: 'Design',
-    description: 'Icons can represent common design related symbols or techniques.',
-  },
-  EDITORS_ICONS: {
-    title: 'Editors',
-    description: 'Icons can represent text editors and common editor actions.',
-  },
-  FILES_ICONS: {
-    title: 'Files',
-    description: 'Icons can represent elements of a computer and its file system.',
-  },
-  GENDERS_ICONS: {
-    title: 'Genders',
-    description: 'Icons can represent genders or types of sexuality.',
-  },
-  HANDS_ICONS: {
-    title: 'Hands & Gestures',
-    description: 'Icons can represent hand signals and gestures.',
-  },
-  HEALTH_ICONS: {
-    title: 'Health',
-    description: 'Icons which represent common health symbols.',
-  },
-  IMAGES_ICONS: {
-    title: 'Images',
-    description: 'Icons that represent common image symbols and actions.',
-  },
-  INTERFACES_ICONS: {
-    title: 'Interfaces',
-    description: 'Icons can represent common actions a user can take or use.',
-  },
-  MAPS_ICONS: {
-    title: 'Maps',
-    description: 'Icons can be used to represent elements on a map.',
-  },
-  OBJECTS_ICONS: {
-    title: 'Objects',
-    description: 'Icons can be used to represent common objects.',
-  },
-  PAYMENTS_SHOPPING_ICONS: {
+  CURRENCY: { title: 'Currency', description: 'Icons can represent units of currency' },
+  DATE_TIME: { title: 'Date & Time', description: 'Icons that represent common ways of showing date and time' },
+  DESIGN: { title: 'Design', description: 'Icons can represent common design related symbols or techniques' },
+  EDITORS: { title: 'Editors', description: 'Icons can represent text editors and common editor actions' },
+  FILES: { title: 'Files', description: 'Icons can represent elements of a computer and its file system' },
+  GENDERS: { title: 'Genders', description: 'Icons can represent genders or types of sexuality' },
+  HANDS_GESTURES: { title: 'Hands & Gestures', description: 'Icons can represent hand signals and gestures' },
+  HEALTH: { title: 'Health', description: 'Icons which represent common health symbols' },
+  IMAGES: { title: 'Images', description: 'Icons that represent common image symbols and actions' },
+  INTERFACES: { title: 'Interfaces', description: 'Icons can represent common actions a user can take or use' },
+  LOGISTICS: { title: 'Logistics', description: 'Icons can represent common logistic activity' },
+  MAPS: { title: 'Maps', description: 'Icons can be used to represent elements on a map' },
+  MEDICAL: { title: 'Medical', description: 'Icons can represent common medical actions' },
+  OBJECTS: { title: 'Objects', description: 'Icons can be used to represent common objects' },
+  PAYMENTS_SHOPPING: {
     title: 'Payments & Shopping',
-    description: 'Icons can represent common forms of payment and shopping actions.',
+    description: 'Icons can represent common forms of payment and shopping actions',
   },
-  SHAPES_ICONS: {
-    title: 'Shapes',
-    description: 'Icons can be used to create shapes.',
-  },
-  SPINNERS_ICONS: {
-    title: 'Spinners',
-    description: 'Icons can represent loading.',
-  },
-  SPORTS_ICONS: {
-    title: 'Sports',
-    description: 'Icons which represent sports.',
-  },
-  STATUS_ICONS: {
-    title: 'Status',
-    description: 'Icons can represent different states.',
-  },
-  USERS_PEOPLE_ICONS: {
-    title: 'Users & People',
-    description: 'Icons can represent users or people.',
-  },
-  BRANDS_ICONS: {
-    title: 'Brands',
-    description: 'Icons can represent logos to common brands.',
-  },
-  ICON_ALIASES: {
-    title: 'Icon Aliases',
-    description: 'Some of icons have usefull aliases.',
-  },
-  DEPRECATED: {
-    title: 'Deprecated',
-    description: [
-      'Icons which where removed in FontAwesome 5, but pointed them to another icon which matches or is similar for ',
-      'compatibility reasons.',
-    ].join(''),
-  },
+  SHAPES: { title: 'Shapes', description: 'Icons can be used to create shapes' },
+  SPINNERS: { title: 'Spinners', description: 'Icons can represent loading' },
+  SPORTS: { title: 'Sports', description: 'Icons which represent sports' },
+  STATUS: { title: 'Status', description: 'Icons can represent different states' },
+  USERS_PEOPLE: { title: 'Users & People', description: 'Icons can represent users or people' },
+  VEHICLES: { title: 'Vehicles', description: 'Icons can represent vehicles or transport' },
+  WRITING: { title: 'Writing', description: 'Icons can represent writing and editing' },
+  BRANDS: { title: 'Brands', description: 'Icons can represent logos to common brands' },
+  ICON_ALIASES: { title: 'Icon Aliases', description: 'Some of icons have usefull aliases.' },
 }
 
 const similarityScore = (strA, strB) => {
   const aWords = strA.trim().split(' ')
   const bWords = strB.trim().split(' ')
 
-  return _.flow(
-    _.map(a => _.map(b => leven(a, b), bWords)),
-    _.map(_.min),
-    _.sum,
-  )(aWords)
+  return _.flow(_.map(a => _.map(b => leven(a, b), bWords)), _.map(_.min), _.sum)(aWords)
 }
 export default class IconSearch extends Component {
   state = { search: '', includeSimilar: true }
@@ -179,12 +90,12 @@ export default class IconSearch extends Component {
       size='mini'
       position='top center'
       content={this.state.copied ? 'Copied!' : 'Click to copy'}
-      trigger={(
+      trigger={
         <Grid.Column className='docs-icon-set-column' onClick={this.copy(name)}>
           <Icon name={name} size='big' />
           <p className='name'>{name}</p>
         </Grid.Column>
-      )}
+      }
     />
   )
 
@@ -211,15 +122,13 @@ export default class IconSearch extends Component {
       ))
     }
 
-    const iconSearchMatches = SUI.ICONS_AND_ALIASES
-      .filter((name) => {
-        // contains
-        if (name.indexOf(query) !== -1) return true
+    const iconSearchMatches = SUI.ICONS_AND_ALIASES.filter((name) => {
+      // contains
+      if (name.indexOf(query) !== -1) return true
 
-        // similar
-        return includeSimilar && similarityScore(name, query) <= 2
-      })
-      .map(this.renderIconColumn)
+      // similar
+      return includeSimilar && similarityScore(name, query) <= 2
+    }).map(this.renderIconColumn)
 
     // no results
     if (iconSearchMatches.length === 0) {
@@ -238,7 +147,11 @@ export default class IconSearch extends Component {
     }
 
     // results
-    return <Grid columns={5} doubling>{iconSearchMatches}</Grid>
+    return (
+      <Grid columns={5} doubling>
+        {iconSearchMatches}
+      </Grid>
+    )
   }
 
   render() {
@@ -251,20 +164,19 @@ export default class IconSearch extends Component {
 
           <Message>
             Semantic includes a complete port of{' '}
-            <a href='https://fontawesome.com/' rel='noopener noreferrer' target='_blank'>Font Awesome 5.0.8</a>
-            {' '}designed by the{' '}
-            <a href='https://twitter.com/fontawesome' rel='noopener noreferrer'>FontAwesome</a> for its standard icon
-            {' '}set.
+            <a href='https://fontawesome.com/' rel='noopener noreferrer' target='_blank'>
+              Font Awesome 5.0.8
+            </a>{' '}
+            designed by the{' '}
+            <a href='https://twitter.com/fontawesome' rel='noopener noreferrer'>
+              FontAwesome
+            </a>{' '}
+            for its standard icon set.
           </Message>
 
           <Form>
             <Form.Group inline>
-              <Form.Input
-                id='docs-icon-set-input'
-                placeholder='Search...'
-                icon='search'
-                onChange={this.handleChange}
-              />
+              <Form.Input id='docs-icon-set-input' placeholder='Search...' icon='search' onChange={this.handleChange} />
               <Form.Checkbox
                 toggle
                 label='Show similar'
@@ -274,9 +186,7 @@ export default class IconSearch extends Component {
             </Form.Group>
           </Form>
         </Grid.Column>
-        <Grid.Column textAlign='center'>
-          {this.renderIcons()}
-        </Grid.Column>
+        <Grid.Column textAlign='center'>{this.renderIcons()}</Grid.Column>
       </Grid>
     )
   }

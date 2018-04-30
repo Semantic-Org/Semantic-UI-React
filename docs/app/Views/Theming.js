@@ -4,11 +4,7 @@ import { Button, Container, Header, Segment } from 'semantic-ui-react'
 const LayoutsExample = () => (
   <Container>
     <Segment basic padded>
-      <Header
-        as='h1'
-        content='Theming'
-        subheader='An introduction to theming'
-      />
+      <Header as='h1' content='Theming' subheader='An introduction to theming' />
     </Segment>
 
     <Segment basic padded>
@@ -18,21 +14,19 @@ const LayoutsExample = () => (
         powerful, you don't need to know LESS or CSS you can simply update values of variables or use styles from
         predefined themes.
       </p>
-      <p>
-        In fact, all you know about theming and styling of Semantic UI is fully applicable to Semantic UI React.
-      </p>
+      <p>In fact, all you know about theming and styling of Semantic UI is fully applicable to Semantic UI React.</p>
       <Button
         content='Learn more about theming'
         labelPosition='right'
         href='https://semantic-ui.com/usage/theming.html'
-        icon='external'
+        icon='external alternate'
         target='_blank'
       />
       <Button
         content='Creating themes'
         labelPosition='right'
         href='http://learnsemantic.com/themes/creating.html'
-        icon='external'
+        icon='external alternate'
         target='_blank'
       />
 
@@ -67,8 +61,8 @@ const LayoutsExample = () => (
         start like preconfigured theming and hot module reload.
       </p>
       <p>
-        The boilerplate is optimized for usage with Semantic UI React and Semantic UI LESS, it also contains examples
-        of theming usage and custom components.
+        The boilerplate is optimized for usage with Semantic UI React and Semantic UI LESS, it also contains examples of
+        theming usage and custom components.
       </p>
       <Button
         content='Boilerplate'
