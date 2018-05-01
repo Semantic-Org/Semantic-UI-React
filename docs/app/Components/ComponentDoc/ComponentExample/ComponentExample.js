@@ -15,7 +15,18 @@ import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
 
 const babelConfig = {
-  presets: ['es2015', 'react', ['stage-1', { decoratorsLegacy: true }]],
+  presets: [
+    [
+      'env',
+      {
+        targets: {
+          browsers: ['last 4 versions', 'not dead'],
+        },
+      },
+    ],
+    'react',
+    ['stage-1', { decoratorsLegacy: true }],
+  ],
 }
 
 const headerColumnStyle = {
