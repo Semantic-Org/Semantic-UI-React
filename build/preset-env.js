@@ -1,13 +1,19 @@
 const env = process.env.NODE_ENV
 
-const plugins = env === 'build' || env === 'build-es' ? [
-  ['filter-imports', {
-    imports: {
-      debug: ['default'],
-      '../../lib': ['makeDebugger'],
-    },
-  }],
-] : []
+const plugins =
+  env === 'build' || env === 'build-es'
+    ? [
+      [
+        'filter-imports',
+        {
+          imports: {
+            debug: ['default'],
+            '../../lib': ['makeDebugger'],
+          },
+        },
+      ],
+    ]
+    : []
 const browsers = [
   'last 8 versions',
   'safari > 8',
@@ -23,7 +29,7 @@ const envOptions = {
 }
 if (env === 'build-es') envOptions.modules = false
 
-module.exports = {
-  presets: [['env', envOptions]],
+module.exports = () => ({
+  presets: [['@babel/env', envOptions]],
   plugins,
-}
+})
