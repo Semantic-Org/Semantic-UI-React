@@ -1,9 +1,9 @@
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import React from 'react'
 
 import Confirm from 'src/addons/Confirm/Confirm'
 import Modal from 'src/modules/Modal/Modal'
-import { keyboardKey } from 'src/lib'
 import { assertBodyContains, domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
