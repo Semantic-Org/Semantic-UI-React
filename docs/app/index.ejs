@@ -63,10 +63,8 @@
     }())
   </script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
-  <script
-    src="//cdnjs.cloudflare.com/ajax/libs/babel-standalone/<%= htmlWebpackPlugin.options.versions.babel %>/babel.min.js"
-    data-presets="es2015,react,stage1"
-  ></script>
+  <script src="//cdn.jsdelivr.net/npm/@babel/standalone@<%= htmlWebpackPlugin.options.versions.babel %>/babel.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@babel/preset-env-standalone@<%= htmlWebpackPlugin.options.versions.babel %>/babel-preset-env.min.js"></script>
   <script src="//cdn.jsdelivr.net/faker.js/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/<%= htmlWebpackPlugin.options.versions.jsBeautify %>/beautify-html.min.js"></script>
   <!-- Use unminified React when not in production so we get errors and warnings -->
