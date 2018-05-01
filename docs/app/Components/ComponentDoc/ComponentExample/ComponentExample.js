@@ -1,4 +1,4 @@
-import * as Babel from 'babel-standalone'
+import * as Babel from '@babel/standalone'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createElement, isValidElement } from 'react'
@@ -15,7 +15,18 @@ import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
 
 const babelConfig = {
-  presets: ['es2015', 'react', 'stage-1'],
+  presets: [
+    [
+      'env',
+      {
+        targets: {
+          browsers: ['last 4 versions', 'not dead'],
+        },
+      },
+    ],
+    'react',
+    ['stage-1', { decoratorsLegacy: true }],
+  ],
 }
 
 const headerColumnStyle = {
@@ -103,12 +114,16 @@ class ComponentExample extends Component {
     copyToClipboard(location.href)
   }
 
-  handleMouseMove = _.throttle(() => {
-    const { controlsVisible } = this.state
-    if (controlsVisible) return
+  handleMouseMove = _.throttle(
+    () => {
+      const { controlsVisible } = this.state
+      if (controlsVisible) return
 
-    this.setState({ controlsVisible: true })
-  }, 200, { trailing: false })
+      this.setState({ controlsVisible: true })
+    },
+    200,
+    { trailing: false },
+  )
 
   handleMouseLeave = () => this.setState({ controlsVisible: false })
 
@@ -149,7 +164,8 @@ class ComponentExample extends Component {
   resetJSX = () => {
     const { sourceCode } = this.state
     const original = this.getOriginalSourceCode()
-    if (sourceCode !== original && confirm('Lose your changes?')) { // eslint-disable-line no-alert
+    if (sourceCode !== original && confirm('Lose your changes?')) {
+      // eslint-disable-line no-alert
       this.setState({ sourceCode: original })
       this.renderSourceCode()
     }
@@ -201,21 +217,23 @@ class ComponentExample extends Component {
 
     // rewrite imports to const statements against the UPPERCASE module names
     const imports = _.get(/(^[\s\S])*import[\s\S]*from[\s\S]*['"]\n/.exec(sourceCode), '[0]', '')
-      .replace(/[\s\n]+/g, ' ')         // normalize spaces and make one line
-      .replace(/ import/g, '\nimport')  // one import per line
-      .split('\n')                      // split lines
-      .filter(Boolean)                  // remove empty lines
-      .map((l) => {                     // rewrite imports to const statements
-        const [
-          defaultImport,
-          destructuredImports,
-          _module,
-        ] = _.tail(/import\s+([\w]+)?(?:\s*,\s*)?({[\s\w,]+})?\s+from\s+['"](?:.*\/)?([\w\-_]+)['"]/.exec(l))
+      .replace(/[\s\n]+/g, ' ') // normalize spaces and make one line
+      .replace(/ import/g, '\nimport') // one import per line
+      .split('\n') // split lines
+      .filter(Boolean) // remove empty lines
+      .map((l) => {
+        // rewrite imports to const statements
+        const [defaultImport, destructuredImports, _module] = _.tail(
+          /import\s+([\w]+)?(?:\s*,\s*)?({[\s\w,]+})?\s+from\s+['"](?:.*\/)?([\w\-_]+)['"]/.exec(l),
+        )
 
         const module = _.snakeCase(_module).toUpperCase()
 
         if (module === 'COMMON') {
-          const componentPath = examplePath.split(__PATH_SEP__).splice(0, 2).join(__PATH_SEP__)
+          const componentPath = examplePath
+            .split(__PATH_SEP__)
+            .splice(0, 2)
+            .join(__PATH_SEP__)
           COMMON = require(`docs/app/Examples/${componentPath}/common`)
         } else if (module === 'WIREFRAME') {
           WIREFRAME = require('docs/app/Examples/behaviors/Visibility/Wireframe').default
@@ -231,11 +249,18 @@ class ComponentExample extends Component {
       .join('\n')
 
     // capture the default export so we can return it from the IIFE
-    const defaultExport = _.get(/export\s+default\s+(?:class|function)?(?:\s+)?(\w+)/.exec(sourceCode), '[1]')
+    const defaultExport = _.get(
+      /export\s+default\s+(?:class|function)?(?:\s+)?(\w+)/.exec(sourceCode),
+      '[1]',
+    )
 
-    const body = _.get(/(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode), '[0]', '')
-      .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '')  // remove `export default Foo` statements
-      .replace(/export\s+default\s+/, '')                                 // remove `export default ...`
+    const body = _.get(
+      /(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode),
+      '[0]',
+      '',
+    )
+      .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '') // remove `export default Foo` statements
+      .replace(/export\s+default\s+/, '') // remove `export default ...`
 
     const IIFE = `(function() {\n${imports}${body}return ${defaultExport}\n}())`
 
@@ -245,7 +270,9 @@ class ComponentExample extends Component {
       const exampleElement = _.isFunction(Example) ? <Example /> : Example
 
       if (!isValidElement(exampleElement)) {
-        this.renderError(`Default export is not a valid element. Type:${{}.toString.call(exampleElement)}`)
+        this.renderError(
+          `Default export is not a valid element. Type:${{}.toString.call(exampleElement)}`,
+        )
       } else {
         // immediately render a null error
         // but also ensure the last debounced error call is a null error
@@ -285,24 +312,27 @@ class ComponentExample extends Component {
 
     this.ghBugHref = [
       `${repoURL}/issues/new?`,
-      _.map({
-        title: `fix(${componentName}): your description`,
-        body: [
-          '**Steps to Reproduce**',
-          '1. Do something',
-          '2. Do something else.',
-          '',
-          '**Expected**',
-          `The ${componentName} should do this`,
-          '',
-          '**Result**',
-          `The ${componentName} does not do this`,
-          '',
-          '**Testcase**',
-          `If the docs show the issue, use: ${location.href}`,
-          'Otherwise, fork this to get started: http://codepen.io/levithomason/pen/ZpBaJX',
-        ].join('\n'),
-      }, (val, key) => `${key}=${encodeURIComponent(val)}`).join('&'),
+      _.map(
+        {
+          title: `fix(${componentName}): your description`,
+          body: [
+            '**Steps to Reproduce**',
+            '1. Do something',
+            '2. Do something else.',
+            '',
+            '**Expected**',
+            `The ${componentName} should do this`,
+            '',
+            '**Result**',
+            `The ${componentName} does not do this`,
+            '',
+            '**Testcase**',
+            `If the docs show the issue, use: ${location.href}`,
+            'Otherwise, fork this to get started: http://codepen.io/levithomason/pen/ZpBaJX',
+          ].join('\n'),
+        },
+        (val, key) => `${key}=${encodeURIComponent(val)}`,
+      ).join('&'),
     ].join('')
   }
 
@@ -367,9 +397,7 @@ class ComponentExample extends Component {
           value={sourceCode}
           onChange={this.handleChangeCode}
         />
-        {error && (
-          <pre style={errorStyle}>{error}</pre>
-        )}
+        {error && <pre style={errorStyle}>{error}</pre>}
       </div>
     )
   }
@@ -380,8 +408,7 @@ class ComponentExample extends Component {
 
     // add new lines between almost all adjacent elements
     // moves inline elements to their own line
-    const preFormattedHTML = markup
-      .replace(/><(?!\/i|\/label|\/span|option)/g, '>\n<')
+    const preFormattedHTML = markup.replace(/><(?!\/i|\/label|\/span|option)/g, '>\n<')
 
     const beautifiedHTML = html(preFormattedHTML, {
       indent_size: 2,
@@ -394,7 +421,12 @@ class ComponentExample extends Component {
     return (
       <div>
         <Divider horizontal>Rendered HTML</Divider>
-        <Editor id={`${this.getKebabExamplePath()}-html`} mode='html' value={beautifiedHTML} readOnly />
+        <Editor
+          id={`${this.getKebabExamplePath()}-html`}
+          mode='html'
+          value={beautifiedHTML}
+          readOnly
+        />
       </div>
     )
   }
@@ -409,11 +441,7 @@ class ComponentExample extends Component {
     }
 
     return (
-      <Visibility
-        once={false}
-        onTopPassed={this.handlePass}
-        onTopPassedReverse={this.handlePass}
-      >
+      <Visibility once={false} onTopPassed={this.handlePass} onTopPassedReverse={this.handlePass}>
         <Grid
           className='docs-example'
           id={this.anchorName}
@@ -443,11 +471,7 @@ class ComponentExample extends Component {
           </Grid.Row>
 
           <Grid.Row columns={1}>
-            {children && (
-              <Grid.Column style={childrenStyle}>
-                {children}
-              </Grid.Column>
-            )}
+            {children && <Grid.Column style={childrenStyle}>{children}</Grid.Column>}
           </Grid.Row>
 
           <Grid.Row columns={1}>
