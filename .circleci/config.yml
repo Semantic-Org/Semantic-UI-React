@@ -4,6 +4,7 @@ general:
     ignore:
       - gh-pages
 jobs:
+  build:
     docker:
       - image: circleci/node:8
     environment:
