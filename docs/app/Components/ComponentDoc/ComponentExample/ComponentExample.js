@@ -238,9 +238,16 @@ class ComponentExample extends Component {
       .join('\n')
 
     // capture the default export so we can return it from the IIFE
-    const defaultExport = _.get(/export\s+default\s+(?:class|function)?(?:\s+)?(\w+)/.exec(sourceCode), '[1]')
+    const defaultExport = _.get(
+      /export\s+default\s+(?:class|function)?(?:\s+)?(\w+)/.exec(sourceCode),
+      '[1]',
+    )
 
-    const body = _.get(/(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode), '[0]', '')
+    const body = _.get(
+      /(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode),
+      '[0]',
+      '',
+    )
       .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '') // remove `export default Foo` statements
       .replace(/export\s+default\s+/, '') // remove `export default ...`
 
@@ -252,7 +259,9 @@ class ComponentExample extends Component {
       const exampleElement = _.isFunction(Example) ? <Example /> : Example
 
       if (!isValidElement(exampleElement)) {
-        this.renderError(`Default export is not a valid element. Type:${{}.toString.call(exampleElement)}`)
+        this.renderError(
+          `Default export is not a valid element. Type:${{}.toString.call(exampleElement)}`,
+        )
       } else {
         // immediately render a null error
         // but also ensure the last debounced error call is a null error
@@ -372,7 +381,11 @@ class ComponentExample extends Component {
     return (
       <div style={style}>
         {this.renderJSXControls()}
-        <Editor id={`${this.getKebabExamplePath()}-jsx`} value={sourceCode} onChange={this.handleChangeCode} />
+        <Editor
+          id={`${this.getKebabExamplePath()}-jsx`}
+          value={sourceCode}
+          onChange={this.handleChangeCode}
+        />
         {error && <pre style={errorStyle}>{error}</pre>}
       </div>
     )
@@ -397,7 +410,12 @@ class ComponentExample extends Component {
     return (
       <div>
         <Divider horizontal>Rendered HTML</Divider>
-        <Editor id={`${this.getKebabExamplePath()}-html`} mode='html' value={beautifiedHTML} readOnly />
+        <Editor
+          id={`${this.getKebabExamplePath()}-html`}
+          mode='html'
+          value={beautifiedHTML}
+          readOnly
+        />
       </div>
     )
   }
@@ -422,7 +440,11 @@ class ComponentExample extends Component {
         >
           <Grid.Row>
             <Grid.Column style={headerColumnStyle} width={12}>
-              <ComponentExampleTitle description={description} title={title} suiVersion={suiVersion} />
+              <ComponentExampleTitle
+                description={description}
+                title={title}
+                suiVersion={suiVersion}
+              />
             </Grid.Column>
             <Grid.Column textAlign='right' width={4}>
               <ComponentControls
@@ -437,10 +459,14 @@ class ComponentExample extends Component {
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row columns={1}>{children && <Grid.Column style={childrenStyle}>{children}</Grid.Column>}</Grid.Row>
+          <Grid.Row columns={1}>
+            {children && <Grid.Column style={childrenStyle}>{children}</Grid.Column>}
+          </Grid.Row>
 
           <Grid.Row columns={1}>
-            <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>{exampleElement}</Grid.Column>
+            <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
+              {exampleElement}
+            </Grid.Column>
             <Grid.Column>
               {this.renderJSX()}
               {this.renderHTML()}
