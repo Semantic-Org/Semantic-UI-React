@@ -137,32 +137,28 @@ describe('Portal', () => {
     })
 
     it('is called only once when portal closes and then is unmounted', () => {
-      const div = document.createElement('div')
-      const props = { open: true, onUnmount: sandbox.spy() }
+      const onUnmount = sandbox.spy()
       wrapperMount(
-        <Portal {...props}>
+        <Portal onUnmount={onUnmount} open>
           <p />
         </Portal>,
-        { attachTo: div },
       )
 
       wrapper.setProps({ open: false, children: <p /> })
       wrapper.unmount()
-      props.onUnmount.should.have.been.calledOnce()
+      onUnmount.should.have.been.calledOnce()
     })
 
     it('is called only once when directly unmounting', () => {
-      const div = document.createElement('div')
-      const props = { open: true, onUnmount: sandbox.spy() }
-
+      const onUnmount = sandbox.spy()
       wrapperMount(
-        <Portal {...props}>
+        <Portal onUnmount={onUnmount} open>
           <p />
         </Portal>,
-        { attachTo: div },
       )
+
       wrapper.unmount()
-      props.onUnmount.should.have.been.calledOnce()
+      onUnmount.should.have.been.calledOnce()
     })
   })
 
