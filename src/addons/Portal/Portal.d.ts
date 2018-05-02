@@ -6,9 +6,6 @@ export interface PortalProps {
   /** Primary content. */
   children?: React.ReactNode;
 
-  /** Additional classes. */
-  className?: string;
-
   /** Controls whether or not the portal should close on a click outside. */
   closeOnDocumentClick?: boolean;
 
@@ -97,9 +94,6 @@ export interface PortalProps {
 
   /** Controls whether or not the portal should open when mousing over the trigger. */
   openOnTriggerMouseEnter?: boolean;
-
-  /** Controls whether the portal should be prepended to the mountNode instead of appended. */
-  prepend?: boolean;
 
   /** Element to be rendered in-place where the portal is defined. */
   trigger?: React.ReactNode;
