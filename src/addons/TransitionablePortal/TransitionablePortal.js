@@ -4,11 +4,7 @@ import React, { Component } from 'react'
 
 import Portal from '../Portal'
 import Transition from '../../modules/Transition'
-import {
-  getUnhandledProps,
-  makeDebugger,
-  META,
-} from '../../lib'
+import { getUnhandledProps, makeDebugger, META } from '../../lib'
 
 const debug = makeDebugger('transitionable_portal')
 
@@ -85,10 +81,12 @@ export default class TransitionablePortal extends Component {
   // Lifecycle
   // ----------------------------------------
 
-  componentWillReceiveProps({ open }) {
-    debug('componentWillReceiveProps()', { open })
+  static getDerivedStateFromProps(nextProps, prevState) {
+    debug('getDerivedStateFromProps()', nextProps, prevState)
 
-    this.setState({ portalOpen: open })
+    return {
+      portalOpen: nextProps.open,
+    }
   }
 
   // ----------------------------------------
@@ -145,12 +143,7 @@ export default class TransitionablePortal extends Component {
     const rest = getUnhandledProps(TransitionablePortal, this.props)
 
     return (
-      <Portal
-        {...rest}
-        open={open}
-        onOpen={this.handlePortalOpen}
-        onClose={this.handlePortalClose}
-      >
+      <Portal {...rest} open={open} onOpen={this.handlePortalOpen} onClose={this.handlePortalClose}>
         <Transition
           {...transition}
           transitionOnMount
