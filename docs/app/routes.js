@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
 import ExternalExampleLayout from './Components/ExternalExampleLayout'
 import DocsLayout from './Components/DocsLayout'
@@ -15,6 +10,7 @@ import LayoutsRoot from './Components/LayoutsRoot'
 import Introduction from './Views/Introduction'
 import Layouts from './Views/Layouts'
 import PageNotFound from './Views/PageNotFound'
+import APIAnalyzer from './Views/APIAnalyzer'
 import Theming from './Views/Theming'
 import Usage from './Views/Usage'
 
@@ -29,6 +25,7 @@ const Router = () => (
         <DocsLayout exact path='/introduction' component={Introduction} />
         <DocsLayout exact path='/layouts' component={Layouts} />
         <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} sidebar />
+        <Route exact path='/api' component={APIAnalyzer} />
         <DocsLayout exact path='/theming' component={Theming} />
         <DocsLayout exact path='/usage' component={Usage} />
         <DocsLayout exact path='/:type/:name' component={DocsRoot} sidebar />
