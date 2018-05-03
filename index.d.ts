@@ -7,7 +7,10 @@ export {
   PaginationItemProps
 } from './dist/commonjs/addons/Pagination/PaginationItem';
 export { default as Portal, PortalProps } from './dist/commonjs/addons/Portal';
-export { default as PortalInner, PortalInnerProps } from './dist/commonjs/addons/PortalInner';
+export {
+  default as PortalInner,
+  PortalInnerProps
+} from './dist/commonjs/addons/Portal/PortalInner';
 export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
 export { default as Ref, RefProps } from './dist/commonjs/addons/Ref';
 export {
