@@ -40,14 +40,6 @@ class Portal extends Component {
      */
     closeOnPortalMouseLeave: PropTypes.bool,
 
-    /**
-     * Controls whether or not the portal should close on a click on the portal background.
-     * NOTE: This differs from closeOnDocumentClick:
-     * - DocumentClick - any click not within the portal
-     * - RootNodeClick - a click not within the portal but within the portal's wrapper
-     */
-    closeOnRootNodeClick: PropTypes.bool,
-
     /** Controls whether or not the portal should close on blur of the trigger. */
     closeOnTriggerBlur: PropTypes.bool,
 
@@ -81,7 +73,7 @@ class Portal extends Component {
     onClose: PropTypes.func,
 
     /**
-     * Called when the portal is mounted on the DOM
+     * Called when the portal is mounted on the DOM.
      *
      * @param {null}
      * @param {object} data - All props.
@@ -97,7 +89,7 @@ class Portal extends Component {
     onOpen: PropTypes.func,
 
     /**
-     * Called when the portal is unmounted from the DOM
+     * Called when the portal is unmounted from the DOM.
      *
      * @param {null}
      * @param {object} data - All props.
@@ -134,6 +126,8 @@ class Portal extends Component {
     type: META.TYPES.ADDON,
   }
 
+  static Inner = PortalInner
+
   componentWillUnmount() {
     // Clean up timers
     clearTimeout(this.mouseEnterTimer)
@@ -145,7 +139,7 @@ class Portal extends Component {
   // ----------------------------------------
 
   handleDocumentClick = (e) => {
-    const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
+    const { closeOnDocumentClick } = this.props
 
     if (
       !this.portalNode || // no portal
@@ -155,12 +149,7 @@ class Portal extends Component {
       return
     } // ignore the click
 
-    const didClickInRootNode = doesNodeContainClick(this.rootNode, e)
-
-    if (
-      (closeOnDocumentClick && !didClickInRootNode) ||
-      (closeOnRootNodeClick && didClickInRootNode)
-    ) {
+    if (closeOnDocumentClick) {
       debug('handleDocumentClick()')
       this.close(e)
     }

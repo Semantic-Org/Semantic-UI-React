@@ -34,6 +34,7 @@ describe('Portal', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
+  common.hasSubComponents(Portal, [PortalInner])
   common.hasValidTypings(Portal)
 
   it('propTypes.children should be required', () => {

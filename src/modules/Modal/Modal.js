@@ -7,6 +7,7 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  doesNodeContainClick,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -175,6 +176,16 @@ class Modal extends Component {
     this.trySetState({ open: false })
   }
 
+  handleDimmerClick = (e) => {
+    debug('handleDimmerClick()')
+    const { closeOnDimmerClick } = this.props
+
+    if (!closeOnDimmerClick || doesNodeContainClick(this.ref, e)) return
+
+    _.invoke(this.props, 'onClose', e, this.props)
+    this.trySetState({ open: false })
+  }
+
   handleIconOverrides = predefinedProps => ({
     onClick: (e) => {
       _.invoke(predefinedProps, 'onClick', e)
@@ -303,7 +314,7 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
+    const { closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -348,7 +359,6 @@ class Modal extends Component {
     return (
       <Portal
         closeOnDocumentClick={closeOnDocumentClick}
-        closeOnRootNodeClick={closeOnDimmerClick}
         {...portalProps}
         trigger={trigger}
         eventPool={eventPool}
@@ -359,7 +369,9 @@ class Modal extends Component {
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
       >
-        <div className={dimmerClasses}>{this.renderContent(rest)}</div>
+        <div className={dimmerClasses} onClick={this.handleDimmerClick}>
+          {this.renderContent(rest)}
+        </div>
       </Portal>
     )
   }
