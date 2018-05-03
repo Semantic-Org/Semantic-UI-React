@@ -47,8 +47,16 @@ class ComponentDoc extends Component {
     ).isRequired,
     suiLink: PropTypes.string,
   }
-
-  state = {}
+  constructor(props) {
+    super(props)
+    let activePath
+    if (location.hash) {
+      activePath = _.last((location.hash || '').split('#'))
+    }
+    this.state = {
+      activePath,
+    }
+  }
 
   getChildContext() {
     return {
@@ -68,14 +76,28 @@ class ComponentDoc extends Component {
 
   handleSidebarItemClick = (e, { path }) => {
     const { history } = this.props
-    const aPath = _.kebabCase(_.last(path.split('/')))
+    const aPath = _.kebabCase(path.split('/').join(' '))
 
     history.replace(`${location.pathname}#${aPath}`)
-    scrollToAnchor()
+    // set active hash path
+    this.setState(
+      {
+        activePath: aPath,
+      },
+      scrollToAnchor,
+    )
   }
 
   render() {
-    const { componentGroup, componentName, description, ghLink, path, seeItems, suiLink } = this.props
+    const {
+      componentGroup,
+      componentName,
+      description,
+      ghLink,
+      path,
+      seeItems,
+      suiLink,
+    } = this.props
     const { activePath, examplesRef } = this.state
 
     return (

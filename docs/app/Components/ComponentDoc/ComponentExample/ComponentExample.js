@@ -71,7 +71,7 @@ class ComponentExample extends Component {
     const { examplePath, location } = this.props
     const sourceCode = this.getOriginalSourceCode()
 
-    this.anchorName = _.kebabCase(_.last(examplePath.split('/')))
+    this.anchorName = _.kebabCase(examplePath.split('/').join(' '))
 
     // show code for direct links to examples
     const showCode = this.anchorName === location.hash.replace('#', '')
@@ -441,7 +441,7 @@ class ComponentExample extends Component {
     }
 
     return (
-      <Visibility once={false} onTopPassed={this.handlePass} onTopPassedReverse={this.handlePass}>
+      <Visibility once={false}>
         <Grid
           className='docs-example'
           id={this.anchorName}
