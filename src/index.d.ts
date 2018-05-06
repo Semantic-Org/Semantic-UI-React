@@ -178,7 +178,7 @@ export type SemanticICONS = 'search' | 'mail outline' | 'signal' | 'setting' | '
   'play circle outline' | 'headphone' | 'camera' | 'video camera' | 'picture' | 'pencil' | 'compose' | 'point' |
   'tint' | 'signup' | 'plus circle' | 'question circle' | 'dont' | 'minimize' | 'add' | 'exclamation circle' |
   'attention' | 'eye' | 'exclamation triangle' | 'shuffle' | 'chat' | 'cart' | 'shopping cart' | 'bar graph' |
-  'key' | 'cogs' | 'discussions' | 'like outline' | 'dislike outline' | 'heart outline' | 'log out' | 'thumb tack' |
+  'key' | 'cog' | 'cogs' | 'discussions' | 'like outline' | 'dislike outline' | 'heart outline' | 'log out' | 'thumb tack' |
   'winner' | 'phone' | 'bookmark outline' | 'phone square' | 'credit card' | 'hdd outline' | 'bullhorn' |
   'bell outline' | 'hand outline right' | 'hand outline left' | 'hand outline up' | 'hand outline down' |
   'globe' | 'wrench' | 'briefcase' | 'group' | 'chain' | 'flask' | 'sidebar' | 'bars' | 'list ul' | 'list ol' |
