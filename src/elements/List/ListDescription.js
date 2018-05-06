@@ -6,19 +6,19 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
+  withComputedType,
 } from '../../lib'
 
 /**
  * A list item can contain a description.
  */
-function ListDescription(props) {
+const InnerListDescription = (props) => {
   const { children, className, content } = props
   const classes = cx(className, 'description')
-  const rest = getUnhandledProps(ListDescription, props)
-  const ElementType = getElementType(ListDescription, props)
+  const rest = getUnhandledProps(InnerListDescription, props, { passAs: true })
 
   return (
     <ElementType {...rest} className={classes}>
@@ -27,13 +27,7 @@ function ListDescription(props) {
   )
 }
 
-ListDescription._meta = {
-  name: 'ListDescription',
-  parent: 'List',
-  type: META.TYPES.ELEMENT,
-}
-
-ListDescription.propTypes = {
+InnerListDescription.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
@@ -45,6 +39,14 @@ ListDescription.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
+}
+
+const ListDescription = withComputedType()(InnerListDescription)
+
+ListDescription._meta = {
+  name: 'ListDescription',
+  parent: 'List',
+  type: META.TYPES.ELEMENT,
 }
 
 ListDescription.create = createShorthandFactory(ListDescription, content => ({ content }))

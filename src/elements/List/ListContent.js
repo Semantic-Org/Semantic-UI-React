@@ -6,12 +6,13 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   SUI,
   useValueAndKey,
   useVerticalAlignProp,
+  withComputedType,
 } from '../../lib'
 import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'
@@ -19,7 +20,7 @@ import ListHeader from './ListHeader'
 /**
  * A list item can contain a content.
  */
-function ListContent(props) {
+const InnerListContent = (props) => {
   const {
     children,
     className,
@@ -36,8 +37,7 @@ function ListContent(props) {
     'content',
     className,
   )
-  const rest = getUnhandledProps(ListContent, props)
-  const ElementType = getElementType(ListContent, props)
+  const rest = getUnhandledProps(InnerListContent, props, { passAs: true })
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
@@ -50,13 +50,7 @@ function ListContent(props) {
   )
 }
 
-ListContent._meta = {
-  name: 'ListContent',
-  parent: 'List',
-  type: META.TYPES.ELEMENT,
-}
-
-ListContent.propTypes = {
+InnerListContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
@@ -80,6 +74,14 @@ ListContent.propTypes = {
 
   /** An element inside a list can be vertically aligned. */
   verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
+}
+
+const ListContent = withComputedType()(InnerListContent)
+
+ListContent._meta = {
+  name: 'ListContent',
+  parent: 'List',
+  type: META.TYPES.ELEMENT,
 }
 
 ListContent.create = createShorthandFactory(ListContent, content => ({ content }))

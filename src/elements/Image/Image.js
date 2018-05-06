@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   partitionHTMLProps,
@@ -16,6 +16,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
   useVerticalAlignProp,
+  withComputedType,
 } from '../../lib'
 import Dimmer from '../../modules/Dimmer'
 import Label from '../Label/Label'
@@ -27,8 +28,9 @@ const imageProps = ['alt', 'height', 'src', 'srcSet', 'width']
  * An image is a graphic representation of something.
  * @see Icon
  */
-function Image(props) {
+const InnerImage = (props) => {
   const {
+    as,
     avatar,
     bordered,
     centered,
@@ -48,7 +50,6 @@ function Image(props) {
     size,
     spaced,
     verticalAlign,
-    wrapped,
     ui,
   } = props
 
@@ -70,22 +71,19 @@ function Image(props) {
     'image',
     className,
   )
-  const rest = getUnhandledProps(Image, props)
+  const rest = getUnhandledProps(InnerImage, props)
   const [imgTagProps, rootProps] = partitionHTMLProps(rest, { htmlProps: imageProps })
-  const ElementType = getElementType(Image, props, () => {
-    if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)) return 'div'
-  })
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return <ElementType {...rest} as={as} className={classes}>{children}</ElementType>
   }
   if (!childrenUtils.isNil(content)) {
-    return <ElementType {...rest} className={classes}>{content}</ElementType>
+    return <ElementType {...rest} as={as} className={classes}>{content}</ElementType>
   }
 
-  if (ElementType === 'img') return <ElementType {...rootProps} {...imgTagProps} className={classes} />
+  if (as === 'img') return <ElementType {...rootProps} {...imgTagProps} as={as} className={classes} />
   return (
-    <ElementType {...rootProps} className={classes} href={href}>
+    <ElementType {...rootProps} as={as} className={classes} href={href}>
       {Dimmer.create(dimmer)}
       {Label.create(label)}
       <img {...imgTagProps} />
@@ -93,14 +91,7 @@ function Image(props) {
   )
 }
 
-Image.Group = ImageGroup
-
-Image._meta = {
-  name: 'Image',
-  type: META.TYPES.ELEMENT,
-}
-
-Image.propTypes = {
+InnerImage.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
@@ -174,9 +165,22 @@ Image.propTypes = {
   wrapped: PropTypes.bool,
 }
 
-Image.defaultProps = {
+InnerImage.defaultProps = {
   as: 'img',
   ui: true,
+}
+
+const computeType = ({ children, dimmer, label, wrapped }) => {
+  if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)) return 'div'
+}
+
+const Image = withComputedType(computeType)(InnerImage)
+
+Image.Group = ImageGroup
+
+Image._meta = {
+  name: 'Image',
+  type: META.TYPES.ELEMENT,
 }
 
 Image.create = createShorthandFactory(Image, value => ({ src: value }))

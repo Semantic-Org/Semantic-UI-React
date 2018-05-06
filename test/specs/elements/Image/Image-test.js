@@ -41,6 +41,8 @@ describe('Image', () => {
   describe('as', () => {
     it('renders an img tag', () => {
       shallow(<Image />)
+        .dive()
+        .dive()
         .type()
         .should.equal('img')
     })
@@ -49,6 +51,8 @@ describe('Image', () => {
   describe('href', () => {
     it('renders an a tag', () => {
       shallow(<Image href='http://google.com' />)
+        .dive()
+        .dive()
         .type()
         .should.equal('a')
     })
@@ -65,6 +69,7 @@ describe('Image', () => {
 
       it(`passes "${propName}" to the img tag when wrapped`, () => {
         shallow(<Image wrapped {...{ [propName]: 'foo' }} />)
+          .dive()
           .find('img')
           .should.have.prop(propName, 'foo')
       })
@@ -72,16 +77,21 @@ describe('Image', () => {
   })
 
   describe('ui', () => {
-    it('is true by default', () => {
-      Image.defaultProps.should.have.any.keys('ui')
-      Image.defaultProps.ui.should.equal(true)
-    })
-    it('adds the "ui" className when true', () => {
-      shallow(<Image ui />)
+    it('adds the "ui" className by default', () => {
+      shallow(<Image />)
+        .dive()
         .should.have.className('ui')
     })
+
+    it('adds the "ui" className when true', () => {
+      shallow(<Image ui />)
+        .dive()
+        .should.have.className('ui')
+    })
+
     it('removes the "ui" className when false', () => {
       shallow(<Image ui={false} />)
+        .dive()
         .should.not.have.className('ui')
     })
   })
@@ -89,8 +99,21 @@ describe('Image', () => {
   describe('wrapped', () => {
     it('renders an div tag when true', () => {
       shallow(<Image wrapped />)
+        .dive()
+        .dive()
         .type()
         .should.equal('div')
+    })
+
+    it('applies all img attribute props to the img tag', () => {
+      const props = { src: 'http://g.co', alt: 'alt text', width: 10, height: '10' }
+      const img = shallow(<Image {...props} wrapped />)
+        .dive()
+        .find('img')
+
+      _.each(props, (val, key) => {
+        img.should.have.prop(key, val)
+      })
     })
   })
 })

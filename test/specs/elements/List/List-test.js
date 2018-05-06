@@ -38,11 +38,6 @@ describe('List', () => {
   const items = ['Name', 'Status', 'Notes']
 
   describe('onItemClick', () => {
-    it('can be omitted', () => {
-      const click = () => shallow(<List items={items} />).simulate('click')
-      expect(click).to.not.throw()
-    })
-
     it('is called with (e, itemProps) when clicked', () => {
       const onClick = sandbox.spy()
       const onItemClick = sandbox.spy()
@@ -51,10 +46,9 @@ describe('List', () => {
       const callbackData = { content: 'Notes', 'data-foo': 'bar' }
       const itemProps = { key: 'notes', content: 'Notes', 'data-foo': 'bar', onClick }
 
-      shallow(<List items={[itemProps]} onItemClick={onItemClick} />)
-        .find('ListItem')
+      mount(<List items={[itemProps]} onItemClick={onItemClick} />)
+        .find(ListItem)
         .first()
-        .shallow()
         .simulate('click', event)
 
       onClick.should.have.been.calledOnce()
@@ -67,29 +61,29 @@ describe('List', () => {
 
   describe('role', () => {
     it('is accessibile with no items', () => {
-      const wrapper = shallow(<List />)
-
-      wrapper.should.have.prop('role', 'list')
+      shallow(<List />)
+        .dive()
+        .should.have.prop('role', 'list')
     })
 
     it('is accessibile with items', () => {
-      const wrapper = shallow(<List items={items} />)
-
-      wrapper.should.have.prop('role', 'list')
+      shallow(<List items={items} />)
+        .dive()
+        .should.have.prop('role', 'list')
     })
   })
 
   describe('shorthand', () => {
-    it('renders empty tr with no shorthand', () => {
-      const wrapper = shallow(<List />)
-
-      wrapper.find('ListItem').should.have.lengthOf(0)
+    it('renders empty list with no shorthand', () => {
+      shallow(<List />)
+        .dive()
+        .should.not.have.descendants(ListItem)
     })
 
     it('renders the items', () => {
-      const wrapper = shallow(<List items={items} />)
-
-      wrapper.find('ListItem').should.have.lengthOf(items.length)
+      shallow(<List items={items} />)
+        .dive()
+        .should.have.exactly(3).descendants(ListItem)
     })
   })
 })

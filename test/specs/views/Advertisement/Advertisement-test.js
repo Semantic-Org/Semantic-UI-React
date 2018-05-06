@@ -23,7 +23,7 @@ describe('Advertisement', () => {
     'netboard',
     'half page',
     'square', 'small square',
-  ])
+  ], { requiredProps })
 
   it('renders a <div> by default', () => {
     shallow(<Advertisement {...requiredProps} />)

@@ -5,16 +5,17 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
+  withComputedType,
 } from '../../lib'
 
 /**
  * An ad displays third-party promotional content.
  */
-function Advertisement(props) {
+function InnerAdvertisement(props) {
   const {
     centered,
     children,
@@ -32,8 +33,7 @@ function Advertisement(props) {
     'ad',
     className,
   )
-  const rest = getUnhandledProps(Advertisement, props)
-  const ElementType = getElementType(Advertisement, props)
+  const rest = getUnhandledProps(InnerAdvertisement, props, { passAs: true })
 
   return (
     <ElementType {...rest} className={classes} data-text={test}>
@@ -42,12 +42,7 @@ function Advertisement(props) {
   )
 }
 
-Advertisement._meta = {
-  name: 'Advertisement',
-  type: META.TYPES.VIEW,
-}
-
-Advertisement.propTypes = {
+InnerAdvertisement.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
@@ -83,6 +78,13 @@ Advertisement.propTypes = {
     'square', 'small square',
   ]).isRequired,
 
+}
+
+const Advertisement = withComputedType()(InnerAdvertisement)
+
+Advertisement._meta = {
+  name: 'Advertisement',
+  type: META.TYPES.VIEW,
 }
 
 export default Advertisement

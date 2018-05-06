@@ -14,7 +14,16 @@ export default (Component, options = {}) => {
   it('has the "ui" className', () => {
     assertRequired(Component, 'a `Component`')
 
-    shallow(<Component {...requiredProps} />)
-      .should.have.className('ui')
+    // Heads up! It's a temporary solution until all other components will be wrapped with
+    // the new <ElementType> component and withComputedType HOC
+    // TODO: Remove this after all components will be updated
+    try {
+      shallow(<Component {...requiredProps} />)
+        .should.have.className('ui')
+    } catch (e) {
+      shallow(<Component {...requiredProps} />)
+        .dive()
+        .should.have.className('ui')
+    }
   })
 }

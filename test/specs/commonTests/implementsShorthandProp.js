@@ -53,7 +53,17 @@ export default (Component, options = {}) => {
       })
       const element = createElement(Component, { ...requiredProps, [propKey]: value })
 
-      shallow(element).should[assertMethod](shorthandElement)
+      // Heads up! It's a temporary solution until all other components will be wrapped with
+      // the new <ElementType> component and withComputedType HOC
+      // TODO: Remove this after all components will be updated
+      try {
+        shallow(element)
+          .should[assertMethod](shorthandElement)
+      } catch (e) {
+        shallow(element)
+          .dive()
+          .should[assertMethod](shorthandElement)
+      }
     }
 
     if (alwaysPresent || (Component.defaultProps && Component.defaultProps[propKey])) {

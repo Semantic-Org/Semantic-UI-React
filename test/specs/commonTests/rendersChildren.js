@@ -19,19 +19,49 @@ export default (Component, options = {}) => {
   describe('children (common)', () => {
     it('renders child text', () => {
       const text = faker.hacker.phrase()
-      shallow(createElement(Component, requiredProps, text))
-        .should.contain.text(text)
+      // Heads up! It's a temporary solution until all other components will be wrapped with
+      // the new <ElementType> component and withComputedType HOC
+      // TODO: Remove this after all components will be updated
+      try {
+        shallow(createElement(Component, requiredProps, text))
+          .should.contain.text(text)
+      } catch (e) {
+        shallow(createElement(Component, requiredProps, text))
+          .dive()
+          .dive()
+          .should.contain.text(text)
+      }
     })
 
     it('renders child components', () => {
       const child = <div data-child={faker.hacker.noun()} />
-      shallow(createElement(Component, requiredProps, child))
-        .should.contain(child)
+      // Heads up! It's a temporary solution until all other components will be wrapped with
+      // the new <ElementType> component and withComputedType HOC
+      // TODO: Remove this after all components will be updated
+      try {
+        shallow(createElement(Component, requiredProps, child))
+          .should.contain(child)
+      } catch (e) {
+        shallow(createElement(Component, requiredProps, child))
+          .dive()
+          .dive()
+          .should.contain(child)
+      }
     })
 
     it('renders child number with 0 value', () => {
-      shallow(createElement(Component, requiredProps, 0))
-        .should.contain.text('0')
+      // Heads up! It's a temporary solution until all other components will be wrapped with
+      // the new <ElementType> component and withComputedType HOC
+      // TODO: Remove this after all components will be updated
+      try {
+        shallow(createElement(Component, requiredProps, 0))
+          .should.contain.text('0')
+      } catch (e) {
+        shallow(createElement(Component, requiredProps, 0))
+          .dive()
+          .dive()
+          .should.contain.text('0')
+      }
     })
   })
 
@@ -39,19 +69,49 @@ export default (Component, options = {}) => {
     describe('content (common)', () => {
       it('renders child text', () => {
         const text = faker.hacker.phrase()
-        shallow(createElement(Component, { ...requiredProps, content: text }))
-          .should.contain.text(text)
+        // Heads up! It's a temporary solution until all other components will be wrapped with
+        // the new <ElementType> component and withComputedType HOC
+        // TODO: Remove this after all components will be updated
+        try {
+          shallow(createElement(Component, { ...requiredProps, content: text }))
+            .should.contain.text(text)
+        } catch (e) {
+          shallow(createElement(Component, { ...requiredProps, content: text }))
+            .dive()
+            .dive()
+            .should.contain.text(text)
+        }
       })
 
       it('renders child components', () => {
         const child = <div data-child={faker.hacker.noun()} />
-        shallow(createElement(Component, { ...requiredProps, content: child }))
-          .should.contain(child)
+        // Heads up! It's a temporary solution until all other components will be wrapped with
+        // the new <ElementType> component and withComputedType HOC
+        // TODO: Remove this after all components will be updated
+        try {
+          shallow(createElement(Component, { ...requiredProps, content: child }))
+            .should.contain(child)
+        } catch (e) {
+          shallow(createElement(Component, { ...requiredProps, content: child }))
+            .dive()
+            .dive()
+            .should.contain(child)
+        }
       })
 
       it('renders child number with 0 value', () => {
-        shallow(createElement(Component, { ...requiredProps, content: 0 }))
-          .should.contain.text('0')
+        // Heads up! It's a temporary solution until all other components will be wrapped with
+        // the new <ElementType> component and withComputedType HOC
+        // TODO: Remove this after all components will be updated
+        try {
+          shallow(createElement(Component, { ...requiredProps, content: 0 }))
+            .should.contain.text('0')
+        } catch (e) {
+          shallow(createElement(Component, { ...requiredProps, content: 0 }))
+            .dive()
+            .dive()
+            .should.contain.text('0')
+        }
       })
     })
   }

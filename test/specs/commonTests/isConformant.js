@@ -23,36 +23,34 @@ export default (Component, options = {}) => {
   const { eventTargets = {}, requiredProps = {}, rendersChildren = true, rendersPortal = false } = options
   const { throwError } = helpers('isConformant', Component)
 
-  // tests depend on Component constructor names, enforce them
-  if (!Component.prototype.constructor.name) {
+  if (!Component._meta) {
     throwError([
-      'Component is not a named function. This should help identify it:',
-      `static _meta = ${JSON.stringify(Component._meta, null, 2)}`,
+      'Component does not define _meta. This should help identify it:',
       `Rendered:\n${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
     ].join('\n'))
   }
 
   // extract componentInfo for this component
-  const extractedInfo = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
+  const extractedInfo = _.find(componentInfo, i => i._meta.name === Component._meta.name)
   const {
     _meta,
-    constructorName,
     componentClassName,
     filenameWithoutExt,
   } = extractedInfo
+  const componentName = _meta.name
 
   // ----------------------------------------
   // Class and file name
   // ----------------------------------------
-  it(`constructor name matches filename "${constructorName}"`, () => {
-    constructorName.should.equal(filenameWithoutExt)
+  it(`"${componentName}" in meta matches filename`, () => {
+    componentName.should.equal(filenameWithoutExt)
   })
 
   // ----------------------------------------
   // Is exported or private
   // ----------------------------------------
-  // detect components like: semanticUIReact.H1
-  const isTopLevelAPIProp = _.has(semanticUIReact, constructorName)
+  // detect components like: semanticUIReact.Header
+  const isTopLevelAPIProp = _.has(semanticUIReact, componentName)
 
   // detect sub components like: semanticUIReact.Form.Field (ie FormField component)
   // Build a path by following _meta.parents to the root:
@@ -72,17 +70,17 @@ export default (Component, options = {}) => {
   // find the apiPath in the semanticUIReact object
   const isSubComponent = _.isFunction(_.get(semanticUIReact, apiPath))
 
-  if (META.isPrivate(constructorName)) {
+  if (META.isPrivate(componentName)) {
     it('is not exported as a component nor sub component', () => {
       expect(isTopLevelAPIProp).to.equal(
         false,
-        `"${constructorName}" is private (starts with  "_").` +
+        `"${componentName}" is private (starts with  "_").` +
         ' It cannot be exposed on the top level API',
       )
 
       expect(isSubComponent).to.equal(
         false,
-        `"${constructorName}" is private (starts with "_").` +
+        `"${componentName}" is private (starts with "_").` +
         ' It cannot be a static prop of another component (sub-component)',
       )
     })
@@ -90,7 +88,7 @@ export default (Component, options = {}) => {
     // require all components to be exported at the top level
     it('is exported at the top level', () => {
       expect(isTopLevelAPIProp).to.equal(true, [
-        `"${constructorName}" must be exported at top level.`,
+        `"${componentName}" must be exported at top level.`,
         'Export it in `src/index.js`.',
       ].join(' '))
     })
@@ -98,11 +96,10 @@ export default (Component, options = {}) => {
 
   if (_meta.parent) {
     it('is a static component on its parent', () => {
-      expect(isSubComponent).to.equal(
-        true,
-        `\`${constructorName}\` is a child component (has a _meta.parent).` +
-        ` It must be a static prop of its parent \`${_meta.parent}\``,
-      )
+      expect(isSubComponent).to.equal(true, [
+        `"${componentName}" is a child component (has a _meta.parent).`,
+        `It must be a static prop of its parent "${_meta.parent}"`,
+      ].join(' '))
     })
   }
 
@@ -245,10 +242,10 @@ export default (Component, options = {}) => {
 
           // <Dropdown onBlur={handleBlur} />
           //                   ^ was not called once on "blur"
-          const leftPad = ' '.repeat(constructorName.length + listenerName.length + 3)
+          const leftPad = ' '.repeat(componentName.length + listenerName.length + 3)
 
           handlerSpy.calledOnce.should.equal(true,
-            `<${constructorName} ${listenerName}={${handlerName}} />\n` +
+            `<${componentName} ${listenerName}={${handlerName}} />\n` +
             `${leftPad} ^ was not called once on "${eventName}".` +
             'You may need to hoist your event handlers up to the root element.\n',
           )
@@ -263,7 +260,7 @@ export default (Component, options = {}) => {
 
           // Components should return the event first, then any data
           handlerSpy.calledWithMatch(...expectedArgs).should.equal(true, [
-            `<${constructorName} ${listenerName}={${handlerName}} />\n`,
+            `<${componentName} ${listenerName}={${handlerName}} />\n`,
             `${leftPad} ^ ${errorMessage}`,
             'It was called with args:',
             JSON.stringify(handlerSpy.args, null, 2),
@@ -292,7 +289,7 @@ export default (Component, options = {}) => {
     if (_.has(_meta, 'parent')) {
       describe('parent', () => {
         it('matches some component name', () => {
-          expect(_.map(semanticUIReact, c => c.prototype.constructor.name)).to.contain(_meta.parent)
+          expect(_.map(semanticUIReact, '_meta.name')).to.contain(_meta.parent)
         })
       })
     }

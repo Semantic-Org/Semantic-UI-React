@@ -1,9 +1,11 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
   createShorthandFactory,
   getUnhandledProps,
   META,
+  SUI,
 } from '../../lib'
 import Image from '../../elements/Image'
 
@@ -25,7 +27,7 @@ ItemImage._meta = {
 
 ItemImage.propTypes = {
   /** An image may appear at different sizes. */
-  size: Image.propTypes.size,
+  size: PropTypes.oneOf(SUI.SIZES),
 }
 
 ItemImage.create = createShorthandFactory(ItemImage, src => ({ src }))
