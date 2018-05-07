@@ -175,6 +175,9 @@ export { default as SearchCategory, SearchCategoryProps } from './dist/commonjs/
 export { default as SearchResult, SearchResultProps } from './dist/commonjs/modules/Search/SearchResult';
 export { default as SearchResults, SearchResultsProps } from './dist/commonjs/modules/Search/SearchResults';
 
+export { default as Shape, ShapeProps } from './dist/commonjs/modules/Shape';
+export { default as ShapeSide, ShapeSideProps } from './dist/commonjs/modules/Shape/ShapeSide';
+
 export { default as Sidebar, SidebarProps } from './dist/commonjs/modules/Sidebar';
 export { default as SidebarPushable, SidebarPushableProps } from './dist/commonjs/modules/Sidebar/SidebarPushable';
 export { default as SidebarPusher, SidebarPusherProps } from './dist/commonjs/modules/Sidebar/SidebarPusher';
