@@ -74,7 +74,10 @@ export default class Popup extends Component {
     inverted: PropTypes.bool,
 
     /** Horizontal offset in pixels to be applied to the Popup. */
-    offset: PropTypes.number,
+    horizontalOffset: PropTypes.number,
+
+    /** Vertical offset in pixels to be applied to the Popup. */
+    verticalOffset: PropTypes.number,
 
     /** Events triggering the popup. */
     on: PropTypes.oneOfType([
@@ -131,11 +134,15 @@ export default class Popup extends Component {
       PropTypes.bool,
       PropTypes.oneOf(['very']),
     ]),
+
+    /** Element to be rendered within the confines of the viewport whenever possible. */
+    keepInViewPort: PropTypes.bool,
   }
 
   static defaultProps = {
     position: 'top left',
     on: 'hover',
+    keepInViewPort: true,
   }
 
   static _meta = {
@@ -154,7 +161,7 @@ export default class Popup extends Component {
     // Do not access window/document when server side rendering
     if (!isBrowser()) return style
 
-    const { offset } = this.props
+    const { horizontalOffset, verticalOffset } = this.props
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement
 
@@ -190,11 +197,19 @@ export default class Popup extends Component {
       }
     }
 
-    if (offset) {
+    if (horizontalOffset) {
       if (_.isNumber(style.right)) {
-        style.right -= offset
+        style.right -= horizontalOffset
       } else {
-        style.left -= offset
+        style.left -= horizontalOffset
+      }
+    }
+
+    if (verticalOffset) {
+      if (_.isNumber(style.top)) {
+        style.top += verticalOffset
+      } else {
+        style.bottom += verticalOffset
       }
     }
 
@@ -236,13 +251,16 @@ export default class Popup extends Component {
     if ((!this.coords && !this.triggerRef) || !this.popupCoords) return
     let position = this.props.position
     let style = this.computePopupStyle(position)
+    const { keepInViewPort } = this.props
 
-    // Lets detect if the popup is out of the viewport and adjust
-    // the position accordingly
-    const positions = _.without(POSITIONS, position).concat([position])
-    for (let i = 0; !this.isStyleInViewport(style) && i < positions.length; i += 1) {
-      style = this.computePopupStyle(positions[i])
-      position = positions[i]
+    if (keepInViewPort) {
+      // Lets detect if the popup is out of the viewport and adjust
+      // the position accordingly
+      const positions = _.without(POSITIONS, position).concat([position])
+      for (let i = 0; !this.isStyleInViewport(style) && i < positions.length; i += 1) {
+        style = this.computePopupStyle(positions[i])
+        position = positions[i]
+      }
     }
 
     // Append 'px' to every numerical values in the style

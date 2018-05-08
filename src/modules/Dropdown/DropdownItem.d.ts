@@ -64,7 +64,7 @@ export interface DropdownItemProps {
   text?: SemanticShorthandContent;
 
   /** Stored value. */
-  value?: number | string;
+  value?: boolean | number | string;
 }
 
 declare const DropdownItem: React.ComponentClass<DropdownItemProps>;

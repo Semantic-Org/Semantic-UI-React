@@ -54,6 +54,14 @@ describe('Portal', () => {
     expect(instance.rootNode).to.equal(undefined)
   })
 
+  it('attachRenderSubTreeSubscribers returns null if rootNode is lost', () => {
+    wrapperMount(<Portal open><p /></Portal>)
+    const instance = wrapper.instance()
+    instance.rootNode = null
+    expect(() => instance.attachRenderSubTreeSubscribers()).to.not.throw()
+    expect(instance.attachRenderSubTreeSubscribers()).to.equal(null)
+  })
+
   it('appends portal with children to the document.body', () => {
     wrapperMount(<Portal open><p /></Portal>)
     const instance = wrapper.instance()

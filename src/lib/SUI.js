@@ -30,14 +30,14 @@ export const WIDTHS = [
 ]
 
 export const DIRECTIONAL_TRANSITIONS = [
-  'scale',
-  'fade', 'fade up', 'fade down', 'fade left', 'fade right',
-  'horizontal flip', 'vertical flip',
-  'drop',
-  'fly left', 'fly right', 'fly up', 'fly down',
-  'swing left', 'swing right', 'swing up', 'swing down',
   'browse', 'browse right',
-  'slide down', 'slide up', 'slide right',
+  'drop',
+  'fade', 'fade up', 'fade down', 'fade left', 'fade right',
+  'fly up', 'fly down', 'fly left', 'fly right',
+  'horizontal flip', 'vertical flip',
+  'scale',
+  'slide up', 'slide down', 'slide left', 'slide right',
+  'swing up', 'swing down', 'swing left', 'swing right',
 ]
 export const STATIC_TRANSITIONS = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce']
 export const TRANSITIONS = [...DIRECTIONAL_TRANSITIONS, ...STATIC_TRANSITIONS]

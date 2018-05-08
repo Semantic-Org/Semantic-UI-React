@@ -6,14 +6,26 @@ const PopupExampleOffset = () => (
     <Popup
       trigger={<Icon size='large' name='heart' circular />}
       content='Way off to the left'
-      offset={50}
+      horizontalOffset={50}
       position='left center'
     />
     <Popup
       trigger={<Icon size='large' name='heart' circular />}
       content='As expected this popup is way off to the right'
-      offset={50}
+      horizontalOffset={50}
       position='right center'
+    />
+    <Popup
+      trigger={<Icon size='large' name='heart' circular />}
+      content='Way off to the top'
+      verticalOffset={50}
+      position='top center'
+    />
+    <Popup
+      trigger={<Icon size='large' name='heart' circular />}
+      content='As expected this popup is way off to the bottom'
+      verticalOffset={50}
+      position='bottom center'
     />
   </div>
 )

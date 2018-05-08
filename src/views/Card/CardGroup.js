@@ -21,6 +21,7 @@ import Card from './Card'
  */
 function CardGroup(props) {
   const {
+    centered,
     children,
     className,
     content,
@@ -33,6 +34,7 @@ function CardGroup(props) {
 
   const classes = cx(
     'ui',
+    useKeyOnly(centered, 'centered'),
     useKeyOnly(doubling, 'doubling'),
     useKeyOnly(stackable, 'stackable'),
     useTextAlignProp(textAlign),
@@ -63,6 +65,9 @@ CardGroup._meta = {
 CardGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
+
+  /** A group of cards can center itself inside its container. */
+  centered: PropTypes.bool,
 
   /** Primary content. */
   children: PropTypes.node,

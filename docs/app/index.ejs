@@ -63,10 +63,8 @@
     }())
   </script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
-  <script
-    src="//cdnjs.cloudflare.com/ajax/libs/babel-standalone/<%= htmlWebpackPlugin.options.versions.babel %>/babel.min.js"
-    data-presets="es2015,react,stage1"
-  ></script>
+  <script src="//cdn.jsdelivr.net/npm/@babel/standalone@<%= htmlWebpackPlugin.options.versions.babel %>/babel.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@babel/preset-env-standalone@<%= htmlWebpackPlugin.options.versions.babel %>/babel-preset-env.min.js"></script>
   <script src="//cdn.jsdelivr.net/faker.js/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/<%= htmlWebpackPlugin.options.versions.jsBeautify %>/beautify-html.min.js"></script>
   <!-- Use unminified React when not in production so we get errors and warnings -->
@@ -162,6 +160,36 @@
     .docs-icon-set-column:hover > .icon {
       transform: scale(1.5);
     }
-  </style>
+
+    /* Carbon Ads */
+    #carbonads {
+      display: block;
+    }
+
+    #carbonads span {
+      display: block;
+    }
+
+    .carbon-img {
+      display: block;
+    }
+
+    .carbon-img img {
+      display: block;
+    }
+
+    .carbon-text {
+      display: block;
+      margin-top: 1em;
+    }
+
+    .carbon-poweredby {
+      display: block;
+      margin-top: 0.5em;
+      font-size: 0.8em;
+      color: #ffffff;
+      opacity: 0.5;
+    }
+    </style>
 </body>
 </html>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandItem} from '../..';
+import { SemanticShorthandItem } from '../..';
 import { default as TabPane, TabPaneProps } from './TabPane';
 
 export interface TabProps {
@@ -17,6 +17,9 @@ export interface TabProps {
 
   /** Shorthand props for the Menu. */
   menu?: any;
+
+  /** Align vertical menu */
+  menuPosition?: 'left' | 'right';
 
   /** Shorthand props for the Grid. */
   grid?: any;
