@@ -1,5 +1,5 @@
 import _ from 'lodash/fp'
-import * as semanticUIReact from 'src'
+import * as Stardust from 'src'
 
 const getComponentGroup = (docInfo, componentName) => ({
   [componentName]: {
@@ -15,7 +15,7 @@ const getComponentGroup = (docInfo, componentName) => ({
       props: _.get('props', docInfo[name]),
     })),
     _.keyBy('name'),
-  )(semanticUIReact),
+  )(Stardust),
 })
 
 export default getComponentGroup

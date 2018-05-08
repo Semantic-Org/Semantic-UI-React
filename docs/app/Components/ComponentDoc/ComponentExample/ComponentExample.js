@@ -8,7 +8,7 @@ import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
-import { Divider, Grid, Menu, Visibility } from 'src'
+import { Divider, Grid, Menu, Visibility } from 'semantic-ui-react'
 import { shallowEqual } from 'src/lib'
 import Editor from 'docs/app/Components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
@@ -206,7 +206,7 @@ class ComponentExample extends Component {
     const FAKER = require('faker')
     const LODASH = require('lodash')
     const REACT = require('react')
-    const SEMANTIC_UI_REACT = require('semantic-ui-react')
+    const STARDUST = require('stardust')
     let WIREFRAME
     let COMMON
     /* eslint-enable no-unused-vars */
@@ -235,8 +235,6 @@ class ComponentExample extends Component {
             .splice(0, 2)
             .join(__PATH_SEP__)
           COMMON = require(`docs/app/Examples/${componentPath}/common`)
-        } else if (module === 'WIREFRAME') {
-          WIREFRAME = require('docs/app/Examples/behaviors/Visibility/Wireframe').default
         }
 
         const constStatements = []

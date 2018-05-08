@@ -1,12 +1,7 @@
 import _ from 'lodash/fp'
 
 export const TYPES = {
-  ADDON: 'addon',
-  BEHAVIOR: 'behavior',
-  COLLECTION: 'collection',
-  ELEMENT: 'element',
-  VIEW: 'view',
-  MODULE: 'module',
+  COMPONENT: 'component',
 }
 
 const TYPE_VALUES = _.values(TYPES)
@@ -18,9 +13,7 @@ const TYPE_VALUES = _.values(TYPES)
  * @param {Object} _meta A proposed component _meta object.
  * @returns {Boolean}
  */
-export const isMeta = _meta => (
-  _.includes(_.get('type', _meta), TYPE_VALUES)
-)
+export const isMeta = _meta => _.includes(_.get('type', _meta), TYPE_VALUES)
 
 /**
  * Extract a component's _meta object and optional key.
@@ -32,15 +25,15 @@ export const isMeta = _meta => (
 const getMeta = (metaArg) => {
   // literal
   if (isMeta(metaArg)) return metaArg
-
   // from prop
   else if (isMeta(_.get('_meta', metaArg))) return metaArg._meta
-
   // from class
   else if (isMeta(_.get('constructor._meta', metaArg))) return metaArg.constructor._meta
 }
 
-const metaHasKeyValue = _.curry((key, val, metaArg) => _.flow(getMeta, _.get(key), _.eq(val))(metaArg))
+const metaHasKeyValue = _.curry((key, val, metaArg) =>
+  _.flow(getMeta, _.get(key), _.eq(val))(metaArg),
+)
 export const isType = metaHasKeyValue('type')
 
 // ----------------------------------------
@@ -48,11 +41,7 @@ export const isType = metaHasKeyValue('type')
 // ----------------------------------------
 
 // type
-export const isAddon = isType(TYPES.ADDON)
-export const isCollection = isType(TYPES.COLLECTION)
-export const isElement = isType(TYPES.ELEMENT)
-export const isView = isType(TYPES.VIEW)
-export const isModule = isType(TYPES.MODULE)
+export const isComponent = isType(TYPES.COMPONENT)
 
 // parent
 export const isParent = _.flow(getMeta, _.has('parent'), _.eq(false))

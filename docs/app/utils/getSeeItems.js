@@ -1,13 +1,14 @@
 import _ from 'lodash/fp'
-import * as semanticUIReact from 'src'
+import * as Stardust from 'src'
 
-const getSeeItems = (docInfo, componentName) => _.map(({ description }) => {
-  const seeMeta = _.get('_meta', semanticUIReact[description])
+const getSeeItems = (docInfo, componentName) =>
+  _.map(({ description }) => {
+    const seeMeta = _.get('_meta', Stardust[description])
 
-  if (!seeMeta) return null
-  const { type, name } = seeMeta
+    if (!seeMeta) return null
+    const { type, name } = seeMeta
 
-  return { description, name, type }
-}, _.filter(['title', 'see'], _.get('docBlock.tags', docInfo[componentName])))
+    return { description, name, type }
+  }, _.filter(['title', 'see'], _.get('docBlock.tags', docInfo[componentName])))
 
 export default getSeeItems

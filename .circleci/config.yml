@@ -50,12 +50,6 @@ jobs:
             - .yarn-cache
             - node_modules
       - run:
-          name: Lint TypeScript
-          command: yarn tsd:lint
-      - run:
-          name: Test TypeScript
-          command: yarn tsd:test
-      - run:
           name: Lint JavaScript
           command: yarn lint
       - run:

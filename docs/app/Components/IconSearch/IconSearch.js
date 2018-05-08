@@ -4,14 +4,7 @@ import leven from 'leven'
 import React, { Component } from 'react'
 
 import { SUI } from 'src/lib'
-import {
-  Form,
-  Grid,
-  Header,
-  Icon,
-  Message,
-  Popup,
-} from 'src'
+import { Form, Grid, Header, Icon, Message, Popup } from 'semantic-ui-react'
 
 const gridStyle = {
   background: '#fff',
@@ -49,11 +42,7 @@ const similarityScore = (strA, strB) => {
   const aWords = strA.trim().split(' ')
   const bWords = strB.trim().split(' ')
 
-  return _.flow(
-    _.map(a => _.map(b => leven(a, b), bWords)),
-    _.map(_.min),
-    _.sum,
-  )(aWords)
+  return _.flow(_.map(a => _.map(b => leven(a, b), bWords)), _.map(_.min), _.sum)(aWords)
 }
 export default class IconSearch extends Component {
   state = { search: '', includeSimilar: true }
@@ -85,12 +74,12 @@ export default class IconSearch extends Component {
       size='mini'
       position='top center'
       content={this.state.copied ? 'Copied!' : 'Click to copy'}
-      trigger={(
+      trigger={
         <Grid.Column className='docs-icon-set-column' onClick={this.copy(name)}>
           <Icon name={name} size='big' />
           <p className='name'>{name}</p>
         </Grid.Column>
-      )}
+      }
     />
   )
 
@@ -113,15 +102,13 @@ export default class IconSearch extends Component {
       ))
     }
 
-    const iconSearchMatches = SUI.ICONS_AND_ALIASES
-      .filter((name) => {
-        // contains
-        if (name.indexOf(query) !== -1) return true
+    const iconSearchMatches = SUI.ICONS_AND_ALIASES.filter((name) => {
+      // contains
+      if (name.indexOf(query) !== -1) return true
 
-        // similar
-        return includeSimilar && similarityScore(name, query) <= 2
-      })
-      .map(this.renderIconColumn)
+      // similar
+      return includeSimilar && similarityScore(name, query) <= 2
+    }).map(this.renderIconColumn)
 
     // no results
     if (iconSearchMatches.length === 0) {
@@ -131,7 +118,9 @@ export default class IconSearch extends Component {
             <Message
               info
               icon='search'
-              content={`There is no icon name or alias ${includeSimilar ? 'similar' : 'that contains'} to "${query}".`}
+              content={`There is no icon name or alias ${
+                includeSimilar ? 'similar' : 'that contains'
+              } to "${query}".`}
               header='No Results'
             />
           </Grid.Column>
@@ -140,7 +129,11 @@ export default class IconSearch extends Component {
     }
 
     // results
-    return <Grid columns={5} doubling>{iconSearchMatches}</Grid>
+    return (
+      <Grid columns={5} doubling>
+        {iconSearchMatches}
+      </Grid>
+    )
   }
 
   render() {
@@ -153,10 +146,14 @@ export default class IconSearch extends Component {
 
           <Message>
             Semantic includes a complete port of{' '}
-            <a href='http://fontawesome.io/whats-new/' rel='noopener noreferrer' target='_blank'>Font Awesome 4.7.0</a>
-            {' '}designed by{' '}
-            <a href='http://www.twitter.com/davegandy' rel='noopener noreferrer'>Dave Gandy</a> for its standard icon
-            set.
+            <a href='http://fontawesome.io/whats-new/' rel='noopener noreferrer' target='_blank'>
+              Font Awesome 4.7.0
+            </a>{' '}
+            designed by{' '}
+            <a href='http://www.twitter.com/davegandy' rel='noopener noreferrer'>
+              Dave Gandy
+            </a>{' '}
+            for its standard icon set.
           </Message>
 
           <Form>
@@ -176,9 +173,7 @@ export default class IconSearch extends Component {
             </Form.Group>
           </Form>
         </Grid.Column>
-        <Grid.Column textAlign='center'>
-          {this.renderIcons()}
-        </Grid.Column>
+        <Grid.Column textAlign='center'>{this.renderIcons()}</Grid.Column>
       </Grid>
     )
   }
