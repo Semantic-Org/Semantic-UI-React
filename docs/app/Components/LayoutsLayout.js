@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { NavLink, Route } from 'react-router-dom'
 
-import { Button } from 'src'
+import { Button } from 'semantic-ui-react'
 import { getUnhandledProps } from 'src/lib'
 import { repoURL } from 'docs/app/utils'
 
@@ -53,13 +53,7 @@ export default class LayoutsLayout extends Component {
         {style}
         <Children {...props} />
         <div style={docsButtonStyle}>
-          <Button
-            as={NavLink}
-            to='/layouts'
-            color='teal'
-            icon='left arrow'
-            content='Layouts'
-          />
+          <Button as={NavLink} to='/layouts' color='teal' icon='left arrow' content='Layouts' />
           <Button
             as={NavLink}
             to={`${repoURL}/blob/master/docs/app/Layouts/${filename}`}

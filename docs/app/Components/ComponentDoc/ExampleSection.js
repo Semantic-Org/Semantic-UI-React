@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { Grid, Header } from 'src'
+import { Grid, Header } from 'semantic-ui-react'
 
 const headerStyle = { marginBottom: '1.5em' }
 const sectionStyle = {

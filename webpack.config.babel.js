@@ -20,7 +20,7 @@ const webpackConfig = {
   resolve: {
     modules: [paths.base(), 'node_modules'],
     alias: {
-      'semantic-ui-react': paths.src('index.js'),
+      stardust: paths.src('index.js'),
     },
   },
 }
@@ -108,7 +108,10 @@ if (!__TEST__) {
 }
 
 if (__DEV__) {
-  webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin())
+  webpackConfig.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  )
 }
 
 if (__PROD__) {
