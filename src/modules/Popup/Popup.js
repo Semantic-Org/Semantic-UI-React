@@ -334,6 +334,7 @@ export default class Popup extends Component {
     debug('handlePortalUnmount()')
     const { hideOnScroll } = this.props
 
+    cancelAnimationFrame(this.animationRequestId)
     if (hideOnScroll) eventStack.unsub('scroll', this.hideOnScroll, { target: window })
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
