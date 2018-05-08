@@ -308,6 +308,7 @@ export default class Popup extends Component {
     const { hideOnScroll } = this.props
 
     if (hideOnScroll) eventStack.sub('scroll', this.hideOnScroll, { target: window })
+    this.setPosition()
     _.invoke(this.props, 'onMount', e, this.props)
   }
 
@@ -330,6 +331,14 @@ export default class Popup extends Component {
     if (triggerRef) {
       this.triggerRef = triggerRef
     }
+  }
+
+  setPosition = () => {
+    if (this.triggerRef) {
+      this.setPopupStyle(this.props.position)
+    }
+
+    this.animationRequestId = requestAnimationFrame(this.setPosition)
   }
 
   render() {
