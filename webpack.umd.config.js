@@ -19,7 +19,7 @@ const webpackUMDConfig = {
   output: {
     filename: '[name].min.js',
     libraryTarget: 'umd',
-    library: 'semanticUIReact',
+    library: 'Stardust',
     path: paths.dist('umd'),
     publicPath: '/',
     pathinfo: true,

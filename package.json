@@ -153,6 +153,7 @@
     "rimraf": "^2.6.1",
     "satisfied": "^1.1.1",
     "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.80.0",
     "simulant": "^0.2.2",
     "sinon": "^3.2.0",
     "sinon-chai": "^2.13.0",

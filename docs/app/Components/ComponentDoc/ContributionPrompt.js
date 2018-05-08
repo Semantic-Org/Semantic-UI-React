@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import { repoURL } from 'docs/app/utils'
-import { Message, Icon } from 'src'
+import { Message, Icon } from 'semantic-ui-react'
 
 const ContributionPrompt = ({ children }) => (
   <Message info icon>
@@ -10,12 +10,8 @@ const ContributionPrompt = ({ children }) => (
     <Message.Content>
       <p>{children}</p>
       <p>
-        If there's no{' '}
-        <a href={`${repoURL}/pulls`}>pull request</a>{' '}
-        open for this, you should{' '}
-        <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md`}>
-          contribute
-        </a>!
+        If there's no <a href={`${repoURL}/pulls`}>pull request</a> open for this, you should{' '}
+        <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md`}>contribute</a>!
       </p>
     </Message.Content>
   </Message>
