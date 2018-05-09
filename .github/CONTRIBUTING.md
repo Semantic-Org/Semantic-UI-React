@@ -553,7 +553,7 @@ Label.propTypes = {
 
 >This section is lacking in instruction as the the docs are set to be overhauled (PRs welcome!).
 
-Usage examples for a component live in `docs/app/Examples`.  The examples follow the SUI doc site examples.
+Usage examples for a component live in `docs/src/examples`.  The examples follow the SUI doc site examples.
 
 Adding documentation for new components is a bit tedious.  The best way to do this (for now) is to copy an existing component's and update them.
 

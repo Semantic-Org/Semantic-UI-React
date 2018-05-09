@@ -1,0 +1,13 @@
+{
+  "Layout": [
+    {
+      "examples": [
+        {
+          "title": "Simple Layout Example",
+          "path": "components/Layout/Types/LayoutExample"
+        }
+      ],
+      "name": "Types"
+    }
+  ]
+}
