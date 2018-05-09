@@ -1,0 +1,145 @@
+{
+  "HelloWorld": {
+    "methods": [],
+    "docBlock": {
+      "tags": [],
+      "description": [
+        ""
+      ]
+    },
+    "path": "src/components/HelloWorld/HelloWorld.js",
+    "props": []
+  },
+  "Provider": {
+    "displayName": "Provider",
+    "methods": [
+      {
+        "name": "renderStaticStyles",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "renderFontFaces",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      }
+    ],
+    "props": [
+      {
+        "type": "element",
+        "required": true,
+        "description": [
+          ""
+        ],
+        "tags": [],
+        "name": "children"
+      },
+      {
+        "type": "arrayOf",
+        "required": false,
+        "description": [
+          ""
+        ],
+        "tags": [],
+        "value": {
+          "name": "shape",
+          "value": {
+            "name": {
+              "name": "string",
+              "required": false
+            },
+            "paths": {
+              "name": "arrayOf",
+              "value": {
+                "name": "string"
+              },
+              "required": false
+            },
+            "style": {
+              "name": "shape",
+              "value": {
+                "fontStretch": {
+                  "name": "string",
+                  "required": false
+                },
+                "fontStyle": {
+                  "name": "string",
+                  "required": false
+                },
+                "fontVariant": {
+                  "name": "string",
+                  "required": false
+                },
+                "fontWeight": {
+                  "name": "union",
+                  "value": [
+                    {
+                      "name": "string"
+                    },
+                    {
+                      "name": "number"
+                    }
+                  ],
+                  "required": false
+                },
+                "localAlias": {
+                  "name": "string",
+                  "required": false
+                },
+                "unicodeRange": {
+                  "name": "string",
+                  "required": false
+                }
+              },
+              "required": false
+            }
+          }
+        },
+        "name": "fontFaces"
+      },
+      {
+        "type": "object",
+        "required": false,
+        "description": [
+          ""
+        ],
+        "tags": [],
+        "name": "siteVariables"
+      },
+      {
+        "type": "arrayOf",
+        "required": false,
+        "description": [
+          ""
+        ],
+        "tags": [],
+        "value": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "object"
+            },
+            {
+              "name": "func"
+            }
+          ]
+        },
+        "name": "staticStyles"
+      }
+    ],
+    "docBlock": {
+      "tags": [],
+      "description": [
+        ""
+      ]
+    },
+    "path": "src/components/Provider/Provider.js"
+  }
+}

@@ -19,7 +19,7 @@ const envConfig = {
   dir_dist: 'dist',
   dir_dll: 'dll',
   dir_docs_dist: 'docs/build',
-  dir_docs_src: 'docs/app',
+  dir_docs_src: 'docs/src',
   dir_umd_dist: 'dist/umd',
 }
 

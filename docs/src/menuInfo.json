@@ -1,0 +1,13 @@
+{
+  "HelloWorld": [
+    {
+      "examples": [
+        {
+          "title": "Simple Hello World Example",
+          "path": "components/HelloWorld/Types/HelloWorldExample"
+        }
+      ],
+      "name": "Types"
+    }
+  ]
+}
