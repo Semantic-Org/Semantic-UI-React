@@ -1,10 +1,10 @@
 {
-  "HelloWorld": [
+  "Layout": [
     {
       "examples": [
         {
-          "title": "Simple Hello World Example",
-          "path": "components/HelloWorld/Types/HelloWorldExample"
+          "title": "Simple Layout Example",
+          "path": "components/Layout/Types/LayoutExample"
         }
       ],
       "name": "Types"
