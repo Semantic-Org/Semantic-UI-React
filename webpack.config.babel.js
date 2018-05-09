@@ -20,7 +20,7 @@ const webpackConfig = {
   resolve: {
     modules: [paths.base(), 'node_modules'],
     alias: {
-      stardust: paths.src('index.js'),
+      stardust: paths.src(),
     },
   },
 }
