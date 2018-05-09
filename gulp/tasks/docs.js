@@ -29,7 +29,7 @@ task('clean:docs', (cb) => {
 // ----------------------------------------
 
 task('build:docs:docgen', () =>
-  src([`${config.paths.src()}/components/*/*.js`, '!**/index.js'])
+  src([`${config.paths.src()}/components/*/*.js`, '!**/index.js', '!**/*Rules.js'])
     // do not remove the function keyword
     // we need 'this' scope here
     .pipe(
