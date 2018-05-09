@@ -37,6 +37,10 @@ class Provider extends Component {
     type: META.TYPES.ADDON,
   }
 
+  static defaultProps = {
+    siteVariables: {}, // required by ThemeProvider
+  }
+
   renderer = createRenderer({
     plugins: [],
     middleware: [
@@ -106,7 +110,7 @@ class Provider extends Component {
 
     return (
       <RendererProvider renderer={this.renderer}>
-        <ThemeProvider theme={siteVariables}>{children}</ThemeProvider>
+        {siteVariables ? <ThemeProvider theme={siteVariables}>{children}</ThemeProvider> : children}
       </RendererProvider>
     )
   }

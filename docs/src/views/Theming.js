@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Container, Header, Segment } from 'semantic-ui-react'
 
-const LayoutsExample = () => (
+const Theming = () => (
   <Container>
     <Segment basic padded>
       <Header as='h1' content='Theming' subheader='An introduction to theming' />
@@ -78,4 +78,4 @@ const LayoutsExample = () => (
   </Container>
 )
 
-export default LayoutsExample
+export default Theming
