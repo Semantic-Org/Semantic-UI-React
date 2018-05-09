@@ -5,13 +5,38 @@ import { withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 
 import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
-import style from 'docs/app/Style'
 import { scrollToAnchor } from 'docs/app/utils'
 import { getUnhandledProps } from 'src/lib'
 
 const anchors = new AnchorJS({
   icon: '#',
 })
+
+const SIDEBAR_WIDTH = 250
+
+const style = {}
+style.menu = {
+  position: 'fixed',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  width: SIDEBAR_WIDTH,
+  paddingBottom: '1em',
+  // match menu background
+  // prevents a white background when items are filtered out by search
+  background: '#1B1C1D',
+  overflowY: 'scroll',
+}
+
+style.sidebarMain = {
+  marginLeft: SIDEBAR_WIDTH,
+  minWidth: SIDEBAR_WIDTH + 300,
+}
+
+style.main = {
+  ...style.sidebarMain,
+  maxWidth: SIDEBAR_WIDTH + 900,
+}
 
 class DocsLayout extends Component {
   static propTypes = {
@@ -58,7 +83,7 @@ class DocsLayout extends Component {
 
     if (render) return render()
     return (
-      <div style={style.container}>
+      <div>
         <Sidebar style={style.menu} />
         <div style={mainStyle}>
           <Children {...props} />
