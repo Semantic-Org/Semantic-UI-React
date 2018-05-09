@@ -3,7 +3,7 @@
 <!-- Logo -->
 <p align="center">
   <a href="https://react.semantic-ui.com">
-    <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/logo.png">
+    <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/logo.png">
   </a>
 </p>
 
@@ -44,11 +44,11 @@ See the [Documentation][2] for an introduction, usage information, and extensive
 
 ## Built With Semantic UI React
 
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/amazon-logo.png" />
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/netflix-logo.png" />
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/microsoft-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/amazon-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/netflix-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/microsoft-logo.png" />
 <a href="https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md">
-  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/add-yours.png" />
+  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/add-yours.png" />
 </a>
 
 These great products are built on Semantic UI React. Add yours [here][22].

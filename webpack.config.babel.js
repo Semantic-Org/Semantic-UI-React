@@ -108,7 +108,10 @@ if (!__TEST__) {
 }
 
 if (__DEV__) {
-  webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin())
+  webpackConfig.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  )
 }
 
 if (__PROD__) {

@@ -43,7 +43,8 @@ task('build:docs:docgen', () =>
 )
 
 task('build:docs:menugen', () =>
-  src(`${config.paths.docsSrc()}/Examples/**/index.js`)
+  src(`${config.paths.docsSrc()}/examples/**/index.js`)
+    .pipe(g.debug())
     // do not remove the function keyword
     // we need 'this' scope here
     .pipe(
