@@ -1,10 +1,10 @@
 import React from 'react'
 import Types from './Types'
 
-const HelloWorldExamples = () => (
+const LayoutExamples = () => (
   <div>
     <Types />
   </div>
 )
 
-export default HelloWorldExamples
+export default LayoutExamples
