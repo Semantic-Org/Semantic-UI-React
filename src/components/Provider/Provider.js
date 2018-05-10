@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { Provider as RendererProvider, ThemeProvider } from 'react-fela'
 
 import { felaRenderer, META } from '../../lib'
+import ProviderConsumer from './ProviderConsumer'
 
 class Provider extends Component {
   static propTypes = {
@@ -22,6 +23,7 @@ class Provider extends Component {
       }),
     ),
     siteVariables: PropTypes.object,
+    componentVariables: PropTypes.object,
     staticStyles: PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
     ),
@@ -32,6 +34,8 @@ class Provider extends Component {
     name: 'Provider',
     type: META.TYPES.ADDON,
   }
+
+  static Consumer = ProviderConsumer
 
   renderStaticStyles = () => {
     const { siteVariables, staticStyles } = this.props
@@ -86,11 +90,17 @@ class Provider extends Component {
   }
 
   render() {
-    const { siteVariables, children } = this.props
+    const { componentVariables, siteVariables, children } = this.props
+
+    const theme = { siteVariables, componentVariables }
 
     return (
       <RendererProvider renderer={felaRenderer}>
-        {siteVariables ? <ThemeProvider theme={siteVariables}>{children}</ThemeProvider> : children}
+        {siteVariables || componentVariables ? (
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        ) : (
+          children
+        )}
       </RendererProvider>
     )
   }

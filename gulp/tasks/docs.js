@@ -29,10 +29,15 @@ task('clean:docs', (cb) => {
 // ----------------------------------------
 
 task('build:docs:docgen', () =>
-  src([`${config.paths.src()}/components/*/*.js`, '!**/index.js', '!**/*Rules.js'])
-    // do not remove the function keyword
-    // we need 'this' scope here
+  src([
+    `${config.paths.src()}/components/*/*.js`,
+    '!**/index.js',
+    '!**/*Rules.js',
+    '!**/*Variables.js',
+  ])
     .pipe(
+      // do not remove the function keyword
+      // we need 'this' scope here
       g.plumber(function handleError(err) {
         log(err.toString())
         this.emit('end')
@@ -44,7 +49,6 @@ task('build:docs:docgen', () =>
 
 task('build:docs:menugen', () =>
   src(`${config.paths.docsSrc()}/examples/**/index.js`)
-    .pipe(g.debug())
     // do not remove the function keyword
     // we need 'this' scope here
     .pipe(

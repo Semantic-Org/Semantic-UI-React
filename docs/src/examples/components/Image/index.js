@@ -1,10 +1,10 @@
 import React from 'react'
 import Types from './Types'
 
-const LayoutExamples = () => (
+const ImageExamples = () => (
   <div>
     <Types />
   </div>
 )
 
-export default LayoutExamples
+export default ImageExamples

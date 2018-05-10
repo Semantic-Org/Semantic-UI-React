@@ -44,7 +44,9 @@ const render = NewApp =>
     <AppContainer>
       <Provider
         siteVariables={siteVariables}
-        staticStyles={[normalizeCSS, globalRules]}
+        componentVariables={{
+          Image: {},
+        }} staticStyles={[normalizeCSS, globalRules]}
         fontFaces={fontFaces}
       >
         <NewApp />

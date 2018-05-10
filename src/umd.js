@@ -1,4 +1,4 @@
-import * as Stardust from './index'
+import * as Stardust from './'
 
 module.exports = {
   ...Stardust,
