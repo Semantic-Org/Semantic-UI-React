@@ -23,8 +23,8 @@ class Image extends Component {
     /** An image can appear circular. */
     circular: PropTypes.bool,
 
-    /** TODO: his is not a prop we want here... */
-    styles: PropTypes.bool,
+    /** TODO: this is not a prop we want here... */
+    styles: PropTypes.object,
   }
 
   static defaultProps = {
