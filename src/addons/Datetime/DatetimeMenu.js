@@ -87,7 +87,7 @@ export default class DatetimeMenu extends Component {
         </Menu.Item>
       ),
       mode === 'year' && (
-        <Menu.Item as='div' header key='year' name='year' onClick={this.handleChangeMode}>
+        <Menu.Item key='year' name='year' onClick={this.handleChangeMode}>
           {year - 4} - {year + 4}
         </Menu.Item>
       ),
