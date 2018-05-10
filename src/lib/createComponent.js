@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import hoistNonReactStatics from 'hoist-non-react-statics'
@@ -14,11 +13,9 @@ const createComponent = (Component, config) => {
 
   const UIComponent = props => (
     <FelaTheme
-      render={({ siteVariables, componentVariables }) => {
-        const variablesFromFile = variables(siteVariables)
-        const variablesFromTheme = callable(_.get(componentVariables, Component._meta.name))(
-          siteVariables,
-        )
+      render={({ siteVariables = {}, componentVariables = {} }) => {
+        const variablesFromFile = callable(variables)(siteVariables)
+        const variablesFromTheme = callable(componentVariables[Component._meta.name])(siteVariables)
         const variablesFromProp = callable(props.variables)(siteVariables)
 
         const mergedVariables = Object.assign(

@@ -17,6 +17,7 @@ export felaRenderer from './felaRenderer'
 
 export { debug, makeDebugger } from './debug'
 export eventStack from './eventStack'
+export felaRenderer from './felaRenderer'
 
 export * from './factories'
 export  getUnhandledProps  from './getUnhandledProps'

@@ -1,1 +1,1 @@
-export { HOCImage as default } from './Image'
+export { Image_ as default } from './Image'

@@ -199,9 +199,9 @@ class ComponentExample extends Component {
     return this.renderWithProvider(ExampleComponent)
   }
 
-  renderWithProvider = SomeComponent => (
+  renderWithProvider = ExampleComponent => (
     <Provider componentVariables={this.state.componentVariables}>
-      <SomeComponent />
+      <ExampleComponent />
     </Provider>
   )
 
@@ -485,9 +485,12 @@ class ComponentExample extends Component {
                 {({ siteVariables }) => {
                   const { examplePath } = this.props
                   const name = examplePath.split('/')[1]
-                  const componentVariables = variablesContext(
-                    `./${name}/${_.camelCase(name)}Variables.js`,
-                  ).default
+                  const variableFilename = `./${name}/${_.camelCase(name)}Variables.js`
+                  const hasVariablesFile = _.includes(variablesContext.keys(), variableFilename)
+
+                  if (!hasVariablesFile) return null
+
+                  const componentVariables = variablesContext(variableFilename).default
                   const variables = componentVariables(siteVariables)
 
                   return (

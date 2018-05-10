@@ -44,14 +44,11 @@ const render = NewApp =>
     <AppContainer>
       <Provider
         siteVariables={siteVariables}
-        componentVariables={{
-          Image: {},
-        }} staticStyles={[normalizeCSS, globalRules]}
+        staticStyles={[normalizeCSS, globalRules]}
         fontFaces={fontFaces}
       >
         <NewApp />
-      </Provider>
-    </AppContainer>,
+      </Provider></AppContainer>,
     mountNode,
   )
 

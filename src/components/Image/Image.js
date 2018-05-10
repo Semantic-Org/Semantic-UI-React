@@ -46,7 +46,7 @@ class Image extends Component {
   }
 }
 
-export const HOCImage = createComponent(Image, {
+export const Image_ = createComponent(Image, {
   rules: imageRules,
   variables: imageVariables,
 })

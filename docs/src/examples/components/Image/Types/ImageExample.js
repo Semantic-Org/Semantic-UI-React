@@ -1,10 +1,6 @@
 import React from 'react'
-import { Provider, Image } from 'stardust'
+import { Image } from 'stardust'
 
-const ImageExampleDefault = () => (
-  <Provider>
-    <Image src='//placehold.it/100' />
-  </Provider>
-)
+const ImageExampleDefault = () => <Image src='//placehold.it/100' />
 
 export default ImageExampleDefault
