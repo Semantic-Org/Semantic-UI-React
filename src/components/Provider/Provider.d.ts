@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ProviderConsumer from './ProviderConsumer';
 
 export interface ProviderProps {
   [key: string]: any;
@@ -23,6 +24,10 @@ export interface ProviderProps {
   children: React.ReactNode;
 }
 
-declare const Provider: React.StatelessComponent<ProviderProps>;
+interface ProviderComponent extends React.StatelessComponent<ProviderProps> {
+  Consumer: typeof ProviderConsumer;
+}
+
+declare const Provider: ProviderComponent;
 
 export default Provider;
