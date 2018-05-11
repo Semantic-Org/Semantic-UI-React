@@ -1,10 +1,6 @@
 import React from 'react'
-import { Provider, Layout } from 'stardust'
+import { Layout } from 'stardust'
 
-const LayoutExample = () => (
-  <Provider>
-    <Layout debug start='start' main='main' end='end' />
-  </Provider>
-)
+const LayoutExample = () => <Layout debug start='start' main='main' end='end' />
 
 export default LayoutExample
