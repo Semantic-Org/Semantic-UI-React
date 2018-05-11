@@ -10,7 +10,8 @@ const isKnownProp = prop => GLOBALLY_KNOWN_PROPS.some(x => x === prop)
  * @returns {{}} A shallow copy of the prop object
  */
 const getUnhandledProps = (Component, props) => {
-  const { handledProps } = Component
+  // Note that `handledProps` are generated automatically during build with `babel-plugin-transform-react-handled-props`
+  const { handledProps = [] } = Component
 
   if (process.env.NODE_ENV !== 'production') {
     if (!Array.isArray(handledProps)) {

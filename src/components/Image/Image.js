@@ -11,8 +11,6 @@ import imageVariables from './imageVariables'
  * An image is a graphic representation of something.
  */
 class Image extends Component {
-  static handledProps = ['avatar', 'circular']
-
   static propTypes = {
     /**  */
     as: customPropTypes.as,

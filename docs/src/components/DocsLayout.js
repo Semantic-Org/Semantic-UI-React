@@ -39,8 +39,6 @@ style.main = {
 }
 
 class DocsLayout extends Component {
-  static handledProps = ['component', 'history', 'location', 'match', 'render', 'sidebar']
-
   static propTypes = {
     component: PropTypes.func,
     history: PropTypes.object.isRequired,
