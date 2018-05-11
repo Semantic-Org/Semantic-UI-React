@@ -22,18 +22,16 @@ const withDocInfo = ChildComponent =>
       this.setState(this.computeProps(nextProps))
     }
 
-    computeProps = ({ name, parent, type }) => {
+    computeProps = ({ name }) => {
       const { docBlock, path } = docInfo[name]
       const { description } = docBlock
 
       const ghLink = `${repoURL}/blob/master/${path}`
-      const suiLink = `https://semantic-ui.com/${type}s/${name || parent}`.toLowerCase()
 
       return {
         description,
         ghLink,
         path,
-        suiLink,
         componentGroup: getComponentGroup(docInfo, name),
         componentName: name,
         seeItems: getSeeItems(docInfo, name),

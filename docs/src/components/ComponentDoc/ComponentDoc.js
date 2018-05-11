@@ -45,7 +45,6 @@ class ComponentDoc extends Component {
         type: PropTypes.string,
       }),
     ).isRequired,
-    suiLink: PropTypes.string,
   }
 
   state = {}
@@ -75,15 +74,7 @@ class ComponentDoc extends Component {
   }
 
   render() {
-    const {
-      componentGroup,
-      componentName,
-      description,
-      ghLink,
-      path,
-      seeItems,
-      suiLink,
-    } = this.props
+    const { componentGroup, componentName, description, ghLink, path, seeItems } = this.props
     const { activePath, examplesRef } = this.state
 
     return (
@@ -93,12 +84,7 @@ class ComponentDoc extends Component {
             <Grid.Column>
               <ComponentDocHeader componentName={componentName} description={description} />
               <ComponentDocSee items={seeItems} />
-              <ComponentDocLinks
-                componentName={componentName}
-                ghLink={ghLink}
-                path={path}
-                suiLink={suiLink}
-              />
+              <ComponentDocLinks ghLink={ghLink} path={path} />
               <ComponentProps componentGroup={componentGroup} componentName={componentName} />
             </Grid.Column>
           </Grid.Row>
