@@ -104,7 +104,7 @@ class ComponentExample extends Component {
 
   updateHash = () => {
     if (this.isActiveState()) this.setHashAndScroll()
-    else this.removeHash()
+    else if (this.isActiveHash()) this.removeHash()
   }
 
   setHashAndScroll = () => {
