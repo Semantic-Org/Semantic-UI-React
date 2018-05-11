@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { default as AccordionAccordion, AccordionAccordionProps } from './AccordionAccordion';
-import { default as AccordionAnimated } from './AccordionAnimated';
 import { default as AccordionContent } from './AccordionContent';
 import { default as AccordionTitle } from './AccordionTitle';
 
@@ -23,7 +22,6 @@ export interface AccordionProps extends AccordionAccordionProps {
 
 interface AccordionComponent extends React.ComponentClass<AccordionProps> {
   Accordion: typeof AccordionAccordion;
-  Animated: typeof AccordionAnimated;
   Content: typeof AccordionContent;
   Title: typeof AccordionTitle;
 }
