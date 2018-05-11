@@ -1,4 +1,4 @@
-export { default as AutoControlledComponent } from './AutoControlledComponent'
+export AutoControlledComponent from './AutoControlledComponent'
 export { getChildMapping, mergeChildMappings } from './childMapping'
 export * as childrenUtils from './childrenUtils'
 
@@ -19,8 +19,8 @@ export { debug, makeDebugger } from './debug'
 export eventStack from './eventStack'
 
 export * from './factories'
-export { default as getUnhandledProps } from './getUnhandledProps'
-export { default as getElementType } from './getElementType'
+export getUnhandledProps from './getUnhandledProps'
+export getElementType from './getElementType'
 export {
   htmlInputAttrs,
   htmlInputEvents,
@@ -28,9 +28,9 @@ export {
   partitionHTMLProps,
 } from './htmlPropsUtils'
 
-export { default as isBrowser } from './isBrowser'
-export { default as doesNodeContainClick } from './doesNodeContainClick'
-export { default as leven } from './leven'
+export isBrowser from './isBrowser'
+export doesNodeContainClick from './doesNodeContainClick'
+export leven from './leven'
 export * as META from './META'
 export createPaginationItems from './createPaginationItems'
 export * as SUI from './SUI'
@@ -38,5 +38,5 @@ export * as SUI from './SUI'
 export { numberToWordMap, numberToWord } from './numberToWord'
 export normalizeOffset from './normalizeOffset'
 export normalizeTransitionDuration from './normalizeTransitionDuration'
-export { default as objectDiff } from './objectDiff'
+export objectDiff from './objectDiff'
 export shallowEqual from './shallowEqual'
