@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
 import { IconProps } from '../Icon';
-import { default as StepContent } from './StepContent';
+import StepContent from './StepContent';
 import { default as StepDescription, StepDescriptionProps } from './StepDescription';
-import { default as StepGroup } from './StepGroup';
+import StepGroup from './StepGroup';
 import { default as StepTitle, StepTitleProps } from './StepTitle';
 
 export interface StepProps {

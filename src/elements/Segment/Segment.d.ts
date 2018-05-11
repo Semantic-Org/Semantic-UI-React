@@ -6,7 +6,7 @@ import {
   SemanticShorthandContent,
   SemanticTEXTALIGNMENTS
 } from '../..';
-import { default as SegmentGroup } from './SegmentGroup';
+import SegmentGroup from './SegmentGroup';
 
 export type SegmentSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 

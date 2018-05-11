@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { SemanticShorthandItem} from '../..';
+import { SemanticShorthandItem } from '../..';
 import { InputProps } from '../../elements/Input';
 import { default as SearchCategory, SearchCategoryProps } from './SearchCategory';
 import { default as SearchResult, SearchResultProps } from './SearchResult';
-import { default as SearchResults } from './SearchResults';
+import SearchResults from './SearchResults';
 
 export interface SearchProps {
   [key: string]: any;
