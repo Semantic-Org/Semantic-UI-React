@@ -1,13 +1,9 @@
 import * as React from 'react';
 
-import {
-  SemanticCOLORS,
-  SemanticShorthandCollection,
-  SemanticWIDTHS
-} from '../..';
-import { default as MenuHeader } from './MenuHeader';
+import { SemanticCOLORS, SemanticShorthandCollection, SemanticWIDTHS } from '../..';
+import MenuHeader from './MenuHeader';
 import { default as MenuItem, MenuItemProps } from './MenuItem';
-import { default as MenuMenu } from './MenuMenu';
+import MenuMenu from './MenuMenu';
 
 export interface MenuProps {
   [key: string]: any;
@@ -40,7 +36,7 @@ export interface MenuProps {
   defaultActiveIndex?: number | string;
 
   /** A menu can be fixed to a side of its context. */
-  fixed?: 'left'| 'right'| 'bottom'| 'top';
+  fixed?: 'left' | 'right' | 'bottom' | 'top';
 
   /** A menu can be floated. */
   floated?: boolean | 'right';

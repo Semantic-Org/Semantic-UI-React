@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-import { default as FormField } from './FormField';
-import { default as FormButton } from './FormButton';
-import { default as FormCheckbox } from './FormCheckbox';
-import { default as FormDropdown } from './FormDropdown';
-import { default as FormGroup } from './FormGroup';
-import { default as FormInput } from './FormInput';
-import { default as FormRadio } from './FormRadio';
-import { default as FormSelect } from './FormSelect';
-import { default as FormTextArea } from './FormTextArea';
+import FormField from './FormField';
+import FormButton from './FormButton';
+import FormCheckbox from './FormCheckbox';
+import FormDropdown from './FormDropdown';
+import FormGroup from './FormGroup';
+import FormInput from './FormInput';
+import FormRadio from './FormRadio';
+import FormSelect from './FormSelect';
+import FormTextArea from './FormTextArea';
 
 export interface FormProps {
   [key: string]: any;
