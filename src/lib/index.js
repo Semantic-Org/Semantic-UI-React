@@ -13,6 +13,7 @@ export {
 } from './classNameBuilders'
 
 export * as customPropTypes from './customPropTypes'
+export felaRenderer from './felaRenderer'
 
 export { debug, makeDebugger } from './debug'
 export eventStack from './eventStack'
@@ -20,7 +21,6 @@ export eventStack from './eventStack'
 export * from './factories'
 export getUnhandledProps from './getUnhandledProps'
 export getElementType from './getElementType'
-
 export {
   htmlInputAttrs,
   htmlInputEvents,
