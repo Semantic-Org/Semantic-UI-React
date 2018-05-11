@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 
 // TODO make themes a monorepo of packages
 import { siteVariables, normalizeCSS } from 'stardust/themes/teams'
@@ -40,13 +41,15 @@ const fontFaces = [
 
 const render = NewApp =>
   ReactDOM.render(
-    <Provider
-      siteVariables={siteVariables}
-      staticStyles={[normalizeCSS, globalRules]}
-      fontFaces={fontFaces}
-    >
-      <NewApp />
-    </Provider>,
+    <AppContainer>
+      <Provider
+        siteVariables={siteVariables}
+        staticStyles={[normalizeCSS, globalRules]}
+        fontFaces={fontFaces}
+      >
+        <NewApp />
+      </Provider>
+    </AppContainer>,
     mountNode,
   )
 

@@ -46,7 +46,7 @@ const APP_ENTRY = paths.docsSrc('index.js')
 
 webpackConfig.entry = __DEV__
   ? {
-    app: ['react-hot-loader/patch', webpackHotMiddlewareEntry, APP_ENTRY],
+    app: [webpackHotMiddlewareEntry, APP_ENTRY],
     vendor: [webpackHotMiddlewareEntry, ...config.compiler_vendor],
   }
   : {
@@ -173,10 +173,10 @@ const jsLoaders = [
     loader: 'babel-loader',
     options: {
       cacheDirectory: true,
+      plugins: __DEV__ ? ['react-hot-loader/babel'] : [],
     },
   },
 ]
-if (__DEV__) jsLoaders.unshift('react-hot-loader/webpack')
 
 webpackConfig.module.rules = [
   ...webpackConfig.module.rules,
