@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { SemanticShorthandContent } from '../..';
-import { default as SearchResult } from './SearchResult';
+import SearchResult from './SearchResult';
 
 export interface SearchCategoryProps {
   [key: string]: any;

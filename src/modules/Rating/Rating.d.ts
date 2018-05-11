@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { default as RatingIcon } from './RatingIcon';
+import RatingIcon from './RatingIcon';
 
 export interface RatingProps {
   [key: string]: any;

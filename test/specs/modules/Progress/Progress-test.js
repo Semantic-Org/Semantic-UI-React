@@ -86,6 +86,11 @@ describe('Progress', () => {
         .find('.bar')
         .should.have.style('width', '0%')
     })
+    it('has a width equal to the percentage of the value of the total, when progress="value"', () => {
+      shallow(<Progress progress='value' value={5} total={10} />)
+        .find('.bar')
+        .should.have.style('width', '50%')
+    })
   })
 
   describe('data-percent', () => {

@@ -63,9 +63,9 @@ export default class LayoutsLayout extends Component {
           <Button
             as={NavLink}
             to={`${repoURL}/blob/master/docs/app/Layouts/${filename}`}
-            color='secondary'
             icon='github'
             content='Source'
+            secondary
             target='_blank'
           />
         </div>

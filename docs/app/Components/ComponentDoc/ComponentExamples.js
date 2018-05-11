@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component, createElement } from 'react'
 
 import { exampleContext } from 'docs/app/utils'
-import { Grid } from 'src'
+import { Grid } from 'semantic-ui-react'
 import ContributionPrompt from './ContributionPrompt'
 
 export default class ComponentExamples extends Component {

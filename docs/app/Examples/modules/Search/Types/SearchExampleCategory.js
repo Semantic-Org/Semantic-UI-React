@@ -50,7 +50,7 @@ export default class SearchExampleCategory extends Component {
         isLoading: false,
         results: filteredResults,
       })
-    }, 500)
+    }, 300)
   }
 
   render() {
@@ -63,7 +63,7 @@ export default class SearchExampleCategory extends Component {
             category
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
-            onSearchChange={this.handleSearchChange}
+            onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
             results={results}
             value={value}
             {...this.props}

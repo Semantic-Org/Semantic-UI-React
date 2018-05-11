@@ -5,13 +5,15 @@ import React from 'react'
 import { META } from 'src/lib'
 import * as semanticUIReact from 'src'
 import ComponentDoc from '../Components/ComponentDoc'
+import PageNotFound from '../Views/PageNotFound'
 
 const DocsRoot = (props) => {
   const { name } = props.match.params
   const componentName = _.startCase(name).replace(/ /g, '')
   const component = semanticUIReact[componentName]
 
-  if (!component || !component._meta || !META.isParent(component)) return null
+  if (!component || !component._meta || !META.isParent(component)) return <PageNotFound />
+
   return (
     <ComponentDoc
       name={component._meta.name}

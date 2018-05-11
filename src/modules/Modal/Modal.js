@@ -15,11 +15,13 @@ import {
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
+import MountNode from '../../addons/MountNode'
 import Portal from '../../addons/Portal'
 import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
+import Ref from '../../addons/Ref'
 
 const debug = makeDebugger('modal')
 
@@ -208,17 +210,6 @@ class Modal extends Component {
   handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
 
-    // Always remove all dimmer classes.
-    // If the dimmer value changes while the modal is open, then removing its
-    // current value could leave cruft classes previously added.
-    const mountNode = this.getMountNode()
-
-    // Heads up, IE doesn't support second argument in remove()
-    mountNode.classList.remove('blurring')
-    mountNode.classList.remove('dimmable')
-    mountNode.classList.remove('dimmed')
-    mountNode.classList.remove('scrolling')
-
     cancelAnimationFrame(this.animationRequestId)
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
@@ -227,16 +218,17 @@ class Modal extends Component {
 
   setPositionAndClassNames = () => {
     const { dimmer } = this.props
-    const mountNode = this.getMountNode()
+    let classes
 
     if (dimmer) {
-      mountNode.classList.add('dimmable')
-      mountNode.classList.add('dimmed')
+      classes = 'dimmable dimmed'
 
       if (dimmer === 'blurring') {
-        mountNode.classList.add('blurring')
+        classes += ' blurring'
       }
     }
+
+    const newState = {}
 
     if (this.ref) {
       const { height } = this.ref.getBoundingClientRect()
@@ -244,24 +236,19 @@ class Modal extends Component {
       const marginTop = -Math.round(height / 2)
       const scrolling = height >= window.innerHeight
 
-      const newState = {}
-
       if (this.state.marginTop !== marginTop) {
         newState.marginTop = marginTop
       }
 
       if (this.state.scrolling !== scrolling) {
         newState.scrolling = scrolling
-
-        if (scrolling) {
-          mountNode.classList.add('scrolling')
-        } else {
-          mountNode.classList.remove('scrolling')
-        }
       }
 
-      if (Object.keys(newState).length > 0) this.setState(newState)
+      if (scrolling) classes += ' scrolling'
     }
+
+    if (this.state.mountClasses !== classes) newState.mountClasses = classes
+    if (!_.isEmpty(newState)) this.setState(newState)
 
     this.animationRequestId = requestAnimationFrame(this.setPositionAndClassNames)
   }
@@ -275,10 +262,11 @@ class Modal extends Component {
       closeIcon,
       content,
       header,
+      mountNode,
       size,
       style,
     } = this.props
-    const { marginTop, scrolling } = this.state
+    const { marginTop, mountClasses, scrolling } = this.state
 
     const classes = cx(
       'ui',
@@ -294,21 +282,31 @@ class Modal extends Component {
     const closeIconJSX = Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })
 
     if (!childrenUtils.isNil(children)) {
+      // TODO: remove when ref with "as" is resolved: PR #2306
       return (
-        <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
-          {closeIconJSX}
-          {children}
-        </ElementType>
+        <Ref innerRef={this.handleRef}>
+          <ElementType {...rest} className={classes} style={{ marginTop, ...style }}>
+            <MountNode className={mountClasses} node={mountNode} />
+
+            {closeIconJSX}
+            {children}
+          </ElementType>
+        </Ref>
       )
     }
 
+    // TODO: remove when ref with "as" is resolved: PR #2306
     return (
-      <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
-        {closeIconJSX}
-        {ModalHeader.create(header, { autoGenerateKey: false })}
-        {ModalContent.create(content, { autoGenerateKey: false })}
-        {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
-      </ElementType>
+      <Ref innerRef={this.handleRef}>
+        <ElementType {...rest} className={classes} style={{ marginTop, ...style }}>
+          <MountNode className={mountClasses} node={mountNode} />
+
+          {closeIconJSX}
+          {ModalHeader.create(header, { autoGenerateKey: false })}
+          {ModalContent.create(content, { autoGenerateKey: false })}
+          {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
+        </ElementType>
+      </Ref>
     )
   }
 

@@ -9,6 +9,9 @@ export interface CardGroupProps {
   /** An element type to render as (string or function). */
   as?: any;
 
+  /** A group of cards can center itself inside its container. */
+  centered?: boolean;
+
   /** Primary content. */
   children?: React.ReactNode;
 

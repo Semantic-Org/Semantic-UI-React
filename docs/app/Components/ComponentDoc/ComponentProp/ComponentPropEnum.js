@@ -43,4 +43,4 @@ ComponentPropEnum.propTypes = {
   values: PropTypes.array,
 }
 
-export default updateForKeys(['showAll'])(ComponentPropEnum)
+export default updateForKeys(['showAll', 'type', 'values'])(ComponentPropEnum)

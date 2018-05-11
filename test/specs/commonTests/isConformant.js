@@ -15,11 +15,12 @@ import hasValidTypings from './hasValidTypings'
  * @param {React.Component|Function} Component A component that should conform.
  * @param {Object} [options={}]
  * @param {Object} [options.eventTargets={}] Map of events and the child component to target.
- * @param {array} [options.rendersPortal=false] Does this component render a Portal powered component?
+ * @param {boolean} [options.rendersChildren=false] Does this component render any children?
+ * @param {boolean} [options.rendersPortal=false] Does this component render a Portal powered component?
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
 export default (Component, options = {}) => {
-  const { eventTargets = {}, requiredProps = {}, rendersPortal = false } = options
+  const { eventTargets = {}, requiredProps = {}, rendersChildren = true, rendersPortal = false } = options
   const { throwError } = helpers('isConformant', Component)
 
   // tests depend on Component constructor names, enforce them
@@ -108,15 +109,17 @@ export default (Component, options = {}) => {
   // ----------------------------------------
   // Props
   // ----------------------------------------
-  it('spreads user props', () => {
-    const propName = 'data-is-conformant-spread-props'
-    const props = { [propName]: true }
+  if (rendersChildren) {
+    it('spreads user props', () => {
+      const propName = 'data-is-conformant-spread-props'
+      const props = { [propName]: true }
 
-    shallow(<Component {...requiredProps} {...props} />)
-      .should.have.descendants(props)
-  })
+      shallow(<Component {...requiredProps} {...props} />)
+        .should.have.descendants(props)
+    })
+  }
 
-  if (!rendersPortal) {
+  if (rendersChildren && !rendersPortal) {
     describe('"as" prop (common)', () => {
       it('renders the component as HTML tags or passes "as" to the next component', () => {
         // silence element nesting warnings
@@ -202,71 +205,73 @@ export default (Component, options = {}) => {
   // ----------------------------------------
   // Events
   // ----------------------------------------
-  it('handles events transparently', () => {
-    // Events should be handled transparently, working just as they would in vanilla React.
-    // Example, both of these handler()s should be called with the same event:
-    //
-    //   <Button onClick={handler} />
-    //   <button onClick={handler} />
-    //
-    // This test catches the case where a developer forgot to call the event prop
-    // after handling it internally. It also catch cases where the synthetic event was not passed back.
-    _.each(syntheticEvent.types, ({ eventShape, listeners }) => {
-      _.each(listeners, (listenerName) => {
-        // onKeyDown => keyDown
-        const eventName = _.camelCase(listenerName.replace('on', ''))
+  if (rendersChildren) {
+    it('handles events transparently', () => {
+      // Events should be handled transparently, working just as they would in vanilla React.
+      // Example, both of these handler()s should be called with the same event:
+      //
+      //   <Button onClick={handler} />
+      //   <button onClick={handler} />
+      //
+      // This test catches the case where a developer forgot to call the event prop
+      // after handling it internally. It also catch cases where the synthetic event was not passed back.
+      _.each(syntheticEvent.types, ({ eventShape, listeners }) => {
+        _.each(listeners, (listenerName) => {
+          // onKeyDown => keyDown
+          const eventName = _.camelCase(listenerName.replace('on', ''))
 
-        // onKeyDown => handleKeyDown
-        const handlerName = _.camelCase(listenerName.replace('on', 'handle'))
+          // onKeyDown => handleKeyDown
+          const handlerName = _.camelCase(listenerName.replace('on', 'handle'))
 
-        const handlerSpy = sandbox.spy()
-        const props = {
-          ...requiredProps,
-          [listenerName]: handlerSpy,
-          'data-simulate-event-here': true,
-        }
+          const handlerSpy = sandbox.spy()
+          const props = {
+            ...requiredProps,
+            [listenerName]: handlerSpy,
+            'data-simulate-event-here': true,
+          }
 
-        const wrapper = shallow(<Component {...props} />)
+          const wrapper = shallow(<Component {...props} />)
 
-        const eventTarget = eventTargets[listenerName]
-          ? wrapper.find(eventTargets[listenerName])
-          : wrapper.find('[data-simulate-event-here]')
+          const eventTarget = eventTargets[listenerName]
+            ? wrapper.find(eventTargets[listenerName])
+            : wrapper.find('[data-simulate-event-here]')
 
-        eventTarget.simulate(eventName, eventShape)
+          eventTarget.simulate(eventName, eventShape)
 
-        // give event listeners opportunity to cleanup
-        if (wrapper.instance() && wrapper.instance().componentWillUnmount) {
-          wrapper.instance().componentWillUnmount()
-        }
+          // give event listeners opportunity to cleanup
+          if (wrapper.instance() && wrapper.instance().componentWillUnmount) {
+            wrapper.instance().componentWillUnmount()
+          }
 
-        // <Dropdown onBlur={handleBlur} />
-        //                   ^ was not called once on "blur"
-        const leftPad = ' '.repeat(constructorName.length + listenerName.length + 3)
+          // <Dropdown onBlur={handleBlur} />
+          //                   ^ was not called once on "blur"
+          const leftPad = ' '.repeat(constructorName.length + listenerName.length + 3)
 
-        handlerSpy.calledOnce.should.equal(true,
-          `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ was not called once on "${eventName}".` +
-          'You may need to hoist your event handlers up to the root element.\n',
-        )
+          handlerSpy.calledOnce.should.equal(true,
+            `<${constructorName} ${listenerName}={${handlerName}} />\n` +
+            `${leftPad} ^ was not called once on "${eventName}".` +
+            'You may need to hoist your event handlers up to the root element.\n',
+          )
 
-        let expectedArgs = [eventShape]
-        let errorMessage = 'was not called with (event)'
+          let expectedArgs = [eventShape]
+          let errorMessage = 'was not called with (event)'
 
-        if (_.has(Component.propTypes, listenerName)) {
-          expectedArgs = [eventShape, props]
-          errorMessage = 'was not called with (event, data)'
-        }
+          if (_.has(Component.propTypes, listenerName)) {
+            expectedArgs = [eventShape, props]
+            errorMessage = 'was not called with (event, data)'
+          }
 
-        // Components should return the event first, then any data
-        handlerSpy.calledWithMatch(...expectedArgs).should.equal(true, [
-          `<${constructorName} ${listenerName}={${handlerName}} />\n`,
-          `${leftPad} ^ ${errorMessage}`,
-          'It was called with args:',
-          JSON.stringify(handlerSpy.args, null, 2),
-        ].join('\n'))
+          // Components should return the event first, then any data
+          handlerSpy.calledWithMatch(...expectedArgs).should.equal(true, [
+            `<${constructorName} ${listenerName}={${handlerName}} />\n`,
+            `${leftPad} ^ ${errorMessage}`,
+            'It was called with args:',
+            JSON.stringify(handlerSpy.args, null, 2),
+          ].join('\n'))
+        })
       })
     })
-  })
+  }
 
   // ----------------------------------------
   // Defines _meta
@@ -304,59 +309,60 @@ export default (Component, options = {}) => {
   // ----------------------------------------
   // Handles className
   // ----------------------------------------
-  describe('className (common)', () => {
-    it(`has the Semantic UI className "${componentClassName}"`, () => {
-      const wrapper = render(<Component {...requiredProps} />)
-      // don't test components with no className at all (i.e. MessageItem)
-      if (wrapper.prop('className')) {
-        wrapper.should.have.className(componentClassName)
-      }
-    })
+  if (rendersChildren) {
+    describe('className (common)', () => {
+      it(`has the Semantic UI className "${componentClassName}"`, () => {
+        const wrapper = render(<Component {...requiredProps} />)
+        // don't test components with no className at all (i.e. MessageItem)
+        if (wrapper.prop('className')) {
+          wrapper.should.have.className(componentClassName)
+        }
+      })
 
-    it("applies user's className to root component", () => {
-      const className = 'is-conformant-class-string'
+      it("applies user's className to root component", () => {
+        const className = 'is-conformant-class-string'
 
-      // Portal powered components can render to two elements, a trigger and the actual component
-      // The actual component is shown when the portal is open
-      // If a trigger is rendered, open the portal and make assertions on the portal element
-      if (rendersPortal) {
-        const mountNode = document.createElement('div')
-        document.body.appendChild(mountNode)
+        // Portal powered components can render to two elements, a trigger and the actual component
+        // The actual component is shown when the portal is open
+        // If a trigger is rendered, open the portal and make assertions on the portal element
+        if (rendersPortal) {
+          const mountNode = document.createElement('div')
+          document.body.appendChild(mountNode)
 
-        const wrapper = mount(<Component {...requiredProps} className={className} />, { attachTo: mountNode })
-        wrapper.setProps({ open: true })
+          const wrapper = mount(<Component {...requiredProps} className={className} />, { attachTo: mountNode })
+          wrapper.setProps({ open: true })
 
-        // portals/popups/etc may render the component to somewhere besides descendants
-        // we look for the component anywhere in the DOM
-        assertBodyContains(`.${className}`)
+          // portals/popups/etc may render the component to somewhere besides descendants
+          // we look for the component anywhere in the DOM
+          assertBodyContains(`.${className}`)
 
-        wrapper.detach()
-        document.body.removeChild(mountNode)
-      } else {
-        shallow(<Component {...requiredProps} className={className} />)
-          .should.have.className(className)
-      }
-    })
+          wrapper.detach()
+          document.body.removeChild(mountNode)
+        } else {
+          shallow(<Component {...requiredProps} className={className} />)
+            .should.have.className(className)
+        }
+      })
 
-    it("user's className does not override the default classes", () => {
-      const defaultClasses = shallow(<Component {...requiredProps} />)
-        .prop('className')
+      it("user's className does not override the default classes", () => {
+        const defaultClasses = shallow(<Component {...requiredProps} />)
+          .prop('className')
 
-      if (!defaultClasses) return
+        if (!defaultClasses) return
 
-      const userClasses = faker.hacker.verb()
-      const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />)
-        .prop('className')
+        const userClasses = faker.hacker.verb()
+        const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />)
+          .prop('className')
 
-      defaultClasses.split(' ').forEach((defaultClass) => {
-        mixedClasses.should.include(defaultClass, [
-          'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
-          'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
-        ].join(' '))
+        defaultClasses.split(' ').forEach((defaultClass) => {
+          mixedClasses.should.include(defaultClass, [
+            'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+            'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+          ].join(' '))
+        })
       })
     })
-  })
-
+  }
   // ----------------------------------------
   // Test typings
   // ----------------------------------------

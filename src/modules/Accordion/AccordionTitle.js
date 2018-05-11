@@ -34,7 +34,10 @@ export default class AccordionTitle extends Component {
     content: customPropTypes.contentShorthand,
 
     /** AccordionTitle index inside Accordion. */
-    index: PropTypes.number,
+    index: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
 
     /**
      * Called on click.

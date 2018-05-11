@@ -83,7 +83,7 @@ describe('Popup', () => {
     it('accepts an offest to the left', () => {
       wrapperMount(
         <Popup
-          offset={50}
+          horizontalOffset={50}
           position='bottom right'
           content='foo'
           trigger={<button>foo</button>}
@@ -96,8 +96,37 @@ describe('Popup', () => {
     it('accepts an offest to the right', () => {
       wrapperMount(
         <Popup
-          offset={50}
+          horizontalOffset={50}
           position='bottom left'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+      assertInBody('.ui.popup.visible')
+    })
+  })
+
+  describe('verticalOffest', () => {
+    it('accepts a vertical offest to the top', () => {
+      wrapperMount(
+        <Popup
+          verticalOffset={50}
+          position='bottom right'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+      assertInBody('.ui.popup.visible')
+    })
+    it('accepts a vertical offest to the bottom', () => {
+      wrapperMount(
+        <Popup
+          verticalOffset={50}
+          position='top left'
           content='foo'
           trigger={<button>foo</button>}
         />,
@@ -129,14 +158,14 @@ describe('Popup', () => {
         expect(bottom).to.be.at.most(document.documentElement.clientHeight)
         expect(right).to.be.at.most(document.documentElement.clientWidth)
       })
-      it('is the original if no position fits within the viewport', () => {
+      it('is the original if no horizontal position fits within the viewport', () => {
         wrapperMount(
           <Popup
             content='_'
             position={position}
             trigger={<button>foo</button>}
             on='click'
-            offset={999}
+            horizontalOffset={999}
           />,
         )
         wrapper.find('button').simulate('click')
@@ -144,6 +173,70 @@ describe('Popup', () => {
 
         expect(selectedPosition).to.equal(position)
       })
+
+      it('is the original if no vertical position fits within the viewport', () => {
+        wrapperMount(
+          <Popup
+            content='_'
+            position={position}
+            trigger={<button>foo</button>}
+            on='click'
+            verticalOffset={3000}
+          />,
+        )
+        wrapper.find('button').simulate('click')
+        const selectedPosition = wrapper.state('position')
+
+        expect(selectedPosition).to.equal(position)
+      })
+    })
+  })
+
+  describe('keepInViewPort', () => {
+    it('will not alter the position and render outside the viewport if set to false', () => {
+      wrapperMount(
+        <Popup
+          content='_'
+          position='top center'
+          trigger={<button>foo</button>}
+          on='click'
+          keepInViewPort={false}
+        />,
+      )
+      wrapper.find('button').simulate('click')
+
+      const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+      const { top } = rect
+
+      const selectedPosition = wrapper.state('position')
+
+      expect(selectedPosition).to.equal('top center')
+      expect(top).to.be.below(0)
+    })
+
+    it('is enabled by default', () => {
+      expect(Popup.defaultProps.keepInViewPort).to.equal(true)
+    })
+
+    it('alters the position when true and renders within the viewport', () => {
+      wrapperMount(
+        <Popup
+          content='_'
+          position='top center'
+          trigger={<button>foo</button>}
+          on='click'
+          keepInViewPort
+        />,
+      )
+      wrapper.find('button').simulate('click')
+
+      const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+      const { top } = rect
+
+      const selectedPosition = wrapper.state('position')
+
+      expect(selectedPosition).to.not.equal('top center')
+      expect(top).to.be.at.least(0)
     })
   })
 

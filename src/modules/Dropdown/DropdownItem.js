@@ -75,6 +75,7 @@ class DropdownItem extends Component {
 
     /** Stored value. */
     value: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
     ]),

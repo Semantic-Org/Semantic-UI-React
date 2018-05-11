@@ -12,6 +12,12 @@ export interface ResponsiveProps {
   /** Fires callbacks immediately after mount. */
   fireOnMount?: boolean;
 
+  /**
+   * Called to get width of screen. Defaults to using `window.innerWidth` when in a browser;
+   * otherwise, assumes a width of 0.
+   */
+  getWidth?: () => number;
+
   /** The maximum width at which content will be displayed. */
   maxWidth?: number | string;
 
@@ -28,12 +34,12 @@ export interface ResponsiveProps {
 }
 
 export interface ResponsiveOnUpdateData extends ResponsiveProps {
-  width: string;
+  width: number;
 }
 
 export interface ResponsiveWidthShorthand {
-  minWidth: number;
-  maxWidth?: number;
+  minWidth?: number | string;
+  maxWidth?: number | string;
 }
 
 declare class Responsive extends React.Component<ResponsiveProps, {}> {

@@ -1,3 +1,5 @@
+⚠️NOTE: Currently Semantic UI React is not yet compatible with the latest 2.3 version of Semantic UI styles. See [#2250](https://github.com/Semantic-Org/Semantic-UI-React/issues/2550) for more info.
+
 <!-- Logo -->
 <p align="center">
   <a href="https://react.semantic-ui.com">
@@ -44,6 +46,7 @@ See the [Documentation][2] for an introduction, usage information, and extensive
 
 <img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/amazon-logo.png" />
 <img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/netflix-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/microsoft-logo.png" />
 <a href="https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md">
   <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/add-yours.png" />
 </a>
@@ -52,6 +55,7 @@ These great products are built on Semantic UI React. Add yours [here][22].
 
 - Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
 - Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
+- Microsoft's [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
 - https://gitconnected.com - The community for developers and software engineers
 - http://stoplight.io
 - https://roadmap.space
@@ -74,16 +78,16 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - https://re.yomeshgupta.com
 - https://moneytracker.cc
 - https://tax.cryptact.com
+- https://www.hurriyetoto.com
+- https://173app.com
+- https://disten.se
 
 ## Example Projects
 
 This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
 
-### [webpack1][28]
-Our example project right [here][28] in this repo.
- 
-### [webpack2][29]
-Our example project right [here][29] in this repo.
+### [webpack][28]
+Our example project right [here][28] in this repo. Includes theming examples.
  
 ### [SUIcrux][102]
 Advanced universal starter with Semantic-UI-React. React/Redux/Lazy-loading/SSR/PWA.
@@ -203,12 +207,11 @@ Big thanks to our [contributors][20], especially:
 [21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20issue
 [22]: https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md
 [23]: https://react.semantic-ui.com/usage#css
-[24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
+[24]: https://medium.com/webmonkeys/webpack-2-semantic-ui-theming-a216ddf60daf
 [25]: http://learnsemantic.com/themes/creating.html
 [26]: https://github.com/levithomason
 [27]: https://github.com/layershifter
-[28]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack1
-[29]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack2
+[28]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3
 [30]: https://github.com/Semantic-Org/Semantic-UI-Meteor
 
 <!-- Examples -->

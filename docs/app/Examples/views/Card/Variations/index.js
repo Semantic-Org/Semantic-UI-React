@@ -20,6 +20,11 @@ const Variations = () => (
       description='A group of cards can set how many cards should exist in a row.'
       examplePath='views/Card/Variations/CardExampleColumnCount'
     />
+    <ComponentExample
+      title='Group Centered'
+      description='A group of cards can center itself inside its container.'
+      examplePath='views/Card/Variations/CardExampleGroupCentered'
+    />
   </ExampleSection>
 )
 

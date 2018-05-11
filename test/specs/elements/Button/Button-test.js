@@ -66,25 +66,21 @@ describe('Button', () => {
 
   describe('attached', () => {
     it('renders a div', () => {
-      shallow(<Button attached />)
-        .should.have.tagName('div')
+      shallow(<Button attached />).should.have.tagName('div')
     })
   })
 
   describe('disabled', () => {
     it('is not set by default', () => {
-      shallow(<Button />)
-        .should.not.have.prop('disabled')
+      shallow(<Button />).should.not.have.prop('disabled')
     })
 
     it('applied when defined', () => {
-      shallow(<Button disabled />)
-        .should.have.prop('disabled', true)
+      shallow(<Button disabled />).should.have.prop('disabled', true)
     })
 
     it("don't apply when the element's type isn't button", () => {
-      shallow(<Button as='div' disabled />)
-        .should.not.have.prop('disabled')
+      shallow(<Button as='div' disabled />).should.not.have.prop('disabled')
     })
 
     it('is not set by default when has a label', () => {
@@ -118,34 +114,27 @@ describe('Button', () => {
 
   describe('icon', () => {
     it('adds className icon', () => {
-      shallow(<Button icon='user' />)
-        .should.have.className('icon')
+      shallow(<Button icon='user' />).should.have.className('icon')
     })
 
     it('adds className icon when true', () => {
-      shallow(<Button icon />)
-        .should.have.className('icon')
+      shallow(<Button icon />).should.have.className('icon')
     })
 
     it('does not add className icon when there is content', () => {
-      shallow(<Button icon='user' content={0} />)
-        .should.not.have.className('icon')
-      shallow(<Button icon='user' content='Yo' />)
-        .should.not.have.className('icon')
+      shallow(<Button icon='user' content={0} />).should.not.have.className('icon')
+      shallow(<Button icon='user' content='Yo' />).should.not.have.className('icon')
     })
 
     it('adds className icon given labelPosition and content', () => {
-      shallow(<Button labelPosition='left' icon='user' content='My Account' />)
-        .should.have.className('icon')
-      shallow(<Button labelPosition='right' icon='user' content='My Account' />)
-        .should.have.className('icon')
+      shallow(<Button labelPosition='left' icon='user' content='My Account' />).should.have.className('icon')
+      shallow(<Button labelPosition='right' icon='user' content='My Account' />).should.have.className('icon')
     })
   })
 
   describe('label', () => {
     it('renders as a div', () => {
-      shallow(<Button label='http' />)
-        .should.have.tagName('div')
+      shallow(<Button label='http' />).should.have.tagName('div')
     })
     it('renders a div with a button and Label child', () => {
       const wrapper = shallow(<Button label='hi' />)
@@ -155,8 +144,7 @@ describe('Button', () => {
       wrapper.should.have.exactly(1).descendants('Label')
     })
     it('adds the labeled className to the root element', () => {
-      shallow(<Button label='hi' />)
-        .should.have.className('labeled')
+      shallow(<Button label='hi' />).should.have.className('labeled')
     })
     it('contains children without disabled class when disabled attribute is set', () => {
       const wrapper = shallow(<Button label='hi' disabled />)
@@ -174,37 +162,57 @@ describe('Button', () => {
     })
     it('creates a basic pointing label', () => {
       shallow(<Button label='foo' />)
-        .should.have.exactly(1).descendants('Label[basic][pointing]')
+        .should.have.exactly(1)
+        .descendants('Label[basic][pointing]')
     })
     it('is before the button and pointing="right" when labelPosition="left"', () => {
       const wrapper = shallow(<Button labelPosition='left' label='foo' />)
       wrapper.should.have.exactly(1).descendants('Label[pointing="right"]')
 
-      wrapper.children().at(0).shallow().should.match('.ui.label')
-      wrapper.children().at(1).should.match('button')
+      wrapper
+        .children()
+        .at(0)
+        .shallow()
+        .should.match('.ui.label')
+      wrapper
+        .children()
+        .at(1)
+        .should.match('button')
     })
     it('is after the button and pointing="left" when labelPosition="right"', () => {
       const wrapper = shallow(<Button labelPosition='right' label='foo' />)
       wrapper.should.have.exactly(1).descendants('Label[pointing="left"]')
 
-      wrapper.children().at(0).should.match('button')
-      wrapper.children().at(1).shallow().should.match('.ui.label')
+      wrapper
+        .children()
+        .at(0)
+        .should.match('button')
+      wrapper
+        .children()
+        .at(1)
+        .shallow()
+        .should.match('.ui.label')
     })
     it('is after the button and pointing="left" by default', () => {
       const wrapper = shallow(<Button label='foo' />)
       wrapper.should.have.exactly(1).descendants('Label[pointing="left"]')
 
-      wrapper.children().at(0).should.match('button')
-      wrapper.children().at(1).shallow().should.match('.ui.label')
+      wrapper
+        .children()
+        .at(0)
+        .should.match('button')
+      wrapper
+        .children()
+        .at(1)
+        .shallow()
+        .should.match('.ui.label')
     })
   })
 
   describe('labelPosition', () => {
     it('renders as a button when given an icon', () => {
-      shallow(<Button labelPosition='left' icon='user' />)
-        .should.have.tagName('button')
-      shallow(<Button labelPosition='right' icon='user' />)
-        .should.have.tagName('button')
+      shallow(<Button labelPosition='left' icon='user' />).should.have.tagName('button')
+      shallow(<Button labelPosition='right' icon='user' />).should.have.tagName('button')
     })
   })
 
@@ -212,42 +220,45 @@ describe('Button', () => {
     it('is called with (e, data) when clicked', () => {
       const onClick = sandbox.spy()
 
-      shallow(<Button onClick={onClick} />)
-        .simulate('click', syntheticEvent)
+      shallow(<Button onClick={onClick} />).simulate('click', syntheticEvent)
 
       onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithExactly(syntheticEvent, { onClick, as: 'button' })
+      onClick.should.have.been.calledWithExactly(syntheticEvent, { onClick, ...Button.defaultProps })
     })
 
     it('is not called when is disabled', () => {
       const onClick = sandbox.spy()
 
-      shallow(<Button disabled onClick={onClick} />)
-        .simulate('click', syntheticEvent)
+      shallow(<Button disabled onClick={onClick} />).simulate('click', syntheticEvent)
       onClick.should.have.callCount(0)
+    })
+  })
+
+  describe('role', () => {
+    it('defaults to a button', () => {
+      Button.defaultProps.role.should.equal('button')
+      shallow(<Button />).should.have.prop('role', 'button')
+    })
+    it('is configurable', () => {
+      shallow(<Button role='link' />).should.have.prop('role', 'link')
     })
   })
 
   describe('tabIndex', () => {
     it('is not set by default', () => {
-      shallow(<Button />)
-        .should.not.have.prop('tabIndex')
+      shallow(<Button />).should.not.have.prop('tabIndex')
     })
     it('defaults to 0 as div', () => {
-      shallow(<Button as='div' />)
-        .should.have.prop('tabIndex', 0)
+      shallow(<Button as='div' />).should.have.prop('tabIndex', 0)
     })
     it('defaults to -1 when disabled', () => {
-      shallow(<Button disabled />)
-        .should.have.prop('tabIndex', -1)
+      shallow(<Button disabled />).should.have.prop('tabIndex', -1)
     })
     it('can be set explicitly', () => {
-      shallow(<Button tabIndex={123} />)
-        .should.have.prop('tabIndex', 123)
+      shallow(<Button tabIndex={123} />).should.have.prop('tabIndex', 123)
     })
     it('can be set explicitly when disabled', () => {
-      shallow(<Button tabIndex={123} disabled />)
-        .should.have.prop('tabIndex', 123)
+      shallow(<Button tabIndex={123} disabled />).should.have.prop('tabIndex', 123)
     })
   })
 })
