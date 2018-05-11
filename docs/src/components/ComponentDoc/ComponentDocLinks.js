@@ -14,7 +14,7 @@ const linkListStyle = {
   top: '0',
 }
 
-const ComponentDocLinks = ({ componentName, ghLink, path, suiLink }) => (
+const ComponentDocLinks = ({ ghLink, path }) => (
   <List link style={linkListStyle}>
     <List.Item
       content={
@@ -26,24 +26,12 @@ const ComponentDocLinks = ({ componentName, ghLink, path, suiLink }) => (
       }
       icon='github'
     />
-    {suiLink && (
-      <List.Item
-        content={
-          <a href={suiLink} target='_blank'>
-            Semantic UI {componentName} Docs
-          </a>
-        }
-        icon='book'
-      />
-    )}
   </List>
 )
 
 ComponentDocLinks.propTypes = {
-  componentName: PropTypes.string.isRequired,
   ghLink: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
-  suiLink: PropTypes.string,
 }
 
 export default pure(ComponentDocLinks)
