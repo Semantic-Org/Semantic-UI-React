@@ -3,8 +3,12 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Provider as RendererProvider, ThemeProvider } from 'react-fela'
 
-import { felaRenderer, META } from '../../lib'
+import { felaRenderer } from '../../lib'
+import ProviderConsumer from './ProviderConsumer'
 
+/**
+ * The Provider passes the CSS in JS renderer and theme down context.
+ */
 class Provider extends Component {
   static propTypes = {
     fontFaces: PropTypes.arrayOf(
@@ -30,8 +34,10 @@ class Provider extends Component {
 
   static _meta = {
     name: 'Provider',
-    type: META.TYPES.ADDON,
+    type: 'component',
   }
+
+  static Consumer = ProviderConsumer
 
   renderStaticStyles = () => {
     const { siteVariables, staticStyles } = this.props
