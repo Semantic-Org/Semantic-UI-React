@@ -1,13 +1,9 @@
-import { createRenderer } from 'fela'
-import felaPluginFallbackValue from 'fela-plugin-fallback-value'
-import felaPluginPlaceholderPrefixer from 'fela-plugin-placeholder-prefixer'
-import felaPluginPrefixer from 'fela-plugin-prefixer'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Provider as RendererProvider, ThemeProvider } from 'react-fela'
 
-import { META } from '../../lib'
+import { felaRenderer, META } from '../../lib'
 
 class Provider extends Component {
   static propTypes = {
@@ -37,22 +33,6 @@ class Provider extends Component {
     type: META.TYPES.ADDON,
   }
 
-  static defaultProps = {
-    siteVariables: {}, // required by ThemeProvider
-  }
-
-  renderer = createRenderer({
-    plugins: [],
-    middleware: [
-      felaPluginPlaceholderPrefixer(),
-      felaPluginPrefixer(),
-      // Heads up!
-      // This is required after fela-plugin-prefixer to resolve the array of fallback values prefixer produces.
-      felaPluginFallbackValue(),
-    ],
-    enhancers: [],
-  })
-
   renderStaticStyles = () => {
     const { siteVariables, staticStyles } = this.props
 
@@ -60,7 +40,7 @@ class Provider extends Component {
 
     const renderObject = (object) => {
       _.forEach(object, (style, selector) => {
-        this.renderer.renderStatic(style, selector)
+        felaRenderer.renderStatic(style, selector)
       })
     }
 
@@ -68,7 +48,7 @@ class Provider extends Component {
 
     staticStylesArr.forEach((staticStyle) => {
       if (_.isString(staticStyle)) {
-        this.renderer.renderStatic(staticStyle)
+        felaRenderer.renderStatic(staticStyle)
       } else if (_.isPlainObject(staticStyle)) {
         renderObject(staticStyle)
       } else if (_.isFunction(staticStyle)) {
@@ -90,7 +70,7 @@ class Provider extends Component {
       if (!_.isPlainObject(font)) {
         throw new Error(`fontFaces must be objects, got: ${typeof font}`)
       }
-      this.renderer.renderFont(font.name, font.path, font.style)
+      felaRenderer.renderFont(font.name, font.path, font.style)
     }
 
     const fontFaceArr = [].concat(_.isFunction(fontFaces) ? fontFaces(siteVariables) : fontFaces)
@@ -109,7 +89,7 @@ class Provider extends Component {
     const { siteVariables, children } = this.props
 
     return (
-      <RendererProvider renderer={this.renderer}>
+      <RendererProvider renderer={felaRenderer}>
         {siteVariables ? <ThemeProvider theme={siteVariables}>{children}</ThemeProvider> : children}
       </RendererProvider>
     )

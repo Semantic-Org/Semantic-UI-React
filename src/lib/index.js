@@ -6,7 +6,6 @@ export {
   useKeyOnly,
   useKeyOrValueAndKey,
   useValueAndKey,
-
   useMultipleProp,
   useTextAlignProp,
   useVerticalAlignProp,
@@ -14,17 +13,14 @@ export {
 } from './classNameBuilders'
 
 export * as customPropTypes from './customPropTypes'
+export felaRenderer from './felaRenderer'
 
-export {
-  debug,
-  makeDebugger,
-} from './debug'
+export { debug, makeDebugger } from './debug'
 export eventStack from './eventStack'
 
 export * from './factories'
 export { default as getUnhandledProps } from './getUnhandledProps'
 export { default as getElementType } from './getElementType'
-
 export {
   htmlInputAttrs,
   htmlInputEvents,
