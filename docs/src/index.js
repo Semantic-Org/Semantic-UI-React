@@ -48,7 +48,8 @@ const render = NewApp =>
         fontFaces={fontFaces}
       >
         <NewApp />
-      </Provider></AppContainer>,
+      </Provider>
+    </AppContainer>,
     mountNode,
   )
 
