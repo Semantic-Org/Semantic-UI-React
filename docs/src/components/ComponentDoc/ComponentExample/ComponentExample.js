@@ -1,12 +1,14 @@
 import * as Babel from '@babel/standalone'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, createElement, isValidElement } from 'react'
+import React, { Component, isValidElement } from 'react'
 import { withRouter } from 'react-router'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 import { Divider, Grid, Menu, Visibility } from 'semantic-ui-react'
+
+import { Provider } from 'stardust'
 
 import { exampleContext, repoURL, scrollToAnchor } from 'docs/src/utils'
 import { shallowEqual } from 'src/lib'
@@ -164,7 +166,7 @@ class ComponentExample extends Component {
   resetJSX = () => {
     const { sourceCode } = this.state
     const original = this.getOriginalSourceCode()
-    // eslint-disable-next no-alert
+    // eslint-disable-next-line no-alert
     if (sourceCode !== original && confirm('Lose your changes?')) {
       this.setState({ sourceCode: original })
       this.renderSourceCode()
@@ -191,7 +193,8 @@ class ComponentExample extends Component {
 
   renderOriginalExample = () => {
     const { examplePath } = this.props
-    return createElement(exampleContext(`./${examplePath}.js`).default)
+    const ExampleComponent = exampleContext(`./${examplePath}.js`).default
+    return this.renderWithProvider(ExampleComponent)
   }
 
   renderSourceCode = _.debounce(() => {
@@ -265,7 +268,7 @@ class ComponentExample extends Component {
     try {
       const { code } = Babel.transform(IIFE, babelConfig)
       const Example = eval(code) // eslint-disable-line no-eval
-      const exampleElement = _.isFunction(Example) ? <Example /> : Example
+      const exampleElement = _.isFunction(Example) ? this.renderWithProvider(Example) : Example
 
       if (!isValidElement(exampleElement)) {
         this.renderError(
@@ -286,6 +289,12 @@ class ComponentExample extends Component {
       this.renderError(err.message)
     }
   }, 100)
+
+  renderWithProvider = ExampleComponent => (
+    <Provider>
+      <ExampleComponent />
+    </Provider>
+  )
 
   handleChangeCode = (sourceCode) => {
     this.setState({ sourceCode })
