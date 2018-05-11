@@ -17,11 +17,6 @@ export const exampleContext = require.context(
   /(\w+Example\w*|index)\.js$/,
 )
 
-/**
- * Get the Webpack Context for all component variables.
- */
-export const variablesContext = require.context('src/components', true, /\w+Variables\.js$/)
-
 export const parentComponents = _.flow(_.filter(META.isParent), _.sortBy('_meta.name'))(
   semanticUIReact,
 )

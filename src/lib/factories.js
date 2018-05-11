@@ -27,18 +27,17 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   const valIsString = _.isString(val)
   const valIsNumber = _.isNumber(val)
   const valIsFunction = _.isFunction(val)
-
-  const isReactElement = isValidElement(val)
-  const isPropsObject = _.isPlainObject(val)
-  const isPrimitiveValue = valIsString || valIsNumber
+  const valIsReactElement = isValidElement(val)
+  const valIsPropsObject = _.isPlainObject(val)
+  const valIsPrimitiveValue = valIsString || valIsNumber || _.isArray(val)
 
   // unhandled type return null
   /* eslint-disable no-console */
-  if (!isReactElement && !isPropsObject && !isPrimitiveValue) {
+  if (!valIsFunction && !valIsReactElement && !valIsPropsObject && !valIsPrimitiveValue) {
     if (process.env.NODE_ENV !== 'production') {
       console.error(
         [
-          'Shorthand value must be a string|number|array|object|ReactElement.',
+          'Shorthand value must be a string|number|array|object|ReactElement|function.',
           ' Use null|undefined|boolean for none',
           ` Received ${typeof val}.`,
         ].join(''),
@@ -55,9 +54,9 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
 
   // User's props
   const usersProps =
-    (isReactElement && val.props) ||
-    (isPropsObject && val) ||
-    (isPrimitiveValue && mapValueToProps(val))
+    (valIsReactElement && val.props) ||
+    (valIsPropsObject && val) ||
+    (valIsPrimitiveValue && mapValueToProps(val))
 
   // Override props
   let { overrideProps = {} } = options
@@ -107,15 +106,13 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   // ----------------------------------------
 
   // Clone ReactElements
-  if (isReactElement) return cloneElement(val, props)
+  if (valIsReactElement) return cloneElement(val, props)
 
   // Create ReactElements from built up props
-  if (isPrimitiveValue || isPropsObject) return <Component {...props} />
+  if (valIsPrimitiveValue || valIsPropsObject) return <Component {...props} />
 
-  // Call render functions with args ala createElement()
-  if (valIsFunction) {
-    return val(Component, props, props.children)
-  }
+  // Call functions with args similar to createElement()
+  if (valIsFunction) return val(Component, props, props.children)
   /* eslint-enable react/prop-types */
 }
 
