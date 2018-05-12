@@ -7,7 +7,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
-import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
+import { exampleContext, repoURL, scrollToAnchor, createComponentHash } from 'docs/app/utils'
 import { Divider, Grid, Menu, Visibility } from 'src'
 import { shallowEqual } from 'src/lib'
 import Editor from 'docs/app/Components/Editor/Editor'
@@ -71,7 +71,7 @@ class ComponentExample extends Component {
     const { examplePath, location } = this.props
     const sourceCode = this.getOriginalSourceCode()
 
-    this.anchorName = _.kebabCase(examplePath.split('/').join(' '))
+    this.anchorName = createComponentHash(examplePath)
 
     // show code for direct links to examples
     const showCode = this.anchorName === location.hash.replace('#', '')
@@ -441,7 +441,7 @@ class ComponentExample extends Component {
     }
 
     return (
-      <Visibility once={false}>
+      <Visibility once={false} onTopPassed={this.handlePass} onTopPassedReverse={this.handlePass}>
         <Grid
           className='docs-example'
           id={this.anchorName}

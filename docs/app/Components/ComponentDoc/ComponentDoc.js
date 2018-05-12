@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
@@ -6,7 +5,13 @@ import { withRouter } from 'react-router'
 import { Grid, Icon } from 'semantic-ui-react'
 
 import withDocInfo from 'docs/app/HOC/withDocInfo'
-import { scrollToAnchor } from 'docs/app/utils'
+import {
+  scrollToAnchor,
+  createComponentHash,
+  getHashString,
+  getNewHash,
+  isOldHash,
+} from 'docs/app/utils'
 import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
@@ -47,11 +52,19 @@ class ComponentDoc extends Component {
     ).isRequired,
     suiLink: PropTypes.string,
   }
+  /**
+   * Creates an instance of ComponentDoc.
+   * @param {any} props
+   * @memberof ComponentDoc
+   */
   constructor(props) {
     super(props)
-    let activePath
-    if (location.hash) {
-      activePath = _.last((location.hash || '').split('#'))
+    let activePath = getHashString(location.hash)
+    if (isOldHash(activePath)) {
+      // change hash to new as hash could be single source of truth
+      props.history.replace(`${location.pathname}#${getNewHash(activePath)}`)
+      // get activePath with new hash
+      activePath = getHashString(location.hash)
     }
     this.state = {
       activePath,
@@ -70,13 +83,14 @@ class ComponentDoc extends Component {
     if (current !== next) this.setState({ activePath: undefined })
   }
 
-  handleExamplePassed = (e, { examplePath }) => this.setState({ activePath: examplePath })
+  handleExamplePassed = (e, { examplePath }) =>
+    this.setState({ activePath: createComponentHash(examplePath) })
 
   handleExamplesRef = examplesRef => this.setState({ examplesRef })
 
   handleSidebarItemClick = (e, { path }) => {
     const { history } = this.props
-    const aPath = _.kebabCase(path.split('/').join(' '))
+    const aPath = createComponentHash(path)
 
     history.replace(`${location.pathname}#${aPath}`)
     // set active hash path
