@@ -23,7 +23,7 @@ const ComponentControls = (props) => {
   } = props
 
   return (
-    <Transition duration={200} transitionOnMount visible={!!visible} unmountOnHide>
+    <Transition duration={200} visible={!!visible} unmountOnHide>
       {/*
         Heads up! Don't remove this `div`, visible Transition applies `display: block`,
         while Menu should have `display: inline-flex`

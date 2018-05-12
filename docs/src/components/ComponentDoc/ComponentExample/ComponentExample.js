@@ -96,7 +96,7 @@ class ComponentExample extends Component {
     return showCode || showHTML || showVariables
   }
 
-  isActiveHash = () => this.anchorName === location.hash.replace('#', '')
+  isActiveHash = () => this.anchorName === this.props.location.hash.replace('#', '')
 
   shouldComponentUpdate(nextProps, nextState) {
     return !shallowEqual(this.state, nextState)
@@ -518,7 +518,7 @@ class ComponentExample extends Component {
   }
 
   render() {
-    const { children, description, location, suiVersion, title } = this.props
+    const { children, description, suiVersion, title } = this.props
     const {
       handleMouseLeave,
       handleMouseMove,
@@ -532,12 +532,18 @@ class ComponentExample extends Component {
     const isActive = this.isActiveHash() || this.isActiveState()
 
     const exampleStyle = {
-      position: isHovering ? 'relative' : 'unset',
-      transition: 'box-shadow 200ms, opacity 1s',
-      background: '#fff',
-      boxShadow: (isActive && '0 0 30px #ccc') || (isHovering && '0 0 10px #ccc') || '',
-      zIndex: isHovering ? 1 : 'unset',
-      opacity: !location.hash || this.isActiveHash() ? 1 : 0.5,
+      position: 'relative',
+      transition: 'box-shadow 200ms, background 200ms',
+      ...(isActive
+        ? {
+          background: '#fff',
+          boxShadow: '0 0 30px #ccc',
+        }
+        : isHovering && {
+          background: '#fff',
+          boxShadow: '0 0 10px #ccc',
+          zIndex: 1,
+        }),
     }
 
     return (
