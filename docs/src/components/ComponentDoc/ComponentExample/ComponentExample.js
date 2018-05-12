@@ -218,12 +218,6 @@ class ComponentExample extends Component {
     return this.renderWithProvider(ExampleComponent)
   }
 
-  renderWithProvider = ExampleComponent => (
-    <Provider componentVariables={this.state.componentVariables}>
-      <ExampleComponent />
-    </Provider>
-  )
-
   renderSourceCode = _.debounce(() => {
     const { examplePath } = this.props
     const { sourceCode } = this.state
@@ -318,7 +312,7 @@ class ComponentExample extends Component {
   }, 100)
 
   renderWithProvider = ExampleComponent => (
-    <Provider>
+    <Provider componentVariables={this.state.componentVariables}>
       <ExampleComponent />
     </Provider>
   )
@@ -481,7 +475,7 @@ class ComponentExample extends Component {
 
             if (!hasVariablesFile) {
               return (
-                <Segment size='small' tertiary>
+                <Segment size='small' secondary basic>
                   This component has no variables to edit.
                 </Segment>
               )
@@ -524,7 +518,7 @@ class ComponentExample extends Component {
   }
 
   render() {
-    const { children, description, suiVersion, title } = this.props
+    const { children, description, location, suiVersion, title } = this.props
     const {
       handleMouseLeave,
       handleMouseMove,
@@ -535,11 +529,15 @@ class ComponentExample extends Component {
       showVariables,
     } = this.state
 
-    const isActive = this.isActiveHash() || this.isActiveState() || isHovering
+    const isActive = this.isActiveHash() || this.isActiveState()
 
     const exampleStyle = {
-      transition: 'box-shadow 200ms',
-      boxShadow: isActive && '0 0 30px #ccc',
+      position: isHovering ? 'relative' : 'unset',
+      transition: 'box-shadow 200ms, opacity 1s',
+      background: '#fff',
+      boxShadow: (isActive && '0 0 30px #ccc') || (isHovering && '0 0 10px #ccc') || '',
+      zIndex: isHovering ? 1 : 'unset',
+      opacity: !location.hash || this.isActiveHash() ? 1 : 0.5,
     }
 
     return (
@@ -570,7 +568,7 @@ class ComponentExample extends Component {
                 showCode={showCode}
                 showHTML={showHTML}
                 showVariables={showVariables}
-                visible={isActive}
+                visible={isActive || isHovering}
               />
             </Grid.Column>
           </Grid.Row>
