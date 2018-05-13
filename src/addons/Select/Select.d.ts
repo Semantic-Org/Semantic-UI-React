@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import { DropdownProps } from '../../modules/Dropdown';
-import { default as DropdownDivider } from '../../modules/Dropdown/DropdownDivider';
-import { default as DropdownHeader } from '../../modules/Dropdown/DropdownHeader';
-import { default as DropdownItem } from '../../modules/Dropdown/DropdownItem';
-import { default as DropdownMenu } from '../../modules/Dropdown/DropdownMenu';
+import DropdownDivider from '../../modules/Dropdown/DropdownDivider';
+import DropdownHeader from '../../modules/Dropdown/DropdownHeader';
+import DropdownItem from '../../modules/Dropdown/DropdownItem';
+import DropdownMenu from '../../modules/Dropdown/DropdownMenu';
 
 export interface SelectProps extends DropdownProps {
   [key: string]: any;

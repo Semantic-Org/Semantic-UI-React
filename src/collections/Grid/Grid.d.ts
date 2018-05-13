@@ -1,14 +1,17 @@
 import * as React from 'react';
 
-import {
-  SemanticTEXTALIGNMENTS,
-  SemanticVERTICALALIGNMENTS,
-  SemanticWIDTHS
-} from '../..';
-import { default as GridColumn } from './GridColumn';
-import { default as GridRow } from './GridRow';
+import { SemanticTEXTALIGNMENTS, SemanticVERTICALALIGNMENTS, SemanticWIDTHS } from '../..';
+import GridColumn from './GridColumn';
+import GridRow from './GridRow';
 
-export type GridReversedProp = string | 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
+export type GridReversedProp =
+  | string
+  | 'computer'
+  | 'computer vertically'
+  | 'mobile'
+  | 'mobile vertically'
+  | 'tablet'
+  | 'tablet vertically';
 
 export interface GridProps {
   [key: string]: any;

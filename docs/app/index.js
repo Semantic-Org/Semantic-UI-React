@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 
 import Router from './routes'
 
@@ -10,7 +11,13 @@ import Router from './routes'
 const mountNode = document.createElement('div')
 document.body.appendChild(mountNode)
 
-const render = NewApp => ReactDOM.render(<NewApp />, mountNode)
+const render = NewApp =>
+  ReactDOM.render(
+    <AppContainer>
+      <NewApp />
+    </AppContainer>,
+    mountNode,
+  )
 
 // ----------------------------------------
 // HMR
