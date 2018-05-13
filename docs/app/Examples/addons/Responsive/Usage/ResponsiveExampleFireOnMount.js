@@ -20,7 +20,7 @@ export default class ResponsiveExampleFireOnMount extends Component {
         <Grid.Column textAlign={textAlign}>
           <Segment>
             This grid has responsive align of the text. It will be right aligned on computer and left aligned on other
-            breakpoins.
+            breakpoints.
           </Segment>
         </Grid.Column>
       </Responsive>

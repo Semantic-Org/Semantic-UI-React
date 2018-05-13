@@ -13,6 +13,7 @@
     "jsx-quotes": [2, "prefer-single"],
     "max-len": [2, 120, 4],
     "no-console": 2,
+    "no-mixed-operators": 0,
     "no-multi-spaces": [2, { "ignoreEOLComments": true }],
     "no-return-assign": [2, "except-parens"],
     "no-underscore-dangle": 0,

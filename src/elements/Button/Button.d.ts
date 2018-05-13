@@ -8,9 +8,9 @@ import {
   SemanticSIZES
 } from '../..';
 import { LabelProps } from '../Label';
-import { default as ButtonContent } from './ButtonContent';
-import { default as ButtonGroup } from './ButtonGroup';
-import { default as ButtonOr } from './ButtonOr';
+import ButtonContent from './ButtonContent';
+import ButtonGroup from './ButtonGroup';
+import ButtonOr from './ButtonOr';
 
 export interface ButtonProps {
   [key: string]: any;
@@ -40,7 +40,15 @@ export interface ButtonProps {
   className?: string;
 
   /** A button can have different colors. */
-  color?: SemanticCOLORS | 'facebook' | 'google plus' | 'vk' | 'twitter' | 'linkedin' | 'instagram' | 'youtube';
+  color?:
+    | SemanticCOLORS
+    | 'facebook'
+    | 'google plus'
+    | 'vk'
+    | 'twitter'
+    | 'linkedin'
+    | 'instagram'
+    | 'youtube';
 
   /** A button can reduce its padding to fit into tighter spaces. */
   compact?: boolean;
@@ -87,6 +95,9 @@ export interface ButtonProps {
 
   /** A button can be formatted to show different levels of emphasis. */
   primary?: boolean;
+
+  /** The role of the HTML element. */
+  role?: string;
 
   /** A button can be formatted to show different levels of emphasis. */
   secondary?: boolean;

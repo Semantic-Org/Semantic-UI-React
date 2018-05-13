@@ -35,6 +35,10 @@ const ProgressContentExamples = () => (
       description='A progress element display progress as a value.'
       examplePath='modules/Progress/Content/ProgressExampleProgressValue'
     />
+    <ComponentExample
+      description='A progress element display progress as a value, with the width determined as a % of total.'
+      examplePath='modules/Progress/Content/ProgressExampleProgressValuePercentageOfTotal'
+    />
   </ExampleSection>
 )
 

@@ -16,6 +16,12 @@ export interface DropdownMenuProps {
   /** Shorthand for primary content. */
   content?: SemanticShorthandContent;
 
+  /** A dropdown menu can open to the left or to the right. */
+  direction?: 'left'  | 'right';
+
+  /** Whether or not the dropdown menu is displayed. */
+  open?: boolean;
+
   /** A dropdown menu can scroll. */
   scrolling?: boolean;
 }

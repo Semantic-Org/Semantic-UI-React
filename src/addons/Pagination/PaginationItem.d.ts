@@ -6,8 +6,8 @@ export interface PaginationItemProps {
   /** A pagination item can be active. */
   active?: boolean;
 
-  /** A pagination item can have an aria label. */
-  ariaLabel?: string;
+  /** A pagination item can be disabled. */
+  disabled?: boolean;
 
   /**
    * Called on click.

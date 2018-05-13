@@ -32,7 +32,7 @@ export default class SearchExampleStandard extends Component {
         isLoading: false,
         results: _.filter(source, isMatch),
       })
-    }, 500)
+    }, 300)
   }
 
   render() {
@@ -44,7 +44,7 @@ export default class SearchExampleStandard extends Component {
           <Search
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
-            onSearchChange={this.handleSearchChange}
+            onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
             results={results}
             value={value}
             {...this.props}

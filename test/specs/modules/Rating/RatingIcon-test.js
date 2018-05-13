@@ -1,6 +1,6 @@
+import keyboardKey from 'keyboard-key'
 import React from 'react'
 
-import { keyboardKey } from 'src/lib'
 import RatingIcon from 'src/modules/Rating/RatingIcon'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
