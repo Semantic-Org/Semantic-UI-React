@@ -1,28 +1,28 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { unmountComponentAtNode } from 'react-dom'
 
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
 import Portal from 'src/addons/Portal/Portal'
+import PortalInner from 'src/addons/Portal/PortalInner'
 
-let attachTo
 let wrapper
 
-const createHandlingComponent = eventName => class HandlingComponent extends Component {
-  static propTypes = {
-    handler: PropTypes.func,
+const createHandlingComponent = eventName =>
+  class HandlingComponent extends Component {
+    static propTypes = {
+      handler: PropTypes.func,
+    }
+
+    handleEvent = e => this.props.handler(e, this.props)
+
+    render() {
+      const buttonProps = { [eventName]: this.handleEvent }
+
+      return <button {...buttonProps} />
+    }
   }
-
-  handleEvent = e => this.props.handler(e, this.props)
-
-  render() {
-    const buttonProps = { [eventName]: this.handleEvent }
-
-    return <button {...buttonProps} />
-  }
-}
 
 const wrapperMount = (node, opts) => {
   wrapper = mount(node, opts)
@@ -30,123 +30,64 @@ const wrapperMount = (node, opts) => {
 }
 
 describe('Portal', () => {
-  beforeEach(() => {
-    document.body.innerHTML = ''
-    attachTo = undefined
-    wrapper = undefined
-  })
-
   afterEach(() => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
-    if (attachTo) document.body.removeChild(attachTo)
   })
 
+  common.hasSubComponents(Portal, [PortalInner])
   common.hasValidTypings(Portal)
 
   it('propTypes.children should be required', () => {
     Portal.propTypes.children.should.equal(PropTypes.node.isRequired)
   })
 
-  it('this.rootNode should be undefined if portal is not open', () => {
-    wrapperMount(<Portal><p /></Portal>)
-    const instance = wrapper.instance()
-
-    expect(instance.rootNode).to.equal(undefined)
-  })
-
-  it('attachRenderSubTreeSubscribers returns null if rootNode is lost', () => {
-    wrapperMount(<Portal open><p /></Portal>)
-    const instance = wrapper.instance()
-    instance.rootNode = null
-    expect(() => instance.attachRenderSubTreeSubscribers()).to.not.throw()
-    expect(instance.attachRenderSubTreeSubscribers()).to.equal(null)
-  })
-
-  it('appends portal with children to the document.body', () => {
-    wrapperMount(<Portal open><p /></Portal>)
-    const instance = wrapper.instance()
-
-    instance.rootNode.firstElementChild.tagName.should.equal('P')
-    document.body.lastElementChild.should.equal(instance.rootNode)
-    document.body.childElementCount.should.equal(1)
-  })
-
   it('does not call this.setState() if portal is unmounted', () => {
-    const div = document.createElement('div')
-    const props = { open: true }
-    wrapperMount(<Portal {...props}><p /></Portal>, { attachTo: div })
+    wrapperMount(
+      <Portal open>
+        <p />
+      </Portal>,
+    )
 
-    const spy = sandbox.spy(wrapper, 'setState')
-    unmountComponentAtNode(div)
-    spy.should.not.have.been.called()
+    const setState = sandbox.spy(wrapper, 'setState')
+    wrapper.unmount()
+    setState.should.not.have.been.called()
   })
 
   describe('open', () => {
     it('opens the portal when toggled from false to true', () => {
-      wrapperMount(<Portal open={false}><p /></Portal>)
-      const instance = wrapper.instance()
-
-      document.body.childElementCount.should.equal(0)
+      wrapperMount(
+        <Portal open={false}>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.not.have.descendants(PortalInner)
 
       // Enzyme docs say it merges previous props but without children, react complains
       wrapper.setProps({ open: true, children: <p /> })
-      document.body.lastElementChild.should.equal(instance.rootNode)
-      document.body.childElementCount.should.equal(1)
+      wrapper.should.have.descendants(PortalInner)
     })
 
     it('closes the portal when toggled from true to false ', () => {
-      wrapperMount(<Portal open><p /></Portal>)
-      const instance = wrapper.instance()
-
-      document.body.lastElementChild.should.equal(instance.rootNode)
-      document.body.childElementCount.should.equal(1)
+      wrapperMount(
+        <Portal open>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
 
       wrapper.setProps({ open: false, children: <p /> })
-      document.body.childElementCount.should.equal(0)
-    })
-  })
-
-  describe('className', () => {
-    it('is added to the portal\'s wrapping node', () => {
-      wrapperMount(<Portal className='some-class' open><p /></Portal>)
-
-      document.body.lastElementChild.className.should.equal('some-class')
-    })
-
-    it('updates the portal\'s wrapping node className when changed', () => {
-      wrapperMount(<Portal className='some-class' open><p /></Portal>)
-
-      wrapper.setProps({ className: 'some-other-class', children: <p /> })
-      document.body.lastElementChild.className.should.equal('some-other-class')
-    })
-  })
-
-  describe('prepend', () => {
-    beforeEach(() => {
-      document.body.innerHTML = '<div></div>'
-    })
-
-    it('appends portal by default', () => {
-      wrapperMount(<Portal open><p /></Portal>)
-      const instance = wrapper.instance()
-
-      document.body.childElementCount.should.equal(2)
-      document.body.lastElementChild.should.equal(instance.rootNode)
-    })
-
-    it('prepends portal by when passed', () => {
-      wrapperMount(<Portal open prepend><p /></Portal>)
-      const instance = wrapper.instance()
-
-      document.body.childElementCount.should.equal(2)
-      document.body.firstElementChild.should.equal(instance.rootNode)
+      wrapper.should.not.have.descendants(PortalInner)
     })
   })
 
   describe('onMount', () => {
     it('called when portal opens', () => {
       const props = { open: false, onMount: sandbox.spy() }
-      wrapperMount(<Portal {...props}><p /></Portal>)
+      wrapperMount(
+        <Portal {...props}>
+          <p />
+        </Portal>,
+      )
 
       wrapper.setProps({ open: true, children: <p /> })
       props.onMount.should.have.been.calledOnce()
@@ -154,7 +95,11 @@ describe('Portal', () => {
 
     it('is not called when portal receives props', () => {
       const props = { open: false, onMount: sandbox.spy() }
-      wrapperMount(<Portal {...props}><p /></Portal>)
+      wrapperMount(
+        <Portal {...props}>
+          <p />
+        </Portal>,
+      )
 
       wrapper.setProps({ open: true, children: <p />, className: 'old' })
       props.onMount.should.have.been.calledOnce()
@@ -167,7 +112,11 @@ describe('Portal', () => {
   describe('onUnmount', () => {
     it('is called when portal closes', () => {
       const props = { open: true, onUnmount: sandbox.spy() }
-      wrapperMount(<Portal {...props}><p /></Portal>)
+      wrapperMount(
+        <Portal {...props}>
+          <p />
+        </Portal>,
+      )
 
       wrapper.setProps({ open: false, children: <p /> })
       props.onUnmount.should.have.been.calledOnce()
@@ -175,7 +124,11 @@ describe('Portal', () => {
 
     it('is not called when portal receives props', () => {
       const props = { open: true, onUnmount: sandbox.spy() }
-      wrapperMount(<Portal {...props}><p /></Portal>)
+      wrapperMount(
+        <Portal {...props}>
+          <p />
+        </Portal>,
+      )
 
       wrapper.setProps({ open: false, children: <p />, className: 'old' })
       props.onUnmount.should.have.been.calledOnce()
@@ -185,42 +138,60 @@ describe('Portal', () => {
     })
 
     it('is called only once when portal closes and then is unmounted', () => {
-      const div = document.createElement('div')
-      const props = { open: true, onUnmount: sandbox.spy() }
-      wrapperMount(<Portal {...props}><p /></Portal>, { attachTo: div })
+      const onUnmount = sandbox.spy()
+      wrapperMount(
+        <Portal onUnmount={onUnmount} open>
+          <p />
+        </Portal>,
+      )
 
       wrapper.setProps({ open: false, children: <p /> })
-      unmountComponentAtNode(div)
-      props.onUnmount.should.have.been.calledOnce()
+      wrapper.unmount()
+      onUnmount.should.have.been.calledOnce()
     })
 
     it('is called only once when directly unmounting', () => {
-      const div = document.createElement('div')
-      const props = { open: true, onUnmount: sandbox.spy() }
+      const onUnmount = sandbox.spy()
+      wrapperMount(
+        <Portal onUnmount={onUnmount} open>
+          <p />
+        </Portal>,
+      )
 
-      wrapperMount(<Portal {...props}><p /></Portal>, { attachTo: div })
-      unmountComponentAtNode(div)
-      props.onUnmount.should.have.been.calledOnce()
+      wrapper.unmount()
+      onUnmount.should.have.been.calledOnce()
     })
   })
 
-  describe('portal ref', () => {
+  describe('portalNode', () => {
     it('maintains ref to DOM node with host element', () => {
-      wrapperMount(<Portal open><p /></Portal>)
+      wrapperMount(
+        <Portal open>
+          <p />
+        </Portal>,
+      )
       wrapper.instance().portalNode.tagName.should.equal('P')
     })
 
     it('maintains ref to DOM node with React component', () => {
       const EmptyComponent = () => <p />
 
-      wrapperMount(<Portal open><EmptyComponent /></Portal>)
+      wrapperMount(
+        <Portal open>
+          <EmptyComponent />
+        </Portal>,
+      )
       wrapper.instance().portalNode.tagName.should.equal('P')
     })
   })
 
   describe('trigger', () => {
     it('renders null when not set', () => {
-      wrapperMount(<Portal><p /></Portal>)
+      wrapperMount(
+        <Portal>
+          <p />
+        </Portal>,
+      )
 
       expect(wrapper.html()).to.equal(null)
     })
@@ -228,7 +199,11 @@ describe('Portal', () => {
     it('renders the trigger when set', () => {
       const text = 'open by click on me'
       const trigger = <button>{text}</button>
-      wrapperMount(<Portal trigger={trigger}><p /></Portal>)
+      wrapperMount(
+        <Portal trigger={trigger}>
+          <p />
+        </Portal>,
+      )
 
       wrapper.text().should.equal(text)
     })
@@ -240,7 +215,11 @@ describe('Portal', () => {
         const Trigger = createHandlingComponent(handlerName)
         const trigger = <Trigger color='blue' handler={handler} />
 
-        wrapperMount(<Portal trigger={trigger}><p /></Portal>)
+        wrapperMount(
+          <Portal trigger={trigger}>
+            <p />
+          </Portal>,
+        )
           .find('button')
           .simulate(_.toLower(handlerName.substring(2)), event)
 
@@ -254,15 +233,15 @@ describe('Portal', () => {
   })
 
   describe('mountNode', () => {
-    it('render portal within mountNode', () => {
+    it('passed to PortalInner', () => {
       const mountNode = document.createElement('div')
-      document.body.appendChild(mountNode)
+      wrapperMount(
+        <Portal mountNode={mountNode} open>
+          <p />
+        </Portal>,
+      )
 
-      wrapperMount(<Portal mountNode={mountNode} open><p /></Portal>)
-      const instance = wrapper.instance()
-
-      mountNode.lastElementChild.should.equal(instance.rootNode)
-      mountNode.childElementCount.should.equal(1)
+      wrapper.find(PortalInner).should.have.prop('mountNode', mountNode)
     })
   })
 
@@ -274,30 +253,47 @@ describe('Portal', () => {
     it('does not open the portal on trigger click when false', () => {
       const spy = sandbox.spy()
       const trigger = <button onClick={spy}>button</button>
-      wrapperMount(<Portal trigger={trigger} openOnTriggerClick={false}><p /></Portal>)
+
+      wrapperMount(
+        <Portal trigger={trigger} openOnTriggerClick={false}>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.not.have.descendants(PortalInner)
 
       wrapper.find('button').simulate('click')
-      document.body.childElementCount.should.equal(0)
+      wrapper.should.not.have.descendants(PortalInner)
       spy.should.have.been.calledOnce()
     })
 
     it('opens the portal on trigger click when true', () => {
       const spy = sandbox.spy()
       const trigger = <button onClick={spy}>button</button>
-      wrapperMount(<Portal trigger={trigger} openOnTriggerClick><p /></Portal>)
+
+      wrapperMount(
+        <Portal trigger={trigger} openOnTriggerClick>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.not.have.descendants(PortalInner)
 
       wrapper.find('button').simulate('click')
-      document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
+      wrapper.should.have.descendants(PortalInner)
       spy.should.have.been.calledOnce()
     })
   })
 
   describe('closeOnTriggerClick', () => {
     it('does not close the portal on click', () => {
-      wrapperMount(<Portal trigger={<button />} defaultOpen><p /></Portal>)
+      wrapperMount(
+        <Portal trigger={<button />} defaultOpen>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
 
       wrapper.find('button').simulate('click')
-      document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
+      wrapper.should.have.descendants(PortalInner)
     })
 
     it('closes the portal on click when set', () => {
@@ -306,29 +302,39 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
+      wrapper.should.have.descendants(PortalInner)
 
       wrapper.find('button').simulate('click')
-      document.body.childElementCount.should.equal(0)
+      wrapper.should.not.have.descendants(PortalInner)
     })
   })
 
   describe('openOnTriggerMouseEnter', () => {
     it('does not open the portal on mouseenter when not set', () => {
-      wrapperMount(<Portal trigger={<button />}><p /></Portal>)
+      wrapperMount(
+        <Portal trigger={<button />}>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.not.have.descendants(PortalInner)
 
       wrapper.find('button').simulate('mouseenter')
-      document.body.childElementCount.should.equal(0)
+      wrapper.should.not.have.descendants(PortalInner)
     })
 
     it('opens the portal on mouseenter when set', (done) => {
-      wrapperMount(<Portal trigger={<button />} openOnTriggerMouseEnter mouseEnterDelay={0}><p /></Portal>)
+      wrapperMount(
+        <Portal trigger={<button />} openOnTriggerMouseEnter mouseEnterDelay={0}>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.not.have.descendants(PortalInner)
 
-      document.body.childElementCount.should.equal(0)
       wrapper.find('button').simulate('mouseenter')
-
       setTimeout(() => {
-        document.body.childElementCount.should.equal(1)
-        document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
+        wrapper.update()
+        wrapper.should.have.descendants(PortalInner)
+
         done()
       }, 1)
     })
@@ -336,12 +342,18 @@ describe('Portal', () => {
 
   describe('closeOnTriggerMouseLeave', () => {
     it('does not close the portal on mouseleave when not set', (done) => {
-      wrapperMount(<Portal trigger={<button />} defaultOpen mouseLeaveDelay={0}><p /></Portal>)
+      wrapperMount(
+        <Portal trigger={<button />} defaultOpen mouseLeaveDelay={0}>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
 
       wrapper.find('button').simulate('mouseleave')
-
       setTimeout(() => {
-        document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
+        wrapper.update()
+        wrapper.should.have.descendants(PortalInner)
+
         done()
       }, 1)
     })
@@ -352,12 +364,13 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
+      wrapper.should.have.descendants(PortalInner)
 
-      document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
       wrapper.find('button').simulate('mouseleave')
-
       setTimeout(() => {
-        document.body.childElementCount.should.equal(0)
+        wrapper.update()
+        wrapper.should.not.have.descendants(PortalInner)
+
         done()
       }, 1)
     })
@@ -365,28 +378,35 @@ describe('Portal', () => {
 
   describe('closeOnPortalMouseLeave', () => {
     it('does not close the portal on mouseleave of portal when not set', (done) => {
-      wrapperMount(<Portal trigger={<button />} defaultOpen mouseLeaveDelay={0}><p /></Portal>)
+      wrapperMount(
+        <Portal trigger={<button />} defaultOpen mouseLeaveDelay={0}>
+          <p id='inner' />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
 
-      domEvent.mouseLeave(wrapper.instance().rootNode.firstElementChild)
-
+      domEvent.mouseLeave('#inner')
       setTimeout(() => {
-        document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
+        wrapper.update()
+        wrapper.should.have.descendants(PortalInner)
+
         done()
       }, 1)
     })
 
     it('closes the portal on mouseleave of portal when set', (done) => {
       wrapperMount(
-        <Portal trigger={<button />} defaultOpen closeOnPortalMouseLeave mouseLeaveDelay={0}>
-          <p />
+        <Portal closeOnPortalMouseLeave defaultOpen mouseLeaveDelay={0} trigger={<button />}>
+          <p id='inner' />
         </Portal>,
       )
+      wrapper.should.have.descendants(PortalInner)
 
-      document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
-      domEvent.mouseLeave(wrapper.instance().rootNode.firstElementChild)
-
+      domEvent.mouseLeave('#inner')
       setTimeout(() => {
-        document.body.childElementCount.should.equal(0)
+        wrapper.update()
+        wrapper.should.not.have.descendants(PortalInner)
+
         done()
       }, 1)
     })
@@ -396,19 +416,24 @@ describe('Portal', () => {
     it('closes the portal on trigger mouseleave even when portal receives mouseenter within limit', (done) => {
       const delay = 10
       wrapperMount(
-        <Portal trigger={<button />} defaultOpen closeOnTriggerMouseLeave mouseLeaveDelay={delay}><p /></Portal>,
+        <Portal trigger={<button />} defaultOpen closeOnTriggerMouseLeave mouseLeaveDelay={delay}>
+          <p id='inner' />
+        </Portal>,
       )
+      wrapper.should.have.descendants(PortalInner)
 
       wrapper.find('button').simulate('mouseleave')
 
       // Fire a mouseEnter on the portal within the time limit
       setTimeout(() => {
-        domEvent.mouseEnter(wrapper.instance().rootNode.firstElementChild)
+        domEvent.mouseEnter('#inner')
       }, delay - 1)
 
       // The portal should close because closeOnPortalMouseLeave not set
       setTimeout(() => {
-        document.body.childElementCount.should.equal(0)
+        wrapper.update()
+        wrapper.should.not.have.descendants(PortalInner)
+
         done()
       }, delay + 1)
     })
@@ -423,20 +448,23 @@ describe('Portal', () => {
           closeOnPortalMouseLeave
           mouseLeaveDelay={delay}
         >
-          <p />
+          <p id='inner' />
         </Portal>,
       )
+      wrapper.should.have.descendants(PortalInner)
 
       wrapper.find('button').simulate('mouseleave')
 
       // Fire a mouseEnter on the portal within the time limit
       setTimeout(() => {
-        domEvent.mouseEnter(wrapper.instance().rootNode.firstElementChild)
+        domEvent.mouseEnter('#inner')
       }, delay - 1)
 
       // The portal should not have closed
       setTimeout(() => {
-        document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
+        wrapper.update()
+        wrapper.should.have.descendants(PortalInner)
+
         done()
       }, delay + 1)
     })
@@ -444,68 +472,109 @@ describe('Portal', () => {
 
   describe('openOnTriggerFocus', () => {
     it('does not open the portal on focus when not set', () => {
-      wrapperMount(<Portal trigger={<button />}><p /></Portal>)
-        .find('button')
-        .simulate('focus')
+      wrapperMount(
+        <Portal trigger={<button />}>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.not.have.descendants(PortalInner)
 
-      document.body.childElementCount.should.equal(0)
+      wrapper.find('button').simulate('focus')
+      wrapper.should.not.have.descendants(PortalInner)
     })
-    it('opens the portal on focus when set', () => {
-      wrapperMount(<Portal trigger={<button />} openOnTriggerFocus><p /></Portal>)
-        .find('button')
-        .simulate('focus')
 
-      document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
+    it('opens the portal on focus when set', () => {
+      wrapperMount(
+        <Portal trigger={<button />} openOnTriggerFocus>
+          <p id='inner' />
+        </Portal>,
+      )
+      wrapper.should.not.have.descendants(PortalInner)
+
+      wrapper.find('button').simulate('focus')
+      wrapper.should.have.descendants(PortalInner)
     })
   })
 
   describe('closeOnTriggerBlur', () => {
     it('does not close the portal on blur when not set', () => {
-      wrapperMount(<Portal trigger={<button />} defaultOpen><p /></Portal>)
-        .find('button')
-        .simulate('blur')
+      wrapperMount(
+        <Portal trigger={<button />} defaultOpen>
+          <p id='inner' />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
 
-      document.body.lastElementChild.should.equal(wrapper.instance().rootNode)
+      wrapper.find('button').simulate('blur')
+      wrapper.should.have.descendants(PortalInner)
     })
 
     it('closes the portal on blur when set', () => {
-      wrapperMount(<Portal trigger={<button />} defaultOpen closeOnTriggerBlur><p /></Portal>)
-        .find('button')
-        .simulate('blur')
+      wrapperMount(
+        <Portal trigger={<button />} defaultOpen closeOnTriggerBlur>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
 
-      document.body.childElementCount.should.equal(0)
+      wrapper.find('button').simulate('blur')
+      wrapper.should.not.have.descendants(PortalInner)
     })
   })
 
   describe('closeOnEscape', () => {
     it('closes the portal on escape', () => {
-      wrapperMount(<Portal closeOnEscape defaultOpen><p /></Portal>)
-      document.body.childElementCount.should.equal(1)
+      wrapperMount(
+        <Portal closeOnEscape defaultOpen>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
+
       domEvent.keyDown(document, { key: 'Escape' })
-      document.body.childElementCount.should.equal(0)
+      wrapper.update()
+      wrapper.should.not.have.descendants(PortalInner)
     })
 
     it('does not close the portal on escape when false', () => {
-      wrapperMount(<Portal closeOnEscape={false} defaultOpen><p /></Portal>)
-      document.body.childElementCount.should.equal(1)
+      wrapperMount(
+        <Portal closeOnEscape={false} defaultOpen>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
+
       domEvent.keyDown(document, { key: 'Escape' })
-      document.body.childElementCount.should.equal(1)
+      wrapper.update()
+      wrapper.should.have.descendants(PortalInner)
     })
   })
 
   describe('closeOnDocumentClick', () => {
     it('closes the portal on document click', () => {
-      wrapperMount(<Portal closeOnDocumentClick defaultOpen><p /></Portal>)
-      document.body.childElementCount.should.equal(1)
+      wrapperMount(
+        <Portal closeOnDocumentClick defaultOpen>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
 
       domEvent.click(document)
-      document.body.childElementCount.should.equal(0)
+      wrapper.update()
+      wrapper.should.not.have.descendants(PortalInner)
     })
-    it('does not close on click inside', () => {
-      wrapperMount(<Portal closeOnDocumentClick defaultOpen><p /></Portal>)
 
-      domEvent.click(wrapper.instance().rootNode.firstElementChild)
-      document.body.childElementCount.should.equal(1)
+    it('does not close on click inside', () => {
+      wrapperMount(
+        <Portal closeOnDocumentClick defaultOpen>
+          <p id='inner' />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
+
+      domEvent.click('#inner')
+      wrapper.update()
+      wrapper.should.have.descendants(PortalInner)
     })
   })
 
@@ -515,11 +584,14 @@ describe('Portal', () => {
   // Leave these tests here to ensure we aren't ever stealing focus.
   describe('focus', () => {
     it('does not take focus onMount', (done) => {
-      wrapperMount(<Portal defaultOpen><p /></Portal>)
+      wrapperMount(
+        <Portal defaultOpen>
+          <p id='inner' />
+        </Portal>,
+      )
 
       setTimeout(() => {
-        const { portalNode } = wrapper.instance()
-        document.activeElement.should.not.equal(portalNode)
+        document.activeElement.should.not.equal(document.getElementById('inner'))
         done()
       }, 0)
     })
@@ -531,7 +603,11 @@ describe('Portal', () => {
       input.focus()
       document.activeElement.should.equal(input)
 
-      wrapperMount(<Portal open><p /></Portal>)
+      wrapperMount(
+        <Portal open>
+          <p />
+        </Portal>,
+      )
       document.activeElement.should.equal(input)
 
       setTimeout(() => {
@@ -554,7 +630,11 @@ describe('Portal', () => {
       input.focus()
       document.activeElement.should.equal(input)
 
-      wrapperMount(<Portal defaultOpen><p /></Portal>)
+      wrapperMount(
+        <Portal defaultOpen>
+          <p />
+        </Portal>,
+      )
       document.activeElement.should.equal(input)
 
       setTimeout(() => {
