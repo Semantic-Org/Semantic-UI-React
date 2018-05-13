@@ -3,18 +3,17 @@ import path from 'path'
 
 import { customPropTypes } from 'src/lib'
 import componentInfo from './componentInfo'
-import {
-  getNodes,
-  getInterfaces,
-  hasAnySignature,
-  requireTs,
-} from './tsHelpers'
+import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
 
-const isShorthand = propType => _.includes([
-  customPropTypes.collectionShorthand,
-  customPropTypes.contentShorthand,
-  customPropTypes.itemShorthand,
-], propType)
+const isShorthand = propType =>
+  _.includes(
+    [
+      customPropTypes.collectionShorthand,
+      customPropTypes.contentShorthand,
+      customPropTypes.itemShorthand,
+    ],
+    propType,
+  )
 const shorthandMap = {
   SemanticShorthandContent: customPropTypes.contentShorthand,
   SemanticShorthandItem: customPropTypes.itemShorthand,
@@ -35,7 +34,9 @@ export default (Component, extractedInfo, options = {}) => {
     _meta: { name: componentName },
     filenameWithoutExt,
     filePath,
-  } = extractedInfo || _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
+  } =
+    extractedInfo ||
+    _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
   const { ignoredTypingsProps = [], requiredProps } = options
 
   const tsFile = `${filenameWithoutExt}.d.ts`

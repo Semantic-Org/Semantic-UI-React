@@ -13,20 +13,38 @@ describe('Advertisement', () => {
   common.propKeyOnlyToClassName(Advertisement, 'centered', { requiredProps })
   common.propKeyOnlyToClassName(Advertisement, 'test', { requiredProps })
 
-  common.propValueOnlyToClassName(Advertisement, 'unit', [
-    'medium rectangle', 'large rectangle', 'vertical rectangle', 'small rectangle',
-    'mobile banner', 'banner', 'vertical banner', 'top banner', 'half banner',
-    'button', 'square button', 'small button',
-    'skyscraper', 'wide skyscraper',
-    'leaderboard', 'large leaderboard', 'mobile leaderboard', 'billboard',
-    'panorama',
-    'netboard',
-    'half page',
-    'square', 'small square',
-  ], { requiredProps })
+  common.propValueOnlyToClassName(
+    Advertisement,
+    'unit',
+    [
+      'medium rectangle',
+      'large rectangle',
+      'vertical rectangle',
+      'small rectangle',
+      'mobile banner',
+      'banner',
+      'vertical banner',
+      'top banner',
+      'half banner',
+      'button',
+      'square button',
+      'small button',
+      'skyscraper',
+      'wide skyscraper',
+      'leaderboard',
+      'large leaderboard',
+      'mobile leaderboard',
+      'billboard',
+      'panorama',
+      'netboard',
+      'half page',
+      'square',
+      'small square',
+    ],
+    { requiredProps },
+  )
 
   it('renders a <div> by default', () => {
-    shallow(<Advertisement {...requiredProps} />)
-      .should.have.tagName('div')
+    shallow(<Advertisement {...requiredProps} />).should.have.tagName('div')
   })
 })

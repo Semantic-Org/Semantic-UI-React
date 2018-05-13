@@ -37,23 +37,19 @@ describe('Header', () => {
 
   describe('icon', () => {
     it('adds an icon class when true', () => {
-      shallow(<Header icon />)
-        .should.have.className('icon')
+      shallow(<Header icon />).should.have.className('icon')
     })
     it('does not add an icon class given a name', () => {
-      shallow(<Header icon='user' />)
-        .should.not.have.className('icon')
+      shallow(<Header icon='user' />).should.not.have.className('icon')
     })
   })
 
   describe('image', () => {
     it('adds an image class when true', () => {
-      shallow(<Header image />)
-        .should.have.className('image')
+      shallow(<Header image />).should.have.className('image')
     })
     it('does not add an Image when true', () => {
-      shallow(<Header image />)
-        .should.not.have.descendants('Image')
+      shallow(<Header image />).should.not.have.descendants('Image')
     })
   })
 

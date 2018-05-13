@@ -14,8 +14,7 @@ describe('Breadcrumb', () => {
   })
 
   it('renders a <div /> element', () => {
-    shallow(<Breadcrumb />)
-      .should.have.tagName('div')
+    shallow(<Breadcrumb />).should.have.tagName('div')
   })
 
   const sections = [
