@@ -109,9 +109,8 @@ class ComponentExample extends Component {
   }
 
   handleDirectLinkClick = () => {
-    const { location } = this.props
     this.setHashAndScroll()
-    copyToClipboard(location.href)
+    copyToClipboard(window.location.href)
   }
 
   handleMouseMove = _.throttle(
