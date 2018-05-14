@@ -18,7 +18,7 @@ const topRowStyle = { margin: '1em' }
 const exampleEndStyle = {
   textAlign: 'center',
   opacity: 0.5,
-  paddingTop: '50vh',
+  paddingTop: '75vh',
 }
 
 class ComponentDoc extends Component {

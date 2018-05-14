@@ -2,31 +2,30 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { connect, FelaTheme } from 'react-fela'
+
 import { createShorthandFactory } from './factories'
-import getElementType from './getElementType'
-import getUnhandledProps from './getUnhandledProps'
+
+const callable = val => (typeof val !== 'function' ? () => val : val)
 
 const createComponent = (Component, config) => {
-  const { rules, variables, shorthand, getDefaultElement } = config
+  const { rules, variables, shorthand } = config
   const StyledComponent = rules ? connect(rules)(Component) : Component
 
   const UIComponent = props => (
     <FelaTheme
-      render={(siteVariables) => {
-        const mergedVariables = variables
-          ? { ...variables(siteVariables), ...props.variables }
-          : props.variables
-        const rest = getUnhandledProps(Component, props)
-        const ElementType = getElementType(Component, props, getDefaultElement)
+      render={({ siteVariables = {}, componentVariables = {} }) => {
+        const variablesFromFile = callable(variables)(siteVariables)
+        const variablesFromTheme = callable(componentVariables[Component._meta.name])(siteVariables)
+        const variablesFromProp = callable(props.variables)(siteVariables)
 
-        return (
-          <StyledComponent
-            {...props}
-            rest={rest}
-            variables={mergedVariables}
-            ElementType={ElementType}
-          />
+        const mergedVariables = Object.assign(
+          {},
+          variablesFromFile,
+          variablesFromTheme,
+          variablesFromProp,
         )
+
+        return <StyledComponent {...props} variables={mergedVariables} />
       }}
     />
   )

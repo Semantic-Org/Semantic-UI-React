@@ -1,5 +1,5 @@
 import React from 'react'
-import Types from './Types/index'
+import Types from './Types'
 
 const LayoutExamples = () => (
   <div>

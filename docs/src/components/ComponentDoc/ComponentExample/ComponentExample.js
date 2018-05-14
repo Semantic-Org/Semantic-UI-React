@@ -6,11 +6,11 @@ import { withRouter } from 'react-router'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
-import { Divider, Grid, Menu, Visibility } from 'semantic-ui-react'
+import { Divider, Form, Grid, Menu, Segment, Visibility } from 'semantic-ui-react'
 
 import { Provider } from 'stardust'
 
-import { exampleContext, repoURL, scrollToAnchor } from 'docs/src/utils'
+import { exampleContext, variablesContext, repoURL, scrollToAnchor } from 'docs/src/utils'
 import { shallowEqual } from 'src/lib'
 import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
@@ -54,6 +54,8 @@ const errorStyle = {
  * Allows toggling the the raw `code` code block.
  */
 class ComponentExample extends Component {
+  state = {}
+
   static contextTypes = {
     onPassed: PropTypes.func,
   }
@@ -70,32 +72,39 @@ class ComponentExample extends Component {
   }
 
   componentWillMount() {
-    const { examplePath, location } = this.props
+    const { examplePath } = this.props
     const sourceCode = this.getOriginalSourceCode()
 
     this.anchorName = _.kebabCase(_.last(examplePath.split('/')))
 
-    // show code for direct links to examples
-    const showCode = this.anchorName === location.hash.replace('#', '')
     const exampleElement = this.renderOriginalExample()
     const markup = renderToStaticMarkup(exampleElement)
 
     this.setState({
       exampleElement,
-      showCode,
+      handleMouseLeave: this.handleMouseLeave,
+      handleMouseMove: this.handleMouseMove,
+      showCode: this.isActiveHash(),
       sourceCode,
       markup,
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    const isActive = nextProps.location.hash === `#${this.anchorName}`
+  isActiveState = () => {
+    const { showCode, showHTML, showVariables } = this.state
 
-    this.setState(() => ({ isActive }))
+    return showCode || showHTML || showVariables
   }
+
+  isActiveHash = () => this.anchorName === this.props.location.hash.replace('#', '')
 
   shouldComponentUpdate(nextProps, nextState) {
     return !shallowEqual(this.state, nextState)
+  }
+
+  updateHash = () => {
+    if (this.isActiveState()) this.setHashAndScroll()
+    else if (this.isActiveHash()) this.removeHash()
   }
 
   setHashAndScroll = () => {
@@ -107,7 +116,14 @@ class ComponentExample extends Component {
 
   removeHash = () => {
     const { history, location } = this.props
+
     history.replace(location.pathname)
+
+    this.setState({
+      showCode: false,
+      showHTML: false,
+      showVariables: false,
+    })
   }
 
   handleDirectLinkClick = () => {
@@ -116,39 +132,44 @@ class ComponentExample extends Component {
     copyToClipboard(location.href)
   }
 
-  handleMouseMove = _.throttle(
-    () => {
-      const { controlsVisible } = this.state
-      if (controlsVisible) return
+  handleMouseLeave = () => {
+    this.setState({
+      isHovering: false,
+      handleMouseLeave: null,
+      handleMouseMove: this.handleMouseMove,
+    })
+  }
 
-      this.setState({ controlsVisible: true })
-    },
-    200,
-    { trailing: false },
-  )
-
-  handleMouseLeave = () => this.setState({ controlsVisible: false })
+  handleMouseMove = () => {
+    this.setState({
+      isHovering: true,
+      handleMouseLeave: this.handleMouseLeave,
+      handleMouseMove: null,
+    })
+  }
 
   handleShowCodeClick = (e) => {
     e.preventDefault()
 
-    const { showCode, showHTML } = this.state
+    const { showCode } = this.state
 
-    this.setState({ showCode: !showCode })
-
-    if (!showCode) this.setHashAndScroll()
-    else if (!showHTML) this.removeHash()
+    this.setState({ showCode: !showCode }, this.updateHash)
   }
 
   handleShowHTMLClick = (e) => {
     e.preventDefault()
 
-    const { showCode, showHTML } = this.state
+    const { showHTML } = this.state
 
-    this.setState({ showHTML: !showHTML })
+    this.setState({ showHTML: !showHTML }, this.updateHash)
+  }
 
-    if (!showHTML) this.setHashAndScroll()
-    else if (!showCode) this.removeHash()
+  handleShowVariablesClick = (e) => {
+    e.preventDefault()
+
+    const { showVariables } = this.state
+
+    this.setState({ showVariables: !showVariables }, this.updateHash)
   }
 
   handlePass = () => {
@@ -291,14 +312,13 @@ class ComponentExample extends Component {
   }, 100)
 
   renderWithProvider = ExampleComponent => (
-    <Provider>
+    <Provider componentVariables={this.state.componentVariables}>
       <ExampleComponent />
     </Provider>
   )
 
   handleChangeCode = (sourceCode) => {
-    this.setState({ sourceCode })
-    this.renderSourceCode()
+    this.setState({ sourceCode }, this.renderSourceCode)
   }
 
   setGitHubHrefs = () => {
@@ -438,22 +458,102 @@ class ComponentExample extends Component {
     )
   }
 
+  renderVariables = () => {
+    const { examplePath } = this.props
+    const { showVariables } = this.state
+    if (!showVariables) return
+
+    const name = examplePath.split('/')[1]
+
+    return (
+      <div>
+        <Divider horizontal>{_.startCase(name).replace(/ /g, '')} Variables</Divider>
+        <Provider.Consumer>
+          {({ siteVariables }) => {
+            const variablesFilename = `./${name}/${_.camelCase(name)}Variables.js`
+            const hasVariablesFile = _.includes(variablesContext.keys(), variablesFilename)
+
+            if (!hasVariablesFile) {
+              return (
+                <Segment size='small' secondary basic>
+                  This component has no variables to edit.
+                </Segment>
+              )
+            }
+
+            const variables = variablesContext(variablesFilename).default
+            const defaultVariables = variables(siteVariables)
+
+            return (
+              <div>
+                <Form>
+                  <Form.Group inline>
+                    {_.map(defaultVariables, (val, key) => (
+                      <Form.Input
+                        key={key}
+                        label={key}
+                        defaultValue={val}
+                        onChange={this.handleVariableChange(name, key)}
+                      />
+                    ))}
+                  </Form.Group>
+                </Form>
+              </div>
+            )
+          }}
+        </Provider.Consumer>
+      </div>
+    )
+  }
+
+  handleVariableChange = (component, variable) => (e, { value }) => {
+    this.setState(
+      _.merge(this.state, {
+        componentVariables: {
+          [component]: { [variable]: value },
+        },
+      }),
+      this.renderSourceCode,
+    )
+  }
+
   render() {
     const { children, description, suiVersion, title } = this.props
-    const { controlsVisible, exampleElement, isActive, showCode, showHTML } = this.state
+    const {
+      handleMouseLeave,
+      handleMouseMove,
+      exampleElement,
+      isHovering,
+      showCode,
+      showHTML,
+      showVariables,
+    } = this.state
+
+    const isActive = this.isActiveHash() || this.isActiveState()
 
     const exampleStyle = {
-      marginBottom: '1em',
-      boxShadow: isActive && '0 0 30px #ccc',
+      position: 'relative',
+      transition: 'box-shadow 200ms, background 200ms',
+      ...(isActive
+        ? {
+          background: '#fff',
+          boxShadow: '0 0 30px #ccc',
+        }
+        : isHovering && {
+          background: '#fff',
+          boxShadow: '0 0 10px #ccc',
+          zIndex: 1,
+        }),
     }
 
     return (
       <Visibility once={false} onTopPassed={this.handlePass} onTopPassedReverse={this.handlePass}>
         <Grid
           className='docs-example'
+          padded='vertically'
           id={this.anchorName}
-          onMouseMove={this.handleMouseMove}
-          onMouseLeave={this.handleMouseLeave}
+          onMouseLeave={handleMouseLeave}
+          onMouseMove={handleMouseMove}
           style={exampleStyle}
         >
           <Grid.Row>
@@ -470,9 +570,11 @@ class ComponentExample extends Component {
                 onCopyLink={this.handleDirectLinkClick}
                 onShowCode={this.handleShowCodeClick}
                 onShowHTML={this.handleShowHTMLClick}
+                onShowVariables={this.handleShowVariablesClick}
                 showCode={showCode}
                 showHTML={showHTML}
-                visible={controlsVisible}
+                showVariables={showVariables}
+                visible={isActive || isHovering}
               />
             </Grid.Column>
           </Grid.Row>
@@ -488,6 +590,7 @@ class ComponentExample extends Component {
             <Grid.Column>
               {this.renderJSX()}
               {this.renderHTML()}
+              {this.renderVariables()}
             </Grid.Column>
           </Grid.Row>
         </Grid>
