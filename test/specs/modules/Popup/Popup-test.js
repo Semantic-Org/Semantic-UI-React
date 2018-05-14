@@ -47,6 +47,7 @@ describe('Popup', () => {
 
   it('renders a Portal', () => {
     wrapperShallow(<Popup />)
+      .dive()
       .type()
       .should.equal(Portal)
   })
@@ -139,7 +140,7 @@ describe('Popup', () => {
 
   describe('position', () => {
     POSITIONS.forEach((position) => {
-      it('is always within the viewport', () => {
+      it('is always within the viewport when trigger is clicked', () => {
         wrapperMount(
           <Popup
             content='_'
@@ -157,6 +158,21 @@ describe('Popup', () => {
         expect(left).to.be.at.least(0)
         expect(bottom).to.be.at.most(document.documentElement.clientHeight)
         expect(right).to.be.at.most(document.documentElement.clientWidth)
+      })
+      it('is positioned properly when open property is set', () => {
+        wrapperMount(
+          <Popup
+            content='_'
+            position={position}
+            open
+            trigger={<button>foo</button>}
+          />,
+        )
+        const element = document.querySelector('.popup.ui')
+        element.style.should.not.have.property('top', '')
+        element.style.should.not.have.property('left', '')
+        element.style.should.not.have.property('bottom', '')
+        element.style.should.not.have.property('right', '')
       })
       it('is the original if no horizontal position fits within the viewport', () => {
         wrapperMount(
