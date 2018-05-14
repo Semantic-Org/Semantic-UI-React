@@ -1,7 +1,7 @@
 import * as Babel from '@babel/standalone'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, isValidElement } from 'react'
+import React, { PureComponent, isValidElement } from 'react'
 import { withRouter } from 'react-router'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
@@ -11,7 +11,6 @@ import { Divider, Form, Grid, Menu, Segment, Visibility } from 'semantic-ui-reac
 import { Provider } from 'stardust'
 
 import { exampleContext, variablesContext, repoURL, scrollToAnchor } from 'docs/src/utils'
-import { shallowEqual } from 'src/lib'
 import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
@@ -53,7 +52,7 @@ const errorStyle = {
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
  */
-class ComponentExample extends Component {
+class ComponentExample extends PureComponent {
   state = {}
 
   static contextTypes = {
@@ -98,10 +97,6 @@ class ComponentExample extends Component {
 
   isActiveHash = () => this.anchorName === this.props.location.hash.replace('#', '')
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !shallowEqual(this.state, nextState)
-  }
-
   updateHash = () => {
     if (this.isActiveState()) this.setHashAndScroll()
     else if (this.isActiveHash()) this.removeHash()
@@ -127,9 +122,8 @@ class ComponentExample extends Component {
   }
 
   handleDirectLinkClick = () => {
-    const { location } = this.props
     this.setHashAndScroll()
-    copyToClipboard(location.href)
+    copyToClipboard(window.location.href)
   }
 
   handleMouseLeave = () => {
