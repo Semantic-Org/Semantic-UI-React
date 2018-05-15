@@ -16,7 +16,7 @@ let attachTo
 let wrapper
 
 const wrapperMount = (props, opts) => {
-  const date = new Date(2018, 4, 10)
+  const date = new Date('2018 5 10 07:30:00')
   attachTo = document.createElement('div')
   document.body.appendChild(attachTo)
 
@@ -63,6 +63,22 @@ describe('Datetime', () => {
     }
 
     const calendarHeader = () => document.querySelectorAll('a.item').item(1).text
+
+    describe('hour mode', () => {
+      it('displays previous day when navigating backward', () => {
+        wrapperMount({ mode: 'hour' })
+        goToPrevPage()
+
+        calendarHeader().should.match(/May\s9/)
+      })
+
+      it('displays next day when navigating forward', () => {
+        wrapperMount({ mode: 'hour' })
+        goToNextPage()
+
+        calendarHeader().should.match(/May\s11/)
+      })
+    })
 
     describe('day mode', () => {
       it('displays previous month when navigating backward', () => {

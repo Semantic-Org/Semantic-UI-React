@@ -227,6 +227,10 @@ export default class Datetime extends Component {
     const { mode, value } = this.state
 
     switch (mode) {
+      case 'hour':
+        this.setDate(e, value.getDate() + count, mode)
+        break
+
       case 'day':
         this.setMonth(e, value.getMonth() + count, mode)
         break
@@ -257,13 +261,13 @@ export default class Datetime extends Component {
     _.invokeArgs('onDateChange', [e, { ...this.props, value: newValue, mode }], this.props)
   }
 
-  setDay = (e, day) => {
-    const { time, value } = this.props
+  setDate = (e, date, mode) => {
+    const { value } = this.state
 
-    value.setDate(day)
-
-    const mode = time ? 'hour' : null
-    _.invokeArgs('onDateChange', [e, { ...this.props, value, mode }], this.props)
+    const newValue = new Date(value)
+    newValue.setDate(date)
+    this.trySetState({ value: newValue })
+    _.invokeArgs('onDateChange', [e, { ...this.props, newValue, mode }], this.props)
   }
 
   setYear = (e, year, mode) => {
