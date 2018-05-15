@@ -1,4 +1,4 @@
-import _ from 'lodash/fp'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -18,7 +18,7 @@ import DatetimeGrid from './DatetimeGrid'
 export default class DatetimeHours extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: PropTypes.func,
+    as: customPropTypes.as,
 
     /**
      * Formats a Date object as an hour string.
@@ -43,6 +43,7 @@ export default class DatetimeHours extends Component {
 
   static defaultProps = {
     as: DatetimeGrid,
+    formatter: dateUtils.defaultHourFormatter,
   }
 
   static _meta = {
@@ -51,14 +52,10 @@ export default class DatetimeHours extends Component {
     type: META.TYPES.ADDON,
   }
 
-  static defaultProps = {
-    formatter: dateUtils.defaultHourFormatter,
-  }
-
   getCells = () => _.map(_.range(0, 12), hour => ({
     content: this.getHourLabel(hour),
     onClick: this.handleCellClick(hour),
-  }), 12)
+  }))
 
   getHourLabel = (hour) => {
     const { formatter, value } = this.props
@@ -67,7 +64,7 @@ export default class DatetimeHours extends Component {
     date.setMinutes(0)
     date.setHours(hour)
 
-    return formatter(date)
+    return `${formatter(date)}:00`
   }
 
   handleCellClick = hours => (e) => {
