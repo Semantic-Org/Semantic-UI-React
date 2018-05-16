@@ -249,6 +249,7 @@ export default class Datetime extends Component {
   }
 
   handleChangeMode = (e, { mode }) => {
+    this.trySetState({ mode })
     _.invokeArgs('onDateChange', [e, { ...this.props, mode }], this.props)
   }
 

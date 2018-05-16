@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 
 import Datetime from 'src/addons/Datetime/Datetime'
 import DatetimeGrid from 'src/addons/Datetime/DatetimeGrid'
@@ -10,6 +11,7 @@ import DatetimeDays from 'src/addons/Datetime/DatetimeDays'
 import DatetimeHours from 'src/addons/Datetime/DatetimeHours'
 import DatetimeMinutes from 'src/addons/Datetime/DatetimeMinutes'
 import * as common from 'test/specs/commonTests'
+import * as dateUtils from 'src/lib/dateUtils'
 import { domEvent } from 'test/utils'
 
 let attachTo
@@ -26,7 +28,6 @@ const wrapperMount = (props, opts) => {
   )
   return wrapper
 }
-
 
 describe('Datetime', () => {
   beforeEach(() => {
@@ -126,6 +127,36 @@ describe('Datetime', () => {
 
         calendarHeader().should.equal('2023 - 2031')
       })
+    })
+  })
+
+  describe('onDateChangeMode', () => {
+    const eventSourceCoordinates = domNode => ({
+      clientX: domNode.getBoundingClientRect().x,
+      clientY: domNode.getBoundingClientRect().y,
+    })
+
+    const calendarTextContent = () =>
+      Array.prototype.map.call(
+        document.querySelectorAll('td.selectable'), el => el.textContent,
+      )
+
+    it('displays months when mode is changed to "month"', () => {
+      wrapperMount()
+      wrapper.find('input').simulate('focus')
+      const monthItem = document.querySelectorAll('a.item').item(1)
+      domEvent.fire(monthItem, 'click', eventSourceCoordinates(monthItem))
+
+      calendarTextContent().should.deep.equal(dateUtils.labels.months)
+    })
+
+    it('displays years when mode is changed to "year"', () => {
+      wrapperMount()
+      wrapper.find('input').simulate('focus')
+      const yearItem = document.querySelectorAll('a.item').item(2)
+      domEvent.fire(yearItem, 'click', eventSourceCoordinates(yearItem))
+
+      calendarTextContent().should.deep.equal(_.map(_.range(2014, 2023), year => year.toString()))
     })
   })
 })
