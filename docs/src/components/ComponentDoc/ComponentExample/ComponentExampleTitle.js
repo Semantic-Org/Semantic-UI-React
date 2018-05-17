@@ -7,9 +7,6 @@ import { pure } from 'docs/src/hoc'
 const titleStyle = {
   margin: 0,
 }
-const descriptionStyle = {
-  maxWidth: '50rem',
-}
 
 const ComponentExampleTitle = ({ description, title, suiVersion }) => (
   <div>
@@ -27,7 +24,7 @@ const ComponentExampleTitle = ({ description, title, suiVersion }) => (
         )}
       </Header>
     )}
-    {description && <p style={descriptionStyle}>{description}</p>}
+    {description && <p>{description}</p>}
   </div>
 )
 

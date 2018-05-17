@@ -8,7 +8,7 @@ import ComponentControlsToolTip from './ComponentControlsToolTip'
 const ComponentControlsShowVariables = ({ active, onClick }) => (
   <ComponentControlsToolTip content='Edit Variables'>
     <Menu.Item active={active} onClick={onClick}>
-      <Icon color={active ? 'green' : 'grey'} fitted name='options' size='large' />
+      <Icon color={active ? 'green' : 'grey'} fitted name='theme' size='large' />
     </Menu.Item>
   </ComponentControlsToolTip>
 )
