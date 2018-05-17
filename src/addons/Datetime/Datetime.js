@@ -227,6 +227,7 @@ export default class Datetime extends Component {
     const { mode, value } = this.state
 
     switch (mode) {
+      case 'minute':
       case 'hour':
         this.setDate(e, value.getDate() + count, mode)
         break

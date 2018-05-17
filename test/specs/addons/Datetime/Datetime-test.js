@@ -65,6 +65,22 @@ describe('Datetime', () => {
 
     const calendarHeader = () => document.querySelectorAll('a.item').item(1).text
 
+    describe('minute mode', () => {
+      it('displays previous day when navigating backward', () => {
+        wrapperMount({ mode: 'minute' })
+        goToPrevPage()
+
+        calendarHeader().should.match(/May\s9/)
+      })
+
+      it('displays next day when navigating forward', () => {
+        wrapperMount({ mode: 'minute' })
+        goToNextPage()
+
+        calendarHeader().should.match(/May\s11/)
+      })
+    })
+
     describe('hour mode', () => {
       it('displays previous day when navigating backward', () => {
         wrapperMount({ mode: 'hour' })
