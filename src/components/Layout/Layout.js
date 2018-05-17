@@ -79,8 +79,8 @@ class Layout extends React.Component {
 
     // Heads up!
     // IE11 Doesn't support grid-gap, insert virtual columns instead
-    renderGap({ gap }) {
-      return gap && <span className='layout__gap' />
+    renderGap({ gap, styles }) {
+      return gap && <span className={classNames('layout__gap', styles.gap)} />
     },
   }
 
