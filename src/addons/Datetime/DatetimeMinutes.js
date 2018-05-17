@@ -46,6 +46,8 @@ export default class DatetimeMinutes extends Component {
 
   static defaultProps = {
     as: DatetimeGrid,
+    formatter: dateUtils.defaultTimeFormatter,
+    interval: 5,
   }
 
   static _meta = {
@@ -54,12 +56,7 @@ export default class DatetimeMinutes extends Component {
     type: META.TYPES.ADDON,
   }
 
-  static defaultProps = {
-    formatter: dateUtils.defaultMinuteFormatter,
-    interval: 5,
-  }
-
-  getCells() {
+  getCells = () => {
     const { interval } = this.props
     return _.times((i) => {
       const thisMinute = i * interval
@@ -70,11 +67,11 @@ export default class DatetimeMinutes extends Component {
     }, Math.round(60 / interval))
   }
 
-  getMinuteLabel(minute) {
-    const { formatter, interval, value } = this.props
+  getMinuteLabel = (minute) => {
+    const { formatter, value } = this.props
     const date = new Date(value)
 
-    date.setMinutes(minute * interval)
+    date.setMinutes(minute)
 
     return formatter(date)
   }
