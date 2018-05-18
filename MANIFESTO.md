@@ -68,6 +68,7 @@ The possible options for `size` are familiar since they overlap our everyday lan
 // After
 // ------------------------------
 // TODO(zuko): should this be termed `scale` instead?
+// TODO(zuko): what about negative?
 <Button size={0..N} />
 ```
 
@@ -108,6 +109,7 @@ Traits should be thought of as general ideas more than specific implementations,
 
 // After
 // ------------------------------
+// TODO(zuko): additional/better/more practical examples
 <Button floated />  // Yes
 <Header floated />  // Yes
 <Icon floated />    // Yes
@@ -117,6 +119,7 @@ Traits should be thought of as general ideas more than specific implementations,
 
 Keeping code concise is important for readability, and our shorthand syntax for components enables powerful transformations with minimal effort. This also accelerates prototyping, and provides a simplified language for defining component parts. In addition to our existing shorthand support, we also
 
+// TODO(zuko): remove/reword/replace
  * **DO:** Support `as={shorthand}` prop on the root component.
  * **DO:** Support `part={shorthand}` syntax for defining component parts.
  * **DO NOT:** Support `partAs`, because it leads to `partProps`
@@ -131,6 +134,9 @@ Keeping code concise is important for readability, and our shorthand syntax for 
 
 // After
 // ------------------------------
+// TODO(zuko): we now allow users to have control over the tree
+// TODO(zuko): we can pass props/state to user for that tree
+// TODO(zuko): e.g. dropdown menu child lacked state mgmt in v1
 <Button as="a" />
 <Button as={<a href="#" />} />
 <Button as={(Component, props) => <Component {...props} foo="bar" />} />
