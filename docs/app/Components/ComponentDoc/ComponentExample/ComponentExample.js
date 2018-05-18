@@ -12,7 +12,7 @@ import {
   repoURL,
   scrollToAnchor,
   examplePathToHash,
-  getHashString,
+  getFormattedHash,
 } from 'docs/app/utils'
 import { Divider, Grid, Menu, Visibility } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
@@ -97,7 +97,7 @@ class ComponentExample extends PureComponent {
     return showCode || showHTML
   }
 
-  isActiveHash = () => this.anchorName === getHashString(this.props.location.hash)
+  isActiveHash = () => this.anchorName === getFormattedHash(this.props.location.hash)
 
   updateHash = () => {
     if (this.isActiveState()) this.setHashAndScroll()

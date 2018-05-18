@@ -5,13 +5,7 @@ import { withRouter } from 'react-router'
 import { Grid, Icon } from 'semantic-ui-react'
 
 import withDocInfo from 'docs/app/HOC/withDocInfo'
-import {
-  scrollToAnchor,
-  examplePathToHash,
-  getHashString,
-  getNewHash,
-  isOldHash,
-} from 'docs/app/utils'
+import { scrollToAnchor, examplePathToHash, getFormattedHash } from 'docs/app/utils'
 import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
@@ -52,22 +46,16 @@ class ComponentDoc extends Component {
     ).isRequired,
     suiLink: PropTypes.string,
   }
-  /**
-   * Creates an instance of ComponentDoc.
-   * @param {any} props
-   * @memberof ComponentDoc
-   */
-  constructor(props) {
-    super(props)
-    let activePath = getHashString(location.hash)
-    if (isOldHash(activePath)) {
-      // change hash to new as hash could be single source of truth
-      props.history.replace(`${location.pathname}#${getNewHash(activePath)}`)
-      // get activePath with new hash
-      activePath = getHashString(location.hash)
-    }
-    this.state = {
-      activePath,
+
+  state = {}
+
+  componentWillMount() {
+    const { history } = this.props
+
+    if (location.hash) {
+      const activePath = getFormattedHash(location.hash)
+      history.replace(`${location.pathname}#${activePath}`)
+      this.setState({ activePath })
     }
   }
 
