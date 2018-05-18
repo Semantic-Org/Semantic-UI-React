@@ -71,13 +71,15 @@ class DropdownItem extends Component {
     selected: PropTypes.bool,
 
     /** Display text. */
-    text: customPropTypes.contentShorthand,
+    text: customPropTypes.itemShorthand,
 
     /** Stored value. */
     value: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
+      PropTypes.node,
+      PropTypes.arrayOf(PropTypes.node),
     ]),
   }
 
@@ -117,7 +119,9 @@ class DropdownItem extends Component {
       className,
     )
     // add default dropdown icon if item contains another menu
-    const iconName = _.isNil(icon) ? childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown' : icon
+    const iconName = _.isNil(icon)
+      ? childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
+      : icon
     const rest = getUnhandledProps(DropdownItem, this.props)
     const ElementType = getElementType(DropdownItem, this.props)
     const ariaOptions = {
@@ -127,7 +131,7 @@ class DropdownItem extends Component {
       'aria-selected': selected,
     }
 
-    if (!childrenUtils.isNil(children)) {
+    if (!childrenUtils.isNil(children) && _.isNil(text)) {
       return (
         <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
           {children}
@@ -139,12 +143,9 @@ class DropdownItem extends Component {
     const iconElement = Icon.create(iconName)
     const imageElement = Image.create(image)
     const labelElement = Label.create(label)
-    const descriptionElement = createShorthand(
-      'span',
-      val => ({ children: val }),
-      description,
-      { defaultProps: { className: 'description' } },
-    )
+    const descriptionElement = createShorthand('span', val => ({ children: val }), description, {
+      defaultProps: { className: 'description' },
+    })
     const textElement = createShorthand(
       'span',
       val => ({ children: val }),

@@ -52,7 +52,10 @@ export default class Dropdown extends Component {
      * Allow user additions to the list of options (boolean).
      * Requires the use of `selection`, `options` and `search`.
      */
-    allowAdditions: customPropTypes.every([customPropTypes.demand(['options', 'selection', 'search']), PropTypes.bool]),
+    allowAdditions: customPropTypes.every([
+      customPropTypes.demand(['options', 'selection', 'search']),
+      PropTypes.bool,
+    ]),
 
     /** A Dropdown can reduce its complexity. */
     basic: PropTypes.bool,
@@ -63,7 +66,10 @@ export default class Dropdown extends Component {
     /** Primary content. */
     children: customPropTypes.every([
       customPropTypes.disallow(['options', 'selection']),
-      customPropTypes.givenProps({ children: PropTypes.any.isRequired }, PropTypes.element.isRequired),
+      customPropTypes.givenProps(
+        { children: PropTypes.any.isRequired },
+        PropTypes.element.isRequired,
+      ),
     ]),
 
     /** Additional classes. */
@@ -87,6 +93,10 @@ export default class Dropdown extends Component {
 
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
+
+    defaultOptions: customPropTypes.every([
+      PropTypes.arrayOf(PropTypes.shape(DropdownItem.propTypes)),
+    ]),
 
     /** Initial value of searchQuery. */
     defaultSearchQuery: PropTypes.string,
@@ -244,7 +254,16 @@ export default class Dropdown extends Component {
     /** A dropdown can be formatted so that its menu is pointing. */
     pointing: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(['left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right']),
+      PropTypes.oneOf([
+        'left',
+        'right',
+        'top',
+        'top left',
+        'top right',
+        'bottom',
+        'bottom left',
+        'bottom right',
+      ]),
     ]),
 
     /**
@@ -307,14 +326,25 @@ export default class Dropdown extends Component {
     text: PropTypes.string,
 
     /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
-    trigger: customPropTypes.every([customPropTypes.disallow(['selection', 'text']), PropTypes.node]),
+    trigger: customPropTypes.every([
+      customPropTypes.disallow(['selection', 'text']),
+      PropTypes.node,
+    ]),
 
     /** Current value or value array if multiple. Creates a controlled component. */
     value: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string,
       PropTypes.number,
-      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number])),
+      customPropTypes.itemShorthand,
+      PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.bool,
+          PropTypes.string,
+          PropTypes.number,
+          customPropTypes.itemShorthand,
+        ]),
+      ),
     ]),
 
     /** A dropdown can open upward. */
@@ -343,7 +373,7 @@ export default class Dropdown extends Component {
     wrapSelection: true,
   }
 
-  static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value']
+  static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'options']
 
   static _meta = {
     name: 'Dropdown',
@@ -364,8 +394,9 @@ export default class Dropdown extends Component {
     debug('componentWillMount()')
     const { open, value } = this.state
 
+    const options = this.setOptions()
     this.setValue(value)
-    this.setSelectedIndex(value)
+    this.setSelectedIndex(value, options)
 
     if (open) {
       this.open()
@@ -397,7 +428,6 @@ export default class Dropdown extends Component {
       }
     }
     /* eslint-enable no-console */
-
     if (!shallowEqual(nextProps.value, this.props.value)) {
       debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
@@ -405,7 +435,8 @@ export default class Dropdown extends Component {
     }
 
     if (!_.isEqual(nextProps.options, this.props.options)) {
-      this.setSelectedIndex(undefined, nextProps.options)
+      this.setOptions()
+      this.setSelectedIndex(undefined)
     }
   }
 
@@ -458,7 +489,11 @@ export default class Dropdown extends Component {
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
       this.handleClose()
-      eventStack.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+      eventStack.unsub('keydown', [
+        this.closeOnEscape,
+        this.moveSelectionOnKeyDown,
+        this.selectItemOnEnter,
+      ])
       eventStack.unsub('click', this.closeOnDocumentClick)
       if (!this.state.focus) {
         eventStack.unsub('keydown', this.removeItemOnBackspace)
@@ -762,7 +797,7 @@ export default class Dropdown extends Component {
 
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
-  getMenuOptions = (value = this.state.value, options = this.props.options) => {
+  getMenuOptions = (value = this.state.value, options = this.state.options) => {
     const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
     const { searchQuery } = this.state
 
@@ -783,12 +818,19 @@ export default class Dropdown extends Component {
 
         const re = new RegExp(_.escapeRegExp(strippedQuery), 'i')
 
-        filteredOptions = _.filter(filteredOptions, opt => re.test(deburr ? _.deburr(opt.text) : opt.text))
+        filteredOptions = _.filter(filteredOptions, opt =>
+          re.test(deburr ? _.deburr(opt.text) : opt.text),
+        )
       }
     }
 
     // insert the "add" item
-    if (allowAdditions && search && searchQuery && !_.some(filteredOptions, { text: searchQuery })) {
+    if (
+      allowAdditions &&
+      search &&
+      searchQuery &&
+      !_.some(filteredOptions, { text: searchQuery })
+    ) {
       const additionLabelElement = React.isValidElement(additionLabel)
         ? React.cloneElement(additionLabel, { key: 'addition-label' })
         : additionLabel || ''
@@ -830,7 +872,7 @@ export default class Dropdown extends Component {
   }
 
   getItemByValue = (value) => {
-    const { options } = this.props
+    const { options } = this.state
 
     return _.find(options, { value })
   }
@@ -867,6 +909,28 @@ export default class Dropdown extends Component {
     return ariaOptions
   }
 
+  getMarkupOptions = (children, opt = []) => {
+    let markupOptions = opt
+    Children.forEach(children, (child) => {
+      if (_.isNil(child.props)) {
+        return
+      }
+      if (child.type.name === 'DropdownItem') {
+        const text = getKeyOrValue(child.props.text, child.props.children)
+        const value = getKeyOrValue(child.props.value, text)
+        const addItem = {
+          text,
+          value,
+        }
+        markupOptions.push(addItem)
+      }
+      if (!childrenUtils.isNil(child.props.children) && child.type.name !== 'Dropdown') {
+        markupOptions = _.merge(markupOptions, this.getMarkupOptions(child.props.children))
+      }
+    })
+    return markupOptions
+  }
+
   // ----------------------------------------
   // Setters
   // ----------------------------------------
@@ -876,12 +940,26 @@ export default class Dropdown extends Component {
     this.trySetState({ searchQuery: '' })
   }
 
+  setOptions = () => {
+    const { children, options } = this.props
+
+    if (!_.isNil(options)) {
+      this.trySetState({ options })
+      return options
+    } else if (!childrenUtils.isNil(children)) {
+      const menuChild = Children.only(children)
+      const opts = this.getMarkupOptions(menuChild.props.children)
+      this.trySetState({ options: opts })
+      return opts
+    }
+  }
+
   setValue = (value) => {
     debug('setValue()', value)
     this.trySetState({ value })
   }
 
-  setSelectedIndex = (value = this.state.value, optionsProps = this.props.options) => {
+  setSelectedIndex = (value = this.state.value, optionsProps = this.state.options) => {
     const { multiple } = this.props
     const { selectedIndex } = this.state
     const options = this.getMenuOptions(value, optionsProps)
@@ -896,7 +974,9 @@ export default class Dropdown extends Component {
       // Select the currently active item, if none, use the first item.
       // Multiple selects remove active items from the list,
       // their initial selected index should be 0.
-      newSelectedIndex = multiple ? firstIndex : this.getMenuItemIndexByValue(value, options) || enabledIndicies[0]
+      newSelectedIndex = multiple
+        ? firstIndex
+        : this.getMenuItemIndexByValue(value, options) || enabledIndicies[0]
     } else if (multiple) {
       // multiple selects remove options from the menu as they are made active
       // keep the selected index within range of the remaining items
@@ -1105,7 +1185,11 @@ export default class Dropdown extends Component {
     const { searchQuery, value, open } = this.state
     const hasValue = multiple ? !_.isEmpty(value) : !_.isNil(value) && value !== ''
 
-    const classes = cx(placeholder && !hasValue && 'default', 'text', search && searchQuery && 'filtered')
+    const classes = cx(
+      placeholder && !hasValue && 'default',
+      'text',
+      search && searchQuery && 'filtered',
+    )
     let _text = placeholder
     if (searchQuery) {
       _text = null
@@ -1173,20 +1257,25 @@ export default class Dropdown extends Component {
     })
   }
 
+  isOptionActive = (optValue) => {
+    const { multiple } = this.props
+    const { value } = this.state
+
+    return multiple ? _.includes(value, optValue) : optValue === value
+  }
+
   renderOptions = () => {
-    const { multiple, search, noResultsMessage } = this.props
-    const { selectedIndex, value } = this.state
+    const { search, noResultsMessage } = this.props
+    const { selectedIndex } = this.state
     const options = this.getMenuOptions()
 
     if (noResultsMessage !== null && search && _.isEmpty(options)) {
       return <div className='message'>{noResultsMessage}</div>
     }
 
-    const isActive = multiple ? optValue => _.includes(value, optValue) : optValue => optValue === value
-
     return _.map(options, (opt, i) =>
       DropdownItem.create({
-        active: isActive(opt.value),
+        active: this.isOptionActive(opt.value),
         onClick: this.handleItemClick,
         selected: selectedIndex === i,
         ...opt,
@@ -1196,6 +1285,39 @@ export default class Dropdown extends Component {
       }),
     )
   }
+
+  renderMarkupOptions = children =>
+    Children.map(children, (child) => {
+      if (_.isNil(child.props)) {
+        return child
+      }
+
+      const dropdownItemProps = () => {
+        if (child.type.name !== 'DropdownItem') {
+          return undefined
+        }
+        const text = getKeyOrValue(child.props.text, child.props.children)
+        const value = getKeyOrValue(child.props.value, text)
+        return {
+          onClick: _.isNil(child.props.onClick) ? this.handleItemClick : child.props.onClick,
+          active: _.isNil(child.props.active) ? this.isOptionActive(value) : child.props.active,
+          value,
+        }
+      }
+
+      if (!childrenUtils.isNil(child.props.children) && child.type.name !== 'Dropdown') {
+        return cloneElement(child, {
+          children: this.renderMarkupOptions(child.props.children),
+          ...dropdownItemProps(),
+        })
+      }
+      if (child.type.name === 'DropdownItem') {
+        return cloneElement(child, {
+          ...dropdownItemProps(),
+        })
+      }
+      return child
+    })
 
   renderMenu = () => {
     const { children, direction, header } = this.props
@@ -1207,7 +1329,7 @@ export default class Dropdown extends Component {
       const menuChild = Children.only(children)
       const className = cx(direction, useKeyOnly(open, 'visible'), menuChild.props.className)
 
-      return cloneElement(menuChild, { className, ...ariaOptions })
+      return cloneElement(this.renderMarkupOptions(menuChild)[0], { className, ...ariaOptions })
     }
 
     return (
