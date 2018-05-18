@@ -164,14 +164,14 @@ class MyComponent {
 ### Using propTypes
 
 Every component must have fully described `propTypes`.
- 
+
  ```js
  import React, { PropTypes } from 'react'
- 
+
  function MyComponent(props) {
    return <div className={props.position}>{props.children}</div>
  }
- 
+
  MyComponent.propTypes = {
    children: PropTypes.node,
    position: PropTypes.oneOf(['left', 'right']),
@@ -450,6 +450,23 @@ This is the only required test.  It ensures a consistent baseline for the framew
 1. Extra `props` are spread
 1. Base `className`s are applied
 1. Component is exported if public / hidden if private
+
+#### Writing tests
+
+Create your test file in `test/specs` directory. The **specs** directory mirrors the **src** directory. The first test should always be `common.isConformant()`
+For every source file, there needs to be a test file and they should named as `<Component>-test.js`.
+
+There should be one describe block for each prop of your component.
+
+#### Running tests
+
+```bash
+# Run tests with:
+yarn test
+
+# Run tests in watch mode with:
+yarn test:watch
+```
 
 ## State
 
