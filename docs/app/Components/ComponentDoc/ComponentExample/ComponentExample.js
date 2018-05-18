@@ -1,7 +1,7 @@
 import * as Babel from '@babel/standalone'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, createElement, isValidElement } from 'react'
+import React, { PureComponent, createElement, isValidElement } from 'react'
 import { withRouter } from 'react-router'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
@@ -9,7 +9,6 @@ import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL, scrollToAnchor, createComponentHash } from 'docs/app/utils'
 import { Divider, Grid, Menu, Visibility } from 'src'
-import { shallowEqual } from 'src/lib'
 import Editor from 'docs/app/Components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
@@ -51,7 +50,7 @@ const errorStyle = {
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
  */
-class ComponentExample extends Component {
+class ComponentExample extends PureComponent {
   static contextTypes = {
     onPassed: PropTypes.func,
   }
@@ -68,32 +67,35 @@ class ComponentExample extends Component {
   }
 
   componentWillMount() {
-    const { examplePath, location } = this.props
+    const { examplePath } = this.props
     const sourceCode = this.getOriginalSourceCode()
 
     this.anchorName = createComponentHash(examplePath)
 
-    // show code for direct links to examples
-    const showCode = this.anchorName === location.hash.replace('#', '')
     const exampleElement = this.renderOriginalExample()
     const markup = renderToStaticMarkup(exampleElement)
 
     this.setState({
       exampleElement,
-      showCode,
+      handleMouseLeave: this.handleMouseLeave,
+      handleMouseMove: this.handleMouseMove,
+      showCode: this.isActiveHash(),
       sourceCode,
       markup,
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    const isActive = nextProps.location.hash === `#${this.anchorName}`
+  isActiveState = () => {
+    const { showCode, showHTML } = this.state
 
-    this.setState(() => ({ isActive }))
+    return showCode || showHTML
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !shallowEqual(this.state, nextState)
+  isActiveHash = () => this.anchorName === this.props.location.hash.replace('#', '')
+
+  updateHash = () => {
+    if (this.isActiveState()) this.setHashAndScroll()
+    else if (this.isActiveHash()) this.removeHash()
   }
 
   setHashAndScroll = () => {
@@ -105,48 +107,50 @@ class ComponentExample extends Component {
 
   removeHash = () => {
     const { history, location } = this.props
+
     history.replace(location.pathname)
+
+    this.setState({
+      showCode: false,
+      showHTML: false,
+    })
   }
 
   handleDirectLinkClick = () => {
-    const { location } = this.props
     this.setHashAndScroll()
-    copyToClipboard(location.href)
+    copyToClipboard(window.location.href)
   }
 
-  handleMouseMove = _.throttle(
-    () => {
-      const { controlsVisible } = this.state
-      if (controlsVisible) return
+  handleMouseLeave = () => {
+    this.setState({
+      isHovering: false,
+      handleMouseLeave: null,
+      handleMouseMove: this.handleMouseMove,
+    })
+  }
 
-      this.setState({ controlsVisible: true })
-    },
-    200,
-    { trailing: false },
-  )
-
-  handleMouseLeave = () => this.setState({ controlsVisible: false })
+  handleMouseMove = () => {
+    this.setState({
+      isHovering: true,
+      handleMouseLeave: this.handleMouseLeave,
+      handleMouseMove: null,
+    })
+  }
 
   handleShowCodeClick = (e) => {
     e.preventDefault()
 
-    const { showCode, showHTML } = this.state
+    const { showCode } = this.state
 
-    this.setState({ showCode: !showCode })
-
-    if (!showCode) this.setHashAndScroll()
-    else if (!showHTML) this.removeHash()
+    this.setState({ showCode: !showCode }, this.updateHash)
   }
 
   handleShowHTMLClick = (e) => {
     e.preventDefault()
 
-    const { showCode, showHTML } = this.state
+    const { showHTML } = this.state
 
-    this.setState({ showHTML: !showHTML })
-
-    if (!showHTML) this.setHashAndScroll()
-    else if (!showCode) this.removeHash()
+    this.setState({ showHTML: !showHTML }, this.updateHash)
   }
 
   handlePass = () => {
@@ -164,8 +168,8 @@ class ComponentExample extends Component {
   resetJSX = () => {
     const { sourceCode } = this.state
     const original = this.getOriginalSourceCode()
+    // eslint-disable-next-line no-alert
     if (sourceCode !== original && confirm('Lose your changes?')) {
-      // eslint-disable-line no-alert
       this.setState({ sourceCode: original })
       this.renderSourceCode()
     }
@@ -290,8 +294,7 @@ class ComponentExample extends Component {
   }, 100)
 
   handleChangeCode = (sourceCode) => {
-    this.setState({ sourceCode })
-    this.renderSourceCode()
+    this.setState({ sourceCode }, this.renderSourceCode)
   }
 
   setGitHubHrefs = () => {
@@ -433,20 +436,40 @@ class ComponentExample extends Component {
 
   render() {
     const { children, description, suiVersion, title } = this.props
-    const { controlsVisible, exampleElement, isActive, showCode, showHTML } = this.state
+    const {
+      handleMouseLeave,
+      handleMouseMove,
+      exampleElement,
+      isHovering,
+      showCode,
+      showHTML,
+    } = this.state
+
+    const isActive = this.isActiveHash() || this.isActiveState()
 
     const exampleStyle = {
-      marginBottom: '1em',
-      boxShadow: isActive && '0 0 30px #ccc',
+      position: 'relative',
+      transition: 'box-shadow 200ms, background 200ms',
+      ...(isActive
+        ? {
+          background: '#fff',
+          boxShadow: '0 0 30px #ccc',
+        }
+        : isHovering && {
+          background: '#fff',
+          boxShadow: '0 0 10px #ccc',
+          zIndex: 1,
+        }),
     }
 
     return (
       <Visibility once={false} onTopPassed={this.handlePass} onTopPassedReverse={this.handlePass}>
         <Grid
           className='docs-example'
+          padded='vertically'
           id={this.anchorName}
-          onMouseMove={this.handleMouseMove}
-          onMouseLeave={this.handleMouseLeave}
+          onMouseLeave={handleMouseLeave}
+          onMouseMove={handleMouseMove}
           style={exampleStyle}
         >
           <Grid.Row>
@@ -465,7 +488,7 @@ class ComponentExample extends Component {
                 onShowHTML={this.handleShowHTMLClick}
                 showCode={showCode}
                 showHTML={showHTML}
-                visible={controlsVisible}
+                visible={isActive || isHovering}
               />
             </Grid.Column>
           </Grid.Row>

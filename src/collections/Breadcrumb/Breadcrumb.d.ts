@@ -6,7 +6,7 @@ import {
   SemanticShorthandItem
 } from '../..';
 import { IconProps } from '../../elements/Icon';
-import { default as BreadcrumbDivider } from './BreadcrumbDivider';
+import BreadcrumbDivider from './BreadcrumbDivider';
 import { default as BreadcrumbSection, BreadcrumbSectionProps } from './BreadcrumbSection';
 
 export interface BreadcrumbProps {
@@ -33,7 +33,7 @@ export interface BreadcrumbProps {
   sections?: SemanticShorthandCollection<BreadcrumbSectionProps>;
 
   /** Size of Breadcrumb */
-  size?:  'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 }
 
 interface BreadcrumbComponent extends React.ComponentClass<BreadcrumbProps> {

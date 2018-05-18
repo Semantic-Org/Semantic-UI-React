@@ -1,16 +1,12 @@
 import * as React from 'react';
 
-import {
-  SemanticCOLORS,
-  SemanticShorthandContent,
-  SemanticShorthandItem
-} from '../..';
+import { SemanticCOLORS, SemanticShorthandContent, SemanticShorthandItem } from '../..';
 import { ImageProps } from '../../elements/Image';
-import { default as CardContent } from './CardContent';
-import { default as CardDescription, CardDescriptionProps} from './CardDescription';
-import { default as CardGroup } from './CardGroup';
+import CardContent from './CardContent';
+import { default as CardDescription, CardDescriptionProps } from './CardDescription';
+import CardGroup from './CardGroup';
 import { default as CardHeader, CardHeaderProps } from './CardHeader';
-import { default as CardMeta, CardMetaProps} from './CardMeta';
+import { default as CardMeta, CardMetaProps } from './CardMeta';
 
 export interface CardProps {
   [key: string]: any;

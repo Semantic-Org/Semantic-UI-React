@@ -4,7 +4,7 @@ import { SemanticShorthandItem } from '../..';
 import { PortalProps } from '../../addons/Portal';
 import { default as ModalActions, ModalActionsProps } from './ModalActions';
 import { default as ModalContent, ModalContentProps } from './ModalContent';
-import { default as ModalDescription } from './ModalDescription';
+import ModalDescription from './ModalDescription';
 import { default as ModalHeader, ModalHeaderProps } from './ModalHeader';
 
 export interface ModalProps extends PortalProps {

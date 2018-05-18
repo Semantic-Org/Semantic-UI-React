@@ -1,13 +1,9 @@
 import * as React from 'react';
 
-import {
-  SemanticCOLORS,
-  SemanticFLOATS,
-  SemanticShorthandContent
-} from '../..';
-import { default as StatisticGroup } from './StatisticGroup';
-import { default as StatisticLabel } from './StatisticLabel';
-import { default as StatisticValue } from './StatisticValue';
+import { SemanticCOLORS, SemanticFLOATS, SemanticShorthandContent } from '../..';
+import StatisticGroup from './StatisticGroup';
+import StatisticLabel from './StatisticLabel';
+import StatisticValue from './StatisticValue';
 
 export type StatisticSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'huge';
 
