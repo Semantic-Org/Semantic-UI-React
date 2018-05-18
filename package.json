@@ -145,7 +145,7 @@
     "react-docgen": "^2.17.0",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.0.0",
-    "react-hot-loader": "^3.0.0-beta.7",
+    "react-hot-loader": "^4.1.3",
     "react-router": "^4.1.2",
     "react-router-dom": "^4.1.2",
     "react-test-renderer": "^16.0.0",

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import { default as AccordionAccordion, AccordionAccordionProps } from './AccordionAccordion';
-import { default as AccordionContent } from './AccordionContent';
-import { default as AccordionTitle } from './AccordionTitle';
+import AccordionContent from './AccordionContent';
+import AccordionTitle from './AccordionTitle';
 
 export interface AccordionProps extends AccordionAccordionProps {
   [key: string]: any;

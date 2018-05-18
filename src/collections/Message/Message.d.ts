@@ -6,10 +6,10 @@ import {
   SemanticShorthandContent,
   SemanticShorthandItem
 } from '../..';
-import { default as MessageContent } from './MessageContent';
+import MessageContent from './MessageContent';
 import { default as MessageHeader, MessageHeaderProps } from './MessageHeader';
 import { default as MessageItem, MessageItemProps } from './MessageItem';
-import { default as MessageList } from './MessageList';
+import MessageList from './MessageList';
 
 export interface MessageProps {
   [key: string]: any;

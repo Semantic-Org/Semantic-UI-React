@@ -1,12 +1,8 @@
 import * as React from 'react';
 
-import {
-  SemanticCOLORS,
-  SemanticFLOATS,
-  SemanticTEXTALIGNMENTS
-} from '../..';
-import { default as HeaderContent } from './HeaderContent';
-import { default as HeaderSubHeader } from './HeaderSubheader';
+import { SemanticCOLORS, SemanticFLOATS, SemanticTEXTALIGNMENTS } from '../..';
+import HeaderContent from './HeaderContent';
+import HeaderSubHeader from './HeaderSubheader';
 
 export interface HeaderProps {
   [key: string]: any;
