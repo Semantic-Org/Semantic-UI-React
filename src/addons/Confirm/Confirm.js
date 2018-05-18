@@ -2,11 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import {
-  customPropTypes,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getUnhandledProps, META } from '../../lib'
 import Button from '../../elements/Button'
 import Modal from '../../modules/Modal'
 
@@ -82,14 +78,7 @@ class Confirm extends Component {
   })
 
   render() {
-    const {
-      cancelButton,
-      confirmButton,
-      content,
-      header,
-      open,
-      size,
-    } = this.props
+    const { cancelButton, confirmButton, content, header, open, size } = this.props
     const rest = getUnhandledProps(Confirm, this.props)
 
     // `open` is auto controlled by the Modal
@@ -103,8 +92,12 @@ class Confirm extends Component {
         {Modal.Header.create(header, { autoGenerateKey: false })}
         {Modal.Content.create(content, { autoGenerateKey: false })}
         <Modal.Actions>
-          {Button.create(cancelButton, { overrideProps: this.handleCancelOverrides })}
+          {Button.create(cancelButton, {
+            autoGenerateKey: false,
+            overrideProps: this.handleCancelOverrides,
+          })}
           {Button.create(confirmButton, {
+            autoGenerateKey: false,
             defaultProps: { primary: true },
             overrideProps: this.handleConfirmOverrides,
           })}
