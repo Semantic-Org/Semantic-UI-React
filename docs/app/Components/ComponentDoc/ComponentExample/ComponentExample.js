@@ -7,7 +7,13 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
-import { exampleContext, repoURL, scrollToAnchor, createComponentHash } from 'docs/app/utils'
+import {
+  exampleContext,
+  repoURL,
+  scrollToAnchor,
+  examplePathToHash,
+  getHashString,
+} from 'docs/app/utils'
 import { Divider, Grid, Menu, Visibility } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
@@ -70,7 +76,7 @@ class ComponentExample extends PureComponent {
     const { examplePath } = this.props
     const sourceCode = this.getOriginalSourceCode()
 
-    this.anchorName = createComponentHash(examplePath)
+    this.anchorName = examplePathToHash(examplePath)
 
     const exampleElement = this.renderOriginalExample()
     const markup = renderToStaticMarkup(exampleElement)
@@ -91,7 +97,7 @@ class ComponentExample extends PureComponent {
     return showCode || showHTML
   }
 
-  isActiveHash = () => this.anchorName === this.props.location.hash.replace('#', '')
+  isActiveHash = () => this.anchorName === getHashString(this.props.location.hash)
 
   updateHash = () => {
     if (this.isActiveState()) this.setHashAndScroll()

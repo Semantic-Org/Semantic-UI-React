@@ -7,7 +7,7 @@ import { Grid, Icon } from 'semantic-ui-react'
 import withDocInfo from 'docs/app/HOC/withDocInfo'
 import {
   scrollToAnchor,
-  createComponentHash,
+  examplePathToHash,
   getHashString,
   getNewHash,
   isOldHash,
@@ -84,13 +84,13 @@ class ComponentDoc extends Component {
   }
 
   handleExamplePassed = (e, { examplePath }) =>
-    this.setState({ activePath: createComponentHash(examplePath) })
+    this.setState({ activePath: examplePathToHash(examplePath) })
 
   handleExamplesRef = examplesRef => this.setState({ examplesRef })
 
   handleSidebarItemClick = (e, { path }) => {
     const { history } = this.props
-    const aPath = createComponentHash(path)
+    const aPath = examplePathToHash(path)
 
     history.replace(`${location.pathname}#${aPath}`)
     // set active hash path

@@ -1,9 +1,7 @@
-import _ from 'lodash'
-
 /**
  * Retrieve hash string from location path
  * @param {string} hash
  */
-const getHashString = hash => _.last((hash || '').split('#'))
+const getHashString = hash => (hash || '').replace('#', '')
 
 export default getHashString

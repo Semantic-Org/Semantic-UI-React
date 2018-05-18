@@ -1,22 +1,23 @@
 import _ from 'lodash/fp'
 
 import exampleContext from './exampleContext'
-import createComponentHash from './createComponentHash'
+import examplePathToHash from './examplePathToHash'
+import isOldHash from './isOldHash'
 
 /**
  * get new hash using old
  * @param {string} hash
  */
 const getNewHash = (hash) => {
-  const isOldHash = true
-  if (isOldHash) {
+  if (isOldHash(hash)) {
     const fileName = _.startCase(hash).replace(/\s/g, '')
     const str = exampleContext.keys().find(item => item.indexOf(fileName) !== -1)
     // found old to new hash match
     if (str) {
-      return createComponentHash(str.replace(/((\.)(?:[\w]+))|(^\.\/)/g, ''))
+      return examplePathToHash(str.replace(/((\.)(?:[\w]+))|(^\.\/)/g, ''))
     }
   }
+
   return hash
 }
 

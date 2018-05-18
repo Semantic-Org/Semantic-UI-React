@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Accordion, Icon, Menu } from 'semantic-ui-react'
-import { createComponentHash } from 'docs/app/utils'
+import { examplePathToHash } from 'docs/app/utils'
 import { pure } from 'docs/app/HOC'
 import ComponentSidebarItem from './ComponentSidebarItem'
 
@@ -43,9 +43,8 @@ class ComponentSidebarSection extends Component {
     this.setState(prevState => ({ isActiveByUser: !prevState.isActiveByUser }))
 
   isActiveAccordion = (props = this.props) =>
-    (props.examples || []).findIndex(
-      item => createComponentHash(item.path) === props.activePath,
-    ) !== -1
+    (props.examples || []).findIndex(item => examplePathToHash(item.path) === props.activePath) !==
+    -1
 
   render() {
     const { activePath, examples, name } = this.props
@@ -62,7 +61,7 @@ class ComponentSidebarSection extends Component {
         <Accordion.Content as={Menu.Menu} active={active}>
           {_.map(examples, ({ title, path }) => (
             <ComponentSidebarItem
-              active={activePath === createComponentHash(path)}
+              active={activePath === examplePathToHash(path)}
               key={path}
               onClick={this.handleItemClick}
               path={path}
