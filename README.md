@@ -42,7 +42,7 @@
 
 See the [**Documentation**][2] for an introduction, usage information, and examples.
 
-## Built With Semantic UI React
+## Built With
 
 <img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/amazon-logo.png" />
 <img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/netflix-logo.png" />
@@ -160,6 +160,7 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 - Complete SUI component definition support
 - Completely documented
 - Completely tested
+- Accessible
 
 ## Credit
 
