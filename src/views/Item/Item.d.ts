@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
-import { default as ItemContent } from './ItemContent';
+import ItemContent from './ItemContent';
 import { default as ItemDescription, ItemDescriptionProps } from './ItemDescription';
-import { default as ItemExtra, ItemExtraProps} from './ItemExtra';
-import { default as ItemGroup } from './ItemGroup';
+import { default as ItemExtra, ItemExtraProps } from './ItemExtra';
+import ItemGroup from './ItemGroup';
 import { default as ItemHeader, ItemHeaderProps } from './ItemHeader';
 import { default as ItemImage, ItemImageProps } from './ItemImage';
 import { default as ItemMeta, ItemMetaProps } from './ItemMeta';

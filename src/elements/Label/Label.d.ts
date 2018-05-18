@@ -8,7 +8,7 @@ import {
 } from '../..';
 import { IconProps } from '../Icon';
 import { default as LabelDetail, LabelDetailProps } from './LabelDetail';
-import { default as LabelGroup } from './LabelGroup';
+import LabelGroup from './LabelGroup';
 
 export interface LabelProps {
   [key: string]: any;

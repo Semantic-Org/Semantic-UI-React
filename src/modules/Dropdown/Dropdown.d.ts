@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import { LabelProps } from '../../elements/Label';
-import { default as DropdownDivider } from './DropdownDivider';
-import { default as DropdownHeader } from './DropdownHeader';
+import DropdownDivider from './DropdownDivider';
+import DropdownHeader from './DropdownHeader';
 import { default as DropdownItem, DropdownItemProps } from './DropdownItem';
-import { default as DropdownMenu } from './DropdownMenu';
-import { default as DropdownSearchInput } from './DropdownSearchInput';
+import DropdownMenu from './DropdownMenu';
+import DropdownSearchInput from './DropdownSearchInput';
 
 export interface DropdownProps {
   [key: string]: any;
@@ -66,7 +66,7 @@ export interface DropdownProps {
   defaultValue?: string | number | Array<number | string>;
 
   /** A dropdown menu can open to the left or to the right. */
-  direction?: 'left'  | 'right';
+  direction?: 'left' | 'right';
 
   /** A disabled dropdown menu or item does not allow user interaction. */
   disabled?: boolean;
@@ -185,7 +185,10 @@ export interface DropdownProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props, includes current value of searchQuery.
    */
-  onSearchChange?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownOnSearchChangeData) => void;
+  onSearchChange?: (
+    event: React.SyntheticEvent<HTMLElement>,
+    data: DropdownOnSearchChangeData
+  ) => void;
 
   /** Controls whether or not the dropdown menu is displayed. */
   open?: boolean;
@@ -200,7 +203,16 @@ export interface DropdownProps {
   placeholder?: string;
 
   /** A dropdown can be formatted so that its menu is pointing. */
-  pointing?: boolean | 'left' | 'right' | 'top' | 'top left' | 'top right' | 'bottom' | 'bottom left' | 'bottom right';
+  pointing?:
+    | boolean
+    | 'left'
+    | 'right'
+    | 'top'
+    | 'top left'
+    | 'top right'
+    | 'bottom'
+    | 'bottom left'
+    | 'bottom right';
 
   /**
    * Mapped over the active items and returns shorthand for the active item Labels.
@@ -220,7 +232,9 @@ export interface DropdownProps {
    * A selection dropdown can allow a user to search through a large list of choices.
    * Pass a function here to replace the default search.
    */
-  search?: boolean | ((options: Array<DropdownItemProps>, value: string) => Array<DropdownItemProps>);
+  search?:
+    | boolean
+    | ((options: Array<DropdownItemProps>, value: string) => Array<DropdownItemProps>);
 
   /** A shorthand for a search input. */
   searchInput?: any;
