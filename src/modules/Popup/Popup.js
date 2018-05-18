@@ -129,10 +129,7 @@ export default class Popup extends Component {
     trigger: PropTypes.node,
 
     /** Popup width. */
-    wide: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['very']),
-    ]),
+    wide: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
 
     /** Element to be rendered within the confines of the viewport whenever possible. */
     keepInViewPort: PropTypes.bool,
@@ -170,7 +167,8 @@ export default class Popup extends Component {
     } else if (_.includes(positions, 'left')) {
       style.left = Math.round(this.coords.left + pageXOffset)
       style.right = 'auto'
-    } else { // if not left nor right, we are horizontally centering the element
+    } else {
+      // if not left nor right, we are horizontally centering the element
       const xOffset = (this.coords.width - this.popupCoords.width) / 2
       style.left = Math.round(this.coords.left + xOffset + pageXOffset)
       style.right = 'auto'
@@ -182,9 +180,10 @@ export default class Popup extends Component {
     } else if (_.includes(positions, 'bottom')) {
       style.top = Math.round(this.coords.bottom + pageYOffset)
       style.bottom = 'auto'
-    } else { // if not top nor bottom, we are vertically centering the element
+    } else {
+      // if not top nor bottom, we are vertically centering the element
       const yOffset = (this.coords.height + this.popupCoords.height) / 2
-      style.top = Math.round((this.coords.bottom + pageYOffset) - yOffset)
+      style.top = Math.round(this.coords.bottom + pageYOffset - yOffset)
       style.bottom = 'auto'
 
       const xOffset = this.popupCoords.width + 8
@@ -374,19 +373,23 @@ export default class Popup extends Component {
     const unhandled = getUnhandledProps(Popup, this.props)
     const portalPropNames = Portal.handledProps
 
-    const rest = _.reduce(unhandled, (acc, val, key) => {
-      if (!_.includes(portalPropNames, key)) acc[key] = val
+    const rest = _.reduce(
+      unhandled,
+      (acc, val, key) => {
+        if (!_.includes(portalPropNames, key)) acc[key] = val
 
-      return acc
-    }, {})
+        return acc
+      },
+      {},
+    )
     const portalProps = _.pick(unhandled, portalPropNames)
     const ElementType = getElementType(Popup, this.props)
 
     const popupJSX = (
       <ElementType {...rest} className={classes} style={style} ref={this.handlePopupRef}>
         {children}
-        {childrenUtils.isNil(children) && PopupHeader.create(header)}
-        {childrenUtils.isNil(children) && PopupContent.create(content)}
+        {childrenUtils.isNil(children) && PopupHeader.create(header, { autoGenerateKey: false })}
+        {childrenUtils.isNil(children) && PopupContent.create(content, { autoGenerateKey: false })}
       </ElementType>
     )
 
