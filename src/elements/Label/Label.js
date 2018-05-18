@@ -5,7 +5,6 @@ import React, { Component } from 'react'
 
 import {
   childrenUtils,
-  createShorthand,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -204,9 +203,7 @@ export default class Label extends Component {
         {Icon.create(icon, { autoGenerateKey: false })}
         {typeof image !== 'boolean' && Image.create(image, { autoGenerateKey: false })}
         {content}
-        {createShorthand(LabelDetail, val => ({ content: val }), detail, {
-          autoGenerateKey: false,
-        })}
+        {LabelDetail.create(detail, { autoGenerateKey: false })}
         {onRemove &&
           Icon.create(removeIconShorthand, {
             autoGenerateKey: false,
