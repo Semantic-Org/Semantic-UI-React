@@ -10,7 +10,14 @@ import { Divider, Form, Grid, Menu, Segment, Visibility } from 'semantic-ui-reac
 
 import { Provider } from 'stardust'
 
-import { exampleContext, variablesContext, repoURL, scrollToAnchor } from 'docs/src/utils'
+import {
+  exampleContext,
+  variablesContext,
+  repoURL,
+  scrollToAnchor,
+  examplePathToHash,
+  getFormattedHash,
+} from 'docs/src/utils'
 import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
@@ -74,7 +81,7 @@ class ComponentExample extends PureComponent {
     const { examplePath } = this.props
     const sourceCode = this.getOriginalSourceCode()
 
-    this.anchorName = _.kebabCase(_.last(examplePath.split('/')))
+    this.anchorName = examplePathToHash(examplePath)
 
     const exampleElement = this.renderOriginalExample()
     const markup = renderToStaticMarkup(exampleElement)
@@ -95,7 +102,7 @@ class ComponentExample extends PureComponent {
     return showCode || showHTML || showVariables
   }
 
-  isActiveHash = () => this.anchorName === this.props.location.hash.replace('#', '')
+  isActiveHash = () => this.anchorName === getFormattedHash(this.props.location.hash)
 
   updateHash = () => {
     if (this.isActiveState()) this.setHashAndScroll()
