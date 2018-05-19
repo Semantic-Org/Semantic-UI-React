@@ -15,8 +15,27 @@ class ListItem extends React.Component {
 
   static propTypes = {
     contentMedia: PropTypes.any,
+
+    /**
+     * Shorthand for primary content.
+     *
+     * Heads up!
+     *
+     * This is handled slightly differently than the typical `content` prop since
+     * the wrapping ListContent is not used when there's no icon or image.
+     *
+     * If you pass content as:
+     * - an element/literal, it's treated as the sibling node to
+     * header/description (whether wrapped in Item.Content or not).
+     * - a props object, it forces the presence of Item.Content and passes those
+     * props to it. If you pass a content prop within that props object, it
+     * will be treated as the sibling node to header/description.
+     */
     content: PropTypes.any,
+
+    /** Toggle debug mode */
     debugLayout: PropTypes.bool,
+
     header: PropTypes.any,
     headerMedia: PropTypes.any,
 

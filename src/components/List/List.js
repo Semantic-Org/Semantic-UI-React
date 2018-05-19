@@ -11,14 +11,34 @@ class List extends React.Component {
   }
 
   static propTypes = {
+    /** Toggle debug mode */
     debugLayout: PropTypes.bool,
-    items: PropTypes.arrayOf(PropTypes.object),
+
+    /** Shorthand array of props for ListItem. */
+    items: PropTypes.arrayOf(PropTypes.any),
+
+    /** A selection list formats list items as possible choices. */
     selection: PropTypes.bool,
+
+    /** Truncates content */
     truncateContent: PropTypes.bool,
+
+    /** Truncates header */
     truncateHeader: PropTypes.bool,
+
+    /** Variables */
     variables: PropTypes.object,
+
+    /**
+     * Renderer for each item in the List
+     *
+     * @param {ListItemProps} props - props passed to each ListItem
+     * @param {any} item - Item in the list
+     */
     renderItem: PropTypes.func,
+
     children: PropTypes.arrayOf(PropTypes.any),
+
     rest: PropTypes.object,
   }
 
