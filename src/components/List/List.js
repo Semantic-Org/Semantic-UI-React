@@ -37,7 +37,7 @@ class List extends React.Component {
      */
     renderItem: PropTypes.func,
 
-    children: PropTypes.arrayOf(PropTypes.any),
+    children: PropTypes.node,
 
     rest: PropTypes.object,
   }

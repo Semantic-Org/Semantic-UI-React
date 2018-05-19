@@ -89,6 +89,7 @@ class ListItem extends React.Component {
         </div>
       )
     },
+
     renderHeaderArea: (props, state) => {
       const { debugLayout, header, headerMedia, truncateHeader, styles } = props
       const { isHovering } = state
