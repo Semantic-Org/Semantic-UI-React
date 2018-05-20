@@ -27,7 +27,7 @@ const ModalExampleScrollingContent = () => (
     </Modal.Content>
     <Modal.Actions>
       <Button primary>
-        Proceed <Icon name='right chevron' />
+        Proceed <Icon name='chevron right' />
       </Button>
     </Modal.Actions>
   </Modal>
