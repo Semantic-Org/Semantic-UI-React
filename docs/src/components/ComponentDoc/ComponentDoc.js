@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
@@ -6,7 +5,7 @@ import { withRouter } from 'react-router'
 import { Grid, Icon } from 'semantic-ui-react'
 
 import withDocInfo from 'docs/src/hoc/withDocInfo'
-import { scrollToAnchor } from 'docs/src/utils'
+import { scrollToAnchor, examplePathToHash, getFormattedHash } from 'docs/src/utils'
 import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
@@ -49,6 +48,16 @@ class ComponentDoc extends Component {
 
   state = {}
 
+  componentWillMount() {
+    const { history } = this.props
+
+    if (location.hash) {
+      const activePath = getFormattedHash(location.hash)
+      history.replace(`${location.pathname}#${activePath}`)
+      this.setState({ activePath })
+    }
+  }
+
   getChildContext() {
     return {
       onPassed: this.handleExamplePassed,
@@ -61,16 +70,23 @@ class ComponentDoc extends Component {
     if (current !== next) this.setState({ activePath: undefined })
   }
 
-  handleExamplePassed = (e, { examplePath }) => this.setState({ activePath: examplePath })
+  handleExamplePassed = (e, { examplePath }) =>
+    this.setState({ activePath: examplePathToHash(examplePath) })
 
   handleExamplesRef = examplesRef => this.setState({ examplesRef })
 
   handleSidebarItemClick = (e, { path }) => {
     const { history } = this.props
-    const aPath = _.kebabCase(_.last(path.split('/')))
+    const aPath = examplePathToHash(path)
 
     history.replace(`${location.pathname}#${aPath}`)
-    scrollToAnchor()
+    // set active hash path
+    this.setState(
+      {
+        activePath: aPath,
+      },
+      scrollToAnchor,
+    )
   }
 
   render() {
