@@ -12,11 +12,12 @@ import { Provider } from 'stardust'
 
 import {
   exampleContext,
-  variablesContext,
-  repoURL,
-  scrollToAnchor,
   examplePathToHash,
   getFormattedHash,
+  knobsContext,
+  repoURL,
+  scrollToAnchor,
+  variablesContext,
 } from 'docs/src/utils'
 import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
@@ -37,12 +38,6 @@ const babelConfig = {
   ],
 }
 
-const headerColumnStyle = {
-  // provide room for absolutely positions toggle code icons
-  minHeight: '4em',
-  paddingRight: '7em',
-}
-
 const childrenStyle = {
   paddingTop: 0,
   maxWidth: '50rem',
@@ -60,7 +55,7 @@ const errorStyle = {
  * Allows toggling the the raw `code` code block.
  */
 class ComponentExample extends PureComponent {
-  state = {}
+  state = { knobs: {} }
 
   static contextTypes = {
     onPassed: PropTypes.func,
@@ -79,20 +74,36 @@ class ComponentExample extends PureComponent {
 
   componentWillMount() {
     const { examplePath } = this.props
-    const sourceCode = this.getOriginalSourceCode()
-
     this.anchorName = examplePathToHash(examplePath)
 
     const exampleElement = this.renderOriginalExample()
-    const markup = renderToStaticMarkup(exampleElement)
 
     this.setState({
       exampleElement,
       handleMouseLeave: this.handleMouseLeave,
       handleMouseMove: this.handleMouseMove,
       showCode: this.isActiveHash(),
-      sourceCode,
-      markup,
+      sourceCode: this.getOriginalSourceCode(),
+      markup: renderToStaticMarkup(exampleElement),
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // deactivate examples when switching from one to the next
+    if (
+      this.isActiveHash() &&
+      this.isActiveState() &&
+      this.props.location.hash !== nextProps.location.hash
+    ) {
+      this.clearActiveState()
+    }
+  }
+
+  clearActiveState = () => {
+    this.setState({
+      showCode: false,
+      showHTML: false,
+      showVariables: false,
     })
   }
 
@@ -121,11 +132,7 @@ class ComponentExample extends PureComponent {
 
     history.replace(location.pathname)
 
-    this.setState({
-      showCode: false,
-      showHTML: false,
-      showVariables: false,
-    })
+    this.clearActiveState()
   }
 
   handleDirectLinkClick = () => {
@@ -203,11 +210,15 @@ class ComponentExample extends PureComponent {
     return this.sourceCode
   }
 
+  getKnobsFilename = () => `./${this.props.examplePath}.knobs.js`
+
   getKebabExamplePath = () => {
     if (!this.kebabExamplePath) this.kebabExamplePath = _.kebabCase(this.props.examplePath)
 
     return this.kebabExamplePath
   }
+
+  hasKnobs = () => _.includes(knobsContext.keys(), this.getKnobsFilename())
 
   renderError = _.debounce((error) => {
     this.setState({ error })
@@ -312,9 +323,45 @@ class ComponentExample extends PureComponent {
     }
   }, 100)
 
+  handleKnobChange = (knobs) => {
+    this.setState(
+      prevState => ({
+        knobs: {
+          ...prevState.knobs,
+          ...knobs,
+        },
+      }),
+      this.renderSourceCode,
+    )
+  }
+
+  getKnobsComponent = () => {
+    if (typeof this.KnobsComponent !== 'undefined') {
+      return this.KnobsComponent
+    }
+
+    this.KnobsComponent = this.hasKnobs() ? knobsContext(this.getKnobsFilename()).default : null
+
+    return this.KnobsComponent
+  }
+
+  getKnobsValue = () => {
+    const Knobs = this.getKnobsComponent()
+
+    return Knobs ? { ...Knobs.defaultProps, ...this.state.knobs } : null
+  }
+
+  renderKnobs = () => {
+    const Knobs = this.getKnobsComponent()
+
+    return Knobs ? <Knobs {...this.getKnobsValue()} onKnobChange={this.handleKnobChange} /> : null
+  }
+
+  getComponentName = () => this.props.examplePath.split('/')[1]
+
   renderWithProvider = ExampleComponent => (
     <Provider componentVariables={this.state.componentVariables}>
-      <ExampleComponent />
+      <ExampleComponent knobs={this.getKnobsValue()} />
     </Provider>
   )
 
@@ -323,44 +370,18 @@ class ComponentExample extends PureComponent {
   }
 
   setGitHubHrefs = () => {
-    const { examplePath, location } = this.props
+    const { examplePath } = this.props
 
     if (this.ghEditHref && this.ghBugHref) return
 
     // get component name from file path:
     // elements/Button/Types/ButtonButtonExample
     const pathParts = examplePath.split(__PATH_SEP__)
-    const componentName = pathParts[1]
     const filename = pathParts[pathParts.length - 1]
 
     this.ghEditHref = [
       `${repoURL}/edit/master/docs/src/examples/${examplePath}.js`,
       `?message=docs(${filename}): your description`,
-    ].join('')
-
-    this.ghBugHref = [
-      `${repoURL}/issues/new?`,
-      _.map(
-        {
-          title: `fix(${componentName}): your description`,
-          body: [
-            '**Steps to Reproduce**',
-            '1. Do something',
-            '2. Do something else.',
-            '',
-            '**Expected**',
-            `The ${componentName} should do this`,
-            '',
-            '**Result**',
-            `The ${componentName} does not do this`,
-            '',
-            '**Testcase**',
-            `If the docs show the issue, use: ${location.href}`,
-            'Otherwise, fork this to get started: http://codepen.io/levithomason/pen/ZpBaJX',
-          ].join('\n'),
-        },
-        (val, key) => `${key}=${encodeURIComponent(val)}`,
-      ).join('&'),
     ].join('')
   }
 
@@ -393,14 +414,6 @@ class ComponentExample extends PureComponent {
             icon='github'
             content='Edit'
             href={this.ghEditHref}
-            target='_blank'
-          />
-          <Menu.Item
-            active={!!error} // to show the color
-            color={color}
-            icon='bug'
-            content='Issue'
-            href={this.ghBugHref}
             target='_blank'
           />
         </Menu>
@@ -460,11 +473,10 @@ class ComponentExample extends PureComponent {
   }
 
   renderVariables = () => {
-    const { examplePath } = this.props
     const { showVariables } = this.state
     if (!showVariables) return
 
-    const name = examplePath.split('/')[1]
+    const name = this.getComponentName()
 
     return (
       <div>
@@ -519,7 +531,7 @@ class ComponentExample extends PureComponent {
   }
 
   render() {
-    const { children, description, suiVersion, title } = this.props
+    const { children, description, location, suiVersion, title } = this.props
     const {
       handleMouseLeave,
       handleMouseMove,
@@ -532,9 +544,13 @@ class ComponentExample extends PureComponent {
 
     const isActive = this.isActiveHash() || this.isActiveState()
 
+    const isInFocus = !location.hash || (location.hash && (this.isActiveHash() || isHovering))
+
     const exampleStyle = {
       position: 'relative',
-      transition: 'box-shadow 200ms, background 200ms',
+      transition: 'box-shadow 200ms, background 200ms, opacity 200ms, filter 200ms',
+      opacity: isInFocus ? 1 : 0.4,
+      filter: isInFocus ? 'grayscale(0)' : 'grayscale(1)',
       ...(isActive
         ? {
           background: '#fff',
@@ -547,6 +563,8 @@ class ComponentExample extends PureComponent {
         }),
     }
 
+    const knobs = this.renderKnobs()
+
     return (
       <Visibility once={false} onTopPassed={this.handlePass} onTopPassedReverse={this.handlePass}>
         <Grid
@@ -558,7 +576,7 @@ class ComponentExample extends PureComponent {
           style={exampleStyle}
         >
           <Grid.Row>
-            <Grid.Column style={headerColumnStyle} width={12}>
+            <Grid.Column width={12}>
               <ComponentExampleTitle
                 description={description}
                 title={title}
@@ -580,9 +598,17 @@ class ComponentExample extends PureComponent {
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row columns={1}>
-            {children && <Grid.Column style={childrenStyle}>{children}</Grid.Column>}
-          </Grid.Row>
+          {children && (
+            <Grid.Row columns={1}>
+              <Grid.Column style={childrenStyle}>{children}</Grid.Column>
+            </Grid.Row>
+          )}
+
+          {knobs && (
+            <Grid.Row columns={1}>
+              <Grid.Column>{knobs}</Grid.Column>
+            </Grid.Row>
+          )}
 
           <Grid.Row columns={1}>
             <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
