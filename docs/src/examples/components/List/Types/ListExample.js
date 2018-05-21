@@ -27,6 +27,6 @@ const listItems = [
   },
 ]
 
-const ListExampleDefault = () => <List items={listItems} />
+const ListExampleDefault = ({ knobs }) => <List debug={knobs.debug} items={listItems} />
 
 export default ListExampleDefault
