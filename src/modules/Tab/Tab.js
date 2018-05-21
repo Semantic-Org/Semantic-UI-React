@@ -100,7 +100,6 @@ class Tab extends Component {
     if (renderActiveOnly) return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props)
     return _.map(panes, ({ pane }, index) =>
       TabPane.create(pane, {
-        autoGenerateKey: false,
         overrideProps: {
           active: index === activeIndex,
         },
