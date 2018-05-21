@@ -46,6 +46,10 @@ const errorStyle = {
   background: '#fff2f2',
 }
 
+const controlsWrapperStyle = {
+  minHeight: '3rem',
+}
+
 /**
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
@@ -466,7 +470,7 @@ class ComponentExample extends PureComponent {
                 suiVersion={suiVersion}
               />
             </Grid.Column>
-            <Grid.Column textAlign='right' width={4}>
+            <Grid.Column textAlign='right' width={4} style={controlsWrapperStyle}>
               <ComponentControls
                 anchorName={this.anchorName}
                 onCopyLink={this.handleDirectLinkClick}
