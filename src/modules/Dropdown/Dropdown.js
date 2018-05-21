@@ -138,7 +138,7 @@ export default class Dropdown extends Component {
     item: PropTypes.bool,
 
     /** A dropdown can open its menu upward when there is not enough space downward. */
-    keepInViewPort: PropTypes.bool,
+    keepInViewPort: customPropTypes.every([customPropTypes.disallow(['upward']), PropTypes.bool]),
 
     /** A dropdown can be labeled. */
     labeled: PropTypes.bool,
@@ -339,7 +339,7 @@ export default class Dropdown extends Component {
     ]),
 
     /** A dropdown can open upward. */
-    upward: PropTypes.bool,
+    upward: customPropTypes.every([customPropTypes.disallow(['keepInViewPort']), PropTypes.bool]),
 
     /**
      * A dropdown will go to the last element when ArrowUp is pressed on the first,
