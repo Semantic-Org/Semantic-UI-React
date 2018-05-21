@@ -311,6 +311,8 @@ class ComponentExample extends PureComponent {
     }
   }, 100)
 
+  getComponentName = () => this.props.examplePath.split('/')[1]
+
   handleChangeCode = (sourceCode) => {
     this.setState({ sourceCode }, this.renderSourceCode)
   }

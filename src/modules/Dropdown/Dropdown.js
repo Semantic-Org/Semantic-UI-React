@@ -1212,7 +1212,7 @@ export default class Dropdown extends Component {
 
     return (
       <DropdownMenu {...ariaOptions} direction={direction} open={open}>
-        {DropdownHeader.create(header)}
+        {DropdownHeader.create(header, { autoGenerateKey: false })}
         {this.renderOptions()}
       </DropdownMenu>
     )
@@ -1302,6 +1302,7 @@ export default class Dropdown extends Component {
         {trigger || this.renderText()}
         {Icon.create(icon, {
           overrideProps: this.handleIconOverrides,
+          autoGenerateKey: false,
         })}
         {this.renderMenu()}
       </ElementType>

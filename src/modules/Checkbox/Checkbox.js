@@ -251,7 +251,9 @@ export default class Checkbox extends Component {
          Heads Up!
          Do not remove empty labels, they are required by SUI CSS
          */}
-        {createHTMLLabel(label, { defaultProps: { htmlFor: id } }) || <label htmlFor={id} />}
+        {createHTMLLabel(label, { defaultProps: { htmlFor: id }, autoGenerateKey: false }) || (
+          <label htmlFor={id} />
+        )}
       </ElementType>
     )
   }

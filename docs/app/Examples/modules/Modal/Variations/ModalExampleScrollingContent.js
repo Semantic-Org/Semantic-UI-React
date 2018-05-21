@@ -6,11 +6,7 @@ const ModalExampleScrollingContent = () => (
   <Modal trigger={<Button>Scrolling Content Modal</Button>}>
     <Modal.Header>Profile Picture</Modal.Header>
     <Modal.Content image scrolling>
-      <Image
-        size='medium'
-        src='/assets/images/wireframe/image.png'
-        wrapped
-      />
+      <Image size='medium' src='/assets/images/wireframe/image.png' wrapped />
 
       <Modal.Description>
         <Header>Modal Header</Header>
@@ -34,4 +30,3 @@ const ModalExampleScrollingContent = () => (
 )
 
 export default ModalExampleScrollingContent
-
