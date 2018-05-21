@@ -34,7 +34,7 @@ class ListItem extends React.Component {
     content: PropTypes.any,
 
     /** Toggle debug mode */
-    debugLayout: PropTypes.bool,
+    debug: PropTypes.bool,
 
     header: PropTypes.any,
     headerMedia: PropTypes.any,
@@ -60,11 +60,7 @@ class ListItem extends React.Component {
 
   static defaultProps = {
     renderMainArea: (props, state) => {
-      const {
-        // debugLayout,
-        renderHeaderArea,
-        renderContentArea,
-      } = props
+      const { renderHeaderArea, renderContentArea } = props
 
       const headerArea = renderHeaderArea(props, state)
       const contentArea = renderContentArea(props, state)
@@ -72,7 +68,6 @@ class ListItem extends React.Component {
       return (
         <div
           className='list-item__main'
-          // debug={debugLayout}
           // vertical
           // disappearing
           // rootCSS={{
@@ -91,7 +86,7 @@ class ListItem extends React.Component {
     },
 
     renderHeaderArea: (props, state) => {
-      const { debugLayout, header, headerMedia, truncateHeader, styles } = props
+      const { debug, header, headerMedia, truncateHeader, styles } = props
       const { isHovering } = state
 
       const classes = classNames('list-item__header', styles.header)
@@ -102,7 +97,7 @@ class ListItem extends React.Component {
           className={classes}
           alignItems='end'
           gap='.8rem'
-          debug={debugLayout}
+          debug={debug}
           // disappearing={!truncateHeader}
           truncateMain={truncateHeader}
           rootCSS={isHovering && { color: 'inherit' }}
@@ -113,7 +108,7 @@ class ListItem extends React.Component {
     },
 
     renderContentArea: (props, state) => {
-      const { debugLayout, content, contentMedia, styles, truncateContent } = props
+      const { debug, content, contentMedia, styles, truncateContent } = props
       const { isHovering } = state
 
       const classes = classNames('list-item__content', styles.content)
@@ -123,7 +118,7 @@ class ListItem extends React.Component {
           className={classes}
           alignItems='start'
           gap='.8rem'
-          debug={debugLayout}
+          debug={debug}
           // disappearing={!truncateContent}
           truncateMain={truncateContent}
           rootCSS={isHovering && { color: 'inherit' }}
@@ -145,7 +140,7 @@ class ListItem extends React.Component {
   }
 
   render() {
-    const { debugLayout, media, renderMainArea, rest, styles, hasMarkers } = this.props
+    const { debug, media, renderMainArea, rest, styles, hasMarkers } = this.props
 
     const { isHovering } = this.state
 
@@ -158,7 +153,7 @@ class ListItem extends React.Component {
         alignItems='center'
         gap='.8rem'
         className={classNames('list-item', styles.root)}
-        debug={debugLayout}
+        debug={debug}
         reducing
         start={startArea}
         main={mainArea}

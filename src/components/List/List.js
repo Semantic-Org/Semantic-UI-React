@@ -12,7 +12,7 @@ class List extends React.Component {
 
   static propTypes = {
     /** Toggle debug mode */
-    debugLayout: PropTypes.bool,
+    debug: PropTypes.bool,
 
     /** Shorthand array of props for ListItem. */
     items: PropTypes.arrayOf(PropTypes.any),
@@ -49,7 +49,7 @@ class List extends React.Component {
       <ListItem
         // TODO: use real keys
         key={item.header || item.content}
-        debugLayout={props.debugLayout}
+        debug={props.debug}
         selection={props.selection}
         truncateContent={props.truncateContent}
         truncateHeader={props.truncateHeader}
