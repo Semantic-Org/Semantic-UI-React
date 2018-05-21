@@ -54,6 +54,33 @@ export function lastMonth(date) {
 }
 
 /**
+* Returns day of week (0 - 6) for a given date.
+* The returned day depends on the first day of the week.
+*/
+export function dayOfWeekForDate(date, firstDayOfWeek) {
+  const DAYS_IN_WEEK = 7
+
+  let dayOfWeek = date.getDay() - firstDayOfWeek
+  if (dayOfWeek < 0) {
+    dayOfWeek = DAYS_IN_WEEK - date.getDay() - firstDayOfWeek
+  }
+  return dayOfWeek
+}
+
+/**
+* Return number of weeks in a month.
+*/
+export function weeksInMonth(date, firstDayOfWeek) {
+  const DAYS_IN_WEEK = 7
+
+  const _firstOfMonth = getFirstOfMonth(date)
+  const _daysInMonth = daysInMonth(date)
+  const _offset = dayOfWeekForDate(_firstOfMonth, firstDayOfWeek)
+
+  return Math.ceil((_daysInMonth + _offset) / DAYS_IN_WEEK)
+}
+
+/**
  * Return yesterday from date
  */
 export function yesterday(date) {

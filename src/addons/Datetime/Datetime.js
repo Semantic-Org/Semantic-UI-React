@@ -164,10 +164,7 @@ export default class Datetime extends Component {
     hourFormatter: dateUtils.defaultHourFormatter,
     date: true,
     time: true,
-  }
-
-  state = {
-    value: new Date(),
+    defaultValue: new Date(),
   }
 
   componentWillMount() {
@@ -227,11 +224,16 @@ export default class Datetime extends Component {
   }
 
   setPage = (e, count) => {
-    const { mode, value } = this.props
+    const { mode, value } = this.state
 
     switch (mode) {
+      case 'minute':
+      case 'hour':
+        this.setDate(e, value.getDate() + count, mode)
+        break
+
       case 'day':
-        this.setMonth(e, { page: count })
+        this.setMonth(e, value.getMonth() + count, mode)
         break
 
       case 'month':
@@ -239,7 +241,7 @@ export default class Datetime extends Component {
         break
 
       case 'year':
-        this.setYear(e, value.getFullYear() + (count * 16), mode)
+        this.setYear(e, value.getFullYear() + (count * 9), mode)
         break
 
       default:
@@ -248,34 +250,35 @@ export default class Datetime extends Component {
   }
 
   handleChangeMode = (e, { mode }) => {
+    this.trySetState({ mode })
     _.invokeArgs('onDateChange', [e, { ...this.props, mode }], this.props)
   }
 
-  setMonth = (e, props) => {
-    const { value, page } = props
-    const mode = 'day'
-    const month = !value && page
-      ? value.getMonth() + page
-      : value
+  setMonth = (e, month, mode) => {
+    const { value } = this.state
 
-    value.setMonth(month)
-    _.invokeArgs('onDateChange', [e, { ...this.props, value, mode }], this.props)
+    const newValue = new Date(value)
+    newValue.setMonth(month)
+    this.trySetState({ value: newValue })
+    _.invokeArgs('onDateChange', [e, { ...this.props, value: newValue, mode }], this.props)
   }
 
-  setDay = (e, day) => {
-    const { time, value } = this.props
+  setDate = (e, date, mode) => {
+    const { value } = this.state
 
-    value.setDate(day)
-
-    const mode = time ? 'hour' : null
-    _.invokeArgs('onDateChange', [e, { ...this.props, value, mode }], this.props)
+    const newValue = new Date(value)
+    newValue.setDate(date)
+    this.trySetState({ value: newValue })
+    _.invokeArgs('onDateChange', [e, { ...this.props, newValue, mode }], this.props)
   }
 
-  setYear = (e, year, mode = 'day') => {
-    const { value } = this.props
+  setYear = (e, year, mode) => {
+    const { value } = this.state
 
-    value.setYear(year)
-    _.invokeArgs('onDateChange', [e, { ...this.props, value, mode }], this.props)
+    const newValue = new Date(value)
+    newValue.setYear(year)
+    this.trySetState({ value: newValue })
+    _.invokeArgs('onDateChange', [e, { ...this.props, value: newValue, mode }], this.props)
   }
 
   setHour = (e, hour, mode = 'minute') => {

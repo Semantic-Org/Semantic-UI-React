@@ -75,41 +75,32 @@ export default class DatetimeDays extends Component {
     const { disabledDates, firstDayOfWeek, value } = this.props
     const { selectionStart, selectionEnd } = this.state
 
-    const firstDayDate = new Date(value.getFullYear(), value.getMonth(), 1)
-    const day = firstDayDate.getDay()
-    const daysInMonth = new Date(value.getFullYear(), value.getMonth() + 1, 0).getDate()
-    const weeksInMonth = Math.ceil(daysInMonth / 7)
-    // TODO: last month
-    const lastMonth = new Date(value)
-    lastMonth.setMonth(value.getMonth() - 1)
-    // TODO: days in month
-    // const prevDaysInMonth = lastMonth.daysInMonth()
-    const prevDaysInMonth = new Date(value.getFullYear(), value.getMonth() + 1, 0).getDate()
+    const firstOfMonth = dateUtils.getFirstOfMonth(value)
+    const daysInMonth = dateUtils.daysInMonth(value)
+    const weeksInMonth = dateUtils.weeksInMonth(value, firstDayOfWeek)
+    const previousMonth = dateUtils.lastMonth(value)
+    const daysInPreviousMonth = dateUtils.daysInMonth(previousMonth)
+
     // get a list of disabled date signatures
     const hasDisabledDates = !_.isEmpty(disabledDates)
     const disabledDateSig = _.map(date => dateUtils.getDateString(date), disabledDates)
 
-    // The real first day in relation to the sequence of calendar days (array index)
-    let realFirstWeekDay = day - firstDayOfWeek
-    // if the real first day is under 0, we want to shift it a week back
-    if (realFirstWeekDay < 0) {
-      realFirstWeekDay = 7 - day - firstDayOfWeek
-    }
+    const firstDayOfMonth = dateUtils.dayOfWeekForDate(firstOfMonth, firstDayOfWeek)
 
     let cellDay = 0
     let nextMonthDay = 0
 
     return _.range(0, weeksInMonth * 7).map((i) => {
       const cell = {
-        value: new Date(firstDayDate),
+        value: new Date(firstOfMonth),
       }
 
-      if (i >= realFirstWeekDay && cellDay < daysInMonth) {
+      if (i >= firstDayOfMonth && cellDay < daysInMonth) {
         cellDay += 1
         cell.content = cellDay
-      } else if (i < realFirstWeekDay) {
-        cell.content = prevDaysInMonth - realFirstWeekDay + i + 1
-        cell.value.setMonth(lastMonth.getMonth())
+      } else if (i < firstDayOfMonth) {
+        cell.content = daysInPreviousMonth - firstDayOfMonth + i + 1
+        cell.value.setMonth(previousMonth.getMonth())
         cell.disabled = true
       } else if (i >= daysInMonth) {
         nextMonthDay += 1

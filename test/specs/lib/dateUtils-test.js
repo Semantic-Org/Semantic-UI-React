@@ -20,6 +20,29 @@ describe('dateUtils', () => {
     lastMonth.getMonth().should.equal(date.getMonth() - 1)
   })
 
+  it('dayOfWeekForDate returns day of a given date normalized by first day of week', () => {
+    const date = new Date('2018 05 06')
+    const sundayAsFirstDayOfWeek = 0
+    const mondayAsFirstDayOfWeek = 1
+
+    dateUtils.dayOfWeekForDate(date, sundayAsFirstDayOfWeek).should.equal(0)
+    dateUtils.dayOfWeekForDate(date, mondayAsFirstDayOfWeek).should.equal(6)
+  })
+
+  it('weeksInMonth returns the correct number of weeks in Sept (5) with Monday as first day of the week', () => {
+    const date = new Date('2018 09 11')
+    const firstDayOfWeek = 1
+
+    dateUtils.weeksInMonth(date, firstDayOfWeek).should.equal(5)
+  })
+
+  it('weeksInMonth returns the correct number of weeks in Sept (6) with Sunday as first day of the week', () => {
+    const date = new Date('2018 09 11')
+    const firstDayOfWeek = 0
+
+    dateUtils.weeksInMonth(date, firstDayOfWeek).should.equal(6)
+  })
+
   it('yesterday returns a day before a given date', () => {
     const date = new Date('2017 04 24')
     const yesterday = dateUtils.yesterday(date)
