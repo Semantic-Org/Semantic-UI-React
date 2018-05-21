@@ -5,9 +5,14 @@ import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 const Types = () => (
   <ExampleSection title='Types'>
     <ComponentExample
-      title='Simple Layout Example'
-      description='A basic example'
+      title='Layout'
+      description='A layout arranges content into areas.'
       examplePath='components/Layout/Types/LayoutExample'
+    />
+    <ComponentExample
+      title='Vertical'
+      description='A layout can display its areas vertically.'
+      examplePath='components/Layout/Types/LayoutExampleVertical'
     />
   </ExampleSection>
 )

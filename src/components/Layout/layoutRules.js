@@ -1,4 +1,4 @@
-import { debugRoot, debugArea } from '../../styles/debugRules'
+import { debugRoot, debugArea, debugGap } from '../../styles/debugRules'
 
 const truncateRule = {
   overflow: 'hidden',
@@ -46,6 +46,10 @@ const layoutRules = ({
       gridAutoFlow: 'row',
     }),
     ...rootCSS,
+  },
+
+  gap: {
+    ...(debug && debugGap({ vertical })),
   },
 
   start: {
