@@ -92,6 +92,9 @@ export interface DropdownProps {
   /** A dropdown can be formatted as a Menu item. */
   item?: boolean;
 
+  /** A dropdown can open its menu upward when there is not enough space downward. */
+  keepInViewPort?: boolean;
+
   /** A dropdown can be labeled. */
   labeled?: boolean;
 

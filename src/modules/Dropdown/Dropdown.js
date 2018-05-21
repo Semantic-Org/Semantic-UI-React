@@ -52,7 +52,10 @@ export default class Dropdown extends Component {
      * Allow user additions to the list of options (boolean).
      * Requires the use of `selection`, `options` and `search`.
      */
-    allowAdditions: customPropTypes.every([customPropTypes.demand(['options', 'selection', 'search']), PropTypes.bool]),
+    allowAdditions: customPropTypes.every([
+      customPropTypes.demand(['options', 'selection', 'search']),
+      PropTypes.bool,
+    ]),
 
     /** A Dropdown can reduce its complexity. */
     basic: PropTypes.bool,
@@ -63,7 +66,10 @@ export default class Dropdown extends Component {
     /** Primary content. */
     children: customPropTypes.every([
       customPropTypes.disallow(['options', 'selection']),
-      customPropTypes.givenProps({ children: PropTypes.any.isRequired }, PropTypes.element.isRequired),
+      customPropTypes.givenProps(
+        { children: PropTypes.any.isRequired },
+        PropTypes.element.isRequired,
+      ),
     ]),
 
     /** Additional classes. */
@@ -130,6 +136,9 @@ export default class Dropdown extends Component {
 
     /** A dropdown can be formatted as a Menu item. */
     item: PropTypes.bool,
+
+    /** A dropdown can open its menu upward when there is not enough space downward. */
+    keepInViewPort: PropTypes.bool,
 
     /** A dropdown can be labeled. */
     labeled: PropTypes.bool,
@@ -244,7 +253,16 @@ export default class Dropdown extends Component {
     /** A dropdown can be formatted so that its menu is pointing. */
     pointing: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(['left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right']),
+      PropTypes.oneOf([
+        'left',
+        'right',
+        'top',
+        'top left',
+        'top right',
+        'bottom',
+        'bottom left',
+        'bottom right',
+      ]),
     ]),
 
     /**
@@ -307,7 +325,10 @@ export default class Dropdown extends Component {
     text: PropTypes.string,
 
     /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
-    trigger: customPropTypes.every([customPropTypes.disallow(['selection', 'text']), PropTypes.node]),
+    trigger: customPropTypes.every([
+      customPropTypes.disallow(['selection', 'text']),
+      PropTypes.node,
+    ]),
 
     /** Current value or value array if multiple. Creates a controlled component. */
     value: PropTypes.oneOfType([
@@ -333,6 +354,7 @@ export default class Dropdown extends Component {
     closeOnBlur: true,
     deburr: false,
     icon: 'dropdown',
+    keepInViewPort: false,
     minCharacters: 1,
     noResultsMessage: 'No results found.',
     openOnFocus: true,
@@ -455,10 +477,15 @@ export default class Dropdown extends Component {
       debug('dropdown opened')
       this.attachHandlersOnOpen()
       this.scrollSelectedItemIntoView()
+      this.setOpenDirection()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
       this.handleClose()
-      eventStack.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+      eventStack.unsub('keydown', [
+        this.closeOnEscape,
+        this.moveSelectionOnKeyDown,
+        this.selectItemOnEnter,
+      ])
       eventStack.unsub('click', this.closeOnDocumentClick)
       if (!this.state.focus) {
         eventStack.unsub('keydown', this.removeItemOnBackspace)
@@ -783,12 +810,19 @@ export default class Dropdown extends Component {
 
         const re = new RegExp(_.escapeRegExp(strippedQuery), 'i')
 
-        filteredOptions = _.filter(filteredOptions, opt => re.test(deburr ? _.deburr(opt.text) : opt.text))
+        filteredOptions = _.filter(filteredOptions, opt =>
+          re.test(deburr ? _.deburr(opt.text) : opt.text),
+        )
       }
     }
 
     // insert the "add" item
-    if (allowAdditions && search && searchQuery && !_.some(filteredOptions, { text: searchQuery })) {
+    if (
+      allowAdditions &&
+      search &&
+      searchQuery &&
+      !_.some(filteredOptions, { text: searchQuery })
+    ) {
       const additionLabelElement = React.isValidElement(additionLabel)
         ? React.cloneElement(additionLabel, { key: 'addition-label' })
         : additionLabel || ''
@@ -896,7 +930,9 @@ export default class Dropdown extends Component {
       // Select the currently active item, if none, use the first item.
       // Multiple selects remove active items from the list,
       // their initial selected index should be 0.
-      newSelectedIndex = multiple ? firstIndex : this.getMenuItemIndexByValue(value, options) || enabledIndicies[0]
+      newSelectedIndex = multiple
+        ? firstIndex
+        : this.getMenuItemIndexByValue(value, options) || enabledIndicies[0]
     } else if (multiple) {
       // multiple selects remove options from the menu as they are made active
       // keep the selected index within range of the remaining items
@@ -1056,6 +1092,29 @@ export default class Dropdown extends Component {
     }
   }
 
+  setOpenDirection = () => {
+    if (!this.ref) return
+
+    const { keepInViewPort } = this.props
+    if (!keepInViewPort) return
+
+    const menu = this.ref.querySelector('.menu.visible')
+
+    if (!menu) return
+
+    const dropdownRect = this.ref.getBoundingClientRect()
+    const itemsHeight = menu.clientHeight
+    const spaceAtTheBottom =
+      document.documentElement.clientHeight - dropdownRect.y - dropdownRect.height - itemsHeight
+    const spaceAtTheTop = dropdownRect.y - itemsHeight
+
+    if (spaceAtTheBottom < 0 && spaceAtTheTop > 0) {
+      this.setState({ shouldOpenUpward: true })
+    } else {
+      this.setState({ shouldOpenUpward: false })
+    }
+  }
+
   open = (e) => {
     debug('open()')
 
@@ -1105,7 +1164,11 @@ export default class Dropdown extends Component {
     const { searchQuery, value, open } = this.state
     const hasValue = multiple ? !_.isEmpty(value) : !_.isNil(value) && value !== ''
 
-    const classes = cx(placeholder && !hasValue && 'default', 'text', search && searchQuery && 'filtered')
+    const classes = cx(
+      placeholder && !hasValue && 'default',
+      'text',
+      search && searchQuery && 'filtered',
+    )
     let _text = placeholder
     if (searchQuery) {
       _text = null
@@ -1182,7 +1245,9 @@ export default class Dropdown extends Component {
       return <div className='message'>{noResultsMessage}</div>
     }
 
-    const isActive = multiple ? optValue => _.includes(value, optValue) : optValue => optValue === value
+    const isActive = multiple
+      ? optValue => _.includes(value, optValue)
+      : optValue => optValue === value
 
     return _.map(options, (opt, i) =>
       DropdownItem.create({
@@ -1246,7 +1311,7 @@ export default class Dropdown extends Component {
       trigger,
       upward,
     } = this.props
-    const { open } = this.state
+    const { open, shouldOpenUpward } = this.state
 
     // Classes
     const classes = cx(
@@ -1273,7 +1338,7 @@ export default class Dropdown extends Component {
       useKeyOnly(selection, 'selection'),
       useKeyOnly(simple, 'simple'),
       useKeyOnly(scrolling, 'scrolling'),
-      useKeyOnly(upward, 'upward'),
+      useKeyOnly(upward || shouldOpenUpward, 'upward'),
 
       useKeyOrValueAndKey(pointing, 'pointing'),
       'dropdown',

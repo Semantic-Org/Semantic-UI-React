@@ -76,12 +76,10 @@ const DropdownUsageExamples = () => (
       description='A dropdown can render a node in place of the text.'
       examplePath='modules/Dropdown/Usage/DropdownExampleTrigger'
     />
-    <ComponentExample
-      examplePath='modules/Dropdown/Usage/DropdownExampleTriggerImage'
-    />
+    <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleTriggerImage' />
     <ComponentExample
       title='Multiple Custom Label'
-      description='A "multiple" dropdown can render customized label for selected items.'
+      description='A &quot;multiple&quot; dropdown can render customized label for selected items.'
       examplePath='modules/Dropdown/Usage/DropdownExampleMultipleCustomLabel'
     />
     <ComponentExample
@@ -100,8 +98,8 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleSearchQuery'
     >
       <Message info>
-        This example also shows how to override default bevahiour of the search query and keep entered value after
-        selection.
+        This example also shows how to override default bevahiour of the search query and keep
+        entered value after selection.
       </Message>
     </ComponentExample>
     <ComponentExample
@@ -120,19 +118,20 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleUpwardSelection'
     />
     <ComponentExample
+      title='Keep In Viewport'
+      description='A dropdown can open its menu upward when there is not enough space downward.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleKeepInViewPortSelection'
+    />
+    <ComponentExample
       title='Wrap Selection'
       description={[
         'A dropdown can enable or disable wrapping the selection to the start',
-        ' when it reaches the end and vice versa'].join('')}
+        ' when it reaches the end and vice versa',
+      ].join('')}
       examplePath='modules/Dropdown/Usage/DropdownExampleWrapSelectionFalse'
     />
-    <ComponentExample
-      examplePath='modules/Dropdown/Usage/DropdownExampleUpwardInline'
-    />
-    <ComponentExample
-      examplePath='modules/Dropdown/Usage/DropdownExampleUpward'
-    />
-
+    <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleUpwardInline' />
+    <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleUpward' />
   </ExampleSection>
 )
 
