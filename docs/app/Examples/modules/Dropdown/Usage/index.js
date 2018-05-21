@@ -117,6 +117,8 @@ const DropdownUsageExamples = () => (
       description='A dropdown can open its menu upward.'
       examplePath='modules/Dropdown/Usage/DropdownExampleUpwardSelection'
     />
+    <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleUpwardInline' />
+    <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleUpward' />
     <ComponentExample
       title='Keep In Viewport'
       description='A dropdown can open its menu upward when there is not enough space downward.'
@@ -130,8 +132,6 @@ const DropdownUsageExamples = () => (
       ].join('')}
       examplePath='modules/Dropdown/Usage/DropdownExampleWrapSelectionFalse'
     />
-    <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleUpwardInline' />
-    <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleUpward' />
   </ExampleSection>
 )
 
