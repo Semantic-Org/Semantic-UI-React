@@ -2578,26 +2578,4 @@ describe('Dropdown', () => {
         .should.have.prop('selected', true)
     })
   })
-
-  describe('keepInViewPort', () => {
-    it('is false by default', () => {
-      expect(Dropdown.defaultProps.keepInViewPort).to.equal(false)
-    })
-
-    it('will open downwards when false', () => {
-      wrapperMount(<Dropdown options={options} />)
-
-      wrapper.simulate('click')
-
-      wrapper.should.not.have.className('upward')
-    })
-
-    it('will open downwards when true and there is plenty of space to scroll', () => {
-      wrapperMount(<Dropdown options={options} keepInViewPort />)
-
-      wrapper.simulate('click')
-
-      wrapper.should.not.have.className('upward')
-    })
-  })
 })

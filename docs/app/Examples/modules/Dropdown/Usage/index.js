@@ -120,11 +120,6 @@ const DropdownUsageExamples = () => (
     <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleUpwardInline' />
     <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleUpward' />
     <ComponentExample
-      title='Keep In Viewport'
-      description='A dropdown can open its menu upward when there is not enough space downward.'
-      examplePath='modules/Dropdown/Usage/DropdownExampleKeepInViewPortSelection'
-    />
-    <ComponentExample
       title='Wrap Selection'
       description={[
         'A dropdown can enable or disable wrapping the selection to the start',

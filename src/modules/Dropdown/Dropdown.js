@@ -103,6 +103,9 @@ export default class Dropdown extends Component {
       PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     ]),
 
+    /** Initial value of upward. */
+    defaultUpward: PropTypes.bool,
+
     /** Initial value or value array if multiple. */
     defaultValue: PropTypes.oneOfType([
       PropTypes.number,
@@ -136,9 +139,6 @@ export default class Dropdown extends Component {
 
     /** A dropdown can be formatted as a Menu item. */
     item: PropTypes.bool,
-
-    /** A dropdown can open its menu upward when there is not enough space downward. */
-    keepInViewPort: customPropTypes.every([customPropTypes.disallow(['upward']), PropTypes.bool]),
 
     /** A dropdown can be labeled. */
     labeled: PropTypes.bool,
@@ -338,8 +338,8 @@ export default class Dropdown extends Component {
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number])),
     ]),
 
-    /** A dropdown can open upward. */
-    upward: customPropTypes.every([customPropTypes.disallow(['keepInViewPort']), PropTypes.bool]),
+    /** Controls whether the dropdown will open upward. */
+    upward: PropTypes.bool,
 
     /**
      * A dropdown will go to the last element when ArrowUp is pressed on the first,
@@ -354,7 +354,6 @@ export default class Dropdown extends Component {
     closeOnBlur: true,
     deburr: false,
     icon: 'dropdown',
-    keepInViewPort: false,
     minCharacters: 1,
     noResultsMessage: 'No results found.',
     openOnFocus: true,
@@ -365,7 +364,7 @@ export default class Dropdown extends Component {
     wrapSelection: true,
   }
 
-  static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value']
+  static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
 
   static _meta = {
     name: 'Dropdown',
@@ -476,8 +475,8 @@ export default class Dropdown extends Component {
     if (!prevState.open && this.state.open) {
       debug('dropdown opened')
       this.attachHandlersOnOpen()
-      this.scrollSelectedItemIntoView()
       this.setOpenDirection()
+      this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
       this.handleClose()
@@ -1095,24 +1094,17 @@ export default class Dropdown extends Component {
   setOpenDirection = () => {
     if (!this.ref) return
 
-    const { keepInViewPort } = this.props
-    if (!keepInViewPort) return
-
     const menu = this.ref.querySelector('.menu.visible')
 
     if (!menu) return
 
     const dropdownRect = this.ref.getBoundingClientRect()
-    const itemsHeight = menu.clientHeight
+    const menuHeight = menu.clientHeight
     const spaceAtTheBottom =
-      document.documentElement.clientHeight - dropdownRect.y - dropdownRect.height - itemsHeight
-    const spaceAtTheTop = dropdownRect.y - itemsHeight
+      document.documentElement.clientHeight - dropdownRect.y - dropdownRect.height - menuHeight
+    const spaceAtTheTop = dropdownRect.y - menuHeight
 
-    if (spaceAtTheBottom < 0 && spaceAtTheTop > 0) {
-      this.setState({ shouldOpenUpward: true })
-    } else {
-      this.setState({ shouldOpenUpward: false })
-    }
+    this.trySetState({ upward: spaceAtTheBottom < 0 && spaceAtTheTop > spaceAtTheBottom })
   }
 
   open = (e) => {
@@ -1309,9 +1301,8 @@ export default class Dropdown extends Component {
       scrolling,
       simple,
       trigger,
-      upward,
     } = this.props
-    const { open, shouldOpenUpward } = this.state
+    const { open, upward } = this.state
 
     // Classes
     const classes = cx(
@@ -1338,7 +1329,7 @@ export default class Dropdown extends Component {
       useKeyOnly(selection, 'selection'),
       useKeyOnly(simple, 'simple'),
       useKeyOnly(scrolling, 'scrolling'),
-      useKeyOnly(upward || shouldOpenUpward, 'upward'),
+      useKeyOnly(upward, 'upward'),
 
       useKeyOrValueAndKey(pointing, 'pointing'),
       'dropdown',
