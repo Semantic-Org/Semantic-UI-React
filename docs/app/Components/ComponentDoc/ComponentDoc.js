@@ -39,8 +39,10 @@ class ComponentDoc extends Component {
     path: PropTypes.string.isRequired,
     seeItems: PropTypes.arrayOf(
       PropTypes.shape({
-        description: PropTypes.string,
-        name: PropTypes.string,
+        docblock: PropTypes.shape({
+          description: PropTypes.string,
+        }),
+        displayName: PropTypes.string,
         type: PropTypes.string,
       }),
     ).isRequired,

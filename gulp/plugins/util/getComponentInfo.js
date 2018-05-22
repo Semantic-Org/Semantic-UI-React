@@ -39,6 +39,16 @@ const getComponentInfo = (filepath) => {
   // "Field" for "FormField" since it is accessed as "Form.Field" in the API
   info.subcomponentName = info.isParent ? null : info.displayName.replace(info.parent, '')
 
+  // add subcomponents
+  const subcomponentRegExp = new RegExp(`^${info.filenameWithoutExt}\\w+.js$`)
+
+  info.subcomponents = info.isParent
+    ? fs
+      .readdirSync(dir)
+      .filter(file => subcomponentRegExp.test(file))
+      .map(file => path.basename(file, path.extname(file)))
+    : null
+
   // where this component should be exported in the api
   info.apiPath = info.isChild ? `${info.parent}.${info.subcomponentName}` : null
 
@@ -55,7 +65,6 @@ const getComponentInfo = (filepath) => {
   delete info.description
 
   // file and path info
-  info.absPath = absPath
   info.repoPath = absPath
     .replace(`${process.cwd()}${path.sep}`, '')
     .replace(new RegExp(_.escapeRegExp(path.sep), 'g'), '/')

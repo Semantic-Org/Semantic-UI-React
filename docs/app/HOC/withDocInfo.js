@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import docInfo from 'docs/app/docgenInfo.json'
-import { getComponentGroup, getSeeItems, repoURL } from 'docs/app/utils'
+import { componentInfoContext, getComponentGroup, getSeeItems, repoURL } from 'docs/app/utils'
 
 const withDocInfo = ChildComponent =>
   class extends Component {
@@ -23,20 +22,19 @@ const withDocInfo = ChildComponent =>
     }
 
     computeProps = ({ name, parent, type }) => {
-      const { dockblock, path } = docInfo[name]
-      const { description } = dockblock
+      const info = componentInfoContext.fromComponentName(name)
 
-      const ghLink = `${repoURL}/blob/master/${path}`
+      const ghLink = `${repoURL}/blob/master/${info.repoPath}`
       const suiLink = `https://semantic-ui.com/${type}s/${name || parent}`.toLowerCase()
 
       return {
-        description,
+        description: info.dockblock.description,
         ghLink,
-        path,
+        repoPath: info.repoPath,
         suiLink,
-        componentGroup: getComponentGroup(docInfo, name),
+        componentGroup: getComponentGroup(name),
         componentName: name,
-        seeItems: getSeeItems(docInfo, name),
+        seeItems: getSeeItems(name),
       }
     }
 

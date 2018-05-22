@@ -1,21 +1,25 @@
-import _ from 'lodash/fp'
-import * as semanticUIReact from 'src'
+import componentInfoContext from './componentInfoContext'
 
-const getComponentGroup = (docInfo, componentName) => ({
-  [componentName]: {
-    description: _.get('dockblock.description', docInfo[componentName]),
-    props: _.get('props', docInfo[componentName]),
-  },
-  ..._.flow(
-    _.filter(component => _.get('_meta.parent', component) === componentName),
-    _.map('_meta.name'),
-    _.map(name => ({
-      name,
-      description: _.get('dockblock.description', docInfo[name]),
-      props: _.get('props', docInfo[name]),
-    })),
-    _.keyBy('name'),
-  )(semanticUIReact),
-})
+/**
+ * Returns a component's info.json file and subcomponent info.json files grouped by displayName.
+ * @param componentName
+ * @returns {{}}
+ */
+const getComponentGroup = (componentName) => {
+  const info = componentInfoContext.fromComponentName(componentName)
+
+  const group = {
+    [info.displayName]: info,
+  }
+
+  // add subcomponents
+  info.subcomponents.forEach((subcomponent) => {
+    const subInfo = componentInfoContext.fromComponentName(subcomponent)
+
+    group[subInfo.displayName] = subInfo
+  })
+
+  return group
+}
 
 export default getComponentGroup

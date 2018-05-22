@@ -1,14 +1,17 @@
-import _ from 'lodash/fp'
-import * as semanticUIReact from 'src'
+import componentInfoContext from './componentInfoContext'
 
-const getSeeItems = (docInfo, componentName) =>
-  _.map(({ description }) => {
-    const seeMeta = _.get('_meta', semanticUIReact[description])
+/**
+ * Returns a the info.json files for another component's @see tags.
+ *
+ * @param componentName
+ * @returns {{}[]}
+ */
+const getSeeItems = (componentName) => {
+  const info = componentInfoContext.fromComponentName(componentName)
 
-    if (!seeMeta) return null
-    const { type, name } = seeMeta
-
-    return { description, name, type }
-  }, _.filter(['title', 'see'], _.get('dockblock.tags', docInfo[componentName])))
+  return info.dockblock.tags
+    .filter(tag => tag.title === 'see')
+    .map(tag => componentInfoContext.fromComponentName(tag.description))
+}
 
 export default getSeeItems
