@@ -33,12 +33,12 @@ const componentInfo = componentCtx.keys().map((key) => {
   const filenameWithoutExt = path.basename(key, '.js')
   const name = doc.displayName
   const parent = doc.parent
-  const subComponentName = doc.subComponentName
+  const subcomponentName = doc.subcomponentName
 
   // name of the component, sub component, or plural parent for sub component groups
   // example, the "button" in class="ui button"
   const componentClassName = (doc.isChild
-    ? subComponentName.replace(/Group$/, `${doc.parent}s`)
+    ? subcomponentName.replace(/Group$/, `${doc.parent}s`)
     : name
   ).toLowerCase()
 
@@ -48,7 +48,7 @@ const componentInfo = componentCtx.keys().map((key) => {
     componentClassName,
     name,
     parent,
-    subComponentName,
+    subcomponentName,
     filePath,
     filename,
     filenameWithoutExt,

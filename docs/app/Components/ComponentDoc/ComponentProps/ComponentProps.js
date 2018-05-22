@@ -35,7 +35,8 @@ export default class ComponentProps extends Component {
 
   handleComponentClick = (e, { name }) => this.setState({ activeName: name })
 
-  handleToggle = () => this.setState({ activeName: this.state.activeName ? false : this.props.componentName })
+  handleToggle = () =>
+    this.setState({ activeName: this.state.activeName ? false : this.props.componentName })
 
   render() {
     const { componentGroup, componentName } = this.props
@@ -46,7 +47,7 @@ export default class ComponentProps extends Component {
     return (
       <div>
         <ComponentPropsHeader
-          hasSubComponents={componentNames.length > 1}
+          hasSubcomponents={componentNames.length > 1}
           showProps={!!activeName}
           onClick={this.handleToggle}
         />

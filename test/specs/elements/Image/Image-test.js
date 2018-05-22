@@ -9,7 +9,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Image', () => {
   common.isConformant(Image)
-  common.hasSubComponents(Image, [ImageGroup])
+  common.hasSubcomponents(Image, [ImageGroup])
   common.hasUIClassName(Image)
   common.rendersChildren(Image)
 
@@ -77,12 +77,10 @@ describe('Image', () => {
       Image.defaultProps.ui.should.equal(true)
     })
     it('adds the "ui" className when true', () => {
-      shallow(<Image ui />)
-        .should.have.className('ui')
+      shallow(<Image ui />).should.have.className('ui')
     })
     it('removes the "ui" className when false', () => {
-      shallow(<Image ui={false} />)
-        .should.not.have.className('ui')
+      shallow(<Image ui={false} />).should.not.have.className('ui')
     })
   })
 

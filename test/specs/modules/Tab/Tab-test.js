@@ -7,7 +7,7 @@ import { sandbox } from 'test/utils'
 
 describe('Tab', () => {
   common.isConformant(Tab)
-  common.hasSubComponents(Tab, [TabPane])
+  common.hasSubcomponents(Tab, [TabPane])
 
   const panes = [
     { menuItem: 'Tab 1', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },

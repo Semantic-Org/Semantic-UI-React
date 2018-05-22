@@ -10,7 +10,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Header', () => {
   common.hasUIClassName(Header)
-  common.hasSubComponents(Header, [HeaderContent, HeaderSubheader])
+  common.hasSubcomponents(Header, [HeaderContent, HeaderSubheader])
   common.rendersChildren(Header)
 
   common.implementsIconProp(Header)

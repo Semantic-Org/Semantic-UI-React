@@ -12,7 +12,7 @@ const syntheticEvent = { preventDefault: () => undefined }
 
 describe('Button', () => {
   common.isConformant(Button)
-  common.hasSubComponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
+  common.hasSubcomponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
   common.hasUIClassName(Button)
   common.rendersChildren(Button)
 
@@ -127,8 +127,12 @@ describe('Button', () => {
     })
 
     it('adds className icon given labelPosition and content', () => {
-      shallow(<Button labelPosition='left' icon='user' content='My Account' />).should.have.className('icon')
-      shallow(<Button labelPosition='right' icon='user' content='My Account' />).should.have.className('icon')
+      shallow(
+        <Button labelPosition='left' icon='user' content='My Account' />,
+      ).should.have.className('icon')
+      shallow(
+        <Button labelPosition='right' icon='user' content='My Account' />,
+      ).should.have.className('icon')
     })
   })
 
@@ -223,7 +227,10 @@ describe('Button', () => {
       shallow(<Button onClick={onClick} />).simulate('click', syntheticEvent)
 
       onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithExactly(syntheticEvent, { onClick, ...Button.defaultProps })
+      onClick.should.have.been.calledWithExactly(syntheticEvent, {
+        onClick,
+        ...Button.defaultProps,
+      })
     })
 
     it('is not called when is disabled', () => {

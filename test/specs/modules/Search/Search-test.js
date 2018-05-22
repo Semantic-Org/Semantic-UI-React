@@ -32,12 +32,13 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // ----------------------------------------
 // Options
 // ----------------------------------------
-const getOptions = (count = 5) => _.times(count, () => ({
-  title: _.times(3, faker.hacker.noun).join(' '),
-  description: _.times(3, faker.hacker.noun).join(' '),
-  image: 'foo.png',
-  price: faker.finance.amount(0, 100, 2, '$'),
-}))
+const getOptions = (count = 5) =>
+  _.times(count, () => ({
+    title: _.times(3, faker.hacker.noun).join(' '),
+    description: _.times(3, faker.hacker.noun).join(' '),
+    image: 'foo.png',
+    price: faker.finance.amount(0, 100, 2, '$'),
+  }))
 
 // -------------------------------
 // Common Assertions
@@ -77,7 +78,7 @@ describe('Search', () => {
   })
 
   common.isConformant(Search)
-  common.hasSubComponents(Search, [SearchCategory, SearchResult, SearchResults])
+  common.hasSubcomponents(Search, [SearchCategory, SearchResult, SearchResults])
   common.hasUIClassName(Search)
 
   common.propKeyOnlyToClassName(Search, 'category')
@@ -104,33 +105,28 @@ describe('Search', () => {
 
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
-      wrapperShallow(<Search />)
-        .simulate('mousedown')
+      wrapperShallow(<Search />).simulate('mousedown')
 
-      wrapper.instance()
-        .isMouseDown
-        .should.equal(true)
+      wrapper.instance().isMouseDown.should.equal(true)
 
       domEvent.mouseUp(document)
 
-      wrapper.instance()
-        .isMouseDown
-        .should.equal(false)
+      wrapper.instance().isMouseDown.should.equal(false)
     })
   })
 
   describe('icon', () => {
     it('defaults to a search icon', () => {
       Search.defaultProps.icon.should.equal('search')
-      wrapperRender(<Search />)
-        .should.contain.descendants('.search.icon')
+      wrapperRender(<Search />).should.contain.descendants('.search.icon')
     })
   })
 
   describe('active item', () => {
     it('defaults to no result active', () => {
-      wrapperRender(<Search results={options} minCharacters={0} />)
-        .should.not.contain.descendants('.result.active')
+      wrapperRender(<Search results={options} minCharacters={0} />).should.not.contain.descendants(
+        '.result.active',
+      )
     })
     it('defaults to the first item with selectFirstResult', () => {
       wrapperShallow(<Search results={options} minCharacters={0} selectFirstResult />)
@@ -201,17 +197,13 @@ describe('Search', () => {
       //
 
       // make sure first item is selected
-      wrapper
-        .find('.result.active')
-        .should.contain.text(opts[0].title)
+      wrapper.find('.result.active').should.contain.text(opts[0].title)
 
       // wrap selection to last item
       domEvent.keyDown(document, { key: 'ArrowUp' })
 
       // make sure last item is selected
-      wrapper
-        .find('.result.active')
-        .should.contain.text(_.tail(opts).title)
+      wrapper.find('.result.active').should.contain.text(_.tail(opts).title)
 
       // menu should be completely scrolled to the bottom
       const isMenuScrolledToBottom = menu.scrollTop + menu.clientHeight === menu.scrollHeight
@@ -227,9 +219,7 @@ describe('Search', () => {
       domEvent.keyDown(document, { key: 'ArrowDown' })
 
       // make sure first item is selected
-      wrapper
-        .find('.result.active')
-        .should.contain.text(opts[0].title)
+      wrapper.find('.result.active').should.contain.text(opts[0].title)
 
       // Note: For some reason the first item's offsetTop is not 0 so we need
       // to find the item's offsetTop and ensure it's at the top.
@@ -251,9 +241,7 @@ describe('Search', () => {
     })
     it('uses custom renderer', () => {
       const resultSpy = sandbox.spy(() => <div className='custom-result' />)
-      wrapperRender(
-        <Search results={options} minCharacters={0} resultRenderer={resultSpy} />,
-      )
+      wrapperRender(<Search results={options} minCharacters={0} resultRenderer={resultSpy} />)
 
       resultSpy.should.have.been.called.exactly(options.length)
 
@@ -267,7 +255,8 @@ describe('Search', () => {
     const categoryOptions = _.range(0, categoryLength).reduce((memo, index) => {
       const category = `${faker.hacker.noun()}-${index}`
 
-      memo[category] = { // eslint-disable-line no-param-reassign
+      // eslint-disable-next-line no-param-reassign
+      memo[category] = {
         name: category,
         results: getOptions(categoryResultsLength),
       }
@@ -276,7 +265,9 @@ describe('Search', () => {
     }, {})
 
     it('defaults to the first item with selectFirstResult', () => {
-      wrapperShallow(<Search results={categoryOptions} category minCharacters={0} selectFirstResult />)
+      wrapperShallow(
+        <Search results={categoryOptions} category minCharacters={0} selectFirstResult />,
+      )
 
       wrapper
         .find('SearchCategory')
@@ -289,7 +280,9 @@ describe('Search', () => {
         .should.have.prop('active', true)
     })
     it('moves down on arrow down when open', () => {
-      wrapperMount(<Search results={categoryOptions} category minCharacters={0} selectFirstResult />)
+      wrapperMount(
+        <Search results={categoryOptions} category minCharacters={0} selectFirstResult />,
+      )
 
       // open
       openSearchResults()
@@ -349,7 +342,7 @@ describe('Search', () => {
 
       wrapper
         .find('SearchResult')
-        .at((categoryLength * categoryResultsLength) - 1)
+        .at(categoryLength * categoryResultsLength - 1)
         .should.have.prop('active', true)
     })
     it('uses custom renderer', () => {
@@ -374,12 +367,12 @@ describe('Search', () => {
     it('uses default noResultsMessage', () => {
       wrapperMount(<Search results={[]} category minCharacters={0} />)
 
-      wrapper
-        .find('.message.empty')
-        .should.have.text('No results found.')
+      wrapper.find('.message.empty').should.have.text('No results found.')
     })
     it('closes the menu', () => {
-      wrapperMount(<Search results={categoryOptions} category minCharacters={0} selectFirstResult />)
+      wrapperMount(
+        <Search results={categoryOptions} category minCharacters={0} selectFirstResult />,
+      )
 
       openSearchResults()
       searchResultsIsOpen()
@@ -409,19 +402,14 @@ describe('Search', () => {
   describe('results menu', () => {
     it('opens after min characters', () => {
       const title = options[0].title
-      wrapperMount(<Search results={options} minCharacters={2} />)
-        .simulate('focus')
+      wrapperMount(<Search results={options} minCharacters={2} />).simulate('focus')
 
       searchResultsIsClosed()
 
-      wrapper
-        .find('input.prompt')
-        .simulate('change', { target: { value: title.slice(0, 1) } })
+      wrapper.find('input.prompt').simulate('change', { target: { value: title.slice(0, 1) } })
       searchResultsIsClosed()
 
-      wrapper
-        .find('input.prompt')
-        .simulate('change', { target: { value: title.slice(0, 2) } })
+      wrapper.find('input.prompt').simulate('change', { target: { value: title.slice(0, 2) } })
       searchResultsIsOpen()
     })
 
@@ -440,9 +428,7 @@ describe('Search', () => {
 
     it('closes on menu item click', () => {
       wrapperMount(<Search results={options} minCharacters={0} />)
-      const item = wrapper
-        .find('SearchResult')
-        .at(_.random(options.length - 1))
+      const item = wrapper.find('SearchResult').at(_.random(options.length - 1))
 
       // open
       openSearchResults()
@@ -455,9 +441,7 @@ describe('Search', () => {
 
     it('blurs after menu item click (mousedown)', () => {
       wrapperMount(<Search results={options} minCharacters={0} />)
-      const item = wrapper
-        .find('SearchResult')
-        .at(_.random(options.length - 1))
+      const item = wrapper.find('SearchResult').at(_.random(options.length - 1))
 
       // open
       openSearchResults()
@@ -518,13 +502,13 @@ describe('Search', () => {
       searchResultsIsClosed()
     })
     it('closes the menu when toggled from true to false', () => {
-      wrapperMount(<Search results={options} minCharacters={0} open />)
-        .setProps({ open: false })
+      wrapperMount(<Search results={options} minCharacters={0} open />).setProps({ open: false })
       searchResultsIsClosed()
     })
     it('opens the menu when toggled from false to true', () => {
-      wrapperMount(<Search results={options} minCharacters={0} open={false} />)
-        .setProps({ open: true })
+      wrapperMount(<Search results={options} minCharacters={0} open={false} />).setProps({
+        open: true,
+      })
       searchResultsIsOpen()
     })
   })
@@ -532,8 +516,7 @@ describe('Search', () => {
   describe('onBlur', () => {
     it('is called with (event, data) on search input blur', () => {
       const onBlur = sandbox.spy()
-      wrapperMount(<Search results={options} onBlur={onBlur} />)
-        .simulate('blur', nativeEvent)
+      wrapperMount(<Search results={options} onBlur={onBlur} />).simulate('blur', nativeEvent)
 
       onBlur.should.have.been.calledOnce()
       onBlur.should.have.been.calledWithMatch(nativeEvent, { onBlur, results: options })
@@ -543,8 +526,7 @@ describe('Search', () => {
   describe('onFocus', () => {
     it('is called with (event, data) on search input focus', () => {
       const onFocus = sandbox.spy()
-      wrapperMount(<Search results={options} onFocus={onFocus} />)
-        .simulate('focus', nativeEvent)
+      wrapperMount(<Search results={options} onFocus={onFocus} />).simulate('focus', nativeEvent)
 
       onFocus.should.have.been.calledOnce()
       onFocus.should.have.been.calledWithMatch(nativeEvent, { onFocus, results: options })
@@ -572,15 +554,20 @@ describe('Search', () => {
         .simulate('click', nativeEvent)
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, {
-        minCharacters: 0,
-        result: randomResult,
-        results: options,
-      })
+      spy.should.have.been.calledWithMatch(
+        {},
+        {
+          minCharacters: 0,
+          result: randomResult,
+          results: options,
+        },
+      )
     })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstResult = options[0]
-      wrapperMount(<Search results={options} minCharacters={0} onResultSelect={spy} selectFirstResult />)
+      wrapperMount(
+        <Search results={options} minCharacters={0} onResultSelect={spy} selectFirstResult />,
+      )
 
       // open
       openSearchResults()
@@ -595,19 +582,20 @@ describe('Search', () => {
       const value = _.sample(options).title
       const next = _.sample(_.without(options, value)).title
 
-      wrapperMount(<Search results={options} minCharacters={0} value={value} onResultSelect={spy} />)
-        .setProps({ value: next })
+      wrapperMount(
+        <Search results={options} minCharacters={0} value={value} onResultSelect={spy} />,
+      ).setProps({ value: next })
 
       spy.should.not.have.been.called()
     })
     it('does not call onResultSelect on query change', () => {
       const onResultSelectSpy = sandbox.spy()
-      wrapperMount(<Search results={options} minCharacters={0} onResultSelect={onResultSelectSpy} />)
+      wrapperMount(
+        <Search results={options} minCharacters={0} onResultSelect={onResultSelectSpy} />,
+      )
 
       // simulate search
-      wrapper
-        .find('input.prompt')
-        .simulate('change', { target: { value: faker.hacker.noun() } })
+      wrapper.find('input.prompt').simulate('change', { target: { value: faker.hacker.noun() } })
 
       onResultSelectSpy.should.not.have.been.called()
     })
@@ -621,11 +609,14 @@ describe('Search', () => {
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({ target: { value: 'a' } }, {
-        minCharacters: 0,
-        results: options,
-        value: 'a',
-      })
+      spy.should.have.been.calledWithMatch(
+        { target: { value: 'a' } },
+        {
+          minCharacters: 0,
+          results: options,
+          value: 'a',
+        },
+      )
     })
   })
 
@@ -645,11 +636,14 @@ describe('Search', () => {
       domEvent.keyDown(document, { key: 'ArrowDown' })
 
       onSelectionChange.should.have.been.calledOnce()
-      onSelectionChange.should.have.been.calledWithMatch({}, {
-        minCharacters: 0,
-        result: options[1],
-        results: options,
-      })
+      onSelectionChange.should.have.been.calledWithMatch(
+        {},
+        {
+          minCharacters: 0,
+          result: options[1],
+          results: options,
+        },
+      )
     })
   })
 
@@ -685,22 +679,15 @@ describe('Search', () => {
         { title: 'cadabra', description: 'cadabra' },
         { title: 'bang', description: 'bang' },
       ]
-      wrapperMount(<Search results={customOptions} />)
-        .find('input.prompt')
+      wrapperMount(<Search results={customOptions} />).find('input.prompt')
 
-      wrapper
-        .find('SearchResult')
-        .should.have.lengthOf(3)
+      wrapper.find('SearchResult').should.have.lengthOf(3)
 
       wrapper.setProps({ results: [...customOptions, { title: 'bar', description: 'bar' }] })
 
-      wrapper
-        .find('SearchResult')
-        .should.have.lengthOf(4)
+      wrapper.find('SearchResult').should.have.lengthOf(4)
 
-      const newItem = wrapper
-        .find('SearchResult')
-        .last()
+      const newItem = wrapper.find('SearchResult').last()
 
       newItem.should.have.prop('title', 'bar')
       newItem.should.have.prop('description', 'bar')
@@ -723,13 +710,9 @@ describe('Search', () => {
       searchResultsIsOpen()
 
       // search for something we know will not exist
-      wrapper
-        .find('input.prompt')
-        .simulate('change', { target: { value: '_________________' } })
+      wrapper.find('input.prompt').simulate('change', { target: { value: '_________________' } })
 
-      wrapper
-        .find('SearchResult')
-        .should.have.lengthOf(options.length)
+      wrapper.find('SearchResult').should.have.lengthOf(options.length)
     })
   })
 
@@ -737,61 +720,45 @@ describe('Search', () => {
     it('is shown when there are no results', () => {
       wrapperMount(<Search results={options} minCharacters={0} />)
 
-      wrapper
-        .find('.message.empty')
-        .should.not.be.present()
+      wrapper.find('.message.empty').should.not.be.present()
 
       wrapper.setProps({ results: [] })
 
-      wrapper
-        .find('.message.empty')
-        .should.be.present()
+      wrapper.find('.message.empty').should.be.present()
     })
     it('uses default noResultsMessage', () => {
       wrapperMount(<Search results={[]} minCharacters={0} />)
 
-      wrapper
-        .find('.message.empty .header')
-        .should.have.text('No results found.')
+      wrapper.find('.message.empty .header').should.have.text('No results found.')
     })
     it('uses custom string for noResultsMessage', () => {
       wrapperMount(<Search results={[]} minCharacters={0} noResultsMessage='Something custom' />)
 
-      wrapper
-        .find('.message.empty .header')
-        .should.have.text('Something custom')
+      wrapper.find('.message.empty .header').should.have.text('Something custom')
     })
     it('uses custom component for noResultsMessage', () => {
       wrapperMount(<Search results={[]} minCharacters={0} noResultsMessage={<span>Test</span>} />)
 
-      wrapper
-        .find('.message.empty .header')
-        .should.contain.descendants('span')
+      wrapper.find('.message.empty .header').should.contain.descendants('span')
     })
     it('uses custom noResultsDescription if present', () => {
-      wrapperMount(<Search results={[]} minCharacters={0} noResultsDescription='Something custom' />)
+      wrapperMount(
+        <Search results={[]} minCharacters={0} noResultsDescription='Something custom' />,
+      )
 
-      wrapper
-        .find('.message.empty .header')
-        .should.have.text('No results found.')
+      wrapper.find('.message.empty .header').should.have.text('No results found.')
 
-      wrapper
-        .find('.message.empty .description')
-        .should.have.text('Something custom')
+      wrapper.find('.message.empty .description').should.have.text('Something custom')
     })
     it('uses no noResultsMessage', () => {
       wrapperMount(<Search results={[]} minCharacters={0} noResultsMessage='' />)
 
-      wrapper
-        .find('.message.empty .header')
-        .should.have.text('')
+      wrapper.find('.message.empty .header').should.have.text('')
     })
     it('shows no message with showNoResults=false', () => {
       wrapperMount(<Search results={[]} minCharacters={0} showNoResults={false} />)
 
-      wrapper
-        .find('.message.empty')
-        .should.not.be.present()
+      wrapper.find('.message.empty').should.not.be.present()
     })
   })
 

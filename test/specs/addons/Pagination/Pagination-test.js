@@ -6,10 +6,12 @@ import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
 describe('Pagination', () => {
-  common.isConformant(Pagination, { requiredProps: {
-    totalPages: 0,
-  } })
-  common.hasSubComponents(Pagination, [PaginationItem])
+  common.isConformant(Pagination, {
+    requiredProps: {
+      totalPages: 0,
+    },
+  })
+  common.hasSubcomponents(Pagination, [PaginationItem])
 
   describe('onPageChange', () => {
     it('is called with (e, data) when clicked on a pagination item', () => {

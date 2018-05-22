@@ -353,7 +353,7 @@ There are many common things to test for.  Because of this, we have [`test/specs
 ```js
 common.isConformant()
 common.hasUIClassName()
-common.hasSubComponents()
+common.hasSubcomponents()
 common.isTabbable()
 common.rendersChildren()
 
@@ -383,7 +383,7 @@ describe('Menu', () => {
   common.isConformant(Menu)
   common.hasUIClassName(Menu)
   common.rendersChildren(Menu)
-  common.hasSubComponents(Menu, [MenuItem]) // some take additional arguments
+  common.hasSubcomponents(Menu, [MenuItem]) // some take additional arguments
 })
 ```
 

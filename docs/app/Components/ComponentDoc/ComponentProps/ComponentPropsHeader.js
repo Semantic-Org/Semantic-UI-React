@@ -14,11 +14,8 @@ const headerStyle = {
 
 const linkStyle = { color: 'inherit' }
 
-const ComponentPropsHeader = ({ hasSubComponents, onClick, showProps }) => {
-  const iconClasses = cx(
-    showProps ? 'on' : 'off',
-    'toggle',
-  )
+const ComponentPropsHeader = ({ hasSubcomponents, onClick, showProps }) => {
+  const iconClasses = cx(showProps ? 'on' : 'off', 'toggle')
 
   return (
     <Header
@@ -30,16 +27,16 @@ const ComponentPropsHeader = ({ hasSubComponents, onClick, showProps }) => {
     >
       <a style={linkStyle}>
         <Icon name={iconClasses} />
-        Props{hasSubComponents && ':'}
+        Props{hasSubcomponents && ':'}
       </a>
     </Header>
   )
 }
 
 ComponentPropsHeader.propTypes = {
-  hasSubComponents: PropTypes.bool,
+  hasSubcomponents: PropTypes.bool,
   onClick: PropTypes.func,
   showProps: PropTypes.bool,
 }
 
-export default updateForKeys(['hasSubComponents', 'showProps'])(ComponentPropsHeader)
+export default updateForKeys(['hasSubcomponents', 'showProps'])(ComponentPropsHeader)

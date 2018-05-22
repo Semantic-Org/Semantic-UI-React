@@ -13,7 +13,7 @@ import { sandbox } from 'test/utils'
 
 describe('Card', () => {
   common.isConformant(Card)
-  common.hasSubComponents(Card, [CardContent, CardDescription, CardGroup, CardHeader, CardMeta])
+  common.hasSubcomponents(Card, [CardContent, CardDescription, CardGroup, CardHeader, CardMeta])
   common.hasUIClassName(Card)
   common.rendersChildren(Card)
 
