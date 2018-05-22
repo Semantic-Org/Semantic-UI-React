@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 import Segment from '../../elements/Segment/Segment'
@@ -19,12 +18,7 @@ import Segment from '../../elements/Segment/Segment'
 function TabPane(props) {
   const { active, children, className, content, loading } = props
 
-  const classes = cx(
-    useKeyOnly(active, 'active'),
-    useKeyOnly(loading, 'loading'),
-    'tab',
-    className,
-  )
+  const classes = cx(useKeyOnly(active, 'active'), useKeyOnly(loading, 'loading'), 'tab', className)
   const rest = getUnhandledProps(TabPane, props)
   const ElementType = getElementType(TabPane, props)
 
@@ -38,12 +32,6 @@ function TabPane(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-TabPane._meta = {
-  name: 'TabPane',
-  parent: 'Tab',
-  type: META.TYPES.MODULE,
 }
 
 TabPane.defaultProps = {

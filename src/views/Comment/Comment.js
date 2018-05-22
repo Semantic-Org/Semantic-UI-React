@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 import CommentAction from './CommentAction'
@@ -25,11 +24,7 @@ import CommentText from './CommentText'
 function Comment(props) {
   const { className, children, collapsed, content } = props
 
-  const classes = cx(
-    useKeyOnly(collapsed, 'collapsed'),
-    'comment',
-    className,
-  )
+  const classes = cx(useKeyOnly(collapsed, 'collapsed'), 'comment', className)
   const rest = getUnhandledProps(Comment, props)
   const ElementType = getElementType(Comment, props)
 
@@ -38,11 +33,6 @@ function Comment(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-Comment._meta = {
-  name: 'Comment',
-  type: META.TYPES.VIEW,
 }
 
 Comment.propTypes = {

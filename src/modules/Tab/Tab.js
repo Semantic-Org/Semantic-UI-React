@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import Grid from '../../collections/Grid/Grid'
 import GridColumn from '../../collections/Grid/GridColumn'
@@ -75,11 +74,6 @@ class Tab extends Component {
     grid: { paneWidth: 12, tabWidth: 4 },
     menu: { attached: true, tabular: true },
     renderActiveOnly: true,
-  }
-
-  static _meta = {
-    name: 'Tab',
-    type: META.TYPES.MODULE,
   }
 
   static Pane = TabPane

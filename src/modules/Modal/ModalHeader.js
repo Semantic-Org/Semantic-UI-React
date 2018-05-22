@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -25,12 +24,6 @@ function ModalHeader(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-ModalHeader._meta = {
-  name: 'ModalHeader',
-  type: META.TYPES.MODULE,
-  parent: 'Modal',
 }
 
 ModalHeader.propTypes = {

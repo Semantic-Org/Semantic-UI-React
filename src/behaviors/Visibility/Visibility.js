@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   normalizeOffset,
   isBrowser,
 } from '../../lib'
@@ -74,10 +73,7 @@ export default class Visibility extends Component {
     offset: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-      PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ])),
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     ]),
 
     /** When set to false a callback will occur each time an element passes the threshold for a condition. */
@@ -164,11 +160,6 @@ export default class Visibility extends Component {
     continuous: false,
     offset: [0, 0],
     once: true,
-  }
-
-  static _meta = {
-    name: 'Visibility',
-    type: META.TYPES.BEHAVIOR,
   }
 
   calculations = {
@@ -392,6 +383,10 @@ export default class Visibility extends Component {
     const ElementType = getElementType(Visibility, this.props)
     const rest = getUnhandledProps(Visibility, this.props)
 
-    return <ElementType {...rest} ref={this.handleRef}>{children}</ElementType>
+    return (
+      <ElementType {...rest} ref={this.handleRef}>
+        {children}
+      </ElementType>
+    )
   }
 }

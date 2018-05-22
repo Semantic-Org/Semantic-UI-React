@@ -2,12 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * Button groups can contain conditionals.
@@ -21,12 +16,6 @@ function ButtonOr(props) {
   return <ElementType {...rest} className={classes} data-text={text} />
 }
 
-ButtonOr._meta = {
-  name: 'ButtonOr',
-  parent: 'Button',
-  type: META.TYPES.ELEMENT,
-}
-
 ButtonOr.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
@@ -35,10 +24,7 @@ ButtonOr.propTypes = {
   className: PropTypes.string,
 
   /** Or buttons can have their text localized, or adjusted by using the text prop. */
-  text: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  text: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 
 export default ButtonOr

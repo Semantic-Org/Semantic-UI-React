@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   shallowEqual,
   SUI,
   useKeyOnly,
@@ -73,11 +72,6 @@ class Icon extends Component {
 
   static defaultProps = {
     as: 'i',
-  }
-
-  static _meta = {
-    name: 'Icon',
-    type: META.TYPES.ELEMENT,
   }
 
   static Group = IconGroup

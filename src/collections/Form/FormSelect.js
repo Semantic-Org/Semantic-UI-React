@@ -1,11 +1,6 @@
 import React from 'react'
 
-import {
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 import Select from '../../addons/Select'
 import FormField from './FormField'
 
@@ -20,12 +15,6 @@ function FormSelect(props) {
   const ElementType = getElementType(FormSelect, props)
 
   return <ElementType {...rest} control={control} />
-}
-
-FormSelect._meta = {
-  name: 'FormSelect',
-  parent: 'Form',
-  type: META.TYPES.COLLECTION,
 }
 
 FormSelect.propTypes = {

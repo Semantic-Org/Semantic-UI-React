@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -25,12 +24,6 @@ function StepTitle(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-StepTitle._meta = {
-  name: 'StepTitle',
-  parent: 'Step',
-  type: META.TYPES.ELEMENT,
 }
 
 StepTitle.propTypes = {

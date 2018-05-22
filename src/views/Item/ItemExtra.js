@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -25,12 +24,6 @@ function ItemExtra(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-ItemExtra._meta = {
-  name: 'ItemExtra',
-  parent: 'Item',
-  type: META.TYPES.VIEW,
 }
 
 ItemExtra.propTypes = {

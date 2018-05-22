@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useTextAlignProp,
 } from '../../lib'
@@ -18,11 +17,7 @@ import {
  */
 function CardHeader(props) {
   const { children, className, content, textAlign } = props
-  const classes = cx(
-    useTextAlignProp(textAlign),
-    'header',
-    className,
-  )
+  const classes = cx(useTextAlignProp(textAlign), 'header', className)
   const rest = getUnhandledProps(CardHeader, props)
   const ElementType = getElementType(CardHeader, props)
 
@@ -31,12 +26,6 @@ function CardHeader(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-CardHeader._meta = {
-  name: 'CardHeader',
-  parent: 'Card',
-  type: META.TYPES.VIEW,
 }
 
 CardHeader.propTypes = {

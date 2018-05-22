@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useValueAndKey,
   useVerticalAlignProp,
@@ -20,15 +19,7 @@ import ListHeader from './ListHeader'
  * A list item can contain a content.
  */
 function ListContent(props) {
-  const {
-    children,
-    className,
-    content,
-    description,
-    floated,
-    header,
-    verticalAlign,
-  } = props
+  const { children, className, content, description, floated, header, verticalAlign } = props
 
   const classes = cx(
     useValueAndKey(floated, 'floated'),
@@ -39,7 +30,13 @@ function ListContent(props) {
   const rest = getUnhandledProps(ListContent, props)
   const ElementType = getElementType(ListContent, props)
 
-  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
 
   return (
     <ElementType {...rest} className={classes}>
@@ -48,12 +45,6 @@ function ListContent(props) {
       {content}
     </ElementType>
   )
-}
-
-ListContent._meta = {
-  name: 'ListContent',
-  parent: 'List',
-  type: META.TYPES.ELEMENT,
 }
 
 ListContent.propTypes = {

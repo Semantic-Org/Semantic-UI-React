@@ -8,7 +8,6 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  META,
 } from '../../lib'
 
 /**
@@ -81,11 +80,6 @@ export default class Sticky extends Component {
     bottomOffset: 0,
     offset: 0,
     scrollContext: isBrowser() ? window : null,
-  }
-
-  static _meta = {
-    name: 'Sticky',
-    type: META.TYPES.MODULE,
   }
 
   state = {
@@ -217,7 +211,7 @@ export default class Sticky extends Component {
   didReachContextBottom = () => {
     const { offset } = this.props
 
-    return (this.stickyRect.height + offset) >= this.contextRect.bottom
+    return this.stickyRect.height + offset >= this.contextRect.bottom
   }
 
   // Return true when the component reached the starting point
@@ -230,7 +224,7 @@ export default class Sticky extends Component {
   didTouchScreenBottom = () => {
     const { bottomOffset } = this.props
 
-    return (this.contextRect.bottom + bottomOffset) > window.innerHeight
+    return this.contextRect.bottom + bottomOffset > window.innerHeight
   }
 
   // Return true if the height of the component is higher than the window
@@ -308,7 +302,9 @@ export default class Sticky extends Component {
     return (
       <ElementType {...rest} className={className}>
         <div ref={this.handleTriggerRef} />
-        <div ref={this.handleStickyRef} style={this.computeStyle()}>{children}</div>
+        <div ref={this.handleStickyRef} style={this.computeStyle()}>
+          {children}
+        </div>
       </ElementType>
     )
   }

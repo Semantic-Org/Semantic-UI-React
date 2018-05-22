@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -25,12 +24,6 @@ function ListHeader(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-ListHeader._meta = {
-  name: 'ListHeader',
-  parent: 'List',
-  type: META.TYPES.ELEMENT,
 }
 
 ListHeader.propTypes = {
