@@ -1,5 +1,6 @@
 *.log*
 *.iml
+*.docs.json
 
 .DS_Store
 .idea/
@@ -7,7 +8,6 @@
 
 coverage/
 dist/
-docs/app/docgenInfo.json
 docs/app/menuInfo.json
 docs/build/
 dll/

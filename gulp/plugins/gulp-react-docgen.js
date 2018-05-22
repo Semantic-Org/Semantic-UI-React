@@ -6,16 +6,10 @@ import through from 'through2'
 
 import { parseDefaultValue, parseDocBlock, parserCustomHandler, parseType } from './util'
 
-export default (filename) => {
-  const defaultFilename = 'docgenInfo.json'
-  const result = {}
-  const pluginName = 'gulp-react-docgen'
-  let finalFile
-  let latestFile
+const pluginName = 'gulp-react-docgen'
 
-  function bufferContents(file, enc, cb) {
-    latestFile = file
-
+export default () =>
+  through.obj(function bufferContents(file, enc, cb) {
     if (file.isNull()) {
       cb(null, file)
       return
@@ -27,22 +21,38 @@ export default (filename) => {
     }
 
     try {
-      const componentName = path.basename(file.path, '.js')
-      const parsed = parse(file.contents, null, [
-        ...defaultHandlers,
-        parserCustomHandler,
-      ])
+      const { name: componentName, dir } = path.parse(file.path)
 
-      // replace the component`description` string with a parsed doc block object
-      parsed.docBlock = parseDocBlock(parsed.description)
-      delete parsed.description
+      const componentDirname = path.basename(dir)
+      // singular form of the component's ../../ directory
+      const componentType = path.basename(path.dirname(dir)).replace(/s$/, '')
+
+      const docs = parse(file.contents, null, [...defaultHandlers, parserCustomHandler])
+
+      // add component type
+      docs.type = componentType
+
+      // add parent/child component info
+      const isParent = componentName === componentDirname
+      docs.isParent = isParent
+      docs.isChild = !isParent
+      docs.parent = isParent ? null : file.dirname
+
+      // replace the component.description string with a parsed doc block object
+      docs.docBlock = parseDocBlock(docs.description)
+      delete docs.description
+
+      // add the filepath in the repo
+      docs.path = file.path
+        .replace(`${process.cwd()}${path.sep}`, '')
+        .replace(new RegExp(_.escapeRegExp(path.sep), 'g'), '/')
 
       // replace prop `description` strings with a parsed doc block object and updated `type`
-      _.each(parsed.props, (propDef, propName) => {
+      _.each(docs.props, (propDef, propName) => {
         const { description, tags } = parseDocBlock(propDef.description)
         const { name, value } = parseType(propName, propDef)
 
-        parsed.props[propName] = {
+        docs.props[propName] = {
           ...propDef,
           description,
           tags,
@@ -53,28 +63,21 @@ export default (filename) => {
         }
       })
 
-      parsed.path = file.path
-        .replace(`${process.cwd()}${path.sep}`, '')
-        .replace(new RegExp(_.escapeRegExp(path.sep), 'g'), '/')
-      parsed.props = _.sortBy(parsed.props, 'name')
+      // sort props
+      docs.props = _.sortBy(docs.props, 'name')
 
-      result[componentName] = parsed
+      // remove keys we don't use
+      delete docs.methods
 
-      cb()
+      const docsFile = file.clone({ content: false })
+      docsFile.path = file.path.replace(/js$/, 'docs.json')
+      docsFile.contents = new Buffer(JSON.stringify(docs, null, 2))
+
+      cb(null, docsFile)
     } catch (err) {
+      gutil.log(gutil.colors.gray(err))
       const pluginError = new gutil.PluginError(pluginName, err)
       pluginError.message += `\nFile: ${file.path}.`
       this.emit('error', pluginError)
     }
-  }
-
-  function endStream(cb) {
-    finalFile = latestFile.clone({ contents: false })
-    finalFile.path = path.join(latestFile.base, (filename || defaultFilename))
-    finalFile.contents = new Buffer(JSON.stringify(result, null, 2))
-    this.push(finalFile)
-    cb()
-  }
-
-  return through.obj(bufferContents, endStream)
-}
+  })

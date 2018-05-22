@@ -9,7 +9,6 @@ coverage/
 
 dist/
 dll/
-docs/app/docgenInfo.json
 docs/app/menuInfo.jso
 docs/build/
 
