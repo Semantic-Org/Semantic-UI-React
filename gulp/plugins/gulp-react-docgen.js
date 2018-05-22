@@ -39,7 +39,7 @@ export default () =>
       docs.parent = isParent ? null : file.dirname
 
       // replace the component.description string with a parsed doc block object
-      docs.docBlock = parseDocBlock(docs.description)
+      docs.dockblock = parseDocBlock(docs.description)
       delete docs.description
 
       // add the filepath in the repo

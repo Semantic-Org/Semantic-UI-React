@@ -3,7 +3,7 @@ import * as semanticUIReact from 'src'
 
 const getComponentGroup = (docInfo, componentName) => ({
   [componentName]: {
-    description: _.get('docBlock.description', docInfo[componentName]),
+    description: _.get('dockblock.description', docInfo[componentName]),
     props: _.get('props', docInfo[componentName]),
   },
   ..._.flow(
@@ -11,7 +11,7 @@ const getComponentGroup = (docInfo, componentName) => ({
     _.map('_meta.name'),
     _.map(name => ({
       name,
-      description: _.get('docBlock.description', docInfo[name]),
+      description: _.get('dockblock.description', docInfo[name]),
       props: _.get('props', docInfo[name]),
     })),
     _.keyBy('name'),
