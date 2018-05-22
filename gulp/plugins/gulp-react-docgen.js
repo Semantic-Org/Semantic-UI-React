@@ -36,7 +36,8 @@ export default () =>
       const isParent = componentName === componentDirname
       docs.isParent = isParent
       docs.isChild = !isParent
-      docs.parent = isParent ? null : file.dirname
+      docs.parent = isParent ? null : componentDirname
+      docs.subComponentName = docs.isParent ? null : componentName.replace(docs.parent, '')
 
       // replace the component.description string with a parsed doc block object
       docs.dockblock = parseDocBlock(docs.description)

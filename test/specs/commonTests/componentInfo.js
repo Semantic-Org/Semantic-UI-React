@@ -1,58 +1,53 @@
-import _ from 'lodash'
 import path from 'path'
-import React from 'react'
-import ReactDOMServer from 'react-dom/server'
 
-import { META } from 'src/lib'
 import helpers from './commonHelpers'
 
 const componentCtx = require.context(
   '../../../src/',
   true,
-  /(addons|behaviors|collections|elements|modules|views).\w+.(?!index)\w+.js/,
+  /(addons|behaviors|collections|elements|modules|views).\w+.(?!index)\w+\.js/,
 )
+
+const docsCtx = require.context('../../../src/', true, /\.docs\.json$/)
 
 const componentInfo = componentCtx.keys().map((key) => {
   const Component = componentCtx(key).default
-  const componentType = typeof Component
+  const docPath = key.replace(/js$/, 'docs.json')
+  const doc = docsCtx(docPath)
+
   const { throwError } = helpers('componentInfo', Component)
+  const componentType = typeof Component
 
   if (componentType !== 'function') {
-    throwError([
-      `${key} is not properly exported.`,
-      `Components should export a class or function, got: ${componentType}.`,
-    ].join(' '))
+    throwError(
+      [
+        `${key} is not properly exported.`,
+        `Components should export a class or function, got: ${componentType}.`,
+      ].join(' '),
+    )
   }
 
-  const { _meta, prototype } = Component
-
-  if (!_meta) {
-    throwError([
-      'Component is missing a static _meta object property. This should help identify it:',
-      `Rendered:\n${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
-    ].join('\n'))
-  }
-
-  const constructorName = prototype.constructor.name
+  const constructorName = Component.prototype.constructor.name
   const filePath = key
   const filename = path.basename(key)
   const filenameWithoutExt = path.basename(key, '.js')
-  const subComponentName = _.has(_meta, 'parent') && _.has(_meta, 'name')
-    ? _meta.name.replace(_meta.parent, '')
-    : null
+  const name = doc.displayName
+  const parent = doc.parent
+  const subComponentName = doc.subComponentName
 
   // name of the component, sub component, or plural parent for sub component groups
-  const componentClassName = (
-    META.isChild(Component)
-      ? subComponentName.replace(/Group$/, `${_meta.parent}s`)
-      : _meta.name
+  // example, the "button" in class="ui button"
+  const componentClassName = (doc.isChild
+    ? subComponentName.replace(/Group$/, `${doc.parent}s`)
+    : name
   ).toLowerCase()
 
   return {
-    _meta,
     Component,
     constructorName,
     componentClassName,
+    name,
+    parent,
     subComponentName,
     filePath,
     filename,
