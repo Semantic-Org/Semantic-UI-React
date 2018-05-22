@@ -1,6 +1,6 @@
 *.log*
 *.iml
-*.docs.json
+*.info.json
 
 .DS_Store
 .idea/

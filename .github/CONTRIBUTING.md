@@ -451,7 +451,7 @@ TODO
 - [Props](#props)
 - [Examples](#examples)
 
-Our docs are generated from doc block comments, `propTypes`, and hand written examples.
+Our docs are generated from docblock comments, `propTypes`, and hand written examples.
 
 ### Website
 
@@ -463,7 +463,7 @@ yarn start
 
 ### Components
 
-A doc block should appear above a component class or function to describe it:
+A docblock should appear above a component class or function to describe it:
 
 ```js
 /**
@@ -477,7 +477,7 @@ function Select(props) {
 
 ### Props
 
-A doc block should appear above each prop in `propTypes` to describe them:
+A docblock should appear above each prop in `propTypes` to describe them:
 
 >Limited props shown for brevity.
 

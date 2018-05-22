@@ -1,3 +1,4 @@
+export getComponentInfo from './getComponentInfo'
 export parseDefaultValue from './parseDefaultValue'
 export parseDocBlock from './parseDocBlock'
 export parseDocExample from './parseDocExample'
