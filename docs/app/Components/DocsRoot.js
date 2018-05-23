@@ -42,33 +42,17 @@ class DocsRoot extends Component {
       })
   }
 
-  setError = error =>
-    this.setState({
-      error,
-      isLoading: false,
-      info: null,
-    })
+  setError = error => this.setState({ error, info: null, isLoading: false })
 
-  setInfo = info =>
-    this.setState({
-      error: null,
-      isLoading: false,
-      info,
-    })
+  setInfo = info => this.setState({ error: null, info, isLoading: false })
 
-  setLoading = () =>
-    this.setState({
-      error: null,
-      isLoading: true,
-      info: null,
-    })
+  setLoading = () => this.setState({ error: null, info: null, isLoading: true })
 
   render() {
     const { error, isLoading, info } = this.state
 
     if (isLoading) return <Loader active />
 
-    // TODO this is new, passing the entire info object, thread it down
     if (!error && info) return <ComponentDoc info={info} />
 
     return <PageNotFound />

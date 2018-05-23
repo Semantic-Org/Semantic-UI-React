@@ -6,7 +6,7 @@ import componentInfoContext from './componentInfoContext'
  * @param componentName
  * @returns {{}[]}
  */
-const getSeeItems = (componentName) => {
+const getInfoForSeeTags = (componentName) => {
   const info = componentInfoContext.fromComponentName(componentName)
 
   return info.dockblock.tags
@@ -14,4 +14,4 @@ const getSeeItems = (componentName) => {
     .map(tag => componentInfoContext.fromComponentName(tag.description))
 }
 
-export default getSeeItems
+export default getInfoForSeeTags

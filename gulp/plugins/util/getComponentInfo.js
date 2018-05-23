@@ -50,7 +50,7 @@ const getComponentInfo = (filepath) => {
     : null
 
   // where this component should be exported in the api
-  info.apiPath = info.isChild ? `${info.parent}.${info.subcomponentName}` : null
+  info.apiPath = info.isChild ? `${info.parent}.${info.subcomponentName}` : info.displayName
 
   // class name for the component
   // example, the "button" in class="ui button"

@@ -6,43 +6,49 @@ import ComponentTable from '../ComponentTable'
 import ComponentPropsComponents from './ComponentPropsComponents'
 import ComponentPropsDescription from './ComponentPropsDescription'
 import ComponentPropsHeader from './ComponentPropsHeader'
+import getComponentGroup from '../../../utils/getComponentGroup'
 
 const propsContainerStyle = { overflowX: 'auto' }
 
 export default class ComponentProps extends Component {
   static propTypes = {
-    componentGroup: PropTypes.objectOf(
-      PropTypes.shape({
-        description: PropTypes.arrayOf(PropTypes.string),
-        props: PropTypes.array,
-      }),
-    ),
-    componentName: PropTypes.string,
+    displayName: PropTypes.string,
     props: PropTypes.arrayOf(PropTypes.object),
   }
 
-  constructor(props) {
-    super(props)
+  componentWillMount() {
+    const { displayName } = this.props
 
-    this.state = { activeName: props.componentName }
+    this.setState({ componentGroup: getComponentGroup(displayName) })
   }
 
-  componentWillReceiveProps({ componentName: next }) {
-    const current = this.props.componentName
+  componentWillReceiveProps({ displayName: next }) {
+    const current = this.props.displayName
 
-    if (current !== next) this.setState({ activeName: next })
+    if (current !== next) {
+      this.setState({
+        activeName: next,
+        componentGroup: getComponentGroup(next),
+      })
+    }
   }
 
-  handleComponentClick = (e, { name }) => this.setState({ activeName: name })
+  handleComponentClick = (e, { name }) => {
+    this.setState({
+      activeName: name,
+      componentGroup: getComponentGroup(name),
+    })
+  }
 
-  handleToggle = () =>
-    this.setState({ activeName: this.state.activeName ? false : this.props.componentName })
+  handleToggle = () => {
+    this.setState({ activeName: this.state.activeName ? false : this.props.displayName })
+  }
 
   render() {
-    const { componentGroup, componentName } = this.props
-    const { activeName } = this.state
-    const { description, props } = componentGroup[activeName] || {}
+    const { displayName } = this.props
+    const { activeName, componentGroup } = this.state
     const componentNames = _.keys(componentGroup)
+    const { description, props } = componentGroup[activeName] || {}
 
     return (
       <div>
@@ -55,7 +61,7 @@ export default class ComponentProps extends Component {
           activeName={activeName}
           components={componentNames}
           onItemClick={this.handleComponentClick}
-          parent={componentName}
+          parent={displayName}
         />
 
         {activeName && (

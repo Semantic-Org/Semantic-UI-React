@@ -5,18 +5,18 @@ import _ from 'lodash'
  */
 const componentInfoContext = require.context('../../../src/', true, /\.info\.json$/)
 
-componentInfoContext.fromComponentName = (name) => {
+componentInfoContext.fromComponentName = _.memoize((name) => {
   const regExp = new RegExp(`/${name}.info.json$`)
 
   const key = componentInfoContext.keys().find(k => regExp.test(k))
 
   return key ? componentInfoContext(key) : null
-}
+})
 
-componentInfoContext.fromComponent = (Component) => {
+componentInfoContext.fromComponent = _.memoize((Component) => {
   const name = _.get(Component, 'prototype.constructor.name')
 
   return componentInfoContext.fromComponentName(name)
-}
+})
 
 export default componentInfoContext

@@ -1,12 +1,12 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Accordion, Icon, Menu } from 'semantic-ui-react'
+
 import { examplePathToHash } from 'docs/app/utils'
-import { pure } from 'docs/app/HOC'
 import ComponentSidebarItem from './ComponentSidebarItem'
 
-class ComponentSidebarSection extends Component {
+export default class ComponentSidebarSection extends PureComponent {
   static propTypes = {
     activePath: PropTypes.string,
     examples: PropTypes.arrayOf(
@@ -19,6 +19,7 @@ class ComponentSidebarSection extends Component {
     onItemClick: PropTypes.func,
     onTitleClick: PropTypes.func,
   }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -73,5 +74,3 @@ class ComponentSidebarSection extends Component {
     )
   }
 }
-
-export default pure(ComponentSidebarSection)

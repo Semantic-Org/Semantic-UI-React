@@ -1,10 +1,11 @@
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
 import { withRouter } from 'react-router'
 import { Grid, Icon } from 'semantic-ui-react'
 
-import withDocInfo from 'docs/app/HOC/withDocInfo'
+import componentInfoShape from 'docs/app/utils/componentInfoShape'
 import { scrollToAnchor, examplePathToHash, getFormattedHash } from 'docs/app/utils'
 import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
@@ -26,27 +27,8 @@ class ComponentDoc extends Component {
   }
 
   static propTypes = {
-    componentGroup: PropTypes.objectOf(
-      PropTypes.shape({
-        description: PropTypes.arrayOf(PropTypes.string),
-        props: PropTypes.array,
-      }),
-    ),
-    componentName: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string),
-    ghLink: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
-    path: PropTypes.string.isRequired,
-    seeItems: PropTypes.arrayOf(
-      PropTypes.shape({
-        docblock: PropTypes.shape({
-          description: PropTypes.string,
-        }),
-        displayName: PropTypes.string,
-        type: PropTypes.string,
-      }),
-    ).isRequired,
-    suiLink: PropTypes.string,
+    info: componentInfoShape.isRequired,
   }
 
   state = {}
@@ -54,9 +36,9 @@ class ComponentDoc extends Component {
   componentWillMount() {
     const { history } = this.props
 
-    if (location.hash) {
-      const activePath = getFormattedHash(location.hash)
-      history.replace(`${location.pathname}#${activePath}`)
+    if (window.location.hash) {
+      const activePath = getFormattedHash(window.location.hash)
+      history.replace(`${window.location.pathname}#${activePath}`)
       this.setState({ activePath })
     }
   }
@@ -67,64 +49,55 @@ class ComponentDoc extends Component {
     }
   }
 
-  componentWillReceiveProps({ componentName: next }) {
-    const { componentName: current } = this.props
-
-    if (current !== next) this.setState({ activePath: undefined })
+  componentWillReceiveProps({ info }) {
+    if (info.displayName !== this.props.info.displayName) {
+      this.setState({ activePath: undefined })
+    }
   }
 
-  handleExamplePassed = (e, { examplePath }) =>
+  handleExamplePassed = (e, { examplePath }) => {
     this.setState({ activePath: examplePathToHash(examplePath) })
+  }
 
   handleExamplesRef = examplesRef => this.setState({ examplesRef })
 
-  handleSidebarItemClick = (e, { path }) => {
+  handleSidebarItemClick = (e, { info }) => {
     const { history } = this.props
-    const aPath = examplePathToHash(path)
+    const activePath = examplePathToHash(info.repoPath)
 
-    history.replace(`${location.pathname}#${aPath}`)
+    history.replace(`${location.pathname}#${activePath}`)
     // set active hash path
-    this.setState(
-      {
-        activePath: aPath,
-      },
-      scrollToAnchor,
-    )
+    this.setState({ activePath }, scrollToAnchor)
   }
 
   render() {
-    const {
-      componentGroup,
-      componentName,
-      description,
-      ghLink,
-      path,
-      seeItems,
-      suiLink,
-    } = this.props
+    const { info } = this.props
     const { activePath, examplesRef } = this.state
 
     return (
-      <DocumentTitle title={`${componentName} | Semantic UI React`}>
+      <DocumentTitle title={`${info.displayName} | Semantic UI React`}>
         <Grid>
           <Grid.Row style={topRowStyle}>
             <Grid.Column>
-              <ComponentDocHeader componentName={componentName} description={description} />
-              <ComponentDocSee items={seeItems} />
-              <ComponentDocLinks
-                componentName={componentName}
-                ghLink={ghLink}
-                path={path}
-                suiLink={suiLink}
+              <ComponentDocHeader
+                displayName={info.displayName}
+                description={_.join(info.description, ' ')}
               />
-              <ComponentProps componentGroup={componentGroup} componentName={componentName} />
+              <ComponentDocSee displayName={info.displayName} />
+              <ComponentDocLinks
+                displayName={info.displayName}
+                parent={info.parent}
+                repoPath={info.repoPath}
+                type={info.type}
+              />
+              <ComponentProps displayName={info.displayName} />
             </Grid.Column>
           </Grid.Row>
 
           <Grid.Row columns='equal'>
             <Grid.Column>
               <div ref={this.handleExamplesRef}>
-                <ComponentExamples componentName={componentName} />
+                <ComponentExamples displayName={info.displayName} />
               </div>
               <div style={exampleEndStyle}>
                 This is the bottom <Icon name='pointing down' />
@@ -133,7 +106,7 @@ class ComponentDoc extends Component {
             <Grid.Column computer={5} largeScreen={4} widescreen={4}>
               <ComponentSidebar
                 activePath={activePath}
-                componentName={componentName}
+                displayName={info.displayName}
                 examplesRef={examplesRef}
                 onItemClick={this.handleSidebarItemClick}
               />
@@ -145,4 +118,4 @@ class ComponentDoc extends Component {
   }
 }
 
-export default withDocInfo(withRouter(ComponentDoc))
+export default withRouter(ComponentDoc)

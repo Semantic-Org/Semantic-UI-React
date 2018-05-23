@@ -13,14 +13,14 @@ const examplePathToHash = (examplePath) => {
   if (!hashParts.length) return examplePath
 
   // eslint-disable-next-line no-unused-vars
-  const [type, componentName, section, exampleName] = hashParts
+  const [type, name, section, exampleName] = hashParts
 
   // ButtonExample => Button
   // ButtonExampleButton => Button
   // ButtonExampleActive => Active
-  const shortExampleName = exampleName.replace(`${componentName}Example`, '').replace('.js', '')
+  const shortExampleName = exampleName.replace(`${name}Example`, '').replace('.js', '')
 
-  return _.kebabCase(`${section}-${shortExampleName || componentName}`)
+  return _.kebabCase(`${section}-${shortExampleName || name}`)
 }
 
 export default examplePathToHash
