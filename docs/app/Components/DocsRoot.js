@@ -1,35 +1,78 @@
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Component } from 'react'
+import { Loader } from 'semantic-ui-react'
 
-import { META } from 'src/lib'
-import * as semanticUIReact from 'src'
 import ComponentDoc from '../Components/ComponentDoc'
 import PageNotFound from '../Views/PageNotFound'
 
-const DocsRoot = (props) => {
-  const { name } = props.match.params
-  const componentName = _.startCase(name).replace(/ /g, '')
-  const component = semanticUIReact[componentName]
+class DocsRoot extends Component {
+  state = {}
 
-  if (!component || !component._meta || !META.isParent(component)) return <PageNotFound />
-
-  return (
-    <ComponentDoc
-      name={component._meta.name}
-      parent={component._meta.parent}
-      type={component._meta.type}
-    />
-  )
-}
-
-DocsRoot.propTypes = {
-  children: PropTypes.node,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      name: PropTypes.string.isRequired,
+  static propTypes = {
+    children: PropTypes.node,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+      }),
     }),
-  }),
+  }
+
+  componentDidMount() {
+    this.fetchInfo()
+  }
+
+  fetchInfo = () => {
+    const { name, type } = this.props.match.params
+    const componentName = _.startCase(name).replace(/ /g, '')
+
+    this.setLoading()
+
+    import(`../../../src/${type}/${componentName}/${componentName}.info.json`)
+      .then((info) => {
+        if (info.isParent) {
+          this.setInfo(info)
+        } else {
+          this.setError(new Error(`${componentName}.info.json is not a parent component.`))
+        }
+      })
+      .catch((error) => {
+        this.setError(error)
+      })
+  }
+
+  setError = error =>
+    this.setState({
+      error,
+      isLoading: false,
+      info: null,
+    })
+
+  setInfo = info =>
+    this.setState({
+      error: null,
+      isLoading: false,
+      info,
+    })
+
+  setLoading = () =>
+    this.setState({
+      error: null,
+      isLoading: true,
+      info: null,
+    })
+
+  render() {
+    const { error, isLoading, info } = this.state
+
+    if (isLoading) return <Loader active />
+
+    // TODO this is new, passing the entire info object, thread it down
+    if (!error && info) return <ComponentDoc info={info} />
+
+    return <PageNotFound />
+  }
 }
 
 export default DocsRoot
