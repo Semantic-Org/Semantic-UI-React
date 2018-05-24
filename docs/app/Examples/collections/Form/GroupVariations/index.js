@@ -12,7 +12,7 @@ const FormGroupVariationsExamples = () => (
       examplePath='collections/Form/GroupVariations/FormExampleEvenlyDividedGroup'
     >
       <Message info>
-        When using the <code>widths='equals'</code> prop declaration on a <code>Form.Group</code>,
+        When using the <code>widths='equal'</code> prop declaration on a <code>Form.Group</code>,
         all child <code>Form.Dropdown</code>, <code>Form.Input</code>, <code>Form.Select</code>
         components must be rendered with a <code>fluid</code> prop to work correctly.
       </Message>
