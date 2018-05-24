@@ -25,8 +25,8 @@ export default class ComponentDocLinks extends PureComponent {
   render() {
     const { displayName, parentDisplayName, repoPath, type } = this.props
     const ghLink = `${repoURL}/blob/master/${repoPath}`
-    const suiLink = `https://semantic-ui.com/${type}s/${displayName ||
-      parentDisplayName}`.toLowerCase()
+    const suiName = (displayName || parentDisplayName).toLowerCase()
+    const suiLink = `https://semantic-ui.com/${type}s/${suiName}`
 
     return (
       <List link style={linkListStyle}>
