@@ -21,9 +21,9 @@ const normalizeResult = result =>
   )
 
 export default (filename) => {
-  const defaultFilename = 'menuInfo.json'
+  const defaultFilename = 'exampleMenu.json'
   const result = {}
-  const pluginName = 'gulp-menugen'
+  const pluginName = 'gulp-example-menu'
   let finalFile
   let latestFile
 

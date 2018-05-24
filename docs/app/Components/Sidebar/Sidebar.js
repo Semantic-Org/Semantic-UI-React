@@ -9,7 +9,8 @@ import { Menu, Icon, Input } from 'semantic-ui-react'
 
 import CarbonAd from 'docs/app/Components/CarbonAd/CarbonAd'
 import Logo from 'docs/app/Components/Logo/Logo'
-import { componentInfoContext, getComponentPathname, typeOrder, repoURL } from 'docs/app/utils'
+import componentMenu from 'docs/app/componentMenu'
+import { getComponentPathname, typeOrder, repoURL } from 'docs/app/utils'
 import pkg from 'package.json'
 
 const selectedItemLabelStyle = { color: '#35bdb2', float: 'right' }
@@ -23,7 +24,7 @@ class Sidebar extends Component {
     style: PropTypes.object,
   }
   state = { query: '' }
-  filteredInfo = componentInfoContext.parents
+  filteredMenu = componentMenu
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleDocumentKeyDown)
@@ -80,15 +81,15 @@ class Sidebar extends Component {
 
     if (code === keyboardKey.ArrowDown) {
       e.preventDefault()
-      const next = _.min([selectedItemIndex + 1, this.filteredInfo.length - 1])
-      this.selectedRoute = getComponentPathname(this.filteredInfo[next].displayName)
+      const next = _.min([selectedItemIndex + 1, this.filteredMenu.length - 1])
+      this.selectedRoute = getComponentPathname(this.filteredMenu[next].displayName)
       this.setState({ selectedItemIndex: next })
     }
 
     if (code === keyboardKey.ArrowUp) {
       e.preventDefault()
       const next = _.max([selectedItemIndex - 1, 0])
-      this.selectedRoute = getComponentPathname(this.filteredInfo[next].displayName)
+      this.selectedRoute = getComponentPathname(this.filteredMenu[next].displayName)
       this.setState({ selectedItemIndex: next })
     }
   }
@@ -106,7 +107,7 @@ class Sidebar extends Component {
           activeClassName='active'
         />
       )),
-    )(componentInfoContext.parents)
+    )(componentMenu)
 
     return (
       <Menu.Item key={nextType}>
@@ -131,9 +132,9 @@ class Sidebar extends Component {
       } else if (new RegExp(escapedQuery, 'i').test(info.displayName)) {
         containsMatches.push(info)
       }
-    }, componentInfoContext.parents)
+    }, componentMenu)
 
-    this.filteredInfo = [...startsWithMatches, ...containsMatches]
+    this.filteredMenu = [...startsWithMatches, ...containsMatches]
     const menuItems = _.map((info) => {
       itemIndex += 1
       const isSelected = itemIndex === selectedItemIndex
@@ -153,7 +154,7 @@ class Sidebar extends Component {
           {isSelected && selectedItemLabel}
         </Menu.Item>
       )
-    }, this.filteredInfo)
+    }, this.filteredMenu)
 
     return <Menu.Menu>{menuItems}</Menu.Menu>
   }

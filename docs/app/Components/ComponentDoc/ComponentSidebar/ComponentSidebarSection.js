@@ -37,6 +37,10 @@ export default class ComponentSidebarSection extends PureComponent {
     }))
   }
 
+  handleItemClick = examplePath => (e) => {
+    _.invoke(this.props, 'onItemClick', e, { examplePath })
+  }
+
   handleTitleClick = () => {
     this.setState(prevState => ({ isActiveByUser: !prevState.isActiveByUser }))
   }
@@ -48,7 +52,7 @@ export default class ComponentSidebarSection extends PureComponent {
     }) !== -1
 
   render() {
-    const { activePath, examples, onItemClick, sectionName } = this.props
+    const { activePath, examples, sectionName } = this.props
     const { isActiveByProps, isActiveByUser } = this.state
 
     const active = isActiveByUser || isActiveByProps
@@ -65,8 +69,7 @@ export default class ComponentSidebarSection extends PureComponent {
               key={examplePath}
               active={activePath === examplePathToHash(examplePath)}
               content={title}
-              examplePath={examplePath}
-              onClick={onItemClick}
+              onClick={this.handleItemClick(examplePath)}
             />
           ))}
         </Accordion.Content>

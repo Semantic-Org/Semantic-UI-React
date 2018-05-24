@@ -1,7 +1,11 @@
 /**
  * Get the Webpack Context for all Component.info.json files.
  */
-const componentInfoContext = require.context('../../../src/', true, /\.info\.json$/)
+const componentInfoContext = require.context(
+  '../../../docs/app/componentInfo',
+  true,
+  /\.info\.json$/,
+)
 
 const keys = componentInfoContext.keys()
 const infoObjects = keys.map(componentInfoContext)

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Accordion, Menu, Sticky } from 'semantic-ui-react'
 
-import menuInfo from 'docs/app/menuInfo'
-import ComponentSideBarSection from './ComponentSidebarSection'
+import exampleMenu from 'docs/app/exampleMenu'
+import ComponentSidebarSection from './ComponentSidebarSection'
 
 const sidebarStyle = {
   background: '#fff',
@@ -27,11 +27,11 @@ class ComponentSidebar extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { sections: menuInfo[props.displayName] }
+    this.state = { sections: exampleMenu[props.displayName] }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ sections: menuInfo[nextProps.displayName] })
+    this.setState({ sections: exampleMenu[nextProps.displayName] })
   }
 
   render() {
@@ -42,7 +42,7 @@ class ComponentSidebar extends Component {
       <Sticky context={examplesRef} offset={15}>
         <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
           {_.map(sections, ({ examples, sectionName }) => (
-            <ComponentSideBarSection
+            <ComponentSidebarSection
               activePath={activePath}
               examples={examples}
               key={sectionName}

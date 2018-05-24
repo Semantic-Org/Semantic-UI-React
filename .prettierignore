@@ -9,7 +9,8 @@ coverage/
 
 dist/
 dll/
-docs/app/menuInfo.jso
+docs/app/componentMenu.json
+docs/app/exampleMenu.json
 docs/build/
 
 package.json

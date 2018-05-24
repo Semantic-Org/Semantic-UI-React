@@ -8,7 +8,8 @@ import WebpackDevMiddleware from 'webpack-dev-middleware'
 import WebpackHotMiddleware from 'webpack-hot-middleware'
 
 import config from '../../config'
-import gulpMenuGen from '../plugins/gulp-menugen'
+import gulpComponentMenu from '../plugins/gulp-component-menu'
+import gulpExampleMenu from '../plugins/gulp-example-menu'
 import gulpReactDocgen from '../plugins/gulp-react-docgen'
 
 const g = loadPlugins()
@@ -28,19 +29,17 @@ task('clean:docs', (cb) => {
 // Build
 // ----------------------------------------
 
+const componentGlobs = [
+  `${config.paths.src()}/addons/*/*.js`,
+  `${config.paths.src()}/behaviors/*/*.js`,
+  `${config.paths.src()}/elements/*/*.js`,
+  `${config.paths.src()}/collections/*/*.js`,
+  `${config.paths.src()}/modules/*/*.js`,
+  `${config.paths.src()}/views/*/*.js`,
+  '!**/index.js',
+]
 task('build:docs:docgen', () =>
-  src(
-    [
-      `${config.paths.src()}/addons/*/*.js`,
-      `${config.paths.src()}/behaviors/*/*.js`,
-      `${config.paths.src()}/elements/*/*.js`,
-      `${config.paths.src()}/collections/*/*.js`,
-      `${config.paths.src()}/modules/*/*.js`,
-      `${config.paths.src()}/views/*/*.js`,
-      '!**/index.js',
-    ],
-    { base: '.' },
-  )
+  src(componentGlobs)
     // do not remove the function keyword
     // we need 'this' scope here
     .pipe(
@@ -50,10 +49,24 @@ task('build:docs:docgen', () =>
       }),
     )
     .pipe(gulpReactDocgen())
-    .pipe(dest('.')),
+    .pipe(dest(config.paths.docsSrc('componentInfo'))),
 )
 
-task('build:docs:menugen', () =>
+task('build:docs:component-menu', () =>
+  src(componentGlobs)
+    // do not remove the function keyword
+    // we need 'this' scope here
+    .pipe(
+      g.plumber(function handleError(err) {
+        log(err.toString())
+        this.emit('end')
+      }),
+    )
+    .pipe(gulpComponentMenu())
+    .pipe(dest(config.paths.docsSrc())),
+)
+
+task('build:docs:example-menu', () =>
   src(`${config.paths.docsSrc()}/Examples/**/index.js`)
     // do not remove the function keyword
     // we need 'this' scope here
@@ -63,7 +76,7 @@ task('build:docs:menugen', () =>
         this.emit('end')
       }),
     )
-    .pipe(gulpMenuGen())
+    .pipe(gulpExampleMenu())
     .pipe(dest(config.paths.docsSrc())),
 )
 
@@ -107,7 +120,13 @@ task(
       'dll',
       series(
         'clean:docs',
-        parallel('build:docs:docgen', 'build:docs:menugen', 'build:docs:html', 'build:docs:images'),
+        parallel(
+          'build:docs:docgen',
+          'build:docs:component-menu',
+          'build:docs:example-menu',
+          'build:docs:html',
+          'build:docs:images',
+        ),
       ),
     ),
     'build:docs:webpack',
