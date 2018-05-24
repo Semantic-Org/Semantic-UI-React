@@ -8,13 +8,17 @@ import { parseDocExample, parseDocSection } from './util'
 
 const examplesPath = path.join(config.paths.docsSrc(), 'Examples', path.sep)
 
-const normalizeResult = result => JSON.stringify(_.mapValues(
-  result,
-  sections => _.map(
-    _.sortBy(sections, 'position'),
-    ({ examples, name }) => ({ examples, name }),
-  ),
-), null, 2)
+const normalizeResult = result =>
+  JSON.stringify(
+    _.mapValues(result, sections =>
+      _.map(_.sortBy(sections, 'position'), ({ examples, sectionName }) => ({
+        examples,
+        sectionName,
+      })),
+    ),
+    null,
+    2,
+  )
 
 export default (filename) => {
   const defaultFilename = 'menuInfo.json'
@@ -60,7 +64,7 @@ export default (filename) => {
 
   function endStream(cb) {
     finalFile = latestFile.clone({ contents: false })
-    finalFile.path = path.join(latestFile.base, (filename || defaultFilename))
+    finalFile.path = path.join(latestFile.base, filename || defaultFilename)
     finalFile.contents = new Buffer(normalizeResult(result))
     this.push(finalFile)
     cb()

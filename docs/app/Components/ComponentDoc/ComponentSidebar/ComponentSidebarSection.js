@@ -4,7 +4,6 @@ import React, { PureComponent } from 'react'
 import { Accordion, Icon, Menu } from 'semantic-ui-react'
 
 import { examplePathToHash } from 'docs/app/utils'
-import ComponentSidebarItem from './ComponentSidebarItem'
 
 export default class ComponentSidebarSection extends PureComponent {
   static propTypes = {
@@ -12,10 +11,10 @@ export default class ComponentSidebarSection extends PureComponent {
     examples: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,
-        path: PropTypes.string,
+        examplePath: PropTypes.string,
       }),
     ),
-    name: PropTypes.string,
+    sectionName: PropTypes.string,
     onItemClick: PropTypes.func,
     onTitleClick: PropTypes.func,
   }
@@ -38,17 +37,18 @@ export default class ComponentSidebarSection extends PureComponent {
     }))
   }
 
-  handleItemClick = (e, itemProps) => _.invoke(this.props, 'onItemClick', e, itemProps)
-
-  handleTitleClick = () =>
+  handleTitleClick = () => {
     this.setState(prevState => ({ isActiveByUser: !prevState.isActiveByUser }))
+  }
 
   isActiveAccordion = (props = this.props) =>
-    (props.examples || []).findIndex(item => examplePathToHash(item.path) === props.activePath) !==
-    -1
+    (props.examples || []).findIndex((item) => {
+      const exampleHash = examplePathToHash(item.examplePath)
+      return exampleHash === props.activePath
+    }) !== -1
 
   render() {
-    const { activePath, examples, name } = this.props
+    const { activePath, examples, onItemClick, sectionName } = this.props
     const { isActiveByProps, isActiveByUser } = this.state
 
     const active = isActiveByUser || isActiveByProps
@@ -56,17 +56,17 @@ export default class ComponentSidebarSection extends PureComponent {
     return (
       <Menu.Item>
         <Accordion.Title active={active} onClick={this.handleTitleClick}>
-          <b>{name}</b>
+          <b>{sectionName}</b>
           <Icon name='dropdown' />
         </Accordion.Title>
         <Accordion.Content as={Menu.Menu} active={active}>
-          {_.map(examples, ({ title, path }) => (
-            <ComponentSidebarItem
-              active={activePath === examplePathToHash(path)}
-              key={path}
-              onClick={this.handleItemClick}
-              path={path}
-              title={title}
+          {_.map(examples, ({ title, examplePath }) => (
+            <Menu.Item
+              key={examplePath}
+              active={activePath === examplePathToHash(examplePath)}
+              content={title}
+              examplePath={examplePath}
+              onClick={onItemClick}
             />
           ))}
         </Accordion.Content>
