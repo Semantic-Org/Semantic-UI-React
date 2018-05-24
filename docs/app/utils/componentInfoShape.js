@@ -21,7 +21,7 @@ const componentInfoShape = PropTypes.shape({
   type: PropTypes.string.isRequired,
   isParent: PropTypes.bool.isRequired,
   isChild: PropTypes.bool.isRequired,
-  parent: PropTypes.string,
+  parentDisplayName: PropTypes.string,
   subcomponentName: PropTypes.string,
   subcomponents: PropTypes.arrayOf(PropTypes.string),
   apiPath: PropTypes.string.isRequired,

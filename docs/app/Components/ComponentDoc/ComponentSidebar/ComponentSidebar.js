@@ -17,7 +17,7 @@ const sidebarStyle = {
 class ComponentSidebar extends Component {
   static propTypes = {
     activePath: PropTypes.string,
-    componentName: PropTypes.string,
+    displayName: PropTypes.string,
     examplesRef: PropTypes.object,
     onItemClick: PropTypes.func,
   }
@@ -34,7 +34,7 @@ class ComponentSidebar extends Component {
     this.setState({ sections: this.computeSections(nextProps) })
   }
 
-  computeSections = ({ componentName }) => _.get(menuInfo, componentName)
+  computeSections = ({ displayName }) => _.get(menuInfo, displayName)
 
   handleItemClick = (e, { path }) => _.invoke(this.props, 'onItemClick', e, { path })
 
@@ -44,13 +44,7 @@ class ComponentSidebar extends Component {
 
     return (
       <Sticky context={examplesRef} offset={15}>
-        <Menu
-          as={Accordion}
-          fluid
-          style={sidebarStyle}
-          text
-          vertical
-        >
+        <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
           {_.map(sections, ({ examples, name }) => (
             <ComponentSideBarSection
               activePath={activePath}

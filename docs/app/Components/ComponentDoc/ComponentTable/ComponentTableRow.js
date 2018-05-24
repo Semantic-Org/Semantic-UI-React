@@ -12,7 +12,7 @@ export default class ComponentTableRow extends Component {
   static propTypes = {
     defaultValue: PropTypes.string,
     description: PropTypes.arrayOf(PropTypes.string),
-    name: PropTypes.string,
+    displayName: PropTypes.string,
     required: PropTypes.bool,
     tags: PropTypes.array,
     type: PropTypes.string,
@@ -24,13 +24,13 @@ export default class ComponentTableRow extends Component {
   toggleEnums = () => this.setState({ showEnums: !this.state.showEnums })
 
   render() {
-    const { defaultValue, description, name, required, tags, type, value } = this.props
+    const { defaultValue, description, displayName, required, tags, type, value } = this.props
     const { showEnums } = this.state
 
     return (
-      <Table.Row key={name}>
+      <Table.Row key={displayName}>
         <Table.Cell collapsing>
-          <ComponentPropName name={name} required={required} />
+          <ComponentPropName displayName={displayName} required={required} />
         </Table.Cell>
         <Table.Cell collapsing>
           <ComponentPropDefaultValue value={defaultValue} />
@@ -38,7 +38,7 @@ export default class ComponentTableRow extends Component {
         <Table.Cell collapsing>{`{${type}}`}</Table.Cell>
         <Table.Cell>
           <ComponentPropDescription description={description} />
-          <ComponentPropFunctionSignature name={name} tags={tags} />
+          <ComponentPropFunctionSignature displayName={displayName} tags={tags} />
           <ComponentPropEnum
             showAll={showEnums}
             toggle={this.toggleEnums}

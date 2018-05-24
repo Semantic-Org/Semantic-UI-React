@@ -17,15 +17,16 @@ const linkListStyle = {
 export default class ComponentDocLinks extends PureComponent {
   static propTypes = {
     displayName: PropTypes.string.isRequired,
-    parent: PropTypes.string,
+    parentDisplayName: PropTypes.string,
     repoPath: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }
 
   render() {
-    const { displayName, parent, repoPath, type } = this.props
+    const { displayName, parentDisplayName, repoPath, type } = this.props
     const ghLink = `${repoURL}/blob/master/${repoPath}`
-    const suiLink = `https://semantic-ui.com/${type}s/${displayName || parent}`.toLowerCase()
+    const suiLink = `https://semantic-ui.com/${type}s/${displayName ||
+      parentDisplayName}`.toLowerCase()
 
     return (
       <List link style={linkListStyle}>

@@ -6,16 +6,16 @@ const popupStyle = { padding: '0.5em' }
 
 export default class ComponentPropName extends PureComponent {
   static propTypes = {
-    name: PropTypes.string,
+    displayName: PropTypes.string,
     required: PropTypes.bool,
   }
 
   render() {
-    const { name, required } = this.props
+    const { displayName, required } = this.props
 
     return (
       <div>
-        <code>{name}</code>
+        <code>{displayName}</code>
         {required && (
           <Popup
             content='Required'

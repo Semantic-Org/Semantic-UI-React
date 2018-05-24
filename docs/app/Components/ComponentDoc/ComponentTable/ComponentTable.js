@@ -13,7 +13,9 @@ const ComponentTable = ({ props }) => (
   <Table compact='very' basic='very'>
     <ComponentTableHeader />
     <Table.Body>
-      {_.map(props, ({ name, ...rest }) => <ComponentTableRow {...rest} key={name} name={name} />)}
+      {_.map(props, ({ displayName, ...rest }) => (
+        <ComponentTableRow {...rest} key={displayName} displayName={displayName} />
+      ))}
     </Table.Body>
   </Table>
 )

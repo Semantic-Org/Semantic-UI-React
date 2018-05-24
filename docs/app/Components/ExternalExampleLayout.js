@@ -9,9 +9,9 @@ const exampleKeys = exampleContext.keys()
 
 const ExternalExampleLayout = (props) => {
   const { kebabCaseName } = props.match.params
-  const componentName = _.startCase(kebabCaseName).replace(/ /g, '')
+  const displayName = _.startCase(kebabCaseName).replace(/ /g, '')
 
-  const componentKey = _.find(_.endsWith(`${componentName}.js`), exampleKeys)
+  const componentKey = _.find(_.endsWith(`${displayName}.js`), exampleKeys)
   if (!componentKey) return <PageNotFound />
 
   const ExampleComponent = exampleContext(componentKey).default

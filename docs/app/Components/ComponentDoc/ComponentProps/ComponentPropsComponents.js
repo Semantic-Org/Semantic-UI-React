@@ -6,18 +6,23 @@ import { Menu } from 'semantic-ui-react'
 import { updateForKeys } from 'docs/app/HOC'
 import ComponentPropsComponent from './ComponentPropsComponent'
 
-const ComponentPropsComponents = ({ activeName, components, onItemClick, parent }) => {
-  if (components.length === 1) return null
+const ComponentPropsComponents = ({
+  activeDisplayName,
+  displayNames,
+  onItemClick,
+  parentDisplayName,
+}) => {
+  if (displayNames.length === 1) return null
 
   return (
     <Menu color='green' compact size='small' secondary>
-      {_.map(components, component => (
+      {_.map(displayNames, component => (
         <ComponentPropsComponent
-          active={activeName === component}
+          active={activeDisplayName === component}
           key={component}
           name={component}
           onClick={onItemClick}
-          parent={parent}
+          parentDisplayName={parentDisplayName}
         />
       ))}
     </Menu>
@@ -25,13 +30,10 @@ const ComponentPropsComponents = ({ activeName, components, onItemClick, parent 
 }
 
 ComponentPropsComponents.propTypes = {
-  activeName: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string,
-  ]),
-  components: PropTypes.array,
+  activeDisplayName: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  displayNames: PropTypes.array,
   onItemClick: PropTypes.func,
-  parent: PropTypes.string.isRequired,
+  parentDisplayName: PropTypes.string.isRequired,
 }
 
-export default updateForKeys(['activeName', 'parent'])(ComponentPropsComponents)
+export default updateForKeys(['activeDisplayName', 'parentDisplayName'])(ComponentPropsComponents)

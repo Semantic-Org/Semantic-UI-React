@@ -32,42 +32,42 @@ export default class ComponentProps extends Component {
 
   handleComponentClick = (e, { name }) => {
     this.setState({
-      activeName: name,
+      activeDisplayName: name,
       componentGroup: getComponentGroup(name),
     })
   }
 
   handleToggle = () => {
     const { displayName } = this.props
-    const { activeName } = this.state
+    const { activeDisplayName } = this.state
 
-    this.setState({ activeName: activeName ? false : displayName })
+    this.setState({ activeDisplayName: activeDisplayName ? false : displayName })
   }
 
   render() {
     const { displayName } = this.props
-    const { activeName, componentGroup } = this.state
-    const componentNames = _.keys(componentGroup)
-    const { description, props } = componentGroup[activeName] || {}
+    const { activeDisplayName, componentGroup } = this.state
+    const displayNames = _.keys(componentGroup)
+    const { description, props } = componentGroup[activeDisplayName] || {}
 
     return (
       <div>
         <ComponentPropsHeader
-          hasSubcomponents={componentNames.length > 1}
-          showProps={!!activeName}
+          hasSubcomponents={displayNames.length > 1}
+          showProps={!!activeDisplayName}
           onClick={this.handleToggle}
         />
         <ComponentPropsComponents
-          activeName={activeName}
-          components={componentNames}
+          activeDisplayName={activeDisplayName}
+          displayNames={displayNames}
           onItemClick={this.handleComponentClick}
-          parent={displayName}
+          parentDisplayName={displayName}
         />
 
-        {activeName && (
+        {activeDisplayName && (
           <div style={propsContainerStyle}>
             <ComponentPropsDescription description={_.join(description, ' ')} />
-            <ComponentTable name={activeName} props={props} />
+            <ComponentTable displayName={activeDisplayName} props={props} />
           </div>
         )}
       </div>
