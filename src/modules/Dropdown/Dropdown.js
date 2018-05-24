@@ -1104,7 +1104,12 @@ export default class Dropdown extends Component {
       document.documentElement.clientHeight - dropdownRect.y - dropdownRect.height - menuHeight
     const spaceAtTheTop = dropdownRect.y - menuHeight
 
-    this.trySetState({ upward: spaceAtTheBottom < 0 && spaceAtTheTop > spaceAtTheBottom })
+    const upward = spaceAtTheBottom < 0 && spaceAtTheTop > spaceAtTheBottom
+
+    // set state only if there's a relevant difference
+    if (!upward !== !this.state.upward) {
+      this.trySetState({ upward })
+    }
   }
 
   open = (e) => {
