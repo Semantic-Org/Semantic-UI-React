@@ -32,12 +32,13 @@ const getComponentInfo = (filepath) => {
   info.type = componentType
 
   // add parent/child info
-  const isParent = filenameWithoutExt === dirname
-  info.isParent = isParent
-  info.isChild = !isParent
-  info.parent = isParent ? null : dirname
+  info.isParent = filenameWithoutExt === dirname
+  info.isChild = !info.isParent
+  info.parentDisplayName = info.isParent ? null : dirname
   // "Field" for "FormField" since it is accessed as "Form.Field" in the API
-  info.subcomponentName = info.isParent ? null : info.displayName.replace(info.parent, '')
+  info.subcomponentName = info.isParent
+    ? null
+    : info.displayName.replace(info.parentDisplayName, '')
 
   // add subcomponents
   const subcomponentRegExp = new RegExp(`^${info.filenameWithoutExt}\\w+.js$`)
@@ -50,13 +51,15 @@ const getComponentInfo = (filepath) => {
     : null
 
   // where this component should be exported in the api
-  info.apiPath = info.isChild ? `${info.parent}.${info.subcomponentName}` : info.displayName
+  info.apiPath = info.isChild
+    ? `${info.parentDisplayName}.${info.subcomponentName}`
+    : info.displayName
 
   // class name for the component
   // example, the "button" in class="ui button"
   // name of the component, sub component, or plural parent for sub component groups
   info.componentClassName = (info.isChild
-    ? info.subcomponentName.replace(/Group$/, `${info.parent}s`)
+    ? info.subcomponentName.replace(/Group$/, `${info.parentDisplayName}s`)
     : info.displayName
   ).toLowerCase()
 

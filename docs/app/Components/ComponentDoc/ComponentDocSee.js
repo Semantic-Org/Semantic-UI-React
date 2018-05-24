@@ -4,7 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Header, List } from 'semantic-ui-react'
 
-import { getInfoForSeeTags } from 'docs/app/utils'
+import { getComponentPathname, getInfoForSeeTags } from 'docs/app/utils'
 
 const listStyle = { display: 'block' }
 
@@ -22,7 +22,7 @@ const ComponentDocSee = ({ displayName }) => {
           as={Link}
           content={info.displayName}
           key={info.dockblock.description}
-          to={`/${info.type}s/${_.kebabCase(info.displayName)}`}
+          to={getComponentPathname(info.displayName)}
         />
       ))}
     </List>

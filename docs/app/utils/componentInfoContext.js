@@ -1,22 +1,22 @@
-import _ from 'lodash'
-
 /**
  * Get the Webpack Context for all Component.info.json files.
  */
 const componentInfoContext = require.context('../../../src/', true, /\.info\.json$/)
 
-componentInfoContext.fromComponentName = _.memoize((name) => {
-  const regExp = new RegExp(`/${name}.info.json$`)
+const keys = componentInfoContext.keys()
+const infoObjects = keys.map(componentInfoContext)
 
-  const key = componentInfoContext.keys().find(k => regExp.test(k))
+componentInfoContext.byDisplayName = infoObjects.reduce((acc, next) => {
+  acc[next.displayName] = next
+  return acc
+}, {})
 
-  return key ? componentInfoContext(key) : null
-})
+componentInfoContext.fromComponent = (Component) => {
+  const displayName = Component.displayName || Component.name
 
-componentInfoContext.fromComponent = _.memoize((Component) => {
-  const name = _.get(Component, 'prototype.constructor.name')
+  return componentInfoContext.byDisplayName[displayName]
+}
 
-  return componentInfoContext.fromComponentName(name)
-})
+componentInfoContext.parents = infoObjects.filter(({ isParent }) => isParent)
 
 export default componentInfoContext

@@ -78,7 +78,7 @@ export default (Component, options = {}) => {
       expect(foundAsSubcomponent).to.equal(
         true,
         `\`${info.displayName}\` is a child component (is in ${info.repoPath}).` +
-          ` It must be a static prop of its parent \`${info.parent}\``,
+          ` It must be a static prop of its parent \`${info.parentDisplayName}\``,
       )
     })
   }

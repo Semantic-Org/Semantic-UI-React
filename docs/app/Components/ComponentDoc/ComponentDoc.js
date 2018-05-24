@@ -86,7 +86,7 @@ class ComponentDoc extends Component {
               <ComponentDocSee displayName={info.displayName} />
               <ComponentDocLinks
                 displayName={info.displayName}
-                parent={info.parent}
+                parent={info.parentDisplayName}
                 repoPath={info.repoPath}
                 type={info.type}
               />
