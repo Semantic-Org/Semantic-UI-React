@@ -171,4 +171,4 @@ export const ListItem_ = createComponent(ListItem, {
   variables: listVariables,
 })
 
-export default ListItem_
+export default ListItem
