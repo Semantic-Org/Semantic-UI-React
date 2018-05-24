@@ -26,10 +26,7 @@ export default class ComponentProps extends Component {
     const current = this.props.displayName
 
     if (current !== next) {
-      this.setState({
-        activeName: next,
-        componentGroup: getComponentGroup(next),
-      })
+      this.setState({ componentGroup: getComponentGroup(next) })
     }
   }
 
