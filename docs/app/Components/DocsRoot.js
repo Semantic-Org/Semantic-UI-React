@@ -1,62 +1,28 @@
-import _ from 'lodash/fp'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import { Loader } from 'semantic-ui-react'
+import React from 'react'
 
 import ComponentDoc from '../Components/ComponentDoc'
 import PageNotFound from '../Views/PageNotFound'
+import componentInfoContext from '../utils/componentInfoContext'
 
-class DocsRoot extends Component {
-  state = {}
+const DocsRoot = ({ match }) => {
+  const displayName = _.startCase(match.params.name).replace(/ /g, '')
+  const info = componentInfoContext.byDisplayName[displayName]
 
-  static propTypes = {
-    children: PropTypes.node,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-      }),
+  if (info) return <ComponentDoc info={info} />
+
+  return <PageNotFound />
+}
+
+DocsRoot.propTypes = {
+  children: PropTypes.node,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
     }),
-  }
-
-  componentDidMount() {
-    this.fetchInfo()
-  }
-
-  fetchInfo = () => {
-    const { name, type } = this.props.match.params
-    const componentName = _.startCase(name).replace(/ /g, '')
-
-    this.setLoading()
-
-    import(`../../../src/${type}/${componentName}/${componentName}.info.json`)
-      .then((info) => {
-        if (info.isParent) {
-          this.setInfo(info)
-        } else {
-          this.setError(new Error(`${componentName}.info.json is not a parent component.`))
-        }
-      })
-      .catch((error) => {
-        this.setError(error)
-      })
-  }
-
-  setError = error => this.setState({ error, info: null, isLoading: false })
-
-  setInfo = info => this.setState({ error: null, info, isLoading: false })
-
-  setLoading = () => this.setState({ error: null, info: null, isLoading: true })
-
-  render() {
-    const { error, isLoading, info } = this.state
-
-    if (isLoading) return <Loader active />
-
-    if (!error && info) return <ComponentDoc info={info} />
-
-    return <PageNotFound />
-  }
+  }),
 }
 
 export default DocsRoot

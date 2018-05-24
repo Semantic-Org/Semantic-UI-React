@@ -9,7 +9,7 @@ const descriptionStyle = {
 
 export default class ComponentPropsDescription extends PureComponent {
   static propTypes = {
-    description: PropTypes.arrayOf(PropTypes.string),
+    description: PropTypes.string,
   }
 
   render() {
@@ -17,7 +17,7 @@ export default class ComponentPropsDescription extends PureComponent {
 
     return (
       <div style={descriptionStyle}>
-        {description.join(' ')}
+        {description}
         <Divider />
       </div>
     )

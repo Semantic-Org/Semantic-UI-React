@@ -41,7 +41,10 @@ export default class ComponentProps extends Component {
   }
 
   handleToggle = () => {
-    this.setState({ activeName: this.state.activeName ? false : this.props.displayName })
+    const { displayName } = this.props
+    const { activeName } = this.state
+
+    this.setState({ activeName: activeName ? false : displayName })
   }
 
   render() {
@@ -66,7 +69,7 @@ export default class ComponentProps extends Component {
 
         {activeName && (
           <div style={propsContainerStyle}>
-            <ComponentPropsDescription description={description} />
+            <ComponentPropsDescription description={_.join(description, ' ')} />
             <ComponentTable name={activeName} props={props} />
           </div>
         )}
