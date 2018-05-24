@@ -126,8 +126,8 @@ export default class DatetimeCalendar extends Component {
     this.handleChange(e, { value, mode: 'month' })
   }
 
-  handleHourChange = (e, { value }) => {
-    this.handleChange(e, { value, mode: 'minute' })
+  handleHourChange = (e, { value, mode = 'minute' }) => {
+    this.handleChange(e, { value, mode })
   }
 
   handleMinuteChange = (e, { value }) => {

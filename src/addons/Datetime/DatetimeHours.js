@@ -11,6 +11,7 @@ import {
 } from '../../lib'
 
 import DatetimeGrid from './DatetimeGrid'
+import Dropdown from '../../modules/Dropdown'
 
 /**
  * A day cell within a calendar month
@@ -74,14 +75,44 @@ export default class DatetimeHours extends Component {
     _.invokeArgs('onDateChange', [e, { ...this.props, value }], this.props)
   }
 
+  onAmpmChange = (e, { value: ampmValue }) => {
+    const { value: date } = this.props
+    const value = new Date(date)
+    if (ampmValue === 'PM' && value.getHours() < 12) {
+      value.setHours(value.getHours() + 12)
+    } else if (ampmValue === 'AM' && value.getHours() > 12) {
+      value.setHours(value.getHours() - 12)
+    }
+
+    if (date.getTime() !== value.getTime()) {
+      _.invokeArgs('onDateChange', [e, { ...this.props, value, mode: 'hour' }], this.props)
+    }
+  }
+
   render() {
     const rest = getUnhandledProps(DatetimeHours, this.props)
     const ElementType = getElementType(DatetimeHours, this.props)
+    const options = [
+      { key: 'AM', text: 'AM', value: 'AM' },
+      { key: 'PM', text: 'PM', value: 'PM' },
+    ]
+    const defaultAmpmValue = dateUtils.ampmFormatter(this.props.value)
+    const hourHeader = (
+      <span>
+        {'Hour '}
+        <Dropdown
+          inline
+          options={options}
+          onChange={this.onAmpmChange}
+          defaultValue={defaultAmpmValue}
+        />
+      </span>
+    )
 
     return (
       <ElementType
         {...rest}
-        headers={['Hour']}
+        headers={[hourHeader]}
         columns={4}
         cells={this.getCells()}
       />
