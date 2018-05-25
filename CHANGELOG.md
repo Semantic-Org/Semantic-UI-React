@@ -1,5 +1,27 @@
 # Change Log
 
+## [v0.80.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.80.1) (2018-05-25)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.80.0...v0.80.1)
+
+**Merged pull requests:**
+
+- docs\(Form\): fix group variations typo [\#2823](https://github.com/Semantic-Org/Semantic-UI-React/pull/2823) ([elliottcarlson](https://github.com/elliottcarlson))
+- feat\(docs\): improve ux [\#2820](https://github.com/Semantic-Org/Semantic-UI-React/pull/2820) ([levithomason](https://github.com/levithomason))
+- change from "right chevron" to "chevron right" for typescript [\#2815](https://github.com/Semantic-Org/Semantic-UI-React/pull/2815) ([searene](https://github.com/searene))
+- docs\(readme\): simplify and focus content [\#2806](https://github.com/Semantic-Org/Semantic-UI-React/pull/2806) ([levithomason](https://github.com/levithomason))
+- fix\(checkbox\): pass disabled prop to input [\#2800](https://github.com/Semantic-Org/Semantic-UI-React/pull/2800) ([ofir-shapira-como](https://github.com/ofir-shapira-como))
+- fix\(ComponentExample\): clipboard and active state [\#2796](https://github.com/Semantic-Org/Semantic-UI-React/pull/2796) ([levithomason](https://github.com/levithomason))
+- fix\(mixed\): fix mixed warnings in tests [\#2793](https://github.com/Semantic-Org/Semantic-UI-React/pull/2793) ([layershifter](https://github.com/layershifter))
+- fix\(ComponentExample\): fix href in copy link button [\#2792](https://github.com/Semantic-Org/Semantic-UI-React/pull/2792) ([layershifter](https://github.com/layershifter))
+- feat\(factories\): support functions [\#2790](https://github.com/Semantic-Org/Semantic-UI-React/pull/2790) ([levithomason](https://github.com/levithomason))
+- chore\(package\): normalize default exports [\#2788](https://github.com/Semantic-Org/Semantic-UI-React/pull/2788) ([levithomason](https://github.com/levithomason))
+- chore\(package\): upgrade to react-hot-loader 4 [\#2783](https://github.com/Semantic-Org/Semantic-UI-React/pull/2783) ([levithomason](https://github.com/levithomason))
+- fix\(Popup\) popup appearing in wrong position when open prop is set  [\#2775](https://github.com/Semantic-Org/Semantic-UI-React/pull/2775) ([cdaringe](https://github.com/cdaringe))
+- docs\(issue\_templates\): add new issue templates [\#2763](https://github.com/Semantic-Org/Semantic-UI-React/pull/2763) ([layershifter](https://github.com/layershifter))
+- chore\(stalebot\): update stalebot's messaging and timeframes [\#2761](https://github.com/Semantic-Org/Semantic-UI-React/pull/2761) ([rijk](https://github.com/rijk))
+- fix\(docs\): Fixing doc navigation link issues [\#2760](https://github.com/Semantic-Org/Semantic-UI-React/pull/2760) ([msrikanth508](https://github.com/msrikanth508))
+- feat\(factories\): add autoGenerateKey option [\#2424](https://github.com/Semantic-Org/Semantic-UI-React/pull/2424) ([noinkling](https://github.com/noinkling))
+
 ## [v0.80.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.80.0) (2018-05-02)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.79.1...v0.80.0)
 
@@ -335,26 +357,6 @@
 - feat\(Tab\): add `renderActiveOnly` prop [\#1976](https://github.com/Semantic-Org/Semantic-UI-React/pull/1976) ([layershifter](https://github.com/layershifter))
 - feat\(events\): add eventStack [\#1733](https://github.com/Semantic-Org/Semantic-UI-React/pull/1733) ([layershifter](https://github.com/layershifter))
 - breaking\(Modal\): update shorthand functionality [\#1599](https://github.com/Semantic-Org/Semantic-UI-React/pull/1599) ([levithomason](https://github.com/levithomason))
-
-## [v0.71.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.71.5) (2017-08-20)
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.71.4...v0.71.5)
-
-**Merged pull requests:**
-
-- feat\(Sticky|Visibility\): add scroll context [\#1978](https://github.com/Semantic-Org/Semantic-UI-React/pull/1978) ([mariolamacchia](https://github.com/mariolamacchia))
-- feat\(Popup\): Multiple event triggering a Popup [\#1977](https://github.com/Semantic-Org/Semantic-UI-React/pull/1977) ([vipul-21](https://github.com/vipul-21))
-- fix\(Input|Button|TextArea\): add `focus` method to typings [\#1972](https://github.com/Semantic-Org/Semantic-UI-React/pull/1972) ([layershifter](https://github.com/layershifter))
-- feat\(Transition\): make `duration` prop more advanced [\#1967](https://github.com/Semantic-Org/Semantic-UI-React/pull/1967) ([layershifter](https://github.com/layershifter))
-- fix\(Search\): only call onBlur & onFocus event handler once [\#1963](https://github.com/Semantic-Org/Semantic-UI-React/pull/1963) ([chopstikk](https://github.com/chopstikk))
-- chore\(webpack\): switch rawgit to github [\#1960](https://github.com/Semantic-Org/Semantic-UI-React/pull/1960) ([levithomason](https://github.com/levithomason))
-- fix\(Dropdown\): more logic for clearing search [\#1956](https://github.com/Semantic-Org/Semantic-UI-React/pull/1956) ([lottamus](https://github.com/lottamus))
-- fix\(TabPane\): remove extra loading prop [\#1953](https://github.com/Semantic-Org/Semantic-UI-React/pull/1953) ([levithomason](https://github.com/levithomason))
-- docs\(Button\): add example with replicating button behaviour [\#1951](https://github.com/Semantic-Org/Semantic-UI-React/pull/1951) ([layershifter](https://github.com/layershifter))
-- chore\(package\): switch to react-hot-loader [\#1946](https://github.com/Semantic-Org/Semantic-UI-React/pull/1946) ([layershifter](https://github.com/layershifter))
-- chore\(package\): replace deprecated babel-plugin-\_\_coverage\_\_ [\#1940](https://github.com/Semantic-Org/Semantic-UI-React/pull/1940) ([layershifter](https://github.com/layershifter))
-- style\(tests\): mixed lint updates [\#1939](https://github.com/Semantic-Org/Semantic-UI-React/pull/1939) ([layershifter](https://github.com/layershifter))
-- chore\(package\): update all dependencies [\#1895](https://github.com/Semantic-Org/Semantic-UI-React/pull/1895) ([layershifter](https://github.com/layershifter))
-- feat\(Tab\): Add vertical tabbing [\#1894](https://github.com/Semantic-Org/Semantic-UI-React/pull/1894) ([mclarentgp](https://github.com/mclarentgp))
 
 
 
