@@ -39,7 +39,7 @@ const componentGlobs = [
   '!**/index.js',
 ]
 task('build:docs:docgen', () =>
-  src(componentGlobs)
+  src(componentGlobs, { base: 'src' })
     // do not remove the function keyword
     // we need 'this' scope here
     .pipe(

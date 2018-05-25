@@ -12,8 +12,8 @@ const propsContainerStyle = { overflowX: 'auto' }
 
 export default class ComponentProps extends Component {
   static propTypes = {
-    displayName: PropTypes.string,
-    props: PropTypes.arrayOf(PropTypes.object),
+    displayName: PropTypes.string.isRequired,
+    props: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
   componentWillMount() {
@@ -49,6 +49,15 @@ export default class ComponentProps extends Component {
     const { activeDisplayName, componentGroup } = this.state
     const displayNames = _.keys(componentGroup)
     const { description, props } = componentGroup[activeDisplayName] || {}
+
+    console.log({
+      activeDisplayName,
+      componentGroup,
+      description,
+      displayName,
+      displayNames,
+      props,
+    })
 
     return (
       <div>

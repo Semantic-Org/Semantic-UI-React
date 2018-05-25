@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
 import ExternalExampleLayout from './Components/ExternalExampleLayout'
 import DocsLayout from './Components/DocsLayout'
@@ -23,7 +18,7 @@ const RedirectToIntro = () => <Redirect to='/introduction' />
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path='/maximize/:kebabCaseName' component={ExternalExampleLayout} />
+      <Route exact path='/maximize/:type/:name/:exampleName' component={ExternalExampleLayout} />
       <Switch>
         <DocsLayout exact path='/' render={RedirectToIntro} />
         <DocsLayout exact path='/introduction' component={Introduction} />

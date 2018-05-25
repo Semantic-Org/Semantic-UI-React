@@ -74,6 +74,8 @@ class ComponentDoc extends Component {
     const { info } = this.props
     const { activePath, examplesRef } = this.state
 
+    console.log('ComponentDoc info', info)
+
     return (
       <DocumentTitle title={`${info.displayName} | Semantic UI React`}>
         <Grid>
@@ -90,7 +92,7 @@ class ComponentDoc extends Component {
                 repoPath={info.repoPath}
                 type={info.type}
               />
-              <ComponentProps displayName={info.displayName} />
+              <ComponentProps displayName={info.displayName} props={info.props} />
             </Grid.Column>
           </Grid.Row>
 

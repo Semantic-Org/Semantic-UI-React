@@ -4,7 +4,6 @@ import React from 'react'
 import { Menu } from 'semantic-ui-react'
 
 import { updateForKeys } from 'docs/app/HOC'
-import ComponentPropsComponent from './ComponentPropsComponent'
 
 const ComponentPropsComponents = ({
   activeDisplayName,
@@ -16,13 +15,15 @@ const ComponentPropsComponents = ({
 
   return (
     <Menu color='green' compact size='small' secondary>
-      {_.map(displayNames, component => (
-        <ComponentPropsComponent
-          active={activeDisplayName === component}
-          key={component}
-          name={component}
+      {_.map(displayNames, displayName => (
+        <Menu.Item
+          key={displayName}
+          active={activeDisplayName === displayName}
+          content={displayName === parentDisplayName
+            ? displayName
+            : displayName.replace(parentDisplayName, `${parentDisplayName}.`)}
+          name={displayName}
           onClick={onItemClick}
-          parentDisplayName={parentDisplayName}
         />
       ))}
     </Menu>

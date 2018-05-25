@@ -82,14 +82,14 @@ class Sidebar extends Component {
     if (code === keyboardKey.ArrowDown) {
       e.preventDefault()
       const next = _.min([selectedItemIndex + 1, this.filteredMenu.length - 1])
-      this.selectedRoute = getComponentPathname(this.filteredMenu[next].displayName)
+      this.selectedRoute = getComponentPathname(this.filteredMenu[next])
       this.setState({ selectedItemIndex: next })
     }
 
     if (code === keyboardKey.ArrowUp) {
       e.preventDefault()
       const next = _.max([selectedItemIndex - 1, 0])
-      this.selectedRoute = getComponentPathname(this.filteredMenu[next].displayName)
+      this.selectedRoute = getComponentPathname(this.filteredMenu[next])
       this.setState({ selectedItemIndex: next })
     }
   }
@@ -97,13 +97,13 @@ class Sidebar extends Component {
   menuItemsByType = _.map((nextType) => {
     const items = _.flow(
       _.filter(({ type }) => type === nextType),
-      _.map(({ displayName }) => (
+      _.map(info => (
         <Menu.Item
-          key={displayName}
-          name={displayName}
+          key={info.displayName}
+          name={info.displayName}
           onClick={this.handleItemClick}
           as={NavLink}
-          to={getComponentPathname(displayName)}
+          to={getComponentPathname(info)}
           activeClassName='active'
         />
       )),
@@ -139,7 +139,7 @@ class Sidebar extends Component {
       itemIndex += 1
       const isSelected = itemIndex === selectedItemIndex
 
-      if (isSelected) this.selectedRoute = getComponentPathname(info.displayName)
+      if (isSelected) this.selectedRoute = getComponentPathname(info)
 
       return (
         <Menu.Item
@@ -148,7 +148,7 @@ class Sidebar extends Component {
           onClick={this.handleItemClick}
           active={isSelected}
           as={NavLink}
-          to={getComponentPathname(info.displayName)}
+          to={getComponentPathname(info)}
         >
           {info.displayName}
           {isSelected && selectedItemLabel}

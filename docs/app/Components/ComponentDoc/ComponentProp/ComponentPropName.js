@@ -2,8 +2,6 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Icon, Popup } from 'semantic-ui-react'
 
-const popupStyle = { padding: '0.5em' }
-
 export default class ComponentPropName extends PureComponent {
   static propTypes = {
     displayName: PropTypes.string,
@@ -22,7 +20,6 @@ export default class ComponentPropName extends PureComponent {
             inverted
             position='right center'
             size='tiny'
-            style={popupStyle}
             trigger={<Icon color='red' name='asterisk' size='small' />}
           />
         )}

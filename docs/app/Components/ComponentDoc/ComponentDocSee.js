@@ -22,7 +22,7 @@ const ComponentDocSee = ({ displayName }) => {
           as={Link}
           content={info.displayName}
           key={info.dockblock.description}
-          to={getComponentPathname(info.displayName)}
+          to={getComponentPathname(info)}
         />
       ))}
     </List>
