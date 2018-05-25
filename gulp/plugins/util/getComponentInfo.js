@@ -40,19 +40,11 @@ const getComponentInfo = (filepath) => {
     ? null
     : info.displayName.replace(info.parentDisplayName, '')
 
-  // add subcomponents
-  const subcomponentRegExp = new RegExp(`^${info.filenameWithoutExt}\w+.js$`)
-
   info.subcomponents = info.isParent
     ? fs
       .readdirSync(dir)
       .filter(file => !/(index\.js|d\.ts)$/.test(file))
-      .filter((file) => {
-        console.log(file)
-        const isSub = dirname !== path.basename(file, path.extname(file))
-        console.log({ file, isSub })
-        return isSub
-      })
+      .filter(file => dirname !== path.basename(file, path.extname(file)))
       .map(file => path.basename(file, path.extname(file)))
     : null
 
