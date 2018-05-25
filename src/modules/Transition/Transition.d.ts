@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { SemanticTRANSITIONS } from '../../';
-import { default as TransitionGroup } from './TransitionGroup';
+import TransitionGroup from './TransitionGroup';
 
-export type TRANSITION_STATUSES =  'ENTERED' | 'ENTERING' | 'EXITED' | 'EXITING' | 'UNMOUNTED';
+export type TRANSITION_STATUSES = 'ENTERED' | 'ENTERING' | 'EXITED' | 'EXITING' | 'UNMOUNTED';
 
 export interface TransitionProps {
   [key: string]: any;
@@ -78,7 +78,7 @@ interface TransitionComponent extends React.ComponentClass<TransitionProps> {
   Group: typeof TransitionGroup;
 
   ENTERED: 'ENTERED';
-  ENTERING :'ENTERING';
+  ENTERING: 'ENTERING';
   EXITED: 'EXITED';
   EXITING: 'EXITING';
   UNMOUNTED: 'UNMOUNTED';

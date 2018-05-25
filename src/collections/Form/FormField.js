@@ -68,7 +68,11 @@ function FormField(props) {
       )
     }
 
-    return <ElementType {...rest} className={classes}>{createHTMLLabel(label)}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {createHTMLLabel(label, { autoGenerateKey: false })}
+      </ElementType>
+    )
   }
 
   // ----------------------------------------
@@ -102,8 +106,9 @@ function FormField(props) {
 
   return (
     <ElementType className={classes}>
-      {createHTMLLabel(label, { defaultProps: {
-        htmlFor: _.get(controlProps, 'id') },
+      {createHTMLLabel(label, {
+        defaultProps: { htmlFor: _.get(controlProps, 'id') },
+        autoGenerateKey: false,
       })}
       {createElement(control, controlProps)}
     </ElementType>

@@ -45,10 +45,10 @@ function ItemContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {ItemHeader.create(header)}
-      {ItemMeta.create(meta)}
-      {ItemDescription.create(description)}
-      {ItemExtra.create(extra)}
+      {ItemHeader.create(header, { autoGenerateKey: false })}
+      {ItemMeta.create(meta, { autoGenerateKey: false })}
+      {ItemDescription.create(description, { autoGenerateKey: false })}
+      {ItemExtra.create(extra, { autoGenerateKey: false })}
       {content}
     </ElementType>
   )

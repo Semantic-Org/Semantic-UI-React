@@ -31,7 +31,7 @@ function DropdownHeader(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {Icon.create(icon)}
+      {Icon.create(icon, { autoGenerateKey: false })}
       {content}
     </ElementType>
   )

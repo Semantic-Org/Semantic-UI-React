@@ -1,15 +1,20 @@
 import * as Babel from '@babel/standalone'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, createElement, isValidElement } from 'react'
+import React, { PureComponent, createElement, isValidElement } from 'react'
 import { withRouter } from 'react-router'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
-import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
+import {
+  exampleContext,
+  examplePathToHash,
+  getFormattedHash,
+  repoURL,
+  scrollToAnchor,
+} from 'docs/app/utils'
 import { Divider, Grid, Menu, Visibility } from 'src'
-import { shallowEqual } from 'src/lib'
 import Editor from 'docs/app/Components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
@@ -29,12 +34,6 @@ const babelConfig = {
   ],
 }
 
-const headerColumnStyle = {
-  // provide room for absolutely positions toggle code icons
-  minHeight: '4em',
-  paddingRight: '7em',
-}
-
 const childrenStyle = {
   paddingTop: 0,
   maxWidth: '50rem',
@@ -47,11 +46,17 @@ const errorStyle = {
   background: '#fff2f2',
 }
 
+const controlsWrapperStyle = {
+  minHeight: '3rem',
+}
+
 /**
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
  */
-class ComponentExample extends Component {
+class ComponentExample extends PureComponent {
+  state = {}
+
   static contextTypes = {
     onPassed: PropTypes.func,
   }
@@ -68,32 +73,50 @@ class ComponentExample extends Component {
   }
 
   componentWillMount() {
-    const { examplePath, location } = this.props
-    const sourceCode = this.getOriginalSourceCode()
+    const { examplePath } = this.props
+    this.anchorName = examplePathToHash(examplePath)
 
-    this.anchorName = _.kebabCase(_.last(examplePath.split('/')))
-
-    // show code for direct links to examples
-    const showCode = this.anchorName === location.hash.replace('#', '')
     const exampleElement = this.renderOriginalExample()
-    const markup = renderToStaticMarkup(exampleElement)
 
     this.setState({
       exampleElement,
-      showCode,
-      sourceCode,
-      markup,
+      handleMouseLeave: this.handleMouseLeave,
+      handleMouseMove: this.handleMouseMove,
+      showCode: this.isActiveHash(),
+      sourceCode: this.getOriginalSourceCode(),
+      markup: renderToStaticMarkup(exampleElement),
     })
   }
 
   componentWillReceiveProps(nextProps) {
-    const isActive = nextProps.location.hash === `#${this.anchorName}`
-
-    this.setState(() => ({ isActive }))
+    // deactivate examples when switching from one to the next
+    if (
+      this.isActiveHash() &&
+      this.isActiveState() &&
+      this.props.location.hash !== nextProps.location.hash
+    ) {
+      this.clearActiveState()
+    }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !shallowEqual(this.state, nextState)
+  clearActiveState = () => {
+    this.setState({
+      showCode: false,
+      showHTML: false,
+    })
+  }
+
+  isActiveState = () => {
+    const { showCode, showHTML } = this.state
+
+    return showCode || showHTML
+  }
+
+  isActiveHash = () => this.anchorName === getFormattedHash(this.props.location.hash)
+
+  updateHash = () => {
+    if (this.isActiveState()) this.setHashAndScroll()
+    else if (this.isActiveHash()) this.removeHash()
   }
 
   setHashAndScroll = () => {
@@ -105,48 +128,47 @@ class ComponentExample extends Component {
 
   removeHash = () => {
     const { history, location } = this.props
+
     history.replace(location.pathname)
+
+    this.clearActiveState()
   }
 
   handleDirectLinkClick = () => {
-    const { location } = this.props
     this.setHashAndScroll()
-    copyToClipboard(location.href)
+    copyToClipboard(window.location.href)
   }
 
-  handleMouseMove = _.throttle(
-    () => {
-      const { controlsVisible } = this.state
-      if (controlsVisible) return
+  handleMouseLeave = () => {
+    this.setState({
+      isHovering: false,
+      handleMouseLeave: null,
+      handleMouseMove: this.handleMouseMove,
+    })
+  }
 
-      this.setState({ controlsVisible: true })
-    },
-    200,
-    { trailing: false },
-  )
-
-  handleMouseLeave = () => this.setState({ controlsVisible: false })
+  handleMouseMove = () => {
+    this.setState({
+      isHovering: true,
+      handleMouseLeave: this.handleMouseLeave,
+      handleMouseMove: null,
+    })
+  }
 
   handleShowCodeClick = (e) => {
     e.preventDefault()
 
-    const { showCode, showHTML } = this.state
+    const { showCode } = this.state
 
-    this.setState({ showCode: !showCode })
-
-    if (!showCode) this.setHashAndScroll()
-    else if (!showHTML) this.removeHash()
+    this.setState({ showCode: !showCode }, this.updateHash)
   }
 
   handleShowHTMLClick = (e) => {
     e.preventDefault()
 
-    const { showCode, showHTML } = this.state
+    const { showHTML } = this.state
 
-    this.setState({ showHTML: !showHTML })
-
-    if (!showHTML) this.setHashAndScroll()
-    else if (!showCode) this.removeHash()
+    this.setState({ showHTML: !showHTML }, this.updateHash)
   }
 
   handlePass = () => {
@@ -164,8 +186,8 @@ class ComponentExample extends Component {
   resetJSX = () => {
     const { sourceCode } = this.state
     const original = this.getOriginalSourceCode()
+    // eslint-disable-next-line no-alert
     if (sourceCode !== original && confirm('Lose your changes?')) {
-      // eslint-disable-line no-alert
       this.setState({ sourceCode: original })
       this.renderSourceCode()
     }
@@ -289,50 +311,25 @@ class ComponentExample extends Component {
     }
   }, 100)
 
+  getComponentName = () => this.props.examplePath.split('/')[1]
+
   handleChangeCode = (sourceCode) => {
-    this.setState({ sourceCode })
-    this.renderSourceCode()
+    this.setState({ sourceCode }, this.renderSourceCode)
   }
 
   setGitHubHrefs = () => {
-    const { examplePath, location } = this.props
+    const { examplePath } = this.props
 
     if (this.ghEditHref && this.ghBugHref) return
 
     // get component name from file path:
     // elements/Button/Types/ButtonButtonExample
     const pathParts = examplePath.split(__PATH_SEP__)
-    const componentName = pathParts[1]
     const filename = pathParts[pathParts.length - 1]
 
     this.ghEditHref = [
       `${repoURL}/edit/master/docs/app/Examples/${examplePath}.js`,
       `?message=docs(${filename}): your description`,
-    ].join('')
-
-    this.ghBugHref = [
-      `${repoURL}/issues/new?`,
-      _.map(
-        {
-          title: `fix(${componentName}): your description`,
-          body: [
-            '**Steps to Reproduce**',
-            '1. Do something',
-            '2. Do something else.',
-            '',
-            '**Expected**',
-            `The ${componentName} should do this`,
-            '',
-            '**Result**',
-            `The ${componentName} does not do this`,
-            '',
-            '**Testcase**',
-            `If the docs show the issue, use: ${location.href}`,
-            'Otherwise, fork this to get started: http://codepen.io/levithomason/pen/ZpBaJX',
-          ].join('\n'),
-        },
-        (val, key) => `${key}=${encodeURIComponent(val)}`,
-      ).join('&'),
     ].join('')
   }
 
@@ -365,14 +362,6 @@ class ComponentExample extends Component {
             icon='github'
             content='Edit'
             href={this.ghEditHref}
-            target='_blank'
-          />
-          <Menu.Item
-            active={!!error} // to show the color
-            color={color}
-            icon='bug'
-            content='Issue'
-            href={this.ghBugHref}
             target='_blank'
           />
         </Menu>
@@ -432,32 +421,56 @@ class ComponentExample extends Component {
   }
 
   render() {
-    const { children, description, suiVersion, title } = this.props
-    const { controlsVisible, exampleElement, isActive, showCode, showHTML } = this.state
+    const { children, description, location, suiVersion, title } = this.props
+    const {
+      handleMouseLeave,
+      handleMouseMove,
+      exampleElement,
+      isHovering,
+      showCode,
+      showHTML,
+    } = this.state
+
+    const isActive = this.isActiveHash() || this.isActiveState()
+
+    const isInFocus = !location.hash || (location.hash && (this.isActiveHash() || isHovering))
 
     const exampleStyle = {
-      marginBottom: '1em',
-      boxShadow: isActive && '0 0 30px #ccc',
+      position: 'relative',
+      transition: 'box-shadow 200ms, background 200ms, opacity 200ms, filter 200ms',
+      opacity: isInFocus ? 1 : 0.4,
+      filter: isInFocus ? 'grayscale(0)' : 'grayscale(1)',
+      ...(isActive
+        ? {
+          background: '#fff',
+          boxShadow: '0 0 30px #ccc',
+        }
+        : isHovering && {
+          background: '#fff',
+          boxShadow: '0 0 10px #ccc',
+          zIndex: 1,
+        }),
     }
 
     return (
       <Visibility once={false} onTopPassed={this.handlePass} onTopPassedReverse={this.handlePass}>
         <Grid
           className='docs-example'
+          padded='vertically'
           id={this.anchorName}
-          onMouseMove={this.handleMouseMove}
-          onMouseLeave={this.handleMouseLeave}
+          onMouseLeave={handleMouseLeave}
+          onMouseMove={handleMouseMove}
           style={exampleStyle}
         >
           <Grid.Row>
-            <Grid.Column style={headerColumnStyle} width={12}>
+            <Grid.Column width={12}>
               <ComponentExampleTitle
                 description={description}
                 title={title}
                 suiVersion={suiVersion}
               />
             </Grid.Column>
-            <Grid.Column textAlign='right' width={4}>
+            <Grid.Column textAlign='right' width={4} style={controlsWrapperStyle}>
               <ComponentControls
                 anchorName={this.anchorName}
                 onCopyLink={this.handleDirectLinkClick}
@@ -465,14 +478,16 @@ class ComponentExample extends Component {
                 onShowHTML={this.handleShowHTMLClick}
                 showCode={showCode}
                 showHTML={showHTML}
-                visible={controlsVisible}
+                visible={isActive || isHovering}
               />
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row columns={1}>
-            {children && <Grid.Column style={childrenStyle}>{children}</Grid.Column>}
-          </Grid.Row>
+          {children && (
+            <Grid.Row columns={1}>
+              <Grid.Column style={childrenStyle}>{children}</Grid.Column>
+            </Grid.Row>
+          )}
 
           <Grid.Row columns={1}>
             <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>

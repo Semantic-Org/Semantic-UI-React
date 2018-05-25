@@ -15,6 +15,7 @@ import React, { cloneElement, isValidElement } from 'react'
  * @param {Object} [options={}]
  * @param {object} [options.defaultProps={}] Default props object
  * @param {object|function} [options.overrideProps={}] Override props object or function (called with regular props)
+ * @param {boolean} [options.autoGenerateKey=true] Whether or not automatic key generation is allowed
  * @returns {object|null}
  */
 export function createShorthand(Component, mapValueToProps, val, options = {}) {
@@ -26,20 +27,22 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
 
   const valIsString = _.isString(val)
   const valIsNumber = _.isNumber(val)
-
-  const isReactElement = isValidElement(val)
-  const isPropsObject = _.isPlainObject(val)
-  const isPrimitiveValue = valIsString || valIsNumber || _.isArray(val)
+  const valIsFunction = _.isFunction(val)
+  const valIsReactElement = isValidElement(val)
+  const valIsPropsObject = _.isPlainObject(val)
+  const valIsPrimitiveValue = valIsString || valIsNumber || _.isArray(val)
 
   // unhandled type return null
   /* eslint-disable no-console */
-  if (!isReactElement && !isPropsObject && !isPrimitiveValue) {
+  if (!valIsFunction && !valIsReactElement && !valIsPropsObject && !valIsPrimitiveValue) {
     if (process.env.NODE_ENV !== 'production') {
-      console.error([
-        'Shorthand value must be a string|number|array|object|ReactElement.',
-        ' Use null|undefined|boolean for none',
-        ` Received ${typeof val}.`,
-      ].join(''))
+      console.error(
+        [
+          'Shorthand value must be a string|number|array|object|ReactElement|function.',
+          ' Use null|undefined|boolean for none',
+          ` Received ${typeof val}.`,
+        ].join(''),
+      )
     }
     return null
   }
@@ -51,13 +54,16 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   const { defaultProps = {} } = options
 
   // User's props
-  const usersProps = (isReactElement && val.props)
-    || (isPropsObject && val)
-    || (isPrimitiveValue && mapValueToProps(val))
+  const usersProps =
+    (valIsReactElement && val.props) ||
+    (valIsPropsObject && val) ||
+    (valIsPrimitiveValue && mapValueToProps(val))
 
   // Override props
   let { overrideProps = {} } = options
-  overrideProps = _.isFunction(overrideProps) ? overrideProps({ ...defaultProps, ...usersProps }) : overrideProps
+  overrideProps = _.isFunction(overrideProps)
+    ? overrideProps({ ...defaultProps, ...usersProps })
+    : overrideProps
 
   // Merge props
   /* eslint-disable react/prop-types */
@@ -65,7 +71,11 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
 
   // Merge className
   if (defaultProps.className || overrideProps.className || usersProps.className) {
-    const mergedClassesNames = cx(defaultProps.className, overrideProps.className, usersProps.className)
+    const mergedClassesNames = cx(
+      defaultProps.className,
+      overrideProps.className,
+      usersProps.className,
+    )
     props.className = _.uniq(mergedClassesNames.split(' ')).join(' ')
   }
 
@@ -81,27 +91,31 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   // Use key, childKey, or generate key
   if (_.isNil(props.key)) {
     const { childKey } = props
+    const { autoGenerateKey = true } = options
 
     if (!_.isNil(childKey)) {
       // apply and consume the childKey
       props.key = typeof childKey === 'function' ? childKey(props) : childKey
       delete props.childKey
-    } else if (valIsString || valIsNumber) {
+    } else if (autoGenerateKey && (valIsString || valIsNumber)) {
       // use string/number shorthand values as the key
       props.key = val
     }
   }
-  /* eslint-enable react/prop-types */
 
   // ----------------------------------------
   // Create Element
   // ----------------------------------------
 
   // Clone ReactElements
-  if (isReactElement) return cloneElement(val, props)
+  if (valIsReactElement) return cloneElement(val, props)
 
   // Create ReactElements from built up props
-  if (isPrimitiveValue || isPropsObject) return <Component {...props} />
+  if (valIsPrimitiveValue || valIsPropsObject) return <Component {...props} />
+
+  // Call functions with args similar to createElement()
+  if (valIsFunction) return val(Component, props, props.children)
+  /* eslint-enable react/prop-types */
 }
 
 // ============================================================

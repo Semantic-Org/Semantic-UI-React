@@ -178,12 +178,12 @@ export default class Message extends Component {
     return (
       <ElementType {...rest} className={classes}>
         {dismissIcon}
-        {Icon.create(icon)}
+        {Icon.create(icon, { autoGenerateKey: false })}
         {(!_.isNil(header) || !_.isNil(content) || !_.isNil(list)) && (
           <MessageContent>
-            {MessageHeader.create(header)}
-            {MessageList.create(list)}
-            {createHTMLParagraph(content)}
+            {MessageHeader.create(header, { autoGenerateKey: false })}
+            {MessageList.create(list, { autoGenerateKey: false })}
+            {createHTMLParagraph(content, { autoGenerateKey: false })}
           </MessageContent>
         )}
       </ElementType>

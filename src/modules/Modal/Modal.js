@@ -323,8 +323,8 @@ class Modal extends Component {
           <MountNode className={mountClasses} node={mountNode} />
 
           {closeIconJSX}
-          {ModalHeader.create(header)}
-          {ModalContent.create(content)}
+          {ModalHeader.create(header, { autoGenerateKey: false })}
+          {ModalContent.create(content, { autoGenerateKey: false })}
           {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
         </ElementType>
       </Ref>

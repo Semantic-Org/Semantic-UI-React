@@ -7,12 +7,12 @@ import {
   SemanticSIZES,
   SemanticVERTICALALIGNMENTS
 } from '../..';
-import { default as ListContent } from './ListContent';
-import { default as ListDescription } from './ListDescription';
-import { default as ListHeader } from './ListHeader';
-import { default as ListIcon } from './ListIcon';
+import ListContent from './ListContent';
+import ListDescription from './ListDescription';
+import ListHeader from './ListHeader';
+import ListIcon from './ListIcon';
 import { default as ListItem, ListItemProps } from './ListItem';
-import { default as ListList } from './ListList';
+import ListList from './ListList';
 
 export interface ListProps {
   [key: string]: any;

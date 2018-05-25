@@ -37,6 +37,7 @@ CONTRIBUTING
   - [Components](#components)
   - [Props](#props)
   - [Examples](#examples)
+- [Releasing](#releasing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -556,6 +557,17 @@ Label.propTypes = {
 Usage examples for a component live in `docs/app/Examples`.  The examples follow the SUI doc site examples.
 
 Adding documentation for new components is a bit tedious.  The best way to do this (for now) is to copy an existing component's and update them.
+
+## Releasing
+
+On the latest clean `master`:
+
+```sh
+npm run release:<major|minor|patch>
+```
+> :warning: `npm` must be used. At the time of writing`yarn` does not properly handle the credentials.
+
+Releasing will update the changelog which requires [github_changelog_generator][15].
 
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/test/specs/commonTests.js
 [2]: https://facebook.github.io/react/docs/forms.html#controlled-components

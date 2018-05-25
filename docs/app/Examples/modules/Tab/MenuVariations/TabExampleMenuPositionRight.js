@@ -7,8 +7,8 @@ const panes = [
   { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
 ]
 
-const TabExampleVerticalTrue = () => (
-  <Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={panes} />
+const TabExampleMenuPositionRight = () => (
+  <Tab menu={{ fluid: true, vertical: true }} menuPosition='right' panes={panes} />
 )
 
-export default TabExampleVerticalTrue
+export default TabExampleMenuPositionRight

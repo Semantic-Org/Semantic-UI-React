@@ -30,19 +30,22 @@ const TabMenuVariationsExamples = () => (
       description='A tab menu can be colored.'
       examplePath='modules/Tab/MenuVariations/TabExampleColored'
     >
-      <Message
-        info
-        content='Color only applies to the menu, not the pane, so they look best not attached.'
-      />
+      <Message info content='Color only applies to the menu, not the pane, so they look best not attached.' />
     </ComponentExample>
     <ComponentExample
       description='A tab menu can invert its colors.'
       examplePath='modules/Tab/MenuVariations/TabExampleColoredInverted'
     />
     <ComponentExample
-      title='Vertical'
-      description='A tab menu can be displayed in a vertical appearance.'
-      examplePath='modules/Tab/MenuVariations/TabExampleVerticalTrue'
+      title='Vertical Tabular'
+      description='A vertical tab menu can be positioned on either side.'
+      examplePath='modules/Tab/MenuVariations/TabExampleVerticalTabular'
+    />
+    <ComponentExample examplePath='modules/Tab/MenuVariations/TabExampleVerticalTabularRight' />
+    <ComponentExample
+      title='Menu Position'
+      description='A vertical non tabular menu can be positioned on either side.'
+      examplePath='modules/Tab/MenuVariations/TabExampleMenuPositionRight'
     />
   </ExampleSection>
 )

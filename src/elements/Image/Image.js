@@ -86,8 +86,8 @@ function Image(props) {
   if (ElementType === 'img') return <ElementType {...rootProps} {...imgTagProps} className={classes} />
   return (
     <ElementType {...rootProps} className={classes} href={href}>
-      {Dimmer.create(dimmer)}
-      {Label.create(label)}
+      {Dimmer.create(dimmer, { autoGenerateKey: false })}
+      {Label.create(label, { autoGenerateKey: false })}
       <img {...imgTagProps} />
     </ElementType>
   )
