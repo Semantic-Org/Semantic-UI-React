@@ -1,8 +1,9 @@
 import isBrowser from '../isBrowser'
 import EventTarget from './EventTarget'
+import normalizeHandlers from './normalizeHandlers'
 import normalizeTarget from './normalizeTarget'
 
-class EventStack {
+export default class EventStack {
   constructor() {
     this._targets = new Map()
   }
@@ -33,28 +34,24 @@ class EventStack {
   // Pub/sub
   // ------------------------------------
 
-  sub = (name, handlers, options = {}) => {
+  sub(eventName, eventHandlers, options = {}) {
     if (!isBrowser()) return
 
     const { target = document, pool = 'default' } = options
     const eventTarget = this._find(target)
 
-    eventTarget.sub(name, handlers, pool)
+    eventTarget.addHandlers(pool, eventName, normalizeHandlers(eventHandlers))
   }
 
-  unsub = (name, handlers, options = {}) => {
+  unsub(eventName, eventHandlers, options = {}) {
     if (!isBrowser()) return
 
     const { target = document, pool = 'default' } = options
     const eventTarget = this._find(target, false)
 
     if (eventTarget) {
-      eventTarget.unsub(name, handlers, pool)
-      if (eventTarget.empty()) this._remove(target)
+      eventTarget.removeHandlers(pool, eventName, normalizeHandlers(eventHandlers))
+      if (!eventTarget.hasHandlers()) this._remove(target)
     }
   }
 }
-
-const instance = new EventStack()
-
-export default instance

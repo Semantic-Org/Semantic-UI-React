@@ -1,9 +1,11 @@
-import { eventStack } from 'src/lib'
+import EventStack from 'src/lib/eventStack/EventStack'
 import { domEvent, sandbox } from 'test/utils'
 
-describe('eventStack', () => {
-  afterEach(() => {
-    eventStack._targets = new Map()
+let eventStack
+
+describe('EventStack', () => {
+  beforeEach(() => {
+    eventStack = new EventStack()
   })
 
   describe('sub', () => {
