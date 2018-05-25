@@ -26,12 +26,14 @@ describe('examples', () => {
 
     it(`${filename} renders without console messages`, () => {
       // TODO also render the example's path in a <ComponentExample /> just as the docs do
-      mount(createElement(exampleContext(path).default))
+      const wrapper = mount(createElement(exampleContext(path).default))
 
       console.info.should.not.have.been.called(`Console info: ${console.info.args}`)
       console.log.should.not.have.been.called(`Console log: ${console.log.args}`)
       console.warn.should.not.have.been.called(`Console warn: ${console.warn.args}`)
       console.error.should.not.have.been.called(`Console error: ${console.error.args}`)
+
+      wrapper.unmount()
     })
   })
   /* eslint-enable no-console */
