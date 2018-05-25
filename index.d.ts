@@ -152,7 +152,12 @@ export { default as IconGroup, IconGroupProps } from './dist/commonjs/elements/I
 export { default as Image, ImageProps } from './dist/commonjs/elements/Image';
 export { default as ImageGroup, ImageGroupProps } from './dist/commonjs/elements/Image/ImageGroup';
 
-export { default as Input, InputProps, InputOnChangeData } from './dist/commonjs/elements/Input';
+export {
+  default as Input,
+  StrictInputProps,
+  InputProps,
+  InputOnChangeData
+} from './dist/commonjs/elements/Input';
 
 export { default as Label, LabelProps } from './dist/commonjs/elements/Label';
 export {

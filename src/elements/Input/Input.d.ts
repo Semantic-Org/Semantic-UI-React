@@ -1,15 +1,9 @@
 import * as React from 'react';
 
-import {
-  HtmlInputrops,
-  SemanticShorthandItem,
-  SemanticSIZES
-} from '../..';
+import { HtmlInputrops, SemanticShorthandItem, SemanticSIZES } from '../..';
 import { LabelProps } from '../Label';
 
-export interface InputProps {
-  [key: string]: any;
-
+export interface StrictInputProps {
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -50,7 +44,7 @@ export interface InputProps {
   inverted?: boolean;
 
   /** Optional Label to display along side the Input. */
-  label?:  SemanticShorthandItem<LabelProps>;
+  label?: SemanticShorthandItem<LabelProps>;
 
   /** A Label can appear outside an Input on the left or right. */
   labelPosition?: 'left' | 'right' | 'left corner' | 'right corner';
@@ -77,6 +71,10 @@ export interface InputProps {
 
   /** The HTML input type. */
   type?: string;
+}
+
+export interface InputProps extends StrictInputProps {
+  [key: string]: any;
 }
 
 export interface InputOnChangeData extends InputProps {
