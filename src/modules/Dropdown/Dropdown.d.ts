@@ -7,9 +7,7 @@ import { default as DropdownItem, DropdownItemProps } from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
 import DropdownSearchInput from './DropdownSearchInput';
 
-export interface DropdownProps {
-  [key: string]: any;
-
+export interface StrictDropdownProps {
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -277,6 +275,10 @@ export interface DropdownProps {
    * or go to the first when ArrowDown is pressed on the last( aka infinite selection )
    */
   wrapSelection?: boolean;
+}
+
+export interface DropdownProps extends StrictDropdownProps {
+  [key: string]: any;
 }
 
 /* TODO: replace with DropdownProps when #1829 will be fixed:
