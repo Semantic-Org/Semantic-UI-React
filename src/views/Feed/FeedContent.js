@@ -37,12 +37,12 @@ function FeedContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedDate, val => ({ content: val }), date)}
-      {createShorthand(FeedSummary, val => ({ content: val }), summary)}
+      {createShorthand(FeedDate, val => ({ content: val }), date, { autoGenerateKey: false })}
+      {createShorthand(FeedSummary, val => ({ content: val }), summary, { autoGenerateKey: false })}
       {content}
-      {createShorthand(FeedExtra, val => ({ text: true, content: val }), extraText)}
-      {createShorthand(FeedExtra, val => ({ images: val }), extraImages)}
-      {createShorthand(FeedMeta, val => ({ content: val }), meta)}
+      {createShorthand(FeedExtra, val => ({ text: true, content: val }), extraText, { autoGenerateKey: false })}
+      {createShorthand(FeedExtra, val => ({ images: val }), extraImages, { autoGenerateKey: false })}
+      {createShorthand(FeedMeta, val => ({ content: val }), meta, { autoGenerateKey: false })}
     </ElementType>
   )
 }

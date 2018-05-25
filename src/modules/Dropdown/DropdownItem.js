@@ -135,21 +135,21 @@ class DropdownItem extends Component {
       )
     }
 
-    const flagElement = Flag.create(flag)
-    const iconElement = Icon.create(iconName)
-    const imageElement = Image.create(image)
-    const labelElement = Label.create(label)
+    const flagElement = Flag.create(flag, { autoGenerateKey: false })
+    const iconElement = Icon.create(iconName, { autoGenerateKey: false })
+    const imageElement = Image.create(image, { autoGenerateKey: false })
+    const labelElement = Label.create(label, { autoGenerateKey: false })
     const descriptionElement = createShorthand(
       'span',
       val => ({ children: val }),
       description,
-      { defaultProps: { className: 'description' } },
+      { defaultProps: { className: 'description' }, autoGenerateKey: false },
     )
     const textElement = createShorthand(
       'span',
       val => ({ children: val }),
       childrenUtils.isNil(content) ? text : content,
-      { defaultProps: { className: 'text' } },
+      { defaultProps: { className: 'text' }, autoGenerateKey: false },
     )
 
     return (

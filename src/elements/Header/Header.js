@@ -68,9 +68,9 @@ function Header(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const iconElement = Icon.create(icon)
-  const imageElement = Image.create(image)
-  const subheaderElement = HeaderSubheader.create(subheader)
+  const iconElement = Icon.create(icon, { autoGenerateKey: false })
+  const imageElement = Image.create(image, { autoGenerateKey: false })
+  const subheaderElement = HeaderSubheader.create(subheader, { autoGenerateKey: false })
 
   if (iconElement || imageElement) {
     return (

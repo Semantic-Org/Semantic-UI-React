@@ -1,10 +1,14 @@
-import _ from 'lodash'
+import EventPool from './EventPool'
 
 export default class EventTarget {
-  _handlers = {}
-  _pools = {}
+  /** @private {Map<String,EventPool>} */
+  _pools = new Map()
 
+  /**
+   * @param {HTMLElement} target
+   */
   constructor(target) {
+    this._handlers = new Map()
     this.target = target
   }
 
@@ -12,69 +16,78 @@ export default class EventTarget {
   // Utils
   // ------------------------------------
 
-  _emit = name => (event) => {
-    _.forEach(this._pools, (pool, poolName) => {
-      const { [name]: handlers } = pool
-
-      if (!handlers) return
-      if (poolName === 'default') {
-        _.forEach(handlers, handler => handler(event))
-        return
-      }
-      _.last(handlers)(event)
+  createEmitter = (eventType, pools) => (event) => {
+    pools.forEach((pool) => {
+      pool.dispatchEvent(eventType, event)
     })
   }
-
-  _normalize = handlers => (_.isArray(handlers) ? handlers : [handlers])
 
   // ------------------------------------
   // Listeners handling
   // ------------------------------------
 
-  _listen = (name) => {
-    if (_.has(this._handlers, name)) return
-    const handler = this._emit(name)
+  _listen(eventType) {
+    const handler = this.createEmitter(eventType, this._pools)
 
-    this.target.addEventListener(name, handler)
-    this._handlers[name] = handler
+    this._handlers.set(eventType, handler)
+    this.target.addEventListener(eventType, handler)
   }
 
-  _unlisten = (name) => {
-    if (_.some(this._pools, name)) return
-    const { [name]: handler } = this._handlers
-
-    this.target.removeEventListener(name, handler)
-    delete this._handlers[name]
+  _unlisten(eventType) {
+    if (this._handlers.has(eventType)) {
+      this.target.removeEventListener(eventType, this._handlers.get(eventType))
+    }
   }
 
-  // ------------------------------------
-  // Pub/sub
-  // ------------------------------------
+  /**
+   * @param {String} poolName
+   * @param {String} eventType
+   * @param {Function[]} eventHandlers
+   */
+  addHandlers(poolName, eventType, eventHandlers) {
+    if (this._pools.has(poolName) === false) {
+      const eventPool = new EventPool(poolName, eventType, eventHandlers)
 
-  empty = () => _.isEmpty(this._handlers)
-
-  sub = (name, handlers, pool = 'default') => {
-    const events = _.uniq([
-      ..._.get(this._pools, `${pool}.${name}`, []),
-      ...this._normalize(handlers),
-    ])
-
-    this._listen(name)
-    _.set(this._pools, `${pool}.${name}`, events)
-  }
-
-  unsub = (name, handlers, pool = 'default') => {
-    const events = _.without(
-      _.get(this._pools, `${pool}.${name}`, []),
-      ...this._normalize(handlers),
-    )
-
-    if (events.length > 0) {
-      _.set(this._pools, `${pool}.${name}`, events)
+      this._unlisten(eventType)
+      this._pools.set(poolName, eventPool)
+      this._listen(eventType)
       return
     }
 
-    _.set(this._pools, `${pool}.${name}`, undefined)
-    this._unlisten(name)
+    const pool = this._pools.get(poolName)
+
+    this._unlisten(eventType)
+    this._pools.set(poolName, pool.addHandlers(eventType, eventHandlers))
+    this._listen(eventType, this._pools)
+  }
+
+  /**
+   * @return {Boolean}
+   */
+  hasHandlers() {
+    return this._handlers.size > 0
+  }
+
+  /**
+   * @param {String} poolName
+   * @param {String} eventType
+   * @param {Function[]} eventHandlers
+   */
+  removeHandlers(poolName, eventType, eventHandlers) {
+    const pool = this._pools.get(poolName)
+
+    if (pool) {
+      const newPool = pool.removeHandlers(eventType, eventHandlers)
+
+      if (newPool.hasHandlers(eventType)) {
+        this._unlisten(eventType)
+        this._pools.set(poolName, newPool)
+      } else {
+        this._unlisten(eventType)
+        this._pools.delete(poolName)
+      }
+
+      this._listen(eventType)
+    }
   }
 }

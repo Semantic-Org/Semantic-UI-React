@@ -131,7 +131,7 @@ export default class MenuItem extends Component {
 
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {Icon.create(icon)}
+        {Icon.create(icon, { autoGenerateKey: false })}
         {childrenUtils.isNil(content) ? _.startCase(name) : content}
       </ElementType>
     )

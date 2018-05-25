@@ -116,6 +116,7 @@ class Tab extends Component {
     }
 
     return Menu.create(menu, {
+      autoGenerateKey: false,
       overrideProps: {
         items: _.map(panes, 'menuItem'),
         onItemClick: this.handleItemClick,
@@ -132,13 +133,18 @@ class Tab extends Component {
 
     return (
       <Grid {...gridProps}>
-        {position === 'left' && GridColumn.create({ width: tabWidth, children: menu })}
-        {GridColumn.create({
-          width: paneWidth,
-          children: this.renderItems(),
-          stretched: true,
-        })}
-        {position === 'right' && GridColumn.create({ width: tabWidth, children: menu })}
+        {position === 'left' &&
+          GridColumn.create({ width: tabWidth, children: menu }, { autoGenerateKey: false })}
+        {GridColumn.create(
+          {
+            width: paneWidth,
+            children: this.renderItems(),
+            stretched: true,
+          },
+          { autoGenerateKey: false },
+        )}
+        {position === 'right' &&
+          GridColumn.create({ width: tabWidth, children: menu }, { autoGenerateKey: false })}
       </Grid>
     )
   }

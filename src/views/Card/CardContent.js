@@ -47,9 +47,9 @@ function CardContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(CardHeader, val => ({ content: val }), header)}
-      {createShorthand(CardMeta, val => ({ content: val }), meta)}
-      {createShorthand(CardDescription, val => ({ content: val }), description)}
+      {createShorthand(CardHeader, val => ({ content: val }), header, { autoGenerateKey: false })}
+      {createShorthand(CardMeta, val => ({ content: val }), meta, { autoGenerateKey: false })}
+      {createShorthand(CardDescription, val => ({ content: val }), description, { autoGenerateKey: false })}
     </ElementType>
   )
 }
