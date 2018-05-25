@@ -27,8 +27,8 @@ function StepContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {StepTitle.create(title)}
-      {StepDescription.create(description)}
+      {StepTitle.create(title, { autoGenerateKey: false })}
+      {StepDescription.create(description, { autoGenerateKey: false })}
     </ElementType>
   )
 }

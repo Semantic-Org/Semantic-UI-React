@@ -11,7 +11,7 @@ class CarbonAd extends Component {
     script.async = true
     script.id = '_carbonads_js'
     script.type = 'text/javascript'
-    script.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=reactsemanticuicom'
+    script.src = '//cdn.carbonads.com/carbon.js?serve=CK7DT23J&placement=reactsemanticuicom'
 
     this.ifRef(ref => ref.appendChild(script))
   }

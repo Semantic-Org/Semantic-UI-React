@@ -35,7 +35,7 @@ function FeedLabel(props) {
   return (
     <ElementType {...rest} className={classes}>
       {content}
-      {Icon.create(icon)}
+      {Icon.create(icon, { autoGenerateKey: false })}
       {createHTMLImage(image)}
     </ElementType>
   )

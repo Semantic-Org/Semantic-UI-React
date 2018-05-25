@@ -179,7 +179,7 @@ export default class Embed extends Component {
 
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {Icon.create(icon)}
+        {Icon.create(icon, { autoGenerateKey: false })}
         {placeholder && <img className='placeholder' src={placeholder} />}
         {this.renderEmbed()}
       </ElementType>
@@ -206,6 +206,7 @@ export default class Embed extends Component {
             title: `Embedded content from ${source}.`,
             width: '100%',
           },
+          autoGenerateKey: false,
         })}
       </div>
     )
