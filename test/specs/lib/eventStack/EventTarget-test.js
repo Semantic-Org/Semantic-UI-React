@@ -2,148 +2,81 @@ import EventTarget from 'src/lib/eventStack/EventTarget'
 import { domEvent, sandbox } from 'test/utils'
 
 describe('EventTarget', () => {
-  let eventTarget
+  let target
 
   beforeEach(() => {
-    eventTarget = new EventTarget(document)
+    target = new EventTarget(document)
   })
 
   afterEach(() => {
-    eventTarget = null
+    target = null
   })
 
-  describe('empty', () => {
-    it('is true by default', () => {
-      eventTarget.empty()
-        .should.equal(true)
-    })
+  describe('addHandlers', () => {
+    it('adds handlers', () => {
+      const handler1 = sandbox.spy()
+      const handler2 = sandbox.spy()
 
-    it('is false when has handlers', () => {
-      eventTarget.sub('click', () => {})
-      eventTarget.empty()
-        .should.equal(false)
-    })
-
-    it('is true when handlers are removed', () => {
-      const handler = () => {}
-
-      eventTarget.sub('click', handler)
-      eventTarget.unsub('click', handler)
-      eventTarget.empty()
-        .should.equal(true)
-    })
-  })
-
-  describe('sub', () => {
-    it('adds a single', () => {
-      const first = sandbox.spy()
-
-      eventTarget.sub('click', first)
+      target.addHandlers('default', 'click', [handler1])
+      target.addHandlers('default', 'click', [handler2])
       domEvent.click(document)
 
-      first.should.have.been.calledOnce()
-    })
-
-    it('adds multiple', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
-
-      eventTarget.sub('click', first)
-      eventTarget.sub('click', second)
-      domEvent.click(document)
-
-      first.should.have.been.calledOnce()
-      second.should.have.been.calledOnce()
-    })
-
-    it('adds multiple with array', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
-
-      eventTarget.sub('click', [first, second])
-      domEvent.click(document)
-
-      first.should.have.been.calledOnce()
-      second.should.have.been.calledOnce()
-    })
-
-    it('adds only unique', () => {
-      const first = sandbox.spy()
-
-      eventTarget.sub('click', [first, first])
-      eventTarget.sub('click', [first, first])
-
-      domEvent.click(document)
-      first.should.have.been.calledOnce()
+      handler1.should.have.been.calledOnce()
+      handler2.should.have.been.calledOnce()
     })
 
     it('handles multiple pools', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
+      const handler1 = sandbox.spy()
+      const handler2 = sandbox.spy()
 
-      eventTarget.sub('click', first)
-      eventTarget.sub('click', second, 'another')
+      target.addHandlers('default', 'click', [handler1])
+      target.addHandlers('another', 'click', [handler2])
       domEvent.click(document)
 
-      first.should.have.been.calledOnce()
-      second.should.have.been.calledOnce()
-    })
-
-    it('fires only last handler in non-default pool', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
-
-      eventTarget.sub('click', first, 'another')
-      eventTarget.sub('click', second, 'another')
-      domEvent.click(document)
-
-      first.should.not.have.been.called()
-      second.should.have.been.calledOnce()
+      handler1.should.have.been.calledOnce()
+      handler2.should.have.been.calledOnce()
     })
   })
 
-  describe('unsub', () => {
-    it('handles unsubscribe', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
-
-      eventTarget.sub('click', [first, second])
-      domEvent.click(document)
-
-      eventTarget.unsub('click', second)
-      domEvent.click(document)
-
-      first.should.have.been.calledTwice()
-      second.should.have.been.calledOnce()
+  describe('hasHandlers', () => {
+    it('is "false" when has not handlers', () => {
+      target.hasHandlers().should.be.false()
     })
 
-    it('handles multiple unsubscribe', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
+    it('is "true" when has handlers', () => {
+      target.addHandlers('default', 'click', [() => {}])
+      target.hasHandlers().should.be.true()
+    })
+  })
 
-      eventTarget.sub('click', [first, second])
+  describe('removeHandlers', () => {
+    it('removes handlers', () => {
+      const handler1 = sandbox.spy()
+      const handler2 = sandbox.spy()
+
+      target.addHandlers('default', 'click', [handler1, handler2])
       domEvent.click(document)
 
-      eventTarget.unsub('click', [first, second])
+      target.removeHandlers('default', 'click', [handler2])
       domEvent.click(document)
 
-      first.should.have.been.calledOnce()
-      second.should.have.been.calledOnce()
+      handler1.should.have.been.calledTwice()
+      handler2.should.have.been.calledOnce()
     })
 
-    it('handles unsubscribe with multiple pools', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
+    it('removes handlers with multiple pools', () => {
+      const handler1 = sandbox.spy()
+      const handler2 = sandbox.spy()
 
-      eventTarget.sub('click', first)
-      eventTarget.sub('click', second, 'another')
+      target.addHandlers('default', 'click', [handler1])
+      target.addHandlers('another', 'click', [handler2])
       domEvent.click(document)
 
-      eventTarget.unsub('click', second, 'another')
+      target.removeHandlers('another', 'click', [handler2])
       domEvent.click(document)
 
-      first.should.have.been.calledTwice()
-      second.should.have.been.calledOnce()
+      handler1.should.have.been.calledTwice()
+      handler2.should.have.been.calledOnce()
     })
   })
 })
