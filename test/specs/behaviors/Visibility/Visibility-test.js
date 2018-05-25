@@ -544,7 +544,11 @@ describe('Visibility', () => {
       sandbox.stub(window, 'requestAnimationFrame').callsFake(fn => setTimeout(() => fn(), 0))
     })
 
-    it('fires onUpdate after mount when updateOn=repaint', (done) => {
+    it('defaults to "events"', () => {
+      wrapperMount(<Visibility />).should.have.prop('updateOn', 'events')
+    })
+
+    it('fires onUpdate after mount when updateOn="repaint"', (done) => {
       const onUpdate = sandbox.spy()
       wrapperMount(<Visibility onUpdate={onUpdate} updateOn='repaint' />)
 
@@ -556,7 +560,7 @@ describe('Visibility', () => {
       }, 0)
     })
 
-    it('fires onUpdate after change to updateOn=repaint', (done) => {
+    it('fires onUpdate after change to updateOn="repaint"', (done) => {
       const onUpdate = sandbox.spy()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
