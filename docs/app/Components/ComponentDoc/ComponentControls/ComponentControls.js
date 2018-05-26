@@ -12,37 +12,17 @@ const ComponentControls = (props) => {
   const { anchorName, showHTML, showCode, onCopyLink, onShowHTML, onShowCode, visible } = props
 
   return (
-    <Transition
-      duration={200}
-      transitionOnMount
-      visible={!!visible}
-      unmountOnHide
-    >
+    <Transition duration={200} visible={!!visible} unmountOnHide>
       {/*
         Heads up! Don't remove this `div`, visible Transition applies `display: block`,
         while Menu should have `display: inline-flex`
       */}
       <div>
-        <Menu
-          color='green'
-          compact
-          icon
-          size='small'
-          text
-        >
-          <ComponentControlsCopyLink
-            anchorName={anchorName}
-            onClick={onCopyLink}
-          />
+        <Menu color='green' compact icon size='small' text>
+          <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
           <ComponentControlsMaximize anchorName={anchorName} />
-          <ComponentControlsShowHtml
-            active={showHTML}
-            onClick={onShowHTML}
-          />
-          <ComponentControlsEditCode
-            active={showCode}
-            onClick={onShowCode}
-          />
+          <ComponentControlsShowHtml active={showHTML} onClick={onShowHTML} />
+          <ComponentControlsEditCode active={showCode} onClick={onShowCode} />
         </Menu>
       </div>
     </Transition>

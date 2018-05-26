@@ -57,7 +57,7 @@ export interface VisibilityProps {
    * Value that context should be adjusted in pixels. Useful for making content appear below content fixed to the
    * page.
    */
-  offset?: number | string | Array<number|string>;
+  offset?: number | string | Array<number | string>;
 
   /** When set to false a callback will occur each time an element passes the threshold for a condition. */
   once?: boolean;
@@ -136,6 +136,13 @@ export interface VisibilityProps {
    * @param {object} data - All props.
    */
   onUpdate?: (nothing: null, data: VisibilityEventData) => void;
+
+  /**
+   * Allows to choose the mode of the position calculations:
+   * - `events` - (default) update and fire callbacks only on scroll/resize events
+   * - `repaint` - update and fire callbacks on browser repaint (animation frames)
+   */
+  updateOn?: 'events' | 'repaint';
 }
 
 export interface VisibilityCalculations {

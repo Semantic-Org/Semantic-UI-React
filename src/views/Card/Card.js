@@ -130,15 +130,23 @@ export default class Card extends Component {
     })
 
     if (!childrenUtils.isNil(children)) {
-      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
+          {children}
+        </ElementType>
+      )
     }
     if (!childrenUtils.isNil(content)) {
-      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{content}</ElementType>
+      return (
+        <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
+          {content}
+        </ElementType>
+      )
     }
 
     return (
       <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-        {Image.create(image)}
+        {Image.create(image, { autoGenerateKey: false })}
         {(description || header || meta) && (
           <CardContent description={description} header={header} meta={meta} />
         )}
