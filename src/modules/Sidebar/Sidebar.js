@@ -1,11 +1,14 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import Ref from '../../addons/Ref'
 import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  eventStack,
   getUnhandledProps,
   getElementType,
   META,
@@ -40,6 +43,9 @@ class Sidebar extends Component {
     /** Direction the sidebar should appear on. */
     direction: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
+    /** Called when the user clicks away from the sidebar. */
+    onSidebarBlur: PropTypes.func,
+
     /** Controls whether or not the sidebar is visible on the page. */
     visible: PropTypes.bool,
 
@@ -63,19 +69,44 @@ class Sidebar extends Component {
   static Pushable = SidebarPushable
   static Pusher = SidebarPusher
 
+  componentDidMount() {
+    if (this.state.visible) eventStack.sub('click', this.handleDocumentClick)
+  }
+
+  componentWillUnmount() {
+    if (this.state.visible) eventStack.unsub('click', this.handleDocumentClick)
+  }
+
+  componentDidUpdate(prevProps, { visible: prev }) {
+    const { visible: next } = this.state
+
+    if (prev === next) return
+
+    this.startAnimating()
+    if (next) eventStack.sub('click', this.handleDocumentClick)
+    if (!next) eventStack.unsub('click', this.handleDocumentClick)
+  }
+
   startAnimating = (duration = 500) => {
-    clearTimeout(this.stopAnimatingTimer)
-
-    this.setState({ animating: true })
-
-    this.stopAnimatingTimer = setTimeout(() => this.setState({ animating: false }), duration)
+    this.setState({ animating: true }, () => {
+      clearTimeout(this.stopAnimatingTimer)
+      this.stopAnimatingTimer = setTimeout(this.handleAnimationEnd, duration)
+    })
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible !== this.props.visible) {
-      this.startAnimating()
-    }
+  handleAnimationEnd = () => {
+    if (!this.state.visible) _.invoke(this.props, 'onHidden')
+    this.setState({ animating: false })
   }
+
+  handleDocumentClick = (e) => {
+    if (!this.state.visible || this.ref.contains(e.target)) return
+
+    this.trySetState({ visible: false })
+    _.invoke(this.props, 'onSidebarBlur')
+  }
+
+  handleRef = c => (this.ref = c)
 
   render() {
     const {
@@ -104,9 +135,11 @@ class Sidebar extends Component {
     const ElementType = getElementType(Sidebar, this.props)
 
     return (
-      <ElementType {...rest} className={classes}>
-        {childrenUtils.isNil(children) ? content : children}
-      </ElementType>
+      <Ref innerRef={this.handleRef}>
+        <ElementType {...rest} className={classes}>
+          {childrenUtils.isNil(children) ? content : children}
+        </ElementType>
+      </Ref>
     )
   }
 }
