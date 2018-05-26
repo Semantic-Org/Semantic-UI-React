@@ -7,6 +7,7 @@ import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
+  doesNodeContainClick,
   eventStack,
   getUnhandledProps,
   getElementType,
@@ -25,7 +26,14 @@ class Sidebar extends Component {
     as: customPropTypes.as,
 
     /** Animation style. */
-    animation: PropTypes.oneOf(['overlay', 'push', 'scale down', 'uncover', 'slide out', 'slide along']),
+    animation: PropTypes.oneOf([
+      'overlay',
+      'push',
+      'scale down',
+      'uncover',
+      'slide out',
+      'slide along',
+    ]),
 
     /** Primary content. */
     children: PropTypes.node,
@@ -33,31 +41,14 @@ class Sidebar extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-    /** Controls whether or not to close sidebar when click outside. */
-    closable: PropTypes.bool,
-
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
-
-    /** Initial value of visible. */
-    defaultVisible: PropTypes.bool,
 
     /** Direction the sidebar should appear on. */
     direction: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
     /** Duration of sidebar animation. */
-    duration: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
-
-    /**
-     * Called when a sidebar begins to hide or show.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onChange: PropTypes.func,
+    duration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * Called before a sidebar begins to animate out.
@@ -83,7 +74,8 @@ class Sidebar extends Component {
      */
     onShow: PropTypes.func,
 
-    /** Called when a sidebar begins animating in.
+    /**
+     * Called when a sidebar begins animating in.
      *
      * @param {null}
      * @param {object} data - All props.
@@ -98,14 +90,11 @@ class Sidebar extends Component {
   }
 
   static defaultProps = {
-    closable: true,
     direction: 'left',
     duration: 500,
   }
 
-  static autoControlledProps = [
-    'visible',
-  ]
+  static autoControlledProps = ['visible']
 
   static _meta = {
     name: 'Sidebar',
@@ -130,39 +119,38 @@ class Sidebar extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { visible: prev } = prevProps
-    const { visible: next } = this.props
+    const { visible: prevVisible } = prevProps
+    const { visible: currentVisible } = this.props
 
-    if (prev !== next) {
-      this.handleAnimationStart()
-      if(next) {
-        this.addListener()
-      } else {
-        this.removeListener()
-      }
+    if (prevVisible === currentVisible) return
+
+    this.handleAnimationStart()
+
+    if (currentVisible) {
+      this.addListener()
+      return
     }
+
+    this.removeListener()
   }
 
   addListener() {
-    if(this.registered) return
-
     eventStack.sub('click', this.handleDocumentClick)
-    this.registered = true
   }
 
   removeListener() {
-    if(!this.registered) return
-
     eventStack.unsub('click', this.handleDocumentClick)
-    this.registered = false
   }
 
   handleAnimationStart = () => {
-    const { duration } = this.props
+    const { duration, visible } = this.props
+    const callback = visible ? 'onVisible' : 'onHide'
 
     this.setState({ animating: true }, () => {
       clearTimeout(this.animationTimer)
       this.animationTimer = setTimeout(this.handleAnimationEnd, duration)
+
+      _.invoke(this.props, callback, null, this.props)
     })
   }
 
@@ -175,13 +163,9 @@ class Sidebar extends Component {
   }
 
   handleDocumentClick = (e) => {
-    const { target } = e
-    const { visible } = this.props
-
-    if (!visible || this.ref.contains(target)) return
-
-    _.invoke(this.props, 'onChange', e, { ...this.props, visible: false })
-    _.invoke(this.props, 'onHide', e, { ...this.props, visible: false })
+    if (!doesNodeContainClick(this.ref, e)) {
+      _.invoke(this.props, 'onHide', e, { ...this.props, visible: false })
+    }
   }
 
   handleRef = c => (this.ref = c)

@@ -1,7 +1,7 @@
 import { createElement } from 'react'
 import _ from 'lodash'
 
-import { consoleUtil } from 'test/utils'
+import { consoleUtil, nestedShallow } from 'test/utils'
 import {
   classNamePropValueBeforePropName,
   noClassNameFromBoolProps,
@@ -36,11 +36,12 @@ export const propKeyAndValueToClassName = (Component, propKey, propValues, optio
  * @param {React.Component|Function} Component The component to test.
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
- * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {Object} [options.className=propKey] The className to assert exists.
+ * @param {Number} [options.nestingLevel=0] The nesting level of the component.
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
  */
 export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
-  const { className = propKey, requiredProps = {} } = options
+  const { className = propKey, nestingLevel = 0, requiredProps = {} } = options
   const { assertRequired } = helpers('propKeyOnlyToClassName', Component)
 
   describe(`${propKey} (common)`, () => {
@@ -50,16 +51,18 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
     noDefaultClassNameFromProp(Component, propKey, [], options)
 
     it('adds prop name to className', () => {
-      shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
-        .should.have.className(className)
+      nestedShallow(createElement(Component, { ...requiredProps, [propKey]: true }), {
+        nestingLevel,
+      }).should.have.className(className)
     })
 
     it('does not add prop value to className', () => {
       consoleUtil.disableOnce()
 
       const value = 'foo-bar-baz'
-      shallow(createElement(Component, { ...requiredProps, [propKey]: value }))
-        .should.not.have.className(value)
+      nestedShallow(createElement(Component, { ...requiredProps, [propKey]: value }), {
+        nestingLevel,
+      }).should.not.have.className(value)
     })
   })
 }
@@ -89,8 +92,9 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
     })
 
     it('adds only the name to className when true', () => {
-      shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
-        .should.have.className(className)
+      shallow(
+        createElement(Component, { ...requiredProps, [propKey]: true }),
+      ).should.have.className(className)
     })
 
     it('adds no className when false', () => {
@@ -113,11 +117,12 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
  * @param {String} propKey A props key.
  * @param {array} propValues Array of possible props values.
  * @param {Object} [options={}]
- * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {Object} [options.className=propKey] The className to assert exists.
+ * @param {Number} [options.nestingLevel=0] The nesting level of the component.
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
  */
 export const propValueOnlyToClassName = (Component, propKey, propValues, options = {}) => {
-  const { requiredProps = {} } = options
+  const { nestingLevel = 0, requiredProps = {} } = options
   const { assertRequired } = helpers('propValueOnlyToClassName', Component)
 
   describe(`${propKey} (common)`, () => {
@@ -129,8 +134,9 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
 
     it('adds prop value to className', () => {
       propValues.forEach((propValue) => {
-        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
-          .should.have.className(propValue)
+        nestedShallow(createElement(Component, { ...requiredProps, [propKey]: propValue }), {
+          nestingLevel,
+        }).should.have.className(propValue)
       })
     })
 
@@ -138,8 +144,9 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
       consoleUtil.disableOnce()
 
       propValues.forEach((propValue) => {
-        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
-          .should.not.have.className(propKey)
+        nestedShallow(createElement(Component, { ...requiredProps, [propKey]: propValue }), {
+          nestingLevel,
+        }).should.not.have.className(propKey)
       })
     })
   })

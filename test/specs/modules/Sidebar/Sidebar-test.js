@@ -1,94 +1,115 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 import Sidebar from 'src/modules/Sidebar/Sidebar'
 import * as common from 'test/specs/commonTests'
+import { domEvent, sandbox } from 'test/utils'
 
-class TestComponent extends Component {
-  static propTypes = {
-    visible: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    visible: false,
-  }
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      visible: props.visible,
-    }
-  }
-
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
-
-  render() {
-    return (
-      <div>
-        <Sidebar
-          visible={this.state.visible}
-          closable
-          toggleVisibility={this.toggleVisibility}
-        >
-          <div className='inside' />
-        </Sidebar>
-      </div>
-    )
-  }
-}
+const nestingLevel = 1
 
 describe('Sidebar', () => {
-  common.isConformant(Sidebar)
-  common.hasUIClassName(Sidebar)
-  common.rendersChildren(Sidebar)
+  common.isConformant(Sidebar, { nestingLevel })
+  common.hasUIClassName(Sidebar, { nestingLevel })
+  common.rendersChildren(Sidebar, { nestingLevel })
 
-  common.propKeyOnlyToClassName(Sidebar, 'visible')
+  common.propKeyOnlyToClassName(Sidebar, 'visible', { nestingLevel })
 
-  common.propValueOnlyToClassName(Sidebar, 'animation', [
-    'overlay', 'push', 'scale down', 'uncover', 'slide out', 'slide along',
-  ])
-  common.propValueOnlyToClassName(Sidebar, 'direction', ['top', 'right', 'bottom', 'left'])
-  common.propValueOnlyToClassName(Sidebar, 'width', ['very thin', 'thin', 'wide', 'very wide'])
-
-  it('renders a <div /> element', () => {
-    shallow(<Sidebar />)
-      .should.have.tagName('div')
+  common.propValueOnlyToClassName(
+    Sidebar,
+    'animation',
+    ['overlay', 'push', 'scale down', 'uncover', 'slide out', 'slide along'],
+    { nestingLevel },
+  )
+  common.propValueOnlyToClassName(Sidebar, 'direction', ['top', 'right', 'bottom', 'left'], {
+    nestingLevel,
+  })
+  common.propValueOnlyToClassName(Sidebar, 'width', ['very thin', 'thin', 'wide', 'very wide'], {
+    nestingLevel,
   })
 
-  it('close Sidebar when clicking outside', () => {
-    const wrapper = mount(<TestComponent visible />)
-    const SidebarComponent = wrapper.find('Sidebar')
-    SidebarComponent.should.have.prop('visible', true)
-    document.body.click()
-    SidebarComponent.should.have.prop('visible', false)
+  describe('onHide', () => {
+    it('is called when the "visible" prop changes to "false"', () => {
+      const onHide = sandbox.spy()
+      const wrapper = mount(<Sidebar onHide={onHide} visible />)
+      onHide.should.have.not.been.called()
+
+      wrapper.setProps({ visible: false })
+      onHide.should.have.been.calledOnce()
+      onHide.should.have.been.calledWithMatch(null, { visible: false })
+    })
+
+    it('is called when a click on the document was done', () => {
+      const onHide = sandbox.spy()
+      mount(<Sidebar onHide={onHide} visible />)
+      onHide.should.have.not.been.called()
+
+      domEvent.click(document)
+      onHide.should.have.been.calledOnce()
+      onHide.should.have.been.calledWithMatch({}, { visible: false })
+    })
+
+    it('is not called when a click was done inside the component', () => {
+      const mountNode = document.createElement('div')
+      const onHide = sandbox.spy()
+
+      document.body.appendChild(mountNode)
+      const wrapper = mount(
+        <Sidebar onHide={onHide} visible>
+          <div id='child' />
+        </Sidebar>,
+        { attachTo: mountNode },
+      )
+
+      domEvent.click('div#child')
+      onHide.should.have.not.been.called()
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
   })
 
-  it('doesn\'t close when clicking on element inside Sidebar', () => {
-    const wrapper = mount(<TestComponent visible />)
-    const SidebarComponent = wrapper.find('Sidebar')
-    SidebarComponent.should.have.prop('visible', true)
-    SidebarComponent.find('.inside').simulate('click')
-    SidebarComponent.should.have.prop('visible', true)
+  describe('onHidden', () => {
+    it('is called when the "visible" prop was changed to "false"', (done) => {
+      const onHidden = sandbox.spy()
+      const wrapper = mount(<Sidebar duration={0} onHidden={onHidden} visible />)
+
+      onHidden.should.have.not.been.called()
+      wrapper.setProps({ visible: false })
+
+      setTimeout(() => {
+        onHidden.should.have.been.calledOnce()
+        onHidden.should.have.been.calledWithMatch(null, { duration: 0, visible: false })
+
+        done()
+      }, 0)
+    })
   })
 
-  it('doesn\'t close when clicking on Sidebar', () => {
-    const wrapper = mount(<TestComponent visible />)
-    const SidebarComponent = wrapper.find('Sidebar')
+  describe('onShow', () => {
+    it('is called when the "visible" prop was changed to "true"', (done) => {
+      const onShow = sandbox.spy()
+      const wrapper = mount(<Sidebar duration={0} onShow={onShow} />)
 
-    SidebarComponent.should.have.prop('visible', true)
-    SidebarComponent.simulate('click')
-    SidebarComponent.should.have.prop('visible', true)
+      onShow.should.have.not.been.called()
+      wrapper.setProps({ visible: true })
+
+      setTimeout(() => {
+        onShow.should.have.been.calledOnce()
+        onShow.should.have.been.calledWithMatch(null, { duration: 0, visible: true })
+
+        done()
+      }, 0)
+    })
   })
 
-  it('close Sidebar after opening and then clicking outside', () => {
-    const wrapper = mount(<TestComponent />)
-    const SidebarComponent = wrapper.find('Sidebar')
+  describe('onVisible', () => {
+    it('is called when the "visible" prop changes to "true"', () => {
+      const onVisible = sandbox.spy()
+      const wrapper = mount(<Sidebar onVisible={onVisible} />)
+      onVisible.should.have.not.been.called()
 
-    SidebarComponent.should.have.prop('visible', false)
-
-    wrapper.setState({ visible: true })
-    SidebarComponent.should.have.prop('visible', true)
-
-    document.body.click()
-    SidebarComponent.should.have.prop('visible', false)
+      wrapper.setProps({ visible: true })
+      onVisible.should.have.been.calledOnce()
+      onVisible.should.have.been.calledWithMatch(null, { visible: true })
+    })
   })
 })
