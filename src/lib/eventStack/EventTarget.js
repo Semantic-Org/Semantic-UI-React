@@ -1,42 +1,17 @@
 import EventPool from './EventPool'
 
 export default class EventTarget {
+  /** @private {Map<String,Function>} */
+  handlers = new Map()
   /** @private {Map<String,EventPool>} */
-  _pools = new Map()
+  pools = new Map()
 
   /**
    * @param {HTMLElement} target
    */
   constructor(target) {
-    this._handlers = new Map()
+    /** @private */
     this.target = target
-  }
-
-  // ------------------------------------
-  // Utils
-  // ------------------------------------
-
-  createEmitter = (eventType, pools) => (event) => {
-    pools.forEach((pool) => {
-      pool.dispatchEvent(eventType, event)
-    })
-  }
-
-  // ------------------------------------
-  // Listeners handling
-  // ------------------------------------
-
-  _listen(eventType) {
-    const handler = this.createEmitter(eventType, this._pools)
-
-    this._handlers.set(eventType, handler)
-    this.target.addEventListener(eventType, handler)
-  }
-
-  _unlisten(eventType) {
-    if (this._handlers.has(eventType)) {
-      this.target.removeEventListener(eventType, this._handlers.get(eventType))
-    }
   }
 
   /**
@@ -45,27 +20,22 @@ export default class EventTarget {
    * @param {Function[]} eventHandlers
    */
   addHandlers(poolName, eventType, eventHandlers) {
-    if (this._pools.has(poolName) === false) {
-      const eventPool = new EventPool(poolName, eventType, eventHandlers)
+    this.removeTargetHandler(eventType)
 
-      this._unlisten(eventType)
-      this._pools.set(poolName, eventPool)
-      this._listen(eventType)
-      return
+    if (!this.pools.has(poolName)) {
+      this.pools.set(poolName, EventPool.createByType(poolName, eventType, eventHandlers))
+    } else {
+      this.pools.set(poolName, this.pools.get(poolName).addHandlers(eventType, eventHandlers))
     }
 
-    const pool = this._pools.get(poolName)
-
-    this._unlisten(eventType)
-    this._pools.set(poolName, pool.addHandlers(eventType, eventHandlers))
-    this._listen(eventType, this._pools)
+    this.addTargetHandler(eventType)
   }
 
   /**
    * @return {Boolean}
    */
   hasHandlers() {
-    return this._handlers.size > 0
+    return this.handlers.size > 0
   }
 
   /**
@@ -74,20 +44,54 @@ export default class EventTarget {
    * @param {Function[]} eventHandlers
    */
   removeHandlers(poolName, eventType, eventHandlers) {
-    const pool = this._pools.get(poolName)
+    const pool = this.pools.get(poolName)
 
     if (pool) {
       const newPool = pool.removeHandlers(eventType, eventHandlers)
 
       if (newPool.hasHandlers(eventType)) {
-        this._unlisten(eventType)
-        this._pools.set(poolName, newPool)
+        this.removeTargetHandler(eventType)
+        this.pools.set(poolName, newPool)
       } else {
-        this._unlisten(eventType)
-        this._pools.delete(poolName)
+        this.removeTargetHandler(eventType)
+        this.pools.delete(poolName)
       }
 
-      this._listen(eventType)
+      if (this.pools.size > 0) this.addTargetHandler(eventType)
+    }
+  }
+
+  /**
+   * @private
+   * @param {String} eventType
+   * @param {Map<String,EventPool>} eventPools
+   * @return {Function}
+   */
+  createEmitter = (eventType, eventPools) => (event) => {
+    eventPools.forEach((pool) => {
+      pool.dispatchEvent(eventType, event)
+    })
+  }
+
+  /**
+   * @private
+   * @param {String} eventType
+   */
+  addTargetHandler(eventType) {
+    const handler = this.createEmitter(eventType, this.pools)
+
+    this.handlers.set(eventType, handler)
+    this.target.addEventListener(eventType, handler)
+  }
+
+  /**
+   * @private
+   * @param {String} eventType
+   */
+  removeTargetHandler(eventType) {
+    if (this.handlers.has(eventType)) {
+      this.target.removeEventListener(eventType, this.handlers.get(eventType))
+      this.handlers.delete(eventType)
     }
   }
 }

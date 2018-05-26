@@ -2,20 +2,10 @@ import EventPool from 'src/lib/eventStack/EventPool'
 import { sandbox } from 'test/utils'
 
 describe('EventPool', () => {
-  describe('constructor', () => {
-    it('adds handlers with constuctor', () => {
-      const first = sandbox.spy()
-      const pool = new EventPool('default', 'click', [first])
-
-      pool.dispatchEvent('click', null)
-      first.should.have.been.calledOnce()
-    })
-  })
-
   describe('addHandlers', () => {
     it('adds handlers', () => {
       const handler = sandbox.spy()
-      let pool = new EventPool('default', 'click', [])
+      let pool = new EventPool('default', new Map())
 
       pool = pool.addHandlers('click', [handler])
       pool.dispatchEvent('click', null)
@@ -27,7 +17,8 @@ describe('EventPool', () => {
       const clickHandler = sandbox.spy()
       const mouseDown = sandbox.spy()
 
-      let pool = new EventPool('default', 'click', [clickHandler])
+      let pool = new EventPool('default', new Map())
+      pool = pool.addHandlers('click', [clickHandler])
       pool = pool.addHandlers('mousedown', [mouseDown])
 
       pool.dispatchEvent('click', null)
@@ -38,7 +29,7 @@ describe('EventPool', () => {
     })
 
     it('always returns a new object', () => {
-      const pool = new EventPool('default', 'click', [])
+      const pool = EventPool.createByType('default', 'click', [])
       const anotherPool = pool.addHandlers('click', [])
 
       anotherPool.should.be.an('object')
@@ -49,7 +40,7 @@ describe('EventPool', () => {
       const handler1 = sandbox.spy()
       const handler2 = sandbox.spy()
 
-      const pool = new EventPool('default', 'click', [handler1])
+      const pool = EventPool.createByType('default', 'click', [handler1])
       const another = pool.addHandlers('click', [handler2])
 
       pool.dispatchEvent('click', null)
@@ -61,7 +52,7 @@ describe('EventPool', () => {
   })
 
   describe('hasHandlers', () => {
-    const pool = new EventPool('default', 'click', [() => {}])
+    const pool = EventPool.createByType('default', 'click', [() => {}])
 
     it('returns "true" if has handlers', () => {
       pool.hasHandlers('click').should.have.be.true()
@@ -75,7 +66,7 @@ describe('EventPool', () => {
   describe('removeHandlers', () => {
     it('removes handlers', () => {
       const handler = sandbox.spy()
-      let pool = new EventPool('default', 'click', [handler])
+      let pool = EventPool.createByType('default', 'click', [handler])
 
       pool.dispatchEvent('click', null)
       pool = pool.removeHandlers('click', [handler])
@@ -86,7 +77,7 @@ describe('EventPool', () => {
 
     it('removes handlers for non-existent eventType', () => {
       const handler = sandbox.spy()
-      let pool = new EventPool('default', 'click', [handler])
+      let pool = EventPool.createByType('default', 'click', [handler])
 
       pool.dispatchEvent('click', null)
       pool = pool.removeHandlers('mousedown', [handler])
@@ -96,7 +87,7 @@ describe('EventPool', () => {
     })
 
     it('always returns a new object', () => {
-      const pool = new EventPool('default', 'click', [])
+      const pool = EventPool.createByType('default', 'click', [])
       const another = pool.removeHandlers('click', [])
 
       another.should.be.an('object')
@@ -107,7 +98,7 @@ describe('EventPool', () => {
       const handler1 = sandbox.spy()
       const handler2 = sandbox.spy()
 
-      const pool = new EventPool('default', 'click', [handler1, handler2])
+      const pool = EventPool.createByType('default', 'click', [handler1, handler2])
       const another = pool.removeHandlers('click', [handler2])
 
       pool.dispatchEvent('click', null)

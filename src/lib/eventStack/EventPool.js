@@ -5,12 +5,24 @@ export default class EventPool {
    * @param {String} poolName
    * @param {String} eventType
    * @param {Function[]} eventHandlers
+   * @return {EventPool}
    */
-  constructor(poolName, eventType, eventHandlers) {
-    this._handlerSets = new Map()
-    this._handlerSets.set(eventType, new EventSet(eventHandlers))
+  static createByType = (poolName, eventType, eventHandlers) => {
+    const handlerSets = new Map()
+    handlerSets.set(eventType, new EventSet(eventHandlers))
 
-    this._poolName = poolName
+    return new EventPool(poolName, handlerSets)
+  }
+
+  /**
+   * @param {String} poolName
+   * @param {Map<String,EventSet>} handlerSets
+   */
+  constructor(poolName, handlerSets) {
+    /** @private */
+    this.handlerSets = handlerSets
+    /** @private */
+    this.poolName = poolName
   }
 
   /**
@@ -19,20 +31,15 @@ export default class EventPool {
    * @return {EventPool}
    */
   addHandlers(eventType, eventHandlers) {
-    const handlerSets = new Map(this._handlerSets)
-    const pool = new EventPool(this._poolName)
+    const handlerSets = new Map(this.handlerSets)
 
     if (handlerSets.has(eventType)) {
-      const handlerSet = handlerSets.get(eventType)
-      handlerSets.set(eventType, handlerSet.addHandlers(eventHandlers))
-
-      pool._handlerSets = handlerSets
-      return pool
+      handlerSets.set(eventType, handlerSets.get(eventType).addHandlers(eventHandlers))
+    } else {
+      handlerSets.set(eventType, new EventSet(eventHandlers))
     }
 
-    handlerSets.set(eventType, new EventSet(eventHandlers))
-    pool._handlerSets = handlerSets
-    return pool
+    return new EventPool(this.poolName, handlerSets)
   }
 
   /**
@@ -40,16 +47,16 @@ export default class EventPool {
    * @param {Event} event
    */
   dispatchEvent(eventType, event) {
-    const handlerSet = this._handlerSets.get(eventType)
+    const handlerSet = this.handlerSets.get(eventType)
 
-    if (handlerSet) handlerSet.dispatchEvent(event, this._poolName === 'default')
+    if (handlerSet) handlerSet.dispatchEvent(event, this.poolName === 'default')
   }
 
   /**
    * @param {String} eventType
    */
   hasHandlers(eventType) {
-    const handlerSet = this._handlerSets.get(eventType)
+    const handlerSet = this.handlerSets.get(eventType)
 
     if (handlerSet) return handlerSet.hasHandlers()
     return false
@@ -58,27 +65,23 @@ export default class EventPool {
   /**
    * @param {String} eventType
    * @param {Function[]} eventHandlers
+   * @return {EventPool}
    */
   removeHandlers(eventType, eventHandlers) {
-    const handlerSets = new Map(this._handlerSets)
-    const pool = new EventPool(this._poolName)
+    const handlerSets = new Map(this.handlerSets)
 
-    if (this._handlerSets.has(eventType) === false) {
-      pool._handlerSets = handlerSets
-
-      return pool
+    if (!handlerSets.has(eventType)) {
+      return new EventPool(this.poolName, handlerSets)
     }
 
-    const handlerSet = this._handlerSets.get(eventType)
-    const newSet = handlerSet.removeHandlers(eventHandlers)
+    const handlerSet = handlerSets.get(eventType).removeHandlers(eventHandlers)
 
-    if (newSet.hasHandlers()) {
-      handlerSets.set(eventType, newSet)
+    if (handlerSet.hasHandlers()) {
+      handlerSets.set(eventType, handlerSet)
     } else {
       handlerSets.delete(eventType)
     }
 
-    pool._handlerSets = handlerSets
-    return pool
+    return new EventPool(this.poolName, handlerSets)
   }
 }

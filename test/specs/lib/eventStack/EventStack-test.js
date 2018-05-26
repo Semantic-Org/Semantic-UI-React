@@ -1,4 +1,5 @@
 import EventStack from 'src/lib/eventStack/EventStack'
+import isBrowser from 'src/lib/isBrowser'
 import { domEvent, sandbox } from 'test/utils'
 
 let eventStack
@@ -6,6 +7,34 @@ let eventStack
 describe('EventStack', () => {
   beforeEach(() => {
     eventStack = new EventStack()
+  })
+
+  describe('isBrowser', () => {
+    before(() => {
+      isBrowser.override = false
+    })
+
+    after(() => {
+      isBrowser.override = null
+    })
+
+    it('does not subscribes', () => {
+      const handler = sandbox.spy()
+
+      eventStack.sub('click', handler)
+      domEvent.click(document)
+
+      handler.should.have.not.been.called()
+    })
+
+    it('does not unsubscribes', () => {
+      const handler = sandbox.spy()
+
+      eventStack.unsub('click', handler)
+      domEvent.click(document)
+
+      handler.should.have.not.been.called()
+    })
   })
 
   describe('sub', () => {
@@ -43,6 +72,11 @@ describe('EventStack', () => {
   })
 
   describe('unsub', () => {
+    it('unsubscribes from unexisting target', () => {
+      eventStack.unsub('click', () => {}, { target: document.body })
+      domEvent.click(document)
+    })
+
     it('unsubscribes and destroys eventTarget if it is empty', () => {
       const handler = sandbox.spy()
 

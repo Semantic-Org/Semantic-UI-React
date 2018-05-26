@@ -3,7 +3,7 @@ export default class EventSet {
    * @param {Function[]} eventHandlers
    */
   constructor(eventHandlers) {
-    /** @private handlers {Set<Function>} */
+    /** @private {Set<Function>} handlers */
     this.handlers = new Set(eventHandlers)
   }
 
