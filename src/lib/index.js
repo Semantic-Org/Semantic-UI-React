@@ -18,8 +18,9 @@ export { debug, makeDebugger } from './debug'
 export eventStack from './eventStack'
 
 export * from './factories'
-export getUnhandledProps from './getUnhandledProps'
+export { forwardRefFactory } from './forwardRefFactory'
 export getElementType from './getElementType'
+export getUnhandledProps from './getUnhandledProps'
 
 export {
   htmlInputAttrs,

@@ -1,3 +1,5 @@
+import { forwardRefSymbol } from './forwardRefFactory'
+
 /**
  * Returns an object consisting of props beyond the scope of the Component.
  * Useful for getting and spreading unknown props from the user.
@@ -11,6 +13,10 @@ const getUnhandledProps = (Component, props) => {
 
   return Object.keys(props).reduce((acc, prop) => {
     if (prop === 'childKey') return acc
+    if (prop === forwardRefSymbol) {
+      acc.ref = props[forwardRefSymbol]
+      return acc
+    }
     if (handledProps.indexOf(prop) === -1) acc[prop] = props[prop]
     return acc
   }, {})
