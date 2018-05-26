@@ -122,17 +122,25 @@ class Step extends Component {
     const ElementType = getElementType(Step, this.props, this.computeElementType)
 
     if (!childrenUtils.isNil(children)) {
-      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
+          {children}
+        </ElementType>
+      )
     }
 
     if (!childrenUtils.isNil(content)) {
-      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{content}</ElementType>
+      return (
+        <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
+          {content}
+        </ElementType>
+      )
     }
 
     return (
       <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-        {Icon.create(icon)}
-        {StepContent.create({ description, title })}
+        {Icon.create(icon, { autoGenerateKey: false })}
+        {StepContent.create({ description, title }, { autoGenerateKey: false })}
       </ElementType>
     )
   }

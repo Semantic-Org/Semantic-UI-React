@@ -19,7 +19,11 @@ function CommentAvatar(props) {
   const rest = getUnhandledProps(CommentAvatar, props)
   const ElementType = getElementType(CommentAvatar, props)
 
-  return <ElementType {...rest} className={classes}>{createHTMLImage(src)}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {createHTMLImage(src, { autoGenerateKey: false })}
+    </ElementType>
+  )
 }
 
 CommentAvatar._meta = {
