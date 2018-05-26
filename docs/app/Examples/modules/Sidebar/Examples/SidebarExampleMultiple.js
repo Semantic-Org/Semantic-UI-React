@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
-class SidebarRightSlideOut extends Component {
+export default class SidebarExampleMultiple extends Component {
   state = { visible: false }
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
     const { visible } = this.state
+
     return (
       <div>
-        <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
+        <Button onClick={this.toggleVisibility}>Toggle visibility</Button>
+
         <Sidebar.Pushable as={Segment}>
           <Sidebar
             as={Menu}
-            animation='slide out'
-            width='thin'
-            direction='right'
-            visible={visible}
+            animation='overlay'
+            direction='left'
             icon='labeled'
-            vertical
             inverted
+            vertical
+            visible={visible}
+            width='thin'
           >
             <Menu.Item name='home'>
               <Icon name='home' />
@@ -35,6 +37,22 @@ class SidebarRightSlideOut extends Component {
               Channels
             </Menu.Item>
           </Sidebar>
+
+          <Sidebar
+            as={Menu}
+            animation='overlay'
+            direction='right'
+            inverted
+            vertical
+            visible={visible}
+          >
+            <Menu.Item as='a' header>File Permissions</Menu.Item>
+            <Menu.Item as='a'>Share on Social</Menu.Item>
+            <Menu.Item as='a'>Share by E-mail</Menu.Item>
+            <Menu.Item as='a'>Edit Permissions</Menu.Item>
+            <Menu.Item as='a'>Delete Permanently</Menu.Item>
+          </Sidebar>
+
           <Sidebar.Pusher>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
@@ -46,5 +64,3 @@ class SidebarRightSlideOut extends Component {
     )
   }
 }
-
-export default SidebarRightSlideOut
