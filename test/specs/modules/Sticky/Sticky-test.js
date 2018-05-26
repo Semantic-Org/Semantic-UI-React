@@ -187,7 +187,7 @@ describe('Sticky', () => {
       scrollAfterContext()
       onBottom.should.have.been.calledOnce()
       onBottom.should.have.been.calledWithMatch({}, positions)
-      onBottom.reset()
+      onBottom.resetHistory()
 
       scrollToTop()
       onBottom.should.not.have.been.called()
@@ -204,7 +204,7 @@ describe('Sticky', () => {
       scrollAfterTrigger()
       onStick.should.have.been.calledTwice()
       onStick.should.have.been.calledWithMatch({}, positions)
-      onStick.reset()
+      onStick.resetHistory()
 
       scrollToTop()
       onStick.should.not.have.been.called()

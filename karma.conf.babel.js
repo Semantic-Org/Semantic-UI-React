@@ -59,17 +59,7 @@ export default (karmaConfig) => {
     },
     webpack: {
       entry: './test/tests.bundle.js',
-      externals: {
-        ...webpackConfig.externals,
-        // These are internal deps specific to React 0.13 required() by enzyme
-        // They shouldn't be requiring these at all, issues and fix proposed
-        // https://github.com/airbnb/enzyme/issues/285
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true,
-        // this is a React 0.13 dep required by enzyme
-        // ignore it since we don't have it
-        'react/addons': true,
-      },
+      externals: webpackConfig.externals,
       devtool: config.compiler_devtool,
       module: webpackConfig.module,
       plugins: webpackConfig.plugins,
