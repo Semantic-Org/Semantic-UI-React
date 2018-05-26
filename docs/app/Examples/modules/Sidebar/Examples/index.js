@@ -26,50 +26,88 @@ const SidebarExamplesExamples = () => (
         <Table.Body>
           <Table.Row>
             <Table.Cell>Overlay</Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>Push</Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>Scale Down</Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
-            <Table.Cell><Icon color='red' name='cancel' /></Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='red' name='cancel' />
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>Uncover</Table.Cell>
-            <Table.Cell><Icon color='red' name='cancel' /></Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
-            <Table.Cell><Icon color='red' name='cancel' /></Table.Cell>
+            <Table.Cell>
+              <Icon color='red' name='cancel' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='red' name='cancel' />
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>Slide Along</Table.Cell>
-            <Table.Cell><Icon color='red' name='cancel' /></Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
-            <Table.Cell><Icon color='red' name='cancel' /></Table.Cell>
+            <Table.Cell>
+              <Icon color='red' name='cancel' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='red' name='cancel' />
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>Slide Out</Table.Cell>
-            <Table.Cell><Icon color='red' name='cancel' /></Table.Cell>
-            <Table.Cell><Icon color='green' name='check' /></Table.Cell>
-            <Table.Cell><Icon color='red' name='cancel' /></Table.Cell>
+            <Table.Cell>
+              <Icon color='red' name='cancel' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='green' name='check' />
+            </Table.Cell>
+            <Table.Cell>
+              <Icon color='red' name='cancel' />
+            </Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
     </ComponentExample>
     <ComponentExample
-      title='Transitions'
-      description={(
-        <span>Multiple sidebars can be displayed at the same time only when using a supported animation like
+      title='Displaying Multiple'
+      description={
+        <span>
+          Multiple sidebars can be displayed at the same time only when using a supported animation
+          like
           <code>push</code> or <code>overlay</code>.
         </span>
-      )}
+      }
       examplePath='modules/Sidebar/Examples/SidebarExampleMultiple'
     />
   </ExampleSection>
