@@ -7,12 +7,7 @@ import { neverUpdate } from 'docs/app/HOC'
 import ComponentControlsToolTip from './ComponentControlsToolTip'
 
 const ComponentControlsMaximize = ({ examplePath }) => {
-  const [displayName, type, exampleName] = examplePath
-    .split('/')
-    .slice(-3)
-    .map(part => _.kebabCase(part).toLowerCase())
-
-  const href = `/maximize/${type}/${displayName}/${exampleName}`
+  const href = `/maximize/${_.kebabCase(examplePath.split('/').slice(-1))}`
 
   return (
     <ComponentControlsToolTip content='Full Screen'>
@@ -23,7 +18,7 @@ const ComponentControlsMaximize = ({ examplePath }) => {
   )
 }
 ComponentControlsMaximize.propTypes = {
-  examplePath: PropTypes.string,
+  examplePath: PropTypes.string.isRequired,
 }
 
 export default neverUpdate(ComponentControlsMaximize)

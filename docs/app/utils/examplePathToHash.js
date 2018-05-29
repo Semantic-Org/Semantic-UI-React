@@ -1,4 +1,5 @@
 import _ from 'lodash/fp'
+import parseExamplePath from './parseExamplePath'
 
 /**
  * Creates a short hash path from an example filename.
@@ -8,19 +9,14 @@ import _ from 'lodash/fp'
  * @param {string} examplePath
  */
 const examplePathToHash = (examplePath) => {
-  const hashParts = examplePath.split('/').filter(part => part !== '.')
-
-  if (!hashParts.length) return examplePath
-
-  // eslint-disable-next-line no-unused-vars
-  const [type, name, section, exampleName] = hashParts
+  const { displayName, section, exampleName } = parseExamplePath(examplePath)
 
   // ButtonExample => Button
   // ButtonExampleButton => Button
   // ButtonExampleActive => Active
-  const shortExampleName = exampleName.replace(`${name}Example`, '').replace('.js', '')
+  const shortExampleName = exampleName.replace(`${displayName}Example`, '').replace('.js', '')
 
-  return _.kebabCase(`${section}-${shortExampleName || name}`)
+  return _.kebabCase(`${section}-${shortExampleName || displayName}`)
 }
 
 export default examplePathToHash
