@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { Checkbox } from 'semantic-ui-react'
 
 import ComponentTable from '../ComponentTable'
 import ComponentPropsComponents from './ComponentPropsComponents'
 import ComponentPropsDescription from './ComponentPropsDescription'
-import ComponentPropsHeader from './ComponentPropsHeader'
 import getComponentGroup from '../../../utils/getComponentGroup'
 
 const propsContainerStyle = { overflowX: 'auto' }
@@ -34,14 +34,7 @@ export default class ComponentProps extends Component {
   }
 
   handleComponentClick = (e, { name }) => {
-    const { activeDisplayName } = this.state
-
-    if (activeDisplayName === name) return
-
-    this.setState({
-      activeDisplayName: name,
-      componentGroup: getComponentGroup(name),
-    })
+    this.setState({ activeDisplayName: name })
   }
 
   handleToggle = () => {
@@ -60,11 +53,7 @@ export default class ComponentProps extends Component {
 
     return (
       <div>
-        <ComponentPropsHeader
-          hasSubcomponents={displayNames.length > 1}
-          showProps={!!activeDisplayName}
-          onClick={this.handleToggle}
-        />
+        <Checkbox slider checked={!!activeDisplayName} label='Props' onClick={this.handleToggle} />
         <ComponentPropsComponents
           activeDisplayName={activeDisplayName}
           displayNames={displayNames}

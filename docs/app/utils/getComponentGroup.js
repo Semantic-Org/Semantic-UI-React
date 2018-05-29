@@ -12,6 +12,8 @@ const getComponentGroup = (displayName) => {
     [info.displayName]: info,
   }
 
+  if (!info.subcomponents) return group
+
   // add subcomponents
   info.subcomponents.forEach((subcomponent) => {
     const subInfo = componentInfoContext.byDisplayName[subcomponent]
