@@ -9,7 +9,9 @@ describe('examples', () => {
 
     it(`${filename} renders without console activity`, () => {
       // TODO also render the example's path in a <ComponentExample /> just as the docs do
-      mount(createElement(exampleContext(path).default))
+      const wrapper = mount(createElement(exampleContext(path).default))
+
+      wrapper.unmount()
     })
   })
 })
