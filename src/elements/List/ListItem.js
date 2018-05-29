@@ -118,30 +118,51 @@ class ListItem extends Component {
 
     if (!childrenUtils.isNil(children)) {
       return (
-        <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={this.handleClick}>
+        <ElementType
+          {...rest}
+          {...valueProp}
+          role='listitem'
+          className={classes}
+          onClick={this.handleClick}
+        >
           {children}
         </ElementType>
       )
     }
 
-    const iconElement = ListIcon.create(icon)
-    const imageElement = Image.create(image)
+    const iconElement = ListIcon.create(icon, { autoGenerateKey: false })
+    const imageElement = Image.create(image, { autoGenerateKey: false })
 
     // See description of `content` prop for explanation about why this is necessary.
     if (!isValidElement(content) && _.isPlainObject(content)) {
       return (
-        <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={this.handleClick}>
+        <ElementType
+          {...rest}
+          {...valueProp}
+          role='listitem'
+          className={classes}
+          onClick={this.handleClick}
+        >
           {iconElement || imageElement}
-          {ListContent.create(content, { header, description })}
+          {ListContent.create(content, {
+            autoGenerateKey: false,
+            defaultProps: { header, description },
+          })}
         </ElementType>
       )
     }
 
-    const headerElement = ListHeader.create(header)
-    const descriptionElement = ListDescription.create(description)
+    const headerElement = ListHeader.create(header, { autoGenerateKey: false })
+    const descriptionElement = ListDescription.create(description, { autoGenerateKey: false })
     if (iconElement || imageElement) {
       return (
-        <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={this.handleClick}>
+        <ElementType
+          {...rest}
+          {...valueProp}
+          role='listitem'
+          className={classes}
+          onClick={this.handleClick}
+        >
           {iconElement || imageElement}
           {(content || headerElement || descriptionElement) && (
             <ListContent>
@@ -155,7 +176,13 @@ class ListItem extends Component {
     }
 
     return (
-      <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={this.handleClick}>
+      <ElementType
+        {...rest}
+        {...valueProp}
+        role='listitem'
+        className={classes}
+        onClick={this.handleClick}
+      >
         {headerElement}
         {descriptionElement}
         {content}

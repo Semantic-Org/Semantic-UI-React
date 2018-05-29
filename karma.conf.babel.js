@@ -1,13 +1,10 @@
 import fs from 'fs'
-import puppeteerPkg from 'puppeteer/package.json'
-import Downloader from 'puppeteer/utils/ChromiumDownloader'
+import { executablePath } from 'puppeteer'
+
 import config from './config'
 import webpackConfig from './webpack.config.babel'
 
-const revision = puppeteerPkg.puppeteer.chromium_revision
-const revisionInfo = Downloader.revisionInfo(Downloader.currentPlatform(), revision)
-
-process.env.CHROME_BIN = revisionInfo.executablePath
+process.env.CHROME_BIN = executablePath()
 
 const { paths } = config
 
@@ -44,9 +41,7 @@ export default (karmaConfig) => {
       },
     },
     coverageReporter: {
-      reporters: [
-        { type: 'lcov', dir: 'coverage', subdir: '.' },
-      ],
+      reporters: [{ type: 'lcov', dir: 'coverage', subdir: '.' }],
       includeAllSources: true,
     },
     customLaunchers: {
@@ -86,18 +81,8 @@ export default (karmaConfig) => {
       'test/tests.bundle.js': ['webpack'],
     },
     webpack: {
-      entry: 'test/tests.bundle.js',
-      externals: {
-        ...webpackConfig.externals,
-        // These are internal deps specific to React 0.13 required() by enzyme
-        // They shouldn't be requiring these at all, issues and fix proposed
-        // https://github.com/airbnb/enzyme/issues/285
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true,
-        // this is a React 0.13 dep required by enzyme
-        // ignore it since we don't have it
-        'react/addons': true,
-      },
+      entry: './test/tests.bundle.js',
+      externals: webpackConfig.externals,
       devtool: config.compiler_devtool,
       module: webpackConfig.module,
       plugins: webpackConfig.plugins,

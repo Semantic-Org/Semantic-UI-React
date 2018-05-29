@@ -3,8 +3,7 @@ import { sandbox } from 'test/utils'
 
 describe('NodeRegistry', () => {
   it('is a class', () => {
-    expect(NodeRegistry)
-      .to.be.a('function')
+    expect(NodeRegistry).to.be.a('function')
   })
 
   describe('add', () => {
@@ -32,7 +31,7 @@ describe('NodeRegistry', () => {
       registry.emit('foo', handler)
       handler.should.have.been.calledOnce()
       handler.should.have.been.calledWithMatch('foo', new Set(['FooComponent', 'BarComponent']))
-      handler.reset()
+      handler.resetHistory()
 
       registry.emit('bar', handler)
       handler.should.have.been.calledOnce()

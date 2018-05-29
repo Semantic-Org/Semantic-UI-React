@@ -118,7 +118,9 @@ class Progress extends Component {
     const { precision, progress, total, value } = this.props
     const percent = _.clamp(this.calculatePercent(), 0, 100)
 
-    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') { return value / total * 100 }
+    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') {
+      return value / total * 100
+    }
     if (progress === 'value') return value
     if (_.isUndefined(precision)) return percent
     return _.round(percent, precision)
@@ -135,7 +137,10 @@ class Progress extends Component {
 
     if (!childrenUtils.isNil(children)) return <div className='label'>{children}</div>
     if (!childrenUtils.isNil(content)) return <div className='label'>{content}</div>
-    return createHTMLDivision(label, { defaultProps: { className: 'label' } })
+    return createHTMLDivision(label, {
+      autoGenerateKey: false,
+      defaultProps: { className: 'label' },
+    })
   }
 
   renderProgress = (percent) => {

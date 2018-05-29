@@ -65,12 +65,16 @@ function Header(props) {
   const ElementType = getElementType(Header, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
   }
 
-  const iconElement = Icon.create(icon)
-  const imageElement = Image.create(image)
-  const subheaderElement = HeaderSubheader.create(subheader)
+  const iconElement = Icon.create(icon, { autoGenerateKey: false })
+  const imageElement = Image.create(image, { autoGenerateKey: false })
+  const subheaderElement = HeaderSubheader.create(subheader, { autoGenerateKey: false })
 
   if (iconElement || imageElement) {
     return (
@@ -104,10 +108,7 @@ Header.propTypes = {
   as: customPropTypes.as,
 
   /** Attach header  to other content, like a segment. */
-  attached: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['top', 'bottom']),
-  ]),
+  attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['top', 'bottom'])]),
 
   /** Format header to appear inside a content block. */
   block: PropTypes.bool,
@@ -136,19 +137,13 @@ Header.propTypes = {
   /** Add an icon by icon name or pass an Icon. */
   icon: customPropTypes.every([
     customPropTypes.disallow(['image']),
-    PropTypes.oneOfType([
-      PropTypes.bool,
-      customPropTypes.itemShorthand,
-    ]),
+    PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
   ]),
 
   /** Add an image by img src or pass an Image. */
   image: customPropTypes.every([
     customPropTypes.disallow(['icon']),
-    PropTypes.oneOfType([
-      PropTypes.bool,
-      customPropTypes.itemShorthand,
-    ]),
+    PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
   ]),
 
   /** Inverts the color of the header for dark backgrounds. */

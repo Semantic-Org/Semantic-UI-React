@@ -30,10 +30,7 @@ export default class Message extends Component {
     as: customPropTypes.as,
 
     /** A message can be formatted to attach itself to other content. */
-    attached: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['bottom', 'top']),
-    ]),
+    attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['bottom', 'top'])]),
 
     /** Primary content. */
     children: PropTypes.node,
@@ -63,10 +60,7 @@ export default class Message extends Component {
     hidden: PropTypes.bool,
 
     /** A message can contain an icon. */
-    icon: PropTypes.oneOfType([
-      customPropTypes.itemShorthand,
-      PropTypes.bool,
-    ]),
+    icon: PropTypes.oneOfType([customPropTypes.itemShorthand, PropTypes.bool]),
 
     /** A message may be formatted to display information. */
     info: PropTypes.bool,
@@ -178,12 +172,12 @@ export default class Message extends Component {
     return (
       <ElementType {...rest} className={classes}>
         {dismissIcon}
-        {Icon.create(icon)}
+        {Icon.create(icon, { autoGenerateKey: false })}
         {(!_.isNil(header) || !_.isNil(content) || !_.isNil(list)) && (
           <MessageContent>
-            {MessageHeader.create(header)}
-            {MessageList.create(list)}
-            {createHTMLParagraph(content)}
+            {MessageHeader.create(header, { autoGenerateKey: false })}
+            {MessageList.create(list, { autoGenerateKey: false })}
+            {createHTMLParagraph(content, { autoGenerateKey: false })}
           </MessageContent>
         )}
       </ElementType>

@@ -4,6 +4,7 @@ import React from 'react'
 
 import {
   childrenUtils,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -42,5 +43,7 @@ LabelDetail.propTypes = {
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
 }
+
+LabelDetail.create = createShorthandFactory(LabelDetail, val => ({ content: val }))
 
 export default LabelDetail

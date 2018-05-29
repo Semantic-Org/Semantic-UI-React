@@ -1,6 +1,4 @@
-/* eslint-disable no-console */
 import { createElement } from 'react'
-
 import { exampleContext } from 'docs/app/utils'
 
 describe('examples', () => {

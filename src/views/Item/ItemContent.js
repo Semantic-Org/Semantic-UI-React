@@ -20,35 +20,26 @@ import ItemMeta from './ItemMeta'
  * An item can contain content.
  */
 function ItemContent(props) {
-  const {
-    children,
-    className,
-    content,
-    description,
-    extra,
-    header,
-    meta,
-    verticalAlign,
-  } = props
+  const { children, className, content, description, extra, header, meta, verticalAlign } = props
 
-  const classes = cx(
-    useVerticalAlignProp(verticalAlign),
-    'content',
-    className,
-  )
+  const classes = cx(useVerticalAlignProp(verticalAlign), 'content', className)
   const rest = getUnhandledProps(ItemContent, props)
   const ElementType = getElementType(ItemContent, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
   }
 
   return (
     <ElementType {...rest} className={classes}>
-      {ItemHeader.create(header)}
-      {ItemMeta.create(meta)}
-      {ItemDescription.create(description)}
-      {ItemExtra.create(extra)}
+      {ItemHeader.create(header, { autoGenerateKey: false })}
+      {ItemMeta.create(meta, { autoGenerateKey: false })}
+      {ItemDescription.create(description, { autoGenerateKey: false })}
+      {ItemExtra.create(extra, { autoGenerateKey: false })}
       {content}
     </ElementType>
   )

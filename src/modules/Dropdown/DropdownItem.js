@@ -74,11 +74,7 @@ class DropdownItem extends Component {
     text: customPropTypes.contentShorthand,
 
     /** Stored value. */
-    value: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    value: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
   }
 
   static _meta = {
@@ -117,7 +113,9 @@ class DropdownItem extends Component {
       className,
     )
     // add default dropdown icon if item contains another menu
-    const iconName = _.isNil(icon) ? childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown' : icon
+    const iconName = _.isNil(icon)
+      ? childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
+      : icon
     const rest = getUnhandledProps(DropdownItem, this.props)
     const ElementType = getElementType(DropdownItem, this.props)
     const ariaOptions = {
@@ -135,21 +133,19 @@ class DropdownItem extends Component {
       )
     }
 
-    const flagElement = Flag.create(flag)
-    const iconElement = Icon.create(iconName)
-    const imageElement = Image.create(image)
-    const labelElement = Label.create(label)
-    const descriptionElement = createShorthand(
-      'span',
-      val => ({ children: val }),
-      description,
-      { defaultProps: { className: 'description' } },
-    )
+    const flagElement = Flag.create(flag, { autoGenerateKey: false })
+    const iconElement = Icon.create(iconName, { autoGenerateKey: false })
+    const imageElement = Image.create(image, { autoGenerateKey: false })
+    const labelElement = Label.create(label, { autoGenerateKey: false })
+    const descriptionElement = createShorthand('span', val => ({ children: val }), description, {
+      defaultProps: { className: 'description' },
+      autoGenerateKey: false,
+    })
     const textElement = createShorthand(
       'span',
       val => ({ children: val }),
       childrenUtils.isNil(content) ? text : content,
-      { defaultProps: { className: 'text' } },
+      { defaultProps: { className: 'text' }, autoGenerateKey: false },
     )
 
     return (
