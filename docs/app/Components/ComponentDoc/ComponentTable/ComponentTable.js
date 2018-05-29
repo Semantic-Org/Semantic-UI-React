@@ -14,7 +14,7 @@ const ComponentTable = ({ props }) => (
     <ComponentTableHeader />
     <Table.Body>
       {_.map(props, ({ displayName, ...rest }) => (
-        <ComponentTableRow {...rest} key={displayName} displayName={displayName} />
+        <ComponentTableRow {...rest} key={rest.name} displayName={displayName} />
       ))}
     </Table.Body>
   </Table>
