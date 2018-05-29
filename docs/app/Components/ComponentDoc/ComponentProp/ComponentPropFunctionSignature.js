@@ -22,7 +22,7 @@ const rowStyle = {
 
 const getTagType = tag => (tag.type.type === 'AllLiteral' ? 'any' : tag.type.name)
 
-const ComponentPropFunctionSignature = ({ displayName, tags }) => {
+const ComponentPropFunctionSignature = ({ name, tags }) => {
   const params = _.filter(tags, { title: 'param' })
   const returns = _.find(tags, { title: 'returns' })
 
@@ -52,7 +52,7 @@ const ComponentPropFunctionSignature = ({ displayName, tags }) => {
     <ComponentPropExtra
       title={
         <pre>
-          {displayName}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}
+          {name}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}
         </pre>
       }
     >
@@ -62,7 +62,7 @@ const ComponentPropFunctionSignature = ({ displayName, tags }) => {
 }
 
 ComponentPropFunctionSignature.propTypes = {
-  displayName: PropTypes.string,
+  name: PropTypes.string,
   tags: PropTypes.array,
 }
 

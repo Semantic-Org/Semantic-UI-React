@@ -4,16 +4,16 @@ import { Icon, Popup } from 'semantic-ui-react'
 
 export default class ComponentPropName extends PureComponent {
   static propTypes = {
-    displayName: PropTypes.string,
+    name: PropTypes.string,
     required: PropTypes.bool,
   }
 
   render() {
-    const { displayName, required } = this.props
+    const { name, required } = this.props
 
     return (
       <div>
-        <code>{displayName}</code>
+        <code>{name}</code>
         {required && (
           <Popup
             content='Required'
