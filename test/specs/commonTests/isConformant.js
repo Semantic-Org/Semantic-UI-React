@@ -45,7 +45,7 @@ export default (Component, options = {}) => {
     )
   }
 
-  const info = componentInfoContext.fromComponentName(constructorName)
+  const info = componentInfoContext.byDisplayName[constructorName]
 
   // ----------------------------------------
   // Class and file name
