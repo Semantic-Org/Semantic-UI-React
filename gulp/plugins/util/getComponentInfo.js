@@ -62,7 +62,7 @@ const getComponentInfo = (filepath) => {
   ).toLowerCase()
 
   // replace the component.description string with a parsed docblock object
-  info.dockblock = parseDocBlock(info.description)
+  info.docblock = parseDocBlock(info.description)
   delete info.description
 
   // file and path info

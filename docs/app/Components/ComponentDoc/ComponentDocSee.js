@@ -21,7 +21,7 @@ const ComponentDocSee = ({ displayName }) => {
         <List.Item
           as={Link}
           content={info.displayName}
-          key={info.dockblock.description}
+          key={info.docblock.description}
           to={getComponentPathname(info)}
         />
       ))}

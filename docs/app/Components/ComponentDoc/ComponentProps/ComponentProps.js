@@ -48,16 +48,8 @@ export default class ComponentProps extends Component {
     const { displayName } = this.props
     const { activeDisplayName, componentGroup } = this.state
     const displayNames = _.keys(componentGroup)
-    const { description, props } = componentGroup[activeDisplayName] || {}
-
-    console.log({
-      activeDisplayName,
-      componentGroup,
-      description,
-      displayName,
-      displayNames,
-      props,
-    })
+    const { docblock, props } = componentGroup[activeDisplayName] || {}
+    const description = _.get(docblock, 'description', [])
 
     return (
       <div>

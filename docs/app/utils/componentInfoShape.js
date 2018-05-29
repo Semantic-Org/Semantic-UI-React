@@ -26,7 +26,7 @@ const componentInfoShape = PropTypes.shape({
   subcomponents: PropTypes.arrayOf(PropTypes.string),
   apiPath: PropTypes.string.isRequired,
   componentClassName: PropTypes.string.isRequired,
-  dockblock: PropTypes.shape({
+  docblock: PropTypes.shape({
     tags: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,

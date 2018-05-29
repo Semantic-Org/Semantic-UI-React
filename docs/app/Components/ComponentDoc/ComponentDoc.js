@@ -74,8 +74,6 @@ class ComponentDoc extends Component {
     const { info } = this.props
     const { activePath, examplesRef } = this.state
 
-    console.log('ComponentDoc info', info)
-
     return (
       <DocumentTitle title={`${info.displayName} | Semantic UI React`}>
         <Grid>

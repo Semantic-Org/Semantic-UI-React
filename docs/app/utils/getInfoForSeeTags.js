@@ -9,7 +9,7 @@ import componentInfoContext from './componentInfoContext'
 const getInfoForSeeTags = (displayName) => {
   const info = componentInfoContext.byDisplayName[displayName]
 
-  return info.dockblock.tags
+  return info.docblock.tags
     .filter(tag => tag.title === 'see')
     .map(tag => componentInfoContext.byDisplayName[tag.description])
 }
