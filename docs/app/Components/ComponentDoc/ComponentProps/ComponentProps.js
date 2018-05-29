@@ -26,11 +26,18 @@ export default class ComponentProps extends Component {
     const current = this.props.displayName
 
     if (current !== next) {
-      this.setState({ componentGroup: getComponentGroup(next) })
+      this.setState({
+        activeDisplayName: null,
+        componentGroup: getComponentGroup(next),
+      })
     }
   }
 
   handleComponentClick = (e, { name }) => {
+    const { activeDisplayName } = this.state
+
+    if (activeDisplayName === name) return
+
     this.setState({
       activeDisplayName: name,
       componentGroup: getComponentGroup(name),

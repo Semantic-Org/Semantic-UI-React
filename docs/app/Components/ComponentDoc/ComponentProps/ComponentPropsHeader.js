@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Header, Icon } from 'semantic-ui-react'
@@ -14,24 +13,20 @@ const headerStyle = {
 
 const linkStyle = { color: 'inherit' }
 
-const ComponentPropsHeader = ({ hasSubcomponents, onClick, showProps }) => {
-  const iconClasses = cx(showProps ? 'on' : 'off', 'toggle')
-
-  return (
-    <Header
-      as='h4'
-      className='no-anchor'
-      color={showProps ? 'green' : 'grey'}
-      style={headerStyle}
-      onClick={onClick}
-    >
-      <a style={linkStyle}>
-        <Icon name={iconClasses} />
+const ComponentPropsHeader = ({ hasSubcomponents, onClick, showProps }) => (
+  <Header
+    as='h4'
+    className='no-anchor'
+    color={showProps ? 'green' : 'grey'}
+    style={headerStyle}
+    onClick={onClick}
+  >
+    <a style={linkStyle}>
+      <Icon name={`toggle ${showProps ? 'on' : 'off'}`} />
         Props{hasSubcomponents && ':'}
-      </a>
-    </Header>
-  )
-}
+    </a>
+  </Header>
+)
 
 ComponentPropsHeader.propTypes = {
   hasSubcomponents: PropTypes.bool,
