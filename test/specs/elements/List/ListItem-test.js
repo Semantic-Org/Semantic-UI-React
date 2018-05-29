@@ -16,8 +16,7 @@ describe('ListItem', () => {
 
   describe('as', () => {
     it('omits className `list` when rendered as `li`', () => {
-      shallow(<ListItem as='li' />)
-        .should.not.have.className('item')
+      shallow(<ListItem as='li' />).should.not.have.className('item')
     })
   })
 
@@ -27,8 +26,7 @@ describe('ListItem', () => {
       const event = { target: null }
       const props = { onClick, 'data-foo': 'bar' }
 
-      shallow(<ListItem {...props} />)
-        .simulate('click', event)
+      shallow(<ListItem {...props} />).simulate('click', event)
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithExactly(event, props)
@@ -37,8 +35,7 @@ describe('ListItem', () => {
     it('is not called when is disabled', () => {
       const onClick = sandbox.spy()
 
-      shallow(<ListItem disabled onClick={onClick} />)
-        .simulate('click')
+      shallow(<ListItem disabled onClick={onClick} />).simulate('click')
       onClick.should.have.callCount(0)
     })
   })
@@ -47,15 +44,13 @@ describe('ListItem', () => {
     it('adds data attribute by default', () => {
       const value = faker.hacker.phrase()
 
-      shallow(<ListItem value={value} />)
-        .should.have.data('value', value)
+      shallow(<ListItem value={value} />).should.have.data('value', value)
     })
 
     it('adds attribute when rendered as `li`', () => {
       const value = faker.hacker.phrase()
 
-      shallow(<ListItem as='li' value={value} />)
-        .should.have.attr('value', value)
+      shallow(<ListItem as='li' value={value} />).should.have.attr('value', value)
     })
   })
 
@@ -94,7 +89,9 @@ describe('ListItem', () => {
       })
 
       it(`renders wrapping ListContent when image and ${key} present`, () => {
-        const wrapper = shallow(<ListItem {..._.pick(baseProps, key)} image='foo.png' />)
+        const wrapper = shallow(
+          <ListItem {..._.pick(baseProps, key)} image='/assets/images/wireframe/image.png' />,
+        )
 
         wrapper.find('Image').should.have.lengthOf(1)
         wrapper.find('ListContent').should.have.lengthOf(1)
@@ -104,20 +101,20 @@ describe('ListItem', () => {
 
   describe('role', () => {
     it('adds role=listitem', () => {
-      shallow(<ListItem />)
-        .should.have.prop('role', 'listitem')
+      shallow(<ListItem />).should.have.prop('role', 'listitem')
     })
     it('adds role=listitem with children', () => {
-      shallow(<ListItem><div>Test</div></ListItem>)
-        .should.have.prop('role', 'listitem')
+      shallow(
+        <ListItem>
+          <div>Test</div>
+        </ListItem>,
+      ).should.have.prop('role', 'listitem')
     })
     it('adds role=listitem with content', () => {
-      shallow(<ListItem content={<div />} />)
-        .should.have.prop('role', 'listitem')
+      shallow(<ListItem content={<div />} />).should.have.prop('role', 'listitem')
     })
     it('adds role=listitem with icon', () => {
-      shallow(<ListItem icon='user' />)
-        .should.have.prop('role', 'listitem')
+      shallow(<ListItem icon='user' />).should.have.prop('role', 'listitem')
     })
   })
 })
