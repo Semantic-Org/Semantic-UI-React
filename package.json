@@ -36,7 +36,7 @@
     "test:watch": "yarn test --no-single-run",
     "tsd:lint": "tslint \"./index.d.ts\" \"./src/**/*.d.ts\" \"./src/**/*.tsx\" \"./test/**/*.d.ts\" \"./test/**/*.tsx\"",
     "tsd:lint:fix": "yarn tsd:lint --fix",
-    "tsd:test": "gulp build:tsd && tsc -p ./ && rm test/typings.js"
+    "tsd:test": "gulp build:dist:commonjs:tsd && tsc -p ./ && rm test/typings.js"
   },
   "lint-staged": {
     "**/*.{js,jsx}": [
