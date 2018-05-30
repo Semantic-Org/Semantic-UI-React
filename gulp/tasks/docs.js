@@ -7,11 +7,13 @@ import webpack from 'webpack'
 import WebpackDevMiddleware from 'webpack-dev-middleware'
 import WebpackHotMiddleware from 'webpack-hot-middleware'
 
+import sh from '../sh'
 import config from '../../config'
 import gulpComponentMenu from '../plugins/gulp-component-menu'
 import gulpExampleMenu from '../plugins/gulp-example-menu'
 import gulpReactDocgen from '../plugins/gulp-react-docgen'
 
+const { paths } = config
 const g = loadPlugins()
 const { colors, log, PluginError } = g.util
 
@@ -22,7 +24,7 @@ const handleWatchChange = e => log(`File ${e.path} was ${e.type}, running tasks.
 // ----------------------------------------
 
 task('clean:docs', (cb) => {
-  rimraf(config.paths.docsDist(), cb)
+  rimraf(paths.docsDist(), cb)
 })
 
 // ----------------------------------------
@@ -30,14 +32,31 @@ task('clean:docs', (cb) => {
 // ----------------------------------------
 
 const componentGlobs = [
-  `${config.paths.src()}/addons/*/*.js`,
-  `${config.paths.src()}/behaviors/*/*.js`,
-  `${config.paths.src()}/elements/*/*.js`,
-  `${config.paths.src()}/collections/*/*.js`,
-  `${config.paths.src()}/modules/*/*.js`,
-  `${config.paths.src()}/views/*/*.js`,
+  `${paths.src()}/addons/*/*.js`,
+  `${paths.src()}/behaviors/*/*.js`,
+  `${paths.src()}/elements/*/*.js`,
+  `${paths.src()}/collections/*/*.js`,
+  `${paths.src()}/modules/*/*.js`,
+  `${paths.src()}/views/*/*.js`,
   '!**/index.js',
 ]
+
+task('build:docs:cname', (cb) => {
+  sh(`echo react.semantic-ui.com > ${paths.docsDist('CNAME')}`, cb)
+})
+
+task('build:changelog', (cb) => {
+  const cmd = [
+    'github_changelog_generator',
+    '--no-issues',
+    '--no-unreleased',
+    '--release-branch master',
+    '--since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~300))',
+  ].join(' ')
+
+  sh(cmd, cb)
+})
+
 task('build:docs:docgen', () =>
   src(componentGlobs, { base: 'src' })
     // do not remove the function keyword
@@ -49,7 +68,7 @@ task('build:docs:docgen', () =>
       }),
     )
     .pipe(gulpReactDocgen())
-    .pipe(dest(config.paths.docsSrc('componentInfo'))),
+    .pipe(dest(paths.docsSrc('componentInfo'))),
 )
 
 task('build:docs:component-menu', () =>
@@ -63,11 +82,11 @@ task('build:docs:component-menu', () =>
       }),
     )
     .pipe(gulpComponentMenu())
-    .pipe(dest(config.paths.docsSrc())),
+    .pipe(dest(paths.docsSrc())),
 )
 
 task('build:docs:example-menu', () =>
-  src(`${config.paths.docsSrc()}/Examples/**/index.js`)
+  src(`${paths.docsSrc()}/Examples/**/index.js`)
     // do not remove the function keyword
     // we need 'this' scope here
     .pipe(
@@ -77,16 +96,23 @@ task('build:docs:example-menu', () =>
       }),
     )
     .pipe(gulpExampleMenu())
-    .pipe(dest(config.paths.docsSrc())),
+    .pipe(dest(paths.docsSrc())),
 )
 
-task('build:docs:html', () =>
-  src(config.paths.docsSrc('404.html')).pipe(dest(config.paths.docsDist())),
+task(
+  'build:docs:json',
+  parallel('build:docs:docgen', 'build:docs:component-menu', 'build:docs:example-menu'),
 )
+
+task('build:docs:html', () => src(paths.docsSrc('404.html')).pipe(dest(paths.docsDist())))
 
 task('build:docs:images', () =>
-  src(`${config.paths.docsSrc()}/**/*.{png,jpg,gif}`).pipe(dest(config.paths.docsDist())),
+  src(`${paths.docsSrc()}/**/*.{png,jpg,gif}`).pipe(dest(paths.docsDist())),
 )
+
+task('build:docs:toc', (cb) => {
+  sh(`doctoc ${paths.base('.github/CONTRIBUTING.md')} --github --maxlevel 4`, cb)
+})
 
 task('build:docs:webpack', (cb) => {
   const webpackConfig = require('../../webpack.config.babel').default
@@ -117,21 +143,30 @@ task(
   'build:docs',
   series(
     parallel(
-      'dll',
-      series(
-        'clean:docs',
-        parallel(
-          'build:docs:docgen',
-          'build:docs:component-menu',
-          'build:docs:example-menu',
-          'build:docs:html',
-          'build:docs:images',
-        ),
-      ),
+      'build:docs:toc',
+      series('clean:docs', parallel('build:docs:json', 'build:docs:html', 'build:docs:images')),
     ),
     'build:docs:webpack',
   ),
 )
+
+// ----------------------------------------
+// Deploy
+// ----------------------------------------
+
+task('deploy:changelog', (cb) => {
+  const cmd = [
+    'git add CHANGELOG.md',
+    "git commit -m 'docs(changelog): update changelog [ci skip]'",
+    'git push',
+  ].join(' && ')
+
+  sh(cmd, cb)
+})
+
+task('deploy:docs', (cb) => {
+  sh(`gh-pages -d ${paths.docsDist()} -m "deploy docs [ci skip]"`, cb)
+})
 
 // ----------------------------------------
 // Serve
@@ -152,7 +187,7 @@ task('serve:docs', (cb) => {
     .use(
       WebpackDevMiddleware(compiler, {
         publicPath: webpackConfig.output.publicPath,
-        contentBase: config.paths.docsSrc(),
+        contentBase: paths.docsSrc(),
         hot: true,
         quiet: false,
         noInfo: true, // must be quiet for hot middleware to show overlay
@@ -163,7 +198,7 @@ task('serve:docs', (cb) => {
 
     .use(WebpackHotMiddleware(compiler))
 
-    .use(express.static(config.paths.docsDist()))
+    .use(express.static(paths.docsDist()))
 
     .listen(config.server_port, config.server_host, () => {
       log(colors.yellow('Server running at http://%s:%d'), config.server_host, config.server_port)
@@ -177,10 +212,7 @@ task('serve:docs', (cb) => {
 
 task('watch:docs', (cb) => {
   // rebuild doc info
-  watch(`${config.paths.src()}/**/*.js`, series('build:docs:docgen')).on(
-    'change',
-    handleWatchChange,
-  )
+  watch(`${paths.src()}/**/*.js`, series('build:docs:json')).on('change', handleWatchChange)
 
   // rebuild images
   watch(`${config.paths.src()}/**/*.{png,jpg,gif}`, series('build:docs:images')).on(
@@ -194,4 +226,4 @@ task('watch:docs', (cb) => {
 // Default
 // ----------------------------------------
 
-task('docs', series('build:docs', 'serve:docs'))
+task('docs', series('build:docs', 'serve:docs', 'watch:docs'))
