@@ -17,7 +17,12 @@ import Icon from '../../elements/Icon'
  * A divider sub-component for Breadcrumb component.
  */
 function BreadcrumbDivider(props) {
-  const { children, className, content, icon } = props
+  const {
+    children,
+    className,
+    content,
+    icon,
+  } = props
 
   const classes = cx('divider', className)
   const rest = getUnhandledProps(BreadcrumbDivider, props)
@@ -30,13 +35,7 @@ function BreadcrumbDivider(props) {
     })
   }
 
-  if (!_.isNil(content)) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {content}
-      </ElementType>
-    )
-  }
+  if (!_.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>

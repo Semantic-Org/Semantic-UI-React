@@ -157,7 +157,10 @@ FormField.propTypes = {
   // Do not disallow children with `label` shorthand
   // The `control` might accept a `label` prop and `children`
   /** Mutually exclusive with children. */
-  label: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
+  label: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.object,
+  ]),
 
   /** A field can show that input is mandatory. */
   required: PropTypes.bool,
