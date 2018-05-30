@@ -398,5 +398,21 @@ describe('Sticky', () => {
       domEvent.resize(window)
       update.should.have.been.calledOnce()
     })
+
+    it('is not called after unmount', (done) => {
+      const renderedComponent = mount(<Sticky />)
+      const instance = renderedComponent.instance()
+      const update = sandbox.spy(instance, 'update')
+      window.requestAnimationFrame.restore()
+      sandbox.stub(window, 'requestAnimationFrame').callsFake(fn => setTimeout(fn, 0))
+      sandbox.stub(window, 'cancelAnimationFrame').callsFake(id => clearTimeout(id))
+
+      domEvent.resize(window)
+      renderedComponent.unmount()
+      window.requestAnimationFrame(() => {
+        update.should.not.have.been.called()
+        done()
+      })
+    })
   })
 })
