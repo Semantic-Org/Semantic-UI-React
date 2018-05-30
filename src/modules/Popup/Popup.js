@@ -152,6 +152,14 @@ export default class Popup extends Component {
 
   state = {}
 
+  componentDidMount() {
+    this.mounted = true
+  }
+
+  componentWillUnmount() {
+    this.mounted = false
+  }
+
   computePopupStyle(positions) {
     const style = { position: 'absolute' }
 
@@ -301,7 +309,9 @@ export default class Popup extends Component {
     this.setState({ closed: true })
 
     eventStack.unsub('scroll', this.hideOnScroll, { target: window })
-    setTimeout(() => this.setState({ closed: false }), 50)
+    setTimeout(() => {
+      if (this.mounted) this.setState({ closed: false })
+    }, 50)
 
     this.handleClose(e)
   }
