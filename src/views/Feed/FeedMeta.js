@@ -16,18 +16,19 @@ import FeedLike from './FeedLike'
  * A feed can contain a meta.
  */
 function FeedMeta(props) {
-  const { children, className, content, like } = props
+  const {
+    children,
+    className,
+    content,
+    like,
+  } = props
 
   const classes = cx('meta', className)
   const rest = getUnhandledProps(FeedMeta, props)
   const ElementType = getElementType(FeedMeta, props)
 
   if (!childrenUtils.isNil(children)) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
   return (

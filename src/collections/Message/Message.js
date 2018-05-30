@@ -30,7 +30,10 @@ export default class Message extends Component {
     as: customPropTypes.as,
 
     /** A message can be formatted to attach itself to other content. */
-    attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['bottom', 'top'])]),
+    attached: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(['bottom', 'top']),
+    ]),
 
     /** Primary content. */
     children: PropTypes.node,
@@ -60,7 +63,10 @@ export default class Message extends Component {
     hidden: PropTypes.bool,
 
     /** A message can contain an icon. */
-    icon: PropTypes.oneOfType([customPropTypes.itemShorthand, PropTypes.bool]),
+    icon: PropTypes.oneOfType([
+      customPropTypes.itemShorthand,
+      PropTypes.bool,
+    ]),
 
     /** A message may be formatted to display information. */
     info: PropTypes.bool,

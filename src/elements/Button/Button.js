@@ -39,10 +39,7 @@ class Button extends Component {
     animated: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['fade', 'vertical'])]),
 
     /** A button can be attached to other content. */
-    attached: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
-    ]),
+    attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['left', 'right', 'top', 'bottom'])]),
 
     /** A basic button is less pronounced. */
     basic: PropTypes.bool,
@@ -97,12 +94,7 @@ class Button extends Component {
     fluid: PropTypes.bool,
 
     /** Add an Icon by name, props object, or pass an <Icon />. */
-    icon: customPropTypes.some([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
+    icon: customPropTypes.some([PropTypes.bool, PropTypes.string, PropTypes.object, PropTypes.element]),
 
     /** A button can be formatted to appear on dark backgrounds. */
     inverted: PropTypes.bool,
@@ -267,12 +259,7 @@ class Button extends Component {
       return (
         <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
           {labelPosition === 'left' && labelElement}
-          <button
-            className={buttonClasses}
-            disabled={disabled}
-            ref={this.handleRef}
-            tabIndex={tabIndex}
-          >
+          <button className={buttonClasses} disabled={disabled} ref={this.handleRef} tabIndex={tabIndex}>
             {Icon.create(icon, { autoGenerateKey: false })} {content}
           </button>
           {(labelPosition === 'right' || !labelPosition) && labelElement}

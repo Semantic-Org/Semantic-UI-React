@@ -16,18 +16,20 @@ import Icon from '../../elements/Icon'
  * An event can contain an image or icon label.
  */
 function FeedLabel(props) {
-  const { children, className, content, icon, image } = props
+  const {
+    children,
+    className,
+    content,
+    icon,
+    image,
+  } = props
 
   const classes = cx('label', className)
   const rest = getUnhandledProps(FeedLabel, props)
   const ElementType = getElementType(FeedLabel, props)
 
   if (!childrenUtils.isNil(children)) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
   return (

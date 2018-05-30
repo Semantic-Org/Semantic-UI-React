@@ -16,18 +16,23 @@ import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
 
 function FeedContent(props) {
-  const { children, className, content, extraImages, extraText, date, meta, summary } = props
+  const {
+    children,
+    className,
+    content,
+    extraImages,
+    extraText,
+    date,
+    meta,
+    summary,
+  } = props
 
   const classes = cx('content', className)
   const rest = getUnhandledProps(FeedContent, props)
   const ElementType = getElementType(FeedContent, props)
 
   if (!childrenUtils.isNil(children)) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
   return (
@@ -35,12 +40,8 @@ function FeedContent(props) {
       {createShorthand(FeedDate, val => ({ content: val }), date, { autoGenerateKey: false })}
       {createShorthand(FeedSummary, val => ({ content: val }), summary, { autoGenerateKey: false })}
       {content}
-      {createShorthand(FeedExtra, val => ({ text: true, content: val }), extraText, {
-        autoGenerateKey: false,
-      })}
-      {createShorthand(FeedExtra, val => ({ images: val }), extraImages, {
-        autoGenerateKey: false,
-      })}
+      {createShorthand(FeedExtra, val => ({ text: true, content: val }), extraText, { autoGenerateKey: false })}
+      {createShorthand(FeedExtra, val => ({ images: val }), extraImages, { autoGenerateKey: false })}
       {createShorthand(FeedMeta, val => ({ content: val }), meta, { autoGenerateKey: false })}
     </ElementType>
   )

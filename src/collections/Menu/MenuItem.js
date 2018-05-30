@@ -43,13 +43,19 @@ export default class MenuItem extends Component {
     disabled: PropTypes.bool,
 
     /** A menu item or menu can remove element padding, vertically or horizontally. */
-    fitted: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['horizontally', 'vertically'])]),
+    fitted: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(['horizontally', 'vertically']),
+    ]),
 
     /** A menu item may include a header or may itself be a header. */
     header: PropTypes.bool,
 
     /** MenuItem can be only icon. */
-    icon: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
+    icon: PropTypes.oneOfType([
+      PropTypes.bool,
+      customPropTypes.itemShorthand,
+    ]),
 
     /** MenuItem index inside Menu. */
     index: PropTypes.number,
@@ -120,11 +126,7 @@ export default class MenuItem extends Component {
     const rest = getUnhandledProps(MenuItem, this.props)
 
     if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
+      return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
     }
 
     return (

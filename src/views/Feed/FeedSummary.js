@@ -17,18 +17,20 @@ import FeedUser from './FeedUser'
  * A feed can contain a summary.
  */
 function FeedSummary(props) {
-  const { children, className, content, date, user } = props
+  const {
+    children,
+    className,
+    content,
+    date,
+    user,
+  } = props
 
   const classes = cx('summary', className)
   const rest = getUnhandledProps(FeedSummary, props)
   const ElementType = getElementType(FeedSummary, props)
 
   if (!childrenUtils.isNil(children)) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
   return (
