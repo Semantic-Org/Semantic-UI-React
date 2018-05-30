@@ -3,11 +3,10 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
 import { withRouter } from 'react-router'
-import { Grid, Icon } from 'semantic-ui-react'
+import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import componentInfoShape from 'docs/app/utils/componentInfoShape'
 import { scrollToAnchor, examplePathToHash, getFormattedHash } from 'docs/app/utils'
-import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
@@ -79,9 +78,10 @@ class ComponentDoc extends Component {
         <Grid>
           <Grid.Row style={topRowStyle}>
             <Grid.Column>
-              <ComponentDocHeader
-                displayName={info.displayName}
-                description={_.join(info.description, ' ')}
+              <Header
+                as='h1'
+                content={info.displayName}
+                subheader={_.join(info.docblock.description, ' ')}
               />
               <ComponentDocSee displayName={info.displayName} />
               <ComponentDocLinks
