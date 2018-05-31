@@ -404,8 +404,7 @@ describe('Sticky', () => {
       sandbox.stub(window, 'requestAnimationFrame').callsFake(fn => setTimeout(fn, 0))
       sandbox.stub(window, 'cancelAnimationFrame').callsFake(id => clearTimeout(id))
 
-      const wrapper = mount(<Sticky />)
-      const instance = renderedComponent.instance()
+      const instance = wrapperMount(<Sticky />).instance()
       const update = sandbox.spy(instance, 'update')
 
       domEvent.resize(window)
