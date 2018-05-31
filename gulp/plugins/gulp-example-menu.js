@@ -1,35 +1,30 @@
+import Vinyl from 'vinyl'
 import gutil from 'gulp-util'
 import _ from 'lodash'
 import path from 'path'
 import through from 'through2'
 
-import config from '../../config'
-import { parseDocExample, parseDocSection } from './util'
+import { parseDocSection } from './util'
 
-const examplesPath = path.join(config.paths.docsSrc(), 'Examples', path.sep)
+const SECTION_ORDER = {
+  Types: 1,
+  States: 2,
+  Content: 3,
+  Variations: 4,
+  Groups: 5,
+  DEFAULT_ORDER: 6,
+  Usage: 9,
+}
 
-const normalizeResult = result =>
-  JSON.stringify(
-    _.mapValues(result, sections =>
-      _.map(_.sortBy(sections, 'position'), ({ examples, sectionName }) => ({
-        examples,
-        sectionName,
-      })),
-    ),
-    null,
-    2,
-  )
+const getSectionOrder = sectionName =>
+  _.find(SECTION_ORDER, (val, key) => _.includes(sectionName, key)) || SECTION_ORDER.DEFAULT_ORDER
 
-export default (filename) => {
-  const defaultFilename = 'exampleMenu.json'
-  const result = {}
-  const pluginName = 'gulp-example-menu'
-  let finalFile
-  let latestFile
+const pluginName = 'gulp-example-menu'
+
+export default () => {
+  const exampleFilesByDisplayName = {}
 
   function bufferContents(file, enc, cb) {
-    latestFile = file
-
     if (file.isNull()) {
       cb(null, file)
       return
@@ -41,32 +36,44 @@ export default (filename) => {
     }
 
     try {
-      const relativePath = file.path.replace(examplesPath, '')
-      const [, component, section] = _.split(relativePath, path.sep)
+      // eslint-disable-next-line no-unused-vars
+      const [type, displayName, sectionName, exampleName] = _.split(file.path, path.sep).slice(-4)
+      const { examples } = parseDocSection(file.contents)
 
-      if (section === 'index.js') {
-        result[component] = parseDocExample(file.contents)
-        cb()
-        return
-      }
+      _.merge(exampleFilesByDisplayName, {
+        [displayName]: {
+          [sectionName]: {
+            order: getSectionOrder(sectionName),
+            sectionName,
+            examples,
+          },
+        },
+      })
 
-      result[component][section] = {
-        ...result[component][section],
-        ...parseDocSection(file.contents),
-      }
       cb()
     } catch (err) {
       const pluginError = new gutil.PluginError(pluginName, err)
       pluginError.message += `\nFile: ${file.path}.`
       this.emit('error', pluginError)
+      // eslint-disable-next-line no-console
+      console.log(err)
     }
   }
 
   function endStream(cb) {
-    finalFile = latestFile.clone({ contents: false })
-    finalFile.path = path.join(latestFile.base, filename || defaultFilename)
-    finalFile.contents = new Buffer(normalizeResult(result))
-    this.push(finalFile)
+    _.forEach(exampleFilesByDisplayName, (contents, displayName) => {
+      const sortedContents = _.sortBy(contents, ['order', 'sectionName']).map(
+        ({ sectionName, examples }) => ({ sectionName, examples }),
+      )
+
+      const file = new Vinyl({
+        path: `./${displayName}.examples.json`,
+        contents: Buffer.from(JSON.stringify(sortedContents, null, 2)),
+      })
+
+      this.push(file)
+    })
+
     cb()
   }
 

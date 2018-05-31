@@ -10,7 +10,7 @@ coverage/
 dist/
 dll/
 docs/app/componentMenu.json
-docs/app/exampleMenu.json
+docs/app/exampleMenus
 docs/build/
 
 package.json

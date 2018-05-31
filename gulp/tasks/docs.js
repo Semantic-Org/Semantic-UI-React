@@ -1,6 +1,6 @@
 import historyApiFallback from 'connect-history-api-fallback'
 import express from 'express'
-import { task, src, dest, parallel, series, watch } from 'gulp'
+import { task, src, dest, lastRun, parallel, series, watch } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import rimraf from 'rimraf'
 import webpack from 'webpack'
@@ -23,15 +23,37 @@ const handleWatchChange = e => log(`File ${e.path} was ${e.type}, running tasks.
 // Clean
 // ----------------------------------------
 
-task('clean:docs', (cb) => {
+task('clean:docs:component-info', (cb) => {
+  rimraf(paths.docsSrc('componentInfo'), cb)
+})
+
+task('clean:docs:component-menu', (cb) => {
+  rimraf(paths.docsSrc('componentMenu.json'), cb)
+})
+
+task('clean:docs:dist', (cb) => {
   rimraf(paths.docsDist(), cb)
 })
+
+task('clean:docs:example-menus', (cb) => {
+  rimraf(paths.docsSrc('exampleMenus'), cb)
+})
+
+task(
+  'clean:docs',
+  parallel(
+    'clean:docs:component-info',
+    'clean:docs:component-menu',
+    'clean:docs:dist',
+    'clean:docs:example-menus',
+  ),
+)
 
 // ----------------------------------------
 // Build
 // ----------------------------------------
 
-const componentGlobs = [
+const componentsSrc = [
   `${paths.src()}/addons/*/*.js`,
   `${paths.src()}/behaviors/*/*.js`,
   `${paths.src()}/elements/*/*.js`,
@@ -40,6 +62,8 @@ const componentGlobs = [
   `${paths.src()}/views/*/*.js`,
   '!**/index.js',
 ]
+
+const examplesSrc = `${paths.docsSrc()}/Examples/*/*/*/index.js`
 
 task('build:docs:cname', (cb) => {
   sh(`echo react.semantic-ui.com > ${paths.docsDist('CNAME')}`, cb)
@@ -58,45 +82,21 @@ task('build:changelog', (cb) => {
 })
 
 task('build:docs:docgen', () =>
-  src(componentGlobs, { base: 'src' })
-    // do not remove the function keyword
-    // we need 'this' scope here
-    .pipe(
-      g.plumber(function handleError(err) {
-        log(err.toString())
-        this.emit('end')
-      }),
-    )
+  src(componentsSrc, { since: lastRun('build:docs:docgen') })
     .pipe(gulpReactDocgen())
     .pipe(dest(paths.docsSrc('componentInfo'))),
 )
 
 task('build:docs:component-menu', () =>
-  src(componentGlobs)
-    // do not remove the function keyword
-    // we need 'this' scope here
-    .pipe(
-      g.plumber(function handleError(err) {
-        log(err.toString())
-        this.emit('end')
-      }),
-    )
+  src(componentsSrc, { since: lastRun('build:docs:component-menu') })
     .pipe(gulpComponentMenu())
     .pipe(dest(paths.docsSrc())),
 )
 
 task('build:docs:example-menu', () =>
-  src(`${paths.docsSrc()}/Examples/**/index.js`)
-    // do not remove the function keyword
-    // we need 'this' scope here
-    .pipe(
-      g.plumber(function handleError(err) {
-        log(err.toString())
-        this.emit('end')
-      }),
-    )
+  src(examplesSrc, { since: lastRun('build:docs:example-menu') })
     .pipe(gulpExampleMenu())
-    .pipe(dest(paths.docsSrc())),
+    .pipe(dest(paths.docsSrc('exampleMenus'))),
 )
 
 task(
@@ -211,8 +211,11 @@ task('serve:docs', (cb) => {
 // ----------------------------------------
 
 task('watch:docs', (cb) => {
-  // rebuild doc info
-  watch(`${paths.src()}/**/*.js`, series('build:docs:json')).on('change', handleWatchChange)
+  // rebuild component info
+  watch(componentsSrc, series('build:docs:docgen')).on('change', handleWatchChange)
+
+  // rebuild example menus
+  watch(examplesSrc, series('build:docs:example-menu')).on('change', handleWatchChange)
 
   // rebuild images
   watch(`${config.paths.src()}/**/*.{png,jpg,gif}`, series('build:docs:images')).on(

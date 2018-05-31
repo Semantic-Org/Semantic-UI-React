@@ -3,7 +3,7 @@ import path from 'path'
 import { defaultHandlers, parse } from 'react-docgen'
 import fs from 'fs'
 
-import { parseDefaultValue, parseDocBlock, parserCustomHandler, parseType } from './'
+import { parseDefaultValue, parseDocblock, parserCustomHandler, parseType } from './'
 
 const getComponentInfo = (filepath) => {
   const absPath = path.resolve(process.cwd(), filepath)
@@ -62,7 +62,7 @@ const getComponentInfo = (filepath) => {
   ).toLowerCase()
 
   // replace the component.description string with a parsed docblock object
-  info.docblock = parseDocBlock(info.description)
+  info.docblock = parseDocblock(info.description)
   delete info.description
 
   // file and path info
@@ -74,7 +74,7 @@ const getComponentInfo = (filepath) => {
 
   // replace prop `description` strings with a parsed docblock object and updated `type`
   _.each(info.props, (propDef, propName) => {
-    const { description, tags } = parseDocBlock(propDef.description)
+    const { description, tags } = parseDocblock(propDef.description)
     const { name, value } = parseType(propName, propDef)
 
     info.props[propName] = {

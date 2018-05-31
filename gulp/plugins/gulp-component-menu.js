@@ -1,19 +1,15 @@
+import Vinyl from 'vinyl'
 import gutil from 'gulp-util'
-import path from 'path'
 import through from 'through2'
 
 import getComponentInfo from './util/getComponentInfo'
 
-export default (filename) => {
-  const defaultFilename = 'componentMenu.json'
+const pluginName = 'gulp-component-menu'
+
+export default () => {
   const result = []
-  const pluginName = 'gulp-component-menu'
-  let finalFile
-  let latestFile
 
   function bufferContents(file, enc, cb) {
-    latestFile = file
-
     if (file.isNull()) {
       cb(null, file)
       return
@@ -44,10 +40,12 @@ export default (filename) => {
   }
 
   function endStream(cb) {
-    finalFile = latestFile.clone({ contents: false })
-    finalFile.path = path.join(latestFile.base, filename || defaultFilename)
-    finalFile.contents = new Buffer(JSON.stringify(result, null, 2))
-    this.push(finalFile)
+    const file = new Vinyl({
+      path: './componentMenu.json',
+      contents: Buffer.from(JSON.stringify(result, null, 2)),
+    })
+
+    this.push(file)
     cb()
   }
 

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Accordion, Menu, Sticky } from 'semantic-ui-react'
 
-import exampleMenu from 'docs/app/exampleMenu'
 import ComponentSidebarSection from './ComponentSidebarSection'
 
 const sidebarStyle = {
@@ -24,14 +23,18 @@ class ComponentSidebar extends Component {
 
   state = {}
 
-  constructor(props) {
-    super(props)
-
-    this.state = { sections: exampleMenu[props.displayName] }
+  componentDidMount() {
+    this.fetchSections()
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ sections: exampleMenu[nextProps.displayName] })
+    this.fetchSections(nextProps)
+  }
+
+  fetchSections = ({ displayName } = this.props) => {
+    import(`docs/app/exampleMenus/${displayName}.examples.json`).then((sections) => {
+      this.setState({ sections })
+    })
   }
 
   render() {

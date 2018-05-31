@@ -1,3 +1,4 @@
+import Vinyl from 'vinyl'
 import gutil from 'gulp-util'
 import through from 'through2'
 
@@ -20,9 +21,10 @@ export default () =>
     try {
       const contents = getComponentInfo(file.path)
 
-      const infoFile = file.clone({ content: false })
-      infoFile.path = file.path.replace(/js$/, 'info.json')
-      infoFile.contents = Buffer.from(JSON.stringify(contents, null, 2))
+      const infoFile = new Vinyl({
+        path: `./${file.basename.replace(/js$/, 'info.json')}`,
+        contents: Buffer.from(JSON.stringify(contents, null, 2)),
+      })
 
       cb(null, infoFile)
     } catch (err) {

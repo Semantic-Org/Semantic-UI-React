@@ -8,8 +8,8 @@
 coverage/
 dist/
 docs/app/componentMenu.json
-docs/app/exampleMenu.json
 docs/app/componentInfo
+docs/app/exampleMenus
 docs/build/
 dll/
 node_modules/
