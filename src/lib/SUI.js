@@ -23,7 +23,11 @@ export const VERTICAL_ALIGNMENTS = ['bottom', 'middle', 'top']
 
 export const VISIBILITY = ['mobile', 'tablet', 'computer', 'large screen', 'widescreen']
 
-export const WIDTHS = [..._.keys(numberToWordMap), ..._.keys(numberToWordMap).map(Number), ..._.values(numberToWordMap)]
+export const WIDTHS = [
+  ..._.keys(numberToWordMap),
+  ..._.keys(numberToWordMap).map(Number),
+  ..._.values(numberToWordMap),
+]
 
 export const DIRECTIONAL_TRANSITIONS = [
   'browse',
@@ -1771,7 +1775,7 @@ export const BRANDS = [
   'youtube square',
 ]
 
-export const ICONS = [
+export const ICONS = _.uniq([
   ...ACCESSIBILITY,
   ...ARROWS,
   ...AUDIO_VIDEO,
@@ -1803,7 +1807,7 @@ export const ICONS = [
   ...VEHICLES,
   ...WRITING,
   ...BRANDS,
-]
+])
 
 export const ICON_ALIASES = [
   'chess rock',
@@ -2145,7 +2149,7 @@ export const ICON_ALIASES = [
   'youtube play',
 ]
 
-export const ICONS_AND_ALIASES = [...ICONS, ...ICON_ALIASES]
+export const ICONS_AND_ALIASES = _.uniq([...ICONS, ...ICON_ALIASES])
 
 // Some icon names are not part of icons.css.
 // These are only valid as children of other components.
@@ -2154,4 +2158,7 @@ export const ICONS_AND_ALIASES = [...ICONS, ...ICON_ALIASES]
 export const COMPONENT_CONTEXT_SPECIFIC_ICONS = [
   'left dropdown', // nested dropdown menu direction icon
 ]
-export const ALL_ICONS_IN_ALL_CONTEXTS = [...ICONS_AND_ALIASES, ...COMPONENT_CONTEXT_SPECIFIC_ICONS]
+export const ALL_ICONS_IN_ALL_CONTEXTS = _.uniq([
+  ...ICONS_AND_ALIASES,
+  ...COMPONENT_CONTEXT_SPECIFIC_ICONS,
+])

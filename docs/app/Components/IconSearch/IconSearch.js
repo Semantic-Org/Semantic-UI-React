@@ -11,30 +11,57 @@ const gridStyle = {
 }
 
 const iconKeyToHeaderMap = {
-  ACCESSIBILITY: { title: 'Accessibility', description: 'Icons can represent accessibility standards' },
+  ACCESSIBILITY: {
+    title: 'Accessibility',
+    description: 'Icons can represent accessibility standards',
+  },
   ARROWS: { title: 'Arrows', description: 'Icons can be used to indicate a direction' },
   AUDIO_VIDEO: {
     title: 'Audio & Video',
     description: 'Icons can be used to represent common ways to interact with audio and video',
   },
-  BUSINESS: { title: 'Business', description: 'Icons can be used to represent business and common business actions' },
+  BUSINESS: {
+    title: 'Business',
+    description: 'Icons can be used to represent business and common business actions',
+  },
   CHESS: { title: 'Chess', description: 'Icons which represent the game chess' },
   CODE: { title: 'Code', description: 'Icons can represent programming and programming tools' },
-  COMMUNICATION: { title: 'Communication', description: 'Icons which represent common ways of communication' },
+  COMMUNICATION: {
+    title: 'Communication',
+    description: 'Icons which represent common ways of communication',
+  },
   COMPUTERS: {
     title: 'Computers',
     description: 'Icons can represent computing devices, or types of content found on a computer',
   },
   CURRENCY: { title: 'Currency', description: 'Icons can represent units of currency' },
-  DATE_TIME: { title: 'Date & Time', description: 'Icons that represent common ways of showing date and time' },
-  DESIGN: { title: 'Design', description: 'Icons can represent common design related symbols or techniques' },
-  EDITORS: { title: 'Editors', description: 'Icons can represent text editors and common editor actions' },
-  FILES: { title: 'Files', description: 'Icons can represent elements of a computer and its file system' },
+  DATE_TIME: {
+    title: 'Date & Time',
+    description: 'Icons that represent common ways of showing date and time',
+  },
+  DESIGN: {
+    title: 'Design',
+    description: 'Icons can represent common design related symbols or techniques',
+  },
+  EDITORS: {
+    title: 'Editors',
+    description: 'Icons can represent text editors and common editor actions',
+  },
+  FILES: {
+    title: 'Files',
+    description: 'Icons can represent elements of a computer and its file system',
+  },
   GENDERS: { title: 'Genders', description: 'Icons can represent genders or types of sexuality' },
-  HANDS_GESTURES: { title: 'Hands & Gestures', description: 'Icons can represent hand signals and gestures' },
+  HANDS_GESTURES: {
+    title: 'Hands & Gestures',
+    description: 'Icons can represent hand signals and gestures',
+  },
   HEALTH: { title: 'Health', description: 'Icons which represent common health symbols' },
   IMAGES: { title: 'Images', description: 'Icons that represent common image symbols and actions' },
-  INTERFACES: { title: 'Interfaces', description: 'Icons can represent common actions a user can take or use' },
+  INTERFACES: {
+    title: 'Interfaces',
+    description: 'Icons can represent common actions a user can take or use',
+  },
   LOGISTICS: { title: 'Logistics', description: 'Icons can represent common logistic activity' },
   MAPS: { title: 'Maps', description: 'Icons can be used to represent elements on a map' },
   MEDICAL: { title: 'Medical', description: 'Icons can represent common medical actions' },
@@ -58,7 +85,11 @@ const similarityScore = (strA, strB) => {
   const aWords = strA.trim().split(' ')
   const bWords = strB.trim().split(' ')
 
-  return _.flow(_.map(a => _.map(b => leven(a, b), bWords)), _.map(_.min), _.sum)(aWords)
+  return _.flow(
+    _.map(a => _.map(b => leven(a, b), bWords)),
+    _.map(_.min),
+    _.sum,
+  )(aWords)
 }
 export default class IconSearch extends Component {
   state = { search: '', includeSimilar: true }
@@ -78,9 +109,9 @@ export default class IconSearch extends Component {
     setTimeout(() => this.setState({ copied: false }), 1000)
   }
 
-  renderIconColumn = name => (
+  renderIconColumn = (name, section) => (
     <Popup
-      key={name}
+      key={[name, section].filter(Boolean).join('_')}
       mouseEnterDelay={1000}
       inverted
       closeOnTriggerClick={false}
@@ -117,7 +148,7 @@ export default class IconSearch extends Component {
               textAlign='left'
             />
           </Grid.Column>
-          {SUI[iconKey].map(this.renderIconColumn)}
+          {SUI[iconKey].map(name => this.renderIconColumn(name, iconKey))}
         </Grid>
       ))
     }
@@ -128,7 +159,7 @@ export default class IconSearch extends Component {
 
       // similar
       return includeSimilar && similarityScore(name, query) <= 2
-    }).map(this.renderIconColumn)
+    }).map(name => this.renderIconColumn(name))
 
     // no results
     if (iconSearchMatches.length === 0) {
@@ -138,7 +169,9 @@ export default class IconSearch extends Component {
             <Message
               info
               icon='search'
-              content={`There is no icon name or alias ${includeSimilar ? 'similar' : 'that contains'} to "${query}".`}
+              content={`There is no icon name or alias ${
+                includeSimilar ? 'similar' : 'that contains'
+              } to "${query}".`}
               header='No Results'
             />
           </Grid.Column>
@@ -162,6 +195,23 @@ export default class IconSearch extends Component {
           <Header as='h2'>Icon Set</Header>
           <p>An icon set contains an arbitrary number of glyphs.</p>
 
+          <Form>
+            <Form.Group inline>
+              <Form.Input
+                id='docs-icon-set-input'
+                placeholder='Search...'
+                icon='search'
+                onChange={this.handleChange}
+              />
+              <Form.Checkbox
+                toggle
+                label='Show similar names'
+                checked={includeSimilar}
+                onChange={this.handleIncludeSimilarChange}
+              />
+            </Form.Group>
+          </Form>
+
           <Message>
             Semantic includes a complete port of{' '}
             <a href='https://fontawesome.com/' rel='noopener noreferrer' target='_blank'>
@@ -173,18 +223,6 @@ export default class IconSearch extends Component {
             </a>{' '}
             for its standard icon set.
           </Message>
-
-          <Form>
-            <Form.Group inline>
-              <Form.Input id='docs-icon-set-input' placeholder='Search...' icon='search' onChange={this.handleChange} />
-              <Form.Checkbox
-                toggle
-                label='Show similar'
-                checked={includeSimilar}
-                onChange={this.handleIncludeSimilarChange}
-              />
-            </Form.Group>
-          </Form>
         </Grid.Column>
         <Grid.Column textAlign='center'>{this.renderIcons()}</Grid.Column>
       </Grid>
