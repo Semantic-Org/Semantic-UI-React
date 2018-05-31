@@ -7,8 +7,8 @@
 
 coverage/
 dist/
-docs/app/componentMenu.json
 docs/app/componentInfo
+docs/app/componentMenu.json
 docs/app/exampleMenus
 docs/build/
 dll/
