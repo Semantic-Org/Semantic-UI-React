@@ -130,7 +130,7 @@ export default class Sticky extends Component {
 
     if (active) {
       this.removeListeners()
-      cancelAnimationFrame(this.requestId)
+      cancelAnimationFrame(this.frameId)
     }
   }
 
@@ -188,7 +188,7 @@ export default class Sticky extends Component {
   handleUpdate = (e) => {
     if (!this.ticking) {
       this.ticking = true
-      this.requestId = requestAnimationFrame(() => this.update(e))
+      this.frameId = requestAnimationFrame(() => this.update(e))
     }
   }
 
