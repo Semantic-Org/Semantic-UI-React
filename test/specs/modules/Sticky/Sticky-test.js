@@ -400,15 +400,16 @@ describe('Sticky', () => {
     })
 
     it('is not called after unmount', (done) => {
-      const renderedComponent = mount(<Sticky />)
-      const instance = renderedComponent.instance()
-      const update = sandbox.spy(instance, 'update')
       window.requestAnimationFrame.restore()
       sandbox.stub(window, 'requestAnimationFrame').callsFake(fn => setTimeout(fn, 0))
       sandbox.stub(window, 'cancelAnimationFrame').callsFake(id => clearTimeout(id))
 
+      const wrapper = mount(<Sticky />)
+      const instance = renderedComponent.instance()
+      const update = sandbox.spy(instance, 'update')
+
       domEvent.resize(window)
-      renderedComponent.unmount()
+      wrapper.unmount()
       window.requestAnimationFrame(() => {
         update.should.not.have.been.called()
         done()
