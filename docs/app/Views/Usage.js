@@ -3,14 +3,7 @@ import pkg from 'package.json'
 import { NavLink } from 'react-router-dom'
 
 import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/app/utils'
-import {
-  Button,
-  Container,
-  Header,
-  List,
-  Message,
-  Segment,
-} from 'src'
+import { Button, Container, Header, List, Message, Segment } from 'src'
 import Logo from '../Components/Logo/Logo'
 
 const suiCSSVersion = pkg.devDependencies['semantic-ui-css'].replace(/[~^]/, '')
@@ -21,33 +14,31 @@ const Usage = () => (
       <Logo centered size='small' />
       <Header as='h1' textAlign='center'>
         Semantic UI React
-        <Header.Subheader>
-          {pkg.description}
-        </Header.Subheader>
+        <Header.Subheader>{pkg.description}</Header.Subheader>
       </Header>
     </Segment>
 
     <Segment basic padded>
-      <Header as='h2' dividing>JavaScript</Header>
-      <p>
-        The Semantic UI React package can be installed via Yarn:
-      </p>
+      <Header as='h2' dividing>
+        JavaScript
+      </Header>
+      <p>The Semantic UI React package can be installed via Yarn:</p>
       <Segment>
         <pre>$ yarn add {pkg.name}</pre>
       </Segment>
       <p>
-        Installing Semantic UI React provides the JavaScript for your components.
-        You'll also need to include a stylesheet to provide the styling for your components.
-        This is the typical pattern for component frameworks, such as Semantic UI or Bootstrap.
+        Installing Semantic UI React provides the JavaScript for your components. You'll also need to include a
+        stylesheet to provide the styling for your components. This is the typical pattern for component frameworks,
+        such as Semantic UI or Bootstrap.
       </p>
       <p>
-        The method you choose to include the stylesheet in your project will depend on the level
-        of customisation you require.
+        The method you choose to include the stylesheet in your project will depend on the level of customisation you
+        require.
       </p>
       <Header as='h3'>Examples</Header>
       <p>
-        For examples on how to import and use Semantic UI React components,
-        click the code icon next to any example. Here are a few direct links:
+        For examples on how to import and use Semantic UI React components, click the code icon next to any example.
+        Here are a few direct links:
       </p>
       <ul>
         <li>
@@ -66,7 +57,21 @@ const Usage = () => (
     </Segment>
 
     <Segment basic padded>
-      <Header as='h2' dividing>CSS</Header>
+      <Header as='h2' dividing>
+        CSS
+      </Header>
+
+      <Message warning>
+        <Message.Header as='h3'>Semantic UI support</Message.Header>
+        <p>
+          The release 2.3 of Semantic UI introduced some backward incompatible changes, so you should use corresponding
+          version of Semantic UI React:
+        </p>
+        <Message.List>
+          <Message.Item>for SUI 2.2 use 0.79.1 and below</Message.Item>
+          <Message.Item>for SUI 2.3 use 0.80.0 and higher</Message.Item>
+        </Message.List>
+      </Message>
 
       {/* ----------------------------------------
        *  Content Delivery Network (CDN)
@@ -77,8 +82,8 @@ const Usage = () => (
         <em> index.html</em> file.
       </p>
       <p>
-        This is the quickest way to get started with Semantic UI React. You won't be able to use
-        custom themes with this method.
+        This is the quickest way to get started with Semantic UI React. You won't be able to use custom themes with this
+        method.
       </p>
       <Segment>
         <pre>
@@ -93,26 +98,21 @@ const Usage = () => (
        * -------------------------------------- */}
       <Header as='h3'>Semantic UI CSS package</Header>
       <p>
-        The <a href={semanticUICSSRepoURL}>Semantic UI CSS package</a> is automatically synced with the
-        main Semantic UI repository to provide a lightweight CSS only version of Semantic UI.
+        The <a href={semanticUICSSRepoURL}>Semantic UI CSS package</a> is automatically synced with the main Semantic UI
+        repository to provide a lightweight CSS only version of Semantic UI.
       </p>
       <p>
-        Semantic UI CSS can be installed as a package in your project using Yarn. You won't be able to
-        use custom themes with this method.
+        Semantic UI CSS can be installed as a package in your project using Yarn. You won't be able to use custom themes
+        with this method.
       </p>
       <Segment>
-        <pre>
-          $ yarn add semantic-ui-css
-        </pre>
+        <pre>$ yarn add semantic-ui-css</pre>
       </Segment>
       <p>
-        After install, you'll need to include the minified CSS file
-        in your <em>index.js</em> file:
+        After install, you'll need to include the minified CSS file in your <em>index.js</em> file:
       </p>
       <Segment>
-        <pre>
-          import 'semantic-ui-css/semantic.min.css';
-        </pre>
+        <pre>import 'semantic-ui-css/semantic.min.css';</pre>
       </Segment>
 
       {/* ----------------------------------------
@@ -123,29 +123,29 @@ const Usage = () => (
         Install the full <a href={semanticUIRepoURL}>Semantic UI package</a>.
       </p>
       <p>
-        Semantic UI includes Gulp build tools so your project can preserve its own theme changes,
-        allowing you to customise the style variables.
+        Semantic UI includes Gulp build tools so your project can preserve its own theme changes, allowing you to
+        customise the style variables.
       </p>
       <p>
-        Detailed documentation on theming in Semantic UI is
-        provided <a href={`${semanticUIDocsURL}usage/theming.html`}>here</a>.
+        Detailed documentation on theming in Semantic UI is provided{' '}
+        <a href={`${semanticUIDocsURL}usage/theming.html`}>here</a>.
       </p>
       <Segment>
         <pre>$ yarn add semantic-ui --dev</pre>
       </Segment>
       <p>
-        After building the project with Gulp, you'll need to include the minified CSS file
-        in your <em>index.js</em> file:
+        After building the project with Gulp, you'll need to include the minified CSS file in your <em>index.js</em>
+        {' '}file:
       </p>
       <Segment>
-        <pre>
-          import '../semantic/dist/semantic.min.css';
-        </pre>
+        <pre>import '../semantic/dist/semantic.min.css';</pre>
       </Segment>
     </Segment>
 
     <Segment basic padded>
-      <Header as='h2' dividing>Bundlers</Header>
+      <Header as='h2' dividing>
+        Bundlers
+      </Header>
       <p>
         Semantic UI React is fully supported by all modern JavaScript bundlers. We made some example recipes with some
         of them. You can use them as start point for your projects.
@@ -165,51 +165,35 @@ const Usage = () => (
         <List>
           <List.Item
             icon='github'
-            content={(
-              <a
-                href='https://github.com/webpack/webpack/issues/1750'
-                rel='noopener noreferrer'
-                target='_blank'
-              >
+            content={
+              <a href='https://github.com/webpack/webpack/issues/1750' rel='noopener noreferrer' target='_blank'>
                 webpack/webpack#1750
               </a>
-            )}
+            }
           />
           <List.Item
             icon='github'
-            content={(
-              <a
-                href='https://github.com/webpack/webpack/issues/2867'
-                rel='noopener noreferrer'
-                target='_blank'
-              >
+            content={
+              <a href='https://github.com/webpack/webpack/issues/2867' rel='noopener noreferrer' target='_blank'>
                 webpack/webpack#2867
               </a>
-            )}
+            }
           />
           <List.Item
             icon='github'
-            content={(
-              <a
-                href='https://github.com/webpack/webpack/issues/2899'
-                rel='noopener noreferrer'
-                target='_blank'
-              >
+            content={
+              <a href='https://github.com/webpack/webpack/issues/2899' rel='noopener noreferrer' target='_blank'>
                 webpack/webpack#2899
               </a>
-            )}
+            }
           />
           <List.Item
             icon='github'
-            content={(
-              <a
-                href='https://github.com/webpack/webpack/issues/3092'
-                rel='noopener noreferrer'
-                target='_blank'
-              >
+            content={
+              <a href='https://github.com/webpack/webpack/issues/3092' rel='noopener noreferrer' target='_blank'>
                 webpack/webpack#3092
               </a>
-            )}
+            }
           />
         </List>
         <p>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Grid, Image, Transition } from 'semantic-ui-react'
 
-const transitions = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce']
+const transitions = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce', 'glow']
 
 const options = transitions.map(name => ({ key: name, text: name, value: name }))
 

@@ -97,7 +97,7 @@ class Progress extends Component {
     const { percent, total, value } = this.props
 
     if (!_.isUndefined(percent)) return percent
-    if (!_.isUndefined(total) && !_.isUndefined(value)) return value / total * 100
+    if (!_.isUndefined(total) && !_.isUndefined(value)) return (value / total) * 100
   }
 
   computeValueText = (percent) => {
@@ -112,7 +112,7 @@ class Progress extends Component {
     const { precision, progress, total, value } = this.props
     const percent = _.clamp(this.calculatePercent(), 0, 100)
     if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') {
-      return value / total * 100
+      return (value / total) * 100
     }
     if (progress === 'value') return value
     if (_.isUndefined(precision)) return percent

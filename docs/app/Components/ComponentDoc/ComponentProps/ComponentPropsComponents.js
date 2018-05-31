@@ -19,9 +19,11 @@ const ComponentPropsComponents = ({
         <Menu.Item
           key={displayName}
           active={activeDisplayName === displayName}
-          content={displayName === parentDisplayName
-            ? displayName
-            : displayName.replace(parentDisplayName, `${parentDisplayName}.`)}
+          content={
+            displayName === parentDisplayName
+              ? displayName
+              : displayName.replace(parentDisplayName, `${parentDisplayName}.`)
+          }
           name={displayName}
           onClick={onItemClick}
         />

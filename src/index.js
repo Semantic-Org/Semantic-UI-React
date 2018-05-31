@@ -115,6 +115,7 @@ export Checkbox from './modules/Checkbox'
 
 export Dimmer from './modules/Dimmer'
 export DimmerDimmable from './modules/Dimmer/DimmerDimmable'
+export DimmerInner from './modules/Dimmer/DimmerInner'
 
 export Dropdown from './modules/Dropdown'
 export DropdownDivider from './modules/Dropdown/DropdownDivider'
