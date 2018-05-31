@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 function SearchResults(props) {
   const { children, className, content } = props
@@ -21,12 +15,6 @@ function SearchResults(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-SearchResults._meta = {
-  name: 'SearchResults',
-  parent: 'Search',
-  type: META.TYPES.MODULE,
 }
 
 SearchResults.propTypes = {

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { Component } from 'react'
 
-import { customPropTypes, META } from '../../lib'
+import { customPropTypes } from '../../lib'
 import getNodeFromProps from './lib/getNodeFromProps'
 import handleClassNamesChange from './lib/handleClassNamesChange'
 import NodeRegistry from './lib/NodeRegistry'
@@ -18,11 +18,6 @@ export default class MountNode extends Component {
 
     /** The DOM node where we will apply class names. Defaults to document.body. */
     node: customPropTypes.domNode,
-  }
-
-  static _meta = {
-    name: 'MountNode',
-    type: META.TYPES.ADDON,
   }
 
   shouldComponentUpdate({ className: nextClassName }) {

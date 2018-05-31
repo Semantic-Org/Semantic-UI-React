@@ -2,12 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 function TableBody(props) {
   const { children, className } = props
@@ -15,13 +10,11 @@ function TableBody(props) {
   const rest = getUnhandledProps(TableBody, props)
   const ElementType = getElementType(TableBody, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
-}
-
-TableBody._meta = {
-  name: 'TableBody',
-  type: META.TYPES.COLLECTION,
-  parent: 'Table',
+  return (
+    <ElementType {...rest} className={classes}>
+      {children}
+    </ElementType>
+  )
 }
 
 TableBody.defaultProps = {

@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -94,11 +93,6 @@ class Progress extends Component {
     warning: PropTypes.bool,
   }
 
-  static _meta = {
-    name: 'Progress',
-    type: META.TYPES.MODULE,
-  }
-
   calculatePercent = () => {
     const { percent, total, value } = this.props
 
@@ -117,7 +111,9 @@ class Progress extends Component {
   getPercent = () => {
     const { precision, progress, total, value } = this.props
     const percent = _.clamp(this.calculatePercent(), 0, 100)
-    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') { return value / total * 100 }
+    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') {
+      return value / total * 100
+    }
     if (progress === 'value') return value
     if (_.isUndefined(precision)) return percent
     return _.round(percent, precision)

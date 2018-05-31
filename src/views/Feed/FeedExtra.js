@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -17,12 +16,7 @@ import {
  * A feed can contain an extra content.
  */
 function FeedExtra(props) {
-  const { children,
-    className,
-    content,
-    images,
-    text,
-  } = props
+  const { children, className, content, images, text } = props
 
   const classes = cx(
     useKeyOnly(images, 'images'),
@@ -34,7 +28,11 @@ function FeedExtra(props) {
   const ElementType = getElementType(FeedExtra, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
   }
 
   // TODO need a "collection factory" to handle creating multiple image elements and their keys
@@ -49,12 +47,6 @@ function FeedExtra(props) {
       {imageElements}
     </ElementType>
   )
-}
-
-FeedExtra._meta = {
-  name: 'FeedExtra',
-  parent: 'Feed',
-  type: META.TYPES.VIEW,
 }
 
 FeedExtra.propTypes = {
@@ -73,10 +65,7 @@ FeedExtra.propTypes = {
   /** An event can contain additional information like a set of images. */
   images: customPropTypes.every([
     customPropTypes.disallow(['text']),
-    PropTypes.oneOfType([
-      PropTypes.bool,
-      customPropTypes.collectionShorthand,
-    ]),
+    PropTypes.oneOfType([PropTypes.bool, customPropTypes.collectionShorthand]),
   ]),
 
   /** An event can contain additional text information. */

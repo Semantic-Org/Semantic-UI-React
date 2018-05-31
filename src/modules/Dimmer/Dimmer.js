@@ -10,7 +10,6 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  META,
   useKeyOnly,
 } from '../../lib'
 import Portal from '../../addons/Portal'
@@ -65,11 +64,6 @@ export default class Dimmer extends Component {
     simple: PropTypes.bool,
   }
 
-  static _meta = {
-    name: 'Dimmer',
-    type: META.TYPES.MODULE,
-  }
-
   static Dimmable = DimmerDimmable
 
   handlePortalMount = () => {
@@ -92,23 +86,19 @@ export default class Dimmer extends Component {
     const { onClick, onClickOutside } = this.props
 
     if (onClick) onClick(e, this.props)
-    if (this.centerRef && (this.centerRef !== e.target && doesNodeContainClick(this.centerRef, e))) return
+    if (
+      this.centerRef &&
+      (this.centerRef !== e.target && doesNodeContainClick(this.centerRef, e))
+    ) {
+      return
+    }
     if (onClickOutside) onClickOutside(e, this.props)
   }
 
   handleCenterRef = c => (this.centerRef = c)
 
   render() {
-    const {
-      active,
-      children,
-      className,
-      content,
-      disabled,
-      inverted,
-      page,
-      simple,
-    } = this.props
+    const { active, children, className, content, disabled, inverted, page, simple } = this.props
 
     const classes = cx(
       'ui',
@@ -126,7 +116,7 @@ export default class Dimmer extends Component {
     const childrenContent = childrenUtils.isNil(children) ? content : children
 
     const dimmerElement = (
-      <ElementType{...rest} className={classes} onClick={this.handleClick}>
+      <ElementType {...rest} className={classes} onClick={this.handleClick}>
         {childrenContent && (
           <div className='content'>
             <div className='center' ref={this.handleCenterRef}>

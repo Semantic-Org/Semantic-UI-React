@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A modal can have a header.
@@ -24,12 +18,6 @@ function ModalDescription(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-ModalDescription._meta = {
-  name: 'ModalDescription',
-  type: META.TYPES.MODULE,
-  parent: 'Modal',
 }
 
 ModalDescription.propTypes = {

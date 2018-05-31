@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -17,10 +16,7 @@ import {
 function CommentAction(props) {
   const { active, className, children, content } = props
 
-  const classes = cx(
-    useKeyOnly(active, 'active'),
-    className,
-  )
+  const classes = cx(useKeyOnly(active, 'active'), className)
   const rest = getUnhandledProps(CommentAction, props)
   const ElementType = getElementType(CommentAction, props)
 
@@ -29,12 +25,6 @@ function CommentAction(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-CommentAction._meta = {
-  name: 'CommentAction',
-  parent: 'Comment',
-  type: META.TYPES.VIEW,
 }
 
 CommentAction.defaultProps = {

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { META } from '../../lib'
 import Dropdown from '../../modules/Dropdown'
 
 /**
@@ -10,11 +9,6 @@ import Dropdown from '../../modules/Dropdown'
  */
 function Select(props) {
   return <Dropdown {...props} selection />
-}
-
-Select._meta = {
-  name: 'Select',
-  type: META.TYPES.ADDON,
 }
 
 Select.Divider = Dropdown.Divider

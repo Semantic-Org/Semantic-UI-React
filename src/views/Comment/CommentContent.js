@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A comment can contain content.
@@ -24,12 +18,6 @@ function CommentContent(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-CommentContent._meta = {
-  name: 'CommentContent',
-  parent: 'Comment',
-  type: META.TYPES.VIEW,
 }
 
 CommentContent.propTypes = {

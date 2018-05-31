@@ -421,7 +421,7 @@ class ComponentExample extends PureComponent {
   }
 
   render() {
-    const { children, description, location, suiVersion, title } = this.props
+    const { children, description, examplePath, location, suiVersion, title } = this.props
     const {
       handleMouseLeave,
       handleMouseMove,
@@ -473,6 +473,7 @@ class ComponentExample extends PureComponent {
             <Grid.Column textAlign='right' width={4} style={controlsWrapperStyle}>
               <ComponentControls
                 anchorName={this.anchorName}
+                examplePath={examplePath}
                 onCopyLink={this.handleDirectLinkClick}
                 onShowCode={this.handleShowCodeClick}
                 onShowHTML={this.handleShowHTMLClick}

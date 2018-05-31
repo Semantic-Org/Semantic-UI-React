@@ -13,7 +13,14 @@ import * as common from 'test/specs/commonTests'
 
 describe('Table', () => {
   common.isConformant(Table)
-  common.hasSubComponents(Table, [TableBody, TableCell, TableFooter, TableHeader, TableHeaderCell, TableRow])
+  common.hasSubcomponents(Table, [
+    TableBody,
+    TableCell,
+    TableFooter,
+    TableHeader,
+    TableHeaderCell,
+    TableRow,
+  ])
   common.hasUIClassName(Table)
   common.rendersChildren(Table, {
     rendersContent: false,
@@ -49,13 +56,14 @@ describe('Table', () => {
   common.propKeyOrValueAndKeyToClassName(Table, 'padded', ['very'])
 
   common.propValueOnlyToClassName(Table, 'color', SUI.COLORS)
-  common.propValueOnlyToClassName(Table, 'size',
+  common.propValueOnlyToClassName(
+    Table,
+    'size',
     _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
   )
 
   it('renders as a table by default', () => {
-    shallow(<Table />)
-      .should.have.tagName('table')
+    shallow(<Table />).should.have.tagName('table')
   })
 
   describe('shorthand', () => {
@@ -112,15 +120,25 @@ describe('Table', () => {
 
       thead.should.have.lengthOf(1)
       thead.find('tr').should.have.lengthOf(1)
-      thead.find('tr').find('th').should.have.lengthOf(headerRow.length)
+      thead
+        .find('tr')
+        .find('th')
+        .should.have.lengthOf(headerRow.length)
 
       tbody.should.have.lengthOf(1)
       tbody.find('tr').should.have.lengthOf(tableData.length)
-      tbody.find('tr').first().find('td').should.have.lengthOf(3)
+      tbody
+        .find('tr')
+        .first()
+        .find('td')
+        .should.have.lengthOf(3)
 
       tfoot.should.have.lengthOf(1)
       tfoot.find('tr').should.have.lengthOf(1)
-      tfoot.find('tr').find('td').should.have.lengthOf(footerRow.length)
+      tfoot
+        .find('tr')
+        .find('td')
+        .should.have.lengthOf(footerRow.length)
     })
   })
 })

@@ -3,14 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getUnhandledProps,
-  getElementType,
-  META,
-  SUI,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getUnhandledProps, getElementType, SUI } from '../../lib'
 import BreadcrumbDivider from './BreadcrumbDivider'
 import BreadcrumbSection from './BreadcrumbSection'
 
@@ -18,25 +11,19 @@ import BreadcrumbSection from './BreadcrumbSection'
  * A breadcrumb is used to show hierarchy between content.
  */
 function Breadcrumb(props) {
-  const {
-    children,
-    className,
-    divider,
-    icon,
-    sections,
-    size,
-  } = props
+  const { children, className, divider, icon, sections, size } = props
 
-  const classes = cx(
-    'ui',
-    size,
-    'breadcrumb',
-    className,
-  )
+  const classes = cx('ui', size, 'breadcrumb', className)
   const rest = getUnhandledProps(Breadcrumb, props)
   const ElementType = getElementType(Breadcrumb, props)
 
-  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
 
   const childElements = []
 
@@ -52,12 +39,11 @@ function Breadcrumb(props) {
     }
   })
 
-  return <ElementType {...rest} className={classes}>{childElements}</ElementType>
-}
-
-Breadcrumb._meta = {
-  name: 'Breadcrumb',
-  type: META.TYPES.COLLECTION,
+  return (
+    <ElementType {...rest} className={classes}>
+      {childElements}
+    </ElementType>
+  )
 }
 
 Breadcrumb.propTypes = {

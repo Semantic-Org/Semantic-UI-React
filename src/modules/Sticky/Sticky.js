@@ -8,7 +8,6 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  META,
 } from '../../lib'
 
 /**
@@ -81,11 +80,6 @@ export default class Sticky extends Component {
     bottomOffset: 0,
     offset: 0,
     scrollContext: isBrowser() ? window : null,
-  }
-
-  static _meta = {
-    name: 'Sticky',
-    type: META.TYPES.MODULE,
   }
 
   state = {

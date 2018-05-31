@@ -9,7 +9,7 @@ import { sandbox } from 'test/utils'
 
 describe('Dimmer', () => {
   common.isConformant(Dimmer)
-  common.hasSubComponents(Dimmer[DimmerDimmable])
+  common.hasSubcomponents(Dimmer[DimmerDimmable])
   common.hasUIClassName(Dimmer)
   common.rendersChildren(Dimmer)
 
@@ -32,27 +32,33 @@ describe('Dimmer', () => {
 
     it('called when Dimmer has not children', () => {
       const spy = sandbox.spy()
-      shallow(<Dimmer onClickOutside={spy} />)
-        .simulate('click')
+      shallow(<Dimmer onClickOutside={spy} />).simulate('click')
 
       spy.should.have.been.calledOnce()
     })
 
     it('omitted when click on children', () => {
       const spy = sandbox.spy()
-      const wrapper = mount(<Dimmer onClickOutside={spy}><div>{faker.hacker.phrase()}</div></Dimmer>, {
-        attachTo: document.body,
-      })
+      const wrapper = mount(
+        <Dimmer onClickOutside={spy}>
+          <div>{faker.hacker.phrase()}</div>
+        </Dimmer>,
+        {
+          attachTo: document.body,
+        },
+      )
 
-      wrapper.find('div.center').childAt(0).simulate('click')
+      wrapper
+        .find('div.center')
+        .childAt(0)
+        .simulate('click')
       spy.should.have.been.callCount(0)
     })
 
     it('called when click on Dimmer', () => {
       const spy = sandbox.spy()
 
-      mount(<Dimmer onClickOutside={spy}>{faker.hacker.phrase()}</Dimmer>)
-        .simulate('click')
+      mount(<Dimmer onClickOutside={spy}>{faker.hacker.phrase()}</Dimmer>).simulate('click')
       spy.should.have.been.calledOnce()
     })
 
@@ -81,8 +87,7 @@ describe('Dimmer', () => {
         const dimmer = mount(<Dimmer page active />)
         const classes = document.body.classList
 
-        dimmer.find(Portal)
-          .should.have.prop('open', true)
+        dimmer.find(Portal).should.have.prop('open', true)
 
         classes.contains('dimmable').should.be.true()
         classes.contains('dimmed').should.be.true()
@@ -92,8 +97,7 @@ describe('Dimmer', () => {
         const dimmer = mount(<Dimmer page active={false} />)
         const classes = document.body.classList
 
-        dimmer.find(Portal)
-          .should.have.prop('open', false)
+        dimmer.find(Portal).should.have.prop('open', false)
 
         classes.contains('dimmable').should.be.false()
         classes.contains('dimmed').should.be.false()
