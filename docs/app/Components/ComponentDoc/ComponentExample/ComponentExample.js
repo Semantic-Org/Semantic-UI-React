@@ -473,6 +473,7 @@ class ComponentExample extends PureComponent {
             <Grid.Column textAlign='right' width={4} style={controlsWrapperStyle}>
               <ComponentControls
                 anchorName={this.anchorName}
+                examplePath={this.props.examplePath}
                 onCopyLink={this.handleDirectLinkClick}
                 onShowCode={this.handleShowCodeClick}
                 onShowHTML={this.handleShowHTMLClick}
