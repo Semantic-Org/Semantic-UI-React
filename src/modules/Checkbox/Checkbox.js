@@ -11,7 +11,6 @@ import {
   getUnhandledProps,
   htmlInputAttrs,
   makeDebugger,
-  META,
   partitionHTMLProps,
   useKeyOnly,
 } from '../../lib'
@@ -109,11 +108,6 @@ export default class Checkbox extends Component {
   }
 
   static autoControlledProps = ['checked', 'indeterminate']
-
-  static _meta = {
-    name: 'Checkbox',
-    type: META.TYPES.MODULE,
-  }
 
   componentDidMount() {
     this.setIndeterminate()

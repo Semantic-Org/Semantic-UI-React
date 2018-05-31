@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useTextAlignProp,
@@ -60,7 +59,11 @@ function TableCell(props) {
   const ElementType = getElementType(TableCell, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
   }
 
   return (
@@ -69,12 +72,6 @@ function TableCell(props) {
       {content}
     </ElementType>
   )
-}
-
-TableCell._meta = {
-  name: 'TableCell',
-  type: META.TYPES.COLLECTION,
-  parent: 'Table',
 }
 
 TableCell.defaultProps = {

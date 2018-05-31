@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { META } from '../../lib'
 import Dropdown from '../../modules/Dropdown'
 
 /**
@@ -16,11 +15,6 @@ function Select(props) {
 Select.propTypes = {
   /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
   options: PropTypes.arrayOf(PropTypes.shape(Dropdown.Item.propTypes)).isRequired,
-}
-
-Select._meta = {
-  name: 'Select',
-  type: META.TYPES.ADDON,
 }
 
 Select.Divider = Dropdown.Divider

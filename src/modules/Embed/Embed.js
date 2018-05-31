@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -86,11 +85,6 @@ export default class Embed extends Component {
   }
 
   static autoControlledProps = ['active']
-
-  static _meta = {
-    name: 'Embed',
-    type: META.TYPES.MODULE,
-  }
 
   getSrc() {
     const {

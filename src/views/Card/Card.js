@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
 } from '../../lib'
@@ -76,11 +75,6 @@ export default class Card extends Component {
 
     /** A Card can be formatted to raise above the page. */
     raised: PropTypes.bool,
-  }
-
-  static _meta = {
-    name: 'Card',
-    type: META.TYPES.VIEW,
   }
 
   static Content = CardContent

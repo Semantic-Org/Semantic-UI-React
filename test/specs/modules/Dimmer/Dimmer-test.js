@@ -9,7 +9,7 @@ import { sandbox } from 'test/utils'
 
 describe('Dimmer', () => {
   common.isConformant(Dimmer)
-  common.hasSubComponents(Dimmer[DimmerDimmable])
+  common.hasSubcomponents(Dimmer[DimmerDimmable])
   common.hasUIClassName(Dimmer)
   common.rendersChildren(Dimmer)
 

@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -16,13 +15,7 @@ import {
  * A modal can contain content.
  */
 function ModalContent(props) {
-  const {
-    children,
-    className,
-    content,
-    image,
-    scrolling,
-  } = props
+  const { children, className, content, image, scrolling } = props
 
   const classes = cx(
     className,
@@ -38,12 +31,6 @@ function ModalContent(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-ModalContent._meta = {
-  name: 'ModalContent',
-  type: META.TYPES.MODULE,
-  parent: 'Modal',
 }
 
 ModalContent.propTypes = {

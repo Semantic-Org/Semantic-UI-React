@@ -1,10 +1,6 @@
 import React from 'react'
 
-import {
-  createShorthandFactory,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { createShorthandFactory, getUnhandledProps } from '../../lib'
 import Image from '../../elements/Image'
 
 /**
@@ -15,12 +11,6 @@ function ItemImage(props) {
   const rest = getUnhandledProps(ItemImage, props)
 
   return <Image {...rest} size={size} ui={!!size} wrapped />
-}
-
-ItemImage._meta = {
-  name: 'ItemImage',
-  parent: 'Item',
-  type: META.TYPES.VIEW,
 }
 
 ItemImage.propTypes = {

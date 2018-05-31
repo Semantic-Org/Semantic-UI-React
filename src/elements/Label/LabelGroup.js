@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
 } from '../../lib'
@@ -16,15 +15,7 @@ import {
  * A label can be grouped.
  */
 function LabelGroup(props) {
-  const {
-    children,
-    circular,
-    className,
-    color,
-    content,
-    size,
-    tag,
-  } = props
+  const { children, circular, className, color, content, size, tag } = props
 
   const classes = cx(
     'ui',
@@ -43,12 +34,6 @@ function LabelGroup(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-LabelGroup._meta = {
-  name: 'LabelGroup',
-  parent: 'Label',
-  type: META.TYPES.ELEMENT,
 }
 
 LabelGroup.propTypes = {

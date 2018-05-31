@@ -11,7 +11,6 @@ import {
   getUnhandledProps,
   isBrowser,
   makeDebugger,
-  META,
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -140,11 +139,6 @@ class Modal extends Component {
   }
 
   static autoControlledProps = ['open']
-
-  static _meta = {
-    name: 'Modal',
-    type: META.TYPES.MODULE,
-  }
 
   static Header = ModalHeader
   static Content = ModalContent

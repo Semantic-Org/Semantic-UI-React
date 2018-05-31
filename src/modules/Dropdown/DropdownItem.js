@@ -8,7 +8,6 @@ import {
   createShorthand,
   createShorthandFactory,
   customPropTypes,
-  META,
   getElementType,
   getUnhandledProps,
   useKeyOnly,
@@ -75,12 +74,6 @@ class DropdownItem extends Component {
 
     /** Stored value. */
     value: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
-  }
-
-  static _meta = {
-    name: 'DropdownItem',
-    parent: 'Dropdown',
-    type: META.TYPES.MODULE,
   }
 
   handleClick = (e) => {

@@ -13,7 +13,6 @@ import {
   getElementType,
   getUnhandledProps,
   makeDebugger,
-  META,
   objectDiff,
   shallowEqual,
   useKeyOnly,
@@ -362,11 +361,6 @@ export default class Dropdown extends Component {
   }
 
   static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value']
-
-  static _meta = {
-    name: 'Dropdown',
-    type: META.TYPES.MODULE,
-  }
 
   static Divider = DropdownDivider
   static Header = DropdownHeader

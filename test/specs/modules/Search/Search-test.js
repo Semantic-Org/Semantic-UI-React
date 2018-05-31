@@ -78,7 +78,7 @@ describe('Search', () => {
   })
 
   common.isConformant(Search)
-  common.hasSubComponents(Search, [SearchCategory, SearchResult, SearchResults])
+  common.hasSubcomponents(Search, [SearchCategory, SearchResult, SearchResults])
   common.hasUIClassName(Search)
 
   common.propKeyOnlyToClassName(Search, 'category')

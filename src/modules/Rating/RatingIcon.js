@@ -3,7 +3,7 @@ import keyboardKey from 'keyboard-key'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { customPropTypes, getElementType, getUnhandledProps, META, useKeyOnly } from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps, useKeyOnly } from '../../lib'
 
 /**
  * An internal icon sub-component for Rating component
@@ -54,12 +54,6 @@ export default class RatingIcon extends Component {
     as: 'i',
   }
 
-  static _meta = {
-    name: 'RatingIcon',
-    parent: 'Rating',
-    type: META.TYPES.MODULE,
-  }
-
   handleClick = (e) => {
     const { onClick } = this.props
 
@@ -91,7 +85,12 @@ export default class RatingIcon extends Component {
 
   render() {
     const { active, className, selected } = this.props
-    const classes = cx(useKeyOnly(active, 'active'), useKeyOnly(selected, 'selected'), 'icon', className)
+    const classes = cx(
+      useKeyOnly(active, 'active'),
+      useKeyOnly(selected, 'selected'),
+      'icon',
+      className,
+    )
     const rest = getUnhandledProps(RatingIcon, this.props)
     const ElementType = getElementType(RatingIcon, this.props)
 

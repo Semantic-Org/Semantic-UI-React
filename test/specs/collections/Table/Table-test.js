@@ -13,7 +13,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Table', () => {
   common.isConformant(Table)
-  common.hasSubComponents(Table, [
+  common.hasSubcomponents(Table, [
     TableBody,
     TableCell,
     TableFooter,

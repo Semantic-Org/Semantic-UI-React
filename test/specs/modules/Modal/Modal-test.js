@@ -8,7 +8,13 @@ import ModalActions from 'src/modules/Modal/ModalActions'
 import ModalDescription from 'src/modules/Modal/ModalDescription'
 import Portal from 'src/addons/Portal/Portal'
 
-import { assertNodeContains, assertBodyClasses, assertBodyContains, domEvent, sandbox } from 'test/utils'
+import {
+  assertNodeContains,
+  assertBodyClasses,
+  assertBodyContains,
+  domEvent,
+  sandbox,
+} from 'test/utils'
 import * as common from 'test/specs/commonTests'
 import isBrowser from 'src/lib/isBrowser'
 
@@ -35,7 +41,7 @@ describe('Modal', () => {
   })
 
   common.isConformant(Modal, { rendersPortal: true })
-  common.hasSubComponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
+  common.hasSubcomponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
   common.hasValidTypings(Modal)
 
   common.implementsShorthandProp(Modal, {
@@ -69,9 +75,7 @@ describe('Modal', () => {
   it('renders child text', () => {
     wrapperMount(<Modal open>child text</Modal>)
 
-    document.querySelector('.ui.modal')
-      .innerText
-      .should.equal('child text')
+    document.querySelector('.ui.modal').innerText.should.equal('child text')
   })
 
   it('renders child components', () => {
@@ -219,8 +223,7 @@ describe('Modal', () => {
   describe('dimmer', () => {
     describe('defaults', () => {
       it('is set to true by default', () => {
-        Modal.defaultProps.dimmer
-          .should.equal(true)
+        Modal.defaultProps.dimmer.should.equal(true)
       })
 
       it('is present by default', () => {
@@ -433,7 +436,11 @@ describe('Modal', () => {
       const mountNode = document.createElement('div')
       document.body.appendChild(mountNode)
 
-      wrapperMount(<Modal mountNode={mountNode} open>foo</Modal>)
+      wrapperMount(
+        <Modal mountNode={mountNode} open>
+          foo
+        </Modal>,
+      )
       assertNodeContains(mountNode, '.ui.modal')
     })
   })
@@ -445,19 +452,31 @@ describe('Modal', () => {
     })
 
     it('defaults to `close` when boolean', () => {
-      wrapperMount(<Modal open closeIcon>foo</Modal>)
+      wrapperMount(
+        <Modal open closeIcon>
+          foo
+        </Modal>,
+      )
       assertBodyContains('.ui.modal .icon.close')
     })
 
     it('is present when passed', () => {
-      wrapperMount(<Modal open closeIcon='bullseye'>foo</Modal>)
+      wrapperMount(
+        <Modal open closeIcon='bullseye'>
+          foo
+        </Modal>,
+      )
       assertBodyContains('.ui.modal .icon.bullseye')
     })
 
     it('triggers onClose when clicked', () => {
       const spy = sandbox.spy()
 
-      wrapperMount(<Modal onClose={spy} open closeIcon='bullseye'>foo</Modal>)
+      wrapperMount(
+        <Modal onClose={spy} open closeIcon='bullseye'>
+          foo
+        </Modal>,
+      )
       domEvent.click('.ui.modal .icon.bullseye')
       spy.should.have.been.calledOnce()
     })

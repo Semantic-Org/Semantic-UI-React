@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 function LabelDetail(props) {
@@ -22,12 +21,6 @@ function LabelDetail(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-LabelDetail._meta = {
-  name: 'LabelDetail',
-  parent: 'Label',
-  type: META.TYPES.ELEMENT,
 }
 
 LabelDetail.propTypes = {

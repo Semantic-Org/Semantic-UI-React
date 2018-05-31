@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   normalizeOffset,
   isBrowser,
 } from '../../lib'
@@ -169,11 +168,6 @@ export default class Visibility extends Component {
     offset: [0, 0],
     once: true,
     updateOn: 'events',
-  }
-
-  static _meta = {
-    name: 'Visibility',
-    type: META.TYPES.BEHAVIOR,
   }
 
   calculations = {

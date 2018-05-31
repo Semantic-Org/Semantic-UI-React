@@ -238,7 +238,8 @@ class ComponentExample extends PureComponent {
     // which can be rendered in this ComponentExample's render() method
 
     // rewrite imports to const statements against the UPPERCASE module names
-    const imports = _.get(/(^[\s\S])*import[\s\S]*from[\s\S]*['"]\n/.exec(sourceCode), '[0]', '')
+    const imports = _
+      .get(/(^[\s\S])*import[\s\S]*from[\s\S]*['"]\n/.exec(sourceCode), '[0]', '')
       .replace(/[\s\n]+/g, ' ') // normalize spaces and make one line
       .replace(/ import/g, '\nimport') // one import per line
       .split('\n') // split lines
@@ -276,11 +277,8 @@ class ComponentExample extends PureComponent {
       '[1]',
     )
 
-    const body = _.get(
-      /(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode),
-      '[0]',
-      '',
-    )
+    const body = _
+      .get(/(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode), '[0]', '')
       .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '') // remove `export default Foo` statements
       .replace(/export\s+default\s+/, '') // remove `export default ...`
 
@@ -421,7 +419,7 @@ class ComponentExample extends PureComponent {
   }
 
   render() {
-    const { children, description, location, suiVersion, title } = this.props
+    const { children, description, examplePath, location, suiVersion, title } = this.props
     const {
       handleMouseLeave,
       handleMouseMove,
@@ -473,6 +471,7 @@ class ComponentExample extends PureComponent {
             <Grid.Column textAlign='right' width={4} style={controlsWrapperStyle}>
               <ComponentControls
                 anchorName={this.anchorName}
+                examplePath={examplePath}
                 onCopyLink={this.handleDirectLinkClick}
                 onShowCode={this.handleShowCodeClick}
                 onShowHTML={this.handleShowHTMLClick}

@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getUnhandledProps,
   getElementType,
-  META,
   useKeyOnly,
 } from '../../lib'
 import SidebarPushable from './SidebarPushable'
@@ -23,7 +22,14 @@ class Sidebar extends Component {
     as: customPropTypes.as,
 
     /** Animation style. */
-    animation: PropTypes.oneOf(['overlay', 'push', 'scale down', 'uncover', 'slide out', 'slide along']),
+    animation: PropTypes.oneOf([
+      'overlay',
+      'push',
+      'scale down',
+      'uncover',
+      'slide out',
+      'slide along',
+    ]),
 
     /** Primary content. */
     children: PropTypes.node,
@@ -51,14 +57,7 @@ class Sidebar extends Component {
     direction: 'left',
   }
 
-  static autoControlledProps = [
-    'visible',
-  ]
-
-  static _meta = {
-    name: 'Sidebar',
-    type: META.TYPES.MODULE,
-  }
+  static autoControlledProps = ['visible']
 
   static Pushable = SidebarPushable
   static Pusher = SidebarPusher
@@ -78,15 +77,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const {
-      animation,
-      className,
-      children,
-      content,
-      direction,
-      visible,
-      width,
-    } = this.props
+    const { animation, className, children, content, direction, visible, width } = this.props
     const { animating } = this.state
 
     const classes = cx(

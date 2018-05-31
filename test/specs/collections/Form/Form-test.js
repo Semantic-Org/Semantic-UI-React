@@ -18,7 +18,7 @@ import { consoleUtil, sandbox } from 'test/utils'
 
 describe('Form', () => {
   common.isConformant(Form)
-  common.hasSubComponents(Form, [
+  common.hasSubcomponents(Form, [
     FormButton,
     FormCheckbox,
     FormDropdown,

@@ -11,7 +11,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Comment', () => {
   common.isConformant(Comment)
-  common.hasSubComponents(Comment, [
+  common.hasSubcomponents(Comment, [
     CommentAction,
     CommentActions,
     CommentAuthor,

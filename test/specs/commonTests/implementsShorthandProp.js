@@ -8,8 +8,9 @@ import helpers from './commonHelpers'
 
 const shorthandComponentName = (ShorthandComponent) => {
   if (typeof ShorthandComponent === 'string') return ShorthandComponent
+
   return (
-    _.get(ShorthandComponent, '_meta.name') ||
+    _.get(ShorthandComponent, 'prototype.constructor.name') ||
     ShorthandComponent.displayName ||
     ShorthandComponent.name
   )

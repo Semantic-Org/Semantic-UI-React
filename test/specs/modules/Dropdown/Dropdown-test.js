@@ -86,7 +86,7 @@ describe('Dropdown', () => {
 
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
-  common.hasSubComponents(Dropdown, [
+  common.hasSubcomponents(Dropdown, [
     DropdownDivider,
     DropdownHeader,
     DropdownItem,

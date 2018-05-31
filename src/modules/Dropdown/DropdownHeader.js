@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
@@ -36,12 +35,6 @@ function DropdownHeader(props) {
       {content}
     </ElementType>
   )
-}
-
-DropdownHeader._meta = {
-  name: 'DropdownHeader',
-  parent: 'Dropdown',
-  type: META.TYPES.MODULE,
 }
 
 DropdownHeader.propTypes = {
