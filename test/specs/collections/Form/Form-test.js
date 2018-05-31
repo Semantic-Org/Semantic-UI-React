@@ -18,7 +18,7 @@ import { sandbox } from 'test/utils'
 
 describe('Form', () => {
   common.isConformant(Form)
-  common.hasSubComponents(Form, [
+  common.hasSubcomponents(Form, [
     FormButton,
     FormCheckbox,
     FormDropdown,
@@ -50,15 +50,13 @@ describe('Form', () => {
 
   describe('action', () => {
     it('is not set by default', () => {
-      shallow(<Form />)
-        .should.not.have.prop('action')
+      shallow(<Form />).should.not.have.prop('action')
     })
 
     it('applied when defined', () => {
       const action = faker.internet.url()
 
-      shallow(<Form action={action} />)
-        .should.have.prop('action', action)
+      shallow(<Form action={action} />).should.have.prop('action', action)
     })
   })
 
@@ -66,14 +64,11 @@ describe('Form', () => {
     it('prevents default on the event when there is no action', () => {
       const event = { preventDefault: sandbox.spy() }
 
-      shallow(<Form />)
-        .simulate('submit', event)
+      shallow(<Form />).simulate('submit', event)
 
-      shallow(<Form action={false} />)
-        .simulate('submit', event)
+      shallow(<Form action={false} />).simulate('submit', event)
 
-      shallow(<Form action={null} />)
-        .simulate('submit', event)
+      shallow(<Form action={null} />).simulate('submit', event)
 
       event.preventDefault.should.have.been.calledThrice()
     })
@@ -81,11 +76,9 @@ describe('Form', () => {
     it('does not prevent default on the event when there is an action', () => {
       const event = { preventDefault: sandbox.spy() }
 
-      shallow(<Form action='do not prevent default!' />)
-        .simulate('submit', event)
+      shallow(<Form action='do not prevent default!' />).simulate('submit', event)
 
-      shallow(<Form action='' />)
-        .simulate('submit', event)
+      shallow(<Form action='' />).simulate('submit', event)
 
       event.preventDefault.should.not.have.been.called()
     })
@@ -95,8 +88,7 @@ describe('Form', () => {
       const event = { name: 'foo' }
       const props = { 'data-bar': 'baz' }
 
-      shallow(<Form {...props} onSubmit={onSubmit} />)
-        .simulate('submit', event)
+      shallow(<Form {...props} onSubmit={onSubmit} />).simulate('submit', event)
 
       onSubmit.should.have.been.calledOnce()
       onSubmit.should.have.been.calledWithMatch(event, props)
@@ -108,8 +100,7 @@ describe('Form', () => {
       const event = { fake: 'event' }
       const args = ['some', 'extra', 'args']
 
-      shallow(<Form {...props} onSubmit={onSubmit} />)
-        .simulate('submit', event, ...args)
+      shallow(<Form {...props} onSubmit={onSubmit} />).simulate('submit', event, ...args)
 
       onSubmit.should.have.been.calledOnce()
       onSubmit.should.have.been.calledWithMatch(event, props, ...args)

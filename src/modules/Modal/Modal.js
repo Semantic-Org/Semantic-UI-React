@@ -11,7 +11,6 @@ import {
   getUnhandledProps,
   isBrowser,
   makeDebugger,
-  META,
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -51,11 +50,7 @@ class Modal extends Component {
     className: PropTypes.string,
 
     /** Shorthand for the close icon. Closes the modal on click. */
-    closeIcon: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.object,
-      PropTypes.bool,
-    ]),
+    closeIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.object, PropTypes.bool]),
 
     /** Whether or not the Modal should close when the dimmer is clicked. */
     closeOnDimmerClick: PropTypes.bool,
@@ -70,10 +65,7 @@ class Modal extends Component {
     defaultOpen: PropTypes.bool,
 
     /** A Modal can appear in a dimmer. */
-    dimmer: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['inverted', 'blurring']),
-    ]),
+    dimmer: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['inverted', 'blurring'])]),
 
     /** Event pool namespace that is used to handle component events */
     eventPool: PropTypes.string,
@@ -150,14 +142,7 @@ class Modal extends Component {
     eventPool: 'Modal',
   }
 
-  static autoControlledProps = [
-    'open',
-  ]
-
-  static _meta = {
-    name: 'Modal',
-    type: META.TYPES.MODULE,
-  }
+  static autoControlledProps = ['open']
 
   static Header = ModalHeader
   static Content = ModalContent
@@ -333,7 +318,14 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { centered, closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
+    const {
+      centered,
+      closeOnDimmerClick,
+      closeOnDocumentClick,
+      dimmer,
+      eventPool,
+      trigger,
+    } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -344,11 +336,15 @@ class Modal extends Component {
     const unhandled = getUnhandledProps(Modal, this.props)
     const portalPropNames = Portal.handledProps
 
-    const rest = _.reduce(unhandled, (acc, val, key) => {
-      if (!_.includes(portalPropNames, key)) acc[key] = val
+    const rest = _.reduce(
+      unhandled,
+      (acc, val, key) => {
+        if (!_.includes(portalPropNames, key)) acc[key] = val
 
-      return acc
-    }, {})
+        return acc
+      },
+      {},
+    )
     const portalProps = _.pick(unhandled, portalPropNames)
 
     // wrap dimmer modals

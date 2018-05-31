@@ -9,7 +9,6 @@ import {
   doesNodeContainClick,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
   useVerticalAlignProp,
 } from '../../lib'
@@ -66,12 +65,6 @@ export default class DimmerInner extends Component {
     verticalAlign: PropTypes.oneOf(['bottom', 'top']),
   }
 
-  static _meta = {
-    name: 'DimmerInner',
-    parent: 'Dimmer',
-    type: META.TYPES.MODULE,
-  }
-
   componentWillReceiveProps({ active: nextActive }) {
     const { active: prevActive } = this.props
 
@@ -87,7 +80,12 @@ export default class DimmerInner extends Component {
   handleClick = (e) => {
     _.invoke(this.props, 'onClick', e, this.props)
 
-    if (this.contentRef && (this.contentRef !== e.target && doesNodeContainClick(this.contentRef, e))) return
+    if (
+      this.contentRef &&
+      (this.contentRef !== e.target && doesNodeContainClick(this.contentRef, e))
+    ) {
+      return
+    }
     _.invoke(this.props, 'onClickOutside', e, this.props)
   }
 

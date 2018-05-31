@@ -8,7 +8,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Dimmer', () => {
   common.isConformant(Dimmer)
-  common.hasSubComponents(Dimmer, [DimmerDimmable, DimmerInner])
+  common.hasSubcomponents(Dimmer, [DimmerDimmable, DimmerInner])
 
   common.implementsCreateMethod(Dimmer)
 
@@ -36,8 +36,7 @@ describe('Dimmer', () => {
         const dimmer = mount(<Dimmer page active />)
         const classes = document.body.classList
 
-        dimmer.find(Portal)
-          .should.have.prop('open', true)
+        dimmer.find(Portal).should.have.prop('open', true)
 
         classes.contains('dimmable').should.be.true()
         classes.contains('dimmed').should.be.true()
@@ -47,8 +46,7 @@ describe('Dimmer', () => {
         const dimmer = mount(<Dimmer page active={false} />)
         const classes = document.body.classList
 
-        dimmer.find(Portal)
-          .should.have.prop('open', false)
+        dimmer.find(Portal).should.have.prop('open', false)
 
         classes.contains('dimmable').should.be.false()
         classes.contains('dimmed').should.be.false()

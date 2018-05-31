@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -34,10 +33,7 @@ export default class AccordionTitle extends Component {
     content: customPropTypes.contentShorthand,
 
     /** AccordionTitle index inside Accordion. */
-    index: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
      * Called on click.
@@ -48,32 +44,21 @@ export default class AccordionTitle extends Component {
     onClick: PropTypes.func,
   }
 
-  static _meta = {
-    name: 'AccordionTitle',
-    type: META.TYPES.MODULE,
-    parent: 'Accordion',
-  }
-
   handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
-    const {
-      active,
-      children,
-      className,
-      content,
-    } = this.props
+    const { active, children, className, content } = this.props
 
-    const classes = cx(
-      useKeyOnly(active, 'active'),
-      'title',
-      className,
-    )
+    const classes = cx(useKeyOnly(active, 'active'), 'title', className)
     const rest = getUnhandledProps(AccordionTitle, this.props)
     const ElementType = getElementType(AccordionTitle, this.props)
 
     if (_.isNil(content)) {
-      return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+          {children}
+        </ElementType>
+      )
     }
 
     return (

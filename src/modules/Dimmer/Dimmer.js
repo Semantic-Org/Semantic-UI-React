@@ -1,12 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import {
-  createShorthandFactory,
-  getUnhandledProps,
-  isBrowser,
-  META,
-} from '../../lib'
+import { createShorthandFactory, getUnhandledProps, isBrowser } from '../../lib'
 import Portal from '../../addons/Portal'
 import DimmerDimmable from './DimmerDimmable'
 import DimmerInner from './DimmerInner'
@@ -21,11 +16,6 @@ export default class Dimmer extends Component {
 
     /** A dimmer can be formatted to be fixed to the page. */
     page: PropTypes.bool,
-  }
-
-  static _meta = {
-    name: 'Dimmer',
-    type: META.TYPES.MODULE,
   }
 
   static Dimmable = DimmerDimmable

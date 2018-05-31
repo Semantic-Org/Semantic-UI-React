@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { createShorthandFactory, customPropTypes, META, getUnhandledProps } from '../../lib'
+import { createShorthandFactory, customPropTypes, getUnhandledProps } from '../../lib'
 
 /**
  * A search item sub-component for Dropdown component.
@@ -35,12 +35,6 @@ class DropdownSearchInput extends Component {
   static defaultProps = {
     autoComplete: 'off',
     type: 'text',
-  }
-
-  static _meta = {
-    name: 'DropdownSearchInput',
-    parent: 'Dropdown',
-    type: META.TYPES.MODULE,
   }
 
   handleChange = (e) => {

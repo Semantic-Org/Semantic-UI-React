@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * Header content wraps the main content when there is an adjacent Icon or Image.
@@ -24,12 +18,6 @@ function HeaderContent(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-HeaderContent._meta = {
-  name: 'HeaderContent',
-  parent: 'Header',
-  type: META.TYPES.VIEW,
 }
 
 HeaderContent.propTypes = {

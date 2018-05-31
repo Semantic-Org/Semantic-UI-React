@@ -3,25 +3,14 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-  SUI,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps, SUI } from '../../lib'
 
 /**
  * Several icons can be used together as a group.
  */
 function IconGroup(props) {
   const { children, className, content, size } = props
-  const classes = cx(
-    size,
-    'icons',
-    className,
-  )
+  const classes = cx(size, 'icons', className)
   const rest = getUnhandledProps(IconGroup, props)
   const ElementType = getElementType(IconGroup, props)
 
@@ -30,12 +19,6 @@ function IconGroup(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-IconGroup._meta = {
-  name: 'IconGroup',
-  parent: 'Icon',
-  type: META.TYPES.ELEMENT,
 }
 
 IconGroup.propTypes = {

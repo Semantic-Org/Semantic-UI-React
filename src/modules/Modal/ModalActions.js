@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import Button from '../../elements/Button'
 
@@ -39,16 +38,7 @@ export default class ModalActions extends Component {
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props from the clicked action.
      */
-    onActionClick: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.func,
-    ]),
-  }
-
-  static _meta = {
-    name: 'ModalActions',
-    type: META.TYPES.MODULE,
-    parent: 'Modal',
+    onActionClick: customPropTypes.every([customPropTypes.disallow(['children']), PropTypes.func]),
   }
 
   handleButtonOverrides = predefinedProps => ({
@@ -64,12 +54,26 @@ export default class ModalActions extends Component {
     const rest = getUnhandledProps(ModalActions, this.props)
     const ElementType = getElementType(ModalActions, this.props)
 
-    if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
-    if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
+    if (!childrenUtils.isNil(children)) {
+      return (
+        <ElementType {...rest} className={classes}>
+          {children}
+        </ElementType>
+      )
+    }
+    if (!childrenUtils.isNil(content)) {
+      return (
+        <ElementType {...rest} className={classes}>
+          {content}
+        </ElementType>
+      )
+    }
 
     return (
       <ElementType {...rest} className={classes}>
-        {_.map(actions, action => Button.create(action, { overrideProps: this.handleButtonOverrides }))}
+        {_.map(actions, action =>
+          Button.create(action, { overrideProps: this.handleButtonOverrides }),
+        )}
       </ElementType>
     )
   }

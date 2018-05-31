@@ -7,7 +7,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Breadcrumb', () => {
   common.isConformant(Breadcrumb)
-  common.hasSubComponents(Breadcrumb, [BreadcrumbDivider, BreadcrumbSection])
+  common.hasSubcomponents(Breadcrumb, [BreadcrumbDivider, BreadcrumbSection])
   common.hasUIClassName(Breadcrumb)
   common.rendersChildren(Breadcrumb, {
     rendersContent: false,

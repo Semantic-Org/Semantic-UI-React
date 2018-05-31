@@ -10,7 +10,7 @@ import { sandbox } from 'test/utils'
 
 describe('Label', () => {
   common.isConformant(Label)
-  common.hasSubComponents(Label, [LabelDetail, LabelGroup])
+  common.hasSubcomponents(Label, [LabelDetail, LabelGroup])
   common.hasUIClassName(Label)
   common.rendersChildren(Label)
 
@@ -24,7 +24,12 @@ describe('Label', () => {
   })
 
   common.propKeyAndValueToClassName(Label, 'attached', [
-    'top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right',
+    'top',
+    'bottom',
+    'top right',
+    'top left',
+    'bottom left',
+    'bottom right',
   ])
 
   common.propKeyOnlyToClassName(Label, 'active')
@@ -42,14 +47,12 @@ describe('Label', () => {
   common.propValueOnlyToClassName(Label, 'size', SUI.SIZES)
 
   it('is a div by default', () => {
-    shallow(<Label />)
-      .should.have.tagName('div')
+    shallow(<Label />).should.have.tagName('div')
   })
 
   describe('removeIcon', () => {
     it('has no icon without onRemove', () => {
-      shallow(<Label />)
-        .should.not.have.descendants('Icon')
+      shallow(<Label />).should.not.have.descendants('Icon')
     })
 
     it('has delete icon by default', () => {
@@ -90,12 +93,10 @@ describe('Label', () => {
 
   describe('image', () => {
     it('adds an image class when true', () => {
-      shallow(<Label image />)
-        .should.have.className('image')
+      shallow(<Label image />).should.have.className('image')
     })
     it('does not add an Image when true', () => {
-      shallow(<Label image />)
-        .should.not.have.descendants('Image')
+      shallow(<Label image />).should.not.have.descendants('Image')
     })
   })
 
@@ -109,8 +110,7 @@ describe('Label', () => {
       const spy = sandbox.spy()
       const event = { target: null }
 
-      shallow(<Label onClick={spy} />)
-        .simulate('click', event)
+      shallow(<Label onClick={spy} />).simulate('click', event)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event)
@@ -119,8 +119,7 @@ describe('Label', () => {
 
   describe('pointing', () => {
     it('adds an poiting class when true', () => {
-      shallow(<Label pointing />)
-        .should.have.className('pointing')
+      shallow(<Label pointing />).should.have.className('pointing')
     })
 
     it('does not add any poiting option class when true', () => {
@@ -131,23 +130,19 @@ describe('Label', () => {
     })
 
     it('adds `above` as suffix', () => {
-      shallow(<Label pointing='above' />)
-        .should.have.className('pointing above')
+      shallow(<Label pointing='above' />).should.have.className('pointing above')
     })
 
     it('adds `below` as suffix', () => {
-      shallow(<Label pointing='below' />)
-        .should.have.className('pointing below')
+      shallow(<Label pointing='below' />).should.have.className('pointing below')
     })
 
     it('adds `left` as prefix', () => {
-      shallow(<Label pointing='left' />)
-        .should.have.className('left pointing')
+      shallow(<Label pointing='left' />).should.have.className('left pointing')
     })
 
     it('adds `right` as prefix', () => {
-      shallow(<Label pointing='right' />)
-        .should.have.className('right pointing')
+      shallow(<Label pointing='right' />).should.have.className('right pointing')
     })
   })
 })

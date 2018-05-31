@@ -31,7 +31,6 @@ export {
 export isBrowser from './isBrowser'
 export doesNodeContainClick from './doesNodeContainClick'
 export leven from './leven'
-export * as META from './META'
 export createPaginationItems from './createPaginationItems'
 export * as SUI from './SUI'
 

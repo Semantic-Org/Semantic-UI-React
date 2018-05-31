@@ -2,12 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A dropdown menu can contain dividers to separate related content.
@@ -19,12 +14,6 @@ function DropdownDivider(props) {
   const ElementType = getElementType(DropdownDivider, props)
 
   return <ElementType {...rest} className={classes} />
-}
-
-DropdownDivider._meta = {
-  name: 'DropdownDivider',
-  parent: 'Dropdown',
-  type: META.TYPES.MODULE,
 }
 
 DropdownDivider.propTypes = {

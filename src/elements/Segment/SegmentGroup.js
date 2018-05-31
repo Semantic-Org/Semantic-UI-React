@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
 } from '../../lib'
@@ -17,17 +16,7 @@ import {
  * A group of segments can be formatted to appear together.
  */
 function SegmentGroup(props) {
-  const {
-    children,
-    className,
-    compact,
-    content,
-    horizontal,
-    piled,
-    raised,
-    size,
-    stacked,
-  } = props
+  const { children, className, compact, content, horizontal, piled, raised, size, stacked } = props
 
   const classes = cx(
     'ui',
@@ -48,12 +37,6 @@ function SegmentGroup(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-SegmentGroup._meta = {
-  name: 'SegmentGroup',
-  parent: 'Segment',
-  type: META.TYPES.ELEMENT,
 }
 
 SegmentGroup.propTypes = {

@@ -1,11 +1,6 @@
 import React from 'react'
 
-import {
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 import TextArea from '../../addons/TextArea'
 import FormField from './FormField'
 
@@ -20,12 +15,6 @@ function FormTextArea(props) {
   const ElementType = getElementType(FormTextArea, props)
 
   return <ElementType {...rest} control={control} />
-}
-
-FormTextArea._meta = {
-  name: 'FormTextArea',
-  parent: 'Form',
-  type: META.TYPES.COLLECTION,
 }
 
 FormTextArea.propTypes = {

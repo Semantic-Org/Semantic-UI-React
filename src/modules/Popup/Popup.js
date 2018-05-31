@@ -11,7 +11,6 @@ import {
   getUnhandledProps,
   isBrowser,
   makeDebugger,
-  META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -140,11 +139,6 @@ export default class Popup extends Component {
     position: 'top left',
     on: 'hover',
     keepInViewPort: true,
-  }
-
-  static _meta = {
-    name: 'Popup',
-    type: META.TYPES.MODULE,
   }
 
   static Content = PopupContent

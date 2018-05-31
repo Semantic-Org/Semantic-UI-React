@@ -2,11 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  getUnhandledProps,
-  META,
-  useKeyOnly,
-} from '../../lib'
+import { getUnhandledProps, useKeyOnly } from '../../lib'
 import AccordionAccordion from './AccordionAccordion'
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'
@@ -15,12 +11,7 @@ import AccordionTitle from './AccordionTitle'
  * An accordion allows users to toggle the display of sections of content.
  */
 function Accordion(props) {
-  const {
-    className,
-    fluid,
-    inverted,
-    styled,
-  } = props
+  const { className, fluid, inverted, styled } = props
 
   const classes = cx(
     'ui',
@@ -32,11 +23,6 @@ function Accordion(props) {
   const rest = getUnhandledProps(Accordion, props)
 
   return <AccordionAccordion {...rest} className={classes} />
-}
-
-Accordion._meta = {
-  name: 'Accordion',
-  type: META.TYPES.MODULE,
 }
 
 Accordion.propTypes = {

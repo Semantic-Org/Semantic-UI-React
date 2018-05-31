@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useVerticalAlignProp,
 } from '../../lib'
@@ -20,27 +19,18 @@ import ItemMeta from './ItemMeta'
  * An item can contain content.
  */
 function ItemContent(props) {
-  const {
-    children,
-    className,
-    content,
-    description,
-    extra,
-    header,
-    meta,
-    verticalAlign,
-  } = props
+  const { children, className, content, description, extra, header, meta, verticalAlign } = props
 
-  const classes = cx(
-    useVerticalAlignProp(verticalAlign),
-    'content',
-    className,
-  )
+  const classes = cx(useVerticalAlignProp(verticalAlign), 'content', className)
   const rest = getUnhandledProps(ItemContent, props)
   const ElementType = getElementType(ItemContent, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
   }
 
   return (
@@ -52,12 +42,6 @@ function ItemContent(props) {
       {content}
     </ElementType>
   )
-}
-
-ItemContent._meta = {
-  name: 'ItemContent',
-  parent: 'Item',
-  type: META.TYPES.VIEW,
 }
 
 ItemContent.propTypes = {

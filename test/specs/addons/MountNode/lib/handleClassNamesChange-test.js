@@ -9,8 +9,8 @@ const createNodeMock = (add, remove) => {
   const node = {
     classList: { add, remove },
     reset: () => {
-      add.reset()
-      remove.reset()
+      add.resetHistory()
+      remove.resetHistory()
     },
   }
   nodes.add(node)
