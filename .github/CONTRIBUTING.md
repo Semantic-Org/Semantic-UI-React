@@ -79,6 +79,8 @@ Please follow the [Angular Git Commit Guidelines][8] format.
 ```sh
 yarn start                 // run doc site
 
+yarn ci                    // run all checks CI runs
+
 yarn test                  // test once
 yarn test:watch            // test on file change
 
