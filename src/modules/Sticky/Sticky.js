@@ -122,7 +122,10 @@ export default class Sticky extends Component {
     if (!isBrowser()) return
     const { active } = this.props
 
-    if (active) this.removeListeners()
+    if (active) {
+      this.removeListeners()
+      cancelAnimationFrame(this.frameId)
+    }
   }
 
   // ----------------------------------------
@@ -179,7 +182,7 @@ export default class Sticky extends Component {
   handleUpdate = (e) => {
     if (!this.ticking) {
       this.ticking = true
-      requestAnimationFrame(() => this.update(e))
+      this.frameId = requestAnimationFrame(() => this.update(e))
     }
   }
 

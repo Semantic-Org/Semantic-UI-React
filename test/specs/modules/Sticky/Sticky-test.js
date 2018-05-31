@@ -12,11 +12,12 @@ const mockRect = (values = {}) => ({ getBoundingClientRect: () => values })
 
 const mockContextEl = (values = {}) => (contextEl = mockRect(values))
 
-const mockPositions = ({ bottomOffset = 5, offset = 5, height = 5 } = {}) => (positions = {
-  bottomOffset,
-  height,
-  offset,
-})
+const mockPositions = ({ bottomOffset = 5, offset = 5, height = 5 } = {}) =>
+  (positions = {
+    bottomOffset,
+    height,
+    offset,
+  })
 
 const wrapperMount = (...args) => (wrapper = mount(...args))
 
@@ -39,7 +40,7 @@ const scrollAfterTrigger = () => {
 
   instance.triggerRef = mockRect({ top: offset - 1 })
   instance.stickyRef = mockRect({ height })
-  wrapper.setProps({ context: mockRect({ bottom: (window.innerHeight - bottomOffset) + 1 }) })
+  wrapper.setProps({ context: mockRect({ bottom: window.innerHeight - bottomOffset + 1 }) })
 
   domEvent.scroll(window)
 }
@@ -74,18 +75,8 @@ describe('Sticky', () => {
     rendersContent: false,
   })
 
-  let requestAnimationFrame
-
-  before(() => {
-    requestAnimationFrame = window.requestAnimationFrame
-    window.requestAnimationFrame = fn => fn()
-  })
-
-  after(() => {
-    window.requestAnimationFrame = requestAnimationFrame
-  })
-
   beforeEach(() => {
+    sandbox.stub(window, 'requestAnimationFrame').callsArg(0)
     wrapper = undefined
   })
 
@@ -131,15 +122,23 @@ describe('Sticky', () => {
       const onUnStick = sandbox.spy()
       mockContextEl()
       mockPositions({ bottomOffset: 10, height: 50 })
-      wrapperMount(<Sticky {...positions} context={contextEl} onStick={onStick} onUnstick={onUnStick} />)
+      wrapperMount(
+        <Sticky {...positions} context={contextEl} onStick={onStick} onUnstick={onUnStick} />,
+      )
 
-      wrapper.childAt(0).childAt(1).should.have.style('position', 'fixed')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('position', 'fixed')
       onStick.should.have.been.calledOnce()
       onStick.should.have.been.calledWithMatch(undefined, positions)
 
       wrapper.setProps({ active: false })
       scrollToTop()
-      wrapper.childAt(0).childAt(1).should.have.not.style('position')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.not.style('position')
       onUnStick.should.not.have.been.called()
     })
   })
@@ -152,8 +151,14 @@ describe('Sticky', () => {
 
       // Scroll after trigger
       scrollAfterTrigger()
-      wrapper.childAt(0).childAt(1).should.have.style('position', 'fixed')
-      wrapper.childAt(0).childAt(1).should.have.style('top', '12px')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('position', 'fixed')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('top', '12px')
     })
 
     it('should stick to bottom of context', () => {
@@ -162,8 +167,14 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} />)
 
       scrollAfterContext()
-      wrapper.childAt(0).childAt(1).should.have.style('position', 'fixed')
-      wrapper.childAt(0).childAt(1).should.have.style('top', '-101px')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('position', 'fixed')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('top', '-101px')
     })
   })
   describe('onBottom', () => {
@@ -176,7 +187,7 @@ describe('Sticky', () => {
       scrollAfterContext()
       onBottom.should.have.been.calledOnce()
       onBottom.should.have.been.calledWithMatch({}, positions)
-      onBottom.reset()
+      onBottom.resetHistory()
 
       scrollToTop()
       onBottom.should.not.have.been.called()
@@ -193,7 +204,7 @@ describe('Sticky', () => {
       scrollAfterTrigger()
       onStick.should.have.been.calledTwice()
       onStick.should.have.been.calledWithMatch({}, positions)
-      onStick.reset()
+      onStick.resetHistory()
 
       scrollToTop()
       onStick.should.not.have.been.called()
@@ -245,15 +256,30 @@ describe('Sticky', () => {
       wrapper.setProps({ context: mockContextEl({ bottom: 0 }) })
       domEvent.scroll(window)
 
-      wrapper.childAt(0).childAt(1).should.have.style('position', 'fixed')
-      wrapper.childAt(0).childAt(1).should.have.style('top', '-100px')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('position', 'fixed')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('top', '-100px')
 
       // Scroll a bit before the top: component should stick to screen bottom
       scrollAfterTrigger()
 
-      wrapper.childAt(0).childAt(1).should.have.style('bottom', '30px')
-      wrapper.childAt(0).childAt(1).should.have.style('position', 'fixed')
-      wrapper.childAt(0).childAt(1).should.not.have.style('top')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('bottom', '30px')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('position', 'fixed')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.not.have.style('top')
     })
 
     it('should stop pushing when reaching top', () => {
@@ -267,8 +293,14 @@ describe('Sticky', () => {
       scrollAfterTrigger()
 
       // Component should stick again to the top
-      wrapper.childAt(0).childAt(1).should.have.style('position', 'fixed')
-      wrapper.childAt(0).childAt(1).should.have.style('top', '10px')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('position', 'fixed')
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .should.have.style('top', '10px')
     })
 
     it('should return true if oversized', () => {
@@ -277,7 +309,10 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} pushing />)
 
       scrollAfterTrigger()
-      wrapper.instance().isOversized().should.be.equal(true)
+      wrapper
+        .instance()
+        .isOversized()
+        .should.be.equal(true)
     })
   })
 
@@ -362,6 +397,22 @@ describe('Sticky', () => {
 
       domEvent.resize(window)
       update.should.have.been.calledOnce()
+    })
+
+    it('is not called after unmount', (done) => {
+      window.requestAnimationFrame.restore()
+      sandbox.stub(window, 'requestAnimationFrame').callsFake(fn => setTimeout(fn, 0))
+      sandbox.stub(window, 'cancelAnimationFrame').callsFake(id => clearTimeout(id))
+
+      const instance = wrapperMount(<Sticky />).instance()
+      const update = sandbox.spy(instance, 'update')
+
+      domEvent.resize(window)
+      wrapper.unmount()
+      window.requestAnimationFrame(() => {
+        update.should.not.have.been.called()
+        done()
+      })
     })
   })
 })

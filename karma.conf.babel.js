@@ -1,12 +1,8 @@
-import puppeteerPkg from 'puppeteer/package.json'
-import Downloader from 'puppeteer/utils/ChromiumDownloader'
+import { executablePath } from 'puppeteer'
 import config from './config'
 import webpackConfig from './webpack.config.babel'
 
-const revision = puppeteerPkg.puppeteer.chromium_revision
-const revisionInfo = Downloader.revisionInfo(Downloader.currentPlatform(), revision)
-
-process.env.CHROME_BIN = revisionInfo.executablePath
+process.env.CHROME_BIN = executablePath()
 
 const formatError = (msg) => {
   // filter out empty lines and node_modules
@@ -37,10 +33,7 @@ export default (karmaConfig) => {
       },
     },
     coverageReporter: {
-      reporters: [
-        { type: 'lcov', dir: 'coverage', subdir: '.' },
-        { type: 'text-summary' },
-      ],
+      reporters: [{ type: 'lcov', dir: 'coverage', subdir: '.' }, { type: 'text-summary' }],
       includeAllSources: true,
     },
     customLaunchers: {
@@ -54,9 +47,7 @@ export default (karmaConfig) => {
         ],
       },
     },
-    files: [
-      './test/tests.bundle.js',
-    ],
+    files: ['./test/tests.bundle.js'],
     formatError,
     frameworks: ['mocha'],
     reporters: ['mocha', 'coverage'],
@@ -68,17 +59,7 @@ export default (karmaConfig) => {
     },
     webpack: {
       entry: './test/tests.bundle.js',
-      externals: {
-        ...webpackConfig.externals,
-        // These are internal deps specific to React 0.13 required() by enzyme
-        // They shouldn't be requiring these at all, issues and fix proposed
-        // https://github.com/airbnb/enzyme/issues/285
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true,
-        // this is a React 0.13 dep required by enzyme
-        // ignore it since we don't have it
-        'react/addons': true,
-      },
+      externals: webpackConfig.externals,
       devtool: config.compiler_devtool,
       module: webpackConfig.module,
       plugins: webpackConfig.plugins,
