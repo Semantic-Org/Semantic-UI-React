@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Checkbox } from 'semantic-ui-react'
 
+import { getComponentGroup } from 'docs/app/utils'
 import ComponentTable from '../ComponentTable'
 import ComponentPropsComponents from './ComponentPropsComponents'
 import ComponentPropsDescription from './ComponentPropsDescription'
-import getComponentGroup from '../../../utils/getComponentGroup'
 
 const propsContainerStyle = { overflowX: 'auto' }
 
