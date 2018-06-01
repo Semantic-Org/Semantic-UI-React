@@ -10,6 +10,6 @@ dist/
 docs/src/componentInfo
 docs/src/componentMenu.json
 docs/src/exampleMenus
-docs/build/
+docs/dist/
 dll/
 node_modules/
