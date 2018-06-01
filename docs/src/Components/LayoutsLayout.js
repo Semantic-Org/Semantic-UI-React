@@ -56,7 +56,7 @@ export default class LayoutsLayout extends Component {
           <Button as={NavLink} to='/layouts' color='teal' icon='left arrow' content='Layouts' />
           <Button
             as={NavLink}
-            to={`${repoURL}/blob/master/docs/src/Layouts/${filename}`}
+            to={`${repoURL}/blob/master/docs/src/layouts/${filename}`}
             icon='github'
             content='Source'
             secondary
