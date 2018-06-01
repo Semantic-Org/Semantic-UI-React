@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Menu, Transition } from 'semantic-ui-react'
 
-import { updateForKeys } from 'docs/src/HOC'
+import { updateForKeys } from 'docs/src/hoc'
 import ComponentControlsCopyLink from './ComponentControlsCopyLink'
 import ComponentControlsEditCode from './ComponentControlsEditCode'
 import ComponentControlsMaximize from './ComponentControlsMaximize'

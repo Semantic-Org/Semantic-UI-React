@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Menu } from 'semantic-ui-react'
 
-import { updateForKeys } from 'docs/src/HOC'
+import { updateForKeys } from 'docs/src/hoc'
 
 const ComponentPropsComponents = ({
   activeDisplayName,

@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { neverUpdate } from 'docs/src/HOC'
+import { neverUpdate } from 'docs/src/hoc'
 import ComponentPropExtra from './ComponentPropExtra'
 
 const descriptionStyle = {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Icon, Menu } from 'semantic-ui-react'
 
-import { neverUpdate } from 'docs/src/HOC'
+import { neverUpdate } from 'docs/src/hoc'
 import ComponentControlsToolTip from './ComponentControlsToolTip'
 
 const ComponentControlsMaximize = ({ examplePath }) => {

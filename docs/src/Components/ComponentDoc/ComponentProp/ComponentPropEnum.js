@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { updateForKeys } from 'docs/src/HOC'
+import { updateForKeys } from 'docs/src/hoc'
 import ComponentPropExtra from './ComponentPropExtra'
 import ComponentPropToggle from './ComponentPropEnumToggle'
 import ComponentPropValue from './ComponentPropEnumValue'
