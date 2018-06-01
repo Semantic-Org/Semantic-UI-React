@@ -203,6 +203,8 @@ export default class Visibility extends Component {
   }
 
   componentDidMount() {
+    this.mounted = true
+
     if (!isBrowser()) return
     const { context, fireOnMount, updateOn } = this.props
 
@@ -216,6 +218,7 @@ export default class Visibility extends Component {
     const { context } = this.props
 
     this.unattachHandlers(context)
+    this.mounted = false
   }
 
   attachHandlers(context, updateOn) {
@@ -300,6 +303,8 @@ export default class Visibility extends Component {
   }
 
   update = () => {
+    if (!this.mounted) return
+
     this.ticking = false
 
     this.oldCalculations = this.calculations

@@ -22,44 +22,50 @@ describe('DimmerInner', () => {
   describe('onClickOutside', () => {
     it('called when Dimmer has not children', () => {
       const onClickOutside = sandbox.spy()
-      shallow(<DimmerInner onClickOutside={onClickOutside} />)
-        .simulate('click')
+      shallow(<DimmerInner onClickOutside={onClickOutside} />).simulate('click')
 
       onClickOutside.should.have.been.calledOnce()
     })
 
     it('omitted when click on children', () => {
+      const element = document.createElement('div')
+      document.body.appendChild(element)
       const onClickOutside = sandbox.spy()
       const wrapper = mount(
         <DimmerInner onClickOutside={onClickOutside}>
           <div>{faker.hacker.phrase()}</div>
-        </DimmerInner>, {
-          attachTo: document.body,
-        })
+        </DimmerInner>,
+        {
+          attachTo: element,
+        },
+      )
 
-      wrapper.find('div.content').childAt(0).simulate('click')
-      onClickOutside.should.have.been.callCount(0)
+      wrapper
+        .find('div.content')
+        .childAt(0)
+        .simulate('click')
+      onClickOutside.should.have.not.been.called()
+
+      wrapper.unmount()
+      document.body.removeChild(element)
     })
 
     it('called when click on Dimmer', () => {
       const onClickOutside = sandbox.spy()
 
-      mount(<DimmerInner onClickOutside={onClickOutside}>{faker.hacker.phrase()}</DimmerInner>)
-        .simulate('click')
+      mount(
+        <DimmerInner onClickOutside={onClickOutside}>{faker.hacker.phrase()}</DimmerInner>,
+      ).simulate('click')
       onClickOutside.should.have.been.calledOnce()
     })
 
     it('called when click on center', () => {
       const onClickOutside = sandbox.spy()
       const wrapper = mount(
-        <DimmerInner onClickOutside={onClickOutside}>
-          {faker.hacker.phrase()}
-        </DimmerInner>,
+        <DimmerInner onClickOutside={onClickOutside}>{faker.hacker.phrase()}</DimmerInner>,
       )
 
-      wrapper
-        .find('div.content')
-        .simulate('click')
+      wrapper.find('div.content').simulate('click')
       onClickOutside.should.have.been.calledOnce()
     })
   })

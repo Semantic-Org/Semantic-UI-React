@@ -55,7 +55,7 @@ describe('Header', () => {
 
   describe('content', () => {
     it('is wrapped in HeaderContent when there is an image src', () => {
-      shallow(<Header image='foo.png' content='Bar' />)
+      shallow(<Header image='/assets/images/wireframe/image.png' content='Bar' />)
         .find('HeaderContent')
         .shallow()
         .should.contain.text('Bar')
@@ -85,7 +85,7 @@ describe('Header', () => {
     it('adds HeaderSubheader as child when there is an image', () => {
       const text = faker.hacker.phrase()
 
-      shallow(<Header image='foo.png' subheader={text} />)
+      shallow(<Header image='/assets/images/wireframe/image.png' subheader={text} />)
         .find('HeaderSubheader')
         .should.have.prop('content', text)
     })

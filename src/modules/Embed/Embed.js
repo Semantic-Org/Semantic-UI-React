@@ -86,10 +86,6 @@ export default class Embed extends Component {
 
   static autoControlledProps = ['active']
 
-  static defaultProps = {
-    icon: 'video play',
-  }
-
   getSrc() {
     const {
       autoplay = true,
@@ -145,9 +141,11 @@ export default class Embed extends Component {
     const rest = getUnhandledProps(Embed, this.props)
     const ElementType = getElementType(Embed, this.props)
 
+    const iconShorthand = icon !== undefined ? icon : 'video play'
+
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {Icon.create(icon, { autoGenerateKey: false })}
+        {Icon.create(iconShorthand, { autoGenerateKey: false })}
         {placeholder && <img className='placeholder' src={placeholder} />}
         {this.renderEmbed()}
       </ElementType>

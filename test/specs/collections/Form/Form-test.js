@@ -14,7 +14,7 @@ import FormSelect from 'src/collections/Form/FormSelect'
 import FormTextArea from 'src/collections/Form/FormTextArea'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
+import { consoleUtil, sandbox } from 'test/utils'
 
 describe('Form', () => {
   common.isConformant(Form)
@@ -62,12 +62,14 @@ describe('Form', () => {
 
   describe('onSubmit', () => {
     it('prevents default on the event when there is no action', () => {
+      // Heads up!
+      // In this test we pass some invalid values to verify correct work.
+      consoleUtil.disableOnce()
+
       const event = { preventDefault: sandbox.spy() }
 
       shallow(<Form />).simulate('submit', event)
-
       shallow(<Form action={false} />).simulate('submit', event)
-
       shallow(<Form action={null} />).simulate('submit', event)
 
       event.preventDefault.should.have.been.calledThrice()
