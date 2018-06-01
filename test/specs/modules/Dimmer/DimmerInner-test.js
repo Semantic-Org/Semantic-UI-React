@@ -28,13 +28,15 @@ describe('DimmerInner', () => {
     })
 
     it('omitted when click on children', () => {
+      const element = document.createElement('div')
+      document.body.appendChild(element)
       const onClickOutside = sandbox.spy()
       const wrapper = mount(
         <DimmerInner onClickOutside={onClickOutside}>
           <div>{faker.hacker.phrase()}</div>
         </DimmerInner>,
         {
-          attachTo: document.body,
+          attachTo: element,
         },
       )
 
@@ -42,7 +44,10 @@ describe('DimmerInner', () => {
         .find('div.content')
         .childAt(0)
         .simulate('click')
-      onClickOutside.should.have.been.callCount(0)
+      onClickOutside.should.have.not.been.called()
+
+      wrapper.unmount()
+      document.body.removeChild(element)
     })
 
     it('called when click on Dimmer', () => {
