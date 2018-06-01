@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import ComponentDoc from '../components/ComponentDoc'
-import PageNotFound from '../Views/PageNotFound'
+import PageNotFound from '../views/PageNotFound'
 import componentInfoContext from '../utils/componentInfoContext'
 
 class DocsRoot extends Component {

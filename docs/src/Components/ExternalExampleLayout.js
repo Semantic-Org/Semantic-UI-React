@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import { exampleContext } from 'docs/src/utils'
-import PageNotFound from '../Views/PageNotFound'
+import PageNotFound from '../views/PageNotFound'
 
 const exampleKeys = exampleContext.keys()
 

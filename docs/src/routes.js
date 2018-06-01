@@ -7,11 +7,11 @@ import DocsRoot from './components/DocsRoot'
 import LayoutsLayout from './components/layoutsLayout'
 import LayoutsRoot from './components/layoutsRoot'
 
-import Introduction from './Views/Introduction'
-import Layouts from './Views/layouts'
-import PageNotFound from './Views/PageNotFound'
-import Theming from './Views/Theming'
-import Usage from './Views/Usage'
+import Introduction from './views/Introduction'
+import Layouts from './views/layouts'
+import PageNotFound from './views/PageNotFound'
+import Theming from './views/Theming'
+import Usage from './views/Usage'
 
 const RedirectToIntro = () => <Redirect to='/introduction' />
 
