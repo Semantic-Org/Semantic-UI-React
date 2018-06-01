@@ -31,7 +31,6 @@ const assertInBody = (...args) => assertIn(document.body, ...args)
 describe('Popup', () => {
   beforeEach(() => {
     wrapper = undefined
-    document.body.innerHTML = ''
   })
 
   afterEach(() => {
@@ -289,13 +288,13 @@ describe('Popup', () => {
 
     it('it appears on hover', (done) => {
       const trigger = <button>foo</button>
-      wrapperMount(<Popup content='foo' trigger={trigger} />)
+      wrapperMount(<Popup content='foo' trigger={trigger} mouseEnterDelay={0} />)
 
       wrapper.find('button').simulate('mouseenter')
       setTimeout(() => {
         assertInBody('.ui.popup.visible')
         done()
-      }, 51)
+      }, 1)
     })
 
     it('it appears on focus', () => {
