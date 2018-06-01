@@ -33,11 +33,11 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // Options
 // ----------------------------------------
 const getOptions = (count = 5) =>
-  _.times(count, () => ({
-    title: _.times(3, faker.hacker.noun).join(' '),
-    description: _.times(3, faker.hacker.noun).join(' '),
-    image: 'foo.png',
-    price: faker.finance.amount(0, 100, 2, '$'),
+  _.times(count, i => ({
+    title: [i, ..._.times(3, faker.hacker.noun)].join(' '),
+    description: [i, ..._.times(3, faker.hacker.noun)].join(' '),
+    image: '/assets/images/wireframe/image.png',
+    price: [i, faker.finance.amount(0, 100, 2, '$')].join(' '),
   }))
 
 // -------------------------------
@@ -764,13 +764,16 @@ describe('Search', () => {
 
   describe('input props', () => {
     // Search handles some of html props
-    const props = _.without(htmlInputAttrs, 'defaultValue')
+    const props = _.without(htmlInputAttrs, 'defaultValue', 'type')
+    const booleanProps = ['disabled']
 
     props.forEach((propName) => {
       it(`passes "${propName}" to the <input>`, () => {
-        wrapperMount(<Search {...{ [propName]: 'foo' }} />)
+        const propValue = _.includes(booleanProps, propName) ? true : 'off'
+
+        wrapperMount(<Search {...{ [propName]: propValue }} />)
           .find('input')
-          .should.have.prop(propName)
+          .should.have.prop(propName, propValue)
       })
     })
   })

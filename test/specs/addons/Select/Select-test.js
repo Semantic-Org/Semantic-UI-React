@@ -9,7 +9,7 @@ const requiredProps = {
 }
 
 describe('Select', () => {
-  common.isConformant(Select, requiredProps)
+  common.isConformant(Select, { requiredProps })
   common.hasSubcomponents(Select, [Dropdown.Divider, Dropdown.Header, Dropdown.Item, Dropdown.Menu])
 
   it('renders a selection Dropdown', () => {

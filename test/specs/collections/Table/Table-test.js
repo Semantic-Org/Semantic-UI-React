@@ -62,8 +62,10 @@ describe('Table', () => {
     _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
   )
 
-  it('renders as a table by default', () => {
-    shallow(<Table />).should.have.tagName('table')
+  describe('as', () => {
+    it('renders as a table by default', () => {
+      shallow(<Table />).should.have.tagName('table')
+    })
   })
 
   describe('shorthand', () => {
@@ -81,13 +83,12 @@ describe('Table', () => {
 
     const headerRow = ['Name', 'Status', 'Notes']
 
-    const renderBodyRow = ({ name, status, notes }) => [
-      name || { key: 0 },
-      status || { key: 1 },
-      notes || { key: 2 },
-    ]
+    const renderBodyRow = ({ name, status, notes }, index) => ({
+      key: index,
+      cells: [name || { key: 0 }, status || { key: 1 }, notes || { key: 2 }],
+    })
 
-    const footerRow = [{ colSpan: 3, content: 'Total' }]
+    const footerRow = [{ colSpan: 3, content: 'Total', key: 'total' }]
 
     const tableData = [
       { name: undefined, status: undefined, notes: undefined },

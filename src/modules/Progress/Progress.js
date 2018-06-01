@@ -111,6 +111,7 @@ class Progress extends Component {
   getPercent = () => {
     const { precision, progress, total, value } = this.props
     const percent = _.clamp(this.calculatePercent(), 0, 100)
+
     if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') {
       return (value / total) * 100
     }
@@ -175,7 +176,7 @@ class Progress extends Component {
     )
     const rest = getUnhandledProps(Progress, this.props)
     const ElementType = getElementType(Progress, this.props)
-    const percent = this.getPercent()
+    const percent = this.getPercent() || 0
 
     return (
       <ElementType {...rest} className={classes} data-percent={Math.floor(percent)}>

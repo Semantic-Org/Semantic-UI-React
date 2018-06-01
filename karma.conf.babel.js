@@ -1,12 +1,16 @@
+import fs from 'fs'
 import { executablePath } from 'puppeteer'
+
 import config from './config'
 import webpackConfig from './webpack.config.babel'
 
 process.env.CHROME_BIN = executablePath()
 
+const { paths } = config
+
 const formatError = (msg) => {
   // filter out empty lines and node_modules
-  if (!msg.trim() || /~/.test(msg)) return ''
+  if (!msg.trim() || /~/.test(msg) || /node_modules\//.test(msg)) return ''
 
   // indent the error beneath the it() message
   let newLine = `  ${msg}`
@@ -24,8 +28,12 @@ const formatError = (msg) => {
 
 export default (karmaConfig) => {
   karmaConfig.set({
-    basePath: process.cwd(),
+    basePath: __dirname,
     browsers: ['puppeteer'],
+    browserConsoleLogOptions: {
+      level: 'log',
+      terminal: true,
+    },
     client: {
       mocha: {
         reporter: 'html', // change Karma's debug.html to mocha web reporter
@@ -33,7 +41,7 @@ export default (karmaConfig) => {
       },
     },
     coverageReporter: {
-      reporters: [{ type: 'lcov', dir: 'coverage', subdir: '.' }, { type: 'text-summary' }],
+      reporters: [{ type: 'lcov', dir: 'coverage', subdir: '.' }],
       includeAllSources: true,
     },
     customLaunchers: {
@@ -47,15 +55,30 @@ export default (karmaConfig) => {
         ],
       },
     },
-    files: ['./test/tests.bundle.js'],
+    files: [
+      { pattern: 'docs/app/logo.png', watched: false, included: false, served: true },
+      { pattern: 'docs/app/assets/**/*.jpg', watched: false, included: false, served: true },
+      { pattern: 'docs/app/assets/**/*.png', watched: false, included: false, served: true },
+      './test/tests.bundle.js',
+    ],
     formatError,
     frameworks: ['mocha'],
+    // make karma serve all files that the web server does: /* => /docs/app/*
+    proxies: fs.readdirSync(paths.docsSrc()).reduce((acc, file) => {
+      const isDir = fs.statSync(paths.docsSrc(file)).isDirectory()
+      const trailingSlash = isDir ? '/' : ''
+
+      const original = `/${file}${trailingSlash}`
+      acc[original] = `/base/docs/app/${file}${trailingSlash}`
+      return acc
+    }, {}),
     reporters: ['mocha', 'coverage'],
+    reportSlowerThan: 100,
     singleRun: true,
     preprocessors: {
       // do not include 'coverage' preprocessor for karma-coverage
       // code is already instrumented by babel-plugin-__coverage__
-      './test/tests.bundle.js': ['webpack'],
+      'test/tests.bundle.js': ['webpack'],
     },
     webpack: {
       entry: './test/tests.bundle.js',
