@@ -1,12 +1,14 @@
-### Why?
+# Event Stack
 
-EventStack solves two design problems:
-- reduces the number of connected listeners to DOM nodes in compare with `element.addListener()`
-- respects an event priority, for example only top event can be emitted
+## Why?
 
-### EventStack
+The `EventStack` solves two design problems:
+1. Reduces the number of connected listeners to DOM nodes compared to `element.addListener()`.
+1. Respects event ordering. Example, two modals are open and you only want the top modal to close on document click.
 
-It's a public API that allows to subscribe a DOM node for events. The subscription to an event for
+## EventStack
+
+The `EventStack` is a public API that allows subscribing a DOM node to events. The event subscription for
 each unique DOM node creates a new `EventTarget` object.
 
 ```
@@ -17,12 +19,12 @@ each unique DOM node creates a new `EventTarget` object.
 +------------+          +-------------+
 ```
 
-### EventTarget
+## EventTarget
 
-Each `EventTarget` is assigned to an unique DOM node. An `EventTarget` handles event handlers for
-target's DOM node. For example, after multiple subscription were made for a `click` event, you will have the only
-one registered `handler` for a DOM node. An `EventPool` also handles `EvenytPool` relations, it store only
-unique pools. 
+Each `EventTarget` is assigned to an unique DOM node. An `EventTarget` tracks event handlers for
+the target's DOM node. Making multiple subscriptions to a `click` event for a single DOM node will
+result in a single registered `handler` for that DOM node. An `EventPool` also handles `EventPool`
+relations, it stores only unique pools. 
 
 ```
 +-------------+          +---------+
@@ -38,12 +40,12 @@ unique pools.
                          +-----------+
 ```
 
-A `handler` is a generated function that will notify corresponding subscribed `EventPool`. 
+A `handler` is a generated function that will notify the corresponding subscribed `EventPool`. 
 
-### EventPool & EventSet
+## EventPool & EventSet
 
 An `EventPool` notifies its `EventSet`, while an `EventSet` stores a set of subscribed 
-event handlers. An `EventSet` is also responsive for an event priorities and dispatch of
+event handlers. An `EventSet` is also responsible for event ordering and dispatching to
 subscribed handlers.
 
 ```
