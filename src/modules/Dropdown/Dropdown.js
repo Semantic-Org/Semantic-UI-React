@@ -102,6 +102,9 @@ export default class Dropdown extends Component {
       PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     ]),
 
+    /** Initial value of upward. */
+    defaultUpward: PropTypes.bool,
+
     /** Initial value or value array if multiple. */
     defaultValue: PropTypes.oneOfType([
       PropTypes.number,
@@ -334,7 +337,7 @@ export default class Dropdown extends Component {
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number])),
     ]),
 
-    /** A dropdown can open upward. */
+    /** Controls whether the dropdown will open upward. */
     upward: PropTypes.bool,
 
     /**
@@ -360,7 +363,7 @@ export default class Dropdown extends Component {
     wrapSelection: true,
   }
 
-  static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value']
+  static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
 
   static Divider = DropdownDivider
   static Header = DropdownHeader
@@ -466,6 +469,7 @@ export default class Dropdown extends Component {
     if (!prevState.open && this.state.open) {
       debug('dropdown opened')
       this.attachHandlersOnOpen()
+      this.setOpenDirection()
       this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
@@ -1081,6 +1085,27 @@ export default class Dropdown extends Component {
     }
   }
 
+  setOpenDirection = () => {
+    if (!this.ref) return
+
+    const menu = this.ref.querySelector('.menu.visible')
+
+    if (!menu) return
+
+    const dropdownRect = this.ref.getBoundingClientRect()
+    const menuHeight = menu.clientHeight
+    const spaceAtTheBottom =
+      document.documentElement.clientHeight - dropdownRect.y - dropdownRect.height - menuHeight
+    const spaceAtTheTop = dropdownRect.y - menuHeight
+
+    const upward = spaceAtTheBottom < 0 && spaceAtTheTop > spaceAtTheBottom
+
+    // set state only if there's a relevant difference
+    if (!upward !== !this.state.upward) {
+      this.trySetState({ upward })
+    }
+  }
+
   open = (e) => {
     debug('open()')
 
@@ -1275,9 +1300,8 @@ export default class Dropdown extends Component {
       scrolling,
       simple,
       trigger,
-      upward,
     } = this.props
-    const { open } = this.state
+    const { open, upward } = this.state
 
     // Classes
     const classes = cx(
