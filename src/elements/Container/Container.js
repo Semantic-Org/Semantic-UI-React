@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useTextAlignProp,
@@ -17,14 +16,7 @@ import {
  * A container limits content to a maximum width.
  */
 function Container(props) {
-  const {
-    children,
-    className,
-    content,
-    fluid,
-    text,
-    textAlign,
-  } = props
+  const { children, className, content, fluid, text, textAlign } = props
   const classes = cx(
     'ui',
     useKeyOnly(text, 'text'),
@@ -41,11 +33,6 @@ function Container(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-Container._meta = {
-  name: 'Container',
-  type: META.TYPES.ELEMENT,
 }
 
 Container.propTypes = {

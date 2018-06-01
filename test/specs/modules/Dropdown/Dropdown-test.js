@@ -35,8 +35,8 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // ----------------------------------------
 const getOptions = (count = 5) =>
   _.times(count, (i) => {
-    const text = `${i}-${faker.hacker.noun}`
-    const value = `${i}-${_.snakeCase(text)}`
+    const text = [i, ..._.times(3, faker.hacker.noun)].join(' ')
+    const value = _.snakeCase(text)
     return { text, value }
   })
 
@@ -86,7 +86,7 @@ describe('Dropdown', () => {
 
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
-  common.hasSubComponents(Dropdown, [
+  common.hasSubcomponents(Dropdown, [
     DropdownDivider,
     DropdownHeader,
     DropdownItem,
@@ -1110,7 +1110,7 @@ describe('Dropdown', () => {
     it('does not display if value is undefined', () => {
       const text = faker.hacker.noun()
 
-      wrapperMount(<Dropdown options={[{ value: undefined, text }]} selection />)
+      wrapperMount(<Dropdown options={[{ key: text, value: undefined, text }]} selection />)
         .simulate('click')
         .find('DropdownItem')
         .simulate('click')
@@ -1127,14 +1127,6 @@ describe('Dropdown', () => {
       wrapperRender(<Dropdown options={options} trigger={trigger} />)
         .find('.trigger')
         .should.contain.text(text)
-    })
-    it('ignores the text prop', () => {
-      const text = faker.hacker.phrase()
-      const trigger = <div className='trigger'>{text}</div>
-
-      wrapperRender(
-        <Dropdown options={options} trigger={trigger} text={text} />,
-      ).should.not.have.descendants('div.text')
     })
   })
 
@@ -1231,7 +1223,7 @@ describe('Dropdown', () => {
       dropdownMenuIsOpen()
 
       // click outside
-      domEvent.click(document)
+      domEvent.click(document.body)
       dropdownMenuIsClosed()
     })
 

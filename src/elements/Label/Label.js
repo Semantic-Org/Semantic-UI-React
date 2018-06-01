@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -113,11 +112,6 @@ export default class Label extends Component {
 
     /** A label can appear as a tag. */
     tag: PropTypes.bool,
-  }
-
-  static _meta = {
-    name: 'Label',
-    type: META.TYPES.ELEMENT,
   }
 
   static Detail = LabelDetail

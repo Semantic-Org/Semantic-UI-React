@@ -4,11 +4,7 @@ import Embed from 'src/modules/Embed/Embed'
 import * as common from 'test/specs/commonTests'
 
 const assertIframeSrc = (props, srcPart) => {
-  const {
-    id = 'default-test-id',
-    source = 'youtube',
-    ...rest
-  } = props
+  const { id = 'default-test-id', source = 'youtube', ...rest } = props
 
   shallow(<Embed active id={id} source={source} {...rest} />)
     .find('iframe')
@@ -40,7 +36,7 @@ describe('Embed', () => {
       width: '100%',
     },
   })
-  common.implementsIconProp(Embed)
+  common.implementsIconProp(Embed, { alwaysPresent: true })
 
   common.propKeyOnlyToClassName(Embed, 'active')
 
@@ -48,20 +44,17 @@ describe('Embed', () => {
 
   describe('active', () => {
     it('defaults to false', () => {
-      shallow(<Embed />)
-        .should.have.not.state('active')
+      shallow(<Embed />).should.have.not.state('active')
     })
 
     it('passes to state', () => {
-      shallow(<Embed active />)
-        .should.have.state('active', true)
+      shallow(<Embed active />).should.have.state('active', true)
     })
 
     it('renders nothing when false', () => {
       const children = 'child text'
 
-      shallow(<Embed>{children}</Embed>)
-        .should.not.contain(<div className='embed'>{children}</div>)
+      shallow(<Embed>{children}</Embed>).should.not.contain(<div className='embed'>{children}</div>)
     })
   })
 
@@ -93,11 +86,9 @@ describe('Embed', () => {
 
   describe('defaultActive', () => {
     it('sets the initial active state', () => {
-      shallow(<Embed defaultActive />)
-        .should.have.state('active', true)
+      shallow(<Embed defaultActive />).should.have.state('active', true)
 
-      shallow(<Embed defaultActive={false} />)
-        .should.have.state('active', false)
+      shallow(<Embed defaultActive={false} />).should.have.state('active', false)
     })
   })
 
@@ -116,10 +107,9 @@ describe('Embed', () => {
     })
 
     it('renders img when defined', () => {
-      const url = 'foo.png'
+      const url = '/assets/images/wireframe/image.png'
 
-      shallow(<Embed placeholder={url} />)
-        .should.contain(<img className='placeholder' src={url} />)
+      shallow(<Embed placeholder={url} />).should.contain(<img className='placeholder' src={url} />)
     })
   })
 

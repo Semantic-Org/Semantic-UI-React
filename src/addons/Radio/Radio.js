@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getUnhandledProps, META } from '../../lib'
+import { getUnhandledProps } from '../../lib'
 import Checkbox from '../../modules/Checkbox'
 
 /**
@@ -18,11 +18,6 @@ function Radio(props) {
   const radio = !(slider || toggle) || undefined
 
   return <Checkbox {...rest} type={type} radio={radio} slider={slider} toggle={toggle} />
-}
-
-Radio._meta = {
-  name: 'Radio',
-  type: META.TYPES.ADDON,
 }
 
 Radio.propTypes = {

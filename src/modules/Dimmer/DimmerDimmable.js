@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -31,12 +30,6 @@ function DimmerDimmable(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-DimmerDimmable._meta = {
-  name: 'DimmerDimmable',
-  type: META.TYPES.MODULE,
-  parent: 'Dimmer',
 }
 
 DimmerDimmable.propTypes = {

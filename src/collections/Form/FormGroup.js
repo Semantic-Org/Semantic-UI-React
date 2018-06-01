@@ -6,7 +6,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useWidthProp,
@@ -17,14 +16,7 @@ import {
  * @see Form
  */
 function FormGroup(props) {
-  const {
-    children,
-    className,
-    grouped,
-    inline,
-    unstackable,
-    widths,
-  } = props
+  const { children, className, grouped, inline, unstackable, widths } = props
 
   const classes = cx(
     useKeyOnly(grouped, 'grouped'),
@@ -37,13 +29,11 @@ function FormGroup(props) {
   const rest = getUnhandledProps(FormGroup, props)
   const ElementType = getElementType(FormGroup, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
-}
-
-FormGroup._meta = {
-  name: 'FormGroup',
-  parent: 'Form',
-  type: META.TYPES.COLLECTION,
+  return (
+    <ElementType {...rest} className={classes}>
+      {children}
+    </ElementType>
+  )
 }
 
 FormGroup.propTypes = {
@@ -57,16 +47,10 @@ FormGroup.propTypes = {
   className: PropTypes.string,
 
   /** Fields can show related choices. */
-  grouped: customPropTypes.every([
-    customPropTypes.disallow(['inline']),
-    PropTypes.bool,
-  ]),
+  grouped: customPropTypes.every([customPropTypes.disallow(['inline']), PropTypes.bool]),
 
   /** Multiple fields may be inline in a row. */
-  inline: customPropTypes.every([
-    customPropTypes.disallow(['grouped']),
-    PropTypes.bool,
-  ]),
+  inline: customPropTypes.every([customPropTypes.disallow(['grouped']), PropTypes.bool]),
 
   /** A form group can prevent itself from stacking on mobile. */
   unstackable: PropTypes.bool,

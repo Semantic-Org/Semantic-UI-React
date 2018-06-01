@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -25,12 +24,6 @@ function ListDescription(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-ListDescription._meta = {
-  name: 'ListDescription',
-  parent: 'List',
-  type: META.TYPES.ELEMENT,
 }
 
 ListDescription.propTypes = {

@@ -7,7 +7,6 @@ import {
   createPaginationItems,
   customPropTypes,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import Menu from '../../collections/Menu'
 import PaginationItem from './PaginationItem'
@@ -21,22 +20,13 @@ export default class Pagination extends Component {
     'aria-label': PropTypes.string,
 
     /** Initial activePage value. */
-    defaultActivePage: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    defaultActivePage: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Index of the currently active page. */
-    activePage: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    activePage: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Number of always visible pages at the beginning and end. */
-    boundaryRange: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    boundaryRange: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** A shorthand for PaginationItem. */
     ellipsisItem: customPropTypes.itemShorthand,
@@ -65,21 +55,13 @@ export default class Pagination extends Component {
     onPageChange: PropTypes.func,
 
     /** Number of always visible pages before and after the current one. */
-    siblingRange: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    siblingRange: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Total number of pages. */
-    totalPages: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]).isRequired,
+    totalPages: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   }
 
-  static autoControlledProps = [
-    'activePage',
-  ]
+  static autoControlledProps = ['activePage']
 
   static defaultProps = {
     'aria-label': 'Pagination Navigation',
@@ -103,11 +85,6 @@ export default class Pagination extends Component {
       content: '⟨',
     },
     siblingRange: 1,
-  }
-
-  static _meta = {
-    name: 'Pagination',
-    type: META.TYPES.ADDON,
   }
 
   static Item = PaginationItem
@@ -141,13 +118,15 @@ export default class Pagination extends Component {
 
     return (
       <Menu {...rest} aria-label={ariaLabel} pagination role='navigation'>
-        {_.map(items, ({ active, type, value }) => PaginationItem.create(this.props[type], {
-          defaultProps: {
-            content: value,
-            value,
-          },
-          overrideProps: this.handleItemOverrides(active, type, value),
-        }))}
+        {_.map(items, ({ active, type, value }) =>
+          PaginationItem.create(this.props[type], {
+            defaultProps: {
+              content: value,
+              value,
+            },
+            overrideProps: this.handleItemOverrides(active, type, value),
+          }),
+        )}
       </Menu>
     )
   }

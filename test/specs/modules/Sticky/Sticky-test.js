@@ -187,7 +187,7 @@ describe('Sticky', () => {
       scrollAfterContext()
       onBottom.should.have.been.calledOnce()
       onBottom.should.have.been.calledWithMatch({}, positions)
-      onBottom.reset()
+      onBottom.resetHistory()
 
       scrollToTop()
       onBottom.should.not.have.been.called()
@@ -204,7 +204,7 @@ describe('Sticky', () => {
       scrollAfterTrigger()
       onStick.should.have.been.calledTwice()
       onStick.should.have.been.calledWithMatch({}, positions)
-      onStick.reset()
+      onStick.resetHistory()
 
       scrollToTop()
       onStick.should.not.have.been.called()
@@ -397,6 +397,22 @@ describe('Sticky', () => {
 
       domEvent.resize(window)
       update.should.have.been.calledOnce()
+    })
+
+    it('is not called after unmount', (done) => {
+      window.requestAnimationFrame.restore()
+      sandbox.stub(window, 'requestAnimationFrame').callsFake(fn => setTimeout(fn, 0))
+      sandbox.stub(window, 'cancelAnimationFrame').callsFake(id => clearTimeout(id))
+
+      const instance = wrapperMount(<Sticky />).instance()
+      const update = sandbox.spy(instance, 'update')
+
+      domEvent.resize(window)
+      wrapper.unmount()
+      window.requestAnimationFrame(() => {
+        update.should.not.have.been.called()
+        done()
+      })
     })
   })
 })

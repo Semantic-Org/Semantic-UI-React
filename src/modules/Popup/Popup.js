@@ -11,7 +11,6 @@ import {
   getUnhandledProps,
   isBrowser,
   makeDebugger,
-  META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -142,15 +141,18 @@ export default class Popup extends Component {
     keepInViewPort: true,
   }
 
-  static _meta = {
-    name: 'Popup',
-    type: META.TYPES.MODULE,
-  }
-
   static Content = PopupContent
   static Header = PopupHeader
 
   state = {}
+
+  componentDidMount() {
+    this.mounted = true
+  }
+
+  componentWillUnmount() {
+    this.mounted = false
+  }
 
   computePopupStyle(positions) {
     const style = { position: 'absolute' }
@@ -301,7 +303,9 @@ export default class Popup extends Component {
     this.setState({ closed: true })
 
     eventStack.unsub('scroll', this.hideOnScroll, { target: window })
-    setTimeout(() => this.setState({ closed: false }), 50)
+    setTimeout(() => {
+      if (this.mounted) this.setState({ closed: false })
+    }, 50)
 
     this.handleClose(e)
   }
