@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-import { componentInfoContext } from 'docs/app/utils'
+import { componentInfoContext } from 'docs/src/utils'
 import { customPropTypes } from 'src/lib'
 import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
 

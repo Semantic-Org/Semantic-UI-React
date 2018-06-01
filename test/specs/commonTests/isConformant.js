@@ -4,7 +4,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import * as semanticUIReact from 'semantic-ui-react'
 
-import { componentInfoContext } from 'docs/app/utils'
+import { componentInfoContext } from 'docs/src/utils'
 import { assertBodyContains, consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
 import hasValidTypings from './hasValidTypings'

@@ -1,7 +1,7 @@
 import { createElement } from 'react'
 
 import { sandbox, consoleUtil } from '../../utils'
-import { exampleContext } from '../../../docs/app/utils'
+import { exampleContext } from '../../../docs/src/utils'
 
 describe('examples', () => {
   /* eslint-disable no-console */
