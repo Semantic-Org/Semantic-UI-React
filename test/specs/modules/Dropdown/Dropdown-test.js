@@ -2578,4 +2578,23 @@ describe('Dropdown', () => {
         .should.have.prop('selected', true)
     })
   })
+
+  describe('upward', () => {
+    it('is false when there is enough space below', () => {
+      wrapperMount(<Dropdown options={options} />)
+
+      wrapper.simulate('click').should.not.have.className('upward')
+    })
+
+    it('is true when there is not enough space below', () => {
+      wrapperMount(
+        <Dropdown
+          options={options}
+          style={{ marginTop: document.documentElement.clientHeight - 50 }}
+        />,
+      )
+
+      wrapper.simulate('click').should.have.className('upward')
+    })
+  })
 })
