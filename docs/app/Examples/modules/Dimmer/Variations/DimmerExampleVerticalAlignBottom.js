@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Dimmer, Header, Image, Segment } from 'semantic-ui-react'
 
-export default class DimmerExampleDimmer extends Component {
+export default class DimmerExampleVerticalAlignBottom extends Component {
   state = {}
 
   handleShow = () => this.setState({ active: true })
@@ -13,15 +13,21 @@ export default class DimmerExampleDimmer extends Component {
     return (
       <div>
         <Dimmer.Dimmable as={Segment} dimmed={active}>
-          <Header as='h3'>Overlayable Section</Header>
-          <Image.Group size='small' className='ui small images'>
-            <Image src='/assets/images/wireframe/image.png' />
-            <Image src='/assets/images/wireframe/image.png' />
-            <Image src='/assets/images/wireframe/image.png' />
-          </Image.Group>
-          <Image size='medium' src='/assets/images/wireframe/media-paragraph.png' />
+          <p>
+            <Image src='/assets/images/wireframe/short-paragraph.png' />
+          </p>
+          <p>
+            <Image src='/assets/images/wireframe/short-paragraph.png' />
+          </p>
 
-          <Dimmer active={active} onClickOutside={this.handleHide} />
+          <Dimmer active={active} onClickOutside={this.handleHide} verticalAlign='bottom'>
+            <Header as='h2' inverted>
+              Title
+            </Header>
+
+            <Button primary>Add</Button>
+            <Button>View</Button>
+          </Dimmer>
         </Dimmer.Dimmable>
 
         <Button.Group>

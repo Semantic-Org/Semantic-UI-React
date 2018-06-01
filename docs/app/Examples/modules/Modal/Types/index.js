@@ -19,6 +19,11 @@ const ModalExamples = () => (
       examplePath='modules/Modal/Types/ModalExampleBasic'
     />
     <ComponentExample
+      title='Top Aligned'
+      description='A modal can be top aligned.'
+      examplePath='modules/Modal/Types/ModalExampleTopAligned'
+    />
+    <ComponentExample
       title='Scrolling Modal'
       description={[
         'When your modal content exceeds the height of the browser the scrollable area will automatically',
@@ -27,8 +32,8 @@ const ModalExamples = () => (
       examplePath='modules/Modal/Types/ModalExampleScrolling'
     >
       <Message warning>
-        <code>&lt;Modal.Content image /&gt;</code> requires an image
-        with wrapped markup: <code>&lt;Image wrapped /&gt; </code>
+        <code>&lt;Modal.Content image /&gt;</code> requires an image with wrapped markup:{' '}
+        <code>&lt;Image wrapped /&gt; </code>
       </Message>
     </ComponentExample>
     <ComponentExample

@@ -197,7 +197,7 @@ class Sidebar extends Component {
               target='_blank'
               rel='noopener noreferrer'
             >
-              <Icon name='file text outline' /> CHANGELOG
+              <Icon name='file alternate outline' /> CHANGELOG
             </Menu.Item>
           </Menu.Menu>
         </Menu.Item>
