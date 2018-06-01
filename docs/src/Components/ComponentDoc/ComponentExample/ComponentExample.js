@@ -196,7 +196,7 @@ class ComponentExample extends PureComponent {
   getOriginalSourceCode = () => {
     const { examplePath } = this.props
 
-    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../../Examples/${examplePath}`)
+    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../../examples/${examplePath}`)
 
     return this.sourceCode
   }
@@ -257,9 +257,9 @@ class ComponentExample extends PureComponent {
             .split(__PATH_SEP__)
             .splice(0, 2)
             .join(__PATH_SEP__)
-          COMMON = require(`docs/src/Examples/${componentPath}/common`)
+          COMMON = require(`docs/src/examples/${componentPath}/common`)
         } else if (module === 'WIREFRAME') {
-          WIREFRAME = require('docs/src/Examples/behaviors/Visibility/Wireframe').default
+          WIREFRAME = require('docs/src/examples/behaviors/Visibility/Wireframe').default
         }
 
         const constStatements = []
@@ -326,7 +326,7 @@ class ComponentExample extends PureComponent {
     const filename = pathParts[pathParts.length - 1]
 
     this.ghEditHref = [
-      `${repoURL}/edit/master/docs/src/Examples/${examplePath}.js`,
+      `${repoURL}/edit/master/docs/src/examples/${examplePath}.js`,
       `?message=docs(${filename}): your description`,
     ].join('')
   }
