@@ -1,7 +1,7 @@
 import React from 'react'
-import ComponentExample from 'docs/src/Components/ComponentDoc/ComponentExample'
-import ContributionPrompt from 'docs/src/Components/ComponentDoc/ContributionPrompt'
-import ExampleSection from 'docs/src/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ContributionPrompt from 'docs/src/components/ComponentDoc/ContributionPrompt'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const DropdownVariationsExamples = () => (
   <ExampleSection title='Variations'>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import ExampleSection from 'docs/src/Components/ComponentDoc/ExampleSection'
-import ComponentExample from 'docs/src/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 
 import { Message } from 'semantic-ui-react'
 

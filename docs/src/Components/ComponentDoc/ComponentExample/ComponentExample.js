@@ -15,7 +15,7 @@ import {
   scrollToAnchor,
 } from 'docs/src/utils'
 import { Divider, Grid, Menu, Visibility } from 'src'
-import Editor from 'docs/src/Components/Editor/Editor'
+import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
 

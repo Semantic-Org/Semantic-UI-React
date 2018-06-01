@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
-import ExternalExampleLayout from './Components/ExternalExampleLayout'
-import DocsLayout from './Components/DocsLayout'
-import DocsRoot from './Components/DocsRoot'
-import LayoutsLayout from './Components/LayoutsLayout'
-import LayoutsRoot from './Components/LayoutsRoot'
+import ExternalExampleLayout from './components/ExternalExampleLayout'
+import DocsLayout from './components/DocsLayout'
+import DocsRoot from './components/DocsRoot'
+import LayoutsLayout from './components/LayoutsLayout'
+import LayoutsRoot from './components/LayoutsRoot'
 
 import Introduction from './Views/Introduction'
 import Layouts from './Views/Layouts'

@@ -1,7 +1,7 @@
 import React from 'react'
-import ComponentExample from 'docs/src/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/src/Components/ComponentDoc/ExampleSection'
-import ShorthandExample from 'docs/src/Components/ComponentDoc/ShorthandExample'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 const StepContentExamples = () => (
   <ExampleSection title='Content'>

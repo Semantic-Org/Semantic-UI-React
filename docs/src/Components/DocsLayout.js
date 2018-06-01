@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 
-import Sidebar from 'docs/src/Components/Sidebar/Sidebar'
+import Sidebar from 'docs/src/components/Sidebar/Sidebar'
 import style from 'docs/src/Style'
 import { scrollToAnchor } from 'docs/src/utils'
 import { getUnhandledProps } from 'src/lib'

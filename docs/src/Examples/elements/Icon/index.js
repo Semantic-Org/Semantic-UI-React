@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { Menu } from 'src'
-import IconSearch from '../../../Components/IconSearch/IconSearch'
+import IconSearch from '../../../components/IconSearch/IconSearch'
 import States from './States'
 import Variations from './Variations'
 import Groups from './Groups'

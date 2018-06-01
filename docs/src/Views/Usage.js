@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/src/utils'
 import { Button, Container, Header, List, Message, Segment } from 'src'
-import Logo from '../Components/Logo/Logo'
+import Logo from '../components/Logo/Logo'
 
 const suiCSSVersion = pkg.devDependencies['semantic-ui-css'].replace(/[~^]/, '')
 

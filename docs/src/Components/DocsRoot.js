@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import ComponentDoc from '../Components/ComponentDoc'
+import ComponentDoc from '../components/ComponentDoc'
 import PageNotFound from '../Views/PageNotFound'
 import componentInfoContext from '../utils/componentInfoContext'
 
