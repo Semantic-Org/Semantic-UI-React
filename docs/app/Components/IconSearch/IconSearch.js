@@ -85,7 +85,11 @@ const similarityScore = (strA, strB) => {
   const aWords = strA.trim().split(' ')
   const bWords = strB.trim().split(' ')
 
-  return _.flow(_.map(a => _.map(b => leven(a, b), bWords)), _.map(_.min), _.sum)(aWords)
+  return _.flow(
+    _.map(a => _.map(b => leven(a, b), bWords)),
+    _.map(_.min),
+    _.sum,
+  )(aWords)
 }
 export default class IconSearch extends Component {
   state = { search: '', includeSimilar: true }

@@ -68,15 +68,7 @@ export type SemanticCOLORS =
   | 'brown'
   | 'grey'
   | 'black';
-export type SemanticSIZES =
-  | 'mini'
-  | 'tiny'
-  | 'small'
-  | 'medium'
-  | 'large'
-  | 'big'
-  | 'huge'
-  | 'massive';
+export type SemanticSIZES = 'mini' | 'tiny' | 'small' | 'medium' | 'large' | 'big' | 'huge' | 'massive';
 
 // ======================================================
 // Transitions
@@ -107,14 +99,7 @@ type SemanticDIRECTIONALTRANSITIONS =
   | 'swing left'
   | 'swing right'
   | 'zoom';
-type SemanticSTATICTRANSITIONS =
-  | 'jiggle'
-  | 'flash'
-  | 'shake'
-  | 'pulse'
-  | 'tada'
-  | 'bounce'
-  | 'glow';
+type SemanticSTATICTRANSITIONS = 'jiggle' | 'flash' | 'shake' | 'pulse' | 'tada' | 'bounce' | 'glow';
 
 export type SemanticTRANSITIONS = SemanticDIRECTIONALTRANSITIONS | SemanticSTATICTRANSITIONS;
 

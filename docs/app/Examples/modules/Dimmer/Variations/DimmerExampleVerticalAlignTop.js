@@ -21,9 +21,7 @@ export default class DimmerExampleVerticalAlignTop extends Component {
           </p>
 
           <Dimmer active={active} onClickOutside={this.handleHide} verticalAlign='top'>
-            <Header as='h2' inverted>
-              Title
-            </Header>
+            <Header as='h2' inverted>Title</Header>
 
             <Button primary>Add</Button>
             <Button>View</Button>
