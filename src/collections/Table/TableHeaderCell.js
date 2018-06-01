@@ -2,12 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  customPropTypes,
-  getUnhandledProps,
-  META,
-  useValueAndKey,
-} from '../../lib'
+import { customPropTypes, getUnhandledProps, useValueAndKey } from '../../lib'
 import TableCell from './TableCell'
 
 /**
@@ -15,19 +10,10 @@ import TableCell from './TableCell'
  */
 function TableHeaderCell(props) {
   const { as, className, sorted } = props
-  const classes = cx(
-    useValueAndKey(sorted, 'sorted'),
-    className,
-  )
+  const classes = cx(useValueAndKey(sorted, 'sorted'), className)
   const rest = getUnhandledProps(TableHeaderCell, props)
 
   return <TableCell {...rest} as={as} className={classes} />
-}
-
-TableHeaderCell._meta = {
-  name: 'TableHeaderCell',
-  type: META.TYPES.COLLECTION,
-  parent: 'Table',
 }
 
 TableHeaderCell.propTypes = {

@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import StepDescription from './StepDescription'
 import StepTitle from './StepTitle'
@@ -22,21 +21,27 @@ function StepContent(props) {
   const rest = getUnhandledProps(StepContent, props)
   const ElementType = getElementType(StepContent, props)
 
-  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
-  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
+  if (!childrenUtils.isNil(content)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {content}
+      </ElementType>
+    )
+  }
 
   return (
     <ElementType {...rest} className={classes}>
-      {StepTitle.create(title)}
-      {StepDescription.create(description)}
+      {StepTitle.create(title, { autoGenerateKey: false })}
+      {StepDescription.create(description, { autoGenerateKey: false })}
     </ElementType>
   )
-}
-
-StepContent._meta = {
-  name: 'StepContent',
-  parent: 'Step',
-  type: META.TYPES.ELEMENT,
 }
 
 StepContent.propTypes = {

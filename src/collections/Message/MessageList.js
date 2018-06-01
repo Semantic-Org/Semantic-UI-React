@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import MessageItem from './MessageItem'
 
@@ -27,12 +26,6 @@ function MessageList(props) {
       {childrenUtils.isNil(children) ? _.map(items, MessageItem.create) : children}
     </ElementType>
   )
-}
-
-MessageList._meta = {
-  name: 'MessageList',
-  parent: 'Message',
-  type: META.TYPES.COLLECTION,
 }
 
 MessageList.propTypes = {

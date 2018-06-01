@@ -8,7 +8,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Icon', () => {
   common.isConformant(Icon)
-  common.hasSubComponents(Icon, [IconGroup])
+  common.hasSubcomponents(Icon, [IconGroup])
 
   common.implementsCreateMethod(Icon)
 
@@ -29,8 +29,7 @@ describe('Icon', () => {
   common.propValueOnlyToClassName(Icon, 'size', _.without(SUI.SIZES, 'medium'))
 
   it('renders as an <i> by default', () => {
-    shallow(<Icon />)
-      .should.have.tagName('i')
+    shallow(<Icon />).should.have.tagName('i')
   })
 
   describe('aria', () => {

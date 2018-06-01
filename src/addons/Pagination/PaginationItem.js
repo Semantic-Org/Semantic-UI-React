@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import { Component } from 'react'
 
-import { createShorthandFactory, META } from '../../lib'
+import { createShorthandFactory } from '../../lib'
 import MenuItem from '../../collections/Menu/MenuItem'
 
 /**
@@ -34,13 +34,14 @@ class PaginationItem extends Component {
     onKeyDown: PropTypes.func,
 
     /** A pagination should have a type. */
-    type: PropTypes.oneOf(['ellipsisItem', 'firstItem', 'prevItem', 'pageItem', 'nextItem', 'lastItem']),
-  }
-
-  static _meta = {
-    name: 'PaginationItem',
-    parent: 'Pagination',
-    type: META.TYPES.ADDON,
+    type: PropTypes.oneOf([
+      'ellipsisItem',
+      'firstItem',
+      'prevItem',
+      'pageItem',
+      'nextItem',
+      'lastItem',
+    ]),
   }
 
   handleClick = (e) => {

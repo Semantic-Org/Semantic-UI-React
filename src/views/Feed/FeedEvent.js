@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  createShorthand,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { createShorthand, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
@@ -38,18 +32,12 @@ function FeedEvent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedLabel, val => ({ icon: val }), icon)}
-      {createShorthand(FeedLabel, val => ({ image: val }), image)}
+      {createShorthand(FeedLabel, val => ({ icon: val }), icon, { autoGenerateKey: false })}
+      {createShorthand(FeedLabel, val => ({ image: val }), image, { autoGenerateKey: false })}
       {hasContentProp && <FeedContent {...contentProps} />}
       {children}
     </ElementType>
   )
-}
-
-FeedEvent._meta = {
-  name: 'FeedEvent',
-  parent: 'Feed',
-  type: META.TYPES.VIEW,
 }
 
 FeedEvent.propTypes = {

@@ -5,37 +5,16 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import { NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import {
-  Menu,
-  Icon,
-  Input,
-} from 'semantic-ui-react'
+import { Menu, Icon, Input } from 'semantic-ui-react'
 
 import CarbonAd from 'docs/app/Components/CarbonAd/CarbonAd'
 import Logo from 'docs/app/Components/Logo/Logo'
-import { typeOrder, parentComponents, repoURL } from 'docs/app/utils'
+import componentMenu from 'docs/app/componentMenu'
+import { getComponentPathname, typeOrder, repoURL } from 'docs/app/utils'
 import pkg from 'package.json'
-import { META } from 'src/lib'
 
-const getRoute = _meta => `/${_meta.type}s/${_.kebabCase(_meta.name)}`
-
-const MenuItem = ({ meta, children, ...rest }) => (
-  <NavLink to={getRoute(meta)} {...rest}>
-    {children || meta.name}
-  </NavLink>
-)
-MenuItem.propTypes = {
-  activeClassName: PropTypes.string,
-  children: PropTypes.node,
-  className: PropTypes.string,
-  meta: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
-}
-MenuItem.defaultProps = {
-  activeClassName: 'active',
-  className: 'item',
-}
-const selectedItemLabel = <span style={{ color: '#35bdb2', float: 'right' }}>Press Enter</span>
+const selectedItemLabelStyle = { color: '#35bdb2', float: 'right' }
+const selectedItemLabel = <span style={selectedItemLabelStyle}>Press Enter</span>
 
 class Sidebar extends Component {
   static propTypes = {
@@ -45,7 +24,7 @@ class Sidebar extends Component {
     style: PropTypes.object,
   }
   state = { query: '' }
-  filteredComponents = parentComponents
+  filteredMenu = componentMenu
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleDocumentKeyDown)
@@ -81,10 +60,11 @@ class Sidebar extends Component {
     if (document.activeElement === this._searchInput) this._searchInput.blur()
   }
 
-  handleSearchChange = e => this.setState({
-    selectedItemIndex: 0,
-    query: e.target.value,
-  })
+  handleSearchChange = e =>
+    this.setState({
+      selectedItemIndex: 0,
+      query: e.target.value,
+    })
 
   handleSearchKeyDown = (e) => {
     const { history } = this.props
@@ -101,37 +81,37 @@ class Sidebar extends Component {
 
     if (code === keyboardKey.ArrowDown) {
       e.preventDefault()
-      const next = _.min([selectedItemIndex + 1, this.filteredComponents.length - 1])
-      this.selectedRoute = getRoute(this.filteredComponents[next]._meta)
+      const next = _.min([selectedItemIndex + 1, this.filteredMenu.length - 1])
+      this.selectedRoute = getComponentPathname(this.filteredMenu[next])
       this.setState({ selectedItemIndex: next })
     }
 
     if (code === keyboardKey.ArrowUp) {
       e.preventDefault()
       const next = _.max([selectedItemIndex - 1, 0])
-      this.selectedRoute = getRoute(this.filteredComponents[next]._meta)
+      this.selectedRoute = getComponentPathname(this.filteredMenu[next])
       this.setState({ selectedItemIndex: next })
     }
   }
 
-  menuItemsByType = _.map((type) => {
+  menuItemsByType = _.map((nextType) => {
     const items = _.flow(
-      _.filter(META.isType(type)),
-      _.map(({ _meta }) => (
+      _.filter(({ type }) => type === nextType),
+      _.map(info => (
         <Menu.Item
-          key={_meta.name}
-          name={_meta.name}
+          key={info.displayName}
+          name={info.displayName}
           onClick={this.handleItemClick}
           as={NavLink}
-          to={getRoute(_meta)}
+          to={getComponentPathname(info)}
           activeClassName='active'
         />
       )),
-    )(parentComponents)
+    )(componentMenu)
 
     return (
-      <Menu.Item key={type}>
-        <Menu.Header>{_.capitalize(type)}s</Menu.Header>
+      <Menu.Item key={nextType}>
+        <Menu.Header>{_.capitalize(nextType)}s</Menu.Header>
         <Menu.Menu>{items}</Menu.Menu>
       </Menu.Item>
     )
@@ -144,36 +124,37 @@ class Sidebar extends Component {
     let itemIndex = -1
     const startsWithMatches = []
     const containsMatches = []
+    const escapedQuery = _.escapeRegExp(query)
 
-    _.each((component) => {
-      if (new RegExp(`^${_.escapeRegExp(query)}`, 'i').test(component._meta.name)) {
-        startsWithMatches.push(component)
-      } else if (new RegExp(_.escapeRegExp(query), 'i').test(component._meta.name)) {
-        containsMatches.push(component)
+    _.each((info) => {
+      if (new RegExp(`^${escapedQuery}`, 'i').test(info.displayName)) {
+        startsWithMatches.push(info)
+      } else if (new RegExp(escapedQuery, 'i').test(info.displayName)) {
+        containsMatches.push(info)
       }
-    }, parentComponents)
+    }, componentMenu)
 
-    this.filteredComponents = [...startsWithMatches, ...containsMatches]
-    const menuItems = _.map(({ _meta }) => {
+    this.filteredMenu = [...startsWithMatches, ...containsMatches]
+    const menuItems = _.map((info) => {
       itemIndex += 1
       const isSelected = itemIndex === selectedItemIndex
 
-      if (isSelected) this.selectedRoute = getRoute(_meta)
+      if (isSelected) this.selectedRoute = getComponentPathname(info)
 
       return (
         <Menu.Item
-          key={_meta.name}
-          name={_meta.name}
+          key={info.displayName}
+          name={info.displayName}
           onClick={this.handleItemClick}
           active={isSelected}
           as={NavLink}
-          to={getRoute(_meta)}
+          to={getComponentPathname(info)}
         >
-          {_meta.name}
+          {info.displayName}
           {isSelected && selectedItemLabel}
         </Menu.Item>
       )
-    }, this.filteredComponents)
+    }, this.filteredMenu)
 
     return <Menu.Menu>{menuItems}</Menu.Menu>
   }
@@ -187,7 +168,9 @@ class Sidebar extends Component {
           <Logo spaced='right' size='mini' />
           <strong>
             Semantic UI React &nbsp;
-            <small><em>{pkg.version}</em></small>
+            <small>
+              <em>{pkg.version}</em>
+            </small>
           </strong>
         </Menu.Item>
         <Menu.Item>
@@ -208,8 +191,13 @@ class Sidebar extends Component {
             <Menu.Item as='a' href={repoURL} target='_blank' rel='noopener noreferrer'>
               <Icon name='github' /> GitHub
             </Menu.Item>
-            <Menu.Item as='a' href={`${repoURL}/blob/master/CHANGELOG.md`} target='_blank' rel='noopener noreferrer'>
-              <Icon name='file text outline' /> CHANGELOG
+            <Menu.Item
+              as='a'
+              href={`${repoURL}/blob/master/CHANGELOG.md`}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Icon name='file alternate outline' /> CHANGELOG
             </Menu.Item>
           </Menu.Menu>
         </Menu.Item>

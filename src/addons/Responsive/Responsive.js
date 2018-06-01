@@ -8,7 +8,6 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  META,
   shallowEqual,
 } from '../../lib'
 
@@ -33,16 +32,10 @@ export default class Responsive extends Component {
     getWidth: PropTypes.func,
 
     /** The maximum width at which content will be displayed. */
-    maxWidth: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    maxWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** The minimum width at which content will be displayed. */
-    minWidth: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * Called on update.
@@ -55,11 +48,6 @@ export default class Responsive extends Component {
 
   static defaultProps = {
     getWidth: () => (isBrowser() ? window.innerWidth : 0),
-  }
-
-  static _meta = {
-    name: 'Responsive',
-    type: META.TYPES.ADDON,
   }
 
   static onlyMobile = { minWidth: 320, maxWidth: 767 }

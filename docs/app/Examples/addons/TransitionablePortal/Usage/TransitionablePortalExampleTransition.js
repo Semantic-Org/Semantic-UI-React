@@ -10,6 +10,7 @@ const transitions = [
   'scale',
   'slide up', 'slide down', 'slide left', 'slide right',
   'swing up', 'swing down', 'swing left', 'swing right',
+  'zoom',
 ]
 const options = transitions.map(name => ({ key: name, text: name, value: name }))
 

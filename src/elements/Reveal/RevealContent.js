@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -15,13 +14,7 @@ import {
  * A content sub-component for the Reveal.
  */
 function RevealContent(props) {
-  const {
-    children,
-    className,
-    content,
-    hidden,
-    visible,
-  } = props
+  const { children, className, content, hidden, visible } = props
 
   const classes = cx(
     'ui',
@@ -38,12 +31,6 @@ function RevealContent(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-RevealContent._meta = {
-  name: 'RevealContent',
-  parent: 'Reveal',
-  type: META.TYPES.ELEMENT,
 }
 
 RevealContent.propTypes = {

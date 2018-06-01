@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useWidthProp,
@@ -68,7 +67,11 @@ function FormField(props) {
       )
     }
 
-    return <ElementType {...rest} className={classes}>{createHTMLLabel(label)}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {createHTMLLabel(label, { autoGenerateKey: false })}
+      </ElementType>
+    )
   }
 
   // ----------------------------------------
@@ -102,18 +105,13 @@ function FormField(props) {
 
   return (
     <ElementType className={classes}>
-      {createHTMLLabel(label, { defaultProps: {
-        htmlFor: _.get(controlProps, 'id') },
+      {createHTMLLabel(label, {
+        defaultProps: { htmlFor: _.get(controlProps, 'id') },
+        autoGenerateKey: false,
       })}
       {createElement(control, controlProps)}
     </ElementType>
   )
-}
-
-FormField._meta = {
-  name: 'FormField',
-  parent: 'Form',
-  type: META.TYPES.COLLECTION,
 }
 
 FormField.propTypes = {
@@ -152,10 +150,7 @@ FormField.propTypes = {
   // Do not disallow children with `label` shorthand
   // The `control` might accept a `label` prop and `children`
   /** Mutually exclusive with children. */
-  label: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.object,
-  ]),
+  label: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
 
   /** A field can show that input is mandatory. */
   required: PropTypes.bool,

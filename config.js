@@ -20,7 +20,6 @@ const envConfig = {
   dir_dll: 'dll',
   dir_docs_dist: 'docs/build',
   dir_docs_src: 'docs/app',
-  dir_umd_dist: 'dist/umd',
 }
 
 // ------------------------------------
@@ -35,7 +34,6 @@ const paths = {
   dll: base.bind(null, envConfig.dir_dll),
   docsDist: base.bind(null, envConfig.dir_docs_dist),
   docsSrc: base.bind(null, envConfig.dir_docs_src),
-  umdDist: base.bind(null, envConfig.dir_umd_dist),
 }
 
 const config = {

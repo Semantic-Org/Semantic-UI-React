@@ -23,6 +23,14 @@ const DimmerVariationsExamples = () => (
       description='A dimmer can be formatted to have its colors inverted.'
       examplePath='modules/Dimmer/Variations/DimmerExampleInverted'
     />
+
+    <ComponentExample
+      title='Vertical Alignment'
+      description='A dimmer can have its content top or bottom aligned.'
+      examplePath='modules/Dimmer/Variations/DimmerExampleVerticalAlignTop'
+      suiVersion='2.3.0'
+    />
+    <ComponentExample examplePath='modules/Dimmer/Variations/DimmerExampleVerticalAlignBottom' />
   </ExampleSection>
 )
 

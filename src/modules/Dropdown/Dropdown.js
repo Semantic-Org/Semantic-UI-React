@@ -13,7 +13,6 @@ import {
   getElementType,
   getUnhandledProps,
   makeDebugger,
-  META,
   objectDiff,
   shallowEqual,
   useKeyOnly,
@@ -365,11 +364,6 @@ export default class Dropdown extends Component {
   }
 
   static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
-
-  static _meta = {
-    name: 'Dropdown',
-    type: META.TYPES.MODULE,
-  }
 
   static Divider = DropdownDivider
   static Header = DropdownHeader
@@ -1274,7 +1268,7 @@ export default class Dropdown extends Component {
 
     return (
       <DropdownMenu {...ariaOptions} direction={direction} open={open}>
-        {DropdownHeader.create(header)}
+        {DropdownHeader.create(header, { autoGenerateKey: false })}
         {this.renderOptions()}
       </DropdownMenu>
     )
@@ -1363,6 +1357,7 @@ export default class Dropdown extends Component {
         {trigger || this.renderText()}
         {Icon.create(icon, {
           overrideProps: this.handleIconOverrides,
+          autoGenerateKey: false,
         })}
         {this.renderMenu()}
       </ElementType>

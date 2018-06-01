@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -62,20 +61,14 @@ class Progress extends Component {
     /** Current percent complete. */
     percent: customPropTypes.every([
       customPropTypes.disallow(['total', 'value']),
-      PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ]),
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     ]),
 
     /** Decimal point precision for calculated progress. */
     precision: PropTypes.number,
 
     /** A progress bar can contain a text value indicating current progress. */
-    progress: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['percent', 'ratio', 'value']),
-    ]),
+    progress: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['percent', 'ratio', 'value'])]),
 
     /** A progress bar can vary in size. */
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'mini', 'huge', 'massive')),
@@ -87,28 +80,17 @@ class Progress extends Component {
     total: customPropTypes.every([
       customPropTypes.demand(['value']),
       customPropTypes.disallow(['percent']),
-      PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ]),
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     ]),
 
     /** For use with total. Together, these will calculate the percent. Mutually excludes percent. */
     value: customPropTypes.every([
       customPropTypes.disallow(['percent']),
-      PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ]),
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     ]),
 
     /** A progress bar can show a warning state. */
     warning: PropTypes.bool,
-  }
-
-  static _meta = {
-    name: 'Progress',
-    type: META.TYPES.MODULE,
   }
 
   calculatePercent = () => {
@@ -129,7 +111,10 @@ class Progress extends Component {
   getPercent = () => {
     const { precision, progress, total, value } = this.props
     const percent = _.clamp(this.calculatePercent(), 0, 100)
-    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') return (value / total) * 100
+
+    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') {
+      return (value / total) * 100
+    }
     if (progress === 'value') return value
     if (_.isUndefined(precision)) return percent
     return _.round(percent, precision)
@@ -146,18 +131,17 @@ class Progress extends Component {
 
     if (!childrenUtils.isNil(children)) return <div className='label'>{children}</div>
     if (!childrenUtils.isNil(content)) return <div className='label'>{content}</div>
-    return createHTMLDivision(label, { defaultProps: { className: 'label' } })
+    return createHTMLDivision(label, {
+      autoGenerateKey: false,
+      defaultProps: { className: 'label' },
+    })
   }
 
   renderProgress = (percent) => {
     const { precision, progress } = this.props
 
     if (!progress && _.isUndefined(precision)) return
-    return (
-      <div className='progress'>
-        {this.computeValueText(percent)}
-      </div>
-    )
+    return <div className='progress'>{this.computeValueText(percent)}</div>
   }
 
   render() {
@@ -192,7 +176,7 @@ class Progress extends Component {
     )
     const rest = getUnhandledProps(Progress, this.props)
     const ElementType = getElementType(Progress, this.props)
-    const percent = this.getPercent()
+    const percent = this.getPercent() || 0
 
     return (
       <ElementType {...rest} className={classes} data-percent={Math.floor(percent)}>

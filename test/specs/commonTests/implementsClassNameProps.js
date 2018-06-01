@@ -50,6 +50,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
     noDefaultClassNameFromProp(Component, propKey, [], options)
 
     it('adds prop name to className', () => {
+      consoleUtil.disableOnce()
       shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
         .should.have.className(className)
     })

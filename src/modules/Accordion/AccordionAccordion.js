@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'
@@ -25,10 +24,7 @@ export default class AccordionAccordion extends Component {
     /** Index of the currently active panel. */
     activeIndex: customPropTypes.every([
       customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.number),
-        PropTypes.number,
-      ]),
+      PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
     ]),
 
     /** Primary content. */
@@ -40,10 +36,7 @@ export default class AccordionAccordion extends Component {
     /** Initial activeIndex value. */
     defaultActiveIndex: customPropTypes.every([
       customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.number),
-        PropTypes.number,
-      ]),
+      PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
     ]),
 
     /** Only allow one panel open at a time. */
@@ -55,10 +48,7 @@ export default class AccordionAccordion extends Component {
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All item props.
      */
-    onTitleClick: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.func,
-    ]),
+    onTitleClick: customPropTypes.every([customPropTypes.disallow(['children']), PropTypes.func]),
 
     /** Shorthand array of props for Accordion. */
     panels: customPropTypes.every([
@@ -76,15 +66,7 @@ export default class AccordionAccordion extends Component {
     exclusive: true,
   }
 
-  static autoControlledProps = [
-    'activeIndex',
-  ]
-
-  static _meta = {
-    name: 'AccordionAccordion',
-    type: META.TYPES.MODULE,
-    parent: 'Accordion',
-  }
+  static autoControlledProps = ['activeIndex']
 
   getInitialAutoControlledState({ exclusive }) {
     return { activeIndex: exclusive ? -1 : [-1] }
@@ -126,10 +108,12 @@ export default class AccordionAccordion extends Component {
       const { content, title } = panel
       const active = this.isIndexActive(index)
 
-      children.push(AccordionTitle.create(title, {
-        defaultProps: { active, index },
-        overrideProps: this.handleTitleOverrides,
-      }))
+      children.push(
+        AccordionTitle.create(title, {
+          defaultProps: { active, index },
+          overrideProps: this.handleTitleOverrides,
+        }),
+      )
       children.push(AccordionContent.create(content, { defaultProps: { active } }))
     })
 

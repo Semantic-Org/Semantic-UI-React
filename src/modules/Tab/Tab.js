@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import Grid from '../../collections/Grid/Grid'
 import GridColumn from '../../collections/Grid/GridColumn'
@@ -77,11 +76,6 @@ class Tab extends Component {
     renderActiveOnly: true,
   }
 
-  static _meta = {
-    name: 'Tab',
-    type: META.TYPES.MODULE,
-  }
-
   static Pane = TabPane
 
   getInitialAutoControlledState() {
@@ -116,6 +110,7 @@ class Tab extends Component {
     }
 
     return Menu.create(menu, {
+      autoGenerateKey: false,
       overrideProps: {
         items: _.map(panes, 'menuItem'),
         onItemClick: this.handleItemClick,
@@ -132,13 +127,18 @@ class Tab extends Component {
 
     return (
       <Grid {...gridProps}>
-        {position === 'left' && GridColumn.create({ width: tabWidth, children: menu })}
-        {GridColumn.create({
-          width: paneWidth,
-          children: this.renderItems(),
-          stretched: true,
-        })}
-        {position === 'right' && GridColumn.create({ width: tabWidth, children: menu })}
+        {position === 'left' &&
+          GridColumn.create({ width: tabWidth, children: menu }, { autoGenerateKey: false })}
+        {GridColumn.create(
+          {
+            width: paneWidth,
+            children: this.renderItems(),
+            stretched: true,
+          },
+          { autoGenerateKey: false },
+        )}
+        {position === 'right' &&
+          GridColumn.create({ width: tabWidth, children: menu }, { autoGenerateKey: false })}
       </Grid>
     )
   }

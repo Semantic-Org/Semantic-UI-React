@@ -9,7 +9,6 @@ import {
   getUnhandledProps,
   makeDebugger,
   mergeChildMappings,
-  META,
   SUI,
 } from '../../lib'
 import Transition from './Transition'
@@ -46,17 +45,13 @@ export default class TransitionGroup extends React.Component {
     duration: 500,
   }
 
-  static _meta = {
-    name: 'TransitionGroup',
-    parent: 'Transition',
-    type: META.TYPES.MODULE,
-  }
-
   constructor(...args) {
     super(...args)
 
     const { children } = this.props
-    this.state = { children: _.mapValues(getChildMapping(children), child => this.wrapChild(child)) }
+    this.state = {
+      children: _.mapValues(getChildMapping(children), child => this.wrapChild(child)),
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -90,7 +85,9 @@ export default class TransitionGroup extends React.Component {
       // Heads up!
       // An item item hasn't changed transition states, but it will be picked from `nextChildren`,
       // so we should wrap it again
-      const { props: { visible, transitionOnMount } } = prevChild
+      const {
+        props: { visible, transitionOnMount },
+      } = prevChild
 
       children[key] = this.wrapChild(child, { transitionOnMount, visible })
     })
@@ -113,10 +110,7 @@ export default class TransitionGroup extends React.Component {
   wrapChild = (child, options = {}) => {
     const { animation, duration } = this.props
     const { key } = child
-    const {
-      visible = true,
-      transitionOnMount = false,
-    } = options
+    const { visible = true, transitionOnMount = false } = options
 
     return (
       <Transition

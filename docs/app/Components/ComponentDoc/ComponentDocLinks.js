@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { List } from 'semantic-ui-react'
 
-import { pure } from 'docs/app/HOC'
+import { repoURL } from '../../utils'
 
 const linkListStyle = {
   background: '#f7f7f7',
@@ -14,30 +14,43 @@ const linkListStyle = {
   top: '0',
 }
 
-const ComponentDocLinks = ({ componentName, ghLink, path, suiLink }) => (
-  <List link style={linkListStyle}>
-    <List.Item
-      content={(
-        <code>
-          <a href={ghLink} target='_blank'>{path}</a>
-        </code>
-      )}
-      icon='github'
-    />
-    {suiLink && (
-      <List.Item
-        content={<a href={suiLink} target='_blank'>Semantic UI {componentName} Docs</a>}
-        icon='book'
-      />
-    )}
-  </List>
-)
+export default class ComponentDocLinks extends PureComponent {
+  static propTypes = {
+    displayName: PropTypes.string.isRequired,
+    parentDisplayName: PropTypes.string,
+    repoPath: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }
 
-ComponentDocLinks.propTypes = {
-  componentName: PropTypes.string.isRequired,
-  ghLink: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
-  suiLink: PropTypes.string,
+  render() {
+    const { displayName, parentDisplayName, repoPath, type } = this.props
+    const ghLink = `${repoURL}/blob/master/${repoPath}`
+    const suiName = (displayName || parentDisplayName).toLowerCase()
+    const suiLink = `https://semantic-ui.com/${type}s/${suiName}`
+
+    return (
+      <List link style={linkListStyle}>
+        <List.Item
+          content={
+            <code>
+              <a href={ghLink} target='_blank'>
+                {repoPath}
+              </a>
+            </code>
+          }
+          icon='github'
+        />
+        {suiLink && (
+          <List.Item
+            content={
+              <a href={suiLink} target='_blank'>
+                Semantic UI {displayName} Docs
+              </a>
+            }
+            icon='book'
+          />
+        )}
+      </List>
+    )
+  }
 }
-
-export default pure(ComponentDocLinks)

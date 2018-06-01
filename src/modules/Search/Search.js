@@ -13,7 +13,6 @@ import {
   htmlInputAttrs,
   isBrowser,
   makeDebugger,
-  META,
   objectDiff,
   partitionHTMLProps,
   shallowEqual,
@@ -188,11 +187,6 @@ export default class Search extends Component {
 
   static autoControlledProps = ['open', 'value']
 
-  static _meta = {
-    name: 'Search',
-    type: META.TYPES.MODULE,
-  }
-
   static Category = SearchCategory
   static Result = SearchResult
   static Results = SearchResults
@@ -249,12 +243,20 @@ export default class Search extends Component {
       debug('search opened')
       this.open()
       eventStack.sub('click', this.closeOnDocumentClick)
-      eventStack.sub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+      eventStack.sub('keydown', [
+        this.closeOnEscape,
+        this.moveSelectionOnKeyDown,
+        this.selectItemOnEnter,
+      ])
     } else if (prevState.open && !this.state.open) {
       debug('search closed')
       this.close()
       eventStack.unsub('click', this.closeOnDocumentClick)
-      eventStack.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+      eventStack.unsub('keydown', [
+        this.closeOnEscape,
+        this.moveSelectionOnKeyDown,
+        this.selectItemOnEnter,
+      ])
     }
   }
 
@@ -262,7 +264,11 @@ export default class Search extends Component {
     debug('componentWillUnmount()')
 
     eventStack.unsub('click', this.closeOnDocumentClick)
-    eventStack.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+    eventStack.unsub('keydown', [
+      this.closeOnEscape,
+      this.moveSelectionOnKeyDown,
+      this.selectItemOnEnter,
+    ])
   }
 
   // ----------------------------------------
@@ -414,7 +420,9 @@ export default class Search extends Component {
   getFlattenedResults = () => {
     const { category, results } = this.props
 
-    return !category ? results : _.reduce(results, (memo, categoryData) => memo.concat(categoryData.results), [])
+    return !category
+      ? results
+      : _.reduce(results, (memo, categoryData) => memo.concat(categoryData.results), [])
   }
 
   getSelectedResult = (index = this.state.selectedIndex) => {
@@ -506,6 +514,7 @@ export default class Search extends Component {
     const { value } = this.state
 
     return Input.create(input, {
+      autoGenerateKey: false,
       defaultProps: {
         ...rest,
         icon,

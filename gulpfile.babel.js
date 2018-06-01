@@ -1,13 +1,13 @@
-/**
- * Tasks live in the tasks directory.
- * This file just loads all the gulp tasks.
- */
-import { task, parallel } from 'gulp'
-import requireDir from 'require-dir'
+import { task, series, parallel } from 'gulp'
+import path from 'path'
 
-requireDir('./gulp/tasks')
+// add node_modules/.bin to the path so we can invoke .bin CLIs in tasks
+process.env.PATH = `${process.env.PATH}:${path.resolve('./node_modules/.bin')}`
 
-// do not use tasks/default
-// the default task must be loaded after all other tasks
-// requireDir above loads all our tasks in alphabetical order
-task('default', parallel('umd', 'docs'))
+// load tasks in order of dependency usage
+require('./gulp/tasks/dll')
+require('./gulp/tasks/dist')
+require('./gulp/tasks/docs')
+
+// global tasks
+task('build', series('dll', parallel('build:dist', 'build:docs')))
