@@ -172,8 +172,9 @@ export const implementsMultipleProp = (Component, propKey, propValues) => {
 
     propValues.forEach((propVal) => {
       it(`adds "${propVal} ${propKey}" to className`, () => {
-        shallow(createElement(Component, { [propKey]: propVal }))
-          .should.have.className(`${propVal} ${propKey}`)
+        shallow(createElement(Component, { [propKey]: propVal })).should.have.className(
+          `${propVal} ${propKey}`,
+        )
       })
     })
 
@@ -181,8 +182,7 @@ export const implementsMultipleProp = (Component, propKey, propValues) => {
       const className = propValues.map(prop => `${prop} ${propKey}`).join(' ')
       const propValue = propValues.join(' ')
 
-      shallow(createElement(Component, { [propKey]: propValue }))
-        .should.have.className(className)
+      shallow(createElement(Component, { [propKey]: propValue })).should.have.className(className)
     })
   })
 }
@@ -194,7 +194,11 @@ export const implementsMultipleProp = (Component, propKey, propValues) => {
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  */
-export const implementsTextAlignProp = (Component, alignments = SUI.TEXT_ALIGNMENTS, options = {}) => {
+export const implementsTextAlignProp = (
+  Component,
+  alignments = SUI.TEXT_ALIGNMENTS,
+  options = {},
+) => {
   const { requiredProps = {} } = options
   const { assertRequired } = helpers('implementsTextAlignProp', Component)
 
@@ -207,16 +211,19 @@ export const implementsTextAlignProp = (Component, alignments = SUI.TEXT_ALIGNME
     alignments.forEach((propVal) => {
       if (propVal === 'justified') {
         it('adds "justified" without "aligned" to className', () => {
-          shallow(<Component {...requiredProps} textAlign='justified' />)
-            .should.have.className('justified')
+          shallow(<Component {...requiredProps} textAlign='justified' />).should.have.className(
+            'justified',
+          )
 
-          shallow(<Component {...requiredProps} textAlign='justified' />)
-            .should.not.have.className('aligned')
+          shallow(<Component {...requiredProps} textAlign='justified' />).should.not.have.className(
+            'aligned',
+          )
         })
       } else {
         it(`adds "${propVal} aligned" to className`, () => {
-          shallow(<Component {...requiredProps} textAlign={propVal} />)
-            .should.have.className(`${propVal} ${'aligned'}`)
+          shallow(<Component {...requiredProps} textAlign={propVal} />).should.have.className(
+            `${propVal} ${'aligned'}`,
+          )
         })
       }
     })
@@ -230,7 +237,11 @@ export const implementsTextAlignProp = (Component, alignments = SUI.TEXT_ALIGNME
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  */
-export const implementsVerticalAlignProp = (Component, alignments = SUI.VERTICAL_ALIGNMENTS, options = {}) => {
+export const implementsVerticalAlignProp = (
+  Component,
+  alignments = SUI.VERTICAL_ALIGNMENTS,
+  options = {},
+) => {
   const { requiredProps = {} } = options
   const { assertRequired } = helpers('implementsVerticalAlignProp', Component)
 
@@ -242,8 +253,9 @@ export const implementsVerticalAlignProp = (Component, alignments = SUI.VERTICAL
 
     alignments.forEach((propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
-        shallow(<Component {...requiredProps} verticalAlign={propVal} />)
-          .should.have.className(`${propVal} ${'aligned'}`)
+        shallow(<Component {...requiredProps} verticalAlign={propVal} />).should.have.className(
+          `${propVal} ${'aligned'}`,
+        )
       })
     })
   })
@@ -261,12 +273,7 @@ export const implementsVerticalAlignProp = (Component, alignments = SUI.VERTICAL
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  */
 export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}) => {
-  const {
-    canEqual = true,
-    propKey,
-    requiredProps,
-    widthClass,
-  } = options
+  const { canEqual = true, propKey, requiredProps, widthClass } = options
   const { assertRequired } = helpers('implementsWidthProp', Component)
   const propValues = canEqual ? [...widths, 'equal'] : widths
 
@@ -278,17 +285,21 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
 
     it('adds numberToWord value to className', () => {
       widths.forEach((width) => {
-        const expectClass = widthClass ? `${numberToWord(width)} ${widthClass}` : numberToWord(width)
+        const expectClass = widthClass
+          ? `${numberToWord(width)} ${widthClass}`
+          : numberToWord(width)
 
-        shallow(createElement(Component, { ...requiredProps, [propKey]: width }))
-          .should.have.className(expectClass)
+        shallow(
+          createElement(Component, { ...requiredProps, [propKey]: width }),
+        ).should.have.className(expectClass)
       })
     })
 
     if (canEqual) {
       it('adds "equal width" to className', () => {
-        shallow(createElement(Component, { ...requiredProps, [propKey]: 'equal' }))
-          .should.have.className('equal width')
+        shallow(
+          createElement(Component, { ...requiredProps, [propKey]: 'equal' }),
+        ).should.have.className('equal width')
       })
     }
   })

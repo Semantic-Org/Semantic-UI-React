@@ -51,16 +51,18 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
 
     it('adds prop name to className', () => {
       consoleUtil.disableOnce()
-      shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
-        .should.have.className(className)
+      shallow(
+        createElement(Component, { ...requiredProps, [propKey]: true }),
+      ).should.have.className(className)
     })
 
     it('does not add prop value to className', () => {
       consoleUtil.disableOnce()
 
       const value = 'foo-bar-baz'
-      shallow(createElement(Component, { ...requiredProps, [propKey]: value }))
-        .should.not.have.className(value)
+      shallow(
+        createElement(Component, { ...requiredProps, [propKey]: value }),
+      ).should.not.have.className(value)
     })
   })
 }
@@ -90,8 +92,9 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
     })
 
     it('adds only the name to className when true', () => {
-      shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
-        .should.have.className(className)
+      shallow(
+        createElement(Component, { ...requiredProps, [propKey]: true }),
+      ).should.have.className(className)
     })
 
     it('adds no className when false', () => {
@@ -130,8 +133,9 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
 
     it('adds prop value to className', () => {
       propValues.forEach((propValue) => {
-        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
-          .should.have.className(propValue)
+        shallow(
+          createElement(Component, { ...requiredProps, [propKey]: propValue }),
+        ).should.have.className(propValue)
       })
     })
 
@@ -139,8 +143,9 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
       consoleUtil.disableOnce()
 
       propValues.forEach((propValue) => {
-        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
-          .should.not.have.className(propKey)
+        shallow(
+          createElement(Component, { ...requiredProps, [propKey]: propValue }),
+        ).should.not.have.className(propKey)
       })
     })
   })

@@ -63,7 +63,7 @@ const componentsSrc = [
   '!**/index.js',
 ]
 
-const examplesSrc = `${paths.docsSrc()}/Examples/*/*/*/index.js`
+const examplesSrc = `${paths.docsSrc()}/examples/*/*/*/index.js`
 
 task('build:docs:cname', (cb) => {
   sh(`echo react.semantic-ui.com > ${paths.docsDist('CNAME')}`, cb)

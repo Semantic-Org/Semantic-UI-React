@@ -49,7 +49,9 @@ let warn
 let error
 
 const throwOnConsole = method => (...args) => {
-  throw new Error(`console.${method} should never be called but was called with:\n${args.join(' ')}`)
+  throw new Error(
+    `console.${method} should never be called but was called with:\n${args.join(' ')}`,
+  )
 }
 
 /* eslint-disable no-console */

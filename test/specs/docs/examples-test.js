@@ -1,5 +1,5 @@
 import { createElement } from 'react'
-import { exampleContext } from 'docs/app/utils'
+import { exampleContext } from 'docs/src/utils'
 
 describe('examples', () => {
   exampleContext.keys().forEach((path) => {
