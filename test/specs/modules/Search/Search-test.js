@@ -462,7 +462,7 @@ describe('Search', () => {
       searchResultsIsOpen()
 
       // click outside
-      domEvent.click(document)
+      domEvent.click(document.body)
       searchResultsIsClosed()
     })
 

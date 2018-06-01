@@ -1231,7 +1231,7 @@ describe('Dropdown', () => {
       dropdownMenuIsOpen()
 
       // click outside
-      domEvent.click(document)
+      domEvent.click(document.body)
       dropdownMenuIsClosed()
     })
 
