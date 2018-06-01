@@ -43,7 +43,7 @@ const getComponentInfo = (filepath) => {
   info.subcomponents = info.isParent
     ? fs
       .readdirSync(dir)
-      .filter(file => !/(index\.js|d\.ts)$/.test(file))
+      .filter(file => /^(?!index).*\.js$/.test(file))
       .filter(file => dirname !== path.basename(file, path.extname(file)))
       .map(file => path.basename(file, path.extname(file)))
     : null
