@@ -419,7 +419,7 @@ class ComponentExample extends PureComponent {
   }
 
   render() {
-    const { children, description, examplePath, location, suiVersion, title } = this.props
+    const { children, description, examplePath, suiVersion, title } = this.props
     const {
       handleMouseLeave,
       handleMouseMove,
@@ -431,13 +431,9 @@ class ComponentExample extends PureComponent {
 
     const isActive = this.isActiveHash() || this.isActiveState()
 
-    const isInFocus = !location.hash || (location.hash && (this.isActiveHash() || isHovering))
-
     const exampleStyle = {
       position: 'relative',
-      transition: 'box-shadow 200ms, background 200ms, opacity 200ms, filter 200ms',
-      opacity: isInFocus ? 1 : 0.4,
-      filter: isInFocus ? 'grayscale(0)' : 'grayscale(1)',
+      transition: 'box-shadow 200ms, background 200ms',
       ...(isActive
         ? {
           background: '#fff',
