@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.81.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.81.0) (2018-06-03)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.80.2...v0.81.0)
+
+**Merged pull requests:**
+
+- fix\(ComponentExample\): remove filter effect [\#2866](https://github.com/Semantic-Org/Semantic-UI-React/pull/2866) ([levithomason](https://github.com/levithomason))
+- refactor\(docs\): normalize dir naming and casing [\#2863](https://github.com/Semantic-Org/Semantic-UI-React/pull/2863) ([levithomason](https://github.com/levithomason))
+- fix\(getComponentInfo\): subcomponents from js files [\#2862](https://github.com/Semantic-Org/Semantic-UI-React/pull/2862) ([levithomason](https://github.com/levithomason))
+- test\(Search\): fix tests on second run [\#2859](https://github.com/Semantic-Org/Semantic-UI-React/pull/2859) ([mihai-dinculescu](https://github.com/mihai-dinculescu))
+- chore\(package\): add types property [\#2857](https://github.com/Semantic-Org/Semantic-UI-React/pull/2857) ([traverse](https://github.com/traverse))
+- fix\(Sticky\): prevent npe error after unmount of component [\#2854](https://github.com/Semantic-Org/Semantic-UI-React/pull/2854) ([fracmak](https://github.com/fracmak))
+- chore\(package\): remove node-sass [\#2850](https://github.com/Semantic-Org/Semantic-UI-React/pull/2850) ([layershifter](https://github.com/layershifter))
+- refactor\(\_meta\): replace with build time JSON [\#2840](https://github.com/Semantic-Org/Semantic-UI-React/pull/2840) ([levithomason](https://github.com/levithomason))
+- refactor\(eventStack\): make eventStack immutable [\#2837](https://github.com/Semantic-Org/Semantic-UI-React/pull/2837) ([layershifter](https://github.com/layershifter))
+- feat\(Dropdown\): open to side with most space left \#720 [\#2817](https://github.com/Semantic-Org/Semantic-UI-React/pull/2817) ([mihai-dinculescu](https://github.com/mihai-dinculescu))
+- chore\(package\): update enzyme, puppeteer, sinon [\#2794](https://github.com/Semantic-Org/Semantic-UI-React/pull/2794) ([layershifter](https://github.com/layershifter))
+- BREAKING\(package\): update SUI to 2.3 [\#2657](https://github.com/Semantic-Org/Semantic-UI-React/pull/2657) ([layershifter](https://github.com/layershifter))
+- chore\(tests\): fail on console activity [\#1542](https://github.com/Semantic-Org/Semantic-UI-React/pull/1542) ([levithomason](https://github.com/levithomason))
+
 ## [v0.80.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.80.2) (2018-05-25)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.80.1...v0.80.2)
 
