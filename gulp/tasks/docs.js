@@ -2,6 +2,7 @@ import historyApiFallback from 'connect-history-api-fallback'
 import express from 'express'
 import { task, src, dest, lastRun, parallel, series, watch } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
+import path from 'path'
 import rimraf from 'rimraf'
 import webpack from 'webpack'
 import WebpackDevMiddleware from 'webpack-dev-middleware'
@@ -165,7 +166,8 @@ task('deploy:changelog', (cb) => {
 })
 
 task('deploy:docs', (cb) => {
-  sh(`gh-pages -d ${paths.docsDist()} -m "deploy docs [ci skip]"`, cb)
+  const relativePath = path.relative(process.cwd(), paths.docsDist())
+  sh(`gh-pages -d ${relativePath} -m "deploy docs [ci skip]"`, cb)
 })
 
 // ----------------------------------------
