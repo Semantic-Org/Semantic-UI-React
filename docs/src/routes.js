@@ -8,7 +8,7 @@ import LayoutsLayout from './components/LayoutsLayout'
 import LayoutsRoot from './components/LayoutsRoot'
 
 import Introduction from './views/Introduction'
-import Layouts from './views/layouts'
+import Layouts from './views/Layouts'
 import PageNotFound from './views/PageNotFound'
 import Theming from './views/Theming'
 import Usage from './views/Usage'
