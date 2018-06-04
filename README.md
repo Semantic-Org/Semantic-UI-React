@@ -47,6 +47,7 @@ It is our desire that the patterns and utils around modern component libraries a
 - [Component API][104]
 - [Shorthand API][105]
 - [Event Stack][106]
+- [HTML Font Size][107]
 
 ### Join
 
@@ -75,6 +76,7 @@ See the [MANIFESTO.md][1] for details.  SUIR v2 will be built on the specificati
 [104]: https://github.com/levithomason/stardust/tree/master/specifications/component-api.md
 [105]: https://github.com/levithomason/stardust/tree/master/specifications/shorthand-api.md
 [106]: https://github.com/levithomason/stardust/tree/master/specifications/event-stack.md
+[107]: https://github.com/levithomason/stardust/tree/master/specifications/html-font-size.md
 
 <!-- SUIR -->
 [200]: https://github.com/Semantic-Org/Semantic-UI-React
