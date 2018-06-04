@@ -1,4 +1,5 @@
 export * from './constants'
+export exampleContext from './exampleContext'
 export examplePathToHash from './examplePathToHash'
 export getComponentGroup from './getComponentGroup'
 export getFormattedHash from './getFormattedHash'
