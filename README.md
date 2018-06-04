@@ -37,7 +37,7 @@ We are currently discussing which, if any, components will be included.  The col
 
 All our specifications are open for collaboration.  You are also welcome to post your own proposals here.
 
-Stardust's specifications are posted to [`/specifications`][8].  We review and discuss specifications via PRs.
+Stardust's specifications are posted to [`/specifications`][100].  We review and discuss specifications via PRs.
 
 It is our desire that the patterns and utils around modern component libraries are not proprietary but the result of collaboration and shared sentiment among library developers and consumers.
 
