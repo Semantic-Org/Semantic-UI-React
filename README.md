@@ -1,220 +1,86 @@
-⚠️NOTE: Currently Semantic UI React is not yet compatible with the latest 2.3 version of Semantic UI styles. See [#2250](https://github.com/Semantic-Org/Semantic-UI-React/issues/2550) for more info.
+# Stardust
 
-<!-- Logo -->
-<p align="center">
-  <a href="https://react.semantic-ui.com">
-    <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/logo.png">
-  </a>
-</p>
+[Semantic UI React (SUIR)][200] has forked to support two initiatives, Stardust and SUIR v2.
 
-<!-- Name -->
-<h1 align="center">
-  <a href="https://react.semantic-ui.com/">Semantic UI React</a>
-</h1>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-<!-- Badges -->
-<p align="center">
-  <a href="https://gitter.im/Semantic-Org/Semantic-UI-React">
-    <img alt="Gitter" src="https://img.shields.io/badge/gitter-join_chat-1dce73.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSI1IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI1Ii8%2BPHJlY3QgeD0iMiIgeT0iNiIgZmlsbD0iI2ZmZiIgd2lkdGg9IjEiIGhlaWdodD0iNyIvPjxyZWN0IHg9IjQiIHk9IjYiIGZpbGw9IiNmZmYiIHdpZHRoPSIxIiBoZWlnaHQ9IjciLz48cmVjdCB4PSI2IiB5PSI2IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI0Ii8%2BPC9zdmc%2B&logoWidth=8&style=flat-square&maxAge=2592000" />
-  </a>
-  <a href="https://circleci.com/gh/Semantic-Org/Semantic-UI-React/tree/master">
-    <img alt="Circle" src="https://img.shields.io/circleci/project/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square" />
-  </a>
-  <a href="https://codecov.io/gh/Semantic-Org/Semantic-UI-React">
-    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square" />
-  </a>
-  <a href="https://david-dm.org/Semantic-Org/Semantic-UI-React">
-    <img alt="David" src="https://img.shields.io/david/Semantic-Org/Semantic-UI-React.svg?style=flat-square" />
-  </a>
-  <a href="https://www.npmjs.com/package/semantic-ui-react">
-    <img alt="npm" src="https://img.shields.io/npm/v/semantic-ui-react.svg?style=flat-square" />
-  </a>
-</p>
 
-Hey, we're in development. Prior to reaching [v1.0.0][6]:
+- [Stardust](#stardust)
+  - [Why?](#why)
+  - [Scope](#scope)
+  - [Specifications](#specifications)
+  - [Join](#join)
+- [SUIR v2](#suir-v2)
 
-1. **MINOR** versions represent **breaking changes**
-1. **PATCH** versions represent **fixes _and_ features**
-1. There are **no deprecation warnings** between releases
-1. You should consult the [**CHANGELOG**][18] and related issues/PRs for more information
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Installation & Usage
+## Stardust
 
-See the [Documentation][2] for an introduction, usage information, and extensive examples.
+Stardust is a set of specifications and tools for building UI libraries.
 
-## Built With Semantic UI React
+### Why?
 
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/amazon-logo.png" />
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/netflix-logo.png" />
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/microsoft-logo.png" />
-<a href="https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md">
-  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/add-yours.png" />
-</a>
+There are a number of packages that a UI library needs to create great UI components. Take a look at SUIR's [`/src/lib`][201] as an example. This core library enables the SUIR features we love today such as shorthand props, event stack handling, auto controlled state, controlling the rendered component, and more.
 
-These great products are built on Semantic UI React. Add yours [here][22].
+Other libraries in the wild have some of these features and some of their own. It is our desire that the community share the best UI component practices in a core library to the greater benefit of the web.
 
-- Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
-- Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
-- Microsoft's [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
-- https://gitconnected.com - The community for developers and software engineers
-- http://stoplight.io
-- https://roadmap.space
-- https://edabit.com
-- https://blackship.com
-- http://www.brewhousesolutions.com
-- https://www.seeuletter.com
-- https://www.stackforge.co
-- https://sublimefund.org
-- https://thefaithcircle.com
-- https://appfollow.io
-- http://according.to.localsourc.es
-- http://www.aircip.ir
-- https://www.bailfacile.fr
-- http://platform.nazarbazaar.ir
-- https://build.games
-- https://platform.forecastcycles.com
-- https://www.findlectures.com
-- https://github.com/ayastreb/bandwidth-hero
-- https://re.yomeshgupta.com
-- https://moneytracker.cc
-- https://tax.cryptact.com
-- https://www.hurriyetoto.com
-- https://173app.com
-- https://disten.se
+A shared library means more great ideas and more engineering support for features and bug fixes. More importantly, it means more consistency in UI components on the web. We're really excited to see just how far we can take this aspect of collaboration.
 
-## Example Projects
+### Scope
 
-This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
+You can think of Stardust as the internals of a good component library.  This encompasses everything except for the actual UI components themselves.
 
-### [webpack][28]
-Our example project right [here][28] in this repo. Includes theming examples.
- 
-### [SUIcrux][102]
-Advanced universal starter with Semantic-UI-React. React/Redux/Lazy-loading/SSR/PWA.
+We are currently discussing which, if any, components will be included.  The collaborative result of our specifications will determine Stardust's final scope. 
 
-### [semantic-ui-react-todos][100]
-This example modifies the well-known [react-redux Todo List][101] to use Semantic UI components. There is also a write-up on the process in the project README.
+### Specifications
 
-## FAQ
+All our specifications are open for collaboration.  You are also welcome to post your own proposals here.
 
-### Can I use custom Icons?
-Yes.  Just use `<Icon className='my-icon' />` instead of `<Icon name='my-icon' />`.  See https://github.com/Semantic-Org/Semantic-UI-React/issues/931#issuecomment-263643210 for detailed info and examples.
+Stardust's specifications are posted to [`/specifications`][8].  We review and discuss specifications via PRs.
 
-### How do I setup CSS?
-There are several options.  Refer to our doc on [CSS Usage][23].
+It is our desire that the patterns and utils around modern component libraries are not proprietary but the result of collaboration and shared sentiment among library developers and consumers.
 
-### Can I use a custom CSS theme?
-Yes.  Semantic UI React includes components that render valid Semantic UI HTML, no CSS is included.  This allows you to load any Semantic UI CSS theme on top of your Semantic UI React app.
+- [Creating Components][101]
+- [CSS-in-JS][102]
+- [Theming][103]
+- [Component API][104]
+- [Shorthand API][105]
+- [Event Stack][106]
 
-Here are some helpful links:
+### Join
 
-- [Building CSS with Webpack][24]
-- [Building CSS with Meteor][30]
-- [Creating a standalone theme][25]
+Currently, these teams are actively participating in Stardust's specifications and development:
 
-## Voice Your Opinion
+- [Semantic UI React][200]
+- [Office UI Fabric][300]
+- [Teams (Microsoft)][301]
 
-Help shape this library by weighing in on our [RFC (request for comments)][19] issues. 
+If you own or are building a UI component library, we'd love to have your input.  [Post an issue][2] introducing yourself and your team and join us today.
 
-## How Can I Help?
+## SUIR v2
 
-Our [CONTRIBUTING.md][1] is a step-by-step setup and development guide. It is meant to be read from top to bottom.  Once you're up to speed, each issue here includes more information on how you can help:
+See the [MANIFESTO.md][1] for details.  SUIR v2 will be built on the specifications and tools from Stardust. 
 
-### [Good First Issue][21]
+<!-- REPO -->
+[1]: https://github.com/levithomason/stardust/blob/master/MANIFESTO.md
+[2]: https://github.com/levithomason/stardust/issues/new/choose
+[3]: https://github.com/levithomason/stardust/.github/CONTRIBUTING.md
 
-Issues labeled [`good first issue`][21] are a great way to ease into development on this project. 
+<!-- SPECIFICATIONS -->
+[100]: https://github.com/levithomason/stardust/tree/master/specifications
+[101]: https://github.com/levithomason/stardust/tree/master/specifications/creating-components.md
+[102]: https://github.com/levithomason/stardust/tree/master/specifications/css-in-js.md
+[103]: https://github.com/levithomason/stardust/tree/master/specifications/theming.md
+[104]: https://github.com/levithomason/stardust/tree/master/specifications/component-api.md
+[105]: https://github.com/levithomason/stardust/tree/master/specifications/shorthand-api.md
+[106]: https://github.com/levithomason/stardust/tree/master/specifications/event-stack.md
 
-### [Missing Components][17]
+<!-- SUIR -->
+[200]: https://github.com/Semantic-Org/Semantic-UI-React
+[201]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/src/lib
 
-We're seeking component parity with Semantic UI, plus some addons.  There is an issue for every missing component, labeled [`new component`][17].  Just comment on the issue you'd like to take.
+<!-- EXTERNAL -->
+[300]: https://developer.microsoft.com/en-us/fabric
+[301]: https://products.office.com/en-US/microsoft-teams/group-chat-software 
 
-### [Help Wanted Label][4]
-
-Any other issue labeled [`help wanted`][4] is ready for a PR.
-
-## 100% Semantic UI Support
-
-|    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
-|-----------------|-----------------|-----------------|-----------------|--------------------|
-| ✓ Button        | ✓ Breadcrumb    | ✓ Advertisement | ✓ Accordion     |   Form Validation  |
-| ✓ Container     | ✓ Form          | ✓ Card          | ✓ Checkbox      | *API (NA)*         |
-| ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | ✓ Visibility       |
-| ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
-| ✓ Header        | ✓ Message       | ✓ Item          | ✓ Embed         |                    |
-| ✓ Icon          | ✓ Table         | ✓ Statistic     | ✓ Modal         |                    |
-| ✓ Image         |                 |                 | ✓ Popup         |                    |
-| ✓ Input         |                 |                 | ✓ Progress      |                    |
-| ✓ Label         |                 |                 | ✓ Rating        |                    |
-| ✓ List          |                 |                 | ✓ Search        |                    |
-| ✓ Loader        |                 |                 |   Shape         |                    |
-| ✓ Rail          |                 |                 | ✓ Sidebar       |                    |
-| ✓ Reveal        |                 |                 | ✓ Sticky        |                    |
-| ✓ Segment       |                 |                 | ✓ Tab           |                    |
-| ✓ Step          |                 |                 | ✓ Transition    |                    |
-
-## Principles
-
-- No jQuery dependency
-- No animation dependencies
-- Reuse SUI CSS transitions
-- Simple declarative component APIs vs intricate HTML markup
-- Complete keyboard support
-- Complete SUI component definition support
-- Completely documented
-- Completely tested
-
-## Releasing
-
-On the latest clean `master`:
-
-```sh
-yarn release:major
-yarn release:minor
-yarn release:patch
-```
-
-Releasing will update the changelog which requires [github_changelog_generator][15].
-
-## Credit
-
-Originally made for [@TechnologyAdvice][9] by [@levithomason][26].
-
-Big thanks to our [contributors][20], especially:
-
-- [@layershifter][27] for essentially taking over during [@levithomason][26]'s unavailability
-- @jcarbo for thoughtful engineering
-- @jamiehill for early engineering and support
-
-[1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
-[2]: https://react.semantic-ui.com/
-[3]: https://facebook.github.io/react/
-[4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
-[5]: https://semantic-ui.com/
-[6]: https://github.com/Semantic-Org/Semantic-UI-React/milestone/1
-[7]: https://github.com/webpack/webpack-dev-server/
-[8]: https://github.com/Semantic-Org/Semantic-UI-React/issues/243
-[9]: https://github.com/TechnologyAdvice
-[10]: https://en.wikipedia.org/wiki/Eating_your_own_dog_food
-[11]: https://github.com/Semantic-Org/Semantic-UI-React/issues/247
-[12]: https://github.com/Semantic-Org/Semantic-UI-React/issues/243
-[13]: https://webpack.github.io
-[14]: https://github.com/Semantic-Org/Semantic-UI-React/issues
-[15]: https://github.com/skywinder/github-changelog-generator
-[17]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+component%22
-[18]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md
-[19]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+RFC+label%3ARFC
-[20]: https://github.com/Semantic-Org/Semantic-UI-React/graphs/contributors
-[21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20issue
-[22]: https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md
-[23]: https://react.semantic-ui.com/usage#css
-[24]: https://medium.com/webmonkeys/webpack-2-semantic-ui-theming-a216ddf60daf
-[25]: http://learnsemantic.com/themes/creating.html
-[26]: https://github.com/levithomason
-[27]: https://github.com/layershifter
-[28]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3
-[30]: https://github.com/Semantic-Org/Semantic-UI-Meteor
-
-<!-- Examples -->
-[100]: https://github.com/wyc/semantic-ui-react-todos
-[101]: https://github.com/reactjs/redux/tree/master/examples/todos
-[102]: https://github.com/Metnew/react-semantic.ui-starter

@@ -21,7 +21,7 @@
     "build:dll": "gulp dll",
     "build:docs": "gulp build:docs",
     "build:umd": "cross-env NODE_ENV=build gulp umd",
-    "build:docs-toc": "doctoc ./.github/CONTRIBUTING.md --github --maxlevel 4",
+    "build:docs-toc": "doctoc ./MANIFESTO.md ./README.md ./specifications/*.md ./.github/CONTRIBUTING.md --github --maxlevel 4",
     "build:docs-cname": "echo react.semantic-ui.com > docs/build/CNAME",
     "build:changelog": "github_changelog_generator --no-issues --no-unreleased --release-branch master --since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~300))",
     "deploy:changelog": "git add CHANGELOG.md && git commit -m 'docs(changelog): update changelog [ci skip]' && git push",
@@ -59,6 +59,10 @@
     "**/*.{ts,tsx}": [
       "prettier --write",
       "tslint --fix",
+      "git add"
+    ],
+    "**/*.md": [
+      "yarn build:docs-toc",
       "git add"
     ]
   },

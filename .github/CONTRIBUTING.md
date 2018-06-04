@@ -30,6 +30,8 @@ CONTRIBUTING
   - [Common Tests](#common-tests)
     - [Usage](#usage)
     - [isConformant (required)](#isconformant-required)
+    - [Writing tests](#writing-tests)
+    - [Running tests](#running-tests)
 - [State](#state)
   - [AutoControlledComponent](#autocontrolledcomponent)
 - [Documentation](#documentation)
