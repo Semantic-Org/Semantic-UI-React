@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/Components/ComponentDoc/ExampleSection'
 
 const SidebarStatesExamples = () => (
   <ExampleSection title='States'>

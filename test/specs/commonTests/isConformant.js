@@ -4,10 +4,8 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import * as semanticUIReact from 'semantic-ui-react'
 
-import { META } from 'src/lib'
 import { assertBodyContains, consoleUtil, nestedShallow, sandbox, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
-import componentInfo from './componentInfo'
 import hasValidTypings from './hasValidTypings'
 
 /**
@@ -21,32 +19,26 @@ import hasValidTypings from './hasValidTypings'
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
 export default (Component, options = {}) => {
-  const {
-    eventTargets = {},
-    nestingLevel = 0,
-    requiredProps = {},
-    rendersChildren = true,
-    rendersPortal = false,
-  } = options
+  const { eventTargets = {}, nestingLevel = 0, requiredProps = {}, rendersChildren = true, rendersPortal = false } = options
   const { throwError } = helpers('isConformant', Component)
 
   // tests depend on Component constructor names, enforce them
   if (!Component.prototype.constructor.name) {
-    throwError(
-      [
-        'Component is not a named function. This should help identify it:',
-        `static _meta = ${JSON.stringify(Component._meta, null, 2)}`,
-        `Rendered:\n${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
-      ].join('\n'),
-    )
+    throwError([
+      'Component is not a named function. This should help identify it:',
+      `static _meta = ${JSON.stringify(Component._meta, null, 2)}`,
+      `Rendered:\n${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
+    ].join('\n'))
   }
 
   // extract componentInfo for this component
-  const extractedInfo = _.find(
-    componentInfo,
-    i => i.constructorName === Component.prototype.constructor.name,
-  )
-  const { _meta, constructorName, componentClassName, filenameWithoutExt } = extractedInfo
+  const extractedInfo = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
+  const {
+    _meta,
+    constructorName,
+    componentClassName,
+    filenameWithoutExt,
+  } = extractedInfo
 
   // ----------------------------------------
   // Class and file name
@@ -72,7 +64,9 @@ export default (Component, options = {}) => {
   }
   // Remove parent name from paths:
   //   ['Form', 'Field', 'TextArea']
-  apiPath = apiPath.reduce((acc, next) => [...acc, next.replace(acc.join(''), '')], [])
+  apiPath = apiPath.reduce((acc, next) => (
+    [...acc, next.replace(acc.join(''), '')]
+  ), [])
 
   // find the apiPath in the semanticUIReact object
   const isSubComponent = _.isFunction(_.get(semanticUIReact, apiPath))
@@ -82,25 +76,22 @@ export default (Component, options = {}) => {
       expect(isTopLevelAPIProp).to.equal(
         false,
         `"${constructorName}" is private (starts with  "_").` +
-          ' It cannot be exposed on the top level API',
+        ' It cannot be exposed on the top level API',
       )
 
       expect(isSubComponent).to.equal(
         false,
         `"${constructorName}" is private (starts with "_").` +
-          ' It cannot be a static prop of another component (sub-component)',
+        ' It cannot be a static prop of another component (sub-component)',
       )
     })
   } else {
     // require all components to be exported at the top level
     it('is exported at the top level', () => {
-      expect(isTopLevelAPIProp).to.equal(
-        true,
-        [
-          `"${constructorName}" must be exported at top level.`,
-          'Export it in `src/index.js`.',
-        ].join(' '),
-      )
+      expect(isTopLevelAPIProp).to.equal(true, [
+        `"${constructorName}" must be exported at top level.`,
+        'Export it in `src/index.js`.',
+      ].join(' '))
     })
   }
 
@@ -109,7 +100,7 @@ export default (Component, options = {}) => {
       expect(isSubComponent).to.equal(
         true,
         `\`${constructorName}\` is a child component (has a _meta.parent).` +
-          ` It must be a static prop of its parent \`${_meta.parent}\``,
+        ` It must be a static prop of its parent \`${_meta.parent}\``,
       )
     })
   }
@@ -122,7 +113,8 @@ export default (Component, options = {}) => {
       const propName = 'data-is-conformant-spread-props'
       const props = { [propName]: true }
 
-      shallow(<Component {...requiredProps} {...props} />).should.have.descendants(props)
+      shallow(<Component {...requiredProps} {...props} />)
+        .should.have.descendants(props)
     })
   }
 
@@ -132,21 +124,7 @@ export default (Component, options = {}) => {
         // silence element nesting warnings
         consoleUtil.disableOnce()
 
-        const tags = [
-          'a',
-          'em',
-          'div',
-          'h1',
-          'h2',
-          'h3',
-          'h4',
-          'h5',
-          'h6',
-          'i',
-          'p',
-          'span',
-          'strong',
-        ]
+        const tags = ['a', 'em', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i', 'p', 'span', 'strong']
         try {
           tags.forEach((tag) => {
             nestedShallow(<Component {...requiredProps} as={tag} />, {
@@ -221,10 +199,9 @@ export default (Component, options = {}) => {
       )
       const expectedProps = _.uniq(computedProps).sort()
 
-      Component.handledProps.should.to.deep.equal(
-        expectedProps,
+      Component.handledProps.should.to.deep.equal(expectedProps,
         'It seems that not all props were defined in Component.handledProps, you need to check that they are equal ' +
-          'to the union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes',
+        'to the union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes',
       )
     })
   })
@@ -274,11 +251,10 @@ export default (Component, options = {}) => {
           //                   ^ was not called once on "blur"
           const leftPad = ' '.repeat(constructorName.length + listenerName.length + 3)
 
-          handlerSpy.calledOnce.should.equal(
-            true,
+          handlerSpy.calledOnce.should.equal(true,
             `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-              `${leftPad} ^ was not called once on "${eventName}".` +
-              'You may need to hoist your event handlers up to the root element.\n',
+            `${leftPad} ^ was not called once on "${eventName}".` +
+            'You may need to hoist your event handlers up to the root element.\n',
           )
 
           let expectedArgs = [eventShape]
@@ -290,17 +266,12 @@ export default (Component, options = {}) => {
           }
 
           // Components should return the event first, then any data
-          handlerSpy
-            .calledWithMatch(...expectedArgs)
-            .should.equal(
-              true,
-              [
-                `<${constructorName} ${listenerName}={${handlerName}} />\n`,
-                `${leftPad} ^ ${errorMessage}`,
-                'It was called with args:',
-                JSON.stringify(handlerSpy.args, null, 2),
-              ].join('\n'),
-            )
+          handlerSpy.calledWithMatch(...expectedArgs).should.equal(true, [
+            `<${constructorName} ${listenerName}={${handlerName}} />\n`,
+            `${leftPad} ^ ${errorMessage}`,
+            'It was called with args:',
+            JSON.stringify(handlerSpy.args, null, 2),
+          ].join('\n'))
         })
       })
     })
@@ -310,32 +281,8 @@ export default (Component, options = {}) => {
   // Defines _meta
   // ----------------------------------------
   describe('_meta', () => {
-    it('is a static object prop', () => {
-      expect(_meta).to.be.an('object')
-    })
-
-    describe('name', () => {
-      it('is defined', () => {
-        expect(_meta).to.have.any.keys('name')
-      })
-      it('matches the filename', () => {
-        expect(_meta.name).to.equal(filenameWithoutExt)
-      })
-    })
-    if (_.has(_meta, 'parent')) {
-      describe('parent', () => {
-        it('matches some component name', () => {
-          expect(_.map(semanticUIReact, c => c.prototype.constructor.name)).to.contain(_meta.parent)
-        })
-      })
-    }
-    describe('type', () => {
-      it('is defined', () => {
-        expect(_meta).to.have.any.keys('type')
-      })
-      it('is a META.TYPES value', () => {
-        expect(_.values(META.TYPES)).to.contain(_meta.type)
-      })
+    it('does not exist', () => {
+      expect(Component._meta).to.be.undefined()
     })
   })
 
@@ -362,9 +309,7 @@ export default (Component, options = {}) => {
           const mountNode = document.createElement('div')
           document.body.appendChild(mountNode)
 
-          const wrapper = mount(<Component {...requiredProps} className={className} />, {
-            attachTo: mountNode,
-          })
+          const wrapper = mount(<Component {...requiredProps} className={className} />, { attachTo: mountNode })
           wrapper.setProps({ open: true })
 
           // portals/popups/etc may render the component to somewhere besides descendants
@@ -394,13 +339,10 @@ export default (Component, options = {}) => {
         ).prop('className')
 
         defaultClasses.split(' ').forEach((defaultClass) => {
-          mixedClasses.should.include(
-            defaultClass,
-            [
-              'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
-              'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
-            ].join(' '),
-          )
+          mixedClasses.should.include(defaultClass, [
+            'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+            'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+          ].join(' '))
         })
       })
     })

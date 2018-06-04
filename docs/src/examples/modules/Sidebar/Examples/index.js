@@ -1,8 +1,8 @@
 import React from 'react'
 import { Icon, Table } from 'semantic-ui-react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/Components/ComponentDoc/ExampleSection'
 
 const SidebarExamplesExamples = () => (
   <ExampleSection title='Examples'>
