@@ -2,16 +2,16 @@ import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { exampleContext } from 'docs/app/utils'
-import PageNotFound from '../Views/PageNotFound'
+import { exampleContext } from 'docs/src/utils'
+import PageNotFound from '../views/PageNotFound'
 
 const exampleKeys = exampleContext.keys()
 
 const ExternalExampleLayout = (props) => {
-  const { kebabCaseName } = props.match.params
-  const componentName = _.startCase(kebabCaseName).replace(/ /g, '')
+  const { exampleName } = props.match.params
+  const exampleFilename = `/${_.startCase(exampleName).replace(/ /g, '')}.js`
 
-  const componentKey = _.find(_.endsWith(`${componentName}.js`), exampleKeys)
+  const componentKey = _.find(_.endsWith(exampleFilename), exampleKeys)
   if (!componentKey) return <PageNotFound />
 
   const ExampleComponent = exampleContext(componentKey).default
@@ -26,8 +26,8 @@ ExternalExampleLayout.propTypes = {
   location: PropTypes.object.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      kebabCaseName: PropTypes.string.isRequired,
-    }),
+      exampleName: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 }
 

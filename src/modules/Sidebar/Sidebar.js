@@ -1,17 +1,13 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
-import Ref from '../../addons/Ref'
 import {
+  AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
-  doesNodeContainClick,
-  eventStack,
   getUnhandledProps,
   getElementType,
-  META,
   useKeyOnly,
 } from '../../lib'
 import SidebarPushable from './SidebarPushable'
@@ -44,43 +40,11 @@ class Sidebar extends Component {
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
 
+    /** Initial value of visible. */
+    defaultVisible: PropTypes.bool,
+
     /** Direction the sidebar should appear on. */
     direction: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-
-    /** Duration of sidebar animation. */
-    duration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /**
-     * Called before a sidebar begins to animate out.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onHide: PropTypes.func,
-
-    /**
-     * Called after a sidebar has finished animating out.
-     *
-     * @param {null}
-     * @param {object} data - All props.
-     */
-    onHidden: PropTypes.func,
-
-    /**
-     * Called when a sidebar has finished animating in.
-     *
-     * @param {null}
-     * @param {object} data - All props.
-     */
-    onShow: PropTypes.func,
-
-    /**
-     * Called when a sidebar begins animating in.
-     *
-     * @param {null}
-     * @param {object} data - All props.
-     */
-    onVisible: PropTypes.func,
 
     /** Controls whether or not the sidebar is visible on the page. */
     visible: PropTypes.bool,
@@ -91,84 +55,26 @@ class Sidebar extends Component {
 
   static defaultProps = {
     direction: 'left',
-    duration: 500,
   }
 
   static autoControlledProps = ['visible']
 
-  static _meta = {
-    name: 'Sidebar',
-    type: META.TYPES.MODULE,
-  }
-
   static Pushable = SidebarPushable
   static Pusher = SidebarPusher
 
-  state = {}
+  startAnimating = (duration = 500) => {
+    clearTimeout(this.stopAnimatingTimer)
 
-  componentDidMount() {
-    const { visible } = this.props
+    this.setState({ animating: true })
 
-    if (visible) this.addListener()
+    this.stopAnimatingTimer = setTimeout(() => this.setState({ animating: false }), duration)
   }
 
-  componentWillUnmount() {
-    const { visible } = this.props
-
-    if (visible) this.removeListener()
-  }
-
-  componentDidUpdate(prevProps) {
-    const { visible: prevVisible } = prevProps
-    const { visible: currentVisible } = this.props
-
-    if (prevVisible === currentVisible) return
-
-    this.handleAnimationStart()
-
-    if (currentVisible) {
-      this.addListener()
-      return
-    }
-
-    this.removeListener()
-  }
-
-  addListener() {
-    eventStack.sub('click', this.handleDocumentClick)
-  }
-
-  removeListener() {
-    eventStack.unsub('click', this.handleDocumentClick)
-  }
-
-  handleAnimationStart = () => {
-    const { duration, visible } = this.props
-    const callback = visible ? 'onVisible' : 'onHide'
-
-    this.setState({ animating: true }, () => {
-      clearTimeout(this.animationTimer)
-      this.animationTimer = setTimeout(this.handleAnimationEnd, duration)
-
-      _.invoke(this.props, callback, null, this.props)
-    })
-  }
-
-  handleAnimationEnd = () => {
-    const { visible } = this.props
-    const callback = visible ? 'onShow' : 'onHidden'
-
-    this.setState({ animating: false })
-    _.invoke(this.props, callback, null, this.props)
-  }
-
-  handleDocumentClick = (e) => {
-    if (!doesNodeContainClick(this.ref, e)) {
-      _.invoke(this.props, 'onHide', e, { ...this.props, visible: false })
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.visible !== this.props.visible) {
+      this.startAnimating()
     }
   }
-
-  handleRef = c => (this.ref = c)
 
   render() {
     const { animation, className, children, content, direction, visible, width } = this.props
@@ -184,15 +90,14 @@ class Sidebar extends Component {
       'sidebar',
       className,
     )
+
     const rest = getUnhandledProps(Sidebar, this.props)
     const ElementType = getElementType(Sidebar, this.props)
 
     return (
-      <Ref innerRef={this.handleRef}>
-        <ElementType {...rest} className={classes}>
-          {childrenUtils.isNil(children) ? content : children}
-        </ElementType>
-      </Ref>
+      <ElementType {...rest} className={classes}>
+        {childrenUtils.isNil(children) ? content : children}
+      </ElementType>
     )
   }
 }

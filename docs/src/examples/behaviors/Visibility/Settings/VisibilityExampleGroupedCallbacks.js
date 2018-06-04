@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Button, Checkbox, Divider, Grid, Label, Segment, Sticky, Visibility } from 'semantic-ui-react'
+import {
+  Button,
+  Checkbox,
+  Divider,
+  Grid,
+  Label,
+  Segment,
+  Sticky,
+  Visibility,
+} from 'semantic-ui-react'
 
 import Wireframe from '../Wireframe'
 
@@ -13,13 +22,11 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
 
   handleContextRef = contextRef => this.setState({ contextRef })
 
-  updateLog = eventName => () => this.setState(({
-    log: [
-      `${new Date().toLocaleTimeString()}: ${eventName}`,
-      ...this.state.log,
-    ].slice(0, 20),
-    logCount: this.state.logCount + 1,
-  }))
+  updateLog = eventName => () =>
+    this.setState({
+      log: [`${new Date().toLocaleTimeString()}: ${eventName}`, ...this.state.log].slice(0, 20),
+      logCount: this.state.logCount + 1,
+    })
 
   clearLog = () => this.setState({ log: [], logCount: 0 })
 
@@ -56,10 +63,17 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
                 <Segment>
                   <Checkbox checked={once} label='Once' onChange={this.toggleOnce} toggle />
                   <Divider />
-                  <Checkbox checked={continuous} label='Continuous' onChange={this.toggleContinuous} toggle />
+                  <Checkbox
+                    checked={continuous}
+                    label='Continuous'
+                    onChange={this.toggleContinuous}
+                    toggle
+                  />
                 </Segment>
                 <Segment>
-                  <Button compact size='small' floated='right' onClick={this.clearLog}>Clear</Button>
+                  <Button compact size='small' floated='right' onClick={this.clearLog}>
+                    Clear
+                  </Button>
                   Event Log <Label circular>{logCount}</Label>
                 </Segment>
                 <Segment secondary>

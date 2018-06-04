@@ -1,6 +1,6 @@
 import React from 'react'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const HeaderContentExamples = () => (
   <ExampleSection title='Content'>
@@ -18,9 +18,7 @@ const HeaderContentExamples = () => (
       description='A header may contain an icon.'
       examplePath='elements/Header/Content/HeaderExamplePlugIcon'
     />
-    <ComponentExample
-      examplePath='elements/Header/Content/HeaderExampleSettingsIcon'
-    />
+    <ComponentExample examplePath='elements/Header/Content/HeaderExampleSettingsIcon' />
     <ComponentExample
       description='You can also define an icon with props.'
       examplePath='elements/Header/Content/HeaderExampleIconProp'

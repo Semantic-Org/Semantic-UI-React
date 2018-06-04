@@ -16,56 +16,48 @@ const TableExampleCollapsing = () => (
           <Header as='h4' image>
             <Image src='/assets/images/avatar/small/lena.png' rounded size='mini' />
             <Header.Content>
-                Lena
+              Lena
               <Header.Subheader>Human Resources</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>
-        <Table.Cell>
-            22
-        </Table.Cell>
+        <Table.Cell>22</Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell>
           <Header as='h4' image>
             <Image src='/assets/images/avatar/small/matthew.png' rounded size='mini' />
             <Header.Content>
-                Matthew
+              Matthew
               <Header.Subheader>Fabric Design</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>
-        <Table.Cell>
-            15
-        </Table.Cell>
+        <Table.Cell>15</Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell>
           <Header as='h4' image>
             <Image src='/assets/images/avatar/small/lindsay.png' rounded size='mini' />
             <Header.Content>
-                Lindsay
+              Lindsay
               <Header.Subheader>Entertainment</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>
-        <Table.Cell>
-            12
-        </Table.Cell>
+        <Table.Cell>12</Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell>
           <Header as='h4' image>
             <Image src='/assets/images/avatar/small/mark.png' rounded size='mini' />
             <Header.Content>
-                Mark
+              Mark
               <Header.Subheader>Executive</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>
-        <Table.Cell>
-            11
-        </Table.Cell>
+        <Table.Cell>11</Table.Cell>
       </Table.Row>
     </Table.Body>
   </Table>

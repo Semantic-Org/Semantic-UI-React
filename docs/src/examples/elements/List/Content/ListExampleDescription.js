@@ -7,7 +7,9 @@ const ListExampleDescription = () => (
       <List.Icon name='marker' />
       <List.Content>
         <List.Header as='a'>Krowlewskie Jadlo</List.Header>
-        <List.Description>An excellent polish restaurant, quick delivery and hearty, filling meals.</List.Description>
+        <List.Description>
+          An excellent polish restaurant, quick delivery and hearty, filling meals.
+        </List.Description>
       </List.Content>
     </List.Item>
     <List.Item>
@@ -15,7 +17,8 @@ const ListExampleDescription = () => (
       <List.Content>
         <List.Header as='a'>Xian Famous Foods</List.Header>
         <List.Description>
-          A taste of Shaanxi's delicious culinary traditions, with delights like spicy cold noodles and lamb burgers.
+          A taste of Shaanxi's delicious culinary traditions, with delights like spicy cold noodles
+          and lamb burgers.
         </List.Description>
       </List.Content>
     </List.Item>

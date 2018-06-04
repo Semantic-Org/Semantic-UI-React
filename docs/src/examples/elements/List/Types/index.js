@@ -1,9 +1,9 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 const ListTypes = () => (
   <ExampleSection title='Types'>

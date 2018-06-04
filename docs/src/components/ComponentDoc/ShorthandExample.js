@@ -3,7 +3,9 @@ import React from 'react'
 
 import ComponentExample from './ComponentExample'
 
-const ShorthandExample = ({ description, ...rest }) => <ComponentExample {...rest} description={description} />
+const ShorthandExample = ({ description, ...rest }) => (
+  <ComponentExample {...rest} description={description} />
+)
 
 ShorthandExample.propTypes = {
   description: PropTypes.node,

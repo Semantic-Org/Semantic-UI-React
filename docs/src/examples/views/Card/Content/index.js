@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const Content = () => (
   <ExampleSection title='Content'>
@@ -30,9 +30,7 @@ const Content = () => (
       description='A card can be formatted to link to other content.'
       examplePath='views/Card/Content/CardExampleLinkCard'
     />
-    <ComponentExample
-      examplePath='views/Card/Content/CardExampleLinkCardProp'
-    />
+    <ComponentExample examplePath='views/Card/Content/CardExampleLinkCardProp' />
   </ExampleSection>
 )
 

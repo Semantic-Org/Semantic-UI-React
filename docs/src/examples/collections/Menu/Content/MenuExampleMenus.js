@@ -21,11 +21,11 @@ export default class MenuExampleMenus extends Component {
 
         <Menu.Menu position='right'>
           <Menu.Item name='signup' active={activeItem === 'signup'} onClick={this.handleItemClick}>
-           Sign Up
+            Sign Up
           </Menu.Item>
 
           <Menu.Item name='help' active={activeItem === 'help'} onClick={this.handleItemClick}>
-           Help
+            Help
           </Menu.Item>
         </Menu.Menu>
       </Menu>

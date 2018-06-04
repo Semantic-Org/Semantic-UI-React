@@ -16,18 +16,18 @@ const TableExampleVerticalAlign = () => (
         <Table.Cell>John</Table.Cell>
         <Table.Cell>Approved</Table.Cell>
         <Table.Cell verticalAlign='top'>
-            Notes<br />
-            1<br />
-            2<br />
+          Notes<br />
+          1<br />
+          2<br />
         </Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell>Jamie</Table.Cell>
         <Table.Cell verticalAlign='bottom'>Approved</Table.Cell>
         <Table.Cell>
-            Notes<br />
-            1<br />
-            2<br />
+          Notes<br />
+          1<br />
+          2<br />
         </Table.Cell>
       </Table.Row>
     </Table.Body>

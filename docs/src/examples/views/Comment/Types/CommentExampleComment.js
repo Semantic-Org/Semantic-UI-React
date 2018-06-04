@@ -3,7 +3,9 @@ import { Button, Comment, Form, Header } from 'semantic-ui-react'
 
 const CommentExampleComment = () => (
   <Comment.Group>
-    <Header as='h3' dividing>Comments</Header>
+    <Header as='h3' dividing>
+      Comments
+    </Header>
 
     <Comment>
       <Comment.Avatar src='/assets/images/avatar/small/matt.jpg' />
@@ -41,9 +43,7 @@ const CommentExampleComment = () => (
             <Comment.Metadata>
               <div>Just now</div>
             </Comment.Metadata>
-            <Comment.Text>
-              Elliot you are always so right :)
-            </Comment.Text>
+            <Comment.Text>Elliot you are always so right :)</Comment.Text>
             <Comment.Actions>
               <Comment.Action>Reply</Comment.Action>
             </Comment.Actions>
@@ -59,9 +59,7 @@ const CommentExampleComment = () => (
         <Comment.Metadata>
           <div>5 days ago</div>
         </Comment.Metadata>
-        <Comment.Text>
-          Dude, this is awesome. Thanks so much
-        </Comment.Text>
+        <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
         <Comment.Actions>
           <Comment.Action>Reply</Comment.Action>
         </Comment.Actions>

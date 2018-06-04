@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -82,20 +81,12 @@ function Segment(props) {
 
 Segment.Group = SegmentGroup
 
-Segment._meta = {
-  name: 'Segment',
-  type: META.TYPES.ELEMENT,
-}
-
 Segment.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
   /** Attach segment to other content, like a header. */
-  attached: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['top', 'bottom']),
-  ]),
+  attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['top', 'bottom'])]),
 
   /** A basic segment has no special formatting. */
   basic: PropTypes.bool,
@@ -134,10 +125,7 @@ Segment.propTypes = {
   loading: PropTypes.bool,
 
   /** A segment can increase its padding. */
-  padded: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['very']),
-  ]),
+  padded: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
 
   /** Formatted to look like a pile of pages. */
   piled: PropTypes.bool,

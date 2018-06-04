@@ -1,9 +1,9 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 const DropdownUsageExamples = () => (
   <ExampleSection title='Usage'>
@@ -76,12 +76,10 @@ const DropdownUsageExamples = () => (
       description='A dropdown can render a node in place of the text.'
       examplePath='modules/Dropdown/Usage/DropdownExampleTrigger'
     />
-    <ComponentExample
-      examplePath='modules/Dropdown/Usage/DropdownExampleTriggerImage'
-    />
+    <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleTriggerImage' />
     <ComponentExample
       title='Multiple Custom Label'
-      description='A "multiple" dropdown can render customized label for selected items.'
+      description='A &quot;multiple&quot; dropdown can render customized label for selected items.'
       examplePath='modules/Dropdown/Usage/DropdownExampleMultipleCustomLabel'
     />
     <ComponentExample
@@ -100,8 +98,8 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleSearchQuery'
     >
       <Message info>
-        This example also shows how to override default bevahiour of the search query and keep entered value after
-        selection.
+        This example also shows how to override default bevahiour of the search query and keep
+        entered value after selection.
       </Message>
     </ComponentExample>
     <ComponentExample
@@ -119,20 +117,16 @@ const DropdownUsageExamples = () => (
       description='A dropdown can open its menu upward.'
       examplePath='modules/Dropdown/Usage/DropdownExampleUpwardSelection'
     />
+    <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleUpwardInline' />
+    <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleUpward' />
     <ComponentExample
       title='Wrap Selection'
       description={[
         'A dropdown can enable or disable wrapping the selection to the start',
-        ' when it reaches the end and vice versa'].join('')}
+        ' when it reaches the end and vice versa',
+      ].join('')}
       examplePath='modules/Dropdown/Usage/DropdownExampleWrapSelectionFalse'
     />
-    <ComponentExample
-      examplePath='modules/Dropdown/Usage/DropdownExampleUpwardInline'
-    />
-    <ComponentExample
-      examplePath='modules/Dropdown/Usage/DropdownExampleUpward'
-    />
-
   </ExampleSection>
 )
 

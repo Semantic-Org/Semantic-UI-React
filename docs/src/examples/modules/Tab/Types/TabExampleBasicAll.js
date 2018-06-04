@@ -7,8 +7,6 @@ const panes = [
   { menuItem: 'Tab 3', pane: 'Tab 3 Content' },
 ]
 
-const TabExampleBasicAll = () => (
-  <Tab panes={panes} renderActiveOnly={false} />
-)
+const TabExampleBasicAll = () => <Tab panes={panes} renderActiveOnly={false} />
 
 export default TabExampleBasicAll

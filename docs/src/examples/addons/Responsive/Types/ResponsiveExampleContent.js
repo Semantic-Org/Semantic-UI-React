@@ -11,8 +11,18 @@ export default class ResponsiveExampleContent extends Component {
 
     return (
       <Menu>
-        <Menu.Item active={active === 'home'} content='Home' name='home' onClick={this.handleItemClick} />
-        <Menu.Item active={active === 'messages'} content='Messages' name='messages' onClick={this.handleItemClick} />
+        <Menu.Item
+          active={active === 'home'}
+          content='Home'
+          name='home'
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          active={active === 'messages'}
+          content='Messages'
+          name='messages'
+          onClick={this.handleItemClick}
+        />
 
         <Menu.Menu position='right'>
           <Menu.Item>

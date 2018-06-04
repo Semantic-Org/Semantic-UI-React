@@ -1,8 +1,8 @@
 import React from 'react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 const ButtonGroupVariationsExamples = () => (
   <ExampleSection title='Group Variations'>
@@ -50,20 +50,14 @@ const ButtonGroupVariationsExamples = () => (
       description='A button group can be less pronounced.'
       examplePath='elements/Button/GroupVariations/ButtonExampleGroupBasic'
     />
-    <ComponentExample
-      examplePath='elements/Button/GroupVariations/ButtonExampleGroupBasicColored'
-    />
+    <ComponentExample examplePath='elements/Button/GroupVariations/ButtonExampleGroupBasicColored' />
     <ComponentExample
       title='Group Sizes'
       description='Groups can have a shared size.'
       examplePath='elements/Button/GroupVariations/ButtonExampleGroupSize'
     />
-    <ComponentExample
-      examplePath='elements/Button/GroupVariations/ButtonExampleGroupIconSize'
-    />
-    <ComponentExample
-      examplePath='elements/Button/GroupVariations/ButtonExampleGroupOrSize'
-    />
+    <ComponentExample examplePath='elements/Button/GroupVariations/ButtonExampleGroupIconSize' />
+    <ComponentExample examplePath='elements/Button/GroupVariations/ButtonExampleGroupOrSize' />
   </ExampleSection>
 )
 

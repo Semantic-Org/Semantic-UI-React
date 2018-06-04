@@ -1,7 +1,7 @@
 import React from 'react'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ContributionPrompt from 'docs/app/Components/ComponentDoc/ContributionPrompt'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ContributionPrompt from 'docs/src/components/ComponentDoc/ContributionPrompt'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const DropdownTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -11,8 +11,8 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleDropdown'
     >
       <ContributionPrompt>
-        Dropdown state is not fully managed when using the subcomponent API.
-        The shorthand props API fully manages state but needs to be extended to support the markup shown here.
+        Dropdown state is not fully managed when using the subcomponent API. The shorthand props API
+        fully manages state but needs to be extended to support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
@@ -25,9 +25,7 @@ const DropdownTypesExamples = () => (
       description='A selection dropdown can allow a user to search through a large list of choices.'
       examplePath='modules/Dropdown/Types/DropdownExampleSearchSelection'
     />
-    <ComponentExample
-      examplePath='modules/Dropdown/Types/DropdownExampleSearchSelectionTwo'
-    />
+    <ComponentExample examplePath='modules/Dropdown/Types/DropdownExampleSearchSelectionTwo' />
     {/* Possibly add state selection example. */}
     <ComponentExample
       title='Multiple Selection'
@@ -54,8 +52,8 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleSearchInMenu'
     >
       <ContributionPrompt>
-        Dropdown state is not fully managed when using the subcomponent API.
-        The shorthand props API fully manages state but needs to be extended to support the markup shown here.
+        Dropdown state is not fully managed when using the subcomponent API. The shorthand props API
+        fully manages state but needs to be extended to support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
@@ -63,8 +61,8 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchInMenu'
     >
       <ContributionPrompt>
-        Dropdown state is not fully managed when using the subcomponent API.
-        The shorthand props API fully manages state but needs to be extended to support the markup shown here.
+        Dropdown state is not fully managed when using the subcomponent API. The shorthand props API
+        fully manages state but needs to be extended to support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
@@ -72,22 +70,18 @@ const DropdownTypesExamples = () => (
       description='A dropdown can be formatted to appear inline in other content.'
       examplePath='modules/Dropdown/Types/DropdownExampleInline'
     />
-    <ComponentExample
-      examplePath='modules/Dropdown/Types/DropdownExampleInlineTwo'
-    />
+    <ComponentExample examplePath='modules/Dropdown/Types/DropdownExampleInlineTwo' />
     <ComponentExample
       title='Pointing'
       description='A dropdown can be formatted so that its menu is pointing.'
       examplePath='modules/Dropdown/Types/DropdownExamplePointing'
     >
       <ContributionPrompt>
-        The example below shows (roughly) the desired markup but is not functional
-        since we don't currently support nested dropdowns.
+        The example below shows (roughly) the desired markup but is not functional since we don't
+        currently support nested dropdowns.
       </ContributionPrompt>
     </ComponentExample>
-    <ComponentExample
-      examplePath='modules/Dropdown/Types/DropdownExamplePointingTwo'
-    />
+    <ComponentExample examplePath='modules/Dropdown/Types/DropdownExamplePointingTwo' />
     <ComponentExample
       title='Floating'
       description='A dropdown menu can appear to be floating below an element.'

@@ -2,7 +2,19 @@ import React from 'react'
 import { Table } from 'semantic-ui-react'
 
 const colors = [
-  'red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'teal',
+  'blue',
+  'violet',
+  'purple',
+  'pink',
+  'brown',
+  'grey',
+  'black',
 ]
 
 const TableExampleInvertedColors = () => (

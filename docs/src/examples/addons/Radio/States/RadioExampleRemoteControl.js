@@ -8,14 +8,8 @@ export default class RadioExampleRemoteControl extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.toggle}>
-          Toggle it
-        </Button>
-        <Radio
-          label='Check this radio'
-          onChange={this.toggle}
-          checked={this.state.checked}
-        />
+        <Button onClick={this.toggle}>Toggle it</Button>
+        <Radio label='Check this radio' onChange={this.toggle} checked={this.state.checked} />
       </div>
     )
   }

@@ -7,8 +7,6 @@ const panes = [
   { menuItem: 'Tab 3', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
 ]
 
-const TabExampleAttachedFalse = () => (
-  <Tab menu={{ attached: false }} panes={panes} />
-)
+const TabExampleAttachedFalse = () => <Tab menu={{ attached: false }} panes={panes} />
 
 export default TabExampleAttachedFalse

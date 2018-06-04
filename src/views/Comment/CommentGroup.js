@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
 } from '../../lib'
@@ -17,15 +16,7 @@ import {
  * Comments can be grouped.
  */
 function CommentGroup(props) {
-  const {
-    className,
-    children,
-    collapsed,
-    content,
-    minimal,
-    size,
-    threaded,
-  } = props
+  const { className, children, collapsed, content, minimal, size, threaded } = props
 
   const classes = cx(
     'ui',
@@ -44,12 +35,6 @@ function CommentGroup(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-CommentGroup._meta = {
-  name: 'CommentGroup',
-  parent: 'Comment',
-  type: META.TYPES.VIEW,
 }
 
 CommentGroup.propTypes = {

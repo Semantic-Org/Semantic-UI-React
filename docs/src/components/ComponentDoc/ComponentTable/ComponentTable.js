@@ -13,7 +13,7 @@ const ComponentTable = ({ props }) => (
   <Table compact='very' basic='very'>
     <ComponentTableHeader />
     <Table.Body>
-      {_.map(props, ({ name, ...rest }) => <ComponentTableRow {...rest} key={name} name={name} />)}
+      {_.map(props, propDef => <ComponentTableRow {...propDef} key={propDef.name} />)}
     </Table.Body>
   </Table>
 )

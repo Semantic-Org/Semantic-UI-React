@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -17,11 +16,7 @@ import {
 function SidebarPusher(props) {
   const { className, dimmed, children, content } = props
 
-  const classes = cx(
-    'pusher',
-    useKeyOnly(dimmed, 'dimmed'),
-    className,
-  )
+  const classes = cx('pusher', useKeyOnly(dimmed, 'dimmed'), className)
   const rest = getUnhandledProps(SidebarPusher, props)
   const ElementType = getElementType(SidebarPusher, props)
 
@@ -30,12 +25,6 @@ function SidebarPusher(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-SidebarPusher._meta = {
-  name: 'SidebarPusher',
-  type: META.TYPES.MODULE,
-  parent: 'Sidebar',
 }
 
 SidebarPusher.propTypes = {

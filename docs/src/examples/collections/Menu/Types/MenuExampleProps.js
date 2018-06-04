@@ -7,8 +7,6 @@ const items = [
   { key: 'events', name: 'Upcoming Events' },
 ]
 
-const MenuExampleProps = () => (
-  <Menu items={items} />
-)
+const MenuExampleProps = () => <Menu items={items} />
 
 export default MenuExampleProps

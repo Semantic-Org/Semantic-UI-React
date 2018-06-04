@@ -33,7 +33,9 @@ const ListExampleTree = () => (
                   <List.Icon name='folder' />
                   <List.Content>
                     <List.Header>my_theme</List.Header>
-                    <List.Description>Packaged themes are also available in this folder</List.Description>
+                    <List.Description>
+                      Packaged themes are also available in this folder
+                    </List.Description>
                   </List.Content>
                 </List.Item>
               </List.List>

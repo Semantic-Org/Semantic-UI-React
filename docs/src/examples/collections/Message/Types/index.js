@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon } from 'semantic-ui-react'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 
 const MessageTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -43,8 +43,8 @@ const MessageTypesExamples = () => (
     >
       <strong>
         <Icon name='warning circle' />
-        Dismissible blocks do not automatically close.
-        Use the <code>onDismiss</code> callback to remove the message.
+        Dismissible blocks do not automatically close. Use the <code>onDismiss</code> callback to
+        remove the message.
       </strong>
     </ComponentExample>
   </ExampleSection>

@@ -7,13 +7,11 @@ export default class ResponsiveExampleOnUpdate extends Component {
     logCount: 0,
   }
 
-  handleOnUpdate = () => this.setState({
-    log: [
-      `${new Date().toLocaleTimeString()}: onUpdate()`,
-      ...this.state.log,
-    ].slice(0, 20),
-    logCount: this.state.logCount + 1,
-  })
+  handleOnUpdate = () =>
+    this.setState({
+      log: [`${new Date().toLocaleTimeString()}: onUpdate()`, ...this.state.log].slice(0, 20),
+      logCount: this.state.logCount + 1,
+    })
 
   clearLog = () => this.setState({ log: [], logCount: 0 })
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 
-import { neverUpdate } from 'docs/app/HOC'
+import { neverUpdate } from 'docs/src/hoc'
 
 const ComponentTableHeader = () => (
   <Table.Header>

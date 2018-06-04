@@ -5,7 +5,7 @@ import { NavLink, Route } from 'react-router-dom'
 
 import { Button } from 'src'
 import { getUnhandledProps } from 'src/lib'
-import { repoURL } from 'docs/app/utils'
+import { repoURL } from 'docs/src/utils'
 
 const docsButtonStyle = {
   position: 'fixed',
@@ -53,16 +53,10 @@ export default class LayoutsLayout extends Component {
         {style}
         <Children {...props} />
         <div style={docsButtonStyle}>
+          <Button as={NavLink} to='/layouts' color='teal' icon='left arrow' content='Layouts' />
           <Button
             as={NavLink}
-            to='/layouts'
-            color='teal'
-            icon='left arrow'
-            content='Layouts'
-          />
-          <Button
-            as={NavLink}
-            to={`${repoURL}/blob/master/docs/app/Layouts/${filename}`}
+            to={`${repoURL}/blob/master/docs/src/layouts/${filename}`}
             icon='github'
             content='Source'
             secondary

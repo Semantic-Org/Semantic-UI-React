@@ -5,7 +5,8 @@ const ListExampleOrderedSimple = () => (
   <List as='ol'>
     <List.Item as='li'>Signing Up</List.Item>
     <List.Item as='li'>User Benefits</List.Item>
-    <List.Item as='li'>User Types
+    <List.Item as='li'>
+      User Types
       <List.List as='ol'>
         <List.Item as='li'>Admin</List.Item>
         <List.Item as='li'>Power User</List.Item>

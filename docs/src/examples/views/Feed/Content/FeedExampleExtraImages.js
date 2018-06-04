@@ -11,8 +11,12 @@ const FeedExampleAdditionalInformation = () => (
           <a>Helen Troy</a> added 2 photos
         </Feed.Summary>
         <Feed.Extra images>
-          <a><img src='/assets/images/wireframe/image.png' /></a>
-          <a><img src='/assets/images/wireframe/image.png' /></a>
+          <a>
+            <img src='/assets/images/wireframe/image.png' />
+          </a>
+          <a>
+            <img src='/assets/images/wireframe/image.png' />
+          </a>
         </Feed.Extra>
       </Feed.Content>
     </Feed.Event>

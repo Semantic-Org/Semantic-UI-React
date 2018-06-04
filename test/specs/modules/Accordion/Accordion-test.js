@@ -8,7 +8,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Accordion', () => {
   common.isConformant(Accordion)
-  common.hasSubComponents(Accordion, [AccordionAccordion, AccordionContent, AccordionTitle])
+  common.hasSubcomponents(Accordion, [AccordionAccordion, AccordionContent, AccordionTitle])
   common.hasUIClassName(Accordion)
 
   common.propKeyOnlyToClassName(Accordion, 'fluid')
@@ -16,7 +16,6 @@ describe('Accordion', () => {
   common.propKeyOnlyToClassName(Accordion, 'styled')
 
   it('renders AccordionAccordion component', () => {
-    shallow(<Accordion />)
-      .should.have.descendants(AccordionAccordion)
+    shallow(<Accordion />).should.have.descendants(AccordionAccordion)
   })
 })

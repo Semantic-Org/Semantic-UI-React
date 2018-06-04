@@ -1,6 +1,6 @@
 import React from 'react'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 import { Message } from 'semantic-ui-react'
 
 const InputVariationsExamples = () => (
@@ -48,8 +48,8 @@ const InputVariationsExamples = () => (
       examplePath='elements/Input/Variations/InputExampleRightLeftLabeled'
     >
       <Message warning>
-        Multiple Labels require <code>children</code>.
-        When using <code>children</code>, you must add a placeholder <code>{'<input />'}</code>.
+        Multiple Labels require <code>children</code>. When using <code>children</code>, you must
+        add a placeholder <code>{'<input />'}</code>.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Input/Variations/InputExampleRightLabeledTag' />
@@ -70,8 +70,8 @@ const InputVariationsExamples = () => (
     />
     <ComponentExample examplePath='elements/Input/Variations/InputExampleActions'>
       <Message warning>
-        Multiple Actions require <code>children</code>.
-        When using <code>children</code>, you must add a placeholder <code>{'<input />'}</code>.
+        Multiple Actions require <code>children</code>. When using <code>children</code>, you must
+        add a placeholder <code>{'<input />'}</code>.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Input/Variations/InputExampleActionLabeledButton' />

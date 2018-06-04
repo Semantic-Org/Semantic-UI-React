@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -83,12 +82,6 @@ function ButtonGroup(props) {
       {_.map(buttons, button => Button.create(button))}
     </ElementType>
   )
-}
-
-ButtonGroup._meta = {
-  name: 'ButtonGroup',
-  parent: 'Button',
-  type: META.TYPES.ELEMENT,
 }
 
 ButtonGroup.propTypes = {

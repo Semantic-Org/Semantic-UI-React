@@ -29,7 +29,11 @@ export default class MenuExampleTabularOnBottom extends Component {
           </Menu.Item>
 
           <Menu.Menu position='right'>
-            <Menu.Item name='new-tab' active={activeItem === 'new-tab'} onClick={this.handleItemClick}>
+            <Menu.Item
+              name='new-tab'
+              active={activeItem === 'new-tab'}
+              onClick={this.handleItemClick}
+            >
               <Icon name='add' />
               New Tab
             </Menu.Item>

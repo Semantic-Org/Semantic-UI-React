@@ -4,7 +4,9 @@ import { Divider, Segment } from 'semantic-ui-react'
 const DividerExampleInverted = () => (
   <Segment inverted>
     <Divider inverted />
-    <Divider horizontal inverted>Horizontal</Divider>
+    <Divider horizontal inverted>
+      Horizontal
+    </Divider>
   </Segment>
 )
 

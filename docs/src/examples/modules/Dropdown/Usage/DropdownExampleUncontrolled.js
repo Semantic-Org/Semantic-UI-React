@@ -8,11 +8,7 @@ const options = [
 ]
 
 const DropdownExampleUncontrolled = () => (
-  <Dropdown
-    selection
-    options={options}
-    placeholder='Choose an option'
-  />
+  <Dropdown selection options={options} placeholder='Choose an option' />
 )
 
 export default DropdownExampleUncontrolled

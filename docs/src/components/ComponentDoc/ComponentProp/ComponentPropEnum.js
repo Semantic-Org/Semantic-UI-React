@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { updateForKeys } from 'docs/app/HOC'
+import { updateForKeys } from 'docs/src/hoc'
 import ComponentPropExtra from './ComponentPropExtra'
 import ComponentPropToggle from './ComponentPropEnumToggle'
 import ComponentPropValue from './ComponentPropEnumValue'
@@ -15,13 +15,7 @@ const ComponentPropEnum = ({ limit, showAll, toggle, type, values }) => {
 
   return (
     <ComponentPropExtra inline title='Enums: '>
-      {exceeds && (
-        <ComponentPropToggle
-          toggle={toggle}
-          total={values.length}
-          showAll={showAll}
-        />
-      )}
+      {exceeds && <ComponentPropToggle toggle={toggle} total={values.length} showAll={showAll} />}
 
       <div>
         {_.map(sliced, value => <ComponentPropValue key={value}>{value}</ComponentPropValue>)}

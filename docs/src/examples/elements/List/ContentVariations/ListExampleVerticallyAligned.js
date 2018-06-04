@@ -5,21 +5,15 @@ const ListExampleVerticallyAligned = () => (
   <List horizontal>
     <List.Item>
       <Image avatar src='/assets/images/wireframe/square-image.png' />
-      <List.Content verticalAlign='top'>
-        Top Aligned
-      </List.Content>
+      <List.Content verticalAlign='top'>Top Aligned</List.Content>
     </List.Item>
     <List.Item>
       <Image avatar src='/assets/images/wireframe/square-image.png' />
-      <List.Content verticalAlign='middle'>
-        Middle
-      </List.Content>
+      <List.Content verticalAlign='middle'>Middle</List.Content>
     </List.Item>
     <List.Item>
       <Image avatar src='/assets/images/wireframe/square-image.png' />
-      <List.Content verticalAlign='bottom'>
-        Bottom
-      </List.Content>
+      <List.Content verticalAlign='bottom'>Bottom</List.Content>
     </List.Item>
   </List>
 )

@@ -16,8 +16,7 @@ const ButtonExampleGroupIcon = () => (
       <Button icon>
         <Icon name='align justify' />
       </Button>
-    </Button.Group>
-    {' '}
+    </Button.Group>{' '}
     <Button.Group>
       <Button icon>
         <Icon name='bold' />

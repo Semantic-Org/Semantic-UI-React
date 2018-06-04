@@ -1,16 +1,16 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 const CheckboxTypesExamples = () => (
   <ExampleSection title='Types'>
     <Message info>
-      All checkbox types use an input with type <code>checkbox</code> unless <code>type</code> is provided.
-      {' '}Use <code>type</code> if you'd like to mix and match style and behavior.
-      {' '}For instance, <code>slider</code> with <code>type</code> radio for exclusive sliders.
+      All checkbox types use an input with type <code>checkbox</code> unless <code>type</code> is
+      provided. Use <code>type</code> if you'd like to mix and match style and behavior. For
+      instance, <code>slider</code> with <code>type</code> radio for exclusive sliders.
     </Message>
 
     <ComponentExample

@@ -1,8 +1,7 @@
 import _ from 'lodash'
-import path from 'path'
 
+import { componentInfoContext } from 'docs/src/utils'
 import { customPropTypes } from 'src/lib'
-import componentInfo from './componentInfo'
 import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
 
 const isShorthand = propType =>
@@ -23,24 +22,17 @@ const shorthandMap = {
 /**
  * Assert Component has the valid typings.
  * @param {React.Component|Function} Component A component that should conform.
- * @param {Object} [extractedInfo={}]
- * @param {Object} [extractedInfo._meta={}] The meta information about Component
+ * @param {Object} [componentInfo] The *.info.json for the Component
  * @param {Object} [options={}]
  * @param {array} [options.ignoredTypingsProps=[]] Props that will be ignored in tests.
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
-export default (Component, extractedInfo, options = {}) => {
-  const {
-    _meta: { name: componentName },
-    filenameWithoutExt,
-    filePath,
-  } =
-    extractedInfo ||
-    _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
+export default (Component, componentInfo, options = {}) => {
+  const { displayName, repoPath } = componentInfoContext.fromComponent(Component)
   const { ignoredTypingsProps = [], requiredProps } = options
 
-  const tsFile = `${filenameWithoutExt}.d.ts`
-  const tsContent = requireTs(path.join(path.dirname(filePath), tsFile))
+  const tsFile = repoPath.replace('src/', '').replace('.js', '.d.ts')
+  const tsContent = requireTs(tsFile)
 
   describe('typings', () => {
     describe('structure', () => {
@@ -50,7 +42,7 @@ export default (Component, extractedInfo, options = {}) => {
     })
 
     const tsNodes = getNodes(tsFile, tsContent)
-    const interfaceName = `${componentName}Props`
+    const interfaceName = `${displayName}Props`
     const interfaceObject = _.find(getInterfaces(tsNodes), { name: interfaceName }) || {}
 
     describe(`interface ${interfaceName}`, () => {

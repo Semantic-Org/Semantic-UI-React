@@ -13,9 +13,9 @@ import {
   getFormattedHash,
   repoURL,
   scrollToAnchor,
-} from 'docs/app/utils'
+} from 'docs/src/utils'
 import { Divider, Grid, Menu, Visibility } from 'src'
-import Editor from 'docs/app/Components/Editor/Editor'
+import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
 
@@ -196,7 +196,7 @@ class ComponentExample extends PureComponent {
   getOriginalSourceCode = () => {
     const { examplePath } = this.props
 
-    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../../Examples/${examplePath}`)
+    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../../examples/${examplePath}`)
 
     return this.sourceCode
   }
@@ -238,7 +238,8 @@ class ComponentExample extends PureComponent {
     // which can be rendered in this ComponentExample's render() method
 
     // rewrite imports to const statements against the UPPERCASE module names
-    const imports = _.get(/(^[\s\S])*import[\s\S]*from[\s\S]*['"]\n/.exec(sourceCode), '[0]', '')
+    const imports = _
+      .get(/(^[\s\S])*import[\s\S]*from[\s\S]*['"]\n/.exec(sourceCode), '[0]', '')
       .replace(/[\s\n]+/g, ' ') // normalize spaces and make one line
       .replace(/ import/g, '\nimport') // one import per line
       .split('\n') // split lines
@@ -256,9 +257,9 @@ class ComponentExample extends PureComponent {
             .split(__PATH_SEP__)
             .splice(0, 2)
             .join(__PATH_SEP__)
-          COMMON = require(`docs/app/Examples/${componentPath}/common`)
+          COMMON = require(`docs/src/examples/${componentPath}/common`)
         } else if (module === 'WIREFRAME') {
-          WIREFRAME = require('docs/app/Examples/behaviors/Visibility/Wireframe').default
+          WIREFRAME = require('docs/src/examples/behaviors/Visibility/Wireframe').default
         }
 
         const constStatements = []
@@ -276,11 +277,8 @@ class ComponentExample extends PureComponent {
       '[1]',
     )
 
-    const body = _.get(
-      /(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode),
-      '[0]',
-      '',
-    )
+    const body = _
+      .get(/(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode), '[0]', '')
       .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '') // remove `export default Foo` statements
       .replace(/export\s+default\s+/, '') // remove `export default ...`
 
@@ -328,7 +326,7 @@ class ComponentExample extends PureComponent {
     const filename = pathParts[pathParts.length - 1]
 
     this.ghEditHref = [
-      `${repoURL}/edit/master/docs/app/Examples/${examplePath}.js`,
+      `${repoURL}/edit/master/docs/src/examples/${examplePath}.js`,
       `?message=docs(${filename}): your description`,
     ].join('')
   }
@@ -421,7 +419,7 @@ class ComponentExample extends PureComponent {
   }
 
   render() {
-    const { children, description, location, suiVersion, title } = this.props
+    const { children, description, examplePath, suiVersion, title } = this.props
     const {
       handleMouseLeave,
       handleMouseMove,
@@ -433,13 +431,9 @@ class ComponentExample extends PureComponent {
 
     const isActive = this.isActiveHash() || this.isActiveState()
 
-    const isInFocus = !location.hash || (location.hash && (this.isActiveHash() || isHovering))
-
     const exampleStyle = {
       position: 'relative',
-      transition: 'box-shadow 200ms, background 200ms, opacity 200ms, filter 200ms',
-      opacity: isInFocus ? 1 : 0.4,
-      filter: isInFocus ? 'grayscale(0)' : 'grayscale(1)',
+      transition: 'box-shadow 200ms, background 200ms',
       ...(isActive
         ? {
           background: '#fff',
@@ -473,6 +467,7 @@ class ComponentExample extends PureComponent {
             <Grid.Column textAlign='right' width={4} style={controlsWrapperStyle}>
               <ComponentControls
                 anchorName={this.anchorName}
+                examplePath={examplePath}
                 onCopyLink={this.handleDirectLinkClick}
                 onShowCode={this.handleShowCodeClick}
                 onShowHTML={this.handleShowHTMLClick}

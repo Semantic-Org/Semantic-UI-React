@@ -22,11 +22,12 @@ const body = (
 
 const TableExampleAttached = () => (
   <div>
-    <Table attached='top' basic>{header}{body}</Table>
-
-    <Table attached>
+    <Table attached='top' basic>
+      {header}
       {body}
     </Table>
+
+    <Table attached>{body}</Table>
 
     <Table attached celled selectable>
       {body}

@@ -3,11 +3,7 @@ import { Button, Icon, Popup } from 'semantic-ui-react'
 
 const PopupExampleInverted = () => (
   <div>
-    <Popup
-      trigger={<Button icon='add' />}
-      content='Hello. This is an inverted popup'
-      inverted
-    />
+    <Popup trigger={<Button icon='add' />} content='Hello. This is an inverted popup' inverted />
     <Popup
       trigger={<Icon circular name='heart' />}
       content='Hello. This is an inverted popup'

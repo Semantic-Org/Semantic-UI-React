@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -71,11 +70,6 @@ class Step extends Component {
 
     /** Shorthand for StepTitle. */
     title: customPropTypes.itemShorthand,
-  }
-
-  static _meta = {
-    name: 'Step',
-    type: META.TYPES.ELEMENT,
   }
 
   static Content = StepContent

@@ -19,9 +19,7 @@ const contentInlineStyle = {
 const ComponentPropExtra = ({ children, inline, title, ...rest }) => (
   <div {...rest} style={descriptionStyle}>
     <strong>{title}</strong>
-    <div style={inline ? contentInlineStyle : contentBlockStyle}>
-      {children}
-    </div>
+    <div style={inline ? contentInlineStyle : contentBlockStyle}>{children}</div>
   </div>
 )
 

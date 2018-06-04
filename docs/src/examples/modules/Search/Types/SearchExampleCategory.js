@@ -3,17 +3,19 @@ import faker from 'faker'
 import React, { Component } from 'react'
 import { Search, Grid, Header } from 'semantic-ui-react'
 
-const getResults = () => _.times(5, () => ({
-  title: faker.company.companyName(),
-  description: faker.company.catchPhrase(),
-  image: faker.internet.avatar(),
-  price: faker.finance.amount(0, 100, 2, '$'),
-}))
+const getResults = () =>
+  _.times(5, () => ({
+    title: faker.company.companyName(),
+    description: faker.company.catchPhrase(),
+    image: faker.internet.avatar(),
+    price: faker.finance.amount(0, 100, 2, '$'),
+  }))
 
 const source = _.range(0, 3).reduce((memo) => {
   const name = faker.hacker.noun()
 
-  memo[name] = { // eslint-disable-line no-param-reassign
+  // eslint-disable-next-line no-param-reassign
+  memo[name] = {
     name,
     results: getResults(),
   }
@@ -39,12 +41,16 @@ export default class SearchExampleCategory extends Component {
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
       const isMatch = result => re.test(result.title)
 
-      const filteredResults = _.reduce(source, (memo, data, name) => {
-        const results = _.filter(data.results, isMatch)
-        if (results.length) memo[name] = { name, results } // eslint-disable-line no-param-reassign
+      const filteredResults = _.reduce(
+        source,
+        (memo, data, name) => {
+          const results = _.filter(data.results, isMatch)
+          if (results.length) memo[name] = { name, results } // eslint-disable-line no-param-reassign
 
-        return memo
-      }, {})
+          return memo
+        },
+        {},
+      )
 
       this.setState({
         isLoading: false,

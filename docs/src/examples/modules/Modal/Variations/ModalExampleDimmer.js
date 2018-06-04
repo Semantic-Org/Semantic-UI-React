@@ -18,10 +18,10 @@ class ModalExampleDimmer extends Component {
         <Popup trigger={<Button onClick={this.show(false)}>None</Button>}>
           <Popup.Header>Heads up!</Popup.Header>
           <Popup.Content>
-            By default, a Modal closes when escape is pressed or when the dimmer is
-            clicked. Setting the dimmer to "None" (dimmer={'{'}false{'}'}) means that there is no
-            dimmer to click so clicking outside won't close the Modal. To close on
-            outside click when there's no dimmer, you can pass the "closeOnDocumentClick" prop.
+            By default, a Modal closes when escape is pressed or when the dimmer is clicked. Setting
+            the dimmer to "None" (dimmer={'{'}false{'}'}) means that there is no dimmer to click so
+            clicking outside won't close the Modal. To close on outside click when there's no
+            dimmer, you can pass the "closeOnDocumentClick" prop.
           </Popup.Content>
         </Popup>
 
@@ -39,7 +39,13 @@ class ModalExampleDimmer extends Component {
             <Button color='black' onClick={this.close}>
               Nope
             </Button>
-            <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.close} />
+            <Button
+              positive
+              icon='checkmark'
+              labelPosition='right'
+              content="Yep, that's me"
+              onClick={this.close}
+            />
           </Modal.Actions>
         </Modal>
       </div>
@@ -48,4 +54,3 @@ class ModalExampleDimmer extends Component {
 }
 
 export default ModalExampleDimmer
-

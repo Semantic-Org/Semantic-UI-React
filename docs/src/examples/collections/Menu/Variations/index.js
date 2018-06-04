@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 
 const Variations = () => (
   <ExampleSection title='Variations'>
@@ -102,9 +102,7 @@ const Variations = () => (
       description='A menu item or menu can remove element padding, vertically or horizontally.'
       examplePath='collections/Menu/Variations/MenuExampleFitted'
     />
-    <ComponentExample
-      examplePath='collections/Menu/Variations/MenuExampleVerticalFitted'
-    />
+    <ComponentExample examplePath='collections/Menu/Variations/MenuExampleVerticalFitted' />
 
     <ComponentExample
       title='Borderless'

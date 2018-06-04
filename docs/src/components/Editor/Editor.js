@@ -8,7 +8,7 @@ import 'brace/mode/jsx'
 import 'brace/mode/html'
 import 'brace/theme/tomorrow'
 
-import { parentComponents } from 'docs/app/utils'
+import { parentComponents } from 'docs/src/utils'
 
 // Set up custom completers by using a ace extension
 // https://github.com/thlorenz/brace/issues/19

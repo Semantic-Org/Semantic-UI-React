@@ -10,7 +10,6 @@ const FeedExampleSummaryDate = () => (
       <Feed.Content>
         <Feed.Summary>
           You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-
           <Feed.Date>3 days ago</Feed.Date>
         </Feed.Summary>
       </Feed.Content>

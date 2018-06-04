@@ -5,7 +5,9 @@ const ModalExampleCloseIcon = () => (
   <Modal trigger={<Button>Show Modal</Button>} closeIcon>
     <Header icon='archive' content='Archive Old Messages' />
     <Modal.Content>
-      <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+      <p>
+        Your inbox is getting full, would you like us to enable automatic archiving of old messages?
+      </p>
     </Modal.Content>
     <Modal.Actions>
       <Button color='red'>

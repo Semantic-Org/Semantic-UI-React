@@ -10,7 +10,9 @@ export default class MenuExampleLinkItem extends Component {
     return (
       <div>
         <Menu vertical>
-          <Menu.Item href='//google.com' target='_blank'>Visit Google</Menu.Item>
+          <Menu.Item href='//google.com' target='_blank'>
+            Visit Google
+          </Menu.Item>
           <Menu.Item link>Link via prop</Menu.Item>
           <Menu.Item onClick={this.handleClick}>Javascript Link</Menu.Item>
         </Menu>

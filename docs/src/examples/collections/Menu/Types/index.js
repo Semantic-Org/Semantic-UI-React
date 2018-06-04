@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Message } from 'semantic-ui-react'
 
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 // TODO: Add example with <Popup> after it will be added
 
@@ -71,7 +71,7 @@ const Types = () => (
       examplePath='collections/Menu/Types/MenuExamplePagination'
     >
       <Message info>
-          For fully featured pagination, see <Link to='/addons/pagination'>Pagination</Link> addon.
+        For fully featured pagination, see <Link to='/addons/pagination'>Pagination</Link> addon.
       </Message>
     </ComponentExample>
   </ExampleSection>

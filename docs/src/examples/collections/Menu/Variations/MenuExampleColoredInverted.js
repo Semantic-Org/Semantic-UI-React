@@ -17,13 +17,25 @@ export default class MenuExampleColoredInverted extends Component {
       <div>
         <Menu inverted>
           {colorsA.map(c => (
-            <Menu.Item key={c} name={c} active={activeA === c} color={c} onClick={this.handleAClick} />
+            <Menu.Item
+              key={c}
+              name={c}
+              active={activeA === c}
+              color={c}
+              onClick={this.handleAClick}
+            />
           ))}
         </Menu>
 
         <Menu inverted>
           {colorsB.map(c => (
-            <Menu.Item key={c} name={c} active={activeB === c} color={c} onClick={this.handleBClick} />
+            <Menu.Item
+              key={c}
+              name={c}
+              active={activeB === c}
+              color={c}
+              onClick={this.handleBClick}
+            />
           ))}
         </Menu>
       </div>

@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  createShorthand,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { createShorthand, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
@@ -44,12 +38,6 @@ function FeedEvent(props) {
       {children}
     </ElementType>
   )
-}
-
-FeedEvent._meta = {
-  name: 'FeedEvent',
-  parent: 'Feed',
-  type: META.TYPES.VIEW,
 }
 
 FeedEvent.propTypes = {

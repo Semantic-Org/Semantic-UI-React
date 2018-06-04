@@ -13,10 +13,18 @@ export default class MenuExampleTabularOnTop extends Component {
       <div>
         <Menu attached='top' tabular>
           <Menu.Item name='bio' active={activeItem === 'bio'} onClick={this.handleItemClick} />
-          <Menu.Item name='photos' active={activeItem === 'photos'} onClick={this.handleItemClick} />
+          <Menu.Item
+            name='photos'
+            active={activeItem === 'photos'}
+            onClick={this.handleItemClick}
+          />
           <Menu.Menu position='right'>
             <Menu.Item>
-              <Input transparent icon={{ name: 'search', link: true }} placeholder='Search users...' />
+              <Input
+                transparent
+                icon={{ name: 'search', link: true }}
+                placeholder='Search users...'
+              />
             </Menu.Item>
           </Menu.Menu>
         </Menu>

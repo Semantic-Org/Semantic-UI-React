@@ -3,10 +3,11 @@ import faker from 'faker'
 import React, { Component } from 'react'
 import { Button, Dropdown, Grid, Header } from 'semantic-ui-react'
 
-const getOptions = () => _.times(3, () => {
-  const name = faker.name.findName()
-  return { key: name, text: name, value: _.snakeCase(name) }
-})
+const getOptions = () =>
+  _.times(3, () => {
+    const name = faker.name.findName()
+    return { key: name, text: name, value: _.snakeCase(name) }
+  })
 
 class DropdownExampleRemote extends Component {
   componentWillMount() {
@@ -56,11 +57,12 @@ class DropdownExampleRemote extends Component {
         <Grid.Column width={8}>
           <p>
             <Button onClick={this.fetchOptions}>Fetch</Button>
-            <Button onClick={this.selectRandom} disabled={_.isEmpty(options)}>Random</Button>
+            <Button onClick={this.selectRandom} disabled={_.isEmpty(options)}>
+              Random
+            </Button>
             <label>
               <input type='checkbox' checked={search} onChange={this.toggleSearch} /> Search
-            </label>
-            {' '}
+            </label>{' '}
             <label>
               <input type='checkbox' checked={multiple} onChange={this.toggleMultiple} /> Multiple
             </label>

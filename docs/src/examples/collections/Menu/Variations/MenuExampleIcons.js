@@ -15,11 +15,19 @@ export default class MenuExampleIcons extends Component {
           <Icon name='gamepad' />
         </Menu.Item>
 
-        <Menu.Item name='video camera' active={activeItem === 'video camera'} onClick={this.handleItemClick}>
+        <Menu.Item
+          name='video camera'
+          active={activeItem === 'video camera'}
+          onClick={this.handleItemClick}
+        >
           <Icon name='video camera' />
         </Menu.Item>
 
-        <Menu.Item name='video play' active={activeItem === 'video play'} onClick={this.handleItemClick}>
+        <Menu.Item
+          name='video play'
+          active={activeItem === 'video play'}
+          onClick={this.handleItemClick}
+        >
           <Icon name='video play' />
         </Menu.Item>
       </Menu>

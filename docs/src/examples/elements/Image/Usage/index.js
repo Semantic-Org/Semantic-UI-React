@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const ImageUsageExamples = () => (
   <ExampleSection title='Usage'>
@@ -12,7 +12,11 @@ const ImageUsageExamples = () => (
     />
     <ComponentExample
       title='Image props'
-      description={<span>An image correctly handles props of an HTML <code>img</code>.</span>}
+      description={
+        <span>
+          An image correctly handles props of an HTML <code>img</code>.
+        </span>
+      }
       examplePath='elements/Image/Usage/ImageExampleImageProps'
     />
     <ComponentExample

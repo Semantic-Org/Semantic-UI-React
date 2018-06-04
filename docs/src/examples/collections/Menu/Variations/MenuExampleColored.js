@@ -17,13 +17,25 @@ export default class MenuExampleColored extends Component {
       <div>
         <Menu>
           {colorsA.map(c => (
-            <Menu.Item key={c} name={c} active={activeA === c} color={c} onClick={this.handleAClick} />
+            <Menu.Item
+              key={c}
+              name={c}
+              active={activeA === c}
+              color={c}
+              onClick={this.handleAClick}
+            />
           ))}
         </Menu>
 
         <Menu>
           {colorsB.map(c => (
-            <Menu.Item key={c} name={c} active={activeB === c} color={c} onClick={this.handleBClick} />
+            <Menu.Item
+              key={c}
+              name={c}
+              active={activeB === c}
+              color={c}
+              onClick={this.handleBClick}
+            />
           ))}
         </Menu>
       </div>

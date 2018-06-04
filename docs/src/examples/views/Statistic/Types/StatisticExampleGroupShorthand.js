@@ -7,8 +7,6 @@ const items = [
   { key: 'members', label: 'Members', value: '22' },
 ]
 
-const StatisticExampleGroupShorthand = () => (
-  <Statistic.Group items={items} />
-)
+const StatisticExampleGroupShorthand = () => <Statistic.Group items={items} />
 
 export default StatisticExampleGroupShorthand

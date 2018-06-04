@@ -15,7 +15,11 @@ export default class StatisticExampleSizeGroup extends Component {
     return (
       <div>
         <select onChange={this.handleSizeChange}>
-          {_.map(sizes, s => <option key={s} value={s}>{_.startCase(s)}</option>)}
+          {_.map(sizes, s => (
+            <option key={s} value={s}>
+              {_.startCase(s)}
+            </option>
+          ))}
         </select>
 
         <Divider hidden />

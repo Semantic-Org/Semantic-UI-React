@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const StickyTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -12,7 +12,7 @@ const StickyTypesExamples = () => (
     />
     <ComponentExample
       title='Pushing'
-      description='It will have the viewport "push" the sticky content depending on the scroll direction.'
+      description='It will have the viewport &quot;push&quot; the sticky content depending on the scroll direction.'
       examplePath='modules/Sticky/Types/StickyExamplePushing'
     />
   </ExampleSection>

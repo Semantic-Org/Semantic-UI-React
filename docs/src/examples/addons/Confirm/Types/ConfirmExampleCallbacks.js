@@ -13,14 +13,12 @@ class ConfirmExampleCallbacks extends Component {
 
     return (
       <div>
-        <p>Result: <em>{result}</em></p>
+        <p>
+          Result: <em>{result}</em>
+        </p>
 
         <Button onClick={this.show}>Show</Button>
-        <Confirm
-          open={open}
-          onCancel={this.handleCancel}
-          onConfirm={this.handleConfirm}
-        />
+        <Confirm open={open} onCancel={this.handleCancel} onConfirm={this.handleConfirm} />
       </div>
     )
   }

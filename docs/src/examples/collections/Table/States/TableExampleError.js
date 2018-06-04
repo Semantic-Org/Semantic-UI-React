@@ -27,7 +27,7 @@ const TableExampleError = () => (
         <Table.Cell>Approved</Table.Cell>
         <Table.Cell error>
           <Icon name='attention' />
-            Classified
+          Classified
         </Table.Cell>
       </Table.Row>
       <Table.Row>

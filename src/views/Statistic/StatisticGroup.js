@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useWidthProp,
@@ -19,17 +18,7 @@ import Statistic from './Statistic'
  * A group of statistics.
  */
 function StatisticGroup(props) {
-  const {
-    children,
-    className,
-    color,
-    content,
-    horizontal,
-    inverted,
-    items,
-    size,
-    widths,
-  } = props
+  const { children, className, color, content, horizontal, inverted, items, size, widths } = props
 
   const classes = cx(
     'ui',
@@ -44,20 +33,26 @@ function StatisticGroup(props) {
   const rest = getUnhandledProps(StatisticGroup, props)
   const ElementType = getElementType(StatisticGroup, props)
 
-  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
-  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
+  if (!childrenUtils.isNil(content)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {content}
+      </ElementType>
+    )
+  }
 
   return (
     <ElementType {...rest} className={classes}>
       {_.map(items, item => Statistic.create(item))}
     </ElementType>
   )
-}
-
-StatisticGroup._meta = {
-  name: 'StatisticGroup',
-  type: META.TYPES.VIEW,
-  parent: 'Statistic',
 }
 
 StatisticGroup.propTypes = {

@@ -16,10 +16,7 @@ export default class ComponentTableRow extends Component {
     required: PropTypes.bool,
     tags: PropTypes.array,
     type: PropTypes.string,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.arrayOf(PropTypes.string),
-    ]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   }
 
   state = {}

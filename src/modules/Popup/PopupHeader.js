@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -39,12 +38,6 @@ PopupHeader.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
-}
-
-PopupHeader._meta = {
-  name: 'PopupHeader',
-  type: META.TYPES.MODULE,
-  parent: 'Popup',
 }
 
 PopupHeader.create = createShorthandFactory(PopupHeader, children => ({ children }))

@@ -5,11 +5,15 @@ const LabelExampleFloating = () => (
   <Menu compact>
     <Menu.Item as='a'>
       <Icon name='mail' /> Messages
-      <Label color='red' floating>22</Label>
+      <Label color='red' floating>
+        22
+      </Label>
     </Menu.Item>
     <Menu.Item as='a'>
       <Icon name='users' /> Friends
-      <Label color='teal' floating>22</Label>
+      <Label color='teal' floating>
+        22
+      </Label>
     </Menu.Item>
   </Menu>
 )

@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import * as Layouts from '../Layouts'
+import * as Layouts from '../layouts'
 
 const LayoutsRoot = (props) => {
   const name = _.get(props, 'match.params.name')

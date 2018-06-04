@@ -6,7 +6,7 @@ const AttachedContentLayout = () => (
     <Container style={{ padding: '5em 0em' }}>
       <Header as='h2'>Attached Content</Header>
       <Grid columns={3}>
-        <Grid.Column >
+        <Grid.Column>
           <Segment attached='top'>Segment 1</Segment>
           <Segment attached>Segment 2</Segment>
           <Segment attached>Segment 3</Segment>
@@ -159,13 +159,17 @@ const AttachedContentLayout = () => (
           </Menu>
 
           <Menu attached tabular widths={3}>
-            <Menu.Item active as='a'>Active Item</Menu.Item>
+            <Menu.Item active as='a'>
+              Active Item
+            </Menu.Item>
             <Menu.Item as='a'>Item</Menu.Item>
             <Menu.Item as='a'>Item</Menu.Item>
           </Menu>
           <Segment attached>Segment</Segment>
           <Menu attached compact widths={3}>
-            <Menu.Item active as='a'>Active Item</Menu.Item>
+            <Menu.Item active as='a'>
+              Active Item
+            </Menu.Item>
             <Menu.Item as='a'>Item</Menu.Item>
             <Menu.Item as='a'>Item</Menu.Item>
           </Menu>
@@ -177,21 +181,31 @@ const AttachedContentLayout = () => (
     <Container style={{ paddingBottom: '5em' }} text>
       <Header as='h2'>Header Groups</Header>
 
-      <Header as='h4' attached='top' block>Top Block Header</Header>
+      <Header as='h4' attached='top' block>
+        Top Block Header
+      </Header>
       <Segment attached>Segment</Segment>
 
       <Divider section />
 
       <Segment attached>Segment</Segment>
-      <Header as='h4' attached='bottom' block>Bottom Block Header</Header>
+      <Header as='h4' attached='bottom' block>
+        Bottom Block Header
+      </Header>
 
       <Divider section />
 
-      <Header as='h4' attached='top' block>Top Block Header</Header>
+      <Header as='h4' attached='top' block>
+        Top Block Header
+      </Header>
       <Segment attached>Segment</Segment>
-      <Header as='h4' attached block>Middle Block Header</Header>
+      <Header as='h4' attached block>
+        Middle Block Header
+      </Header>
       <Segment attached>Segment</Segment>
-      <Header as='h4' attached='bottom' block>Bottom Block Header</Header>
+      <Header as='h4' attached='bottom' block>
+        Bottom Block Header
+      </Header>
 
       <Header as='h2'>Mixed Attached Content</Header>
 
@@ -202,12 +216,7 @@ const AttachedContentLayout = () => (
         <Menu.Item as='a'>Item</Menu.Item>
       </Menu>
       <Segment attached>1</Segment>
-      <Message
-        attached
-        content='Message'
-        icon='help circle'
-        info
-      />
+      <Message attached content='Message' icon='help circle' info />
       <Table attached='bottom'>
         <Table.Header>
           <Table.HeaderCell>Header</Table.HeaderCell>
@@ -235,12 +244,7 @@ const AttachedContentLayout = () => (
 
       <Divider section />
 
-      <Message
-        attached='top'
-        content='Message'
-        icon='attention'
-        warning
-      />
+      <Message attached='top' content='Message' icon='attention' warning />
       <Table attached>
         <Table.Header>
           <Table.HeaderCell>Header</Table.HeaderCell>
@@ -302,7 +306,9 @@ const AttachedContentLayout = () => (
           </Table.Row>
         </Table.Body>
       </Table>
-      <Segment attached='bottom' inverted>Segment</Segment>
+      <Segment attached='bottom' inverted>
+        Segment
+      </Segment>
     </Container>
   </div>
 )

@@ -43,12 +43,7 @@ export default class ComponentControlsCopyLink extends Component {
     return (
       <ComponentControlsToolTip content={active ? ' Copied Link!' : 'Direct link'}>
         <Menu.Item href={`#${anchorName}`} onClick={this.handleClick}>
-          <Icon
-            color={active ? 'green' : 'grey'}
-            fitted
-            name='linkify'
-            size='large'
-          />
+          <Icon color={active ? 'green' : 'grey'} fitted name='linkify' size='large' />
         </Menu.Item>
       </ComponentControlsToolTip>
     )

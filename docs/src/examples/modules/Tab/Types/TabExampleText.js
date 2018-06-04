@@ -7,8 +7,6 @@ const panes = [
   { menuItem: 'Tab 3', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
 ]
 
-const TabExampleText = () => (
-  <Tab menu={{ text: true }} panes={panes} />
-)
+const TabExampleText = () => <Tab menu={{ text: true }} panes={panes} />
 
 export default TabExampleText

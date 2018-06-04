@@ -7,8 +7,6 @@ const options = [
   { key: 3, text: 'Choice 3', value: 3 },
 ]
 
-const DropdownExampleDisabledItem = () => (
-  <Dropdown text='Dropdown' options={options} open />
-)
+const DropdownExampleDisabledItem = () => <Dropdown text='Dropdown' options={options} open />
 
 export default DropdownExampleDisabledItem

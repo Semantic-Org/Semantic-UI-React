@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useTextAlignProp,
@@ -45,21 +44,31 @@ function CardGroup(props) {
   const rest = getUnhandledProps(CardGroup, props)
   const ElementType = getElementType(CardGroup, props)
 
-  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
-  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
+  if (!childrenUtils.isNil(content)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {content}
+      </ElementType>
+    )
+  }
 
   const itemsJSX = _.map(items, (item) => {
     const key = item.key || [item.header, item.description].join('-')
     return <Card key={key} {...item} />
   })
 
-  return <ElementType {...rest} className={classes}>{itemsJSX}</ElementType>
-}
-
-CardGroup._meta = {
-  name: 'CardGroup',
-  parent: 'Card',
-  type: META.TYPES.VIEW,
+  return (
+    <ElementType {...rest} className={classes}>
+      {itemsJSX}
+    </ElementType>
+  )
 }
 
 CardGroup.propTypes = {

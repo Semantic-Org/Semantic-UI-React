@@ -17,9 +17,12 @@ export default class MenuExampleSubMenu extends Component {
 
         <Menu.Item>
           Home
-
           <Menu.Menu>
-            <Menu.Item name='search' active={activeItem === 'search'} onClick={this.handleItemClick}>
+            <Menu.Item
+              name='search'
+              active={activeItem === 'search'}
+              onClick={this.handleItemClick}
+            >
               Search
             </Menu.Item>
             <Menu.Item name='add' active={activeItem === 'add'} onClick={this.handleItemClick}>
@@ -35,7 +38,11 @@ export default class MenuExampleSubMenu extends Component {
           <Icon name='grid layout' />
           Browse
         </Menu.Item>
-        <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick}>
+        <Menu.Item
+          name='messages'
+          active={activeItem === 'messages'}
+          onClick={this.handleItemClick}
+        >
           Messages
         </Menu.Item>
 

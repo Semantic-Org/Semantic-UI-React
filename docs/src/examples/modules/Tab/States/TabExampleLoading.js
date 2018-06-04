@@ -7,8 +7,6 @@ const panes = [
   { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
 ]
 
-const TabExampleLoading = () => (
-  <Tab panes={panes} />
-)
+const TabExampleLoading = () => <Tab panes={panes} />
 
 export default TabExampleLoading

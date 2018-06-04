@@ -108,7 +108,6 @@ export default class PaginationExampleCustomization extends Component {
             </Form.Group>
           </Form>
         </Grid.Column>
-
       </Grid>
     )
   }

@@ -7,7 +7,7 @@ const TableExampleCollapsingCell = () => (
       <Table.Row>
         <Table.Cell collapsing>
           <Icon name='folder' />
-            node_modules
+          node_modules
         </Table.Cell>
         <Table.Cell>Initial commit</Table.Cell>
         <Table.Cell>10 hours ago</Table.Cell>
@@ -15,7 +15,7 @@ const TableExampleCollapsingCell = () => (
       <Table.Row>
         <Table.Cell>
           <Icon name='folder' />
-            test
+          test
         </Table.Cell>
         <Table.Cell>Initial commit</Table.Cell>
         <Table.Cell>10 hours ago</Table.Cell>
@@ -23,7 +23,7 @@ const TableExampleCollapsingCell = () => (
       <Table.Row>
         <Table.Cell>
           <Icon name='folder' />
-            build
+          build
         </Table.Cell>
         <Table.Cell>Initial commit</Table.Cell>
         <Table.Cell>10 hours ago</Table.Cell>

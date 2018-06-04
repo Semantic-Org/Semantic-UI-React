@@ -11,12 +11,7 @@ const extraImages = [
 
 const FeedExampleExtraImagesShorthand = () => (
   <Feed>
-    <Feed.Event
-      image={image}
-      date={date}
-      summary={summary}
-      extraImages={extraImages}
-    />
+    <Feed.Event image={image} date={date} summary={summary} extraImages={extraImages} />
 
     <Feed.Event>
       <Feed.Label image={image} />

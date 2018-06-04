@@ -23,12 +23,7 @@ const options = [
 ]
 
 const DropdownExampleItemContent = () => (
-  <Dropdown
-    selection
-    fluid
-    options={options}
-    placeholder='Choose an option'
-  />
+  <Dropdown selection fluid options={options} placeholder='Choose an option' />
 )
 
 export default DropdownExampleItemContent

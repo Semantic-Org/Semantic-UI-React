@@ -1,8 +1,8 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const TabTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -12,12 +12,12 @@ const TabTypesExamples = () => (
       </Message.Header>
       <Message.List>
         <Message.Item>
-          <code>renderActiveOnly</code> (default) Only the active pane is rendered.
-          Switching tabs unmounts the current pane and mounts the new pane.
+          <code>renderActiveOnly</code> (default) Only the active pane is rendered. Switching tabs
+          unmounts the current pane and mounts the new pane.
         </Message.Item>
         <Message.Item>
-          <code>renderActiveOnly={'{false}'}</code> All panes are rendered on Tab mount.
-          Switching tabs hides the current pane and shows the new pane, without unmounting panes.
+          <code>renderActiveOnly={'{false}'}</code> All panes are rendered on Tab mount. Switching
+          tabs hides the current pane and shows the new pane, without unmounting panes.
         </Message.Item>
       </Message.List>
     </Message>
@@ -28,7 +28,11 @@ const TabTypesExamples = () => (
       examplePath='modules/Tab/Types/TabExampleBasic'
     />
     <ComponentExample
-      description={<span>A basic tab using <code>renderActiveOnly={'{false}'}</code>.</span>}
+      description={
+        <span>
+          A basic tab using <code>renderActiveOnly={'{false}'}</code>.
+        </span>
+      }
       examplePath='modules/Tab/Types/TabExampleBasicAll'
     />
     <ComponentExample
@@ -36,9 +40,7 @@ const TabTypesExamples = () => (
       description='A tab menu can point to its tab panes.'
       examplePath='modules/Tab/Types/TabExamplePointing'
     />
-    <ComponentExample
-      examplePath='modules/Tab/Types/TabExampleSecondaryPointing'
-    />
+    <ComponentExample examplePath='modules/Tab/Types/TabExampleSecondaryPointing' />
     <ComponentExample
       title='Secondary Menu'
       description='A tab menu can adjust its appearance to de-emphasize its contents.'

@@ -3,8 +3,18 @@ import React, { Component } from 'react'
 import { Divider, Statistic } from 'semantic-ui-react'
 
 const colors = [
-  'red', 'orange', 'yellow', 'olive', 'green', 'teal',
-  'blue', 'violet', 'purple', 'pink', 'brown', 'grey',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'teal',
+  'blue',
+  'violet',
+  'purple',
+  'pink',
+  'brown',
+  'grey',
 ]
 
 export default class StatisticExampleColoredGroup extends Component {
@@ -18,7 +28,11 @@ export default class StatisticExampleColoredGroup extends Component {
     return (
       <div>
         <select onChange={this.handleColorChange}>
-          {_.map(colors, c => <option key={c} value={c}>{_.startCase(c)}</option>)}
+          {_.map(colors, c => (
+            <option key={c} value={c}>
+              {_.startCase(c)}
+            </option>
+          ))}
         </select>
 
         <Divider hidden />

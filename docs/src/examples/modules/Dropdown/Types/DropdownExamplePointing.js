@@ -3,9 +3,7 @@ import { Dropdown, Menu } from 'semantic-ui-react'
 
 const DropdownExamplePointing = () => (
   <Menu>
-    <Menu.Item>
-      Home
-    </Menu.Item>
+    <Menu.Item>Home</Menu.Item>
     <Dropdown text='Shopping' pointing className='link item'>
       <Dropdown.Menu>
         <Dropdown.Header>Categories</Dropdown.Header>
@@ -33,12 +31,8 @@ const DropdownExamplePointing = () => (
         <Dropdown.Item>Cancellations</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
-    <Menu.Item>
-      Forums
-    </Menu.Item>
-    <Menu.Item>
-      Contact Us
-    </Menu.Item>
+    <Menu.Item>Forums</Menu.Item>
+    <Menu.Item>Contact Us</Menu.Item>
   </Menu>
 )
 

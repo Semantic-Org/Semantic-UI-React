@@ -41,9 +41,7 @@ export default class DropdownExampleSelectOnNavigation extends Component {
         </Grid.Column>
         <Grid.Column>
           Dropdown values:
-          <pre>
-            {JSON.stringify(this.state, null, 2)}
-          </pre>
+          <pre>{JSON.stringify(this.state, null, 2)}</pre>
         </Grid.Column>
       </Grid>
     )

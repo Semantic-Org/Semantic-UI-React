@@ -1,8 +1,8 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const ResponsiveTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -12,7 +12,8 @@ const ResponsiveTypesExamples = () => (
       examplePath='addons/Responsive/Types/ResponsiveExampleResponsive'
     >
       <Message info>
-        Instead of <code>Grid</code> visibility breakpoints, <code>Responsive</code> doesn't render invisible content.
+        Instead of <code>Grid</code> visibility breakpoints, <code>Responsive</code> doesn't render
+        invisible content.
       </Message>
     </ComponentExample>
     <ComponentExample

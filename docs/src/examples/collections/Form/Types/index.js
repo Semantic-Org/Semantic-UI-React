@@ -1,6 +1,6 @@
 import React from 'react'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 
 import { Message, Icon } from 'src'
 
@@ -14,8 +14,8 @@ const FormTypesExamples = () => (
       <Message info icon>
         <Icon name='pointing right' />
         <Message.Content>
-          Forms also have a robust shorthand props API for generating controls wrapped in FormFields.
-          See shorthand examples below.
+          Forms also have a robust shorthand props API for generating controls wrapped in
+          FormFields. See shorthand examples below.
         </Message.Content>
       </Message>
     </ComponentExample>

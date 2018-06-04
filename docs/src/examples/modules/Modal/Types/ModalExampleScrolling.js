@@ -28,4 +28,3 @@ const ModalScrollingExample = () => (
 )
 
 export default ModalScrollingExample
-

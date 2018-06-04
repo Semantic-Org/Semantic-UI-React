@@ -13,7 +13,6 @@ import {
   htmlInputAttrs,
   isBrowser,
   makeDebugger,
-  META,
   objectDiff,
   partitionHTMLProps,
   shallowEqual,
@@ -187,11 +186,6 @@ export default class Search extends Component {
   }
 
   static autoControlledProps = ['open', 'value']
-
-  static _meta = {
-    name: 'Search',
-    type: META.TYPES.MODULE,
-  }
 
   static Category = SearchCategory
   static Result = SearchResult

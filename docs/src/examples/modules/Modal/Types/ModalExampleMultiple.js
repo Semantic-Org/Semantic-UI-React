@@ -17,7 +17,11 @@ class NestedModal extends Component {
         onOpen={this.open}
         onClose={this.close}
         size='small'
-        trigger={<Button primary icon>Proceed <Icon name='right chevron' /></Button>}
+        trigger={
+          <Button primary icon>
+            Proceed <Icon name='right chevron' />
+          </Button>
+        }
       >
         <Modal.Header>Modal #2</Modal.Header>
         <Modal.Content>
@@ -49,4 +53,3 @@ const ModalExampleMultiple = () => (
 )
 
 export default ModalExampleMultiple
-

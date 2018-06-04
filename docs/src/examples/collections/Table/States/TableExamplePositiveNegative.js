@@ -21,7 +21,7 @@ const TableExamplePositiveNegative = () => (
         <Table.Cell>Jimmy</Table.Cell>
         <Table.Cell>
           <Icon name='checkmark' />
-            Approved
+          Approved
         </Table.Cell>
         <Table.Cell>None</Table.Cell>
       </Table.Row>
@@ -30,7 +30,7 @@ const TableExamplePositiveNegative = () => (
         <Table.Cell>Unknown</Table.Cell>
         <Table.Cell positive>
           <Icon name='close' />
-            Requires call
+          Requires call
         </Table.Cell>
       </Table.Row>
       <Table.Row negative>

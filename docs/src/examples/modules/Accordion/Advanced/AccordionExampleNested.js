@@ -30,8 +30,6 @@ const rootPanels = [
   { title: 'Level 2', content: { content: Level2Content, key: 'content-2' } },
 ]
 
-const AccordionExampleNested = () => (
-  <Accordion defaultActiveIndex={0} panels={rootPanels} styled />
-)
+const AccordionExampleNested = () => <Accordion defaultActiveIndex={0} panels={rootPanels} styled />
 
 export default AccordionExampleNested

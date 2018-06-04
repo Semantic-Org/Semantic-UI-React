@@ -1,6 +1,6 @@
 import React from 'react'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const ButtonVariationsExamples = () => (
   <ExampleSection title='Variations'>
@@ -54,17 +54,13 @@ const ButtonVariationsExamples = () => (
       description='A button can be circular.'
       examplePath='elements/Button/Variations/ButtonExampleCircular'
     />
-    <ComponentExample
-      examplePath='elements/Button/Variations/ButtonExampleCircularSocial'
-    />
+    <ComponentExample examplePath='elements/Button/Variations/ButtonExampleCircularSocial' />
     <ComponentExample
       title='Vertically Attached'
       description='A button can be attached to the top or bottom of other content.'
       examplePath='elements/Button/Variations/ButtonExampleVerticallyAttached'
     />
-    <ComponentExample
-      examplePath='elements/Button/Variations/ButtonExampleVerticallyAttachedGroup'
-    />
+    <ComponentExample examplePath='elements/Button/Variations/ButtonExampleVerticallyAttachedGroup' />
     <ComponentExample
       title='Horizontally Attached'
       description='A button can be attached to the left or right of other content.'

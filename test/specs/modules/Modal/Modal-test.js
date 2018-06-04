@@ -8,7 +8,13 @@ import ModalActions from 'src/modules/Modal/ModalActions'
 import ModalDescription from 'src/modules/Modal/ModalDescription'
 import Portal from 'src/addons/Portal/Portal'
 
-import { assertNodeContains, assertBodyClasses, assertBodyContains, domEvent, sandbox } from 'test/utils'
+import {
+  assertNodeContains,
+  assertBodyClasses,
+  assertBodyContains,
+  domEvent,
+  sandbox,
+} from 'test/utils'
 import * as common from 'test/specs/commonTests'
 import isBrowser from 'src/lib/isBrowser'
 
@@ -24,16 +30,18 @@ const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Modal', () => {
   beforeEach(() => {
-    wrapper = undefined
-    document.body.innerHTML = ''
-  })
-
-  afterEach(() => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
+    wrapper = undefined
+
+    const dimmer = document.querySelector('.ui.dimmer')
+    const modal = document.querySelector('.ui.modal')
+
+    if (dimmer) dimmer.parentNode.removeChild(dimmer)
+    if (modal) modal.parentNode.removeChild(modal)
   })
 
   common.isConformant(Modal, { rendersPortal: true })
-  common.hasSubComponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
+  common.hasSubcomponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
   common.hasValidTypings(Modal)
 
   common.implementsShorthandProp(Modal, {
@@ -67,9 +75,7 @@ describe('Modal', () => {
   it('renders child text', () => {
     wrapperMount(<Modal open>child text</Modal>)
 
-    document.querySelector('.ui.modal')
-      .innerText
-      .should.equal('child text')
+    document.querySelector('.ui.modal').innerText.should.equal('child text')
   })
 
   it('renders child components', () => {
@@ -115,14 +121,13 @@ describe('Modal', () => {
   describe('onActionClick', () => {
     it('is called when an action is clicked', () => {
       const onActionClick = sandbox.spy()
-      const event = { target: null }
       const props = { actions: ['OK'], defaultOpen: true, onActionClick }
 
       wrapperMount(<Modal {...props} />)
       domEvent.click('.ui.modal .actions .button')
 
       onActionClick.should.have.been.calledOnce()
-      onActionClick.should.have.been.calledWithMatch(event, props)
+      onActionClick.should.have.been.calledWithMatch({}, props)
     })
   })
 
@@ -218,8 +223,7 @@ describe('Modal', () => {
   describe('dimmer', () => {
     describe('defaults', () => {
       it('is set to true by default', () => {
-        Modal.defaultProps.dimmer
-          .should.equal(true)
+        Modal.defaultProps.dimmer.should.equal(true)
       })
 
       it('is present by default', () => {
@@ -305,7 +309,7 @@ describe('Modal', () => {
       const spy = sandbox.spy()
       wrapperMount(<Modal onOpen={spy} />)
 
-      domEvent.click('body')
+      domEvent.click(document.body)
       spy.should.not.have.been.called()
     })
   })
@@ -341,7 +345,7 @@ describe('Modal', () => {
     it('is not called on body click', () => {
       wrapperMount(<Modal onClose={spy} defaultOpen />)
 
-      domEvent.click('body')
+      domEvent.click(document.body)
       spy.should.not.have.been.calledOnce()
     })
 
@@ -385,25 +389,25 @@ describe('Modal', () => {
     it('closes the modal when Escape is pressed by default', () => {
       wrapperMount(<Modal defaultOpen closeOnEscape />)
 
-      document.body.childElementCount.should.equal(1)
+      assertBodyContains('.ui.dimmer')
       domEvent.keyDown(document, { key: 'Escape' })
-      document.body.childElementCount.should.equal(0)
+      assertBodyContains('.ui.dimmer', false)
     })
 
     it('closes the modal when true and Escape is pressed', () => {
       wrapperMount(<Modal defaultOpen closeOnEscape />)
 
-      document.body.childElementCount.should.equal(1)
+      assertBodyContains('.ui.dimmer')
       domEvent.keyDown(document, { key: 'Escape' })
-      document.body.childElementCount.should.equal(0)
+      assertBodyContains('.ui.dimmer', false)
     })
 
     it('does not close the modal when false and Escape is pressed', () => {
       wrapperMount(<Modal defaultOpen closeOnEscape={false} />)
 
-      document.body.childElementCount.should.equal(1)
+      assertBodyContains('.ui.dimmer')
       domEvent.keyDown(document, { key: 'Escape' })
-      document.body.childElementCount.should.equal(1)
+      assertBodyContains('.ui.dimmer')
     })
   })
 
@@ -414,16 +418,16 @@ describe('Modal', () => {
     it('closes the modal on document click when true', () => {
       wrapperMount(<Modal defaultOpen closeOnDocumentClick />)
 
-      document.body.childElementCount.should.equal(1)
+      assertBodyContains('.ui.dimmer')
       domEvent.click(document.body)
-      document.body.childElementCount.should.equal(0)
+      assertBodyContains('.ui.dimmer', false)
     })
     it('does not close the modal on document click when false', () => {
       wrapperMount(<Modal defaultOpen closeOnDocumentClick={false} />)
 
-      document.body.childElementCount.should.equal(1)
+      assertBodyContains('.ui.dimmer')
       domEvent.click(document.body)
-      document.body.childElementCount.should.equal(1)
+      assertBodyContains('.ui.dimmer')
     })
   })
 
@@ -432,7 +436,11 @@ describe('Modal', () => {
       const mountNode = document.createElement('div')
       document.body.appendChild(mountNode)
 
-      wrapperMount(<Modal mountNode={mountNode} open>foo</Modal>)
+      wrapperMount(
+        <Modal mountNode={mountNode} open>
+          foo
+        </Modal>,
+      )
       assertNodeContains(mountNode, '.ui.modal')
     })
   })
@@ -444,19 +452,31 @@ describe('Modal', () => {
     })
 
     it('defaults to `close` when boolean', () => {
-      wrapperMount(<Modal open closeIcon>foo</Modal>)
+      wrapperMount(
+        <Modal open closeIcon>
+          foo
+        </Modal>,
+      )
       assertBodyContains('.ui.modal .icon.close')
     })
 
     it('is present when passed', () => {
-      wrapperMount(<Modal open closeIcon='bullseye'>foo</Modal>)
+      wrapperMount(
+        <Modal open closeIcon='bullseye'>
+          foo
+        </Modal>,
+      )
       assertBodyContains('.ui.modal .icon.bullseye')
     })
 
     it('triggers onClose when clicked', () => {
       const spy = sandbox.spy()
 
-      wrapperMount(<Modal onClose={spy} open closeIcon='bullseye'>foo</Modal>)
+      wrapperMount(
+        <Modal onClose={spy} open closeIcon='bullseye'>
+          foo
+        </Modal>,
+      )
       domEvent.click('.ui.modal .icon.bullseye')
       spy.should.have.been.calledOnce()
     })

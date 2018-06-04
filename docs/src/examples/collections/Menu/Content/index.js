@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 
 // TODO: Add example with <Popup> after it will be added
 // TODO: Add example with <Search> after it will be added

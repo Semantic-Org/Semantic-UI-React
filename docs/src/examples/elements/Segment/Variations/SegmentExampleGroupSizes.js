@@ -8,12 +8,8 @@ const SegmentGroupSizesExample = () => {
     <div>
       {sizes.map(size => (
         <Segment.Group key={size} size={size}>
-          <Segment>
-            It's a {size} segment
-          </Segment>
-          <Segment>
-            And it's a {size} segment, too
-          </Segment>
+          <Segment>It's a {size} segment</Segment>
+          <Segment>And it's a {size} segment, too</Segment>
         </Segment.Group>
       ))}
     </div>

@@ -11,8 +11,16 @@ export default class MenuExampleVerticalDropdown extends Component {
 
     return (
       <Menu secondary vertical>
-        <Menu.Item name='account' active={activeItem === 'account'} onClick={this.handleItemClick} />
-        <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick} />
+        <Menu.Item
+          name='account'
+          active={activeItem === 'account'}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name='settings'
+          active={activeItem === 'settings'}
+          onClick={this.handleItemClick}
+        />
         <Dropdown item text='Display Options'>
           <Dropdown.Menu>
             <Dropdown.Header>Text Size</Dropdown.Header>

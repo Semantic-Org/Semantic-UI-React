@@ -51,7 +51,9 @@ const TableExampleFullWidth = () => (
             <Icon name='user' /> Add User
           </Button>
           <Button size='small'>Approve</Button>
-          <Button disabled size='small'>Approve All</Button>
+          <Button disabled size='small'>
+            Approve All
+          </Button>
         </Table.HeaderCell>
       </Table.Row>
     </Table.Footer>

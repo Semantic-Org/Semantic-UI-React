@@ -11,7 +11,9 @@ export default class DimmerExampleEvents extends Component {
     const { active } = this.state
     const content = (
       <div>
-        <Header as='h2' inverted>Title</Header>
+        <Header as='h2' inverted>
+          Title
+        </Header>
 
         <Button primary>Add</Button>
         <Button>View</Button>

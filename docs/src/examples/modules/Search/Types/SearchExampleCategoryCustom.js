@@ -18,10 +18,7 @@ resultRenderer.propTypes = {
 }
 
 const SearchExampleCategoryCustom = () => (
-  <SearchExampleCategory
-    categoryRenderer={categoryRenderer}
-    resultRenderer={resultRenderer}
-  />
+  <SearchExampleCategory categoryRenderer={categoryRenderer} resultRenderer={resultRenderer} />
 )
 
 export default SearchExampleCategoryCustom

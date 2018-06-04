@@ -1,8 +1,7 @@
 import React from 'react'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ContributionPrompt from 'docs/app/Components/ComponentDoc/ContributionPrompt'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ContributionPrompt from 'docs/src/components/ComponentDoc/ContributionPrompt'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const DropdownVariationsExamples = () => (
   <ExampleSection title='Variations'>
@@ -11,12 +10,10 @@ const DropdownVariationsExamples = () => (
       description='A dropdown can have its menu scroll.'
       examplePath='modules/Dropdown/Variations/DropdownExampleScrolling'
     />
-    <ComponentExample
-      examplePath='modules/Dropdown/Variations/DropdownExampleSearchInMenuScrolling'
-    >
+    <ComponentExample examplePath='modules/Dropdown/Variations/DropdownExampleSearchInMenuScrolling'>
       <ContributionPrompt>
-        Dropdown state is not fully managed when using the subcomponent API.
-        The shorthand props API fully manages state but needs to be extended to support the markup shown here.
+        Dropdown state is not fully managed when using the subcomponent API. The shorthand props API
+        fully manages state but needs to be extended to support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
@@ -34,12 +31,10 @@ const DropdownVariationsExamples = () => (
       description='A dropdown menu or sub-menu can specify the direction it should open.'
       examplePath='modules/Dropdown/Variations/DropdownExampleMenuDirection'
     />
-    <ComponentExample
-      examplePath='modules/Dropdown/Variations/DropdownExampleMenuDirectionLeft'
-    >
+    <ComponentExample examplePath='modules/Dropdown/Variations/DropdownExampleMenuDirectionLeft'>
       <ContributionPrompt>
-        The example below shows (roughly) the desired markup but is not functional
-        since we don't currently support nested dropdowns.
+        The example below shows (roughly) the desired markup but is not functional since we don't
+        currently support nested dropdowns.
       </ContributionPrompt>
     </ComponentExample>
   </ExampleSection>

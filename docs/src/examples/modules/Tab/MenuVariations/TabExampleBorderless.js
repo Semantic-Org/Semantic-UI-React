@@ -8,7 +8,7 @@ const panes = [
 ]
 
 const TabExampleBorderless = () => (
-  <Tab menu={{ borderless: true, attached: false, tabular: false }}panes={panes} />
+  <Tab menu={{ borderless: true, attached: false, tabular: false }} panes={panes} />
 )
 
 export default TabExampleBorderless

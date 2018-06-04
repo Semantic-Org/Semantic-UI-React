@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { neverUpdate } from 'docs/app/HOC'
+import { neverUpdate } from 'docs/src/hoc'
 import ComponentPropExtra from './ComponentPropExtra'
 
 const descriptionStyle = {
@@ -26,7 +26,7 @@ const ComponentPropFunctionSignature = ({ name, tags }) => {
   const params = _.filter(tags, { title: 'param' })
   const returns = _.find(tags, { title: 'returns' })
 
-  // this doesn't look like a function propType doc block
+  // this doesn't look like a function propType docblock
   // don't try to render a signature
   if (_.isEmpty(params) && !returns) return null
 
@@ -43,15 +43,19 @@ const ComponentPropFunctionSignature = ({ name, tags }) => {
         <div style={nameStyle}>
           <code>{title}</code>
         </div>
-        <div style={descriptionStyle}>
-          {tag.description}
-        </div>
+        <div style={descriptionStyle}>{tag.description}</div>
       </div>
     )
   })
 
   return (
-    <ComponentPropExtra title={<pre>{name}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}</pre>}>
+    <ComponentPropExtra
+      title={
+        <pre>
+          {name}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}
+        </pre>
+      }
+    >
       {tagDescriptionRows}
     </ComponentPropExtra>
   )

@@ -11,10 +11,7 @@ const FeedExampleIconLabelShorthand = () => (
 
     <Feed.Event>
       <Feed.Label icon='pencil' />
-      <Feed.Content
-        date='Today'
-        summary="You posted on your friend Stevie Feliciano's wall."
-      />
+      <Feed.Content date='Today' summary="You posted on your friend Stevie Feliciano's wall." />
     </Feed.Event>
   </Feed>
 )

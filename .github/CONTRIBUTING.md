@@ -11,7 +11,6 @@ CONTRIBUTING
   - [Commands](#commands)
 - [Workflow](#workflow)
   - [Create a Component](#create-a-component)
-  - [Define _meta](#define-_meta)
   - [Using propTypes](#using-proptypes)
   - [Conformance Test](#conformance-test)
   - [Open A PR](#open-a-pr)
@@ -80,6 +79,8 @@ Please follow the [Angular Git Commit Guidelines][8] format.
 ```sh
 yarn start                 // run doc site
 
+yarn ci                    // run all checks CI runs
+
 yarn test                  // test once
 yarn test:watch            // test on file change
 
@@ -98,7 +99,6 @@ yarn lint:watch            // lint on file change
 ## Workflow
 
 - [Create a Component](#create-a-component)
-- [Define _meta](#define-_meta)
 - [Conformance Test](#conformance-test)
 - [Open A PR](#open-a-pr)
 - [Spec out the API](#spec-out-the-api)
@@ -126,41 +126,6 @@ class Dropdown extends Component {
 ```
 
 >You probably need to extend our [`AutoControlledComponent`](#autocontrolledcomponent) to support both [controlled][2] and [uncontrolled][3] component patterns.
-
-### Define _meta
-
-Every component has a static property called `_meta`. This object defines the component. The values here are used for generated documentation, generated test cases and some utilities.
-
-Here's an example `_meta` object:
-
-```js
-import { META } from '../../lib'
-
-const _meta = {
-  name: 'MyComponent',
-  type: META.TYPES.MODULE,
-}
-```
-
-Assuming the above `_meta` is in scope, here's how you should expose it:
-
-```js
-function MyComponent() {
-  return <div>Hello World</div>
-}
-
-MyComponent._meta = _meta
-```
-
-```js
-class MyComponent {
-  static _meta = _meta
-
-  render() {
-    return <div>Hello World</div>
-  }
-}
-```
 
 ### Using propTypes
 
@@ -390,7 +355,7 @@ There are many common things to test for.  Because of this, we have [`test/specs
 ```js
 common.isConformant()
 common.hasUIClassName()
-common.hasSubComponents()
+common.hasSubcomponents()
 common.isTabbable()
 common.rendersChildren()
 
@@ -420,7 +385,7 @@ describe('Menu', () => {
   common.isConformant(Menu)
   common.hasUIClassName(Menu)
   common.rendersChildren(Menu)
-  common.hasSubComponents(Menu, [MenuItem]) // some take additional arguments
+  common.hasSubcomponents(Menu, [MenuItem]) // some take additional arguments
 })
 ```
 
@@ -445,7 +410,6 @@ This is the only required test.  It ensures a consistent baseline for the framew
 
 >This list is not updated, check the [source][1] for the latest assertions.
 
-1. The [static `_meta`](#_meta) object is valid
 1. Component and filename are correct
 1. Events are properly handled
 1. Extra `props` are spread
@@ -489,7 +453,7 @@ TODO
 - [Props](#props)
 - [Examples](#examples)
 
-Our docs are generated from doc block comments, `propTypes`, and hand written examples.
+Our docs are generated from docblock comments, `propTypes`, and hand written examples.
 
 ### Website
 
@@ -501,7 +465,7 @@ yarn start
 
 ### Components
 
-A doc block should appear above a component class or function to describe it:
+A docblock should appear above a component class or function to describe it:
 
 ```js
 /**
@@ -515,7 +479,7 @@ function Select(props) {
 
 ### Props
 
-A doc block should appear above each prop in `propTypes` to describe them:
+A docblock should appear above each prop in `propTypes` to describe them:
 
 >Limited props shown for brevity.
 
@@ -539,7 +503,7 @@ Label.propTypes = {
   /** Place the label in one of the upper corners . */
   corner: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(Label._meta.props.corner),
+    PropTypes.oneOf(['left', 'right']),
   ]),
 
   /** Add an icon by icon className or pass an <Icon /> */
@@ -554,7 +518,7 @@ Label.propTypes = {
 
 >This section is lacking in instruction as the the docs are set to be overhauled (PRs welcome!).
 
-Usage examples for a component live in `docs/app/Examples`.  The examples follow the SUI doc site examples.
+Usage examples for a component live in `docs/src/examples`.  The examples follow the SUI doc site examples.
 
 Adding documentation for new components is a bit tedious.  The best way to do this (for now) is to copy an existing component's and update them.
 

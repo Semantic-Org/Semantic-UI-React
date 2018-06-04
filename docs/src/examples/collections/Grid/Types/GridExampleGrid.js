@@ -8,8 +8,6 @@ const columns = _.times(16, i => (
   </Grid.Column>
 ))
 
-const GridExampleGrid = () => (
-  <Grid>{columns}</Grid>
-)
+const GridExampleGrid = () => <Grid>{columns}</Grid>
 
 export default GridExampleGrid

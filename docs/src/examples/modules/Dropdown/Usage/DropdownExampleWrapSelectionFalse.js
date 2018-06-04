@@ -8,7 +8,13 @@ const options = [
 ]
 
 const DropdownExampleWrapSelectionFalse = () => (
-  <Dropdown search selection wrapSelection={false} options={options} placeholder='Choose an option' />
+  <Dropdown
+    search
+    selection
+    wrapSelection={false}
+    options={options}
+    placeholder='Choose an option'
+  />
 )
 
 export default DropdownExampleWrapSelectionFalse

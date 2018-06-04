@@ -4,9 +4,7 @@ import { Card, Feed } from 'semantic-ui-react'
 const CardExampleContentBlock = () => (
   <Card>
     <Card.Content>
-      <Card.Header>
-        Recent Activity
-      </Card.Header>
+      <Card.Header>Recent Activity</Card.Header>
     </Card.Content>
     <Card.Content>
       <Feed>

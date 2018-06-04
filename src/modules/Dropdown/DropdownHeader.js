@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
@@ -16,18 +15,19 @@ import Icon from '../../elements/Icon'
  * A dropdown menu can contain a header.
  */
 function DropdownHeader(props) {
-  const {
-    children,
-    className,
-    content,
-    icon,
-  } = props
+  const { children, className, content, icon } = props
 
   const classes = cx('header', className)
   const rest = getUnhandledProps(DropdownHeader, props)
   const ElementType = getElementType(DropdownHeader, props)
 
-  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
 
   return (
     <ElementType {...rest} className={classes}>
@@ -35,12 +35,6 @@ function DropdownHeader(props) {
       {content}
     </ElementType>
   )
-}
-
-DropdownHeader._meta = {
-  name: 'DropdownHeader',
-  parent: 'Dropdown',
-  type: META.TYPES.MODULE,
 }
 
 DropdownHeader.propTypes = {

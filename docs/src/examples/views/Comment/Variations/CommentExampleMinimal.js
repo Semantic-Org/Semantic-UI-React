@@ -3,7 +3,9 @@ import { Button, Comment, Form, Header } from 'semantic-ui-react'
 
 const CommentExampleMinimal = () => (
   <Comment.Group minimal>
-    <Header as='h3' dividing>Comments</Header>
+    <Header as='h3' dividing>
+      Comments
+    </Header>
 
     <Comment>
       <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />

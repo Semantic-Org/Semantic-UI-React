@@ -12,9 +12,7 @@ const ItemExampleFloated = () => (
         <Item.Header>Content A</Item.Header>
         <Item.Description>{paragraph}</Item.Description>
         <Item.Extra>
-          <Button floated='right'>
-            Action
-          </Button>
+          <Button floated='right'>Action</Button>
         </Item.Extra>
       </Item.Content>
     </Item>
@@ -26,9 +24,7 @@ const ItemExampleFloated = () => (
         <Item.Header>Content B</Item.Header>
         <Item.Description>{paragraph}</Item.Description>
         <Item.Extra>
-          <Button floated='right'>
-            Action
-          </Button>
+          <Button floated='right'>Action</Button>
         </Item.Extra>
       </Item.Content>
     </Item>
@@ -40,9 +36,7 @@ const ItemExampleFloated = () => (
         <Item.Header>Content C</Item.Header>
         <Item.Description>{paragraph}</Item.Description>
         <Item.Extra>
-          <Button floated='right'>
-            Action
-          </Button>
+          <Button floated='right'>Action</Button>
         </Item.Extra>
       </Item.Content>
     </Item>

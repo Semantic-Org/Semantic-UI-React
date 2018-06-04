@@ -14,13 +14,12 @@ const items = [
   },
   {
     header: 'Project Report - June',
-    description: 'Capitalise on low hanging fruit to identify a ballpark value added activity to beta test.',
+    description:
+      'Capitalise on low hanging fruit to identify a ballpark value added activity to beta test.',
     meta: 'ROI: 27%',
   },
 ]
 
-const CardExampleGroupProps = () => (
-  <Card.Group items={items} />
-)
+const CardExampleGroupProps = () => <Card.Group items={items} />
 
 export default CardExampleGroupProps

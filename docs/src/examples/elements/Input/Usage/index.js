@@ -1,6 +1,6 @@
 import React from 'react'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const InputUsageExamples = () => (
   <ExampleSection title='Usage'>
@@ -11,7 +11,11 @@ const InputUsageExamples = () => (
     />
     <ComponentExample
       title='Datalist'
-      description={<span>An input can be used with a <code>datalist</code>.</span>}
+      description={
+        <span>
+          An input can be used with a <code>datalist</code>.
+        </span>
+      }
       examplePath='elements/Input/Usage/InputExampleDatalist'
     />
   </ExampleSection>

@@ -1,6 +1,6 @@
 import React from 'react'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 
 import { Message, Icon } from 'src'
 
@@ -11,14 +11,15 @@ const FormFormUsageExamples = () => (
       <Message.Content>
         <Message.Header>Tip</Message.Header>
         <p>
-          Our <code>{'<Form />'}</code> handles data just like a vanilla React <code>{'<form />'}</code>.
-          See React's
+          Our <code>{'<Form />'}</code> handles data just like a vanilla React{' '}
+          <code>{'<form />'}</code>. See React's
           <a
             href='https://facebook.github.io/react/docs/forms.html#controlled-components'
             rel='noopener noreferrer'
             target='_blank'
           >
-            {' '}controlled components{' '}
+            {' '}
+            controlled components{' '}
           </a>
           docs for more.
         </p>

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const EmbedTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -22,8 +22,8 @@ const EmbedTypesExamples = () => (
       examplePath='modules/Embed/Types/EmbedExampleCustom'
     >
       <Message info>
-        Embeds use an intrinsic aspect ratios to embed content responsively. Content will preserve their intrinsic
-        aspect ratio for all browser sizes responsively
+        Embeds use an intrinsic aspect ratios to embed content responsively. Content will preserve
+        their intrinsic aspect ratio for all browser sizes responsively
       </Message>
     </ComponentExample>
   </ExampleSection>

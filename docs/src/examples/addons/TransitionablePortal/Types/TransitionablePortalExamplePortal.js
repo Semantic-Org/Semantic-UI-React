@@ -17,13 +17,13 @@ export default class TransitionablePortalExamplePortal extends Component {
         onOpen={this.handleOpen}
         onClose={this.handleClose}
         openOnTriggerClick
-        trigger={(
+        trigger={
           <Button
             content={open ? 'Close Portal' : 'Open Portal'}
             negative={open}
             positive={!open}
           />
-        )}
+        }
       >
         <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
           <Header>This is an example portal</Header>

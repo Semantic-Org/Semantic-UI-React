@@ -5,11 +5,7 @@ import { Card, Container, Header, Segment } from 'semantic-ui-react'
 const LayoutsExample = () => (
   <Container>
     <Segment basic padded>
-      <Header
-        as='h1'
-        content='Layouts'
-        subheader='Examples of using Semantic UI React'
-      />
+      <Header as='h1' content='Layouts' subheader='Examples of using Semantic UI React' />
     </Segment>
 
     <Segment basic padded>
@@ -57,11 +53,7 @@ const LayoutsExample = () => (
         />
       </Card.Group>
 
-      <Header
-        as='h2'
-        content='Pages'
-        subheader='Starter page templates'
-      />
+      <Header as='h2' content='Pages' subheader='Starter page templates' />
 
       <Card.Group stackable itemsPerRow='3'>
         <Card

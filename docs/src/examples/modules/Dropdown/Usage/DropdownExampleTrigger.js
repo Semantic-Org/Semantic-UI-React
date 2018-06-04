@@ -10,7 +10,11 @@ const trigger = (
 const options = [
   {
     key: 'user',
-    text: <span>Signed in as <strong>Bob Smith</strong></span>,
+    text: (
+      <span>
+        Signed in as <strong>Bob Smith</strong>
+      </span>
+    ),
     disabled: true,
   },
   { key: 'profile', text: 'Your Profile' },
@@ -22,8 +26,6 @@ const options = [
   { key: 'sign-out', text: 'Sign Out' },
 ]
 
-const DropdownTriggerExample = () => (
-  <Dropdown trigger={trigger} options={options} />
-)
+const DropdownTriggerExample = () => <Dropdown trigger={trigger} options={options} />
 
 export default DropdownTriggerExample

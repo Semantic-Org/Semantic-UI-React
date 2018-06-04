@@ -1,7 +1,17 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import {
-  Container, Divider, Dropdown, Grid, Header, Icon, Image, List, Menu, Segment, Visibility,
+  Container,
+  Divider,
+  Dropdown,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  List,
+  Menu,
+  Segment,
+  Visibility,
 } from 'semantic-ui-react'
 
 const menuStyle = {
@@ -84,7 +94,9 @@ export default class StickyLayout extends Component {
   handleOverlayRef = (c) => {
     const { overlayRect } = this.state
 
-    if (!overlayRect) this.setState({ overlayRect: _.pick(c.getBoundingClientRect(), 'height', 'width') })
+    if (!overlayRect) {
+      this.setState({ overlayRect: _.pick(c.getBoundingClientRect(), 'height', 'width') })
+    }
   }
 
   stickOverlay = () => this.setState({ overlayFixed: true })
@@ -111,7 +123,10 @@ export default class StickyLayout extends Component {
 
         <Container text style={{ marginTop: '2em' }}>
           <Header as='h1'>Sticky Example</Header>
-          <p>This example shows how to use lazy loaded images, a sticky menu, and a simple text container</p>
+          <p>
+            This example shows how to use lazy loaded images, a sticky menu, and a simple text
+            container
+          </p>
         </Container>
 
         {/* Attaching the top menu is a simple operation, we only switch `fixed` prop and add another style if it has
@@ -159,7 +174,7 @@ export default class StickyLayout extends Component {
         </Visibility>
 
         <Container text>
-          { _.times(3, i => <Paragraph key={i} />) }
+          {_.times(3, i => <Paragraph key={i} />)}
 
           {/* Example with overlay menu is more complex, SUI simply clones all elements inside, but we should use a
               different approach.
@@ -175,10 +190,7 @@ export default class StickyLayout extends Component {
             style={overlayFixed ? { ...overlayStyle, ...overlayRect } : {}}
           />
 
-          <div
-            ref={this.handleOverlayRef}
-            style={overlayFixed ? fixedOverlayStyle : overlayStyle}
-          >
+          <div ref={this.handleOverlayRef} style={overlayFixed ? fixedOverlayStyle : overlayStyle}>
             <Menu
               icon='labeled'
               style={overlayFixed ? fixedOverlayMenuStyle : overlayMenuStyle}
@@ -186,41 +198,37 @@ export default class StickyLayout extends Component {
             >
               <Menu.Item>
                 <Icon name='twitter' />
-               Twitter
+                Twitter
               </Menu.Item>
 
-              <Menu.Item >
+              <Menu.Item>
                 <Icon name='facebook' />
-               Share
+                Share
               </Menu.Item>
 
               <Menu.Item>
                 <Icon name='mail' />
-               Email
+                Email
               </Menu.Item>
             </Menu>
           </div>
 
-          { _.times(3, i => <Paragraph key={i} />) }
+          {_.times(3, i => <Paragraph key={i} />)}
           <LeftImage />
 
           <Paragraph />
           <RightImage />
 
-          { _.times(4, i => <Paragraph key={i} />) }
+          {_.times(4, i => <Paragraph key={i} />)}
           <LeftImage />
 
           <Paragraph />
           <RightImage />
 
-          { _.times(2, i => <Paragraph key={i} />) }
+          {_.times(2, i => <Paragraph key={i} />)}
         </Container>
 
-        <Segment
-          inverted
-          style={{ margin: '5em 0em 0em', padding: '5em 0em' }}
-          vertical
-        >
+        <Segment inverted style={{ margin: '5em 0em 0em', padding: '5em 0em' }} vertical>
           <Container textAlign='center'>
             <Grid columns={4} divided stackable inverted>
               <Grid.Row>
@@ -253,17 +261,28 @@ export default class StickyLayout extends Component {
                 </Grid.Column>
                 <Grid.Column>
                   <Header inverted as='h4' content='Footer Header' />
-                  <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+                  <p>
+                    Extra space for a call to action inside the footer that could help re-engage
+                    users.
+                  </p>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
             <Divider inverted section />
             <Image src='/logo.png' centered size='mini' />
             <List horizontal inverted divided link>
-              <List.Item as='a' href='#'>Site Map</List.Item>
-              <List.Item as='a' href='#'>Contact Us</List.Item>
-              <List.Item as='a' href='#'>Terms and Conditions</List.Item>
-              <List.Item as='a' href='#'>Privacy Policy</List.Item>
+              <List.Item as='a' href='#'>
+                Site Map
+              </List.Item>
+              <List.Item as='a' href='#'>
+                Contact Us
+              </List.Item>
+              <List.Item as='a' href='#'>
+                Terms and Conditions
+              </List.Item>
+              <List.Item as='a' href='#'>
+                Privacy Policy
+              </List.Item>
             </List>
           </Container>
         </Segment>

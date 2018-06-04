@@ -22,7 +22,8 @@ export default class CommentExampleCollapsed extends Component {
                 <span>2 days ago</span>
               </Comment.Metadata>
               <Comment.Text>
-                I'm very interested in this motherboard. Do you know if it'd work in a Intel LGA775 CPU socket?
+                I'm very interested in this motherboard. Do you know if it'd work in a Intel LGA775
+                CPU socket?
               </Comment.Text>
               <Comment.Actions>
                 <a>Reply</a>

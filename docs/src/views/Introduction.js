@@ -2,20 +2,11 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Editor from 'docs/app/Components/Editor/Editor'
-import { semanticUIDocsURL, repoURL } from 'docs/app/utils'
+import Editor from 'docs/src/components/Editor/Editor'
+import { semanticUIDocsURL, repoURL } from 'docs/src/utils'
 import pkg from 'package.json'
-import {
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  Label,
-  List,
-  Segment,
-} from 'src'
-import Logo from '../Components/Logo/Logo'
+import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'src'
+import Logo from '../components/Logo/Logo'
 
 const AccordionJSX = `const panels = [{
   title: 'What is a dog?',
@@ -78,7 +69,7 @@ const MessageIconHTML = `<div class="ui success message">
   </div>
 </div>`
 
-const MessageSubComponentsJSX = `<Message icon>
+const MessageSubcomponentsJSX = `<Message icon>
   <Icon name='circle notched' loading />
   <Message.Content>
     <Message.Header>
@@ -87,7 +78,7 @@ const MessageSubComponentsJSX = `<Message icon>
     We're fetching that content for you.
   </Message.Content>
 </Message>`
-const MessageSubComponentsHTML = `<div class="ui icon message">
+const MessageSubcomponentsHTML = `<div class="ui icon message">
   <i class="loading circle notched icon"></i>
   <div class="content">
     <div class="header">
@@ -119,7 +110,9 @@ const Comparison = ({ jsx, html }) => (
   <Segment className='code-example'>
     <Grid columns='equal' centered textAlign='left'>
       <Grid.Column computer='8' largeScreen='7' widescreen='7' width='16'>
-        <Label size='tiny' attached='top left'>JSX</Label>
+        <Label size='tiny' attached='top left'>
+          JSX
+        </Label>
         <Editor id={btoa(jsx)} value={jsx} readOnly />
       </Grid.Column>
       <Grid.Column largeScreen='2' only='large screen' textAlign='center'>
@@ -128,7 +121,9 @@ const Comparison = ({ jsx, html }) => (
         </Divider>
       </Grid.Column>
       <Grid.Column computer='8' largeScreen='7' widescreen='7' width='16'>
-        <Label size='tiny' attached='top right'>Rendered HTML</Label>
+        <Label size='tiny' attached='top right'>
+          Rendered HTML
+        </Label>
         <Editor id={btoa(html)} mode='html' value={html} readOnly />
       </Grid.Column>
     </Grid>
@@ -146,16 +141,17 @@ const Introduction = () => (
       <Logo centered size='small' />
       <Header as='h1' textAlign='center'>
         Semantic UI React
-        <Header.Subheader>
-          {pkg.description}
-        </Header.Subheader>
+        <Header.Subheader>{pkg.description}</Header.Subheader>
       </Header>
     </Segment>
 
     <Segment basic padded>
-      <Header as='h2' dividing>Introduction</Header>
+      <Header as='h2' dividing>
+        Introduction
+      </Header>
       <p>
-        Semantic UI React is the official React integration for <a href={semanticUIDocsURL}>Semantic UI</a> .
+        Semantic UI React is the official React integration for{' '}
+        <a href={semanticUIDocsURL}>Semantic UI</a> .
       </p>
       <List>
         <List.Item icon='check' content='jQuery Free' />
@@ -174,15 +170,17 @@ const Introduction = () => (
      *  jQuery Free
      * -------------------------------------- */}
     <Segment basic padded>
-      <Header as='h2' dividing>jQuery Free</Header>
+      <Header as='h2' dividing>
+        jQuery Free
+      </Header>
       <p>
-        jQuery is a DOM manipulation library. It reads from and writes to the DOM.
-        React uses a virtual DOM (a JavaScript representation of the real DOM).
-        React only <em>writes</em> patch updates to the DOM, but <em>never reads</em> from it.
+        jQuery is a DOM manipulation library. It reads from and writes to the DOM. React uses a
+        virtual DOM (a JavaScript representation of the real DOM). React only <em>writes</em> patch
+        updates to the DOM, but <em>never reads</em> from it.
       </p>
       <p>
-        It is not feasible to keep real DOM manipulations in sync with React's virtual DOM. Because of this, all
-        jQuery functionality has been re-implemented in React.
+        It is not feasible to keep real DOM manipulations in sync with React's virtual DOM. Because
+        of this, all jQuery functionality has been re-implemented in React.
       </p>
     </Segment>
 
@@ -190,10 +188,10 @@ const Introduction = () => (
      *  Declarative API
      * -------------------------------------- */}
     <Segment basic padded>
-      <Header as='h2' dividing>Declarative API</Header>
-      <p>
-        Declarative APIs provide for robust features and prop validation.
-      </p>
+      <Header as='h2' dividing>
+        Declarative API
+      </Header>
+      <p>Declarative APIs provide for robust features and prop validation.</p>
 
       <Comparison jsx={RatingJSX} html={RatingHTML} />
       <Comparison jsx={ButtonJSX} html={ButtonHTML} />
@@ -203,15 +201,18 @@ const Introduction = () => (
      *  Augmentation
      * -------------------------------------- */}
     <Segment basic padded>
-      <Header as='h2' dividing>Augmentation</Header>
+      <Header as='h2' dividing>
+        Augmentation
+      </Header>
       <p>
         Control the rendered HTML tag, or render one component <code>as</code> another component.
         Extra props are passed to the component you are rendering <code>as</code>.
       </p>
 
       <p>
-        Augmentation is powerful. You can compose component features and props without adding extra nested components.
-        This is essential for working with <code>MenuLinks</code> and <code>react-router</code>.
+        Augmentation is powerful. You can compose component features and props without adding extra
+        nested components. This is essential for working with <code>MenuLinks</code> and{' '}
+        <code>react-router</code>.
       </p>
 
       <Comparison jsx={HeaderAugmentationJSX} html={HeaderAugmentationHTML} />
@@ -222,10 +223,12 @@ const Introduction = () => (
      *  Shorthand Props
      * -------------------------------------- */}
     <Segment basic padded>
-      <Header as='h2' dividing>Shorthand Props</Header>
+      <Header as='h2' dividing>
+        Shorthand Props
+      </Header>
       <p>
-        Shorthand props generate markup for you, making many use cases a breeze.
-        All object props are spread on the child components.
+        Shorthand props generate markup for you, making many use cases a breeze. All object props
+        are spread on the child components.
       </p>
 
       <Header as='h3'>Child Object Arrays</Header>
@@ -244,15 +247,15 @@ const Introduction = () => (
 
       <Header as='h3'>{'icon={...}'}</Header>
       <p>
-        The <code>icon</code> prop is standard for many components.
-        It can accept an Icon <code>name</code>, an Icon props object, or an <code>{'<Icon />'}</code> instance.
+        The <code>icon</code> prop is standard for many components. It can accept an Icon{' '}
+        <code>name</code>, an Icon props object, or an <code>{'<Icon />'}</code> instance.
       </p>
       <Comparison jsx={MessageIconJSX} html={MessageIconHTML} />
 
       <Header as='h3'>{'image={...}'}</Header>
       <p>
-        The <code>image</code> prop is standard for many components.
-        It can accept an image <code>src</code>, an Image props object, or an <code>{'<Image />'}</code> instance.
+        The <code>image</code> prop is standard for many components. It can accept an image{' '}
+        <code>src</code>, an Image props object, or an <code>{'<Image />'}</code> instance.
       </p>
       <Comparison jsx={LabelJSX} html={LabelHTML} />
     </Segment>
@@ -261,19 +264,23 @@ const Introduction = () => (
      *  Sub Components
      * -------------------------------------- */}
     <Segment basic padded>
-      <Header as='h2' dividing>Sub Components</Header>
+      <Header as='h2' dividing>
+        Sub Components
+      </Header>
       <p>
-        Sub components give you complete access to the markup.
-        This is essential for flexibility in customizing components.
+        Sub components give you complete access to the markup. This is essential for flexibility in
+        customizing components.
       </p>
-      <Comparison jsx={MessageSubComponentsJSX} html={MessageSubComponentsHTML} />
+      <Comparison jsx={MessageSubcomponentsJSX} html={MessageSubcomponentsHTML} />
     </Segment>
 
     {/* ----------------------------------------
      *  Auto Controlled State
      * -------------------------------------- */}
     <Segment basic padded>
-      <Header as='h2' dividing>Auto Controlled State</Header>
+      <Header as='h2' dividing>
+        Auto Controlled State
+      </Header>
 
       <p>
         React has the concept of
@@ -288,22 +295,22 @@ const Introduction = () => (
       </p>
 
       <p>
-        Our stateful components self manage their state out of the box, without wiring. Dropdowns open on click without
-        wiring <code>onClick</code> to the <code>open</code> prop. The value is also stored internally, without
-        wiring <code>onChange</code> to <code>value</code>.
+        Our stateful components self manage their state out of the box, without wiring. Dropdowns
+        open on click without wiring <code>onClick</code> to the <code>open</code> prop. The value
+        is also stored internally, without wiring <code>onChange</code> to <code>value</code>.
       </p>
       <p>
-        If you add a <code>value</code> prop or an <code>open</code> prop, the Dropdown delegates control for that
-        one prop to your value. The other props remain auto controlled. Mix and match any number of controlled and
-        uncontrolled props. Add and remove control at any time by adding or removing props. Everything just works.
+        If you add a <code>value</code> prop or an <code>open</code> prop, the Dropdown delegates
+        control for that one prop to your value. The other props remain auto controlled. Mix and
+        match any number of controlled and uncontrolled props. Add and remove control at any time by
+        adding or removing props. Everything just works.
       </p>
       <p>
         Take a look at our
         <a href={`${repoURL}/blob/master/src/lib/AutoControlledComponent.js`}>
           &nbsp;<code>AutoControlledComponent</code>&nbsp;
         </a>
-        to see how this was done.
-        See the docs try it out live.
+        to see how this was done. See the docs try it out live.
       </p>
       <Divider hidden section />
       <Divider hidden section />

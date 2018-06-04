@@ -1,16 +1,20 @@
 import React from 'react'
 
-import Examples from './Examples'
-import States from './States'
-import Types from './Types'
-import Variations from './Variations'
+import Overlay from './Overlay'
+import Push from './Push'
+import ScaleDown from './ScaleDown'
+import SlideAlong from './SlideAlong'
+import SlideOut from './SlideOut'
+import Uncover from './Uncover'
 
 const SidebarExamples = () => (
   <div>
-    <Types />
-    <States />
-    <Examples />
-    <Variations />
+    <Overlay />
+    <Push />
+    <ScaleDown />
+    <SlideAlong />
+    <SlideOut />
+    <Uncover />
   </div>
 )
 

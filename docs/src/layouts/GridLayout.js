@@ -43,11 +43,14 @@ const GridLayout = () => (
     <InlineStyle />
 
     <Container text>
-      <Header as='h1' dividing>Using Grids</Header>
+      <Header as='h1' dividing>
+        Using Grids
+      </Header>
       <Header as='h3'>Container</Header>
       <p>
-        A container is a fixed width element that wraps your site's content. It remains a constant size and
-        uses <b>margin</b> to center. Containers are the simplest way to center page content inside a grid.
+        A container is a fixed width element that wraps your site's content. It remains a constant
+        size and uses <b>margin</b> to center. Containers are the simplest way to center page
+        content inside a grid.
       </p>
     </Container>
 
@@ -81,10 +84,13 @@ const GridLayout = () => (
     <Container text>
       <Header as='h3'>Text Container</Header>
       <p>
-        Sometimes you just need to put a single column of centered text on a page. A <code>text container</code> is
-        a special type of container optimized for a single flowing column of text, like these instructions on this page.
+        Sometimes you just need to put a single column of centered text on a page. A{' '}
+        <code>text container</code> is a special type of container optimized for a single flowing
+        column of text, like these instructions on this page.
       </p>
-      <p>Text containers <b>do not need to use grids</b> and help simplify basic page layouts.</p>
+      <p>
+        Text containers <b>do not need to use grids</b> and help simplify basic page layouts.
+      </p>
 
       <Grid>
         <Grid.Row columns={1}>
@@ -92,12 +98,15 @@ const GridLayout = () => (
         </Grid.Row>
       </Grid>
 
-      <Header as='h1' dividing>Grid Content</Header>
+      <Header as='h1' dividing>
+        Grid Content
+      </Header>
       <Header as='h3'>Column Flow</Header>
       <p>
-        A grid does not necessarily need to specify rows. If you include <code>columns</code> as direct child of
-        <code>ui grid</code> content will automatically flow to the next row when all the grid columns are taken in the
-        current row.
+        A grid does not necessarily need to specify rows. If you include <code>columns</code> as
+        direct child of
+        <code>ui grid</code> content will automatically flow to the next row when all the grid
+        columns are taken in the current row.
       </p>
       <Grid>
         <Grid.Column width={4} />
@@ -124,8 +133,8 @@ const GridLayout = () => (
 
       <Header as='h3'>Specifying Row Width</Header>
       <p>
-        Specifying a grid column count will divide columns into rows of predetermined column count. Additional columns
-        will automatically flow to the next row.
+        Specifying a grid column count will divide columns into rows of predetermined column count.
+        Additional columns will automatically flow to the next row.
       </p>
       <Grid columns={3}>
         <Grid.Column>column</Grid.Column>
@@ -147,11 +156,14 @@ const GridLayout = () => (
 
       <Header as='h3'>Special Variations</Header>
       <p>
-        Some special variations that format grids like tables require you to specify rows. For example a
+        Some special variations that format grids like tables require you to specify rows. For
+        example a
         <code>divided grid</code> or a <code>celled grid</code> requires row wrappers.
       </p>
 
-      <Divider section horizontal>Celled Grid</Divider>
+      <Divider section horizontal>
+        Celled Grid
+      </Divider>
       <Grid celled>
         <Grid.Row>
           <Grid.Column width={4} />
@@ -167,7 +179,9 @@ const GridLayout = () => (
         </Grid.Row>
       </Grid>
 
-      <Divider horizontal section>Internally Celled Grid</Divider>
+      <Divider horizontal section>
+        Internally Celled Grid
+      </Divider>
 
       <Grid celled='internally'>
         <Grid.Row>
@@ -184,8 +198,9 @@ const GridLayout = () => (
         </Grid.Row>
       </Grid>
 
-
-      <Divider horizontal section>Divided Grid</Divider>
+      <Divider horizontal section>
+        Divided Grid
+      </Divider>
 
       <Grid divided>
         <Grid.Row>
@@ -202,7 +217,9 @@ const GridLayout = () => (
         </Grid.Row>
       </Grid>
 
-      <Divider horizontal section>Vertically Divided Grid</Divider>
+      <Divider horizontal section>
+        Vertically Divided Grid
+      </Divider>
 
       <Grid divided='vertically'>
         <Grid.Row>
@@ -219,11 +236,15 @@ const GridLayout = () => (
         </Grid.Row>
       </Grid>
 
-      <Header as='h1' dividing>Adjusting Grids</Header>
+      <Header as='h1' dividing>
+        Adjusting Grids
+      </Header>
       <Header as='h3'>Centering Content</Header>
       <p>
-        If a row does not take up all sixteen grid columns, you can use a <code>ui centered grid</code>,
-        <code>centered row</code>, or <code>centered column</code> to center the column contents inside the grid.
+        If a row does not take up all sixteen grid columns, you can use a{' '}
+        <code>ui centered grid</code>,
+        <code>centered row</code>, or <code>centered column</code> to center the column contents
+        inside the grid.
       </p>
 
       <Grid centered columns={2}>
@@ -236,26 +257,39 @@ const GridLayout = () => (
 
       <Header as='h3'>Floating Rows</Header>
       <p>
-        Since Semantic UI's grid is based on flex box, a <code>left floated</code> item should come first, and a
+        Since Semantic UI's grid is based on flex box, a <code>left floated</code> item should come
+        first, and a
         <code>right floated</code> item last in its row.
       </p>
 
       <Grid>
-        <Grid.Column floated='left' width={6}>Left floated</Grid.Column>
-        <Grid.Column floated='right' width={6}>Right floated</Grid.Column>
+        <Grid.Column floated='left' width={6}>
+          Left floated
+        </Grid.Column>
+        <Grid.Column floated='right' width={6}>
+          Right floated
+        </Grid.Column>
       </Grid>
 
       <Header as='h3'>Text Alignment</Header>
-      <p>You can specify text alignment using alignment variations on a grid, row, or column level.</p>
+      <p>
+        You can specify text alignment using alignment variations on a grid, row, or column level.
+      </p>
 
       <Grid>
-        <Grid.Column verticalAlign='right' width={8}>right aligned column</Grid.Column>
-        <Grid.Column verticalAlign='left' width={8}>left aligned column</Grid.Column>
+        <Grid.Column verticalAlign='right' width={8}>
+          right aligned column
+        </Grid.Column>
+        <Grid.Column verticalAlign='left' width={8}>
+          left aligned column
+        </Grid.Column>
         <Grid.Row columns={2} verticalAlign='center'>
           <Grid.Column>center aligned row</Grid.Column>
           <Grid.Column>center aligned row</Grid.Column>
         </Grid.Row>
-        <Grid.Column verticalAlign='right' width={16}>right aligned column</Grid.Column>
+        <Grid.Column verticalAlign='right' width={16}>
+          right aligned column
+        </Grid.Column>
       </Grid>
 
       <Header as='h3'>Vertical Alignment</Header>
@@ -278,8 +312,8 @@ const GridLayout = () => (
 
       <Header as='h3'>Equal Width Columns</Header>
       <p>
-        Specifying an <code>equal width grid</code> will automatically determine column sizes to fit evenly inside
-        one row.
+        Specifying an <code>equal width grid</code> will automatically determine column sizes to fit
+        evenly inside one row.
       </p>
 
       <Grid columns='equal'>
@@ -342,7 +376,9 @@ const GridLayout = () => (
           <Grid.Column width={10}>ten wide column computer only</Grid.Column>
           <Grid.Column width={6}>six wide column computer only</Grid.Column>
         </Grid.Row>
-        <Grid.Column only='mobile' width={16}>sixteen wide column mobile only</Grid.Column>
+        <Grid.Column only='mobile' width={16}>
+          sixteen wide column mobile only
+        </Grid.Column>
         <Grid.Row columns={3} only='computer'>
           <Grid.Column>computer only row</Grid.Column>
           <Grid.Column>computer only row</Grid.Column>

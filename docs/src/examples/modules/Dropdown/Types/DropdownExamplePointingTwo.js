@@ -3,9 +3,7 @@ import { Dropdown, Menu } from 'semantic-ui-react'
 
 const DropdownExamplePointingTwo = () => (
   <Menu vertical>
-    <Menu.Item>
-      Home
-    </Menu.Item>
+    <Menu.Item>Home</Menu.Item>
     <Dropdown text='Messages' pointing='left' className='link item'>
       <Dropdown.Menu>
         <Dropdown.Item>Inbox</Dropdown.Item>
@@ -17,12 +15,8 @@ const DropdownExamplePointingTwo = () => (
         <Dropdown.Item>Trash</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
-    <Menu.Item>
-      Browse
-    </Menu.Item>
-    <Menu.Item>
-      Help
-    </Menu.Item>
+    <Menu.Item>Browse</Menu.Item>
+    <Menu.Item>Help</Menu.Item>
   </Menu>
 )
 

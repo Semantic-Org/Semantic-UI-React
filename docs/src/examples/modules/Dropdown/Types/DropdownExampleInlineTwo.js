@@ -26,9 +26,13 @@ const DropdownExampleInlineTwo = () => (
   <Header as='h4'>
     <Icon name='trophy' />
     <Header.Content>
-      Trending repos
-      {' '}
-      <Dropdown inline header='Adjust time span' options={options} defaultValue={options[0].value} />
+      Trending repos{' '}
+      <Dropdown
+        inline
+        header='Adjust time span'
+        options={options}
+        defaultValue={options[0].value}
+      />
     </Header.Content>
   </Header>
 )

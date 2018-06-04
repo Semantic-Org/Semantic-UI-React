@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -25,12 +24,6 @@ function StatisticLabel(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-StatisticLabel._meta = {
-  name: 'StatisticLabel',
-  parent: 'Statistic',
-  type: META.TYPES.VIEW,
 }
 
 StatisticLabel.propTypes = {

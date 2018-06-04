@@ -7,8 +7,6 @@ const panes = [
   { menuItem: 'Tab 3', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
 ]
 
-const TabExamplePointing = () => (
-  <Tab menu={{ pointing: true }} panes={panes} />
-)
+const TabExamplePointing = () => <Tab menu={{ pointing: true }} panes={panes} />
 
 export default TabExamplePointing

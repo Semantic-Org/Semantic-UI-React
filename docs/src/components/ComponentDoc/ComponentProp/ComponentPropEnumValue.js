@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { neverUpdate } from 'docs/app/HOC'
+import { neverUpdate } from 'docs/src/hoc'
 
 const spanStyle = {
   display: 'inline-block',

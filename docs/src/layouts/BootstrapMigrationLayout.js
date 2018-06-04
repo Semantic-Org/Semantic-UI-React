@@ -18,7 +18,9 @@ const BootstrapMigrationLayout = () => (
   <Grid container style={{ padding: '5em 0em' }}>
     <Grid.Row>
       <Grid.Column>
-        <Header as='h1' dividing>Bootstrap Migration</Header>
+        <Header as='h1' dividing>
+          Bootstrap Migration
+        </Header>
       </Grid.Column>
     </Grid.Row>
 
@@ -27,9 +29,9 @@ const BootstrapMigrationLayout = () => (
         <Message>
           <Header as='h1'>Hello, world!</Header>
           <p>
-            This is a template for a simple marketing or informational website. It includes a large callout called a
-            jumbotron and three supporting pieces of content. Use it as a starting point to create something more
-            unique.
+            This is a template for a simple marketing or informational website. It includes a large
+            callout called a jumbotron and three supporting pieces of content. Use it as a starting
+            point to create something more unique.
           </p>
           <Button color='blue'>Learn more &raquo;</Button>
         </Message>
@@ -39,11 +41,21 @@ const BootstrapMigrationLayout = () => (
     <Grid.Row>
       <Grid.Column>
         <Header as='h1'>Buttons</Header>
-        <Button as='a' tabindex='0'>Default</Button>
-        <Button as='a' primary tabindex='0'>Primary</Button>
-        <Button as='a' basic tabindex='0'>Basic</Button>
-        <Button as='a' positive tabindex='0'>Success</Button>
-        <Button as='a' negative tabindex='0'>Error</Button>
+        <Button as='a' tabindex='0'>
+          Default
+        </Button>
+        <Button as='a' primary tabindex='0'>
+          Primary
+        </Button>
+        <Button as='a' basic tabindex='0'>
+          Basic
+        </Button>
+        <Button as='a' positive tabindex='0'>
+          Success
+        </Button>
+        <Button as='a' negative tabindex='0'>
+          Error
+        </Button>
       </Grid.Column>
     </Grid.Row>
 
@@ -271,7 +283,9 @@ const BootstrapMigrationLayout = () => (
         <Divider />
 
         <Message positive>Well done! You successfully read this important alert message.</Message>
-        <Message info>Heads up! This alert needs your attention, but it's not super important.</Message>
+        <Message info>
+          Heads up! This alert needs your attention, but it's not super important.
+        </Message>
         <Message warning>Warning! Best check yo self, you're not looking too good.</Message>
         <Message error>Oh snap! Change a few things up and try submitting again.</Message>
       </Grid.Column>
@@ -314,16 +328,31 @@ const BootstrapMigrationLayout = () => (
           <Grid.Column>
             <Menu vertical fluid>
               <Menu.Item>
-                <Header size='medium' as='h1'>List group item heading</Header>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <Header size='medium' as='h1'>
+                  List group item heading
+                </Header>
+                <p>
+                  Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
+                  varius blandit.
+                </p>
               </Menu.Item>
               <Menu.Item>
-                <Header size='medium' as='h1'>List group item heading</Header>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <Header size='medium' as='h1'>
+                  List group item heading
+                </Header>
+                <p>
+                  Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
+                  varius blandit.
+                </p>
               </Menu.Item>
               <Menu.Item>
-                <Header size='medium' as='h1'>List group item heading</Header>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <Header size='medium' as='h1'>
+                  List group item heading
+                </Header>
+                <p>
+                  Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
+                  varius blandit.
+                </p>
               </Menu.Item>
             </Menu>
           </Grid.Column>
@@ -358,27 +387,39 @@ const BootstrapMigrationLayout = () => (
             </Segment.Group>
           </Grid.Column>
           <Grid.Column>
-            <Message attached='top' error>Error</Message>
+            <Message attached='top' error>
+              Error
+            </Message>
             <Segment attached='bottom'>Panel content</Segment>
           </Grid.Column>
           <Grid.Column>
-            <Message attached='top' info>Info</Message>
+            <Message attached='top' info>
+              Info
+            </Message>
             <Segment attached='bottom'>Panel content</Segment>
           </Grid.Column>
           <Grid.Column>
-            <Message attached='top' success>Success</Message>
+            <Message attached='top' success>
+              Success
+            </Message>
             <Segment attached='bottom'>Panel content</Segment>
           </Grid.Column>
           <Grid.Column>
-            <Header attached='top' as='h4' inverted>Header</Header>
+            <Header attached='top' as='h4' inverted>
+              Header
+            </Header>
             <Segment attached='bottom'>Panel content</Segment>
           </Grid.Column>
           <Grid.Column>
-            <Header attached='top' as='h4' block>Header</Header>
+            <Header attached='top' as='h4' block>
+              Header
+            </Header>
             <Segment attached='bottom'>Panel content</Segment>
           </Grid.Column>
           <Grid.Column>
-            <Header attached='top' as='h4'>Header</Header>
+            <Header attached='top' as='h4'>
+              Header
+            </Header>
             <Segment attached='bottom'>Panel content</Segment>
           </Grid.Column>
         </Grid>
@@ -392,56 +433,62 @@ const BootstrapMigrationLayout = () => (
 
         <Segment>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit
-            amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non
-            commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla
-            sed consectetur.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus
+            varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis
+            consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat
+            porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed
+            consectetur.
           </p>
         </Segment>
         <Segment secondary>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit
-            amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non
-            commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla
-            sed consectetur.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus
+            varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis
+            consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat
+            porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed
+            consectetur.
           </p>
         </Segment>
         <Segment tertiary>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit
-            amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non
-            commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla
-            sed consectetur.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus
+            varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis
+            consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat
+            porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed
+            consectetur.
           </p>
         </Segment>
         <Segment inverted>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit
-            amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non
-            commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla
-            sed consectetur.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus
+            varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis
+            consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat
+            porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed
+            consectetur.
           </p>
         </Segment>
         <Segment inverted secondary>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit
-            amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non
-            commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla
-            sed consectetur.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus
+            varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis
+            consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat
+            porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed
+            consectetur.
           </p>
         </Segment>
         <Segment inverted tertiary>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit
-            amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non
-            commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla
-            sed consectetur.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus
+            varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis
+            consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat
+            porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed
+            consectetur.
           </p>
         </Segment>
       </Grid.Column>

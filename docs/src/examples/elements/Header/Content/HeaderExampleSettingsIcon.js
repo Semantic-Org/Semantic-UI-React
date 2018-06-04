@@ -6,9 +6,7 @@ const HeaderExampleSettingsIcon = () => (
     <Icon name='settings' />
     <Header.Content>
       Account Settings
-      <Header.Subheader>
-        Manage your preferences
-      </Header.Subheader>
+      <Header.Subheader>Manage your preferences</Header.Subheader>
     </Header.Content>
   </Header>
 )

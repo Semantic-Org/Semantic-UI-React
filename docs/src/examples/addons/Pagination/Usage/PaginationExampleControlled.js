@@ -16,11 +16,21 @@ export default class PaginationExampleControlled extends Component {
         <Grid.Column>
           <Segment secondary>
             <div>activePage: {activePage}</div>
-            <Input min={1} max={5} onChange={this.handleInputChange} type='range' value={activePage} />
+            <Input
+              min={1}
+              max={5}
+              onChange={this.handleInputChange}
+              type='range'
+              value={activePage}
+            />
           </Segment>
         </Grid.Column>
         <Grid.Column>
-          <Pagination activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={5} />
+          <Pagination
+            activePage={activePage}
+            onPageChange={this.handlePaginationChange}
+            totalPages={5}
+          />
         </Grid.Column>
       </Grid>
     )

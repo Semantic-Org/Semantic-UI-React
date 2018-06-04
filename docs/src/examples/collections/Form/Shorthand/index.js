@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 
 import { Message } from 'semantic-ui-react'
 
-const subComponentComparison = {
+const subcomponentComparison = {
   shorthand: "<Form.Input label='Enter Password' type='password' />",
   longhand: `<Form.Field>
   <label>Enter Password</label>
@@ -31,9 +31,15 @@ const htmlComparison = {
 
 const Compare = ({ longhand, shorthand }) => (
   <Message>
-    <pre><code>{shorthand}</code></pre>
-    <p><strong>vs</strong></p>
-    <pre><code>{longhand}</code></pre>
+    <pre>
+      <code>{shorthand}</code>
+    </pre>
+    <p>
+      <strong>vs</strong>
+    </p>
+    <pre>
+      <code>{longhand}</code>
+    </pre>
   </Message>
 )
 Compare.propTypes = {
@@ -51,7 +57,7 @@ const FormTypesExamples = () => (
       ].join(' ')}
       examplePath='collections/Form/Shorthand/FormExampleSubcomponentControl'
     >
-      <Compare {...subComponentComparison} />
+      <Compare {...subcomponentComparison} />
     </ComponentExample>
 
     <ComponentExample

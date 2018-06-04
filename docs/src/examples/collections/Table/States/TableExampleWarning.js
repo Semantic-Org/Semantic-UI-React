@@ -21,7 +21,7 @@ const TableExampleWarning = () => (
         <Table.Cell>Jimmy</Table.Cell>
         <Table.Cell>
           <Icon name='attention' />
-            Requires Action
+          Requires Action
         </Table.Cell>
         <Table.Cell>None</Table.Cell>
       </Table.Row>
@@ -30,7 +30,7 @@ const TableExampleWarning = () => (
         <Table.Cell>Unknown</Table.Cell>
         <Table.Cell warning>
           <Icon name='attention' />
-            Hostile
+          Hostile
         </Table.Cell>
       </Table.Row>
       <Table.Row>

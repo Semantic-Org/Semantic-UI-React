@@ -4,7 +4,9 @@ import { Comment, Header } from 'semantic-ui-react'
 const CommentExampleGroupSize = () => (
   <div>
     <Comment.Group size='mini'>
-      <Header as='h3' dividing>Mini Comments</Header>
+      <Header as='h3' dividing>
+        Mini Comments
+      </Header>
 
       <Comment>
         <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />
@@ -34,7 +36,9 @@ const CommentExampleGroupSize = () => (
       </Comment>
     </Comment.Group>
     <Comment.Group size='small'>
-      <Header as='h3' dividing>Small Comments</Header>
+      <Header as='h3' dividing>
+        Small Comments
+      </Header>
 
       <Comment>
         <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />
@@ -64,7 +68,9 @@ const CommentExampleGroupSize = () => (
       </Comment>
     </Comment.Group>
     <Comment.Group size='large'>
-      <Header as='h3' dividing>Large Comments</Header>
+      <Header as='h3' dividing>
+        Large Comments
+      </Header>
 
       <Comment>
         <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />
@@ -94,7 +100,9 @@ const CommentExampleGroupSize = () => (
       </Comment>
     </Comment.Group>
     <Comment.Group size='massive'>
-      <Header as='h3' dividing>Massive Comments</Header>
+      <Header as='h3' dividing>
+        Massive Comments
+      </Header>
 
       <Comment>
         <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />

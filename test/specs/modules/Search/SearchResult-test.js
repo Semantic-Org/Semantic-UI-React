@@ -5,5 +5,5 @@ const requiredProps = { title: '' }
 
 describe('SearchResult', () => {
   common.isConformant(SearchResult, { requiredProps })
-  common.propKeyOnlyToClassName(SearchResult, 'active')
+  common.propKeyOnlyToClassName(SearchResult, 'active', { requiredProps })
 })

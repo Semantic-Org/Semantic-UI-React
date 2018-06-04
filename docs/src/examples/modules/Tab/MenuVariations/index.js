@@ -1,6 +1,6 @@
 import React from 'react'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 import { Message } from 'semantic-ui-react'
 
@@ -30,7 +30,10 @@ const TabMenuVariationsExamples = () => (
       description='A tab menu can be colored.'
       examplePath='modules/Tab/MenuVariations/TabExampleColored'
     >
-      <Message info content='Color only applies to the menu, not the pane, so they look best not attached.' />
+      <Message
+        info
+        content='Color only applies to the menu, not the pane, so they look best not attached.'
+      />
     </ComponentExample>
     <ComponentExample
       description='A tab menu can invert its colors.'

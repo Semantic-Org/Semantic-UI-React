@@ -8,17 +8,13 @@ const SegmentExampleCircular = () => (
     <Segment circular style={square}>
       <Header as='h2'>
         Sale!
-        <Header.Subheader>
-          $10.99
-        </Header.Subheader>
+        <Header.Subheader>$10.99</Header.Subheader>
       </Header>
     </Segment>
     <Segment circular inverted style={square}>
       <Header as='h2' inverted>
         Buy Now
-        <Header.Subheader>
-          $10.99
-        </Header.Subheader>
+        <Header.Subheader>$10.99</Header.Subheader>
       </Header>
     </Segment>
   </div>

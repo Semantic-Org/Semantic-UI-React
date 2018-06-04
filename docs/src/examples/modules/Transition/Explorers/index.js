@@ -1,8 +1,8 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const TransitionExplorersExamples = () => (
   <ExampleSection title='Explorers'>
@@ -23,9 +23,9 @@ const TransitionExplorersExamples = () => (
       examplePath='modules/Transition/Explorers/TransitionExampleTransitionExplorer'
     >
       <Message info>
-        Trigger static animations just as you trigger directional animations,
-        by toggling the <code>visible</code> prop. The value is not significant since
-        static animations are unidirectional.
+        Trigger static animations just as you trigger directional animations, by toggling the{' '}
+        <code>visible</code> prop. The value is not significant since static animations are
+        unidirectional.
       </Message>
     </ComponentExample>
   </ExampleSection>

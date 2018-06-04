@@ -20,19 +20,33 @@ Wrapper.propTypes = {
 const RailExampleSize = () => (
   <div>
     <Wrapper>
-      <Rail size='mini' position='left'>Mini Left Rail</Rail>
-      <Rail size='tiny' position='right'>Tiny Right Rail</Rail>
+      <Rail size='mini' position='left'>
+        Mini Left Rail
+      </Rail>
+      <Rail size='tiny' position='right'>
+        Tiny Right Rail
+      </Rail>
     </Wrapper>
     <Wrapper>
-      <Rail size='small' position='left'>Small Left Rail</Rail>
-      <Rail size='large' position='right'>Large Right Rail</Rail>
+      <Rail size='small' position='left'>
+        Small Left Rail
+      </Rail>
+      <Rail size='large' position='right'>
+        Large Right Rail
+      </Rail>
     </Wrapper>
     <Wrapper>
-      <Rail size='big' position='left'>Big Left Rail</Rail>
-      <Rail size='huge' position='right'>Huge Right Rail</Rail>
+      <Rail size='big' position='left'>
+        Big Left Rail
+      </Rail>
+      <Rail size='huge' position='right'>
+        Huge Right Rail
+      </Rail>
     </Wrapper>
     <Wrapper>
-      <Rail size='massive' position='right'>Massive Right Rail</Rail>
+      <Rail size='massive' position='right'>
+        Massive Right Rail
+      </Rail>
     </Wrapper>
   </div>
 )

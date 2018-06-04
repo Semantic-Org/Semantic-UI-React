@@ -20,13 +20,11 @@ export default class PortalExamplePortal extends Component {
 
   clearLog = () => this.setState({ log: [], logCount: 0 })
 
-  writeLog = eventName => this.setState(({
-    log: [
-      `${new Date().toLocaleTimeString()}: ${eventName}`,
-      ...this.state.log,
-    ].slice(0, 20),
-    logCount: this.state.logCount + 1,
-  }))
+  writeLog = eventName =>
+    this.setState({
+      log: [`${new Date().toLocaleTimeString()}: ${eventName}`, ...this.state.log].slice(0, 20),
+      logCount: this.state.logCount + 1,
+    })
 
   render() {
     const { log, logCount, open } = this.state
@@ -37,13 +35,13 @@ export default class PortalExamplePortal extends Component {
           <Portal
             closeOnTriggerClick
             openOnTriggerClick
-            trigger={(
+            trigger={
               <Button
                 content={open ? 'Close Portal' : 'Open Portal'}
                 negative={open}
                 positive={!open}
               />
-            )}
+            }
             onOpen={this.handleOpen}
             onClose={this.handleClose}
           >
@@ -57,7 +55,9 @@ export default class PortalExamplePortal extends Component {
         <Grid.Column>
           <Segment.Group>
             <Segment>
-              <Button compact size='small' floated='right' onClick={this.clearLog}>Clear</Button>
+              <Button compact size='small' floated='right' onClick={this.clearLog}>
+                Clear
+              </Button>
               Event Log <Label circular>{logCount}</Label>
             </Segment>
             <Segment secondary>

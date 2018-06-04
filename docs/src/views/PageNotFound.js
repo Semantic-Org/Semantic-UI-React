@@ -8,9 +8,7 @@ const PageNotFound = () => (
         <Header as='h1' icon textAlign='center'>
           <Icon name='game' />
           404
-          <Header.Subheader>
-            How about some good old Atari?
-          </Header.Subheader>
+          <Header.Subheader>How about some good old Atari?</Header.Subheader>
         </Header>
       </Grid.Column>
     </Grid.Row>

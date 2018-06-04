@@ -15,7 +15,7 @@ const DropdownExampleSearchSelection = () => (
     deburr
     fluid
     options={options}
-    placeholder='Try to search for "Deja vu"'
+    placeholder='Try to search for &quot;Deja vu&quot;'
     search
     selection
   />

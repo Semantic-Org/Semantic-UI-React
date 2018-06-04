@@ -1,6 +1,17 @@
 import React from 'react'
 import {
-  Button, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table,
+  Button,
+  Container,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  Item,
+  Label,
+  Menu,
+  Segment,
+  Step,
+  Table,
 } from 'semantic-ui-react'
 
 const style = {
@@ -21,25 +32,10 @@ const style = {
 
 const ResponsiveLayout = () => (
   <div>
-    <Header
-      as='h1'
-      content='Responsive UI Examples'
-      style={style.h1}
-      textAlign='center'
-    />
-    <Header
-      as='h2'
-      content='Basic Responsive'
-      style={style.h2}
-      textAlign='center'
-    />
+    <Header as='h1' content='Responsive UI Examples' style={style.h1} textAlign='center' />
+    <Header as='h2' content='Basic Responsive' style={style.h2} textAlign='center' />
 
-    <Header
-      as='h3'
-      textAlign='center'
-      style={style.h3}
-      content='Container'
-    />
+    <Header as='h3' textAlign='center' style={style.h3} content='Container' />
     <Container>
       <Segment.Group>
         <Segment>Content</Segment>
@@ -49,12 +45,7 @@ const ResponsiveLayout = () => (
       </Segment.Group>
     </Container>
 
-    <Header
-      as='h3'
-      content='Text Container'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Text Container' style={style.h3} textAlign='center' />
     <Container text>
       <Segment.Group>
         <Segment>Content</Segment>
@@ -64,12 +55,7 @@ const ResponsiveLayout = () => (
       </Segment.Group>
     </Container>
 
-    <Header
-      as='h3'
-      content='Stackable Grid'
-      textAlign='center'
-      style={style.h3}
-    />
+    <Header as='h3' content='Stackable Grid' textAlign='center' style={style.h3} />
     <Grid columns={2} stackable>
       <Grid.Column>
         <Segment>Content</Segment>
@@ -96,12 +82,7 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h3'
-      content='Doubling Grid'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Doubling Grid' style={style.h3} textAlign='center' />
     <Grid columns={3} doubling>
       <Grid.Column>
         <Segment>Content</Segment>
@@ -123,12 +104,7 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h3'
-      content='Doubling Stackable Grid'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Doubling Stackable Grid' style={style.h3} textAlign='center' />
     <Grid columns={3} doubling stackable>
       <Grid.Column>
         <Segment>Content</Segment>
@@ -150,12 +126,7 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h3'
-      content='Nested Stackable Grid'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Nested Stackable Grid' style={style.h3} textAlign='center' />
     <Grid columns={2}>
       <Grid.Column>
         <Grid columns={2} doubling stackable>
@@ -182,12 +153,7 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h3'
-      content='Stackable Grid Container'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Stackable Grid Container' style={style.h3} textAlign='center' />
     <Grid container columns={2} stackable>
       <Grid.Column>
         <Segment>Content</Segment>
@@ -209,12 +175,7 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h3'
-      content='Doubling Grid Container'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Doubling Grid Container' style={style.h3} textAlign='center' />
     <Grid container columns={3} doubling>
       <Grid.Column>
         <Segment>Content</Segment>
@@ -263,19 +224,9 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h2'
-      content='Device Adjustment'
-      style={style.h2}
-      textAlign='center'
-    />
+    <Header as='h2' content='Device Adjustment' style={style.h2} textAlign='center' />
 
-    <Header
-      as='h3'
-      content='Device Column Width'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Device Column Width' style={style.h3} textAlign='center' />
     <Grid>
       <Grid.Column computer={3} mobile={6} tablet={9}>
         <Segment>Content</Segment>
@@ -297,12 +248,7 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h3'
-      content='Device Visibility'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Device Visibility' style={style.h3} textAlign='center' />
     <Grid columns={4}>
       <Grid.Column only='widescreen' widescreen={10}>
         <Segment>Widescreen</Segment>
@@ -347,19 +293,9 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h2'
-      content='Responsive Grid with Variations'
-      style={style.h2}
-      textAlign='center'
-    />
+    <Header as='h2' content='Responsive Grid with Variations' style={style.h2} textAlign='center' />
 
-    <Header
-      as='h3'
-      content='Stackable Divided Grid'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Stackable Divided Grid' style={style.h3} textAlign='center' />
     <Grid columns={2} container divided stackable>
       <Grid.Row>
         <Grid.Column>
@@ -420,12 +356,7 @@ const ResponsiveLayout = () => (
       </Grid.Row>
     </Grid>
 
-    <Header
-      as='h3'
-      content='Celled Stackable Grid'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Celled Stackable Grid' style={style.h3} textAlign='center' />
     <Grid celled container stackable>
       <Grid.Row columns={2}>
         <Grid.Column>
@@ -503,12 +434,7 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h3'
-      content='Grid Container'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Grid Container' style={style.h3} textAlign='center' />
     <Grid columns={3} container>
       <Grid.Column>
         <Segment>Content</Segment>
@@ -530,19 +456,9 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h1'
-      content='Responsive Elements'
-      style={style.h1}
-      textAlign='center'
-    />
+    <Header as='h1' content='Responsive Elements' style={style.h1} textAlign='center' />
 
-    <Header
-      as='h3'
-      content='Responsive Vertical Divider'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Responsive Vertical Divider' style={style.h3} textAlign='center' />
     <Grid container columns={2} divided relaxed stackable>
       <Grid.Column>
         <Segment>Content</Segment>
@@ -552,12 +468,7 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header
-      as='h3'
-      content='Responsive Table'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Responsive Table' style={style.h3} textAlign='center' />
     <Container>
       <Table celled>
         <Table.Header>
@@ -571,85 +482,56 @@ const ResponsiveLayout = () => (
           <Table.Row>
             <Table.Cell>
               <Header as='h4' image>
-                <Image
-                  rounded
-                  size='mini'
-                  src='/assets/images/wireframe/square-image.png'
-                />
+                <Image rounded size='mini' src='/assets/images/wireframe/square-image.png' />
                 <Header.Content>
                   Lena
                   <Header.Subheader>Human Resources</Header.Subheader>
                 </Header.Content>
               </Header>
             </Table.Cell>
-            <Table.Cell>
-              22
-            </Table.Cell>
+            <Table.Cell>22</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
               <Header as='h4' image>
-                <Image
-                  rounded
-                  size='mini'
-                  src='/assets/images/wireframe/square-image.png'
-                />
+                <Image rounded size='mini' src='/assets/images/wireframe/square-image.png' />
                 <Header.Content>
                   Matthew
                   <Header.Subheader>Fabric Design</Header.Subheader>
                 </Header.Content>
               </Header>
             </Table.Cell>
-            <Table.Cell>
-              15
-            </Table.Cell>
+            <Table.Cell>15</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
               <Header as='h4' image>
-                <Image
-                  rounded
-                  size='mini'
-                  src='/assets/images/wireframe/square-image.png'
-                />
+                <Image rounded size='mini' src='/assets/images/wireframe/square-image.png' />
                 <Header.Content>
                   Lindsay
                   <Header.Subheader>Entertainment</Header.Subheader>
                 </Header.Content>
               </Header>
             </Table.Cell>
-            <Table.Cell>
-              12
-            </Table.Cell>
+            <Table.Cell>12</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
               <Header as='h4' image>
-                <Image
-                  rounded
-                  size='mini'
-                  src='/assets/images/wireframe/square-image.png'
-                />
+                <Image rounded size='mini' src='/assets/images/wireframe/square-image.png' />
                 <Header.Content>
                   Mark
                   <Header.Subheader>Executive</Header.Subheader>
                 </Header.Content>
               </Header>
             </Table.Cell>
-            <Table.Cell>
-              11
-            </Table.Cell>
+            <Table.Cell>11</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
     </Container>
 
-    <Header
-      as='h3'
-      content='Responsive Menu'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Responsive Menu' style={style.h3} textAlign='center' />
     <Container>
       <Menu stackable>
         <Menu.Item>
@@ -661,12 +543,7 @@ const ResponsiveLayout = () => (
       </Menu>
     </Container>
 
-    <Header
-      as='h3'
-      content='Responsive Item'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Responsive Item' style={style.h3} textAlign='center' />
     <Container>
       <Item.Group divided>
         <Item>
@@ -681,11 +558,7 @@ const ResponsiveLayout = () => (
               A description which may flow for several lines and give context to the content.
             </Item.Description>
             <Item.Extra>
-              <Image
-                avatar
-                circular
-                src='/assets/images/wireframe/square-image.png'
-              />
+              <Image avatar circular src='/assets/images/wireframe/square-image.png' />
               Username
             </Item.Extra>
           </Item.Content>
@@ -733,26 +606,12 @@ const ResponsiveLayout = () => (
       </Item.Group>
     </Container>
 
-    <Header
-      as='h3'
-      content='Responsive Steps'
-      style={style.h3}
-      textAlign='center'
-    />
+    <Header as='h3' content='Responsive Steps' style={style.h3} textAlign='center' />
 
     <Container style={style.last}>
       <Step.Group fluid>
-        <Step
-          icon='plane'
-          title='Shipping'
-          description='Choose your shipping options'
-        />
-        <Step
-          active
-          icon='dollar'
-          title='Billing'
-          description='Enter billing information'
-        />
+        <Step icon='plane' title='Shipping' description='Choose your shipping options' />
+        <Step active icon='dollar' title='Billing' description='Enter billing information' />
         <Step
           disabled
           icon='info circle'

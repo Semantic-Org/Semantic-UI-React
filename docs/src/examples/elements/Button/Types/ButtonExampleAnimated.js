@@ -16,12 +16,8 @@ const ButtonExampleAnimated = () => (
       </Button.Content>
     </Button>
     <Button animated='fade'>
-      <Button.Content visible>
-        Sign-up for a Pro account
-      </Button.Content>
-      <Button.Content hidden>
-        $12.99 a month
-      </Button.Content>
+      <Button.Content visible>Sign-up for a Pro account</Button.Content>
+      <Button.Content hidden>$12.99 a month</Button.Content>
     </Button>
   </div>
 )

@@ -7,7 +7,9 @@ const BreadcrumbExampleLink = () => (
     <Breadcrumb.Divider />
     <Breadcrumb.Section link>Store</Breadcrumb.Section>
     <Breadcrumb.Divider icon='right angle' />
-    <Breadcrumb.Section active>Search for: <a href='#'>paper towels</a></Breadcrumb.Section>
+    <Breadcrumb.Section active>
+      Search for: <a href='#'>paper towels</a>
+    </Breadcrumb.Section>
   </Breadcrumb>
 )
 

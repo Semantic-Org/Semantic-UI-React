@@ -4,9 +4,9 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 
-import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
-import style from 'docs/app/Style'
-import { scrollToAnchor } from 'docs/app/utils'
+import Sidebar from 'docs/src/components/Sidebar/Sidebar'
+import style from 'docs/src/Style'
+import { scrollToAnchor } from 'docs/src/utils'
 import { getUnhandledProps } from 'src/lib'
 
 const anchors = new AnchorJS({

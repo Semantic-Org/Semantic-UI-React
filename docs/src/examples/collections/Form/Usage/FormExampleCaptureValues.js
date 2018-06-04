@@ -20,7 +20,12 @@ class FormExampleCaptureValues extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Input placeholder='Name' name='name' value={name} onChange={this.handleChange} />
-            <Form.Input placeholder='Email' name='email' value={email} onChange={this.handleChange} />
+            <Form.Input
+              placeholder='Email'
+              name='email'
+              value={email}
+              onChange={this.handleChange}
+            />
             <Form.Button content='Submit' />
           </Form.Group>
         </Form>

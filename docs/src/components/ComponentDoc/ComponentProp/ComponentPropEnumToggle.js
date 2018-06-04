@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { updateForKeys } from 'docs/app/HOC'
+import { updateForKeys } from 'docs/src/hoc'
 
 const toggleStyle = {
   cursor: 'pointer',

@@ -11,8 +11,6 @@ resultRenderer.propTypes = {
   description: PropTypes.string,
 }
 
-const SearchExampleStandardCustom = () => (
-  <SearchExampleStandard resultRenderer={resultRenderer} />
-)
+const SearchExampleStandardCustom = () => <SearchExampleStandard resultRenderer={resultRenderer} />
 
 export default SearchExampleStandardCustom

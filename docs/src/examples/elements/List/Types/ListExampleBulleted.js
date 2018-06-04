@@ -7,7 +7,6 @@ const ListExampleBulleted = () => (
     <List.Item>Inviting Friends</List.Item>
     <List.Item>
       Benefits
-
       <List.List>
         <List.Item href='#'>Link to somewhere</List.Item>
         <List.Item>Rebates</List.Item>

@@ -11,7 +11,6 @@ import { tagOptions } from '../common'
 //   ...
 // ]
 
-
 const DropdownExampleMultipleSearchInMenu = () => (
   <Dropdown text='Filter Posts' multiple icon='filter'>
     <Dropdown.Menu>

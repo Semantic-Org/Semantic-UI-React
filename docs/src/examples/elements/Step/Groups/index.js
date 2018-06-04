@@ -1,9 +1,9 @@
 import React from 'react'
 import { Icon, Message } from 'semantic-ui-react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 const StepGroupsExamples = () => (
   <ExampleSection title='Groups'>
@@ -16,8 +16,8 @@ const StepGroupsExamples = () => (
         <Icon name='mobile' />
         <Message.Content>
           <Message.Header>Responsive Element</Message.Header>
-          Steps will automatically stack on mobile.
-          To make steps automatically stack for tablet use the <code>stackable='tablet'</code> variation.
+          Steps will automatically stack on mobile. To make steps automatically stack for tablet use
+          the <code>stackable='tablet'</code> variation.
         </Message.Content>
       </Message>
     </ComponentExample>

@@ -13,10 +13,7 @@ const events = [
     image: '/assets/images/avatar/small/helen.jpg',
     meta: '1 Like',
     summary: 'Helen Troy added 2 new illustrations',
-    extraImages: [
-      '/assets/images/wireframe/image.png',
-      '/assets/images/wireframe/image-text.png',
-    ],
+    extraImages: ['/assets/images/wireframe/image.png', '/assets/images/wireframe/image-text.png'],
   },
   {
     date: '2 Days Ago',
@@ -40,10 +37,7 @@ const events = [
     image: '/assets/images/avatar/small/justen.jpg',
     meta: '41 Likes',
     summary: 'Justen Kitsune added 2 new photos of you',
-    extraImages: [
-      '/assets/images/wireframe/image.png',
-      '/assets/images/wireframe/image-text.png',
-    ],
+    extraImages: ['/assets/images/wireframe/image.png', '/assets/images/wireframe/image-text.png'],
   },
 ]
 

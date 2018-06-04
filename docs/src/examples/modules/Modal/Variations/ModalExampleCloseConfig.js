@@ -24,9 +24,7 @@ class ModalExampleCloseConfig extends Component {
           closeOnRootNodeClick={closeOnRootNodeClick}
           onClose={this.close}
         >
-          <Modal.Header>
-            Delete Your Account
-          </Modal.Header>
+          <Modal.Header>Delete Your Account</Modal.Header>
           <Modal.Content>
             <p>Are you sure you want to delete your account</p>
           </Modal.Content>

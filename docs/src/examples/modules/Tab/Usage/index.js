@@ -1,8 +1,8 @@
 import React from 'react'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 const TabUsageExamples = () => (
   <ExampleSection title='Usage'>
@@ -28,11 +28,11 @@ const TabUsageExamples = () => (
     />
     <ComponentExample
       title='Pane Shorthands'
-      description={(
+      description={
         <span>
           You can use an item shorthands when you're using <code>renderActiveOnly={'{false}'}</code>.
         </span>
-      )}
+      }
       examplePath='modules/Tab/Usage/TabExamplePaneShorthand'
     />
   </ExampleSection>
