@@ -2,16 +2,22 @@
 
 What went well with the first version of Semantic UI's React port? What didn't? And, most importantly, what are the fundamental ideas that captivated the community, and how can we make them even more prominent in future versions while reworking the weaker areas? We look to answer those questions by first distilling the philosophy behind Semantic UI, and building anew from that foundation.
 
-* [What We Learned](#what-we-learned)
-    * [The Good Parts](#the-good-parts)
-    * [The Bad Parts](#the-bad-parts)
-* [Our Goals](#our-goals)
-    * [Painless First Run Experience](#painless-first-run-experience)
-    * [Pragmatic Design Language](#pragmatic-design-language)
-    * [Intuitiveness](#intuitiveness)
-    * [Universal Traits](#universal-traits)
-    * [Shorthand Syntax](#shorthand-syntax)
-    * [First-class Theming](#first-class-theming)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [What We Learned](#what-we-learned)
+  - [The Good Parts](#the-good-parts)
+  - [The Bad Parts](#the-bad-parts)
+- [Our Goals](#our-goals)
+  - [Painless First Run Experience](#painless-first-run-experience)
+  - [Pragmatic Design Language](#pragmatic-design-language)
+  - [Intuitiveness](#intuitiveness)
+  - [Universal Traits](#universal-traits)
+  - [Shorthand Syntax](#shorthand-syntax)
+  - [First-class Theming](#first-class-theming)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## What We Learned
 
