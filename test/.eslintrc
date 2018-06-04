@@ -2,7 +2,7 @@
   "env": {
     "browser": true,
     "node": true,
-    "mocha": true
+    "jest": true
   },
   "globals": {
     "enzyme": false,
@@ -11,9 +11,6 @@
     "shallow": false,
     "render": false
   },
-  "plugins": [
-    "mocha"
-  ],
   "rules": {
     "jsx-a11y/alt-text": 0,
     "jsx-a11y/tabindex-no-positive": 0

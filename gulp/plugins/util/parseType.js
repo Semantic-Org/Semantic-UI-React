@@ -1,18 +1,13 @@
 const _ = require('lodash')
-const { names } = require('../../../src/elements/Flag/Flag') // eslint-disable-line no-unused-vars
-const SUI = require('../../../src/lib/SUI') // eslint-disable-line no-unused-vars
 
 const evalValue = value => eval(value) // eslint-disable-line no-eval
 
-const isTransformable = value => typeof value === 'string' && (value.includes('SUI') || value.includes('names'))
+const isTransformable = value =>
+  typeof value === 'string' && (value.includes('SUI') || value.includes('names'))
 
 const uniqValues = values => _.uniqWith(values, (val, other) => `${val}` === `${other}`)
 
-const transformEnumValues = values => _.flatMap(values, ({ value }) => {
-  if (value === 'names') return evalValue(value)
-  if (_.startsWith(value, '...SUI')) return evalValue(value.substring(3))
-  return value.replace(/'/g, '')
-})
+const transformEnumValues = values => _.flatMap(values, ({ value }) => value.replace(/'/g, ''))
 
 const parseEnum = (type) => {
   const { value } = type
@@ -23,10 +18,7 @@ const parseEnum = (type) => {
 
 const parseUnion = (union) => {
   const { value } = union
-  const values = _.flatten(_.map(
-    _.filter(value, { name: 'enum' }),
-    type => parseEnum(type).value,
-  ))
+  const values = _.flatten(_.map(_.filter(value, { name: 'enum' }), type => parseEnum(type).value))
 
   return {
     ...union,
@@ -42,10 +34,12 @@ const parsers = {
 
 export default (propName, { type }) => {
   if (type === undefined) {
-    throw new Error([
-      `The prop "${propName}" does not contain propType definition. This happens if the property is in the `,
-      'defaultProps, but it is not in the propTypes',
-    ].join(' '))
+    throw new Error(
+      [
+        `The prop "${propName}" does not contain propType definition. This happens if the property is in the `,
+        'defaultProps, but it is not in the propTypes',
+      ].join(' '),
+    )
   }
 
   const parser = parsers[type.name]

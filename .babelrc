@@ -10,7 +10,7 @@
     ["transform-react-remove-prop-types", {
       "mode": "wrap"
     }],
-    ["@babel/transform-runtime", {
+    ["@babel/plugin-transform-runtime", {
       "polyfill": false,
       "regenerator": false
     }]
@@ -19,11 +19,6 @@
     "development": {
       "plugins": [
         "react-hot-loader/babel"
-      ]
-    },
-    "test": {
-      "plugins": [
-        ["istanbul", { "include": ["src"] }]
       ]
     }
   }

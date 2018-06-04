@@ -1,5 +1,5 @@
 import EventTarget from 'src/lib/eventStack/EventTarget'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 describe('EventTarget', () => {
   let eventTarget
@@ -13,99 +13,96 @@ describe('EventTarget', () => {
   })
 
   describe('empty', () => {
-    it('is true by default', () => {
-      eventTarget.empty()
-        .should.equal(true)
+    test('is true by default', () => {
+      expect(eventTarget.empty()).toBe(true)
     })
 
-    it('is false when has handlers', () => {
+    test('is false when has handlers', () => {
       eventTarget.sub('click', () => {})
-      eventTarget.empty()
-        .should.equal(false)
+      expect(eventTarget.empty()).toBe(false)
     })
 
-    it('is true when handlers are removed', () => {
+    test('is true when handlers are removed', () => {
       const handler = () => {}
 
       eventTarget.sub('click', handler)
       eventTarget.unsub('click', handler)
-      eventTarget.empty()
-        .should.equal(true)
+      expect(eventTarget.empty()).toBe(true)
     })
   })
 
   describe('sub', () => {
-    it('adds a single', () => {
-      const first = sandbox.spy()
+    test('adds a single', () => {
+      const first = jest.fn()
 
       eventTarget.sub('click', first)
       domEvent.click(document)
 
-      first.should.have.been.calledOnce()
+      expect(first).toHaveBeenCalledTimes(1)
     })
 
-    it('adds multiple', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
+    test('adds multiple', () => {
+      const first = jest.fn()
+      const second = jest.fn()
 
       eventTarget.sub('click', first)
       eventTarget.sub('click', second)
       domEvent.click(document)
 
-      first.should.have.been.calledOnce()
-      second.should.have.been.calledOnce()
+      expect(first).toHaveBeenCalledTimes(1)
+      expect(second).toHaveBeenCalledTimes(1)
     })
 
-    it('adds multiple with array', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
+    test('adds multiple with array', () => {
+      const first = jest.fn()
+      const second = jest.fn()
 
       eventTarget.sub('click', [first, second])
       domEvent.click(document)
 
-      first.should.have.been.calledOnce()
-      second.should.have.been.calledOnce()
+      expect(first).toHaveBeenCalledTimes(1)
+      expect(second).toHaveBeenCalledTimes(1)
     })
 
-    it('adds only unique', () => {
-      const first = sandbox.spy()
+    test('adds only unique', () => {
+      const first = jest.fn()
 
       eventTarget.sub('click', [first, first])
       eventTarget.sub('click', [first, first])
 
       domEvent.click(document)
-      first.should.have.been.calledOnce()
+      expect(first).toHaveBeenCalledTimes(1)
     })
 
-    it('handles multiple pools', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
+    test('handles multiple pools', () => {
+      const first = jest.fn()
+      const second = jest.fn()
 
       eventTarget.sub('click', first)
       eventTarget.sub('click', second, 'another')
       domEvent.click(document)
 
-      first.should.have.been.calledOnce()
-      second.should.have.been.calledOnce()
+      expect(first).toHaveBeenCalled()
+      expect(second).toHaveBeenCalled()
     })
 
-    it('fires only last handler in non-default pool', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
+    test('fires only last handler in non-default pool', () => {
+      const first = jest.fn()
+      const second = jest.fn()
 
       eventTarget.sub('click', first, 'another')
       eventTarget.sub('click', second, 'another')
       domEvent.click(document)
 
-      first.should.not.have.been.called()
-      second.should.have.been.calledOnce()
+      expect(first).not.toHaveBeenCalled()
+      expect(second).toHaveBeenCalled()
     })
   })
 
   describe('unsub', () => {
-    it('handles unsubscribe', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
+    test('handles unsubscribe', () => {
+      const first = jest.fn()
+      const second = jest.fn()
 
       eventTarget.sub('click', [first, second])
       domEvent.click(document)
@@ -113,13 +110,13 @@ describe('EventTarget', () => {
       eventTarget.unsub('click', second)
       domEvent.click(document)
 
-      first.should.have.been.calledTwice()
-      second.should.have.been.calledOnce()
+      expect(first).toHaveBeenCalledTimes(2)
+      expect(second).toHaveBeenCalledTimes(1)
     })
 
-    it('handles multiple unsubscribe', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
+    test('handles multiple unsubscribe', () => {
+      const first = jest.fn()
+      const second = jest.fn()
 
       eventTarget.sub('click', [first, second])
       domEvent.click(document)
@@ -127,13 +124,13 @@ describe('EventTarget', () => {
       eventTarget.unsub('click', [first, second])
       domEvent.click(document)
 
-      first.should.have.been.calledOnce()
-      second.should.have.been.calledOnce()
+      expect(first).toHaveBeenCalledTimes(1)
+      expect(second).toHaveBeenCalledTimes(1)
     })
 
-    it('handles unsubscribe with multiple pools', () => {
-      const first = sandbox.spy()
-      const second = sandbox.spy()
+    test('handles unsubscribe with multiple pools', () => {
+      const first = jest.fn()
+      const second = jest.fn()
 
       eventTarget.sub('click', first)
       eventTarget.sub('click', second, 'another')
@@ -142,8 +139,8 @@ describe('EventTarget', () => {
       eventTarget.unsub('click', second, 'another')
       domEvent.click(document)
 
-      first.should.have.been.calledTwice()
-      second.should.have.been.calledOnce()
+      expect(first).toHaveBeenCalledTimes(2)
+      expect(second).toHaveBeenCalledTimes(1)
     })
   })
 })

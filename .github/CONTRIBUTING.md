@@ -164,14 +164,14 @@ class MyComponent {
 ### Using propTypes
 
 Every component must have fully described `propTypes`.
- 
+
  ```js
  import React, { PropTypes } from 'react'
- 
+
  function MyComponent(props) {
    return <div className={props.position}>{props.children}</div>
  }
- 
+
  MyComponent.propTypes = {
    children: PropTypes.node,
    position: PropTypes.oneOf(['left', 'right']),
@@ -451,6 +451,23 @@ This is the only required test.  It ensures a consistent baseline for the framew
 1. Base `className`s are applied
 1. Component is exported if public / hidden if private
 
+#### Writing tests
+
+Create your test file in `test/specs` directory. The **specs** directory mirrors the **src** directory. The first test should always be `common.isConformant()`
+For every source file, there needs to be a test file and they should named as `<Component>-test.js`.
+
+There should be one describe block for each prop of your component.
+
+#### Running tests
+
+```bash
+# Run tests with:
+yarn test
+
+# Run tests in watch mode with:
+yarn test:watch
+```
+
 ## State
 
 Strive to use stateless functional components when possible:
@@ -553,7 +570,7 @@ Label.propTypes = {
 
 >This section is lacking in instruction as the the docs are set to be overhauled (PRs welcome!).
 
-Usage examples for a component live in `docs/app/Examples`.  The examples follow the SUI doc site examples.
+Usage examples for a component live in `docs/src/examples`.  The examples follow the SUI doc site examples.
 
 Adding documentation for new components is a bit tedious.  The best way to do this (for now) is to copy an existing component's and update them.
 

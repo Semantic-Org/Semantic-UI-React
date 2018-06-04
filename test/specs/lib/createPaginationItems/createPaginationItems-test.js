@@ -1,13 +1,15 @@
 import createPaginationItems from 'src/lib/createPaginationItems'
 
 describe('createPaginationItems', () => {
-  it('creates an array of item objects', () => {
-    createPaginationItems({
-      activePage: 15,
-      boundaryRange: 2,
-      siblingRange: 2,
-      totalPages: 30,
-    }).should.deep.equal([
+  test('creates an array of item objects', () => {
+    expect(
+      createPaginationItems({
+        activePage: 15,
+        boundaryRange: 2,
+        siblingRange: 2,
+        totalPages: 30,
+      }),
+    ).toEqual([
       { active: false, type: 'firstItem', value: 1 },
       { active: false, type: 'prevItem', value: 14 },
 
@@ -30,4 +32,3 @@ describe('createPaginationItems', () => {
     ])
   })
 })
-

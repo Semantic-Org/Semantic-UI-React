@@ -3,7 +3,7 @@ import { getChildMapping, mergeChildMappings } from 'src/lib'
 
 describe('childMapping', () => {
   describe('childMapping', () => {
-    it('should support getChildMapping', () => {
+    test('should support getChildMapping', () => {
       const component = (
         <div>
           <div key='one' />
@@ -11,10 +11,11 @@ describe('childMapping', () => {
         </div>
       )
 
-      getChildMapping(component.props.children).should.have.deep.keys(['.$one', '.$two'])
+      expect(getChildMapping(component.props.children)).toHaveProperty(['.$one'])
+      expect(getChildMapping(component.props.children)).toHaveProperty(['.$two'])
     })
 
-    it('skips invalid elements', () => {
+    test('skips invalid elements', () => {
       const component = (
         <div>
           string
@@ -23,38 +24,39 @@ describe('childMapping', () => {
         </div>
       )
 
-      getChildMapping(component.props.children).should.have.deep.keys(['.$one', '.$two'])
+      expect(getChildMapping(component.props.children)).toHaveProperty(['.$one'])
+      expect(getChildMapping(component.props.children)).toHaveProperty(['.$two'])
     })
   })
 
   describe('mergeChildMappings', () => {
-    it('should support mergeChildMappings for adding keys', () => {
+    test('should support mergeChildMappings for adding keys', () => {
       const prev = { one: true, two: true }
       const next = { one: true, two: true, three: true }
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         one: true,
         two: true,
         three: true,
       })
     })
 
-    it('should support mergeChildMappings for removing keys', () => {
+    test('should support mergeChildMappings for removing keys', () => {
       const prev = { one: true, two: true, three: true }
       const next = { one: true, two: true }
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         one: true,
         two: true,
         three: true,
       })
     })
 
-    it('should support mergeChildMappings for adding and removing', () => {
+    test('should support mergeChildMappings for adding and removing', () => {
       const prev = { one: true, two: true, three: true }
       const next = { one: true, two: true, four: true }
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         one: true,
         two: true,
         three: true,
@@ -62,11 +64,11 @@ describe('childMapping', () => {
       })
     })
 
-    it('should reconcile overlapping insertions and deletions', () => {
+    test('should reconcile overlapping insertions and deletions', () => {
       const prev = { one: true, two: true, four: true, five: true }
       const next = { one: true, two: true, three: true, five: true }
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         one: true,
         two: true,
         three: true,
@@ -75,31 +77,31 @@ describe('childMapping', () => {
       })
     })
 
-    it('should support mergeChildMappings with undefined next input', () => {
+    test('should support mergeChildMappings with undefined next input', () => {
       const prev = { one: true, two: true }
       const next = undefined
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         one: true,
         two: true,
       })
     })
 
-    it('should support mergeChildMappings with undefined prev input', () => {
+    test('should support mergeChildMappings with undefined prev input', () => {
       const prev = undefined
       const next = { three: true, four: true }
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         three: true,
         four: true,
       })
     })
 
-    it('should prefer next value of key over prev', () => {
+    test('should prefer next value of key over prev', () => {
       const prev = { one: true }
       const next = { one: false }
 
-      mergeChildMappings(prev, next).should.deep.equal({ one: false })
+      expect(mergeChildMappings(prev, next)).toEqual({ one: false })
     })
   })
 })

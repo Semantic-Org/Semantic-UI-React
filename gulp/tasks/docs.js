@@ -28,39 +28,46 @@ task('clean:docs', (cb) => {
 // Build
 // ----------------------------------------
 
-task('build:docs:docgen', () => src([
-  `${config.paths.src()}/addons/*/*.js`,
-  `${config.paths.src()}/behaviors/*/*.js`,
-  `${config.paths.src()}/elements/*/*.js`,
-  `${config.paths.src()}/collections/*/*.js`,
-  `${config.paths.src()}/modules/*/*.js`,
-  `${config.paths.src()}/views/*/*.js`,
-  '!**/index.js',
-])
-  // do not remove the function keyword
-  // we need 'this' scope here
-  .pipe(g.plumber(function handleError(err) {
-    log(err.toString())
-    this.emit('end')
-  }))
-  .pipe(gulpReactDocgen())
-  .pipe(dest(config.paths.docsSrc())))
+task('build:docs:docgen', () =>
+  src([
+    `${config.paths.src()}/components/*/*.js`,
+    '!**/index.js',
+    '!**/*Rules.js',
+    '!**/*Variables.js',
+  ])
+    .pipe(
+      // do not remove the function keyword
+      // we need 'this' scope here
+      g.plumber(function handleError(err) {
+        log(err.toString())
+        this.emit('end')
+      }),
+    )
+    .pipe(gulpReactDocgen())
+    .pipe(dest(config.paths.docsSrc())),
+)
 
-task('build:docs:menugen', () => src(`${config.paths.docsSrc()}/Examples/**/index.js`)
-  // do not remove the function keyword
-  // we need 'this' scope here
-  .pipe(g.plumber(function handleError(err) {
-    log(err.toString())
-    this.emit('end')
-  }))
-  .pipe(gulpMenuGen())
-  .pipe(dest(config.paths.docsSrc())))
+task('build:docs:menugen', () =>
+  src(`${config.paths.docsSrc()}/examples/**/index.js`)
+    // do not remove the function keyword
+    // we need 'this' scope here
+    .pipe(
+      g.plumber(function handleError(err) {
+        log(err.toString())
+        this.emit('end')
+      }),
+    )
+    .pipe(gulpMenuGen())
+    .pipe(dest(config.paths.docsSrc())),
+)
 
-task('build:docs:html', () => src(config.paths.docsSrc('404.html'))
-  .pipe(dest(config.paths.docsDist())))
+task('build:docs:html', () =>
+  src(config.paths.docsSrc('404.html')).pipe(dest(config.paths.docsDist())),
+)
 
-task('build:docs:images', () => src(`${config.paths.docsSrc()}/**/*.{png,jpg,gif}`)
-  .pipe(dest(config.paths.docsDist())))
+task('build:docs:images', () =>
+  src(`${config.paths.docsSrc()}/**/*.{png,jpg,gif}`).pipe(dest(config.paths.docsDist())),
+)
 
 task('build:docs:webpack', (cb) => {
   const webpackConfig = require('../../webpack.config.babel').default
@@ -87,21 +94,19 @@ task('build:docs:webpack', (cb) => {
   })
 })
 
-task('build:docs', series(
-  parallel(
-    'dll',
-    series(
-      'clean:docs',
-      parallel(
-        'build:docs:docgen',
-        'build:docs:menugen',
-        'build:docs:html',
-        'build:docs:images',
+task(
+  'build:docs',
+  series(
+    parallel(
+      'dll',
+      series(
+        'clean:docs',
+        parallel('build:docs:docgen', 'build:docs:menugen', 'build:docs:html', 'build:docs:images'),
       ),
     ),
+    'build:docs:webpack',
   ),
-  'build:docs:webpack',
-))
+)
 
 // ----------------------------------------
 // Serve
@@ -113,19 +118,23 @@ task('serve:docs', (cb) => {
   const compiler = webpack(webpackConfig)
 
   app
-    .use(historyApiFallback({
-      verbose: false,
-    }))
+    .use(
+      historyApiFallback({
+        verbose: false,
+      }),
+    )
 
-    .use(WebpackDevMiddleware(compiler, {
-      publicPath: webpackConfig.output.publicPath,
-      contentBase: config.paths.docsSrc(),
-      hot: true,
-      quiet: false,
-      noInfo: true, // must be quiet for hot middleware to show overlay
-      lazy: false,
-      stats: config.compiler_stats,
-    }))
+    .use(
+      WebpackDevMiddleware(compiler, {
+        publicPath: webpackConfig.output.publicPath,
+        contentBase: config.paths.docsSrc(),
+        hot: true,
+        quiet: false,
+        noInfo: true, // must be quiet for hot middleware to show overlay
+        lazy: false,
+        stats: config.compiler_stats,
+      }),
+    )
 
     .use(WebpackHotMiddleware(compiler))
 
@@ -143,12 +152,16 @@ task('serve:docs', (cb) => {
 
 task('watch:docs', (cb) => {
   // rebuild doc info
-  watch(`${config.paths.src()}/**/*.js`, series('build:docs:docgen'))
-    .on('change', handleWatchChange)
+  watch(`${config.paths.src()}/**/*.js`, series('build:docs:docgen')).on(
+    'change',
+    handleWatchChange,
+  )
 
   // rebuild images
-  watch(`${config.paths.src()}/**/*.{png,jpg,gif}`, series('build:docs:images'))
-    .on('change', handleWatchChange)
+  watch(`${config.paths.src()}/**/*.{png,jpg,gif}`, series('build:docs:images')).on(
+    'change',
+    handleWatchChange,
+  )
   cb()
 })
 
@@ -156,7 +169,4 @@ task('watch:docs', (cb) => {
 // Default
 // ----------------------------------------
 
-task('docs', series(
-  'build:docs',
-  'serve:docs',
-))
+task('docs', series('build:docs', 'serve:docs'))

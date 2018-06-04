@@ -1,7 +1,7 @@
 import gutil from 'gulp-util'
 import _ from 'lodash'
 import path from 'path'
-import { defaultHandlers, parse } from 'react-docgen'
+import { defaultHandlers, resolver, parse } from 'react-docgen'
 import through from 'through2'
 
 import { parseDefaultValue, parseDocBlock, parserCustomHandler, parseType } from './util'
@@ -28,10 +28,21 @@ export default (filename) => {
 
     try {
       const componentName = path.basename(file.path, '.js')
-      const parsed = parse(file.contents, null, [
+      const components = parse(file.contents, resolver.findAllComponentDefinitions, [
         ...defaultHandlers,
         parserCustomHandler,
       ])
+      if (!components.length) {
+        throw new Error(`Could not find a component definition in "${file.path}".`)
+      }
+      if (components.length > 1) {
+        throw new Error(
+          `Found more than one component definition in "${
+            file.path
+          }". This is currently not supported, please ensure your module only defines a single React component.`,
+        )
+      }
+      const parsed = components[0]
 
       // replace the component`description` string with a parsed doc block object
       parsed.docBlock = parseDocBlock(parsed.description)
@@ -70,7 +81,7 @@ export default (filename) => {
 
   function endStream(cb) {
     finalFile = latestFile.clone({ contents: false })
-    finalFile.path = path.join(latestFile.base, (filename || defaultFilename))
+    finalFile.path = path.join(latestFile.base, filename || defaultFilename)
     finalFile.contents = new Buffer(JSON.stringify(result, null, 2))
     this.push(finalFile)
     cb()

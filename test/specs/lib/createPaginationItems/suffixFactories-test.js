@@ -1,33 +1,29 @@
 import { createInnerPrefix, createInnerSuffix } from 'src/lib/createPaginationItems/suffixFactories'
-import { sandbox } from 'test/utils'
 
 describe('suffixFactories', () => {
   describe('createInnerPrefix', () => {
-    it('returns ellipsisItem when is outside innerGroup', () => {
-      createInnerPrefix(5, 10, () => {})
-        .should.have.property('type', 'ellipsisItem')
+    test('returns ellipsisItem when is outside innerGroup', () => {
+      expect(createInnerPrefix(5, 10, () => {})).toHaveProperty('type', 'ellipsisItem')
     })
 
-    it('calls pageFactory when position matches border of a group', () => {
-      const pageFactory = sandbox.spy()
+    test('calls pageFactory when position matches border of a group', () => {
+      const pageFactory = jest.fn()
       createInnerPrefix(5, 7, pageFactory)
 
-      pageFactory.should.have.been.calledOnce()
+      expect(pageFactory).toHaveBeenCalled()
     })
   })
 
   describe('createInnerSuffix', () => {
-    it('returns ellipsisItem when is outside innerGroup', () => {
-      createInnerSuffix(5, 10, () => {})
-        .should.have.property('type', 'ellipsisItem')
+    test('returns ellipsisItem when is outside innerGroup', () => {
+      expect(createInnerSuffix(5, 10, () => {})).toHaveProperty('type', 'ellipsisItem')
     })
 
-    it('calls pageFactory when position matches border of a group', () => {
-      const pageFactory = sandbox.spy()
+    test('calls pageFactory when position matches border of a group', () => {
+      const pageFactory = jest.fn()
       createInnerSuffix(5, 7, pageFactory)
 
-      pageFactory.should.have.been.calledOnce()
+      expect(pageFactory).toHaveBeenCalled()
     })
   })
 })
-

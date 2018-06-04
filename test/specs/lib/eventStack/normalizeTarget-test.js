@@ -2,40 +2,34 @@ import normalizeTarget from 'src/lib/eventStack/normalizeTarget'
 
 describe('normalizeTarget', () => {
   describe('document', () => {
-    it('returns `document` when it passed as string', () => {
-      normalizeTarget('document')
-        .should.equal(document)
+    test('returns `document` when it passed as string', () => {
+      expect(normalizeTarget('document')).toBe(document)
     })
 
-    it('returns `document` when `false` passed', () => {
-      normalizeTarget(false)
-        .should.equal(document)
+    test('returns `document` when `false` passed', () => {
+      expect(normalizeTarget(false)).toBe(document)
     })
 
-    it('returns `document` when it passed', () => {
-      normalizeTarget(document)
-        .should.equal(document)
+    test('returns `document` when it passed', () => {
+      expect(normalizeTarget(document)).toBe(document)
     })
   })
 
   describe('element', () => {
-    it('returns `element` when it passed', () => {
+    test('returns `element` when it passed', () => {
       const element = document.createElement('div')
 
-      normalizeTarget(element)
-        .should.equal(element)
+      expect(normalizeTarget(element)).toBe(element)
     })
   })
 
   describe('window', () => {
-    it('returns `document` when it passed as string', () => {
-      normalizeTarget('window')
-        .should.equal(window)
+    test('returns `document` when it passed as string', () => {
+      expect(normalizeTarget('window')).toBe(window)
     })
 
-    it('returns document when it passed', () => {
-      normalizeTarget(window)
-        .should.equal(window)
+    test('returns document when it passed', () => {
+      expect(normalizeTarget(window)).toBe(window)
     })
   })
 })

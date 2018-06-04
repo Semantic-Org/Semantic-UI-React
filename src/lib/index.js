@@ -16,12 +16,14 @@ export * as customPropTypes from './customPropTypes'
 
 export { debug, makeDebugger } from './debug'
 export eventStack from './eventStack'
+export felaRenderer from './felaRenderer'
 
 export * from './factories'
 export getUnhandledProps from './getUnhandledProps'
 export getElementType from './getElementType'
-
+export createComponent from './createComponent'
 export {
+  htmlImageProps,
   htmlInputAttrs,
   htmlInputEvents,
   htmlInputProps,

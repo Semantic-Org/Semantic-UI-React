@@ -17,43 +17,43 @@ describe('objectDiff', () => {
     }))
   })
 
-  const assertDiff = diff => objectDiff(a, b).should.deep.equal(diff)
+  const assertDiff = diff => expect(objectDiff(a, b)).toEqual(diff)
 
-  it('picks up undefined values', () => {
+  test('picks up undefined values', () => {
     b.nil = undefined
     assertDiff({ nil: undefined })
   })
-  it('picks up null values', () => {
+  test('picks up null values', () => {
     b.undef = null
     assertDiff({ undef: null })
   })
-  it('picks up boolean values', () => {
+  test('picks up boolean values', () => {
     b.undef = true
     assertDiff({ undef: true })
 
     b.undef = false
     assertDiff({ undef: false })
   })
-  it('picks up number values', () => {
+  test('picks up number values', () => {
     b.undef = 0
     assertDiff({ undef: 0 })
 
     b.undef = 1
     assertDiff({ undef: 1 })
   })
-  it('picks up string values', () => {
+  test('picks up string values', () => {
     b.undef = 'string'
     assertDiff({ undef: 'string' })
   })
-  it('picks up object values', () => {
+  test('picks up object values', () => {
     b.obj.key = 'new value'
     assertDiff({ obj: b.obj })
   })
-  it('picks up nested object values', () => {
+  test('picks up nested object values', () => {
     b.obj.nested.key = 'new nested value'
     assertDiff({ obj: b.obj })
   })
-  it('shows deleted keys', () => {
+  test('shows deleted keys', () => {
     delete b.undef
     assertDiff({ undef: '[DELETED]' })
   })
