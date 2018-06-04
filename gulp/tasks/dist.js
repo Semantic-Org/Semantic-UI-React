@@ -15,7 +15,7 @@ const { log, PluginError } = g.util
 // ----------------------------------------
 
 task('clean:dist', (cb) => {
-  rimraf(config.paths.dist(), cb)
+  rimraf(`${config.paths.dist()}/*`, cb)
 })
 
 // ----------------------------------------
