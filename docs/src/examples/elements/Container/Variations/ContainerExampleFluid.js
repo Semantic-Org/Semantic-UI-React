@@ -26,4 +26,5 @@ const ContainerExampleFluid = () => (
     </Container>
   </div>
 )
+
 export default ContainerExampleFluid
