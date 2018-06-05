@@ -22,15 +22,22 @@ class ModalExampleCloseConfig extends Component {
           open={open}
           closeOnEscape={closeOnEscape}
           closeOnRootNodeClick={closeOnRootNodeClick}
-          onClose={this.close}
         >
           <Modal.Header>Delete Your Account</Modal.Header>
           <Modal.Content>
             <p>Are you sure you want to delete your account</p>
           </Modal.Content>
           <Modal.Actions>
-            <Button negative>No</Button>
-            <Button positive labelPosition='right' icon='checkmark' content='Yes' />
+            <Button onClick={this.close} negative>
+              No
+            </Button>
+            <Button
+              onClick={this.close}
+              positive
+              labelPosition='right'
+              icon='checkmark'
+              content='Yes'
+            />
           </Modal.Actions>
         </Modal>
       </div>
