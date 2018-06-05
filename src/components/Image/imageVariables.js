@@ -1,8 +1,10 @@
+import { rem } from 'src/lib'
+
 export default () => {
   const vars = {}
 
-  vars.avatarRadius = '999rem'
-  vars.avatarSize = '3.2rem'
+  vars.avatarRadius = rem(999)
+  vars.avatarSize = rem(3.2)
 
   return vars
 }

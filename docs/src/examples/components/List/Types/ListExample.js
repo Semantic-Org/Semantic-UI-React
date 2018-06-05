@@ -1,8 +1,9 @@
 import React from 'react'
 import { List } from 'stardust'
 import faker from 'faker'
+import { rem } from 'src/lib'
 
-const imgStyle = { display: 'block', width: '2.8rem', borderRadius: '999rem' }
+const imgStyle = { display: 'block', width: rem(2.8), borderRadius: rem(999) }
 const getAvatar = () => <img src={faker.internet.avatar()} style={imgStyle} />
 
 const listItems = [
@@ -14,7 +15,7 @@ const listItems = [
   },
   {
     media: getAvatar(),
-    header: 'Irving Kuhic',
+    header: 'Skyler Parks',
     headerMedia: '11:30:17 PM',
     content: 'Use the online FTP application, then you can input the multi-byte application!',
   },

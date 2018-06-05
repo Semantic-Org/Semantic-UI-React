@@ -1,3 +1,4 @@
+import { rem } from 'src/lib'
 import { debugRoot } from '../../styles/debugRules'
 
 // ----------------------------------------
@@ -14,7 +15,7 @@ const listItemRules = (props) => {
         fontWeight: 'bold',
       }),
       // TODO: remove 0 auto helper
-      gridTemplateRows: variables.itemHeight === '0rem' ? undefined : variables.itemHeight,
+      gridTemplateRows: variables.itemHeight === '0' ? undefined : variables.itemHeight,
       paddingLeft: variables.itemPaddingLeft,
       paddingRight: variables.itemPaddingRight,
 
@@ -50,9 +51,9 @@ const listItemRules = (props) => {
         '::before': {
           content: '""',
           position: 'absolute',
-          left: '0.8rem',
-          width: '0.2rem',
-          height: '0.2rem',
+          left: rem(0.8),
+          width: rem(0.2),
+          height: rem(0.2),
           background: '#000',
         },
       }),

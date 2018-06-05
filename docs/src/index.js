@@ -17,7 +17,7 @@ document.body.appendChild(mountNode)
 
 const globalRules = siteVars => ({
   html: {
-    fontSize: siteVars.rem,
+    fontSize: siteVars.htmlFontSize,
   },
   body: {
     padding: siteVars.bodyPadding,

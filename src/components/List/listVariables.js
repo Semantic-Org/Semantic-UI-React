@@ -1,12 +1,14 @@
+import { rem } from 'src/lib'
+
 export default (siteVars) => {
   const vars = {}
 
   // Item
-  vars.itemPaddingLeft = '2rem'
-  vars.itemPaddingRight = '1.8rem'
-  vars.columnGap = '0.8rem'
+  vars.itemPaddingLeft = rem(2)
+  vars.itemPaddingRight = rem(1.8)
+  vars.columnGap = rem(0.8)
 
-  vars.itemHeight = '0rem'
+  vars.itemHeight = 0
 
   // Header
   // TODO: prod app uses 17.5px here, it should be 16px per the design guide!

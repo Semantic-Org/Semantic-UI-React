@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import { rem } from 'src/lib'
 import createComponent from '../../lib/createComponent'
 import Layout from '../Layout'
 import listVariables from './listVariables'
@@ -96,7 +97,7 @@ class ListItem extends React.Component {
         <Layout
           className={classes}
           alignItems='end'
-          gap='.8rem'
+          gap={rem(0.8)}
           debug={debug}
           // disappearing={!truncateHeader}
           truncateMain={truncateHeader}
@@ -117,7 +118,7 @@ class ListItem extends React.Component {
         <Layout
           className={classes}
           alignItems='start'
-          gap='.8rem'
+          gap={rem(0.8)}
           debug={debug}
           // disappearing={!truncateContent}
           truncateMain={truncateContent}
@@ -151,7 +152,7 @@ class ListItem extends React.Component {
     return (
       <Layout
         alignItems='center'
-        gap='.8rem'
+        gap={rem(0.8)}
         className={classNames('list-item', styles.root)}
         debug={debug}
         reducing

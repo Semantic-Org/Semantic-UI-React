@@ -7,6 +7,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 import { Divider, Form, Grid, Menu, Segment, Visibility } from 'semantic-ui-react'
+import { rem } from 'src/lib'
 
 import { Provider } from 'stardust'
 
@@ -40,18 +41,18 @@ const babelConfig = {
 
 const childrenStyle = {
   paddingTop: 0,
-  maxWidth: '50rem',
+  maxWidth: rem(50),
 }
 
 const errorStyle = {
   padding: '1em',
-  fontSize: '0.9rem',
+  fontSize: rem(0.9),
   color: '#a33',
   background: '#fff2f2',
 }
 
 const controlsWrapperStyle = {
-  minHeight: '3rem',
+  minHeight: rem(3),
 }
 
 /**

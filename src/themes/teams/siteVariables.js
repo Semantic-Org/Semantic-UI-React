@@ -1,7 +1,8 @@
 //
 // VARIABLES
 //
-export const rem = '10px' // what 1rem represents
+
+export const htmlFontSize = '14px' // what 1rem represents
 
 export const black = '#252424'
 export const gray02 = 'rgb(37, 36, 36, 0.75)'
@@ -13,7 +14,7 @@ export const gray02 = 'rgb(37, 36, 36, 0.75)'
 export const bodyPadding = 0
 export const bodyMargin = 0
 export const bodyFontFamily = '"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif'
-export const bodyFontSize = '1.4rem'
+export const bodyFontSize = '1rem'
 export const bodyColor = black
 export const bodyLineHeight = '2rem'
 
