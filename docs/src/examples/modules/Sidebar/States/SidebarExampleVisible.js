@@ -8,7 +8,7 @@ const SidebarExampleVisible = () => (
         <Icon name='home' />
         Home
       </Menu.Item>
-      <Menu.Item  as='a'>
+      <Menu.Item as='a'>
         <Icon name='gamepad' />
         Games
       </Menu.Item>
