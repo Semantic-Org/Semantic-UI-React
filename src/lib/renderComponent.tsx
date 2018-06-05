@@ -8,7 +8,7 @@ import getUnhandledProps from './getUnhandledProps'
 import callable from './callable'
 
 export interface IRenderResultConfig<P> {
-  ElementType: React.ComponentType<P>
+  ElementType: React.ReactType<P>
   rest: { [key: string]: any }
   classes: { [key: string]: string }
 }

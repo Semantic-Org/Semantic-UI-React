@@ -15,8 +15,14 @@ const getShorthand = ({
   defaultProps,
   mapValueToProps = () => ({}),
   overrideProps,
+  autoGenerateKey,
   value,
-}: any) => createShorthand(Component, mapValueToProps, value, { defaultProps, overrideProps })
+}: any) =>
+  createShorthand(Component, mapValueToProps, value, {
+    defaultProps,
+    overrideProps,
+    autoGenerateKey,
+  })
 
 // ----------------------------------------
 // Common tests
@@ -24,12 +30,14 @@ const getShorthand = ({
 
 const itReturnsNull = value => {
   test('returns null', () => {
+    consoleUtil.disableOnce()
     expect(getShorthand({ value })).toBe(null)
   })
 }
 
 const itReturnsNullGivenDefaultProps = value => {
   test('returns null given defaultProps object', () => {
+    consoleUtil.disableOnce()
     expect(getShorthand({ value, defaultProps: { 'data-foo': 'foo' } })).toBe(null)
   })
 }
@@ -120,6 +128,7 @@ describe('factories', () => {
     })
 
     test('throw if passed Component that is not a string nor function', () => {
+      consoleUtil.disableOnce()
       const badComponents = [undefined, null, true, false, [], {}, 123]
 
       _.each(badComponents, badComponent => {
@@ -148,6 +157,7 @@ describe('factories', () => {
     })
 
     test('throw if passed Component that is not a string nor function', () => {
+      consoleUtil.disableOnce()
       const badComponents = [undefined, null, true, false, [], {}, 123]
 
       _.each(badComponents, badComponent => {
@@ -207,6 +217,26 @@ describe('factories', () => {
           expect(getShorthand({ value: { key: 0 } })).toHaveProperty('key', '0')
 
           expect(getShorthand({ value: { key: '' } })).toHaveProperty('key', '')
+        })
+      })
+
+      describe('when value is a string', () => {
+        test('is generated from the value', () => {
+          expect(getShorthand({ value: 'foo' })).toHaveProperty('key', 'foo')
+        })
+
+        test('is not generated if autoGenerateKey is false', () => {
+          expect(getShorthand({ value: 'foo', autoGenerateKey: false })).toHaveProperty('key', null)
+        })
+      })
+
+      describe('when value is a number', () => {
+        test('is generated from the value', () => {
+          expect(getShorthand({ value: 123 })).toHaveProperty('key', '123')
+        })
+
+        test('is not generated if autoGenerateKey is false', () => {
+          expect(getShorthand({ value: 123, autoGenerateKey: false })).toHaveProperty('key', null)
         })
       })
     })
@@ -390,36 +420,8 @@ describe('factories', () => {
     })
 
     describe('from an array', () => {
-      itReturnsAValidElement(['foo'])
-      itAppliesDefaultProps(['foo'])
-      itMergesClassNames('mapValueToProps', 'mapped', {
-        value: ['foo'],
-        mapValueToProps: () => ({ className: 'mapped' }),
-      })
-
-      itAppliesProps(
-        'mapValueToProps',
-        { 'data-prop': 'present' },
-        {
-          value: ['foo'],
-          mapValueToProps: () => ({ 'data-prop': 'present' }),
-        },
-      )
-
-      itOverridesDefaultProps(
-        'mapValueToProps',
-        { some: 'defaults', overridden: false },
-        { some: 'defaults', overridden: true },
-        {
-          value: ['an array'],
-          mapValueToProps: () => ({ overridden: true }),
-        },
-      )
-
-      itOverridesDefaultPropsWithFalseyProps('mapValueToProps', {
-        value: ['an array'],
-        mapValueToProps: () => ({ undef: undefined, nil: null, zero: 0, empty: '' }),
-      })
+      itReturnsNull(['foo'])
+      itReturnsNullGivenDefaultProps(['foo'])
     })
 
     describe('style', () => {
