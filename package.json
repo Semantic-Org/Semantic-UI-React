@@ -44,7 +44,7 @@
     "satisfied": "satisfied --skip-invalid",
     "pretest": "yarn satisfied",
     "test": "cross-env NODE_ENV=test jest",
-    "test:watch": "yarn test --watch",
+    "test:watch": "yarn test --watchAll",
     "tsd": "gulp tsd",
     "tsd:lint": "tslint './index.d.ts' './src/**/*.d.ts' './src/**/*.tsx' './test/**/*.d.ts' './test/**/*.tsx'",
     "tsd:lint:fix": "yarn tsd:lint --fix",
