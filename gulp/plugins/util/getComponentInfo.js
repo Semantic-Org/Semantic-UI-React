@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import path from 'path'
-import { defaultHandlers, parse } from 'react-docgen'
+import { defaultHandlers, parse, resolver } from 'react-docgen'
 import fs from 'fs'
 
 import { parseDefaultValue, parseDocblock, parserCustomHandler, parseType } from './'
@@ -19,7 +19,22 @@ const getComponentInfo = (filepath) => {
   const componentType = path.basename(path.dirname(dir)).replace(/s$/, '')
 
   // start with react-docgen info
-  const info = parse(contents, null, [...defaultHandlers, parserCustomHandler])
+  const components = parse(contents, resolver.findAllComponentDefinitions, [
+    ...defaultHandlers,
+    parserCustomHandler,
+  ])
+  if (!components.length) {
+    throw new Error(`Could not find a component definition in "${filepath}".`)
+  }
+  if (components.length > 1) {
+    throw new Error(
+      [
+        `Found more than one component definition in "${filepath}".`,
+        'This is currently not supported, please ensure your module only defines a single React component.',
+      ].join(' '),
+    )
+  }
+  const info = components[0]
 
   // remove keys we don't use
   delete info.methods
