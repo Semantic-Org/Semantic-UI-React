@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -199,13 +200,17 @@ export default class Sticky extends Component {
   }
 
   computeStyle() {
-    const { bottom, sticky, top } = this.state
-
+    const { bottom, bound, sticky, top } = this.state
     if (!sticky) return {}
+    if (bound) {
+      return {
+        bottom: 0,
+        width: this.triggerRect.width,
+      }
+    }
     return {
       bottom,
       top,
-      position: 'fixed',
       width: this.triggerRect.width,
     }
   }
@@ -244,6 +249,12 @@ export default class Sticky extends Component {
     if (possible) this.setState({ pushing })
   }
 
+  bound(bound) {
+    this.setState({
+      bound,
+    })
+  }
+
   stick = (e) => {
     this.setState({ sticky: true })
     _.invoke(this.props, 'onStick', e, this.props)
@@ -255,12 +266,10 @@ export default class Sticky extends Component {
   }
 
   stickToContextBottom = (e) => {
-    const top = this.contextRect.bottom - this.stickyRect.height
-
     _.invoke(this.props, 'onBottom', e, this.props)
 
     this.stick(e)
-    this.setState({ top, bottom: null })
+    this.bound(true)
     this.pushing(true)
   }
 
@@ -268,6 +277,7 @@ export default class Sticky extends Component {
     _.invoke(this.props, 'onTop', e, this.props)
 
     this.unstick(e)
+    this.bound(false)
     this.pushing(false)
   }
 
@@ -275,6 +285,7 @@ export default class Sticky extends Component {
     const { bottomOffset: bottom } = this.props
 
     this.stick(e)
+    this.bound(false)
     this.setState({ bottom, top: null })
   }
 
@@ -282,6 +293,7 @@ export default class Sticky extends Component {
     const { offset: top } = this.props
 
     this.stick(e)
+    this.bound(false)
     this.setState({ top, bottom: null })
   }
 
@@ -299,13 +311,36 @@ export default class Sticky extends Component {
 
   render() {
     const { children, className } = this.props
+    const { sticky, bound, bottom } = this.state
     const rest = getUnhandledProps(Sticky, this.props)
     const ElementType = getElementType(Sticky, this.props)
 
+    const containerClasses = cx(
+      className,
+      'ui',
+      sticky && 'stuck-container',
+      sticky && bound && 'bound-container',
+      sticky && !bound && 'fixed-container',
+    )
+
+    const elementClasses = ['ui', 'sticky']
+
+    if (sticky) {
+      elementClasses.push([bound ? 'bound bottom' : 'fixed'])
+
+      if (!bound) {
+        elementClasses.push([bottom === null ? 'top' : 'bottom'])
+      }
+    }
+
     return (
-      <ElementType {...rest} className={className}>
+      <ElementType {...rest} className={containerClasses}>
         <div ref={this.handleTriggerRef} />
-        <div ref={this.handleStickyRef} style={this.computeStyle()}>
+        <div
+          ref={this.handleStickyRef}
+          className={cx(...elementClasses)}
+          style={this.computeStyle()}
+        >
           {children}
         </div>
       </ElementType>
