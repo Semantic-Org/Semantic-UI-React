@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  shallowEqual,
 } from '../../lib'
 
 export const names = [
