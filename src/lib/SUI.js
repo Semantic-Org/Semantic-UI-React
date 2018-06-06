@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import { numberToWordMap } from './numberToWord'
 
 export const COLORS = [
   'red',
@@ -24,9 +23,7 @@ export const VERTICAL_ALIGNMENTS = ['bottom', 'middle', 'top']
 export const VISIBILITY = ['mobile', 'tablet', 'computer', 'large screen', 'widescreen']
 
 export const WIDTHS = [
-  ..._.keys(numberToWordMap),
-  ..._.keys(numberToWordMap).map(Number),
-  ..._.values(numberToWordMap),
+  // ...
 ]
 
 export const DIRECTIONAL_TRANSITIONS = [

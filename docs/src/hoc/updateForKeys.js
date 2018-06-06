@@ -1,7 +1,6 @@
+import shallowEqual from 'fbjs/lib/shallowEqual'
 import _ from 'lodash'
 import React, { Component } from 'react'
-
-import { shallowEqual } from 'src/lib'
 
 const updateForKeys = propKeys => ChildComponent =>
   class extends Component {
