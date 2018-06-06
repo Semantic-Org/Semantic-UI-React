@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 import Image from '../../elements/Image'
@@ -78,12 +77,6 @@ class ListItem extends Component {
 
     /** A value for an ordered list. */
     value: PropTypes.string,
-  }
-
-  static _meta = {
-    name: 'ListItem',
-    parent: 'List',
-    type: META.TYPES.ELEMENT,
   }
 
   handleClick = (e) => {

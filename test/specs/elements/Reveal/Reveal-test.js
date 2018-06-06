@@ -4,7 +4,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Reveal', () => {
   common.isConformant(Reveal)
-  common.hasSubComponents(Reveal, [RevealContent])
+  common.hasSubcomponents(Reveal, [RevealContent])
   common.hasUIClassName(Reveal)
   common.rendersChildren(Reveal)
 
@@ -13,8 +13,13 @@ describe('Reveal', () => {
   common.propKeyOnlyToClassName(Reveal, 'instant')
 
   common.propValueOnlyToClassName(Reveal, 'animated', [
-    'fade', 'small fade',
-    'move', 'move right', 'move up', 'move down',
-    'rotate', 'rotate left',
+    'fade',
+    'small fade',
+    'move',
+    'move right',
+    'move up',
+    'move down',
+    'rotate',
+    'rotate left',
   ])
 })

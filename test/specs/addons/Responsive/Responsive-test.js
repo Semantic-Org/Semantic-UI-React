@@ -67,7 +67,7 @@ describe('Responsive', () => {
       mount(<Responsive getWidth={getWidth} />)
 
       getWidth.should.have.been.calledOnce()
-      getWidth.reset()
+      getWidth.resetHistory()
 
       domEvent.fire(window, 'resize')
       getWidth.should.have.been.calledOnce()

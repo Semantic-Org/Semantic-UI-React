@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
+  shallowEqual,
 } from '../../lib'
 
 export const names = [
@@ -521,11 +521,6 @@ class Flag extends PureComponent {
 
   static defaultProps = {
     as: 'i',
-  }
-
-  static _meta = {
-    name: 'Flag',
-    type: META.TYPES.ELEMENT,
   }
 
   render() {

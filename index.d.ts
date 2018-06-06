@@ -233,6 +233,10 @@ export {
   default as DimmerDimmable,
   DimmerDimmableProps
 } from './dist/commonjs/modules/Dimmer/DimmerDimmable';
+export {
+  default as DimmerInner,
+  DimmerInnerProps
+} from './dist/commonjs/modules/Dimmer/DimmerInner';
 
 export {
   default as Dropdown,

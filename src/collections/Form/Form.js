@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useWidthProp,
@@ -82,11 +81,6 @@ class Form extends Component {
     as: 'form',
   }
 
-  static _meta = {
-    name: 'Form',
-    type: META.TYPES.COLLECTION,
-  }
-
   static Field = FormField
   static Button = FormButton
   static Checkbox = FormCheckbox
@@ -140,12 +134,7 @@ class Form extends Component {
     const ElementType = getElementType(Form, this.props)
 
     return (
-      <ElementType
-        {...rest}
-        action={action}
-        className={classes}
-        onSubmit={this.handleSubmit}
-      >
+      <ElementType {...rest} action={action} className={classes} onSubmit={this.handleSubmit}>
         {children}
       </ElementType>
     )

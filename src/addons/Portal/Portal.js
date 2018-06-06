@@ -8,7 +8,6 @@ import {
   doesNodeContainClick,
   eventStack,
   makeDebugger,
-  META,
 } from '../../lib'
 import Ref from '../Ref'
 import PortalInner from './PortalInner'
@@ -120,11 +119,6 @@ class Portal extends Component {
   }
 
   static autoControlledProps = ['open']
-
-  static _meta = {
-    name: 'Portal',
-    type: META.TYPES.ADDON,
-  }
 
   static Inner = PortalInner
 

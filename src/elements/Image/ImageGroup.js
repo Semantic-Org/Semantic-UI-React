@@ -2,14 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-  SUI,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps, SUI } from '../../lib'
 
 /**
  * A group of images.
@@ -25,12 +18,6 @@ function ImageGroup(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-ImageGroup._meta = {
-  name: 'ImageGroup',
-  parent: 'Image',
-  type: META.TYPES.ELEMENT,
 }
 
 ImageGroup.propTypes = {

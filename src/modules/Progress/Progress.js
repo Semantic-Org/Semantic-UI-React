@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -94,16 +93,11 @@ class Progress extends Component {
     warning: PropTypes.bool,
   }
 
-  static _meta = {
-    name: 'Progress',
-    type: META.TYPES.MODULE,
-  }
-
   calculatePercent = () => {
     const { percent, total, value } = this.props
 
     if (!_.isUndefined(percent)) return percent
-    if (!_.isUndefined(total) && !_.isUndefined(value)) return value / total * 100
+    if (!_.isUndefined(total) && !_.isUndefined(value)) return (value / total) * 100
   }
 
   computeValueText = (percent) => {
@@ -117,7 +111,10 @@ class Progress extends Component {
   getPercent = () => {
     const { precision, progress, total, value } = this.props
     const percent = _.clamp(this.calculatePercent(), 0, 100)
-    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') { return value / total * 100 }
+
+    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') {
+      return (value / total) * 100
+    }
     if (progress === 'value') return value
     if (_.isUndefined(precision)) return percent
     return _.round(percent, precision)
@@ -179,7 +176,7 @@ class Progress extends Component {
     )
     const rest = getUnhandledProps(Progress, this.props)
     const ElementType = getElementType(Progress, this.props)
-    const percent = this.getPercent()
+    const percent = this.getPercent() || 0
 
     return (
       <ElementType {...rest} className={classes} data-percent={Math.floor(percent)}>

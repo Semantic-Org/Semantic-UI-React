@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -17,11 +16,7 @@ import {
  */
 function AccordionContent(props) {
   const { active, children, className, content } = props
-  const classes = cx(
-    'content',
-    useKeyOnly(active, 'active'),
-    className,
-  )
+  const classes = cx('content', useKeyOnly(active, 'active'), className)
   const rest = getUnhandledProps(AccordionContent, props)
   const ElementType = getElementType(AccordionContent, props)
 
@@ -47,12 +42,6 @@ AccordionContent.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
-}
-
-AccordionContent._meta = {
-  name: 'AccordionContent',
-  type: META.TYPES.MODULE,
-  parent: 'Accordion',
 }
 
 AccordionContent.create = createShorthandFactory(AccordionContent, content => ({ content }))

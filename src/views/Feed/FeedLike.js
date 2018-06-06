@@ -2,32 +2,25 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 import Icon from '../../elements/Icon'
 
 /**
  * A feed can contain a like element.
  */
 function FeedLike(props) {
-  const {
-    children,
-    className,
-    content,
-    icon,
-  } = props
+  const { children, className, content, icon } = props
 
   const classes = cx('like', className)
   const rest = getUnhandledProps(FeedLike, props)
   const ElementType = getElementType(FeedLike, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
   }
 
   return (
@@ -36,12 +29,6 @@ function FeedLike(props) {
       {content}
     </ElementType>
   )
-}
-
-FeedLike._meta = {
-  name: 'FeedLike',
-  parent: 'Feed',
-  type: META.TYPES.VIEW,
 }
 
 FeedLike.defaultProps = {

@@ -62,6 +62,9 @@ export interface DropdownProps {
   /** Currently selected label in multi-select. */
   defaultSelectedLabel?: number | string;
 
+  /** Initial value of upward. */
+  defaultUpward?: boolean;
+
   /** Initial value or value array if multiple. */
   defaultValue?: string | number | Array<number | string>;
 
@@ -269,7 +272,7 @@ export interface DropdownProps {
   /** Current value or value array if multiple. Creates a controlled component. */
   value?: boolean | number | string | Array<boolean | number | string>;
 
-  /** A dropdown can open upward. */
+  /** Controls whether the dropdown will open upward. */
   upward?: boolean;
 
   /**

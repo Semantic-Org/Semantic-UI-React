@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { isValidElement } from 'react'
 
 import { createShorthand, createShorthandFactory } from 'src/lib'
-import { sandbox } from 'test/utils'
+import { consoleUtil, sandbox } from 'test/utils'
 
 // ----------------------------------------
 // Utils
@@ -18,7 +18,12 @@ const getShorthand = ({
   overrideProps,
   autoGenerateKey,
   value,
-}) => createShorthand(Component, mapValueToProps, value, { defaultProps, overrideProps, autoGenerateKey })
+}) =>
+  createShorthand(Component, mapValueToProps, value, {
+    defaultProps,
+    overrideProps,
+    autoGenerateKey,
+  })
 
 // ----------------------------------------
 // Common tests
@@ -172,6 +177,9 @@ describe('factories', () => {
 
     describe('key', () => {
       it('is not consumed', () => {
+        // silence React "`key` is not a prop" warning due to accessing props.key
+        consoleUtil.disableOnce()
+
         getShorthand({ value: { key: 123 } }).props.should.have.property('key')
       })
 
@@ -213,25 +221,21 @@ describe('factories', () => {
 
       describe('when value is a string', () => {
         it('is generated from the value', () => {
-          getShorthand({ value: 'foo' })
-            .should.have.property('key', 'foo')
+          getShorthand({ value: 'foo' }).should.have.property('key', 'foo')
         })
 
         it('is not generated if autoGenerateKey is false', () => {
-          getShorthand({ value: 'foo', autoGenerateKey: false })
-            .should.have.property('key', null)
+          getShorthand({ value: 'foo', autoGenerateKey: false }).should.have.property('key', null)
         })
       })
 
       describe('when value is a number', () => {
         it('is generated from the value', () => {
-          getShorthand({ value: 123 })
-            .should.have.property('key', '123')
+          getShorthand({ value: 123 }).should.have.property('key', '123')
         })
 
         it('is not generated if autoGenerateKey is false', () => {
-          getShorthand({ value: 123, autoGenerateKey: false })
-            .should.have.property('key', null)
+          getShorthand({ value: 123, autoGenerateKey: false }).should.have.property('key', null)
         })
       })
     })

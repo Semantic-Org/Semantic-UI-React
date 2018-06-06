@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -25,12 +24,6 @@ function MessageItem(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-MessageItem._meta = {
-  name: 'MessageItem',
-  parent: 'Message',
-  type: META.TYPES.COLLECTION,
 }
 
 MessageItem.propTypes = {

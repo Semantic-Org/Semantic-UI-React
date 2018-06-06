@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -51,11 +50,6 @@ function Rail(props) {
   )
 }
 
-Rail._meta = {
-  name: 'Rail',
-  type: META.TYPES.ELEMENT,
-}
-
 Rail.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
@@ -70,10 +64,7 @@ Rail.propTypes = {
   className: PropTypes.string,
 
   /** A rail can appear closer to the main viewport. */
-  close: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['very']),
-  ]),
+  close: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
