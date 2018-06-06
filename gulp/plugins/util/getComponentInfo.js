@@ -55,11 +55,13 @@ const getComponentInfo = (filepath) => {
     ? null
     : info.displayName.replace(info.parentDisplayName, '')
 
+  // "ListItem.js" is a subcomponent is the "List" directory
+  const subcomponentRegExp = new RegExp(`^${dirname}\\w+\\.js$`)
+
   info.subcomponents = info.isParent
     ? fs
       .readdirSync(dir)
-      .filter(file => /^(?!index).*\.js$/.test(file))
-      .filter(file => dirname !== path.basename(file, path.extname(file)))
+      .filter(file => subcomponentRegExp.test(file))
       .map(file => path.basename(file, path.extname(file)))
     : null
 
