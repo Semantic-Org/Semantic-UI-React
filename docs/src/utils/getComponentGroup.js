@@ -1,21 +1,27 @@
-import _ from 'lodash/fp'
-import * as Stardust from 'src'
+import componentInfoContext from './componentInfoContext'
 
-const getComponentGroup = (docInfo, componentName) => ({
-  [componentName]: {
-    description: _.get('docBlock.description', docInfo[componentName]),
-    props: _.get('props', docInfo[componentName]),
-  },
-  ..._.flow(
-    _.filter(component => _.get('_meta.parent', component) === componentName),
-    _.map('_meta.name'),
-    _.map(name => ({
-      name,
-      description: _.get('docBlock.description', docInfo[name]),
-      props: _.get('props', docInfo[name]),
-    })),
-    _.keyBy('name'),
-  )(Stardust),
-})
+/**
+ * Returns a component's info.json file and subcomponent info.json files grouped by displayName.
+ * @param displayName
+ * @returns {{}}
+ */
+const getComponentGroup = (displayName) => {
+  const info = componentInfoContext.byDisplayName[displayName]
+
+  const group = {
+    [info.displayName]: info,
+  }
+
+  if (!info.subcomponents) return group
+
+  // add subcomponents
+  info.subcomponents.forEach((subcomponent) => {
+    const subInfo = componentInfoContext.byDisplayName[subcomponent]
+
+    group[subInfo.displayName] = subInfo
+  })
+
+  return group
+}
 
 export default getComponentGroup

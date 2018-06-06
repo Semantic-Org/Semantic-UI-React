@@ -1,15 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import createComponent from '../../lib/createComponent'
+
+import { createComponent } from '../../lib'
 import ListItem from './ListItem'
 import listRules from './listRules'
 
 class List extends React.Component {
-  static _meta = {
-    type: 'component',
-    name: 'List',
-  }
-
   static propTypes = {
     /** Toggle debug mode */
     debug: PropTypes.bool,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image } from 'stardust'
 
-const ImageExampleDefault = () => <Image src='//placehold.it/100' />
+const ImageExample = () => <Image src='//placehold.it/100' />
 
-export default ImageExampleDefault
+export default ImageExample

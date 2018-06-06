@@ -1,67 +1,70 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { Checkbox } from 'semantic-ui-react'
 
+import { getComponentGroup } from 'docs/src/utils'
 import ComponentTable from '../ComponentTable'
 import ComponentPropsComponents from './ComponentPropsComponents'
 import ComponentPropsDescription from './ComponentPropsDescription'
-import ComponentPropsHeader from './ComponentPropsHeader'
 
 const propsContainerStyle = { overflowX: 'auto' }
 
 export default class ComponentProps extends Component {
   static propTypes = {
-    componentGroup: PropTypes.objectOf(
-      PropTypes.shape({
-        description: PropTypes.arrayOf(PropTypes.string),
-        props: PropTypes.array,
-      }),
-    ),
-    componentName: PropTypes.string,
-    props: PropTypes.arrayOf(PropTypes.object),
+    displayName: PropTypes.string.isRequired,
+    props: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
-  constructor(props) {
-    super(props)
+  componentWillMount() {
+    const { displayName } = this.props
 
-    this.state = { activeName: props.componentName }
+    this.setState({ componentGroup: getComponentGroup(displayName) })
   }
 
-  componentWillReceiveProps({ componentName: next }) {
-    const current = this.props.componentName
+  componentWillReceiveProps({ displayName: next }) {
+    const current = this.props.displayName
 
-    if (current !== next) this.setState({ activeName: next })
+    if (current !== next) {
+      this.setState({
+        activeDisplayName: null,
+        componentGroup: getComponentGroup(next),
+      })
+    }
   }
 
-  handleComponentClick = (e, { name }) => this.setState({ activeName: name })
+  handleComponentClick = (e, { name }) => {
+    this.setState({ activeDisplayName: name })
+  }
 
-  handleToggle = () =>
-    this.setState({ activeName: this.state.activeName ? false : this.props.componentName })
+  handleToggle = () => {
+    const { displayName } = this.props
+    const { activeDisplayName } = this.state
+
+    this.setState({ activeDisplayName: activeDisplayName ? false : displayName })
+  }
 
   render() {
-    const { componentGroup, componentName } = this.props
-    const { activeName } = this.state
-    const { description, props } = componentGroup[activeName] || {}
-    const componentNames = _.keys(componentGroup)
+    const { displayName } = this.props
+    const { activeDisplayName, componentGroup } = this.state
+    const displayNames = _.keys(componentGroup)
+    const { docblock, props } = componentGroup[activeDisplayName] || {}
+    const description = _.get(docblock, 'description', [])
 
     return (
       <div>
-        <ComponentPropsHeader
-          hasSubComponents={componentNames.length > 1}
-          showProps={!!activeName}
-          onClick={this.handleToggle}
-        />
+        <Checkbox slider checked={!!activeDisplayName} label='Props' onClick={this.handleToggle} />
         <ComponentPropsComponents
-          activeName={activeName}
-          components={componentNames}
+          activeDisplayName={activeDisplayName}
+          displayNames={displayNames}
           onItemClick={this.handleComponentClick}
-          parent={componentName}
+          parentDisplayName={displayName}
         />
 
-        {activeName && (
+        {activeDisplayName && (
           <div style={propsContainerStyle}>
-            <ComponentPropsDescription description={description} />
-            <ComponentTable name={activeName} props={props} />
+            <ComponentPropsDescription description={_.join(description, ' ')} />
+            <ComponentTable displayName={activeDisplayName} props={props} />
           </div>
         )}
       </div>

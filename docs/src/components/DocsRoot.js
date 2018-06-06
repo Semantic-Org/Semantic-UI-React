@@ -1,35 +1,33 @@
-import _ from 'lodash/fp'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Component } from 'react'
 
-import { META } from 'src/lib'
-import * as Stardust from 'src'
-import ComponentDoc from './/ComponentDoc'
+import ComponentDoc from '../components/ComponentDoc'
 import PageNotFound from '../views/PageNotFound'
+import componentInfoContext from '../utils/componentInfoContext'
 
-const DocsRoot = (props) => {
-  const { name } = props.match.params
-  const componentName = _.startCase(name).replace(/ /g, '')
-  const component = Stardust[componentName]
-
-  if (!component || !component._meta || !META.isParent(component)) return <PageNotFound />
-
-  return (
-    <ComponentDoc
-      name={component._meta.name}
-      parent={component._meta.parent}
-      type={component._meta.type}
-    />
-  )
-}
-
-DocsRoot.propTypes = {
-  children: PropTypes.node,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      name: PropTypes.string.isRequired,
+class DocsRoot extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+      }),
     }),
-  }),
+  }
+
+  state = {}
+
+  render() {
+    const { match } = this.props
+    const displayName = _.startCase(match.params.name).replace(/ /g, '')
+    const info = componentInfoContext.byDisplayName[displayName]
+
+    if (info) return <ComponentDoc info={info} />
+
+    return <PageNotFound />
+  }
 }
 
 export default DocsRoot

@@ -4,10 +4,9 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import * as semanticUIReact from 'semantic-ui-react'
 
-import { META } from 'src/lib'
+import { componentInfoContext } from 'docs/src/utils'
 import { assertBodyContains, consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
-import componentInfo from './componentInfo'
 import hasValidTypings from './hasValidTypings'
 
 /**
@@ -28,29 +27,31 @@ export default (Component, options = {}) => {
   } = options
   const { throwError } = helpers('isConformant', Component)
 
+  const componentType = typeof Component
+
+  // make sure components are properly exported
+  if (componentType !== 'function') {
+    throwError(`Components should export a class or function, got: ${componentType}.`)
+  }
+
   // tests depend on Component constructor names, enforce them
-  if (!Component.prototype.constructor.name) {
+  const constructorName = Component.prototype.constructor.name
+  if (!constructorName) {
     throwError(
       [
-        'Component is not a named function. This should help identify it:',
-        `static _meta = ${JSON.stringify(Component._meta, null, 2)}`,
-        `Rendered:\n${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
-      ].join('\n'),
+        'Component is not a named function. This should help identify it:\n\n',
+        `${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
+      ].join(''),
     )
   }
 
-  // extract componentInfo for this component
-  const extractedInfo = _.find(
-    componentInfo,
-    i => i.constructorName === Component.prototype.constructor.name,
-  )
-  const { _meta, constructorName, componentClassName, filenameWithoutExt } = extractedInfo
+  const info = componentInfoContext.byDisplayName[constructorName]
 
   // ----------------------------------------
   // Class and file name
   // ----------------------------------------
   it(`constructor name matches filename "${constructorName}"`, () => {
-    constructorName.should.equal(filenameWithoutExt)
+    constructorName.should.equal(info.filenameWithoutExt)
   })
 
   // ----------------------------------------
@@ -59,55 +60,25 @@ export default (Component, options = {}) => {
   // detect components like: semanticUIReact.H1
   const isTopLevelAPIProp = _.has(semanticUIReact, constructorName)
 
-  // detect sub components like: semanticUIReact.Form.Field (ie FormField component)
-  // Build a path by following _meta.parents to the root:
-  //   ['Form', 'FormField', 'FormTextArea']
-  let apiPath = []
-  let meta = _meta
-  while (meta) {
-    apiPath.unshift(meta.name)
-    meta = _.get(semanticUIReact, [meta.parent, '_meta'])
-  }
-  // Remove parent name from paths:
-  //   ['Form', 'Field', 'TextArea']
-  apiPath = apiPath.reduce((acc, next) => [...acc, next.replace(acc.join(''), '')], [])
-
   // find the apiPath in the semanticUIReact object
-  const isSubComponent = _.isFunction(_.get(semanticUIReact, apiPath))
+  const foundAsSubcomponent = _.isFunction(_.get(semanticUIReact, info.apiPath))
 
-  if (META.isPrivate(constructorName)) {
-    it('is not exported as a component nor sub component', () => {
-      expect(isTopLevelAPIProp).to.equal(
-        false,
-        `"${constructorName}" is private (starts with  "_").` +
-          ' It cannot be exposed on the top level API',
-      )
+  // require all components to be exported at the top level
+  it('is exported at the top level', () => {
+    expect(isTopLevelAPIProp).to.equal(
+      true,
+      [`"${info.displayName}" must be exported at top level.`, 'Export it in `src/index.js`.'].join(
+        ' ',
+      ),
+    )
+  })
 
-      expect(isSubComponent).to.equal(
-        false,
-        `"${constructorName}" is private (starts with "_").` +
-          ' It cannot be a static prop of another component (sub-component)',
-      )
-    })
-  } else {
-    // require all components to be exported at the top level
-    it('is exported at the top level', () => {
-      expect(isTopLevelAPIProp).to.equal(
-        true,
-        [
-          `"${constructorName}" must be exported at top level.`,
-          'Export it in `src/index.js`.',
-        ].join(' '),
-      )
-    })
-  }
-
-  if (_meta.parent) {
+  if (info.isChild) {
     it('is a static component on its parent', () => {
-      expect(isSubComponent).to.equal(
+      expect(foundAsSubcomponent).to.equal(
         true,
-        `\`${constructorName}\` is a child component (has a _meta.parent).` +
-          ` It must be a static prop of its parent \`${_meta.parent}\``,
+        `\`${info.displayName}\` is a child component (is in ${info.repoPath}).` +
+          ` It must be a static prop of its parent \`${info.parentDisplayName}\``,
       )
     })
   }
@@ -146,11 +117,11 @@ export default (Component, options = {}) => {
           'strong',
         ]
         try {
-          tags.forEach(tag => {
+          tags.forEach((tag) => {
             shallow(<Component {...requiredProps} as={tag} />).should.have.tagName(tag)
           })
         } catch (err) {
-          tags.forEach(tag => {
+          tags.forEach((tag) => {
             const wrapper = shallow(<Component {...requiredProps} as={tag} />)
             wrapper.type().should.not.equal(Component)
             wrapper.should.have.prop('as', tag)
@@ -173,8 +144,8 @@ export default (Component, options = {}) => {
       })
 
       it('renders as a ReactClass or passes "as" to the next component', () => {
+        // eslint-disable-next-line react/prefer-stateless-function
         class MyComponent extends React.Component {
-          // eslint-disable-line react/prefer-stateless-function
           render() {
             return <div data-my-react-class />
           }
@@ -195,7 +166,7 @@ export default (Component, options = {}) => {
         const MyComponent = () => null
 
         shallow(
-          <Component {...requiredProps} as={MyComponent} data-extra-prop="foo" />,
+          <Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />,
         ).should.have.descendants('[data-extra-prop="foo"]')
       })
     })
@@ -237,7 +208,7 @@ export default (Component, options = {}) => {
       // This test catches the case where a developer forgot to call the event prop
       // after handling it internally. It also catch cases where the synthetic event was not passed back.
       _.each(syntheticEvent.types, ({ eventShape, listeners }) => {
-        _.each(listeners, listenerName => {
+        _.each(listeners, (listenerName) => {
           // onKeyDown => keyDown
           const eventName = _.camelCase(listenerName.replace('on', ''))
 
@@ -266,11 +237,11 @@ export default (Component, options = {}) => {
 
           // <Dropdown onBlur={handleBlur} />
           //                   ^ was not called once on "blur"
-          const leftPad = ' '.repeat(constructorName.length + listenerName.length + 3)
+          const leftPad = ' '.repeat(info.displayName.length + listenerName.length + 3)
 
           handlerSpy.calledOnce.should.equal(
             true,
-            `<${constructorName} ${listenerName}={${handlerName}} />\n` +
+            `<${info.displayName} ${listenerName}={${handlerName}} />\n` +
               `${leftPad} ^ was not called once on "${eventName}".` +
               'You may need to hoist your event handlers up to the root element.\n',
           )
@@ -289,7 +260,7 @@ export default (Component, options = {}) => {
             .should.equal(
               true,
               [
-                `<${constructorName} ${listenerName}={${handlerName}} />\n`,
+                `<${info.displayName} ${listenerName}={${handlerName}} />\n`,
                 `${leftPad} ^ ${errorMessage}`,
                 'It was called with args:',
                 JSON.stringify(handlerSpy.args, null, 2),
@@ -301,35 +272,11 @@ export default (Component, options = {}) => {
   }
 
   // ----------------------------------------
-  // Defines _meta
+  // Has no deprecated _meta
   // ----------------------------------------
   describe('_meta', () => {
-    it('is a static object prop', () => {
-      expect(_meta).to.be.an('object')
-    })
-
-    describe('name', () => {
-      it('is defined', () => {
-        expect(_meta).to.have.any.keys('name')
-      })
-      it('matches the filename', () => {
-        expect(_meta.name).to.equal(filenameWithoutExt)
-      })
-    })
-    if (_.has(_meta, 'parent')) {
-      describe('parent', () => {
-        it('matches some component name', () => {
-          expect(_.map(semanticUIReact, c => c.prototype.constructor.name)).to.contain(_meta.parent)
-        })
-      })
-    }
-    describe('type', () => {
-      it('is defined', () => {
-        expect(_meta).to.have.any.keys('type')
-      })
-      it('is a META.TYPES value', () => {
-        expect(_.values(META.TYPES)).to.contain(_meta.type)
-      })
+    it('does not exist', () => {
+      expect(Component._meta).to.be.undefined()
     })
   })
 
@@ -338,11 +285,11 @@ export default (Component, options = {}) => {
   // ----------------------------------------
   if (rendersChildren) {
     describe('className (common)', () => {
-      it(`has the Semantic UI className "${componentClassName}"`, () => {
+      it(`has the Semantic UI className "${info.componentClassName}"`, () => {
         const wrapper = render(<Component {...requiredProps} />)
         // don't test components with no className at all (i.e. MessageItem)
         if (wrapper.prop('className')) {
-          wrapper.should.have.className(componentClassName)
+          wrapper.should.have.className(info.componentClassName)
         }
       })
 
@@ -384,7 +331,7 @@ export default (Component, options = {}) => {
           'className',
         )
 
-        defaultClasses.split(' ').forEach(defaultClass => {
+        defaultClasses.split(' ').forEach((defaultClass) => {
           mixedClasses.should.include(
             defaultClass,
             [
@@ -399,5 +346,5 @@ export default (Component, options = {}) => {
   // ----------------------------------------
   // Test typings
   // ----------------------------------------
-  hasValidTypings(Component, extractedInfo, options)
+  hasValidTypings(Component, info, options)
 }

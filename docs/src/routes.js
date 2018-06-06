@@ -15,7 +15,7 @@ const RedirectToIntro = () => <Redirect to='/introduction' />
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path='/maximize/:kebabCaseName' component={ExternalExampleLayout} />
+      <Route exact path='/maximize/:exampleName' component={ExternalExampleLayout} />
       <Switch>
         <DocsLayout exact path='/' render={RedirectToIntro} />
         <DocsLayout exact path='/introduction' component={Introduction} />

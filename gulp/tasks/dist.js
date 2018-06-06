@@ -1,10 +1,12 @@
-import { task, parallel, series } from 'gulp'
+import { dest, task, series, src, parallel } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import rimraf from 'rimraf'
 import webpack from 'webpack'
 
+import sh from '../sh'
 import config from '../../config'
 
+const { paths } = config
 const g = loadPlugins()
 const { log, PluginError } = g.util
 
@@ -12,15 +14,30 @@ const { log, PluginError } = g.util
 // Clean
 // ----------------------------------------
 
-task('clean:umd', (cb) => {
-  rimraf(config.paths.umdDist(), cb)
+task('clean:dist', (cb) => {
+  rimraf(`${config.paths.dist()}/*`, cb)
 })
 
 // ----------------------------------------
 // Build
 // ----------------------------------------
 
-task('build:umd:webpack', (cb) => {
+task('build:dist:commonjs:js', (cb) => {
+  sh(`cross-env NODE_ENV=build babel ${paths.src()} -d ${paths.dist('commonjs')}`, cb)
+})
+
+task('build:dist:commonjs:tsd', () =>
+  src(paths.src('**/*.d.ts')).pipe(dest(paths.dist('commonjs'))),
+)
+
+task('build:dist:commonjs', parallel('build:dist:commonjs:js', 'build:dist:commonjs:tsd'))
+
+task('build:dist:es', (cb) => {
+  sh(`cross-env NODE_ENV=build-es babel ${paths.src()} -d ${paths.dist('es')}`, cb)
+})
+
+task('build:dist:umd', (cb) => {
+  process.env.NODE_ENV = 'build'
   const webpackUMDConfig = require('../../webpack.umd.config').default
   const compiler = webpack(webpackUMDConfig)
 
@@ -45,18 +62,10 @@ task('build:umd:webpack', (cb) => {
   })
 })
 
-task('build:umd', series(
-  parallel(
-    'dll',
-    'clean:umd',
-  ),
-  'build:umd:webpack',
-))
+task('build:dist', parallel('build:dist:commonjs', 'build:dist:es', 'build:dist:umd'))
 
 // ----------------------------------------
 // Default
 // ----------------------------------------
 
-task('umd', series(
-  'build:umd',
-))
+task('dist', series('clean:dist', 'build:dist'))

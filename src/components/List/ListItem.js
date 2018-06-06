@@ -1,19 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { rem } from 'src/lib'
-import createComponent from '../../lib/createComponent'
+
+import { createComponent, rem } from '../../lib'
 import Layout from '../Layout'
 import listVariables from './listVariables'
 import listItemRules from './listItemRules'
 
 class ListItem extends React.Component {
-  static _meta = {
-    type: 'component',
-    component: 'ListItem',
-    parent: 'List',
-  }
-
   static propTypes = {
     contentMedia: PropTypes.any,
 

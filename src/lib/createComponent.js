@@ -8,6 +8,7 @@ import { createShorthandFactory } from './factories'
 const callable = val => (typeof val !== 'function' ? () => val : val)
 
 const createComponent = (Component, config) => {
+  const displayName = Component.name || Component.displayName
   const { rules, variables, shorthand } = config
   const StyledComponent = rules ? connect(rules)(Component) : Component
 
@@ -15,7 +16,7 @@ const createComponent = (Component, config) => {
     <FelaTheme
       render={({ siteVariables = {}, componentVariables = {} }) => {
         const variablesFromFile = callable(variables)(siteVariables)
-        const variablesFromTheme = callable(componentVariables[Component._meta.name])(siteVariables)
+        const variablesFromTheme = callable(componentVariables[displayName])(siteVariables)
         const variablesFromProp = callable(props.variables)(siteVariables)
 
         const mergedVariables = Object.assign(

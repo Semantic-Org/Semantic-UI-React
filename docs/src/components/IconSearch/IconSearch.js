@@ -11,31 +11,74 @@ const gridStyle = {
 }
 
 const iconKeyToHeaderMap = {
-  WEB_CONTENT_ICONS: 'Web Content',
-  USER_ACTIONS_ICONS: 'User Actions',
-  MESSAGES_ICONS: 'Messages',
-  USERS_ICONS: 'Users',
-  GENDER_SEXUALITY_ICONS: 'Gender & Sexuality',
-  ACCESSIBILITY_ICONS: 'Accessibility',
-  VIEW_ADJUSTMENT_ICONS: 'View Adjustment',
-  LITERAL_OBJECTS_ICONS: 'Literal Objects',
-  SHAPES_ICONS: 'Shapes',
-  ITEM_SELECTION_ICONS: 'Item Selection',
-  MEDIA_ICONS: 'Media',
-  POINTERS_ICONS: 'Pointers',
-  MOBILE_ICONS: 'Mobile',
-  COMPUTER_ICONS: 'Computer',
-  FILE_SYSTEM_ICONS: 'File System',
-  TECHNOLOGIES_ICONS: 'Technologies',
-  RATING_ICONS: 'Rating',
-  AUDIO_ICONS: 'Audio',
-  MAP_LOCATIONS_TRANSPORTATION_ICONS: 'Map, Locations & Transportation',
-  TABLES_ICONS: 'Tables',
-  TEXT_EDITOR_ICONS: 'Text Editor',
-  CURRENCY_ICONS: 'Currency',
-  PAYMENT_OPTIONS_ICONS: 'Payment Options',
-  NETWORKS_AND_WEBSITE_ICONS: 'Networks And Website',
-  ICON_ALIASES: 'Icon Aliases',
+  ACCESSIBILITY: {
+    title: 'Accessibility',
+    description: 'Icons can represent accessibility standards',
+  },
+  ARROWS: { title: 'Arrows', description: 'Icons can be used to indicate a direction' },
+  AUDIO_VIDEO: {
+    title: 'Audio & Video',
+    description: 'Icons can be used to represent common ways to interact with audio and video',
+  },
+  BUSINESS: {
+    title: 'Business',
+    description: 'Icons can be used to represent business and common business actions',
+  },
+  CHESS: { title: 'Chess', description: 'Icons which represent the game chess' },
+  CODE: { title: 'Code', description: 'Icons can represent programming and programming tools' },
+  COMMUNICATION: {
+    title: 'Communication',
+    description: 'Icons which represent common ways of communication',
+  },
+  COMPUTERS: {
+    title: 'Computers',
+    description: 'Icons can represent computing devices, or types of content found on a computer',
+  },
+  CURRENCY: { title: 'Currency', description: 'Icons can represent units of currency' },
+  DATE_TIME: {
+    title: 'Date & Time',
+    description: 'Icons that represent common ways of showing date and time',
+  },
+  DESIGN: {
+    title: 'Design',
+    description: 'Icons can represent common design related symbols or techniques',
+  },
+  EDITORS: {
+    title: 'Editors',
+    description: 'Icons can represent text editors and common editor actions',
+  },
+  FILES: {
+    title: 'Files',
+    description: 'Icons can represent elements of a computer and its file system',
+  },
+  GENDERS: { title: 'Genders', description: 'Icons can represent genders or types of sexuality' },
+  HANDS_GESTURES: {
+    title: 'Hands & Gestures',
+    description: 'Icons can represent hand signals and gestures',
+  },
+  HEALTH: { title: 'Health', description: 'Icons which represent common health symbols' },
+  IMAGES: { title: 'Images', description: 'Icons that represent common image symbols and actions' },
+  INTERFACES: {
+    title: 'Interfaces',
+    description: 'Icons can represent common actions a user can take or use',
+  },
+  LOGISTICS: { title: 'Logistics', description: 'Icons can represent common logistic activity' },
+  MAPS: { title: 'Maps', description: 'Icons can be used to represent elements on a map' },
+  MEDICAL: { title: 'Medical', description: 'Icons can represent common medical actions' },
+  OBJECTS: { title: 'Objects', description: 'Icons can be used to represent common objects' },
+  PAYMENTS_SHOPPING: {
+    title: 'Payments & Shopping',
+    description: 'Icons can represent common forms of payment and shopping actions',
+  },
+  SHAPES: { title: 'Shapes', description: 'Icons can be used to create shapes' },
+  SPINNERS: { title: 'Spinners', description: 'Icons can represent loading' },
+  SPORTS: { title: 'Sports', description: 'Icons which represent sports' },
+  STATUS: { title: 'Status', description: 'Icons can represent different states' },
+  USERS_PEOPLE: { title: 'Users & People', description: 'Icons can represent users or people' },
+  VEHICLES: { title: 'Vehicles', description: 'Icons can represent vehicles or transport' },
+  WRITING: { title: 'Writing', description: 'Icons can represent writing and editing' },
+  BRANDS: { title: 'Brands', description: 'Icons can represent logos to common brands' },
+  ICON_ALIASES: { title: 'Icon Aliases', description: 'Some of icons have usefull aliases.' },
 }
 
 const similarityScore = (strA, strB) => {
@@ -62,9 +105,9 @@ export default class IconSearch extends Component {
     setTimeout(() => this.setState({ copied: false }), 1000)
   }
 
-  renderIconColumn = name => (
+  renderIconColumn = (name, section) => (
     <Popup
-      key={name}
+      key={[name, section].filter(Boolean).join('_')}
       mouseEnterDelay={1000}
       inverted
       closeOnTriggerClick={false}
@@ -93,11 +136,15 @@ export default class IconSearch extends Component {
       return iconKeys.map(iconKey => (
         <Grid key={iconKey} columns={5} doubling>
           <Grid.Column width={16}>
-            <Header as='h3' textAlign='left' dividing>
-              {iconKeyToHeaderMap[iconKey]}
-            </Header>
+            <Header
+              as='h3'
+              content={iconKeyToHeaderMap[iconKey].title}
+              dividing
+              subheader={iconKeyToHeaderMap[iconKey].description}
+              textAlign='left'
+            />
           </Grid.Column>
-          {SUI[iconKey].map(this.renderIconColumn)}
+          {SUI[iconKey].map(name => this.renderIconColumn(name, iconKey))}
         </Grid>
       ))
     }
@@ -108,7 +155,7 @@ export default class IconSearch extends Component {
 
       // similar
       return includeSimilar && similarityScore(name, query) <= 2
-    }).map(this.renderIconColumn)
+    }).map(name => this.renderIconColumn(name))
 
     // no results
     if (iconSearchMatches.length === 0) {
@@ -144,18 +191,6 @@ export default class IconSearch extends Component {
           <Header as='h2'>Icon Set</Header>
           <p>An icon set contains an arbitrary number of glyphs.</p>
 
-          <Message>
-            Semantic includes a complete port of{' '}
-            <a href='http://fontawesome.io/whats-new/' rel='noopener noreferrer' target='_blank'>
-              Font Awesome 4.7.0
-            </a>{' '}
-            designed by{' '}
-            <a href='http://www.twitter.com/davegandy' rel='noopener noreferrer'>
-              Dave Gandy
-            </a>{' '}
-            for its standard icon set.
-          </Message>
-
           <Form>
             <Form.Group inline>
               <Form.Input
@@ -166,12 +201,24 @@ export default class IconSearch extends Component {
               />
               <Form.Checkbox
                 toggle
-                label='Show similar'
+                label='Show similar names'
                 checked={includeSimilar}
                 onChange={this.handleIncludeSimilarChange}
               />
             </Form.Group>
           </Form>
+
+          <Message>
+            Semantic includes a complete port of{' '}
+            <a href='https://fontawesome.com/' rel='noopener noreferrer' target='_blank'>
+              Font Awesome 5.0.8
+            </a>{' '}
+            designed by the{' '}
+            <a href='https://twitter.com/fontawesome' rel='noopener noreferrer'>
+              FontAwesome
+            </a>{' '}
+            for its standard icon set.
+          </Message>
         </Grid.Column>
         <Grid.Column textAlign='center'>{this.renderIcons()}</Grid.Column>
       </Grid>

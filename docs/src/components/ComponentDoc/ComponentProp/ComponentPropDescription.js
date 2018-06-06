@@ -1,14 +1,14 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { PureComponent } from 'react'
 
-import { pure } from 'docs/src/hoc'
+export default class ComponentPropDescription extends PureComponent {
+  static propTypes = {
+    description: PropTypes.arrayOf(PropTypes.string),
+  }
 
-const ComponentPropDescription = ({ description }) =>
-  (_.isNil(description) ? null : <p>{_.map(description, line => [line, <br key={line} />])}</p>)
-
-ComponentPropDescription.propTypes = {
-  description: PropTypes.arrayOf(PropTypes.string),
+  render() {
+    const { description } = this.props
+    return <p>{_.map(description, line => [line, <br key={line} />])}</p>
+  }
 }
-
-export default pure(ComponentPropDescription)

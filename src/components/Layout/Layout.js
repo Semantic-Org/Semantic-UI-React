@@ -1,15 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import createComponent from '../../lib/createComponent'
+
+import { createComponent } from '../../lib'
 import layoutRules from './layoutRules'
 
 class Layout extends React.Component {
-  static _meta = {
-    type: 'component',
-    name: 'Layout',
-  }
-
   static propTypes = {
     className: PropTypes.string,
     styles: PropTypes.object,

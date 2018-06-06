@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { htmlFontSize } from 'src/themes/teams/siteVariables'
+import { htmlFontSize } from '../themes/teams/siteVariables'
 
 // TODO - This doesn't support theme switching, other themes, and doesn't support user changes to html base font size.
 

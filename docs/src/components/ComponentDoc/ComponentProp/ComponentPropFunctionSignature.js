@@ -26,7 +26,7 @@ const ComponentPropFunctionSignature = ({ name, tags }) => {
   const params = _.filter(tags, { title: 'param' })
   const returns = _.find(tags, { title: 'returns' })
 
-  // this doesn't look like a function propType doc block
+  // this doesn't look like a function propType docblock
   // don't try to render a signature
   if (_.isEmpty(params) && !returns) return null
 

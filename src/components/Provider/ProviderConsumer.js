@@ -1,31 +1,23 @@
 import { FelaTheme } from 'react-fela'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 /**
  * The Provider's Consumer is for accessing the theme.
  */
-class ProviderConsumer extends Component {
-  static propTypes = {
-    /**
-     * Uses the function children pattern to access the theme.
-     * @param {object} theme
-     * @param {object} theme.siteVariables - The siteVariables passed from the nearest Provider.
-     */
-    children: PropTypes.func.isRequired,
-  }
+const ProviderConsumer = (props) => {
+  const { children } = props
 
-  static _meta = {
-    name: 'ProviderConsumer',
-    parent: 'Provider',
-    type: 'component',
-  }
+  return <FelaTheme render={children} />
+}
 
-  render() {
-    const { children } = this.props
-
-    return <FelaTheme render={children} />
-  }
+ProviderConsumer.propTypes = {
+  /**
+   * Uses the function children pattern to access the theme.
+   * @param {object} theme
+   * @param {object} theme.siteVariables - The siteVariables passed from the nearest Provider.
+   */
+  children: PropTypes.func.isRequired,
 }
 
 export default ProviderConsumer

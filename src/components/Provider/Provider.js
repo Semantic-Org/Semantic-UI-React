@@ -33,11 +33,6 @@ class Provider extends Component {
     children: PropTypes.element.isRequired,
   }
 
-  static _meta = {
-    name: 'Provider',
-    type: 'component',
-  }
-
   static Consumer = ProviderConsumer
 
   renderStaticStyles = () => {

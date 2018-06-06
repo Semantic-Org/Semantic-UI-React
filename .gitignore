@@ -7,8 +7,9 @@
 
 coverage/
 dist/
-docs/src/docgenInfo.json
-docs/src/menuInfo.json
-docs/build/
+docs/src/componentInfo
+docs/src/componentMenu.json
+docs/src/exampleMenus
+docs/dist/
 dll/
 node_modules/

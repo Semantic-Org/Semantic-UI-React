@@ -1,9 +1,8 @@
 import React from 'react'
 import { List } from 'stardust'
 import faker from 'faker'
-import { rem } from 'src/lib'
 
-const imgStyle = { display: 'block', width: rem(2.8), borderRadius: rem(999) }
+const imgStyle = { display: 'block', width: '2.8rem', borderRadius: '999rem' }
 const getAvatar = () => <img src={faker.internet.avatar()} style={imgStyle} />
 
 const listItems = [
@@ -28,6 +27,6 @@ const listItems = [
   },
 ]
 
-const ListExampleDefault = ({ knobs }) => <List debug={knobs.debug} items={listItems} />
+const ListExample = ({ knobs }) => <List debug={knobs.debug} items={listItems} />
 
-export default ListExampleDefault
+export default ListExample

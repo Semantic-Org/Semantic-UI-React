@@ -1,4 +1,4 @@
-import { rem } from 'src/lib'
+import { rem } from '../../lib'
 import { debugRoot } from '../../styles/debugRules'
 
 // ----------------------------------------

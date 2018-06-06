@@ -1,4 +1,4 @@
-import { rem } from 'src/lib'
+import { rem } from '../../lib'
 
 export default (siteVars) => {
   const vars = {}

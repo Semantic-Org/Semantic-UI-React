@@ -1,21 +1,13 @@
+import Vinyl from 'vinyl'
 import gutil from 'gulp-util'
-import _ from 'lodash'
-import path from 'path'
-import { defaultHandlers, resolver, parse } from 'react-docgen'
 import through from 'through2'
 
-import { parseDefaultValue, parseDocBlock, parserCustomHandler, parseType } from './util'
+import { getComponentInfo } from './util'
 
-export default (filename) => {
-  const defaultFilename = 'docgenInfo.json'
-  const result = {}
-  const pluginName = 'gulp-react-docgen'
-  let finalFile
-  let latestFile
+const pluginName = 'gulp-react-docgen'
 
-  function bufferContents(file, enc, cb) {
-    latestFile = file
-
+export default () =>
+  through.obj(function bufferContents(file, enc, cb) {
     if (file.isNull()) {
       cb(null, file)
       return
@@ -27,65 +19,19 @@ export default (filename) => {
     }
 
     try {
-      const componentName = path.basename(file.path, '.js')
-      const components = parse(file.contents, resolver.findAllComponentDefinitions, [
-        ...defaultHandlers,
-        parserCustomHandler,
-      ])
-      if (!components.length) {
-        throw new Error(`Could not find a component definition in "${file.path}".`)
-      }
-      if (components.length > 1) {
-        throw new Error(
-          `Found more than one component definition in "${
-            file.path
-          }". This is currently not supported, please ensure your module only defines a single React component.`,
-        )
-      }
-      const parsed = components[0]
+      const contents = getComponentInfo(file.path)
 
-      // replace the component`description` string with a parsed doc block object
-      parsed.docBlock = parseDocBlock(parsed.description)
-      delete parsed.description
-
-      // replace prop `description` strings with a parsed doc block object and updated `type`
-      _.each(parsed.props, (propDef, propName) => {
-        const { description, tags } = parseDocBlock(propDef.description)
-        const { name, value } = parseType(propName, propDef)
-
-        parsed.props[propName] = {
-          ...propDef,
-          description,
-          tags,
-          value,
-          defaultValue: parseDefaultValue(propDef),
-          name: propName,
-          type: name,
-        }
+      const infoFile = new Vinyl({
+        path: `./${file.basename.replace(/js$/, 'info.json')}`,
+        contents: Buffer.from(JSON.stringify(contents, null, 2)),
       })
 
-      parsed.path = file.path
-        .replace(`${process.cwd()}${path.sep}`, '')
-        .replace(new RegExp(_.escapeRegExp(path.sep), 'g'), '/')
-      parsed.props = _.sortBy(parsed.props, 'name')
-
-      result[componentName] = parsed
-
-      cb()
+      cb(null, infoFile)
     } catch (err) {
       const pluginError = new gutil.PluginError(pluginName, err)
       pluginError.message += `\nFile: ${file.path}.`
       this.emit('error', pluginError)
+      // eslint-disable-next-line no-console
+      console.log(err)
     }
-  }
-
-  function endStream(cb) {
-    finalFile = latestFile.clone({ contents: false })
-    finalFile.path = path.join(latestFile.base, filename || defaultFilename)
-    finalFile.contents = new Buffer(JSON.stringify(result, null, 2))
-    this.push(finalFile)
-    cb()
-  }
-
-  return through.obj(bufferContents, endStream)
-}
+  })

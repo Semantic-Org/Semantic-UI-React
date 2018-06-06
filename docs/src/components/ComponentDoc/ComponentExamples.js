@@ -8,26 +8,26 @@ import ContributionPrompt from './ContributionPrompt'
 
 export default class ComponentExamples extends Component {
   static propTypes = {
-    componentName: PropTypes.string,
+    displayName: PropTypes.string.isRequired,
   }
 
   renderExamples = () => {
-    const { componentName } = this.props
+    const { displayName } = this.props
 
     const examplePath = _.find(exampleContext.keys(), path =>
-      new RegExp(`${componentName}/index.js$`).test(path),
+      new RegExp(`${displayName}/index.js$`).test(path),
     )
 
     return examplePath && createElement(exampleContext(examplePath).default)
   }
 
   renderMissingExamples = () => {
-    const { componentName } = this.props
+    const { displayName } = this.props
     return (
       <Grid padded>
         <Grid.Column>
           <ContributionPrompt>
-            Looks like we're missing <code>{`<${componentName} />`}</code> examples.
+            Looks like we're missing <code>{`<${displayName} />`}</code> examples.
           </ContributionPrompt>
         </Grid.Column>
       </Grid>

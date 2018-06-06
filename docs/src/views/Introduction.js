@@ -69,7 +69,7 @@ const MessageIconHTML = `<div class="ui success message">
   </div>
 </div>`
 
-const MessageSubComponentsJSX = `<Message icon>
+const MessageSubcomponentsJSX = `<Message icon>
   <Icon name='circle notched' loading />
   <Message.Content>
     <Message.Header>
@@ -78,7 +78,7 @@ const MessageSubComponentsJSX = `<Message icon>
     We're fetching that content for you.
   </Message.Content>
 </Message>`
-const MessageSubComponentsHTML = `<div class="ui icon message">
+const MessageSubcomponentsHTML = `<div class="ui icon message">
   <i class="loading circle notched icon"></i>
   <div class="content">
     <div class="header">
@@ -271,7 +271,7 @@ const Introduction = () => (
         Sub components give you complete access to the markup. This is essential for flexibility in
         customizing components.
       </p>
-      <Comparison jsx={MessageSubComponentsJSX} html={MessageSubComponentsHTML} />
+      <Comparison jsx={MessageSubcomponentsJSX} html={MessageSubcomponentsHTML} />
     </Segment>
 
     {/* ----------------------------------------

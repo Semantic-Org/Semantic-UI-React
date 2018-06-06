@@ -1,13 +1,14 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { PureComponent } from 'react'
 
-import { pure } from 'docs/src/hoc'
+export default class ComponentPropDefaultValue extends PureComponent {
+  static propTypes = {
+    value: PropTypes.node,
+  }
 
-const ComponentPropDefaultValue = ({ value }) => (_.isNil(value) ? null : <code>{value}</code>)
-
-ComponentPropDefaultValue.propTypes = {
-  value: PropTypes.node,
+  render() {
+    const { value } = this.props
+    return _.isNil(value) ? null : <code>{value}</code>
+  }
 }
-
-export default pure(ComponentPropDefaultValue)
