@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { createPortal } from 'react-dom'
 
-import { isBrowser, META } from '../../lib'
+import { isBrowser } from '../../lib'
 import Ref from '../Ref'
 
 /**
@@ -32,12 +32,6 @@ class PortalInner extends Component {
      * @param {object} data - All props.
      */
     onUnmount: PropTypes.func,
-  }
-
-  static _meta = {
-    name: 'PortalInner',
-    parent: 'Portal',
-    type: META.TYPES.ADDON,
   }
 
   componentDidMount() {
