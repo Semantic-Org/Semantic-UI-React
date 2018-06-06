@@ -26,6 +26,7 @@ const browsers = [
 
 const envOptions = {
   targets: { browsers },
+  useBuiltIns: 'entry',
 }
 if (env === 'build-es') envOptions.modules = false
 
