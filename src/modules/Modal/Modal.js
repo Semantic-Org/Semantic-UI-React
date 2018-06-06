@@ -216,15 +216,13 @@ class Modal extends Component {
 
   handleRef = c => (this.ref = c)
 
-  handlePortalRef = c => (this.portalRef = c)
+  handleDimmerRef = c => (this.dimmerRef = c)
 
-  setRootNodeStyle = () => {
-    debug('setRootNodeStyle()')
+  setDimmerNodeStyle = () => {
+    debug('setDimmerNodeStyle()')
 
-    if (!this.portalRef) return
-
-    if (this.portalRef) {
-      this.portalRef.rootNode.style.setProperty('display', 'flex', 'important')
+    if (this.dimmerRef) {
+      this.dimmerRef.style.setProperty('display', 'flex', 'important')
     }
   }
 
@@ -267,7 +265,7 @@ class Modal extends Component {
 
     this.animationRequestId = requestAnimationFrame(this.setPositionAndClassNames)
 
-    this.setRootNodeStyle()
+    this.setDimmerNodeStyle()
   }
 
   renderContent = (rest) => {
@@ -384,9 +382,8 @@ class Modal extends Component {
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
-        ref={this.handlePortalRef}
       >
-        <div className={dimmerClasses} onClick={this.handleDimmerClick}>
+        <div className={dimmerClasses} onClick={this.handleDimmerClick} ref={this.handleDimmerRef}>
           {this.renderContent(rest)}
         </div>
       </Portal>
