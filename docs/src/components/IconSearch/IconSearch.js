@@ -115,7 +115,6 @@ export default class IconSearch extends Component {
       mouseEnterDelay={1000}
       inverted
       closeOnTriggerClick={false}
-      closeOnRootNodeClick={false}
       closeOnDocumentClick={false}
       style={{ width: '8em', textAlign: 'center' }}
       size='mini'
