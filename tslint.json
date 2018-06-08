@@ -1,7 +1,0 @@
-{
-  "extends": "tslint-config-typings",
-  "rules": {
-    "ter-indent": [true, 2],
-    "quotemark": [true, "single", "avoid-escape"]
-  }
-}
