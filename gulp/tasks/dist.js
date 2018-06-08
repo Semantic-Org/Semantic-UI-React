@@ -1,4 +1,4 @@
-import { dest, task, series, src, parallel } from 'gulp'
+import { task, series, parallel } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import rimraf from 'rimraf'
 import webpack from 'webpack'
@@ -26,11 +26,7 @@ task('build:dist:commonjs:js', (cb) => {
   sh(`cross-env NODE_ENV=build babel ${paths.src()} -d ${paths.dist('commonjs')}`, cb)
 })
 
-task('build:dist:commonjs:tsd', () =>
-  src(paths.src('**/*.d.ts')).pipe(dest(paths.dist('commonjs'))),
-)
-
-task('build:dist:commonjs', parallel('build:dist:commonjs:js', 'build:dist:commonjs:tsd'))
+task('build:dist:commonjs', parallel('build:dist:commonjs:js'))
 
 task('build:dist:es', (cb) => {
   sh(`cross-env NODE_ENV=build-es babel ${paths.src()} -d ${paths.dist('es')}`, cb)

@@ -7,8 +7,7 @@
   "module": "dist/es/index.js",
   "files": [
     "src",
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
     "build": "gulp build",
@@ -20,11 +19,11 @@
     "postdeploy:docs": "gulp --series build:changelog deploy:changelog",
     "lint": "cross-env NODE_ENV=production eslint .",
     "lint:fix": "yarn lint --fix",
-    "prettier": "prettier --list-different \"**/*.{js,jsx,ts,tsx}\"",
-    "prettier:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "prettier": "prettier --list-different \"**/*.js\"",
+    "prettier:fix": "prettier --write \"**/*.js\"",
     "precommit": "lint-staged",
     "postcommit": "git update-index --again",
-    "prerelease": "yarn lint && yarn tsd:lint && yarn tsd:test && yarn test && cross-env NODE_ENV=production yarn build",
+    "prerelease": "yarn lint && yarn test && cross-env NODE_ENV=production yarn build",
     "postrelease": "yarn deploy:docs",
     "release:major": "yarn prerelease && ta-script npm/release major && yarn postrelease",
     "release:minor": "yarn prerelease && ta-script npm/release minor && yarn postrelease",
@@ -34,20 +33,12 @@
     "satisfied": "satisfied --skip-invalid",
     "pretest": "yarn satisfied && gulp dll build:docs:docgen",
     "test": "cross-env NODE_ENV=test jest",
-    "test:watch": "yarn test --watchAll",
-    "tsd:lint": "tslint \"./index.d.ts\" \"./src/**/*.d.ts\" \"./src/**/*.tsx\" \"./test/**/*.d.ts\" \"./test/**/*.tsx\"",
-    "tsd:lint:fix": "yarn tsd:lint --fix",
-    "tsd:test": "gulp build:dist:commonjs:tsd && tsc -p ./ && rm test/typings.js"
+    "test:watch": "yarn test --watchAll"
   },
   "lint-staged": {
-    "**/*.{js,jsx}": [
+    "**/*.js": [
       "prettier --write",
       "eslint --fix",
-      "git add"
-    ],
-    "**/*.{ts,tsx}": [
-      "prettier --write",
-      "tslint --fix",
       "git add"
     ],
     "**/*.md": [
@@ -97,7 +88,6 @@
     "@babel/register": "^7.0.0-beta.49",
     "@babel/runtime": "^7.0.0-beta.49",
     "@babel/standalone": "^7.0.0-beta.49",
-    "@types/react": "^16.0.0",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^8.2.3",
     "babel-jest": "^23.0.1",
@@ -157,9 +147,6 @@
     "simulant": "^0.2.2",
     "ta-scripts": "^2.5.2",
     "through2": "^2.0.3",
-    "tslint": "^5.6.0",
-    "tslint-config-typings": "^0.3.1",
-    "typescript": "^2.4.2",
     "webpack": "^3.5.4",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2"

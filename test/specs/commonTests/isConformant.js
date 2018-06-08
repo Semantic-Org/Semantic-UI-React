@@ -7,7 +7,6 @@ import * as semanticUIReact from 'semantic-ui-react'
 import { componentInfoContext } from 'docs/src/utils'
 import { assertBodyContains, consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
-import hasValidTypings from './hasValidTypings'
 
 /**
  * Assert Component conforms to guidelines that are applicable to all components.
@@ -343,8 +342,4 @@ export default (Component, options = {}) => {
       })
     })
   }
-  // ----------------------------------------
-  // Test typings
-  // ----------------------------------------
-  hasValidTypings(Component, info, options)
 }
