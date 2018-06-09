@@ -1,13 +1,12 @@
 import AnchorJS from 'anchor-js'
+import { withRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-import { Route } from 'react-router-dom'
 
+import PageLayout from 'docs/src/components/PageLayout'
 import Sidebar from 'docs/src/components/Sidebar/Sidebar'
 import style from 'docs/src/Style'
 import { scrollToAnchor } from 'docs/src/utils'
-import { getUnhandledProps } from 'src/lib'
 
 const anchors = new AnchorJS({
   icon: '#',
@@ -15,11 +14,10 @@ const anchors = new AnchorJS({
 
 class DocsLayout extends Component {
   static propTypes = {
-    component: PropTypes.func,
-    history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
-    render: PropTypes.func,
+    children: PropTypes.node,
+    router: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
     sidebar: PropTypes.bool,
   }
 
@@ -36,9 +34,12 @@ class DocsLayout extends Component {
   }
 
   resetPage = () => {
-    const { location } = this.props
+    const {
+      router: { pathname },
+    } = this.props
+
     // only reset the page when changing routes
-    if (this.pathname === location.pathname) return
+    if (this.pathname === pathname) return
 
     clearTimeout(this.scrollStartTimeout)
 
@@ -49,28 +50,21 @@ class DocsLayout extends Component {
     anchors.remove('.no-anchor')
 
     this.scrollStartTimeout = setTimeout(scrollToAnchor, 500)
-    this.pathname = location.pathname
-  }
-
-  renderChildren = (props) => {
-    const { component: Children, render, sidebar } = this.props
-    const mainStyle = sidebar ? style.sidebarMain : style.main
-
-    if (render) return render()
-    return (
-      <div style={style.container}>
-        <Sidebar style={style.menu} />
-        <div style={mainStyle}>
-          <Children {...props} />
-        </div>
-      </div>
-    )
+    this.pathname = pathname
   }
 
   render() {
-    const rest = getUnhandledProps(DocsLayout, this.props)
+    const { children, router, sidebar, ...rest } = this.props
+    const mainStyle = sidebar ? style.sidebarMain : style.main
 
-    return <Route {...rest} render={this.renderChildren} />
+    return (
+      <PageLayout {...rest}>
+        <div style={style.container}>
+          <Sidebar router={router} style={style.menu} />
+          <div style={mainStyle}>{children}</div>
+        </div>
+      </PageLayout>
+    )
   }
 }
 

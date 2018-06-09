@@ -144,7 +144,7 @@ export default class StickyLayout extends Component {
           >
             <Container text>
               <Menu.Item>
-                <Image size='mini' src='/logo.png' />
+                <Image size='mini' src='/static/images/logo.png' />
               </Menu.Item>
               <Menu.Item header>Project Name</Menu.Item>
               <Menu.Item as='a'>Blog</Menu.Item>
@@ -269,7 +269,7 @@ export default class StickyLayout extends Component {
               </Grid.Row>
             </Grid>
             <Divider inverted section />
-            <Image src='/logo.png' centered size='mini' />
+            <Image src='/static/images/logo.png' centered size='mini' />
             <List horizontal inverted divided link>
               <List.Item as='a' href='#'>
                 Site Map

@@ -535,7 +535,7 @@ const ResponsiveLayout = () => (
     <Container>
       <Menu stackable>
         <Menu.Item>
-          <img src='/logo.png' />
+          <img src='/static/images/logo.png' />
         </Menu.Item>
         <Menu.Item>Features</Menu.Item>
         <Menu.Item>Testimonials</Menu.Item>

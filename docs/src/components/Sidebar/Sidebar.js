@@ -1,14 +1,13 @@
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash/fp'
+import { withRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { findDOMNode } from 'react-dom'
-import { NavLink } from 'react-router-dom'
-import { withRouter } from 'react-router'
-import { Menu, Icon, Input } from 'semantic-ui-react'
+import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
 
-import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
-import Logo from 'docs/src/components/Logo/Logo'
+import CarbonAd from 'docs/src/components/CarbonAd'
+import Logo from 'docs/src/components/Logo'
+import NavLink from 'docs/src/components/NavLink'
 import componentMenu from 'docs/src/componentMenu'
 import { getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
 import pkg from 'package.json'
@@ -18,30 +17,19 @@ const selectedItemLabel = <span style={selectedItemLabelStyle}>Press Enter</span
 
 class Sidebar extends Component {
   static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
     style: PropTypes.object,
   }
-  state = { query: '' }
+
   filteredMenu = componentMenu
+  state = { query: '' }
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleDocumentKeyDown)
-    this.setSearchInput()
-  }
-
-  componentDidUpdate() {
-    this.setSearchInput()
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleDocumentKeyDown)
-  }
-
-  setSearchInput() {
-    // TODO: Replace findDOMNode with Ref component when it will be merged
-    this._searchInput = findDOMNode(this).querySelector('.ui.input input') // eslint-disable-line react/no-find-dom-node
   }
 
   handleDocumentKeyDown = (e) => {
@@ -53,6 +41,10 @@ class Sidebar extends Component {
     if (!hasModifier && isAZ && bodyHasFocus) this._searchInput.focus()
   }
 
+  handleInputRef = (c) => {
+    this._searchInput = c
+  }
+
   handleItemClick = () => {
     const { query } = this.state
 
@@ -60,20 +52,20 @@ class Sidebar extends Component {
     if (document.activeElement === this._searchInput) this._searchInput.blur()
   }
 
-  handleSearchChange = e =>
+  handleSearchChange = (e, { value }) =>
     this.setState({
       selectedItemIndex: 0,
-      query: e.target.value,
+      query: value,
     })
 
   handleSearchKeyDown = (e) => {
-    const { history } = this.props
+    const { router } = this.props
     const { selectedItemIndex } = this.state
     const code = keyboardKey.getCode(e)
 
     if (code === keyboardKey.Enter && this.selectedRoute) {
       e.preventDefault()
-      history.push(this.selectedRoute)
+      router.push(this.selectedRoute)
       this.selectedRoute = null
       this._searchInput.blur()
       this.setState({ query: '' })
@@ -99,12 +91,11 @@ class Sidebar extends Component {
       _.filter(({ type }) => type === nextType),
       _.map(info => (
         <Menu.Item
+          as={NavLink}
           key={info.displayName}
+          href={getComponentPathname(info)}
           name={info.displayName}
           onClick={this.handleItemClick}
-          as={NavLink}
-          to={getComponentPathname(info)}
-          activeClassName='active'
         />
       )),
     )(componentMenu)
@@ -143,11 +134,11 @@ class Sidebar extends Component {
 
       return (
         <Menu.Item
+          as={NavLink}
           key={info.displayName}
           name={info.displayName}
           onClick={this.handleItemClick}
           active={isSelected}
-          as={NavLink}
           to={getComponentPathname(info)}
         >
           {info.displayName}
@@ -176,16 +167,16 @@ class Sidebar extends Component {
         <Menu.Item>
           <Menu.Header>Getting Started</Menu.Header>
           <Menu.Menu>
-            <Menu.Item as={NavLink} to='/introduction' activeClassName='active'>
+            <Menu.Item as={NavLink} href='/introduction'>
               Introduction
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/usage' activeClassName='active'>
+            <Menu.Item as={NavLink} href='/usage'>
               Usage
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/theming' activeClassName='active'>
+            <Menu.Item as={NavLink} href='/theming'>
               Theming
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/layouts' activeClassName='active'>
+            <Menu.Item as={NavLink} href='/layouts'>
               Layouts
             </Menu.Item>
             <Menu.Item as='a' href={repoURL} target='_blank' rel='noopener noreferrer'>
@@ -205,14 +196,16 @@ class Sidebar extends Component {
           <CarbonAd />
         </Menu.Item>
         <Menu.Item active>
-          <Input
-            className='transparent inverted icon'
-            icon='search'
-            placeholder='Search components...'
-            value={query}
-            onChange={this.handleSearchChange}
-            onKeyDown={this.handleSearchKeyDown}
-          />
+          <Ref innerRef={this.handleInputRef}>
+            <Input
+              className='transparent inverted icon'
+              icon='search'
+              onChange={this.handleSearchChange}
+              onKeyDown={this.handleSearchKeyDown}
+              placeholder='Search components...'
+              value={query}
+            />
+          </Ref>
         </Menu.Item>
         {query ? this.renderSearchItems() : this.menuItemsByType}
       </Menu>

@@ -16,7 +16,7 @@ const FixedMenuLayout = () => (
     <Menu fixed='top' inverted>
       <Container>
         <Menu.Item as='a' header>
-          <Image size='mini' src='/logo.png' style={{ marginRight: '1.5em' }} />
+          <Image size='mini' src='/static/images/logo.png' style={{ marginRight: '1.5em' }} />
           Project Name
         </Menu.Item>
         <Menu.Item as='a'>Home</Menu.Item>
@@ -98,7 +98,7 @@ const FixedMenuLayout = () => (
         </Grid>
 
         <Divider inverted section />
-        <Image centered size='mini' src='/logo.png' />
+        <Image centered size='mini' src='/static/images/logo.png' />
         <List horizontal inverted divided link>
           <List.Item as='a' href='#'>
             Site Map
