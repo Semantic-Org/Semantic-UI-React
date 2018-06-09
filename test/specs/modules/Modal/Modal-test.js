@@ -249,18 +249,6 @@ describe('Modal', () => {
       })
     })
 
-    describe('false', () => {
-      it('does not render a dimmer', () => {
-        wrapperMount(<Modal open dimmer={false} />)
-        assertBodyClasses('dimmable dimmed blurring', false)
-      })
-
-      it('does not add any dimmer classes to the body', () => {
-        wrapperMount(<Modal open dimmer={false} />)
-        assertBodyClasses('dimmable dimmed blurring', false)
-      })
-    })
-
     describe('blurring', () => {
       it('adds/removes body classes "dimmable dimmed blurring" on mount/unmount', () => {
         assertBodyClasses('dimmable dimmed blurring', false)

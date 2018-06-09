@@ -12,7 +12,6 @@ class NestedModal extends Component {
 
     return (
       <Modal
-        dimmer={false}
         open={open}
         onOpen={this.open}
         onClose={this.close}
