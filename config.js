@@ -1,4 +1,4 @@
-import path from 'path'
+const path = require('path')
 
 // ------------------------------------
 // Environment vars
@@ -36,7 +36,7 @@ const paths = {
   docsSrc: base.bind(null, envConfig.dir_docs_src),
 }
 
-const config = {
+module.exports = {
   ...envConfig,
   paths,
 
@@ -96,5 +96,3 @@ const config = {
     'react-dom',
   ],
 }
-
-export default config

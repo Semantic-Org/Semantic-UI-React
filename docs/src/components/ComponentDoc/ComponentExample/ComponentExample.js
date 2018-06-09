@@ -14,7 +14,7 @@ import {
   repoURL,
   scrollToAnchor,
 } from 'docs/src/utils'
-import { Divider, Grid, Menu, Visibility } from 'src'
+import { Divider, Grid, Menu, Visibility } from 'semantic-ui-react'
 import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
