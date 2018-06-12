@@ -10,10 +10,13 @@ class AccordionPanel extends Component {
   static propTypes = {
     /** Whether or not the title is in the open state. */
     active: PropTypes.bool,
+
     /** A shorthand for Accordion.Content. */
     content: customPropTypes.itemShorthand,
+
     /** A panel index. */
     index: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
     /**
      * Called when a panel title is clicked.
      *
@@ -21,6 +24,7 @@ class AccordionPanel extends Component {
      * @param {object} data - All item props.
      */
     onTitleClick: PropTypes.func,
+
     /** A shorthand for Accordion.Title. */
     title: customPropTypes.itemShorthand,
   }
