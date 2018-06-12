@@ -648,4 +648,26 @@ describe('Portal', () => {
       }, 0)
     })
   })
+
+  describe('triggerRef', () => {
+    it('maintains ref on the trigger', () => {
+      const triggerRef = sandbox.spy()
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      wrapperMount(
+        <Portal trigger={<button id='trigger' />} triggerRef={triggerRef}>
+          <p />
+        </Portal>,
+        { attachTo: mountNode },
+      )
+      const trigger = document.querySelector('#trigger')
+
+      triggerRef.should.have.been.calledOnce()
+      triggerRef.should.have.been.calledWithMatch(trigger)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+  })
 })

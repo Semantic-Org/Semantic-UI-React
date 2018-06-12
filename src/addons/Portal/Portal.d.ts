@@ -90,6 +90,13 @@ export interface PortalProps {
 
   /** Element to be rendered in-place where the portal is defined. */
   trigger?: React.ReactNode;
+
+  /**
+   * Called when componentDidMount.
+   *
+   * @param {HTMLElement} node - Referred node.
+   */
+  triggerRef?: (node: HTMLElement) => void;
 }
 
 declare class Portal extends React.Component<PortalProps, {}> {
