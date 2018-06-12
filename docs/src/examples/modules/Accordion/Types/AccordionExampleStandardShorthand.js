@@ -3,6 +3,7 @@ import { Accordion } from 'semantic-ui-react'
 
 const panels = [
   {
+    key: 'what-is-dog',
     title: 'What is a dog?',
     content: [
       'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome',
@@ -10,6 +11,7 @@ const panels = [
     ].join(' '),
   },
   {
+    key: 'kinds-of-dogs',
     title: 'What kinds of dogs are there?',
     content: [
       'There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog',
@@ -17,6 +19,7 @@ const panels = [
     ].join(' '),
   },
   {
+    key: 'acquire-dog',
     title: 'How do you acquire a dog?',
     content: {
       content: (
@@ -33,7 +36,6 @@ const panels = [
           </p>
         </div>
       ),
-      key: 'content-dog',
     },
   },
 ]
