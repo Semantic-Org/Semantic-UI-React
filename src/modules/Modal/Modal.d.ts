@@ -44,7 +44,7 @@ export interface ModalProps extends PortalProps {
   defaultOpen?: boolean;
 
   /** A modal can appear in a dimmer. */
-  dimmer?: boolean | 'blurring' | 'inverted';
+  dimmer?: true | 'blurring' | 'inverted';
 
   /** Event pool namespace that is used to handle component events */
   eventPool?: string;

@@ -109,6 +109,13 @@ class Portal extends Component {
 
     /** Element to be rendered in-place where the portal is defined. */
     trigger: PropTypes.node,
+
+    /**
+     * Called with a ref to the trigger node.
+     *
+     * @param {HTMLElement} node - Referred node.
+     */
+    triggerRef: PropTypes.func,
   }
 
   static defaultProps = {
@@ -322,7 +329,10 @@ class Portal extends Component {
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
-  handleTriggerRef = c => (this.triggerNode = c)
+  handleTriggerRef = (c) => {
+    this.triggerNode = c
+    _.invoke(this.props, 'triggerRef', c)
+  }
 
   renderTrigger() {
     const { trigger } = this.props
