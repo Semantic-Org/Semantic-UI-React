@@ -18,7 +18,6 @@ import {
 import Portal from '../../addons/Portal'
 import PopupContent from './PopupContent'
 import PopupHeader from './PopupHeader'
-import Ref from '../../addons/Ref'
 
 const debug = makeDebugger('popup')
 
@@ -420,18 +419,17 @@ export default class Popup extends Component {
     debug('portal props:', mergedPortalProps)
 
     return (
-      <Ref innerRef={this.handleTriggerRef}>
-        <Portal
-          {...mergedPortalProps}
-          trigger={trigger}
-          onClose={this.handleClose}
-          onMount={this.handlePortalMount}
-          onOpen={this.handleOpen}
-          onUnmount={this.handlePortalUnmount}
-        >
-          {popupJSX}
-        </Portal>
-      </Ref>
+      <Portal
+        {...mergedPortalProps}
+        trigger={trigger}
+        onClose={this.handleClose}
+        onMount={this.handlePortalMount}
+        onOpen={this.handleOpen}
+        onUnmount={this.handlePortalUnmount}
+        triggerRef={this.handleTriggerRef}
+      >
+        {popupJSX}
+      </Portal>
     )
   }
 }
