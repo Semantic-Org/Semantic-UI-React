@@ -29,8 +29,16 @@ class ModalExampleCloseConfig extends Component {
             <p>Are you sure you want to delete your account</p>
           </Modal.Content>
           <Modal.Actions>
-            <Button negative>No</Button>
-            <Button positive labelPosition='right' icon='checkmark' content='Yes' />
+            <Button onClick={this.close} negative>
+              No
+            </Button>
+            <Button
+              onClick={this.close}
+              positive
+              labelPosition='right'
+              icon='checkmark'
+              content='Yes'
+            />
           </Modal.Actions>
         </Modal>
       </div>

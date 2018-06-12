@@ -66,7 +66,7 @@ class Modal extends Component {
     defaultOpen: PropTypes.bool,
 
     /** A Modal can appear in a dimmer. */
-    dimmer: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['inverted', 'blurring'])]),
+    dimmer: PropTypes.oneOf([true, 'inverted', 'blurring']),
 
     /** Event pool namespace that is used to handle component events */
     eventPool: PropTypes.string,
@@ -350,14 +350,12 @@ class Modal extends Component {
     const portalProps = _.pick(unhandled, portalPropNames)
 
     // wrap dimmer modals
-    const dimmerClasses = !dimmer
-      ? null
-      : cx(
-        'ui',
-        dimmer === 'inverted' && 'inverted',
-        !centered && 'top aligned',
-        'page modals dimmer transition visible active',
-      )
+    const dimmerClasses = cx(
+      'ui',
+      dimmer === 'inverted' && 'inverted',
+      !centered && 'top aligned',
+      'page modals dimmer transition visible active',
+    )
 
     // Heads up!
     //
