@@ -8,10 +8,20 @@ import AccordionContent from './AccordionContent'
 
 class AccordionPanel extends Component {
   static propTypes = {
+    /** Whether or not the title is in the open state. */
     active: PropTypes.bool,
+    /** A shorthand for Accordion.Content. */
     content: customPropTypes.itemShorthand,
+    /** A panel index. */
     index: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    /**
+     * Called when a panel title is clicked.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All item props.
+     */
     onTitleClick: PropTypes.func,
+    /** A shorthand for Accordion.Title. */
     title: customPropTypes.itemShorthand,
   }
 
@@ -27,14 +37,18 @@ class AccordionPanel extends Component {
 
     return [
       AccordionTitle.create(title, {
-        defaultProps: { active, index },
+        autoGenerateKey: false,
+        defaultProps: { active, index, key: 'title' },
         overrideProps: this.handleTitleOverrides,
       }),
-      AccordionContent.create(content, { defaultProps: { active } }),
+      AccordionContent.create(content, {
+        autoGenerateKey: false,
+        defaultProps: { active, key: 'content' },
+      }),
     ]
   }
 }
 
-AccordionPanel.create = createShorthandFactory(AccordionPanel, content => ({ content }))
+AccordionPanel.create = createShorthandFactory(AccordionPanel, null)
 
 export default AccordionPanel
