@@ -96,7 +96,7 @@ export interface PortalProps {
    *
    * @param {HTMLElement} node - Referred node.
    */
-  innerRef?: (node: HTMLElement) => void;
+  triggerRef?: (node: HTMLElement) => void;
 }
 
 declare class Portal extends React.Component<PortalProps, {}> {
