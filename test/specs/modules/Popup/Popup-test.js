@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 
-import Ref from 'src/addons/Ref/Ref'
+import Portal from 'src/addons/Portal/Portal'
 import { SUI } from 'src/lib'
 import Popup, { POSITIONS } from 'src/modules/Popup/Popup'
 import PopupHeader from 'src/modules/Popup/PopupHeader'
@@ -50,7 +50,7 @@ describe('Popup', () => {
   it('renders a Portal', () => {
     wrapperShallow(<Popup />)
       .type()
-      .should.equal(Ref)
+      .should.equal(Portal)
   })
 
   it('renders to the document body', () => {
