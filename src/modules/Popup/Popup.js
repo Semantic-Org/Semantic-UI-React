@@ -317,10 +317,9 @@ export default class Popup extends Component {
 
   handleOpen = (e) => {
     debug('handleOpen()')
-    this.coords = e.currentTarget.getBoundingClientRect()
 
-    const { onOpen } = this.props
-    if (onOpen) onOpen(e, this.props)
+    this.coords = e.currentTarget.getBoundingClientRect()
+    _.invoke(this.props, 'onOpen', e, this.props)
   }
 
   handlePortalMount = (e) => {
@@ -356,7 +355,7 @@ export default class Popup extends Component {
 
   setPosition = () => {
     if (this.triggerRef) {
-      this.setPopupStyle(this.props.position)
+      this.setPopupStyle()
     }
 
     this.animationRequestId = requestAnimationFrame(this.setPosition)
@@ -421,11 +420,11 @@ export default class Popup extends Component {
     return (
       <Portal
         {...mergedPortalProps}
-        trigger={trigger}
         onClose={this.handleClose}
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
+        trigger={trigger}
         triggerRef={this.handleTriggerRef}
       >
         {popupJSX}

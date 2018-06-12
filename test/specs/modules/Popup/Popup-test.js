@@ -156,10 +156,10 @@ describe('Popup', () => {
       it('is positioned properly when open property is set', () => {
         wrapperMount(<Popup content='_' position={position} open trigger={<button>foo</button>} />)
         const element = document.querySelector('.popup.ui')
-        element.style.should.not.have.property('top', '')
-        element.style.should.not.have.property('left', '')
-        element.style.should.not.have.property('bottom', '')
-        element.style.should.not.have.property('right', '')
+        element.style.should.have.property('top', '')
+        element.style.should.have.property('left', '')
+        element.style.should.have.property('bottom', '')
+        element.style.should.have.property('right', '')
       })
       it('is the original if no horizontal position fits within the viewport', () => {
         wrapperMount(
