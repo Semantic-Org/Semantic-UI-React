@@ -1,10 +1,6 @@
 import * as React from 'react';
 
-import {
-  HtmlInputrops,
-  SemanticShorthandItem,
-  SemanticSIZES
-} from '../..';
+import { HtmlInputrops, SemanticShorthandItem, SemanticSIZES } from '../..';
 import { LabelProps } from '../Label';
 
 export interface InputProps {
@@ -17,7 +13,7 @@ export interface InputProps {
   action?: any | boolean;
 
   /** An action can appear along side an Input on the left or right. */
-  actionPosition?: 'left';
+  actionPosition?: 'left' | 'right';
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -41,7 +37,7 @@ export interface InputProps {
   icon?: any | SemanticShorthandItem<InputProps>;
 
   /** An Icon can appear inside an Input on the left. */
-  iconPosition?: 'left';
+  iconPosition?: 'left' | 'right';
 
   /** Shorthand for creating the HTML Input. */
   input?: SemanticShorthandItem<HtmlInputrops>;
@@ -50,7 +46,7 @@ export interface InputProps {
   inverted?: boolean;
 
   /** Optional Label to display along side the Input. */
-  label?:  SemanticShorthandItem<LabelProps>;
+  label?: SemanticShorthandItem<LabelProps>;
 
   /** A Label can appear outside an Input on the left or right. */
   labelPosition?: 'left' | 'right' | 'left corner' | 'right corner';
