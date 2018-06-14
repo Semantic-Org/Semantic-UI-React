@@ -12,7 +12,8 @@ const hasChildren = (props) => {
 
   if (children === null || children === undefined) return false
 
-  return Array.isArray(children) && children.length > 0
+  // TODO: Fix tests for update
+  return Array.isArray(children) ? children.length > 0 : children
 }
 
 export default hasChildren
