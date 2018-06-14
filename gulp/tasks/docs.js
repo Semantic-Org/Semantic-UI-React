@@ -4,6 +4,7 @@ import { task, src, dest, lastRun, parallel, series, watch } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import path from 'path'
 import rimraf from 'rimraf'
+import through from 'through2'
 import webpack from 'webpack'
 import WebpackDevMiddleware from 'webpack-dev-middleware'
 import WebpackHotMiddleware from 'webpack-hot-middleware'
@@ -108,11 +109,13 @@ task('build:docs:images', () =>
   src(`${paths.docsSrc()}/**/*.{png,jpg,gif}`).pipe(dest(paths.docsDist())),
 )
 
-task('build:docs:toc', (cb) => {
-  const mdFiles = ['.github/CONTRIBUTING.md', 'README.md', 'specifications/*.md']
-
-  sh(`doctoc ${mdFiles.join(' ')} --github --maxlevel 4`, cb)
-})
+task('build:docs:toc', () =>
+  src(['.github/CONTRIBUTING.md', 'README.md', 'specifications/*.md']).pipe(
+    through.obj((file, enc, done) => {
+      sh(`doctoc ${file.path} --github --maxlevel 4 && git add ${file.path}`, done)
+    }),
+  ),
+)
 
 task('build:docs:webpack', (cb) => {
   const webpackConfig = require('../../webpack.config.babel').default

@@ -21,7 +21,7 @@
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --list-different \"**/*.js\"",
     "prettier:fix": "prettier --write \"**/*.js\"",
-    "precommit": "lint-staged && gulp build:docs:toc && git add **/*.md",
+    "precommit": "lint-staged && gulp build:docs:toc",
     "postcommit": "git update-index --again",
     "prerelease": "yarn lint && yarn test && cross-env NODE_ENV=production yarn build",
     "postrelease": "yarn deploy:docs",
