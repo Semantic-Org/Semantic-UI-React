@@ -109,7 +109,9 @@ task('build:docs:images', () =>
 )
 
 task('build:docs:toc', (cb) => {
-  sh(`doctoc ${paths.base('.github/CONTRIBUTING.md')} --github --maxlevel 4`, cb)
+  const mdFiles = ['.github/CONTRIBUTING.md', 'README.md', 'specifications/*.md']
+
+  sh(`doctoc ${mdFiles.join(' ')} --github --maxlevel 4`, cb)
 })
 
 task('build:docs:webpack', (cb) => {

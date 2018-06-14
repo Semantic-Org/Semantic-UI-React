@@ -6,16 +6,47 @@
 
 - [Why?](#why)
 - [Proposals](#proposals)
-  - [[Goal]](#goal)
+  - [createComponent() HOC](#createcomponent-hoc)
+  - [BaseComponent](#basecomponent)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Why?
 
+Most UI components require a common set of behavior such as styling and accessibility.  There should be a single point of responsibility for implementing these behaviors.
+
 ## Proposals
 
-### [Goal]
+### createComponent() HOC
 
-[Description]
+This is an HOC which takes a component and a config and returns a class component.
 
-[Implementation]
+```jsx
+createComponent(Component, { ... })
+```
+
+**Pros**
+
+- 
+
+**Cons**
+
+-
+
+### BaseComponent
+
+Adds minimal number of HOCs to the render tree.
+
+```jsx
+class Button extends BaseComponent {
+  ...
+}
+```
+
+**Pros**
+
+- 
+
+**Cons**
+
+-
