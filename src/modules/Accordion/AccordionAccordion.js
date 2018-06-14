@@ -69,7 +69,7 @@ export default class AccordionAccordion extends Component {
   static autoControlledProps = ['activeIndex']
 
   getInitialAutoControlledState({ exclusive }) {
-    return { activeIndex: exclusive ? -1 : [-1] }
+    return { activeIndex: exclusive ? -1 : [] }
   }
 
   computeNewIndex = (index) => {
@@ -77,6 +77,7 @@ export default class AccordionAccordion extends Component {
     const { activeIndex } = this.state
 
     if (exclusive) return index === activeIndex ? -1 : index
+
     // check to see if index is in array, and remove it, if not then add it
     return _.includes(activeIndex, index) ? _.without(activeIndex, index) : [...activeIndex, index]
   }

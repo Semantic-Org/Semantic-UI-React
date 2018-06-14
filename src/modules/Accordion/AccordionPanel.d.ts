@@ -25,7 +25,7 @@ export interface AccordionPanelProps {
   onTitleClick?: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void;
 
   /** A shorthand for Accordion.Title. */
-  title: SemanticShorthandItem<AccordionTitleProps>;
+  title?: SemanticShorthandItem<AccordionTitleProps>;
 }
 
 declare class AccordionPanel extends React.Component<AccordionPanelProps, {}> {}

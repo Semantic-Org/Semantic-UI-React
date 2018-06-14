@@ -222,6 +222,10 @@ export {
   AccordionContentProps
 } from './dist/commonjs/modules/Accordion/AccordionContent';
 export {
+  default as AccordionPanel,
+  AccordionPanelProps
+} from './dist/commonjs/modules/Accordion/AccordionPanel';
+export {
   default as AccordionTitle,
   AccordionTitleProps
 } from './dist/commonjs/modules/Accordion/AccordionTitle';
