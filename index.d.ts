@@ -214,8 +214,7 @@ export * from './dist/commonjs';
 export { default as Accordion, AccordionProps } from './dist/commonjs/modules/Accordion/Accordion';
 export {
   default as AccordionAccordion,
-  AccordionAccordionProps,
-  AccordionPanelProps
+  AccordionAccordionProps
 } from './dist/commonjs/modules/Accordion/AccordionAccordion';
 export {
   default as AccordionContent,
