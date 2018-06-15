@@ -3,10 +3,10 @@ import { Accordion, Button, Form, Segment } from 'semantic-ui-react'
 
 const panels = [
   {
+    key: 'details',
     title: 'Optional Details',
     content: {
       as: Form.Input,
-      key: 'content',
       label: 'Maiden Name',
       placeholder: 'Maiden Name',
     },

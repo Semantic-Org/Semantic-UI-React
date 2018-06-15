@@ -214,13 +214,16 @@ export * from './dist/commonjs';
 export { default as Accordion, AccordionProps } from './dist/commonjs/modules/Accordion/Accordion';
 export {
   default as AccordionAccordion,
-  AccordionAccordionProps,
-  AccordionPanelProps
+  AccordionAccordionProps
 } from './dist/commonjs/modules/Accordion/AccordionAccordion';
 export {
   default as AccordionContent,
   AccordionContentProps
 } from './dist/commonjs/modules/Accordion/AccordionContent';
+export {
+  default as AccordionPanel,
+  AccordionPanelProps
+} from './dist/commonjs/modules/Accordion/AccordionPanel';
 export {
   default as AccordionTitle,
   AccordionTitleProps
