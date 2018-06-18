@@ -249,51 +249,41 @@ export default class Sticky extends Component {
     if (possible) this.setState({ pushing })
   }
 
-  bound(bound) {
-    this.setState({
-      bound,
-    })
-  }
-
-  stick = (e) => {
-    this.setState({ sticky: true })
+  stick = (e, bound) => {
+    this.setState({ bound, sticky: true })
     _.invoke(this.props, 'onStick', e, this.props)
   }
 
-  unstick = (e) => {
-    this.setState({ sticky: false })
+  unstick = (e, bound) => {
+    this.setState({ bound, sticky: false })
     _.invoke(this.props, 'onUnstick', e, this.props)
   }
 
   stickToContextBottom = (e) => {
     _.invoke(this.props, 'onBottom', e, this.props)
 
-    this.stick(e)
-    this.bound(true)
+    this.stick(e, true)
     this.pushing(true)
   }
 
   stickToContextTop = (e) => {
     _.invoke(this.props, 'onTop', e, this.props)
 
-    this.unstick(e)
-    this.bound(false)
+    this.unstick(e, false)
     this.pushing(false)
   }
 
   stickToScreenBottom = (e) => {
     const { bottomOffset: bottom } = this.props
 
-    this.stick(e)
-    this.bound(false)
+    this.stick(e, false)
     this.setState({ bottom, top: null })
   }
 
   stickToScreenTop = (e) => {
     const { offset: top } = this.props
 
-    this.stick(e)
-    this.bound(false)
+    this.stick(e, false)
     this.setState({ top, bottom: null })
   }
 
@@ -331,7 +321,7 @@ export default class Sticky extends Component {
     return (
       <ElementType {...rest} className={containerClasses}>
         <div ref={this.handleTriggerRef} />
-        <div ref={this.handleStickyRef} className={cx(elementClasses)} style={this.computeStyle()}>
+        <div className={cx(elementClasses)} ref={this.handleStickyRef} style={this.computeStyle()}>
           {children}
         </div>
       </ElementType>
