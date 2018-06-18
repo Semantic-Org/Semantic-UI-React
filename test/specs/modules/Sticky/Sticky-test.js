@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React from 'react'
 
 import Sticky from 'src/modules/Sticky/Sticky'
@@ -126,13 +127,11 @@ describe('Sticky', () => {
         <Sticky {...positions} context={contextEl} onStick={onStick} onUnstick={onUnStick} />,
       )
 
-      expect(
-        ['ui', 'sticky', 'fixed', 'top'].every(cls =>
-          wrapper
-            .childAt(0)
-            .childAt(1)
-            .should.have.className(cls),
-        ),
+      _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
       )
       onStick.should.have.been.calledOnce()
       onStick.should.have.been.calledWithMatch(undefined, positions)
@@ -156,13 +155,11 @@ describe('Sticky', () => {
       // Scroll after trigger
       scrollAfterTrigger()
 
-      expect(
-        ['ui', 'sticky', 'fixed', 'top'].every(cls =>
-          wrapper
-            .childAt(0)
-            .childAt(1)
-            .should.have.className(cls),
-        ),
+      _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
       )
       wrapper
         .childAt(0)
@@ -176,13 +173,11 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} />)
 
       scrollAfterContext()
-      expect(
-        ['ui', 'sticky', 'bound', 'bottom'].every(cls =>
-          wrapper
-            .childAt(0)
-            .childAt(1)
-            .should.have.className(cls),
-        ),
+      _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
       )
       wrapper
         .childAt(0)
@@ -269,13 +264,11 @@ describe('Sticky', () => {
       wrapper.setProps({ context: mockContextEl({ bottom: 0 }) })
       domEvent.scroll(window)
 
-      expect(
-        ['ui', 'sticky', 'bound', 'bottom'].every(cls =>
-          wrapper
-            .childAt(0)
-            .childAt(1)
-            .should.have.className(cls),
-        ),
+      _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
       )
       wrapper
         .childAt(0)
@@ -289,13 +282,11 @@ describe('Sticky', () => {
         .childAt(0)
         .childAt(1)
         .should.have.style('bottom', '30px')
-      expect(
-        ['ui', 'sticky', 'fixed', 'bottom'].every(cls =>
-          wrapper
-            .childAt(0)
-            .childAt(1)
-            .should.have.className(cls),
-        ),
+      _.forEach(['ui', 'sticky', 'fixed', 'bottom'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
       )
       wrapper
         .childAt(0)
@@ -314,13 +305,11 @@ describe('Sticky', () => {
       scrollAfterTrigger()
 
       // Component should stick again to the top
-      expect(
-        ['ui', 'sticky', 'fixed', 'top'].every(cls =>
-          wrapper
-            .childAt(0)
-            .childAt(1)
-            .should.have.className(cls),
-        ),
+      _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
       )
       wrapper
         .childAt(0)
