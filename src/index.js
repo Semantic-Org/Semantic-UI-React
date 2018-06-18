@@ -1,4 +1,5 @@
 export Image from './components/Image'
+export Divider from './components/Divider'
 export Layout from './components/Layout'
 export List from './components/List'
 export Provider from './components/Provider'

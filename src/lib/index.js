@@ -1,5 +1,5 @@
 export AutoControlledComponent from './AutoControlledComponent'
-export hasChildren from './hasChildren'
+export childrenExist from './childrenExist'
 
 export * as customPropTypes from './customPropTypes'
 
