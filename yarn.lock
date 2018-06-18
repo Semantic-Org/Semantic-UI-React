@@ -3417,6 +3417,12 @@ fela-plugin-prefixer@^5.0.18:
     inline-style-prefixer "^4.0.0"
     isobject "^3.0.1"
 
+fela-plugin-rtl@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/fela-plugin-rtl/-/fela-plugin-rtl-1.0.6.tgz#284fb28e72b8fc845a231c27f001005587e2235e"
+  dependencies:
+    rtl-css-js "^1.1.3"
+
 fela-tools@^5.1.6:
   version "5.1.6"
   resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.1.6.tgz#cecdf8ad865adc59aa5ce2952f9daec761bdd740"
@@ -7594,6 +7600,10 @@ rst-selector-parser@^2.2.3:
 rsvp@^3.3.3:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-3.6.2.tgz#2e96491599a96cde1b515d5674a8f7a91452926a"
+
+rtl-css-js@^1.1.3:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.10.0.tgz#958ac1fa68ef5ff4c241e4aa26cf77365d8993d7"
 
 run-async@^2.2.0:
   version "2.3.0"

@@ -108,14 +108,15 @@ class ComponentExample extends PureComponent {
     this.setState({
       showCode: false,
       showHTML: false,
+      showRtl: false,
       showVariables: false,
     })
   }
 
   isActiveState = () => {
-    const { showCode, showHTML, showVariables } = this.state
+    const { showCode, showHTML, showRtl, showVariables } = this.state
 
-    return showCode || showHTML || showVariables
+    return showCode || showHTML || showRtl || showVariables
   }
 
   isActiveHash = () => this.anchorName === getFormattedHash(this.props.location.hash)
@@ -175,6 +176,17 @@ class ComponentExample extends PureComponent {
     const { showHTML } = this.state
 
     this.setState({ showHTML: !showHTML }, this.updateHash)
+  }
+
+  handleShowRtlClick = (e) => {
+    e.preventDefault()
+
+    const { showRtl } = this.state
+
+    this.setState({ showRtl: !showRtl }, () => {
+      this.updateHash()
+      this.renderSourceCode()
+    })
   }
 
   handleShowVariablesClick = (e) => {
@@ -365,7 +377,7 @@ class ComponentExample extends PureComponent {
   getComponentName = () => this.props.examplePath.split('/')[1]
 
   renderWithProvider = ExampleComponent => (
-    <Provider componentVariables={this.state.componentVariables}>
+    <Provider componentVariables={this.state.componentVariables} rtl={this.state.showRtl}>
       <ExampleComponent knobs={this.getKnobsValue()} />
     </Provider>
   )
@@ -544,6 +556,7 @@ class ComponentExample extends PureComponent {
       isHovering,
       showCode,
       showHTML,
+      showRtl,
       showVariables,
     } = this.state
 
@@ -591,9 +604,11 @@ class ComponentExample extends PureComponent {
                 onCopyLink={this.handleDirectLinkClick}
                 onShowCode={this.handleShowCodeClick}
                 onShowHTML={this.handleShowHTMLClick}
+                onShowRtl={this.handleShowRtlClick}
                 onShowVariables={this.handleShowVariablesClick}
                 showCode={showCode}
                 showHTML={showHTML}
+                showRtl={showRtl}
                 showVariables={showVariables}
                 visible={isActive || isHovering}
               />
@@ -614,7 +629,7 @@ class ComponentExample extends PureComponent {
 
           <Grid.Row columns={1}>
             <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
-              {exampleElement}
+              <div dir={this.state.showRtl ? 'rtl' : undefined}>{exampleElement}</div>
             </Grid.Column>
             <Grid.Column>
               {this.renderJSX()}

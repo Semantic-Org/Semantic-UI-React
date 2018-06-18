@@ -8,16 +8,19 @@ import ComponentControlsEditCode from './ComponentControlsEditCode'
 import ComponentControlsShowVariables from './ComponentControlsShowVariables'
 import ComponentControlsMaximize from './ComponentControlsMaximize'
 import ComponentControlsShowHtml from './ComponentControlsShowHtml'
+import ComponentControlsRtl from './ComponentControlsRtl'
 
 const ComponentControls = (props) => {
   const {
     anchorName,
     examplePath,
     showHTML,
+    showRtl,
     showCode,
     showVariables,
     onCopyLink,
     onShowHTML,
+    onShowRtl,
     onShowCode,
     onShowVariables,
     visible,
@@ -34,6 +37,7 @@ const ComponentControls = (props) => {
           <ComponentControlsEditCode active={showCode} onClick={onShowCode} />
           <ComponentControlsShowVariables active={showVariables} onClick={onShowVariables} />
           <ComponentControlsShowHtml active={showHTML} onClick={onShowHTML} />
+          <ComponentControlsRtl active={showRtl} onClick={onShowRtl} />
           <ComponentControlsMaximize examplePath={examplePath} />
           <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
         </Menu>
@@ -48,13 +52,15 @@ ComponentControls.propTypes = {
   onCopyLink: PropTypes.func,
   onShowCode: PropTypes.func,
   onShowHTML: PropTypes.func,
+  onShowRtl: PropTypes.func,
   onShowVariables: PropTypes.func,
   showCode: PropTypes.bool,
   showHTML: PropTypes.bool,
+  showRtl: PropTypes.bool,
   showVariables: PropTypes.bool,
   visible: PropTypes.bool,
 }
 
-export default updateForKeys(['showCode', 'showHTML', 'showVariables', 'visible'])(
+export default updateForKeys(['showCode', 'showHTML', 'showRtl', 'showVariables', 'visible'])(
   ComponentControls,
 )
