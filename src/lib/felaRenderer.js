@@ -4,8 +4,7 @@ import felaPluginPlaceholderPrefixer from 'fela-plugin-placeholder-prefixer'
 import felaPluginPrefixer from 'fela-plugin-prefixer'
 
 const felaRenderer = createRenderer({
-  plugins: [],
-  middleware: [
+  plugins: [
     felaPluginPlaceholderPrefixer(),
     felaPluginPrefixer(),
     // Heads up!

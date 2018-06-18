@@ -1,14 +1,16 @@
 export AutoControlledComponent from './AutoControlledComponent'
+export LegacyContextComponent from './LegacyContextComponent'
 export hasChildren from './hasChildren'
 
 export * as customPropTypes from './customPropTypes'
-
 export { debug, makeDebugger } from './debug'
 export eventStack from './eventStack'
 export felaRenderer from './felaRenderer'
 
 export * from './factories'
 export getUnhandledProps from './getUnhandledProps'
+export getClasses from './getClasses'
+export getDisplayName from './getDisplayName'
 export getElementType from './getElementType'
 export createComponent from './createComponent'
 export {
