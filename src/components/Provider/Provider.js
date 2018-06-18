@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Provider as RendererProvider, ThemeProvider } from 'react-fela'
 
-import { felaRenderer } from '../../lib'
+import { felaRenderer as felaLtrRenderer, felaRtlRenderer } from '../../lib'
 import ProviderConsumer from './ProviderConsumer'
 
 /**
@@ -30,12 +30,13 @@ class Provider extends Component {
     staticStyles: PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
     ),
+    rtl: PropTypes.bool,
     children: PropTypes.element.isRequired,
   }
 
   static Consumer = ProviderConsumer
 
-  renderStaticStyles = () => {
+  renderStaticStyles = (felaRenderer) => {
     const { siteVariables, staticStyles } = this.props
 
     if (!staticStyles) return
@@ -63,7 +64,7 @@ class Provider extends Component {
     })
   }
 
-  renderFontFaces = () => {
+  renderFontFaces = (felaRenderer) => {
     const { siteVariables, fontFaces } = this.props
 
     if (!fontFaces) return
@@ -83,8 +84,9 @@ class Provider extends Component {
   }
 
   componentDidMount() {
-    this.renderStaticStyles()
-    this.renderFontFaces()
+    const felaRenderer = this.props.rtl ? felaRtlRenderer : felaLtrRenderer
+    this.renderStaticStyles(felaRenderer)
+    this.renderFontFaces(felaRenderer)
   }
 
   render() {
@@ -93,7 +95,7 @@ class Provider extends Component {
     const theme = { siteVariables, componentVariables }
 
     return (
-      <RendererProvider renderer={felaRenderer}>
+      <RendererProvider renderer={this.props.rtl ? felaRtlRenderer : felaLtrRenderer}>
         {siteVariables || componentVariables ? (
           <ThemeProvider theme={theme}>{children}</ThemeProvider>
         ) : (

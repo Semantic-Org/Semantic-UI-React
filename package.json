@@ -67,6 +67,7 @@
     "fela-plugin-fallback-value": "^5.0.17",
     "fela-plugin-placeholder-prefixer": "^5.0.18",
     "fela-plugin-prefixer": "^5.0.18",
+    "fela-plugin-rtl": "^1.0.6",
     "hoist-non-react-statics": "^2.5.0",
     "keyboard-key": "^1.0.1",
     "lodash": "^4.17.10",
