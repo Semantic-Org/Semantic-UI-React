@@ -94,11 +94,7 @@ class Provider extends Component {
 
     return (
       <RendererProvider renderer={felaRenderer}>
-        {siteVariables || componentVariables ? (
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
-        ) : (
-          children
-        )}
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
       </RendererProvider>
     )
   }
