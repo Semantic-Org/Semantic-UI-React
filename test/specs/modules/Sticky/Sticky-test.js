@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React from 'react'
 
 import Sticky from 'src/modules/Sticky/Sticky'
@@ -126,10 +127,12 @@ describe('Sticky', () => {
         <Sticky {...positions} context={contextEl} onStick={onStick} onUnstick={onUnStick} />,
       )
 
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('position', 'fixed')
+      _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
+      )
       onStick.should.have.been.calledOnce()
       onStick.should.have.been.calledWithMatch(undefined, positions)
 
@@ -138,7 +141,7 @@ describe('Sticky', () => {
       wrapper
         .childAt(0)
         .childAt(1)
-        .should.have.not.style('position')
+        .should.have.not.className('fixed')
       onUnStick.should.not.have.been.called()
     })
   })
@@ -151,10 +154,13 @@ describe('Sticky', () => {
 
       // Scroll after trigger
       scrollAfterTrigger()
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('position', 'fixed')
+
+      _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
+      )
       wrapper
         .childAt(0)
         .childAt(1)
@@ -167,14 +173,16 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} />)
 
       scrollAfterContext()
+      _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
+      )
       wrapper
         .childAt(0)
         .childAt(1)
-        .should.have.style('position', 'fixed')
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('top', '-101px')
+        .should.have.style('bottom', '0px')
     })
   })
   describe('onBottom', () => {
@@ -256,14 +264,16 @@ describe('Sticky', () => {
       wrapper.setProps({ context: mockContextEl({ bottom: 0 }) })
       domEvent.scroll(window)
 
+      _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
+      )
       wrapper
         .childAt(0)
         .childAt(1)
-        .should.have.style('position', 'fixed')
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('top', '-100px')
+        .should.have.style('bottom', '0px')
 
       // Scroll a bit before the top: component should stick to screen bottom
       scrollAfterTrigger()
@@ -272,10 +282,12 @@ describe('Sticky', () => {
         .childAt(0)
         .childAt(1)
         .should.have.style('bottom', '30px')
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('position', 'fixed')
+      _.forEach(['ui', 'sticky', 'fixed', 'bottom'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
+      )
       wrapper
         .childAt(0)
         .childAt(1)
@@ -293,10 +305,12 @@ describe('Sticky', () => {
       scrollAfterTrigger()
 
       // Component should stick again to the top
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('position', 'fixed')
+      _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .should.have.className(className),
+      )
       wrapper
         .childAt(0)
         .childAt(1)
