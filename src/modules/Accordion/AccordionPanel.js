@@ -6,6 +6,9 @@ import { createShorthandFactory, customPropTypes } from '../../lib'
 import AccordionTitle from './AccordionTitle'
 import AccordionContent from './AccordionContent'
 
+/**
+ * A panel sub-component for Accordion component.
+ */
 class AccordionPanel extends Component {
   static propTypes = {
     /** Whether or not the title is in the open state. */
