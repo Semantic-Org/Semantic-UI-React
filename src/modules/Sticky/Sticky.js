@@ -311,36 +311,27 @@ export default class Sticky extends Component {
 
   render() {
     const { children, className } = this.props
-    const { sticky, bound, bottom } = this.state
+    const { bottom, bound, sticky } = this.state
     const rest = getUnhandledProps(Sticky, this.props)
     const ElementType = getElementType(Sticky, this.props)
 
     const containerClasses = cx(
-      className,
       'ui',
       sticky && 'stuck-container',
-      sticky && bound && 'bound-container',
-      sticky && !bound && 'fixed-container',
+      sticky && (bound ? 'bound-container' : 'fixed-container'),
+      className,
     )
-
-    const elementClasses = ['ui', 'sticky']
-
-    if (sticky) {
-      elementClasses.push([bound ? 'bound bottom' : 'fixed'])
-
-      if (!bound) {
-        elementClasses.push([bottom === null ? 'top' : 'bottom'])
-      }
-    }
+    const elementClasses = cx(
+      'ui',
+      sticky && (bound ? 'bound bottom' : 'fixed'),
+      sticky && !bound && (bottom === null ? 'top' : 'bottom'),
+      'sticky',
+    )
 
     return (
       <ElementType {...rest} className={containerClasses}>
         <div ref={this.handleTriggerRef} />
-        <div
-          ref={this.handleStickyRef}
-          className={cx(...elementClasses)}
-          style={this.computeStyle()}
-        >
+        <div ref={this.handleStickyRef} className={cx(elementClasses)} style={this.computeStyle()}>
           {children}
         </div>
       </ElementType>
