@@ -1,6 +1,6 @@
 export AutoControlledComponent from './AutoControlledComponent'
 export LegacyContextComponent from './LegacyContextComponent'
-export hasChildren from './hasChildren'
+export childrenExist from './childrenExist'
 
 export * as customPropTypes from './customPropTypes'
 export { debug, makeDebugger } from './debug'
