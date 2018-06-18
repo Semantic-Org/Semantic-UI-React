@@ -201,16 +201,11 @@ export default class Sticky extends Component {
 
   computeStyle() {
     const { bottom, bound, sticky, top } = this.state
+
     if (!sticky) return {}
-    if (bound) {
-      return {
-        bottom: 0,
-        width: this.triggerRect.width,
-      }
-    }
     return {
-      bottom,
-      top,
+      bottom: bound ? 0 : bottom,
+      top: bound ? undefined : top,
       width: this.triggerRect.width,
     }
   }
@@ -306,7 +301,7 @@ export default class Sticky extends Component {
     const ElementType = getElementType(Sticky, this.props)
 
     const containerClasses = cx(
-      'ui',
+      sticky && 'ui',
       sticky && 'stuck-container',
       sticky && (bound ? 'bound-container' : 'fixed-container'),
       className,
