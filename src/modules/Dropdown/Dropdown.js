@@ -1095,8 +1095,8 @@ export default class Dropdown extends Component {
     const dropdownRect = this.ref.getBoundingClientRect()
     const menuHeight = menu.clientHeight
     const spaceAtTheBottom =
-      document.documentElement.clientHeight - dropdownRect.y - dropdownRect.height - menuHeight
-    const spaceAtTheTop = dropdownRect.y - menuHeight
+      document.documentElement.clientHeight - dropdownRect.top - dropdownRect.height - menuHeight
+    const spaceAtTheTop = dropdownRect.top - menuHeight
 
     const upward = spaceAtTheBottom < 0 && spaceAtTheTop > spaceAtTheBottom
 
