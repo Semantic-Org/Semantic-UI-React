@@ -1,13 +1,13 @@
 import { rem } from '../../lib'
 
-export default ({ avatar, circular, variables }) => ({
-  root: {
+export default {
+  root: ({ props, variables }) => ({
     display: 'inline-block',
     verticalAlign: 'middle',
-    ...(circular && { borderRadius: rem(999) }),
-    ...(avatar && {
+    ...(props.circular && { borderRadius: rem(999) }),
+    ...(props.avatar && {
       width: variables.avatarSize,
       borderRadius: variables.avatarRadius,
     }),
-  },
-})
+  }),
+}
