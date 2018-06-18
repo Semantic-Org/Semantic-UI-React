@@ -29,9 +29,7 @@ export default () =>
       cb(null, infoFile)
     } catch (err) {
       const pluginError = new gutil.PluginError(pluginName, err)
-      pluginError.message += `\nFile: ${file.path}.`
+      pluginError.message = err.stack
       this.emit('error', pluginError)
-      // eslint-disable-next-line no-console
-      console.log(err)
     }
   })
