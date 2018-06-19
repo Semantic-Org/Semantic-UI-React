@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-static'
 import { Header, List } from 'semantic-ui-react'
 
 import { getComponentPathname, getInfoForSeeTags } from 'docs/src/utils'

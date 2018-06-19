@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import componentInfoShape from 'docs/src/utils/componentInfoShape'
