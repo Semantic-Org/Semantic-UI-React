@@ -5,7 +5,7 @@ import { Card, Container, Header, Segment } from 'semantic-ui-react'
 import DocsLayout from 'docs/src/components/DocsLayout'
 
 const LayoutsExample = () => (
-  <DocsLayout>
+  <DocsLayout additionalTitle='Layouts'>
     <Container>
       <Segment basic padded>
         <Header as='h1' content='Layouts' subheader='Examples of using Semantic UI React' />

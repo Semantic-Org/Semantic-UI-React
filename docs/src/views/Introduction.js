@@ -137,7 +137,7 @@ Comparison.propTypes = {
 }
 
 const Introduction = () => (
-  <DocsLayout>
+  <DocsLayout additionalTitle='Introduction'>
     <Container id='introduction-page'>
       <Segment basic textAlign='center'>
         <Logo centered size='small' />

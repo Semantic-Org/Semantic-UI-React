@@ -4,7 +4,7 @@ import { Button, Container, Header, Segment } from 'semantic-ui-react'
 import DocsLayout from 'docs/src/components/DocsLayout'
 
 const LayoutsExample = () => (
-  <DocsLayout>
+  <DocsLayout additionalTitle='Theming'>
     <Container>
       <Segment basic padded>
         <Header as='h1' content='Theming' subheader='An introduction to theming' />

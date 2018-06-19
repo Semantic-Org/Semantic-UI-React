@@ -140,6 +140,7 @@ Document.propTypes = {
   Head: PropTypes.func.isRequired,
   Html: PropTypes.func.isRequired,
   siteData: PropTypes.shape({
+    title: PropTypes.string.isRequired,
     versions: PropTypes.shape({
       sui: PropTypes.string.isRequired,
     }).isRequired,

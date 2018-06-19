@@ -10,7 +10,7 @@ import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs
 const suiCSSVersion = pkg.devDependencies['semantic-ui-css'].replace(/[~^]/, '')
 
 const Usage = () => (
-  <DocsLayout>
+  <DocsLayout additionalTitle='Usage'>
     <Container id='usage-page'>
       <Segment basic textAlign='center'>
         <Logo centered size='small' />
