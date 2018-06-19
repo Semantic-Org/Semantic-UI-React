@@ -19,7 +19,7 @@ function SearchCategory(props) {
   return (
     <ElementType {...rest} className={classes}>
       <div className='name'>{renderer(props)}</div>
-      {childrenUtils.isNil(children) ? content : children}
+      <div className='results'>{childrenUtils.isNil(children) ? content : children}</div>
     </ElementType>
   )
 }
