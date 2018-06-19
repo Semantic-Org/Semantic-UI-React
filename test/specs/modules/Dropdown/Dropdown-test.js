@@ -1052,7 +1052,6 @@ describe('Dropdown', () => {
         .find('DropdownItem')
         .at(_.random(options.length - 1))
         .simulate('click')
-      item.simulate('click')
 
       // text updated
       wrapper.find('div.text').should.contain.text(item.text())
@@ -1081,7 +1080,6 @@ describe('Dropdown', () => {
 
       // click item
       const item = wrapper.find('DropdownItem').simulate('click')
-      item.simulate('click')
 
       // text updated
       wrapper.find('div.text').should.contain.text(item.text())
@@ -1204,6 +1202,7 @@ describe('Dropdown', () => {
       const item = wrapper.find('DropdownItem').at(_.random(options.length - 1))
 
       // open
+      wrapper.simulate('click')
       dropdownMenuIsOpen()
 
       // select item
