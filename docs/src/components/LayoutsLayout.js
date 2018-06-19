@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { NavLink, Route } from 'react-router-dom'
+import { Link, Route } from 'react-static'
+import { Button } from 'semantic-ui-react'
 
-import { Button } from 'src'
 import { getUnhandledProps } from 'src/lib'
 import { repoURL } from 'docs/src/utils'
 
@@ -53,9 +53,9 @@ export default class LayoutsLayout extends Component {
         {style}
         <Children {...props} />
         <div style={docsButtonStyle}>
-          <Button as={NavLink} to='/layouts' color='teal' icon='left arrow' content='Layouts' />
+          <Button as={Link} to='/layouts' color='teal' icon='left arrow' content='Layouts' />
           <Button
-            as={NavLink}
+            as={Link}
             to={`${repoURL}/blob/master/docs/src/layouts/${filename}`}
             icon='github'
             content='Source'

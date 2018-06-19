@@ -3,8 +3,7 @@ import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
-import { NavLink } from 'react-router-dom'
-import { withRouter } from 'react-router'
+import { Link, withRouter } from 'react-static'
 import { Menu, Icon, Input } from 'semantic-ui-react'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
@@ -102,7 +101,7 @@ class Sidebar extends Component {
           key={info.displayName}
           name={info.displayName}
           onClick={this.handleItemClick}
-          as={NavLink}
+          as={Link}
           to={getComponentPathname(info)}
           activeClassName='active'
         />
@@ -147,7 +146,7 @@ class Sidebar extends Component {
           name={info.displayName}
           onClick={this.handleItemClick}
           active={isSelected}
-          as={NavLink}
+          as={Link}
           to={getComponentPathname(info)}
         >
           {info.displayName}
@@ -176,16 +175,16 @@ class Sidebar extends Component {
         <Menu.Item>
           <Menu.Header>Getting Started</Menu.Header>
           <Menu.Menu>
-            <Menu.Item as={NavLink} to='/introduction' activeClassName='active'>
+            <Menu.Item as={Link} to='/introduction' activeClassName='active'>
               Introduction
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/usage' activeClassName='active'>
+            <Menu.Item as={Link} to='/usage' activeClassName='active'>
               Usage
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/theming' activeClassName='active'>
+            <Menu.Item as={Link} to='/theming' activeClassName='active'>
               Theming
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/layouts' activeClassName='active'>
+            <Menu.Item as={Link} to='/layouts' activeClassName='active'>
               Layouts
             </Menu.Item>
             <Menu.Item as='a' href={repoURL} target='_blank' rel='noopener noreferrer'>
