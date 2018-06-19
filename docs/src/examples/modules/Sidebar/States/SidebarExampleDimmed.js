@@ -4,14 +4,16 @@ import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui
 export default class SidebarExampleDimmed extends Component {
   state = { visible: false }
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+  handleButtonClick = () => this.setState({ visible: !this.state.visible })
+
+  handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
     const { visible } = this.state
 
     return (
       <div>
-        <Button onClick={this.toggleVisibility}>Toggle visibility</Button>
+        <Button onClick={this.handleButtonClick}>Toggle visibility</Button>
 
         <Sidebar.Pushable as={Segment}>
           <Sidebar
@@ -19,7 +21,7 @@ export default class SidebarExampleDimmed extends Component {
             animation='overlay'
             icon='labeled'
             inverted
-            onHide={this.toggleVisibility}
+            onHide={this.handleSidebarHide}
             vertical
             visible={visible}
             width='thin'

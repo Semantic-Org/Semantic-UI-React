@@ -4,14 +4,16 @@ import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui
 export default class SidebarExampleMultiple extends Component {
   state = { visible: false }
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+  handleButtonClick = () => this.setState({ visible: !this.state.visible })
+
+  handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
     const { visible } = this.state
 
     return (
       <div>
-        <Button onClick={this.toggleVisibility}>Toggle visibility</Button>
+        <Button onClick={this.handleButtonClick}>Toggle visibility</Button>
 
         <Sidebar.Pushable as={Segment}>
           <Sidebar
@@ -20,7 +22,7 @@ export default class SidebarExampleMultiple extends Component {
             direction='left'
             icon='labeled'
             inverted
-            onHide={this.toggleVisibility}
+            onHide={this.handleSidebarHide}
             vertical
             visible={visible}
             width='thin'
@@ -47,7 +49,9 @@ export default class SidebarExampleMultiple extends Component {
             vertical
             visible={visible}
           >
-            <Menu.Item as='a' header>File Permissions</Menu.Item>
+            <Menu.Item as='a' header>
+              File Permissions
+            </Menu.Item>
             <Menu.Item as='a'>Share on Social</Menu.Item>
             <Menu.Item as='a'>Share by E-mail</Menu.Item>
             <Menu.Item as='a'>Edit Permissions</Menu.Item>
