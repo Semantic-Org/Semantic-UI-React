@@ -2,7 +2,7 @@ import * as Babel from '@babel/standalone'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { PureComponent, createElement, isValidElement } from 'react'
-import { withRouter } from 'react-static'
+import { withRouteData } from 'react-static'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
@@ -499,4 +499,4 @@ class ComponentExample extends PureComponent {
   }
 }
 
-export default withRouter(ComponentExample)
+export default withRouteData(ComponentExample)

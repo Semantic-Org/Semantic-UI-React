@@ -1,24 +1,18 @@
-import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
-import React from 'react'
+// import React from 'react'
 
-import { exampleContext } from 'docs/src/utils'
-import PageNotFound from '../views/PageNotFound'
+const ExternalExampleLayout = () => null
+// const { exampleName } = props.match.params
+// const exampleFilename = `/${_.startCase(exampleName).replace(/ /g, '')}.js`
 
-const exampleKeys = exampleContext.keys()
-
-const ExternalExampleLayout = (props) => {
-  const { exampleName } = props.match.params
-  const exampleFilename = `/${_.startCase(exampleName).replace(/ /g, '')}.js`
-
-  const componentKey = _.find(_.endsWith(exampleFilename), exampleKeys)
-  if (!componentKey) return <PageNotFound />
-
-  const ExampleComponent = exampleContext(componentKey).default
-  if (!ExampleComponent) return <PageNotFound />
-
-  return <ExampleComponent />
-}
+// const componentKey = _.find(_.endsWith(exampleFilename), exampleKeys)
+// if (!componentKey) return <PageNotFound />
+//
+// const ExampleComponent = exampleContext(componentKey).default
+// if (!ExampleComponent) return <PageNotFound />
+//
+// return <ExampleComponent />
+// }
 
 ExternalExampleLayout.propTypes = {
   children: PropTypes.node,

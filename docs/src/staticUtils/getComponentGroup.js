@@ -1,4 +1,4 @@
-import componentInfoContext from './componentInfoContext'
+import requireInfo from './requireInfo'
 
 /**
  * Returns a component's info.json file and subcomponent info.json files grouped by displayName.
@@ -6,8 +6,7 @@ import componentInfoContext from './componentInfoContext'
  * @returns {{}}
  */
 const getComponentGroup = (displayName) => {
-  const info = componentInfoContext.byDisplayName[displayName]
-
+  const info = requireInfo(displayName)
   const group = {
     [info.displayName]: info,
   }
@@ -16,9 +15,9 @@ const getComponentGroup = (displayName) => {
 
   // add subcomponents
   info.subcomponents.forEach((subcomponent) => {
-    const subInfo = componentInfoContext.byDisplayName[subcomponent]
+    const subInfo = requireInfo(subcomponent)
 
-    group[subInfo.displayName] = subInfo
+    group[subInfo.displayName] = requireInfo(subcomponent)
   })
 
   return group

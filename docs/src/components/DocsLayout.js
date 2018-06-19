@@ -1,7 +1,7 @@
 import AnchorJS from 'anchor-js'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { withRouter } from 'react-static'
+import { Head, withRouter, withSiteData } from 'react-static'
 
 import Sidebar from 'docs/src/components/Sidebar/Sidebar'
 import style from 'docs/src/Style'
@@ -13,11 +13,11 @@ const anchors = new AnchorJS({
 
 class DocsLayout extends Component {
   static propTypes = {
+    additionalTitle: PropTypes.string,
     children: PropTypes.node,
-    history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
     sidebar: PropTypes.bool,
+    title: PropTypes.string.isRequired,
   }
 
   componentDidMount() {
@@ -50,11 +50,17 @@ class DocsLayout extends Component {
   }
 
   render() {
-    const { children, sidebar } = this.props
+    const { additionalTitle, children, sidebar, title } = this.props
     const mainStyle = sidebar ? style.sidebarMain : style.main
 
     return (
       <div style={style.container}>
+        <Head>
+          <title>
+            {additionalTitle ? `${additionalTitle} - ` : ''}
+            {title}
+          </title>
+        </Head>
         <Sidebar style={style.menu} />
         <div style={mainStyle}>{children}</div>
       </div>
@@ -62,4 +68,4 @@ class DocsLayout extends Component {
   }
 }
 
-export default withRouter(DocsLayout)
+export default withSiteData(withRouter(DocsLayout))

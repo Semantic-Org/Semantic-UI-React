@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Checkbox } from 'semantic-ui-react'
 
-import { getComponentGroup } from 'docs/src/utils'
 import ComponentTable from '../ComponentTable'
 import ComponentPropsComponents from './ComponentPropsComponents'
 import ComponentPropsDescription from './ComponentPropsDescription'
@@ -16,21 +15,10 @@ export default class ComponentProps extends Component {
     props: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
-  componentWillMount() {
-    const { displayName } = this.props
-
-    this.setState({ componentGroup: getComponentGroup(displayName) })
-  }
-
   componentWillReceiveProps({ displayName: next }) {
     const current = this.props.displayName
 
-    if (current !== next) {
-      this.setState({
-        activeDisplayName: null,
-        componentGroup: getComponentGroup(next),
-      })
-    }
+    if (current !== next) this.setState({ activeDisplayName: null })
   }
 
   handleComponentClick = (e, { name }) => {

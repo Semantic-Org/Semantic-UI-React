@@ -1,7 +1,6 @@
 import config from './config'
+import getRoutes from './static.routes'
 import Document from './docs/src/Document'
-
-const { paths } = config
 
 export default {
   Document,
@@ -12,38 +11,16 @@ export default {
       suir: require('./package.json').version,
     },
   }),
-  getRoutes: async () => [
-    {
-      path: '/',
-      redirect: '/introduction',
-    },
-    {
-      path: '/introduction',
-      component: 'docs/src/views/Introduction',
-    },
-    {
-      path: '/layouts',
-      component: 'docs/src/views/Layouts',
-    },
-    {
-      path: '/theming',
-      component: 'docs/src/views/Theming',
-    },
-    {
-      path: '/usage',
-      component: 'docs/src/views/Usage',
-    },
-    /* <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} sidebar /> */
-  ],
+  getRoutes,
   paths: {
     src: 'docs/src',
   },
   webpack: webpackConfig => ({
     ...webpackConfig,
     resolve: {
-      modules: [...webpackConfig.resolve.modules, paths.base(), 'node_modules'],
+      modules: [...webpackConfig.resolve.modules, config.paths.base(), 'node_modules'],
       alias: {
-        'semantic-ui-react': paths.src('index.js'),
+        'semantic-ui-react': config.paths.src('index.js'),
       },
     },
   }),

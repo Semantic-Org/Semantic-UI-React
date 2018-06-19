@@ -1,12 +1,16 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import DocumentTitle from 'react-document-title'
-import { withRouter } from 'react-static'
+import { withRouteData, withSiteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
-import componentInfoShape from 'docs/src/utils/componentInfoShape'
-import { scrollToAnchor, examplePathToHash, getFormattedHash } from 'docs/src/utils'
+import DocsLayout from 'docs/src/components/DocsLayout'
+import {
+  componentInfoShape,
+  scrollToAnchor,
+  examplePathToHash,
+  getFormattedHash,
+} from 'docs/src/utils'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
@@ -27,7 +31,7 @@ class ComponentDoc extends Component {
 
   static propTypes = {
     history: PropTypes.object.isRequired,
-    info: componentInfoShape.isRequired,
+    componentInfo: componentInfoShape.isRequired,
   }
 
   state = {}
@@ -48,8 +52,8 @@ class ComponentDoc extends Component {
     }
   }
 
-  componentWillReceiveProps({ info }) {
-    if (info.displayName !== this.props.info.displayName) {
+  componentWillReceiveProps({ componentInfo }) {
+    if (componentInfo.displayName !== this.props.componentInfo.displayName) {
       this.setState({ activePath: undefined })
     }
   }
@@ -70,34 +74,34 @@ class ComponentDoc extends Component {
   }
 
   render() {
-    const { info } = this.props
+    const { componentInfo } = this.props
     const { activePath, examplesRef } = this.state
 
     return (
-      <DocumentTitle title={`${info.displayName} | Semantic UI React`}>
+      <DocsLayout additionalTitle={componentInfo.displayName} sidebar>
         <Grid>
           <Grid.Row style={topRowStyle}>
             <Grid.Column>
               <Header
                 as='h1'
-                content={info.displayName}
-                subheader={_.join(info.docblock.description, ' ')}
+                content={componentInfo.displayName}
+                subheader={_.join(componentInfo.docblock.description, ' ')}
               />
-              <ComponentDocSee displayName={info.displayName} />
+              <ComponentDocSee displayName={componentInfo.displayName} />
               <ComponentDocLinks
-                displayName={info.displayName}
-                parentDisplayName={info.parentDisplayName}
-                repoPath={info.repoPath}
-                type={info.type}
+                displayName={componentInfo.displayName}
+                parentDisplayName={componentInfo.parentDisplayName}
+                repoPath={componentInfo.repoPath}
+                type={componentInfo.type}
               />
-              <ComponentProps displayName={info.displayName} props={info.props} />
+              {/* <ComponentProps displayName={componentInfo.displayName} props={componentInfo.props} /> */}
             </Grid.Column>
           </Grid.Row>
 
           <Grid.Row columns='equal'>
             <Grid.Column>
               <div ref={this.handleExamplesRef}>
-                <ComponentExamples displayName={info.displayName} />
+                <ComponentExamples displayName={componentInfo.displayName} />
               </div>
               <div style={exampleEndStyle}>
                 This is the bottom <Icon name='pointing down' />
@@ -106,16 +110,16 @@ class ComponentDoc extends Component {
             <Grid.Column computer={5} largeScreen={4} widescreen={4}>
               <ComponentSidebar
                 activePath={activePath}
-                displayName={info.displayName}
+                displayName={componentInfo.displayName}
                 examplesRef={examplesRef}
                 onItemClick={this.handleSidebarItemClick}
               />
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </DocumentTitle>
+      </DocsLayout>
     )
   }
 }
 
-export default withRouter(ComponentDoc)
+export default withRouteData(ComponentDoc)
