@@ -74,8 +74,11 @@ const getComponentInfo = (filepath) => {
   // example, the "button" in class="ui button"
   // name of the component, sub component, or plural parent for sub component groups
   info.componentClassName = (info.isChild
-    ? info.subcomponentName.replace(/Group$/, `${info.parentDisplayName}s`)
-    : info.displayName
+    ? `ui-${info.parentDisplayName}__${info.subcomponentName.replace(
+      /Group$/,
+      `${info.parentDisplayName}s`,
+    )}`
+    : `ui-${info.displayName}`
   ).toLowerCase()
 
   // replace the component.description string with a parsed docblock object

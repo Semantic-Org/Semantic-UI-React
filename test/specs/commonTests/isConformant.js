@@ -2,28 +2,23 @@ import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import * as semanticUIReact from 'semantic-ui-react'
 
-import { componentInfoContext } from 'docs/src/utils'
-import { assertBodyContains, consoleUtil, sandbox, syntheticEvent } from 'test/utils'
+import { assertBodyContains, consoleUtil, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
+
+import * as stardust from '../../../src/'
+import Provider from '../../../src/components/Provider'
 
 /**
  * Assert Component conforms to guidelines that are applicable to all components.
  * @param {React.Component|Function} Component A component that should conform.
  * @param {Object} [options={}]
  * @param {Object} [options.eventTargets={}] Map of events and the child component to target.
- * @param {boolean} [options.rendersChildren=false] Does this component render any children?
  * @param {boolean} [options.rendersPortal=false] Does this component render a Portal powered component?
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
 export default (Component, options = {}) => {
-  const {
-    eventTargets = {},
-    requiredProps = {},
-    rendersChildren = true,
-    rendersPortal = false,
-  } = options
+  const { eventTargets = {}, requiredProps = {}, rendersPortal = false } = options
   const { throwError } = helpers('isConformant', Component)
 
   const componentType = typeof Component
@@ -31,6 +26,18 @@ export default (Component, options = {}) => {
   // make sure components are properly exported
   if (componentType !== 'function') {
     throwError(`Components should export a class or function, got: ${componentType}.`)
+  }
+
+  const renderWithProvider = testComponent => (
+    <Provider siteVariables={{}}>{testComponent}</Provider>
+  )
+
+  const getTestingRenderedComponent = (mountedElement) => {
+    let wrapper = mountedElement
+    while (wrapper.name() !== Component.wrappedComponent) {
+      wrapper = wrapper.childAt(0)
+    }
+    return wrapper
   }
 
   // tests depend on Component constructor names, enforce them
@@ -44,59 +51,93 @@ export default (Component, options = {}) => {
     )
   }
 
-  const info = componentInfoContext.byDisplayName[constructorName]
+  // ----------------------------------------
+  // Component info
+  // ----------------------------------------
+  // This is pretty ugly because:
+  // - jest doesn't support custom error messages
+  // - jest will run all test
+  const infoJSONPath = `docs/src/componentInfo/${Component.wrappedComponent}.info.json`
+
+  let info
+
+  try {
+    info = require(infoJSONPath)
+  } catch (err) {
+    // handled in the test() below
+    test('component info file exists', () => {
+      throw new Error(
+        [
+          '!! ==========================================================',
+          `!! Missing ${infoJSONPath}.`,
+          '!! Run `yarn test` or `yarn test:watch` again to generate one.',
+          '!! ==========================================================',
+        ].join('\n'),
+      )
+    })
+    return
+  }
 
   // ----------------------------------------
-  // Class and file name
+  // Component and file name
   // ----------------------------------------
-  it(`constructor name matches filename "${constructorName}"`, () => {
-    constructorName.should.equal(info.filenameWithoutExt)
+  test(`wrappedComponent property matches filename "${Component.wrappedComponent}"`, () => {
+    expect(Component.wrappedComponent).toEqual(info.filenameWithoutExt)
   })
 
   // ----------------------------------------
   // Is exported or private
   // ----------------------------------------
-  // detect components like: semanticUIReact.H1
-  const isTopLevelAPIProp = _.has(semanticUIReact, constructorName)
+  // detect components like: stardust.H1
+  const isTopLevelAPIProp = _.has(stardust, Component.wrappedComponent)
 
-  // find the apiPath in the semanticUIReact object
-  const foundAsSubcomponent = _.isFunction(_.get(semanticUIReact, info.apiPath))
+  // find the apiPath in the stardust object
+  const foundAsSubcomponent = _.isFunction(_.get(stardust, info.apiPath))
 
   // require all components to be exported at the top level
-  it('is exported at the top level', () => {
-    expect(isTopLevelAPIProp).to.equal(
-      true,
-      [`"${info.displayName}" must be exported at top level.`, 'Export it in `src/index.js`.'].join(
-        ' ',
-      ),
-    )
+  test('is exported at the top level', () => {
+    const message = [
+      `'${info.displayName}' must be exported at top level.`,
+      "Export it in 'src/index.js'.",
+    ].join(' ')
+
+    expect({ isTopLevelAPIProp, message }).toEqual({
+      isTopLevelAPIProp: true,
+      message,
+    })
   })
 
   if (info.isChild) {
-    it('is a static component on its parent', () => {
-      expect(foundAsSubcomponent).to.equal(
-        true,
-        `\`${info.displayName}\` is a child component (is in ${info.repoPath}).` +
-          ` It must be a static prop of its parent \`${info.parentDisplayName}\``,
-      )
+    test('is a static component on its parent', () => {
+      const message =
+        `'${info.displayName}' is a child component (is in ${info.repoPath}).` +
+        ` It must be a static prop of its parent '${info.parentDisplayName}'`
+      expect({ foundAsSubcomponent, message }).toEqual({
+        foundAsSubcomponent: true,
+        message,
+      })
     })
   }
 
   // ----------------------------------------
   // Props
   // ----------------------------------------
-  if (rendersChildren) {
-    it('spreads user props', () => {
-      const propName = 'data-is-conformant-spread-props'
-      const props = { [propName]: true }
+  test('spreads user props', () => {
+    const propName = 'data-is-conformant-spread-props'
+    const props = { [propName]: true }
 
-      shallow(<Component {...requiredProps} {...props} />).should.have.descendants(props)
-    })
-  }
+    const component = getTestingRenderedComponent(
+      mount(renderWithProvider(<Component {...requiredProps} {...props} />)),
+    )
 
-  if (rendersChildren && !rendersPortal) {
+    // The component already has the prop, so we are testing if it's children also have the props,
+    // that is why we are testing if it is grater then 1
+    expect(component.find(props).length).toBeGreaterThan(1)
+  })
+
+  if (!rendersPortal) {
     describe('"as" prop (common)', () => {
-      it('renders the component as HTML tags or passes "as" to the next component', () => {
+      test('renders the component as HTML tags or passes "as" to the next component', () => {
         // silence element nesting warnings
         consoleUtil.disableOnce()
 
@@ -115,34 +156,35 @@ export default (Component, options = {}) => {
           'span',
           'strong',
         ]
-        try {
-          tags.forEach((tag) => {
-            shallow(<Component {...requiredProps} as={tag} />).should.have.tagName(tag)
-          })
-        } catch (err) {
-          tags.forEach((tag) => {
-            const wrapper = shallow(<Component {...requiredProps} as={tag} />)
-            wrapper.type().should.not.equal(Component)
-            wrapper.should.have.prop('as', tag)
-          })
-        }
+
+        tags.forEach((tag) => {
+          const wrapper = mount(renderWithProvider(<Component {...requiredProps} as={tag} />))
+          const component = getTestingRenderedComponent(wrapper)
+
+          try {
+            expect(component.childAt(0).is(tag)).toEqual(true)
+          } catch (err) {
+            expect(component.childAt(0).type()).not.toEqual(Component)
+            expect(component.childAt(0).prop('as')).toEqual(tag)
+          }
+        })
       })
 
-      it('renders as a functional component or passes "as" to the next component', () => {
+      test('renders as a functional component or passes "as" to the next component', () => {
         const MyComponent = () => null
 
+        const wrapper = mount(renderWithProvider(<Component {...requiredProps} as={MyComponent} />))
+        const component = getTestingRenderedComponent(wrapper)
+
         try {
-          shallow(<Component {...requiredProps} as={MyComponent} />)
-            .type()
-            .should.equal(MyComponent)
+          expect(component.childAt(0).type()).toEqual(MyComponent)
         } catch (err) {
-          const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
-          wrapper.type().should.not.equal(Component)
-          wrapper.should.have.prop('as', MyComponent)
+          expect(component.childAt(0).type()).not.toEqual(Component)
+          expect(component.childAt(0).prop('as')).toEqual(MyComponent)
         }
       })
 
-      it('renders as a ReactClass or passes "as" to the next component', () => {
+      test('renders as a ReactClass or passes "as" to the next component', () => {
         // eslint-disable-next-line react/prefer-stateless-function
         class MyComponent extends React.Component {
           render() {
@@ -150,196 +192,243 @@ export default (Component, options = {}) => {
           }
         }
 
+        const wrapper = mount(renderWithProvider(<Component {...requiredProps} as={MyComponent} />))
+        const component = getTestingRenderedComponent(wrapper)
+
         try {
-          shallow(<Component {...requiredProps} as={MyComponent} />)
-            .type()
-            .should.equal(MyComponent)
+          expect(component.childAt(0).type()).toEqual(MyComponent)
         } catch (err) {
-          const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
-          wrapper.type().should.not.equal(Component)
-          wrapper.should.have.prop('as', MyComponent)
+          expect(component.childAt(0).type()).not.toEqual(Component)
+          expect(component.childAt(0).prop('as')).toEqual(MyComponent)
         }
       })
 
-      it('passes extra props to the component it is renders as', () => {
+      test('passes extra props to the component it is renders as', () => {
         const MyComponent = () => null
+        const wrapper = mount(
+          renderWithProvider(
+            <Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />,
+          ),
+        )
 
-        shallow(
-          <Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />,
-        ).should.have.descendants('[data-extra-prop="foo"]')
+        expect(wrapper.find('MyComponent[data-extra-prop="foo"]').length).toBeGreaterThan(0)
       })
     })
   }
 
   describe('handles props', () => {
-    it('defines handled props in Component.handledProps', () => {
-      Component.should.have.any.keys('handledProps')
-      Component.handledProps.should.be.an('array')
+    test('defines handled props in Component.handledProps', () => {
+      expect(Component.handledProps).toBeDefined()
+      expect(Array.isArray(Component.handledProps)).toEqual(true)
     })
 
-    it('Component.handledProps includes all handled props', () => {
+    test('Component.handledProps includes all handled props', () => {
       const computedProps = _.union(
-        Component.autoControlledProps,
-        _.keys(Component.defaultProps),
-        _.keys(Component.propTypes),
+        Component.wrappedComponentAutoControlledProps,
+        _.keys(Component.wrappedComponentDefaultProps),
+        _.keys(Component.wrappedComponentPropTypes),
       )
       const expectedProps = _.uniq(computedProps).sort()
 
-      Component.handledProps.should.to.deep.equal(
-        expectedProps,
-        'It seems that not all props were defined in Component.handledProps, you need to check that they are equal ' +
-          'to the union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes',
-      )
+      const message =
+        'It seems that not all props were defined in Component.handledProps, you need' +
+        ' to check that they are equal to the union of Component.wrappedComponentAutoControlledProps and keys of ' +
+        'Component.wrappedComponentDefaultProps and Component.propTypes'
+
+      expect({
+        handledProps: Component.handledProps,
+        message,
+      }).toEqual({
+        handledProps: expectedProps,
+        message,
+      })
     })
   })
 
   // ----------------------------------------
   // Events
   // ----------------------------------------
-  if (rendersChildren) {
-    it('handles events transparently', () => {
-      // Events should be handled transparently, working just as they would in vanilla React.
-      // Example, both of these handler()s should be called with the same event:
-      //
-      //   <Button onClick={handler} />
-      //   <button onClick={handler} />
-      //
-      // This test catches the case where a developer forgot to call the event prop
-      // after handling it internally. It also catch cases where the synthetic event was not passed back.
-      _.each(syntheticEvent.types, ({ eventShape, listeners }) => {
-        _.each(listeners, (listenerName) => {
-          // onKeyDown => keyDown
-          const eventName = _.camelCase(listenerName.replace('on', ''))
 
-          // onKeyDown => handleKeyDown
-          const handlerName = _.camelCase(listenerName.replace('on', 'handle'))
+  test('handles events transparently', () => {
+    // Events should be handled transparently, working just as they would in vanilla React.
+    // Example, both of these handler()s should be called with the same event:
+    //
+    //   <Button onClick={handler} />
+    //   <button onClick={handler} />
+    //
+    // This test catches the case where a developer forgot to call the event prop
+    // after handling it internally. It also catch cases where the synthetic event was not passed back.
+    _.each(syntheticEvent.types, ({ eventShape, listeners }) => {
+      _.each(listeners, (listenerName) => {
+        // onKeyDown => keyDown
+        const eventName = _.camelCase(listenerName.replace('on', ''))
 
-          const handlerSpy = sandbox.spy()
-          const props = {
-            ...requiredProps,
-            [listenerName]: handlerSpy,
-            'data-simulate-event-here': true,
-          }
+        // onKeyDown => handleKeyDown
+        const handlerName = _.camelCase(listenerName.replace('on', 'handle'))
 
-          const wrapper = shallow(<Component {...props} />)
+        const handlerSpy = jest.fn()
+        const props = {
+          ...requiredProps,
+          [listenerName]: handlerSpy,
+          'data-simulate-event-here': true,
+        }
 
-          const eventTarget = eventTargets[listenerName]
-            ? wrapper.find(eventTargets[listenerName])
-            : wrapper.find('[data-simulate-event-here]')
+        const wrapper = mount(renderWithProvider(<Component {...props} />))
+        const component = getTestingRenderedComponent(wrapper)
 
-          eventTarget.simulate(eventName, eventShape)
+        const eventTarget = eventTargets[listenerName]
+          ? component.find(eventTargets[listenerName]).hostNodes()
+          : component.find('[data-simulate-event-here]').hostNodes()
 
-          // give event listeners opportunity to cleanup
-          if (wrapper.instance() && wrapper.instance().componentWillUnmount) {
-            wrapper.instance().componentWillUnmount()
-          }
+        if (eventTarget.length === 0) {
+          throw new Error(
+            'The event prop was not delegate to the children. You probably ' +
+              'forgot to use `getUnhandledProps` util to spread the `rest` props.',
+          )
+        }
+        const customHandler = eventTarget.prop([listenerName])
 
-          // <Dropdown onBlur={handleBlur} />
-          //                   ^ was not called once on "blur"
-          const leftPad = ' '.repeat(info.displayName.length + listenerName.length + 3)
+        if (customHandler) {
+          customHandler(eventShape)
+        } else {
+          return
+        }
 
-          handlerSpy.calledOnce.should.equal(
-            true,
+        // give event listeners opportunity to cleanup
+        if (wrapper.instance() && wrapper.instance().componentWillUnmount) {
+          wrapper.instance().componentWillUnmount()
+        }
+
+        // <Dropdown onBlur={handleBlur} />
+        //                   ^ was not called once on "blur"
+        const leftPad = ' '.repeat(info.displayName.length + listenerName.length + 3)
+
+        try {
+          expect(handlerSpy).toHaveBeenCalled()
+        } catch (err) {
+          throw new Error(
             `<${info.displayName} ${listenerName}={${handlerName}} />\n` +
               `${leftPad} ^ was not called once on "${eventName}".` +
               'You may need to hoist your event handlers up to the root element.\n',
           )
+        }
 
-          let expectedArgs = [eventShape]
-          let errorMessage = 'was not called with (event)'
+        let expectedArgs = [eventShape]
+        let errorMessage = 'was not called with (event)'
 
-          if (_.has(Component.propTypes, listenerName)) {
-            expectedArgs = [eventShape, props]
-            errorMessage = 'was not called with (event, data)'
-          }
+        if (_.has(Component.wrappedComponentPropTypes, listenerName)) {
+          expectedArgs = [eventShape, component.props()]
+          errorMessage = 'was not called with (event, data)'
+        }
 
-          // Components should return the event first, then any data
-          handlerSpy
-            .calledWithMatch(...expectedArgs)
-            .should.equal(
-              true,
-              [
-                `<${info.displayName} ${listenerName}={${handlerName}} />\n`,
-                `${leftPad} ^ ${errorMessage}`,
-                'It was called with args:',
-                JSON.stringify(handlerSpy.args, null, 2),
-              ].join('\n'),
-            )
-        })
+        // Components should return the event first, then any data
+        try {
+          expect(handlerSpy).toHaveBeenLastCalledWith(...expectedArgs)
+        } catch (err) {
+          throw new Error(
+            [
+              `<${info.displayName} ${listenerName}={${handlerName}} />\n`,
+              `${leftPad} ^ ${errorMessage}`,
+              'It was called with args:',
+              JSON.stringify(handlerSpy.args, null, 2),
+            ].join('\n'),
+          )
+        }
       })
     })
-  }
+  })
 
   // ----------------------------------------
   // Has no deprecated _meta
   // ----------------------------------------
   describe('_meta', () => {
-    it('does not exist', () => {
-      expect(Component._meta).to.be.undefined()
+    test('does not exist', () => {
+      expect(Component._meta).toBeUndefined()
     })
   })
 
   // ----------------------------------------
   // Handles className
   // ----------------------------------------
-  if (rendersChildren) {
-    describe('className (common)', () => {
-      it(`has the Semantic UI className "${info.componentClassName}"`, () => {
-        const wrapper = render(<Component {...requiredProps} />)
-        // don't test components with no className at all (i.e. MessageItem)
-        if (wrapper.prop('className')) {
-          wrapper.should.have.className(info.componentClassName)
-        }
-      })
+  describe('className (common)', () => {
+    test(`has the Stardust className "${info.componentClassName}"`, () => {
+      const wrapper = mount(renderWithProvider(<Component {...requiredProps} />))
+      const component = getTestingRenderedComponent(wrapper)
 
-      it("applies user's className to root component", () => {
-        const className = 'is-conformant-class-string'
+      // only test components that implement className
+      if (component.childAt(0).prop('className')) {
+        expect(
+          _.includes(component.childAt(0).prop('className'), `${info.componentClassName}`),
+        ).toEqual(true)
+      }
+    })
 
-        // Portal powered components can render to two elements, a trigger and the actual component
-        // The actual component is shown when the portal is open
-        // If a trigger is rendered, open the portal and make assertions on the portal element
-        if (rendersPortal) {
-          const mountNode = document.createElement('div')
-          document.body.appendChild(mountNode)
+    test("applies user's className to root component", () => {
+      const className = 'is-conformant-class-string'
 
-          const wrapper = mount(<Component {...requiredProps} className={className} />, {
+      // Portal powered components can render to two elements, a trigger and the actual component
+      // The actual component is shown when the portal is open
+      // If a trigger is rendered, open the portal and make assertions on the portal element
+      if (rendersPortal) {
+        const mountNode = document.createElement('div')
+        document.body.appendChild(mountNode)
+
+        const wrapper = mount(
+          renderWithProvider(<Component {...requiredProps} className={className} />),
+          {
             attachTo: mountNode,
-          })
-          wrapper.setProps({ open: true })
-
-          // portals/popups/etc may render the component to somewhere besides descendants
-          // we look for the component anywhere in the DOM
-          assertBodyContains(`.${className}`)
-
-          wrapper.detach()
-          document.body.removeChild(mountNode)
-        } else {
-          shallow(<Component {...requiredProps} className={className} />).should.have.className(
-            className,
-          )
-        }
-      })
-
-      it("user's className does not override the default classes", () => {
-        const defaultClasses = shallow(<Component {...requiredProps} />).prop('className')
-
-        if (!defaultClasses) return
-
-        const userClasses = faker.hacker.verb()
-        const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />).prop(
-          'className',
+          },
         )
+        wrapper.setProps({ open: true })
 
-        defaultClasses.split(' ').forEach((defaultClass) => {
-          mixedClasses.should.include(
-            defaultClass,
-            [
-              'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
-              'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
-            ].join(' '),
-          )
+        // portals/popups/etc may render the component to somewhere besides descendants
+        // we look for the component anywhere in the DOM
+        assertBodyContains(`.${className}`)
+
+        wrapper.detach()
+        document.body.removeChild(mountNode)
+      } else {
+        const wrapper = mount(
+          renderWithProvider(<Component {...requiredProps} className={className} />),
+        )
+        expect(
+          _.includes(
+            getTestingRenderedComponent(wrapper)
+              .childAt(0)
+              .prop('className'),
+            className,
+          ),
+        ).toEqual(true)
+      }
+    })
+
+    test("user's className does not override the default classes", () => {
+      const wrapper = mount(renderWithProvider(<Component {...requiredProps} />))
+      const defaultClasses = getTestingRenderedComponent(wrapper)
+        .childAt(0)
+        .prop('className')
+
+      if (!defaultClasses) return
+
+      const userClasses = faker.hacker.verb()
+      const wrapperWithCustomClasses = mount(
+        renderWithProvider(<Component {...requiredProps} className={userClasses} />),
+      )
+      const mixedClasses = getTestingRenderedComponent(wrapperWithCustomClasses)
+        .childAt(0)
+        .prop('className')
+
+      const message = [
+        'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+        'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+      ].join(' ')
+
+      defaultClasses.split(' ').forEach((defaultClass) => {
+        expect({ result: _.includes(mixedClasses, defaultClass), message }).toEqual({
+          result: true,
+          message,
         })
       })
     })
-  }
+  })
 }

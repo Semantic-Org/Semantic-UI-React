@@ -2,7 +2,6 @@ export AutoControlledComponent from './AutoControlledComponent'
 export childrenExist from './childrenExist'
 
 export * as customPropTypes from './customPropTypes'
-
 export { debug, makeDebugger } from './debug'
 export eventStack from './eventStack'
 export { felaRenderer, felaRtlRenderer } from './felaRenderer'

@@ -12,9 +12,9 @@ import imageVariables from './imageVariables'
 const Image = (props) => {
   const ElementType = getElementType(Image, props)
   const rest = getUnhandledProps(Image, props)
-  const { styles } = props
+  const { styles, className } = props
 
-  return <ElementType {...rest} className={cx('ui-image', styles.root)} />
+  return <ElementType {...rest} className={cx('ui-image', styles.root, className)} />
 }
 
 Image.propTypes = {
@@ -26,6 +26,9 @@ Image.propTypes = {
 
   /** An image can appear circular. */
   circular: PropTypes.bool,
+
+  /** Additional classes. */
+  className: PropTypes.string,
 
   /** TODO: this is not a prop we want here... */
   styles: PropTypes.object,

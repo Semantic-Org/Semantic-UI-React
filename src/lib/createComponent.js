@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { connect, FelaTheme } from 'react-fela'
 
+import callable from './callable'
 import { createShorthandFactory } from './factories'
-
-const callable = val => (typeof val !== 'function' ? () => val : val)
 
 const createComponent = (Component, config = {}) => {
   const displayName = Component.name || Component.displayName
@@ -35,7 +34,11 @@ const createComponent = (Component, config = {}) => {
   }
 
   UIComponent.create = createShorthandFactory(UIComponent, shorthand)
-  UIComponent.displayName = `UI(${Component.displayName || Component.name || 'Anonymous'})`
+  UIComponent.wrappedComponent = `${Component.displayName || Component.name || 'Anonymous'}`
+  UIComponent.wrappedComponentPropTypes = Component.propTypes
+  UIComponent.wrappedComponentDefaultProps = Component.defaultProps
+  UIComponent.wrappedComponentAutoControlledProps = Component.autoControlledProps
+  UIComponent.displayName = `UI(${UIComponent.wrappedComponent})`
 
   return hoistNonReactStatics(UIComponent, Component)
 }

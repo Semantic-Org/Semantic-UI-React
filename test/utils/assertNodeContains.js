@@ -7,7 +7,13 @@
  */
 export const assertNodeContains = (parentNode, childSelector, isPresent = true) => {
   const didFind = parentNode.querySelector(childSelector) !== null
-  didFind.should.equal(isPresent, `${didFind ? 'Found' : 'Did not find'} "${childSelector}" in the ${parentNode}.`)
+  try {
+    expect(didFind).toEqual(isPresent)
+  } catch (err) {
+    throw new Error(
+      `${didFind ? 'Found' : 'Did not find'} "${childSelector}" in the ${parentNode}.`,
+    )
+  }
 }
 
 /**
@@ -16,4 +22,5 @@ export const assertNodeContains = (parentNode, childSelector, isPresent = true) 
  * @param {string} selector A DOM selector for the parent node
  * @param {boolean} [isPresent=true] Indicating whether to assert is present or is not present
  */
-export const assertBodyContains = (selector, isPresent) => assertNodeContains(document.body, selector, isPresent)
+export const assertBodyContains = (selector, isPresent) =>
+  assertNodeContains(document.body, selector, isPresent)
