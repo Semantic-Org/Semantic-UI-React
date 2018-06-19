@@ -35,7 +35,11 @@ const createComponent = (Component, config = {}) => {
   }
 
   UIComponent.create = createShorthandFactory(UIComponent, shorthand)
-  UIComponent.displayName = `UI(${displayName})`
+  UIComponent.wrappedComponent = `${Component.displayName || Component.name || 'Anonymous'}`
+  UIComponent.wrappedComponentPropTypes = Component.propTypes
+  UIComponent.wrappedComponentDefaultProps = Component.defaultProps
+  UIComponent.wrappedComponentAutoControlledProps = Component.autoControlledProps
+  UIComponent.displayName = `UI(${UIComponent.wrappedComponent})`
 
   return hoistNonReactStatics(UIComponent, Component)
 }
