@@ -144,6 +144,11 @@ class Sidebar extends Component {
       clearTimeout(this.animationTimer)
       this.animationTimer = setTimeout(this.handleAnimationEnd, duration)
 
+      if (this.skipNextCallback) {
+        this.skipNextCallback = false
+        return
+      }
+
       _.invoke(this.props, callback, null, this.props)
     })
   }
@@ -158,6 +163,7 @@ class Sidebar extends Component {
 
   handleDocumentClick = (e) => {
     if (!doesNodeContainClick(this.ref, e)) {
+      this.skipNextCallback = true
       _.invoke(this.props, 'onHide', e, { ...this.props, visible: false })
     }
   }
