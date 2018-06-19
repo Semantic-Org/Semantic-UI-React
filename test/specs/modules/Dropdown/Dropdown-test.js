@@ -463,6 +463,11 @@ describe('Dropdown', () => {
         .find('DropdownItem')
         .first()
         .simulate('click')
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .simulate('click')
+        .should.have.prop('active', true)
 
       wrapper.should.have.state('value', options[0].value)
 
@@ -590,14 +595,14 @@ describe('Dropdown', () => {
 
   describe('selected item', () => {
     it('defaults to the first item', () => {
-      wrapperShallow(<Dropdown options={options} selection defaultOpen />)
+      wrapperShallow(<Dropdown options={options} selection />)
         .find('DropdownItem')
         .first()
         .should.have.prop('selected', true)
     })
     it('defaults to the first non-disabled item', () => {
       options[0].disabled = true
-      wrapperShallow(<Dropdown options={options} selection defaultOpen />)
+      wrapperShallow(<Dropdown options={options} selection />)
 
       // selection moved to second item
       wrapper
@@ -614,7 +619,7 @@ describe('Dropdown', () => {
       const randomIndex = 1 + _.random(options.length - 2)
       const value = options[randomIndex].value
 
-      wrapperShallow(<Dropdown options={[]} selection value={value} defaultOpen />)
+      wrapperShallow(<Dropdown options={[]} selection value={value} />)
 
       wrapper.setProps({ options, value })
 
@@ -633,15 +638,13 @@ describe('Dropdown', () => {
     it('is set when clicking an item', () => {
       // random item, skip the first as it's selected by default
       const randomIndex = 1 + _.random(options.length - 2)
-      wrapperMount(<Dropdown options={options} selection defaultOpen />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       wrapper
         .find('DropdownItem')
         .at(randomIndex)
         .simulate('click')
-
       wrapper
-        .simulate('click')
         .find('DropdownItem')
         .at(randomIndex)
         .should.have.prop('selected', true)
@@ -905,7 +908,8 @@ describe('Dropdown', () => {
       )
     })
     it('becomes active on enter when open', () => {
-      wrapperMount(<Dropdown options={options} selection open />)
+      wrapperMount(<Dropdown options={options} selection />)
+      wrapper.simulate('click')
 
       // initial item props
       wrapper
@@ -947,7 +951,7 @@ describe('Dropdown', () => {
     it('sets the corresponding item to active', () => {
       const value = _.sample(options).value
 
-      wrapperShallow(<Dropdown options={options} selection value={value} defaultOpen />)
+      wrapperShallow(<Dropdown options={options} selection value={value} />)
         .find('DropdownItem')
         .find({ value, active: true })
         .should.be.present()
@@ -956,7 +960,7 @@ describe('Dropdown', () => {
     it('sets the corresponding item text', () => {
       const { text, value } = _.sample(options)
 
-      wrapperShallow(<Dropdown value={value} options={options} selection defaultOpen />)
+      wrapperShallow(<Dropdown value={value} options={options} selection />)
         .find('DropdownItem')
         .find({ value, text })
         .should.be.present()
@@ -967,7 +971,7 @@ describe('Dropdown', () => {
       let next
       while (!next || next === value) next = _.sample(options).value
 
-      wrapperMount(<Dropdown value={value} options={options} selection defaultOpen />)
+      wrapperMount(<Dropdown value={value} options={options} selection />)
 
       // initial active item
       wrapper
@@ -1043,15 +1047,15 @@ describe('Dropdown', () => {
       // open
       wrapper.simulate('click')
 
-      const item = wrapper.find('DropdownItem').at(_.random(options.length - 1))
-
-      const itemText = item.text()
-
       // click item
+      const item = wrapper
+        .find('DropdownItem')
+        .at(_.random(options.length - 1))
+        .simulate('click')
       item.simulate('click')
 
       // text updated
-      wrapper.find('div.text').should.contain.text(itemText)
+      wrapper.find('div.text').should.contain.text(item.text())
     })
     it('is updated on item enter if multiple search results present', () => {
       const searchOptions = [{ value: 0, text: 'foo' }, { value: 1, text: 'foe' }]
@@ -1075,14 +1079,12 @@ describe('Dropdown', () => {
       // open
       wrapper.simulate('click')
 
-      const item = wrapper.find('DropdownItem')
-      const itemText = item.text()
-
       // click item
+      const item = wrapper.find('DropdownItem').simulate('click')
       item.simulate('click')
 
       // text updated
-      wrapper.find('div.text').should.contain.text(itemText)
+      wrapper.find('div.text').should.contain.text(item.text())
     })
     it("does not display if value is ''", () => {
       const text = faker.hacker.noun()
@@ -1185,10 +1187,11 @@ describe('Dropdown', () => {
     })
 
     it('closes on menu item click', () => {
-      wrapperMount(<Dropdown options={options} selection defaultOpen />)
+      wrapperMount(<Dropdown options={options} selection />)
       const item = wrapper.find('DropdownItem').at(_.random(options.length - 1))
 
       // open
+      wrapper.simulate('click')
       dropdownMenuIsOpen()
 
       // select item
@@ -1197,7 +1200,7 @@ describe('Dropdown', () => {
     })
 
     it('blurs after menu item click (mousedown)', () => {
-      wrapperMount(<Dropdown options={options} selection defaultOpen />)
+      wrapperMount(<Dropdown options={options} selection />)
       const item = wrapper.find('DropdownItem').at(_.random(options.length - 1))
 
       // open
@@ -1785,7 +1788,7 @@ describe('Dropdown', () => {
         { text: 'cadabra', value: 'cadabra' },
         { text: 'bang', value: 'bang' },
       ]
-      wrapperMount(<Dropdown options={customOptions} defaultOpen />).find('input.search')
+      wrapperMount(<Dropdown options={customOptions} />).find('input.search')
 
       wrapper.find('DropdownItem').should.have.lengthOf(3)
 
@@ -1816,7 +1819,7 @@ describe('Dropdown', () => {
         { key: null, text: 'bar', value: 'bar' },
         { key: undefined, text: 'baz', value: 'baz' },
       ]
-      wrapperShallow(<Dropdown options={customOptions} selection defaultOpen />)
+      wrapperShallow(<Dropdown options={customOptions} selection />)
       const items = wrapper.find('DropdownItem')
 
       items
@@ -2135,6 +2138,20 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('lazyLoad', () => {
+    it('does not render options when closed', () => {
+      wrapperShallow(<Dropdown options={options} lazyLoad />).should.not.have.descendants(
+        'DropdownItem',
+      )
+    })
+
+    it('renders options when open', () => {
+      wrapperShallow(<Dropdown options={options} lazyLoad open />).should.have.descendants(
+        'DropdownItem',
+      )
+    })
+  })
+
   describe('Dropdown.Menu child', () => {
     it('renders child passed', () => {
       wrapperShallow(
@@ -2191,7 +2208,7 @@ describe('Dropdown', () => {
 
     it('adds an option for arbitrary search value', () => {
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions defaultOpen />,
+        <Dropdown options={customOptions} selection search allowAdditions />,
       ).find('input.search')
 
       wrapper.find('DropdownItem').should.have.lengthOf(3)
@@ -2205,7 +2222,7 @@ describe('Dropdown', () => {
 
     it('adds an option for prefix search value', () => {
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions defaultOpen />,
+        <Dropdown options={customOptions} selection search allowAdditions />,
       ).find('input.search')
 
       wrapper.find('DropdownItem').should.have.lengthOf(3)
