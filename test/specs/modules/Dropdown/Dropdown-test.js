@@ -463,13 +463,7 @@ describe('Dropdown', () => {
         .find('DropdownItem')
         .first()
         .simulate('click')
-      wrapper
-        .find('DropdownItem')
-        .first()
-        .simulate('click')
-        // `first().simulate('click')` closes the Dropdown so can't verify `prop('active', true)`
-        // TODO: Find a way to verify `first()` has `prop('active', true)`
-        // .should.have.prop('active', true)
+
       wrapper.should.have.state('value', options[0].value)
 
       dropdownMenuIsClosed()
@@ -911,18 +905,13 @@ describe('Dropdown', () => {
       )
     })
     it('becomes active on enter when open', () => {
-      wrapperMount(<Dropdown options={options} selection />)
-      wrapper.simulate('click')
+      wrapperMount(<Dropdown options={options} selection open />)
 
       // initial item props
       wrapper
         .find('DropdownItem')
         .at(1)
-        .should.have.prop('selected', false)
-      wrapper
-        .find('DropdownItem')
-        .at(1)
-        .should.have.prop('active', false)
+        .should.have.props({ selected: false, active: false })
 
       // select and make active
       domEvent.keyDown(document, { key: 'ArrowDown' })
@@ -932,7 +921,7 @@ describe('Dropdown', () => {
       wrapper
         .find('DropdownItem')
         .at(1)
-        .should.have.prop('active', true)
+        .should.have.props({ selected: true, active: true })
     })
     it('closes the menu', () => {
       wrapperMount(<Dropdown options={options} selection />).simulate('click')
@@ -1054,9 +1043,7 @@ describe('Dropdown', () => {
       // open
       wrapper.simulate('click')
 
-      const item = wrapper
-        .find('DropdownItem')
-        .at(_.random(options.length - 1))
+      const item = wrapper.find('DropdownItem').at(_.random(options.length - 1))
 
       const itemText = item.text()
 
@@ -1088,10 +1075,8 @@ describe('Dropdown', () => {
       // open
       wrapper.simulate('click')
 
-
-      const item = wrapper
-        .find('DropdownItem')
-        const itemText = item.text()
+      const item = wrapper.find('DropdownItem')
+      const itemText = item.text()
 
       // click item
       item.simulate('click')
