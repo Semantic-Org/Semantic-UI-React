@@ -12,7 +12,7 @@ class LegacyContextComponent extends Component {
   getClasses = (props, rules, variables) => {
     const { [THEME_CHANNEL]: theme } = this.context
 
-    return getClasses(props, rules, variables, theme.get())
+    return getClasses(props, rules, variables, (theme && theme.get()) || {})
   }
 }
 
