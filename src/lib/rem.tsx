@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import isBrowser from 'stardust/lib/isBrowser'
+import isBrowser from './isBrowser'
 
 // TODO - This doesn't support theme switching, other themes, and doesn't support user changes to html base font size.
 const htmlFontSize = isBrowser() ? getComputedStyle(document.documentElement).fontSize : '16px'
