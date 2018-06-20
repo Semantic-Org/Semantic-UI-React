@@ -27,6 +27,7 @@ export default {
     src: 'docs/src',
     public: 'docs/public',
   },
+  siteRoot: 'https://react.semantic-ui.com',
   webpack: (webpackConfig, { defaultLoaders }) => ({
     ...webpackConfig,
     externals: {
