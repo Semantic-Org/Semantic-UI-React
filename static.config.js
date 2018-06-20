@@ -24,6 +24,7 @@ export default {
   inlineCss: true,
   paths: {
     src: 'docs/src',
+    public: 'docs/public',
   },
   webpack: webpackConfig => ({
     ...webpackConfig,

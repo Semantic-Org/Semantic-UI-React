@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import logo from '../../logo.png'
-import siteData from '../../utils/propTypes/siteData'
-import './Document.css'
+import siteData from '../utils/propTypes/siteData'
 
 const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) => (
   <Html lang='en-US'>
@@ -11,7 +9,8 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       <meta charSet='UTF-8' />
       <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
 
-      <link rel='shortcut icon' type='image/x-icon' href={logo} />
+      <link rel='shortcut icon' type='image/x-icon' href='/logo.png' />
+      <link rel='stylesheet' href='/style.css' />
       <link
         rel='stylesheet'
         href={`https://cdn.jsdelivr.net/npm/semantic-ui-css@${versions.sui}/semantic.min.css`}

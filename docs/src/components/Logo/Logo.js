@@ -1,9 +1,7 @@
 import React from 'react'
 import { Image } from 'semantic-ui-react'
 
-import logo from 'docs/src/logo.png'
-
-const Logo = props => <Image {...props} src={logo} />
+const Logo = props => <Image {...props} src='/logo.png' />
 
 Logo.propTypes = Image.propTypes
 
