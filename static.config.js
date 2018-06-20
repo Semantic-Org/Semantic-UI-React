@@ -1,9 +1,13 @@
+import path from 'path'
+import webpack from 'webpack'
+
 import babelPreset from './.babel-preset'
 import config from './config'
 import getRoutes from './static.routes'
 import Document from './docs/src/components/Document'
 
 export default {
+  bundleAnalyzer: true,
   Document,
   getSiteData: async ({ dev }) => ({
     dev,
@@ -30,17 +34,22 @@ export default {
   siteRoot: 'https://react.semantic-ui.com',
   webpack: (webpackConfig, { defaultLoaders }) => ({
     ...webpackConfig,
-    externals: {
-      'anchor-js': 'AnchorJS',
-      '@babel/standalone': 'Babel',
-      faker: 'faker',
-      'prop-types': 'PropTypes',
-      react: 'React',
-      'react-dom': 'ReactDOM',
-      'react-dom/server': 'ReactDOMServer',
-    },
+    devtool: false,
+    externals:
+      webpackConfig.externals.length > 0
+        ? webpackConfig.externals
+        : {
+          'anchor-js': 'AnchorJS',
+          '@babel/standalone': 'Babel',
+          faker: 'faker',
+          'prop-types': 'PropTypes',
+          react: 'React',
+          'react-dom': 'ReactDOM',
+          'react-dom/server': 'ReactDOMServer',
+        },
     module: {
       ...webpackConfig.module,
+      noParse: [/\.json$/, /anchor-js/, /@babel\/standalone/, /faker/],
       rules: [
         {
           oneOf: [
@@ -57,12 +66,23 @@ export default {
                 },
               ],
             },
-            defaultLoaders.cssLoader,
-            defaultLoaders.fileLoader,
           ],
         },
       ],
     },
+    plugins: [
+      ...webpackConfig.plugins,
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'suir',
+        minChunks: (module, count) => {
+          if (!module.resource) return false
+
+          const relative = path.relative(config.paths.src(), module.resource)
+          return !!relative && !relative.startsWith('..') && !path.isAbsolute(relative)
+          // return module.resource &&
+        },
+      }),
+    ],
     resolve: {
       alias: {
         'semantic-ui-react': config.paths.src('index.js'),

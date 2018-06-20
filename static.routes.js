@@ -34,23 +34,23 @@ export default async () => {
       path: '/usage',
       component: 'docs/src/views/Usage',
     },
-    ..._.map(componentMenu, baseInfo => ({
-      path: getComponentPathname(baseInfo),
-      component: 'docs/src/components/ComponentDoc',
-      getData: async () => {
-        const componentInfo = getComponentInfo(baseInfo.displayName)
-        const sidebarSections = getSidebarSections(baseInfo.displayName)
-
-        return {
-          componentInfo,
-          exampleSources,
-          sidebarSections,
-          exampleKeys: _.map(_.flatMap(sidebarSections, 'examples'), 'examplePath'),
-          seeTags: getInfoForSeeTags(componentInfo),
-          subcomponentsInfo: getSubcomponentsInfo(componentInfo),
-        }
-      },
-    })),
+    // ..._.map(componentMenu, baseInfo => ({
+    //   path: getComponentPathname(baseInfo),
+    //   component: 'docs/src/components/ComponentDoc',
+    //   getData: async () => {
+    //     const componentInfo = getComponentInfo(baseInfo.displayName)
+    //     const sidebarSections = getSidebarSections(baseInfo.displayName)
+    //
+    //     return {
+    //       componentInfo,
+    //       exampleSources,
+    //       sidebarSections,
+    //       exampleKeys: _.map(_.flatMap(sidebarSections, 'examples'), 'examplePath'),
+    //       seeTags: getInfoForSeeTags(componentInfo),
+    //       subcomponentsInfo: getSubcomponentsInfo(componentInfo),
+    //     }
+    //   },
+    // })),
     /* <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} sidebar /> */
   ]
 }
