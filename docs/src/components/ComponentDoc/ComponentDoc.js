@@ -1,15 +1,16 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { withRouteData, withSiteData } from 'react-static'
+import { withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
 import {
   componentInfoShape,
-  scrollToAnchor,
   examplePathToHash,
   getFormattedHash,
+  propTypes,
+  scrollToAnchor,
 } from 'docs/src/utils'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
@@ -32,6 +33,7 @@ class ComponentDoc extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
     componentInfo: componentInfoShape.isRequired,
+    seeTags: propTypes.seeTags.isRequired,
   }
 
   state = {}
@@ -74,7 +76,7 @@ class ComponentDoc extends Component {
   }
 
   render() {
-    const { componentInfo } = this.props
+    const { componentInfo, seeTags } = this.props
     const { activePath, examplesRef } = this.state
 
     return (
@@ -87,7 +89,7 @@ class ComponentDoc extends Component {
                 content={componentInfo.displayName}
                 subheader={_.join(componentInfo.docblock.description, ' ')}
               />
-              <ComponentDocSee displayName={componentInfo.displayName} />
+              <ComponentDocSee seeTags={seeTags} />
               <ComponentDocLinks
                 displayName={componentInfo.displayName}
                 parentDisplayName={componentInfo.parentDisplayName}

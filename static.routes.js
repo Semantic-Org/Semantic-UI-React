@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 import componentMenu from './docs/src/componentMenu'
-import { getComponentInfo } from './docs/src/staticUtils'
+import { getComponentInfo, getInfoForSeeTags } from './docs/src/staticUtils'
 import { getComponentPathname } from './docs/src/utils'
 
 export default async () => [
@@ -25,12 +25,17 @@ export default async () => [
     path: '/usage',
     component: 'docs/src/views/Usage',
   },
-  ..._.map(componentMenu, componentInfo => ({
-    path: getComponentPathname(componentInfo),
+  ..._.map(componentMenu, baseInfo => ({
+    path: getComponentPathname(baseInfo),
     component: 'docs/src/components/ComponentDoc',
-    getData: async () => ({
-      componentInfo: getComponentInfo(componentInfo.displayName),
-    }),
+    getData: async () => {
+      const componentInfo = getComponentInfo(baseInfo.displayName)
+
+      return {
+        componentInfo,
+        seeTags: getInfoForSeeTags(componentInfo),
+      }
+    },
   })),
   /* <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} sidebar /> */
 ]
