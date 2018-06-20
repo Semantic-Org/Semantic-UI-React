@@ -141,6 +141,7 @@
     "react-static": "^5.9.7",
     "react-static-routes": "^1.0.0",
     "react-test-renderer": "^16.0.0",
+    "react-universal-component": "^2.9.0",
     "require-dir": "^0.3.2",
     "rimraf": "^2.6.1",
     "satisfied": "^1.1.2",
