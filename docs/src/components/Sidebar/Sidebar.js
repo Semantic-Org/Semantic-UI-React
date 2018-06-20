@@ -9,7 +9,7 @@ import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
 import componentMenu from 'docs/src/componentMenu'
 import { getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
-import { shallowEqual } from 'src/lib'
+import shallowEqual from 'src/lib/shallowEqual'
 import pkg from 'package.json'
 
 const selectedItemLabelStyle = { color: '#35bdb2', float: 'right' }
