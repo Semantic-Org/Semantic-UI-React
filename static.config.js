@@ -1,3 +1,4 @@
+import babelPreset from './.babel-preset'
 import config from './config'
 import getRoutes from './static.routes'
 import Document from './docs/src/components/Document'
@@ -26,7 +27,7 @@ export default {
     src: 'docs/src',
     public: 'docs/public',
   },
-  webpack: webpackConfig => ({
+  webpack: (webpackConfig, { defaultLoaders }) => ({
     ...webpackConfig,
     externals: {
       'anchor-js': 'AnchorJS',
@@ -36,6 +37,30 @@ export default {
       react: 'React',
       'react-dom': 'ReactDOM',
       'react-dom/server': 'ReactDOMServer',
+    },
+    module: {
+      ...webpackConfig.module,
+      rules: [
+        {
+          oneOf: [
+            {
+              ...defaultLoaders.jsLoader,
+              use: [
+                {
+                  loader: 'babel-loader',
+                  options: {
+                    ...babelPreset,
+                    babelrc: false,
+                    cacheDirectory: true,
+                  },
+                },
+              ],
+            },
+            defaultLoaders.cssLoader,
+            defaultLoaders.fileLoader,
+          ],
+        },
+      ],
     },
     resolve: {
       alias: {
