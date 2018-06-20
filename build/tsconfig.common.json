@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es2015", "dom"],
+    "baseUrl": "../",
+    "paths": {
+      "stardust": ["src"],
+      "stardust/*": ["src/*"]
+    },
+    "types": [
+      "node",
+      "jest"
+    ],
+    "typeRoots": [
+      "../types",
+      "../node_modules/@types"
+    ],
+    "jsx": "react",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.common.json",
+  "compilerOptions": {
+    "module": "esnext"
+  },
+  "include": [
+    "../src",
+    "../docs/src",
+    "../types"
+  ]
+}

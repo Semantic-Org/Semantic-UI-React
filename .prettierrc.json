@@ -11,12 +11,6 @@
       "options": {
         "parser": "json"
       }
-    },
-    {
-      "files": "*.{ts,tsx}",
-      "options": {
-        "semi": true
-      }
     }
   ]
 }
