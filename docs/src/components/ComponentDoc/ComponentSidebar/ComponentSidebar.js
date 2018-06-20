@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Accordion, Menu, Sticky } from 'semantic-ui-react'
 
+import { updateForKeys } from 'docs/src/hoc'
 import { propTypes } from 'docs/src/utils'
 import ComponentSidebarSection from './ComponentSidebarSection'
 
@@ -37,4 +38,4 @@ ComponentSidebar.propTypes = {
   sections: propTypes.sidebarSections.isRequired,
 }
 
-export default ComponentSidebar
+export default updateForKeys(['activePath'])(ComponentSidebar)
