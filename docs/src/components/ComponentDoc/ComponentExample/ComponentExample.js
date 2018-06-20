@@ -129,7 +129,7 @@ class ComponentExample extends PureComponent {
 
   handleDirectLinkClick = () => {
     this.setHashAndScroll()
-    copyToClipboard(window.location.href)
+    copyToClipboard(window && window.location.href)
   }
 
   handleMouseLeave = () => {
