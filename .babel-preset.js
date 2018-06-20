@@ -70,7 +70,7 @@ const buildFactory = () => {
 
 const docsPreset = {
   presets: ['react-static/babel-preset.js'],
-  plugins: ['transform-react-handled-props'],
+  plugins: ['lodash', 'transform-react-handled-props', 'transform-react-remove-prop-types'],
 }
 
 module.exports = isDocs ? docsPreset : buildFactory
