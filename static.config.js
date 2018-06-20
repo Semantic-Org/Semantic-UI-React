@@ -1,4 +1,4 @@
-import path from 'path'
+import _ from 'lodash'
 import webpack from 'webpack'
 
 import babelPreset from './.babel-preset'
@@ -7,7 +7,6 @@ import getRoutes from './static.routes'
 import Document from './docs/src/components/Document'
 
 export default {
-  bundleAnalyzer: true,
   Document,
   getSiteData: async ({ dev }) => ({
     dev,
@@ -26,17 +25,16 @@ export default {
     },
   }),
   getRoutes,
-  inlineCss: true,
   paths: {
     src: 'docs/src',
     public: 'docs/public',
   },
   siteRoot: 'https://react.semantic-ui.com',
-  webpack: (webpackConfig, { defaultLoaders }) => ({
+  webpack: (webpackConfig, { defaultLoaders, stage }) => ({
     ...webpackConfig,
-    devtool: false,
+    devtool: config.compiler_devtool,
     externals:
-      webpackConfig.externals.length > 0
+      stage === 'node'
         ? webpackConfig.externals
         : {
           'anchor-js': 'AnchorJS',
@@ -47,6 +45,13 @@ export default {
           'react-dom': 'ReactDOM',
           'react-dom/server': 'ReactDOMServer',
         },
+    entry:
+      stage === 'prod'
+        ? {
+          main: config.paths.docsSrc('index.js'),
+          vendor: config.paths.src('index.js'),
+        }
+        : webpackConfig.entry,
     module: {
       ...webpackConfig.module,
       noParse: [/\.json$/, /anchor-js/, /@babel\/standalone/, /faker/],
@@ -71,23 +76,21 @@ export default {
       ],
     },
     plugins: [
+      stage === 'prod' &&
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'vendor',
+          minChunks: module => /node_modules/.test(module.resource),
+        }),
+      // Heads up!
+      // An order there is important because react-static already uses CommonChunkPlugin, it will save your life!
+      // https://github.com/webpack/webpack/issues/4638
       ...webpackConfig.plugins,
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'suir',
-        minChunks: (module, count) => {
-          if (!module.resource) return false
-
-          const relative = path.relative(config.paths.src(), module.resource)
-          return !!relative && !relative.startsWith('..') && !path.isAbsolute(relative)
-          // return module.resource &&
-        },
-      }),
-    ],
+    ].filter(Boolean),
     resolve: {
       alias: {
         'semantic-ui-react': config.paths.src('index.js'),
       },
-      modules: [...webpackConfig.resolve.modules, config.paths.base(), 'node_modules'],
+      modules: _.uniq([config.paths.base(), 'node_modules', ...webpackConfig.resolve.modules]),
     },
   }),
 }
