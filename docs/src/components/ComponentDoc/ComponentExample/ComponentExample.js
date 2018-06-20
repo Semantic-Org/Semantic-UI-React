@@ -1,19 +1,13 @@
 import * as Babel from '@babel/standalone'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { PureComponent, createElement, isValidElement } from 'react'
-import { withRouteData } from 'react-static'
+import React, { PureComponent, isValidElement } from 'react'
+import { withRouteData, withRouter } from 'react-static'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
-import {
-  exampleContext,
-  examplePathToHash,
-  getFormattedHash,
-  repoURL,
-  scrollToAnchor,
-} from 'docs/src/utils'
+import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
 import { Divider, Grid, Menu, Visibility } from 'src'
 import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
@@ -64,6 +58,8 @@ class ComponentExample extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     description: PropTypes.node,
+    exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+    exampleSources: PropTypes.arrayOf(PropTypes.string).isRequired,
     examplePath: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -73,19 +69,16 @@ class ComponentExample extends PureComponent {
   }
 
   componentWillMount() {
-    const { examplePath } = this.props
+    const { exampleSources, examplePath } = this.props
     this.anchorName = examplePathToHash(examplePath)
 
-    const exampleElement = this.renderOriginalExample()
-
     this.setState({
-      exampleElement,
       handleMouseLeave: this.handleMouseLeave,
       handleMouseMove: this.handleMouseMove,
       showCode: this.isActiveHash(),
-      sourceCode: this.getOriginalSourceCode(),
-      markup: renderToStaticMarkup(exampleElement),
+      sourceCode: exampleSources[examplePath],
     })
+    this.renderSourceCode()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -184,21 +177,13 @@ class ComponentExample extends PureComponent {
   }
 
   resetJSX = () => {
-    const { sourceCode } = this.state
-    const original = this.getOriginalSourceCode()
+    const { examplePath, exampleSources, sourceCode } = this.state
+    const original = exampleSources[examplePath]
     // eslint-disable-next-line no-alert
     if (sourceCode !== original && confirm('Lose your changes?')) {
       this.setState({ sourceCode: original })
       this.renderSourceCode()
     }
-  }
-
-  getOriginalSourceCode = () => {
-    const { examplePath } = this.props
-
-    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../../examples/${examplePath}`)
-
-    return this.sourceCode
   }
 
   getKebabExamplePath = () => {
@@ -210,11 +195,6 @@ class ComponentExample extends PureComponent {
   renderError = _.debounce((error) => {
     this.setState({ error })
   }, 800)
-
-  renderOriginalExample = () => {
-    const { examplePath } = this.props
-    return createElement(exampleContext(`./${examplePath}.js`).default)
-  }
 
   renderSourceCode = _.debounce(() => {
     const { examplePath } = this.props
@@ -309,8 +289,6 @@ class ComponentExample extends PureComponent {
     }
   }, 100)
 
-  getComponentName = () => this.props.examplePath.split('/')[1]
-
   handleChangeCode = (sourceCode) => {
     this.setState({ sourceCode }, this.renderSourceCode)
   }
@@ -322,7 +300,8 @@ class ComponentExample extends PureComponent {
 
     // get component name from file path:
     // elements/Button/Types/ButtonButtonExample
-    const pathParts = examplePath.split(__PATH_SEP__)
+    // const pathParts = examplePath.split(__PATH_SEP__)
+    const pathParts = examplePath.split('/')
     const filename = pathParts[pathParts.length - 1]
 
     this.ghEditHref = [
@@ -499,4 +478,4 @@ class ComponentExample extends PureComponent {
   }
 }
 
-export default withRouteData(ComponentExample)
+export default withRouteData(withRouter(ComponentExample))
