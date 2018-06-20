@@ -1,7 +1,7 @@
 import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import ReactDOMServer from 'react-dom/server'
 
 import { assertBodyContains, consoleUtil, syntheticEvent } from 'test/utils'
@@ -33,7 +33,7 @@ export default (Component, options: any = {}) => {
     <Provider siteVariables={{}}>{testComponent}</Provider>
   )
 
-  const getTestingRenderedComponent = (mountedElement) => {
+  const getTestingRenderedComponent = mountedElement => {
     let wrapper = mountedElement
     while (wrapper.name() !== Component.wrappedComponent) {
       wrapper = wrapper.childAt(0)
@@ -103,8 +103,8 @@ export default (Component, options: any = {}) => {
     ].join(' ')
 
     expect({ isTopLevelAPIProp, message }).toEqual({
-      isTopLevelAPIProp: true,
       message,
+      isTopLevelAPIProp: true,
     })
   })
 
@@ -114,8 +114,8 @@ export default (Component, options: any = {}) => {
         `'${info.displayName}' is a child component (is in ${info.repoPath}).` +
         ` It must be a static prop of its parent '${info.parentDisplayName}'`
       expect({ foundAsSubcomponent, message }).toEqual({
-        foundAsSubcomponent: true,
         message,
+        foundAsSubcomponent: true,
       })
     })
   }
@@ -158,7 +158,7 @@ export default (Component, options: any = {}) => {
           'strong',
         ]
 
-        tags.forEach((tag) => {
+        tags.forEach(tag => {
           const wrapper = mount(renderWithProvider(<Component {...requiredProps} as={tag} />))
           const component = getTestingRenderedComponent(wrapper)
 
@@ -236,11 +236,11 @@ export default (Component, options: any = {}) => {
         'Component.wrappedComponentDefaultProps and Component.propTypes'
 
       expect({
+        message,
         handledProps: Component.handledProps,
-        message,
       }).toEqual({
-        handledProps: expectedProps,
         message,
+        handledProps: expectedProps,
       })
     })
   })
@@ -423,10 +423,10 @@ export default (Component, options: any = {}) => {
         'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
       ].join(' ')
 
-      defaultClasses.split(' ').forEach((defaultClass) => {
-        expect({ result: _.includes(mixedClasses, defaultClass), message }).toEqual({
-          result: true,
+      defaultClasses.split(' ').forEach(defaultClass => {
+        expect({ message, result: _.includes(mixedClasses, defaultClass) }).toEqual({
           message,
+          result: true,
         })
       })
     })

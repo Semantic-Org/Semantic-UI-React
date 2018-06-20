@@ -1,14 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
+import cx from 'classnames'
 
-import { createComponent, rem } from '../../lib'
+import { createComponent, rem, getUnhandledProps, customPropTypes } from '../../lib'
 import Layout from '../Layout'
 import listVariables from './listVariables'
 import listItemRules from './listItemRules'
 
 class ListItem extends React.Component<any, any> {
   static propTypes = {
+    as: customPropTypes.as,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
     contentMedia: PropTypes.any,
 
     /**
@@ -50,8 +55,28 @@ class ListItem extends React.Component<any, any> {
     hasMarkers: PropTypes.bool,
     variables: PropTypes.any,
     styles: PropTypes.object,
-    rest: PropTypes.any,
   }
+
+  static handledProps = [
+    'as',
+    'className',
+    'content',
+    'contentMedia',
+    'debug',
+    'hasMarkers',
+    'header',
+    'headerMedia',
+    'important',
+    'media',
+    'renderContentArea',
+    'renderHeaderArea',
+    'renderMainArea',
+    'selection',
+    'styles',
+    'truncateContent',
+    'truncateHeader',
+    'variables',
+  ]
 
   static defaultProps = {
     renderMainArea: (props, state) => {
@@ -84,8 +109,8 @@ class ListItem extends React.Component<any, any> {
       const { debug, header, headerMedia, truncateHeader, styles } = props
       const { isHovering } = state
 
-      const classes = classNames('list-item__header', styles.header)
-      const mediaClasses = classNames('list-item__headerMedia', styles.headerMedia)
+      const classes = cx('ui-list__item__header', styles.header)
+      const mediaClasses = cx('ui-list__item__headerMedia', styles.headerMedia)
 
       return !header && !headerMedia ? null : (
         <Layout
@@ -106,7 +131,7 @@ class ListItem extends React.Component<any, any> {
       const { debug, content, contentMedia, styles, truncateContent } = props
       const { isHovering } = state
 
-      const classes = classNames('list-item__content', styles.content)
+      const classes = cx('ui-list__item__content', styles.content)
 
       return !content && !contentMedia ? null : (
         <Layout
@@ -135,8 +160,8 @@ class ListItem extends React.Component<any, any> {
   }
 
   render() {
-    const { debug, media, renderMainArea, rest, styles, hasMarkers } = this.props
-
+    const { debug, media, renderMainArea, styles, hasMarkers, className, as } = this.props
+    const rest = getUnhandledProps(ListItem, this.props)
     const { isHovering } = this.state
 
     const startArea = media
@@ -145,9 +170,10 @@ class ListItem extends React.Component<any, any> {
 
     return (
       <Layout
+        as={as}
         alignItems="center"
         gap={rem(0.8)}
-        className={classNames('list-item', styles.root)}
+        className={cx('ui-list__item', styles.root, className)}
         debug={debug}
         reducing
         start={startArea}

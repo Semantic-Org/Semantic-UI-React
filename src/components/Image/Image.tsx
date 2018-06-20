@@ -38,6 +38,8 @@ Image.defaultProps = {
   as: 'img',
 }
 
+Image.handledProps = ['as', 'avatar', 'circular', 'className', 'styles']
+
 export default createComponent(Image, {
   rules: imageRules,
   variables: imageVariables,

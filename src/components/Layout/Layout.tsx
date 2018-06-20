@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
+import cx from 'classnames'
 
-import { createComponent } from '../../lib'
+import { createComponent, getUnhandledProps, getElementType, customPropTypes } from '../../lib'
 import layoutRules from './layoutRules'
 
 class Layout extends React.Component<any, any> {
   static propTypes = {
+    as: customPropTypes.as,
     className: PropTypes.string,
     styles: PropTypes.object,
-    rest: PropTypes.object,
     debug: PropTypes.bool,
 
     renderStartArea: PropTypes.func,
@@ -54,7 +54,38 @@ class Layout extends React.Component<any, any> {
     vertical: PropTypes.bool,
   }
 
+  static handledProps = [
+    'alignItems',
+    'as',
+    'className',
+    'debug',
+    'disappearing',
+    'end',
+    'endCSS',
+    'endSize',
+    'gap',
+    'justifyItems',
+    'main',
+    'mainCSS',
+    'mainSize',
+    'reducing',
+    'renderEndArea',
+    'renderGap',
+    'renderMainArea',
+    'renderStartArea',
+    'rootCSS',
+    'start',
+    'startCSS',
+    'startSize',
+    'styles',
+    'truncateEnd',
+    'truncateMain',
+    'truncateStart',
+    'vertical',
+  ]
+
   static defaultProps = {
+    as: 'div',
     startSize: 'auto',
     mainSize: '1fr',
     endSize: 'auto',
@@ -62,21 +93,21 @@ class Layout extends React.Component<any, any> {
     // TODO: when an area is another Layout, do not wrap them in an extra div
     // TODO: option 1) higher value layouts could use start={Layout.create(start)} to ensure Areas are layout root
     renderStartArea({ start, styles }) {
-      return start && <div className={classNames('layout__start', styles.start)}>{start}</div>
+      return start && <div className={cx('ui-layout__start', styles.start)}>{start}</div>
     },
 
     renderMainArea({ main, styles }) {
-      return main && <div className={classNames('layout__main', styles.main)}>{main}</div>
+      return main && <div className={cx('ui-layout__main', styles.main)}>{main}</div>
     },
 
     renderEndArea({ end, styles }) {
-      return end && <div className={classNames('layout__end', styles.end)}>{end}</div>
+      return end && <div className={cx('ui-layout__end', styles.end)}>{end}</div>
     },
 
     // Heads up!
     // IE11 Doesn't support grid-gap, insert virtual columns instead
     renderGap({ gap, styles }) {
-      return gap && <span className={classNames('layout__gap', styles.gap)} />
+      return gap && <span className={cx('ui-layout__gap', styles.gap)} />
     },
   }
 
@@ -85,7 +116,6 @@ class Layout extends React.Component<any, any> {
       className,
       reducing,
       disappearing,
-      rest,
       start,
       main,
       end,
@@ -95,13 +125,15 @@ class Layout extends React.Component<any, any> {
       renderGap,
       styles,
     } = this.props
+    const rest = getUnhandledProps(Layout, this.props)
+    const ElementType = getElementType(Layout, this.props)
 
     const startArea = renderStartArea(this.props)
     const mainArea = renderMainArea(this.props)
     const endArea = renderEndArea(this.props)
 
     if (!startArea && !mainArea && !endArea) {
-      return null
+      return <ElementType className={cx(className, 'ui-layout', styles.root)} {...rest} />
     }
 
     const activeAreas = [startArea, mainArea, endArea].filter(Boolean)
@@ -113,29 +145,29 @@ class Layout extends React.Component<any, any> {
     }
 
     if (reducing && isSingleArea) {
-      const classes = classNames(
+      const classes = cx(
+        'ui-layout',
         className,
         styles.root,
-        startArea && 'layout--reduced__start',
-        mainArea && 'layout--reduced__main',
-        endArea && 'layout--reduced__end',
+        startArea && 'ui-layout--reduced__start',
+        mainArea && 'ui-layout--reduced__main',
+        endArea && 'ui-layout--reduced__end',
       )
-
       return (
-        <div className={classes} {...rest}>
+        <ElementType className={classes} {...rest}>
           {start || main || end}
-        </div>
+        </ElementType>
       )
     }
 
     return (
-      <div className={classNames(className, 'layout', styles.root)} {...rest}>
+      <ElementType className={cx(className, 'ui-layout', styles.root)} {...rest}>
         {startArea}
         {startArea && mainArea && renderGap(this.props)}
         {mainArea}
         {(startArea || mainArea) && endArea && renderGap(this.props)}
         {endArea}
-      </div>
+      </ElementType>
     )
   }
 }

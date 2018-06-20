@@ -9,17 +9,20 @@ import buttonVariables from './buttonVariables'
 /**
  * A button.
  */
-const Button: React.SFC = (props: any) => {
+const Button: any = (props: any) => {
   const ElementType = getElementType(Button, props)
   const rest = getUnhandledProps(Button, props)
-  const { styles } = props
+  const { styles, className } = props
 
-  return <ElementType {...rest} className={cx('ui-button', styles.root)} />
+  return <ElementType {...rest} className={cx('ui-button', styles.root, className)} />
 }
 
 Button.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
+
+  /** Additional classes. */
+  className: PropTypes.string,
 
   /** A button can appear circular. */
   circular: PropTypes.bool,
@@ -27,6 +30,8 @@ Button.propTypes = {
   /** A bunch of styles we might not need. */
   styles: PropTypes.object,
 }
+
+Button.handledProps = ['as', 'circular', 'className', 'styles']
 
 Button.defaultProps = {
   as: 'button',
