@@ -7,22 +7,15 @@ import DocsRoot from './components/DocsRoot'
 
 import Introduction from './views/Introduction'
 import PageNotFound from './views/PageNotFound'
-import Theming from './views/Theming'
-import Usage from './views/Usage'
-
-const RedirectToIntro = () => <Redirect to='/introduction' />
 
 const Router = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={__BASENAME__}>
     <Switch>
-      <Route exact path='/maximize/:exampleName' component={ExternalExampleLayout} />
+      <Route exact path="/maximize/:exampleName" component={ExternalExampleLayout} />
       <Switch>
-        <DocsLayout exact path='/' render={RedirectToIntro} />
-        <DocsLayout exact path='/introduction' component={Introduction} />
-        <DocsLayout exact path='/theming' component={Theming} />
-        <DocsLayout exact path='/usage' component={Usage} />
-        <DocsLayout exact path='/:type/:name' component={DocsRoot} sidebar />
-        <DocsLayout exact path='/*' component={PageNotFound} />
+        <DocsLayout exact path="/" component={Introduction} />
+        <DocsLayout exact path="/:type/:name" component={DocsRoot} sidebar />
+        <DocsLayout exact path="/*" component={PageNotFound} />
       </Switch>
     </Switch>
   </BrowserRouter>

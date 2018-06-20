@@ -1,9 +1,10 @@
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Editor from 'docs/src/components/Editor/Editor'
-import { semanticUIDocsURL, repoURL } from 'docs/src/utils'
+import { repoURL } from 'docs/src/utils'
 import pkg from 'package.json'
 import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'semantic-ui-react'
 import Logo from '../components/Logo/Logo'
@@ -140,48 +141,9 @@ const Introduction = () => (
     <Segment basic textAlign="center">
       <Logo centered size="small" />
       <Header as="h1" textAlign="center">
-        Semantic UI React
+        {_.capitalize(pkg.name)}
         <Header.Subheader>{pkg.description}</Header.Subheader>
       </Header>
-    </Segment>
-
-    <Segment basic padded>
-      <Header as="h2" dividing>
-        Introduction
-      </Header>
-      <p>
-        Semantic UI React is the official React integration for{' '}
-        <a href={semanticUIDocsURL}>Semantic UI</a> .
-      </p>
-      <List>
-        <List.Item icon="check" content="jQuery Free" />
-        <List.Item icon="check" content="Declarative API" />
-        <List.Item icon="check" content="Augmentation" />
-        <List.Item icon="check" content="Shorthand Props" />
-        <List.Item icon="check" content="Sub Components" />
-        <List.Item icon="check" content="Auto Controlled State" />
-      </List>
-      <p>
-        Installation instructions are provided in the <Link to="/usage">Usage</Link> section.
-      </p>
-    </Segment>
-
-    {/* ----------------------------------------
-     *  jQuery Free
-     * -------------------------------------- */}
-    <Segment basic padded>
-      <Header as="h2" dividing>
-        jQuery Free
-      </Header>
-      <p>
-        jQuery is a DOM manipulation library. It reads from and writes to the DOM. React uses a
-        virtual DOM (a JavaScript representation of the real DOM). React only <em>writes</em> patch
-        updates to the DOM, but <em>never reads</em> from it.
-      </p>
-      <p>
-        It is not feasible to keep real DOM manipulations in sync with React's virtual DOM. Because
-        of this, all jQuery functionality has been re-implemented in React.
-      </p>
     </Segment>
 
     {/* ----------------------------------------

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <base href='<%= __BASENAME__ %>'>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="shortcut icon" type="image/x-icon" href='/logo.png' />
+  <link rel="shortcut icon" type="image/x-icon" href='<%= __BASENAME__ + 'logo.png' %>'/>
   <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
-  <title>Semantic UI React</title>
+  <title>Stardust</title>
   <script>
     // Redirect to HTTPs
     // We need poor-mans client side redirects because we persist app router urls in localStorage
-    if (location.hostname === 'react.semantic-ui.com' && location.protocol !== 'https:') {
+    if (location.hostname === 'stardust-ui.github.io/stardust' && location.protocol !== 'https:') {
       location.href = location.href.replace('http:', 'https:')
     }
     // Apply gh-pages SPA redirect that was applied in 404.html
@@ -24,44 +25,7 @@
     })()
   </script>
 </head>
-<body class="dimmed dimmable">
-  <div id="docs-loading-dimmer" class="ui active page dimmer">
-    <div class="content">
-      <div class="center">
-        <div class="ui large text loader">
-          <div class="ui inverted teal header">
-            Loading docs...
-            <div class="sub header">
-              Semantic UI React
-              v<%= htmlWebpackPlugin.options.versions.suir %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    (function() {
-      var delay = 500
-      var dimmer = document.querySelector('#docs-loading-dimmer')
-      dimmer.style.pointerEvents = 'none'
-      dimmer.style.transition = 'opacity ' + delay + 'ms linear'
-
-      function removeDimmer() {
-        dimmer.style.opacity = '0'
-
-        setTimeout(function() {
-          var dimmer = document.querySelector('#docs-loading-dimmer')
-
-          document.body.removeChild(dimmer)
-          document.body.setAttribute("class", "")
-          window.removeEventListener('load', removeDimmer)
-        }, delay)
-      }
-
-      window.addEventListener('load', removeDimmer)
-    }())
-  </script>
+<body>
   <script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
   <script src="//cdn.jsdelivr.net/faker.js/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/<%= htmlWebpackPlugin.options.versions.jsBeautify %>/beautify-html.min.js"></script>
@@ -70,7 +34,6 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.react %>/umd/react<%= __PROD__ ? '.production.min' : '.development' %>.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/<%= htmlWebpackPlugin.options.versions.reactDOM %>/umd/react-dom<%= __PROD__ ? '.production.min' : '.development' %>.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/react-dom/<%= htmlWebpackPlugin.options.versions.reactDOM %>/umd/react-dom-server.browser<%= __PROD__ ? '.production.min' : '.development' %>.js"></script>
-  <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <style>
     html, body {
       background: #f7f7f7;
@@ -130,64 +93,6 @@
       letter-spacing: -0.2em;
       content: "\00a0";
     }
-
-    /* Icon Search */
-
-    .docs-icon-set-column {
-      cursor: pointer;
-    }
-
-    .docs-icon-set-column .icon {
-      font-size: 2em;
-      color: #555;
-      transform: scale(1);
-      transition: opacity 0.2s, color 0.2s, transform 0.2s;
-    }
-
-    .docs-icon-set-column .name {
-      display: block;
-      margin: 1em 0;
-      color: #777;
-    }
-
-    .docs-icon-set-column:hover > .icon,
-    .docs-icon-set-column:hover > .name {
-      color: #000;
-    }
-
-    .docs-icon-set-column:hover > .icon {
-      transform: scale(1.5);
-    }
-
-    /* Carbon Ads */
-    #carbonads {
-      display: block;
-    }
-
-    #carbonads span {
-      display: block;
-    }
-
-    .carbon-img {
-      display: block;
-    }
-
-    .carbon-img img {
-      display: block;
-    }
-
-    .carbon-text {
-      display: block;
-      margin-top: 1em;
-    }
-
-    .carbon-poweredby {
-      display: block;
-      margin-top: 0.5em;
-      font-size: 0.8em;
-      color: #ffffff;
-      opacity: 0.5;
-    }
-    </style>
+   </style>
 </body>
 </html>

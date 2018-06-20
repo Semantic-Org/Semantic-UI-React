@@ -74,7 +74,7 @@ class ComponentDoc extends Component<any, any> {
     const { activePath, examplesRef } = this.state
 
     return (
-      <DocumentTitle title={`${info.displayName} | Semantic UI React`}>
+      <DocumentTitle title={`${info.displayName} | Stardust`}>
         <Grid>
           <Grid.Row style={topRowStyle}>
             <Grid.Column>

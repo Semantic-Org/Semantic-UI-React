@@ -1,7 +1,7 @@
 {
-  "name": "semantic-ui-react",
-  "version": "0.80.0",
-  "description": "The official Semantic-UI-React integration.",
+  "name": "stardust",
+  "version": "0.53.0",
+  "description": "A themable React component library.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
   "module": "dist/es/index.js",
@@ -14,9 +14,8 @@
     "build:docs": "gulp --series dll build:docs",
     "build:dist": "gulp --series dll build:dist",
     "ci": "yarn tsd:lint && yarn tsd:test && yarn lint && yarn test",
-    "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs && gulp build:docs:cname",
+    "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs",
     "deploy:docs": "gulp deploy:docs",
-    "postdeploy:docs": "gulp --series build:changelog deploy:changelog",
     "lint": "tslint -p .",
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --list-different \"**/*.{ts,tsx}\"",
@@ -44,14 +43,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/Semantic-Org/Semantic-UI-React.git"
+    "url": "git+ssh://github.com/stardust-ui/stardust.git"
   },
   "author": "Levi Thomason <me@levithomason.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Semantic-Org/Semantic-UI-React/issues"
+    "url": "https://github.com/stardust-ui/stardust/issues"
   },
-  "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
+  "homepage": "https://github.com/stardust-ui/stardust#readme",
   "jest": {
     "testRegex": "/test/.*-test\\.tsx?$",
     "moduleFileExtensions": [

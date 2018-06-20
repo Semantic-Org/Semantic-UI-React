@@ -65,20 +65,20 @@ If you own or are building a UI component library, we'd love to have your input.
 See the [MANIFESTO.md][1] for details.  SUIR v2 will be built on the specifications and tools from Stardust. 
 
 <!-- REPO -->
-[1]: https://github.com/levithomason/stardust/blob/master/MANIFESTO.md
-[2]: https://github.com/levithomason/stardust/issues/new/choose
-[3]: https://github.com/levithomason/stardust/.github/CONTRIBUTING.md
+[1]: https://github.com/stardust-ui/stardust/blob/master/MANIFESTO.md
+[2]: https://github.com/stardust-ui/stardust/issues/new/choose
+[3]: https://github.com/stardust-ui/stardust/.github/CONTRIBUTING.md
 
 <!-- SPECIFICATIONS -->
-[100]: https://github.com/levithomason/stardust/tree/master/specifications
-[101]: https://github.com/levithomason/stardust/tree/master/specifications/creating-components.md
-[102]: https://github.com/levithomason/stardust/tree/master/specifications/css-in-js.md
-[103]: https://github.com/levithomason/stardust/tree/master/specifications/theming.md
-[104]: https://github.com/levithomason/stardust/tree/master/specifications/component-api.md
-[105]: https://github.com/levithomason/stardust/tree/master/specifications/shorthand-api.md
-[106]: https://github.com/levithomason/stardust/tree/master/specifications/event-stack.md
-[107]: https://github.com/levithomason/stardust/tree/master/specifications/html-font-size.md
-[108]: https://github.com/levithomason/stardust/tree/master/specifications/parent-child-couplnig.md
+[100]: https://github.com/stardust-ui/stardust/tree/master/specifications
+[101]: https://github.com/stardust-ui/stardust/tree/master/specifications/creating-components.md
+[102]: https://github.com/stardust-ui/stardust/tree/master/specifications/css-in-js.md
+[103]: https://github.com/stardust-ui/stardust/tree/master/specifications/theming.md
+[104]: https://github.com/stardust-ui/stardust/tree/master/specifications/component-api.md
+[105]: https://github.com/stardust-ui/stardust/tree/master/specifications/shorthand-api.md
+[106]: https://github.com/stardust-ui/stardust/tree/master/specifications/event-stack.md
+[107]: https://github.com/stardust-ui/stardust/tree/master/specifications/html-font-size.md
+[108]: https://github.com/stardust-ui/stardust/tree/master/specifications/parent-child-couplnig.md
 
 <!-- SUIR -->
 [200]: https://github.com/Semantic-Org/Semantic-UI-React

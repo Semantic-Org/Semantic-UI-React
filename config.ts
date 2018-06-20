@@ -6,6 +6,7 @@ import path from 'path'
 const env = process.env.NODE_ENV || 'development'
 const __DEV__ = env === 'development'
 const __PROD__ = env === 'production'
+const __BASENAME__ = __PROD__ ? '/stardust/' : '/'
 
 const envConfig = {
   env,
@@ -54,6 +55,7 @@ const config = {
   compiler_globals: {
     __DEV__,
     __PROD__,
+    __BASENAME__: JSON.stringify(__BASENAME__),
     'process.env': {
       NODE_ENV: JSON.stringify(env),
     },
@@ -62,7 +64,7 @@ const config = {
   compiler_hash_type: __PROD__ ? 'chunkhash' : 'hash',
   compiler_fail_on_warning: __PROD__,
   compiler_output_path: paths.base(envConfig.dir_docs_dist),
-  compiler_public_path: '/',
+  compiler_public_path: __BASENAME__,
   compiler_stats: {
     hash: false, // the hash of the compilation
     version: false, // webpack version info

@@ -7,7 +7,6 @@ import { NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import { Menu, Icon, Input } from 'semantic-ui-react'
 
-import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
 import { getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
 import pkg from '../../../../package.json'
@@ -170,39 +169,25 @@ class Sidebar extends Component<any, any> {
         <Menu.Item>
           <Logo spaced="right" size="mini" />
           <strong>
-            Semantic UI React &nbsp;
+            Stardust &nbsp;
             <small>
               <em>{pkg.version}</em>
             </small>
           </strong>
         </Menu.Item>
-        <Menu.Item>
-          <Menu.Header>Getting Started</Menu.Header>
-          <Menu.Menu>
-            <Menu.Item as={NavLink} to="/introduction" activeClassName="active">
-              Introduction
-            </Menu.Item>
-            <Menu.Item as={NavLink} to="/usage" activeClassName="active">
-              Usage
-            </Menu.Item>
-            <Menu.Item as={NavLink} to="/theming" activeClassName="active">
-              Theming
-            </Menu.Item>
-            <Menu.Item as="a" href={repoURL} target="_blank" rel="noopener noreferrer">
-              <Icon name="github" /> GitHub
-            </Menu.Item>
-            <Menu.Item
-              as="a"
-              href={`${repoURL}/blob/master/CHANGELOG.md`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon name="file alternate outline" /> CHANGELOG
-            </Menu.Item>
-          </Menu.Menu>
+        <Menu.Item as={NavLink} to="/" activeClassName="active">
+          Introduction
         </Menu.Item>
-        <Menu.Item>
-          <CarbonAd />
+        <Menu.Item as="a" href={repoURL} target="_blank" rel="noopener noreferrer">
+          <Icon name="github" /> GitHub
+        </Menu.Item>
+        <Menu.Item
+          as="a"
+          href={`${repoURL}/blob/master/CHANGELOG.md`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="file alternate outline" /> CHANGELOG
         </Menu.Item>
         <Menu.Item active>
           <Input
