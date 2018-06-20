@@ -1,5 +1,5 @@
 html, body {
-  background: #f7f7f7;
+  background: #f7f7f7 !important;
 }
 
 .anchorjs-link {
@@ -45,12 +45,12 @@ code:not(.hljs) {
 
 code:not(.hljs)::before {
   letter-spacing: -0.2em;
-  content: "00a0";
+  content: "\00a0";
 }
 
 code:not(.hljs)::after {
   letter-spacing: -0.2em;
-  content: "00a0";
+  content: "\00a0";
 }
 
 .docs-icon-set-column {
