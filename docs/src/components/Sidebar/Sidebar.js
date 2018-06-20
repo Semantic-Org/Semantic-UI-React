@@ -2,14 +2,14 @@ import keyboardKey from 'keyboard-key'
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { findDOMNode } from 'react-dom'
 import { Link, withRouter } from 'react-static'
-import { Menu, Icon, Input } from 'semantic-ui-react'
+import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
 import componentMenu from 'docs/src/componentMenu'
 import { getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
+import { shallowEqual } from 'src/lib'
 import pkg from 'package.json'
 
 const selectedItemLabelStyle = { color: '#35bdb2', float: 'right' }
@@ -22,25 +22,20 @@ class Sidebar extends Component {
     history: PropTypes.object.isRequired,
     style: PropTypes.object,
   }
+
   state = { query: '' }
   filteredMenu = componentMenu
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleDocumentKeyDown)
-    this.setSearchInput()
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(this.state, nextState)
   }
 
-  componentDidUpdate() {
-    this.setSearchInput()
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleDocumentKeyDown)
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleDocumentKeyDown)
-  }
-
-  setSearchInput() {
-    // TODO: Replace findDOMNode with Ref component when it will be merged
-    this._searchInput = findDOMNode(this).querySelector('.ui.input input') // eslint-disable-line react/no-find-dom-node
   }
 
   handleDocumentKeyDown = (e) => {
@@ -91,6 +86,10 @@ class Sidebar extends Component {
       this.selectedRoute = getComponentPathname(this.filteredMenu[next])
       this.setState({ selectedItemIndex: next })
     }
+  }
+
+  handleSearchRef = (c) => {
+    this._searchInput = c
   }
 
   menuItemsByType = _.map((nextType) => {
@@ -204,14 +203,16 @@ class Sidebar extends Component {
           <CarbonAd />
         </Menu.Item>
         <Menu.Item active>
-          <Input
-            className='transparent inverted icon'
-            icon='search'
-            placeholder='Search components...'
-            value={query}
-            onChange={this.handleSearchChange}
-            onKeyDown={this.handleSearchKeyDown}
-          />
+          <Ref innerRef={this.handleSearchRef}>
+            <Input
+              className='transparent inverted icon'
+              icon='search'
+              placeholder='Search components...'
+              value={query}
+              onChange={this.handleSearchChange}
+              onKeyDown={this.handleSearchKeyDown}
+            />
+          </Ref>
         </Menu.Item>
         {query ? this.renderSearchItems() : this.menuItemsByType}
       </Menu>
