@@ -1,4 +1,5 @@
 export { default as Image } from './components/Image'
+export { default as Button } from './components/Button'
 export { default as Divider } from './components/Divider'
 export { default as Layout } from './components/Layout'
 export { default as List } from './components/List'
