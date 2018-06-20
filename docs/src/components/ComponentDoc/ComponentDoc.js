@@ -26,6 +26,7 @@ class ComponentDoc extends Component {
 
   static propTypes = {
     componentInfo: propTypes.componentInfoShape.isRequired,
+    exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     history: PropTypes.object.isRequired,
     seeTags: propTypes.seeTags.isRequired,
     sidebarSections: propTypes.sidebarSections.isRequired,
@@ -35,10 +36,10 @@ class ComponentDoc extends Component {
   state = {}
 
   componentWillMount() {
-    const { history } = this.props
+    const { exampleKeys, history } = this.props
 
     if (window.location.hash) {
-      const activePath = getFormattedHash(window.location.hash)
+      const activePath = getFormattedHash(exampleKeys, window.location.hash)
       history.replace(`${window.location.pathname}#${activePath}`)
       this.setState({ activePath })
     }
@@ -99,7 +100,10 @@ class ComponentDoc extends Component {
           <Grid.Row columns='equal'>
             <Grid.Column>
               <div ref={this.handleExamplesRef}>
-                <ComponentExamples displayName={componentInfo.displayName} />
+                <ComponentExamples
+                  displayName={componentInfo.displayName}
+                  type={componentInfo.type}
+                />
               </div>
               <div style={exampleEndStyle}>
                 This is the bottom <Icon name='pointing down' />

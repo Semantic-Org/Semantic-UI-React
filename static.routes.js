@@ -35,11 +35,13 @@ export default async () => [
     component: 'docs/src/components/ComponentDoc',
     getData: async () => {
       const componentInfo = getComponentInfo(baseInfo.displayName)
+      const sidebarSections = getSidebarSections(baseInfo.displayName)
 
       return {
         componentInfo,
+        sidebarSections,
+        exampleKeys: _.map(_.flatMap(sidebarSections, 'examples'), 'examplePath'),
         seeTags: getInfoForSeeTags(componentInfo),
-        sidebarSections: getSidebarSections(baseInfo.displayName),
         subcomponentsInfo: getSubcomponentsInfo(componentInfo),
       }
     },
