@@ -1,8 +1,9 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 import { Accordion, Menu, Sticky } from 'semantic-ui-react'
 
+import { propTypes } from 'docs/src/utils'
 import ComponentSidebarSection from './ComponentSidebarSection'
 
 const sidebarStyle = {
@@ -13,50 +14,27 @@ const sidebarStyle = {
   paddingTop: '0.1em',
 }
 
-class ComponentSidebar extends Component {
-  static propTypes = {
-    activePath: PropTypes.string,
-    displayName: PropTypes.string,
-    examplesRef: PropTypes.object,
-    onItemClick: PropTypes.func,
-  }
+const ComponentSidebar = ({ activePath, examplesRef, onItemClick, sections }) => (
+  <Sticky context={examplesRef} offset={15}>
+    <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
+      {_.map(sections, ({ examples, sectionName }) => (
+        <ComponentSidebarSection
+          activePath={activePath}
+          examples={examples}
+          key={sectionName}
+          sectionName={sectionName}
+          onItemClick={onItemClick}
+        />
+      ))}
+    </Menu>
+  </Sticky>
+)
 
-  state = {}
-
-  componentDidMount() {
-    this.fetchSections()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.fetchSections(nextProps)
-  }
-
-  fetchSections = ({ displayName } = this.props) => {
-    import(`docs/src/exampleMenus/${displayName}.examples.json`).then((sections) => {
-      this.setState({ sections })
-    })
-  }
-
-  render() {
-    const { activePath, examplesRef, onItemClick } = this.props
-    const { sections } = this.state
-
-    return (
-      <Sticky context={examplesRef} offset={15}>
-        <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
-          {_.map(sections, ({ examples, sectionName }) => (
-            <ComponentSidebarSection
-              activePath={activePath}
-              examples={examples}
-              key={sectionName}
-              sectionName={sectionName}
-              onItemClick={onItemClick}
-            />
-          ))}
-        </Menu>
-      </Sticky>
-    )
-  }
+ComponentSidebar.propTypes = {
+  activePath: PropTypes.string,
+  examplesRef: PropTypes.object,
+  onItemClick: PropTypes.func.isRequired,
+  sections: propTypes.sidebarSections.isRequired,
 }
 
 export default ComponentSidebar

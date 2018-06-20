@@ -28,6 +28,7 @@ class ComponentDoc extends Component {
     componentInfo: propTypes.componentInfoShape.isRequired,
     history: PropTypes.object.isRequired,
     seeTags: propTypes.seeTags.isRequired,
+    sidebarSections: propTypes.sidebarSections.isRequired,
     subcomponentsInfo: PropTypes.objectOf(propTypes.componentInfoShape).isRequired,
   }
 
@@ -71,7 +72,7 @@ class ComponentDoc extends Component {
   }
 
   render() {
-    const { componentInfo, seeTags, subcomponentsInfo } = this.props
+    const { componentInfo, seeTags, sidebarSections, subcomponentsInfo } = this.props
     const { activePath, examplesRef } = this.state
 
     return (
@@ -107,9 +108,9 @@ class ComponentDoc extends Component {
             <Grid.Column computer={5} largeScreen={4} widescreen={4}>
               <ComponentSidebar
                 activePath={activePath}
-                displayName={componentInfo.displayName}
                 examplesRef={examplesRef}
                 onItemClick={this.handleSidebarItemClick}
+                sections={sidebarSections}
               />
             </Grid.Column>
           </Grid.Row>
