@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 import componentMenu from './docs/src/componentMenu'
-import { getComponentInfo, getInfoForSeeTags } from './docs/src/staticUtils'
+import { getComponentInfo, getInfoForSeeTags, getSubcomponentsInfo } from './docs/src/staticUtils'
 import { getComponentPathname } from './docs/src/utils'
 
 export default async () => [
@@ -34,6 +34,7 @@ export default async () => [
       return {
         componentInfo,
         seeTags: getInfoForSeeTags(componentInfo),
+        subcomponentsInfo: getSubcomponentsInfo(componentInfo),
       }
     },
   })),

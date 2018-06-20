@@ -5,13 +5,7 @@ import { withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
-import {
-  componentInfoShape,
-  examplePathToHash,
-  getFormattedHash,
-  propTypes,
-  scrollToAnchor,
-} from 'docs/src/utils'
+import { examplePathToHash, getFormattedHash, propTypes, scrollToAnchor } from 'docs/src/utils'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
@@ -31,9 +25,10 @@ class ComponentDoc extends Component {
   }
 
   static propTypes = {
+    componentInfo: propTypes.componentInfoShape.isRequired,
     history: PropTypes.object.isRequired,
-    componentInfo: componentInfoShape.isRequired,
     seeTags: propTypes.seeTags.isRequired,
+    subcomponentsInfo: PropTypes.objectOf(propTypes.componentInfoShape).isRequired,
   }
 
   state = {}
@@ -76,7 +71,7 @@ class ComponentDoc extends Component {
   }
 
   render() {
-    const { componentInfo, seeTags } = this.props
+    const { componentInfo, seeTags, subcomponentsInfo } = this.props
     const { activePath, examplesRef } = this.state
 
     return (
@@ -96,7 +91,7 @@ class ComponentDoc extends Component {
                 repoPath={componentInfo.repoPath}
                 type={componentInfo.type}
               />
-              {/* <ComponentProps displayName={componentInfo.displayName} props={componentInfo.props} /> */}
+              <ComponentProps componentInfo={componentInfo} subcomponentsInfo={subcomponentsInfo} />
             </Grid.Column>
           </Grid.Row>
 
