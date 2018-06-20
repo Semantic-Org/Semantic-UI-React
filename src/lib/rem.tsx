@@ -1,7 +1,8 @@
 import _ from 'lodash'
-import { htmlFontSize } from '../themes/teams/siteVariables'
+import isBrowser from 'stardust/lib/isBrowser'
 
 // TODO - This doesn't support theme switching, other themes, and doesn't support user changes to html base font size.
+const htmlFontSize = isBrowser() ? getComputedStyle(document.documentElement).fontSize : '16px'
 
 /**
  * Converts the provided rem size to a rem value based on the htmlFontSize provided in the theme's siteVariables.

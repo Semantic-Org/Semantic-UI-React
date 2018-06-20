@@ -18,12 +18,14 @@ const debugRule = ({ name, color, style }) => ({
 
 export const debugRoot = () => ({
   ...debugRule({ name: 'LAYOUT', color: 'cornflowerblue', style: 'solid' }),
-  padding: '16px',
+  padding: '8px',
+  margin: '2px',
 })
 
 export const debugArea = () => ({
   ...debugRule({ name: 'AREA', color: 'lightsalmon', style: 'dashed' }),
   padding: '8px',
+  margin: '2px',
 })
 
 export const debugGap = ({ vertical }) => ({
@@ -34,12 +36,12 @@ export const debugGap = ({ vertical }) => ({
     content: '"GAP"',
     ...(vertical
       ? {
-        letterSpacing: '1px',
-      }
+          letterSpacing: '1px',
+        }
       : {
-        textOrientation: 'upright',
-        writingMode: 'tb',
-      }),
+          textOrientation: 'upright',
+          writingMode: 'tb',
+        }),
     alignSelf: 'center',
     justifySelf: 'center',
     fontSize: '8px',

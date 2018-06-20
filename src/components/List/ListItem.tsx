@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
-import { createComponent, rem, getUnhandledProps, customPropTypes } from '../../lib'
+import { createComponent, customPropTypes, getUnhandledProps, rem } from '../../lib'
 import Layout from '../Layout'
 import listVariables from './listVariables'
 import listItemRules from './listItemRules'
@@ -16,43 +16,28 @@ class ListItem extends React.Component<any, any> {
 
     contentMedia: PropTypes.any,
 
-    /**
-     * Shorthand for primary content.
-     *
-     * Heads up!
-     *
-     * This is handled slightly differently than the typical `content` prop since
-     * the wrapping ListContent is not used when there's no icon or image.
-     *
-     * If you pass content as:
-     * - an element/literal, it's treated as the sibling node to
-     * header/description (whether wrapped in Item.Content or not).
-     * - a props object, it forces the presence of Item.Content and passes those
-     * props to it. If you pass a content prop within that props object, it
-     * will be treated as the sibling node to header/description.
-     */
+    /** Shorthand for primary content. */
     content: PropTypes.any,
 
     /** Toggle debug mode */
     debug: PropTypes.bool,
 
     header: PropTypes.any,
+    endMedia: PropTypes.any,
     headerMedia: PropTypes.any,
 
-    /** A PropTypes.list,item can appear more important and draw the user's attention. */
+    /** A list item can appear more important and draw the user's attention. */
     important: PropTypes.bool,
     media: PropTypes.any,
     renderContentArea: PropTypes.any,
     renderHeaderArea: PropTypes.any,
     renderMainArea: PropTypes.any,
 
-    /** A PropTypes.list,item can indicate that it can be selected. */
+    /** A list item can indicate that it can be selected. */
     selection: PropTypes.bool,
     truncateContent: PropTypes.bool,
     truncateHeader: PropTypes.bool,
 
-    /** InPropTypes.dicates whether,the item has markers (context menu) */
-    hasMarkers: PropTypes.bool,
     variables: PropTypes.any,
     styles: PropTypes.object,
   }
@@ -60,11 +45,11 @@ class ListItem extends React.Component<any, any> {
   static handledProps = [
     'as',
     'className',
-    'content',
     'contentMedia',
+    'content',
     'debug',
-    'hasMarkers',
     'header',
+    'endMedia',
     'headerMedia',
     'important',
     'media',
@@ -72,13 +57,15 @@ class ListItem extends React.Component<any, any> {
     'renderHeaderArea',
     'renderMainArea',
     'selection',
-    'styles',
     'truncateContent',
     'truncateHeader',
     'variables',
+    'styles',
   ]
 
   static defaultProps = {
+    as: 'li',
+
     renderMainArea: (props, state) => {
       const { renderHeaderArea, renderContentArea } = props
 
@@ -160,13 +147,14 @@ class ListItem extends React.Component<any, any> {
   }
 
   render() {
-    const { debug, media, renderMainArea, styles, hasMarkers, className, as } = this.props
-    const rest = getUnhandledProps(ListItem, this.props)
+    const { as, className, debug, endMedia, media, renderMainArea, styles } = this.props
     const { isHovering } = this.state
+
+    const rest = getUnhandledProps(ListItem, this.props)
 
     const startArea = media
     const mainArea = renderMainArea(this.props, this.state)
-    const endArea = hasMarkers && isHovering && <button>&bull&bull&bull</button>
+    const endArea = isHovering && endMedia
 
     return (
       <Layout
@@ -190,4 +178,5 @@ class ListItem extends React.Component<any, any> {
 export default createComponent(ListItem, {
   rules: listItemRules,
   variables: listVariables,
+  shorthand: main => ({ main }),
 })

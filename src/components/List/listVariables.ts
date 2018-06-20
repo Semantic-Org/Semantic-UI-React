@@ -8,7 +8,7 @@ export default siteVars => {
   vars.itemPaddingRight = rem(1.8)
   vars.columnGap = rem(0.8)
 
-  vars.itemHeight = 0
+  vars.itemHeight = rem(4.8)
 
   // Header
   // TODO: prod app uses 17.5px here, it should be 16px per the design guide!

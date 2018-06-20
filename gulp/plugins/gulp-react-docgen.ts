@@ -30,7 +30,7 @@ export default () =>
     } catch (err) {
       console.log(err)
       const pluginError = new gutil.PluginError(pluginName, err)
-      pluginError.message += `\nFile: ${file.path}.`
+      pluginError.message = err.stack
       this.emit('error', pluginError)
     }
   })

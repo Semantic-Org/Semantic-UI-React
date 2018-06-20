@@ -1,6 +1,7 @@
+import _ from 'lodash'
+import cx from 'classnames'
 import React from 'react'
 import PropTypes from 'prop-types'
-import cx from 'classnames'
 
 import { createComponent, customPropTypes, getUnhandledProps, getElementType } from '../../lib'
 import ListItem from './ListItem'
@@ -31,15 +32,11 @@ class List extends React.Component<any, any> {
     /** Variables */
     variables: PropTypes.object,
 
-    /**
-     * Renderer for each item in the List
-     *
-     * @param {ListItemProps} props - props passed to each ListItem
-     * @param {any} item - Item in the list
-     */
-    renderItem: PropTypes.func,
-
     children: PropTypes.node,
+  }
+
+  static defaultProps = {
+    as: 'ul',
   }
 
   static handledProps = [
@@ -57,34 +54,21 @@ class List extends React.Component<any, any> {
 
   static Item = ListItem
 
-  static defaultProps = {
-    renderItem: (props, item) => (
-      <ListItem
-        // TODO: use real keys
-        key={item.header || item.content}
-        debug={props.debug}
-        selection={props.selection}
-        truncateContent={props.truncateContent}
-        truncateHeader={props.truncateHeader}
-        variables={props.variables}
-        {...item}
-      />
-    ),
-  }
-
-  renderItems = props => {
-    const { items, renderItem } = props
-    return items.map(item => renderItem(props, item))
-  }
+  // List props that are passed to each individual Item props
+  static itemProps = ['debug', 'selection', 'truncateContent', 'truncateHeader', 'variables']
 
   render() {
+    const { className, items, styles } = this.props
+
     const ElementType = getElementType(List, this.props)
-    const { children, items, className } = this.props
     const rest = getUnhandledProps(List, this.props)
 
+    const classes = cx('ui-list', styles.root, className)
+    const itemProps = _.pick(this.props, List.itemProps)
+
     return (
-      <ElementType className={cx('ui-list', className)} {...rest}>
-        {items ? this.renderItems(this.props) : children}
+      <ElementType className={classes} {...rest}>
+        {_.map(items, item => ListItem.create(item, { defaultProps: itemProps }))}
       </ElementType>
     )
   }

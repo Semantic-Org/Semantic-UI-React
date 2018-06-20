@@ -7,7 +7,7 @@ const getAvatar = () => <img src={faker.internet.avatar()} style={imgStyle} />
 
 const ListExampleSelection = ({ knobs }) => (
   <List
-    debug={knobs.debug}
+    selection={knobs.selection}
     items={[
       {
         key: 'irving',
@@ -15,6 +15,7 @@ const ListExampleSelection = ({ knobs }) => (
         header: 'Irving Kuhic',
         headerMedia: '7:26:56 AM',
         content:
+          knobs.showContent &&
           'If we program the sensor, we can get to the SAS alarm through the haptic SQL card!',
       },
       {
