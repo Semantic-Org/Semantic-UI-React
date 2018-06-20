@@ -117,6 +117,8 @@ class Input extends Component {
 
   focus = () => this.inputRef.focus()
 
+  select = () => this.inputRef.select()
+
   handleChange = (e) => {
     const value = _.get(e, 'target.value')
 
