@@ -37,7 +37,7 @@ class SidebarLeftPush extends Component {
           <Sidebar.Pusher>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
-              <Image src='/assets/images/wireframe/paragraph.png' />
+              <Image src='/images/wireframe/paragraph.png' />
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>

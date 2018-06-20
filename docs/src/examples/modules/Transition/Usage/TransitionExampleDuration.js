@@ -39,7 +39,7 @@ export default class TransitionExampleDuration extends Component {
 
         <Grid.Column>
           <Transition duration={{ hide, show }} visible={visible}>
-            <Image centered size='small' src='/assets/images/leaves/3.png' />
+            <Image centered size='small' src='/images/leaves/3.png' />
           </Transition>
         </Grid.Column>
       </Grid>

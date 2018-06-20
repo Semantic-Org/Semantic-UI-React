@@ -1,7 +1,7 @@
 import React from 'react'
 import { Feed } from 'semantic-ui-react'
 
-const imageSrc = '/assets/images/avatar/small/jenny.jpg'
+const imageSrc = '/images/avatar/small/jenny.jpg'
 
 const FeedExampleContentDate = () => (
   <Feed>

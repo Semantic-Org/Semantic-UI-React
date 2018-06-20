@@ -4,26 +4,26 @@ import { Feed } from 'semantic-ui-react'
 const events = [
   {
     date: '1 Hour Ago',
-    image: '/assets/images/avatar/small/elliot.jpg',
+    image: '/images/avatar/small/elliot.jpg',
     meta: '4 Likes',
     summary: 'Elliot Fu added you as a friend',
   },
   {
     date: '4 days ago',
-    image: '/assets/images/avatar/small/helen.jpg',
+    image: '/images/avatar/small/helen.jpg',
     meta: '1 Like',
     summary: 'Helen Troy added 2 new illustrations',
-    extraImages: ['/assets/images/wireframe/image.png', '/assets/images/wireframe/image-text.png'],
+    extraImages: ['/images/wireframe/image.png', '/images/wireframe/image-text.png'],
   },
   {
     date: '2 Days Ago',
-    image: '/assets/images/avatar/small/jenny.jpg',
+    image: '/images/avatar/small/jenny.jpg',
     meta: '8 Likes',
     summary: 'Jenny Hess added you as a friend',
   },
   {
     date: '3 days ago',
-    image: '/assets/images/avatar/small/joe.jpg',
+    image: '/images/avatar/small/joe.jpg',
     meta: '8 Likes',
     summary: 'Joe Henderson posted on his page',
     extraText: [
@@ -34,10 +34,10 @@ const events = [
   },
   {
     date: '4 days ago',
-    image: '/assets/images/avatar/small/justen.jpg',
+    image: '/images/avatar/small/justen.jpg',
     meta: '41 Likes',
     summary: 'Justen Kitsune added 2 new photos of you',
-    extraImages: ['/assets/images/wireframe/image.png', '/assets/images/wireframe/image-text.png'],
+    extraImages: ['/images/wireframe/image.png', '/images/wireframe/image-text.png'],
   },
 ]
 

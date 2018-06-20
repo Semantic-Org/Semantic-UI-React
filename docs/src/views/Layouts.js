@@ -24,35 +24,35 @@ const LayoutsExample = () => (
             to='/layouts/theming'
             header='Theming'
             description='Examples of many common UI components, useful for testing custom themes.'
-            image='/assets/images/examples/theming.png'
+            image='/images/examples/theming.png'
           />
           <Card
             as={Link}
             to='/layouts/responsive'
             header='Responsive'
             description='Patterns for adjusting display for different devices.'
-            image='/assets/images/examples/responsive.png'
+            image='/images/examples/responsive.png'
           />
           <Card
             as={Link}
             to='/layouts/grid'
             header='Grid'
             description='An introduction to using Semantic UI grids.'
-            image='/assets/images/examples/grid.png'
+            image='/images/examples/grid.png'
           />
           <Card
             as={Link}
             to='/layouts/attached-content'
             header='Attached Content'
             description='Examples of content that can attach to other content'
-            image='/assets/images/examples/attached.png'
+            image='/images/examples/attached.png'
           />
           <Card
             as={Link}
             to='/layouts/bootstrap-migration'
             header='Bootstrap Migration'
             description=' Examples of replacements for components found in Bootstrap'
-            image='/assets/images/examples/bootstrap.png'
+            image='/images/examples/bootstrap.png'
           />
         </Card.Group>
 
@@ -64,28 +64,28 @@ const LayoutsExample = () => (
             to='/layouts/homepage'
             header='Homepage'
             description='A simple, responsive homepage design with sidebar.'
-            image='/assets/images/examples/homepage.png'
+            image='/images/examples/homepage.png'
           />
           <Card
             as={Link}
             to='/layouts/sticky'
             header='Sticky'
             description='Using visibility APIs to fix content after passing position in page.'
-            image='/assets/images/examples/sticky.png'
+            image='/images/examples/sticky.png'
           />
           <Card
             as={Link}
             to='/layouts/fixed-menu'
             header='Fixed Menu'
             description='Using a fixed menu with page content.'
-            image='/assets/images/examples/fixed.png'
+            image='/images/examples/fixed.png'
           />
           <Card
             as={Link}
             to='/layouts/login'
             header='Login Form'
             description='A full-screen login form.'
-            image='/assets/images/examples/login.png'
+            image='/images/examples/login.png'
           />
         </Card.Group>
       </Segment>

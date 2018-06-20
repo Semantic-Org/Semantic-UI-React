@@ -9,7 +9,7 @@ const description = [
 const ItemExampleDescriptions = () => (
   <Item.Group>
     <Item>
-      <Item.Image size='small' src='/assets/images/wireframe/image.png' />
+      <Item.Image size='small' src='/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>Cute Dog</Item.Header>
@@ -21,7 +21,7 @@ const ItemExampleDescriptions = () => (
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/assets/images/wireframe/image.png' />
+      <Item.Image size='small' src='/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>Cute Dog</Item.Header>
@@ -30,7 +30,7 @@ const ItemExampleDescriptions = () => (
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/assets/images/wireframe/image.png' />
+      <Item.Image size='small' src='/images/wireframe/image.png' />
       <Item.Content header='Cute Dog' description={description} />
     </Item>
   </Item.Group>

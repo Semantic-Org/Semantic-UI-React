@@ -90,7 +90,7 @@ describe('ListItem', () => {
 
       it(`renders wrapping ListContent when image and ${key} present`, () => {
         const wrapper = shallow(
-          <ListItem {..._.pick(baseProps, key)} image='/assets/images/wireframe/image.png' />,
+          <ListItem {..._.pick(baseProps, key)} image='/images/wireframe/image.png' />,
         )
 
         wrapper.find('Image').should.have.lengthOf(1)

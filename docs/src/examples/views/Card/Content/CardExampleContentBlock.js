@@ -9,7 +9,7 @@ const CardExampleContentBlock = () => (
     <Card.Content>
       <Feed>
         <Feed.Event>
-          <Feed.Label image='/assets/images/avatar/small/jenny.jpg' />
+          <Feed.Label image='/images/avatar/small/jenny.jpg' />
           <Feed.Content>
             <Feed.Date content='1 day ago' />
             <Feed.Summary>
@@ -19,7 +19,7 @@ const CardExampleContentBlock = () => (
         </Feed.Event>
 
         <Feed.Event>
-          <Feed.Label image='/assets/images/avatar/small/molly.png' />
+          <Feed.Label image='/images/avatar/small/molly.png' />
           <Feed.Content>
             <Feed.Date content='3 days ago' />
             <Feed.Summary>
@@ -29,7 +29,7 @@ const CardExampleContentBlock = () => (
         </Feed.Event>
 
         <Feed.Event>
-          <Feed.Label image='/assets/images/avatar/small/elliot.jpg' />
+          <Feed.Label image='/images/avatar/small/elliot.jpg' />
           <Feed.Content>
             <Feed.Date content='4 days ago' />
             <Feed.Summary>

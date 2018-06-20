@@ -16,10 +16,10 @@ export default class DimmerExampleInverted extends Component {
           <Dimmer active={active} inverted onClickOutside={this.handleHide} />
 
           <p>
-            <Image src='/assets/images/wireframe/paragraph.png' />
+            <Image src='/images/wireframe/paragraph.png' />
           </p>
           <p>
-            <Image src='/assets/images/wireframe/paragraph.png' />
+            <Image src='/images/wireframe/paragraph.png' />
           </p>
         </Dimmer.Dimmable>
 

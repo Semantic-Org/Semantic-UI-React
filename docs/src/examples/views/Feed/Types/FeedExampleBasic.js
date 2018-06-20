@@ -5,7 +5,7 @@ const FeedExampleBasic = () => (
   <Feed>
     <Feed.Event>
       <Feed.Label>
-        <img src='/assets/images/avatar/small/elliot.jpg' />
+        <img src='/images/avatar/small/elliot.jpg' />
       </Feed.Label>
       <Feed.Content>
         <Feed.Summary>
@@ -22,7 +22,7 @@ const FeedExampleBasic = () => (
     </Feed.Event>
 
     <Feed.Event>
-      <Feed.Label image='/assets/images/avatar/small/helen.jpg' />
+      <Feed.Label image='/images/avatar/small/helen.jpg' />
       <Feed.Content>
         <Feed.Summary>
           <a>Helen Troy</a> added <a>2 new illustrations</a>
@@ -30,10 +30,10 @@ const FeedExampleBasic = () => (
         </Feed.Summary>
         <Feed.Extra images>
           <a>
-            <img src='/assets/images/wireframe/image.png' />
+            <img src='/images/wireframe/image.png' />
           </a>
           <a>
-            <img src='/assets/images/wireframe/image.png' />
+            <img src='/images/wireframe/image.png' />
           </a>
         </Feed.Extra>
         <Feed.Meta>
@@ -46,7 +46,7 @@ const FeedExampleBasic = () => (
     </Feed.Event>
 
     <Feed.Event>
-      <Feed.Label image='/assets/images/avatar/small/jenny.jpg' />
+      <Feed.Label image='/images/avatar/small/jenny.jpg' />
       <Feed.Content>
         <Feed.Summary date='2 Days Ago' user='Jenny Hess' content='add you as a friend' />
         <Feed.Meta>
@@ -59,7 +59,7 @@ const FeedExampleBasic = () => (
     </Feed.Event>
 
     <Feed.Event>
-      <Feed.Label image='/assets/images/avatar/small/joe.jpg' />
+      <Feed.Label image='/images/avatar/small/joe.jpg' />
       <Feed.Content>
         <Feed.Summary>
           <a>Joe Henderson</a> posted on his page
@@ -80,7 +80,7 @@ const FeedExampleBasic = () => (
     </Feed.Event>
 
     <Feed.Event>
-      <Feed.Label image='/assets/images/avatar/small/justen.jpg' />
+      <Feed.Label image='/images/avatar/small/justen.jpg' />
       <Feed.Content>
         <Feed.Summary>
           <a>Justen Kitsune</a> added <a>2 new photos</a> of you
@@ -88,10 +88,10 @@ const FeedExampleBasic = () => (
         </Feed.Summary>
         <Feed.Extra images>
           <a>
-            <img src='/assets/images/wireframe/image.png' />
+            <img src='/images/wireframe/image.png' />
           </a>
           <a>
-            <img src='/assets/images/wireframe/image.png' />
+            <img src='/images/wireframe/image.png' />
           </a>
         </Feed.Extra>
         <Feed.Meta>
