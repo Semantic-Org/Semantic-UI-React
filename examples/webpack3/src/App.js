@@ -79,11 +79,11 @@ const App = () => (
             , but current situation does not allow to rely on it. Our users use direct import of SUIR components,
             but we do not recommend to use this approach because paths to modules can be changed. We added{' '}
             <a
-              href='https://www.npmjs.com/package/babel-plugin-direct-import'
+              href='https://www.npmjs.com/package/babel-plugin-lodash'
               rel='noopener noreferrer'
               target='_blank'
             >
-              direct-import
+              babel-plugin-lodash
             </a>
             {' '}plugin that automatically transform your import to direct.
           </p>
