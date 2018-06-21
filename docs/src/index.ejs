@@ -2,10 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href='/logo.variables' />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="shortcut icon" type="image/x-icon" href='/logo.png' />
-  <link rel="stylesheet"
-        href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
+
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/globals/reset.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/globals/site.less" />
+
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/button.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/container.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/divider.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/flag.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/header.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/icon.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/image.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/input.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/label.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/list.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/loader.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/rail.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/reveal.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/segment.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/elements/step.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/collections/breadcrumb.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/collections/form.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/collections/grid.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/collections/menu.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/collections/message.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/collections/table.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/views/ad.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/views/card.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/views/comment.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/views/feed.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/views/item.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/views/statistic.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/accordion.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/checkbox.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/dimmer.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/dropdown.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/embed.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/modal.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/nag.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/popup.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/progress.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/rating.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/search.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/shape.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/sidebar.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/sticky.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/tab.less" />
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/transition.less" />
+
+  <script src="//unpkg.com/less@<%= htmlWebpackPlugin.options.versions.less %>/dist/less.min.js"></script>
   <title>Semantic UI React</title>
   <script>
     // Redirect to HTTPs
@@ -76,6 +123,11 @@
   <style>
     html, body {
       background: #f7f7f7;
+    }
+
+    /* LESS */
+    .less-error-message {
+      display: none;
     }
 
     /* Anchors */

@@ -77,6 +77,22 @@ task('build:docs:cname', (cb) => {
   sh(`echo react.semantic-ui.com > ${paths.docsDist('CNAME')}`, cb)
 })
 
+task('build:docs:less', (cb) => {
+  const lessSrc = paths.base('node_modules/semantic-ui-less')
+  const lessDest = paths.docsDist('assets/less')
+
+  sh(
+    [
+      `rm -rf ${lessDest}`,
+      `cp -R ${lessSrc} ${lessDest}`,
+      `rm -rf ${lessDest}/package.js`,
+      `mv ${lessDest}/theme.config.example ${lessDest}/theme.config`,
+      `mv ${lessDest}/_site ${lessDest}/site`,
+    ].join(' && '),
+    cb,
+  )
+})
+
 task('build:docs:docgen', () =>
   src(componentsSrc, { since: lastRun('build:docs:docgen') })
     .pipe(gulpReactDocgen())
