@@ -30,7 +30,7 @@
     "prestart": "yarn satisfied --fix yarn",
     "start": "gulp --series dll docs",
     "satisfied": "satisfied --skip-invalid",
-    "pretest": "yarn satisfied",
+    "pretest": "yarn satisfied && gulp build:docs:docgen",
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "yarn test --watchAll"
   },

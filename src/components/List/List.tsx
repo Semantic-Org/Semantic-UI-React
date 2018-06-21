@@ -45,7 +45,6 @@ class List extends React.Component<any, any> {
     'className',
     'debug',
     'items',
-    'renderItem',
     'selection',
     'truncateContent',
     'truncateHeader',

@@ -1,8 +1,16 @@
 import _ from 'lodash'
 import isBrowser from './isBrowser'
 
-// TODO - This doesn't support theme switching, other themes, and doesn't support user changes to html base font size.
-const htmlFontSize = isBrowser() ? getComputedStyle(document.documentElement).fontSize : '16px'
+const DEFAULT_FONT_SIZE = '16px'
+const DEFAULT1_REM_SIZE_IN_PX = 10
+
+let _htmlFontSize: string = DEFAULT_FONT_SIZE
+
+const getComputedFontSize = () => {
+  return isBrowser()
+    ? getComputedStyle(document.documentElement).fontSize || DEFAULT_FONT_SIZE
+    : DEFAULT_FONT_SIZE
+}
 
 /**
  * Converts the provided rem size to a rem value based on the htmlFontSize provided in the theme's siteVariables.
@@ -10,44 +18,28 @@ const htmlFontSize = isBrowser() ? getComputedStyle(document.documentElement).fo
  * @param {number} value The rem value to convert to rems based on the HTML font size.
  * @returns {string} The value converted to the rem value based on the htmlFontSize.
  */
-const rem = (value?: number) => {
-  const default1RemSizeInPx = 10
+const rem: any = (value: number = 0) => {
+  const htmlFontSizeValue = parseFloat(_htmlFontSize) || 0
+  const htmlFontSizeUnit = _htmlFontSize.replace(htmlFontSizeValue.toString(), '')
 
-  if (_.isUndefined(value)) {
-    return '0rem'
-  }
-
-  const htmlFontSizeValue = parseFloat(htmlFontSize) || 0
-  const htmlFontSizeUnit = htmlFontSize.replace(htmlFontSizeValue.toString(), '')
-
-  const fontSizeMultiplier = default1RemSizeInPx / htmlFontSizeValue
+  const fontSizeMultiplier = DEFAULT1_REM_SIZE_IN_PX / htmlFontSizeValue
   const convertedValueInRems = fontSizeMultiplier * value
 
   if (process.env.NODE_ENV !== 'production') {
-    if (!_.isNumber(value)) {
-      throw new Error(`Expected number, but got: '${typeof value}'.`)
-    }
-
     if (htmlFontSizeValue <= 0) {
-      throw new Error(`Invalid htmlFontSizeValue of: '${htmlFontSize}'.`)
-    }
-
-    if (!_.isString(htmlFontSize)) {
-      throw new Error(`Expected htmlFontSize to be a string, but got: '${htmlFontSize}'.`)
+      throw new Error(`Invalid htmlFontSizeValue of: '${_htmlFontSize}'.`)
     }
 
     if (htmlFontSizeUnit !== 'px') {
       throw new Error(`Expected htmlFontSize to be in px, but got: '${htmlFontSizeUnit}'.`)
     }
-
-    if (!_.isNumber(convertedValueInRems)) {
-      throw new Error(
-        `Unable to convert value: '${value}' to rems, got: '${convertedValueInRems}'.`,
-      )
-    }
   }
 
   return `${_.round(convertedValueInRems, 4)}rem`
+}
+
+rem.setHTMLFontSize = (fontSize?: string) => {
+  _htmlFontSize = fontSize || getComputedFontSize()
 }
 
 export default rem

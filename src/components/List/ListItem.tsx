@@ -45,11 +45,11 @@ class ListItem extends React.Component<any, any> {
   static handledProps = [
     'as',
     'className',
-    'contentMedia',
     'content',
+    'contentMedia',
     'debug',
-    'header',
     'endMedia',
+    'header',
     'headerMedia',
     'important',
     'media',
@@ -57,10 +57,10 @@ class ListItem extends React.Component<any, any> {
     'renderHeaderArea',
     'renderMainArea',
     'selection',
+    'styles',
     'truncateContent',
     'truncateHeader',
     'variables',
-    'styles',
   ]
 
   static defaultProps = {
