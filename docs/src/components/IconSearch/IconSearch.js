@@ -4,7 +4,7 @@ import leven from 'leven'
 import React, { Component } from 'react'
 import { Form, Grid, Header, Icon, Message, Popup } from 'semantic-ui-react'
 
-import SUI from 'src/lib/SUI'
+import * as SUI from 'src/lib/SUI'
 
 const gridStyle = {
   background: '#fff',

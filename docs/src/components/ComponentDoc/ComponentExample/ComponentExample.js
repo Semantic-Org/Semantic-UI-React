@@ -78,7 +78,9 @@ class ComponentExample extends PureComponent {
       showCode: this.isActiveHash(),
       sourceCode: exampleSources[examplePath],
     })
-    this.renderSourceCode()
+    if (typeof window !== 'undefined') {
+      this.renderSourceCode()
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -234,9 +236,11 @@ class ComponentExample extends PureComponent {
 
         if (module === 'COMMON') {
           const componentPath = examplePath
-            .split(__PATH_SEP__)
+            // .split(__PATH_SEP__)
+            .split('/')
             .splice(0, 2)
-            .join(__PATH_SEP__)
+            .join('/')
+          // .join(__PATH_SEP__)
           COMMON = require(`docs/src/examples/${componentPath}/common`)
         } else if (module === 'WIREFRAME') {
           WIREFRAME = require('docs/src/examples/behaviors/Visibility/Wireframe').default

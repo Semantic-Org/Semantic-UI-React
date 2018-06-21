@@ -38,7 +38,7 @@ class ComponentDoc extends Component {
   componentWillMount() {
     const { exampleKeys, history } = this.props
 
-    if (window && window.location.hash) {
+    if (typeof window !== 'undefined' && window.location.hash) {
       const activePath = getFormattedHash(exampleKeys, window.location.hash)
       history.replace(`${window.location.pathname}#${activePath}`)
       this.setState({ activePath })

@@ -1,19 +1,33 @@
-import React from 'react'
-import universal from 'react-universal-component'
+import PropTypes from 'prop-types'
+import React, { Component, createElement } from 'react'
 
-import { updateForKeys } from 'docs/src/hoc'
-// import ComponentExamplesError from './ComponentExamplesError'
-// import ComponentExamplesLoader from './ComponentExamplesLoader'
+import { Grid } from 'semantic-ui-react'
+import ContributionPrompt from '../ContributionPrompt'
 
-const ComponentExamples = universal(
-  import('docs/src/examples/elements/Container/index.js'),
-  // ({ displayName, type }) => import(`../../../examples/${type}s/${displayName}/index.js`),
-  // {
-  //   loading: ComponentExamplesLoader,
-  //   error: ComponentExamplesError,
-  // },
-)
+export default class ComponentExamples extends Component {
+  static propTypes = {
+    displayName: PropTypes.string.isRequired,
+  }
 
-export default props => <div>111</div>
+  renderExamples = () => {
+    const { displayName, type } = this.props
 
-// export default updateForKeys(['displayName', 'type'])(ComponentExamples)
+    return createElement(require(`docs/src/examples/${type}s/${displayName}/index.js`).default)
+  }
+
+  renderMissingExamples = () => {
+    const { displayName } = this.props
+    return (
+      <Grid padded>
+        <Grid.Column>
+          <ContributionPrompt>
+            Looks like we're missing <code>{`<${displayName} />`}</code> examples.
+          </ContributionPrompt>
+        </Grid.Column>
+      </Grid>
+    )
+  }
+  render() {
+    return this.renderExamples() || this.renderMissingExamples()
+  }
+}
