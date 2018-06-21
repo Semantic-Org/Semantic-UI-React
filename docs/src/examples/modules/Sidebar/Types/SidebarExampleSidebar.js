@@ -1,31 +1,45 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
-class SidebarTopPush extends Component {
+export default class SidebarExampleSidebar extends Component {
   state = { visible: false }
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+  handleButtonClick = () => this.setState({ visible: !this.state.visible })
+
+  handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
     const { visible } = this.state
+
     return (
       <div>
-        <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
+        <Button onClick={this.handleButtonClick}>Toggle visibility</Button>
+
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='push' direction='top' visible={visible} inverted>
-            <Menu.Item name='home'>
+          <Sidebar
+            as={Menu}
+            animation='overlay'
+            icon='labeled'
+            inverted
+            onHide={this.handleSidebarHide}
+            vertical
+            visible={visible}
+            width='thin'
+          >
+            <Menu.Item as='a'>
               <Icon name='home' />
               Home
             </Menu.Item>
-            <Menu.Item name='gamepad'>
+            <Menu.Item as='a'>
               <Icon name='gamepad' />
               Games
             </Menu.Item>
-            <Menu.Item name='camera'>
+            <Menu.Item as='a'>
               <Icon name='camera' />
               Channels
             </Menu.Item>
           </Sidebar>
+
           <Sidebar.Pusher>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
@@ -37,5 +51,3 @@ class SidebarTopPush extends Component {
     )
   }
 }
-
-export default SidebarTopPush
