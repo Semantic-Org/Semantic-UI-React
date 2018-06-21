@@ -324,6 +324,14 @@ describe('Popup', () => {
     })
   })
 
+  describe('context', () => {
+    it('should set context as triggerRef if passed as prop', () => {
+      const context = {}
+      const popup = wrapperMount(<Popup context={context} />)
+      expect(popup.instance().triggerRef).to.equal(context)
+    })
+  })
+
   describe('open', () => {
     it('is not open by default', () => {
       wrapperMount(<Popup />)

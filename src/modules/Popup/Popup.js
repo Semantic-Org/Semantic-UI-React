@@ -53,6 +53,9 @@ export default class Popup extends Component {
     /** Simple text content for the popover. */
     content: customPropTypes.itemShorthand,
 
+    /** Existing element the pop-up should be bound to. */
+    context: PropTypes.object,
+
     /** A flowing Popup has no maximum width and continues to flow to fit its content. */
     flowing: PropTypes.bool,
 
@@ -350,8 +353,8 @@ export default class Popup extends Component {
 
   handleTriggerRef = (triggerRef) => {
     debug('triggerMounted()')
-    if (triggerRef) {
-      this.triggerRef = triggerRef
+    if (this.props.context || triggerRef) {
+      this.triggerRef = this.props.context || triggerRef
     }
   }
 

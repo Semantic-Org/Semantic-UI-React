@@ -34,6 +34,11 @@ const PopupUsageExamples = () => (
       description='A popup can have its visibility controlled from outside.'
       examplePath='modules/Popup/Usage/PopupExampleControlled'
     />
+    <ComponentExample
+      title='Context'
+      description='A popup can be bound to an existing element'
+      examplePath='modules/Popup/Usage/PopupExampleContext'
+    />
   </ExampleSection>
 )
 
