@@ -5,25 +5,25 @@ const GridExampleDividedNumber = () => (
   <Grid columns={3} divided>
     <Grid.Row>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/media-paragraph.png' />
+        <Image src='/images/wireframe/media-paragraph.png' />
       </Grid.Column>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/media-paragraph.png' />
+        <Image src='/images/wireframe/media-paragraph.png' />
       </Grid.Column>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/media-paragraph.png' />
+        <Image src='/images/wireframe/media-paragraph.png' />
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/media-paragraph.png' />
+        <Image src='/images/wireframe/media-paragraph.png' />
       </Grid.Column>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/media-paragraph.png' />
+        <Image src='/images/wireframe/media-paragraph.png' />
       </Grid.Column>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/media-paragraph.png' />
+        <Image src='/images/wireframe/media-paragraph.png' />
       </Grid.Column>
     </Grid.Row>
   </Grid>

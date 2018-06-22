@@ -4,7 +4,7 @@ import { List, Image } from 'semantic-ui-react'
 const ListExampleImage = () => (
   <List>
     <List.Item>
-      <Image avatar src='/assets/images/avatar/small/rachel.png' />
+      <Image avatar src='/images/avatar/small/rachel.png' />
       <List.Content>
         <List.Header as='a'>Rachel</List.Header>
         <List.Description>
@@ -17,7 +17,7 @@ const ListExampleImage = () => (
       </List.Content>
     </List.Item>
     <List.Item>
-      <Image avatar src='/assets/images/avatar/small/lindsay.png' />
+      <Image avatar src='/images/avatar/small/lindsay.png' />
       <List.Content>
         <List.Header as='a'>Lindsay</List.Header>
         <List.Description>
@@ -30,7 +30,7 @@ const ListExampleImage = () => (
       </List.Content>
     </List.Item>
     <List.Item>
-      <Image avatar src='/assets/images/avatar/small/matthew.png' />
+      <Image avatar src='/images/avatar/small/matthew.png' />
       <List.Content>
         <List.Header as='a'>Matthew</List.Header>
         <List.Description>
@@ -43,7 +43,7 @@ const ListExampleImage = () => (
       </List.Content>
     </List.Item>
     <List.Item>
-      <Image avatar src='/assets/images/avatar/small/jenny.jpg' />
+      <Image avatar src='/images/avatar/small/jenny.jpg' />
       <List.Content>
         <List.Header as='a'>Jenny Hess</List.Header>
         <List.Description>
@@ -56,7 +56,7 @@ const ListExampleImage = () => (
       </List.Content>
     </List.Item>
     <List.Item>
-      <Image avatar src='/assets/images/avatar/small/veronika.jpg' />
+      <Image avatar src='/images/avatar/small/veronika.jpg' />
       <List.Content>
         <List.Header as='a'>Veronika Ossi</List.Header>
         <List.Description>Has not watched anything recently</List.Description>

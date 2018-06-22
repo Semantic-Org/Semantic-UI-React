@@ -6,7 +6,7 @@ import { friendOptions } from '../common'
 //   {
 //     text: 'Jenny Hess',
 //     value: 'Jenny Hess',
-//     image: { avatar: true, src: '/assets/images/avatar/small/jenny.jpg' },
+//     image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
 //   },
 //  ...
 // ]

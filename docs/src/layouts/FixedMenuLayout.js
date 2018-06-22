@@ -48,13 +48,13 @@ const FixedMenuLayout = () => (
         A text container is used for the main container, which is useful for single column layouts.
       </p>
 
-      <Image src='/assets/images/wireframe/media-paragraph.png' style={{ marginTop: '2em' }} />
-      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/images/wireframe/media-paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
     </Container>
 
     <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>

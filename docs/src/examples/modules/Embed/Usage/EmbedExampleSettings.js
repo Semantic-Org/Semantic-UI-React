@@ -8,7 +8,7 @@ const EmbedExampleSettings = () => (
     color='white'
     hd={false}
     id='D0WnZyxp_Wo'
-    placeholder='/assets/images/image-16by9.png'
+    placeholder='/images/image-16by9.png'
     source='youtube'
   />
 )

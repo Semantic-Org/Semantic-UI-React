@@ -5,7 +5,7 @@ const LoaderExampleDisabled = () => (
   <Segment>
     <Loader disabled />
 
-    <Image src='/assets/images/wireframe/short-paragraph.png' />
+    <Image src='/images/wireframe/short-paragraph.png' />
   </Segment>
 )
 

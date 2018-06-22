@@ -24,7 +24,7 @@ export default class TransitionExampleGroup extends Component {
         <Transition.Group as={List} duration={200} divided size='huge' verticalAlign='middle'>
           {items.map(item => (
             <List.Item key={item}>
-              <Image avatar src={`/assets/images/avatar/small/${item}.jpg`} />
+              <Image avatar src={`/images/avatar/small/${item}.jpg`} />
               <List.Content header={_.startCase(item)} />
             </List.Item>
           ))}

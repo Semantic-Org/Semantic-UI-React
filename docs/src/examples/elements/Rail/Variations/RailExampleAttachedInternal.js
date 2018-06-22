@@ -3,7 +3,7 @@ import { Image, Rail, Segment } from 'semantic-ui-react'
 
 const RailExampleAttachedInternal = () => (
   <Segment>
-    <Image src='/assets/images/wireframe/paragraph.png' />
+    <Image src='/images/wireframe/paragraph.png' />
 
     <Rail attached internal position='left'>
       <Segment>Left Rail Content</Segment>

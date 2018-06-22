@@ -5,7 +5,7 @@ const RailExampleAttached = () => (
   <Grid centered columns={3}>
     <Grid.Column>
       <Segment textAlign='center'>
-        <Image src='/assets/images/wireframe/paragraph.png' />
+        <Image src='/images/wireframe/paragraph.png' />
 
         <Rail attached position='left'>
           <Segment>Left Rail Content</Segment>

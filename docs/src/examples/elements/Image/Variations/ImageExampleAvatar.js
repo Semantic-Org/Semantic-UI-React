@@ -3,7 +3,7 @@ import { Image } from 'semantic-ui-react'
 
 const ImageExampleAvatar = () => (
   <div>
-    <Image src='/assets/images/wireframe/square-image.png' avatar />
+    <Image src='/images/wireframe/square-image.png' avatar />
     <span>Username</span>
   </div>
 )
