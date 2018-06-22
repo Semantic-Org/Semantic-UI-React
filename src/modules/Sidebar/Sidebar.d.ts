@@ -22,16 +22,48 @@ export interface SidebarProps {
   /** Shorthand for primary content. */
   content?: SemanticShorthandContent;
 
-  /** Initial value of visible. */
-  defaultVisible?: boolean;
-
   /** Direction the sidebar should appear on. */
   direction?: 'top' | 'right' | 'bottom' | 'left';
+
+  /** Duration of sidebar animation. */
+  duration?: number | string;
+
+  /**
+   * Called before a sidebar begins to animate out.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onHide?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void;
+
+  /**
+   * Called after a sidebar has finished animating out.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onHidden?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void;
+
+  /**
+   * Called when a sidebar has finished animating in.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onShow?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void;
+
+  /**
+   * Called when a sidebar begins animating in.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onVisible?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void;
 
   /** Controls whether or not the sidebar is visible on the page. */
   visible?: boolean;
 
-  /** Sidebar width */
+  /** Sidebar width. */
   width?: 'very thin' | 'thin' | 'wide' | 'very wide';
 }
 
