@@ -36,7 +36,7 @@ const getOptions = (count = 5) =>
   _.times(count, i => ({
     title: [i, ..._.times(3, faker.hacker.noun)].join(' '),
     description: [i, ..._.times(3, faker.hacker.noun)].join(' '),
-    image: '/assets/images/wireframe/image.png',
+    image: '/images/wireframe/image.png',
     price: [i, faker.finance.amount(0, 100, 2, '$')].join(' '),
   }))
 

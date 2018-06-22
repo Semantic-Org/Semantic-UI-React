@@ -4,10 +4,10 @@ import { Image, Reveal } from 'semantic-ui-react'
 const RevealExampleRotate = () => (
   <Reveal animated='rotate'>
     <Reveal.Content visible>
-      <Image circular size='small' src='/assets/images/wireframe/square-image.png' />
+      <Image circular size='small' src='/images/wireframe/square-image.png' />
     </Reveal.Content>
     <Reveal.Content hidden>
-      <Image circular size='small' src='/assets/images/avatar/large/stevie.jpg' />
+      <Image circular size='small' src='/images/avatar/large/stevie.jpg' />
     </Reveal.Content>
   </Reveal>
 )

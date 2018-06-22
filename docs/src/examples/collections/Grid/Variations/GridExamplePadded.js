@@ -7,10 +7,10 @@ const GridExamplePadded = () => (
 
     <Grid columns={2} padded>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/paragraph.png' />
+        <Image src='/images/wireframe/paragraph.png' />
       </Grid.Column>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/paragraph.png' />
+        <Image src='/images/wireframe/paragraph.png' />
       </Grid.Column>
     </Grid>
   </div>

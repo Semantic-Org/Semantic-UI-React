@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from 'semantic-ui-react'
 
-const src = '/assets/images/wireframe/white-image.png'
+const src = '/images/wireframe/white-image.png'
 
 const CardExampleColored = () => (
   <Card.Group itemsPerRow={4}>

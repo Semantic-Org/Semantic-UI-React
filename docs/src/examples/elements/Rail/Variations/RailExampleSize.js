@@ -6,7 +6,7 @@ const Wrapper = ({ children }) => (
   <Grid columns={3} textAlign='center'>
     <Grid.Column>
       <Segment>
-        <Image src='/assets/images/wireframe/paragraph.png' />
+        <Image src='/images/wireframe/paragraph.png' />
         {children}
       </Segment>
     </Grid.Column>

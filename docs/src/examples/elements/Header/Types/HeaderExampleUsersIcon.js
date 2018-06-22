@@ -7,7 +7,7 @@ const HeaderExampleUsersIcon = () => (
       <Icon name='users' circular />
       <Header.Content>Friends</Header.Content>
     </Header>
-    <Image centered size='large' src='/assets/images/wireframe/centered-paragraph.png' />
+    <Image centered size='large' src='/images/wireframe/centered-paragraph.png' />
   </div>
 )
 
