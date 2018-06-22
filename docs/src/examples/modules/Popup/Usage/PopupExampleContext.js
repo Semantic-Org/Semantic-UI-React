@@ -1,28 +1,22 @@
 import React from 'react'
-import { Button, Grid, Popup } from 'semantic-ui-react'
+import { Button, Popup } from 'semantic-ui-react'
 
 class PopupExampleContext extends React.Component {
-  state = { attachPopup: false }
+  state = {}
 
-  onClick = () => {
-    this.setState({ attachPopup: !this.state.attachPopup })
-  }
+  toggle = () => this.setState({ open: !this.state.open })
+
+  handleRef = node => this.setState({ node })
 
   render() {
+    const { node, open } = this.state
     return (
-      <Grid>
-        <Grid.Column width={8}>
-          <Button className='existingElement' content='Attach Popup' onClick={this.onClick} />
-          {this.state.attachPopup ? (
-            <Popup
-              context={document.querySelector('.existingElement')}
-              content={'Bound to existing element.'}
-              position='top right'
-              open
-            />
-          ) : null}
-        </Grid.Column>
-      </Grid>
+      <div>
+        <Button content='Attach Popup' onClick={this.toggle} />
+        <Popup context={node} content='Hello' position='top center' open={open} />
+        ---------->
+        <strong ref={this.handleRef}>here</strong>
+      </div>
     )
   }
 }
