@@ -1,7 +1,7 @@
 <!-- Logo -->
 <p align="center">
   <a href="https://react.semantic-ui.com">
-    <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/logo.png">
+    <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/logo.png">
   </a>
 </p>
 
@@ -42,11 +42,11 @@ See the [**Documentation**][2] for an introduction, usage information, and examp
 
 ## Built With
 
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/amazon-logo.png" />
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/netflix-logo.png" />
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/microsoft-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/amazon-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/netflix-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/microsoft-logo.png" />
 <a href="https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md">
-  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/src/add-yours.png" />
+  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/add-yours.png" />
 </a>
 
 - Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
