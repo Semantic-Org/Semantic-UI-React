@@ -1,8 +1,8 @@
-import Vinyl from 'vinyl'
 import gutil from 'gulp-util'
 import _ from 'lodash'
 import path from 'path'
-import through from 'through2'
+import through2 from 'through2'
+import Vinyl from 'vinyl'
 
 import { parseDocSection } from './util'
 
@@ -52,9 +52,13 @@ export default () => {
       cb()
     } catch (err) {
       const pluginError = new gutil.PluginError(pluginName, err)
-      pluginError.message += `\nFile: ${file.path}.`
+      const relativePath = path.relative(process.cwd(), file.path)
+      pluginError.message = [
+        gutil.colors.magenta(`Error in file: ${relativePath}`),
+        gutil.colors.red(err.message),
+        gutil.colors.gray(err.stack),
+      ].join('\n\n')
       this.emit('error', pluginError)
-      console.log(err)
     }
   }
 
@@ -75,5 +79,5 @@ export default () => {
     cb()
   }
 
-  return through.obj(bufferContents, endStream)
+  return through2.obj(bufferContents, endStream)
 }

@@ -1,13 +1,14 @@
-import Vinyl from 'vinyl'
 import gutil from 'gulp-util'
-import through from 'through2'
+import path from 'path'
+import through2 from 'through2'
+import Vinyl from 'vinyl'
 
 import { getComponentInfo } from './util'
 
 const pluginName = 'gulp-react-docgen'
 
 export default () =>
-  through.obj(function bufferContents(file, enc, cb) {
+  through2.obj(function bufferContents(file, enc, cb) {
     if (file.isNull()) {
       cb(null, file)
       return
@@ -28,9 +29,13 @@ export default () =>
 
       cb(null, infoFile)
     } catch (err) {
-      console.log(err)
       const pluginError = new gutil.PluginError(pluginName, err)
-      pluginError.message = err.stack
+      const relativePath = path.relative(process.cwd(), file.path)
+      pluginError.message = [
+        gutil.colors.magenta(`Error in file: ${relativePath}`),
+        gutil.colors.red(err.message),
+        gutil.colors.gray(err.stack),
+      ].join('\n\n')
       this.emit('error', pluginError)
     }
   })
