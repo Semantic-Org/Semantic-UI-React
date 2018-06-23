@@ -123,7 +123,7 @@ task(
 task('build:docs:html', () => src(paths.docsSrc('404.html')).pipe(dest(paths.docsDist())))
 
 task('build:docs:images', () =>
-  src(`${paths.docsSrc()}/**/*.{png,jpg,gif}`).pipe(dest(paths.docsDist())),
+  src(`${paths.docsPublic()}/**/*.{png,jpg,gif}`).pipe(dest(paths.docsDist())),
 )
 
 task('build:docs:toc', (cb) => {
@@ -184,7 +184,7 @@ task('watch:docs', (cb) => {
   watch(examplesSectionsSrc, series('build:docs:example-menu')).on('change', handleWatchChange)
 
   // rebuild images
-  watch(`${config.paths.src()}/**/*.{png,jpg,gif}`, series('build:docs:images')).on(
+  watch(`${config.paths.docsPublic()}/**/*.{png,jpg,gif}`, series('build:docs:images')).on(
     'change',
     handleWatchChange,
   )
