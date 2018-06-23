@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Segment, Header, Icon } from 'src'
+import { Grid, Segment, Header, Icon } from 'semantic-ui-react'
 
 const PageNotFound = () => (
   <Grid padded textAlign='center' stretched>

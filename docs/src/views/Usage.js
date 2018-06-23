@@ -1,10 +1,10 @@
 import React from 'react'
 import pkg from 'package.json'
 import { NavLink } from 'react-router-dom'
+import { Button, Container, Header, List, Message, Segment } from 'semantic-ui-react'
 
+import Logo from 'docs/src/components/Logo/Logo'
 import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/src/utils'
-import { Button, Container, Header, List, Message, Segment } from 'src'
-import Logo from '../components/Logo/Logo'
 
 const suiCSSVersion = pkg.devDependencies['semantic-ui-css'].replace(/[~^]/, '')
 

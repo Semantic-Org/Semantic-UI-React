@@ -65,10 +65,10 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.49",
     "classnames": "^2.2.5",
-    "fbjs": "^0.8.16",
     "keyboard-key": "^1.0.1",
     "lodash": "^4.17.10",
-    "prop-types": "^15.6.1"
+    "prop-types": "^15.6.1",
+    "shallowequal": "^1.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.49",

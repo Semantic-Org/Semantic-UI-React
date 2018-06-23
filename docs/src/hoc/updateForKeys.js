@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-
-import { shallowEqual } from 'src/lib'
+import shallowEqual from 'shallowequal'
 
 const updateForKeys = propKeys => ChildComponent =>
   class extends Component {
