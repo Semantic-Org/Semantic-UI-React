@@ -25,16 +25,38 @@ class ComponentSidebar extends Component {
 
   componentDidMount() {
     this.fetchSections()
+    this.fetchVariables()
   }
 
   componentWillReceiveProps(nextProps) {
     this.fetchSections(nextProps)
+    this.fetchVariables(nextProps)
   }
 
   fetchSections = ({ displayName } = this.props) => {
     import(`docs/src/exampleMenus/${displayName}.examples.json`).then((sections) => {
       this.setState({ sections })
     })
+  }
+
+  fetchVariables = ({ displayName } = this.props) => {
+    const propertyValueRegExp = /^(@\w+):\s+([\s\S]+?);$/gm
+
+    import(`!raw-loader!docs/src/assets/less/themes/default/elements/${_.kebabCase(
+      displayName,
+    )}.variables`)
+      .then((variables) => {
+        const fields = variables.match(propertyValueRegExp).map(match =>
+          match
+            .replace(/;$/, '')
+            .split(':')
+            .map(part => part.trim()),
+        )
+        this.setState({ variables, fields })
+      })
+      .catch(() => {
+        this.setState({ variables: null, fields: null })
+      })
   }
 
   handleVariablesChange = _.debounce((e, { value }) => {
@@ -59,7 +81,7 @@ class ComponentSidebar extends Component {
 
   render() {
     const { activePath, examplesRef, onItemClick } = this.props
-    const { error, isLessCompiling, sections } = this.state
+    const { error, fields, isLessCompiling, variables, sections } = this.state
 
     return (
       <Sticky context={examplesRef} offset={15}>
@@ -86,8 +108,18 @@ class ComponentSidebar extends Component {
               menuItem: { key: 'Variables', as: 'div', content: 'Variables' },
               render: () => (
                 <Form loading={isLessCompiling}>
-                  <Form.TextArea autoHeight rows={1} onChange={this.handleVariablesChange} />
+                  {_.map(fields, ([label, defaultValue]) => (
+                    <Form.TextArea
+                      autoHeight
+                      label={label}
+                      defaultValue={defaultValue}
+                      rows={1}
+                      onChange={this.handleVariablesChange}
+                    />
+                  ))}
                   {error}
+                  <hr />
+                  <pre>{variables}</pre>
                 </Form>
               ),
             },

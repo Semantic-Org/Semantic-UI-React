@@ -77,20 +77,35 @@ task('build:docs:cname', (cb) => {
   sh(`echo react.semantic-ui.com > ${paths.docsDist('CNAME')}`, cb)
 })
 
-task('build:docs:less', (cb) => {
-  const lessSrc = paths.base('node_modules/semantic-ui-less')
-  const lessDest = paths.docsDist('assets/less')
+task('build:docs:less:src', () => {
+  const suiSrc = [
+    `${paths.base('node_modules/semantic-ui-less')}/**/*`,
+    `!${paths.base('node_modules/semantic-ui-less')}/**/*.js`,
+  ]
+  const destDir = paths.docsSrc('assets/less')
 
-  sh(
-    [
-      `rm -rf ${lessDest}`,
-      `cp -R ${lessSrc} ${lessDest}`,
-      `rm -rf ${lessDest}/package.js`,
-      `mv ${lessDest}/theme.config.example ${lessDest}/theme.config`,
-      `mv ${lessDest}/_site ${lessDest}/site`,
-    ].join(' && '),
-    cb,
-  )
+  const isThemeConfig = file => file.basename.startsWith('theme.config')
+  const isSiteDirectory = file => file.dirname.includes('_site')
+  const isThemeLESS = file => file.basename === 'theme.less'
+
+  return src(suiSrc, { since: lastRun('build:docs:less:src') })
+    .pipe(g.if(isThemeConfig, g.rename({ extname: '' })))
+    .pipe(g.if(isSiteDirectory, g.rename((file) => {
+      // eslint-disable-next-line no-param-reassign
+      file.dirname = file.dirname.replace('_site', 'site')
+    })))
+    // TODO remove once semantic-ui-less 3.2.3 ships
+    // make semantic-ui-less compatible with less 3.x
+    .pipe(g.if(isThemeConfig, g.replace('import "theme', 'import (multiple) "theme', { skipBinary: false })))
+    .pipe(g.if(isThemeLESS, g.replace('import url', 'import (css) url')))
+    .pipe(dest(destDir))
+})
+
+task('build:docs:less:dist', () => {
+  const lesssSrc = `${paths.docsSrc('assets/less')}/**/*`
+  const lessDest = dest(paths.docsDist('assets/less'))
+
+  return src(lesssSrc, { since: lastRun('build:docs:less:dist') }).pipe(lessDest)
 })
 
 task('build:docs:docgen', () =>
@@ -165,10 +180,9 @@ task('build:docs:webpack', (cb) => {
 task(
   'build:docs',
   series(
-    parallel(
-      'build:docs:toc',
-      series('clean:docs', parallel('build:docs:json', 'build:docs:html', 'build:docs:images')),
-    ),
+    parallel('build:docs:toc', 'build:docs:less:src'),
+    'clean:docs',
+    parallel('build:docs:less:dist', 'build:docs:json', 'build:docs:html', 'build:docs:images'),
     'build:docs:webpack',
   ),
 )
@@ -246,4 +260,4 @@ task('watch:docs', (cb) => {
 // Default
 // ----------------------------------------
 
-task('docs', series('build:docs', 'build:docs:less', 'serve:docs', 'watch:docs'))
+task('docs', series('build:docs', 'serve:docs', 'watch:docs'))

@@ -52,7 +52,9 @@
   <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/tab.less" />
   <link rel="stylesheet/less" type="text/css" href="/assets/less/definitions/modules/transition.less" />
 
-  <script src="//unpkg.com/less@<%= htmlWebpackPlugin.options.versions.less %>/dist/less.min.js"></script>
+  <script
+    data-error-reporting="console"
+    src="//unpkg.com/less@<%= htmlWebpackPlugin.options.versions.less %>/dist/less.min.js"></script>
   <title>Semantic UI React</title>
   <script>
     // Redirect to HTTPs
@@ -123,11 +125,6 @@
   <style>
     html, body {
       background: #f7f7f7;
-    }
-
-    /* LESS */
-    .less-error-message {
-      display: none;
     }
 
     /* Anchors */

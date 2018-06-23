@@ -1,0 +1,19 @@
+{
+  "name": "semantic-ui-less",
+  "version": "2.3.2",
+  "title": "Semantic UI",
+  "description": "LESS Only distribution of Semantic UI",
+  "homepage": "http://www.semantic-ui.com",
+  "author": "Jack Lukic <jack@semantic-ui.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Semantic-Org/Semantic-UI-LESS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Semantic-Org/Semantic-UI/issues"
+  },
+  "dependencies": {
+    "jquery": "x.*"
+  }
+}
