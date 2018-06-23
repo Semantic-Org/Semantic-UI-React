@@ -11,6 +11,7 @@
     "dist",
     "index.d.ts"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "gulp build",
     "build:docs": "gulp --series dll build:docs",
