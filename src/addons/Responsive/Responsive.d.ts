@@ -1,28 +1,28 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export interface ResponsiveProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Fires callbacks immediately after mount. */
-  fireOnMount?: boolean;
+  fireOnMount?: boolean
 
   /**
    * Called to get width of screen. Defaults to using `window.innerWidth` when in a browser;
    * otherwise, assumes a width of 0.
    */
-  getWidth?: () => number;
+  getWidth?: () => number
 
   /** The maximum width at which content will be displayed. */
-  maxWidth?: number | string;
+  maxWidth?: number | string
 
   /** The minimum width at which content will be displayed. */
-  minWidth?: number | string;
+  minWidth?: number | string
 
   /**
    * Called on update.
@@ -30,24 +30,24 @@ export interface ResponsiveProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onUpdate?: (event: React.SyntheticEvent<HTMLElement>, data: ResponsiveOnUpdateData) => void;
+  onUpdate?: (event: React.SyntheticEvent<HTMLElement>, data: ResponsiveOnUpdateData) => void
 }
 
 export interface ResponsiveOnUpdateData extends ResponsiveProps {
-  width: number;
+  width: number
 }
 
 export interface ResponsiveWidthShorthand {
-  minWidth?: number | string;
-  maxWidth?: number | string;
+  minWidth?: number | string
+  maxWidth?: number | string
 }
 
 declare class Responsive extends React.Component<ResponsiveProps, {}> {
-  static onlyMobile: ResponsiveWidthShorthand;
-  static onlyTablet: ResponsiveWidthShorthand;
-  static onlyComputer: ResponsiveWidthShorthand;
-  static onlyLargeScreen: ResponsiveWidthShorthand;
-  static onlyWidescreen: ResponsiveWidthShorthand;
+  static onlyMobile: ResponsiveWidthShorthand
+  static onlyTablet: ResponsiveWidthShorthand
+  static onlyComputer: ResponsiveWidthShorthand
+  static onlyLargeScreen: ResponsiveWidthShorthand
+  static onlyWidescreen: ResponsiveWidthShorthand
 }
 
-export default Responsive;
+export default Responsive

@@ -1,57 +1,57 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticCOLORS, SemanticShorthandContent, SemanticShorthandItem } from '../..';
-import { ImageProps } from '../../elements/Image';
-import CardContent from './CardContent';
-import { default as CardDescription, CardDescriptionProps } from './CardDescription';
-import CardGroup from './CardGroup';
-import { default as CardHeader, CardHeaderProps } from './CardHeader';
-import { default as CardMeta, CardMetaProps } from './CardMeta';
+import { SemanticCOLORS, SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { ImageProps } from '../../elements/Image'
+import CardContent from './CardContent'
+import { default as CardDescription, CardDescriptionProps } from './CardDescription'
+import CardGroup from './CardGroup'
+import { default as CardHeader, CardHeaderProps } from './CardHeader'
+import { default as CardMeta, CardMetaProps } from './CardMeta'
 
 export interface CardProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A Card can center itself inside its container. */
-  centered?: boolean;
+  centered?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A Card can be formatted to display different colors. */
-  color?: SemanticCOLORS;
+  color?: SemanticCOLORS
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Shorthand for CardDescription. */
-  description?: SemanticShorthandItem<CardDescriptionProps>;
+  description?: SemanticShorthandItem<CardDescriptionProps>
 
   /** Shorthand for primary content of CardContent. */
-  extra?: SemanticShorthandContent;
+  extra?: SemanticShorthandContent
 
   /** A Card can be formatted to take up the width of its container. */
-  fluid?: boolean;
+  fluid?: boolean
 
   /** Shorthand for CardHeader. */
-  header?: SemanticShorthandItem<CardHeaderProps>;
+  header?: SemanticShorthandItem<CardHeaderProps>
 
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
-  href?: string;
+  href?: string
 
   /** A card can contain an Image component. */
-  image?: SemanticShorthandItem<ImageProps>;
+  image?: SemanticShorthandItem<ImageProps>
 
   /** A card can be formatted to link to other content. */
-  link?: boolean;
+  link?: boolean
 
   /** Shorthand for CardMeta. */
-  meta?: SemanticShorthandItem<CardMetaProps>;
+  meta?: SemanticShorthandItem<CardMetaProps>
 
   /**
    * Called on click. When passed, the component renders as an `a`
@@ -60,20 +60,20 @@ export interface CardProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: CardProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: CardProps) => void
 
   /** A Card can be formatted to raise above the page. */
-  raised?: boolean;
+  raised?: boolean
 }
 
 interface CardComponent extends React.ComponentClass<CardProps> {
-  Content: typeof CardContent;
-  Description: typeof CardDescription;
-  Group: typeof CardGroup;
-  Header: typeof CardHeader;
-  Meta: typeof CardMeta;
+  Content: typeof CardContent
+  Description: typeof CardDescription
+  Group: typeof CardGroup
+  Header: typeof CardHeader
+  Meta: typeof CardMeta
 }
 
-declare const Card: CardComponent;
+declare const Card: CardComponent
 
-export default Card;
+export default Card

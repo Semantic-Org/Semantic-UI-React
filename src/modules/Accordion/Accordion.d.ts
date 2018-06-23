@@ -1,31 +1,31 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { default as AccordionAccordion, AccordionAccordionProps } from './AccordionAccordion';
-import AccordionContent from './AccordionContent';
-import AccordionTitle from './AccordionTitle';
+import { default as AccordionAccordion, AccordionAccordionProps } from './AccordionAccordion'
+import AccordionContent from './AccordionContent'
+import AccordionTitle from './AccordionTitle'
 
 export interface AccordionProps extends AccordionAccordionProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Format to take up the width of its container. */
-  fluid?: boolean;
+  fluid?: boolean
 
   /** Format for dark backgrounds. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Adds some basic styling to accordion panels. */
-  styled?: boolean;
+  styled?: boolean
 }
 
 interface AccordionComponent extends React.ComponentClass<AccordionProps> {
-  Accordion: typeof AccordionAccordion;
-  Content: typeof AccordionContent;
-  Title: typeof AccordionTitle;
+  Accordion: typeof AccordionAccordion
+  Content: typeof AccordionContent
+  Title: typeof AccordionTitle
 }
 
-declare const Accordion: AccordionComponent;
+declare const Accordion: AccordionComponent
 
-export default Accordion;
+export default Accordion

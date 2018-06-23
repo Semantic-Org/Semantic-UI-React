@@ -1,25 +1,25 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface MenuMenuProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A sub menu can take left or right position. */
-  position?: 'left' | 'right';
+  position?: 'left' | 'right'
 }
 
-declare const MenuMenu: React.StatelessComponent<MenuMenuProps>;
+declare const MenuMenu: React.StatelessComponent<MenuMenuProps>
 
-export default MenuMenu;
+export default MenuMenu
