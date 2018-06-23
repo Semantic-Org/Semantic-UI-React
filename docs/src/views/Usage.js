@@ -155,16 +155,16 @@ const Usage = () => (
           example recipes with some of them. You can use them as start point for your projects.
         </p>
 
-        <Header as='h3'>Webpack 3</Header>
+        <Header as='h3'>Webpack 2/3</Header>
         <p>
-          Webpack 3 fully supports Semantic UI React, it also supports Tree Shaking. Please ensure
+          Webpack 2/3 fully supports Semantic UI React, it also supports Tree Shaking. Please ensure
           that you build your app in production mode before release, it will strip{' '}
           <code>propTypes</code> from your build.
         </p>
 
         <Message warning>
           <p>
-            Webpack 2 tree shaking does not completely remove unused exports, there are numerous
+            Webpack 2/3 tree shaking does not completely remove unused exports, there are numerous
             issues that are long-standing bugs:
           </p>
           <List>
@@ -243,6 +243,26 @@ const Usage = () => (
           icon='github'
           labelPosition='left'
         />
+
+        <Header as='h3'>Webpack 4</Header>
+        <p>
+          Webpack 4 fully supports Semantic UI React, it also fully supports Tree Shaking. Please
+          ensure that you build your app in production mode before release, it will strip{' '}
+          <code>propTypes</code> from your build.
+        </p>
+
+        <p>
+          Please ensure that you're using <code>semantic-ui-react@0.82.0</code> or higher because we
+          added the{' '}
+          <a
+            href='https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            <code>sideEffects</code>
+          </a>{' '}
+          option in this release.
+        </p>
       </Segment>
     </Container>
   </DocsLayout>
