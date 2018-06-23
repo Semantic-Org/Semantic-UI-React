@@ -1,40 +1,40 @@
-import * as React from 'react';
-import { SemanticFLOATS, SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticFLOATS, SemanticShorthandContent } from '../..'
 
 export interface RailProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A rail can appear attached to the main viewport. */
-  attached?: boolean;
+  attached?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A rail can appear closer to the main viewport. */
-  close?: boolean | 'very';
+  close?: boolean | 'very'
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A rail can create a division between itself and a container. */
-  dividing?: boolean;
+  dividing?: boolean
 
   /** A rail can attach itself to the inside of a container. */
-  internal?: boolean;
+  internal?: boolean
 
   /** A rail can be presented on the left or right side of a container. */
-  position: SemanticFLOATS;
+  position: SemanticFLOATS
 
   /** A rail can have different sizes. */
-  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 }
 
-declare const Rail: React.StatelessComponent<RailProps>;
+declare const Rail: React.StatelessComponent<RailProps>
 
-export default Rail;
+export default Rail

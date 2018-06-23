@@ -1,27 +1,27 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
-import { IconProps } from '../../elements/Icon';
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { IconProps } from '../../elements/Icon'
 
 export interface BreadcrumbDividerProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Render as an `Icon` component with `divider` class instead of a `div`. */
-  icon?: SemanticShorthandItem<IconProps>;
+  icon?: SemanticShorthandItem<IconProps>
 }
 
-declare const BreadcrumbDivider: React.StatelessComponent<BreadcrumbDividerProps>;
+declare const BreadcrumbDivider: React.StatelessComponent<BreadcrumbDividerProps>
 
-export default BreadcrumbDivider;
+export default BreadcrumbDivider

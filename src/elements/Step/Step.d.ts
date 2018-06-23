@@ -1,47 +1,47 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
-import { IconProps } from '../Icon';
-import StepContent from './StepContent';
-import { default as StepDescription, StepDescriptionProps } from './StepDescription';
-import StepGroup from './StepGroup';
-import { default as StepTitle, StepTitleProps } from './StepTitle';
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { IconProps } from '../Icon'
+import StepContent from './StepContent'
+import { default as StepDescription, StepDescriptionProps } from './StepDescription'
+import StepGroup from './StepGroup'
+import { default as StepTitle, StepTitleProps } from './StepTitle'
 
 export interface StepProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A step can be highlighted as active. */
-  active?: boolean;
+  active?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A step can show that a user has completed it. */
-  completed?: boolean;
+  completed?: boolean
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Shorthand for StepDescription. */
-  description?: SemanticShorthandItem<StepDescriptionProps>;
+  description?: SemanticShorthandItem<StepDescriptionProps>
 
   /** Show that the Loader is inactive. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
-  href?: string;
+  href?: string
 
   /** Shorthand for Icon. */
-  icon?: SemanticShorthandItem<IconProps>;
+  icon?: SemanticShorthandItem<IconProps>
 
   /** A step can be link. */
-  link?: boolean;
+  link?: boolean
 
   /**
    * Called on click. When passed, the component will render as an `a`.
@@ -50,22 +50,22 @@ export interface StepProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: StepProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: StepProps) => void
 
   /** A step can show a ordered sequence of steps. Passed from StepGroup. */
-  ordered?: boolean;
+  ordered?: boolean
 
   /** Shorthand for StepTitle. */
-  title?: SemanticShorthandItem<StepTitleProps>;
+  title?: SemanticShorthandItem<StepTitleProps>
 }
 
 interface StepComponent extends React.ComponentClass<StepProps> {
-  Content: typeof StepContent;
-  Description: typeof StepDescription;
-  Group: typeof StepGroup;
-  Title: typeof StepTitle;
+  Content: typeof StepContent
+  Description: typeof StepDescription
+  Group: typeof StepGroup
+  Title: typeof StepTitle
 }
 
-declare const Step: StepComponent;
+declare const Step: StepComponent
 
-export default Step;
+export default Step

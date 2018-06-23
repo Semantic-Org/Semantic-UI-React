@@ -1,50 +1,46 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import {
-  HtmlSpanProps,
-  SemanticShorthandContent,
-  SemanticShorthandItem
-} from '../..';
-import { FlagProps } from '../../elements/Flag';
-import { IconProps } from '../../elements/Icon';
-import { ImageProps } from '../../elements/Image';
-import { LabelProps } from '../../elements/Label';
+import { HtmlSpanProps, SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { FlagProps } from '../../elements/Flag'
+import { IconProps } from '../../elements/Icon'
+import { ImageProps } from '../../elements/Image'
+import { LabelProps } from '../../elements/Label'
 
 export interface DropdownItemProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Style as the currently chosen item. */
-  active?: boolean;
+  active?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Additional text with less emphasis. */
-  description?: SemanticShorthandItem<HtmlSpanProps>;
+  description?: SemanticShorthandItem<HtmlSpanProps>
 
   /** A dropdown item can be disabled. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** Shorthand for Flag. */
-  flag?: SemanticShorthandItem<FlagProps>;
+  flag?: SemanticShorthandItem<FlagProps>
 
   /** Shorthand for Icon. */
-  icon?: SemanticShorthandItem<IconProps>;
+  icon?: SemanticShorthandItem<IconProps>
 
   /** Shorthand for Image. */
-  image?: SemanticShorthandItem<ImageProps>;
+  image?: SemanticShorthandItem<ImageProps>
 
   /** Shorthand for Label. */
-  label?: SemanticShorthandItem<LabelProps>;
+  label?: SemanticShorthandItem<LabelProps>
 
   /**
    * Called on click.
@@ -52,21 +48,21 @@ export interface DropdownItemProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: DropdownItemProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: DropdownItemProps) => void
 
   /**
    * The item currently selected by keyboard shortcut.
    * This is not the active item.
    */
-  selected?: boolean;
+  selected?: boolean
 
   /** Display text. */
-  text?: SemanticShorthandContent;
+  text?: SemanticShorthandContent
 
   /** Stored value. */
-  value?: boolean | number | string;
+  value?: boolean | number | string
 }
 
-declare const DropdownItem: React.ComponentClass<DropdownItemProps>;
+declare const DropdownItem: React.ComponentClass<DropdownItemProps>
 
-export default DropdownItem;
+export default DropdownItem

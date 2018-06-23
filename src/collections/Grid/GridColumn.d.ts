@@ -1,63 +1,70 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
   SemanticCOLORS,
   SemanticFLOATS,
   SemanticTEXTALIGNMENTS,
   SemanticVERTICALALIGNMENTS,
-  SemanticWIDTHS
-} from '../..';
+  SemanticWIDTHS,
+} from '../..'
 
-export type GridOnlyProp = string | 'computer' | 'largeScreen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen';
+export type GridOnlyProp =
+  | string
+  | 'computer'
+  | 'largeScreen'
+  | 'mobile'
+  | 'tablet mobile'
+  | 'tablet'
+  | 'widescreen'
 
 export interface GridColumnProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A grid column can be colored. */
-  color?: SemanticCOLORS;
+  color?: SemanticCOLORS
 
   /** A column can specify a width for a computer. */
-  computer?: SemanticWIDTHS;
+  computer?: SemanticWIDTHS
 
   /** A column can sit flush against the left or right edge of a row. */
-  floated?: SemanticFLOATS;
+  floated?: SemanticFLOATS
 
   /** A column can specify a width for a large screen device. */
-  largeScreen?: SemanticWIDTHS;
+  largeScreen?: SemanticWIDTHS
 
   /** A column can specify a width for a mobile device. */
-  mobile?: SemanticWIDTHS;
+  mobile?: SemanticWIDTHS
 
   /** A column can appear only for a specific device, or screen sizes. */
-  only?: GridOnlyProp;
+  only?: GridOnlyProp
 
   /** An can stretch its contents to take up the entire grid or row height. */
-  stretched?: boolean;
+  stretched?: boolean
 
   /** A column can specify a width for a tablet device. */
-  tablet?: SemanticWIDTHS;
+  tablet?: SemanticWIDTHS
 
   /** A row can specify its text alignment. */
-  textAlign?: SemanticTEXTALIGNMENTS;
+  textAlign?: SemanticTEXTALIGNMENTS
 
   /** A column can specify its vertical alignment to have all its columns vertically centered. */
-  verticalAlign?: SemanticVERTICALALIGNMENTS;
+  verticalAlign?: SemanticVERTICALALIGNMENTS
 
   /** A column can specify a width for a wide screen device. */
-  widescreen?: SemanticWIDTHS;
+  widescreen?: SemanticWIDTHS
 
   /** Represents width of column. */
-  width?: SemanticWIDTHS;
+  width?: SemanticWIDTHS
 }
 
-declare const GridColumn: React.StatelessComponent<GridColumnProps>;
+declare const GridColumn: React.StatelessComponent<GridColumnProps>
 
-export default GridColumn;
+export default GridColumn
