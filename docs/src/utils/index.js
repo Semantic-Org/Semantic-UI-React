@@ -1,4 +1,4 @@
-export * as propTypes from './propTypes'
+export * as docTypes from './docTypes'
 
 export * from './constants'
 export examplePathToHash from './examplePathToHash'

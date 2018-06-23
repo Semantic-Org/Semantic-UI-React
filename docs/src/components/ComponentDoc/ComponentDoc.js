@@ -5,7 +5,7 @@ import { withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
-import { examplePathToHash, getFormattedHash, propTypes, scrollToAnchor } from 'docs/src/utils'
+import { docTypes, examplePathToHash, getFormattedHash, scrollToAnchor } from 'docs/src/utils'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
@@ -25,12 +25,12 @@ class ComponentDoc extends Component {
   }
 
   static propTypes = {
-    componentInfo: propTypes.componentInfoShape.isRequired,
+    componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
+    displayName: PropTypes.string.isRequired,
     exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     history: PropTypes.object.isRequired,
-    seeTags: propTypes.seeTags.isRequired,
-    sidebarSections: propTypes.sidebarSections.isRequired,
-    subcomponentsInfo: PropTypes.objectOf(propTypes.componentInfoShape).isRequired,
+    seeTags: docTypes.seeTags.isRequired,
+    sidebarSections: docTypes.sidebarSections.isRequired,
   }
 
   state = {}
@@ -51,8 +51,8 @@ class ComponentDoc extends Component {
     }
   }
 
-  componentWillReceiveProps({ componentInfo }) {
-    if (componentInfo.displayName !== this.props.componentInfo.displayName) {
+  componentWillReceiveProps({ displayName }) {
+    if (displayName !== this.props.displayName) {
       this.setState({ activePath: undefined })
     }
   }
@@ -73,17 +73,18 @@ class ComponentDoc extends Component {
   }
 
   render() {
-    const { componentInfo, seeTags, sidebarSections, subcomponentsInfo } = this.props
+    const { componentsInfo, displayName, seeTags, sidebarSections } = this.props
     const { activePath, examplesRef } = this.state
+    const componentInfo = componentsInfo[displayName]
 
     return (
-      <DocsLayout additionalTitle={componentInfo.displayName} sidebar>
+      <DocsLayout additionalTitle={displayName} sidebar>
         <Grid>
           <Grid.Row style={topRowStyle}>
             <Grid.Column>
               <Header
                 as='h1'
-                content={componentInfo.displayName}
+                content={displayName}
                 subheader={_.join(componentInfo.docblock.description, ' ')}
               />
               <ComponentDocSee seeTags={seeTags} />
@@ -93,7 +94,7 @@ class ComponentDoc extends Component {
                 repoPath={componentInfo.repoPath}
                 type={componentInfo.type}
               />
-              <ComponentProps componentInfo={componentInfo} subcomponentsInfo={subcomponentsInfo} />
+              <ComponentProps componentsInfo={componentsInfo} displayName={displayName} />
             </Grid.Column>
           </Grid.Row>
 

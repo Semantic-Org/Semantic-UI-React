@@ -2,11 +2,10 @@ import _ from 'lodash'
 
 import componentMenu from './docs/src/componentMenu'
 import {
-  getComponentInfo,
   getExampleSources,
   getInfoForSeeTags,
   getSidebarSections,
-  getSubcomponentsInfo,
+  getComponentGroupInfo,
 } from './docs/src/staticUtils'
 import { getComponentPathname } from './docs/src/utils'
 
@@ -38,16 +37,16 @@ export default async () => {
       path: getComponentPathname(baseInfo),
       component: 'docs/src/components/ComponentDoc',
       getData: async () => {
-        const componentInfo = getComponentInfo(baseInfo.displayName)
+        const componentsInfo = getComponentGroupInfo(baseInfo.displayName)
         const sidebarSections = getSidebarSections(baseInfo.displayName)
 
         return {
-          componentInfo,
+          componentsInfo,
           exampleSources,
           sidebarSections,
+          displayName: baseInfo.displayName,
           exampleKeys: _.map(_.flatMap(sidebarSections, 'examples'), 'examplePath'),
-          seeTags: getInfoForSeeTags(componentInfo),
-          subcomponentsInfo: getSubcomponentsInfo(componentInfo),
+          seeTags: getInfoForSeeTags(componentsInfo[baseInfo.displayName]),
         }
       },
     })),

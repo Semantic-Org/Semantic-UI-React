@@ -4,7 +4,7 @@ import React from 'react'
 import { Accordion, Menu, Sticky } from 'semantic-ui-react'
 
 import { updateForKeys } from 'docs/src/hoc'
-import { propTypes } from 'docs/src/utils'
+import { docTypes } from 'docs/src/utils'
 import ComponentSidebarSection from './ComponentSidebarSection'
 
 const sidebarStyle = {
@@ -35,7 +35,7 @@ ComponentSidebar.propTypes = {
   activePath: PropTypes.string,
   examplesRef: PropTypes.object,
   onItemClick: PropTypes.func.isRequired,
-  sections: propTypes.sidebarSections.isRequired,
+  sections: docTypes.sidebarSections.isRequired,
 }
 
 export default updateForKeys(['activePath'])(ComponentSidebar)

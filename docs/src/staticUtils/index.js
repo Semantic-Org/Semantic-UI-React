@@ -1,5 +1,4 @@
-export getComponentInfo from './getComponentInfo'
+export getComponentGroupInfo from './getComponentGroupInfo'
 export getExampleSources from './getExampleSources'
 export getInfoForSeeTags from './getInfoForSeeTags'
 export getSidebarSections from './getSidebarSections'
-export getSubcomponentsInfo from './getSubcomponentsInfo'

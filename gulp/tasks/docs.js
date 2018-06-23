@@ -1,9 +1,7 @@
-import historyApiFallback from 'connect-history-api-fallback'
 import { task, src, dest, lastRun, parallel, series, watch } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import path from 'path'
 import rimraf from 'rimraf'
-import webpack from 'webpack'
 
 import sh from '../sh'
 import config from '../../config'
@@ -14,7 +12,7 @@ import gulpReactDocgen from '../plugins/gulp-react-docgen'
 
 const { paths } = config
 const g = loadPlugins()
-const { colors, log, PluginError } = g.util
+const { log } = g.util
 
 const handleWatchChange = e => log(`File ${e.path} was ${e.type}, running tasks...`)
 
@@ -52,6 +50,20 @@ task(
     'clean:docs:example-sources',
   ),
 )
+
+// ----------------------------------------
+// Build docs with React Static
+// ----------------------------------------
+
+task('build:docs:static:build', (cb) => {
+  // TODO: REACT-STATIC
+  cb()
+})
+
+task('build:docs:static:start', (cb) => {
+  cb()
+  // TODO: REACT-STATIC
+})
 
 // ----------------------------------------
 // Build
@@ -120,8 +132,6 @@ task(
   ),
 )
 
-task('build:docs:html', () => src(paths.docsSrc('404.html')).pipe(dest(paths.docsDist())))
-
 task('build:docs:images', () =>
   src(`${paths.docsPublic()}/**/*.{png,jpg,gif}`).pipe(dest(paths.docsDist())),
 )
@@ -130,18 +140,11 @@ task('build:docs:toc', (cb) => {
   sh(`doctoc ${paths.base('.github/CONTRIBUTING.md')} --github --maxlevel 4`, cb)
 })
 
-task('build:docs:webpack', (cb) => {
-  // TODO: REACT-STATIC
-})
-
 task(
   'build:docs',
-  series(
-    parallel(
-      'build:docs:toc',
-      series('clean:docs', parallel('build:docs:json', 'build:docs:html', 'build:docs:images')),
-    ),
-    'build:docs:webpack',
+  parallel(
+    'build:docs:toc',
+    series('clean:docs', parallel('build:docs:json', 'build:docs:images')),
   ),
 )
 
@@ -162,14 +165,6 @@ task('deploy:changelog', (cb) => {
 task('deploy:docs', (cb) => {
   const relativePath = path.relative(process.cwd(), paths.docsDist())
   sh(`gh-pages -d ${relativePath} -m "deploy docs [ci skip]"`, cb)
-})
-
-// ----------------------------------------
-// Serve
-// ----------------------------------------
-
-task('serve:docs', (cb) => {
-  // TODO: REACT-STATIC
 })
 
 // ----------------------------------------
@@ -195,4 +190,4 @@ task('watch:docs', (cb) => {
 // Default
 // ----------------------------------------
 
-task('docs', series('build:docs', 'serve:docs', 'watch:docs'))
+task('docs', series('build:docs', 'build:docs:static:start', 'watch:docs'))

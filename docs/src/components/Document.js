@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import siteData from '../utils/propTypes/siteData'
+import siteData from '../utils/docTypes/siteData'
 
 const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) => (
   <Html lang='en-US'>
