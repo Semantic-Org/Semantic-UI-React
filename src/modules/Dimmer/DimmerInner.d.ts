@@ -1,26 +1,26 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface DimmerInnerProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** An active dimmer will dim its parent container. */
-  active?: boolean;
+  active?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A disabled dimmer cannot be activated */
-  disabled?: boolean;
+  disabled?: boolean
 
   /**
    * Called when the dimmer is clicked.
@@ -28,7 +28,7 @@ export interface DimmerInnerProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: DimmerInnerProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: DimmerInnerProps) => void
 
   /**
    * Handles click outside Dimmer's content, but inside Dimmer area.
@@ -36,23 +36,21 @@ export interface DimmerInnerProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClickOutside?: (event: React.MouseEvent<HTMLDivElement>, data: DimmerInnerProps) => void;
+  onClickOutside?: (event: React.MouseEvent<HTMLDivElement>, data: DimmerInnerProps) => void
 
   /** A dimmer can be formatted to have its colors inverted. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** A dimmer can be formatted to be fixed to the page. */
-  page?: boolean;
+  page?: boolean
 
   /** A dimmer can be controlled with simple prop. */
-  simple?: boolean;
+  simple?: boolean
 
   /** A dimmer can have its content top or bottom aligned. */
-  verticalAlign?: 'bottom' | 'top';
+  verticalAlign?: 'bottom' | 'top'
 }
 
-declare class DimmerInner extends React.Component<DimmerInnerProps, {}> {
+declare class DimmerInner extends React.Component<DimmerInnerProps, {}> {}
 
-}
-
-export default DimmerInner;
+export default DimmerInner

@@ -1,25 +1,25 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { ButtonProps } from '../../elements/Button';
-import { SemanticShorthandCollection, SemanticShorthandContent } from '../..';
+import { ButtonProps } from '../../elements/Button'
+import { SemanticShorthandCollection, SemanticShorthandContent } from '../..'
 
 export interface ModalActionsProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Array of shorthand buttons. */
-  actions?: SemanticShorthandCollection<ButtonProps>;
+  actions?: SemanticShorthandCollection<ButtonProps>
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /**
    * onClick handler for an action. Mutually exclusive with children.
@@ -27,9 +27,9 @@ export interface ModalActionsProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All item props.
    */
-  onActionClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: ButtonProps) => void;
+  onActionClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: ButtonProps) => void
 }
 
-declare const ModalActions: React.ComponentClass<ModalActionsProps>;
+declare const ModalActions: React.ComponentClass<ModalActionsProps>
 
-export default ModalActions;
+export default ModalActions

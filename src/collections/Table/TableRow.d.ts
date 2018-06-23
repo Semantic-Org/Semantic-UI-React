@@ -1,51 +1,51 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticVERTICALALIGNMENTS } from '../..';
-import { TableCellProps } from './TableCell';
+import { SemanticShorthandCollection, SemanticVERTICALALIGNMENTS } from '../..'
+import { TableCellProps } from './TableCell'
 
 export interface TableRowProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A row can be active or selected by a user. */
-  active?: boolean;
+  active?: boolean
 
   /** An element type to render as (string or function). */
-  cellAs?: any;
+  cellAs?: any
 
   /** Shorthand array of props for TableCell. */
-  cells?: SemanticShorthandCollection<TableCellProps>;
+  cells?: SemanticShorthandCollection<TableCellProps>
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A row can be disabled. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** A row may call attention to an error or a negative value. */
-  error?: boolean;
+  error?: boolean
 
   /** A row may let a user know whether a value is bad. */
-  negative?: boolean;
+  negative?: boolean
 
   /** A row may let a user know whether a value is good. */
-  positive?: boolean;
+  positive?: boolean
 
   /** A table row can adjust its text alignment. */
-  textAlign?: 'center' | 'left' | 'right';
+  textAlign?: 'center' | 'left' | 'right'
 
   /** A table row can adjust its vertical alignment. */
-  verticalAlign?: SemanticVERTICALALIGNMENTS;
+  verticalAlign?: SemanticVERTICALALIGNMENTS
 
   /** A row may warn a user. */
-  warning?: boolean;
+  warning?: boolean
 }
 
-declare const TableRow: React.StatelessComponent<TableRowProps>;
+declare const TableRow: React.StatelessComponent<TableRowProps>
 
-export default TableRow;
+export default TableRow

@@ -1,28 +1,28 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface RevealContentProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A reveal may contain content that is visible before interaction. */
-  hidden?: boolean;
+  hidden?: boolean
 
   /** A reveal may contain content that is hidden before user interaction. */
-  visible?: boolean;
+  visible?: boolean
 }
 
-declare const RevealContent: React.StatelessComponent<RevealContentProps>;
+declare const RevealContent: React.StatelessComponent<RevealContentProps>
 
-export default RevealContent;
+export default RevealContent

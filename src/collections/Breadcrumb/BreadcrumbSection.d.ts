@@ -1,29 +1,29 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface BreadcrumbSectionProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Style as the currently active section. */
-  active?: boolean;
+  active?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
-  href?: string;
+  href?: string
 
   /** Render as an `a` tag instead of a `div`. */
-  link?: boolean;
+  link?: boolean
 
   /**
    * Called on click. When passed, the component will render as an `a`
@@ -32,9 +32,9 @@ export interface BreadcrumbSectionProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: BreadcrumbSectionProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: BreadcrumbSectionProps) => void
 }
 
-declare const BreadcrumbSection: React.ComponentClass<BreadcrumbSectionProps>;
+declare const BreadcrumbSection: React.ComponentClass<BreadcrumbSectionProps>
 
-export default BreadcrumbSection;
+export default BreadcrumbSection
