@@ -89,7 +89,7 @@ class ComponentDoc extends Component {
               />
               <ComponentDocSee seeTags={seeTags} />
               <ComponentDocLinks
-                displayName={componentInfo.displayName}
+                displayName={displayName}
                 parentDisplayName={componentInfo.parentDisplayName}
                 repoPath={componentInfo.repoPath}
                 type={componentInfo.type}
@@ -101,10 +101,7 @@ class ComponentDoc extends Component {
           <Grid.Row columns='equal'>
             <Grid.Column>
               <div ref={this.handleExamplesRef}>
-                <ComponentExamples
-                  displayName={componentInfo.displayName}
-                  type={componentInfo.type}
-                />
+                <ComponentExamples displayName={displayName} type={componentInfo.type} />
               </div>
               <div style={exampleEndStyle}>
                 This is the bottom <Icon name='pointing down' />
