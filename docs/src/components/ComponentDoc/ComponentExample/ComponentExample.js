@@ -1,11 +1,12 @@
 import * as Babel from '@babel/standalone'
+import copyToClipboard from 'copy-to-clipboard'
+import { html } from 'js-beautify'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { PureComponent, createElement, isValidElement } from 'react'
 import { withRouter } from 'react-router'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { html } from 'js-beautify'
-import copyToClipboard from 'copy-to-clipboard'
+import { Divider, Grid, Menu, Visibility } from 'semantic-ui-react'
 
 import {
   exampleContext,
@@ -14,7 +15,6 @@ import {
   repoURL,
   scrollToAnchor,
 } from 'docs/src/utils'
-import { Divider, Grid, Menu, Visibility } from 'src'
 import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'

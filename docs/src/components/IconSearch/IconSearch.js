@@ -2,9 +2,9 @@ import copyToClipboard from 'copy-to-clipboard'
 import _ from 'lodash/fp'
 import leven from 'leven'
 import React, { Component } from 'react'
+import { Form, Grid, Header, Icon, Message, Popup } from 'semantic-ui-react'
 
-import { SUI } from 'src/lib'
-import { Form, Grid, Header, Icon, Message, Popup } from 'src'
+import * as SUI from 'src/lib/SUI'
 
 const gridStyle = {
   background: '#fff',

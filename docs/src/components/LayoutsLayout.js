@@ -2,8 +2,8 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { NavLink, Route } from 'react-router-dom'
+import { Button } from 'semantic-ui-react'
 
-import { Button } from 'src'
 import { getUnhandledProps } from 'src/lib'
 import { repoURL } from 'docs/src/utils'
 
