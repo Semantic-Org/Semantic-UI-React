@@ -7,6 +7,7 @@ import ContributionPrompt from '../ContributionPrompt'
 export default class ComponentExamples extends Component {
   static propTypes = {
     displayName: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
   }
 
   renderExamples = () => {
