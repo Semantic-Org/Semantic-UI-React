@@ -1,5 +1,7 @@
-const isDocs = !!process.env.REACT_STATIC_ENV
 const nodeEnv = process.env.NODE_ENV
+
+const docsBuild = !!process.env.REACT_STATIC_ENV
+const libBuild = nodeEnv === 'build' || nodeEnv === 'build-es'
 
 const buildFactory = () => {
   const plugins = [
@@ -9,31 +11,34 @@ const buildFactory = () => {
     '@babel/plugin-syntax-dynamic-import',
     'lodash',
     'transform-react-handled-props',
-    [
-      'transform-react-remove-prop-types',
-      {
-        mode: 'wrap',
-      },
-    ],
+    // [
+    //   'transform-react-remove-prop-types',
+    //   {
+    //     mode: 'wrap',
+    //   },
+    // ],
     [
       '@babel/transform-runtime',
       {
         polyfill: false,
-        regenerator: false,
+        regenerator: true,
       },
     ],
   ]
 
-  if (nodeEnv === 'build' || nodeEnv === 'build-es')
-    plugins.push([
-      'filter-imports',
-      {
-        imports: {
-          debug: ['default'],
-          '../../lib': ['makeDebugger'],
-        },
-      },
-    ])
+  // if (libBuild)
+  //   plugins.push([
+  //     'filter-imports',
+  //     {
+  //       imports: {
+  //         debug: ['default'],
+  //         '../../lib': ['makeDebugger'],
+  //       },
+  //     },
+  //   ])
+
+  // if (docsBuild)
+    plugins.push("universal-import")
 
   const browsers = [
     'last 8 versions',
@@ -50,8 +55,9 @@ const buildFactory = () => {
       [
         '@babel/env',
         {
-          modules: nodeEnv === 'build-es' ? false : 'commonjs',
+        //   modules: nodeEnv === 'build-es' || docsBuild ? false : 'commonjs',
           targets: { browsers },
+          node: "current",
         },
       ],
       '@babel/react',
@@ -68,14 +74,4 @@ const buildFactory = () => {
   }
 }
 
-const docsPreset = {
-  presets: ['react-static/babel-preset.js'],
-  plugins: ['lodash', 'transform-react-handled-props'],
-  env: {
-    production: {
-      plugins: ['transform-react-remove-prop-types'],
-    },
-  },
-}
-
-module.exports = isDocs ? docsPreset : buildFactory
+module.exports = buildFactory

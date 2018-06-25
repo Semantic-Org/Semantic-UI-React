@@ -1,7 +1,5 @@
-import _ from 'lodash'
 import webpack from 'webpack'
 
-import babelPreset from './.babel-preset'
 import config from './config'
 import getRoutes from './static.routes'
 import Document from './docs/src/components/Document'
@@ -30,7 +28,7 @@ export default {
     public: 'docs/public',
   },
   siteRoot: 'https://react.semantic-ui.com',
-  webpack: (webpackConfig, { defaultLoaders, stage }) => ({
+  webpack: (webpackConfig, { stage }) => ({
     ...webpackConfig,
     devtool: config.compiler_devtool,
     externals:
@@ -49,37 +47,30 @@ export default {
       stage === 'prod'
         ? {
           main: config.paths.docsSrc('index.js'),
-          vendor: config.paths.src('index.js'),
+          suir: config.paths.src('index.js'),
         }
         : webpackConfig.entry,
     module: {
       ...webpackConfig.module,
-      noParse: [/\.json$/, /anchor-js/, /@babel\/standalone/, /faker/],
+      noParse: [/\.json$/, /anchor-js/, /brace/, /@babel\/standalone/, /faker/],
       rules: [
         {
-          oneOf: [
-            {
-              ...defaultLoaders.jsLoader,
-              use: [
-                {
-                  loader: 'babel-loader',
-                  options: {
-                    ...babelPreset,
-                    babelrc: false,
-                    cacheDirectory: true,
-                  },
-                },
-              ],
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
             },
-          ],
+          },
         },
       ],
     },
     plugins: [
       stage === 'prod' &&
         new webpack.optimize.CommonsChunkPlugin({
-          name: 'vendor',
-          minChunks: module => /node_modules/.test(module.resource),
+          name: 'suir',
+          minChunks: Infinity,
         }),
       // Heads up!
       // An order there is important because react-static already uses CommonChunkPlugin, it will save your life!
@@ -90,7 +81,10 @@ export default {
       alias: {
         'semantic-ui-react': config.paths.src('index.js'),
       },
-      modules: _.uniq([config.paths.base(), 'node_modules', ...webpackConfig.resolve.modules]),
+      modules: [config.paths.base(), config.paths.base('node_modules'), ...webpackConfig.resolve.modules],
+    },
+    resolveLoader: {
+      modules: [config.paths.base('node_modules'), 'node_modules'],
     },
   }),
 }

@@ -1,6 +1,7 @@
 import { task, src, dest, lastRun, parallel, series, watch } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import path from 'path'
+import { build, start } from 'react-static/node'
 import rimraf from 'rimraf'
 
 import sh from '../sh'
@@ -56,13 +57,12 @@ task(
 // ----------------------------------------
 
 task('build:docs:static:build', (cb) => {
-  // TODO: REACT-STATIC
-  cb()
+  build({ debug: true, staging: true }).then(cb)
 })
 
 task('build:docs:static:start', (cb) => {
+  start()
   cb()
-  // TODO: REACT-STATIC
 })
 
 // ----------------------------------------
