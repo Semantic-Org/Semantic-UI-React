@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Accordion, Form, Menu, Sticky, Tab } from 'semantic-ui-react'
+import { Accordion, Button, Icon, Form, Menu, Popup, Sticky, Tab } from 'semantic-ui-react'
 
 import ComponentSidebarSection from './ComponentSidebarSection'
 
@@ -29,8 +29,18 @@ class ComponentSidebar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.fetchSections(nextProps)
-    this.fetchVariables(nextProps)
+    if (this.props.displayName !== nextProps.displayName) {
+      this.fetchSections(nextProps)
+      this.fetchVariables(nextProps)
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const didFieldsChange = !_.isEqual(this.state.fields, prevState.fields)
+
+    if (didFieldsChange) {
+      this.modifyVars()
+    }
   }
 
   fetchSections = ({ displayName } = this.props) => {
@@ -46,50 +56,67 @@ class ComponentSidebar extends Component {
       displayName,
     )}.variables`)
       .then((variables) => {
-        const fields = variables.match(propertyValueRegExp).map(match =>
-          match
+        const fields = variables.match(propertyValueRegExp).map((match) => {
+          const [property, value] = match
             .replace(/;$/, '')
             .split(':')
-            .map(part => part.trim()),
-        )
-        this.setState({ variables, fields })
+            .map(part => part.replace(/\n/, '').trim())
+
+          return { property, value, defaultValue: value }
+        })
+        this.setState({ fields })
       })
       .catch(() => {
-        this.setState({ variables: null, fields: null })
+        this.setState({ fields: null })
       })
   }
 
-  handleVariablesChange = _.debounce((e, { value }) => {
-    try {
-      // eslint-disable-next-line no-eval
-      const varsObject = eval(`(function(){ return ${value} })()`)
-      if (!varsObject) return
+  modifyVars = _.debounce(() => {
+    const { fields } = this.state
 
-      this.setState({ error: null, isLessCompiling: true })
-      window.less
-        .modifyVars(varsObject)
-        .then(() => {
-          this.setState({ error: null, isLessCompiling: false })
-        })
-        .catch((err) => {
-          this.setState({ error: err.message, isLessCompiling: false })
-        })
-    } catch (err) {
-      this.setState({ error: err.message, isLessCompiling: false })
-    }
+    this.setState({ error: null })
+
+    const vars = fields.reduce((acc, { property, value }) => {
+      acc[property] = value
+      return acc
+    }, {})
+
+    window.less
+      .modifyVars(vars)
+      .then(() => {
+        this.setState({ error: null })
+      })
+      .catch((err) => {
+        this.setState({ error: err.message })
+      })
   }, 500)
+
+  handleVariablesChange = (e, { name, value }) => {
+    const fields = _.cloneDeep(this.state.fields)
+    const index = _.findIndex(fields, { property: name })
+
+    fields[index].value = value
+
+    this.setState({ error: null, fields })
+  }
+
+  handleResetClick = field => () => {
+    this.handleVariablesChange(null, { name: field.property, value: field.defaultValue })
+  }
 
   render() {
     const { activePath, examplesRef, onItemClick } = this.props
-    const { error, fields, isLessCompiling, variables, sections } = this.state
+    const { error, fields, sections } = this.state
 
     return (
       <Sticky context={examplesRef} offset={15}>
         <Tab
+          defaultActiveIndex={1}
           menu={{ secondary: true, pointing: true }}
           panes={[
             {
-              menuItem: { key: 'Examples', as: 'div', content: 'Examples' },
+              key: 'examples',
+              menuItem: 'Examples',
               render: () => (
                 <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
                   {_.map(sections, ({ examples, sectionName }) => (
@@ -105,22 +132,37 @@ class ComponentSidebar extends Component {
               ),
             },
             {
-              menuItem: { key: 'Variables', as: 'div', content: 'Variables' },
+              key: 'variables',
+              menuItem: 'Variables',
               render: () => (
-                <Form loading={isLessCompiling}>
-                  {_.map(fields, ([label, defaultValue]) => (
-                    <Form.TextArea
-                      autoHeight
-                      label={label}
-                      defaultValue={defaultValue}
-                      rows={1}
-                      onChange={this.handleVariablesChange}
-                    />
-                  ))}
+                <div>
                   {error}
-                  <hr />
-                  <pre>{variables}</pre>
-                </Form>
+                  <Form style={{ maxHeight: '60vh', overflowX: 'hidden' }}>
+                    {_.map(fields, field => (
+                      <Form.Input
+                        key={field.property}
+                        name={field.property}
+                        value={field.value}
+                        label={field.property}
+                        action={
+                          field.value !== field.defaultValue && (
+                            <Popup
+                              size='tiny'
+                              inverted
+                              content={field.defaultValue}
+                              trigger={
+                                <Button onClick={this.handleResetClick(field)}>
+                                  Reset <Icon name='refresh' />
+                                </Button>
+                              }
+                            />
+                          )
+                        }
+                        onChange={this.handleVariablesChange}
+                      />
+                    ))}
+                  </Form>
+                </div>
               ),
             },
           ]}
