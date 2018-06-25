@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Input from 'src/elements/Input/Input'
-import Icon from 'src/elements/Icon/Icon'
 import { htmlInputProps, SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
@@ -262,44 +261,44 @@ describe('Input', () => {
   })
 
   describe('icon', () => {
-    it('is not first child', () => {
+    it('is second child', () => {
       shallow(<Input icon='search' />)
         .children()
-        .first()
-        .is(Icon)
-        .should.not.be.true()
+        .at(1)
+        .is('Icon')
+        .should.be.true()
     })
 
-    it('is not first child with action positioned left', () => {
+    it('is third child with action positioned left', () => {
       shallow(<Input icon='search' action='foo' actionPosition='left' />)
         .children()
-        .first()
-        .is(Icon)
-        .should.not.be.true()
+        .at(2)
+        .is('Icon')
+        .should.be.true()
     })
 
-    it('is not first child with label', () => {
+    it('is third child with label', () => {
       shallow(<Input icon='search' label='foo' />)
         .children()
-        .first()
-        .is(Icon)
-        .should.not.be.true()
+        .at(2)
+        .is('Icon')
+        .should.be.true()
     })
 
-    it('is not last child if contains action', () => {
+    it('is second child with action', () => {
       shallow(<Input icon='search' iconPosition='left' action='foo' />)
         .children()
-        .last()
-        .is(Icon)
-        .should.not.be.true()
+        .at(1)
+        .is('Icon')
+        .should.be.true()
     })
 
-    it('is not last child if contains label positioned right', () => {
+    it('is second child with label positioned right', () => {
       shallow(<Input icon='search' iconPosition='left' label='foo' labelPosition='right' />)
         .children()
-        .last()
-        .is(Icon)
-        .should.not.be.true()
+        .at(1)
+        .is('Icon')
+        .should.be.true()
     })
   })
 })
