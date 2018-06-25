@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export interface PortalInnerProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** Primary content. */
-  children: React.ReactNode;
+  children: React.ReactNode
 
   /** The node where the portal should mount. */
-  mountNode?: any;
+  mountNode?: any
 
   /**
    * Called when the PortalInner is mounted on the DOM.
@@ -15,7 +15,7 @@ export interface PortalInnerProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onMount?: (nothing: null, data: PortalInnerProps) => void;
+  onMount?: (nothing: null, data: PortalInnerProps) => void
 
   /**
    * Called when the PortalInner is unmounted from the DOM.
@@ -23,9 +23,9 @@ export interface PortalInnerProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onUnmount?: (nothing: null, data: PortalInnerProps) => void;
+  onUnmount?: (nothing: null, data: PortalInnerProps) => void
 }
 
 declare class PortalInner extends React.Component<PortalInnerProps, {}> {}
 
-export default PortalInner;
+export default PortalInner

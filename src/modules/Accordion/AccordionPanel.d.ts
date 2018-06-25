@@ -1,20 +1,20 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandItem } from '../../';
-import { AccordionContentProps } from './AccordionContent';
-import { AccordionTitleProps } from './AccordionTitle';
+import { SemanticShorthandItem } from '../../'
+import { AccordionContentProps } from './AccordionContent'
+import { AccordionTitleProps } from './AccordionTitle'
 
 export interface AccordionPanelProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** Whether or not the title is in the open state. */
-  active?: boolean;
+  active?: boolean
 
   /** A shorthand for Accordion.Content. */
-  content?: SemanticShorthandItem<AccordionContentProps>;
+  content?: SemanticShorthandItem<AccordionContentProps>
 
   /** A panel index. */
-  index?: number | string;
+  index?: number | string
 
   /**
    * Called when a panel title is clicked.
@@ -22,12 +22,12 @@ export interface AccordionPanelProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {AccordionTitleProps} data - All item props.
    */
-  onTitleClick?: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void;
+  onTitleClick?: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void
 
   /** A shorthand for Accordion.Title. */
-  title?: SemanticShorthandItem<AccordionTitleProps>;
+  title?: SemanticShorthandItem<AccordionTitleProps>
 }
 
 declare class AccordionPanel extends React.Component<AccordionPanelProps, {}> {}
 
-export default AccordionPanel;
+export default AccordionPanel

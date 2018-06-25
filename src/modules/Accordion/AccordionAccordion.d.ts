@@ -37,6 +37,6 @@ export interface AccordionAccordionProps {
   panels?: SemanticShorthandCollection<AccordionPanelProps>
 }
 
-declare const AccordionAccordion: React.ComponentClass<AccordionAccordionProps>;
+declare const AccordionAccordion: React.ComponentClass<AccordionAccordionProps>
 
 export default AccordionAccordion
