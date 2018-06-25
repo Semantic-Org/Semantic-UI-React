@@ -53,11 +53,11 @@ export interface IconProps {
   /** Size of the icon. */
   size?: IconSizeProp
 
-  /** Icon can have an aria label. */
-  'aria-label'?: string
-
   /** Icon can have an aria hidden. */
   'aria-hidden'?: string
+
+  /** Icon can have an aria label. */
+  'aria-label'?: string
 }
 
 declare class Icon extends React.Component<IconProps, {}> {

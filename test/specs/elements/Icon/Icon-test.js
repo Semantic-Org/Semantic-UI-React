@@ -32,19 +32,6 @@ describe('Icon', () => {
     shallow(<Icon />).should.have.tagName('i')
   })
 
-  describe('aria-label', () => {
-    it('should not applied by default', () => {
-      shallow(<Icon />).should.have.not.prop('aria-label')
-    })
-
-    it('should pass value and omit aria-hidden when is set', () => {
-      const wrapper = shallow(<Icon aria-label='icon' />)
-
-      wrapper.should.not.have.prop('aria-hidden')
-      wrapper.should.have.prop('aria-label', 'icon')
-    })
-  })
-
   describe('aria-hidden', () => {
     it('should add aria-hidden by default', () => {
       shallow(<Icon />).should.have.prop('aria-hidden', 'true')
@@ -60,6 +47,19 @@ describe('Icon', () => {
         'aria-hidden',
         'false',
       )
+    })
+  })
+
+  describe('aria-label', () => {
+    it('should not applied by default', () => {
+      shallow(<Icon />).should.have.not.prop('aria-label')
+    })
+
+    it('should pass value and omit aria-hidden when is set', () => {
+      const wrapper = shallow(<Icon aria-label='icon' />)
+
+      wrapper.should.not.have.prop('aria-hidden')
+      wrapper.should.have.prop('aria-label', 'icon')
     })
   })
 })

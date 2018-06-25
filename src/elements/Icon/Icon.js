@@ -67,10 +67,10 @@ class Icon extends Component {
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 
     /** Icon can have an aria label. */
-    'aria-label': PropTypes.string,
+    'aria-hidden': PropTypes.string,
 
     /** Icon can have an aria label. */
-    'aria-hidden': PropTypes.string,
+    'aria-label': PropTypes.string,
   }
 
   static defaultProps = {
