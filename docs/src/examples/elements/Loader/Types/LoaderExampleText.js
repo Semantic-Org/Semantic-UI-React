@@ -8,7 +8,7 @@ const LoaderExampleText = () => (
         <Loader>Loading</Loader>
       </Dimmer>
 
-      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -16,7 +16,7 @@ const LoaderExampleText = () => (
         <Loader inverted>Loading</Loader>
       </Dimmer>
 
-      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/images/wireframe/short-paragraph.png' />
     </Segment>
   </div>
 )

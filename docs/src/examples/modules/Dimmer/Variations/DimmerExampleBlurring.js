@@ -16,10 +16,10 @@ export default class DimmerExampleBlurring extends Component {
           <Dimmer active={active} onClickOutside={this.handleHide} />
 
           <p>
-            <Image src='/assets/images/wireframe/short-paragraph.png' />
+            <Image src='/images/wireframe/short-paragraph.png' />
           </p>
           <p>
-            <Image src='/assets/images/wireframe/short-paragraph.png' />
+            <Image src='/images/wireframe/short-paragraph.png' />
           </p>
         </Dimmer.Dimmable>
 

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'semantic-ui-react'
 
 import Editor from 'docs/src/components/Editor/Editor'
+import Logo from 'docs/src/components/Logo/Logo'
 import { semanticUIDocsURL, repoURL } from 'docs/src/utils'
 import pkg from 'package.json'
-import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'src'
-import Logo from '../components/Logo/Logo'
 
 const AccordionJSX = `const panels = [{
   title: 'What is a dog?',

@@ -5,7 +5,7 @@ const LoaderExampleInverted = () => (
   <Segment inverted>
     <Loader active inverted />
 
-    <Image src='/assets/images/wireframe/short-paragraph.png' />
+    <Image src='/images/wireframe/short-paragraph.png' />
   </Segment>
 )
 

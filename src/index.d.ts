@@ -1,54 +1,54 @@
-import * as React from 'react';
+import * as React from 'react'
 
 // ======================================================
 // Alignments
 // ======================================================
 
-export type SemanticFLOATS = 'left' | 'right';
-export type SemanticTEXTALIGNMENTS = 'left' | 'center' | 'right' | 'justified';
-export type SemanticVERTICALALIGNMENTS = 'top' | 'middle' | 'bottom';
+export type SemanticFLOATS = 'left' | 'right'
+export type SemanticTEXTALIGNMENTS = 'left' | 'center' | 'right' | 'justified'
+export type SemanticVERTICALALIGNMENTS = 'top' | 'middle' | 'bottom'
 
 // ======================================================
 // Common element's props
 // ======================================================
 
 export interface HtmlLabelProps {
-  [key: string]: any;
+  [key: string]: any
 
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
 export interface HtmlIframeProps {
-  [key: string]: any;
+  [key: string]: any
 
-  src?: string;
+  src?: string
 }
 
 export interface HtmlImageProps {
-  [key: string]: any;
+  [key: string]: any
 
-  src?: string;
+  src?: string
 }
 
 export interface HtmlInputrops {
-  [key: string]: any;
+  [key: string]: any
 
-  type?: string;
+  type?: string
 }
 
 export interface HtmlSpanProps {
-  [key: string]: any;
+  [key: string]: any
 
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
 // ======================================================
 // Types
 // ======================================================
 
-export type SemanticShorthandCollection<T> = Array<SemanticShorthandItem<T>>;
-export type SemanticShorthandContent = React.ReactNode;
-export type SemanticShorthandItem<T> = React.ReactNode | T;
+export type SemanticShorthandCollection<T> = SemanticShorthandItem<T>[]
+export type SemanticShorthandContent = React.ReactNode
+export type SemanticShorthandItem<T> = React.ReactNode | T
 
 // ======================================================
 // Styling
@@ -67,7 +67,7 @@ export type SemanticCOLORS =
   | 'pink'
   | 'brown'
   | 'grey'
-  | 'black';
+  | 'black'
 export type SemanticSIZES =
   | 'mini'
   | 'tiny'
@@ -76,7 +76,7 @@ export type SemanticSIZES =
   | 'large'
   | 'big'
   | 'huge'
-  | 'massive';
+  | 'massive'
 
 // ======================================================
 // Transitions
@@ -106,7 +106,7 @@ type SemanticDIRECTIONALTRANSITIONS =
   | 'swing down'
   | 'swing left'
   | 'swing right'
-  | 'zoom';
+  | 'zoom'
 type SemanticSTATICTRANSITIONS =
   | 'jiggle'
   | 'flash'
@@ -114,15 +114,15 @@ type SemanticSTATICTRANSITIONS =
   | 'pulse'
   | 'tada'
   | 'bounce'
-  | 'glow';
+  | 'glow'
 
-export type SemanticTRANSITIONS = SemanticDIRECTIONALTRANSITIONS | SemanticSTATICTRANSITIONS;
+export type SemanticTRANSITIONS = SemanticDIRECTIONALTRANSITIONS | SemanticSTATICTRANSITIONS
 
 // ======================================================
 // Widths
 // ======================================================
 
-type SemanticWIDTHSNUMBER = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+type SemanticWIDTHSNUMBER = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16
 type SemanticWIDTHSSTRING =
   | '1'
   | '2'
@@ -155,9 +155,9 @@ type SemanticWIDTHSSTRING =
   | 'thirteen'
   | 'fourteen'
   | 'fifteen'
-  | 'sixteen';
+  | 'sixteen'
 
-export type SemanticWIDTHS = SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING;
+export type SemanticWIDTHS = SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING
 
 // ======================================================
 // Icon Names
@@ -2114,4 +2114,4 @@ export type SemanticICONS =
   | 'ticket'
   | 'times rectangle'
   | 'write'
-  | 'youtube play';
+  | 'youtube play'

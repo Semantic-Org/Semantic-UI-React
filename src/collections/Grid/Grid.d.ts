@@ -1,8 +1,8 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticTEXTALIGNMENTS, SemanticVERTICALALIGNMENTS, SemanticWIDTHS } from '../..';
-import GridColumn from './GridColumn';
-import GridRow from './GridRow';
+import { SemanticTEXTALIGNMENTS, SemanticVERTICALALIGNMENTS, SemanticWIDTHS } from '../..'
+import GridColumn from './GridColumn'
+import GridRow from './GridRow'
 
 export type GridReversedProp =
   | string
@@ -11,68 +11,68 @@ export type GridReversedProp =
   | 'mobile'
   | 'mobile vertically'
   | 'tablet'
-  | 'tablet vertically';
+  | 'tablet vertically'
 
 export interface GridProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A grid can have rows divided into cells. */
-  celled?: boolean | 'internally';
+  celled?: boolean | 'internally'
 
   /** A grid can have its columns centered. */
-  centered?: boolean;
+  centered?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Represents column count per row in Grid. */
-  columns?: SemanticWIDTHS | 'equal';
+  columns?: SemanticWIDTHS | 'equal'
 
   /** A grid can be combined with a container to use avaiable layout and alignment. */
-  container?: boolean;
+  container?: boolean
 
   /** A grid can have dividers between its columns. */
-  divided?: boolean | 'vertically';
+  divided?: boolean | 'vertically'
 
   /** A grid can double its column width on tablet and mobile sizes. */
-  doubling?: boolean;
+  doubling?: boolean
 
   /** A grid's colors can be inverted. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** A grid can preserve its vertical and horizontal gutters on first and last columns. */
-  padded?: boolean | 'horizontally' | 'vertically';
+  padded?: boolean | 'horizontally' | 'vertically'
 
   /** A grid can increase its gutters to allow for more negative space. */
-  relaxed?: boolean | 'very';
+  relaxed?: boolean | 'very'
 
   /** A grid can specify that its columns should reverse order at different device sizes. */
-  reversed?: GridReversedProp;
+  reversed?: GridReversedProp
 
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
-  stackable?: boolean;
+  stackable?: boolean
 
   /** An can stretch its contents to take up the entire grid height. */
-  stretched?: boolean;
+  stretched?: boolean
 
   /** A grid can specify its text alignment. */
-  textAlign?: SemanticTEXTALIGNMENTS;
+  textAlign?: SemanticTEXTALIGNMENTS
 
   /** A grid can specify its vertical alignment to have all its columns vertically centered. */
-  verticalAlign?: SemanticVERTICALALIGNMENTS;
+  verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
 interface GridComponent extends React.StatelessComponent<GridProps> {
-  Column: typeof GridColumn;
-  Row: typeof GridRow;
+  Column: typeof GridColumn
+  Row: typeof GridRow
 }
 
-declare const Grid: GridComponent;
+declare const Grid: GridComponent
 
-export default Grid;
+export default Grid

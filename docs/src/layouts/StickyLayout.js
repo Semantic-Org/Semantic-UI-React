@@ -56,7 +56,7 @@ const LeftImage = () => (
   <Image
     floated='left'
     size='medium'
-    src='/assets/images/wireframe/square-image.png'
+    src='/images/wireframe/square-image.png'
     style={{ margin: '2em 2em 2em -4em' }}
   />
 )
@@ -65,7 +65,7 @@ const RightImage = () => (
   <Image
     floated='right'
     size='medium'
-    src='/assets/images/wireframe/square-image.png'
+    src='/images/wireframe/square-image.png'
     style={{ margin: '2em -4em 2em 2em' }}
   />
 )

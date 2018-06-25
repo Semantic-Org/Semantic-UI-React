@@ -5,22 +5,22 @@ const GridExampleRows = () => (
   <Grid columns={3}>
     <Grid.Row>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/paragraph.png' />
+        <Image src='/images/wireframe/paragraph.png' />
       </Grid.Column>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/paragraph.png' />
+        <Image src='/images/wireframe/paragraph.png' />
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/paragraph.png' />
+        <Image src='/images/wireframe/paragraph.png' />
       </Grid.Column>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/paragraph.png' />
+        <Image src='/images/wireframe/paragraph.png' />
       </Grid.Column>
       <Grid.Column>
-        <Image src='/assets/images/wireframe/paragraph.png' />
+        <Image src='/images/wireframe/paragraph.png' />
       </Grid.Column>
     </Grid.Row>
   </Grid>

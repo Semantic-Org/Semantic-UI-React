@@ -14,7 +14,7 @@ const TableExampleCollapsing = () => (
       <Table.Row>
         <Table.Cell>
           <Header as='h4' image>
-            <Image src='/assets/images/avatar/small/lena.png' rounded size='mini' />
+            <Image src='/images/avatar/small/lena.png' rounded size='mini' />
             <Header.Content>
               Lena
               <Header.Subheader>Human Resources</Header.Subheader>
@@ -26,7 +26,7 @@ const TableExampleCollapsing = () => (
       <Table.Row>
         <Table.Cell>
           <Header as='h4' image>
-            <Image src='/assets/images/avatar/small/matthew.png' rounded size='mini' />
+            <Image src='/images/avatar/small/matthew.png' rounded size='mini' />
             <Header.Content>
               Matthew
               <Header.Subheader>Fabric Design</Header.Subheader>
@@ -38,7 +38,7 @@ const TableExampleCollapsing = () => (
       <Table.Row>
         <Table.Cell>
           <Header as='h4' image>
-            <Image src='/assets/images/avatar/small/lindsay.png' rounded size='mini' />
+            <Image src='/images/avatar/small/lindsay.png' rounded size='mini' />
             <Header.Content>
               Lindsay
               <Header.Subheader>Entertainment</Header.Subheader>
@@ -50,7 +50,7 @@ const TableExampleCollapsing = () => (
       <Table.Row>
         <Table.Cell>
           <Header as='h4' image>
-            <Image src='/assets/images/avatar/small/mark.png' rounded size='mini' />
+            <Image src='/images/avatar/small/mark.png' rounded size='mini' />
             <Header.Content>
               Mark
               <Header.Subheader>Executive</Header.Subheader>

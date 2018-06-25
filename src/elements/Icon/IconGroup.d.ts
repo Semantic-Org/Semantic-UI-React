@@ -1,27 +1,27 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandContent } from '../..';
-import { IconSizeProp } from './Icon';
+import { SemanticShorthandContent } from '../..'
+import { IconSizeProp } from './Icon'
 
 export interface IconGroupProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Size of the icon group. */
-  size?: IconSizeProp;
+  size?: IconSizeProp
 }
 
-declare const IconGroup: React.StatelessComponent<IconGroupProps>;
+declare const IconGroup: React.StatelessComponent<IconGroupProps>
 
-export default IconGroup;
+export default IconGroup

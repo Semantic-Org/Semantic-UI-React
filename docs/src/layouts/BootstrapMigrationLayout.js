@@ -64,7 +64,7 @@ const BootstrapMigrationLayout = () => (
         <Header as='h1'>Thumbnails</Header>
         <Divider />
 
-        <Image size='small' src='/assets/images/wireframe/image.png' />
+        <Image size='small' src='/images/wireframe/image.png' />
       </Grid.Column>
     </Grid.Row>
 

@@ -1,18 +1,18 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticVERTICALALIGNMENTS } from '../..';
-import { IconProps } from '../Icon';
+import { SemanticVERTICALALIGNMENTS } from '../..'
+import { IconProps } from '../Icon'
 
 export interface ListIconProps extends IconProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** An element inside a list can be vertically aligned. */
-  verticalAlign?: SemanticVERTICALALIGNMENTS;
+  verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-declare const ListIcon: React.StatelessComponent<ListIconProps>;
+declare const ListIcon: React.StatelessComponent<ListIconProps>
 
-export default ListIcon;
+export default ListIcon

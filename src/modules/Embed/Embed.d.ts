@@ -1,52 +1,52 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { HtmlIframeProps, SemanticShorthandContent, SemanticShorthandItem } from '../..';
-import { IconProps } from '../../elements/Icon';
+import { HtmlIframeProps, SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { IconProps } from '../../elements/Icon'
 
 export interface EmbedProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** An embed can be active. */
-  active?: boolean;
+  active?: boolean
 
   /** An embed can specify an alternative aspect ratio. */
-  aspectRatio?: '4:3' | '16:9' | '21:9';
+  aspectRatio?: '4:3' | '16:9' | '21:9'
 
   /** Setting to true or false will force autoplay. */
-  autoplay?: boolean;
+  autoplay?: boolean
 
   /** Whether to show networks branded UI like title cards, or after video calls to action. */
-  brandedUI?: boolean;
+  brandedUI?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Specifies a default chrome color with Vimeo or YouTube. */
-  color?: string;
+  color?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Initial value of active. */
-  defaultActive?: boolean;
+  defaultActive?: boolean
 
   /** Whether to prefer HD content. */
-  hd?: boolean;
+  hd?: boolean
 
   /** Specifies an icon to use with placeholder content. */
-  icon?: SemanticShorthandItem<IconProps>;
+  icon?: SemanticShorthandItem<IconProps>
 
   /** Specifies an id for source. */
-  id?: string;
+  id?: string
 
   /** Shorthand for HTML iframe. */
-  iframe?: SemanticShorthandItem<HtmlIframeProps>;
+  iframe?: SemanticShorthandItem<HtmlIframeProps>
 
   /**
    * Сalled on click.
@@ -54,18 +54,18 @@ export interface EmbedProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed value.
    */
-  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: EmbedProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: EmbedProps) => void
 
   /** A placeholder image for embed. */
-  placeholder?: string;
+  placeholder?: string
 
   /** Specifies a source to use. */
-  source?: 'youtube' | 'vimeo';
+  source?: 'youtube' | 'vimeo'
 
   /** Specifies a url to use for embed. */
-  url?: string;
+  url?: string
 }
 
-declare const Embed: React.ComponentClass<EmbedProps>;
+declare const Embed: React.ComponentClass<EmbedProps>
 
-export default Embed;
+export default Embed

@@ -1,34 +1,34 @@
-import * as React from 'react';
-import { SemanticCOLORS, SemanticShorthandContent, SemanticSIZES } from '../..';
+import * as React from 'react'
+import { SemanticCOLORS, SemanticShorthandContent, SemanticSIZES } from '../..'
 
 export interface LabelGroupProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Labels can share shapes. */
-  circular?: boolean;
+  circular?: boolean
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Label group can share colors together. */
-  color?: SemanticCOLORS;
+  color?: SemanticCOLORS
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Label group can share sizes together. */
-  size?: SemanticSIZES;
+  size?: SemanticSIZES
 
   /** Label group can share tag formatting. */
-  tag?: boolean;
+  tag?: boolean
 }
 
-declare const LabelGroup: React.StatelessComponent<LabelGroupProps>;
+declare const LabelGroup: React.StatelessComponent<LabelGroupProps>
 
-export default LabelGroup;
+export default LabelGroup

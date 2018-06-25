@@ -3,7 +3,7 @@ import { Image } from 'semantic-ui-react'
 
 const ImageExampleLink = () => (
   <Image
-    src='/assets/images/wireframe/image-text.png'
+    src='/images/wireframe/image-text.png'
     as='a'
     size='medium'
     href='http://google.com'

@@ -6,7 +6,7 @@ const ModalExampleScrollingContent = () => (
   <Modal trigger={<Button>Scrolling Content Modal</Button>}>
     <Modal.Header>Profile Picture</Modal.Header>
     <Modal.Content image scrolling>
-      <Image size='medium' src='/assets/images/wireframe/image.png' wrapped />
+      <Image size='medium' src='/images/wireframe/image.png' wrapped />
 
       <Modal.Description>
         <Header>Modal Header</Header>
@@ -15,7 +15,7 @@ const ModalExampleScrollingContent = () => (
         {_.times(8, i => (
           <Image
             key={i}
-            src='/assets/images/wireframe/paragraph.png'
+            src='/images/wireframe/paragraph.png'
             style={{ paddingBottom: 5 }}
           />
         ))}

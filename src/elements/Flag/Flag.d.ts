@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export interface FlagProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Flag name, can use the two digit country code, the full name, or a common alias. */
   name:
@@ -501,9 +501,9 @@ export interface FlagProps {
     | 'zm'
     | 'zambia'
     | 'zw'
-    | 'zimbabwe';
+    | 'zimbabwe'
 }
 
 declare class Flag extends React.PureComponent<FlagProps, {}> {}
 
-export default Flag;
+export default Flag

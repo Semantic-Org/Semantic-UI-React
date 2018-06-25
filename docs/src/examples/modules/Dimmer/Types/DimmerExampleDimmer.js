@@ -15,11 +15,11 @@ export default class DimmerExampleDimmer extends Component {
         <Dimmer.Dimmable as={Segment} dimmed={active}>
           <Header as='h3'>Overlayable Section</Header>
           <Image.Group size='small' className='ui small images'>
-            <Image src='/assets/images/wireframe/image.png' />
-            <Image src='/assets/images/wireframe/image.png' />
-            <Image src='/assets/images/wireframe/image.png' />
+            <Image src='/images/wireframe/image.png' />
+            <Image src='/images/wireframe/image.png' />
+            <Image src='/images/wireframe/image.png' />
           </Image.Group>
-          <Image size='medium' src='/assets/images/wireframe/media-paragraph.png' />
+          <Image size='medium' src='/images/wireframe/media-paragraph.png' />
 
           <Dimmer active={active} onClickOutside={this.handleHide} />
         </Dimmer.Dimmable>

@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export interface PaginationItemProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** A pagination item can be active. */
-  active?: boolean;
+  active?: boolean
 
   /** A pagination item can be disabled. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /**
    * Called on click.
@@ -15,7 +15,7 @@ export interface PaginationItemProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: PaginationItemProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: PaginationItemProps) => void
 
   /**
    * Called on key down.
@@ -23,13 +23,12 @@ export interface PaginationItemProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onKeyDown?: (event: React.MouseEvent<HTMLAnchorElement>, data: PaginationItemProps) => void;
+  onKeyDown?: (event: React.MouseEvent<HTMLAnchorElement>, data: PaginationItemProps) => void
 
   /** A pagination should have a type. */
-  type?: 'ellipsisItem' | 'firstItem' | 'prevItem' | 'pageItem' | 'nextItem' | 'lastItem';
+  type?: 'ellipsisItem' | 'firstItem' | 'prevItem' | 'pageItem' | 'nextItem' | 'lastItem'
 }
 
-declare class PaginationItem extends React.Component<PaginationItemProps, {}> {
-}
+declare class PaginationItem extends React.Component<PaginationItemProps, {}> {}
 
-export default PaginationItem;
+export default PaginationItem

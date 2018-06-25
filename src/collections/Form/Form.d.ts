@@ -1,73 +1,73 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import FormField from './FormField';
-import FormButton from './FormButton';
-import FormCheckbox from './FormCheckbox';
-import FormDropdown from './FormDropdown';
-import FormGroup from './FormGroup';
-import FormInput from './FormInput';
-import FormRadio from './FormRadio';
-import FormSelect from './FormSelect';
-import FormTextArea from './FormTextArea';
+import FormField from './FormField'
+import FormButton from './FormButton'
+import FormCheckbox from './FormCheckbox'
+import FormDropdown from './FormDropdown'
+import FormGroup from './FormGroup'
+import FormInput from './FormInput'
+import FormRadio from './FormRadio'
+import FormSelect from './FormSelect'
+import FormTextArea from './FormTextArea'
 
 export interface FormProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** The HTML form action */
-  action?: string;
+  action?: string
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Automatically show any error Message children. */
-  error?: boolean;
+  error?: boolean
 
   /** A form can have its color inverted for contrast. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Automatically show a loading indicator. */
-  loading?: boolean;
+  loading?: boolean
 
   /** The HTML form submit handler. */
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>, data: FormProps) => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>, data: FormProps) => void
 
   /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
-  reply?: boolean;
+  reply?: boolean
 
   /** A form can vary in size. */
-  size?: string;
+  size?: string
 
   /** Automatically show any success Message children. */
-  success?: boolean;
+  success?: boolean
 
   /** A form can prevent itself from stacking on mobile. */
-  unstackable?: boolean;
+  unstackable?: boolean
 
   /** Automatically show any warning Message children. */
-  warning?: boolean;
+  warning?: boolean
 
   /** Forms can automatically divide fields to be equal width. */
-  widths?: 'equal';
+  widths?: 'equal'
 }
 
 export interface FormComponent extends React.StatelessComponent<FormProps> {
-  Field: typeof FormField;
-  Button: typeof FormButton;
-  Checkbox: typeof FormCheckbox;
-  Dropdown: typeof FormDropdown;
-  Group: typeof FormGroup;
-  Input: typeof FormInput;
-  Radio: typeof FormRadio;
-  Select: typeof FormSelect;
-  TextArea: typeof FormTextArea;
+  Field: typeof FormField
+  Button: typeof FormButton
+  Checkbox: typeof FormCheckbox
+  Dropdown: typeof FormDropdown
+  Group: typeof FormGroup
+  Input: typeof FormInput
+  Radio: typeof FormRadio
+  Select: typeof FormSelect
+  TextArea: typeof FormTextArea
 }
 
-declare const Form: FormComponent;
+declare const Form: FormComponent
 
-export default Form;
+export default Form

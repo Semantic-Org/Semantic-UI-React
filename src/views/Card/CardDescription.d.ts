@@ -1,25 +1,25 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface CardDescriptionProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A card description can adjust its text alignment. */
-  textAlign?: 'center' | 'left' | 'right';
+  textAlign?: 'center' | 'left' | 'right'
 }
 
-declare const CardDescription: React.StatelessComponent<CardDescriptionProps>;
+declare const CardDescription: React.StatelessComponent<CardDescriptionProps>
 
-export default CardDescription;
+export default CardDescription
