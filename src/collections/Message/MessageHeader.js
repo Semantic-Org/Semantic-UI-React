@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -25,12 +24,6 @@ function MessageHeader(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-MessageHeader._meta = {
-  name: 'MessageHeader',
-  parent: 'Message',
-  type: META.TYPES.COLLECTION,
 }
 
 MessageHeader.propTypes = {

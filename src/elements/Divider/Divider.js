@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -48,11 +47,6 @@ function Divider(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-Divider._meta = {
-  name: 'Divider',
-  type: META.TYPES.ELEMENT,
 }
 
 Divider.propTypes = {

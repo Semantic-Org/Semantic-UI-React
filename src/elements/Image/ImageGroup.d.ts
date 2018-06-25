@@ -1,25 +1,25 @@
-import * as React from 'react';
-import { SemanticSIZES, SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticSIZES, SemanticShorthandContent } from '../..'
 
 export interface ImageGroupProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A group of images can be formatted to have the same size. */
-  size?: SemanticSIZES;
+  size?: SemanticSIZES
 }
 
-declare const ImageGroup: React.StatelessComponent<ImageGroupProps>;
+declare const ImageGroup: React.StatelessComponent<ImageGroupProps>
 
-export default ImageGroup;
+export default ImageGroup

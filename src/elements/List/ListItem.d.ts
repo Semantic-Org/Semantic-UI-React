@@ -1,44 +1,44 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..';
-import { ImageProps } from '../Image';
-import { ListContentProps } from './ListContent';
-import { ListDescriptionProps } from './ListDescription';
-import { ListHeaderProps } from './ListHeader';
-import { ListIconProps } from './ListIcon';
+import { SemanticShorthandItem } from '../..'
+import { ImageProps } from '../Image'
+import { ListContentProps } from './ListContent'
+import { ListDescriptionProps } from './ListDescription'
+import { ListHeaderProps } from './ListHeader'
+import { ListIconProps } from './ListIcon'
 
 export interface ListItemProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A list item can active. */
-  active?: boolean;
+  active?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandItem<ListContentProps>;
+  content?: SemanticShorthandItem<ListContentProps>
 
   /** Shorthand for ListDescription. */
-  description?: SemanticShorthandItem<ListDescriptionProps>;
+  description?: SemanticShorthandItem<ListDescriptionProps>
 
   /** A list item can disabled. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** Shorthand for ListHeader. */
-  header?: SemanticShorthandItem<ListHeaderProps>;
+  header?: SemanticShorthandItem<ListHeaderProps>
 
   /** Shorthand for ListIcon. */
-  icon?: SemanticShorthandItem<ListIconProps>;
+  icon?: SemanticShorthandItem<ListIconProps>
 
   /** Shorthand for Image. */
-  image?: SemanticShorthandItem<ImageProps>;
+  image?: SemanticShorthandItem<ImageProps>
 
   /**
    * Called on click.
@@ -46,12 +46,12 @@ export interface ListItemProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: ListItemProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: ListItemProps) => void
 
   /** A value for an ordered list. */
-  value?: string;
+  value?: string
 }
 
-declare const ListItem: React.StatelessComponent<ListItemProps>;
+declare const ListItem: React.StatelessComponent<ListItemProps>
 
-export default ListItem;
+export default ListItem

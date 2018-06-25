@@ -1,11 +1,6 @@
 import React from 'react'
 
-import {
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 import Radio from '../../addons/Radio'
 import FormField from './FormField'
 
@@ -20,12 +15,6 @@ function FormRadio(props) {
   const ElementType = getElementType(FormRadio, props)
 
   return <ElementType {...rest} control={control} />
-}
-
-FormRadio._meta = {
-  name: 'FormRadio',
-  parent: 'Form',
-  type: META.TYPES.COLLECTION,
 }
 
 FormRadio.propTypes = {

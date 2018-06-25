@@ -4,10 +4,10 @@ import React from 'react'
 
 import {
   childrenUtils,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 function LabelDetail(props) {
@@ -23,12 +23,6 @@ function LabelDetail(props) {
   )
 }
 
-LabelDetail._meta = {
-  name: 'LabelDetail',
-  parent: 'Label',
-  type: META.TYPES.ELEMENT,
-}
-
 LabelDetail.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
@@ -42,5 +36,7 @@ LabelDetail.propTypes = {
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
 }
+
+LabelDetail.create = createShorthandFactory(LabelDetail, val => ({ content: val }))
 
 export default LabelDetail

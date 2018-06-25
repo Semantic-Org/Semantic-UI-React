@@ -7,7 +7,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Segment', () => {
   common.isConformant(Segment)
-  common.hasSubComponents(Segment, [SegmentGroup])
+  common.hasSubcomponents(Segment, [SegmentGroup])
   common.hasUIClassName(Segment)
   common.rendersChildren(Segment)
 

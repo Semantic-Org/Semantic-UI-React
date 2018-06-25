@@ -1,0 +1,17 @@
+.github/
+
+# editor configs
+.idea/
+.vscode/
+
+
+coverage/
+
+dist/
+dll/
+docs/src/componentInfo
+docs/src/componentMenu.json
+docs/src/exampleMenus
+docs/dist/
+
+package.json

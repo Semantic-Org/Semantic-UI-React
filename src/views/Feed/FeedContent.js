@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import FeedDate from './FeedDate'
 import FeedExtra from './FeedExtra'
@@ -16,41 +15,34 @@ import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
 
 function FeedContent(props) {
-  const {
-    children,
-    className,
-    content,
-    extraImages,
-    extraText,
-    date,
-    meta,
-    summary,
-  } = props
+  const { children, className, content, extraImages, extraText, date, meta, summary } = props
 
   const classes = cx('content', className)
   const rest = getUnhandledProps(FeedContent, props)
   const ElementType = getElementType(FeedContent, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
   }
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedDate, val => ({ content: val }), date)}
-      {createShorthand(FeedSummary, val => ({ content: val }), summary)}
+      {createShorthand(FeedDate, val => ({ content: val }), date, { autoGenerateKey: false })}
+      {createShorthand(FeedSummary, val => ({ content: val }), summary, { autoGenerateKey: false })}
       {content}
-      {createShorthand(FeedExtra, val => ({ text: true, content: val }), extraText)}
-      {createShorthand(FeedExtra, val => ({ images: val }), extraImages)}
-      {createShorthand(FeedMeta, val => ({ content: val }), meta)}
+      {createShorthand(FeedExtra, val => ({ text: true, content: val }), extraText, {
+        autoGenerateKey: false,
+      })}
+      {createShorthand(FeedExtra, val => ({ images: val }), extraImages, {
+        autoGenerateKey: false,
+      })}
+      {createShorthand(FeedMeta, val => ({ content: val }), meta, { autoGenerateKey: false })}
     </ElementType>
   )
-}
-
-FeedContent._meta = {
-  name: 'FeedContent',
-  parent: 'Feed',
-  type: META.TYPES.VIEW,
 }
 
 FeedContent.propTypes = {

@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 import Grid from '../../collections/Grid/Grid'
 import GridColumn from '../../collections/Grid/GridColumn'
@@ -25,19 +24,19 @@ class Tab extends Component {
     as: customPropTypes.as,
 
     /** The initial activeIndex. */
-    defaultActiveIndex: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    defaultActiveIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Index of the currently active tab. */
-    activeIndex: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    activeIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
-    /** Shorthand props for the Menu. */
+    /**
+     * Shorthand props for the Menu.
+     * tabular, if true, will derive final value from `menuPosition`, otherwise set 'left' or 'right' explicitly.
+     */
     menu: PropTypes.object,
+
+    /** Align vertical menu */
+    menuPosition: PropTypes.oneOf(['left', 'right']),
 
     /** Shorthand props for the Grid. */
     grid: PropTypes.object,
@@ -57,29 +56,24 @@ class Tab extends Component {
      * or
      * { menuItem: 'Home', pane: 'Welcome' }
      */
-    panes: PropTypes.arrayOf(PropTypes.shape({
-      menuItem: customPropTypes.itemShorthand,
-      pane: customPropTypes.itemShorthand,
-      render: PropTypes.func,
-    })),
+    panes: PropTypes.arrayOf(
+      PropTypes.shape({
+        menuItem: customPropTypes.itemShorthand,
+        pane: customPropTypes.itemShorthand,
+        render: PropTypes.func,
+      }),
+    ),
 
     /** A Tab can render only active pane. */
     renderActiveOnly: PropTypes.bool,
   }
 
-  static autoControlledProps = [
-    'activeIndex',
-  ]
+  static autoControlledProps = ['activeIndex']
 
   static defaultProps = {
     grid: { paneWidth: 12, tabWidth: 4 },
-    menu: { attached: true, tabular: true, aligned: 'left' },
+    menu: { attached: true, tabular: true },
     renderActiveOnly: true,
-  }
-
-  static _meta = {
-    name: 'Tab',
-    type: META.TYPES.MODULE,
   }
 
   static Pane = TabPane
@@ -98,18 +92,25 @@ class Tab extends Component {
     const { activeIndex } = this.state
 
     if (renderActiveOnly) return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props)
-    return _.map(panes, ({ pane }, index) => TabPane.create(pane, {
-      overrideProps: {
-        active: index === activeIndex,
-      },
-    }))
+    return _.map(panes, ({ pane }, index) =>
+      TabPane.create(pane, {
+        overrideProps: {
+          active: index === activeIndex,
+        },
+      }),
+    )
   }
 
   renderMenu() {
-    const { menu, panes } = this.props
+    const { menu, panes, menuPosition } = this.props
     const { activeIndex } = this.state
 
+    if (menu.tabular === true && menuPosition === 'right') {
+      menu.tabular = 'right'
+    }
+
     return Menu.create(menu, {
+      autoGenerateKey: false,
       overrideProps: {
         items: _.map(panes, 'menuItem'),
         onItemClick: this.handleItemClick,
@@ -119,18 +120,25 @@ class Tab extends Component {
   }
 
   renderVertical(menu) {
-    const { grid } = this.props
+    const { grid, menuPosition } = this.props
     const { paneWidth, tabWidth, ...gridProps } = grid
+
+    const position = menuPosition || (menu.props.tabular === 'right' && 'right') || 'left'
 
     return (
       <Grid {...gridProps}>
-        {menu.props.aligned !== 'right' && GridColumn.create({ width: tabWidth, children: menu })}
-        {GridColumn.create({
-          width: paneWidth,
-          children: this.renderItems(),
-          stretched: true,
-        })}
-        {menu.props.aligned === 'right' && GridColumn.create({ width: tabWidth, children: menu })}
+        {position === 'left' &&
+          GridColumn.create({ width: tabWidth, children: menu }, { autoGenerateKey: false })}
+        {GridColumn.create(
+          {
+            width: paneWidth,
+            children: this.renderItems(),
+            stretched: true,
+          },
+          { autoGenerateKey: false },
+        )}
+        {position === 'right' &&
+          GridColumn.create({ width: tabWidth, children: menu }, { autoGenerateKey: false })}
       </Grid>
     )
   }

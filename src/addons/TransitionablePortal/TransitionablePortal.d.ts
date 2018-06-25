@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { TransitionEventData, TransitionProps } from '../../modules/Transition/Transition';
-import { PortalProps } from '../Portal/Portal';
+import { TransitionEventData, TransitionProps } from '../../modules/Transition/Transition'
+import { PortalProps } from '../Portal/Portal'
 
 export interface TransitionablePortalProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** Primary content. */
-  children: React.ReactNode;
+  children: React.ReactNode
 
   /**
    * Called when a close event happens.
@@ -15,7 +15,7 @@ export interface TransitionablePortalProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and internal state.
    */
-  onClose?: (nothing: null, data: PortalProps & TransitionablePortalState) => void;
+  onClose?: (nothing: null, data: PortalProps & TransitionablePortalState) => void
 
   /**
    * Callback on each transition that changes visibility to hidden.
@@ -23,7 +23,7 @@ export interface TransitionablePortalProps {
    * @param {null}
    * @param {object} data - All props with status.
    */
-  onHide?: (nothing: null, data: TransitionEventData & TransitionablePortalState) => void;
+  onHide?: (nothing: null, data: TransitionEventData & TransitionablePortalState) => void
 
   /**
    * Called when an open event happens.
@@ -31,7 +31,7 @@ export interface TransitionablePortalProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and internal state.
    */
-  onOpen?: (nothing: null, data: PortalProps & TransitionablePortalState) => void;
+  onOpen?: (nothing: null, data: PortalProps & TransitionablePortalState) => void
 
   /**
    * Callback on animation start.
@@ -39,20 +39,20 @@ export interface TransitionablePortalProps {
    * @param {null}
    * @param {object} data - All props with status.
    */
-  onStart?: (nothing: null, data: TransitionEventData & TransitionablePortalState) => void;
+  onStart?: (nothing: null, data: TransitionEventData & TransitionablePortalState) => void
 
   /** Controls whether or not the portal is displayed. */
-  open?: boolean;
+  open?: boolean
 
   /** Transition props. */
-  transition?: TransitionProps;
+  transition?: TransitionProps
 }
 
 export interface TransitionablePortalState {
-  portalOpen: boolean;
-  transitionVisible: boolean;
+  portalOpen: boolean
+  transitionVisible: boolean
 }
 
-declare const TransitionablePortal: React.ComponentClass<TransitionablePortalProps>;
+declare const TransitionablePortal: React.ComponentClass<TransitionablePortalProps>
 
-export default TransitionablePortal;
+export default TransitionablePortal

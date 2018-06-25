@@ -1,3 +1,4 @@
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Children, cloneElement } from 'react'
@@ -8,9 +9,7 @@ import {
   doesNodeContainClick,
   eventStack,
   isBrowser,
-  keyboardKey,
   makeDebugger,
-  META,
 } from '../../lib'
 import Ref from '../Ref'
 
@@ -123,6 +122,9 @@ class Portal extends Component {
     /** Controls whether the portal should be prepended to the mountNode instead of appended. */
     prepend: PropTypes.bool,
 
+    /** Any inline styles to the Portal container. */
+    style: PropTypes.object,
+
     /** Element to be rendered in-place where the portal is defined. */
     trigger: PropTypes.node,
   }
@@ -134,14 +136,7 @@ class Portal extends Component {
     openOnTriggerClick: true,
   }
 
-  static autoControlledProps = [
-    'open',
-  ]
-
-  static _meta = {
-    name: 'Portal',
-    type: META.TYPES.ADDON,
-  }
+  static autoControlledProps = ['open']
 
   componentDidMount() {
     debug('componentDidMount()')
@@ -179,15 +174,20 @@ class Portal extends Component {
     const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
     if (
-      !this.rootNode                                      // not mounted
-      || !this.portalNode                                 // no portal
-      || doesNodeContainClick(this.triggerNode, e)        // event happened in trigger (delegate to trigger handlers)
-      || doesNodeContainClick(this.portalNode, e)         // event happened in the portal
-    ) return                                              // ignore the click
+      !this.rootNode || // not mounted
+      !this.portalNode || // no portal
+      doesNodeContainClick(this.triggerNode, e) || // event happened in trigger (delegate to trigger handlers)
+      doesNodeContainClick(this.portalNode, e) // event happened in the portal
+    ) {
+      return
+    } // ignore the click
 
     const didClickInRootNode = doesNodeContainClick(this.rootNode, e)
 
-    if ((closeOnDocumentClick && !didClickInRootNode) || (closeOnRootNodeClick && didClickInRootNode)) {
+    if (
+      (closeOnDocumentClick && !didClickInRootNode) ||
+      (closeOnRootNodeClick && didClickInRootNode)
+    ) {
       debug('handleDocumentClick()')
 
       this.close(e)
@@ -344,7 +344,7 @@ class Portal extends Component {
     if (!this.state.open) return
     debug('renderPortal()')
 
-    const { children, className, eventPool } = this.props
+    const { children, className, eventPool, style } = this.props
 
     this.mountPortal()
 
@@ -352,18 +352,22 @@ class Portal extends Component {
     if (!isBrowser()) return null
 
     this.rootNode.className = className || ''
+    this.rootNode.style = style || ''
 
     // when re-rendering, first remove listeners before re-adding them to the new node
     if (this.portalNode) {
-      eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target: this.portalNode })
-      eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target: this.portalNode })
+      eventStack.unsub('mouseleave', this.handlePortalMouseLeave, {
+        pool: eventPool,
+        target: this.portalNode,
+      })
+      eventStack.unsub('mouseenter', this.handlePortalMouseEnter, {
+        pool: eventPool,
+        target: this.portalNode,
+      })
     }
 
-    ReactDOM.unstable_renderSubtreeIntoContainer(
-      this,
-      Children.only(children),
-      this.rootNode,
-      () => this.attachRenderSubTreeSubscribers(eventPool),
+    ReactDOM.unstable_renderSubtreeIntoContainer(this, Children.only(children), this.rootNode, () =>
+      this.attachRenderSubTreeSubscribers(eventPool),
     )
   }
 
@@ -374,8 +378,14 @@ class Portal extends Component {
 
     this.portalNode = this.rootNode.firstElementChild
 
-    eventStack.sub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target: this.portalNode })
-    eventStack.sub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target: this.portalNode })
+    eventStack.sub('mouseleave', this.handlePortalMouseLeave, {
+      pool: eventPool,
+      target: this.portalNode,
+    })
+    eventStack.sub('mouseenter', this.handlePortalMouseEnter, {
+      pool: eventPool,
+      target: this.portalNode,
+    })
   }
 
   mountPortal = () => {
@@ -383,11 +393,7 @@ class Portal extends Component {
 
     debug('mountPortal()')
 
-    const {
-      eventPool,
-      mountNode = isBrowser() ? document.body : null,
-      prepend,
-    } = this.props
+    const { eventPool, mountNode = isBrowser() ? document.body : null, prepend } = this.props
 
     this.rootNode = document.createElement('div')
 
@@ -411,8 +417,14 @@ class Portal extends Component {
     ReactDOM.unmountComponentAtNode(this.rootNode)
     this.rootNode.parentNode.removeChild(this.rootNode)
 
-    eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target: this.portalNode })
-    eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target: this.portalNode })
+    eventStack.unsub('mouseleave', this.handlePortalMouseLeave, {
+      pool: eventPool,
+      target: this.portalNode,
+    })
+    eventStack.unsub('mouseenter', this.handlePortalMouseEnter, {
+      pool: eventPool,
+      target: this.portalNode,
+    })
 
     this.rootNode = null
     this.portalNode = null

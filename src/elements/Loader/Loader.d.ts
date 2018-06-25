@@ -1,40 +1,40 @@
-import * as React from 'react';
-import { SemanticShorthandContent, SemanticSIZES } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent, SemanticSIZES } from '../..'
 
 export interface LoaderProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A loader can be active or visible. */
-  active?: boolean;
+  active?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A loader can be disabled or hidden. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** A loader can show it's unsure of how long a task will take. */
-  indeterminate?: boolean;
+  indeterminate?: boolean
 
   /** Loaders can appear inline with content. */
-  inline?: boolean | 'centered';
+  inline?: boolean | 'centered'
 
   /** Loaders can have their colors inverted. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Loaders can have different sizes. */
-  size?: SemanticSIZES;
+  size?: SemanticSIZES
 }
 
-declare const Loader: React.StatelessComponent<LoaderProps>;
+declare const Loader: React.StatelessComponent<LoaderProps>
 
-export default Loader;
+export default Loader

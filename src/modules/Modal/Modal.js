@@ -11,15 +11,16 @@ import {
   getUnhandledProps,
   isBrowser,
   makeDebugger,
-  META,
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
+import MountNode from '../../addons/MountNode'
 import Portal from '../../addons/Portal'
 import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
+import Ref from '../../addons/Ref'
 
 const debug = makeDebugger('modal')
 
@@ -39,6 +40,9 @@ class Modal extends Component {
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
 
+    /** A modal can be vertically centered in the viewport */
+    centered: PropTypes.bool,
+
     /** Primary content. */
     children: PropTypes.node,
 
@@ -46,11 +50,7 @@ class Modal extends Component {
     className: PropTypes.string,
 
     /** Shorthand for the close icon. Closes the modal on click. */
-    closeIcon: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.object,
-      PropTypes.bool,
-    ]),
+    closeIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.object, PropTypes.bool]),
 
     /** Whether or not the Modal should close when the dimmer is clicked. */
     closeOnDimmerClick: PropTypes.bool,
@@ -65,10 +65,7 @@ class Modal extends Component {
     defaultOpen: PropTypes.bool,
 
     /** A Modal can appear in a dimmer. */
-    dimmer: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['inverted', 'blurring']),
-    ]),
+    dimmer: PropTypes.oneOf([true, 'inverted', 'blurring']),
 
     /** Event pool namespace that is used to handle component events */
     eventPool: PropTypes.string,
@@ -138,20 +135,14 @@ class Modal extends Component {
   }
 
   static defaultProps = {
+    centered: true,
     dimmer: true,
     closeOnDimmerClick: true,
     closeOnDocumentClick: false,
     eventPool: 'Modal',
   }
 
-  static autoControlledProps = [
-    'open',
-  ]
-
-  static _meta = {
-    name: 'Modal',
-    type: META.TYPES.MODULE,
-  }
+  static autoControlledProps = ['open']
 
   static Header = ModalHeader
   static Content = ModalContent
@@ -208,43 +199,46 @@ class Modal extends Component {
   handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
 
-    // Always remove all dimmer classes.
-    // If the dimmer value changes while the modal is open, then removing its
-    // current value could leave cruft classes previously added.
-    const mountNode = this.getMountNode()
-
-    // Heads up, IE doesn't support second argument in remove()
-    mountNode.classList.remove('blurring')
-    mountNode.classList.remove('dimmable')
-    mountNode.classList.remove('dimmed')
-    mountNode.classList.remove('scrolling')
-
     cancelAnimationFrame(this.animationRequestId)
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
   handleRef = c => (this.ref = c)
 
+  handlePortalRef = c => (this.portalRef = c)
+
+  setRootNodeStyle = () => {
+    debug('setRootNodeStyle()')
+
+    if (!this.portalRef) return
+
+    if (this.portalRef) {
+      this.portalRef.rootNode.style.setProperty('display', 'flex', 'important')
+    }
+  }
+
   setPositionAndClassNames = () => {
     const { dimmer } = this.props
-    const mountNode = this.getMountNode()
+    let classes
 
     if (dimmer) {
-      mountNode.classList.add('dimmable')
-      mountNode.classList.add('dimmed')
+      classes = 'dimmable dimmed'
 
       if (dimmer === 'blurring') {
-        mountNode.classList.add('blurring')
+        classes += ' blurring'
       }
     }
+
+    const newState = {}
 
     if (this.ref) {
       const { height } = this.ref.getBoundingClientRect()
 
-      const marginTop = -Math.round(height / 2)
+      // Leaving the old calculation here since we may need it as an older browser fallback
+      // SEE: https://github.com/Semantic-Org/Semantic-UI/issues/6185#issuecomment-376725956
+      // const marginTop = -Math.round(height / 2)
+      const marginTop = null
       const scrolling = height >= window.innerHeight
-
-      const newState = {}
 
       if (this.state.marginTop !== marginTop) {
         newState.marginTop = marginTop
@@ -252,18 +246,17 @@ class Modal extends Component {
 
       if (this.state.scrolling !== scrolling) {
         newState.scrolling = scrolling
-
-        if (scrolling) {
-          mountNode.classList.add('scrolling')
-        } else {
-          mountNode.classList.remove('scrolling')
-        }
       }
 
-      if (Object.keys(newState).length > 0) this.setState(newState)
+      if (scrolling) classes += ' scrolling'
     }
 
+    if (this.state.mountClasses !== classes) newState.mountClasses = classes
+    if (!_.isEmpty(newState)) this.setState(newState)
+
     this.animationRequestId = requestAnimationFrame(this.setPositionAndClassNames)
+
+    this.setRootNodeStyle()
   }
 
   renderContent = (rest) => {
@@ -275,10 +268,11 @@ class Modal extends Component {
       closeIcon,
       content,
       header,
+      mountNode,
       size,
       style,
     } = this.props
-    const { marginTop, scrolling } = this.state
+    const { marginTop, mountClasses, scrolling } = this.state
 
     const classes = cx(
       'ui',
@@ -294,27 +288,44 @@ class Modal extends Component {
     const closeIconJSX = Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })
 
     if (!childrenUtils.isNil(children)) {
+      // TODO: remove when ref with "as" is resolved: PR #2306
       return (
-        <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
-          {closeIconJSX}
-          {children}
-        </ElementType>
+        <Ref innerRef={this.handleRef}>
+          <ElementType {...rest} className={classes} style={{ marginTop, ...style }}>
+            <MountNode className={mountClasses} node={mountNode} />
+
+            {closeIconJSX}
+            {children}
+          </ElementType>
+        </Ref>
       )
     }
 
+    // TODO: remove when ref with "as" is resolved: PR #2306
     return (
-      <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
-        {closeIconJSX}
-        {ModalHeader.create(header)}
-        {ModalContent.create(content)}
-        {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
-      </ElementType>
+      <Ref innerRef={this.handleRef}>
+        <ElementType {...rest} className={classes} style={{ marginTop, ...style }}>
+          <MountNode className={mountClasses} node={mountNode} />
+
+          {closeIconJSX}
+          {ModalHeader.create(header, { autoGenerateKey: false })}
+          {ModalContent.create(content, { autoGenerateKey: false })}
+          {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
+        </ElementType>
+      </Ref>
     )
   }
 
   render() {
     const { open } = this.state
-    const { closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
+    const {
+      centered,
+      closeOnDimmerClick,
+      closeOnDocumentClick,
+      dimmer,
+      eventPool,
+      trigger,
+    } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -325,21 +336,24 @@ class Modal extends Component {
     const unhandled = getUnhandledProps(Modal, this.props)
     const portalPropNames = Portal.handledProps
 
-    const rest = _.reduce(unhandled, (acc, val, key) => {
-      if (!_.includes(portalPropNames, key)) acc[key] = val
+    const rest = _.reduce(
+      unhandled,
+      (acc, val, key) => {
+        if (!_.includes(portalPropNames, key)) acc[key] = val
 
-      return acc
-    }, {})
+        return acc
+      },
+      {},
+    )
     const portalProps = _.pick(unhandled, portalPropNames)
 
     // wrap dimmer modals
-    const dimmerClasses = !dimmer
-      ? null
-      : cx(
-        'ui',
-        dimmer === 'inverted' && 'inverted',
-        'page modals dimmer transition visible active',
-      )
+    const dimmerClasses = cx(
+      'ui',
+      dimmer === 'inverted' && 'inverted',
+      !centered && 'top aligned',
+      'page modals dimmer transition visible active',
+    )
 
     // Heads up!
     //
@@ -366,6 +380,7 @@ class Modal extends Component {
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
+        ref={this.handlePortalRef}
       >
         {this.renderContent(rest)}
       </Portal>

@@ -9,7 +9,6 @@ import {
   createShorthandFactory,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -36,10 +35,7 @@ class Button extends Component {
     active: PropTypes.bool,
 
     /** A button can animate to show hidden content. */
-    animated: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['fade', 'vertical']),
-    ]),
+    animated: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['fade', 'vertical'])]),
 
     /** A button can be attached to other content. */
     attached: PropTypes.oneOfType([
@@ -75,7 +71,13 @@ class Button extends Component {
     /** A button can have different colors */
     color: PropTypes.oneOf([
       ...SUI.COLORS,
-      'facebook', 'google plus', 'instagram', 'linkedin', 'twitter', 'vk', 'youtube',
+      'facebook',
+      'google plus',
+      'instagram',
+      'linkedin',
+      'twitter',
+      'vk',
+      'youtube',
     ]),
 
     /** A button can reduce its padding to fit into tighter spaces. */
@@ -105,11 +107,7 @@ class Button extends Component {
     inverted: PropTypes.bool,
 
     /** Add a Label by text, props object, or pass a <Label />. */
-    label: customPropTypes.some([
-      PropTypes.string,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
+    label: customPropTypes.some([PropTypes.string, PropTypes.object, PropTypes.element]),
 
     /** A labeled button can format a Label or Icon to appear on the left or right. */
     labelPosition: PropTypes.oneOf(['right', 'left']),
@@ -133,6 +131,9 @@ class Button extends Component {
     /** A button can be formatted to show different levels of emphasis. */
     primary: PropTypes.bool,
 
+    /** The role of the HTML element. */
+    role: PropTypes.string,
+
     /** A button can be formatted to show different levels of emphasis. */
     secondary: PropTypes.bool,
 
@@ -140,10 +141,7 @@ class Button extends Component {
     size: PropTypes.oneOf(SUI.SIZES),
 
     /** A button can receive focus. */
-    tabIndex: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** A button can be formatted to toggle on and off. */
     toggle: PropTypes.bool,
@@ -151,11 +149,7 @@ class Button extends Component {
 
   static defaultProps = {
     as: 'button',
-  }
-
-  static _meta = {
-    name: 'Button',
-    type: META.TYPES.ELEMENT,
+    role: 'button',
   }
 
   static Content = ButtonContent
@@ -222,6 +216,7 @@ class Button extends Component {
       positive,
       primary,
       secondary,
+      role,
       size,
       toggle,
     } = this.props
@@ -245,13 +240,8 @@ class Button extends Component {
       useKeyOrValueAndKey(animated, 'animated'),
       useKeyOrValueAndKey(attached, 'attached'),
     )
-    const labeledClasses = cx(
-      useKeyOrValueAndKey(labelPosition || !!label, 'labeled'),
-    )
-    const wrapperClasses = cx(
-      useKeyOnly(disabled, 'disabled'),
-      useValueAndKey(floated, 'floated'),
-    )
+    const labeledClasses = cx(useKeyOrValueAndKey(labelPosition || !!label, 'labeled'))
+    const wrapperClasses = cx(useKeyOnly(disabled, 'disabled'), useValueAndKey(floated, 'floated'))
 
     const rest = getUnhandledProps(Button, this.props)
     const ElementType = getElementType(Button, this.props, this.computeElementType)
@@ -260,16 +250,24 @@ class Button extends Component {
     if (!_.isNil(label)) {
       const buttonClasses = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
-      const labelElement = Label.create(label, { defaultProps: {
-        basic: true,
-        pointing: labelPosition === 'left' ? 'right' : 'left',
-      } })
+      const labelElement = Label.create(label, {
+        defaultProps: {
+          basic: true,
+          pointing: labelPosition === 'left' ? 'right' : 'left',
+        },
+        autoGenerateKey: false,
+      })
 
       return (
         <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
           {labelPosition === 'left' && labelElement}
-          <button className={buttonClasses} disabled={disabled} ref={this.handleRef} tabIndex={tabIndex}>
-            {Icon.create(icon)} {content}
+          <button
+            className={buttonClasses}
+            disabled={disabled}
+            ref={this.handleRef}
+            tabIndex={tabIndex}
+          >
+            {Icon.create(icon, { autoGenerateKey: false })} {content}
           </button>
           {(labelPosition === 'right' || !labelPosition) && labelElement}
         </ElementType>
@@ -286,11 +284,11 @@ class Button extends Component {
         disabled={(disabled && ElementType === 'button') || undefined}
         onClick={this.handleClick}
         ref={this.handleRef}
-        role='button'
+        role={role}
         tabIndex={tabIndex}
       >
         {hasChildren && children}
-        {!hasChildren && Icon.create(icon)}
+        {!hasChildren && Icon.create(icon, { autoGenerateKey: false })}
         {!hasChildren && content}
       </ElementType>
     )

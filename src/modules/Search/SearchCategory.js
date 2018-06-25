@@ -7,34 +7,21 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
 function SearchCategory(props) {
   const { active, children, className, content, renderer } = props
-  const classes = cx(
-    useKeyOnly(active, 'active'),
-    'category',
-    className,
-  )
+  const classes = cx(useKeyOnly(active, 'active'), 'category', className)
   const rest = getUnhandledProps(SearchCategory, props)
   const ElementType = getElementType(SearchCategory, props)
 
   return (
     <ElementType {...rest} className={classes}>
-      <div className='name'>
-        {renderer(props)}
-      </div>
-      {childrenUtils.isNil(children) ? content : children}
+      <div className='name'>{renderer(props)}</div>
+      <div className='results'>{childrenUtils.isNil(children) ? content : children}</div>
     </ElementType>
   )
-}
-
-SearchCategory._meta = {
-  name: 'SearchCategory',
-  parent: 'Search',
-  type: META.TYPES.MODULE,
 }
 
 SearchCategory.defaultProps = {

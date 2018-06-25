@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -87,23 +86,25 @@ function Table(props) {
   const ElementType = getElementType(Table, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
   }
 
   return (
     <ElementType {...rest} className={classes}>
-      {headerRow && <TableHeader>{TableRow.create(headerRow, { defaultProps: { cellAs: 'th' } })}</TableHeader>}
+      {headerRow && (
+        <TableHeader>{TableRow.create(headerRow, { defaultProps: { cellAs: 'th' } })}</TableHeader>
+      )}
       <TableBody>
-        {renderBodyRow && _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
+        {renderBodyRow &&
+          _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
       </TableBody>
       {footerRow && <TableFooter>{TableRow.create(footerRow)}</TableFooter>}
     </ElementType>
   )
-}
-
-Table._meta = {
-  name: 'Table',
-  type: META.TYPES.COLLECTION,
 }
 
 Table.defaultProps = {
@@ -115,16 +116,10 @@ Table.propTypes = {
   as: customPropTypes.as,
 
   /** Attach table to other content */
-  attached: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['top', 'bottom']),
-  ]),
+  attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['top', 'bottom'])]),
 
   /** A table can reduce its complexity to increase readability. */
-  basic: PropTypes.oneOfType([
-    PropTypes.oneOf(['very']),
-    PropTypes.bool,
-  ]),
+  basic: PropTypes.oneOfType([PropTypes.oneOf(['very']), PropTypes.bool]),
 
   /** A table may be divided each row into separate cells. */
   celled: PropTypes.bool,
@@ -145,10 +140,7 @@ Table.propTypes = {
   columns: PropTypes.oneOf(SUI.WIDTHS),
 
   /** A table may sometimes need to be more compact to make more rows visible at a time. */
-  compact: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['very']),
-  ]),
+  compact: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
 
   /** A table may be formatted to emphasize a first column that defines a rows content. */
   definition: PropTypes.bool,
@@ -168,10 +160,7 @@ Table.propTypes = {
   inverted: PropTypes.bool,
 
   /** A table may sometimes need to be more padded for legibility. */
-  padded: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['very']),
-  ]),
+  padded: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
 
   /**
    * Mapped over `tableData` and should return shorthand for each Table.Row to be placed within Table.Body.

@@ -15,13 +15,7 @@
   "plugins": [
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-export-default-from",
-    ["direct-import", { "modules": [
-      "semantic-ui-react", {
-        "name": "semantic-ui-react",
-        "indexFile": "semantic-ui-react/dist/es/index.js"
-      }
-    ]}],
-    "lodash"
+    ["lodash", {"id": ["lodash", "semantic-ui-react"]}]
   ],
   "env": {
     "development": {

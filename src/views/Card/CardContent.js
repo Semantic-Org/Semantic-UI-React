@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useTextAlignProp,
@@ -22,42 +21,36 @@ import CardMeta from './CardMeta'
  * A card can contain blocks of content or extra content meant to be formatted separately from the main content.
  */
 function CardContent(props) {
-  const {
-    children,
-    className,
-    content,
-    description,
-    extra,
-    header,
-    meta,
-    textAlign,
-  } = props
+  const { children, className, content, description, extra, header, meta, textAlign } = props
 
-  const classes = cx(
-    useKeyOnly(extra, 'extra'),
-    useTextAlignProp(textAlign),
-    'content',
-    className,
-  )
+  const classes = cx(useKeyOnly(extra, 'extra'), useTextAlignProp(textAlign), 'content', className)
   const rest = getUnhandledProps(CardContent, props)
   const ElementType = getElementType(CardContent, props)
 
-  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
-  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
+  if (!childrenUtils.isNil(content)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {content}
+      </ElementType>
+    )
+  }
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(CardHeader, val => ({ content: val }), header)}
-      {createShorthand(CardMeta, val => ({ content: val }), meta)}
-      {createShorthand(CardDescription, val => ({ content: val }), description)}
+      {createShorthand(CardHeader, val => ({ content: val }), header, { autoGenerateKey: false })}
+      {createShorthand(CardMeta, val => ({ content: val }), meta, { autoGenerateKey: false })}
+      {createShorthand(CardDescription, val => ({ content: val }), description, {
+        autoGenerateKey: false,
+      })}
     </ElementType>
   )
-}
-
-CardContent._meta = {
-  name: 'CardContent',
-  parent: 'Card',
-  type: META.TYPES.VIEW,
 }
 
 CardContent.propTypes = {

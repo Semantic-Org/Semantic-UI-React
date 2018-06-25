@@ -2,7 +2,7 @@ import React from 'react'
 
 import TransitionablePortal from 'src/addons/TransitionablePortal/TransitionablePortal'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent, sandbox, assertWithTimeout } from 'test/utils'
 
 // ----------------------------------------
 // Wrapper
@@ -33,13 +33,13 @@ describe('TransitionablePortal', () => {
 
   describe('children', () => {
     it('renders a Portal', () => {
-      wrapperShallow(<TransitionablePortal {...requiredProps} />)
-        .should.have.descendants('Portal')
+      wrapperShallow(<TransitionablePortal {...requiredProps} />).should.have.descendants('Portal')
     })
 
     it('renders a Transition', () => {
-      wrapperShallow(<TransitionablePortal {...requiredProps} />)
-        .should.have.descendants('Transition')
+      wrapperShallow(<TransitionablePortal {...requiredProps} />).should.have.descendants(
+        'Transition',
+      )
     })
   })
 
@@ -77,17 +77,17 @@ describe('TransitionablePortal', () => {
       wrapper.find('button').simulate('click')
       domEvent.click(document.body)
 
-      setTimeout(() => {
+      assertWithTimeout(() => {
         onClose.should.have.been.calledOnce()
         onClose.should.have.been.calledWithMatch(null, { portalOpen: false })
-
-        done()
-      }, 10)
+      }, done)
     })
 
     it('changes `portalOpen` to false', () => {
       const trigger = <button />
-      wrapperMount(<TransitionablePortal {...requiredProps} transition={quickTransition} trigger={trigger} />)
+      wrapperMount(
+        <TransitionablePortal {...requiredProps} transition={quickTransition} trigger={trigger} />,
+      )
 
       wrapper.find('button').simulate('click')
       domEvent.click(document.body)
@@ -111,16 +111,14 @@ describe('TransitionablePortal', () => {
       )
 
       wrapper.setProps({ open: false })
-      setTimeout(() => {
+      assertWithTimeout(() => {
         onHide.should.have.been.calledOnce()
         onHide.should.have.been.calledWithMatch(null, {
           ...quickTransition,
           portalOpen: false,
           transitionVisible: false,
         })
-
-        done()
-      }, 10)
+      }, done)
     })
   })
 

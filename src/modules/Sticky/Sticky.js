@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -8,7 +9,6 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  META,
 } from '../../lib'
 
 /**
@@ -83,11 +83,6 @@ export default class Sticky extends Component {
     scrollContext: isBrowser() ? window : null,
   }
 
-  static _meta = {
-    name: 'Sticky',
-    type: META.TYPES.MODULE,
-  }
-
   state = {
     sticky: false,
   }
@@ -128,7 +123,10 @@ export default class Sticky extends Component {
     if (!isBrowser()) return
     const { active } = this.props
 
-    if (active) this.removeListeners()
+    if (active) {
+      this.removeListeners()
+      cancelAnimationFrame(this.frameId)
+    }
   }
 
   // ----------------------------------------
@@ -185,7 +183,7 @@ export default class Sticky extends Component {
   handleUpdate = (e) => {
     if (!this.ticking) {
       this.ticking = true
-      requestAnimationFrame(() => this.update(e))
+      this.frameId = requestAnimationFrame(() => this.update(e))
     }
   }
 
@@ -202,13 +200,12 @@ export default class Sticky extends Component {
   }
 
   computeStyle() {
-    const { bottom, sticky, top } = this.state
+    const { bottom, bound, sticky, top } = this.state
 
     if (!sticky) return {}
     return {
-      bottom,
-      top,
-      position: 'fixed',
+      bottom: bound ? 0 : bottom,
+      top: bound ? undefined : top,
       width: this.triggerRect.width,
     }
   }
@@ -217,7 +214,7 @@ export default class Sticky extends Component {
   didReachContextBottom = () => {
     const { offset } = this.props
 
-    return (this.stickyRect.height + offset) >= this.contextRect.bottom
+    return this.stickyRect.height + offset >= this.contextRect.bottom
   }
 
   // Return true when the component reached the starting point
@@ -230,7 +227,7 @@ export default class Sticky extends Component {
   didTouchScreenBottom = () => {
     const { bottomOffset } = this.props
 
-    return (this.contextRect.bottom + bottomOffset) > window.innerHeight
+    return this.contextRect.bottom + bottomOffset > window.innerHeight
   }
 
   // Return true if the height of the component is higher than the window
@@ -247,44 +244,41 @@ export default class Sticky extends Component {
     if (possible) this.setState({ pushing })
   }
 
-  stick = (e) => {
-    this.setState({ sticky: true })
+  stick = (e, bound) => {
+    this.setState({ bound, sticky: true })
     _.invoke(this.props, 'onStick', e, this.props)
   }
 
-  unstick = (e) => {
-    this.setState({ sticky: false })
+  unstick = (e, bound) => {
+    this.setState({ bound, sticky: false })
     _.invoke(this.props, 'onUnstick', e, this.props)
   }
 
   stickToContextBottom = (e) => {
-    const top = this.contextRect.bottom - this.stickyRect.height
-
     _.invoke(this.props, 'onBottom', e, this.props)
 
-    this.stick(e)
-    this.setState({ top, bottom: null })
+    this.stick(e, true)
     this.pushing(true)
   }
 
   stickToContextTop = (e) => {
     _.invoke(this.props, 'onTop', e, this.props)
 
-    this.unstick(e)
+    this.unstick(e, false)
     this.pushing(false)
   }
 
   stickToScreenBottom = (e) => {
     const { bottomOffset: bottom } = this.props
 
-    this.stick(e)
+    this.stick(e, false)
     this.setState({ bottom, top: null })
   }
 
   stickToScreenTop = (e) => {
     const { offset: top } = this.props
 
-    this.stick(e)
+    this.stick(e, false)
     this.setState({ top, bottom: null })
   }
 
@@ -302,13 +296,29 @@ export default class Sticky extends Component {
 
   render() {
     const { children, className } = this.props
+    const { bottom, bound, sticky } = this.state
     const rest = getUnhandledProps(Sticky, this.props)
     const ElementType = getElementType(Sticky, this.props)
 
+    const containerClasses = cx(
+      sticky && 'ui',
+      sticky && 'stuck-container',
+      sticky && (bound ? 'bound-container' : 'fixed-container'),
+      className,
+    )
+    const elementClasses = cx(
+      'ui',
+      sticky && (bound ? 'bound bottom' : 'fixed'),
+      sticky && !bound && (bottom === null ? 'top' : 'bottom'),
+      'sticky',
+    )
+
     return (
-      <ElementType {...rest} className={className}>
+      <ElementType {...rest} className={containerClasses}>
         <div ref={this.handleTriggerRef} />
-        <div ref={this.handleStickyRef} style={this.computeStyle()}>{children}</div>
+        <div className={cx(elementClasses)} ref={this.handleStickyRef} style={this.computeStyle()}>
+          {children}
+        </div>
       </ElementType>
     )
   }

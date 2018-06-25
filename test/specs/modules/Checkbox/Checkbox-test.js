@@ -65,36 +65,24 @@ describe('Checkbox', () => {
     it('can be checked and unchecked', () => {
       wrapperShallow(<Checkbox />)
 
-      wrapper
-        .find('input')
-        .should.not.be.checked()
+      wrapper.find('input').should.not.be.checked()
 
       wrapper.simulate('click')
-      wrapper
-        .find('input')
-        .should.be.checked()
+      wrapper.find('input').should.be.checked()
 
       wrapper.simulate('click')
-      wrapper
-        .find('input')
-        .should.not.be.checked()
+      wrapper.find('input').should.not.be.checked()
     })
     it('can be checked but not unchecked when radio', () => {
       wrapperShallow(<Checkbox radio />)
 
-      wrapper
-        .find('input')
-        .should.not.be.checked()
+      wrapper.find('input').should.not.be.checked()
 
       wrapper.simulate('click')
-      wrapper
-        .find('input')
-        .should.be.checked()
+      wrapper.find('input').should.be.checked()
 
       wrapper.simulate('click')
-      wrapper
-        .find('input')
-        .should.be.checked()
+      wrapper.find('input').should.be.checked()
     })
   })
 
@@ -154,17 +142,24 @@ describe('Checkbox', () => {
       wrapperShallow(<Checkbox disabled />)
 
       wrapper.simulate('click')
-      wrapper
-        .find('input')
-        .should.not.be.checked()
+      wrapper.find('input').should.not.be.checked()
     })
+
     it('cannot be unchecked', () => {
       wrapperShallow(<Checkbox defaultChecked disabled />)
 
       wrapper.simulate('click')
-      wrapper
+      wrapper.find('input').should.be.checked()
+    })
+
+    it('is applied to the underlying html input element', () => {
+      wrapperShallow(<Checkbox disabled />)
         .find('input')
-        .should.be.checked()
+        .should.have.prop('disabled', true)
+
+      wrapperShallow(<Checkbox disabled={false} />)
+        .find('input')
+        .should.have.prop('disabled', false)
     })
   })
 
@@ -203,8 +198,17 @@ describe('Checkbox', () => {
 
   describe('label', () => {
     it('adds the "fitted" class when not present', () => {
-      shallow(<Checkbox name='firstName' />)
-        .should.have.className('fitted')
+      shallow(<Checkbox name='firstName' />).should.have.className('fitted')
+    })
+
+    it('adds the "fitted" class when is null', () => {
+      shallow(<Checkbox name='firstName' />).should.have.className('fitted')
+    })
+
+    it('does not add the "fitted" class when is not nil', () => {
+      shallow(<Checkbox name='firstName' label='' />).should.not.have.className('fitted')
+
+      shallow(<Checkbox name='firstName' label={0} />).should.not.have.className('fitted')
     })
   })
 
@@ -212,15 +216,17 @@ describe('Checkbox', () => {
     it('is called with (event { name, value, !checked }) on click', () => {
       const spy = sandbox.spy()
       const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onChange={spy} {...expectProps} />)
-        .simulate('click')
+      mount(<Checkbox onChange={spy} {...expectProps} />).simulate('click')
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, {
-        ...expectProps,
-        checked: !expectProps.checked,
-        indeterminate: false,
-      })
+      spy.should.have.been.calledWithMatch(
+        {},
+        {
+          ...expectProps,
+          checked: !expectProps.checked,
+          indeterminate: false,
+        },
+      )
     })
     it('is called once on input click when "id" prop is passed', () => {
       const onChange = sandbox.spy()
@@ -247,15 +253,17 @@ describe('Checkbox', () => {
     it('is called with (event { name, value, checked }) on label click', () => {
       const spy = sandbox.spy()
       const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onClick={spy} {...expectProps} />)
-        .simulate('click')
+      mount(<Checkbox onClick={spy} {...expectProps} />).simulate('click')
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, {
-        ...expectProps,
-        checked: !expectProps.checked,
-        indeterminate: expectProps.indeterminate,
-      })
+      spy.should.have.been.calledWithMatch(
+        {},
+        {
+          ...expectProps,
+          checked: !expectProps.checked,
+          indeterminate: expectProps.indeterminate,
+        },
+      )
     })
     it('is called once on input click when "id" prop is passed', () => {
       const onClick = sandbox.spy()
@@ -282,15 +290,17 @@ describe('Checkbox', () => {
     it('is called with (event { name, value, checked }) on label mouse down', () => {
       const onMousedDown = sandbox.spy()
       const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onMouseDown={onMousedDown} {...expectProps} />)
-        .simulate('mousedown')
+      mount(<Checkbox onMouseDown={onMousedDown} {...expectProps} />).simulate('mousedown')
 
       onMousedDown.should.have.been.calledOnce()
-      onMousedDown.should.have.been.calledWithMatch({}, {
-        ...expectProps,
-        checked: expectProps.checked,
-        indeterminate: expectProps.indeterminate,
-      })
+      onMousedDown.should.have.been.calledWithMatch(
+        {},
+        {
+          ...expectProps,
+          checked: expectProps.checked,
+          indeterminate: expectProps.indeterminate,
+        },
+      )
     })
     it('prevents default event', () => {
       const preventDefault = sandbox.spy()
@@ -313,17 +323,13 @@ describe('Checkbox', () => {
       wrapperShallow(<Checkbox readOnly />)
 
       wrapper.simulate('click')
-      wrapper
-        .find('input')
-        .should.not.be.checked()
+      wrapper.find('input').should.not.be.checked()
     })
     it('cannot be unchecked', () => {
       wrapperShallow(<Checkbox defaultChecked readOnly />)
 
       wrapper.simulate('click')
-      wrapper
-        .find('input')
-        .should.be.checked()
+      wrapper.find('input').should.be.checked()
     })
   })
 
