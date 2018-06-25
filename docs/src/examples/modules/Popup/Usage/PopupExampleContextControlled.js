@@ -4,15 +4,16 @@ import { Button, Popup } from 'semantic-ui-react'
 class PopupExampleContextControlled extends React.Component {
   state = {}
 
+  toggle = () => this.setState({ open: !this.state.open })
+
   handleRef = node => this.setState({ node })
 
   render() {
-    const { node } = this.state
-    const trigger = <Button content='Trigger Popup' />
-
+    const { node, open } = this.state
     return (
       <div>
-        <Popup trigger={trigger} context={node} content='Hello' position='top center' />
+        <Button content='Open controlled Popup' onClick={this.toggle} />
+        <Popup context={node} content='Hello' position='top center' open={open} />
         ---------->
         <strong ref={this.handleRef}>here</strong>
       </div>

@@ -324,7 +324,7 @@ export default class Popup extends Component {
 
   handleOpen = (e) => {
     debug('handleOpen()')
-    this.coords = e.currentTarget.getBoundingClientRect()
+    this.coords = this.getContext().getBoundingClientRect()
 
     const { onOpen } = this.props
     if (onOpen) onOpen(e, this.props)
