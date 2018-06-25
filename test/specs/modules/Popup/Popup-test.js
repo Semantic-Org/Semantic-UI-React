@@ -324,6 +324,74 @@ describe('Popup', () => {
     })
   })
 
+  describe('context', () => {
+    // We're expecting to see this:
+    //
+    // |- context -----------------------------|
+    // |             99px x 10px               |
+    // |---------------------------------------|
+    //                  ---^---
+    //                 | popup |
+    //                  -------
+
+    it('aligns the popup to the context node', () => {
+      const context = document.createElement('div')
+      context.innerText = '.'
+      context.style.marginTop = '400px'
+      context.style.marginLeft = '400px'
+      context.style.width = '99px'
+      context.style.height = '10px'
+
+      document.body.appendChild(context)
+      const contextRect = context.getBoundingClientRect()
+
+      wrapperMount(
+        <Popup id='context-popup' context={context} content='.' position='bottom center' open />,
+      )
+
+      const popupRect = document.querySelector('#context-popup').getBoundingClientRect()
+
+      document.body.removeChild(context)
+
+      popupRect.top.should.equal(
+        contextRect.bottom,
+        "The popup's top should have been equal to the context's bottom.",
+      )
+    })
+
+    it('aligns the popup to the context node even when there is a trigger', () => {
+      const context = document.createElement('div')
+      context.innerText = '.'
+      context.style.marginTop = '400px'
+      context.style.marginLeft = '400px'
+      context.style.width = '99px'
+      context.style.height = '10px'
+
+      document.body.appendChild(context)
+      const contextRect = context.getBoundingClientRect()
+
+      wrapperMount(
+        <Popup
+          id='context-popup'
+          trigger={<button />}
+          context={context}
+          content='.'
+          position='bottom center'
+          open
+        />,
+      )
+
+      const popupRect = document.querySelector('#context-popup').getBoundingClientRect()
+
+      document.body.removeChild(context)
+
+      popupRect.top.should.equal(
+        contextRect.bottom,
+        "The popup's top should have been equal to the context's bottom.",
+      )
+    })
+  })
+
   describe('open', () => {
     it('is not open by default', () => {
       wrapperMount(<Popup />)
