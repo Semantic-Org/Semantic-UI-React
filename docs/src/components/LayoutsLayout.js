@@ -1,10 +1,9 @@
-import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import { Link, Route } from 'react-static'
-import { Button } from 'semantic-ui-react'
+import React, { PureComponent } from 'react'
+import { Link, withRouteData } from 'react-static'
+import universal from 'react-universal-component'
+import { Button, Loader } from 'semantic-ui-react'
 
-import { getUnhandledProps } from 'src/lib'
 import { repoURL } from 'docs/src/utils'
 
 const docsButtonStyle = {
@@ -26,11 +25,13 @@ const style = (
   `}</style>
 )
 
-export default class LayoutsLayout extends Component {
+const LayoutComponent = universal(props => import(`docs/src/layouts/${props.filename}`), {
+  loading: () => <Loader inline='centered' />,
+})
+
+class LayoutsLayout extends PureComponent {
   static propTypes = {
-    component: PropTypes.func,
-    render: PropTypes.func,
-    computedMatch: PropTypes.object,
+    componentFilename: PropTypes.string.isRequired,
   }
 
   componentDidMount() {
@@ -41,22 +42,19 @@ export default class LayoutsLayout extends Component {
     scrollTo(0, 0)
   }
 
-  renderChildren = (props) => {
-    const { component: Children, computedMatch, render } = this.props
-
-    if (render) return render()
-
-    const filename = `${_.startCase(computedMatch.params.name).replace(' ', '')}Layout.js`
+  render() {
+    const { componentFilename } = this.props
 
     return (
       <div>
         {style}
-        <Children {...props} />
+        <LayoutComponent filename={componentFilename} />
+
         <div style={docsButtonStyle}>
           <Button as={Link} to='/layouts' color='teal' icon='left arrow' content='Layouts' />
           <Button
             as={Link}
-            to={`${repoURL}/blob/master/docs/src/layouts/${filename}`}
+            to={`${repoURL}/blob/master/docs/src/layouts/${componentFilename}`}
             icon='github'
             content='Source'
             secondary
@@ -66,10 +64,6 @@ export default class LayoutsLayout extends Component {
       </div>
     )
   }
-
-  render() {
-    const rest = getUnhandledProps(LayoutsLayout, this.props)
-
-    return <Route {...rest} render={this.renderChildren} />
-  }
 }
+
+export default withRouteData(LayoutsLayout)

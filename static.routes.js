@@ -5,6 +5,7 @@ import {
   getComponentMenu,
   getExampleSources,
   getInfoForSeeTags,
+  getLayoutPaths,
   getSidebarSections,
 } from './docs/src/staticUtils'
 import { getComponentPathname } from './docs/src/utils'
@@ -55,8 +56,15 @@ export default async () => {
         }
       },
     })),
+    ..._.map(await getLayoutPaths(), ({ routeName, componentFilename }) => ({
+      path: `/layouts/${routeName}`,
+      component: 'docs/src/components/LayoutsLayout',
+      priority: 0.6,
+      getData: async () => ({
+        componentFilename,
+      }),
+    })),
     /* TODO: */
-    /* Layout examples: <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} sidebar /> */
     /* Maximized layout example */
   ]
 }
