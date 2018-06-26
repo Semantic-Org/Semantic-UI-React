@@ -236,11 +236,9 @@ class ComponentExample extends PureComponent {
 
         if (module === 'COMMON') {
           const componentPath = examplePath
-            // .split(__PATH_SEP__)
-            .split('/')
+            .split(__PATH_SEP__)
             .splice(0, 2)
-            .join('/')
-          // .join(__PATH_SEP__)
+            .join(__PATH_SEP__)
           COMMON = require(`docs/src/examples/${componentPath}/common`)
         } else if (module === 'WIREFRAME') {
           WIREFRAME = require('docs/src/examples/behaviors/Visibility/Wireframe').default
@@ -304,8 +302,7 @@ class ComponentExample extends PureComponent {
 
     // get component name from file path:
     // elements/Button/Types/ButtonButtonExample
-    // const pathParts = examplePath.split(__PATH_SEP__)
-    const pathParts = examplePath.split('/')
+    const pathParts = examplePath.split(__PATH_SEP__)
     const filename = pathParts[pathParts.length - 1]
 
     this.ghEditHref = [

@@ -57,7 +57,7 @@ task(
 // ----------------------------------------
 
 task('build:docs:static:build', (cb) => {
-  build({ debug: true, staging: true }).then(cb)
+  build().then(cb)
 })
 
 task('build:docs:static:start', (cb) => {
