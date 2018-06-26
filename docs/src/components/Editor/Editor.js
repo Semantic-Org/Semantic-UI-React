@@ -1,35 +1,14 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import universal from 'react-universal-component'
+import { Loader } from 'semantic-ui-react'
 
-
-import AceEditor from './EditorAce'
-
-// // Set up custom completers by using a ace extension
-// // https://github.com/thlorenz/brace/issues/19
-// const languageTools = ace.acequire('ace/ext/language_tools')
-//
-// const semanticUIReactCompleter = {
-//   getCompletions(editor, session, pos, prefix, callback) {
-//     const completions = []
-//
-//     _.each(parentComponents, (component) => {
-//       const { name } = component._meta
-//       // Component
-//       completions.push({ caption: name, value: name, meta: 'Component' })
-//
-//       // Its props (propTypes do not exist in prod, use handledProps added by babel)
-//       _.each(component.handledProps, (propName) => {
-//         // don't add duplicate prop completions
-//         if (_.find(completions, { value: propName })) return
-//
-//         completions.push({ caption: propName, value: propName, meta: 'Component Prop' })
-//       })
-//     })
-//     callback(null, completions)
-//   },
-// }
-//
-// languageTools.addCompleter(semanticUIReactCompleter)
+const AceEditor =
+  typeof window === 'undefined'
+    ? () => null
+    : universal(import('./EditorAce'), {
+      loading: () => <Loader />,
+    })
 
 function Editor(props) {
   const { id, mode, value, ...rest } = props

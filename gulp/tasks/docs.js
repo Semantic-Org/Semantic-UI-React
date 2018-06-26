@@ -57,7 +57,7 @@ task(
 // ----------------------------------------
 
 task('build:docs:static:build', (cb) => {
-  build().then(cb)
+  build({ staging: true }).then(cb)
 })
 
 task('build:docs:static:start', (cb) => {
@@ -142,9 +142,12 @@ task('build:docs:toc', (cb) => {
 
 task(
   'build:docs',
-  parallel(
-    'build:docs:toc',
-    series('clean:docs', parallel('build:docs:json', 'build:docs:images')),
+  series(
+    parallel(
+      'build:docs:toc',
+      series('clean:docs', parallel('build:docs:json', 'build:docs:images')),
+    ),
+    'build:docs:static:build',
   ),
 )
 

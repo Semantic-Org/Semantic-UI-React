@@ -59,7 +59,7 @@ class ComponentExample extends PureComponent {
     children: PropTypes.node,
     description: PropTypes.node,
     exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
-    exampleSources: PropTypes.arrayOf(PropTypes.string).isRequired,
+    exampleSources: PropTypes.objectOf(PropTypes.string).isRequired,
     examplePath: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,

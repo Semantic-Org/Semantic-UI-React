@@ -189,7 +189,7 @@
     "@babel/types" "7.0.0-beta.49"
     lodash "^4.17.5"
 
-"@babel/helper-module-imports@^7.0.0-beta.32":
+"@babel/helper-module-imports@^7.0.0-beta.32", "@babel/helper-module-imports@^7.0.0-beta.49":
   version "7.0.0-beta.51"
   resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.0.0-beta.51.tgz#ce00428045fbb7d5ebc0ea7bf835789f15366ab2"
   dependencies:
@@ -2114,6 +2114,12 @@ babel-plugin-universal-import@^1.4.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-universal-import/-/babel-plugin-universal-import-1.5.3.tgz#dc70bcf592a4afe9f7ba7d79017540da42e56bad"
   dependencies:
     "@babel/helper-module-imports" "^7.0.0-beta.32"
+
+babel-plugin-universal-import@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-universal-import/-/babel-plugin-universal-import-2.0.2.tgz#04f5d8cdca3c35759a0354754062a24d54dff357"
+  dependencies:
+    "@babel/helper-module-imports" "^7.0.0-beta.49"
 
 babel-polyfill@7.0.0-beta.3:
   version "7.0.0-beta.3"

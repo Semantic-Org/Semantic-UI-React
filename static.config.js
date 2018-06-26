@@ -5,7 +5,6 @@ import getRoutes from './static.routes'
 import webpack from './static.webpack'
 
 export default {
-  bundleAnalyzer: true,
   Document,
   getSiteData: async ({ dev }) => ({
     dev,

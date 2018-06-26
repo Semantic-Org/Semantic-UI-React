@@ -6,6 +6,12 @@ import config from './config'
 export default (webpackConfig, { stage }) => ({
   ...webpackConfig,
   devtool: config.compiler_devtool,
+  entry:
+    stage === 'prod'
+      ? {
+        main: [config.paths.docsSrc('index.js'), config.paths.src('index.js')],
+      }
+      : webpackConfig.entry,
   externals:
     stage === 'node'
       ? webpackConfig.externals
@@ -18,13 +24,6 @@ export default (webpackConfig, { stage }) => ({
         'react-dom': 'ReactDOM',
         'react-dom/server': 'ReactDOMServer',
       },
-  entry:
-    stage === 'prod'
-      ? {
-        lib: config.paths.src('index.js'),
-        main: config.paths.docsSrc('index.js'),
-      }
-      : webpackConfig.entry,
   module: {
     ...webpackConfig.module,
     rules: [
@@ -44,16 +43,8 @@ export default (webpackConfig, { stage }) => ({
     new webpack.DefinePlugin({
       __PATH_SEP__: JSON.stringify(path.sep),
     }),
-    // Heads up!
-    // An order there is important because react-static already uses CommonChunkPlugin.
-    // https://github.com/webpack/webpack/issues/4638
-    stage === 'prod' &&
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'lib',
-        minChunks: Infinity,
-      }),
     ...webpackConfig.plugins,
-  ].filter(Boolean),
+  ],
   resolve: {
     alias: {
       'semantic-ui-react': config.paths.src('index.js'),

@@ -54,6 +54,8 @@ export default async () => {
         }
       },
     })),
-    /* <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} sidebar /> */
+    /* TODO: */
+    /* Layout examples: <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} sidebar /> */
+    /* Maximized layout example */
   ]
 }
