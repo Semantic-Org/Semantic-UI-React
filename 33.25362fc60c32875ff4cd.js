@@ -1,0 +1,6 @@
+webpackJsonp([33],{3666:/*!**************************************************!*\
+  !*** ./docs/src/exampleMenus/Icon.examples.json ***!
+  \**************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+function(e,t){e.exports=[{sectionName:"States",examples:[{title:"Disabled",examplePath:"elements/Icon/States/IconExampleDisabled"},{title:"Loading",examplePath:"elements/Icon/States/IconExampleLoading"}]},{sectionName:"Variations",examples:[{title:"Fitted",examplePath:"elements/Icon/Variations/IconExampleFitted"},{title:"Size",examplePath:"elements/Icon/Variations/IconExampleSize"},{title:"Link",examplePath:"elements/Icon/Variations/IconExampleLink"},{title:"Flipped",examplePath:"elements/Icon/Variations/IconExampleFlipped"},{title:"Rotated",examplePath:"elements/Icon/Variations/IconExampleRotated"},{title:"Circular",examplePath:"elements/Icon/Variations/IconExampleCircular"},{title:"Bordered",examplePath:"elements/Icon/Variations/IconExampleBordered"},{title:"Colored",examplePath:"elements/Icon/Variations/IconExampleColored"},{title:"Inverted",examplePath:"elements/Icon/Variations/IconExampleInvertedColored"}]},{sectionName:"Groups",examples:[{title:"Icons",examplePath:"elements/Icon/Groups/IconExampleIconGroup"},{title:"Corner Icon",examplePath:"elements/Icon/Groups/IconExampleCornerGroup"}]}]}});

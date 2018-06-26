@@ -1,0 +1,6 @@
+webpackJsonp([27],{3672:/*!****************************************************!*\
+  !*** ./docs/src/exampleMenus/Loader.examples.json ***!
+  \****************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+function(e,a){e.exports=[{sectionName:"Types",examples:[{title:"Loader",examplePath:"elements/Loader/Types/LoaderExampleLoader"},{title:"Text Loader",examplePath:"elements/Loader/Types/LoaderExampleText"}]},{sectionName:"States",examples:[{title:"Indeterminate",examplePath:"elements/Loader/States/LoaderExampleIndeterminate"},{title:"Active",examplePath:"elements/Loader/States/LoaderExampleActive"},{title:"Disabled",examplePath:"elements/Loader/States/LoaderExampleDisabled"}]},{sectionName:"Variations",examples:[{title:"Inline",examplePath:"elements/Loader/Variations/LoaderExampleInline"},{title:"Inline Center",examplePath:"elements/Loader/Variations/LoaderExampleInlineCentered"},{title:"Size",examplePath:"elements/Loader/Variations/LoaderExampleSizes"},{title:"Inverted",examplePath:"elements/Loader/Variations/LoaderExampleInverted"},{title:"Inverted",examplePath:"elements/Loader/Variations/LoaderExampleSizesInverted"}]}]}});

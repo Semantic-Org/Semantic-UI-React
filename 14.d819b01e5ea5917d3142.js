@@ -1,6 +1,0 @@
-webpackJsonp([14],{3388:/*!********************************************************!*\
-  !*** ./docs/src/exampleMenus/Responsive.examples.json ***!
-  \********************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-function(e,s){e.exports=[{sectionName:"Types",examples:[{title:"Responsive",examplePath:"addons/Responsive/Types/ResponsiveExampleResponsive"},{title:"Minimal Width",examplePath:"addons/Responsive/Types/ResponsiveExampleMinWidth"},{title:"Maximum Width",examplePath:"addons/Responsive/Types/ResponsiveExampleMaxWidth"},{title:"Mixed",examplePath:"addons/Responsive/Types/ResponsiveExampleMixed"},{title:"Content",examplePath:"addons/Responsive/Types/ResponsiveExampleContent"}]},{sectionName:"Usage",examples:[{title:"Predefined breakpoints",examplePath:"addons/Responsive/Usage/ResponsiveExampleBreakpoints"},{title:"OnUpdate",examplePath:"addons/Responsive/Usage/ResponsiveExampleOnUpdate"},{title:"Fire on mount",examplePath:"addons/Responsive/Usage/ResponsiveExampleFireOnMount"}]}]}});
