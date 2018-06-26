@@ -52,7 +52,7 @@ export default class DatetimeHours extends Component {
     type: META.TYPES.ADDON,
   }
 
-  getCells = () => _.map(_.range(0, 12), hour => ({
+  getCells = () => _.map(_.range(0, 24), hour => ({
     content: this.getHourLabel(hour),
     onClick: this.handleCellClick(hour),
   }))
