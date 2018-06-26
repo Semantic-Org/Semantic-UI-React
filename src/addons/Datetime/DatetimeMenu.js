@@ -104,10 +104,10 @@ export default class DatetimeMenu extends Component {
     ])
 
     return (
-      <ElementType fluid secondary widths={items.length + 2} {...rest}>
-        <Menu.Item icon='angle double left' onClick={onPreviousPage} />
+      <ElementType fluid text widths={items.length + 2} {...rest}>
+        <Menu.Item icon='angle left' onClick={onPreviousPage} />
         {items}
-        <Menu.Item icon='angle double right' onClick={onNextPage} />
+        <Menu.Item icon='angle right' onClick={onNextPage} />
       </ElementType>
     )
   }
