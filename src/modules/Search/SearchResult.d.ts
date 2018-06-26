@@ -1,29 +1,29 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface SearchResultProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** The item currently selected by keyboard shortcut. */
-  active?: boolean;
+  active?: boolean
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Additional text with less emphasis. */
-  description?: string;
+  description?: string
 
   /** A unique identifier. */
-  id?: number | string;
+  id?: number | string
 
   /** Add an image to the item. */
-  image?: string;
+  image?: string
 
   /**
    * Called on click.
@@ -31,10 +31,10 @@ export interface SearchResultProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: SearchResultProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: SearchResultProps) => void
 
   /** Customized text for price. */
-  price?: string;
+  price?: string
 
   /**
    * Renders the result contents.
@@ -42,12 +42,12 @@ export interface SearchResultProps {
    * @param {object} props - The SearchResult props object.
    * @returns {*} - Renderable result contents.
    */
-  renderer?: (props: SearchResultProps) => Array<React.ReactElement<any>>;
+  renderer?: (props: SearchResultProps) => React.ReactElement<any>[]
 
   /** Display title. */
-  title: string;
+  title: string
 }
 
-declare const SearchResult: React.ComponentClass<SearchResultProps>;
+declare const SearchResult: React.ComponentClass<SearchResultProps>
 
-export default SearchResult;
+export default SearchResult

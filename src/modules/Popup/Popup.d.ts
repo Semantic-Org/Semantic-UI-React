@@ -1,51 +1,54 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..';
-import { PortalProps } from '../../addons/Portal';
-import { default as PopupContent, PopupContentProps } from './PopupContent';
-import { default as PopupHeader, PopupHeaderProps } from './PopupHeader';
+import { SemanticShorthandItem } from '../..'
+import { PortalProps } from '../../addons/Portal'
+import { default as PopupContent, PopupContentProps } from './PopupContent'
+import { default as PopupHeader, PopupHeaderProps } from './PopupHeader'
 
 export interface PopupProps extends PortalProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Display the popup without the pointing arrow */
-  basic?: boolean;
+  basic?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Simple text content for the popover. */
-  content?: SemanticShorthandItem<PopupContentProps>;
+  content?: SemanticShorthandItem<PopupContentProps>
+
+  /** Existing element the pop-up should be bound to. */
+  context?: object
 
   /** A flowing Popup has no maximum width and continues to flow to fit its content. */
-  flowing?: boolean;
+  flowing?: boolean
 
   /** Header displayed above the content in bold. */
-  header?: SemanticShorthandItem<PopupHeaderProps>;
+  header?: SemanticShorthandItem<PopupHeaderProps>
 
   /** The node where the popup should mount. */
-  hideOnScroll?: boolean;
+  hideOnScroll?: boolean
 
   /** Whether the popup should not close on hover. */
-  hoverable?: boolean;
+  hoverable?: boolean
 
   /** Invert the colors of the popup */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Horizontal offset in pixels to be applied to the popup. */
-  horizontalOffset?: number;
+  horizontalOffset?: number
 
   /** Vertical offset in pixels to be applied to the popup. */
-  verticalOffset?: number;
+  verticalOffset?: number
 
   /** Events triggering the popup. */
-  on?: 'hover' | 'click' | 'focus' | Array<'hover' | 'click' | 'focus'>;
+  on?: 'hover' | 'click' | 'focus' | ('hover' | 'click' | 'focus')[]
 
   /**
    * Called when a close event happens.
@@ -53,7 +56,7 @@ export interface PopupProps extends PortalProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClose?: (event: React.MouseEvent<HTMLElement>, data: PopupProps) => void;
+  onClose?: (event: React.MouseEvent<HTMLElement>, data: PopupProps) => void
 
   /**
    * Called when the portal is mounted on the DOM.
@@ -61,7 +64,7 @@ export interface PopupProps extends PortalProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onMount?: (nothing: null, data: PopupProps) => void;
+  onMount?: (nothing: null, data: PopupProps) => void
 
   /**
    * Called when an open event happens.
@@ -69,7 +72,7 @@ export interface PopupProps extends PortalProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onOpen?: (event: React.MouseEvent<HTMLElement>, data: PopupProps) => void;
+  onOpen?: (event: React.MouseEvent<HTMLElement>, data: PopupProps) => void
 
   /**
    * Called when the portal is unmounted from the DOM.
@@ -77,7 +80,7 @@ export interface PopupProps extends PortalProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onUnmount?: (nothing: null, data: PopupProps) => void;
+  onUnmount?: (nothing: null, data: PopupProps) => void
 
   /** Position for the popover. */
   position?:
@@ -88,29 +91,29 @@ export interface PopupProps extends PortalProps {
     | 'right center'
     | 'left center'
     | 'top center'
-    | 'bottom center';
+    | 'bottom center'
 
   /** Popup size. */
-  size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge';
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge'
 
   /** Custom Popup style. */
-  style?: Object;
+  style?: Object
 
   /** Element to be rendered in-place where the popup is defined. */
-  trigger?: React.ReactNode;
+  trigger?: React.ReactNode
 
   /** Popup width. */
-  wide?: boolean | 'very';
+  wide?: boolean | 'very'
 
   /** Element to be rendered within the confines of the viewport whenever possible. */
-  keepInViewPort?: boolean;
+  keepInViewPort?: boolean
 }
 
 interface PopupComponent extends React.ComponentClass<PopupProps> {
-  Content: typeof PopupContent;
-  Header: typeof PopupHeader;
+  Content: typeof PopupContent
+  Header: typeof PopupHeader
 }
 
-declare const Popup: PopupComponent;
+declare const Popup: PopupComponent
 
-export default Popup;
+export default Popup

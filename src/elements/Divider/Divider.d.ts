@@ -1,43 +1,43 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface DividerProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Divider can clear the content above it. */
-  clearing?: boolean;
+  clearing?: boolean
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Divider can be fitted without any space above or below it. */
-  fitted?: boolean;
+  fitted?: boolean
 
   /** Divider can divide content without creating a dividing line. */
-  hidden?: boolean;
+  hidden?: boolean
 
   /** Divider can segment content horizontally. */
-  horizontal?: boolean;
+  horizontal?: boolean
 
   /** Divider can have its colours inverted. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Divider can provide greater margins to divide sections of content. */
-  section?: boolean;
+  section?: boolean
 
   /** Divider can segment content vertically. */
-  vertical?: boolean;
+  vertical?: boolean
 }
 
-declare const Divider: React.StatelessComponent<DividerProps>;
+declare const Divider: React.StatelessComponent<DividerProps>
 
-export default Divider;
+export default Divider

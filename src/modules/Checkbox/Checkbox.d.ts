@@ -1,41 +1,41 @@
-import * as React from 'react';
-import { HtmlLabelProps, SemanticShorthandItem } from '../..';
+import * as React from 'react'
+import { HtmlLabelProps, SemanticShorthandItem } from '../..'
 
 export interface CheckboxProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Whether or not checkbox is checked. */
-  checked?: boolean;
+  checked?: boolean
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** The initial value of checked. */
-  defaultChecked?: boolean;
+  defaultChecked?: boolean
 
   /** Whether or not checkbox is indeterminate. */
-  defaultIndeterminate?: boolean;
+  defaultIndeterminate?: boolean
 
   /** A checkbox can appear disabled and be unable to change states */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** Removes padding for a label. Auto applied when there is no label. */
-  fitted?: boolean;
+  fitted?: boolean
 
   /** A unique identifier. */
-  id?: number | string;
+  id?: number | string
 
   /** Whether or not checkbox is indeterminate. */
-  indeterminate?: boolean;
+  indeterminate?: boolean
 
   /** The text of the associated label element. */
-  label?: SemanticShorthandItem<HtmlLabelProps>;
+  label?: SemanticShorthandItem<HtmlLabelProps>
 
   /** The HTML input name. */
-  name?: string;
+  name?: string
 
   /**
    * Called when the user attempts to change the checked state.
@@ -43,7 +43,7 @@ export interface CheckboxProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed checked/indeterminate state.
    */
-  onChange?: (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => void;
+  onChange?: (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => void
 
   /**
    * Called when the checkbox or label is clicked.
@@ -51,7 +51,7 @@ export interface CheckboxProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and current checked/indeterminate state.
    */
-  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void
 
   /**
    * Called when the user presses down on the mouse.
@@ -59,30 +59,30 @@ export interface CheckboxProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and current checked/indeterminate state.
    */
-  onMouseDown?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void;
+  onMouseDown?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void
 
   /** Format as a radio element. This means it is an exclusive option. */
-  radio?: boolean;
+  radio?: boolean
 
   /** A checkbox can be read-only and unable to change states. */
-  readOnly?: boolean;
+  readOnly?: boolean
 
   /** Format to emphasize the current selection state. */
-  slider?: boolean;
+  slider?: boolean
 
   /** A checkbox can receive focus. */
-  tabIndex?: number | string;
+  tabIndex?: number | string
 
   /** Format to show an on or off choice. */
-  toggle?: boolean;
+  toggle?: boolean
 
   /** HTML input type, either checkbox or radio. */
-  type?: 'checkbox' | 'radio';
+  type?: 'checkbox' | 'radio'
 
   /** The HTML input value. */
-  value?: number|string;
+  value?: number | string
 }
 
-declare const Checkbox: React.ComponentClass<CheckboxProps>;
+declare const Checkbox: React.ComponentClass<CheckboxProps>
 
-export default Checkbox;
+export default Checkbox

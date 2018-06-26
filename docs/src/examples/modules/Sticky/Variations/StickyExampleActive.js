@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Checkbox, Grid, Header, Image, Rail, Segment, Sticky } from 'semantic-ui-react'
 
-const Placeholder = () => <Image src='/assets/images/wireframe/paragraph.png' />
+const Placeholder = () => <Image src='/images/wireframe/paragraph.png' />
 
 export default class StickyExampleActive extends Component {
   state = { active: true }
@@ -37,7 +37,7 @@ export default class StickyExampleActive extends Component {
               <Rail position='right'>
                 <Sticky active={active} context={contextRef}>
                   <Header as='h3'>Stuck Content</Header>
-                  <Image src='/assets/images/wireframe/image.png' />
+                  <Image src='/images/wireframe/image.png' />
                 </Sticky>
               </Rail>
             </Segment>

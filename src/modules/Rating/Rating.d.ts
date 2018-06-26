@@ -1,33 +1,33 @@
-import * as React from 'react';
-import RatingIcon from './RatingIcon';
+import * as React from 'react'
+import RatingIcon from './RatingIcon'
 
 export interface RatingProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /**
    * You can clear the rating by clicking on the current start rating.
    * By default a rating will be only clearable if there is 1 icon.
    * Setting to `true`/`false` will allow or disallow a user to clear their rating.
    */
-  clearable?: boolean | 'auto';
+  clearable?: boolean | 'auto'
 
   /** The initial rating value. */
-  defaultRating?: number | string;
+  defaultRating?: number | string
 
   /** You can disable or enable interactive rating.  Makes a read-only rating. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** A rating can use a set of star or heart icons. */
-  icon?: 'star' | 'heart';
+  icon?: 'star' | 'heart'
 
   /** The total number of icons. */
-  maxRating?: number | string;
+  maxRating?: number | string
 
   /**
    * Called after user selects a new rating.
@@ -35,19 +35,19 @@ export interface RatingProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed rating.
    */
-  onRate?: (event: React.MouseEvent<HTMLDivElement>, data: RatingProps) => void;
+  onRate?: (event: React.MouseEvent<HTMLDivElement>, data: RatingProps) => void
 
   /** The current number of active icons. */
-  rating?: number | string;
+  rating?: number | string
 
   /** A progress bar can vary in size. */
-  size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge' | 'massive';
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge' | 'massive'
 }
 
 interface RatingComponent extends React.ComponentClass<RatingProps> {
-  Icon: typeof RatingIcon;
+  Icon: typeof RatingIcon
 }
 
-declare const Rating: RatingComponent;
+declare const Rating: RatingComponent
 
-export default Rating;
+export default Rating

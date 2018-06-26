@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 
 import {
   SemanticFLOATS,
@@ -6,86 +6,86 @@ import {
   SemanticShorthandItem,
   SemanticSIZES,
   SemanticVERTICALALIGNMENTS,
-  SemanticWIDTHS
-} from '../..';
-import { DimmerProps } from '../../modules/Dimmer';
-import { LabelProps } from '../Label';
-import ImageGroup from './ImageGroup';
+  SemanticWIDTHS,
+} from '../..'
+import { DimmerProps } from '../../modules/Dimmer'
+import { LabelProps } from '../Label'
+import ImageGroup from './ImageGroup'
 
 export interface ImageProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** An image may be formatted to appear inline with text as an avatar. */
-  avatar?: boolean;
+  avatar?: boolean
 
   /** An image may include a border to emphasize the edges of white or transparent content. */
-  bordered?: boolean;
+  bordered?: boolean
 
   /** An image can appear centered in a content block. */
-  centered?: boolean;
+  centered?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** An image may appear circular. */
-  circular?: boolean;
+  circular?: boolean
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** An image can show that it is disabled and cannot be selected. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** Shorthand for Dimmer. */
-  dimmer?: SemanticShorthandItem<DimmerProps>;
+  dimmer?: SemanticShorthandItem<DimmerProps>
 
   /** An image can sit to the left or right of other content. */
-  floated?: SemanticFLOATS;
+  floated?: SemanticFLOATS
 
   /** An image can take up the width of its container. */
-  fluid?: boolean;
+  fluid?: boolean
 
   /** An image can be hidden. */
-  hidden?: boolean;
+  hidden?: boolean
 
   /** Renders the Image as an <a> tag with this href. */
-  href?: string;
+  href?: string
 
   /** An image may appear inline. */
-  inline?: boolean;
+  inline?: boolean
 
   /** Shorthand for Label. */
-  label?: SemanticShorthandItem<LabelProps>;
+  label?: SemanticShorthandItem<LabelProps>
 
   /** An image may appear rounded. */
-  rounded?: boolean;
+  rounded?: boolean
 
   /** An image may appear at different sizes. */
-  size?: SemanticSIZES;
+  size?: SemanticSIZES
 
   /** An image can specify that it needs an additional spacing to separate it from nearby content. */
-  spaced?: boolean | 'left' | 'right';
+  spaced?: boolean | 'left' | 'right'
 
   /** Whether or not to add the ui className. */
-  ui?: boolean;
+  ui?: boolean
 
   /** An image can specify its vertical alignment. */
-  verticalAlign?: SemanticVERTICALALIGNMENTS;
+  verticalAlign?: SemanticVERTICALALIGNMENTS
 
   /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
-  wrapped?: boolean;
+  wrapped?: boolean
 }
 
 interface ImageComponent extends React.StatelessComponent<ImageProps> {
-  Group: typeof ImageGroup;
+  Group: typeof ImageGroup
 }
 
-declare const Image: ImageComponent;
+declare const Image: ImageComponent
 
-export default Image;
+export default Image

@@ -9,7 +9,7 @@ const CommentExampleGroupSize = () => (
       </Header>
 
       <Comment>
-        <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />
+        <Comment.Avatar as='a' src='/images/avatar/small/matt.jpg' />
         <Comment.Content>
           <Comment.Author as='a'>Matt</Comment.Author>
           <Comment.Metadata>
@@ -22,7 +22,7 @@ const CommentExampleGroupSize = () => (
         </Comment.Content>
       </Comment>
       <Comment>
-        <Comment.Avatar as='a' src='/assets/images/avatar/small/joe.jpg' />
+        <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
         <Comment.Content>
           <Comment.Author as='a'>Joe Henderson</Comment.Author>
           <Comment.Metadata>
@@ -41,7 +41,7 @@ const CommentExampleGroupSize = () => (
       </Header>
 
       <Comment>
-        <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />
+        <Comment.Avatar as='a' src='/images/avatar/small/matt.jpg' />
         <Comment.Content>
           <Comment.Author as='a'>Matt</Comment.Author>
           <Comment.Metadata>
@@ -54,7 +54,7 @@ const CommentExampleGroupSize = () => (
         </Comment.Content>
       </Comment>
       <Comment>
-        <Comment.Avatar as='a' src='/assets/images/avatar/small/joe.jpg' />
+        <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
         <Comment.Content>
           <Comment.Author as='a'>Joe Henderson</Comment.Author>
           <Comment.Metadata>
@@ -73,7 +73,7 @@ const CommentExampleGroupSize = () => (
       </Header>
 
       <Comment>
-        <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />
+        <Comment.Avatar as='a' src='/images/avatar/small/matt.jpg' />
         <Comment.Content>
           <Comment.Author as='a'>Matt</Comment.Author>
           <Comment.Metadata>
@@ -86,7 +86,7 @@ const CommentExampleGroupSize = () => (
         </Comment.Content>
       </Comment>
       <Comment>
-        <Comment.Avatar as='a' src='/assets/images/avatar/small/joe.jpg' />
+        <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
         <Comment.Content>
           <Comment.Author as='a'>Joe Henderson</Comment.Author>
           <Comment.Metadata>
@@ -105,7 +105,7 @@ const CommentExampleGroupSize = () => (
       </Header>
 
       <Comment>
-        <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />
+        <Comment.Avatar as='a' src='/images/avatar/small/matt.jpg' />
         <Comment.Content>
           <Comment.Author as='a'>Matt</Comment.Author>
           <Comment.Metadata>
@@ -118,7 +118,7 @@ const CommentExampleGroupSize = () => (
         </Comment.Content>
       </Comment>
       <Comment>
-        <Comment.Avatar as='a' src='/assets/images/avatar/small/joe.jpg' />
+        <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
         <Comment.Content>
           <Comment.Author as='a'>Joe Henderson</Comment.Author>
           <Comment.Metadata>

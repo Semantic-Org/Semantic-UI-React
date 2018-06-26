@@ -1,62 +1,58 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import {
-  HtmlInputrops,
-  SemanticShorthandItem,
-  SemanticSIZES
-} from '../..';
-import { LabelProps } from '../Label';
+import { HtmlInputrops, SemanticShorthandItem, SemanticSIZES } from '../..'
+import { LabelProps } from '../Label'
 
 export interface InputProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** An Input can be formatted to alert the user to an action they may perform. */
-  action?: any | boolean;
+  action?: any | boolean
 
   /** An action can appear along side an Input on the left or right. */
-  actionPosition?: 'left';
+  actionPosition?: 'left'
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** An Input field can show that it is disabled. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** An Input field can show the data contains errors. */
-  error?: boolean;
+  error?: boolean
 
   /** Take on the size of its container. */
-  fluid?: boolean;
+  fluid?: boolean
 
   /** An Input field can show a user is currently interacting with it. */
-  focus?: boolean;
+  focus?: boolean
 
   /** Optional Icon to display inside the Input. */
-  icon?: any | SemanticShorthandItem<InputProps>;
+  icon?: any | SemanticShorthandItem<InputProps>
 
   /** An Icon can appear inside an Input on the left. */
-  iconPosition?: 'left';
+  iconPosition?: 'left'
 
   /** Shorthand for creating the HTML Input. */
-  input?: SemanticShorthandItem<HtmlInputrops>;
+  input?: SemanticShorthandItem<HtmlInputrops>
 
   /** Format to appear on dark backgrounds. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Optional Label to display along side the Input. */
-  label?:  SemanticShorthandItem<LabelProps>;
+  label?: SemanticShorthandItem<LabelProps>
 
   /** A Label can appear outside an Input on the left or right. */
-  labelPosition?: 'left' | 'right' | 'left corner' | 'right corner';
+  labelPosition?: 'left' | 'right' | 'left corner' | 'right corner'
 
   /** An Icon Input field can show that it is currently loading data. */
-  loading?: boolean;
+  loading?: boolean
 
   /**
    * Called on change.
@@ -64,27 +60,27 @@ export interface InputProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed value.
    */
-  onChange?: (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => void;
+  onChange?: (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => void
 
   /** An Input can vary in size. */
-  size?: SemanticSIZES;
+  size?: SemanticSIZES
 
   /** An Input can receive focus. */
-  tabIndex?: number | string;
+  tabIndex?: number | string
 
   /** Transparent Input has no background. */
-  transparent?: boolean;
+  transparent?: boolean
 
   /** The HTML input type. */
-  type?: string;
+  type?: string
 }
 
 export interface InputOnChangeData extends InputProps {
-  value: string;
+  value: string
 }
 
 declare class Input extends React.Component<InputProps, {}> {
-  focus: () => void;
+  focus: () => void
 }
 
-export default Input;
+export default Input

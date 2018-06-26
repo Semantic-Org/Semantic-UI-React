@@ -1,27 +1,27 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
-import { FeedLikeProps } from './FeedLike';
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { FeedLikeProps } from './FeedLike'
 
 export interface FeedMetaProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Shorthand for FeedLike. */
-  like?: SemanticShorthandItem<FeedLikeProps>;
+  like?: SemanticShorthandItem<FeedLikeProps>
 }
 
-declare const FeedMeta: React.StatelessComponent<FeedMetaProps>;
+declare const FeedMeta: React.StatelessComponent<FeedMetaProps>
 
-export default FeedMeta;
+export default FeedMeta

@@ -1,42 +1,42 @@
-import * as React from 'react';
+import * as React from 'react'
 
 import {
   SemanticFLOATS,
   SemanticShorthandContent,
   SemanticShorthandItem,
-  SemanticVERTICALALIGNMENTS
-} from '../..';
-import { ListDescriptionProps } from './ListDescription';
-import { ListHeaderProps } from './ListHeader';
+  SemanticVERTICALALIGNMENTS,
+} from '../..'
+import { ListDescriptionProps } from './ListDescription'
+import { ListHeaderProps } from './ListHeader'
 
 export interface ListContentProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Shorthand for ListDescription. */
-  description?: SemanticShorthandItem<ListDescriptionProps>;
+  description?: SemanticShorthandItem<ListDescriptionProps>
 
   /** An list content can be floated left or right. */
-  floated?: SemanticFLOATS;
+  floated?: SemanticFLOATS
 
   /** Shorthand for ListHeader. */
-  header?: SemanticShorthandItem<ListHeaderProps>;
+  header?: SemanticShorthandItem<ListHeaderProps>
 
   /** An element inside a list can be vertically aligned. */
-  verticalAlign?: SemanticVERTICALALIGNMENTS;
+  verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-declare const ListContent: React.StatelessComponent<ListContentProps>;
+declare const ListContent: React.StatelessComponent<ListContentProps>
 
-export default ListContent;
+export default ListContent

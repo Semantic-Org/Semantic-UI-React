@@ -30,7 +30,7 @@ export default class MenuExampleTabularOnTop extends Component {
         </Menu>
 
         <Segment attached='bottom'>
-          <img src='/assets/images/wireframe/paragraph.png' />
+          <img src='/images/wireframe/paragraph.png' />
         </Segment>
       </div>
     )

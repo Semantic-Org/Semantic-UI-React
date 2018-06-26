@@ -6,10 +6,10 @@ const DimmerExampleActive = () => (
     <Dimmer active />
 
     <p>
-      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/images/wireframe/short-paragraph.png' />
     </p>
     <p>
-      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/images/wireframe/short-paragraph.png' />
     </p>
   </Segment>
 )

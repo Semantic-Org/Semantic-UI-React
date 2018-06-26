@@ -1,54 +1,54 @@
-import * as React from 'react';
+import * as React from 'react'
 
 import {
   SemanticCOLORS,
   SemanticTEXTALIGNMENTS,
   SemanticVERTICALALIGNMENTS,
-  SemanticWIDTHS
-} from '../..';
-import { GridReversedProp } from './Grid';
-import { GridOnlyProp } from './GridColumn';
+  SemanticWIDTHS,
+} from '../..'
+import { GridReversedProp } from './Grid'
+import { GridOnlyProp } from './GridColumn'
 
 export interface GridRowProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A row can have its columns centered. */
-  centered?: boolean;
+  centered?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A grid row can be colored. */
-  color?: SemanticCOLORS;
+  color?: SemanticCOLORS
 
   /** Represents column count per line in Row. */
-  columns?: SemanticWIDTHS | 'equal';
+  columns?: SemanticWIDTHS | 'equal'
 
   /** A row can have dividers between its columns. */
-  divided?: boolean;
+  divided?: boolean
 
   /** A row can appear only for a specific device, or screen sizes. */
-  only?: GridOnlyProp;
+  only?: GridOnlyProp
 
   /** A  row can specify that its columns should reverse order at different device sizes. */
-  reversed?: GridReversedProp;
+  reversed?: GridReversedProp
 
   /** An can stretch its contents to take up the entire column height. */
-  stretched?: boolean;
+  stretched?: boolean
 
   /** A row can specify its text alignment. */
-  textAlign?: SemanticTEXTALIGNMENTS;
+  textAlign?: SemanticTEXTALIGNMENTS
 
   /** A row can specify its vertical alignment to have all its columns vertically centered. */
-  verticalAlign?: SemanticVERTICALALIGNMENTS;
+  verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-declare const GridRow: React.StatelessComponent<GridRowProps>;
+declare const GridRow: React.StatelessComponent<GridRowProps>
 
-export default GridRow;
+export default GridRow

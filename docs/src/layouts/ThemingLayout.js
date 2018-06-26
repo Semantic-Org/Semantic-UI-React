@@ -211,7 +211,7 @@ const ThemingLayout = () => (
           <Button>Two</Button>
         </Button.Group>
         <Segment attached>
-          <Image src='/assets/images/wireframe/paragraph.png' />
+          <Image src='/images/wireframe/paragraph.png' />
         </Segment>
         <Button.Group attached='bottom' widths={2}>
           <Button>One</Button>

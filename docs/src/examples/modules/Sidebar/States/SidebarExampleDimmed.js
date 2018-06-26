@@ -1,43 +1,49 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
-class SidebarLeftScaleDown extends Component {
+export default class SidebarExampleDimmed extends Component {
   state = { visible: false }
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+  handleButtonClick = () => this.setState({ visible: !this.state.visible })
+
+  handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
     const { visible } = this.state
+
     return (
       <div>
-        <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
+        <Button onClick={this.handleButtonClick}>Toggle visibility</Button>
+
         <Sidebar.Pushable as={Segment}>
           <Sidebar
             as={Menu}
-            animation='scale down'
-            width='thin'
-            visible={visible}
+            animation='overlay'
             icon='labeled'
-            vertical
             inverted
+            onHide={this.handleSidebarHide}
+            vertical
+            visible={visible}
+            width='thin'
           >
-            <Menu.Item name='home'>
+            <Menu.Item as='a'>
               <Icon name='home' />
               Home
             </Menu.Item>
-            <Menu.Item name='gamepad'>
+            <Menu.Item as='a'>
               <Icon name='gamepad' />
               Games
             </Menu.Item>
-            <Menu.Item name='camera'>
+            <Menu.Item as='a'>
               <Icon name='camera' />
               Channels
             </Menu.Item>
           </Sidebar>
-          <Sidebar.Pusher>
+
+          <Sidebar.Pusher dimmed={visible}>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
-              <Image src='/assets/images/wireframe/paragraph.png' />
+              <Image src='/images/wireframe/paragraph.png' />
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
@@ -45,5 +51,3 @@ class SidebarLeftScaleDown extends Component {
     )
   }
 }
-
-export default SidebarLeftScaleDown

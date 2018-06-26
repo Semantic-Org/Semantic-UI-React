@@ -1,92 +1,92 @@
-import * as React from 'react';
+import * as React from 'react'
 
 import {
   SemanticCOLORS,
   SemanticFLOATS,
   SemanticShorthandContent,
-  SemanticTEXTALIGNMENTS
-} from '../..';
-import SegmentGroup from './SegmentGroup';
+  SemanticTEXTALIGNMENTS,
+} from '../..'
+import SegmentGroup from './SegmentGroup'
 
-export type SegmentSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+export type SegmentSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 
 export interface SegmentProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Attach segment to other content, like a header. */
-  attached?: boolean | 'top' | 'bottom';
+  attached?: boolean | 'top' | 'bottom'
 
   /** A basic segment has no special formatting. */
-  basic?: boolean;
+  basic?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** A segment can be circular. */
-  circular?: boolean;
+  circular?: boolean
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A segment can clear floated content. */
-  clearing?: boolean;
+  clearing?: boolean
 
   /** Segment can be colored. */
-  color?: SemanticCOLORS;
+  color?: SemanticCOLORS
 
   /** A segment may take up only as much space as is necessary. */
-  compact?: boolean;
+  compact?: boolean
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A segment may show its content is disabled. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** Segment content can be floated to the left or right. */
-  floated?: SemanticFLOATS;
+  floated?: SemanticFLOATS
 
   /** A segment can have its colors inverted for contrast. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** A segment may show its content is being loaded. */
-  loading?: boolean;
+  loading?: boolean
 
   /** A segment can increase its padding. */
-  padded?: boolean | 'very';
+  padded?: boolean | 'very'
 
   /** Formatted to look like a pile of pages. */
-  piled?: boolean;
+  piled?: boolean
 
   /** A segment may be formatted to raise above the page. */
-  raised?: boolean;
+  raised?: boolean
 
   /** A segment can be formatted to appear less noticeable. */
-  secondary?: boolean;
+  secondary?: boolean
 
   /** A segment can have different sizes. */
-  size?: SegmentSizeProp;
+  size?: SegmentSizeProp
 
   /** Formatted to show it contains multiple pages. */
-  stacked?: boolean;
+  stacked?: boolean
 
   /** A segment can be formatted to appear even less noticeable. */
-  tertiary?: boolean;
+  tertiary?: boolean
 
   /** Formats content to be aligned as part of a vertical group. */
-  textAlign?: SemanticTEXTALIGNMENTS;
+  textAlign?: SemanticTEXTALIGNMENTS
 
   /** Formats content to be aligned vertically. */
-  vertical?: boolean;
+  vertical?: boolean
 }
 
 interface SegmentComponent extends React.StatelessComponent<SegmentProps> {
-  Group: typeof SegmentGroup;
+  Group: typeof SegmentGroup
 }
 
-declare const Segment: SegmentComponent;
+declare const Segment: SegmentComponent
 
-export default Segment;
+export default Segment

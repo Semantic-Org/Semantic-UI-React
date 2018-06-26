@@ -1,30 +1,30 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export interface DropdownSearchInputProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** An input can have the auto complete. */
-  autoComplete?: string;
+  autoComplete?: string
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A ref handler for input. */
-  inputRef?: (c: HTMLInputElement) => void;
+  inputRef?: (c: HTMLInputElement) => void
 
   /** An input can receive focus. */
-  tabIndex?: number | string;
+  tabIndex?: number | string
 
   /** The HTML input type. */
-  type?: string;
+  type?: string
 
   /** Stored value. */
-  value?: number | string;
+  value?: number | string
 }
 
-declare const DropdownSearchInput: React.ComponentClass<DropdownSearchInputProps>;
+declare const DropdownSearchInput: React.ComponentClass<DropdownSearchInputProps>
 
-export default DropdownSearchInput;
+export default DropdownSearchInput

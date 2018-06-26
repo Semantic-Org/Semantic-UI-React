@@ -108,7 +108,7 @@ task(
 task('build:docs:html', () => src(paths.docsSrc('404.html')).pipe(dest(paths.docsDist())))
 
 task('build:docs:images', () =>
-  src(`${paths.docsSrc()}/**/*.{png,jpg,gif}`).pipe(dest(paths.docsDist())),
+  src(`${paths.docsPublic()}/**/*.{png,jpg,gif}`).pipe(dest(paths.docsDist())),
 )
 
 task('build:docs:toc', (cb) => {
@@ -189,7 +189,7 @@ task('serve:docs', (cb) => {
     .use(
       WebpackDevMiddleware(compiler, {
         publicPath: webpackConfig.output.publicPath,
-        contentBase: paths.docsSrc(),
+        contentBase: paths.docsPublic(),
         hot: true,
         quiet: false,
         noInfo: true, // must be quiet for hot middleware to show overlay
@@ -220,7 +220,7 @@ task('watch:docs', (cb) => {
   watch(examplesSrc, series('build:docs:example-menu')).on('change', handleWatchChange)
 
   // rebuild images
-  watch(`${config.paths.src()}/**/*.{png,jpg,gif}`, series('build:docs:images')).on(
+  watch(`${config.paths.docsPublic()}/**/*.{png,jpg,gif}`, series('build:docs:images')).on(
     'change',
     handleWatchChange,
   )

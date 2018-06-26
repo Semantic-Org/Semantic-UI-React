@@ -1,8 +1,8 @@
 import React from 'react'
+import { Message, Icon } from 'semantic-ui-react'
+
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
-
-import { Message, Icon } from 'src'
 
 const FormFormUsageExamples = () => (
   <ExampleSection title='Usage'>
