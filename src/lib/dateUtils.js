@@ -1,22 +1,15 @@
 import _ from 'lodash'
 
+// timezone offset in ms
+const tzo = new Date().getTimezoneOffset()*6e4
+
+const daysOfMonth = (fmt) => Array(12).fill().map((o,i) => new Date(0, i).toLocaleDateString(navigator.language, {month: fmt}))
+const daysOfWeek = (fmt) => Array(7).fill().map((o,i) => new Date(tzo+1/1.2e-8*(i+4)).toLocaleDateString('en-US', {weekday: fmt}))
+
 export const labels = {
-  daysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-  daysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  months: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ],
+  daysShort: daysOfWeek('short'), // ['Sun', 'Mon', 'Tue', ...] --- localized
+  daysFull: daysOfWeek('long'), // ['Sunday', 'Monday', 'Tuesday', ...] --- localized
+  months: daysOfMonth('long') // ['January', 'February', 'March', ...] --- localized
 }
 
 /**
