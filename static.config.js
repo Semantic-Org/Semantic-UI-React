@@ -20,7 +20,6 @@ export default {
         standalone: require('@babel/standalone/package.json').version,
       },
       faker: require('faker/package.json').version,
-      jsBeautify: require('js-beautify/package.json').version,
       propTypes: require('prop-types/package.json').version,
       react: require('react/package.json').version,
       sui: require('semantic-ui-css/package.json').version,

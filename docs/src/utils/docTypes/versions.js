@@ -6,7 +6,6 @@ const versions = PropTypes.shape({
     standalone: PropTypes.string.isRequired,
   }).isRequired,
   faker: PropTypes.string.isRequired,
-  jsBeautify: PropTypes.string.isRequired,
   propTypes: PropTypes.string.isRequired,
   react: PropTypes.string.isRequired,
   sui: PropTypes.string.isRequired,

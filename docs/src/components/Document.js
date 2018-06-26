@@ -13,10 +13,10 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       <link rel='stylesheet' href='/style.css' />
       <link
         rel='stylesheet'
-        href={`https://cdn.jsdelivr.net/npm/semantic-ui-css@${versions.sui}/semantic.min.css`}
+        href={`//cdnjs.cloudflare.com/ajax/libs/semantic-ui/${versions.sui}/semantic.min.css`}
       />
 
-      <script src={`//cdn.jsdelivr.net/npm/anchor-js@${versions.anchor}/anchor.min.js`} />
+      <script src={`//cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`} />
       <script
         src={`//cdn.jsdelivr.net/npm/@babel/standalone@${versions.babel.standalone}/babel.min.js`}
       />
@@ -26,29 +26,26 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
         }/babel-preset-env.min.js`}
       />
       <script src={`//cdn.jsdelivr.net/faker.js/${versions.faker}/faker.min.js`} />
-      <script
-        src={`//cdn.jsdelivr.net/npm/js-beautify@${versions.jsBeautify}/js/lib/beautify-html.js`}
-      />
 
       <script
-        src={`//cdn.jsdelivr.net/npm/prop-types@${versions.propTypes}/prop-types${
+        src={`//cdnjs.cloudflare.com/ajax/libs/prop-types/${versions.propTypes}/prop-types${
           siteData.dev ? '' : '.min'
         }.js`}
       />
       <script
-        src={`//cdn.jsdelivr.net/npm/react@${versions.react}/umd/react${
+        src={`//cdnjs.cloudflare.com/ajax/libs/react/${versions.react}/umd/react${
           dev ? '.development' : '.production.min'
         }.js`}
       />
       <script
-        src={`//cdn.jsdelivr.net/npm/react-dom@${versions.react}/umd/react-dom${
+        src={`//cdnjs.cloudflare.com/ajax/libs/react-dom/${versions.react}/umd/react-dom${
           dev ? '.development' : '.production.min'
         }.js`}
       />
       <script
-        src={`//cdn.jsdelivr.net/npm/react-dom@${versions.react}/umd/react-dom-server.browser${
-          dev ? '.development' : '.production.min'
-        }.js`}
+        src={`//cdnjs.cloudflare.com/ajax/libs/react-dom/${
+          versions.react
+        }/umd/react-dom-server.browser${dev ? '.development' : '.production.min'}.js`}
       />
 
       <script src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' />
