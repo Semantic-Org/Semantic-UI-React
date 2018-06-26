@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import faker from 'faker'
 import React, { Component } from 'react'
-import { Search, Grid, Header } from 'semantic-ui-react'
+import { Search, Grid, Header, Segment } from 'semantic-ui-react'
 
 const getResults = () =>
   _.times(5, () => ({
@@ -76,10 +76,12 @@ export default class SearchExampleCategory extends Component {
           />
         </Grid.Column>
         <Grid.Column width={8}>
-          <Header>State</Header>
-          <pre>{JSON.stringify(this.state, null, 2)}</pre>
-          <Header>Options</Header>
-          <pre>{JSON.stringify(source, null, 2)}</pre>
+          <Segment>
+            <Header>State</Header>
+            <pre style={{ overflowX: 'auto' }}>{JSON.stringify(this.state, null, 2)}</pre>
+            <Header>Options</Header>
+            <pre style={{ overflowX: 'auto' }}>{JSON.stringify(source, null, 2)}</pre>
+          </Segment>
         </Grid.Column>
       </Grid>
     )

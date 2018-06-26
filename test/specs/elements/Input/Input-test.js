@@ -71,9 +71,14 @@ describe('Input', () => {
 
   common.propKeyAndValueToClassName(Input, 'actionPosition', ['left'], { className: 'action' })
   common.propKeyAndValueToClassName(Input, 'iconPosition', ['left'], { className: 'icon' })
-  common.propKeyAndValueToClassName(Input, 'labelPosition', ['left', 'right', 'left corner', 'right corner'], {
-    className: 'labeled',
-  })
+  common.propKeyAndValueToClassName(
+    Input,
+    'labelPosition',
+    ['left', 'right', 'left corner', 'right corner'],
+    {
+      className: 'labeled',
+    },
+  )
 
   common.propKeyOnlyToClassName(Input, 'action')
   common.propKeyOnlyToClassName(Input, 'disabled')
@@ -113,13 +118,9 @@ describe('Input', () => {
         const wrapper = shallow(<Input {...{ [propName]: propValue }} />)
 
         // account for overloading the onChange prop
-        const expectedValue = propName === 'onChange'
-          ? wrapper.instance().handleChange
-          : propValue
+        const expectedValue = propName === 'onChange' ? wrapper.instance().handleChange : propValue
 
-        wrapper
-          .find('input')
-          .should.have.prop(propName, expectedValue)
+        wrapper.find('input').should.have.prop(propName, expectedValue)
       })
 
       it(`passes \`${propName}\` to the <input> when using children`, () => {
@@ -131,13 +132,9 @@ describe('Input', () => {
         )
 
         // account for overloading the onChange prop
-        const expectedValue = propName === 'onChange'
-          ? wrapper.instance().handleChange
-          : propValue
+        const expectedValue = propName === 'onChange' ? wrapper.instance().handleChange : propValue
 
-        wrapper
-          .find('input')
-          .should.have.prop(propName, expectedValue)
+        wrapper.find('input').should.have.prop(propName, expectedValue)
       })
     })
   })
@@ -210,7 +207,12 @@ describe('Input', () => {
       const mountNode = document.createElement('div')
       document.body.appendChild(mountNode)
 
-      const wrapper = mount(<Input><input ref={ref} /></Input>, { attachTo: mountNode })
+      const wrapper = mount(
+        <Input>
+          <input ref={ref} />
+        </Input>,
+        { attachTo: mountNode },
+      )
       const input = document.querySelector('.ui.input input')
 
       ref.should.have.been.calledOnce()
@@ -257,6 +259,48 @@ describe('Input', () => {
       shallow(<Input tabIndex={123} disabled />)
         .find('input')
         .should.have.prop('tabIndex', 123)
+    })
+  })
+
+  describe('icon', () => {
+    it('is second child', () => {
+      shallow(<Input icon='search' />)
+        .children()
+        .at(1)
+        .is('Icon')
+        .should.be.true()
+    })
+
+    it('is third child with action positioned left', () => {
+      shallow(<Input icon='search' action='foo' actionPosition='left' />)
+        .children()
+        .at(2)
+        .is('Icon')
+        .should.be.true()
+    })
+
+    it('is third child with label', () => {
+      shallow(<Input icon='search' label='foo' />)
+        .children()
+        .at(2)
+        .is('Icon')
+        .should.be.true()
+    })
+
+    it('is second child with action', () => {
+      shallow(<Input icon='search' iconPosition='left' action='foo' />)
+        .children()
+        .at(1)
+        .is('Icon')
+        .should.be.true()
+    })
+
+    it('is second child with label positioned right', () => {
+      shallow(<Input icon='search' iconPosition='left' label='foo' labelPosition='right' />)
+        .children()
+        .at(1)
+        .is('Icon')
+        .should.be.true()
     })
   })
 })
