@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Link } from 'react-static'
+import { Link, withSiteData } from 'react-static'
 import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'semantic-ui-react'
 
-import pkg from 'package.json'
 import DocsLayout from 'docs/src/components/DocsLayout'
 import Editor from 'docs/src/components/Editor/Editor'
 import Logo from 'docs/src/components/Logo/Logo'
-import { semanticUIDocsURL, repoURL } from 'docs/src/utils'
+import { btoa, semanticUIDocsURL, repoURL } from 'docs/src/utils'
 
 const AccordionJSX = `const panels = [{
   title: 'What is a dog?',
@@ -114,7 +113,7 @@ const Comparison = ({ jsx, html }) => (
         <Label size='tiny' attached='top left'>
           JSX
         </Label>
-        {/*<Editor id={btoa(jsx)} value={jsx} readOnly />*/}
+        <Editor id={btoa(jsx)} value={jsx} readOnly />
       </Grid.Column>
       <Grid.Column largeScreen='2' only='large screen' textAlign='center'>
         <Divider vertical>
@@ -125,7 +124,7 @@ const Comparison = ({ jsx, html }) => (
         <Label size='tiny' attached='top right'>
           Rendered HTML
         </Label>
-        {/*<Editor id={btoa(html)} mode='html' value={html} readOnly />*/}
+        <Editor id={btoa(html)} mode='html' value={html} readOnly />
       </Grid.Column>
     </Grid>
   </Segment>
@@ -136,7 +135,7 @@ Comparison.propTypes = {
   html: PropTypes.string,
 }
 
-const Introduction = () => (
+const Introduction = ({ pkg }) => (
   <DocsLayout additionalTitle='Introduction'>
     <Container id='introduction-page'>
       <Segment basic textAlign='center'>
@@ -169,8 +168,8 @@ const Introduction = () => (
       </Segment>
 
       {/* ----------------------------------------
-     *  jQuery Free
-     * -------------------------------------- */}
+        *  jQuery Free
+        * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           jQuery Free
@@ -187,8 +186,8 @@ const Introduction = () => (
       </Segment>
 
       {/* ----------------------------------------
-     *  Declarative API
-     * -------------------------------------- */}
+        *  Declarative API
+        * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           Declarative API
@@ -222,8 +221,8 @@ const Introduction = () => (
       </Segment>
 
       {/* ----------------------------------------
-     *  Shorthand Props
-     * -------------------------------------- */}
+        *  Shorthand Props
+        * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           Shorthand Props
@@ -263,8 +262,8 @@ const Introduction = () => (
       </Segment>
 
       {/* ----------------------------------------
-     *  Sub Components
-     * -------------------------------------- */}
+        *  Sub Components
+        * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           Sub Components
@@ -277,8 +276,8 @@ const Introduction = () => (
       </Segment>
 
       {/* ----------------------------------------
-     *  Auto Controlled State
-     * -------------------------------------- */}
+        *  Auto Controlled State
+        * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           Auto Controlled State
@@ -322,4 +321,11 @@ const Introduction = () => (
   </DocsLayout>
 )
 
-export default Introduction
+Introduction.propTypes = {
+  pkg: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
+export default withSiteData(Introduction)

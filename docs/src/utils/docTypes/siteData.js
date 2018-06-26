@@ -1,20 +1,14 @@
 import PropTypes from 'prop-types'
+import versions from './versions'
 
 const siteData = PropTypes.shape({
+  versions,
   dev: PropTypes.bool.isRequired,
+  pkg: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
   title: PropTypes.string.isRequired,
-  versions: PropTypes.shape({
-    anchor: PropTypes.string.isRequired,
-    babel: PropTypes.shape({
-      standalone: PropTypes.string.isRequired,
-    }).isRequired,
-    faker: PropTypes.string.isRequired,
-    jsBeautify: PropTypes.string.isRequired,
-    propTypes: PropTypes.string.isRequired,
-    react: PropTypes.string.isRequired,
-    sui: PropTypes.string.isRequired,
-    suir: PropTypes.string.isRequired,
-  }),
 })
 
 export default siteData

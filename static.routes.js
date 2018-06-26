@@ -1,11 +1,11 @@
 import _ from 'lodash'
 
-import componentMenu from './docs/src/componentMenu'
 import {
+  getComponentGroupInfo,
+  getComponentMenu,
   getExampleSources,
   getInfoForSeeTags,
   getSidebarSections,
-  getComponentGroupInfo,
 } from './docs/src/staticUtils'
 import { getComponentPathname } from './docs/src/utils'
 
@@ -20,20 +20,24 @@ export default async () => {
     {
       path: '/introduction',
       component: 'docs/src/views/Introduction',
+      priority: 1,
     },
     {
       path: '/layouts',
       component: 'docs/src/views/Layouts',
+      priority: 0.8,
     },
     {
       path: '/theming',
       component: 'docs/src/views/Theming',
+      priority: 0.8,
     },
     {
       path: '/usage',
       component: 'docs/src/views/Usage',
+      priority: 0.9,
     },
-    ..._.map(componentMenu, baseInfo => ({
+    ..._.map(getComponentMenu(), baseInfo => ({
       path: getComponentPathname(baseInfo),
       component: 'docs/src/components/ComponentDoc',
       getData: async () => {

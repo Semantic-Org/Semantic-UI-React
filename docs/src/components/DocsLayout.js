@@ -5,7 +5,7 @@ import { Head, withRouter, withSiteData } from 'react-static'
 
 import Sidebar from 'docs/src/components/Sidebar/Sidebar'
 import style from 'docs/src/Style'
-import { scrollToAnchor } from 'docs/src/utils'
+import { docTypes, scrollToAnchor } from 'docs/src/utils'
 
 const anchors = new AnchorJS({
   icon: '#',
@@ -15,9 +15,11 @@ class DocsLayout extends Component {
   static propTypes = {
     additionalTitle: PropTypes.string,
     children: PropTypes.node,
+    componentMenu: docTypes.componentMenu.isRequired,
     location: PropTypes.object.isRequired,
     sidebar: PropTypes.bool,
     title: PropTypes.string.isRequired,
+    versions: docTypes.versions,
   }
 
   componentDidMount() {
@@ -50,7 +52,7 @@ class DocsLayout extends Component {
   }
 
   render() {
-    const { additionalTitle, children, sidebar, title } = this.props
+    const { additionalTitle, children, componentMenu, sidebar, title, versions } = this.props
     const mainStyle = sidebar ? style.sidebarMain : style.main
 
     return (
@@ -61,7 +63,7 @@ class DocsLayout extends Component {
             {title}
           </title>
         </Head>
-        <Sidebar style={style.menu} />
+        <Sidebar componentMenu={componentMenu} style={style.menu} version={versions.suir} />
         <div style={mainStyle}>{children}</div>
       </div>
     )

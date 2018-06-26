@@ -1,4 +1,6 @@
 import Document from './docs/src/components/Document'
+import { getComponentMenu } from './docs/src/staticUtils'
+import pkg from './package'
 import getRoutes from './static.routes'
 import webpack from './static.webpack'
 
@@ -7,6 +9,11 @@ export default {
   Document,
   getSiteData: async ({ dev }) => ({
     dev,
+    componentMenu: getComponentMenu(),
+    pkg: {
+      description: pkg.description,
+      name: pkg.name,
+    },
     title: 'Semantic UI React',
     versions: {
       anchor: require('anchor-js/package.json').version,

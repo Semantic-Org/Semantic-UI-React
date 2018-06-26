@@ -7,24 +7,29 @@ import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
-import componentMenu from 'docs/src/componentMenu'
-import { getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
+import { docTypes, getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
 import shallowEqual from 'src/lib/shallowEqual'
-import pkg from 'package.json'
 
 const selectedItemLabelStyle = { color: '#35bdb2', float: 'right' }
 const selectedItemLabel = <span style={selectedItemLabelStyle}>Press Enter</span>
 
 class Sidebar extends Component {
   static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
+    componentMenu: docTypes.componentMenu.isRequired,
     history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
     style: PropTypes.object,
+    version: PropTypes.string.isRequired,
   }
 
   state = { query: '' }
-  filteredMenu = componentMenu
+
+  constructor(props) {
+    super(props)
+
+    this.filteredMenu = props.componentMenu
+  }
 
   shouldComponentUpdate(nextProps, nextState) {
     return !shallowEqual(this.state, nextState)
@@ -105,7 +110,7 @@ class Sidebar extends Component {
           activeClassName='active'
         />
       )),
-    )(componentMenu)
+    )(this.props.componentMenu)
 
     return (
       <Menu.Item key={nextType}>
@@ -130,7 +135,7 @@ class Sidebar extends Component {
       } else if (new RegExp(escapedQuery, 'i').test(info.displayName)) {
         containsMatches.push(info)
       }
-    }, componentMenu)
+    }, this.props.componentMenu)
 
     this.filteredMenu = [...startsWithMatches, ...containsMatches]
     const menuItems = _.map((info) => {
@@ -158,16 +163,17 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { style } = this.props
+    const { style, version } = this.props
     const { query } = this.state
+
     return (
-      <Menu vertical fixed='left' inverted style={{ ...style }}>
+      <Menu vertical fixed='left' inverted style={style}>
         <Menu.Item>
           <Logo spaced='right' size='mini' />
           <strong>
             Semantic UI React &nbsp;
             <small>
-              <em>{pkg.version}</em>
+              <em>{version}</em>
             </small>
           </strong>
         </Menu.Item>
