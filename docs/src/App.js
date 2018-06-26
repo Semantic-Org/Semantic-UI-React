@@ -11,10 +11,6 @@ const App = () => (
       <Route exact path='/maximize/:exampleName' component={ExternalExampleLayout} />
       <Switch>
         <Routes />
-
-        {/* <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} sidebar /> */}
-        {/* <DocsLayout exact path='/:type/:name' component={DocsRoot} sidebar /> */}
-        {/* <DocsLayout exact path='/*' component={PageNotFound} /> */}
       </Switch>
     </Switch>
   </Router>

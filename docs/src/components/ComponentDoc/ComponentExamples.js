@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component, createElement } from 'react'
 
 import { Grid } from 'semantic-ui-react'
-import ContributionPrompt from '../ContributionPrompt'
+import ContributionPrompt from './ContributionPrompt'
 
 export default class ComponentExamples extends Component {
   static propTypes = {
