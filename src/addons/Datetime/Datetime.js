@@ -12,6 +12,7 @@ import {
 } from '../../lib'
 
 import Input from '../../elements/Input/Input'
+import Divider from '../../elements/Divider'
 import Popup from '../../modules/Popup'
 
 import DatetimeGrid from './DatetimeGrid'
@@ -321,6 +322,7 @@ export default class Datetime extends Component {
 
     return (
       <Popup
+        style={{paddingTop: '0.25rem'}}
         {...rest}
         size={size}
         closeOnDocumentClick
@@ -354,6 +356,7 @@ export default class Datetime extends Component {
         )}
       >
         {mode != 'hour' && mode != 'minute' &&
+          <React.Fragment>
             <DatetimeMenu
               compact
               size='small'
@@ -363,6 +366,8 @@ export default class Datetime extends Component {
               onPreviousPage={this.handlePreviousPage}
               value={value}
             />
+            <Divider fitted style={{marginBottom: '0.5rem'}}/>
+          </React.Fragment>
         }
         <DatetimeCalendar
           date={date}

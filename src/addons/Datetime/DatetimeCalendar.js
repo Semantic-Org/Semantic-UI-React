@@ -17,7 +17,6 @@ import {
 
 const style = {
   float: 'left',    // for side-by-side calendar ranges
-  width: '20em',
 }
 
 /**
