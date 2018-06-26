@@ -40,6 +40,7 @@ export default async () => {
     ..._.map(getComponentMenu(), baseInfo => ({
       path: getComponentPathname(baseInfo),
       component: 'docs/src/components/ComponentDoc',
+      priority: 0.7,
       getData: async () => {
         const componentsInfo = getComponentGroupInfo(baseInfo.displayName)
         const sidebarSections = getSidebarSections(baseInfo.displayName)
