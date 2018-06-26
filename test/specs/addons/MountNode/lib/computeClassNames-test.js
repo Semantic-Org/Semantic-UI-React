@@ -9,13 +9,9 @@ describe('computeClassNames', () => {
   })
 
   it('combines classNames', () => {
-    const map = new Set([
-      { props: { className: 'foo' } },
-      { props: { className: 'bar' } },
-    ])
+    const map = new Set([{ props: { className: 'foo' } }, { props: { className: 'bar' } }])
 
-    computeClassNames(map)
-      .should.have.members(['foo', 'bar'])
+    computeClassNames(map).should.have.members(['foo', 'bar'])
   })
 
   it('combines only unique classNames', () => {
@@ -25,8 +21,7 @@ describe('computeClassNames', () => {
       { props: { className: 'foo bar baz' } },
     ])
 
-    computeClassNames(map)
-      .should.have.members(['foo', 'bar', 'baz'])
+    computeClassNames(map).should.have.members(['foo', 'bar', 'baz'])
   })
 
   it('omits false, undefined and null classNames', () => {
@@ -40,8 +35,7 @@ describe('computeClassNames', () => {
       { props: { className: 'false' } },
     ])
 
-    computeClassNames(map)
-      .should.have.members(['foo', '0', 'false'])
+    computeClassNames(map).should.have.members(['foo', '0', 'false'])
   })
 
   it('trims classNames', () => {
@@ -50,7 +44,6 @@ describe('computeClassNames', () => {
       { props: { className: '    baz qux' } },
     ])
 
-    computeClassNames(map)
-      .should.have.members(['foo', 'bar', 'baz', 'qux'])
+    computeClassNames(map).should.have.members(['foo', 'bar', 'baz', 'qux'])
   })
 })

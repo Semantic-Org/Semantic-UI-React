@@ -33,13 +33,13 @@ describe('TransitionablePortal', () => {
 
   describe('children', () => {
     it('renders a Portal', () => {
-      wrapperShallow(<TransitionablePortal {...requiredProps} />)
-        .should.have.descendants('Portal')
+      wrapperShallow(<TransitionablePortal {...requiredProps} />).should.have.descendants('Portal')
     })
 
     it('renders a Transition', () => {
-      wrapperShallow(<TransitionablePortal {...requiredProps} />)
-        .should.have.descendants('Transition')
+      wrapperShallow(<TransitionablePortal {...requiredProps} />).should.have.descendants(
+        'Transition',
+      )
     })
   })
 
@@ -85,7 +85,9 @@ describe('TransitionablePortal', () => {
 
     it('changes `portalOpen` to false', () => {
       const trigger = <button />
-      wrapperMount(<TransitionablePortal {...requiredProps} transition={quickTransition} trigger={trigger} />)
+      wrapperMount(
+        <TransitionablePortal {...requiredProps} transition={quickTransition} trigger={trigger} />,
+      )
 
       wrapper.find('button').simulate('click')
       domEvent.click(document.body)
