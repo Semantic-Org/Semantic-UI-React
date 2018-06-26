@@ -13,7 +13,6 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "re": "cross-env NODE_ENV=production yarn build",
     "build": "gulp build",
     "build:docs": "gulp --series dll build:docs",
     "build:dist": "gulp --series dll build:dist",
