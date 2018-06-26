@@ -353,13 +353,17 @@ export default class Datetime extends Component {
           />
         )}
       >
-        <DatetimeMenu
-          mode={mode}
-          onDateChangeMode={this.handleChangeMode}
-          onNextPage={this.handleNextPage}
-          onPreviousPage={this.handlePreviousPage}
-          value={value}
-        />
+        {mode != 'hour' && mode != 'minute' &&
+            <DatetimeMenu
+              compact
+              size='small'
+              mode={mode}
+              onDateChangeMode={this.handleChangeMode}
+              onNextPage={this.handleNextPage}
+              onPreviousPage={this.handlePreviousPage}
+              value={value}
+            />
+        }
         <DatetimeCalendar
           date={date}
           dateFormatter={dateFormatter}
