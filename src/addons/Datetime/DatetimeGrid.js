@@ -95,7 +95,7 @@ DatetimeGrid.propTypes = {
 
 DatetimeGrid.defaultProps = {
   as: Table,
-  basic: 'very',
+  basic: true,
   singleLine: true,
   size: 'small',
   textAlign: 'center',

@@ -356,7 +356,6 @@ export default class Datetime extends Component {
         )}
       >
         {mode != 'hour' && mode != 'minute' &&
-          <React.Fragment>
             <DatetimeMenu
               compact
               size='small'
@@ -366,8 +365,6 @@ export default class Datetime extends Component {
               onPreviousPage={this.handlePreviousPage}
               value={value}
             />
-            <Divider fitted style={{marginBottom: '0.5rem'}}/>
-          </React.Fragment>
         }
         <DatetimeCalendar
           date={date}
