@@ -101,7 +101,7 @@ export default class DatetimeCalendar extends Component {
   static defaultProps = {
     firstDayOfWeek: 1,
     date: true,
-    time: true,
+    time: false,
     mode: 'day',
     value: new Date(),
     dateFormatter: dateUtils.defaultDateFormatter,

@@ -163,7 +163,7 @@ export default class Datetime extends Component {
     timeFormatter: dateUtils.defaultTimeFormatter,
     hourFormatter: dateUtils.defaultHourFormatter,
     date: true,
-    time: true,
+    time: false,
     defaultValue: new Date(),
   }
 
