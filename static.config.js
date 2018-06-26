@@ -1,5 +1,6 @@
 import Document from './docs/src/components/Document'
 import { getComponentMenu } from './docs/src/staticUtils'
+import config from './config'
 import pkg from './package'
 import getRoutes from './static.routes'
 import webpack from './static.webpack'
@@ -28,8 +29,9 @@ export default {
   }),
   getRoutes,
   paths: {
-    src: 'docs/src',
-    public: 'docs/public',
+    dist: config.paths.docsDist(),
+    src: config.paths.docsSrc(),
+    public: config.paths.docsPublic(),
   },
   siteRoot: 'https://react.semantic-ui.com',
   webpack,
