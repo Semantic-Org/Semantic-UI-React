@@ -165,6 +165,7 @@ export default class Datetime extends Component {
     date: true,
     time: false,
     defaultValue: new Date(),
+    size: 'tiny',
   }
 
   componentWillMount() {
@@ -312,6 +313,7 @@ export default class Datetime extends Component {
       placeholder,
       time,
       timeFormatter,
+      size
     } = this.props
 
     const { open, value, mode } = this.state
@@ -320,6 +322,7 @@ export default class Datetime extends Component {
     return (
       <Popup
         {...rest}
+        size={size}
         closeOnDocumentClick
         // TODO: Fix close on trigger blur, it closes when clicking inside the calendar.
         // DatetimeCalendar contents are changed on click, so Popup cannot find the clicked node within calendar.
