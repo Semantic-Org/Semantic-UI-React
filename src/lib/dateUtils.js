@@ -109,6 +109,8 @@ function ampmFormatter(date) {
 
 export function defaultHourFormatter(date) {
   if (!date) return ''
+  if(Date.prototype.toLocaleTimeString)
+    return date.toLocaleTimeString(navigator.language, {hour: '2-digit'});
   return date.getHours() % 12 || 12
 }
 

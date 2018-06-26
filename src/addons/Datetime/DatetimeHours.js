@@ -64,7 +64,7 @@ export default class DatetimeHours extends Component {
     date.setMinutes(0)
     date.setHours(hour)
 
-    return `${formatter(date)}:00`
+    return `${formatter(date)}`
   }
 
   handleCellClick = hours => (e) => {
