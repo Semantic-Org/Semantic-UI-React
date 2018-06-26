@@ -98,6 +98,9 @@ export interface DropdownProps {
   /** A dropdown can be labeled. */
   labeled?: boolean
 
+  /** A dropdown can defer rendering its options until it is open. */
+  lazyLoad?: boolean
+
   /** A dropdown can show that it is currently loading data. */
   loading?: boolean
 
