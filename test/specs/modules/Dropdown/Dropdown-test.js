@@ -1268,9 +1268,20 @@ describe('Dropdown', () => {
   describe('onClose', () => {
     it('called when dropdown would close', () => {
       const onClose = sandbox.spy()
-      wrapperMount(<Dropdown options={options} selection defaultOpen onClose={onClose} />)
+      wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
 
       wrapper.simulate('click')
+      onClose.should.have.been.calledOnce()
+    })
+
+    it('called once even when blurred', () => {
+      // Heads up!
+      // Special test for: https://github.com/Semantic-Org/Semantic-UI-React/issues/2953
+      const onClose = sandbox.spy()
+      wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
+
+      wrapper.simulate('click')
+      wrapper.simulate('blur')
       onClose.should.have.been.calledOnce()
     })
   })
