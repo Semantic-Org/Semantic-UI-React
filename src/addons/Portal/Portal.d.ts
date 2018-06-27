@@ -101,9 +101,6 @@ export interface PortalProps {
   /** Controls whether the portal should be prepended to the mountNode instead of appended. */
   prepend?: boolean
 
-  /** Any inline styles to the Portal container. */
-  style?: object
-
   /** Element to be rendered in-place where the portal is defined. */
   trigger?: React.ReactNode
 }
