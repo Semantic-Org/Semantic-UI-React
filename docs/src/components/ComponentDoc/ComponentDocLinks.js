@@ -33,7 +33,7 @@ export default class ComponentDocLinks extends PureComponent {
         <List.Item
           content={
             <code>
-              <a href={ghLink} target='_blank'>
+              <a href={ghLink} target='_blank' rel='noopener noreferrer'>
                 {repoPath}
               </a>
             </code>
@@ -43,7 +43,7 @@ export default class ComponentDocLinks extends PureComponent {
         {suiLink && (
           <List.Item
             content={
-              <a href={suiLink} target='_blank'>
+              <a href={suiLink} target='_blank' rel='noopener noreferrer'>
                 Semantic UI {displayName} Docs
               </a>
             }
