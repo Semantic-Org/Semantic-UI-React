@@ -71,14 +71,9 @@ describe('Input', () => {
 
   common.propKeyAndValueToClassName(Input, 'actionPosition', ['left'], { className: 'action' })
   common.propKeyAndValueToClassName(Input, 'iconPosition', ['left'], { className: 'icon' })
-  common.propKeyAndValueToClassName(
-    Input,
-    'labelPosition',
-    ['left', 'right', 'left corner', 'right corner'],
-    {
-      className: 'labeled',
-    },
-  )
+  common.propKeyAndValueToClassName(Input, 'labelPosition', ['left', 'right', 'left corner', 'right corner'], {
+    className: 'labeled',
+  })
 
   common.propKeyOnlyToClassName(Input, 'action')
   common.propKeyOnlyToClassName(Input, 'disabled')
@@ -118,9 +113,13 @@ describe('Input', () => {
         const wrapper = shallow(<Input {...{ [propName]: propValue }} />)
 
         // account for overloading the onChange prop
-        const expectedValue = propName === 'onChange' ? wrapper.instance().handleChange : propValue
+        const expectedValue = propName === 'onChange'
+          ? wrapper.instance().handleChange
+          : propValue
 
-        wrapper.find('input').should.have.prop(propName, expectedValue)
+        wrapper
+          .find('input')
+          .should.have.prop(propName, expectedValue)
       })
 
       it(`passes \`${propName}\` to the <input> when using children`, () => {
@@ -132,9 +131,13 @@ describe('Input', () => {
         )
 
         // account for overloading the onChange prop
-        const expectedValue = propName === 'onChange' ? wrapper.instance().handleChange : propValue
+        const expectedValue = propName === 'onChange'
+          ? wrapper.instance().handleChange
+          : propValue
 
-        wrapper.find('input').should.have.prop(propName, expectedValue)
+        wrapper
+          .find('input')
+          .should.have.prop(propName, expectedValue)
       })
     })
   })
@@ -207,12 +210,7 @@ describe('Input', () => {
       const mountNode = document.createElement('div')
       document.body.appendChild(mountNode)
 
-      const wrapper = mount(
-        <Input>
-          <input ref={ref} />
-        </Input>,
-        { attachTo: mountNode },
-      )
+      const wrapper = mount(<Input><input ref={ref} /></Input>, { attachTo: mountNode })
       const input = document.querySelector('.ui.input input')
 
       ref.should.have.been.calledOnce()
