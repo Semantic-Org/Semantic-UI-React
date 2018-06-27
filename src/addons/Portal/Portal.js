@@ -352,7 +352,7 @@ class Portal extends Component {
     if (!isBrowser()) return null
 
     this.rootNode.className = className || ''
-    this.rootNode.style = style || ''
+    this.rootNode.cssText = style || ''
 
     // when re-rendering, first remove listeners before re-adding them to the new node
     if (this.portalNode) {
