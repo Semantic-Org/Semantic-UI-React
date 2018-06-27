@@ -1,4 +1,5 @@
 // Addons
+
 export { default as Confirm, ConfirmProps } from './dist/commonjs/addons/Confirm'
 export { default as MountNode, MountNodeProps } from './dist/commonjs/addons/MountNode'
 export { default as Pagination, PaginationProps } from './dist/commonjs/addons/Pagination'
@@ -138,7 +139,7 @@ export { default as Container, ContainerProps } from './dist/commonjs/elements/C
 
 export { default as Divider, DividerProps } from './dist/commonjs/elements/Divider'
 
-export { default as Flag, FlagProps } from './dist/commonjs/elements/Flag'
+export { default as Flag, FlagNameValues, FlagProps } from './dist/commonjs/elements/Flag'
 
 export { default as Header, HeaderProps } from './dist/commonjs/elements/Header'
 export {

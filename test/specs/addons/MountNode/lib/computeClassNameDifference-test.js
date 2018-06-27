@@ -21,8 +21,10 @@ describe('computeClassNamesDifference', () => {
     _.forEach(fixtures, (fixture) => {
       const { prevClasses, currentClasses, forAdd, forRemoval } = fixture
 
-      computeClassNamesDifference(prevClasses, currentClasses)
-        .should.have.deep.members([forAdd, forRemoval])
+      computeClassNamesDifference(prevClasses, currentClasses).should.have.deep.members([
+        forAdd,
+        forRemoval,
+      ])
     })
   })
 })

@@ -13,11 +13,7 @@ const ModalExampleScrollingContent = () => (
         <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
 
         {_.times(8, i => (
-          <Image
-            key={i}
-            src='/images/wireframe/paragraph.png'
-            style={{ paddingBottom: 5 }}
-          />
+          <Image key={i} src='/images/wireframe/paragraph.png' style={{ paddingBottom: 5 }} />
         ))}
       </Modal.Description>
     </Modal.Content>

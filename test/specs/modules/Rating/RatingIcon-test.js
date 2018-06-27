@@ -24,8 +24,7 @@ describe('RatingIcon', () => {
       const spy = sandbox.spy()
       const event = { keyCode: keyboardKey.Spacebar, preventDefault: sandbox.spy() }
 
-      mount(<RatingIcon index={0} onClick={spy} />)
-        .simulate('keyup', event)
+      mount(<RatingIcon index={0} onClick={spy} />).simulate('keyup', event)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event, { index: 0 })
@@ -36,8 +35,7 @@ describe('RatingIcon', () => {
       const spy = sandbox.spy()
       const event = { keyCode: keyboardKey.Enter, preventDefault: sandbox.spy() }
 
-      mount(<RatingIcon index={0} onClick={spy} />)
-        .simulate('keyup', event)
+      mount(<RatingIcon index={0} onClick={spy} />).simulate('keyup', event)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event, { index: 0 })
