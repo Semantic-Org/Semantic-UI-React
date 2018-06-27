@@ -1,10 +1,27 @@
 import { rem } from '../../lib'
 
-export default () => {
-  const vars: any = {}
+export interface IButtonVariables {
+  circularRadius: string
+  circularWidth: string
+  typePrimaryColor: string
+  typePrimaryBackgroundColor: string
+  typePrimaryBorderColor: string
+  typeSecondaryColor: string
+  typeSecondaryBackgroundColor: string
+  typeSecondaryBorderColor: string
+}
 
-  vars.circularRadius = rem(999)
-  vars.circularWidth = rem(4.2)
+export default (siteVars: any): IButtonVariables => {
+  const { white, black, btnPrimaryColor, btnSecondaryColor, btnSecondaryBorderColor } = siteVars
 
-  return vars
+  return {
+    circularRadius: rem(10),
+    circularWidth: rem(5.1),
+    typePrimaryColor: white,
+    typePrimaryBackgroundColor: btnPrimaryColor,
+    typePrimaryBorderColor: 'transparent',
+    typeSecondaryColor: black,
+    typeSecondaryBackgroundColor: btnSecondaryColor,
+    typeSecondaryBorderColor: btnSecondaryBorderColor,
+  }
 }

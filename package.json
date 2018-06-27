@@ -70,6 +70,7 @@
     }
   },
   "dependencies": {
+    "@types/classnames": "^2.2.4",
     "classnames": "^2.2.5",
     "fbjs": "^0.8.16",
     "fela": "^6.1.7",

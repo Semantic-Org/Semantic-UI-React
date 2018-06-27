@@ -193,6 +193,11 @@ button,
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
+  margin: 0rem 0.25rem 0rem 0rem;
+  border: .1rem solid;
+  border-radius: .3rem;
+  height: 3.2rem;
+  width: 9.6rem;
 }
 
 /**

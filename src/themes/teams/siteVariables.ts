@@ -91,3 +91,10 @@ export const textX3FontSize = ''
 export const textX3LineHeight = ''
 export const textX4FontSize = ''
 export const textX4LineHeight = ''
+
+//
+// Button Component
+//
+export const btnPrimaryColor = brand
+export const btnSecondaryColor = white
+export const btnSecondaryBorderColor = gray06
