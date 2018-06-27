@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import faker from 'faker'
 import React, { Component } from 'react'
-import { Search, Grid, Header } from 'semantic-ui-react'
+import { Search, Grid, Header, Segment } from 'semantic-ui-react'
 
 const source = _.times(5, () => ({
   title: faker.company.companyName(),
@@ -40,7 +40,7 @@ export default class SearchExampleStandard extends Component {
 
     return (
       <Grid>
-        <Grid.Column width={8}>
+        <Grid.Column width={6}>
           <Search
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
@@ -50,11 +50,13 @@ export default class SearchExampleStandard extends Component {
             {...this.props}
           />
         </Grid.Column>
-        <Grid.Column width={8}>
-          <Header>State</Header>
-          <pre>{JSON.stringify(this.state, null, 2)}</pre>
-          <Header>Options</Header>
-          <pre>{JSON.stringify(source, null, 2)}</pre>
+        <Grid.Column width={10}>
+          <Segment>
+            <Header>State</Header>
+            <pre style={{ overflowX: 'auto' }}>{JSON.stringify(this.state, null, 2)}</pre>
+            <Header>Options</Header>
+            <pre style={{ overflowX: 'auto' }}>{JSON.stringify(source, null, 2)}</pre>
+          </Segment>
         </Grid.Column>
       </Grid>
     )

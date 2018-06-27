@@ -142,6 +142,9 @@ export default class Dropdown extends Component {
     /** A dropdown can be labeled. */
     labeled: PropTypes.bool,
 
+    /** A dropdown can defer rendering its options until it is open. */
+    lazyLoad: PropTypes.bool,
+
     /** A dropdown can show that it is currently loading data. */
     loading: PropTypes.bool,
 
@@ -1228,8 +1231,12 @@ export default class Dropdown extends Component {
   }
 
   renderOptions = () => {
-    const { multiple, search, noResultsMessage } = this.props
-    const { selectedIndex, value } = this.state
+    const { lazyLoad, multiple, search, noResultsMessage } = this.props
+    const { open, selectedIndex, value } = this.state
+
+    // lazy load, only render options when open
+    if (lazyLoad && !open) return null
+
     const options = this.getMenuOptions()
 
     if (noResultsMessage !== null && search && _.isEmpty(options)) {

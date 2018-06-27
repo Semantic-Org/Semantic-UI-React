@@ -468,6 +468,7 @@ describe('Dropdown', () => {
         .first()
         .simulate('click')
         .should.have.prop('active', true)
+
       wrapper.should.have.state('value', options[0].value)
 
       dropdownMenuIsClosed()
@@ -914,11 +915,7 @@ describe('Dropdown', () => {
       wrapper
         .find('DropdownItem')
         .at(1)
-        .should.have.prop('selected', false)
-      wrapper
-        .find('DropdownItem')
-        .at(1)
-        .should.have.prop('active', false)
+        .should.have.props({ selected: false, active: false })
 
       // select and make active
       domEvent.keyDown(document, { key: 'ArrowDown' })
@@ -928,7 +925,7 @@ describe('Dropdown', () => {
       wrapper
         .find('DropdownItem')
         .at(1)
-        .should.have.prop('active', true)
+        .should.have.props({ selected: true, active: true })
     })
     it('closes the menu', () => {
       wrapperMount(<Dropdown options={options} selection />).simulate('click')
@@ -2137,6 +2134,20 @@ describe('Dropdown', () => {
       instance.render()
 
       instance.renderText.should.have.been.called()
+    })
+  })
+
+  describe('lazyLoad', () => {
+    it('does not render options when closed', () => {
+      wrapperShallow(<Dropdown options={options} lazyLoad />).should.not.have.descendants(
+        'DropdownItem',
+      )
+    })
+
+    it('renders options when open', () => {
+      wrapperShallow(<Dropdown options={options} lazyLoad open />).should.have.descendants(
+        'DropdownItem',
+      )
     })
   })
 

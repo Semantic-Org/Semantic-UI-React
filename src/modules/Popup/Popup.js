@@ -53,6 +53,9 @@ export default class Popup extends Component {
     /** Simple text content for the popover. */
     content: customPropTypes.itemShorthand,
 
+    /** Existing element the pop-up should be bound to. */
+    context: PropTypes.object,
+
     /** A flowing Popup has no maximum width and continues to flow to fit its content. */
     flowing: PropTypes.bool,
 
@@ -156,6 +159,7 @@ export default class Popup extends Component {
 
   computePopupStyle(positions) {
     const style = { position: 'absolute' }
+    const context = this.getContext()
 
     // Do not access window/document when server side rendering
     if (!isBrowser()) return style
@@ -164,7 +168,7 @@ export default class Popup extends Component {
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement
 
-    const coords = this.coords || this.triggerRef.getBoundingClientRect()
+    const coords = this.coords || context.getBoundingClientRect()
     if (_.includes(positions, 'right')) {
       style.right = Math.round(clientWidth - (coords.right + pageXOffset))
       style.left = 'auto'
@@ -249,7 +253,9 @@ export default class Popup extends Component {
   }
 
   setPopupStyle() {
-    if ((!this.coords && !this.triggerRef) || !this.popupCoords) return
+    debug('setPopupStyle()')
+    const context = this.getContext()
+    if ((!this.coords && !context) || !this.popupCoords) return
     let position = this.props.position
     let style = this.computePopupStyle(position)
     const { keepInViewPort } = this.props
@@ -318,7 +324,7 @@ export default class Popup extends Component {
 
   handleOpen = (e) => {
     debug('handleOpen()')
-    this.coords = e.currentTarget.getBoundingClientRect()
+    this.coords = this.getContext().getBoundingClientRect()
 
     const { onOpen } = this.props
     if (onOpen) onOpen(e, this.props)
@@ -329,7 +335,9 @@ export default class Popup extends Component {
     const { hideOnScroll } = this.props
 
     if (hideOnScroll) eventStack.sub('scroll', this.hideOnScroll, { target: window })
-    this.setPosition()
+    if (this.getContext()) {
+      this.setPopupStyle(this.props.position)
+    }
     _.invoke(this.props, 'onMount', e, this.props)
   }
 
@@ -343,25 +351,17 @@ export default class Popup extends Component {
   }
 
   handlePopupRef = (popupRef) => {
-    debug('popupMounted()')
+    debug(`handlePopupRef(${popupRef})`)
     this.popupCoords = popupRef ? popupRef.getBoundingClientRect() : null
     this.setPopupStyle()
   }
 
   handleTriggerRef = (triggerRef) => {
-    debug('triggerMounted()')
-    if (triggerRef) {
-      this.triggerRef = triggerRef
-    }
+    debug(`handleTriggerRef(${triggerRef})`)
+    this.triggerRef = triggerRef
   }
 
-  setPosition = () => {
-    if (this.triggerRef) {
-      this.setPopupStyle(this.props.position)
-    }
-
-    this.animationRequestId = requestAnimationFrame(this.setPosition)
-  }
+  getContext = () => this.props.context || this.triggerRef
 
   render() {
     const {
