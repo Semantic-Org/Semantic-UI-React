@@ -121,7 +121,7 @@ class Portal extends Component {
 
     /** Controls whether the portal should be prepended to the mountNode instead of appended. */
     prepend: PropTypes.bool,
-    
+
     /** Element to be rendered in-place where the portal is defined. */
     trigger: PropTypes.node,
   }
