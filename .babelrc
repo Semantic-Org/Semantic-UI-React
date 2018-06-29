@@ -1,10 +1,13 @@
 {
   "presets": [
     "./build/preset-env",
-    "@babel/react",
-    ["@babel/stage-1", { "decoratorsLegacy": true }]
+    "@babel/react"
   ],
   "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-export-default-from",
+    "@babel/plugin-proposal-export-namespace-from",
+    "@babel/plugin-syntax-dynamic-import",
     "lodash",
     "transform-react-handled-props",
     ["transform-react-remove-prop-types", {

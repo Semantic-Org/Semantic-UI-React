@@ -13,7 +13,14 @@ import { sandbox } from 'test/utils'
 
 describe('List', () => {
   common.isConformant(List)
-  common.hasSubComponents(List, [ListContent, ListDescription, ListHeader, ListIcon, ListItem, ListList])
+  common.hasSubcomponents(List, [
+    ListContent,
+    ListDescription,
+    ListHeader,
+    ListIcon,
+    ListItem,
+    ListList,
+  ])
   common.hasUIClassName(List)
   common.rendersChildren(List)
 

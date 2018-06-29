@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -25,12 +24,6 @@ function HeaderSubheader(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-HeaderSubheader._meta = {
-  name: 'HeaderSubheader',
-  parent: 'Header',
-  type: META.TYPES.ELEMENT,
 }
 
 HeaderSubheader.propTypes = {

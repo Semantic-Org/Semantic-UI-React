@@ -13,7 +13,15 @@ import * as common from 'test/specs/commonTests'
 
 describe('Item', () => {
   common.isConformant(Item)
-  common.hasSubComponents(Item, [ItemContent, ItemDescription, ItemExtra, ItemGroup, ItemHeader, ItemImage, ItemMeta])
+  common.hasSubcomponents(Item, [
+    ItemContent,
+    ItemDescription,
+    ItemExtra,
+    ItemGroup,
+    ItemHeader,
+    ItemImage,
+    ItemMeta,
+  ])
   common.rendersChildren(Item, {
     rendersContent: false,
   })
@@ -26,43 +34,37 @@ describe('Item', () => {
 
   describe('content prop', () => {
     it('renders ItemContent component', () => {
-      shallow(<Item content={faker.hacker.phrase()} />)
-        .should.have.descendants('ItemContent')
+      shallow(<Item content={faker.hacker.phrase()} />).should.have.descendants('ItemContent')
     })
   })
 
   describe('description prop', () => {
     it('renders ItemContent component', () => {
-      shallow(<Item description={faker.hacker.phrase()} />)
-        .should.have.descendants('ItemContent')
+      shallow(<Item description={faker.hacker.phrase()} />).should.have.descendants('ItemContent')
     })
   })
 
   describe('extra prop', () => {
     it('renders ItemContent component', () => {
-      shallow(<Item extra={faker.hacker.phrase()} />)
-        .should.have.descendants('ItemContent')
+      shallow(<Item extra={faker.hacker.phrase()} />).should.have.descendants('ItemContent')
     })
   })
 
   describe('header prop', () => {
     it('renders ItemContent component', () => {
-      shallow(<Item header={faker.hacker.phrase()} />)
-        .should.have.descendants('ItemContent')
+      shallow(<Item header={faker.hacker.phrase()} />).should.have.descendants('ItemContent')
     })
   })
 
   describe('image prop', () => {
     it('renders ItemImage component', () => {
-      shallow(<Item image={faker.image.imageUrl()} />)
-        .should.have.descendants('ItemImage')
+      shallow(<Item image={faker.image.imageUrl()} />).should.have.descendants('ItemImage')
     })
   })
 
   describe('meta prop', () => {
     it('renders ItemContent component', () => {
-      shallow(<Item meta={faker.hacker.phrase()} />)
-        .should.have.descendants('ItemContent')
+      shallow(<Item meta={faker.hacker.phrase()} />).should.have.descendants('ItemContent')
     })
   })
 })

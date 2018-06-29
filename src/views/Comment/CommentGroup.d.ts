@@ -1,34 +1,34 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface CommentGroupProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Comments can be collapsed, or hidden from view. */
-  collapsed?: boolean;
+  collapsed?: boolean
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Comments can hide extra information unless a user shows intent to interact with a comment */
-  minimal?: boolean;
+  minimal?: boolean
 
   /** Comments can have different sizes. */
-  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 
   /** A comment list can be threaded to showing the relationship between conversations */
-  threaded?: boolean;
+  threaded?: boolean
 }
 
-declare const CommentGroup: React.StatelessComponent<CommentGroupProps>;
+declare const CommentGroup: React.StatelessComponent<CommentGroupProps>
 
-export default CommentGroup;
+export default CommentGroup

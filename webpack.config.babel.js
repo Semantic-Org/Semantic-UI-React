@@ -30,23 +30,25 @@ const webpackConfig = {
 // ------------------------------------
 
 const webpackHotPath = `${config.compiler_public_path}__webpack_hmr`
-const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_.map(
-  {
-    path: webpackHotPath, // The path which the middleware is serving the event stream on
-    timeout: 2000, // The time to wait after a disconnection before attempting to reconnect
-    overlay: true, // Set to false to disable the DOM-based client-side overlay.
-    reload: true, // Set to true to auto-reload the page when webpack gets stuck.
-    noInfo: false, // Set to true to disable informational console logging.
-    quiet: false, // Set to true to disable all console logging.
-  },
-  (val, key) => `&${key}=${val}`,
-).join('')}`
+const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_
+  .map(
+    {
+      path: webpackHotPath, // The path which the middleware is serving the event stream on
+      timeout: 2000, // The time to wait after a disconnection before attempting to reconnect
+      overlay: true, // Set to false to disable the DOM-based client-side overlay.
+      reload: true, // Set to true to auto-reload the page when webpack gets stuck.
+      noInfo: false, // Set to true to disable informational console logging.
+      quiet: false, // Set to true to disable all console logging.
+    },
+    (val, key) => `&${key}=${val}`,
+  )
+  .join('')}`
 
 const APP_ENTRY = paths.docsSrc('index.js')
 
 webpackConfig.entry = __DEV__
   ? {
-    app: ['react-hot-loader/patch', webpackHotMiddlewareEntry, APP_ENTRY],
+    app: [webpackHotMiddlewareEntry, APP_ENTRY],
     vendor: [webpackHotMiddlewareEntry, ...config.compiler_vendor],
   }
   : {
@@ -108,7 +110,10 @@ if (!__TEST__) {
 }
 
 if (__DEV__) {
-  webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin())
+  webpackConfig.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  )
 }
 
 if (__PROD__) {
@@ -170,10 +175,10 @@ const jsLoaders = [
     loader: 'babel-loader',
     options: {
       cacheDirectory: true,
+      plugins: __DEV__ ? ['react-hot-loader/babel'] : [],
     },
   },
 ]
-if (__DEV__) jsLoaders.unshift('react-hot-loader/webpack')
 
 webpackConfig.module.rules = [
   ...webpackConfig.module.rules,

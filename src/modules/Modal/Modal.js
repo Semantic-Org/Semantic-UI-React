@@ -7,11 +7,11 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  doesNodeContainClick,
   getElementType,
   getUnhandledProps,
   isBrowser,
   makeDebugger,
-  META,
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -41,6 +41,9 @@ class Modal extends Component {
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
 
+    /** A modal can be vertically centered in the viewport */
+    centered: PropTypes.bool,
+
     /** Primary content. */
     children: PropTypes.node,
 
@@ -48,11 +51,7 @@ class Modal extends Component {
     className: PropTypes.string,
 
     /** Shorthand for the close icon. Closes the modal on click. */
-    closeIcon: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.object,
-      PropTypes.bool,
-    ]),
+    closeIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.object, PropTypes.bool]),
 
     /** Whether or not the Modal should close when the dimmer is clicked. */
     closeOnDimmerClick: PropTypes.bool,
@@ -67,10 +66,7 @@ class Modal extends Component {
     defaultOpen: PropTypes.bool,
 
     /** A Modal can appear in a dimmer. */
-    dimmer: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['inverted', 'blurring']),
-    ]),
+    dimmer: PropTypes.oneOf([true, 'inverted', 'blurring']),
 
     /** Event pool namespace that is used to handle component events */
     eventPool: PropTypes.string,
@@ -140,20 +136,14 @@ class Modal extends Component {
   }
 
   static defaultProps = {
+    centered: true,
     dimmer: true,
     closeOnDimmerClick: true,
     closeOnDocumentClick: false,
     eventPool: 'Modal',
   }
 
-  static autoControlledProps = [
-    'open',
-  ]
-
-  static _meta = {
-    name: 'Modal',
-    type: META.TYPES.MODULE,
-  }
+  static autoControlledProps = ['open']
 
   static Header = ModalHeader
   static Content = ModalContent
@@ -179,6 +169,16 @@ class Modal extends Component {
 
   handleClose = (e) => {
     debug('close()')
+
+    _.invoke(this.props, 'onClose', e, this.props)
+    this.trySetState({ open: false })
+  }
+
+  handleDimmerClick = (e) => {
+    debug('handleDimmerClick()')
+    const { closeOnDimmerClick } = this.props
+
+    if (!closeOnDimmerClick || doesNodeContainClick(this.ref, e)) return
 
     _.invoke(this.props, 'onClose', e, this.props)
     this.trySetState({ open: false })
@@ -216,6 +216,16 @@ class Modal extends Component {
 
   handleRef = c => (this.ref = c)
 
+  handleDimmerRef = c => (this.dimmerRef = c)
+
+  setDimmerNodeStyle = () => {
+    debug('setDimmerNodeStyle()')
+
+    if (this.dimmerRef) {
+      this.dimmerRef.style.setProperty('display', 'flex', 'important')
+    }
+  }
+
   setPositionAndClassNames = () => {
     const { dimmer } = this.props
     let classes
@@ -233,7 +243,10 @@ class Modal extends Component {
     if (this.ref) {
       const { height } = this.ref.getBoundingClientRect()
 
-      const marginTop = -Math.round(height / 2)
+      // Leaving the old calculation here since we may need it as an older browser fallback
+      // SEE: https://github.com/Semantic-Org/Semantic-UI/issues/6185#issuecomment-376725956
+      // const marginTop = -Math.round(height / 2)
+      const marginTop = null
       const scrolling = height >= window.innerHeight
 
       if (this.state.marginTop !== marginTop) {
@@ -251,6 +264,8 @@ class Modal extends Component {
     if (!_.isEmpty(newState)) this.setState(newState)
 
     this.animationRequestId = requestAnimationFrame(this.setPositionAndClassNames)
+
+    this.setDimmerNodeStyle()
   }
 
   renderContent = (rest) => {
@@ -302,8 +317,8 @@ class Modal extends Component {
           <MountNode className={mountClasses} node={mountNode} />
 
           {closeIconJSX}
-          {ModalHeader.create(header)}
-          {ModalContent.create(content)}
+          {ModalHeader.create(header, { autoGenerateKey: false })}
+          {ModalContent.create(content, { autoGenerateKey: false })}
           {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
         </ElementType>
       </Ref>
@@ -312,7 +327,7 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
+    const { centered, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -323,21 +338,24 @@ class Modal extends Component {
     const unhandled = getUnhandledProps(Modal, this.props)
     const portalPropNames = Portal.handledProps
 
-    const rest = _.reduce(unhandled, (acc, val, key) => {
-      if (!_.includes(portalPropNames, key)) acc[key] = val
+    const rest = _.reduce(
+      unhandled,
+      (acc, val, key) => {
+        if (!_.includes(portalPropNames, key)) acc[key] = val
 
-      return acc
-    }, {})
+        return acc
+      },
+      {},
+    )
     const portalProps = _.pick(unhandled, portalPropNames)
 
     // wrap dimmer modals
-    const dimmerClasses = !dimmer
-      ? null
-      : cx(
-        'ui',
-        dimmer === 'inverted' && 'inverted',
-        'page modals dimmer transition visible active',
-      )
+    const dimmerClasses = cx(
+      'ui',
+      dimmer === 'inverted' && 'inverted',
+      !centered && 'top aligned',
+      'page modals dimmer transition visible active',
+    )
 
     // Heads up!
     //
@@ -353,10 +371,8 @@ class Modal extends Component {
     return (
       <Portal
         closeOnDocumentClick={closeOnDocumentClick}
-        closeOnRootNodeClick={closeOnDimmerClick}
         {...portalProps}
         trigger={trigger}
-        className={dimmerClasses}
         eventPool={eventPool}
         mountNode={mountNode}
         open={open}
@@ -365,7 +381,9 @@ class Modal extends Component {
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
       >
-        {this.renderContent(rest)}
+        <div className={dimmerClasses} onClick={this.handleDimmerClick} ref={this.handleDimmerRef}>
+          {this.renderContent(rest)}
+        </div>
       </Portal>
     )
   }

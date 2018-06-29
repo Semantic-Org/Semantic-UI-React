@@ -11,7 +11,6 @@ import {
   getUnhandledProps,
   htmlInputAttrs,
   makeDebugger,
-  META,
   partitionHTMLProps,
   useKeyOnly,
 } from '../../lib'
@@ -47,10 +46,7 @@ export default class Checkbox extends Component {
     fitted: PropTypes.bool,
 
     /** A unique identifier. */
-    id: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Whether or not checkbox is indeterminate. */
     indeterminate: PropTypes.bool,
@@ -86,55 +82,32 @@ export default class Checkbox extends Component {
     onMouseDown: PropTypes.func,
 
     /** Format as a radio element. This means it is an exclusive option. */
-    radio: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['slider', 'toggle']),
-    ]),
+    radio: customPropTypes.every([PropTypes.bool, customPropTypes.disallow(['slider', 'toggle'])]),
 
     /** A checkbox can be read-only and unable to change states. */
     readOnly: PropTypes.bool,
 
     /** Format to emphasize the current selection state. */
-    slider: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['radio', 'toggle']),
-    ]),
+    slider: customPropTypes.every([PropTypes.bool, customPropTypes.disallow(['radio', 'toggle'])]),
 
     /** A checkbox can receive focus. */
-    tabIndex: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Format to show an on or off choice. */
-    toggle: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['radio', 'slider']),
-    ]),
+    toggle: customPropTypes.every([PropTypes.bool, customPropTypes.disallow(['radio', 'slider'])]),
 
     /** HTML input type, either checkbox or radio. */
     type: PropTypes.oneOf(['checkbox', 'radio']),
 
     /** The HTML input value. */
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }
 
   static defaultProps = {
     type: 'checkbox',
   }
 
-  static autoControlledProps = [
-    'checked',
-    'indeterminate',
-  ]
-
-  static _meta = {
-    name: 'Checkbox',
-    type: META.TYPES.MODULE,
-  }
+  static autoControlledProps = ['checked', 'indeterminate']
 
   componentDidMount() {
     this.setIndeterminate()
@@ -178,7 +151,11 @@ export default class Checkbox extends Component {
 
     if (!this.canToggle()) return
 
-    _.invoke(this.props, 'onClick', e, { ...this.props, checked: !checked, indeterminate: !!indeterminate })
+    _.invoke(this.props, 'onClick', e, {
+      ...this.props,
+      checked: !checked,
+      indeterminate: !!indeterminate,
+    })
     _.invoke(this.props, 'onChange', e, { ...this.props, checked: !checked, indeterminate: false })
 
     this.trySetState({ checked: !checked, indeterminate: false })
@@ -188,7 +165,11 @@ export default class Checkbox extends Component {
     debug('handleMouseDown()')
     const { checked, indeterminate } = this.state
 
-    _.invoke(this.props, 'onMouseDown', e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
+    _.invoke(this.props, 'onMouseDown', e, {
+      ...this.props,
+      checked: !!checked,
+      indeterminate: !!indeterminate,
+    })
     _.invoke(this.inputRef, 'focus')
 
     e.preventDefault()
@@ -250,6 +231,7 @@ export default class Checkbox extends Component {
           {...htmlInputProps}
           checked={checked}
           className='hidden'
+          disabled={disabled}
           id={id}
           name={name}
           onClick={this.handleInputClick}
@@ -263,7 +245,9 @@ export default class Checkbox extends Component {
          Heads Up!
          Do not remove empty labels, they are required by SUI CSS
          */}
-        {createHTMLLabel(label, { defaultProps: { htmlFor: id } }) || <label htmlFor={id} />}
+        {createHTMLLabel(label, { defaultProps: { htmlFor: id }, autoGenerateKey: false }) || (
+          <label htmlFor={id} />
+        )}
       </ElementType>
     )
   }

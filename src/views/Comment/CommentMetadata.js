@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A comment can contain metadata about the comment, an arbitrary amount of metadata may be defined.
@@ -24,12 +18,6 @@ function CommentMetadata(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-CommentMetadata._meta = {
-  name: 'CommentMetadata',
-  parent: 'Comment',
-  type: META.TYPES.VIEW,
 }
 
 CommentMetadata.propTypes = {

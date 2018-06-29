@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 import RevealContent from './RevealContent'
@@ -16,15 +15,7 @@ import RevealContent from './RevealContent'
  * A reveal displays additional content in place of previous content when activated.
  */
 function Reveal(props) {
-  const {
-    active,
-    animated,
-    children,
-    className,
-    content,
-    disabled,
-    instant,
-  } = props
+  const { active, animated, children, className, content, disabled, instant } = props
 
   const classes = cx(
     'ui',
@@ -45,11 +36,6 @@ function Reveal(props) {
   )
 }
 
-Reveal._meta = {
-  name: 'Reveal',
-  type: META.TYPES.ELEMENT,
-}
-
 Reveal.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
@@ -59,9 +45,14 @@ Reveal.propTypes = {
 
   /** An animation name that will be applied to Reveal. */
   animated: PropTypes.oneOf([
-    'fade', 'small fade',
-    'move', 'move right', 'move up', 'move down',
-    'rotate', 'rotate left',
+    'fade',
+    'small fade',
+    'move',
+    'move right',
+    'move up',
+    'move down',
+    'rotate',
+    'rotate left',
   ]),
 
   /** Primary content. */

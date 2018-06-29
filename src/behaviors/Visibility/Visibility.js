@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   normalizeOffset,
   isBrowser,
 } from '../../lib'
@@ -74,10 +73,7 @@ export default class Visibility extends Component {
     offset: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-      PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ])),
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     ]),
 
     /** When set to false a callback will occur each time an element passes the threshold for a condition. */
@@ -157,6 +153,13 @@ export default class Visibility extends Component {
      * @param {object} data - All props.
      */
     onUpdate: PropTypes.func,
+
+    /**
+     * Allows to choose the mode of the position calculations:
+     * - `events` - (default) update and fire callbacks only on scroll/resize events
+     * - `repaint` - update and fire callbacks on browser repaint (animation frames)
+     */
+    updateOn: PropTypes.oneOf(['events', 'repaint']),
   }
 
   static defaultProps = {
@@ -164,11 +167,7 @@ export default class Visibility extends Component {
     continuous: false,
     offset: [0, 0],
     once: true,
-  }
-
-  static _meta = {
-    name: 'Visibility',
-    type: META.TYPES.BEHAVIOR,
+    updateOn: 'events',
   }
 
   calculations = {
@@ -188,24 +187,29 @@ export default class Visibility extends Component {
   // Lifecycle
   // ----------------------------------------
 
-  componentWillReceiveProps({ continuous, once, context }) {
-    const cleanHappened = continuous !== this.props.continuous || once !== this.props.once
+  componentWillReceiveProps({ continuous, once, context, updateOn }) {
+    const cleanHappened =
+      continuous !== this.props.continuous ||
+      once !== this.props.once ||
+      updateOn !== this.props.updateOn
 
     // Heads up! We should clean up array of happened callbacks, if values of these props are changed
     if (cleanHappened) this.firedCallbacks = []
 
-    if (this.props.context !== context) {
+    if (context !== this.props.context || updateOn !== this.props.updateOn) {
       this.unattachHandlers(this.props.context)
-      this.attachHandlers(context)
+      this.attachHandlers(context, updateOn)
     }
   }
 
   componentDidMount() {
+    this.mounted = true
+
     if (!isBrowser()) return
-    const { context, fireOnMount } = this.props
+    const { context, fireOnMount, updateOn } = this.props
 
     this.pageYOffset = window.pageYOffset
-    this.attachHandlers(context)
+    this.attachHandlers(context, updateOn)
 
     if (fireOnMount) this.update()
   }
@@ -214,14 +218,22 @@ export default class Visibility extends Component {
     const { context } = this.props
 
     this.unattachHandlers(context)
-    if (this.frameId) cancelAnimationFrame(this.frameId)
+    this.mounted = false
   }
 
-  attachHandlers(context) {
-    if (context) {
-      eventStack.sub('resize', this.handleUpdate, { target: context })
-      eventStack.sub('scroll', this.handleUpdate, { target: context })
+  attachHandlers(context, updateOn) {
+    if (updateOn === 'events') {
+      if (context) {
+        eventStack.sub('resize', this.handleUpdate, { target: context })
+        eventStack.sub('scroll', this.handleUpdate, { target: context })
+      }
+
+      return
     }
+
+    // Heads up!
+    // We will deal with `repaint` there
+    this.handleUpdate()
   }
 
   unattachHandlers(context) {
@@ -229,6 +241,8 @@ export default class Visibility extends Component {
       eventStack.unsub('resize', this.handleUpdate, { target: context })
       eventStack.unsub('scroll', this.handleUpdate, { target: context })
     }
+
+    if (this.frameId) cancelAnimationFrame(this.frameId)
   }
 
   // ----------------------------------------
@@ -289,6 +303,8 @@ export default class Visibility extends Component {
   }
 
   update = () => {
+    if (!this.mounted) return
+
     this.ticking = false
 
     this.oldCalculations = this.calculations
@@ -308,6 +324,7 @@ export default class Visibility extends Component {
       onTopVisibleReverse,
       onOffScreen,
       onOnScreen,
+      updateOn,
     } = this.props
     const forward = {
       bottomPassed: { callback: onBottomPassed, name: 'onBottomPassed' },
@@ -333,6 +350,8 @@ export default class Visibility extends Component {
     // Heads up! Reverse callbacks should be fired first
     _.forEach(reverse, (data, value) => this.fire(data, value, true))
     _.forEach(forward, (data, value) => this.fire(data, value))
+
+    if (updateOn === 'repaint') this.handleUpdate()
   }
 
   // ----------------------------------------
@@ -392,6 +411,10 @@ export default class Visibility extends Component {
     const ElementType = getElementType(Visibility, this.props)
     const rest = getUnhandledProps(Visibility, this.props)
 
-    return <ElementType {...rest} ref={this.handleRef}>{children}</ElementType>
+    return (
+      <ElementType {...rest} ref={this.handleRef}>
+        {children}
+      </ElementType>
+    )
   }
 }

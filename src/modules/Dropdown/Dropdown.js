@@ -13,7 +13,6 @@ import {
   getElementType,
   getUnhandledProps,
   makeDebugger,
-  META,
   objectDiff,
   shallowEqual,
   useKeyOnly,
@@ -103,6 +102,9 @@ export default class Dropdown extends Component {
       PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     ]),
 
+    /** Initial value of upward. */
+    defaultUpward: PropTypes.bool,
+
     /** Initial value or value array if multiple. */
     defaultValue: PropTypes.oneOfType([
       PropTypes.number,
@@ -139,6 +141,9 @@ export default class Dropdown extends Component {
 
     /** A dropdown can be labeled. */
     labeled: PropTypes.bool,
+
+    /** A dropdown can defer rendering its options until it is open. */
+    lazyLoad: PropTypes.bool,
 
     /** A dropdown can show that it is currently loading data. */
     loading: PropTypes.bool,
@@ -335,7 +340,7 @@ export default class Dropdown extends Component {
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number])),
     ]),
 
-    /** A dropdown can open upward. */
+    /** Controls whether the dropdown will open upward. */
     upward: PropTypes.bool,
 
     /**
@@ -361,12 +366,7 @@ export default class Dropdown extends Component {
     wrapSelection: true,
   }
 
-  static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value']
-
-  static _meta = {
-    name: 'Dropdown',
-    type: META.TYPES.MODULE,
-  }
+  static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
 
   static Divider = DropdownDivider
   static Header = DropdownHeader
@@ -472,6 +472,7 @@ export default class Dropdown extends Component {
     if (!prevState.open && this.state.open) {
       debug('dropdown opened')
       this.attachHandlersOnOpen()
+      this.setOpenDirection()
       this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
@@ -743,14 +744,17 @@ export default class Dropdown extends Component {
     const currentTarget = _.get(e, 'currentTarget')
     if (currentTarget && currentTarget.contains(document.activeElement)) return
 
-    const { closeOnBlur, multiple, onBlur, selectOnBlur } = this.props
+    const { closeOnBlur, multiple, selectOnBlur } = this.props
     // do not "blur" when the mouse is down inside of the Dropdown
     if (this.isMouseDown) return
-    if (onBlur) onBlur(e, this.props)
+
+    _.invoke(this.props, 'onBlur', e, this.props)
+
     if (selectOnBlur && !multiple) {
       this.makeSelectedItemActive(e)
       if (closeOnBlur) this.close()
     }
+
     this.setState({ focus: false })
     this.clearSearchQuery()
   }
@@ -955,9 +959,7 @@ export default class Dropdown extends Component {
     e.stopPropagation()
 
     this.setState({ selectedLabel: labelProps.value })
-
-    const { onLabelClick } = this.props
-    if (onLabelClick) onLabelClick(e, labelProps)
+    _.invoke(this.props, 'onLabelClick', e, labelProps)
   }
 
   handleLabelRemove = (e, labelProps) => {
@@ -1087,32 +1089,57 @@ export default class Dropdown extends Component {
     }
   }
 
-  open = (e) => {
-    debug('open()')
+  setOpenDirection = () => {
+    if (!this.ref) return
 
-    const { disabled, onOpen, search } = this.props
+    const menu = this.ref.querySelector('.menu.visible')
+
+    if (!menu) return
+
+    const dropdownRect = this.ref.getBoundingClientRect()
+    const menuHeight = menu.clientHeight
+    const spaceAtTheBottom =
+      document.documentElement.clientHeight - dropdownRect.top - dropdownRect.height - menuHeight
+    const spaceAtTheTop = dropdownRect.top - menuHeight
+
+    const upward = spaceAtTheBottom < 0 && spaceAtTheTop > spaceAtTheBottom
+
+    // set state only if there's a relevant difference
+    if (!upward !== !this.state.upward) {
+      this.trySetState({ upward })
+    }
+  }
+
+  open = (e) => {
+    const { disabled, open, search } = this.props
+    debug('open()', { disabled, open, search })
+
     if (disabled) return
     if (search && this.searchRef) this.searchRef.focus()
-    if (onOpen) onOpen(e, this.props)
+
+    _.invoke(this.props, 'onOpen', e, this.props)
 
     this.trySetState({ open: true })
     this.scrollSelectedItemIntoView()
   }
 
   close = (e) => {
-    debug('close()')
+    const { open } = this.state
+    debug('close()', { open })
 
-    const { onClose } = this.props
-    if (onClose) onClose(e, this.props)
-
-    this.trySetState({ open: false })
+    if (open) {
+      _.invoke(this.props, 'onClose', e, this.props)
+      this.trySetState({ open: false })
+    }
   }
 
   handleClose = () => {
     debug('handleClose()')
+
     const hasSearchFocus = document.activeElement === this.searchRef
     const hasDropdownFocus = document.activeElement === this.ref
     const hasFocus = hasSearchFocus || hasDropdownFocus
+
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
@@ -1212,8 +1239,12 @@ export default class Dropdown extends Component {
   }
 
   renderOptions = () => {
-    const { multiple, search, noResultsMessage } = this.props
-    const { selectedIndex, value } = this.state
+    const { lazyLoad, multiple, search, noResultsMessage } = this.props
+    const { open, selectedIndex, value } = this.state
+
+    // lazy load, only render options when open
+    if (lazyLoad && !open) return null
+
     const options = this.getMenuOptions()
 
     if (noResultsMessage !== null && search && _.isEmpty(options)) {
@@ -1252,7 +1283,7 @@ export default class Dropdown extends Component {
 
     return (
       <DropdownMenu {...ariaOptions} direction={direction} open={open}>
-        {DropdownHeader.create(header)}
+        {DropdownHeader.create(header, { autoGenerateKey: false })}
         {this.renderOptions()}
       </DropdownMenu>
     )
@@ -1284,9 +1315,8 @@ export default class Dropdown extends Component {
       scrolling,
       simple,
       trigger,
-      upward,
     } = this.props
-    const { open } = this.state
+    const { open, upward } = this.state
 
     // Classes
     const classes = cx(
@@ -1342,6 +1372,7 @@ export default class Dropdown extends Component {
         {trigger || this.renderText()}
         {Icon.create(icon, {
           overrideProps: this.handleIconOverrides,
+          autoGenerateKey: false,
         })}
         {this.renderMenu()}
       </ElementType>

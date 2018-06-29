@@ -1,39 +1,39 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticShorthandContent } from '../..';
-import { ItemProps } from './Item';
+import { SemanticShorthandCollection, SemanticShorthandContent } from '../..'
+import { ItemProps } from './Item'
 
 export interface ItemGroupProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Items can be divided to better distinguish between grouped content. */
-  divided?: boolean;
+  divided?: boolean
 
   /** Shorthand array of props for Item. */
-  items?: SemanticShorthandCollection<ItemProps>;
+  items?: SemanticShorthandCollection<ItemProps>
 
   /** An item can be formatted so that the entire contents link to another page. */
-  link?: boolean;
+  link?: boolean
 
   /** A group of items can relax its padding to provide more negative space. */
-  relaxed?: boolean | 'very';
+  relaxed?: boolean | 'very'
 
   /** Prevent items from stacking on mobile. */
-  unstackable?: boolean;
+  unstackable?: boolean
 }
 
-declare const ItemGroup: React.StatelessComponent<ItemGroupProps>;
+declare const ItemGroup: React.StatelessComponent<ItemGroupProps>
 
-export default ItemGroup;
+export default ItemGroup

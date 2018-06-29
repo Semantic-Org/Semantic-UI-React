@@ -10,7 +10,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   partitionHTMLProps,
   SUI,
   useKeyOnly,
@@ -33,10 +32,7 @@ class Input extends Component {
     as: customPropTypes.as,
 
     /** An Input can be formatted to alert the user to an action they may perform. */
-    action: PropTypes.oneOfType([
-      PropTypes.bool,
-      customPropTypes.itemShorthand,
-    ]),
+    action: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
 
     /** An action can appear along side an Input on the left or right. */
     actionPosition: PropTypes.oneOf(['left']),
@@ -60,10 +56,7 @@ class Input extends Component {
     focus: PropTypes.bool,
 
     /** Optional Icon to display inside the Input. */
-    icon: PropTypes.oneOfType([
-      PropTypes.bool,
-      customPropTypes.itemShorthand,
-    ]),
+    icon: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
 
     /** An Icon can appear inside an Input on the left or right. */
     iconPosition: PropTypes.oneOf(['left']),
@@ -95,10 +88,7 @@ class Input extends Component {
     size: PropTypes.oneOf(SUI.SIZES),
 
     /** An Input can receive focus. */
-    tabIndex: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Transparent Input has no background. */
     transparent: PropTypes.bool,
@@ -109,11 +99,6 @@ class Input extends Component {
 
   static defaultProps = {
     type: 'text',
-  }
-
-  static _meta = {
-    name: 'Input',
-    type: META.TYPES.ELEMENT,
   }
 
   computeIcon = () => {
@@ -130,7 +115,7 @@ class Input extends Component {
     if (disabled) return -1
   }
 
-  focus = () => (this.inputRef.focus())
+  focus = () => this.inputRef.focus()
 
   handleChange = (e) => {
     const value = _.get(e, 'target.value')
@@ -156,14 +141,17 @@ class Input extends Component {
     const unhandled = getUnhandledProps(Input, this.props)
     const [htmlInputProps, rest] = partitionHTMLProps(unhandled)
 
-    return [{
-      ...htmlInputProps,
-      disabled,
-      type,
-      tabIndex,
-      onChange: this.handleChange,
-      ref: this.handleInputRef,
-    }, rest]
+    return [
+      {
+        ...htmlInputProps,
+        disabled,
+        type,
+        tabIndex,
+        onChange: this.handleChange,
+        ref: this.handleInputRef,
+      },
+      rest,
+    ]
   }
 
   render() {
@@ -216,12 +204,16 @@ class Input extends Component {
         return cloneElement(child, this.handleChildOverrides(child, htmlInputProps))
       })
 
-      return <ElementType {...rest} className={classes}>{childElements}</ElementType>
+      return (
+        <ElementType {...rest} className={classes}>
+          {childElements}
+        </ElementType>
+      )
     }
 
     // Render Shorthand
     // ----------------------------------------
-    const actionElement = Button.create(action)
+    const actionElement = Button.create(action, { autoGenerateKey: false })
     const labelElement = Label.create(label, {
       defaultProps: {
         className: cx(
@@ -230,15 +222,16 @@ class Input extends Component {
           _.includes(labelPosition, 'corner') && labelPosition,
         ),
       },
+      autoGenerateKey: false,
     })
 
     return (
       <ElementType {...rest} className={classes}>
         {actionPosition === 'left' && actionElement}
         {labelPosition !== 'right' && labelElement}
-        {createHTMLInput(input || type, { defaultProps: htmlInputProps })}
+        {createHTMLInput(input || type, { defaultProps: htmlInputProps, autoGenerateKey: false })}
+        {Icon.create(this.computeIcon(), { autoGenerateKey: false })}
         {actionPosition !== 'left' && actionElement}
-        {Icon.create(this.computeIcon())}
         {labelPosition === 'right' && labelElement}
       </ElementType>
     )

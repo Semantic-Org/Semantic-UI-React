@@ -1,55 +1,55 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
   HtmlLabelProps,
   SemanticShorthandContent,
   SemanticShorthandItem,
-  SemanticWIDTHS
-} from '../..';
+  SemanticWIDTHS,
+} from '../..'
 
 export interface FormFieldProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /**
    * A form control component (i.e. Dropdown) or HTML tagName (i.e. 'input').
    * Extra FormField props are passed to the control component.
    * Mutually exclusive with children.
    */
-  control?: any;
+  control?: any
 
   /** Individual fields may be disabled. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** Individual fields may display an error state. */
-  error?: boolean;
+  error?: boolean
 
   /** A field can have its label next to instead of above it. */
-  inline?: boolean;
+  inline?: boolean
 
   /** Mutually exclusive with children. */
-  label?: SemanticShorthandItem<HtmlLabelProps>;
+  label?: SemanticShorthandItem<HtmlLabelProps>
 
   /** A field can show that input is mandatory.  Requires a label. */
-  required?: any;
+  required?: any
 
   /** Passed to the control component (i.e. <input type='password' />) */
-  type?: string;
+  type?: string
 
   /** A field can specify its width in grid columns */
-  width?: SemanticWIDTHS;
+  width?: SemanticWIDTHS
 }
 
-declare const FormField: React.StatelessComponent<FormFieldProps>;
+declare const FormField: React.StatelessComponent<FormFieldProps>
 
-export default FormField;
+export default FormField

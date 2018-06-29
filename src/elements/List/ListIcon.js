@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  createShorthandFactory,
-  getUnhandledProps,
-  META,
-  SUI,
-  useVerticalAlignProp,
-} from '../../lib'
+import { createShorthandFactory, getUnhandledProps, SUI, useVerticalAlignProp } from '../../lib'
 import Icon from '../Icon/Icon'
 
 /**
@@ -16,19 +10,10 @@ import Icon from '../Icon/Icon'
  */
 function ListIcon(props) {
   const { className, verticalAlign } = props
-  const classes = cx(
-    useVerticalAlignProp(verticalAlign),
-    className,
-  )
+  const classes = cx(useVerticalAlignProp(verticalAlign), className)
   const rest = getUnhandledProps(ListIcon, props)
 
   return <Icon {...rest} className={classes} />
-}
-
-ListIcon._meta = {
-  name: 'ListIcon',
-  parent: 'List',
-  type: META.TYPES.ELEMENT,
 }
 
 ListIcon.propTypes = {

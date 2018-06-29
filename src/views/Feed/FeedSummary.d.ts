@@ -1,31 +1,31 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
-import { FeedDateProps } from './FeedDate';
-import { FeedUserProps } from './FeedUser';
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { FeedDateProps } from './FeedDate'
+import { FeedUserProps } from './FeedUser'
 
 export interface FeedSummaryProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Shorthand for FeedDate. */
-  date?: SemanticShorthandItem<FeedDateProps>;
+  date?: SemanticShorthandItem<FeedDateProps>
 
   /** Shorthand for FeedUser. */
-  user?: SemanticShorthandItem<FeedUserProps>;
+  user?: SemanticShorthandItem<FeedUserProps>
 }
 
-declare const FeedSummary: React.StatelessComponent<FeedSummaryProps>;
+declare const FeedSummary: React.StatelessComponent<FeedSummaryProps>
 
-export default FeedSummary;
+export default FeedSummary

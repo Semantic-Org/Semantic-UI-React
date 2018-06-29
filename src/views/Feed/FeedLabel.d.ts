@@ -1,34 +1,30 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import {
-  HtmlImageProps,
-  SemanticShorthandContent,
-  SemanticShorthandItem
-} from '../..';
-import { IconProps } from '../../elements/Icon';
+import { HtmlImageProps, SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { IconProps } from '../../elements/Icon'
 
 export interface FeedLabelProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** An event can contain icon label. */
-  icon?: SemanticShorthandItem<IconProps>;
+  icon?: SemanticShorthandItem<IconProps>
 
   /** An event can contain image label. */
-  image?: SemanticShorthandItem<HtmlImageProps>;
+  image?: SemanticShorthandItem<HtmlImageProps>
 }
 
-declare const FeedLabel: React.StatelessComponent<FeedLabelProps>;
+declare const FeedLabel: React.StatelessComponent<FeedLabelProps>
 
-export default FeedLabel;
+export default FeedLabel

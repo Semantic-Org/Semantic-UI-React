@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 import ItemContent from './ItemContent'
 import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'
@@ -21,28 +15,23 @@ import ItemMeta from './ItemMeta'
  * An item view presents large collections of site content for display.
  */
 function Item(props) {
-  const {
-    children,
-    className,
-    content,
-    description,
-    extra,
-    header,
-    image,
-    meta,
-  } = props
+  const { children, className, content, description, extra, header, image, meta } = props
 
   const classes = cx('item', className)
   const rest = getUnhandledProps(Item, props)
   const ElementType = getElementType(Item, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
   }
 
   return (
     <ElementType {...rest} className={classes}>
-      {ItemImage.create(image)}
+      {ItemImage.create(image, { autoGenerateKey: false })}
 
       <ItemContent
         content={content}
@@ -53,11 +42,6 @@ function Item(props) {
       />
     </ElementType>
   )
-}
-
-Item._meta = {
-  name: 'Item',
-  type: META.TYPES.VIEW,
 }
 
 Item.Content = ItemContent

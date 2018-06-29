@@ -7,7 +7,6 @@ import {
   createShorthandFactory,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useMultipleProp,
@@ -57,13 +56,11 @@ function GridColumn(props) {
   const rest = getUnhandledProps(GridColumn, props)
   const ElementType = getElementType(GridColumn, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
-}
-
-GridColumn._meta = {
-  name: 'GridColumn',
-  parent: 'Grid',
-  type: META.TYPES.COLLECTION,
+  return (
+    <ElementType {...rest} className={classes}>
+      {children}
+    </ElementType>
+  )
 }
 
 GridColumn.propTypes = {
