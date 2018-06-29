@@ -115,7 +115,8 @@ export function ampmFormatter(date) {
 
 export function defaultHourFormatter(date) {
   if (!date) return ''
-  return date.getHours() % 12 || 12
+  if (date.getHours() < 12) return `${date.getHours() % 12 || 12}:00 AM`
+  return `${date.getHours() % 12 || 12}:00 PM`
 }
 
 export function defaultMinuteFormatter(date) {

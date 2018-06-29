@@ -11,11 +11,27 @@ const requiredProps = {
 describe('DatetimeHours', () => {
   common.isConformant(DatetimeHours, { requiredProps })
 
-  it('renders hours in a 12-hour clock', () => {
+  it('renders hours in a 12-hour format', () => {
     const date = new Date('2018 09 05')
 
-    const hours = /12:001:002:003:004:005:006:007:008:009:0010:0011:00$/
-    mount(<DatetimeHours value={date} />).should.have.text().match(hours)
+    const hours = '12:00 AM1:00 AM2:00 AM3:00 AM4:00 AM5:00 AM6:00 AM7:00 AM' +
+      '8:00 AM9:00 AM10:00 AM11:00 AM12:00 PM1:00 PM2:00 PM3:00 PM' +
+      '4:00 PM5:00 PM6:00 PM7:00 PM8:00 PM9:00 PM10:00 PM11:00 PM'
+    mount(<DatetimeHours value={date} />).should.have.text(hours)
+  })
+
+  it('renders hours in a 24-hour format', () => {
+    const date = new Date('2018 09 05')
+
+    const hours = '00:0001:0002:0003:0004:0005:0006:0007:0008:0009:0010:00' +
+      '11:0012:0013:0014:0015:0016:0017:0018:0019:0020:0021:0022:0023:00'
+    mount(<DatetimeHours
+      formatter={(value) => {
+        const options = { hour12: false }
+        return value.toLocaleTimeString('en-US', options).substr(0, 5)
+      }}
+      value={date}
+    />).should.have.text(hours)
   })
 
   describe('onDateChange', () => {
@@ -30,68 +46,6 @@ describe('DatetimeHours', () => {
 
       spy.should.have.been.calledOnce()
       spy.args[0][1].should.have.deep.property('value', new Date('2018 09 05 00:55:08'))
-    })
-  })
-
-  describe('onAmpmChange', () => {
-    const AM_TIME = new Date('2018 09 05 03:55:08')
-    const PM_TIME = new Date('2018 09 05 15:55:08')
-    let spy
-    beforeEach(() => {
-      spy = sandbox.spy()
-    })
-
-    it('should have ampm value as AM for time: 03:55:08', () => {
-      mount(<DatetimeHours value={AM_TIME} />)
-        .find('DropdownItem')
-        .at(0)
-        .should.have.prop('selected', true)
-    })
-
-    it('should have ampm value as PM for time: 15:55:08', () => {
-      mount(<DatetimeHours value={PM_TIME} />)
-        .find('DropdownItem')
-        .at(1)
-        .should.have.prop('selected', true)
-    })
-
-    it('should set time to AM', () => {
-      mount(<DatetimeHours onDateChange={spy} value={PM_TIME} />)
-        .find('DropdownItem')
-        .at(0)
-        .simulate('click')
-
-      spy.should.have.been.calledOnce()
-      spy.args[0][1].should.have.deep.property('value', new Date('2018 09 05 03:55:08'))
-    })
-
-    it('should set time to PM', () => {
-      mount(<DatetimeHours onDateChange={spy} value={AM_TIME} />)
-        .find('DropdownItem')
-        .at(1)
-        .simulate('click')
-
-      spy.should.have.been.calledOnce()
-      spy.args[0][1].should.have.deep.property('value', new Date('2018 09 05 15:55:08'))
-    })
-
-    it('should maintain time (15:55) at PM when "PM" is selected', () => {
-      mount(<DatetimeHours onDateChange={spy} value={PM_TIME} />)
-        .find('DropdownItem')
-        .at(1)
-        .simulate('click')
-
-      spy.should.have.not.been.called()
-    })
-
-    it('should not change "mode" when ampm is selected', () => {
-      mount(<DatetimeHours onDateChange={spy} value={PM_TIME} />)
-        .find('DropdownItem')
-        .at(0)
-        .simulate('click')
-
-      spy.should.have.been.calledOnce()
-      spy.args[0][1].should.have.deep.property('mode', 'hour')
     })
   })
 })
