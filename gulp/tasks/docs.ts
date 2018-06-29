@@ -56,7 +56,7 @@ task(
 // ----------------------------------------
 
 const componentsSrc = [
-  `${config.paths.src()}/components/*/*.tsx`,
+  `${config.paths.src()}/components/*/[A-Z]*.tsx`,
   '!**/index.{ts,tsx}',
   '!**/*Rules.{ts,tsx}',
   '!**/*Variables.{ts,tsx}',
