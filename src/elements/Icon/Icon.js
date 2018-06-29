@@ -1,14 +1,13 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import {
   createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  shallowEqual,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -19,7 +18,7 @@ import IconGroup from './IconGroup'
  * An icon is a glyph used to represent something else.
  * @see Image
  */
-class Icon extends Component {
+class Icon extends PureComponent {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -78,10 +77,6 @@ class Icon extends Component {
   }
 
   static Group = IconGroup
-
-  shouldComponentUpdate(nextProps) {
-    return !shallowEqual(this.props, nextProps)
-  }
 
   getIconAriaOptions() {
     const ariaOptions = {}
