@@ -506,6 +506,6 @@ export interface FlagProps {
   name: FlagNameValues
 }
 
-declare class Flag extends React.Component<FlagProps, {}> {}
+declare class Flag extends React.PureComponent<FlagProps, {}> {}
 
 export default Flag

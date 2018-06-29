@@ -1,13 +1,11 @@
 import * as React from 'react'
+import { default as PortalInner } from './PortalInner'
 
 export interface PortalProps {
   [key: string]: any
 
   /** Primary content. */
   children?: React.ReactNode
-
-  /** Additional classes. */
-  className?: string
 
   /** Controls whether or not the portal should close on a click outside. */
   closeOnDocumentClick?: boolean
@@ -21,14 +19,6 @@ export interface PortalProps {
    * gap from the trigger to the portal.
    */
   closeOnPortalMouseLeave?: boolean
-
-  /**
-   * Controls whether or not the portal should close on a click on the portal background.
-   * NOTE: This differs from closeOnDocumentClick:
-   * - DocumentClick - any click not within the portal
-   * - RootNodeClick - a click not within the portal but within the portal's wrapper
-   */
-  closeOnRootNodeClick?: boolean
 
   /** Controls whether or not the portal should close on blur of the trigger. */
   closeOnTriggerBlur?: boolean
@@ -98,13 +88,19 @@ export interface PortalProps {
   /** Controls whether or not the portal should open when mousing over the trigger. */
   openOnTriggerMouseEnter?: boolean
 
-  /** Controls whether the portal should be prepended to the mountNode instead of appended. */
-  prepend?: boolean
-
   /** Element to be rendered in-place where the portal is defined. */
   trigger?: React.ReactNode
+
+  /**
+   * Called when componentDidMount.
+   *
+   * @param {HTMLElement} node - Referred node.
+   */
+  triggerRef?: (node: HTMLElement) => void
 }
 
-declare const Portal: React.ComponentClass<PortalProps>
+declare class Portal extends React.Component<PortalProps, {}> {
+  static Inner: typeof PortalInner
+}
 
 export default Portal

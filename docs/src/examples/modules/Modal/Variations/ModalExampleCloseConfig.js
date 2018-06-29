@@ -4,14 +4,14 @@ import { Button, Modal } from 'semantic-ui-react'
 class ModalExampleCloseConfig extends Component {
   state = { open: false }
 
-  closeConfigShow = (closeOnEscape, closeOnRootNodeClick) => () => {
-    this.setState({ closeOnEscape, closeOnRootNodeClick, open: true })
+  closeConfigShow = (closeOnEscape, closeOnDimmerClick) => () => {
+    this.setState({ closeOnEscape, closeOnDimmerClick, open: true })
   }
 
   close = () => this.setState({ open: false })
 
   render() {
-    const { open, closeOnEscape, closeOnRootNodeClick } = this.state
+    const { open, closeOnEscape, closeOnDimmerClick } = this.state
 
     return (
       <div>
@@ -21,7 +21,8 @@ class ModalExampleCloseConfig extends Component {
         <Modal
           open={open}
           closeOnEscape={closeOnEscape}
-          closeOnRootNodeClick={closeOnRootNodeClick}
+          closeOnDimmerClick={closeOnDimmerClick}
+          onClose={this.close}
         >
           <Modal.Header>Delete Your Account</Modal.Header>
           <Modal.Content>
