@@ -8,6 +8,10 @@ export {
   PaginationItemProps,
 } from './dist/commonjs/addons/Pagination/PaginationItem'
 export { default as Portal, PortalProps } from './dist/commonjs/addons/Portal'
+export {
+  default as PortalInner,
+  PortalInnerProps,
+} from './dist/commonjs/addons/Portal/PortalInner'
 export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio'
 export { default as Ref, RefProps } from './dist/commonjs/addons/Ref'
 export {
@@ -212,12 +216,15 @@ export { default as Accordion, AccordionProps } from './dist/commonjs/modules/Ac
 export {
   default as AccordionAccordion,
   AccordionAccordionProps,
-  AccordionPanelProps,
 } from './dist/commonjs/modules/Accordion/AccordionAccordion'
 export {
   default as AccordionContent,
   AccordionContentProps,
 } from './dist/commonjs/modules/Accordion/AccordionContent'
+export {
+  default as AccordionPanel,
+  AccordionPanelProps,
+} from './dist/commonjs/modules/Accordion/AccordionPanel'
 export {
   default as AccordionTitle,
   AccordionTitleProps,

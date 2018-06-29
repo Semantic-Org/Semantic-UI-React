@@ -1,13 +1,12 @@
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import {
   createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  shallowEqual,
 } from '../../lib'
 
 export const names = [
@@ -507,7 +506,7 @@ export const names = [
 /**
  * A flag is is used to represent a political state.
  */
-class Flag extends Component {
+class Flag extends PureComponent {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -521,10 +520,6 @@ class Flag extends Component {
 
   static defaultProps = {
     as: 'i',
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return !shallowEqual(this.props, nextProps)
   }
 
   render() {

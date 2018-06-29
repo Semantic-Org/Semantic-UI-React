@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { SemanticShorthandCollection, SemanticShorthandItem } from '../../'
-import { AccordionContentProps } from './AccordionContent'
+import { AccordionPanelProps } from './AccordionPanel'
 import { AccordionTitleProps } from './AccordionTitle'
 
 export interface AccordionAccordionProps {
@@ -35,11 +35,6 @@ export interface AccordionAccordionProps {
 
   /** Shorthand array of props for Accordion. */
   panels?: SemanticShorthandCollection<AccordionPanelProps>
-}
-
-export interface AccordionPanelProps {
-  content: SemanticShorthandItem<AccordionContentProps>
-  title: SemanticShorthandItem<AccordionTitleProps>
 }
 
 declare const AccordionAccordion: React.ComponentClass<AccordionAccordionProps>
