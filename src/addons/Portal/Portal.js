@@ -334,25 +334,8 @@ class Portal extends Component {
     _.invoke(this.props, 'triggerRef', c)
   }
 
-  renderTrigger() {
-    const { trigger } = this.props
-
-    if (!trigger) return null
-    return (
-      <Ref innerRef={this.handleTriggerRef} key='trigger'>
-        {cloneElement(trigger, {
-          onBlur: this.handleTriggerBlur,
-          onClick: this.handleTriggerClick,
-          onFocus: this.handleTriggerFocus,
-          onMouseLeave: this.handleTriggerMouseLeave,
-          onMouseEnter: this.handleTriggerMouseEnter,
-        })}
-      </Ref>
-    )
-  }
-
   render() {
-    const { children, mountNode } = this.props
+    const { children, mountNode, trigger } = this.props
     const { open } = this.state
 
     return [
@@ -366,7 +349,17 @@ class Portal extends Component {
           {children}
         </PortalInner>
       ) : null,
-      this.renderTrigger(),
+      trigger ? (
+        <Ref innerRef={this.handleTriggerRef} key='trigger'>
+          {cloneElement(trigger, {
+            onBlur: this.handleTriggerBlur,
+            onClick: this.handleTriggerClick,
+            onFocus: this.handleTriggerFocus,
+            onMouseLeave: this.handleTriggerMouseLeave,
+            onMouseEnter: this.handleTriggerMouseEnter,
+          })}
+        </Ref>
+      ) : null,
     ]
   }
 }
