@@ -9,6 +9,7 @@ process.env.PATH =
 require('./gulp/tasks/dll')
 require('./gulp/tasks/dist')
 require('./gulp/tasks/docs')
+require('./gulp/tasks/generate')
 
 // global tasks
 task('build', series('dll', parallel('dist', 'build:docs')))
