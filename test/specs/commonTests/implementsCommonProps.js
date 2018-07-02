@@ -52,6 +52,27 @@ export const implementsHTMLIFrameProp = (Component, options = {}) => {
 }
 
 /**
+ * Assert that a Component correctly implements an HTML image shorthand prop.
+ *
+ * @param {function} Component The component to test.
+ * @param {object} [options={}]
+ * @param {string} [options.propKey='icon'] The name of the shorthand prop.
+ * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
+ * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
+ */
+export const implementsHTMLImageProp = (Component, options = {}) => {
+  implementsShorthandProp(Component, {
+    propKey: 'image',
+    ShorthandComponent: 'image',
+    mapValueToProps: src => ({ src }),
+    ...options,
+  })
+}
+
+/**
  * Assert that a Component correctly implements an HTML input shorthand prop.
  *
  * @param {function} Component The component to test.
@@ -172,17 +193,18 @@ export const implementsMultipleProp = (Component, propKey, propValues) => {
 
     propValues.forEach((propVal) => {
       it(`adds "${propVal} ${propKey}" to className`, () => {
-        expect(shallow(createElement(Component, { [propKey]: propVal }))).have.className(
-          `${propVal} ${propKey}`,
-        )
+        const wrapper = shallow(createElement(Component, { [propKey]: propVal }))
+
+        expect(wrapper.hasClass(`${propVal} ${propKey}`)).toBeTruthy()
       })
     })
 
     it('adds all possible values to className', () => {
       const className = propValues.map(prop => `${prop} ${propKey}`).join(' ')
       const propValue = propValues.join(' ')
+      const wrapper = shallow(createElement(Component, { [propKey]: propValue }))
 
-      expect(shallow(createElement(Component, { [propKey]: propValue }))).have.className(className)
+      expect(wrapper.hasClass(className)).toBeTruthy()
     })
   })
 }
@@ -211,19 +233,16 @@ export const implementsTextAlignProp = (
     alignments.forEach((propVal) => {
       if (propVal === 'justified') {
         it('adds "justified" without "aligned" to className', () => {
-          expect(shallow(<Component {...requiredProps} textAlign='justified' />)).have.className(
-            'justified',
-          )
+          const wrapper = shallow(<Component {...requiredProps} textAlign='justified' />)
 
-          expect(
-            shallow(<Component {...requiredProps} textAlign='justified' />),
-          ).not.have.className('aligned')
+          expect(wrapper.hasClass('justified')).toBeTruthy()
+          expect(wrapper.hasClass('aligned')).toBeFalsy()
         })
       } else {
         it(`adds "${propVal} aligned" to className`, () => {
-          expect(shallow(<Component {...requiredProps} textAlign={propVal} />)).have.className(
-            `${propVal} ${'aligned'}`,
-          )
+          const wrapper = shallow(<Component {...requiredProps} textAlign={propVal} />)
+
+          expect(wrapper.hasClass(`${propVal} ${'aligned'}`)).toBeTruthy()
         })
       }
     })
@@ -253,9 +272,9 @@ export const implementsVerticalAlignProp = (
 
     alignments.forEach((propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
-        expect(shallow(<Component {...requiredProps} verticalAlign={propVal} />)).have.className(
-          `${propVal} ${'aligned'}`,
-        )
+        const wrapper = shallow(<Component {...requiredProps} verticalAlign={propVal} />)
+
+        expect(wrapper.hasClass(`${propVal} ${'aligned'}`)).toBeTruthy()
       })
     })
   })
@@ -288,18 +307,17 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
         const expectClass = widthClass
           ? `${numberToWord(width)} ${widthClass}`
           : numberToWord(width)
+        const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: width }))
 
-        expect(
-          shallow(createElement(Component, { ...requiredProps, [propKey]: width })),
-        ).have.className(expectClass)
+        expect(wrapper.hasClass(expectClass)).toBeTruthy()
       })
     })
 
     if (canEqual) {
       it('adds "equal width" to className', () => {
-        expect(
-          shallow(createElement(Component, { ...requiredProps, [propKey]: 'equal' })),
-        ).have.className('equal width')
+        const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: 'equal' }))
+
+        expect(wrapper.hasClass('equal width')).toBeTruthy()
       })
     }
   })

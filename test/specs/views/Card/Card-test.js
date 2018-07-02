@@ -9,7 +9,6 @@ import CardGroup from 'src/views/Card/CardGroup'
 import CardHeader from 'src/views/Card/CardHeader'
 import CardMeta from 'src/views/Card/CardMeta'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('Card', () => {
   common.isConformant(Card)
@@ -25,7 +24,7 @@ describe('Card', () => {
   common.propValueOnlyToClassName(Card, 'color', SUI.COLORS)
 
   it('renders a <div> by default', () => {
-    expect(shallow(<Card />)).have.tagName('div')
+    expect(shallow(<Card />).type()).toBe('div')
   })
 
   describe('href', () => {
@@ -33,17 +32,14 @@ describe('Card', () => {
       const url = faker.internet.url()
       const wrapper = shallow(<Card href={url} />)
 
-      expect(wrapper).have.tagName('a')
-      expect(wrapper).have.attr('href', url)
+      expect(wrapper.type()).toBe('a')
+      expect(wrapper.prop('href')).toBe(url)
     })
   })
 
   describe('onClick', () => {
     it('renders <a> instead of <div>', () => {
-      const handleClick = sandbox.spy()
-      const wrapper = shallow(<Card onClick={handleClick} />)
-
-      expect(wrapper).have.tagName('a')
+      expect(shallow(<Card onClick={() => {}} />).type()).toBe('a')
     })
   })
 
@@ -51,7 +47,7 @@ describe('Card', () => {
     it('renders a CardContent', () => {
       const wrapper = shallow(<Card extra={faker.hacker.phrase()} />)
 
-      expect(wrapper).have.descendants('CardContent')
+      expect(wrapper.find('CardContent')).toHaveLength(1)
     })
   })
 })

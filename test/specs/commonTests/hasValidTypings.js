@@ -1,8 +1,9 @@
+import fs from 'fs'
 import _ from 'lodash'
 
-import { componentInfoContext } from 'docs/src/utils'
 import { customPropTypes } from 'src/lib'
-import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
+import { componentInfo } from 'test/utils'
+import { getNodes, getInterfaces, hasAnySignature } from './tsHelpers'
 
 const isShorthand = propType =>
   _.includes(
@@ -22,22 +23,21 @@ const shorthandMap = {
 /**
  * Assert Component has the valid typings.
  * @param {React.Component|Function} Component A component that should conform.
- * @param {Object} [componentInfo] The *.info.json for the Component
  * @param {Object} [options={}]
  * @param {array} [options.ignoredTypingsProps=[]] Props that will be ignored in tests.
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
-export default (Component, componentInfo, options = {}) => {
-  const { displayName, repoPath } = componentInfoContext.fromComponent(Component)
+export default (Component, options = {}) => {
+  const { displayName, repoPath } = componentInfo(Component.name)
   const { ignoredTypingsProps = [], requiredProps } = options
 
-  const tsFile = repoPath.replace('src/', '').replace('.js', '.d.ts')
-  const tsContent = requireTs(tsFile)
+  const tsFile = repoPath.replace('.js', '.d.ts')
+  const tsContent = fs.readFileSync(tsFile).toString()
 
   describe('typings', () => {
     describe('structure', () => {
       it(`${tsFile} exists`, () => {
-        expect(tsContent).not.toBe(false)
+        expect(tsContent).not.toBeFalsy()
       })
     })
 

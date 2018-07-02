@@ -24,11 +24,19 @@ describe('ItemGroup', () => {
       const wrapper = mount(<ItemGroup items={items} />)
       const itemWrappers = wrapper.find('Item')
 
-      expect(wrapper)
-        .have.exactly(2)
-        .descendants('Item')
-      expect(itemWrappers.first().find('ItemContent')).contain.text(firstText)
-      expect(itemWrappers.last().find('ItemContent')).contain.text(secondText)
+      expect(wrapper.find('Item')).toHaveLength(2)
+      expect(
+        itemWrappers
+          .first()
+          .find('ItemContent')
+          .text(),
+      ).toBe(firstText)
+      expect(
+        itemWrappers
+          .last()
+          .find('ItemContent')
+          .text(),
+      ).toBe(secondText)
     })
   })
 })

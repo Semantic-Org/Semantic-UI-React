@@ -26,7 +26,7 @@ describe('FeedEvent', () => {
   describe('content props', () => {
     it('renders <FeedContent> with extraImages prop', () => {
       const images = _.times(3, () => faker.image.imageUrl())
-      expect(shallow(<FeedEvent extraImages={images} />)).have.descendants('FeedContent')
+      expect(shallow(<FeedEvent extraImages={images} />).find('FeedContent')).toHaveLength(1)
     })
 
     it('renders <FeedContent> with other content props', () => {
@@ -34,7 +34,7 @@ describe('FeedEvent', () => {
 
       contentProps.forEach((propKey) => {
         const props = { [propKey]: faker.hacker.phrase() }
-        expect(shallow(<FeedEvent {...props} />)).have.descendants('FeedContent')
+        expect(shallow(<FeedEvent {...props} />).find('FeedContent')).toHaveLength(1)
       })
     })
   })

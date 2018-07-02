@@ -22,10 +22,9 @@ describe('Feed', () => {
   describe('events prop', () => {
     it('renders <FeedEvent>', () => {
       const events = _.times(3, () => ({ summary: faker.hacker.phrase() }))
+      const wrapper = shallow(<Feed events={events} />)
 
-      expect(shallow(<Feed events={events} />))
-        .have.exactly(3)
-        .descendants('FeedEvent')
+      expect(wrapper.find('FeedEvent')).toHaveLength(3)
     })
   })
 })

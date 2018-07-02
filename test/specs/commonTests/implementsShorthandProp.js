@@ -45,7 +45,7 @@ export default (Component, options = {}) => {
     requiredProps = {},
   } = options
   const { assertRequired } = helpers('implementsShorthandProp', Component)
-  const assertMethod = assertExactMatch ? 'contain' : 'containMatchingElement'
+  const assertMethod = assertExactMatch ? 'contains' : 'containsMatchingElement'
 
   describe(`${propKey} shorthand prop (common)`, () => {
     assertRequired(Component, 'a `Component`')
@@ -63,7 +63,7 @@ export default (Component, options = {}) => {
       const element = createElement(Component, { ...requiredProps, [propKey]: value })
       const wrapper = shallow(element)
 
-      expect(wrapper)[assertMethod](expectedShorthandElement)
+      expect(wrapper[assertMethod](expectedShorthandElement)).toBeTruthy()
 
       // Enzyme's .key() method is not consistent with React for elements with
       // no key (`undefined` vs `null`), so use the underlying element instead
@@ -74,21 +74,21 @@ export default (Component, options = {}) => {
 
     if (alwaysPresent || (Component.defaultProps && Component.defaultProps[propKey])) {
       it(`has default ${name} when not defined`, () => {
-        expect(shallow(<Component {...requiredProps} />)).have.descendants(name)
+        expect(shallow(<Component {...requiredProps} />).find(name)).toHaveLength(1)
       })
     } else {
       noDefaultClassNameFromProp(Component, propKey, [], options)
 
       it(`has no ${name} when not defined`, () => {
-        expect(shallow(<Component {...requiredProps} />)).not.have.descendants(name)
+        expect(shallow(<Component {...requiredProps} />).find(name)).toHaveLength(0)
       })
     }
 
     if (!alwaysPresent) {
       it(`has no ${name} when null`, () => {
-        expect(
-          shallow(createElement(Component, { ...requiredProps, [propKey]: null })),
-        ).not.have.descendants(ShorthandComponent)
+        const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: null }))
+
+        expect(wrapper.find(ShorthandComponent)).toHaveLength(0)
       })
     }
 

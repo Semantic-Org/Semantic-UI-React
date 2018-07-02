@@ -1,6 +1,3 @@
-import faker from 'faker'
-import React from 'react'
-
 import FeedLabel from 'src/views/Feed/FeedLabel'
 import * as common from 'test/specs/commonTests'
 
@@ -8,24 +5,6 @@ describe('FeedLabel', () => {
   common.isConformant(FeedLabel)
   common.rendersChildren(FeedLabel)
 
+  common.implementsHTMLImageProp(FeedLabel)
   common.implementsIconProp(FeedLabel)
-
-  describe('image prop', () => {
-    it('renders <img> with string', () => {
-      const src = faker.image.imageUrl()
-      const wrapper = shallow(<FeedLabel image={src} />)
-
-      expect(wrapper).have.descendants('img')
-      expect(wrapper.find('img')).have.prop('src', src)
-    })
-
-    it('renders node', () => {
-      const src = faker.image.imageUrl()
-      const img = <img src={src} />
-      const wrapper = shallow(<FeedLabel image={img} />)
-
-      expect(wrapper).have.descendants('img')
-      expect(wrapper.find('img')).have.prop('src', src)
-    })
-  })
 })

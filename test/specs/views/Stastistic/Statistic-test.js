@@ -46,8 +46,9 @@ describe('Statistic', () => {
       expect(
         shallow(<Statistic text value='foo' />)
           .find('StatisticValue')
-          .first(),
-      ).have.prop('text', true)
+          .first()
+          .prop('text'),
+      ).toBeTruthy()
     })
   })
 })

@@ -8,9 +8,9 @@ export const classNamePropValueBeforePropName = (Component, propKey, propValues,
 
   propValues.forEach((propVal) => {
     it(`adds "${propVal} ${className}" to className`, () => {
-      expect(
-        shallow(createElement(Component, { ...requiredProps, [propKey]: propVal })),
-      ).have.className(`${propVal} ${className}`)
+      const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
+
+      expect(wrapper.hasClass(`${propVal} ${className}`)).toBeTruthy()
     })
   })
 }
@@ -27,11 +27,13 @@ export const noClassNameFromBoolProps = (Component, propKey, propValues, options
         { nestingLevel },
       )
 
-      expect(wrapper).not.have.className(className)
-      expect(wrapper).not.have.className('true')
-      expect(wrapper).not.have.className('false')
+      expect(wrapper.hasClass(className)).toBeFalsy()
+      expect(wrapper.hasClass('true')).toBeFalsy()
+      expect(wrapper.hasClass('false')).toBeFalsy()
 
-      propValues.forEach(propVal => expect(wrapper).not.have.className(propVal.toString()))
+      _.forEach(propValues, (propVal) => {
+        expect(wrapper.hasClass(propVal.toString())).toBeFalsy()
+      })
     }),
   )
 }
@@ -47,10 +49,12 @@ export const noDefaultClassNameFromProp = (Component, propKey, propValues, optio
 
   it('is not included in className when not defined', () => {
     const wrapper = nestedShallow(<Component {...requiredProps} />, { nestingLevel })
-    expect(wrapper).not.have.className(className)
+    expect(wrapper.hasClass(className)).toBeFalsy()
 
     // ensure that none of the prop option values are in className
     // SUI classes ought to be built up using a declarative component API
-    propValues.forEach(propValue => expect(wrapper).not.have.className(propValue.toString()))
+    _.forEach(propValues, (propValue) => {
+      expect(wrapper.hasClass(propValue.toString())).toBeFalsy()
+    })
   })
 }

@@ -49,7 +49,10 @@
     },
     "roots": ["<rootDir>/test/"],
     "setupTestFrameworkScriptFile": "./test/setupTests.js",
-    "testMatch": ["**/lib/**/*-test.js"]
+    "testMatch": ["**/views/**/*.js"],
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    }
   },
   "lint-staged": {
     "**/*.{js,jsx}": [

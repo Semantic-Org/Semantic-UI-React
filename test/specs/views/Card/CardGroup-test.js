@@ -27,8 +27,18 @@ describe('CardGroup', () => {
 
       const wrapper = mount(<CardGroup items={items} />).find('Card')
 
-      expect(wrapper.first().find('CardHeader')).contain.text(firstText)
-      expect(wrapper.last().find('CardHeader')).contain.text(secondText)
+      expect(
+        wrapper
+          .first()
+          .find('CardHeader')
+          .text(),
+      ).toBe(firstText)
+      expect(
+        wrapper
+          .last()
+          .find('CardHeader')
+          .text(),
+      ).toBe(secondText)
     })
   })
 })

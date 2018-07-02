@@ -9,7 +9,6 @@ import {
   componentInfo,
   consoleUtil,
   nestedShallow,
-  sandbox,
   syntheticEvent,
 } from 'test/utils'
 import helpers from './commonHelpers'
@@ -73,12 +72,12 @@ export default (Component, options = {}) => {
 
   // require all components to be exported at the top level
   it('is exported at the top level', () => {
-    expect(isTopLevelAPIProp).toBe(true)
+    expect(isTopLevelAPIProp).toBeTruthy()
   })
 
   if (info.isChild) {
     it('is a static component on its parent', () => {
-      expect(foundAsSubcomponent).toBe(true)
+      expect(foundAsSubcomponent).toBeTruthy()
     })
   }
 
@@ -89,8 +88,9 @@ export default (Component, options = {}) => {
     it('spreads user props', () => {
       const propName = 'data-is-conformant-spread-props'
       const props = { [propName]: true }
+      const wrapper = shallow(<Component {...requiredProps} {...props} />)
 
-      expect(shallow(<Component {...requiredProps} {...props} />)).have.descendants(props)
+      expect(wrapper.find(props)).toHaveLength(1)
     })
   }
 
@@ -120,16 +120,17 @@ export default (Component, options = {}) => {
             expect(
               nestedShallow(<Component {...requiredProps} as={tag} />, {
                 nestingLevel,
-              }),
-            ).have.tagName(tag)
+              }).type(),
+            ).toBe(tag)
           })
         } catch (err) {
           tags.forEach((tag) => {
             const wrapper = nestedShallow(<Component {...requiredProps} as={tag} />, {
               nestingLevel,
             })
+
             expect(wrapper.type()).not.toBe(Component)
-            expect(wrapper).have.prop('as', tag)
+            expect(wrapper.prop('as')).toBe(tag)
           })
         }
       })
@@ -146,7 +147,7 @@ export default (Component, options = {}) => {
         } catch (err) {
           const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
           expect(wrapper.type()).not.toBe(Component)
-          expect(wrapper).have.prop('as', MyComponent)
+          expect(wrapper.prop('as')).toBe(MyComponent)
         }
       })
 
@@ -167,25 +168,27 @@ export default (Component, options = {}) => {
         } catch (err) {
           const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
           expect(wrapper.type()).not.toBe(Component)
-          expect(wrapper).have.prop('as', MyComponent)
+          expect(wrapper.prop('as')).toBe(MyComponent)
         }
       })
 
       it('passes extra props to the component it is renders as', () => {
         const MyComponent = () => null
-
-        expect(
-          nestedShallow(<Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />, {
+        const wrapper = nestedShallow(
+          <Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />,
+          {
             nestingLevel,
-          }),
-        ).have.descendants('[data-extra-prop="foo"]')
+          },
+        )
+
+        expect(wrapper.find('[data-extra-prop="foo"]')).toHaveLength(1)
       })
     })
   }
 
   describe('handles props', () => {
     it('defines handled props in Component.handledProps', () => {
-      expect(Component).have.key('handledProps')
+      expect(Component).toHaveProperty('handledProps')
       expect(Array.isArray(Component.handledProps)).toBe(true)
     })
 
@@ -218,11 +221,7 @@ export default (Component, options = {}) => {
         _.each(listeners, (listenerName) => {
           // onKeyDown => keyDown
           const eventName = _.camelCase(listenerName.replace('on', ''))
-
-          // onKeyDown => handleKeyDown
-          const handlerName = _.camelCase(listenerName.replace('on', 'handle'))
-
-          const handlerSpy = sandbox.spy()
+          const handlerSpy = jest.fn()
           const props = {
             ...requiredProps,
             [listenerName]: handlerSpy,
@@ -242,30 +241,15 @@ export default (Component, options = {}) => {
             wrapper.instance().componentWillUnmount()
           }
 
-          // <Dropdown onBlur={handleBlur} />
-          //                   ^ was not called once on "blur"
-          const leftPad = ' '.repeat(info.displayName.length + listenerName.length + 3)
-
-          expect(handlerSpy.calledOnce).toBe(true)
-
+          expect(handlerSpy).toHaveBeenCalledTimes(1)
           let expectedArgs = [eventShape]
-          let errorMessage = 'was not called with (event)'
 
           if (_.has(Component.propTypes, listenerName)) {
             expectedArgs = [eventShape, props]
-            errorMessage = 'was not called with (event, data)'
           }
 
           // Components should return the event first, then any data
-          expect(handlerSpy.calledWithMatch(...expectedArgs)).toBe(
-            true,
-            [
-              `<${info.displayName} ${listenerName}={${handlerName}} />\n`,
-              `${leftPad} ^ ${errorMessage}`,
-              'It was called with args:',
-              JSON.stringify(handlerSpy.args, null, 2),
-            ].join('\n'),
-          )
+          expect(handlerSpy).toHaveBeenCalledWith(...expectedArgs)
         })
       })
     })
@@ -289,7 +273,7 @@ export default (Component, options = {}) => {
         const wrapper = mount(<Component {...requiredProps} />)
         // don't test components with no className at all (i.e. MessageItem)
         if (wrapper.prop('className')) {
-          expect(wrapper).have.className(info.componentClassName)
+          expect(wrapper.hasClass(info.componentClassName)).toBeTruthy()
         }
       })
 
@@ -318,8 +302,8 @@ export default (Component, options = {}) => {
           expect(
             nestedShallow(<Component {...requiredProps} className={className} />, {
               nestingLevel,
-            }),
-          ).have.className(className)
+            }).hasClass(className),
+          ).toBeTruthy()
         }
       })
 
@@ -345,5 +329,5 @@ export default (Component, options = {}) => {
   // ----------------------------------------
   // Test typings
   // ----------------------------------------
-  hasValidTypings(Component, info, options)
+  hasValidTypings(Component, options)
 }

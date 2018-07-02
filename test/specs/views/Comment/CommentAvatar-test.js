@@ -10,7 +10,7 @@ describe('CommentAvatar', () => {
   describe('src', () => {
     it('renders img', () => {
       const url = faker.image.imageUrl()
-      expect(shallow(<CommentAvatar src={url} />)).toContain(<img src={url} />)
+      expect(shallow(<CommentAvatar src={url} />).contains(<img src={url} />)).toBeTruthy()
     })
   })
 })

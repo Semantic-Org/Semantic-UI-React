@@ -1,10 +1,5 @@
 import _ from 'lodash'
-import {
-  createSourceFile,
-  forEachChild,
-  ScriptTarget,
-  SyntaxKind,
-} from 'typescript'
+import { createSourceFile, forEachChild, ScriptTarget, SyntaxKind } from 'typescript'
 
 const isAnyKeyword = ({ kind }) => kind === SyntaxKind.AnyKeyword
 const isIndexSignature = ({ kind }) => kind === SyntaxKind.IndexSignature
@@ -14,11 +9,10 @@ const isPropertySignature = ({ kind }) => kind === SyntaxKind.PropertySignature
 const isTypeReference = ({ kind }) => kind === SyntaxKind.TypeReference
 const isShorthandProperty = (node) => {
   if (!isPropertySignature(node) || !isTypeReference(node.type)) return false
-  return _.includes([
-    'SemanticShorthandContent',
-    'SemanticShorthandItem',
-    'SemanticShorthandCollection',
-  ], _.get(node, 'type.typeName.text'))
+  return _.includes(
+    ['SemanticShorthandContent', 'SemanticShorthandItem', 'SemanticShorthandCollection'],
+    _.get(node, 'type.typeName.text'),
+  )
 }
 const isStringKeyword = ({ kind }) => kind === SyntaxKind.StringKeyword
 
@@ -40,12 +34,13 @@ const getShorthands = (members) => {
   }))
 }
 
-const walkNode = (node, nodes) => forEachChild(node, (child) => {
-  nodes.push(child)
-  walkNode(child, nodes)
+const walkNode = (node, nodes) =>
+  forEachChild(node, (child) => {
+    nodes.push(child)
+    walkNode(child, nodes)
 
-  return false
-})
+    return false
+  })
 
 export const getNodes = (tsFile, tsContent) => {
   const nodes = []
@@ -71,16 +66,11 @@ export const hasAnySignature = (nodes) => {
   const signatures = _.filter(nodes, isIndexSignature)
 
   return _.some(signatures, ({ parameters, type: rightType }) => {
-    const { name: { text }, type } = _.head(parameters)
+    const {
+      name: { text },
+      type,
+    } = _.head(parameters)
 
     return isAnyKeyword(rightType) && isStringKeyword(type) && text === 'key'
   })
-}
-
-export const requireTs = (tsPath) => {
-  try {
-    return require(`!raw-loader!../../../src/${tsPath}`)
-  } catch (e) {
-    return false
-  }
 }

@@ -16,7 +16,7 @@ export default (Component) => {
       consoleUtil.disableOnce()
     })
     it('is a static method', () => {
-      expect(Component).have.key('create')
+      expect(Component).toHaveProperty('create')
       expect(typeof Component.create).toBe('function')
     })
 

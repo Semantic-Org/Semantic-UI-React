@@ -24,8 +24,8 @@ export default (Component, options = {}) => {
       expect(
         nestedShallow(createElement(Component, requiredProps, text), {
           nestingLevel,
-        }),
-      ).contain.text(text)
+        }).text(),
+      ).toBe(text)
     })
 
     it('renders child components', () => {
@@ -33,16 +33,16 @@ export default (Component, options = {}) => {
       expect(
         nestedShallow(createElement(Component, requiredProps, child), {
           nestingLevel,
-        }),
-      ).toContain(child)
+        }).contains(child),
+      ).toBeTruthy()
     })
 
     it('renders child number with 0 value', () => {
       expect(
         nestedShallow(createElement(Component, requiredProps, 0), {
           nestingLevel,
-        }),
-      ).contain.text('0')
+        }).text(),
+      ).toBe('0')
     })
   })
 
@@ -53,8 +53,8 @@ export default (Component, options = {}) => {
         expect(
           nestedShallow(createElement(Component, { ...requiredProps, content: text }), {
             nestingLevel,
-          }),
-        ).contain.text(text)
+          }).text(),
+        ).toBe(text)
       })
 
       it('renders child components', () => {
@@ -62,16 +62,16 @@ export default (Component, options = {}) => {
         expect(
           nestedShallow(createElement(Component, { ...requiredProps, content: child }), {
             nestingLevel,
-          }),
-        ).toContain(child)
+          }).contains(child),
+        ).toBeTruthy()
       })
 
       it('renders child number with 0 value', () => {
         expect(
           nestedShallow(createElement(Component, { ...requiredProps, content: 0 }), {
             nestingLevel,
-          }),
-        ).contain.text('0')
+          }).text(),
+        ).toBe('0')
       })
     })
   }
