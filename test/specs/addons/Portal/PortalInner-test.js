@@ -19,7 +19,7 @@ describe('PortalInner', () => {
         </PortalInner>,
       )
 
-      onMount.should.have.been.calledOnce()
+      expect(onMount).have.been.calledOnce()
     })
   })
 
@@ -33,7 +33,7 @@ describe('PortalInner', () => {
       )
 
       wrapper.unmount()
-      onUnmount.should.have.been.calledOnce()
+      expect(onUnmount).have.been.calledOnce()
     })
   })
 })

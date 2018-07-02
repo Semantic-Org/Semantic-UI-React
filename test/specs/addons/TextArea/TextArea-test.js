@@ -48,17 +48,18 @@ describe('TextArea', () => {
       const element = document.querySelector('textarea')
 
       if (!height) {
-        element.style.should.have.property('resize', '')
-        element.style.should.have.property('height', '')
+        expect(element.style).toHaveProperty('resize', '')
+        expect(element.style).toHaveProperty('height', '')
         return
       }
 
-      element.style.should.have.property('resize', 'none')
+      expect(element.style).toHaveProperty('resize', 'none')
 
       // CI renders textareas with an extra pixel
       // assert height with a margin of error of one pixel
       const parsedHeight = parseInt(height, 10)
-      parseInt(element.style.height, 10).should.be.within(parsedHeight - 1, parsedHeight + 1)
+      expect(parseInt(element.style.height, 10)).toBeGreaterThanOrEqual(parsedHeight - 1)
+      expect(parseInt(element.style.height, 10)).toBeLessThanOrEqual(parsedHeight + 1)
     }
 
     it('sets styles when true', () => {
@@ -82,13 +83,7 @@ describe('TextArea', () => {
     })
 
     it('sets styles when there is a multiline value', () => {
-      wrapperMount(
-        <TextArea
-          autoHeight
-          style={style}
-          value={'line1\nline2\nline3\nline4'}
-        />,
-      )
+      wrapperMount(<TextArea autoHeight style={style} value={'line1\nline2\nline3\nline4'} />)
       assertHeight('40px') // 4 lines
     })
 
@@ -124,7 +119,7 @@ describe('TextArea', () => {
       const element = document.querySelector('textarea')
 
       wrapper.instance().focus()
-      document.activeElement.should.equal(element)
+      expect(document.activeElement).toBe(element)
     })
   })
 
@@ -137,8 +132,8 @@ describe('TextArea', () => {
       wrapperShallow(<TextArea {...props} />)
       wrapper.find('textarea').simulate('change', e)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
   })
 
@@ -151,20 +146,18 @@ describe('TextArea', () => {
       wrapperShallow(<TextArea {...props} />)
       wrapper.find('textarea').simulate('input', e)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
   })
 
   describe('rows', () => {
     it('has default value', () => {
-      shallow(<TextArea />)
-        .should.have.prop('rows', 3)
+      expect(shallow(<TextArea />)).have.prop('rows', 3)
     })
 
     it('sets prop', () => {
-      shallow(<TextArea rows={1} />)
-        .should.have.prop('rows', 1)
+      expect(shallow(<TextArea rows={1} />)).have.prop('rows', 1)
     })
   })
 
@@ -173,8 +166,8 @@ describe('TextArea', () => {
       const style = { marginTop: '1em', top: 0 }
 
       wrapperShallow(<TextArea style={style} />)
-      wrapper.should.have.style('margin-top', '1em')
-      wrapper.should.have.style('top', '0')
+      expect(wrapper).have.style('margin-top', '1em')
+      expect(wrapper).have.style('top', '0')
     })
   })
 })

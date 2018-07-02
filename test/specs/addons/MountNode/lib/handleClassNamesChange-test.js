@@ -30,10 +30,10 @@ describe('handleClassNamesChange', () => {
     const node = createNodeMock(add, remove)
 
     handleClassNamesChange(node, components)
-    add.should.have.been.calledTwice()
-    add.should.have.been.calledWith('foo')
-    add.should.have.been.calledWith('bar')
-    remove.should.have.not.been.called()
+    expect(add).have.been.calledTwice()
+    expect(add).have.been.calledWith('foo')
+    expect(add).have.been.calledWith('bar')
+    expect(remove).have.not.been.called()
   })
 
   it('removes nonexistent classes', () => {
@@ -43,17 +43,17 @@ describe('handleClassNamesChange', () => {
     const node = createNodeMock(add, remove)
 
     handleClassNamesChange(node, components)
-    add.should.have.been.calledTwice()
-    add.should.have.been.calledWith('foo')
-    add.should.have.been.calledWith('bar')
-    remove.should.have.not.been.called()
+    expect(add).have.been.calledTwice()
+    expect(add).have.been.calledWith('foo')
+    expect(add).have.been.calledWith('bar')
+    expect(remove).have.not.been.called()
     node.reset()
 
     components.delete(BarComponent)
     handleClassNamesChange(node, components)
-    add.should.have.not.been.called()
-    remove.should.have.been.calledOnce()
-    remove.should.have.been.calledWith('bar')
+    expect(add).have.not.been.called()
+    expect(remove).have.been.calledOnce()
+    expect(remove).have.been.calledWith('bar')
   })
 
   it('handles different nodes', () => {
@@ -68,12 +68,12 @@ describe('handleClassNamesChange', () => {
     const barNode = createNodeMock(barAdd, barRemove)
 
     handleClassNamesChange(fooNode, fooComponents)
-    barAdd.should.have.not.been.called()
-    barRemove.should.have.not.been.called()
+    expect(barAdd).have.not.been.called()
+    expect(barRemove).have.not.been.called()
     fooNode.reset()
 
     handleClassNamesChange(barNode, barComponents)
-    fooAdd.should.have.not.been.called()
-    fooRemove.should.have.not.been.called()
+    expect(fooAdd).have.not.been.called()
+    expect(fooRemove).have.not.been.called()
   })
 })

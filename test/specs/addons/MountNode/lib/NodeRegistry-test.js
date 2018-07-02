@@ -3,7 +3,7 @@ import { sandbox } from 'test/utils'
 
 describe('NodeRegistry', () => {
   it('is a class', () => {
-    expect(NodeRegistry).to.be.a('function')
+    expect(typeof NodeRegistry).toBe('function')
   })
 
   describe('add', () => {
@@ -15,8 +15,8 @@ describe('NodeRegistry', () => {
       registry.add('foo', 'BarComponent')
 
       registry.emit('foo', handler)
-      handler.should.have.been.calledOnce()
-      handler.should.have.been.calledWithMatch('foo', new Set(['FooComponent', 'BarComponent']))
+      expect(handler).have.been.calledOnce()
+      expect(handler).have.been.calledWithMatch('foo', new Set(['FooComponent', 'BarComponent']))
     })
 
     it('adds components to different nodes node', () => {
@@ -29,13 +29,13 @@ describe('NodeRegistry', () => {
       registry.add('bar', 'QuxComponent')
 
       registry.emit('foo', handler)
-      handler.should.have.been.calledOnce()
-      handler.should.have.been.calledWithMatch('foo', new Set(['FooComponent', 'BarComponent']))
+      expect(handler).have.been.calledOnce()
+      expect(handler).have.been.calledWithMatch('foo', new Set(['FooComponent', 'BarComponent']))
       handler.resetHistory()
 
       registry.emit('bar', handler)
-      handler.should.have.been.calledOnce()
-      handler.should.have.been.calledWithMatch('bar', new Set(['BazComponent', 'QuxComponent']))
+      expect(handler).have.been.calledOnce()
+      expect(handler).have.been.calledWithMatch('bar', new Set(['BazComponent', 'QuxComponent']))
     })
   })
 
@@ -49,8 +49,8 @@ describe('NodeRegistry', () => {
       registry.del('foo', 'FooComponent')
 
       registry.emit('foo', handler)
-      handler.should.have.been.calledOnce()
-      handler.should.have.been.calledWithMatch('foo', new Set(['BarComponent']))
+      expect(handler).have.been.calledOnce()
+      expect(handler).have.been.calledWithMatch('foo', new Set(['BarComponent']))
     })
 
     it('deletes node when all components are deleted', () => {
@@ -63,8 +63,8 @@ describe('NodeRegistry', () => {
       registry.del('foo', 'BarComponent')
 
       registry.emit('foo', handler)
-      handler.should.have.been.calledOnce()
-      handler.should.have.been.calledWithMatch('foo', undefined)
+      expect(handler).have.been.calledOnce()
+      expect(handler).have.been.calledWithMatch('foo', undefined)
     })
   })
 })

@@ -17,7 +17,7 @@ describe('Responsive', () => {
 
   describe('children', () => {
     it('renders by default', () => {
-      shallow(<Responsive />).should.be.present()
+      expect(shallow(<Responsive />)).be.present()
     })
   })
 
@@ -26,31 +26,27 @@ describe('Responsive', () => {
       const onUpdate = sandbox.spy()
       mount(<Responsive onUpdate={onUpdate} />)
 
-      onUpdate.should.have.not.been.called()
+      expect(onUpdate).have.not.been.called()
     })
 
     it('fires onUpdate after mount when true', () => {
       const onUpdate = sandbox.spy()
       mount(<Responsive fireOnMount onUpdate={onUpdate} />)
 
-      onUpdate.should.have.been.calledOnce()
+      expect(onUpdate).have.been.calledOnce()
     })
   })
 
   describe('getWidth', () => {
     it('defaults to window.innerWidth when is browser', () => {
       sandbox.stub(window, 'innerWidth').value(500)
-      shallow(<Responsive />)
-        .state('width')
-        .should.equal(500)
+      expect(shallow(<Responsive />).state('width')).toBe(500)
     })
 
     it('defaults to "0" when non-browser', () => {
       isBrowser.override = false
 
-      shallow(<Responsive />)
-        .state('width')
-        .should.equal(0)
+      expect(shallow(<Responsive />).state('width')).toBe(0)
 
       isBrowser.override = null
     })
@@ -59,42 +55,42 @@ describe('Responsive', () => {
       const getWidth = () => 500
       const wrapper = shallow(<Responsive getWidth={getWidth} />)
 
-      wrapper.state('width').should.equal(500)
+      expect(wrapper.state('width')).toBe(500)
     })
 
     it('is called on resize', () => {
       const getWidth = sandbox.spy()
       mount(<Responsive getWidth={getWidth} />)
 
-      getWidth.should.have.been.calledOnce()
+      expect(getWidth).have.been.calledOnce()
       getWidth.resetHistory()
 
       domEvent.fire(window, 'resize')
-      getWidth.should.have.been.calledOnce()
+      expect(getWidth).have.been.calledOnce()
     })
   })
 
   describe('maxWidth', () => {
     it('renders when fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.maxWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).should.not.be.blank()
+      expect(shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>)).not.be.blank()
     })
 
     it('do not render when not fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.maxWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).should.be.blank()
+      expect(shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>)).be.blank()
     })
   })
 
   describe('minWidth', () => {
     it('renders when fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).should.not.be.blank()
+      expect(shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>)).not.be.blank()
     })
 
     it('do not render when not fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).should.be.blank()
+      expect(shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>)).be.blank()
     })
   })
 
@@ -102,13 +98,13 @@ describe('Responsive', () => {
     it('renders using new width', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
       const wrapper = mount(<Responsive {...Responsive.onlyMobile}>Mobile only</Responsive>)
-      wrapper.should.not.be.blank()
+      expect(wrapper).not.be.blank()
 
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
       domEvent.fire(window, 'resize')
 
       wrapper.update()
-      wrapper.should.be.blank()
+      expect(wrapper).be.blank()
     })
   })
 
@@ -121,8 +117,8 @@ describe('Responsive', () => {
       sandbox.stub(window, 'innerWidth').value(width)
       domEvent.fire(window, 'resize')
 
-      onUpdate.should.have.been.calledOnce()
-      onUpdate.should.have.been.calledWithMatch({}, { ...Responsive.onlyMobile, width })
+      expect(onUpdate).have.been.calledOnce()
+      expect(onUpdate).have.been.calledWithMatch({}, { ...Responsive.onlyMobile, width })
     })
   })
 
@@ -135,7 +131,7 @@ describe('Responsive', () => {
 
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
       domEvent.fire(window, 'resize')
-      spy.should.have.returned(true)
+      expect(spy).have.returned(true)
     })
 
     it('returns false when width stays the same', () => {
@@ -145,7 +141,7 @@ describe('Responsive', () => {
       const spy = sandbox.spy(instance, 'shouldComponentUpdate')
 
       domEvent.fire(window, 'resize')
-      spy.should.have.returned(false)
+      expect(spy).have.returned(false)
     })
 
     it('returns true when props change', () => {
@@ -154,7 +150,7 @@ describe('Responsive', () => {
       const spy = sandbox.spy(instance, 'shouldComponentUpdate')
 
       wrapper.setProps({ ...Responsive.onlyTablet })
-      spy.should.have.returned(true)
+      expect(spy).have.returned(true)
     })
   })
 })

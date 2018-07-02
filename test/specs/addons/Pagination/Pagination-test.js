@@ -31,10 +31,10 @@ describe('Pagination', () => {
         .at(4)
         .simulate('click', event)
 
-      onPageChange.should.have.been.calledOnce()
-      onPageChange.should.have.been.calledWithMatch(event, { activePage: 3 })
-      onPageItemClick.should.have.been.calledOnce()
-      onPageItemClick.should.have.been.calledWithMatch(event, { value: 3 })
+      expect(onPageChange).have.been.calledOnce()
+      expect(onPageChange).have.been.calledWithMatch(event, { activePage: 3 })
+      expect(onPageItemClick).have.been.calledOnce()
+      expect(onPageItemClick).have.been.calledWithMatch(event, { value: 3 })
     })
 
     it('will be omitted if occurred for the same pagination item as the current', () => {
@@ -53,7 +53,7 @@ describe('Pagination', () => {
         .find('PaginationItem')
         .at(0)
         .simulate('click')
-      onPageChange.should.have.not.been.called()
+      expect(onPageChange).have.not.been.called()
     })
   })
 })

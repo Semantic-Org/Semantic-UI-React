@@ -10,21 +10,21 @@ describe('PaginationItem', () => {
 
   describe('active', () => {
     it('is "undefined" by default', () => {
-      shallow(<PaginationItem />).should.have.not.prop('active')
+      expect(shallow(<PaginationItem />)).have.not.prop('active')
     })
 
     it('can pass its value', () => {
-      shallow(<PaginationItem active />).should.have.prop('active', true)
+      expect(shallow(<PaginationItem active />)).have.prop('active', true)
     })
   })
 
   describe('aria-current', () => {
     it('matches the values of "active" prop by default', () => {
-      shallow(<PaginationItem active />).should.have.prop('aria-current', true)
+      expect(shallow(<PaginationItem active />)).have.prop('aria-current', true)
     })
 
     it('can be overridden', () => {
-      shallow(<PaginationItem active aria-current={false} />).should.have.prop(
+      expect(shallow(<PaginationItem active aria-current={false} />)).have.prop(
         'aria-current',
         false,
       )
@@ -33,15 +33,15 @@ describe('PaginationItem', () => {
 
   describe('disabled', () => {
     it('is "false" by default', () => {
-      shallow(<PaginationItem />).should.have.prop('disabled', false)
+      expect(shallow(<PaginationItem />)).have.prop('disabled', false)
     })
 
     it('is "true" when "type" is "ellipsisItem"', () => {
-      shallow(<PaginationItem type='ellipsisItem' />).should.have.prop('disabled', true)
+      expect(shallow(<PaginationItem type='ellipsisItem' />)).have.prop('disabled', true)
     })
 
     it('can be overridden', () => {
-      shallow(<PaginationItem disabled />).should.have.prop('disabled', true)
+      expect(shallow(<PaginationItem disabled />)).have.prop('disabled', true)
     })
   })
 
@@ -52,8 +52,8 @@ describe('PaginationItem', () => {
 
       shallow(<PaginationItem onClick={onClick} />).simulate('click', event)
 
-      onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(event, { onClick })
+      expect(onClick).have.been.calledOnce()
+      expect(onClick).have.been.calledWithMatch(event, { onClick })
     })
 
     it('is called with (e, props) when "Enter" is pressed', () => {
@@ -62,8 +62,8 @@ describe('PaginationItem', () => {
 
       shallow(<PaginationItem onClick={onClick} />).simulate('keyDown', event)
 
-      onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(event, { onClick })
+      expect(onClick).have.been.calledOnce()
+      expect(onClick).have.been.calledWithMatch(event, { onClick })
     })
 
     it('is omitted when "type" is "ellipsisItem"', () => {
@@ -72,7 +72,7 @@ describe('PaginationItem', () => {
 
       shallow(<PaginationItem onClick={onClick} type='ellipsisItem' />).simulate('click', event)
 
-      onClick.should.have.been.not.called()
+      expect(onClick).have.been.not.called()
     })
   })
 
@@ -83,22 +83,22 @@ describe('PaginationItem', () => {
 
       shallow(<PaginationItem onKeyDown={onKeyDown} />).simulate('keyDown', event)
 
-      onKeyDown.should.have.been.calledOnce()
-      onKeyDown.should.have.been.calledWithMatch(event, { onKeyDown })
+      expect(onKeyDown).have.been.calledOnce()
+      expect(onKeyDown).have.been.calledWithMatch(event, { onKeyDown })
     })
   })
 
   describe('tabIndex', () => {
     it('is "0" by default', () => {
-      shallow(<PaginationItem />).should.have.prop('tabIndex', 0)
+      expect(shallow(<PaginationItem />)).have.prop('tabIndex', 0)
     })
 
     it('is "-1" when "type" is "ellipsisItem"', () => {
-      shallow(<PaginationItem type='ellipsisItem' />).should.have.prop('tabIndex', -1)
+      expect(shallow(<PaginationItem type='ellipsisItem' />)).have.prop('tabIndex', -1)
     })
 
     it('can be overridden', () => {
-      shallow(<PaginationItem tabIndex={5} />).should.have.prop('tabIndex', 5)
+      expect(shallow(<PaginationItem tabIndex={5} />)).have.prop('tabIndex', 5)
     })
   })
 })

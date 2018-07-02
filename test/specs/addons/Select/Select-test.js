@@ -13,8 +13,8 @@ describe('Select', () => {
   common.hasSubcomponents(Select, [Dropdown.Divider, Dropdown.Header, Dropdown.Item, Dropdown.Menu])
 
   it('renders a selection Dropdown', () => {
-    shallow(<Select {...requiredProps} />)
-      .first()
-      .should.contain(<Dropdown {...requiredProps} selection />)
+    expect(shallow(<Select {...requiredProps} />).first()).toContain(
+      <Dropdown {...requiredProps} selection />,
+    )
   })
 })
