@@ -47,12 +47,13 @@
       "^src/(.*)$": "<rootDir>/src/$1",
       "^test/(.*)$": "<rootDir>/test/$1"
     },
-    "roots": ["<rootDir>/test/"],
+    "roots": [
+      "<rootDir>/test/"
+    ],
     "setupTestFrameworkScriptFile": "./test/setupTests.js",
-    "testMatch": ["**/views/**/*.js"],
-    "transform": {
-      "^.+\\.js?$": "babel-jest"
-    }
+    "testMatch": [
+      "**/lib/**/*.js"
+    ]
   },
   "lint-staged": {
     "**/*.{js,jsx}": [
