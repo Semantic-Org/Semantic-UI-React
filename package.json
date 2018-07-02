@@ -34,12 +34,22 @@
     "prestart": "yarn satisfied --fix yarn",
     "start": "gulp --series dll docs",
     "satisfied": "satisfied --skip-invalid",
-    "pretest": "yarn satisfied && gulp dll build:docs:docgen",
-    "test": "cross-env NODE_ENV=test node -r @babel/register ./node_modules/karma/bin/karma start karma.conf.babel.js",
-    "test:watch": "yarn test --no-single-run",
+    "pretest": "yarn satisfied && gulp build:docs:docgen",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "yarn test --watchAll",
     "tsd:lint": "tslint \"./index.d.ts\" \"./src/**/*.d.ts\" \"./src/**/*.tsx\" \"./test/**/*.d.ts\" \"./test/**/*.tsx\"",
     "tsd:lint:fix": "yarn tsd:lint --fix",
     "tsd:test": "gulp build:dist:commonjs:tsd && tsc -p ./ && rm test/typings.js"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^docs/(.*)$": "<rootDir>/docs/$1",
+      "^src/(.*)$": "<rootDir>/src/$1",
+      "^test/(.*)$": "<rootDir>/test/$1"
+    },
+    "roots": ["<rootDir>/test/"],
+    "setupTestFrameworkScriptFile": "./test/setupTests.js",
+    "testMatch": ["**/lib/**/*-test.js"]
   },
   "lint-staged": {
     "**/*.{js,jsx}": [
@@ -72,7 +82,6 @@
     "shallowequal": "^1.0.2"
   },
   "devDependencies": {
-    "babel-core": "^7.0.0-0",
     "@babel/cli": "^7.0.0-beta.49",
     "@babel/core": "^7.0.0-beta.49",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.49",
@@ -85,6 +94,7 @@
     "@babel/register": "^7.0.0-beta.49",
     "@babel/standalone": "^7.0.0-beta.49",
     "@types/react": "^16.0.0",
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "^8.2.3",
     "babel-jest": "^23.2.0",
     "babel-loader": "^8.0.0-beta.3",
@@ -99,6 +109,8 @@
     "debug": "^3.0.1",
     "doctoc": "^1.3.0",
     "doctrine": "^2.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.4.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",

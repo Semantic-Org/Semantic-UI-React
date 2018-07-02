@@ -5,7 +5,7 @@ import webpack from 'webpack'
 import config from './config'
 
 const { paths } = config
-const { __DEV__, __TEST__, __PROD__ } = config.compiler_globals
+const { __DEV__, __PROD__ } = config.compiler_globals
 
 const webpackConfig = {
   name: 'client',
@@ -99,15 +99,11 @@ webpackConfig.plugins = [
   }),
 ]
 
-if (!__TEST__) {
-  webpackConfig.plugins.push(
-    // Don't split bundles during testing as karma can only import one bundle
-    // https://github.com/webpack-contrib/karma-webpack/issues/22
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor'],
-    }),
-  )
-}
+webpackConfig.plugins.push(
+  new webpack.optimize.CommonsChunkPlugin({
+    names: ['vendor'],
+  }),
+)
 
 if (__DEV__) {
   webpackConfig.plugins.push(
@@ -134,18 +130,16 @@ if (__PROD__) {
 // ------------------------------------
 // Externals
 // ------------------------------------
-if (!__TEST__) {
-  // find modules loaded via CDN on the window
-  webpackConfig.externals = {
-    ...webpackConfig.externals,
-    'anchor-js': 'AnchorJS',
-    '@babel/standalone': 'Babel',
-    faker: 'faker',
-    'prop-types': 'PropTypes',
-    react: 'React',
-    'react-dom': 'ReactDOM',
-    'react-dom/server': 'ReactDOMServer',
-  }
+// find modules loaded via CDN on the window
+webpackConfig.externals = {
+  ...webpackConfig.externals,
+  'anchor-js': 'AnchorJS',
+  '@babel/standalone': 'Babel',
+  faker: 'faker',
+  'prop-types': 'PropTypes',
+  react: 'React',
+  'react-dom': 'ReactDOM',
+  'react-dom/server': 'ReactDOMServer',
 }
 
 // ------------------------------------
@@ -159,13 +153,11 @@ webpackConfig.module.noParse = [
   /typescript\/lib/,
 ]
 
-if (!__TEST__) {
-  webpackConfig.module.noParse = [
-    ...webpackConfig.module.noParse,
-    // Do not parse browser ready modules loaded via CDN (faster builds)
-    /faker/,
-  ]
-}
+webpackConfig.module.noParse = [
+  ...webpackConfig.module.noParse,
+  // Do not parse browser ready modules loaded via CDN (faster builds)
+  /faker/,
+]
 
 // ------------------------------------
 // Rules
