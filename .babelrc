@@ -25,9 +25,7 @@
       ]
     },
     "test": {
-      "plugins": [
-        ["istanbul", { "include": ["src"] }]
-      ]
+      "presets": [["env"], "react"]
     }
   }
 }
