@@ -16,50 +16,50 @@ export default (Component) => {
       consoleUtil.disableOnce()
     })
     it('is a static method', () => {
-      Component.should.have.any.keys('create')
-      Component.create.should.be.a('function')
+      expect(Component).have.key('create')
+      expect(typeof Component.create).toBe('function')
     })
 
     it(`creates a ${name} from a string`, () => {
-      isValidElement(Component.create('foo')).should.equal(true)
+      expect(isValidElement(Component.create('foo'))).toBe(true)
     })
 
     it(`creates a ${name} from a number`, () => {
-      isValidElement(Component.create(123)).should.equal(true)
+      expect(isValidElement(Component.create(123))).toBe(true)
     })
 
     it(`creates a ${name} from a number 0`, () => {
-      isValidElement(Component.create(0)).should.equal(true)
+      expect(isValidElement(Component.create(0))).toBe(true)
     })
 
     it(`creates a ${name} from a props object`, () => {
-      isValidElement(Component.create({ 'data-foo': 'bar' })).should.equal(true)
+      expect(isValidElement(Component.create({ 'data-foo': 'bar' }))).toBe(true)
     })
 
     it(`creates a ${name} from an array`, () => {
       // not all components support array shorthand, suppress warnings
       consoleUtil.disableOnce()
-      isValidElement(Component.create(['foo', 123, { 'data-foo': 'bar' }])).should.equal(true)
+      expect(isValidElement(Component.create(['foo', 123, { 'data-foo': 'bar' }]))).toBe(true)
     })
 
     it(`creates a ${name} from an element`, () => {
-      isValidElement(Component.create(<div />)).should.equal(true)
+      expect(isValidElement(Component.create(<div />))).toBe(true)
     })
 
     it('returns null when passed null', () => {
-      expect(Component.create(null)).to.equal(null)
+      expect(Component.create(null)).toBe(null)
     })
 
     it('returns null when passed undefined', () => {
-      expect(Component.create(undefined)).to.equal(null)
+      expect(Component.create(undefined)).toBe(null)
     })
 
     it('returns null when passed true', () => {
-      expect(Component.create(true)).to.equal(null)
+      expect(Component.create(true)).toBe(null)
     })
 
     it('returns null when passed false', () => {
-      expect(Component.create(false)).to.equal(null)
+      expect(Component.create(false)).toBe(null)
     })
   })
 }

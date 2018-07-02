@@ -17,6 +17,6 @@ export default (Component, options = {}) => {
   it('has the "ui" className', () => {
     assertRequired(Component, 'a `Component`')
 
-    nestedShallow(<Component {...requiredProps} />, { nestingLevel }).should.have.className('ui')
+    expect(nestedShallow(<Component {...requiredProps} />, { nestingLevel })).have.className('ui')
   })
 }

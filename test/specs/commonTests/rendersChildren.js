@@ -21,22 +21,28 @@ export default (Component, options = {}) => {
   describe('children (common)', () => {
     it('renders child text', () => {
       const text = faker.hacker.phrase()
-      nestedShallow(createElement(Component, requiredProps, text), {
-        nestingLevel,
-      }).should.contain.text(text)
+      expect(
+        nestedShallow(createElement(Component, requiredProps, text), {
+          nestingLevel,
+        }),
+      ).contain.text(text)
     })
 
     it('renders child components', () => {
       const child = <div data-child={faker.hacker.noun()} />
-      nestedShallow(createElement(Component, requiredProps, child), {
-        nestingLevel,
-      }).should.contain(child)
+      expect(
+        nestedShallow(createElement(Component, requiredProps, child), {
+          nestingLevel,
+        }),
+      ).toContain(child)
     })
 
     it('renders child number with 0 value', () => {
-      nestedShallow(createElement(Component, requiredProps, 0), {
-        nestingLevel,
-      }).should.contain.text('0')
+      expect(
+        nestedShallow(createElement(Component, requiredProps, 0), {
+          nestingLevel,
+        }),
+      ).contain.text('0')
     })
   })
 
@@ -44,22 +50,28 @@ export default (Component, options = {}) => {
     describe('content (common)', () => {
       it('renders child text', () => {
         const text = faker.hacker.phrase()
-        nestedShallow(createElement(Component, { ...requiredProps, content: text }), {
-          nestingLevel,
-        }).should.contain.text(text)
+        expect(
+          nestedShallow(createElement(Component, { ...requiredProps, content: text }), {
+            nestingLevel,
+          }),
+        ).contain.text(text)
       })
 
       it('renders child components', () => {
         const child = <div data-child={faker.hacker.noun()} />
-        nestedShallow(createElement(Component, { ...requiredProps, content: child }), {
-          nestingLevel,
-        }).should.contain(child)
+        expect(
+          nestedShallow(createElement(Component, { ...requiredProps, content: child }), {
+            nestingLevel,
+          }),
+        ).toContain(child)
       })
 
       it('renders child number with 0 value', () => {
-        nestedShallow(createElement(Component, { ...requiredProps, content: 0 }), {
-          nestingLevel,
-        }).should.contain.text('0')
+        expect(
+          nestedShallow(createElement(Component, { ...requiredProps, content: 0 }), {
+            nestingLevel,
+          }),
+        ).contain.text('0')
       })
     })
   }

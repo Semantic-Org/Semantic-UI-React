@@ -63,32 +63,32 @@ export default (Component, options = {}) => {
       const element = createElement(Component, { ...requiredProps, [propKey]: value })
       const wrapper = shallow(element)
 
-      wrapper.should[assertMethod](expectedShorthandElement)
+      expect(wrapper)[assertMethod](expectedShorthandElement)
 
       // Enzyme's .key() method is not consistent with React for elements with
       // no key (`undefined` vs `null`), so use the underlying element instead
       // Will fail if more than one element of this type is found
       const shorthandElement = wrapper.find(ShorthandComponent).getElement()
-      expect(shorthandElement.key).to.equal(expectedShorthandElement.key, "key doesn't match")
+      expect(shorthandElement.key).toBe(expectedShorthandElement.key)
     }
 
     if (alwaysPresent || (Component.defaultProps && Component.defaultProps[propKey])) {
       it(`has default ${name} when not defined`, () => {
-        shallow(<Component {...requiredProps} />).should.have.descendants(name)
+        expect(shallow(<Component {...requiredProps} />)).have.descendants(name)
       })
     } else {
       noDefaultClassNameFromProp(Component, propKey, [], options)
 
       it(`has no ${name} when not defined`, () => {
-        shallow(<Component {...requiredProps} />).should.not.have.descendants(name)
+        expect(shallow(<Component {...requiredProps} />)).not.have.descendants(name)
       })
     }
 
     if (!alwaysPresent) {
       it(`has no ${name} when null`, () => {
-        shallow(
-          createElement(Component, { ...requiredProps, [propKey]: null }),
-        ).should.not.have.descendants(ShorthandComponent)
+        expect(
+          shallow(createElement(Component, { ...requiredProps, [propKey]: null })),
+        ).not.have.descendants(ShorthandComponent)
       })
     }
 

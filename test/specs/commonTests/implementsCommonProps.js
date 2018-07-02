@@ -172,7 +172,7 @@ export const implementsMultipleProp = (Component, propKey, propValues) => {
 
     propValues.forEach((propVal) => {
       it(`adds "${propVal} ${propKey}" to className`, () => {
-        shallow(createElement(Component, { [propKey]: propVal })).should.have.className(
+        expect(shallow(createElement(Component, { [propKey]: propVal }))).have.className(
           `${propVal} ${propKey}`,
         )
       })
@@ -182,7 +182,7 @@ export const implementsMultipleProp = (Component, propKey, propValues) => {
       const className = propValues.map(prop => `${prop} ${propKey}`).join(' ')
       const propValue = propValues.join(' ')
 
-      shallow(createElement(Component, { [propKey]: propValue })).should.have.className(className)
+      expect(shallow(createElement(Component, { [propKey]: propValue }))).have.className(className)
     })
   })
 }
@@ -211,17 +211,17 @@ export const implementsTextAlignProp = (
     alignments.forEach((propVal) => {
       if (propVal === 'justified') {
         it('adds "justified" without "aligned" to className', () => {
-          shallow(<Component {...requiredProps} textAlign='justified' />).should.have.className(
+          expect(shallow(<Component {...requiredProps} textAlign='justified' />)).have.className(
             'justified',
           )
 
-          shallow(<Component {...requiredProps} textAlign='justified' />).should.not.have.className(
-            'aligned',
-          )
+          expect(
+            shallow(<Component {...requiredProps} textAlign='justified' />),
+          ).not.have.className('aligned')
         })
       } else {
         it(`adds "${propVal} aligned" to className`, () => {
-          shallow(<Component {...requiredProps} textAlign={propVal} />).should.have.className(
+          expect(shallow(<Component {...requiredProps} textAlign={propVal} />)).have.className(
             `${propVal} ${'aligned'}`,
           )
         })
@@ -253,7 +253,7 @@ export const implementsVerticalAlignProp = (
 
     alignments.forEach((propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
-        shallow(<Component {...requiredProps} verticalAlign={propVal} />).should.have.className(
+        expect(shallow(<Component {...requiredProps} verticalAlign={propVal} />)).have.className(
           `${propVal} ${'aligned'}`,
         )
       })
@@ -289,17 +289,17 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
           ? `${numberToWord(width)} ${widthClass}`
           : numberToWord(width)
 
-        shallow(
-          createElement(Component, { ...requiredProps, [propKey]: width }),
-        ).should.have.className(expectClass)
+        expect(
+          shallow(createElement(Component, { ...requiredProps, [propKey]: width })),
+        ).have.className(expectClass)
       })
     })
 
     if (canEqual) {
       it('adds "equal width" to className', () => {
-        shallow(
-          createElement(Component, { ...requiredProps, [propKey]: 'equal' }),
-        ).should.have.className('equal width')
+        expect(
+          shallow(createElement(Component, { ...requiredProps, [propKey]: 'equal' })),
+        ).have.className('equal width')
       })
     }
   })
@@ -326,8 +326,8 @@ export const labelImplementsHtmlForProp = (Component, options = {}) => {
       const wrapper = mount(<Component {...requiredProps} id={id} label={label} />)
       const labelNode = wrapper.find('label')
 
-      wrapper.should.to.have.descendants(`#${id}`)
-      labelNode.should.have.prop('htmlFor', id)
+      expect(wrapper).to.have.descendants(`#${id}`)
+      expect(labelNode).have.prop('htmlFor', id)
     })
   })
 }
