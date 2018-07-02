@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { isValidElement } from 'react'
 
-import { createShorthand, createShorthandFactory } from 'src/lib'
+import { createShorthand, createShorthandFactory } from 'src/lib/factories'
 import { consoleUtil } from 'test/utils'
 
 // ----------------------------------------

@@ -1,4 +1,4 @@
-import { doesNodeContainClick } from 'src/lib'
+import doesNodeContainClick from 'src/lib/doesNodeContainClick'
 
 const makeEvent = event => ({ clientX: 0, clientY: 0, ...event })
 

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { objectDiff } from 'src/lib'
+import objectDiff from 'src/lib/objectDiff'
 
 describe('objectDiff', () => {
   let a

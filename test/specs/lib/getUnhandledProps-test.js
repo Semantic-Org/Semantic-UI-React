@@ -1,5 +1,5 @@
 import React from 'react'
-import { getUnhandledProps } from 'src/lib'
+import getUnhandledProps from 'src/lib/getUnhandledProps'
 
 // We spread the unhandled props onto the rendered result.
 // Then, we can test the props of the rendered result.

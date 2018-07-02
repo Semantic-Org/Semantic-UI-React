@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 
-import { getChildMapping, mergeChildMappings } from 'src/lib'
+import { getChildMapping, mergeChildMappings } from 'src/lib/childMapping'
 
 describe('childMapping', () => {
   describe('childMapping', () => {

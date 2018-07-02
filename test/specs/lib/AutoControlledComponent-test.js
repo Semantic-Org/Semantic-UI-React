@@ -3,7 +3,7 @@ import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
-import { AutoControlledComponent } from 'src/lib'
+import AutoControlledComponent from 'src/lib/AutoControlledComponent'
 import { consoleUtil } from 'test/utils'
 
 let TestClass
