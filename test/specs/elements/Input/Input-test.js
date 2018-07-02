@@ -71,9 +71,14 @@ describe('Input', () => {
 
   common.propKeyAndValueToClassName(Input, 'actionPosition', ['left'], { className: 'action' })
   common.propKeyAndValueToClassName(Input, 'iconPosition', ['left'], { className: 'icon' })
-  common.propKeyAndValueToClassName(Input, 'labelPosition', ['left', 'right', 'left corner', 'right corner'], {
-    className: 'labeled',
-  })
+  common.propKeyAndValueToClassName(
+    Input,
+    'labelPosition',
+    ['left', 'right', 'left corner', 'right corner'],
+    {
+      className: 'labeled',
+    },
+  )
 
   common.propKeyOnlyToClassName(Input, 'action')
   common.propKeyOnlyToClassName(Input, 'disabled')
@@ -90,20 +95,20 @@ describe('Input', () => {
   common.propValueOnlyToClassName(Input, 'size', SUI.SIZES)
 
   it('renders with conditional children', () => {
-    shallow(
-      <Input>
-        {true && <span />}
-        {false && <div />}
-      </Input>,
-    )
-      .should.contain(<span />)
-      .should.not.contain(<div />)
+    expect(
+      expect(
+        shallow(
+          <Input>
+            {true && <span />}
+            {false && <div />}
+          </Input>,
+        ),
+      ).contain(<span />),
+    ).not.toContain(<div />)
   })
 
   it('renders a text <input> by default', () => {
-    shallow(<Input />)
-      .find('input')
-      .should.have.prop('type', 'text')
+    expect(shallow(<Input />).find('input')).have.prop('type', 'text')
   })
 
   describe('input props', () => {
@@ -113,13 +118,9 @@ describe('Input', () => {
         const wrapper = shallow(<Input {...{ [propName]: propValue }} />)
 
         // account for overloading the onChange prop
-        const expectedValue = propName === 'onChange'
-          ? wrapper.instance().handleChange
-          : propValue
+        const expectedValue = propName === 'onChange' ? wrapper.instance().handleChange : propValue
 
-        wrapper
-          .find('input')
-          .should.have.prop(propName, expectedValue)
+        expect(wrapper.find('input')).have.prop(propName, expectedValue)
       })
 
       it(`passes \`${propName}\` to the <input> when using children`, () => {
@@ -131,13 +132,9 @@ describe('Input', () => {
         )
 
         // account for overloading the onChange prop
-        const expectedValue = propName === 'onChange'
-          ? wrapper.instance().handleChange
-          : propValue
+        const expectedValue = propName === 'onChange' ? wrapper.instance().handleChange : propValue
 
-        wrapper
-          .find('input')
-          .should.have.prop(propName, expectedValue)
+        expect(wrapper.find('input')).have.prop(propName, expectedValue)
       })
     })
   })
@@ -151,7 +148,7 @@ describe('Input', () => {
       wrapper.instance().focus()
 
       const input = document.querySelector('.ui.input input')
-      document.activeElement.should.equal(input)
+      expect(document.activeElement).toBe(input)
 
       wrapper.detach()
       document.body.removeChild(mountNode)
@@ -160,15 +157,11 @@ describe('Input', () => {
 
   describe('loading', () => {
     it("don't add icon if it's defined", () => {
-      shallow(<Input icon='user' loading />)
-        .find('Icon')
-        .should.have.prop('name', 'user')
+      expect(shallow(<Input icon='user' loading />).find('Icon')).have.prop('name', 'user')
     })
 
     it("adds icon if it's not defined", () => {
-      shallow(<Input loading />)
-        .find('Icon')
-        .should.have.prop('name', 'spinner')
+      expect(shallow(<Input loading />).find('Icon')).have.prop('name', 'spinner')
     })
   })
 
@@ -182,8 +175,8 @@ describe('Input', () => {
 
       wrapper.find('input').simulate('change', e)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
 
     it('is called with (e, data) on change when using children', () => {
@@ -199,8 +192,8 @@ describe('Input', () => {
 
       wrapper.find('input').simulate('change', e)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
   })
 
@@ -210,12 +203,17 @@ describe('Input', () => {
       const mountNode = document.createElement('div')
       document.body.appendChild(mountNode)
 
-      const wrapper = mount(<Input><input ref={ref} /></Input>, { attachTo: mountNode })
+      const wrapper = mount(
+        <Input>
+          <input ref={ref} />
+        </Input>,
+        { attachTo: mountNode },
+      )
       const input = document.querySelector('.ui.input input')
 
-      ref.should.have.been.calledOnce()
-      ref.should.have.been.calledWithMatch(input)
-      wrapper.instance().inputRef.should.equal(input)
+      expect(ref).have.been.calledOnce()
+      expect(ref).have.been.calledWithMatch(input)
+      expect(wrapper.instance().inputRef).toBe(input)
 
       wrapper.detach()
       document.body.removeChild(mountNode)
@@ -224,81 +222,74 @@ describe('Input', () => {
 
   describe('disabled', () => {
     it('is applied to the underlying html input element', () => {
-      shallow(<Input disabled />)
-        .find('input')
-        .should.have.prop('disabled', true)
+      expect(shallow(<Input disabled />).find('input')).have.prop('disabled', true)
 
-      shallow(<Input disabled={false} />)
-        .find('input')
-        .should.have.prop('disabled', false)
+      expect(shallow(<Input disabled={false} />).find('input')).have.prop('disabled', false)
     })
   })
 
   describe('tabIndex', () => {
     it('is not set by default', () => {
-      shallow(<Input />)
-        .find('input')
-        .should.not.have.prop('tabIndex')
+      expect(shallow(<Input />).find('input')).not.have.prop('tabIndex')
     })
 
     it('defaults to -1 when disabled', () => {
-      shallow(<Input disabled />)
-        .find('input')
-        .should.have.prop('tabIndex', -1)
+      expect(shallow(<Input disabled />).find('input')).have.prop('tabIndex', -1)
     })
 
     it('can be set explicitly', () => {
-      shallow(<Input tabIndex={123} />)
-        .find('input')
-        .should.have.prop('tabIndex', 123)
+      expect(shallow(<Input tabIndex={123} />).find('input')).have.prop('tabIndex', 123)
     })
 
     it('can be set explicitly when disabled', () => {
-      shallow(<Input tabIndex={123} disabled />)
-        .find('input')
-        .should.have.prop('tabIndex', 123)
+      expect(shallow(<Input tabIndex={123} disabled />).find('input')).have.prop('tabIndex', 123)
     })
   })
 
   describe('icon', () => {
     it('is second child', () => {
-      shallow(<Input icon='search' />)
-        .children()
-        .at(1)
-        .is('Icon')
-        .should.be.true()
+      expect(
+        shallow(<Input icon='search' />)
+          .children()
+          .at(1)
+          .is('Icon'),
+      ).toBe(true)
     })
 
     it('is third child with action positioned left', () => {
-      shallow(<Input icon='search' action='foo' actionPosition='left' />)
-        .children()
-        .at(2)
-        .is('Icon')
-        .should.be.true()
+      expect(
+        shallow(<Input icon='search' action='foo' actionPosition='left' />)
+          .children()
+          .at(2)
+          .is('Icon'),
+      ).toBe(true)
     })
 
     it('is third child with label', () => {
-      shallow(<Input icon='search' label='foo' />)
-        .children()
-        .at(2)
-        .is('Icon')
-        .should.be.true()
+      expect(
+        shallow(<Input icon='search' label='foo' />)
+          .children()
+          .at(2)
+          .is('Icon'),
+      ).toBe(true)
     })
 
     it('is second child with action', () => {
-      shallow(<Input icon='search' iconPosition='left' action='foo' />)
-        .children()
-        .at(1)
-        .is('Icon')
-        .should.be.true()
+      expect(
+        shallow(<Input icon='search' iconPosition='left' action='foo' />)
+          .children()
+          .at(1)
+          .is('Icon'),
+      ).toBe(true)
     })
 
     it('is second child with label positioned right', () => {
-      shallow(<Input icon='search' iconPosition='left' label='foo' labelPosition='right' />)
-        .children()
-        .at(1)
-        .is('Icon')
-        .should.be.true()
+      expect(
+        shallow(<Input icon='search' iconPosition='left' label='foo' labelPosition='right' />)
+          .children()
+          .at(1)
+          .is('Icon'),
+      ).toBe(true)
     })
   })
 })

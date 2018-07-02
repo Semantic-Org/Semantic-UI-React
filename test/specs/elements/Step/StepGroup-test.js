@@ -12,14 +12,14 @@ describe('StepGroup', () => {
   common.hasUIClassName(StepGroup)
   common.rendersChildren(StepGroup)
 
-  common.implementsWidthProp(StepGroup, [
-    ..._.keys(numberMap),
-    ..._.keys(numberMap).map(Number),
-    ..._.values(numberMap),
-  ], {
-    canEqual: false,
-    propKey: 'widths',
-  })
+  common.implementsWidthProp(
+    StepGroup,
+    [..._.keys(numberMap), ..._.keys(numberMap).map(Number), ..._.values(numberMap)],
+    {
+      canEqual: false,
+      propKey: 'widths',
+    },
+  )
 
   common.propKeyAndValueToClassName(StepGroup, 'stackable', ['tablet'])
 
@@ -34,9 +34,11 @@ describe('StepGroup', () => {
       const wrapper = shallow(<StepGroup items={['foo', 'bar']} />)
       const items = wrapper.children()
 
-      wrapper.should.have.exactly(2).descendants('Step')
-      items.at(0).should.have.prop('content', 'foo')
-      items.at(1).should.have.prop('content', 'bar')
+      expect(wrapper)
+        .have.exactly(2)
+        .descendants('Step')
+      expect(items.at(0)).have.prop('content', 'foo')
+      expect(items.at(1)).have.prop('content', 'bar')
     })
   })
 })

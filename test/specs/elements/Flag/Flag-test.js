@@ -13,7 +13,6 @@ describe('Flag', () => {
   common.propValueOnlyToClassName(Flag, 'name', [], { requiredProps })
 
   it('renders an <i /> element', () => {
-    shallow(<Flag {...requiredProps} />)
-      .should.have.tagName('i')
+    expect(shallow(<Flag {...requiredProps} />)).have.tagName('i')
   })
 })

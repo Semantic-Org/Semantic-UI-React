@@ -47,7 +47,7 @@ describe('List', () => {
   describe('onItemClick', () => {
     it('can be omitted', () => {
       const click = () => shallow(<List items={items} />).simulate('click')
-      expect(click).to.not.throw()
+      expect(click).not.toThrowError()
     })
 
     it('is called with (e, itemProps) when clicked', () => {
@@ -64,11 +64,11 @@ describe('List', () => {
         .shallow()
         .simulate('click', event)
 
-      onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(event, callbackData)
+      expect(onClick).have.been.calledOnce()
+      expect(onClick).have.been.calledWithMatch(event, callbackData)
 
-      onItemClick.should.have.been.calledOnce()
-      onItemClick.should.have.been.calledWithMatch(event, callbackData)
+      expect(onItemClick).have.been.calledOnce()
+      expect(onItemClick).have.been.calledWithMatch(event, callbackData)
     })
   })
 
@@ -76,13 +76,13 @@ describe('List', () => {
     it('is accessibile with no items', () => {
       const wrapper = shallow(<List />)
 
-      wrapper.should.have.prop('role', 'list')
+      expect(wrapper).have.prop('role', 'list')
     })
 
     it('is accessibile with items', () => {
       const wrapper = shallow(<List items={items} />)
 
-      wrapper.should.have.prop('role', 'list')
+      expect(wrapper).have.prop('role', 'list')
     })
   })
 
@@ -90,13 +90,13 @@ describe('List', () => {
     it('renders empty tr with no shorthand', () => {
       const wrapper = shallow(<List />)
 
-      wrapper.find('ListItem').should.have.lengthOf(0)
+      expect(wrapper.find('ListItem')).toHaveLength(0)
     })
 
     it('renders the items', () => {
       const wrapper = shallow(<List items={items} />)
 
-      wrapper.find('ListItem').should.have.lengthOf(items.length)
+      expect(wrapper.find('ListItem')).toHaveLength(items.length)
     })
   })
 })

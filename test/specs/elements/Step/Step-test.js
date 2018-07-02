@@ -21,20 +21,21 @@ describe('Step', () => {
   common.propKeyOnlyToClassName(Step, 'link')
 
   it('renders as a div by default', () => {
-    shallow(<Step />).should.have.tagName('div')
+    expect(shallow(<Step />)).have.tagName('div')
   })
 
   describe('children', () => {
-    shallow(<Step>{faker.hacker.phrase()}</Step>).should.not.have.descendants('StepContent')
+    expect(shallow(<Step>{faker.hacker.phrase()}</Step>)).not.have.descendants('StepContent')
   })
 
   describe('description', () => {
     it('passes prop to StepContent', () => {
       const description = faker.hacker.phrase()
 
-      shallow(<Step description={description} />)
-        .find('StepContent')
-        .should.have.prop('description', description)
+      expect(shallow(<Step description={description} />).find('StepContent')).have.prop(
+        'description',
+        description,
+      )
     })
   })
 
@@ -43,8 +44,8 @@ describe('Step', () => {
       const url = faker.internet.url()
       const wrapper = shallow(<Step href={url} />)
 
-      wrapper.should.have.tagName('a')
-      wrapper.should.have.attr('href', url)
+      expect(wrapper).have.tagName('a')
+      expect(wrapper).have.attr('href', url)
     })
   })
 
@@ -55,19 +56,19 @@ describe('Step', () => {
 
       shallow(<Step onClick={onClick} />).simulate('click', event)
 
-      onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(event, { onClick })
+      expect(onClick).have.been.calledOnce()
+      expect(onClick).have.been.calledWithMatch(event, { onClick })
     })
 
     it('is not called when is disabled', () => {
       const onClick = sandbox.spy()
 
       shallow(<Step disabled onClick={onClick} />).simulate('click')
-      onClick.should.have.not.been.called()
+      expect(onClick).have.not.been.called()
     })
 
     it('renders as `a` when defined', () => {
-      shallow(<Step onClick={() => null} />).should.have.tagName('a')
+      expect(shallow(<Step onClick={() => null} />)).have.tagName('a')
     })
   })
 
@@ -75,9 +76,7 @@ describe('Step', () => {
     it('passes prop to StepContent', () => {
       const title = faker.hacker.phrase()
 
-      shallow(<Step title={title} />)
-        .find('StepContent')
-        .should.have.prop('title', title)
+      expect(shallow(<Step title={title} />).find('StepContent')).have.prop('title', title)
     })
   })
 })

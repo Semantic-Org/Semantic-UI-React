@@ -47,30 +47,29 @@ describe('Label', () => {
   common.propValueOnlyToClassName(Label, 'size', SUI.SIZES)
 
   it('is a div by default', () => {
-    shallow(<Label />).should.have.tagName('div')
+    expect(shallow(<Label />)).have.tagName('div')
   })
 
   describe('removeIcon', () => {
     it('has no icon without onRemove', () => {
-      shallow(<Label />).should.not.have.descendants('Icon')
+      expect(shallow(<Label />)).not.have.descendants('Icon')
     })
 
     it('has delete icon by default', () => {
-      shallow(<Label onRemove={_.noop} />)
-        .find('Icon')
-        .should.have.prop('name', 'delete')
+      expect(shallow(<Label onRemove={_.noop} />).find('Icon')).have.prop('name', 'delete')
     })
 
     it('uses passed removeIcon string', () => {
-      shallow(<Label onRemove={_.noop} removeIcon='foo' />)
-        .find('Icon')
-        .should.have.prop('name', 'foo')
+      expect(shallow(<Label onRemove={_.noop} removeIcon='foo' />).find('Icon')).have.prop(
+        'name',
+        'foo',
+      )
     })
 
     it('uses passed removeIcon props', () => {
-      shallow(<Label onRemove={_.noop} removeIcon={{ 'data-foo': true }} />)
-        .find('Icon')
-        .should.have.prop('data-foo', true)
+      expect(
+        shallow(<Label onRemove={_.noop} removeIcon={{ 'data-foo': true }} />).find('Icon'),
+      ).have.prop('data-foo', true)
     })
 
     it('handles events on Label and Icon', () => {
@@ -85,25 +84,25 @@ describe('Label', () => {
         .find('Icon')
         .simulate('click', event)
 
-      iconSpy.should.have.been.calledOnce()
-      labelSpy.should.have.been.calledOnce()
-      labelSpy.should.have.been.calledWithMatch(event, labelProps)
+      expect(iconSpy).have.been.calledOnce()
+      expect(labelSpy).have.been.calledOnce()
+      expect(labelSpy).have.been.calledWithMatch(event, labelProps)
     })
   })
 
   describe('image', () => {
     it('adds an image class when true', () => {
-      shallow(<Label image />).should.have.className('image')
+      expect(shallow(<Label image />)).have.className('image')
     })
     it('does not add an Image when true', () => {
-      shallow(<Label image />).should.not.have.descendants('Image')
+      expect(shallow(<Label image />)).not.have.descendants('Image')
     })
   })
 
   describe('onClick', () => {
     it('omitted when not defined', () => {
       const click = () => shallow(<Label />).simulate('click')
-      expect(click).to.not.throw()
+      expect(click).not.toThrowError()
     })
 
     it('is called with (e) when clicked', () => {
@@ -112,37 +111,37 @@ describe('Label', () => {
 
       shallow(<Label onClick={spy} />).simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event)
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(event)
     })
   })
 
   describe('pointing', () => {
     it('adds an poiting class when true', () => {
-      shallow(<Label pointing />).should.have.className('pointing')
+      expect(shallow(<Label pointing />)).have.className('pointing')
     })
 
     it('does not add any poiting option class when true', () => {
       const options = ['above', 'below', 'left', 'right']
       const wrapper = shallow(<Label pointing />)
 
-      options.map(className => wrapper.should.not.have.className(className))
+      options.map(className => expect(wrapper).not.have.className(className))
     })
 
     it('adds `above` as suffix', () => {
-      shallow(<Label pointing='above' />).should.have.className('pointing above')
+      expect(shallow(<Label pointing='above' />)).have.className('pointing above')
     })
 
     it('adds `below` as suffix', () => {
-      shallow(<Label pointing='below' />).should.have.className('pointing below')
+      expect(shallow(<Label pointing='below' />)).have.className('pointing below')
     })
 
     it('adds `left` as prefix', () => {
-      shallow(<Label pointing='left' />).should.have.className('left pointing')
+      expect(shallow(<Label pointing='left' />)).have.className('left pointing')
     })
 
     it('adds `right` as prefix', () => {
-      shallow(<Label pointing='right' />).should.have.className('right pointing')
+      expect(shallow(<Label pointing='right' />)).have.className('right pointing')
     })
   })
 })

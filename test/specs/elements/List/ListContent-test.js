@@ -25,9 +25,9 @@ describe('ListContent', () => {
     it('renders content without wrapping ListContent', () => {
       const wrapper = shallow(<ListContent {...baseProps} />)
 
-      wrapper.find('ListHeader').should.have.prop('content', baseProps.header)
-      wrapper.find('ListDescription').should.have.prop('content', baseProps.description)
-      wrapper.should.contain.text(baseProps.content)
+      expect(wrapper.find('ListHeader')).have.prop('content', baseProps.header)
+      expect(wrapper.find('ListDescription')).have.prop('content', baseProps.description)
+      expect(wrapper).contain.text(baseProps.content)
     })
   })
 })

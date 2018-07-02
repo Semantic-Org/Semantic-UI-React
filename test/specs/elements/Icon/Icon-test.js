@@ -29,21 +29,21 @@ describe('Icon', () => {
   common.propValueOnlyToClassName(Icon, 'size', _.without(SUI.SIZES, 'medium'))
 
   it('renders as an <i> by default', () => {
-    shallow(<Icon />).should.have.tagName('i')
+    expect(shallow(<Icon />)).have.tagName('i')
   })
 
   describe('aria-hidden', () => {
     it('should add aria-hidden by default', () => {
-      shallow(<Icon />).should.have.prop('aria-hidden', 'true')
+      expect(shallow(<Icon />)).have.prop('aria-hidden', 'true')
     })
 
     it('should pass aria-hidden', () => {
-      shallow(<Icon aria-hidden='true' />).should.have.prop('aria-hidden', 'true')
-      shallow(<Icon aria-hidden='false' />).should.have.prop('aria-hidden', 'false')
+      expect(shallow(<Icon aria-hidden='true' />)).have.prop('aria-hidden', 'true')
+      expect(shallow(<Icon aria-hidden='false' />)).have.prop('aria-hidden', 'false')
     })
 
     it('should passed aria-hidden with aria-label', () => {
-      shallow(<Icon aria-hidden='false' aria-label='icon' />).should.have.prop(
+      expect(shallow(<Icon aria-hidden='false' aria-label='icon' />)).have.prop(
         'aria-hidden',
         'false',
       )
@@ -52,14 +52,14 @@ describe('Icon', () => {
 
   describe('aria-label', () => {
     it('should not applied by default', () => {
-      shallow(<Icon />).should.have.not.prop('aria-label')
+      expect(shallow(<Icon />)).have.not.prop('aria-label')
     })
 
     it('should pass value and omit aria-hidden when is set', () => {
       const wrapper = shallow(<Icon aria-label='icon' />)
 
-      wrapper.should.not.have.prop('aria-hidden')
-      wrapper.should.have.prop('aria-label', 'icon')
+      expect(wrapper).not.have.prop('aria-hidden')
+      expect(wrapper).have.prop('aria-label', 'icon')
     })
   })
 })

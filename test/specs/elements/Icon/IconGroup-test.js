@@ -7,7 +7,6 @@ describe('IconGroup', () => {
   common.rendersChildren(IconGroup)
 
   it('renders as an <i> by default', () => {
-    shallow(<IconGroup />)
-      .should.have.tagName('i')
+    expect(shallow(<IconGroup />)).have.tagName('i')
   })
 })

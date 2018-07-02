@@ -30,7 +30,12 @@ describe('ButtonGroup', () => {
   common.propKeyOnlyToClassName(ButtonGroup, 'toggle')
   common.propKeyOnlyToClassName(ButtonGroup, 'vertical')
 
-  common.propKeyOrValueAndKeyToClassName(ButtonGroup, 'attached', ['left', 'right', 'top', 'bottom'])
+  common.propKeyOrValueAndKeyToClassName(ButtonGroup, 'attached', [
+    'left',
+    'right',
+    'top',
+    'bottom',
+  ])
 
   common.propValueOnlyToClassName(ButtonGroup, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(ButtonGroup, 'size', SUI.SIZES)
@@ -40,9 +45,11 @@ describe('ButtonGroup', () => {
       const wrapper = shallow(<ButtonGroup buttons={['one', 'two']} />)
       const buttons = wrapper.children()
 
-      wrapper.should.have.exactly(2).descendants('Button')
-      buttons.at(0).should.have.prop('content', 'one')
-      buttons.at(1).should.have.prop('content', 'two')
+      expect(wrapper)
+        .have.exactly(2)
+        .descendants('Button')
+      expect(buttons.at(0)).have.prop('content', 'one')
+      expect(buttons.at(1)).have.prop('content', 'two')
     })
   })
 })
