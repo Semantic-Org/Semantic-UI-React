@@ -174,7 +174,6 @@ class ComponentExample extends PureComponent<any, any> {
     const { showRtl } = this.state
 
     this.setState({ showRtl: !showRtl }, () => {
-      this.updateHash()
       this.renderSourceCode()
     })
   }
