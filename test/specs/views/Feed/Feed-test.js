@@ -13,7 +13,9 @@ describe('Feed', () => {
     rendersContent: false,
   })
 
-  common.propValueOnlyToClassName(Feed, 'size',
+  common.propValueOnlyToClassName(
+    Feed,
+    'size',
     _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
   )
 
@@ -21,8 +23,9 @@ describe('Feed', () => {
     it('renders <FeedEvent>', () => {
       const events = _.times(3, () => ({ summary: faker.hacker.phrase() }))
 
-      shallow(<Feed events={events} />)
-        .should.have.exactly(3).descendants('FeedEvent')
+      expect(shallow(<Feed events={events} />))
+        .have.exactly(3)
+        .descendants('FeedEvent')
     })
   })
 })

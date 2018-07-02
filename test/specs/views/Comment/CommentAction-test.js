@@ -8,7 +8,6 @@ describe('CommentAction', () => {
   common.rendersChildren(CommentAction)
 
   it('renders an a element by default', () => {
-    shallow(<CommentAction />)
-      .should.have.tagName('a')
+    expect(shallow(<CommentAction />)).have.tagName('a')
   })
 })

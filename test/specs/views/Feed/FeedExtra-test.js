@@ -12,8 +12,9 @@ describe('FeedExtra', () => {
 
   describe('images', () => {
     it('renders <img> with images prop', () => {
-      shallow(<FeedExtra images={['a', 'b', 'c']} />)
-        .should.have.exactly(3).descendants('img')
+      expect(shallow(<FeedExtra images={['a', 'b', 'c']} />))
+        .have.exactly(3)
+        .descendants('img')
     })
   })
 })

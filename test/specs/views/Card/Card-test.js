@@ -25,7 +25,7 @@ describe('Card', () => {
   common.propValueOnlyToClassName(Card, 'color', SUI.COLORS)
 
   it('renders a <div> by default', () => {
-    shallow(<Card />).should.have.tagName('div')
+    expect(shallow(<Card />)).have.tagName('div')
   })
 
   describe('href', () => {
@@ -33,8 +33,8 @@ describe('Card', () => {
       const url = faker.internet.url()
       const wrapper = shallow(<Card href={url} />)
 
-      wrapper.should.have.tagName('a')
-      wrapper.should.have.attr('href', url)
+      expect(wrapper).have.tagName('a')
+      expect(wrapper).have.attr('href', url)
     })
   })
 
@@ -43,7 +43,7 @@ describe('Card', () => {
       const handleClick = sandbox.spy()
       const wrapper = shallow(<Card onClick={handleClick} />)
 
-      wrapper.should.have.tagName('a')
+      expect(wrapper).have.tagName('a')
     })
   })
 
@@ -51,7 +51,7 @@ describe('Card', () => {
     it('renders a CardContent', () => {
       const wrapper = shallow(<Card extra={faker.hacker.phrase()} />)
 
-      wrapper.should.have.descendants('CardContent')
+      expect(wrapper).have.descendants('CardContent')
     })
   })
 })
