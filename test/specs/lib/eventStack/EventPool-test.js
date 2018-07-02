@@ -1,21 +1,20 @@
 import EventPool from 'src/lib/eventStack/EventPool'
-import { sandbox } from 'test/utils'
 
 describe('EventPool', () => {
   describe('addHandlers', () => {
     it('adds handlers', () => {
-      const handler = sandbox.spy()
+      const handler = jest.fn()
       let pool = new EventPool('default', new Map())
 
       pool = pool.addHandlers('click', [handler])
       pool.dispatchEvent('click', null)
 
-      expect(handler).have.been.calledOnce()
+      expect(handler).toHaveBeenCalledTimes(1)
     })
 
     it('adds handlers for multiple event types', () => {
-      const clickHandler = sandbox.spy()
-      const mouseDown = sandbox.spy()
+      const clickHandler = jest.fn()
+      const mouseDown = jest.fn()
 
       let pool = new EventPool('default', new Map())
       pool = pool.addHandlers('click', [clickHandler])
@@ -24,8 +23,8 @@ describe('EventPool', () => {
       pool.dispatchEvent('click', null)
       pool.dispatchEvent('mousedown', null)
 
-      expect(clickHandler).have.been.calledOnce()
-      expect(mouseDown).have.been.calledOnce()
+      expect(clickHandler).toHaveBeenCalledTimes(1)
+      expect(mouseDown).toHaveBeenCalledTimes(1)
     })
 
     it('always returns a new object', () => {
@@ -37,8 +36,8 @@ describe('EventPool', () => {
     })
 
     it('handler sets are immutable', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       const pool = EventPool.createByType('default', 'click', [handler1])
       const another = pool.addHandlers('click', [handler2])
@@ -46,8 +45,8 @@ describe('EventPool', () => {
       pool.dispatchEvent('click', null)
       another.dispatchEvent('click', null)
 
-      expect(handler1).have.been.calledTwice()
-      expect(handler2).have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(2)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -65,25 +64,25 @@ describe('EventPool', () => {
 
   describe('removeHandlers', () => {
     it('removes handlers', () => {
-      const handler = sandbox.spy()
+      const handler = jest.fn()
       let pool = EventPool.createByType('default', 'click', [handler])
 
       pool.dispatchEvent('click', null)
       pool = pool.removeHandlers('click', [handler])
       pool.dispatchEvent('click', null)
 
-      expect(handler).have.been.calledOnce()
+      expect(handler).toHaveBeenCalledTimes(1)
     })
 
     it('removes handlers for non-existent eventType', () => {
-      const handler = sandbox.spy()
+      const handler = jest.fn()
       let pool = EventPool.createByType('default', 'click', [handler])
 
       pool.dispatchEvent('click', null)
       pool = pool.removeHandlers('mousedown', [handler])
       pool.dispatchEvent('click', null)
 
-      expect(handler).have.been.calledTwice()
+      expect(handler).toHaveBeenCalledTimes(2)
     })
 
     it('always returns a new object', () => {
@@ -95,8 +94,8 @@ describe('EventPool', () => {
     })
 
     it('handlers are immutable', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       const pool = EventPool.createByType('default', 'click', [handler1, handler2])
       const another = pool.removeHandlers('click', [handler2])
@@ -104,8 +103,8 @@ describe('EventPool', () => {
       pool.dispatchEvent('click', null)
       another.dispatchEvent('click', null)
 
-      expect(handler1).have.been.calledTwice()
-      expect(handler2).have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(2)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
   })
 })

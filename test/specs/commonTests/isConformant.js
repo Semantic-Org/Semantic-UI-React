@@ -2,10 +2,16 @@ import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import * as semanticUIReact from 'semantic-ui-react'
 
-import { componentInfoContext } from 'docs/src/utils'
-import { assertBodyContains, consoleUtil, nestedShallow, sandbox, syntheticEvent } from 'test/utils'
+import * as semanticUIReact from 'src/index.js'
+import {
+  assertBodyContains,
+  componentInfo,
+  consoleUtil,
+  nestedShallow,
+  sandbox,
+  syntheticEvent,
+} from 'test/utils'
 import helpers from './commonHelpers'
 import hasValidTypings from './hasValidTypings'
 
@@ -47,7 +53,7 @@ export default (Component, options = {}) => {
     )
   }
 
-  const info = componentInfoContext.byDisplayName[constructorName]
+  const info = componentInfo(constructorName)
 
   // ----------------------------------------
   // Class and file name

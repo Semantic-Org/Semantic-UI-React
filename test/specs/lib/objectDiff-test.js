@@ -1,5 +1,4 @@
 import _ from 'lodash'
-
 import { objectDiff } from 'src/lib'
 
 describe('objectDiff', () => {

@@ -1,5 +1,4 @@
 import { createInnerPrefix, createInnerSuffix } from 'src/lib/createPaginationItems/suffixFactories'
-import { sandbox } from 'test/utils'
 
 describe('suffixFactories', () => {
   describe('createInnerPrefix', () => {
@@ -8,10 +7,10 @@ describe('suffixFactories', () => {
     })
 
     it('calls pageFactory when position matches border of a group', () => {
-      const pageFactory = sandbox.spy()
+      const pageFactory = jest.fn()
       createInnerPrefix(5, 7, pageFactory)
 
-      expect(pageFactory).have.been.calledOnce()
+      expect(pageFactory).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -21,10 +20,10 @@ describe('suffixFactories', () => {
     })
 
     it('calls pageFactory when position matches border of a group', () => {
-      const pageFactory = sandbox.spy()
+      const pageFactory = jest.fn()
       createInnerSuffix(5, 7, pageFactory)
 
-      expect(pageFactory).have.been.calledOnce()
+      expect(pageFactory).toHaveBeenCalledTimes(1)
     })
   })
 })

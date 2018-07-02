@@ -1,4 +1,6 @@
+import _ from 'lodash'
 import React from 'react'
+
 import { getChildMapping, mergeChildMappings } from 'src/lib'
 
 describe('childMapping', () => {
@@ -10,10 +12,9 @@ describe('childMapping', () => {
           <div key='two' />
         </div>
       )
+      const keys = _.keys(getChildMapping(component.props.children))
 
-      expect(getChildMapping(component.props.children)).toEqual(
-        expect.arrayContaining(['.$one', '.$two']),
-      )
+      expect(keys).toEqual(expect.arrayContaining(['.$one', '.$two']))
     })
 
     it('skips invalid elements', () => {
@@ -24,10 +25,9 @@ describe('childMapping', () => {
           <div key='two' />
         </div>
       )
+      const keys = _.keys(getChildMapping(component.props.children))
 
-      expect(getChildMapping(component.props.children)).toEqual(
-        expect.arrayContaining(['.$one', '.$two']),
-      )
+      expect(keys).toEqual(expect.arrayContaining(['.$one', '.$two']))
     })
   })
 

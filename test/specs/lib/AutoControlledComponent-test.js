@@ -60,7 +60,7 @@ describe('extending AutoControlledComponent', () => {
 
       wrapper.instance().trySetState({ [randomProp]: randomValue })
 
-      expect(wrapper).have.state(randomProp, randomValue)
+      expect(wrapper.state(randomProp)).toBe(randomValue)
     })
 
     it('does not set state for non autoControlledProps', () => {
@@ -71,7 +71,7 @@ describe('extending AutoControlledComponent', () => {
 
       wrapper.instance().trySetState({ [faker.hacker.noun()]: faker.hacker.verb() })
 
-      expect(wrapper.state()).toHaveLength(0)
+      expect(wrapper.state()).toEqual({})
     })
 
     it('does not set state for props defined by the parent', () => {
@@ -89,10 +89,10 @@ describe('extending AutoControlledComponent', () => {
       wrapper.instance().trySetState({ [randomProp]: randomValue })
 
       // not updated
-      expect(wrapper).not.have.state(randomProp, randomValue)
+      expect(wrapper.state(randomProp)).not.toBe(randomValue)
 
       // is original value
-      expect(wrapper).have.state(randomProp, props[randomProp])
+      expect(wrapper.state(randomProp)).toBe(props[randomProp])
     })
 
     it('sets state for props passed as undefined by the parent', () => {
@@ -111,7 +111,7 @@ describe('extending AutoControlledComponent', () => {
 
       wrapper.instance().trySetState({ [randomProp]: randomValue })
 
-      expect(wrapper).have.state(randomProp, randomValue)
+      expect(wrapper.state(randomProp)).toBe(randomValue)
     })
 
     it('does not set state for props passed as null by the parent', () => {
@@ -131,10 +131,10 @@ describe('extending AutoControlledComponent', () => {
       wrapper.instance().trySetState({ [randomProp]: randomValue })
 
       // not updated
-      expect(wrapper).not.have.state(randomProp, randomValue)
+      expect(wrapper.state(randomProp)).not.toBe(randomValue)
 
       // is original value
-      expect(wrapper).have.state(randomProp, props[randomProp])
+      expect(wrapper.state(randomProp)).toBe(props[randomProp])
     })
   })
 
@@ -153,14 +153,14 @@ describe('extending AutoControlledComponent', () => {
       const props = makeProps()
       const wrapper = shallow(<TestClass {...props} />)
 
-      _.each(props, (val, key) => expect(wrapper).not.have.state(key, val))
+      _.forEach(props, (val, key) => expect(wrapper.state(key)).not.toBeDefined())
     })
 
     it('includes non autoControlled state', () => {
       const props = makeProps()
 
       TestClass = createTestClass({ autoControlledProps: [], state: { foo: 'bar' } })
-      expect(shallow(<TestClass {...props} />)).have.state('foo', 'bar')
+      expect(shallow(<TestClass {...props} />).state('foo')).toBe('bar')
     })
 
     it('uses the initial state if default and regular props are undefined', () => {
@@ -171,7 +171,7 @@ describe('extending AutoControlledComponent', () => {
 
       TestClass = createTestClass({ autoControlledProps, defaultProps, state: { foo: 'bar' } })
 
-      expect(shallow(<TestClass foo={undefined} />)).have.state('foo', 'bar')
+      expect(shallow(<TestClass foo={undefined} />).state('foo')).toBe('bar')
     })
 
     it('uses the default prop if the regular prop is undefined', () => {
@@ -182,7 +182,7 @@ describe('extending AutoControlledComponent', () => {
 
       TestClass = createTestClass({ autoControlledProps, defaultProps, state: {} })
 
-      expect(shallow(<TestClass foo={undefined} />)).have.state('foo', 'default')
+      expect(shallow(<TestClass foo={undefined} />).state('foo')).toBe('default')
     })
 
     it('uses the regular prop when a default is also defined', () => {
@@ -193,21 +193,21 @@ describe('extending AutoControlledComponent', () => {
 
       TestClass = createTestClass({ autoControlledProps, defaultProps, state: {} })
 
-      expect(shallow(<TestClass foo='initial' />)).have.state('foo', 'initial')
+      expect(shallow(<TestClass foo='initial' />).state('foo')).toBe('initial')
     })
 
     it('defaults "checked" to false if not present', () => {
       consoleUtil.disableOnce()
       TestClass.autoControlledProps.push('checked')
 
-      expect(shallow(<TestClass />)).have.state('checked', false)
+      expect(shallow(<TestClass />).state('checked')).toBeFalsy()
     })
 
     it('defaults "value" to an empty string if not present', () => {
       consoleUtil.disableOnce()
       TestClass.autoControlledProps.push('value')
 
-      expect(shallow(<TestClass />)).have.state('value', '')
+      expect(shallow(<TestClass />).state('value')).toBe('')
     })
 
     it('defaults "value" to an empty array if "multiple"', () => {
@@ -236,7 +236,7 @@ describe('extending AutoControlledComponent', () => {
 
       const wrapper = shallow(<TestClass {...defaultProps} />)
 
-      _.each(props, (val, key) => expect(wrapper).not.have.state(key, val))
+      _.forEach(props, (val, key) => expect(wrapper.state(key)).not.toBeDefined())
     })
 
     it('allows trySetState to work on non-default autoControlledProps', () => {
@@ -254,7 +254,7 @@ describe('extending AutoControlledComponent', () => {
 
       wrapper.instance().trySetState({ [randomProp]: randomValue })
 
-      expect(wrapper).have.state(randomProp, randomValue)
+      expect(wrapper.state(randomProp)).toBe(randomValue)
     })
   })
 
@@ -273,7 +273,7 @@ describe('extending AutoControlledComponent', () => {
 
       wrapper.setProps({ [randomProp]: randomValue })
 
-      expect(wrapper).have.state(randomProp, randomValue)
+      expect(wrapper.state(randomProp)).toBe(randomValue)
     })
 
     it('does not set state for props not in autoControlledProps', () => {
@@ -288,7 +288,7 @@ describe('extending AutoControlledComponent', () => {
 
       wrapper.setProps({ [randomProp]: randomValue })
 
-      expect(wrapper).not.have.state(randomProp, randomValue)
+      expect(wrapper.state(randomProp)).not.toBe(randomValue)
     })
 
     it('does not set state for default props when changed', () => {
@@ -306,7 +306,7 @@ describe('extending AutoControlledComponent', () => {
 
       wrapper.setProps({ [randomDefaultProp]: randomValue })
 
-      expect(wrapper).not.have.state(randomDefaultProp, randomValue)
+      expect(wrapper.state(randomDefaultProp)).not.toBe(randomValue)
     })
 
     it('does not return state to default props when setting props undefined', () => {
@@ -319,11 +319,11 @@ describe('extending AutoControlledComponent', () => {
       const wrapper = shallow(<TestClass foo='initial' />)
 
       // default value
-      expect(wrapper).have.state('foo', 'initial')
+      expect(wrapper.state('foo')).toBe('initial')
 
       wrapper.setProps({ foo: undefined })
 
-      expect(wrapper).not.have.state('foo', 'foo')
+      expect(wrapper.state('foo')).toBeUndefined()
     })
 
     it('sets state to undefined for props passed as undefined by the parent', () => {
@@ -337,12 +337,12 @@ describe('extending AutoControlledComponent', () => {
       const wrapper = shallow(<TestClass {...props} />)
 
       // state exists initially
-      expect(wrapper).have.state(randomProp)
+      expect(wrapper.state(randomProp)).toBeDefined()
 
       wrapper.setProps({ [randomProp]: undefined })
 
       // use "should not have" to assert undefined state
-      expect(wrapper).not.have.state(randomProp)
+      expect(wrapper.state(randomProp)).toBeUndefined()
     })
 
     it('does not set state for props passed as null by the parent', () => {
@@ -358,7 +358,7 @@ describe('extending AutoControlledComponent', () => {
 
       wrapper.setProps({ [randomProp]: null })
 
-      expect(wrapper).have.state(randomProp, null)
+      expect(wrapper.state(randomProp)).toBeNull()
     })
   })
 })

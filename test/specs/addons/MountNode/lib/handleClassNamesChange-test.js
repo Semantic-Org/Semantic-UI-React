@@ -1,5 +1,4 @@
 import handleClassNamesChange from 'src/addons/MountNode/lib/handleClassNamesChange'
-import { sandbox } from 'test/utils'
 
 const FooComponent = { props: { className: 'foo' } }
 const BarComponent = { props: { className: 'bar' } }
@@ -8,10 +7,7 @@ const nodes = new Set()
 const createNodeMock = (add, remove) => {
   const node = {
     classList: { add, remove },
-    reset: () => {
-      add.resetHistory()
-      remove.resetHistory()
-    },
+    reset: () => jest.resetAllMocks(),
   }
   nodes.add(node)
 
@@ -24,56 +20,56 @@ describe('handleClassNamesChange', () => {
   })
 
   it('adds new classes to node', () => {
-    const add = sandbox.spy()
-    const remove = sandbox.spy()
+    const add = jest.fn()
+    const remove = jest.fn()
     const components = new Set([FooComponent, BarComponent])
     const node = createNodeMock(add, remove)
 
     handleClassNamesChange(node, components)
-    expect(add).have.been.calledTwice()
-    expect(add).have.been.calledWith('foo')
-    expect(add).have.been.calledWith('bar')
-    expect(remove).have.not.been.called()
+    expect(add).toHaveBeenCalledTimes(2)
+    expect(add).toHaveBeenCalledWith('foo')
+    expect(add).toHaveBeenCalledWith('bar')
+    expect(remove).not.toHaveBeenCalled()
   })
 
   it('removes nonexistent classes', () => {
-    const add = sandbox.spy()
-    const remove = sandbox.spy()
+    const add = jest.fn()
+    const remove = jest.fn()
     const components = new Set([FooComponent, BarComponent])
     const node = createNodeMock(add, remove)
 
     handleClassNamesChange(node, components)
-    expect(add).have.been.calledTwice()
-    expect(add).have.been.calledWith('foo')
-    expect(add).have.been.calledWith('bar')
-    expect(remove).have.not.been.called()
+    expect(add).toHaveBeenCalledTimes(2)
+    expect(add).toHaveBeenCalledWith('foo')
+    expect(add).toHaveBeenCalledWith('bar')
+    expect(remove).not.toHaveBeenCalled()
     node.reset()
 
     components.delete(BarComponent)
     handleClassNamesChange(node, components)
-    expect(add).have.not.been.called()
-    expect(remove).have.been.calledOnce()
-    expect(remove).have.been.calledWith('bar')
+    expect(add).not.toHaveBeenCalled()
+    expect(remove).toHaveBeenCalledTimes(1)
+    expect(remove).toHaveBeenCalledWith('bar')
   })
 
   it('handles different nodes', () => {
-    const fooAdd = sandbox.spy()
-    const fooRemove = sandbox.spy()
+    const fooAdd = jest.fn()
+    const fooRemove = jest.fn()
     const fooComponents = new Set([FooComponent])
     const fooNode = createNodeMock(fooAdd, fooRemove)
 
-    const barAdd = sandbox.spy()
-    const barRemove = sandbox.spy()
+    const barAdd = jest.fn()
+    const barRemove = jest.fn()
     const barComponents = new Set([BarComponent])
     const barNode = createNodeMock(barAdd, barRemove)
 
     handleClassNamesChange(fooNode, fooComponents)
-    expect(barAdd).have.not.been.called()
-    expect(barRemove).have.not.been.called()
+    expect(barAdd).not.toHaveBeenCalled()
+    expect(barRemove).not.toHaveBeenCalled()
     fooNode.reset()
 
     handleClassNamesChange(barNode, barComponents)
-    expect(fooAdd).have.not.been.called()
-    expect(fooRemove).have.not.been.called()
+    expect(fooAdd).not.toHaveBeenCalled()
+    expect(fooRemove).not.toHaveBeenCalled()
   })
 })

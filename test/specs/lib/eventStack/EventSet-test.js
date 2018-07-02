@@ -1,5 +1,4 @@
 import EventSet from 'src/lib/eventStack/EventSet'
-import { sandbox } from 'test/utils'
 
 describe('EventSet', () => {
   let set
@@ -10,34 +9,34 @@ describe('EventSet', () => {
 
   describe('addHandlers', () => {
     it('adds a single handler', () => {
-      const handler = sandbox.spy()
+      const handler = jest.fn()
 
       set = set.addHandlers([handler])
       set.dispatchEvent(null, true)
 
-      expect(handler).have.been.calledOnce()
+      expect(handler).toHaveBeenCalledTimes(1)
     })
 
     it('adds multiple handlers', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       set = set.addHandlers([handler1, handler2])
       set.dispatchEvent(null, true)
 
-      expect(handler1).have.been.calledOnce()
-      expect(handler2).have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(1)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
 
     it('adds only unique handlers', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       set = set.addHandlers([handler1, handler1, handler2, handler2])
       set.dispatchEvent(null, true)
 
-      expect(handler1).have.been.calledOnce()
-      expect(handler2).have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(1)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
 
     it('always returns a new object', () => {
@@ -50,25 +49,25 @@ describe('EventSet', () => {
 
   describe('dispatchEvent', () => {
     it('dispatches an event to all handlers', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       set = set.addHandlers([handler1, handler2])
       set.dispatchEvent(null, true)
 
-      expect(handler1).have.been.calledOnce()
-      expect(handler2).have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(1)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
 
     it('dispatches an event to only recent event', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       set = set.addHandlers([handler1, handler2, handler1])
       set.dispatchEvent(null, false)
 
-      expect(handler1).have.been.calledOnce()
-      expect(handler2).have.not.been.called()
+      expect(handler1).toHaveBeenCalledTimes(1)
+      expect(handler2).not.toHaveBeenCalled()
     })
   })
 
@@ -84,8 +83,8 @@ describe('EventSet', () => {
 
   describe('removeHandlers', () => {
     it('remove a single handler', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       set = set.addHandlers([handler1, handler2])
       set.dispatchEvent(null, true)
@@ -93,13 +92,13 @@ describe('EventSet', () => {
       set = set.removeHandlers([handler2])
       set.dispatchEvent(null, true)
 
-      expect(handler1).have.been.calledTwice()
-      expect(handler2).have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(2)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
 
     it('removes multiple handlers', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       set = set.addHandlers([handler1, handler2])
       set.dispatchEvent(null, true)
@@ -107,8 +106,8 @@ describe('EventSet', () => {
       set = set.removeHandlers([handler1, handler2])
       set.dispatchEvent(null, true)
 
-      expect(handler1).have.been.calledOnce()
-      expect(handler2).have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(1)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
 
     it('always returns a new object', () => {

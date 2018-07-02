@@ -1,15 +1,14 @@
 import { doesNodeContainClick } from 'src/lib'
-import { sandbox } from '../../utils'
 
 const makeEvent = event => ({ clientX: 0, clientY: 0, ...event })
 
 const makeRect = rect => ({ top: 0, bottom: 1, left: 0, right: 1, ...rect })
 
 const makeNode = (rect, node) => ({
-  contains: sandbox.spy(),
+  contains: jest.fn(),
   offsetWidth: 1,
   offsetHeight: 1,
-  getClientRects: sandbox.spy(() => ({ length: 1, 0: makeRect(rect) })),
+  getClientRects: jest.fn(() => ({ length: 1, 0: makeRect(rect) })),
   ...node,
 })
 
@@ -33,12 +32,12 @@ describe('doesNodeContainClick', () => {
       document.body.appendChild(target)
       const event = makeEvent({ target })
 
-      expect(node.contains).not.have.been.called()
+      expect(node.contains).not.toHaveBeenCalled()
 
       doesNodeContainClick(node, event)
 
-      expect(node.contains).have.been.calledOnce()
-      expect(node.contains).have.been.calledWithExactly(event.target)
+      expect(node.contains).toHaveBeenCalledTimes(1)
+      expect(node.contains).toHaveBeenCalledWith(event.target)
       document.body.removeChild(target)
     })
 
@@ -47,11 +46,11 @@ describe('doesNodeContainClick', () => {
       const target = null
       const event = makeEvent({ target })
 
-      expect(node.contains).not.have.been.called()
+      expect(node.contains).not.toHaveBeenCalled()
 
       doesNodeContainClick(node, event)
 
-      expect(node.contains).not.have.been.called()
+      expect(node.contains).not.toHaveBeenCalled()
     })
   })
 
@@ -71,7 +70,7 @@ describe('doesNodeContainClick', () => {
       doesNodeContainClick(node, { clientX: null })
       doesNodeContainClick(node, { clientX: undefined })
 
-      expect(node.getClientRects).not.have.been.called()
+      expect(node.getClientRects).not.toHaveBeenCalled()
     })
 
     it('does not call node.getClientRects if e.clientY is nil', () => {
@@ -79,7 +78,7 @@ describe('doesNodeContainClick', () => {
       doesNodeContainClick(node, { clientY: null })
       doesNodeContainClick(node, { clientY: undefined })
 
-      expect(node.getClientRects).not.have.been.called()
+      expect(node.getClientRects).not.toHaveBeenCalled()
     })
   })
 

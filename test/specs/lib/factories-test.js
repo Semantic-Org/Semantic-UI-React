@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { isValidElement } from 'react'
 
 import { createShorthand, createShorthandFactory } from 'src/lib'
-import { consoleUtil, sandbox } from 'test/utils'
+import { consoleUtil } from 'test/utils'
 
 // ----------------------------------------
 // Utils
@@ -60,8 +60,8 @@ const itDoesNotIncludePropsFromMapValueToProps = (value) => {
     const props = { 'data-foo': 'foo' }
     const wrapper = shallow(getShorthand({ value, mapValueToProps: () => props }))
 
-    _.each(props, (val, key) => {
-      expect(wrapper).not.have.prop(key, val)
+    _.forEach(props, (val, key) => {
+      expect(wrapper.prop(key)).toBeUndefined()
     })
   })
 }
@@ -72,8 +72,8 @@ const itMergesClassNames = (classNameSource, extraClassName, shorthandConfig) =>
     const overrideProps = { className: 'override' }
 
     expect(
-      shallow(getShorthand({ defaultProps, overrideProps, ...shorthandConfig })),
-    ).have.same.className(`default override ${extraClassName}`)
+      shallow(getShorthand({ defaultProps, overrideProps, ...shorthandConfig })).prop('className'),
+    ).toBe(`default override ${extraClassName}`)
   })
 }
 
@@ -240,11 +240,11 @@ describe('factories', () => {
       })
 
       it('is called with the final `props` if it is a function', () => {
-        const props = { foo: 'bar', childKey: sandbox.spy(({ foo }) => foo) }
+        const props = { foo: 'bar', childKey: jest.fn(({ foo }) => foo) }
         const element = getShorthand({ value: props })
 
-        expect(props.childKey).have.been.calledOnce()
-        expect(props.childKey).have.been.calledWithExactly({ foo: 'bar', key: 'bar' })
+        expect(props.childKey).toHaveBeenCalledTimes(1)
+        expect(props.childKey).toHaveBeenCalledWith({ foo: 'bar', key: 'bar' })
 
         expect(element.key).toBe('bar')
       })
@@ -305,31 +305,31 @@ describe('factories', () => {
 
       it("is called with the user's element's and default props", () => {
         const defaultProps = { 'data-some': 'defaults' }
-        const overrideProps = sandbox.spy(() => ({}))
+        const overrideProps = jest.fn(() => ({}))
         const userProps = { 'data-user': 'props' }
         const value = <div {...userProps} />
 
         shallow(getShorthand({ defaultProps, overrideProps, value }))
-        expect(overrideProps).have.been.calledWith({ ...defaultProps, ...userProps })
+        expect(overrideProps).toHaveBeenCalledWith({ ...defaultProps, ...userProps })
       })
 
       it("is called with the user's props object", () => {
         const defaultProps = { 'data-some': 'defaults' }
-        const overrideProps = sandbox.spy(() => ({}))
+        const overrideProps = jest.fn(() => ({}))
         const userProps = { 'data-user': 'props' }
 
         shallow(getShorthand({ defaultProps, overrideProps, value: userProps }))
-        expect(overrideProps).have.been.calledWith({ ...defaultProps, ...userProps })
+        expect(overrideProps).toHaveBeenCalledWith({ ...defaultProps, ...userProps })
       })
 
       it('is called with the result of mapValueToProps', () => {
         const defaultProps = { 'data-some': 'defaults' }
-        const overrideProps = sandbox.spy(() => ({}))
+        const overrideProps = jest.fn(() => ({}))
         const value = 'foo'
         const mapValueToProps = val => ({ 'data-mapped': val })
 
         shallow(getShorthand({ defaultProps, mapValueToProps, overrideProps, value }))
-        expect(overrideProps).have.been.calledWith({ ...defaultProps, ...mapValueToProps(value) })
+        expect(overrideProps).toHaveBeenCalledWith({ ...defaultProps, ...mapValueToProps(value) })
       })
     })
 
@@ -430,37 +430,33 @@ describe('factories', () => {
       itDoesNotIncludePropsFromMapValueToProps(() => <div />)
 
       it('is called once', () => {
-        const spy = sandbox.spy()
+        const value = jest.fn()
 
-        getShorthand({ value: spy })
-
-        expect(spy).have.been.calledOnce()
+        getShorthand({ value })
+        expect(value).toHaveBeenCalledTimes(1)
       })
 
       it('is called with Component, props, children', () => {
-        const spy = sandbox.spy(() => <div />)
+        const value = jest.fn(() => <div />)
 
-        getShorthand({ Component: 'p', value: spy })
-
-        expect(spy).have.been.calledWithExactly('p', {}, undefined)
+        getShorthand({ Component: 'p', value })
+        expect(value).toHaveBeenCalledWith('p', {}, undefined)
       })
 
       it('receives defaultProps in its props argument', () => {
-        const spy = sandbox.spy(() => <div />)
+        const value = jest.fn(() => <div />)
         const defaultProps = { defaults: true }
 
-        getShorthand({ Component: 'p', defaultProps, value: spy })
-
-        expect(spy).have.been.calledWithExactly('p', defaultProps, undefined)
+        getShorthand({ Component: 'p', defaultProps, value })
+        expect(value).toHaveBeenCalledWith('p', defaultProps, undefined)
       })
 
       it('receives overrideProps in its props argument', () => {
-        const spy = sandbox.spy(() => <div />)
+        const value = jest.fn(() => <div />)
         const overrideProps = { overrides: true }
 
-        getShorthand({ Component: 'p', overrideProps, value: spy })
-
-        expect(spy).have.been.calledWithExactly('p', overrideProps, undefined)
+        getShorthand({ Component: 'p', overrideProps, value })
+        expect(value).toHaveBeenCalledWith('p', overrideProps, undefined)
       })
     })
 
@@ -503,36 +499,38 @@ describe('factories', () => {
         const userProps = { style: { bottom: 5 } }
         const overrideProps = { style: { right: 5 } }
 
-        expect(shallow(getShorthand({ defaultProps, overrideProps, value: userProps })))
-          .have.prop('style')
-          .toEqual({ left: 5, bottom: 5, right: 5 })
+        expect(
+          shallow(getShorthand({ defaultProps, overrideProps, value: userProps })).prop('style'),
+        ).toEqual({ left: 5, bottom: 5, right: 5 })
       })
 
       it('merges style prop and handles override by userProps', () => {
         const defaultProps = { style: { left: 10, bottom: 5 } }
         const userProps = { style: { bottom: 10 } }
 
-        expect(shallow(getShorthand({ defaultProps, value: userProps })))
-          .have.prop('style')
-          .toEqual({ left: 10, bottom: 10 })
+        expect(shallow(getShorthand({ defaultProps, value: userProps })).prop('style')).toEqual({
+          left: 10,
+          bottom: 10,
+        })
       })
 
       it('merges style prop and handles override by overrideProps', () => {
         const userProps = { style: { bottom: 10, right: 5 } }
         const overrideProps = { style: { right: 10 } }
 
-        expect(shallow(getShorthand({ overrideProps, value: userProps })))
-          .have.prop('style')
-          .toEqual({ bottom: 10, right: 10 })
+        expect(shallow(getShorthand({ overrideProps, value: userProps })).prop('style')).toEqual({
+          bottom: 10,
+          right: 10,
+        })
       })
 
       it('merges style prop from defaultProps and overrideProps', () => {
         const defaultProps = { style: { left: 10, bottom: 5 } }
         const overrideProps = { style: { bottom: 10 } }
 
-        expect(shallow(getShorthand({ defaultProps, overrideProps, value: 'foo' })))
-          .have.prop('style')
-          .toEqual({ left: 10, bottom: 10 })
+        expect(
+          shallow(getShorthand({ defaultProps, overrideProps, value: 'foo' })).prop('style'),
+        ).toEqual({ left: 10, bottom: 10 })
       })
     })
   })
