@@ -9,15 +9,11 @@ describe('SearchCategory', () => {
 
   describe('children', () => {
     it('should be a child with a "name" className', () => {
-      shallow(<SearchCategory />)
-        .childAt(0)
-        .should.have.className('name')
+      expect(shallow(<SearchCategory />).childAt(0)).have.className('name')
     })
 
     it('should be wrapped with a "results" className', () => {
-      shallow(<SearchCategory />)
-        .childAt(1)
-        .should.have.className('results')
+      expect(shallow(<SearchCategory />).childAt(1)).have.className('results')
     })
   })
 })

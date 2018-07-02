@@ -18,11 +18,10 @@ describe('AccordionTitle', () => {
       const event = { target: null }
       const props = { content: 'title', index: 0 }
 
-      shallow(<AccordionTitle onClick={spy} {...props} />)
-        .simulate('click', event)
+      shallow(<AccordionTitle onClick={spy} {...props} />).simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(event, props)
     })
   })
 })

@@ -22,6 +22,6 @@ describe('Accordion', () => {
   common.propKeyOnlyToClassName(Accordion, 'styled')
 
   it('renders AccordionAccordion component', () => {
-    shallow(<Accordion />).should.have.descendants(AccordionAccordion)
+    expect(shallow(<Accordion />)).have.descendants(AccordionAccordion)
   })
 })

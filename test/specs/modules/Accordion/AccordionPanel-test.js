@@ -27,8 +27,8 @@ describe('AccordionPanel', () => {
     it('should passed to children', () => {
       const wrapper = shallow(<AccordionPanel active content='Content' title='Title' />).at(0)
 
-      wrapper.at(0).should.have.prop('active', true)
-      wrapper.at(1).should.have.prop('active', true)
+      expect(wrapper.at(0)).have.prop('active', true)
+      expect(wrapper.at(1)).have.prop('active', true)
     })
   })
 
@@ -36,8 +36,8 @@ describe('AccordionPanel', () => {
     it('should passed to title', () => {
       const wrapper = shallow(<AccordionPanel content='Content' index={5} title='Title' />).at(0)
 
-      wrapper.at(0).should.have.prop('index', 5)
-      wrapper.at(1).should.have.not.prop('index')
+      expect(wrapper.at(0)).have.prop('index', 5)
+      expect(wrapper.at(1)).have.not.prop('index')
     })
   })
 
@@ -58,11 +58,11 @@ describe('AccordionPanel', () => {
         .at(0)
         .simulate('click', event)
 
-      onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(event, { content: 'Title' })
+      expect(onClick).have.been.calledOnce()
+      expect(onClick).have.been.calledWithMatch(event, { content: 'Title' })
 
-      onTitleClick.should.have.been.calledOnce()
-      onTitleClick.should.have.been.calledWithMatch(event, { content: 'Title' })
+      expect(onTitleClick).have.been.calledOnce()
+      expect(onTitleClick).have.been.calledWithMatch(event, { content: 'Title' })
     })
   })
 })

@@ -24,7 +24,7 @@ describe('DimmerInner', () => {
       const onClickOutside = sandbox.spy()
       shallow(<DimmerInner onClickOutside={onClickOutside} />).simulate('click')
 
-      onClickOutside.should.have.been.calledOnce()
+      expect(onClickOutside).have.been.calledOnce()
     })
 
     it('omitted when click on children', () => {
@@ -44,7 +44,7 @@ describe('DimmerInner', () => {
         .find('div.content')
         .childAt(0)
         .simulate('click')
-      onClickOutside.should.have.not.been.called()
+      expect(onClickOutside).have.not.been.called()
 
       wrapper.unmount()
       document.body.removeChild(element)
@@ -56,7 +56,7 @@ describe('DimmerInner', () => {
       mount(
         <DimmerInner onClickOutside={onClickOutside}>{faker.hacker.phrase()}</DimmerInner>,
       ).simulate('click')
-      onClickOutside.should.have.been.calledOnce()
+      expect(onClickOutside).have.been.calledOnce()
     })
 
     it('called when click on center', () => {
@@ -66,7 +66,7 @@ describe('DimmerInner', () => {
       )
 
       wrapper.find('div.content').simulate('click')
-      onClickOutside.should.have.been.calledOnce()
+      expect(onClickOutside).have.been.calledOnce()
     })
   })
 })

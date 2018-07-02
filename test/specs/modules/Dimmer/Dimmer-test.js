@@ -14,17 +14,13 @@ describe('Dimmer', () => {
 
   describe('children', () => {
     it('renders a DimmerInner', () => {
-      shallow(<Dimmer />)
-        .type()
-        .should.equal(DimmerInner)
+      expect(shallow(<Dimmer />).type()).toBe(DimmerInner)
     })
   })
 
   describe('page', () => {
     it('renders a Portal', () => {
-      shallow(<Dimmer page />)
-        .type()
-        .should.equal(Portal)
+      expect(shallow(<Dimmer page />).type()).toBe(Portal)
     })
 
     describe('active', () => {
@@ -36,20 +32,20 @@ describe('Dimmer', () => {
         const dimmer = mount(<Dimmer page active />)
         const classes = document.body.classList
 
-        dimmer.find(Portal).should.have.prop('open', true)
+        expect(dimmer.find(Portal)).have.prop('open', true)
 
-        classes.contains('dimmable').should.be.true()
-        classes.contains('dimmed').should.be.true()
+        expect(classes.contains('dimmable')).toBe(true)
+        expect(classes.contains('dimmed')).toBe(true)
       })
 
       it('when false, Portal is closed dimmer classes are absent on body', () => {
         const dimmer = mount(<Dimmer page active={false} />)
         const classes = document.body.classList
 
-        dimmer.find(Portal).should.have.prop('open', false)
+        expect(dimmer.find(Portal)).have.prop('open', false)
 
-        classes.contains('dimmable').should.be.false()
-        classes.contains('dimmed').should.be.false()
+        expect(classes.contains('dimmable')).toBe(false)
+        expect(classes.contains('dimmed')).toBe(false)
       })
 
       it('when changed to false, dimmer classes are removed from body', () => {
@@ -58,8 +54,8 @@ describe('Dimmer', () => {
 
         dimmer.setProps({ active: false })
 
-        classes.contains('dimmable').should.be.false()
-        classes.contains('dimmed').should.be.false()
+        expect(classes.contains('dimmable')).toBe(false)
+        expect(classes.contains('dimmed')).toBe(false)
       })
     })
   })

@@ -16,8 +16,8 @@ describe('RatingIcon', () => {
       const event = { keyCode: keyboardKey.Enter, preventDefault: sandbox.spy() }
       const keypress = () => shallow(<RatingIcon />).simulate('keyup', event)
 
-      expect(keypress).to.not.throw()
-      event.preventDefault.should.not.have.been.called()
+      expect(keypress).not.toThrowError()
+      expect(event.preventDefault).not.have.been.called()
     })
 
     it('calls onClick with (e, index) when space key is pressed', () => {
@@ -26,9 +26,9 @@ describe('RatingIcon', () => {
 
       mount(<RatingIcon index={0} onClick={spy} />).simulate('keyup', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, { index: 0 })
-      event.preventDefault.should.have.been.calledOnce()
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(event, { index: 0 })
+      expect(event.preventDefault).have.been.calledOnce()
     })
 
     it('calls onClick with (e, index) when enter key is pressed', () => {
@@ -37,9 +37,9 @@ describe('RatingIcon', () => {
 
       mount(<RatingIcon index={0} onClick={spy} />).simulate('keyup', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, { index: 0 })
-      event.preventDefault.should.have.been.calledOnce()
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(event, { index: 0 })
+      expect(event.preventDefault).have.been.calledOnce()
     })
 
     it('does not call onClick when non space/enter key is pressed', () => {
@@ -48,9 +48,9 @@ describe('RatingIcon', () => {
 
       const keyup = () => shallow(<RatingIcon onClick={spy} />).simulate('keyup', event)
 
-      expect(keyup).to.not.throw()
-      spy.should.not.have.been.called()
-      event.preventDefault.should.not.have.been.called()
+      expect(keyup).not.toThrowError()
+      expect(spy).not.have.been.called()
+      expect(event.preventDefault).not.have.been.called()
     })
   })
 })

@@ -21,10 +21,7 @@ const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 const assertIn = (node, selector, isPresent = true) => {
   const didFind = node.querySelector(selector) !== null
-  didFind.should.equal(
-    isPresent,
-    `${didFind ? 'Found' : 'Did not find'} "${selector}" in the ${node}.`,
-  )
+  expect(didFind).toBe(isPresent)
 }
 const assertInBody = (...args) => assertIn(document.body, ...args)
 
@@ -48,9 +45,7 @@ describe('Popup', () => {
   // The Popup is wrapped in a Portal, so we manually test a few things here.
 
   it('renders a Portal', () => {
-    wrapperShallow(<Popup />)
-      .type()
-      .should.equal(Portal)
+    expect(wrapperShallow(<Popup />).type()).toBe(Portal)
   })
 
   it('renders to the document body', () => {
@@ -61,17 +56,14 @@ describe('Popup', () => {
   it('renders child text', () => {
     wrapperMount(<Popup open>child text</Popup>)
 
-    document.querySelector('.ui.popup.visible').innerText.should.equal('child text')
+    expect(document.querySelector('.ui.popup.visible').innerText).toBe('child text')
   })
 
   it('renders child components', () => {
     const child = <div data-child />
     wrapperMount(<Popup open>{child}</Popup>)
 
-    document
-      .querySelector('.ui.popup.visible')
-      .querySelector('[data-child]')
-      .should.not.equal(null, 'Popup did not render the child component.')
+    expect(document.querySelector('.ui.popup.visible').querySelector('[data-child]')).not.toBe(null)
   })
 
   it('should add className to the Popup wrapping node', () => {
@@ -148,18 +140,18 @@ describe('Popup', () => {
         const rect = document.querySelector('.popup.ui').getBoundingClientRect()
         const { top, right, bottom, left } = rect
 
-        expect(top).to.be.at.least(0)
-        expect(left).to.be.at.least(0)
-        expect(bottom).to.be.at.most(document.documentElement.clientHeight)
-        expect(right).to.be.at.most(document.documentElement.clientWidth)
+        expect(top).toBeGreaterThanOrEqual(0)
+        expect(left).toBeGreaterThanOrEqual(0)
+        expect(bottom).toBeLessThanOrEqual(document.documentElement.clientHeight)
+        expect(right).toBeLessThanOrEqual(document.documentElement.clientWidth)
       })
       it('is positioned properly when open property is set', () => {
         wrapperMount(<Popup content='_' position={position} open trigger={<button>foo</button>} />)
         const element = document.querySelector('.popup.ui')
-        element.style.should.have.property('top', '')
-        element.style.should.have.property('left', '')
-        element.style.should.have.property('bottom', '')
-        element.style.should.have.property('right', '')
+        expect(element.style).toHaveProperty('top', '')
+        expect(element.style).toHaveProperty('left', '')
+        expect(element.style).toHaveProperty('bottom', '')
+        expect(element.style).toHaveProperty('right', '')
       })
       it('is the original if no horizontal position fits within the viewport', () => {
         wrapperMount(
@@ -174,7 +166,7 @@ describe('Popup', () => {
         wrapper.find('button').simulate('click')
         const selectedPosition = wrapper.state('position')
 
-        expect(selectedPosition).to.equal(position)
+        expect(selectedPosition).toBe(position)
       })
 
       it('is the original if no vertical position fits within the viewport', () => {
@@ -190,7 +182,7 @@ describe('Popup', () => {
         wrapper.find('button').simulate('click')
         const selectedPosition = wrapper.state('position')
 
-        expect(selectedPosition).to.equal(position)
+        expect(selectedPosition).toBe(position)
       })
     })
   })
@@ -213,12 +205,12 @@ describe('Popup', () => {
 
       const selectedPosition = wrapper.state('position')
 
-      expect(selectedPosition).to.equal('top center')
-      expect(top).to.be.below(0)
+      expect(selectedPosition).toBe('top center')
+      expect(top).toBeLessThan(0)
     })
 
     it('is enabled by default', () => {
-      expect(Popup.defaultProps.keepInViewPort).to.equal(true)
+      expect(Popup.defaultProps.keepInViewPort).toBe(true)
     })
 
     it('alters the position when true and renders within the viewport', () => {
@@ -238,16 +230,17 @@ describe('Popup', () => {
 
       const selectedPosition = wrapper.state('position')
 
-      expect(selectedPosition).to.not.equal('top center')
-      expect(top).to.be.at.least(0)
+      expect(selectedPosition).not.toBe('top center')
+      expect(top).toBeGreaterThanOrEqual(0)
     })
   })
 
   describe('hoverable', () => {
     it('can be set to stay visible while hovering the popup', () => {
-      shallow(<Popup hoverable open />)
-        .find('Portal')
-        .should.have.prop('closeOnPortalMouseLeave', true)
+      expect(shallow(<Popup hoverable open />).find('Portal')).have.prop(
+        'closeOnPortalMouseLeave',
+        true,
+      )
     })
   })
 
@@ -272,8 +265,8 @@ describe('Popup', () => {
         .simulate('click')
 
       domEvent.scroll(window)
-      onClose.should.have.been.calledOnce()
-      onClose.should.have.been.calledWithMatch({}, { content: 'foo', onClose, trigger })
+      expect(onClose).have.been.calledOnce()
+      expect(onClose).have.been.calledWithMatch({}, { content: 'foo', onClose, trigger })
     })
   })
 
@@ -353,10 +346,7 @@ describe('Popup', () => {
 
       document.body.removeChild(context)
 
-      popupRect.top.should.equal(
-        contextRect.bottom,
-        "The popup's top should have been equal to the context's bottom.",
-      )
+      expect(popupRect.top).toBe(contextRect.bottom)
     })
 
     it('aligns the popup to the context node even when there is a trigger', () => {
@@ -385,10 +375,7 @@ describe('Popup', () => {
 
       document.body.removeChild(context)
 
-      popupRect.top.should.equal(
-        contextRect.bottom,
-        "The popup's top should have been equal to the context's bottom.",
-      )
+      expect(popupRect.top).toBe(contextRect.bottom)
     })
   })
 
@@ -399,13 +386,9 @@ describe('Popup', () => {
     })
 
     it('is passed to Portal open', () => {
-      shallow(<Popup open />)
-        .find('Portal')
-        .should.have.prop('open', true)
+      expect(shallow(<Popup open />).find('Portal')).have.prop('open', true)
 
-      shallow(<Popup open={false} />)
-        .find('Portal')
-        .should.have.prop('open', false)
+      expect(shallow(<Popup open={false} />).find('Portal')).have.prop('open', false)
     })
 
     it('does not show the popup when false', () => {
@@ -488,22 +471,22 @@ describe('Popup', () => {
 
     it('is not called on click inside of the popup', () => {
       domEvent.click(document.querySelector('.ui.popup'))
-      spy.should.not.have.been.calledOnce()
+      expect(spy).not.have.been.calledOnce()
     })
 
     it('is called on body click', () => {
       domEvent.click('body')
-      spy.should.have.been.calledOnce()
+      expect(spy).have.been.calledOnce()
     })
 
     it('is called when pressing escape', () => {
       domEvent.keyDown(document, { key: 'Escape' })
-      spy.should.have.been.calledOnce()
+      expect(spy).have.been.calledOnce()
     })
 
     it('is not called when the open prop changes to false', () => {
       wrapper.setProps({ open: false })
-      spy.should.not.have.been.called()
+      expect(spy).not.have.been.called()
     })
   })
 })

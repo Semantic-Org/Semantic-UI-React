@@ -33,12 +33,12 @@ describe('Transition', () => {
         )
 
         wrapper.setState({ status: Transition.ENTERING })
-        wrapper.should.have.className(animation)
-        wrapper.should.have.className('in')
+        expect(wrapper).have.className(animation)
+        expect(wrapper).have.className('in')
 
         wrapper.setState({ status: Transition.EXITING })
-        wrapper.should.have.className(animation)
-        wrapper.should.have.className('out')
+        expect(wrapper).have.className(animation)
+        expect(wrapper).have.className('out')
       })
     })
 
@@ -51,12 +51,12 @@ describe('Transition', () => {
         )
 
         wrapper.setState({ status: Transition.ENTERING })
-        wrapper.should.have.className(animation)
-        wrapper.should.not.have.className('in')
+        expect(wrapper).have.className(animation)
+        expect(wrapper).not.have.className('in')
 
         wrapper.setState({ status: Transition.EXITING })
-        wrapper.should.have.className(animation)
-        wrapper.should.not.have.className('out')
+        expect(wrapper).have.className(animation)
+        expect(wrapper).not.have.className('out')
       })
     })
   })
@@ -69,8 +69,8 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.className('foo')
-      wrapper.should.have.className('bar')
+      expect(wrapper).have.className('foo')
+      expect(wrapper).have.className('bar')
     })
 
     it('adds classes when ENTERED', () => {
@@ -80,8 +80,8 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.className('visible')
-      wrapper.should.have.className('transition')
+      expect(wrapper).have.className('visible')
+      expect(wrapper).have.className('transition')
     })
 
     it('adds classes when ENTERING', () => {
@@ -92,9 +92,9 @@ describe('Transition', () => {
       )
       wrapper.setState({ animating: true, status: Transition.ENTERING })
 
-      wrapper.should.have.className('animating')
-      wrapper.should.have.className('visible')
-      wrapper.should.have.className('transition')
+      expect(wrapper).have.className('animating')
+      expect(wrapper).have.className('visible')
+      expect(wrapper).have.className('transition')
     })
 
     it('adds classes when EXITED', () => {
@@ -105,8 +105,8 @@ describe('Transition', () => {
       )
       wrapper.setState({ status: Transition.EXITED })
 
-      wrapper.should.have.className('hidden')
-      wrapper.should.have.className('transition')
+      expect(wrapper).have.className('hidden')
+      expect(wrapper).have.className('transition')
     })
 
     it('adds classes when EXITING', () => {
@@ -117,19 +117,21 @@ describe('Transition', () => {
       )
       wrapper.setState({ animating: true, status: Transition.EXITING })
 
-      wrapper.should.have.className('animating')
-      wrapper.should.have.className('visible')
-      wrapper.should.have.className('transition')
+      expect(wrapper).have.className('animating')
+      expect(wrapper).have.className('visible')
+      expect(wrapper).have.className('transition')
     })
   })
 
   describe('children', () => {
     it('clones element', () => {
-      wrapperShallow(
-        <Transition>
-          <p className='foo' />
-        </Transition>,
-      ).should.have.descendants('p.foo')
+      expect(
+        wrapperShallow(
+          <Transition>
+            <p className='foo' />
+          </Transition>,
+        ),
+      ).have.descendants('p.foo')
     })
 
     it('returns null when UNMOUNTED', () => {
@@ -140,7 +142,7 @@ describe('Transition', () => {
       )
 
       wrapper.setState({ status: Transition.UNMOUNTED })
-      wrapper.should.be.blank()
+      expect(wrapper).be.blank()
     })
   })
 
@@ -152,8 +154,8 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', Transition.ENTERED)
-      wrapper.instance().should.include({ nextStatus: undefined })
+      expect(wrapper).have.state('status', Transition.ENTERED)
+      expect(wrapper.instance()).toMatchObject({ nextStatus: undefined })
     })
 
     it('sets statuses when `visible` is false', () => {
@@ -163,8 +165,8 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', Transition.UNMOUNTED)
-      wrapper.instance().should.include({ nextStatus: undefined })
+      expect(wrapper).have.state('status', Transition.UNMOUNTED)
+      expect(wrapper.instance()).toMatchObject({ nextStatus: undefined })
     })
 
     it('sets statuses when mount is disabled', () => {
@@ -174,18 +176,20 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', Transition.EXITED)
-      wrapper.instance().should.include({ nextStatus: undefined })
+      expect(wrapper).have.state('status', Transition.EXITED)
+      expect(wrapper.instance()).toMatchObject({ nextStatus: undefined })
     })
   })
 
   describe('duration', () => {
     it('does not apply to style when ENTERED', () => {
-      wrapperShallow(
-        <Transition transitionOnMount={false}>
-          <p />
-        </Transition>,
-      ).should.not.have.style('animation-duration')
+      expect(
+        wrapperShallow(
+          <Transition transitionOnMount={false}>
+            <p />
+          </Transition>,
+        ),
+      ).not.have.style('animation-duration')
     })
 
     it('applies default value to style when ENTERING', () => {
@@ -196,7 +200,7 @@ describe('Transition', () => {
       )
 
       wrapper.setState({ status: Transition.ENTERING })
-      wrapper.should.have.style('animation-duration', '500ms')
+      expect(wrapper).have.style('animation-duration', '500ms')
     })
 
     it('applies numeric value to style when ENTERING', () => {
@@ -207,7 +211,7 @@ describe('Transition', () => {
       )
 
       wrapper.setState({ status: Transition.ENTERING })
-      wrapper.should.have.style('animation-duration', '1000ms')
+      expect(wrapper).have.style('animation-duration', '1000ms')
     })
 
     it('applies object value to style when ENTERING', () => {
@@ -218,7 +222,7 @@ describe('Transition', () => {
       )
 
       wrapper.setState({ status: Transition.ENTERING })
-      wrapper.should.have.style('animation-duration', '2000ms')
+      expect(wrapper).have.style('animation-duration', '2000ms')
     })
 
     it('does not apply to style when EXITED', () => {
@@ -229,7 +233,7 @@ describe('Transition', () => {
       )
 
       wrapper.setState({ status: Transition.EXITED })
-      wrapper.should.not.have.style('animation-duration')
+      expect(wrapper).not.have.style('animation-duration')
     })
 
     it('applies default value to style when EXITING', () => {
@@ -240,7 +244,7 @@ describe('Transition', () => {
       )
 
       wrapper.setState({ animating: true, status: Transition.EXITING })
-      wrapper.should.have.style('animation-duration')
+      expect(wrapper).have.style('animation-duration')
     })
 
     it('applies numeric value to style when EXITING', () => {
@@ -251,7 +255,7 @@ describe('Transition', () => {
       )
       wrapper.setState({ status: Transition.ENTERING })
 
-      wrapper.should.have.style('animation-duration', '1000ms')
+      expect(wrapper).have.style('animation-duration', '1000ms')
     })
 
     it('applies object value to style when EXITING', () => {
@@ -262,7 +266,7 @@ describe('Transition', () => {
       )
 
       wrapper.setState({ status: Transition.EXITING })
-      wrapper.should.have.style('animation-duration', '1000ms')
+      expect(wrapper).have.style('animation-duration', '1000ms')
     })
   })
 
@@ -276,7 +280,7 @@ describe('Transition', () => {
       wrapper.setState({ status: Transition.ENTERING })
       wrapper.setProps({ visible: false })
 
-      wrapper.instance().should.include({ nextStatus: Transition.EXITING })
+      expect(wrapper.instance()).toMatchObject({ nextStatus: Transition.EXITING })
     })
 
     it('updates status when set to false while ENTERED', () => {
@@ -285,10 +289,10 @@ describe('Transition', () => {
           <p />
         </Transition>,
       )
-      wrapper.should.have.state('status', Transition.ENTERED)
+      expect(wrapper).have.state('status', Transition.ENTERED)
 
       wrapper.setProps({ visible: false })
-      wrapper.instance().should.include({ nextStatus: Transition.EXITING })
+      expect(wrapper.instance()).toMatchObject({ nextStatus: Transition.EXITING })
     })
 
     it('updates status when set to true while UNMOUNTED', () => {
@@ -297,12 +301,12 @@ describe('Transition', () => {
           <p />
         </Transition>,
       )
-      wrapper.should.have.state('status', Transition.UNMOUNTED)
+      expect(wrapper).have.state('status', Transition.UNMOUNTED)
 
       wrapper.instance().mounted = true
       wrapper.setProps({ visible: true })
-      wrapper.should.have.state('status', Transition.EXITED)
-      wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
+      expect(wrapper).have.state('status', Transition.EXITED)
+      expect(wrapper.instance()).toMatchObject({ nextStatus: Transition.ENTERING })
     })
 
     it('updates next status when set to true while performs an ENTERING transition', (done) => {
@@ -313,8 +317,8 @@ describe('Transition', () => {
       )
       wrapper.setProps({ visible: false })
 
-      wrapper.should.have.state('status', Transition.ENTERING)
-      wrapper.instance().should.include({ nextStatus: Transition.EXITING })
+      expect(wrapper).have.state('status', Transition.ENTERING)
+      expect(wrapper.instance()).toMatchObject({ nextStatus: Transition.EXITING })
     })
 
     it('updates next status when set to true while performs an EXITING transition', (done) => {
@@ -326,8 +330,8 @@ describe('Transition', () => {
       wrapper.setProps({ visible: false })
       wrapper.setProps({ visible: true })
 
-      wrapper.should.have.state('status', Transition.EXITING)
-      wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
+      expect(wrapper).have.state('status', Transition.EXITING)
+      expect(wrapper.instance()).toMatchObject({ nextStatus: Transition.ENTERING })
     })
   })
 
@@ -337,8 +341,8 @@ describe('Transition', () => {
       const handleComplete = (...args) => {
         onComplete(...args)
 
-        onComplete.should.have.been.calledOnce()
-        onComplete.should.have.been.calledWithMatch(null, {
+        expect(onComplete).have.been.calledOnce()
+        expect(onComplete).have.been.calledWithMatch(null, {
           duration: 0,
           status: Transition.ENTERING,
         })
@@ -360,8 +364,8 @@ describe('Transition', () => {
       const handleHide = (...args) => {
         onHide(...args)
 
-        onHide.should.have.been.calledOnce()
-        onHide.should.have.been.calledWithMatch(null, { duration: 0, status: Transition.EXITED })
+        expect(onHide).have.been.calledOnce()
+        expect(onHide).have.been.calledWithMatch(null, { duration: 0, status: Transition.EXITED })
 
         done()
       }
@@ -383,14 +387,14 @@ describe('Transition', () => {
       )
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', Transition.EXITING)
+      expect(wrapper).have.state('status', Transition.EXITING)
 
       setTimeout(() => {
-        wrapper.should.have.state('status', Transition.EXITING)
+        expect(wrapper).have.state('status', Transition.EXITING)
       }, 100)
       setTimeout(() => {
-        onHide.should.have.been.calledOnce()
-        wrapper.should.have.state('status', Transition.EXITED)
+        expect(onHide).have.been.calledOnce()
+        expect(wrapper).have.state('status', Transition.EXITED)
 
         done()
       }, 200)
@@ -403,8 +407,8 @@ describe('Transition', () => {
       const handleShow = (...args) => {
         onShow(...args)
 
-        onShow.should.have.been.calledOnce()
-        onShow.should.have.been.calledWithMatch(null, { duration: 0, status: Transition.ENTERED })
+        expect(onShow).have.been.calledOnce()
+        expect(onShow).have.been.calledWithMatch(null, { duration: 0, status: Transition.ENTERED })
 
         done()
       }
@@ -424,14 +428,14 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', Transition.ENTERING)
+      expect(wrapper).have.state('status', Transition.ENTERING)
 
       setTimeout(() => {
-        wrapper.should.have.state('status', Transition.ENTERING)
+        expect(wrapper).have.state('status', Transition.ENTERING)
       }, 100)
       setTimeout(() => {
-        onShow.should.have.been.calledOnce()
-        wrapper.should.have.state('status', Transition.ENTERED)
+        expect(onShow).have.been.calledOnce()
+        expect(wrapper).have.state('status', Transition.ENTERED)
 
         done()
       }, 200)
@@ -444,8 +448,11 @@ describe('Transition', () => {
       const handleStart = (...args) => {
         onStart(...args)
 
-        onStart.should.have.been.calledOnce()
-        onStart.should.have.been.calledWithMatch(null, { duration: 0, status: Transition.ENTERING })
+        expect(onStart).have.been.calledOnce()
+        expect(onStart).have.been.calledWithMatch(null, {
+          duration: 0,
+          status: Transition.ENTERING,
+        })
 
         done()
       }
@@ -466,8 +473,8 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.style('bottom', '5px')
-      wrapper.should.have.style('top', '10px')
+      expect(wrapper).have.style('bottom', '5px')
+      expect(wrapper).have.style('top', '10px')
     })
   })
 
@@ -479,23 +486,25 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', Transition.EXITED)
-      wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
+      expect(wrapper).have.state('status', Transition.EXITED)
+      expect(wrapper.instance()).toMatchObject({ nextStatus: Transition.ENTERING })
     })
 
     it('updates status after mount when is true', () => {
-      wrapperMount(
-        <Transition transitionOnMount>
-          <p />
-        </Transition>,
-      ).should.have.state('status', Transition.ENTERING)
+      expect(
+        wrapperMount(
+          <Transition transitionOnMount>
+            <p />
+          </Transition>,
+        ),
+      ).have.state('status', Transition.ENTERING)
     })
   })
 
   describe('unmountOnHide', () => {
     it('unmounts child when true', (done) => {
       const onHide = () => {
-        wrapper.should.have.state('status', Transition.UNMOUNTED)
+        expect(wrapper).have.state('status', Transition.UNMOUNTED)
         done()
       }
 
@@ -509,7 +518,7 @@ describe('Transition', () => {
 
     it('lefts mounted when false', (done) => {
       const onHide = () => {
-        wrapper.should.have.state('status', Transition.EXITED)
+        expect(wrapper).have.state('status', Transition.EXITED)
         done()
       }
 

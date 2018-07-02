@@ -43,53 +43,53 @@ describe('DropdownItem', () => {
   describe('aria', () => {
     it('should render DropdownItem as role=option', () => {
       const wrapper = shallow(<DropdownItem />)
-      wrapper.should.have.prop('role', 'option')
+      expect(wrapper).have.prop('role', 'option')
     })
     it('should render DropdownItem with children as role=option', () => {
       const wrapper = shallow(<DropdownItem>Text</DropdownItem>)
-      wrapper.should.have.prop('role', 'option')
+      expect(wrapper).have.prop('role', 'option')
     })
     it('should render DropdownItem with description as role=option', () => {
       const wrapper = shallow(<DropdownItem description='Text' />)
-      wrapper.should.have.prop('role', 'option')
+      expect(wrapper).have.prop('role', 'option')
     })
     it('should render disabled DropdownItem with aria-disabled', () => {
       const wrapper = shallow(<DropdownItem disabled />)
-      wrapper.should.have.prop('aria-disabled', true)
+      expect(wrapper).have.prop('aria-disabled', true)
     })
     it('should render normal DropdownItem without aria-disabled', () => {
       const wrapper = shallow(<DropdownItem />)
-      wrapper.should.not.have.prop('aria-disabled')
+      expect(wrapper).not.have.prop('aria-disabled')
     })
     it('should render active DropdownItem with aria-checked', () => {
       const wrapper = shallow(<DropdownItem active />)
-      wrapper.should.have.prop('aria-checked', true)
+      expect(wrapper).have.prop('aria-checked', true)
     })
     it('should render normal DropdownItem without aria-disabled', () => {
       const wrapper = shallow(<DropdownItem />)
-      wrapper.should.not.have.prop('aria-checked')
+      expect(wrapper).not.have.prop('aria-checked')
     })
     it('should render selected DropdownItem with aria-selected', () => {
       const wrapper = shallow(<DropdownItem selected />)
-      wrapper.should.have.prop('aria-selected', true)
+      expect(wrapper).have.prop('aria-selected', true)
     })
     it('should render normal DropdownItem without aria-selected', () => {
       const wrapper = shallow(<DropdownItem />)
-      wrapper.should.not.have.prop('aria-selected')
+      expect(wrapper).not.have.prop('aria-selected')
     })
   })
 
   describe('description', () => {
     it('adds className="description" to element shorthand', () => {
-      shallow(<DropdownItem description={<strong />} />)
-        .should.have.descendants('strong.description')
+      expect(shallow(<DropdownItem description={<strong />} />)).have.descendants(
+        'strong.description',
+      )
     })
   })
 
   describe('text', () => {
     it('adds className="text" to element shorthand', () => {
-      shallow(<DropdownItem text={<strong />} />)
-        .should.have.descendants('strong.text')
+      expect(shallow(<DropdownItem text={<strong />} />)).have.descendants('strong.text')
     })
   })
 
@@ -97,21 +97,21 @@ describe('DropdownItem', () => {
     it('renders text if no content', () => {
       const wrapper = shallow(<DropdownItem text='hey' />)
 
-      wrapper.text().should.include('hey')
+      expect(wrapper.text()).toContain('hey')
     })
 
     it('renders content if present', () => {
       const wrapper = shallow(<DropdownItem text='hey' content='you' />)
 
-      wrapper.text().should.not.include('hey')
-      wrapper.text().should.include('you')
+      expect(wrapper.text()).not.toContain('hey')
+      expect(wrapper.text()).toContain('you')
     })
   })
 
   describe('onClick', () => {
     it('omitted when not defined', () => {
       const click = () => shallow(<DropdownItem />).simulate('click')
-      expect(click).to.not.throw()
+      expect(click).not.toThrowError()
     })
 
     it('is called with (e, props) when clicked', () => {
@@ -121,11 +121,10 @@ describe('DropdownItem', () => {
       const event = { target: null }
       const props = { value, 'data-foo': 'bar' }
 
-      shallow(<DropdownItem onClick={spy} {...props} />)
-        .simulate('click', event)
+      shallow(<DropdownItem onClick={spy} {...props} />).simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(event, props)
     })
   })
 })

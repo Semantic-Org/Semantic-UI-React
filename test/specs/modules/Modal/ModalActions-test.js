@@ -19,23 +19,24 @@ describe('ModalActions', () => {
     const buttons = mount(<ModalActions actions={actions} />).find('Button')
 
     it('renders children', () => {
-      buttons.at(0).should.have.prop('content', 'Cancel')
-      buttons.at(1).should.have.prop('content', 'OK')
+      expect(buttons.at(0)).have.prop('content', 'Cancel')
+      expect(buttons.at(1)).have.prop('content', 'OK')
     })
 
     it('passes arbitrary props', () => {
-      buttons.everyWhere(action => action.should.have.prop('data-foo', 'something'))
+      buttons.everyWhere(action => expect(action).have.prop('data-foo', 'something'))
     })
   })
 
   describe('onActionClick', () => {
     it('can be omitted', () => {
-      const click = () => mount(<ModalActions actions={actions} />)
-        .find('Button')
-        .first()
-        .simulate('click')
+      const click = () =>
+        mount(<ModalActions actions={actions} />)
+          .find('Button')
+          .first()
+          .simulate('click')
 
-      expect(click).to.not.throw()
+      expect(click).not.toThrowError()
     })
 
     it('is called with (e, actionProps) when clicked', () => {
@@ -51,10 +52,10 @@ describe('ModalActions', () => {
         .last()
         .simulate('click', event)
 
-      onActionClick.should.have.been.calledOnce()
-      onActionClick.should.have.been.calledWithMatch(event, matchProps)
-      onButtonClick.should.have.been.calledOnce()
-      onButtonClick.should.have.been.calledWithMatch(event, matchProps)
+      expect(onActionClick).have.been.calledOnce()
+      expect(onActionClick).have.been.calledWithMatch(event, matchProps)
+      expect(onButtonClick).have.been.calledOnce()
+      expect(onButtonClick).have.been.calledWithMatch(event, matchProps)
     })
   })
 })
