@@ -21,31 +21,27 @@ describe('TableRow', () => {
   common.propKeyOnlyToClassName(TableRow, 'warning')
 
   it('renders as a tr by default', () => {
-    shallow(<TableRow />).should.have.tagName('tr')
+    expect(shallow(<TableRow />)).have.tagName('tr')
   })
 
   describe('shorthand', () => {
     const cells = ['Name', 'Status', 'Notes']
 
     it('renders empty tr with no shorthand', () => {
-      shallow(<TableRow />)
-        .find('td')
-        .should.have.lengthOf(0)
+      expect(shallow(<TableRow />).find('td')).toHaveLength(0)
     })
 
     it('renders the cells', () => {
-      shallow(<TableRow cells={cells} />)
-        .find('TableCell')
-        .should.have.lengthOf(cells.length)
+      expect(shallow(<TableRow cells={cells} />).find('TableCell')).toHaveLength(cells.length)
     })
 
     it('renders the cells using cellAs', () => {
       const cellWrappers = shallow(<TableRow cells={cells} cellAs='th' />).find('TableCell')
 
-      cellWrappers.should.have.lengthOf(cells.length)
+      expect(cellWrappers).toHaveLength(cells.length)
 
       cellWrappers.forEach((wrapper) => {
-        wrapper.shallow().should.have.tagName('th')
+        expect(wrapper.shallow()).have.tagName('th')
       })
     })
   })

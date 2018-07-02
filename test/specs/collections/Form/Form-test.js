@@ -50,13 +50,13 @@ describe('Form', () => {
 
   describe('action', () => {
     it('is not set by default', () => {
-      shallow(<Form />).should.not.have.prop('action')
+      expect(shallow(<Form />)).not.have.prop('action')
     })
 
     it('applied when defined', () => {
       const action = faker.internet.url()
 
-      shallow(<Form action={action} />).should.have.prop('action', action)
+      expect(shallow(<Form action={action} />)).have.prop('action', action)
     })
   })
 
@@ -72,7 +72,7 @@ describe('Form', () => {
       shallow(<Form action={false} />).simulate('submit', event)
       shallow(<Form action={null} />).simulate('submit', event)
 
-      event.preventDefault.should.have.been.calledThrice()
+      expect(event.preventDefault).have.been.calledThrice()
     })
 
     it('does not prevent default on the event when there is an action', () => {
@@ -82,7 +82,7 @@ describe('Form', () => {
 
       shallow(<Form action='' />).simulate('submit', event)
 
-      event.preventDefault.should.not.have.been.called()
+      expect(event.preventDefault).not.have.been.called()
     })
 
     it('is called with (e, props) on submit', () => {
@@ -92,8 +92,8 @@ describe('Form', () => {
 
       shallow(<Form {...props} onSubmit={onSubmit} />).simulate('submit', event)
 
-      onSubmit.should.have.been.calledOnce()
-      onSubmit.should.have.been.calledWithMatch(event, props)
+      expect(onSubmit).have.been.calledOnce()
+      expect(onSubmit).have.been.calledWithMatch(event, props)
     })
 
     it('passes all args to onSubmit', () => {
@@ -104,8 +104,8 @@ describe('Form', () => {
 
       shallow(<Form {...props} onSubmit={onSubmit} />).simulate('submit', event, ...args)
 
-      onSubmit.should.have.been.calledOnce()
-      onSubmit.should.have.been.calledWithMatch(event, props, ...args)
+      expect(onSubmit).have.been.calledOnce()
+      expect(onSubmit).have.been.calledWithMatch(event, props, ...args)
     })
   })
 })

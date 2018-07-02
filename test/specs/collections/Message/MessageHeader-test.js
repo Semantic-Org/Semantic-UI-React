@@ -9,12 +9,10 @@ describe('MessageHeader', () => {
   common.rendersChildren(MessageHeader)
 
   it('renders an div tag', () => {
-    shallow(<MessageHeader />)
-      .should.have.tagName('div')
+    expect(shallow(<MessageHeader />)).have.tagName('div')
   })
 
   it('has className header', () => {
-    shallow(<MessageHeader />)
-      .should.have.className('header')
+    expect(shallow(<MessageHeader />)).have.className('header')
   })
 })

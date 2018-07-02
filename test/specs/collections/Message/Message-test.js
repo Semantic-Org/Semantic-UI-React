@@ -53,37 +53,37 @@ describe('Message', () => {
 
   describe('header', () => {
     it('adds MessageContent when defined', () => {
-      shallow(<Message header='This is a message' />).should.have.descendants('MessageContent')
+      expect(shallow(<Message header='This is a message' />)).have.descendants('MessageContent')
     })
   })
 
   describe('icon', () => {
     it('does not have MessageContent by default', () => {
-      shallow(<Message />).should.not.have.descendants('.content')
+      expect(shallow(<Message />)).not.have.descendants('.content')
     })
     it('renders children when "true"', () => {
       const text = 'child text'
       const node = <div id='foo' />
 
-      shallow(<Message icon>{text}</Message>).should.have.text(text)
+      expect(shallow(<Message icon>{text}</Message>)).have.text(text)
 
-      shallow(<Message icon>{node}</Message>).should.contain(node)
+      expect(shallow(<Message icon>{node}</Message>)).toContain(node)
     })
   })
 
   describe('list', () => {
     it('adds MessageContent when defined', () => {
-      shallow(<Message list={[]} />).should.have.descendants('MessageContent')
+      expect(shallow(<Message list={[]} />)).have.descendants('MessageContent')
     })
   })
 
   describe('onDismiss', () => {
     it('has no close icon by default', () => {
-      shallow(<Message />).should.not.have.descendants('.close.icon')
+      expect(shallow(<Message />)).not.have.descendants('.close.icon')
     })
 
     it('adds a close icon when defined', () => {
-      render(<Message onDismiss={() => undefined} />).should.have.descendants('.close.icon')
+      expect(mount(<Message onDismiss={() => undefined} />)).have.descendants('.close.icon')
     })
 
     it('is called with (event) on close icon click', () => {
@@ -93,11 +93,11 @@ describe('Message', () => {
       const spy = sandbox.spy()
       const wrapper = mount(<Message {...props} onDismiss={spy} />)
 
-      wrapper.should.have.descendants('.close.icon')
+      expect(wrapper).have.descendants('.close.icon')
       wrapper.find('.close.icon').simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(event, props)
     })
   })
 })

@@ -13,8 +13,9 @@ describe('FormSelect', () => {
   common.labelImplementsHtmlForProp(FormSelect, { requiredProps })
 
   it('renders a FormField with a Select control', () => {
-    shallow(<FormSelect {...requiredProps} />)
-      .find('FormField')
-      .should.have.prop('control', Select)
+    expect(shallow(<FormSelect {...requiredProps} />).find('FormField')).have.prop(
+      'control',
+      Select,
+    )
   })
 })

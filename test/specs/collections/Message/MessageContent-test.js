@@ -7,12 +7,10 @@ describe('MessageContent', () => {
   common.rendersChildren(MessageContent)
 
   it('renders an div tag', () => {
-    shallow(<MessageContent />)
-      .should.have.tagName('div')
+    expect(shallow(<MessageContent />)).have.tagName('div')
   })
 
   it('has className content', () => {
-    shallow(<MessageContent />)
-      .should.have.className('content')
+    expect(shallow(<MessageContent />)).have.className('content')
   })
 })

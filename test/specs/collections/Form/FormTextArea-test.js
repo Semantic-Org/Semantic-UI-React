@@ -9,8 +9,6 @@ describe('FormTextArea', () => {
   common.labelImplementsHtmlForProp(FormTextArea)
 
   it('renders a FormField with a TextArea control', () => {
-    shallow(<FormTextArea />)
-      .find('FormField')
-      .should.have.prop('control', TextArea)
+    expect(shallow(<FormTextArea />).find('FormField')).have.prop('control', TextArea)
   })
 })

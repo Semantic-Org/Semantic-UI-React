@@ -10,8 +10,6 @@ describe('FormRadio', () => {
   })
 
   it('renders a FormField with a Radio control', () => {
-    shallow(<FormRadio />)
-      .find('FormField')
-      .should.have.prop('control', Radio)
+    expect(shallow(<FormRadio />).find('FormField')).have.prop('control', Radio)
   })
 })

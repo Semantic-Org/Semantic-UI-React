@@ -64,7 +64,7 @@ describe('Table', () => {
 
   describe('as', () => {
     it('renders as a table by default', () => {
-      shallow(<Table />).should.have.tagName('table')
+      expect(shallow(<Table />)).have.tagName('table')
     })
   })
 
@@ -108,38 +108,33 @@ describe('Table', () => {
     it('renders empty tbody with no shorthand', () => {
       wrapperMount()
 
-      thead.should.have.lengthOf(0)
+      expect(thead).toHaveLength(0)
 
-      tbody.should.have.lengthOf(1)
-      tbody.find('tr').should.have.lengthOf(0)
+      expect(tbody).toHaveLength(1)
+      expect(tbody.find('tr')).toHaveLength(0)
 
-      tfoot.should.have.lengthOf(0)
+      expect(tfoot).toHaveLength(0)
     })
 
     it('renders the table', () => {
       wrapperMount({ headerRow, renderBodyRow, footerRow, tableData })
 
-      thead.should.have.lengthOf(1)
-      thead.find('tr').should.have.lengthOf(1)
-      thead
-        .find('tr')
-        .find('th')
-        .should.have.lengthOf(headerRow.length)
+      expect(thead).toHaveLength(1)
+      expect(thead.find('tr')).toHaveLength(1)
+      expect(thead.find('tr').find('th')).toHaveLength(headerRow.length)
 
-      tbody.should.have.lengthOf(1)
-      tbody.find('tr').should.have.lengthOf(tableData.length)
-      tbody
-        .find('tr')
-        .first()
-        .find('td')
-        .should.have.lengthOf(3)
+      expect(tbody).toHaveLength(1)
+      expect(tbody.find('tr')).toHaveLength(tableData.length)
+      expect(
+        tbody
+          .find('tr')
+          .first()
+          .find('td'),
+      ).toHaveLength(3)
 
-      tfoot.should.have.lengthOf(1)
-      tfoot.find('tr').should.have.lengthOf(1)
-      tfoot
-        .find('tr')
-        .find('td')
-        .should.have.lengthOf(footerRow.length)
+      expect(tfoot).toHaveLength(1)
+      expect(tfoot.find('tr')).toHaveLength(1)
+      expect(tfoot.find('tr').find('td')).toHaveLength(footerRow.length)
     })
   })
 })

@@ -44,14 +44,14 @@ describe('Menu', () => {
   common.propValueOnlyToClassName(Menu, 'size', _.without(SUI.SIZES, 'medium', 'big'))
 
   it('renders a `div` by default', () => {
-    shallow(<Menu />).should.have.tagName('div')
+    expect(shallow(<Menu />)).have.tagName('div')
   })
 
   describe('activeIndex', () => {
     const items = [{ key: 'home', name: 'home' }, { key: 'users', name: 'users' }]
 
     it('is null by default', () => {
-      shallow(<Menu items={items} />).should.not.have.descendants('.active')
+      expect(shallow(<Menu items={items} />)).not.have.descendants('.active')
     })
 
     it('is set when clicking an item', () => {
@@ -63,17 +63,15 @@ describe('Menu', () => {
         .simulate('click')
 
       // must re-query for the menu items or we get a cached copy
-      wrapper
-        .find('MenuItem')
-        .at(1)
-        .should.have.prop('active', true)
+      expect(wrapper.find('MenuItem').at(1)).have.prop('active', true)
     })
 
     it('works as a string', () => {
-      mount(<Menu items={items} activeIndex={1} />)
-        .find('MenuItem')
-        .at(1)
-        .should.have.prop('active', true)
+      expect(
+        mount(<Menu items={items} activeIndex={1} />)
+          .find('MenuItem')
+          .at(1),
+      ).have.prop('active', true)
     })
   })
 
@@ -86,13 +84,13 @@ describe('Menu', () => {
     const children = mount(<Menu items={items} />).find('MenuItem')
 
     it('renders children', () => {
-      children.first().should.have.prop('name', 'home')
-      children.last().should.have.prop('name', 'users')
+      expect(children.first()).have.prop('name', 'home')
+      expect(children.last()).have.prop('name', 'users')
     })
 
     it('onClick can omitted', () => {
       const click = () => children.last().simulate('click')
-      expect(click).to.not.throw()
+      expect(click).not.toThrowError()
     })
 
     it('passes onClick handler', () => {
@@ -101,12 +99,12 @@ describe('Menu', () => {
 
       children.first().simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      expect(spy).have.been.calledOnce()
+      expect(spy).have.been.calledWithMatch(event, props)
     })
 
     it('passes arbitrary props', () => {
-      children.everyWhere(item => item.should.have.prop('data-foo', 'something'))
+      children.everyWhere(item => expect(item).have.prop('data-foo', 'something'))
     })
   })
 
@@ -118,7 +116,7 @@ describe('Menu', () => {
           .first()
           .simulate('click')
 
-      expect(click).to.not.throw()
+      expect(click).not.toThrowError()
     })
 
     it('is called with (e, { name, index }) when clicked', () => {
@@ -137,10 +135,10 @@ describe('Menu', () => {
         .last()
         .simulate('click', event)
 
-      itemSpy.should.have.been.calledOnce()
-      itemSpy.should.have.been.calledWithMatch(event, matchProps)
-      menuSpy.should.have.been.calledOnce()
-      menuSpy.should.have.been.calledWithMatch(event, matchProps)
+      expect(itemSpy).have.been.calledOnce()
+      expect(itemSpy).have.been.calledWithMatch(event, matchProps)
+      expect(menuSpy).have.been.calledOnce()
+      expect(menuSpy).have.been.calledWithMatch(event, matchProps)
     })
   })
 })

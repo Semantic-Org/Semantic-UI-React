@@ -10,13 +10,11 @@ describe('MessageList', () => {
   })
 
   it('renders an ul tag', () => {
-    shallow(<MessageList />)
-      .should.have.tagName('ul')
+    expect(shallow(<MessageList />)).have.tagName('ul')
   })
 
   it('has className list', () => {
-    shallow(<MessageList />)
-      .should.have.className('list')
+    expect(shallow(<MessageList />)).have.className('list')
   })
 
   describe('items', () => {
@@ -24,22 +22,15 @@ describe('MessageList', () => {
       const items = ['foo', 'bar', 'baz']
       const wrapper = shallow(<MessageList items={items} />)
 
-      wrapper.should.have.exactly(3).descendants('MessageItem')
+      expect(wrapper)
+        .have.exactly(3)
+        .descendants('MessageItem')
 
-      wrapper
-        .childAt(0)
-        .shallow()
-        .should.have.text(items[0])
+      expect(wrapper.childAt(0).shallow()).have.text(items[0])
 
-      wrapper
-        .childAt(1)
-        .shallow()
-        .should.have.text(items[1])
+      expect(wrapper.childAt(1).shallow()).have.text(items[1])
 
-      wrapper
-        .childAt(2)
-        .shallow()
-        .should.have.text(items[2])
+      expect(wrapper.childAt(2).shallow()).have.text(items[2])
     })
   })
 })

@@ -10,8 +10,6 @@ describe('FormCheckbox', () => {
   })
 
   it('renders a FormField with a Checkbox control', () => {
-    shallow(<FormCheckbox />)
-      .find('FormField')
-      .should.have.prop('control', Checkbox)
+    expect(shallow(<FormCheckbox />).find('FormField')).have.prop('control', Checkbox)
   })
 })

@@ -14,7 +14,6 @@ describe('BreadcrumbDivider', () => {
   })
 
   it('renders as a div by default', () => {
-    shallow(<BreadcrumbDivider />)
-      .should.have.tagName('div')
+    expect(shallow(<BreadcrumbDivider />)).have.tagName('div')
   })
 })

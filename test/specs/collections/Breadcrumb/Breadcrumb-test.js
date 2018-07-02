@@ -14,7 +14,7 @@ describe('Breadcrumb', () => {
   })
 
   it('renders a <div /> element', () => {
-    shallow(<Breadcrumb />).should.have.tagName('div')
+    expect(shallow(<Breadcrumb />)).have.tagName('div')
   })
 
   const sections = [
@@ -25,14 +25,18 @@ describe('Breadcrumb', () => {
   it('renders children with `sections` prop', () => {
     const wrapper = shallow(<Breadcrumb sections={sections} />)
 
-    wrapper.should.have.exactly(1).descendants(BreadcrumbDivider)
-    wrapper.should.have.exactly(2).descendants(BreadcrumbSection)
+    expect(wrapper)
+      .have.exactly(1)
+      .descendants(BreadcrumbDivider)
+    expect(wrapper)
+      .have.exactly(2)
+      .descendants(BreadcrumbSection)
   })
 
   it('renders defined divider with `divider` prop', () => {
     const wrapper = mount(<Breadcrumb sections={sections} divider='>' />)
     const divider = wrapper.find(BreadcrumbDivider).first()
 
-    divider.should.contain.text('>')
+    expect(divider).contain.text('>')
   })
 })

@@ -11,8 +11,6 @@ describe('FormButton', () => {
   common.labelImplementsHtmlForProp(FormButton)
 
   it('renders a FormField with a Button control', () => {
-    shallow(<FormButton />)
-      .find('FormField')
-      .should.have.prop('control', Button)
+    expect(shallow(<FormButton />).find('FormField')).have.prop('control', Button)
   })
 })
