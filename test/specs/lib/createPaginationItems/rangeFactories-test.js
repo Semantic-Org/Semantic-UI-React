@@ -7,8 +7,7 @@ describe('rangeFactories', () => {
       const pageFactory = sandbox.spy()
       createSimpleRange(5, 10, pageFactory)
 
-      pageFactory.should.have.callCount(6)
+      expect(pageFactory).have.callCount(6)
     })
   })
 })
-

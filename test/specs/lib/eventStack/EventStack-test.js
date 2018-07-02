@@ -10,11 +10,11 @@ describe('EventStack', () => {
   })
 
   describe('isBrowser', () => {
-    before(() => {
+    beforeAll(() => {
       isBrowser.override = false
     })
 
-    after(() => {
+    afterAll(() => {
       isBrowser.override = null
     })
 
@@ -24,7 +24,7 @@ describe('EventStack', () => {
       eventStack.sub('click', handler)
       domEvent.click(document)
 
-      handler.should.have.not.been.called()
+      expect(handler).have.not.been.called()
     })
 
     it('does not unsubscribes', () => {
@@ -33,7 +33,7 @@ describe('EventStack', () => {
       eventStack.unsub('click', handler)
       domEvent.click(document)
 
-      handler.should.have.not.been.called()
+      expect(handler).have.not.been.called()
     })
   })
 
@@ -44,7 +44,7 @@ describe('EventStack', () => {
       eventStack.sub('click', handler)
       domEvent.click(document)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).have.been.calledOnce()
     })
 
     it('subscribes for custom target', () => {
@@ -54,7 +54,7 @@ describe('EventStack', () => {
       eventStack.sub('click', handler, { target })
       domEvent.click(target)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).have.been.calledOnce()
     })
 
     it('subscribes for multiple targets', () => {
@@ -66,8 +66,8 @@ describe('EventStack', () => {
       domEvent.click(document)
       domEvent.scroll(window)
 
-      documentHandler.should.have.been.calledOnce()
-      windowHandler.should.have.been.calledOnce()
+      expect(documentHandler).have.been.calledOnce()
+      expect(windowHandler).have.been.calledOnce()
     })
   })
 
@@ -86,7 +86,7 @@ describe('EventStack', () => {
       eventStack.unsub('click', handler)
       domEvent.click(document)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).have.been.calledOnce()
     })
 
     it('unsubscribes but leaves eventTarget if it contains handlers', () => {
@@ -100,8 +100,8 @@ describe('EventStack', () => {
       eventStack.unsub('click', clickHandler)
       domEvent.click(document)
 
-      clickHandler.should.have.been.calledOnce()
-      keyHandler.should.have.not.been.called()
+      expect(clickHandler).have.been.calledOnce()
+      expect(keyHandler).have.not.been.called()
     })
 
     it('unsubscribes from same event multiple times', () => {
@@ -114,7 +114,7 @@ describe('EventStack', () => {
       eventStack.unsub('click', handler)
       domEvent.click(document)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).have.been.calledOnce()
     })
   })
 })

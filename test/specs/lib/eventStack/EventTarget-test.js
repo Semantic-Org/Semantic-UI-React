@@ -21,8 +21,8 @@ describe('EventTarget', () => {
       target.addHandlers('default', 'click', [handler2])
       domEvent.click(document)
 
-      handler1.should.have.been.calledOnce()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledOnce()
+      expect(handler2).have.been.calledOnce()
     })
 
     it('handles multiple pools', () => {
@@ -33,19 +33,19 @@ describe('EventTarget', () => {
       target.addHandlers('another', 'click', [handler2])
       domEvent.click(document)
 
-      handler1.should.have.been.calledOnce()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledOnce()
+      expect(handler2).have.been.calledOnce()
     })
   })
 
   describe('hasHandlers', () => {
     it('is "false" when has not handlers', () => {
-      target.hasHandlers().should.be.false()
+      expect(target.hasHandlers()).toBe(false)
     })
 
     it('is "true" when has handlers', () => {
       target.addHandlers('default', 'click', [() => {}])
-      target.hasHandlers().should.be.true()
+      expect(target.hasHandlers()).toBe(true)
     })
   })
 
@@ -60,8 +60,8 @@ describe('EventTarget', () => {
       target.removeHandlers('default', 'click', [handler2])
       domEvent.click(document)
 
-      handler1.should.have.been.calledTwice()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledTwice()
+      expect(handler2).have.been.calledOnce()
     })
 
     it('removes handlers with multiple pools', () => {
@@ -75,8 +75,8 @@ describe('EventTarget', () => {
       target.removeHandlers('another', 'click', [handler2])
       domEvent.click(document)
 
-      handler1.should.have.been.calledTwice()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledTwice()
+      expect(handler2).have.been.calledOnce()
     })
   })
 })

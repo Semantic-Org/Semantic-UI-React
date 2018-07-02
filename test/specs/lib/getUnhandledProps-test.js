@@ -10,18 +10,20 @@ function TestComponent(props) {
 
 describe('getUnhandledProps', () => {
   it('removes the proprietary childKey prop', () => {
-    shallow(<TestComponent childKey={1} />)
-      .should.not.have.prop('childKey')
+    expect(shallow(<TestComponent childKey={1} />)).not.have.prop('childKey')
   })
 
   it('leaves props that are not defined in handledProps', () => {
-    shallow(<TestComponent data-leave-this='it is unhandled' />)
-      .should.have.prop('data-leave-this')
+    expect(shallow(<TestComponent data-leave-this='it is unhandled' />)).have.prop(
+      'data-leave-this',
+    )
   })
 
   it('removes props defined in handledProps', () => {
     TestComponent.handledProps = ['data-remove-me']
-    shallow(<TestComponent data-remove-me='it is handled' />)
-      .should.not.have.prop('data-remove-me', 'thanks')
+    expect(shallow(<TestComponent data-remove-me='it is handled' />)).not.have.prop(
+      'data-remove-me',
+      'thanks',
+    )
   })
 })

@@ -22,19 +22,19 @@ const words = [
 
 describe('numberToWord', () => {
   it('returns words for numbers 1-16', () => {
-    _.times(16, n => numberToWord(n + 1).should.equal(words[n]))
+    _.times(16, n => expect(numberToWord(n + 1)).toBe(words[n]))
   })
 
   it('returns word if input is word', () => {
-    words.forEach(word => numberToWord(word).should.equal(word))
+    words.forEach(word => expect(numberToWord(word)).toBe(word))
   })
 
   it('returns an empty string for boolean inputs', () => {
-    numberToWord(true).should.equal('')
-    numberToWord(false).should.equal('')
+    expect(numberToWord(true)).toBe('')
+    expect(numberToWord(false)).toBe('')
   })
 
   it('returns an empty string for null', () => {
-    numberToWord(null).should.equal('')
+    expect(numberToWord(null)).toBe('')
   })
 })

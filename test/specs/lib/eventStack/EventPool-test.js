@@ -10,7 +10,7 @@ describe('EventPool', () => {
       pool = pool.addHandlers('click', [handler])
       pool.dispatchEvent('click', null)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).have.been.calledOnce()
     })
 
     it('adds handlers for multiple event types', () => {
@@ -24,16 +24,16 @@ describe('EventPool', () => {
       pool.dispatchEvent('click', null)
       pool.dispatchEvent('mousedown', null)
 
-      clickHandler.should.have.been.calledOnce()
-      mouseDown.should.have.been.calledOnce()
+      expect(clickHandler).have.been.calledOnce()
+      expect(mouseDown).have.been.calledOnce()
     })
 
     it('always returns a new object', () => {
       const pool = EventPool.createByType('default', 'click', [])
       const anotherPool = pool.addHandlers('click', [])
 
-      anotherPool.should.be.an('object')
-      anotherPool.should.be.not.equal(pool)
+      expect(typeof anotherPool).toBe('object')
+      expect(anotherPool).not.toBe(pool)
     })
 
     it('handler sets are immutable', () => {
@@ -46,8 +46,8 @@ describe('EventPool', () => {
       pool.dispatchEvent('click', null)
       another.dispatchEvent('click', null)
 
-      handler1.should.have.been.calledTwice()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledTwice()
+      expect(handler2).have.been.calledOnce()
     })
   })
 
@@ -55,11 +55,11 @@ describe('EventPool', () => {
     const pool = EventPool.createByType('default', 'click', [() => {}])
 
     it('returns "true" if has handlers', () => {
-      pool.hasHandlers('click').should.have.be.true()
+      expect(pool.hasHandlers('click')).toBe(true)
     })
 
     it('returns "false" if has not handlers', () => {
-      pool.hasHandlers('mousedown').should.have.be.false()
+      expect(pool.hasHandlers('mousedown')).toBe(false)
     })
   })
 
@@ -72,7 +72,7 @@ describe('EventPool', () => {
       pool = pool.removeHandlers('click', [handler])
       pool.dispatchEvent('click', null)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).have.been.calledOnce()
     })
 
     it('removes handlers for non-existent eventType', () => {
@@ -83,15 +83,15 @@ describe('EventPool', () => {
       pool = pool.removeHandlers('mousedown', [handler])
       pool.dispatchEvent('click', null)
 
-      handler.should.have.been.calledTwice()
+      expect(handler).have.been.calledTwice()
     })
 
     it('always returns a new object', () => {
       const pool = EventPool.createByType('default', 'click', [])
       const another = pool.removeHandlers('click', [])
 
-      another.should.be.an('object')
-      another.should.be.not.equal(pool)
+      expect(typeof another).toBe('object')
+      expect(another).not.toBe(pool)
     })
 
     it('handlers are immutable', () => {
@@ -104,8 +104,8 @@ describe('EventPool', () => {
       pool.dispatchEvent('click', null)
       another.dispatchEvent('click', null)
 
-      handler1.should.have.been.calledTwice()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledTwice()
+      expect(handler2).have.been.calledOnce()
     })
   })
 })

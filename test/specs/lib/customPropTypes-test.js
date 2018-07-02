@@ -2,15 +2,12 @@ import { customPropTypes } from 'src/lib'
 
 describe('suggest prop type', () => {
   it('should throw error when non-array argument given', () => {
-    expect(() => customPropTypes.suggest('foo')).to.throw(
-      Error,
-      /Invalid argument supplied to suggest, expected an instance of array./,
-    )
+    expect(() => customPropTypes.suggest('foo')).toThrowError(Error)
   })
 
   it('should return undefined when prop is valid', () => {
     const propType = customPropTypes.suggest(['foo', 'bar', 'baz'])
-    expect(propType({ name: 'bar' }, 'name', 'FooComponent')).to.equal(undefined)
+    expect(propType({ name: 'bar' }, 'name', 'FooComponent')).toBe(undefined)
   })
 
   it('should return Error with suggestions when prop is invalid', () => {
@@ -18,9 +15,9 @@ describe('suggest prop type', () => {
     const props = { name: 'bad', title: 'bat words' }
 
     const resultFooComponent = propType(props, 'name', 'FooComponent')
-    expect(resultFooComponent).to.be.an.instanceof(Error)
-    expect(resultFooComponent.message).to
-      .equal(`Invalid prop \`name\` of value \`bad\` supplied to \`FooComponent\`.
+    expect(resultFooComponent).toBeInstanceOf(Error)
+    expect(resultFooComponent.message)
+      .toBe(`Invalid prop \`name\` of value \`bad\` supplied to \`FooComponent\`.
 
 Instead of \`bad\`, did you mean:
   - bar
@@ -29,14 +26,15 @@ Instead of \`bad\`, did you mean:
 `)
 
     const resultBarComponent = propType(props, 'title', 'BarComponent')
-    expect(resultBarComponent).to.be.an.instanceof(Error)
-    expect(resultBarComponent.message).to
-      .equal(`Invalid prop \`title\` of value \`bat words\` supplied to \`BarComponent\`.
+    expect(resultBarComponent).toBeInstanceOf(Error)
+    expect(resultBarComponent.message).toBe(
+      `Invalid prop \`title\` of value \`bat words\` supplied to \`BarComponent\`.
 
-Instead of \`bat words\`, did you mean:
-  - bar
-  - baz
-  - foo
-`)
+  Instead of \`bat words\`, did you mean:
+    - bar
+    - baz
+    - foo
+  `,
+    )
   })
 })

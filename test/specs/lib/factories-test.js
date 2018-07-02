@@ -31,19 +31,19 @@ const getShorthand = ({
 
 const itReturnsNull = (value) => {
   it('returns null', () => {
-    expect(getShorthand({ value })).to.equal(null)
+    expect(getShorthand({ value })).toBe(null)
   })
 }
 
 const itReturnsNullGivenDefaultProps = (value) => {
   it('returns null given defaultProps object', () => {
-    expect(getShorthand({ value, defaultProps: { 'data-foo': 'foo' } })).to.equal(null)
+    expect(getShorthand({ value, defaultProps: { 'data-foo': 'foo' } })).toBe(null)
   })
 }
 
 const itReturnsAValidElement = (value) => {
   it('returns a valid element', () => {
-    expect(isValidElement(getShorthand({ value }))).to.equal(true)
+    expect(isValidElement(getShorthand({ value }))).toBe(true)
   })
 }
 
@@ -51,9 +51,7 @@ const itAppliesDefaultProps = (value) => {
   it('applies defaultProps', () => {
     const defaultProps = { some: 'defaults' }
 
-    shallow(getShorthand({ value, defaultProps }))
-      .props()
-      .should.deep.equal(defaultProps)
+    expect(shallow(getShorthand({ value, defaultProps })).props()).toEqual(defaultProps)
   })
 }
 
@@ -63,7 +61,7 @@ const itDoesNotIncludePropsFromMapValueToProps = (value) => {
     const wrapper = shallow(getShorthand({ value, mapValueToProps: () => props }))
 
     _.each(props, (val, key) => {
-      wrapper.should.not.have.prop(key, val)
+      expect(wrapper).not.have.prop(key, val)
     })
   })
 }
@@ -73,25 +71,23 @@ const itMergesClassNames = (classNameSource, extraClassName, shorthandConfig) =>
     const defaultProps = { className: 'default' }
     const overrideProps = { className: 'override' }
 
-    shallow(
-      getShorthand({ defaultProps, overrideProps, ...shorthandConfig }),
-    ).should.have.same.className(`default override ${extraClassName}`)
+    expect(
+      shallow(getShorthand({ defaultProps, overrideProps, ...shorthandConfig })),
+    ).have.same.className(`default override ${extraClassName}`)
   })
 }
 
 const itAppliesProps = (propsSource, expectedProps, shorthandConfig) => {
   it(`applies props from the ${propsSource} props`, () => {
-    shallow(getShorthand(shorthandConfig))
-      .props()
-      .should.deep.equal(expectedProps)
+    expect(shallow(getShorthand(shorthandConfig)).props()).toEqual(expectedProps)
   })
 }
 
 const itOverridesDefaultProps = (propsSource, defaultProps, expectedProps, shorthandConfig) => {
   it(`overrides defaultProps with ${propsSource} props`, () => {
-    shallow(getShorthand({ defaultProps, ...shorthandConfig }))
-      .props()
-      .should.deep.equal(expectedProps)
+    expect(shallow(getShorthand({ defaultProps, ...shorthandConfig })).props()).toEqual(
+      expectedProps,
+    )
   })
 }
 
@@ -100,9 +96,9 @@ const itOverridesDefaultPropsWithFalseyProps = (propsSource, shorthandConfig) =>
     const defaultProps = { undef: '-', nil: '-', zero: '-', empty: '-' }
     const expectedProps = { undef: undefined, nil: null, zero: 0, empty: '' }
 
-    shallow(getShorthand({ defaultProps, ...shorthandConfig }))
-      .props()
-      .should.deep.equal(expectedProps)
+    expect(shallow(getShorthand({ defaultProps, ...shorthandConfig })).props()).toEqual(
+      expectedProps,
+    )
   })
 }
 
@@ -113,19 +109,19 @@ const itOverridesDefaultPropsWithFalseyProps = (propsSource, shorthandConfig) =>
 describe('factories', () => {
   describe('createShorthandFactory', () => {
     it('is a function', () => {
-      createShorthandFactory.should.be.a('function')
+      expect(typeof createShorthandFactory).toBe('function')
     })
 
     it('does not throw if passed a function Component', () => {
       const goodUsage = () => createShorthandFactory(() => <div />, () => ({}))
 
-      expect(goodUsage).not.to.throw()
+      expect(goodUsage).not.toThrowError()
     })
 
     it('does not throw if passed a string Component', () => {
       const goodUsage = () => createShorthandFactory('div', () => ({}))
 
-      expect(goodUsage).not.to.throw()
+      expect(goodUsage).not.toThrowError()
     })
 
     it('throw if passed Component that is not a string nor function', () => {
@@ -134,26 +130,26 @@ describe('factories', () => {
       _.each(badComponents, (badComponent) => {
         const badUsage = () => createShorthandFactory(badComponent, () => ({}))
 
-        expect(badUsage).to.throw()
+        expect(badUsage).toThrowError()
       })
     })
   })
 
   describe('createShorthand', () => {
     it('is a function', () => {
-      createShorthand.should.be.a('function')
+      expect(typeof createShorthand).toBe('function')
     })
 
     it('does not throw if passed a function Component', () => {
       const goodUsage = () => createShorthand(() => <div />, () => ({}))
 
-      expect(goodUsage).not.to.throw()
+      expect(goodUsage).not.toThrowError()
     })
 
     it('does not throw if passed a string Component', () => {
       const goodUsage = () => createShorthand('div', () => ({}))
 
-      expect(goodUsage).not.to.throw()
+      expect(goodUsage).not.toThrowError()
     })
 
     it('throw if passed Component that is not a string nor function', () => {
@@ -162,16 +158,14 @@ describe('factories', () => {
       _.each(badComponents, (badComponent) => {
         const badUsage = () => createShorthand(badComponent, () => ({}))
 
-        expect(badUsage).to.throw()
+        expect(badUsage).toThrowError()
       })
     })
 
     describe('defaultProps', () => {
       it('can be an object', () => {
         const defaultProps = { 'data-some': 'defaults' }
-        shallow(getShorthand({ value: 'foo', defaultProps }))
-          .props()
-          .should.deep.equal(defaultProps)
+        expect(shallow(getShorthand({ value: 'foo', defaultProps })).props()).toEqual(defaultProps)
       })
     })
 
@@ -180,114 +174,114 @@ describe('factories', () => {
         // silence React "`key` is not a prop" warning due to accessing props.key
         consoleUtil.disableOnce()
 
-        getShorthand({ value: { key: 123 } }).props.should.have.property('key')
+        expect(getShorthand({ value: { key: 123 } }).props).toHaveProperty('key')
       })
 
       describe('on an element', () => {
         it('works with a string', () => {
-          getShorthand({ value: <div key='foo' /> }).should.have.property('key', 'foo')
+          expect(getShorthand({ value: <div key='foo' /> })).toHaveProperty('key', 'foo')
         })
 
         it('works with a number', () => {
-          getShorthand({ value: <div key={123} /> }).should.have.property('key', '123')
+          expect(getShorthand({ value: <div key={123} /> })).toHaveProperty('key', '123')
         })
 
         it('works with falsy values', () => {
-          getShorthand({ value: <div key={null} /> }).should.have.property('key', 'null')
+          expect(getShorthand({ value: <div key={null} /> })).toHaveProperty('key', 'null')
 
-          getShorthand({ value: <div key={0} /> }).should.have.property('key', '0')
+          expect(getShorthand({ value: <div key={0} /> })).toHaveProperty('key', '0')
 
-          getShorthand({ value: <div key='' /> }).should.have.property('key', '')
+          expect(getShorthand({ value: <div key='' /> })).toHaveProperty('key', '')
         })
       })
 
       describe('on an object', () => {
         it('works with a string', () => {
-          getShorthand({ value: { key: 'foo' } }).should.have.property('key', 'foo')
+          expect(getShorthand({ value: { key: 'foo' } })).toHaveProperty('key', 'foo')
         })
 
         it('works with a number', () => {
-          getShorthand({ value: { key: 123 } }).should.have.property('key', '123')
+          expect(getShorthand({ value: { key: 123 } })).toHaveProperty('key', '123')
         })
 
         it('works with falsy values', () => {
-          getShorthand({ value: { key: null } }).should.have.property('key', 'null')
+          expect(getShorthand({ value: { key: null } })).toHaveProperty('key', 'null')
 
-          getShorthand({ value: { key: 0 } }).should.have.property('key', '0')
+          expect(getShorthand({ value: { key: 0 } })).toHaveProperty('key', '0')
 
-          getShorthand({ value: { key: '' } }).should.have.property('key', '')
+          expect(getShorthand({ value: { key: '' } })).toHaveProperty('key', '')
         })
       })
 
       describe('when value is a string', () => {
         it('is generated from the value', () => {
-          getShorthand({ value: 'foo' }).should.have.property('key', 'foo')
+          expect(getShorthand({ value: 'foo' })).toHaveProperty('key', 'foo')
         })
 
         it('is not generated if autoGenerateKey is false', () => {
-          getShorthand({ value: 'foo', autoGenerateKey: false }).should.have.property('key', null)
+          expect(getShorthand({ value: 'foo', autoGenerateKey: false })).toHaveProperty('key', null)
         })
       })
 
       describe('when value is a number', () => {
         it('is generated from the value', () => {
-          getShorthand({ value: 123 }).should.have.property('key', '123')
+          expect(getShorthand({ value: 123 })).toHaveProperty('key', '123')
         })
 
         it('is not generated if autoGenerateKey is false', () => {
-          getShorthand({ value: 123, autoGenerateKey: false }).should.have.property('key', null)
+          expect(getShorthand({ value: 123, autoGenerateKey: false })).toHaveProperty('key', null)
         })
       })
     })
 
     describe('childKey', () => {
       it('is consumed', () => {
-        getShorthand({ value: { childKey: 123 } }).props.should.not.have.property('childKey')
+        expect(getShorthand({ value: { childKey: 123 } }).props).not.toHaveProperty('childKey')
       })
 
       it('is called with the final `props` if it is a function', () => {
         const props = { foo: 'bar', childKey: sandbox.spy(({ foo }) => foo) }
         const element = getShorthand({ value: props })
 
-        props.childKey.should.have.been.calledOnce()
-        props.childKey.should.have.been.calledWithExactly({ foo: 'bar', key: 'bar' })
+        expect(props.childKey).have.been.calledOnce()
+        expect(props.childKey).have.been.calledWithExactly({ foo: 'bar', key: 'bar' })
 
-        element.key.should.equal('bar')
+        expect(element.key).toBe('bar')
       })
 
       describe('on an element', () => {
         it('works with a string', () => {
-          getShorthand({ value: <div childKey='foo' /> }).should.have.property('key', 'foo')
+          expect(getShorthand({ value: <div childKey='foo' /> })).toHaveProperty('key', 'foo')
         })
 
         it('works with a number', () => {
-          getShorthand({ value: <div childKey={123} /> }).should.have.property('key', '123')
+          expect(getShorthand({ value: <div childKey={123} /> })).toHaveProperty('key', '123')
         })
 
         it('works with falsy values', () => {
-          getShorthand({ value: <div childKey={null} /> }).should.have.property('key', null)
+          expect(getShorthand({ value: <div childKey={null} /> })).toHaveProperty('key', null)
 
-          getShorthand({ value: <div childKey={0} /> }).should.have.property('key', '0')
+          expect(getShorthand({ value: <div childKey={0} /> })).toHaveProperty('key', '0')
 
-          getShorthand({ value: <div childKey='' /> }).should.have.property('key', '')
+          expect(getShorthand({ value: <div childKey='' /> })).toHaveProperty('key', '')
         })
       })
 
       describe('on an object', () => {
         it('works with a string', () => {
-          getShorthand({ value: { childKey: 'foo' } }).should.have.property('key', 'foo')
+          expect(getShorthand({ value: { childKey: 'foo' } })).toHaveProperty('key', 'foo')
         })
 
         it('works with a number', () => {
-          getShorthand({ value: { childKey: 123 } }).should.have.property('key', '123')
+          expect(getShorthand({ value: { childKey: 123 } })).toHaveProperty('key', '123')
         })
 
         it('works with falsy values', () => {
-          getShorthand({ value: { childKey: null } }).should.have.property('key', null)
+          expect(getShorthand({ value: { childKey: null } })).toHaveProperty('key', null)
 
-          getShorthand({ value: { childKey: 0 } }).should.have.property('key', '0')
+          expect(getShorthand({ value: { childKey: 0 } })).toHaveProperty('key', '0')
 
-          getShorthand({ value: { childKey: '' } }).should.have.property('key', '')
+          expect(getShorthand({ value: { childKey: '' } })).toHaveProperty('key', '')
         })
       })
     })
@@ -296,17 +290,17 @@ describe('factories', () => {
       it('can be an object', () => {
         const overrideProps = { 'data-some': 'overrides' }
 
-        shallow(getShorthand({ value: 'foo', overrideProps }))
-          .props()
-          .should.deep.equal(overrideProps)
+        expect(shallow(getShorthand({ value: 'foo', overrideProps })).props()).toEqual(
+          overrideProps,
+        )
       })
 
       it('can be a function that returns defaultProps', () => {
         const overrideProps = () => ({ 'data-some': 'overrides' })
 
-        shallow(getShorthand({ value: 'foo', overrideProps }))
-          .props()
-          .should.deep.equal(overrideProps())
+        expect(shallow(getShorthand({ value: 'foo', overrideProps })).props()).toEqual(
+          overrideProps(),
+        )
       })
 
       it("is called with the user's element's and default props", () => {
@@ -316,7 +310,7 @@ describe('factories', () => {
         const value = <div {...userProps} />
 
         shallow(getShorthand({ defaultProps, overrideProps, value }))
-        overrideProps.should.have.been.calledWith({ ...defaultProps, ...userProps })
+        expect(overrideProps).have.been.calledWith({ ...defaultProps, ...userProps })
       })
 
       it("is called with the user's props object", () => {
@@ -325,7 +319,7 @@ describe('factories', () => {
         const userProps = { 'data-user': 'props' }
 
         shallow(getShorthand({ defaultProps, overrideProps, value: userProps }))
-        overrideProps.should.have.been.calledWith({ ...defaultProps, ...userProps })
+        expect(overrideProps).have.been.calledWith({ ...defaultProps, ...userProps })
       })
 
       it('is called with the result of mapValueToProps', () => {
@@ -335,7 +329,7 @@ describe('factories', () => {
         const mapValueToProps = val => ({ 'data-mapped': val })
 
         shallow(getShorthand({ defaultProps, mapValueToProps, overrideProps, value }))
-        overrideProps.should.have.been.calledWith({ ...defaultProps, ...mapValueToProps(value) })
+        expect(overrideProps).have.been.calledWith({ ...defaultProps, ...mapValueToProps(value) })
       })
     })
 
@@ -440,7 +434,7 @@ describe('factories', () => {
 
         getShorthand({ value: spy })
 
-        spy.should.have.been.calledOnce()
+        expect(spy).have.been.calledOnce()
       })
 
       it('is called with Component, props, children', () => {
@@ -448,7 +442,7 @@ describe('factories', () => {
 
         getShorthand({ Component: 'p', value: spy })
 
-        spy.should.have.been.calledWithExactly('p', {}, undefined)
+        expect(spy).have.been.calledWithExactly('p', {}, undefined)
       })
 
       it('receives defaultProps in its props argument', () => {
@@ -457,7 +451,7 @@ describe('factories', () => {
 
         getShorthand({ Component: 'p', defaultProps, value: spy })
 
-        spy.should.have.been.calledWithExactly('p', defaultProps, undefined)
+        expect(spy).have.been.calledWithExactly('p', defaultProps, undefined)
       })
 
       it('receives overrideProps in its props argument', () => {
@@ -466,7 +460,7 @@ describe('factories', () => {
 
         getShorthand({ Component: 'p', overrideProps, value: spy })
 
-        spy.should.have.been.calledWithExactly('p', overrideProps, undefined)
+        expect(spy).have.been.calledWithExactly('p', overrideProps, undefined)
       })
     })
 
@@ -509,36 +503,36 @@ describe('factories', () => {
         const userProps = { style: { bottom: 5 } }
         const overrideProps = { style: { right: 5 } }
 
-        shallow(getShorthand({ defaultProps, overrideProps, value: userProps }))
-          .should.have.prop('style')
-          .deep.equal({ left: 5, bottom: 5, right: 5 })
+        expect(shallow(getShorthand({ defaultProps, overrideProps, value: userProps })))
+          .have.prop('style')
+          .toEqual({ left: 5, bottom: 5, right: 5 })
       })
 
       it('merges style prop and handles override by userProps', () => {
         const defaultProps = { style: { left: 10, bottom: 5 } }
         const userProps = { style: { bottom: 10 } }
 
-        shallow(getShorthand({ defaultProps, value: userProps }))
-          .should.have.prop('style')
-          .deep.equal({ left: 10, bottom: 10 })
+        expect(shallow(getShorthand({ defaultProps, value: userProps })))
+          .have.prop('style')
+          .toEqual({ left: 10, bottom: 10 })
       })
 
       it('merges style prop and handles override by overrideProps', () => {
         const userProps = { style: { bottom: 10, right: 5 } }
         const overrideProps = { style: { right: 10 } }
 
-        shallow(getShorthand({ overrideProps, value: userProps }))
-          .should.have.prop('style')
-          .deep.equal({ bottom: 10, right: 10 })
+        expect(shallow(getShorthand({ overrideProps, value: userProps })))
+          .have.prop('style')
+          .toEqual({ bottom: 10, right: 10 })
       })
 
       it('merges style prop from defaultProps and overrideProps', () => {
         const defaultProps = { style: { left: 10, bottom: 5 } }
         const overrideProps = { style: { bottom: 10 } }
 
-        shallow(getShorthand({ defaultProps, overrideProps, value: 'foo' }))
-          .should.have.prop('style')
-          .deep.equal({ left: 10, bottom: 10 })
+        expect(shallow(getShorthand({ defaultProps, overrideProps, value: 'foo' })))
+          .have.prop('style')
+          .toEqual({ left: 10, bottom: 10 })
       })
     })
   })

@@ -15,7 +15,7 @@ describe('EventSet', () => {
       set = set.addHandlers([handler])
       set.dispatchEvent(null, true)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).have.been.calledOnce()
     })
 
     it('adds multiple handlers', () => {
@@ -25,8 +25,8 @@ describe('EventSet', () => {
       set = set.addHandlers([handler1, handler2])
       set.dispatchEvent(null, true)
 
-      handler1.should.have.been.calledOnce()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledOnce()
+      expect(handler2).have.been.calledOnce()
     })
 
     it('adds only unique handlers', () => {
@@ -36,15 +36,15 @@ describe('EventSet', () => {
       set = set.addHandlers([handler1, handler1, handler2, handler2])
       set.dispatchEvent(null, true)
 
-      handler1.should.have.been.calledOnce()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledOnce()
+      expect(handler2).have.been.calledOnce()
     })
 
     it('always returns a new object', () => {
       const another = set.addHandlers([])
 
-      another.should.be.an('object')
-      another.should.be.not.equal(set)
+      expect(typeof another).toBe('object')
+      expect(another).not.toBe(set)
     })
   })
 
@@ -56,8 +56,8 @@ describe('EventSet', () => {
       set = set.addHandlers([handler1, handler2])
       set.dispatchEvent(null, true)
 
-      handler1.should.have.been.calledOnce()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledOnce()
+      expect(handler2).have.been.calledOnce()
     })
 
     it('dispatches an event to only recent event', () => {
@@ -67,21 +67,18 @@ describe('EventSet', () => {
       set = set.addHandlers([handler1, handler2, handler1])
       set.dispatchEvent(null, false)
 
-      handler1.should.have.been.calledOnce()
-      handler2.should.have.not.been.called()
+      expect(handler1).have.been.calledOnce()
+      expect(handler2).have.not.been.called()
     })
   })
 
   describe('hasHandlers', () => {
     it('returns "false" when is empty', () => {
-      set.hasHandlers().should.be.false()
+      expect(set.hasHandlers()).toBe(false)
     })
 
     it('returns "false" when is empty', () => {
-      set
-        .addHandlers([() => {}])
-        .hasHandlers()
-        .should.be.true()
+      expect(set.addHandlers([() => {}]).hasHandlers()).toBe(true)
     })
   })
 
@@ -96,8 +93,8 @@ describe('EventSet', () => {
       set = set.removeHandlers([handler2])
       set.dispatchEvent(null, true)
 
-      handler1.should.have.been.calledTwice()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledTwice()
+      expect(handler2).have.been.calledOnce()
     })
 
     it('removes multiple handlers', () => {
@@ -110,15 +107,15 @@ describe('EventSet', () => {
       set = set.removeHandlers([handler1, handler2])
       set.dispatchEvent(null, true)
 
-      handler1.should.have.been.calledOnce()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).have.been.calledOnce()
+      expect(handler2).have.been.calledOnce()
     })
 
     it('always returns a new object', () => {
       const another = set.removeHandlers([])
 
-      another.should.be.an('object')
-      another.should.be.not.equal(set)
+      expect(typeof another).toBe('object')
+      expect(another).not.toBe(set)
     })
   })
 })
