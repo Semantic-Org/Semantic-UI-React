@@ -66,7 +66,7 @@ export interface DropdownProps {
   defaultUpward?: boolean
 
   /** Initial value or value array if multiple. */
-  defaultValue?: string | number | (number | string)[]
+  defaultValue?: string | number | boolean | (number | string | boolean)[]
 
   /** A dropdown menu can open to the left or to the right. */
   direction?: 'left' | 'right'
