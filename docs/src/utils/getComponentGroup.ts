@@ -5,7 +5,7 @@ import componentInfoContext from './componentInfoContext'
  * @param displayName
  * @returns {{}}
  */
-const getComponentGroup = (displayName) => {
+const getComponentGroup = displayName => {
   const info = componentInfoContext.byDisplayName[displayName]
 
   const group = {
@@ -15,7 +15,7 @@ const getComponentGroup = (displayName) => {
   if (!info.subcomponents) return group
 
   // add subcomponents
-  info.subcomponents.forEach((subcomponent) => {
+  info.subcomponents.forEach(subcomponent => {
     const subInfo = componentInfoContext.byDisplayName[subcomponent]
 
     group[subInfo.displayName] = subInfo

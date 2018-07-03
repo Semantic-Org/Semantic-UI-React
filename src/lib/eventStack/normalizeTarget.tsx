@@ -4,7 +4,7 @@
  * @param {boolean|string|HTMLElement|Window} target Value for normalization.
  * @return {HTMLElement|Window} A DOM node.
  */
-const normalizeTarget = (target) => {
+const normalizeTarget = target => {
   if (target === 'document') return document
   if (target === 'window') return window
   return target || document

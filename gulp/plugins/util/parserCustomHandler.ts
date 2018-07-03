@@ -7,7 +7,7 @@ const { getMemberValuePath, getPropertyName, resolveToValue } = utils
 
 const getObjectName = path => `${_.get(path, 'object.name')}.${_.get(path, 'property.name')}`
 
-const getArgumentValue = (path) => {
+const getArgumentValue = path => {
   if (namedTypes.Identifier.check(path)) return path.name
   if (namedTypes.MemberExpression.check(path)) return getObjectName(path)
 
@@ -17,7 +17,7 @@ const getArgumentValue = (path) => {
 const amendPropTypes = (documentation, path) => {
   if (!namedTypes.ObjectExpression.check(path.node)) return
 
-  path.get('properties').each((propertyPath) => {
+  path.get('properties').each(propertyPath => {
     const propertyName = getPropertyName(propertyPath)
     const propDescriptor = documentation.getPropDescriptor(propertyName)
     const valuePath = propertyPath.get('value')

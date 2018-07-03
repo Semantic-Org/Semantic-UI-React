@@ -1,6 +1,6 @@
 import doctrine from 'doctrine'
 
-export default (docblock) => {
+export default docblock => {
   const { description = '', tags = [], ...rest } = doctrine.parse(docblock || '', { unwrap: true })
 
   return {

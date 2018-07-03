@@ -77,9 +77,9 @@ const getComponentInfo = filepath => {
   // name of the component, sub component, or plural parent for sub component groups
   info.componentClassName = (info.isChild
     ? `ui-${info.parentDisplayName}__${info.subcomponentName.replace(
-      /Group$/,
-      `${info.parentDisplayName}s`,
-    )}`
+        /Group$/,
+        `${info.parentDisplayName}s`,
+      )}`
     : `ui-${info.displayName}`
   ).toLowerCase()
 

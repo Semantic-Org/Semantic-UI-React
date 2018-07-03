@@ -5,7 +5,7 @@ const LayoutExampleDisappearing = () => (
   <Layout
     debug
     disappearing
-    main='This is the main content.  Notice there is no layout container.'
+    main="This is the main content.  Notice there is no layout container."
   />
 )
 

@@ -3,24 +3,24 @@ import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const Variations = () => (
-  <ExampleSection title='Variations'>
+  <ExampleSection title="Variations">
     <ComponentExample
-      title='Reducing'
-      description='A reducing layout renders the minimum number of areas necessary to accomplish the layout.'
-      examplePath='components/Layout/Variations/LayoutExampleReducing'
+      title="Reducing"
+      description="A reducing layout renders the minimum number of areas necessary to accomplish the layout."
+      examplePath="components/Layout/Variations/LayoutExampleReducing"
     />
     <ComponentExample
-      title='Disappearing'
+      title="Disappearing"
       description={[
         'A disappearing layout renders will render content directly when possible',
         ' (i.e. without wrapping elements).',
       ].join('')}
-      examplePath='components/Layout/Variations/LayoutExampleDisappearing'
+      examplePath="components/Layout/Variations/LayoutExampleDisappearing"
     />
     <ComponentExample
-      title='Gap'
-      description='A layout can add whitespace between areas.'
-      examplePath='components/Layout/Variations/LayoutExampleGap'
+      title="Gap"
+      description="A layout can add whitespace between areas."
+      examplePath="components/Layout/Variations/LayoutExampleGap"
     />
   </ExampleSection>
 )

@@ -17,13 +17,13 @@ const getAttributeValue = (attributes, name) => _.get(_.find(attributes, { name 
  * @param {buffer} buffer The content of a view
  * @return {object}
  */
-const parseDocSection = (buffer) => {
+const parseDocSection = buffer => {
   const ast = parseBuffer(buffer)
   const examples = []
   let sectionName
 
   traverse(ast, {
-    JSXOpeningElement: (path) => {
+    JSXOpeningElement: path => {
       const attributes = getJSXAttributes(path)
       const name = _.get(path, 'node.name.name')
 

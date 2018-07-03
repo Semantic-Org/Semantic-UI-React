@@ -6,7 +6,7 @@ import componentInfoContext from './componentInfoContext'
  * @param displayName
  * @returns {{}[]}
  */
-const getInfoForSeeTags = (displayName) => {
+const getInfoForSeeTags = displayName => {
   const info = componentInfoContext.byDisplayName[displayName]
 
   return info.docblock.tags
