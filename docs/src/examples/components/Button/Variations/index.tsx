@@ -6,8 +6,13 @@ const Variations = () => (
   <ExampleSection title="Variations">
     <ComponentExample
       title="Circular"
-      description="An button may appear circular."
+      description="A button can be circular."
       examplePath="components/Button/Variations/ButtonExampleCircular"
+    />
+    <ComponentExample
+      title="Circular Emphasis"
+      description="A button can be circular and formatted to show different levels of emphasis."
+      examplePath="components/Button/Variations/ButtonExampleEmphasisCircular"
     />
   </ExampleSection>
 )

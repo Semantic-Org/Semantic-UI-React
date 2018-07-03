@@ -18,7 +18,7 @@ const getComputedFontSize = () => {
  * @param {number} value The rem value to convert to rems based on the HTML font size.
  * @returns {string} The value converted to the rem value based on the htmlFontSize.
  */
-const rem: any = (value: number = 0) => {
+const rem: any = (value: number = 0): string => {
   const htmlFontSizeValue = parseFloat(_htmlFontSize) || 0
   const htmlFontSizeUnit = _htmlFontSize.replace(htmlFontSizeValue.toString(), '')
 

@@ -6,16 +6,16 @@ import { rem } from '../../lib'
 
 export const htmlFontSize = '14px' // what 1rem represents
 
-const blackRgbaFormat = 'rgba(37, 36, 36, {alpha})'
-export const black = blackRgbaFormat.replace('{alpha}', '1')
-export const gray02 = blackRgbaFormat.replace('{alpha}', '.75')
-export const gray03 = blackRgbaFormat.replace('{alpha}', '.65')
-export const gray04 = blackRgbaFormat.replace('{alpha}', '.50')
-export const gray06 = blackRgbaFormat.replace('{alpha}', '.30')
-export const gray08 = blackRgbaFormat.replace('{alpha}', '.15')
+const blackRgbaFormat = alpha => `rgba(37, 36, 36, ${alpha})`
+export const black = blackRgbaFormat(1)
+export const gray02 = blackRgbaFormat(0.75)
+export const gray03 = blackRgbaFormat(0.65)
+export const gray04 = blackRgbaFormat(0.5)
+export const gray06 = blackRgbaFormat(0.3)
+export const gray08 = blackRgbaFormat(0.15)
 export const gray09 = '#EDEBE9'
 export const gray10 = '#F3F2F1'
-export const gray12 = blackRgbaFormat.replace('{alpha}', '.05')
+export const gray12 = blackRgbaFormat(0.05)
 export const gray14 = '#FAF9F8'
 
 export const white = '#FFF'

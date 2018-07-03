@@ -46,6 +46,10 @@
   dependencies:
     any-observable "^0.3.0"
 
+"@types/classnames@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.4.tgz#d3ee9ebf714aa34006707b8f4a58fd46b642305a"
+
 "@types/jest@^23.1.0":
   version "23.1.1"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.1.1.tgz#c54ab1a5f41aa693c0957222dd10414416d0c87b"
