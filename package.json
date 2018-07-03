@@ -13,7 +13,7 @@
     "build": "gulp build",
     "build:docs": "gulp --series dll build:docs",
     "build:dist": "gulp --series dll build:dist",
-    "ci": "yarn tsd:lint && yarn tsd:test && yarn lint && yarn test",
+    "ci": "yarn lint && yarn prettier && yarn test",
     "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs",
     "deploy:docs": "gulp deploy:docs",
     "lint": "tslint -p .",
