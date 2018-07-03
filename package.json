@@ -22,7 +22,7 @@
     "prettier:fix": "prettier --write \"**/*.{ts,tsx}\"",
     "precommit": "lint-staged && gulp build:docs:toc",
     "postcommit": "git update-index --again",
-    "prerelease": "yarn lint && yarn test && cross-env NODE_ENV=production yarn build",
+    "prerelease": "yarn ci && cross-env NODE_ENV=production yarn build",
     "postrelease": "yarn deploy:docs",
     "release:major": "yarn prerelease && ta-script npm/release major && yarn postrelease",
     "release:minor": "yarn prerelease && ta-script npm/release minor && yarn postrelease",
