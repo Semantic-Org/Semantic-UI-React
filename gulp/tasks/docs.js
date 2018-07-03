@@ -132,10 +132,6 @@ task(
   ),
 )
 
-task('build:docs:images', () =>
-  src(`${paths.docsPublic()}/**/*.{png,jpg,gif}`).pipe(dest(paths.docsDist())),
-)
-
 task('build:docs:toc', (cb) => {
   sh(`doctoc ${paths.base('.github/CONTRIBUTING.md')} --github --maxlevel 4`, cb)
 })
@@ -143,10 +139,7 @@ task('build:docs:toc', (cb) => {
 task(
   'build:docs',
   series(
-    parallel(
-      'build:docs:toc',
-      series('clean:docs', parallel('build:docs:json', 'build:docs:images')),
-    ),
+    parallel('build:docs:toc', series('clean:docs', 'build:docs:json')),
     'build:docs:static:build',
   ),
 )
@@ -180,17 +173,11 @@ task('watch:docs', (cb) => {
 
   // rebuild example menus
   watch(examplesSectionsSrc, series('build:docs:example-menu')).on('change', handleWatchChange)
-
-  // rebuild images
-  watch(`${config.paths.docsPublic()}/**/*.{png,jpg,gif}`, series('build:docs:images')).on(
-    'change',
-    handleWatchChange,
-  )
   cb()
 })
 
 // ----------------------------------------
-// Default
+// Start
 // ----------------------------------------
 
-task('docs', series('build:docs', 'build:docs:static:start', 'watch:docs'))
+task('start:docs', series('clean:docs', 'build:docs:json', 'build:docs:static:start', 'watch:docs'))
