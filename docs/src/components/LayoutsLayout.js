@@ -26,7 +26,7 @@ const style = (
 )
 
 const LayoutComponent = universal(props => import(`docs/src/layouts/${props.filename}`), {
-  loading: () => <Loader inline='centered' />,
+  loading: () => <Loader active inline='centered' />,
 })
 
 class LayoutsLayout extends PureComponent {

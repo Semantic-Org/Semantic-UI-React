@@ -10,7 +10,7 @@ const AceEditor =
   typeof window === 'undefined'
     ? () => null
     : universal(import('./EditorAce'), {
-      loading: () => <Loader />,
+      loading: () => <Loader active inline='centered' />,
     })
 
 function Editor(props) {
