@@ -1,4 +1,4 @@
-import { rem } from '../../lib'
+import { pxToRem } from '../../lib'
 
 export interface IButtonVariables {
   backgroundColor: string
@@ -19,7 +19,7 @@ export default (siteVars: any): IButtonVariables => {
   return {
     backgroundColor: siteVars.gray08,
     backgroundColorHover: siteVars.gray06,
-    circularRadius: rem(99),
+    circularRadius: pxToRem(999),
     circularWidth: '32px',
     typePrimaryColor: siteVars.white,
     typePrimaryBackgroundColor: siteVars.brand,

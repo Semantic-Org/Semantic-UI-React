@@ -1,9 +1,9 @@
-import { rem } from '../../lib'
+import { pxToRem } from '../../lib'
 
 export default () => ({
   root: {
-    fontSize: rem(2.1428),
-    lineHeight: rem(2.2),
+    fontSize: pxToRem(21.428),
+    lineHeight: pxToRem(22),
     color: 'rgba(0,0,0,.6)',
     fontWeight: 400,
   },

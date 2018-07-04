@@ -1,4 +1,4 @@
-import { rem } from '../../lib'
+import { pxToRem } from '../../lib'
 import { debugRoot } from '../../styles/debugRules'
 
 const listItemRules = props => {
@@ -31,9 +31,9 @@ const listItemRules = props => {
         '::before': {
           content: '""',
           position: 'absolute',
-          left: rem(0.8),
-          width: rem(0.2),
-          height: rem(0.2),
+          left: pxToRem(8),
+          width: pxToRem(2),
+          height: pxToRem(2),
           background: '#000',
         },
       }),

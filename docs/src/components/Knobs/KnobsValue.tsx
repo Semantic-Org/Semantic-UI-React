@@ -1,10 +1,10 @@
 import React from 'react'
 import { createComponent } from 'react-fela'
-import { rem } from 'src/lib'
+import { pxToRem } from 'src/lib'
 
 const KnobsValue = createComponent(
   () => ({
-    padding: `0 ${rem(0.5)}`,
+    padding: `0 ${pxToRem(5)}`,
   }),
   props => (
     <span className={props.className}>

@@ -1,4 +1,4 @@
-import { rem } from '../../lib'
+import { pxToRem } from '../../lib'
 
 //
 // VARIABLES
@@ -46,7 +46,7 @@ export const bodyMargin = 0
 export const bodyFontFamily = '"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif'
 export const bodyFontSize = '1rem'
 export const bodyColor = black
-export const bodyLineHeight = rem(2)
+export const bodyLineHeight = pxToRem(20)
 
 //
 // Colors
@@ -61,16 +61,16 @@ export const timestampTextColor = gray04
 //
 // Fonts
 //
-export const fontSizeBase = rem(1.4)
-export const fontSizeSmall = rem(1.2)
-export const fontSizeExtraSmall = rem(1)
+export const fontSizeBase = pxToRem(14)
+export const fontSizeSmall = pxToRem(12)
+export const fontSizeExtraSmall = pxToRem(10)
 
 //
 // Line Heights
 //
-export const lineHeightBase = rem(2.0)
-export const lineHeightSmall = rem(1.6)
-export const lineHeightExtraSmall = rem(1.2)
+export const lineHeightBase = pxToRem(20)
+export const lineHeightSmall = pxToRem(16)
+export const lineHeightExtraSmall = pxToRem(12)
 
 //
 // Text Component

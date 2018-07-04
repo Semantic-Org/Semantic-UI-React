@@ -1,7 +1,7 @@
 export default () => {
   const vars: any = {}
 
-  vars.borderRadius = 1
+  vars.borderRadius = 10
 
   return vars
 }

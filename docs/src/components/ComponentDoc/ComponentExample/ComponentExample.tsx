@@ -6,7 +6,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 import { Divider, Form, Grid, Menu, Segment, Visibility } from 'semantic-ui-react'
-import { rem } from 'src/lib'
+import { pxToRem } from 'src/lib'
 import evalTypeScript from 'docs/src/utils/evalTypeScript'
 import { Provider } from 'stardust'
 
@@ -25,18 +25,18 @@ import ComponentExampleTitle from './ComponentExampleTitle'
 
 const childrenStyle = {
   paddingTop: 0,
-  maxWidth: rem(50),
+  maxWidth: pxToRem(500),
 }
 
 const errorStyle = {
   padding: '1em',
-  fontSize: rem(0.9),
+  fontSize: pxToRem(9),
   color: '#a33',
   background: '#fff2f2',
 }
 
 const controlsWrapperStyle = {
-  minHeight: rem(3),
+  minHeight: pxToRem(30),
 }
 
 /**

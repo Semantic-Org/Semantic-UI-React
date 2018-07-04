@@ -1,5 +1,5 @@
 import { createComponent } from 'react-fela'
-import { rem } from 'src/lib'
+import { pxToRem } from 'src/lib'
 
 import KnobsField from './KnobsField'
 import KnobsControl from './KnobsControl'
@@ -11,7 +11,7 @@ import KnobsScalar from './KnobsScalar'
 
 const Knobs: any = createComponent(
   () => ({
-    padding: rem(1),
+    padding: pxToRem(10),
     background: '#eee',
   }),
   'div',

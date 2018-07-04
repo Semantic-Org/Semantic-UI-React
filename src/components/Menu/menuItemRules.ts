@@ -1,4 +1,4 @@
-import { rem } from '../../lib'
+import { pxToRem } from '../../lib'
 
 export default ({ active }) => ({
   root: {
@@ -6,7 +6,7 @@ export default ({ active }) => ({
     lineHeight: 1,
     position: 'relative',
     verticalAlign: 'middle',
-    padding: `${rem(1.4)} ${rem(1.8)}`,
+    padding: `${pxToRem(14)} ${pxToRem(18)}`,
     cursor: 'pointer',
     display: 'block',
 

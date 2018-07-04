@@ -1,10 +1,10 @@
-import { rem } from '../../lib'
+import { pxToRem } from '../../lib'
 
 export default () => {
   const vars: any = {}
 
-  vars.avatarRadius = rem(999)
-  vars.avatarSize = rem(3.2)
+  vars.avatarRadius = pxToRem(9999)
+  vars.avatarSize = pxToRem(32)
 
   return vars
 }

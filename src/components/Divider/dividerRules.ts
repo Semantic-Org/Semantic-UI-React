@@ -1,39 +1,39 @@
-import { rem, childrenExist } from '../../lib'
+import { childrenExist, pxToRem } from '../../lib'
 
 const dividerBorderRule = size => ({
-  height: rem(0.1 + size * 0.1),
+  height: pxToRem(1 + size),
   background: 'lightgray',
 })
 
 const beforeAndAfter = (size, radius) => ({
   content: '""',
   flex: 1,
-  borderRadius: rem(radius),
+  borderRadius: pxToRem(radius),
   ...dividerBorderRule(size),
 })
 
 export default ({ children, size, variables }) => ({
   root: {
-    marginTop: rem(0.1 + size * 0.75),
-    marginBottom: rem(0.1 + size * 0.75),
+    marginTop: pxToRem(10 + size * 7.5),
+    marginBottom: pxToRem(10 + size * 7.5),
     ...(childrenExist(children)
       ? {
           display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
           lineHeight: 0,
-          fontSize: rem(1.4 + size * 0.1),
+          fontSize: pxToRem(14 + size),
           ':before': {
             ...beforeAndAfter(size, variables.borderRadius),
-            marginRight: rem(1 + size * 0.2),
+            marginRight: pxToRem(10 + size * 2),
           },
           ':after': {
             ...beforeAndAfter(size, variables.borderRadius),
-            marginLeft: rem(1 + size * 0.2),
+            marginLeft: pxToRem(10 + size * 2),
           },
         }
       : {
-          borderRadius: rem(variables.borderRadius),
+          borderRadius: pxToRem(variables.borderRadius),
           ...dividerBorderRule(size),
         }),
   },
