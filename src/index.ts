@@ -1,3 +1,4 @@
+export { default as Accordion } from './components/Accordion'
 export { default as Button } from './components/Button'
 export { default as Divider } from './components/Divider'
 export { default as Image } from './components/Image'

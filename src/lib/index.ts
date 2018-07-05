@@ -12,6 +12,15 @@ export { default as getUnhandledProps } from './getUnhandledProps'
 export { default as getElementType } from './getElementType'
 export { default as createComponent } from './createComponent'
 export {
+  useKeyOnly,
+  useKeyOrValueAndKey,
+  useValueAndKey,
+  useMultipleProp,
+  useTextAlignProp,
+  useVerticalAlignProp,
+  useWidthProp,
+} from './classNameBuilders'
+export {
   htmlImageProps,
   htmlInputAttrs,
   htmlInputEvents,
