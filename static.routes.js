@@ -16,12 +16,12 @@ export default async () => {
   return [
     {
       path: '/',
-      redirect: '/introduction',
+      component: 'docs/src/views/Introduction',
+      priority: 1,
     },
     {
       path: '/introduction',
-      component: 'docs/src/views/Introduction',
-      priority: 1,
+      redirect: '/',
     },
     {
       path: '/layouts',
@@ -37,6 +37,10 @@ export default async () => {
       path: '/usage',
       component: 'docs/src/views/Usage',
       priority: 0.9,
+    },
+    {
+      component: 'docs/src/views/PageNotFound',
+      is404: true,
     },
     ..._.map(getComponentMenu(), baseInfo => ({
       path: getComponentPathname(baseInfo),
@@ -64,7 +68,13 @@ export default async () => {
         componentFilename,
       }),
     })),
-    /* TODO: */
-    /* Maximized layout example */
+    ..._.map(exampleSources, (source, path) => ({
+      path: `/maximize/${_.kebabCase(path.split('/').slice(-1))}`,
+      component: 'docs/src/components/ExternalExampleLayout',
+      priority: 0.4,
+      getData: async () => ({
+        path,
+      }),
+    })),
   ]
 }

@@ -1,28 +1,15 @@
 import PropTypes from 'prop-types'
-// import React from 'react'
+import { createElement } from 'react'
+import { withRouteData } from 'react-static'
 
-const ExternalExampleLayout = () => null
-// const { exampleName } = props.match.params
-// const exampleFilename = `/${_.startCase(exampleName).replace(/ /g, '')}.js`
+const ExternalExampleLayout = (props) => {
+  const exampleComponent = require(`docs/src/examples/${props.path}`).default
 
-// const componentKey = _.find(_.endsWith(exampleFilename), exampleKeys)
-// if (!componentKey) return <PageNotFound />
-//
-// const ExampleComponent = exampleContext(componentKey).default
-// if (!ExampleComponent) return <PageNotFound />
-//
-// return <ExampleComponent />
-// }
-
-ExternalExampleLayout.propTypes = {
-  children: PropTypes.node,
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      exampleName: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
+  return createElement(exampleComponent)
 }
 
-export default ExternalExampleLayout
+ExternalExampleLayout.propTypes = {
+  path: PropTypes.string.isRequired,
+}
+
+export default withRouteData(ExternalExampleLayout)
