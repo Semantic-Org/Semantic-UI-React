@@ -1,6 +1,6 @@
 {
-  "name": "stardust",
-  "version": "0.52.5",
+  "name": "@stardust-ui/react",
+  "version": "0.0.0",
   "description": "A themable React component library.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
