@@ -35,6 +35,7 @@ const componentInfoShape = PropTypes.shape({
     ),
     description: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
+  examplesExist: PropTypes.bool.isRequired,
   repoPath: PropTypes.string.isRequired,
   filename: PropTypes.string.isRequired,
   filenameWithoutExt: PropTypes.string.isRequired,

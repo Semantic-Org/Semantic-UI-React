@@ -7,6 +7,7 @@ import ContributionPrompt from './ContributionPrompt'
 export default class ComponentExamples extends Component {
   static propTypes = {
     displayName: PropTypes.string.isRequired,
+    examplesExist: PropTypes.bool.isRequired,
     type: PropTypes.string.isRequired,
   }
 
@@ -28,7 +29,10 @@ export default class ComponentExamples extends Component {
       </Grid>
     )
   }
+
   render() {
-    return this.renderExamples() || this.renderMissingExamples()
+    const { examplesExist } = this.props
+
+    return examplesExist ? this.renderExamples() : this.renderMissingExamples()
   }
 }

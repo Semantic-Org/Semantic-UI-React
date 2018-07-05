@@ -101,7 +101,11 @@ class ComponentDoc extends Component {
           <Grid.Row columns='equal'>
             <Grid.Column>
               <div ref={this.handleExamplesRef}>
-                <ComponentExamples displayName={displayName} type={componentInfo.type} />
+                <ComponentExamples
+                  displayName={displayName}
+                  examplesExist={componentInfo.examplesExist}
+                  type={componentInfo.type}
+                />
               </div>
               <div style={exampleEndStyle}>
                 This is the bottom <Icon name='pointing down' />
