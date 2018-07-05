@@ -8,6 +8,7 @@ export const htmlInputAttrs = [
 
   // LIMITED HTML PROPS
   'accept',
+  'lang',
   'autoCapitalize',
   'autoComplete',
   'autoCorrect',
