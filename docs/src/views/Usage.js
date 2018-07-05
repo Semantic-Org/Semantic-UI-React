@@ -73,8 +73,8 @@ const Usage = ({ pkg, versions }) => (
             should use corresponding version of Semantic UI React:
           </p>
           <Message.List>
-            <Message.Item>for SUI 2.2 use 0.79.1 and below</Message.Item>
-            <Message.Item>for SUI 2.3 use 0.80.0 and higher</Message.Item>
+            <Message.Item>for SUI 2.2 use 0.80.2 and below</Message.Item>
+            <Message.Item>for SUI 2.3 use 0.81.0 and higher</Message.Item>
           </Message.List>
         </Message>
 
@@ -255,7 +255,7 @@ const Usage = ({ pkg, versions }) => (
         </p>
 
         <p>
-          Please ensure that you're using <code>semantic-ui-react@0.82.0</code> or higher because we
+          Please ensure that you're using <code>semantic-ui-react@0.81.2</code> or higher because we
           added the{' '}
           <a
             href='https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free'
