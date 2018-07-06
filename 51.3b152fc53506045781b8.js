@@ -1,0 +1,6 @@
+webpackJsonp([51],{3652:/*!*******************************************************!*\
+  !*** ./docs/src/exampleMenus/Accordion.examples.json ***!
+  \*******************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+function(e,o){e.exports=[{sectionName:"Types",examples:[{title:"Accordion",examplePath:"modules/Accordion/Types/AccordionExampleStandard"},{title:"Styled",examplePath:"modules/Accordion/Types/AccordionExampleStyled"}]},{sectionName:"Variations",examples:[{title:"Fluid",examplePath:"modules/Accordion/Variations/AccordionExampleFluid"},{title:"Inverted",examplePath:"modules/Accordion/Variations/AccordionExampleInverted"}]},{sectionName:"Advanced",examples:[{title:"Nested Accordions",examplePath:"modules/Accordion/Advanced/AccordionExampleNested"},{title:"Form Fields",examplePath:"modules/Accordion/Advanced/AccordionExampleForm"},{title:"Accordion Menu",examplePath:"modules/Accordion/Advanced/AccordionExampleMenu"},{title:"Shorthand",examplePath:"modules/Accordion/Advanced/AccordionExampleShorthand"}]},{sectionName:"Usage",examples:[{title:"Active Index",examplePath:"modules/Accordion/Usage/AccordionExampleActiveIndex"},{title:"Exclusive",examplePath:"modules/Accordion/Usage/AccordionExampleExclusive"}]}]}});

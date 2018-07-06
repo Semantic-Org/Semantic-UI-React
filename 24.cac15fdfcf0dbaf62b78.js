@@ -1,0 +1,6 @@
+webpackJsonp([24],{3679:/*!***************************************************!*\
+  !*** ./docs/src/exampleMenus/Modal.examples.json ***!
+  \***************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+function(l,e){l.exports=[{sectionName:"Types",examples:[{title:"Modal",examplePath:"modules/Modal/Types/ModalExampleModal"},{title:"Basic",examplePath:"modules/Modal/Types/ModalExampleBasic"},{title:"Top Aligned",examplePath:"modules/Modal/Types/ModalExampleTopAligned"},{title:"Scrolling Modal",examplePath:"modules/Modal/Types/ModalExampleScrolling"},{title:"Multiple Modals",examplePath:"modules/Modal/Types/ModalExampleMultiple"},{title:"Controlled",examplePath:"modules/Modal/Types/ModalExampleControlled"}]},{sectionName:"Variations",examples:[{title:"Size",examplePath:"modules/Modal/Variations/ModalExampleSize"},{title:"Scrolling Content",examplePath:"modules/Modal/Variations/ModalExampleScrollingContent"},{title:"Dimmer Variations",examplePath:"modules/Modal/Variations/ModalExampleDimmer"},{title:"Close Config",examplePath:"modules/Modal/Variations/ModalExampleCloseConfig"}]}]}});

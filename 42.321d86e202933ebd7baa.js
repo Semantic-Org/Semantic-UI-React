@@ -1,6 +1,0 @@
-webpackJsonp([42],{3657:/*!****************************************************!*\
-  !*** ./docs/src/exampleMenus/Dimmer.examples.json ***!
-  \****************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-function(e,m){e.exports=[{sectionName:"Types",examples:[{title:"Dimmer",examplePath:"modules/Dimmer/Types/DimmerExampleDimmer"},{title:"Content Dimmer",examplePath:"modules/Dimmer/Types/DimmerExampleContent"},{title:"Page Dimmer",examplePath:"modules/Dimmer/Types/DimmerExamplePage"}]},{sectionName:"States",examples:[{title:"Active",examplePath:"modules/Dimmer/States/DimmerExampleActive"}]},{sectionName:"Variations",examples:[{title:"Blurring",examplePath:"modules/Dimmer/Variations/DimmerExampleBlurring"},{title:"Simple Dimmer",examplePath:"modules/Dimmer/Variations/DimmerExampleSimple"},{title:"Inverted",examplePath:"modules/Dimmer/Variations/DimmerExampleInverted"},{title:"Vertical Alignment",examplePath:"modules/Dimmer/Variations/DimmerExampleVerticalAlignTop"}]},{sectionName:"Usage",examples:[{title:"Dimmer Events",examplePath:"modules/Dimmer/Usage/DimmerExampleEvents"},{title:"Loaders inside Dimmers",examplePath:"modules/Dimmer/Usage/DimmerExampleLoader"}]}]}});
