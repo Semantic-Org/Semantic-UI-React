@@ -6,8 +6,8 @@ const ImageExampleWrappedImageProps = () => (
     as='div'
     alt='An example alt'
     size='small'
-    src='/assets/images/wireframe/image-text.png'
-    srcSet='/assets/images/wireframe/image.png 2x'
+    src='/images/wireframe/image-text.png'
+    srcSet='/images/wireframe/image.png 2x'
   />
 )
 

@@ -2,35 +2,78 @@ import _ from 'lodash'
 
 export const htmlInputAttrs = [
   // REACT
-  'selected', 'defaultValue', 'defaultChecked',
+  'selected',
+  'defaultValue',
+  'defaultChecked',
 
   // LIMITED HTML PROPS
-  'accept', 'autoCapitalize', 'autoComplete', 'autoCorrect', 'autoFocus', 'checked', 'disabled', 'form', 'id', 'list',
-  'max', 'maxLength', 'min', 'minLength', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'step',
-  'type', 'value',
+  'accept',
+  'autoCapitalize',
+  'autoComplete',
+  'autoCorrect',
+  'autoFocus',
+  'checked',
+  'disabled',
+  'form',
+  'id',
+  'list',
+  'max',
+  'maxLength',
+  'min',
+  'minLength',
+  'multiple',
+  'name',
+  'pattern',
+  'placeholder',
+  'readOnly',
+  'required',
+  'step',
+  'type',
+  'value',
 ]
 
 export const htmlInputEvents = [
   // EVENTS
   // keyboard
-  'onKeyDown', 'onKeyPress', 'onKeyUp',
+  'onKeyDown',
+  'onKeyPress',
+  'onKeyUp',
 
   // focus
-  'onFocus', 'onBlur',
+  'onFocus',
+  'onBlur',
 
   // form
-  'onChange', 'onInput',
+  'onChange',
+  'onInput',
 
   // mouse
-  'onClick', 'onContextMenu',
-  'onDrag', 'onDragEnd', 'onDragEnter', 'onDragExit', 'onDragLeave', 'onDragOver', 'onDragStart', 'onDrop',
-  'onMouseDown', 'onMouseEnter', 'onMouseLeave', 'onMouseMove', 'onMouseOut', 'onMouseOver', 'onMouseUp',
+  'onClick',
+  'onContextMenu',
+  'onDrag',
+  'onDragEnd',
+  'onDragEnter',
+  'onDragExit',
+  'onDragLeave',
+  'onDragOver',
+  'onDragStart',
+  'onDrop',
+  'onMouseDown',
+  'onMouseEnter',
+  'onMouseLeave',
+  'onMouseMove',
+  'onMouseOut',
+  'onMouseOver',
+  'onMouseUp',
 
   // selection
   'onSelect',
 
   // touch
-  'onTouchCancel', 'onTouchEnd', 'onTouchMove', 'onTouchStart',
+  'onTouchCancel',
+  'onTouchEnd',
+  'onTouchMove',
+  'onTouchStart',
 ]
 
 export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents]
@@ -44,10 +87,7 @@ export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents]
  * @returns {[{}, {}]} An array of objects
  */
 export const partitionHTMLProps = (props, options = {}) => {
-  const {
-    htmlProps = htmlInputProps,
-    includeAria = true,
-  } = options
+  const { htmlProps = htmlInputProps, includeAria = true } = options
   const inputProps = {}
   const rest = {}
 

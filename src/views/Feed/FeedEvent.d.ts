@@ -1,50 +1,50 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..';
-import { FeedContentProps } from './FeedContent';
-import { FeedDateProps } from './FeedDate';
-import { FeedLabelProps } from './FeedLabel';
-import { FeedMetaProps } from './FeedMeta';
-import { FeedSummaryProps } from './FeedSummary';
-import {FeedExtraProps} from './FeedExtra';
+import { SemanticShorthandItem } from '../..'
+import { FeedContentProps } from './FeedContent'
+import { FeedDateProps } from './FeedDate'
+import { FeedLabelProps } from './FeedLabel'
+import { FeedMetaProps } from './FeedMeta'
+import { FeedSummaryProps } from './FeedSummary'
+import { FeedExtraProps } from './FeedExtra'
 
 export interface FeedEventProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for FeedContent. */
-  content?: SemanticShorthandItem<FeedContentProps>;
+  content?: SemanticShorthandItem<FeedContentProps>
 
   /** Shorthand for FeedDate. */
-  date?: SemanticShorthandItem<FeedDateProps>;
+  date?: SemanticShorthandItem<FeedDateProps>
 
   /** Shorthand for FeedExtra with images. */
-  extraImages?: SemanticShorthandItem<FeedExtraProps>;
+  extraImages?: SemanticShorthandItem<FeedExtraProps>
 
   /** Shorthand for FeedExtra with content. */
-  extraText?: SemanticShorthandItem<FeedExtraProps>;
+  extraText?: SemanticShorthandItem<FeedExtraProps>
 
   /** An event can contain icon label. */
-  icon?: SemanticShorthandItem<FeedLabelProps>;
+  icon?: SemanticShorthandItem<FeedLabelProps>
 
   /** An event can contain image label. */
-  image?: SemanticShorthandItem<FeedLabelProps>;
+  image?: SemanticShorthandItem<FeedLabelProps>
 
   /** Shorthand for FeedMeta. */
-  meta?: SemanticShorthandItem<FeedMetaProps>;
+  meta?: SemanticShorthandItem<FeedMetaProps>
 
   /** Shorthand for FeedSummary. */
-  summary?: SemanticShorthandItem<FeedSummaryProps>;
+  summary?: SemanticShorthandItem<FeedSummaryProps>
 }
 
-declare const FeedEvent: React.StatelessComponent<FeedEventProps>;
+declare const FeedEvent: React.StatelessComponent<FeedEventProps>
 
-export default FeedEvent;
+export default FeedEvent

@@ -1,28 +1,28 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandContent } from '../..';
-import SearchResult from './SearchResult';
+import { SemanticShorthandContent } from '../..'
+import SearchResult from './SearchResult'
 
 export interface SearchCategoryProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** The item currently selected by keyboard shortcut. */
-  active?: boolean;
+  active?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Display name. */
-  name?: string;
+  name?: string
 
   /**
    * Renders the category contents.
@@ -30,12 +30,12 @@ export interface SearchCategoryProps {
    * @param {object} props - The SearchCategory props object.
    * @returns {*} - Renderable category contents.
    */
-  renderer?: (props: SearchCategoryProps) => React.ReactElement<any>;
+  renderer?: (props: SearchCategoryProps) => React.ReactElement<any>
 
   /** Array of Search.Result props. */
-  results?: Array<typeof SearchResult>;
+  results?: (typeof SearchResult)[]
 }
 
-declare const SearchCategory: React.StatelessComponent<SearchCategoryProps>;
+declare const SearchCategory: React.StatelessComponent<SearchCategoryProps>
 
-export default SearchCategory;
+export default SearchCategory

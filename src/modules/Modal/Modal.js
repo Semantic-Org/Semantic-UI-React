@@ -7,6 +7,7 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  doesNodeContainClick,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -173,6 +174,16 @@ class Modal extends Component {
     this.trySetState({ open: false })
   }
 
+  handleDimmerClick = (e) => {
+    debug('handleDimmerClick()')
+    const { closeOnDimmerClick } = this.props
+
+    if (!closeOnDimmerClick || doesNodeContainClick(this.ref, e)) return
+
+    _.invoke(this.props, 'onClose', e, this.props)
+    this.trySetState({ open: false })
+  }
+
   handleIconOverrides = predefinedProps => ({
     onClick: (e) => {
       _.invoke(predefinedProps, 'onClick', e)
@@ -205,15 +216,13 @@ class Modal extends Component {
 
   handleRef = c => (this.ref = c)
 
-  handlePortalRef = c => (this.portalRef = c)
+  handleDimmerRef = c => (this.dimmerRef = c)
 
-  setRootNodeStyle = () => {
-    debug('setRootNodeStyle()')
+  setDimmerNodeStyle = () => {
+    debug('setDimmerNodeStyle()')
 
-    if (!this.portalRef) return
-
-    if (this.portalRef) {
-      this.portalRef.rootNode.style.setProperty('display', 'flex', 'important')
+    if (this.dimmerRef) {
+      this.dimmerRef.style.setProperty('display', 'flex', 'important')
     }
   }
 
@@ -256,7 +265,7 @@ class Modal extends Component {
 
     this.animationRequestId = requestAnimationFrame(this.setPositionAndClassNames)
 
-    this.setRootNodeStyle()
+    this.setDimmerNodeStyle()
   }
 
   renderContent = (rest) => {
@@ -318,14 +327,7 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const {
-      centered,
-      closeOnDimmerClick,
-      closeOnDocumentClick,
-      dimmer,
-      eventPool,
-      trigger,
-    } = this.props
+    const { centered, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -369,10 +371,8 @@ class Modal extends Component {
     return (
       <Portal
         closeOnDocumentClick={closeOnDocumentClick}
-        closeOnRootNodeClick={closeOnDimmerClick}
         {...portalProps}
         trigger={trigger}
-        className={dimmerClasses}
         eventPool={eventPool}
         mountNode={mountNode}
         open={open}
@@ -380,9 +380,10 @@ class Modal extends Component {
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
-        ref={this.handlePortalRef}
       >
-        {this.renderContent(rest)}
+        <div className={dimmerClasses} onClick={this.handleDimmerClick} ref={this.handleDimmerRef}>
+          {this.renderContent(rest)}
+        </div>
       </Portal>
     )
   }

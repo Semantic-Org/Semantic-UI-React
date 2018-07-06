@@ -1,40 +1,40 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..';
-import { default as PaginationItem, PaginationItemProps } from './PaginationItem';
+import { SemanticShorthandItem } from '../..'
+import { default as PaginationItem, PaginationItemProps } from './PaginationItem'
 
 export interface PaginationProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** A pagination item can have an aria label. */
-  'aria-label'?: string;
+  'aria-label'?: string
 
   /** Initial activePage value. */
-  defaultActivePage?: number | string;
+  defaultActivePage?: number | string
 
   /** Index of the currently active page. */
-  activePage?: number | string;
+  activePage?: number | string
 
   /** Number of always visible pages at the beginning and end. */
-  boundaryRange?: number | string;
+  boundaryRange?: number | string
 
   /** A shorthand for PaginationItem. */
-  ellipsisItem?: SemanticShorthandItem<PaginationItemProps>;
+  ellipsisItem?: SemanticShorthandItem<PaginationItemProps>
 
   /** A shorthand for PaginationItem. */
-  firstItem?: SemanticShorthandItem<PaginationItemProps>;
+  firstItem?: SemanticShorthandItem<PaginationItemProps>
 
   /** A shorthand for PaginationItem. */
-  lastItem?: SemanticShorthandItem<PaginationItemProps>;
+  lastItem?: SemanticShorthandItem<PaginationItemProps>
 
   /** A shorthand for PaginationItem. */
-  nextItem?: SemanticShorthandItem<PaginationItemProps>;
+  nextItem?: SemanticShorthandItem<PaginationItemProps>
 
   /** A shorthand for PaginationItem. */
-  pageItem?: SemanticShorthandItem<PaginationItemProps>;
+  pageItem?: SemanticShorthandItem<PaginationItemProps>
 
   /** A shorthand for PaginationItem. */
-  prevItem?: SemanticShorthandItem<PaginationItemProps>;
+  prevItem?: SemanticShorthandItem<PaginationItemProps>
 
   /**
    * Called on change of an active page.
@@ -42,17 +42,17 @@ export interface PaginationProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onPageChange?: (event: React.MouseEvent<HTMLAnchorElement>, data: PaginationProps) => void;
+  onPageChange?: (event: React.MouseEvent<HTMLAnchorElement>, data: PaginationProps) => void
 
   /** Number of always visible pages before and after the current one. */
-  siblingRange?: number | string;
+  siblingRange?: number | string
 
   /** Total number of pages. */
-  totalPages: number | string;
+  totalPages: number | string
 }
 
 declare class Pagination extends React.Component<PaginationProps, {}> {
-  static Item: typeof PaginationItem;
+  static Item: typeof PaginationItem
 }
 
-export default Pagination;
+export default Pagination

@@ -1,43 +1,43 @@
-import * as React from 'react';
+import * as React from 'react'
 
 import {
   SemanticCOLORS,
   SemanticFLOATS,
   SemanticShorthandContent,
   SemanticShorthandItem,
-  SemanticSIZES
-} from '../..';
-import { LabelProps } from '../Label';
-import ButtonContent from './ButtonContent';
-import ButtonGroup from './ButtonGroup';
-import ButtonOr from './ButtonOr';
+  SemanticSIZES,
+} from '../..'
+import { LabelProps } from '../Label'
+import ButtonContent from './ButtonContent'
+import ButtonGroup from './ButtonGroup'
+import ButtonOr from './ButtonOr'
 
 export interface ButtonProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A button can show it is currently the active user selection. */
-  active?: boolean;
+  active?: boolean
 
   /** A button can animate to show hidden content. */
-  animated?: boolean | 'fade' | 'vertical';
+  animated?: boolean | 'fade' | 'vertical'
 
   /** A button can be attached to other content. */
-  attached?: boolean | 'left' | 'right' | 'top' | 'bottom';
+  attached?: boolean | 'left' | 'right' | 'top' | 'bottom'
 
   /** A basic button is less pronounced. */
-  basic?: boolean;
+  basic?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** A button can be circular. */
-  circular?: boolean;
+  circular?: boolean
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A button can have different colors. */
   color?:
@@ -48,76 +48,76 @@ export interface ButtonProps {
     | 'twitter'
     | 'linkedin'
     | 'instagram'
-    | 'youtube';
+    | 'youtube'
 
   /** A button can reduce its padding to fit into tighter spaces. */
-  compact?: boolean;
+  compact?: boolean
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A button can show it is currently unable to be interacted with. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** A button can be aligned to the left or right of its container. */
-  floated?: SemanticFLOATS;
+  floated?: SemanticFLOATS
 
   /** A button can take the width of its container. */
-  fluid?: boolean;
+  fluid?: boolean
 
   /** Add an Icon by name, props object, or pass an <Icon />. */
-  icon?: any;
+  icon?: any
 
   /** A button can be formatted to appear on dark backgrounds. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Add a Label by text, props object, or pass a <Label />. */
-  label?: SemanticShorthandItem<LabelProps>;
+  label?: SemanticShorthandItem<LabelProps>
 
   /** A labeled button can format a Label or Icon to appear on the left or right. */
-  labelPosition?: 'right' | 'left';
+  labelPosition?: 'right' | 'left'
 
   /** A button can show a loading indicator. */
-  loading?: boolean;
+  loading?: boolean
 
   /** A button can hint towards a negative consequence. */
-  negative?: boolean;
+  negative?: boolean
 
   /**
    * Called after user's click.
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps) => void
 
   /** A button can hint towards a positive consequence. */
-  positive?: boolean;
+  positive?: boolean
 
   /** A button can be formatted to show different levels of emphasis. */
-  primary?: boolean;
+  primary?: boolean
 
   /** The role of the HTML element. */
-  role?: string;
+  role?: string
 
   /** A button can be formatted to show different levels of emphasis. */
-  secondary?: boolean;
+  secondary?: boolean
 
   /** A button can have different sizes. */
-  size?: SemanticSIZES;
+  size?: SemanticSIZES
 
   /** A button can receive focus. */
-  tabIndex?: number | string;
+  tabIndex?: number | string
 
   /** A button can be formatted to toggle on and off. */
-  toggle?: boolean;
+  toggle?: boolean
 }
 
 declare class Button extends React.Component<ButtonProps, {}> {
-  static Content: typeof ButtonContent;
-  static Group: typeof ButtonGroup;
-  static Or: typeof ButtonOr;
+  static Content: typeof ButtonContent
+  static Group: typeof ButtonGroup
+  static Or: typeof ButtonOr
 
-  focus: () => void;
+  focus: () => void
 }
 
-export default Button;
+export default Button

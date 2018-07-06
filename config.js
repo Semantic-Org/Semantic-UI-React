@@ -19,6 +19,7 @@ const envConfig = {
   dir_dist: 'dist',
   dir_dll: 'dll',
   dir_docs_dist: 'docs/dist',
+  dir_docs_public: 'docs/public',
   dir_docs_src: 'docs/src',
 }
 
@@ -33,6 +34,7 @@ const paths = {
   dist: base.bind(null, envConfig.dir_dist),
   dll: base.bind(null, envConfig.dir_dll),
   docsDist: base.bind(null, envConfig.dir_docs_dist),
+  docsPublic: base.bind(null, envConfig.dir_docs_public),
   docsSrc: base.bind(null, envConfig.dir_docs_src),
 }
 

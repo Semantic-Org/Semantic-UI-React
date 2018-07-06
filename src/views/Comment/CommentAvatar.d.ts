@@ -1,18 +1,18 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export interface CommentAvatarProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Specifies the URL of the image. */
-  src?: string;
+  src?: string
 }
 
-declare const CommentAvatar: React.StatelessComponent<CommentAvatarProps>;
+declare const CommentAvatar: React.StatelessComponent<CommentAvatarProps>
 
-export default CommentAvatar;
+export default CommentAvatar

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image } from 'src'
+import { Image } from 'semantic-ui-react'
 
 const Logo = props => <Image {...props} src='/logo.png' />
 

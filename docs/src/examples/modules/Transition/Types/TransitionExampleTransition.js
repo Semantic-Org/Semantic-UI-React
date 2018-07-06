@@ -14,7 +14,7 @@ export default class TransitionExampleTransition extends Component {
         <Button content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} />
         <Divider hidden />
         <Transition visible={visible} animation='scale' duration={500}>
-          <Image size='small' src='/assets/images/leaves/1.png' />
+          <Image size='small' src='/images/leaves/1.png' />
         </Transition>
       </div>
     )

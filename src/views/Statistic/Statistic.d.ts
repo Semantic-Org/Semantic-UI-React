@@ -1,58 +1,58 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticCOLORS, SemanticFLOATS, SemanticShorthandContent } from '../..';
-import StatisticGroup from './StatisticGroup';
-import StatisticLabel from './StatisticLabel';
-import StatisticValue from './StatisticValue';
+import { SemanticCOLORS, SemanticFLOATS, SemanticShorthandContent } from '../..'
+import StatisticGroup from './StatisticGroup'
+import StatisticLabel from './StatisticLabel'
+import StatisticValue from './StatisticValue'
 
-export type StatisticSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'huge';
+export type StatisticSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'huge'
 
 export interface StatisticProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A statistic can be formatted to be different colors. */
-  color?: SemanticCOLORS;
+  color?: SemanticCOLORS
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A statistic can sit to the left or right of other content. */
-  floated?: SemanticFLOATS;
+  floated?: SemanticFLOATS
 
   /** A statistic can present its measurement horizontally. */
-  horizontal?: boolean;
+  horizontal?: boolean
 
   /** A statistic can be formatted to fit on a dark background. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Label content of the Statistic. */
-  label?: SemanticShorthandContent;
+  label?: SemanticShorthandContent
 
   /** A statistic can vary in size. */
-  size?: StatisticSizeProp;
+  size?: StatisticSizeProp
 
   /** Format the StatisticValue with smaller font size to fit nicely beside number values. */
-  text?: boolean;
+  text?: boolean
 
   /** Value content of the Statistic. */
-  value?: SemanticShorthandContent;
+  value?: SemanticShorthandContent
 }
 
 interface StatisticComponent extends React.StatelessComponent<StatisticProps> {
-  Group: typeof StatisticGroup;
-  Label: typeof StatisticLabel;
-  Value: typeof StatisticValue;
+  Group: typeof StatisticGroup
+  Label: typeof StatisticLabel
+  Value: typeof StatisticValue
 }
 
-declare const Statistic: StatisticComponent;
+declare const Statistic: StatisticComponent
 
-export default Statistic;
+export default Statistic

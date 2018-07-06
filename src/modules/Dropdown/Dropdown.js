@@ -109,7 +109,8 @@ export default class Dropdown extends Component {
     defaultValue: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+      PropTypes.bool,
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
     ]),
 
     /** A dropdown menu can open to the left or to the right. */
@@ -141,6 +142,9 @@ export default class Dropdown extends Component {
 
     /** A dropdown can be labeled. */
     labeled: PropTypes.bool,
+
+    /** A dropdown can defer rendering its options until it is open. */
+    lazyLoad: PropTypes.bool,
 
     /** A dropdown can show that it is currently loading data. */
     loading: PropTypes.bool,
@@ -741,14 +745,17 @@ export default class Dropdown extends Component {
     const currentTarget = _.get(e, 'currentTarget')
     if (currentTarget && currentTarget.contains(document.activeElement)) return
 
-    const { closeOnBlur, multiple, onBlur, selectOnBlur } = this.props
+    const { closeOnBlur, multiple, selectOnBlur } = this.props
     // do not "blur" when the mouse is down inside of the Dropdown
     if (this.isMouseDown) return
-    if (onBlur) onBlur(e, this.props)
+
+    _.invoke(this.props, 'onBlur', e, this.props)
+
     if (selectOnBlur && !multiple) {
       this.makeSelectedItemActive(e)
       if (closeOnBlur) this.close()
     }
+
     this.setState({ focus: false })
     this.clearSearchQuery()
   }
@@ -953,9 +960,7 @@ export default class Dropdown extends Component {
     e.stopPropagation()
 
     this.setState({ selectedLabel: labelProps.value })
-
-    const { onLabelClick } = this.props
-    if (onLabelClick) onLabelClick(e, labelProps)
+    _.invoke(this.props, 'onLabelClick', e, labelProps)
   }
 
   handleLabelRemove = (e, labelProps) => {
@@ -1107,31 +1112,35 @@ export default class Dropdown extends Component {
   }
 
   open = (e) => {
-    debug('open()')
+    const { disabled, open, search } = this.props
+    debug('open()', { disabled, open, search })
 
-    const { disabled, onOpen, search } = this.props
     if (disabled) return
     if (search && this.searchRef) this.searchRef.focus()
-    if (onOpen) onOpen(e, this.props)
+
+    _.invoke(this.props, 'onOpen', e, this.props)
 
     this.trySetState({ open: true })
     this.scrollSelectedItemIntoView()
   }
 
   close = (e) => {
-    debug('close()')
+    const { open } = this.state
+    debug('close()', { open })
 
-    const { onClose } = this.props
-    if (onClose) onClose(e, this.props)
-
-    this.trySetState({ open: false })
+    if (open) {
+      _.invoke(this.props, 'onClose', e, this.props)
+      this.trySetState({ open: false })
+    }
   }
 
   handleClose = () => {
     debug('handleClose()')
+
     const hasSearchFocus = document.activeElement === this.searchRef
     const hasDropdownFocus = document.activeElement === this.ref
     const hasFocus = hasSearchFocus || hasDropdownFocus
+
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
@@ -1228,8 +1237,12 @@ export default class Dropdown extends Component {
   }
 
   renderOptions = () => {
-    const { multiple, search, noResultsMessage } = this.props
-    const { selectedIndex, value } = this.state
+    const { lazyLoad, multiple, search, noResultsMessage } = this.props
+    const { open, selectedIndex, value } = this.state
+
+    // lazy load, only render options when open
+    if (lazyLoad && !open) return null
+
     const options = this.getMenuOptions()
 
     if (noResultsMessage !== null && search && _.isEmpty(options)) {

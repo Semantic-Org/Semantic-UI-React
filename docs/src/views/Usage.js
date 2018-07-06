@@ -1,10 +1,10 @@
 import React from 'react'
 import pkg from 'package.json'
 import { NavLink } from 'react-router-dom'
+import { Button, Container, Header, List, Message, Segment } from 'semantic-ui-react'
 
+import Logo from 'docs/src/components/Logo/Logo'
 import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/src/utils'
-import { Button, Container, Header, List, Message, Segment } from 'src'
-import Logo from '../components/Logo/Logo'
 
 const suiCSSVersion = pkg.devDependencies['semantic-ui-css'].replace(/[~^]/, '')
 
@@ -68,8 +68,8 @@ const Usage = () => (
           should use corresponding version of Semantic UI React:
         </p>
         <Message.List>
-          <Message.Item>for SUI 2.2 use 0.79.1 and below</Message.Item>
-          <Message.Item>for SUI 2.3 use 0.80.0 and higher</Message.Item>
+          <Message.Item>for SUI 2.2 use 0.80.2 and below</Message.Item>
+          <Message.Item>for SUI 2.3 use 0.81.0 and higher</Message.Item>
         </Message.List>
       </Message>
 
@@ -151,16 +151,16 @@ const Usage = () => (
         recipes with some of them. You can use them as start point for your projects.
       </p>
 
-      <Header as='h3'>Webpack 3</Header>
+      <Header as='h3'>Webpack 2/3</Header>
       <p>
-        Webpack 3 fully supports Semantic UI React, it also supports Tree Shaking. Please ensure
+        Webpack 2/3 fully supports Semantic UI React, it also supports Tree Shaking. Please ensure
         that you build your app in production mode before release, it will strip{' '}
         <code>propTypes</code> from your build.
       </p>
 
       <Message warning>
         <p>
-          Webpack 2 tree shaking does not completely remove unused exports, there are numerous
+          Webpack 2/3 tree shaking does not completely remove unused exports, there are numerous
           issues that are long-standing bugs:
         </p>
         <List>
@@ -215,8 +215,7 @@ const Usage = () => (
         </List>
         <p>
           Semantic UI React imports will be not optimized, so we recommend to use
-          <code>babel-plugin-direct-import</code> in your builds. You can find example configuration
-          in
+          <code>babel-plugin-lodash</code> in your builds. You can find example configuration in
           <code>examples/webpack3</code> directory.
         </p>
       </Message>
@@ -234,11 +233,31 @@ const Usage = () => (
         labelPosition='left'
       />
       <Button
-        content='babel-plugin-direct-import'
-        href='https://github.com/umidbekkarimov/babel-plugin-direct-import'
+        content='babel-plugin-lodash'
+        href='https://github.com/lodash/babel-plugin-lodash'
         icon='github'
         labelPosition='left'
       />
+
+      <Header as='h3'>Webpack 4</Header>
+      <p>
+        Webpack 4 fully supports Semantic UI React, it also fully supports Tree Shaking. Please
+        ensure that you build your app in production mode before release, it will strip{' '}
+        <code>propTypes</code> from your build.
+      </p>
+
+      <p>
+        Please ensure that you're using <code>semantic-ui-react@0.81.2</code> or higher because we
+        added the{' '}
+        <a
+          href='https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
+          <code>sideEffects</code>
+        </a>{' '}
+        option in this release.
+      </p>
     </Segment>
   </Container>
 )

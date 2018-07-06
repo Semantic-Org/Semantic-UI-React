@@ -1,42 +1,42 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandContent } from '../..';
-import { SegmentSizeProp } from './Segment';
+import { SemanticShorthandContent } from '../..'
+import { SegmentSizeProp } from './Segment'
 
 export interface SegmentGroupProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A segment may take up only as much space as is necessary. */
-  compact?: boolean;
+  compact?: boolean
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Formats content to be aligned horizontally. */
-  horizontal?: boolean;
+  horizontal?: boolean
 
   /** Formatted to look like a pile of pages. */
-  piled?: boolean;
+  piled?: boolean
 
   /** A segment group may be formatted to raise above the page. */
-  raised?: boolean;
+  raised?: boolean
 
   /** A segment group can have different sizes. */
-  size?: SegmentSizeProp;
+  size?: SegmentSizeProp
 
   /** Formatted to show it contains multiple pages. */
-  stacked?: boolean;
+  stacked?: boolean
 }
 
-declare const SegmentGroup: React.StatelessComponent<SegmentGroupProps>;
+declare const SegmentGroup: React.StatelessComponent<SegmentGroupProps>
 
-export default SegmentGroup;
+export default SegmentGroup

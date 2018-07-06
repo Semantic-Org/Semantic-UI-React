@@ -4,7 +4,7 @@ import { Feed } from 'semantic-ui-react'
 const FeedExampleAdditionalInformation = () => (
   <Feed>
     <Feed.Event>
-      <Feed.Label image='/assets/images/avatar/small/helen.jpg' />
+      <Feed.Label image='/images/avatar/small/helen.jpg' />
       <Feed.Content>
         <Feed.Date>3 days ago</Feed.Date>
         <Feed.Summary>
@@ -12,10 +12,10 @@ const FeedExampleAdditionalInformation = () => (
         </Feed.Summary>
         <Feed.Extra images>
           <a>
-            <img src='/assets/images/wireframe/image.png' />
+            <img src='/images/wireframe/image.png' />
           </a>
           <a>
-            <img src='/assets/images/wireframe/image.png' />
+            <img src='/images/wireframe/image.png' />
           </a>
         </Feed.Extra>
       </Feed.Content>

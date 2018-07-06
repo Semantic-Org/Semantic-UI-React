@@ -1,18 +1,18 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export interface TableBodyProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 }
 
-declare const TableBody: React.StatelessComponent<TableBodyProps>;
+declare const TableBody: React.StatelessComponent<TableBodyProps>
 
-export default TableBody;
+export default TableBody

@@ -1,58 +1,48 @@
-import * as React from 'react';
+import * as React from 'react'
+import { default as PortalInner } from './PortalInner'
 
 export interface PortalProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
+  children?: React.ReactNode
 
   /** Controls whether or not the portal should close on a click outside. */
-  closeOnDocumentClick?: boolean;
+  closeOnDocumentClick?: boolean
 
   /** Controls whether or not the portal should close when escape is pressed is displayed. */
-  closeOnEscape?: boolean;
+  closeOnEscape?: boolean
 
   /**
    * Controls whether or not the portal should close when mousing out of the portal.
    * NOTE: This will prevent `closeOnTriggerMouseLeave` when mousing over the
    * gap from the trigger to the portal.
    */
-  closeOnPortalMouseLeave?: boolean;
-
-  /**
-   * Controls whether or not the portal should close on a click on the portal background.
-   * NOTE: This differs from closeOnDocumentClick:
-   * - DocumentClick - any click not within the portal
-   * - RootNodeClick - a click not within the portal but within the portal's wrapper
-   */
-  closeOnRootNodeClick?: boolean;
+  closeOnPortalMouseLeave?: boolean
 
   /** Controls whether or not the portal should close on blur of the trigger. */
-  closeOnTriggerBlur?: boolean;
+  closeOnTriggerBlur?: boolean
 
   /** Controls whether or not the portal should close on click of the trigger. */
-  closeOnTriggerClick?: boolean;
+  closeOnTriggerClick?: boolean
 
   /** Controls whether or not the portal should close when mousing out of the trigger. */
-  closeOnTriggerMouseLeave?: boolean;
+  closeOnTriggerMouseLeave?: boolean
 
   /** Initial value of open. */
-  defaultOpen?: boolean;
+  defaultOpen?: boolean
 
   /** Event pool namespace that is used to handle component events. */
-  eventPool?: string;
+  eventPool?: string
 
   /** The node where the portal should mount. */
-  mountNode?: any;
+  mountNode?: any
 
   /** Milliseconds to wait before opening on mouse over */
-  mouseEnterDelay?: number;
+  mouseEnterDelay?: number
 
   /** Milliseconds to wait before closing on mouse leave */
-  mouseLeaveDelay?: number;
+  mouseLeaveDelay?: number
 
   /**
    * Called when a close event happens
@@ -60,7 +50,7 @@ export interface PortalProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClose?: (event: React.MouseEvent<HTMLElement>, data: PortalProps) => void;
+  onClose?: (event: React.MouseEvent<HTMLElement>, data: PortalProps) => void
 
   /**
    * Called when the portal is mounted on the DOM
@@ -68,7 +58,7 @@ export interface PortalProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onMount?: (nothing: null, data: PortalProps) => void;
+  onMount?: (nothing: null, data: PortalProps) => void
 
   /**
    * Called when an open event happens
@@ -76,7 +66,7 @@ export interface PortalProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onOpen?: (event: React.MouseEvent<HTMLElement>, data: PortalProps) => void;
+  onOpen?: (event: React.MouseEvent<HTMLElement>, data: PortalProps) => void
 
   /**
    * Called when the portal is unmounted from the DOM
@@ -84,30 +74,33 @@ export interface PortalProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onUnmount?: (nothing: null, data: PortalProps) => void;
+  onUnmount?: (nothing: null, data: PortalProps) => void
 
   /** Controls whether or not the portal is displayed. */
-  open?: boolean;
+  open?: boolean
 
   /** Controls whether or not the portal should open when the trigger is clicked. */
-  openOnTriggerClick?: boolean;
+  openOnTriggerClick?: boolean
 
   /** Controls whether or not the portal should open on focus of the trigger. */
-  openOnTriggerFocus?: boolean;
+  openOnTriggerFocus?: boolean
 
   /** Controls whether or not the portal should open when mousing over the trigger. */
-  openOnTriggerMouseEnter?: boolean;
-
-  /** Controls whether the portal should be prepended to the mountNode instead of appended. */
-  prepend?: boolean;
-
-  /** Any inline styles to the Portal container. */
-  style?: object;
+  openOnTriggerMouseEnter?: boolean
 
   /** Element to be rendered in-place where the portal is defined. */
-  trigger?: React.ReactNode;
+  trigger?: React.ReactNode
+
+  /**
+   * Called when componentDidMount.
+   *
+   * @param {HTMLElement} node - Referred node.
+   */
+  triggerRef?: (node: HTMLElement) => void
 }
 
-declare const Portal: React.ComponentClass<PortalProps>;
+declare class Portal extends React.Component<PortalProps, {}> {
+  static Inner: typeof PortalInner
+}
 
-export default Portal;
+export default Portal

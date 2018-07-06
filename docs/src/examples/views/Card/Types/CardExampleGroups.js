@@ -5,7 +5,7 @@ const CardExampleGroups = () => (
   <Card.Group>
     <Card>
       <Card.Content>
-        <Image floated='right' size='mini' src='/assets/images/avatar/large/steve.jpg' />
+        <Image floated='right' size='mini' src='/images/avatar/large/steve.jpg' />
         <Card.Header>Steve Sanders</Card.Header>
         <Card.Meta>Friends of Elliot</Card.Meta>
         <Card.Description>
@@ -25,7 +25,7 @@ const CardExampleGroups = () => (
     </Card>
     <Card>
       <Card.Content>
-        <Image floated='right' size='mini' src='/assets/images/avatar/large/molly.png' />
+        <Image floated='right' size='mini' src='/images/avatar/large/molly.png' />
         <Card.Header>Molly Thomas</Card.Header>
         <Card.Meta>New User</Card.Meta>
         <Card.Description>
@@ -45,7 +45,7 @@ const CardExampleGroups = () => (
     </Card>
     <Card>
       <Card.Content>
-        <Image floated='right' size='mini' src='/assets/images/avatar/large/jenny.jpg' />
+        <Image floated='right' size='mini' src='/images/avatar/large/jenny.jpg' />
         <Card.Header>Jenny Lawrence</Card.Header>
         <Card.Meta>New User</Card.Meta>
         <Card.Description>Jenny requested permission to view your contact details</Card.Description>

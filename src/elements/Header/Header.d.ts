@@ -1,69 +1,69 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticCOLORS, SemanticFLOATS, SemanticTEXTALIGNMENTS } from '../..';
-import HeaderContent from './HeaderContent';
-import HeaderSubHeader from './HeaderSubheader';
+import { SemanticCOLORS, SemanticFLOATS, SemanticTEXTALIGNMENTS } from '../..'
+import HeaderContent from './HeaderContent'
+import HeaderSubHeader from './HeaderSubheader'
 
 export interface HeaderProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Attach header  to other content, like a segment. */
-  attached?: boolean | 'top' | 'bottom';
+  attached?: boolean | 'top' | 'bottom'
 
   /** Format header to appear inside a content block. */
-  block?: boolean;
+  block?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Color of the header. */
-  color?: SemanticCOLORS;
+  color?: SemanticCOLORS
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: React.ReactNode
 
   /** Show that the header is inactive. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** Divide header from the content below it. */
-  dividing?: boolean;
+  dividing?: boolean
 
   /** Header can sit to the left or right of other content. */
-  floated?: SemanticFLOATS;
+  floated?: SemanticFLOATS
 
   /** Add an icon by icon name or pass an Icon. */
-  icon?: any;
+  icon?: any
 
   /** Add an image by img src or pass an Image. */
-  image?: any;
+  image?: any
 
   /** Inverts the color of the header for dark backgrounds. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Content headings are sized with em and are based on the font-size of their container. */
-  size?: 'tiny' | 'small' | 'medium' | 'large' | 'huge';
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'huge'
 
   /** Headers may be formatted to label smaller or de-emphasized content. */
-  sub?: boolean;
+  sub?: boolean
 
   /** Shorthand for Header.Subheader. */
-  subheader?: any;
+  subheader?: any
 
   /** Align header content. */
-  textAlign?: SemanticTEXTALIGNMENTS;
+  textAlign?: SemanticTEXTALIGNMENTS
 }
 
 interface HeaderComponent extends React.StatelessComponent<HeaderProps> {
-  Content: typeof HeaderContent;
-  Subheader: typeof HeaderSubHeader;
+  Content: typeof HeaderContent
+  Subheader: typeof HeaderSubHeader
 }
 
-declare const Header: HeaderComponent;
+declare const Header: HeaderComponent
 
-export default Header;
+export default Header

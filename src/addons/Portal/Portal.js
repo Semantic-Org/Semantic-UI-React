@@ -1,17 +1,16 @@
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Children, cloneElement } from 'react'
-import ReactDOM from 'react-dom'
+import React, { cloneElement } from 'react'
 
 import {
   AutoControlledComponent as Component,
   doesNodeContainClick,
   eventStack,
-  isBrowser,
   makeDebugger,
 } from '../../lib'
 import Ref from '../Ref'
+import PortalInner from './PortalInner'
 
 const debug = makeDebugger('portal')
 
@@ -27,9 +26,6 @@ class Portal extends Component {
     /** Primary content. */
     children: PropTypes.node.isRequired,
 
-    /** Additional classes. */
-    className: PropTypes.string,
-
     /** Controls whether or not the portal should close when the document is clicked. */
     closeOnDocumentClick: PropTypes.bool,
 
@@ -42,14 +38,6 @@ class Portal extends Component {
      * gap from the trigger to the portal.
      */
     closeOnPortalMouseLeave: PropTypes.bool,
-
-    /**
-     * Controls whether or not the portal should close on a click on the portal background.
-     * NOTE: This differs from closeOnDocumentClick:
-     * - DocumentClick - any click not within the portal
-     * - RootNodeClick - a click not within the portal but within the portal's wrapper
-     */
-    closeOnRootNodeClick: PropTypes.bool,
 
     /** Controls whether or not the portal should close on blur of the trigger. */
     closeOnTriggerBlur: PropTypes.bool,
@@ -84,7 +72,7 @@ class Portal extends Component {
     onClose: PropTypes.func,
 
     /**
-     * Called when the portal is mounted on the DOM
+     * Called when the portal is mounted on the DOM.
      *
      * @param {null}
      * @param {object} data - All props.
@@ -100,7 +88,7 @@ class Portal extends Component {
     onOpen: PropTypes.func,
 
     /**
-     * Called when the portal is unmounted from the DOM
+     * Called when the portal is unmounted from the DOM.
      *
      * @param {null}
      * @param {object} data - All props.
@@ -119,14 +107,15 @@ class Portal extends Component {
     /** Controls whether or not the portal should open when mousing over the trigger. */
     openOnTriggerMouseEnter: PropTypes.bool,
 
-    /** Controls whether the portal should be prepended to the mountNode instead of appended. */
-    prepend: PropTypes.bool,
-
-    /** Any inline styles to the Portal container. */
-    style: PropTypes.object,
-
     /** Element to be rendered in-place where the portal is defined. */
     trigger: PropTypes.node,
+
+    /**
+     * Called with a ref to the trigger node.
+     *
+     * @param {HTMLElement} node - Referred node.
+     */
+    triggerRef: PropTypes.func,
   }
 
   static defaultProps = {
@@ -138,29 +127,9 @@ class Portal extends Component {
 
   static autoControlledProps = ['open']
 
-  componentDidMount() {
-    debug('componentDidMount()')
-    this.renderPortal()
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    debug('componentDidUpdate()')
-    // NOTE: Ideally the portal rendering would happen in the render() function
-    // but React gives a warning about not being pure and suggests doing it
-    // within this method.
-
-    // If the portal is open, render (or re-render) the portal and child.
-    this.renderPortal()
-
-    if (prevState.open && !this.state.open) {
-      debug('portal closed')
-      this.unmountPortal()
-    }
-  }
+  static Inner = PortalInner
 
   componentWillUnmount() {
-    this.unmountPortal()
-
     // Clean up timers
     clearTimeout(this.mouseEnterTimer)
     clearTimeout(this.mouseLeaveTimer)
@@ -171,10 +140,9 @@ class Portal extends Component {
   // ----------------------------------------
 
   handleDocumentClick = (e) => {
-    const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
+    const { closeOnDocumentClick } = this.props
 
     if (
-      !this.rootNode || // not mounted
       !this.portalNode || // no portal
       doesNodeContainClick(this.triggerNode, e) || // event happened in trigger (delegate to trigger handlers)
       doesNodeContainClick(this.portalNode, e) // event happened in the portal
@@ -182,14 +150,8 @@ class Portal extends Component {
       return
     } // ignore the click
 
-    const didClickInRootNode = doesNodeContainClick(this.rootNode, e)
-
-    if (
-      (closeOnDocumentClick && !didClickInRootNode) ||
-      (closeOnRootNodeClick && didClickInRootNode)
-    ) {
+    if (closeOnDocumentClick) {
       debug('handleDocumentClick()')
-
       this.close(e)
     }
   }
@@ -199,7 +161,6 @@ class Portal extends Component {
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
 
     debug('handleEscape()')
-
     this.close(e)
   }
 
@@ -340,117 +301,66 @@ class Portal extends Component {
     return setTimeout(() => this.close(eventClone), delay || 0)
   }
 
-  renderPortal() {
-    if (!this.state.open) return
-    debug('renderPortal()')
-
-    const { children, className, eventPool, style } = this.props
-
-    this.mountPortal()
-
-    // Server side rendering
-    if (!isBrowser()) return null
-
-    this.rootNode.className = className || ''
-    this.rootNode.style = style || ''
-
-    // when re-rendering, first remove listeners before re-adding them to the new node
-    if (this.portalNode) {
-      eventStack.unsub('mouseleave', this.handlePortalMouseLeave, {
-        pool: eventPool,
-        target: this.portalNode,
-      })
-      eventStack.unsub('mouseenter', this.handlePortalMouseEnter, {
-        pool: eventPool,
-        target: this.portalNode,
-      })
-    }
-
-    ReactDOM.unstable_renderSubtreeIntoContainer(this, Children.only(children), this.rootNode, () =>
-      this.attachRenderSubTreeSubscribers(eventPool),
-    )
-  }
-
-  attachRenderSubTreeSubscribers = (eventPool) => {
-    // Prevent race condition bug
-    // https://github.com/Semantic-Org/Semantic-UI-React/issues/2401
-    if (!this.rootNode) return null
-
-    this.portalNode = this.rootNode.firstElementChild
-
-    eventStack.sub('mouseleave', this.handlePortalMouseLeave, {
-      pool: eventPool,
-      target: this.portalNode,
-    })
-    eventStack.sub('mouseenter', this.handlePortalMouseEnter, {
-      pool: eventPool,
-      target: this.portalNode,
-    })
-  }
-
-  mountPortal = () => {
-    if (!isBrowser() || this.rootNode) return
-
+  handleMount = (e, { node: target }) => {
     debug('mountPortal()')
+    const { eventPool } = this.props
 
-    const { eventPool, mountNode = isBrowser() ? document.body : null, prepend } = this.props
+    this.portalNode = target
 
-    this.rootNode = document.createElement('div')
-
-    if (prepend) {
-      mountNode.insertBefore(this.rootNode, mountNode.firstElementChild)
-    } else {
-      mountNode.appendChild(this.rootNode)
-    }
-
+    eventStack.sub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target })
+    eventStack.sub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target })
     eventStack.sub('click', this.handleDocumentClick, { pool: eventPool })
     eventStack.sub('keydown', this.handleEscape, { pool: eventPool })
+
     _.invoke(this.props, 'onMount', null, this.props)
   }
 
-  unmountPortal = () => {
-    if (!isBrowser() || !this.rootNode) return
-
+  handleUnmount = (e, { node: target }) => {
     debug('unmountPortal()')
     const { eventPool } = this.props
 
-    ReactDOM.unmountComponentAtNode(this.rootNode)
-    this.rootNode.parentNode.removeChild(this.rootNode)
-
-    eventStack.unsub('mouseleave', this.handlePortalMouseLeave, {
-      pool: eventPool,
-      target: this.portalNode,
-    })
-    eventStack.unsub('mouseenter', this.handlePortalMouseEnter, {
-      pool: eventPool,
-      target: this.portalNode,
-    })
-
-    this.rootNode = null
     this.portalNode = null
 
+    eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target })
+    eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target })
     eventStack.unsub('click', this.handleDocumentClick, { pool: eventPool })
     eventStack.unsub('keydown', this.handleEscape, { pool: eventPool })
+
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
-  handleRef = c => (this.triggerNode = c)
+  handleTriggerRef = (c) => {
+    this.triggerNode = c
+    _.invoke(this.props, 'triggerRef', c)
+  }
 
   render() {
-    const { trigger } = this.props
+    const { children, mountNode, trigger } = this.props
+    const { open } = this.state
 
-    if (!trigger) return null
-    return (
-      <Ref innerRef={this.handleRef}>
-        {cloneElement(trigger, {
-          onBlur: this.handleTriggerBlur,
-          onClick: this.handleTriggerClick,
-          onFocus: this.handleTriggerFocus,
-          onMouseLeave: this.handleTriggerMouseLeave,
-          onMouseEnter: this.handleTriggerMouseEnter,
-        })}
-      </Ref>
-    )
+    return [
+      open ? (
+        <PortalInner
+          key='inner'
+          mountNode={mountNode}
+          onMount={this.handleMount}
+          onUnmount={this.handleUnmount}
+        >
+          {children}
+        </PortalInner>
+      ) : null,
+      trigger ? (
+        <Ref innerRef={this.handleTriggerRef} key='trigger'>
+          {cloneElement(trigger, {
+            onBlur: this.handleTriggerBlur,
+            onClick: this.handleTriggerClick,
+            onFocus: this.handleTriggerFocus,
+            onMouseLeave: this.handleTriggerMouseLeave,
+            onMouseEnter: this.handleTriggerMouseEnter,
+          })}
+        </Ref>
+      ) : null,
+    ]
   }
 }
 

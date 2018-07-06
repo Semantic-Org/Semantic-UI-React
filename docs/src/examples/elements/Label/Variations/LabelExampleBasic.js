@@ -10,7 +10,7 @@ const LabelExampleBasic = () => (
       Pointing
     </Label>
     <Label as='a' basic image>
-      <img src='/assets/images/avatar/small/elliot.jpg' />
+      <img src='/images/avatar/small/elliot.jpg' />
       Elliot
     </Label>
     <Label as='a' basic color='red' pointing>

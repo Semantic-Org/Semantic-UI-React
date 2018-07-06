@@ -259,4 +259,46 @@ describe('Input', () => {
         .should.have.prop('tabIndex', 123)
     })
   })
+
+  describe('icon', () => {
+    it('is second child', () => {
+      shallow(<Input icon='search' />)
+        .children()
+        .at(1)
+        .is('Icon')
+        .should.be.true()
+    })
+
+    it('is third child with action positioned left', () => {
+      shallow(<Input icon='search' action='foo' actionPosition='left' />)
+        .children()
+        .at(2)
+        .is('Icon')
+        .should.be.true()
+    })
+
+    it('is third child with label', () => {
+      shallow(<Input icon='search' label='foo' />)
+        .children()
+        .at(2)
+        .is('Icon')
+        .should.be.true()
+    })
+
+    it('is second child with action', () => {
+      shallow(<Input icon='search' iconPosition='left' action='foo' />)
+        .children()
+        .at(1)
+        .is('Icon')
+        .should.be.true()
+    })
+
+    it('is second child with label positioned right', () => {
+      shallow(<Input icon='search' iconPosition='left' label='foo' labelPosition='right' />)
+        .children()
+        .at(1)
+        .is('Icon')
+        .should.be.true()
+    })
+  })
 })
