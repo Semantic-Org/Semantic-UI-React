@@ -71,7 +71,7 @@ export interface SearchProps {
    * @param {object} props - The SearchResult props object.
    * @returns {*} - Renderable SearchResult contents.
    */
-  resultRenderer?: (props: SearchResultProps) => React.ReactElement<any>[]
+  resultRenderer?: (props: SearchResultProps) => React.ReactElement<any>
 
   // ------------------------------------
   // Callbacks
