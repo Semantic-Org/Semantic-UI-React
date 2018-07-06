@@ -199,8 +199,8 @@ const Introduction = ({ pkg }) => (
       </Segment>
 
       {/* ----------------------------------------
-     *  Augmentation
-     * -------------------------------------- */}
+        *  Augmentation
+        * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           Augmentation

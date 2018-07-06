@@ -79,6 +79,25 @@ const Usage = ({ pkg, versions }) => (
         </Message>
 
         {/* ----------------------------------------
+          *  Content Delivery Network (CDN)
+          * -------------------------------------- */}
+        <Header as='h3'>Content Delivery Network (CDN)</Header>
+        <p>
+          You can use the default Semantic UI stylesheet by including a Semantic UI CDN link in your
+          <em> index.html</em> file.
+        </p>
+        <p>
+          This is the quickest way to get started with Semantic UI React. You won't be able to use
+          custom themes with this method.
+        </p>
+        <Segment>
+          <pre>
+            {'<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/'}
+            {versions.sui}
+            {'/semantic.min.css"></link>'}
+          </pre>
+        </Segment>
+        {/* ----------------------------------------
        *  Content Delivery Network (CDN)
        * -------------------------------------- */}
         <Header as='h3'>Content Delivery Network (CDN)</Header>
@@ -99,8 +118,8 @@ const Usage = ({ pkg, versions }) => (
         </Segment>
 
         {/* ----------------------------------------
-       *  Semantic-UI-CSS package
-       * -------------------------------------- */}
+          *  Semantic-UI-CSS package
+          * -------------------------------------- */}
         <Header as='h3'>Semantic UI CSS package</Header>
         <p>
           The <a href={semanticUICSSRepoURL}>Semantic UI CSS package</a> is automatically synced
@@ -123,8 +142,8 @@ const Usage = ({ pkg, versions }) => (
         </Segment>
 
         {/* ----------------------------------------
-       *  Semantic-UI package
-       * -------------------------------------- */}
+          *  Semantic-UI package
+          * -------------------------------------- */}
         <Header as='h3'>Semantic UI package</Header>
         <p>
           Install the full <a href={semanticUIRepoURL}>Semantic UI package</a>.
@@ -222,8 +241,7 @@ const Usage = ({ pkg, versions }) => (
           </List>
           <p>
             Semantic UI React imports will be not optimized, so we recommend to use
-            <code>babel-plugin-direct-import</code> in your builds. You can find example
-            configuration in
+            <code>babel-plugin-lodash</code> in your builds. You can find example configuration in
             <code>examples/webpack3</code> directory.
           </p>
         </Message>
@@ -241,8 +259,8 @@ const Usage = ({ pkg, versions }) => (
           labelPosition='left'
         />
         <Button
-          content='babel-plugin-direct-import'
-          href='https://github.com/umidbekkarimov/babel-plugin-direct-import'
+          content='babel-plugin-lodash'
+          href='https://github.com/lodash/babel-plugin-lodash'
           icon='github'
           labelPosition='left'
         />
