@@ -466,6 +466,7 @@ class ComponentExample extends PureComponent<any, any> {
         componentVariables: {
           ...state.componentVariables,
           [component]: {
+            ...(state.componentVariables && state.componentVariables[component]),
             [variable]: value,
           },
         },
