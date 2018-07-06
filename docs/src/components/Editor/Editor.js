@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import { withSiteData } from 'react-static'
 import universal from 'react-universal-component'
 import { Loader } from 'semantic-ui-react'
+
+import { docTypes } from 'docs/src/utils'
 
 // Heads up!
 // Brace doesn't support SSR, so we don't include it during SSR build. The usage of the universal
@@ -38,6 +41,7 @@ function Editor(props) {
 }
 
 Editor.propTypes = {
+  completions: docTypes.completions.isRequired,
   id: PropTypes.string.isRequired,
   mode: PropTypes.oneOf(['html', 'jsx']),
   value: PropTypes.string.isRequired,
@@ -47,4 +51,4 @@ Editor.defaultProps = {
   mode: 'jsx',
 }
 
-export default Editor
+export default withSiteData(Editor)

@@ -1,39 +1,53 @@
-import React from 'react'
+import ace from 'brace'
+import _ from 'lodash'
+import React, { Component } from 'react'
 import Ace from 'react-ace'
 
 import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
 import 'brace/mode/html'
 import 'brace/theme/tomorrow'
-// import { parentComponents } from 'docs/src/utils'
+
+import { docTypes } from 'docs/src/utils'
+import getUnhandledProps from 'src/lib/getUnhandledProps'
 
 // Set up custom completers by using a ace extension
 // https://github.com/thlorenz/brace/issues/19
-// const languageTools = ace.acequire('ace/ext/language_tools')
-//
-// const semanticUIReactCompleter = {
-//   getCompletions(editor, session, pos, prefix, callback) {
-//     const completions = []
-//
-//     _.each(parentComponents, (component) => {
-//       const { name } = component._meta
-//       // Component
-//       completions.push({ caption: name, value: name, meta: 'Component' })
-//
-//       // Its props (propTypes do not exist in prod, use handledProps added by babel)
-//       _.each(component.handledProps, (propName) => {
-//         // don't add duplicate prop completions
-//         if (_.find(completions, { value: propName })) return
-//
-//         completions.push({ caption: propName, value: propName, meta: 'Component Prop' })
-//       })
-//     })
-//     callback(null, completions)
-//   },
-// }
-//
-// languageTools.addCompleter(semanticUIReactCompleter)
+const languageTools = ace.acequire('ace/ext/language_tools')
+let completionsAdded = false
 
-const EditorAce = props => <Ace {...props} />
+const addCompletions = ({ components, props }) => {
+  if (completionsAdded) return
 
-export default EditorAce
+  languageTools.addCompleter({
+    getCompletions(editor, session, pos, prefix, callback) {
+      callback(null, [
+        ..._.map(components, component => ({
+          caption: component,
+          value: component,
+          meta: 'Component',
+        })),
+        ..._.map(props, prop => ({ caption: prop, value: prop, meta: 'Component Prop' })),
+      ])
+    },
+  })
+  completionsAdded = true
+}
+
+export default class EditorAce extends Component {
+  static propTypes = {
+    completions: docTypes.completions.isRequired,
+  }
+
+  componentWillMount() {
+    const { completions } = this.props
+
+    addCompletions(completions)
+  }
+
+  render() {
+    const rest = getUnhandledProps(EditorAce, this.props)
+
+    return <Ace {...rest} />
+  }
+}

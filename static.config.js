@@ -1,5 +1,5 @@
 import Document from './docs/src/components/Document'
-import { getComponentMenu } from './docs/src/staticUtils'
+import { getCompletions, getComponentMenu } from './docs/src/staticUtils'
 import config from './config'
 import pkg from './package'
 import getRoutes from './static.routes'
@@ -9,6 +9,7 @@ export default {
   Document,
   getSiteData: async ({ dev }) => ({
     dev,
+    completions: getCompletions(),
     componentMenu: getComponentMenu(),
     pkg: {
       description: pkg.description,
