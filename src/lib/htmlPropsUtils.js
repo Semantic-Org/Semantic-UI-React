@@ -8,7 +8,6 @@ export const htmlInputAttrs = [
 
   // LIMITED HTML PROPS
   'accept',
-  'lang',
   'autoCapitalize',
   'autoComplete',
   'autoCorrect',
@@ -17,6 +16,7 @@ export const htmlInputAttrs = [
   'disabled',
   'form',
   'id',
+  'lang',
   'list',
   'max',
   'maxLength',
