@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React, { createElement, PureComponent } from 'react'
 import { Link, withRouteData } from 'react-static'
-import universal from 'react-universal-component'
-import { Button, Loader } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 import { repoURL } from 'docs/src/utils'
 
@@ -25,13 +24,15 @@ const style = (
   `}</style>
 )
 
-const LayoutComponent = universal(props => import(`docs/src/layouts/${props.filename}`), {
-  loading: () => <Loader active inline='centered' />,
-})
-
 class LayoutsLayout extends PureComponent {
   static propTypes = {
     componentFilename: PropTypes.string.isRequired,
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.state = { component: require(`docs/src/layouts/${props.componentFilename}`).default }
   }
 
   componentDidMount() {
@@ -44,11 +45,12 @@ class LayoutsLayout extends PureComponent {
 
   render() {
     const { componentFilename } = this.props
+    const { component } = this.state
 
     return (
       <div>
         {style}
-        <LayoutComponent filename={componentFilename} />
+        {createElement(component)}
 
         <div style={docsButtonStyle}>
           <Button as={Link} to='/layouts' color='teal' icon='left arrow' content='Layouts' />
