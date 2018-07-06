@@ -180,7 +180,7 @@ class Sidebar extends Component {
         <Menu.Item>
           <Menu.Header>Getting Started</Menu.Header>
           <Menu.Menu>
-            <Menu.Item as={Link} to='/introduction' activeClassName='active'>
+            <Menu.Item as={Link} to='/' activeClassName='active'>
               Introduction
             </Menu.Item>
             <Menu.Item as={Link} to='/usage' activeClassName='active'>
