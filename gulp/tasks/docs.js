@@ -86,18 +86,6 @@ task('build:docs:cname', (cb) => {
   sh(`echo react.semantic-ui.com > ${paths.docsDist('CNAME')}`, cb)
 })
 
-task('build:changelog', (cb) => {
-  const cmd = [
-    'github_changelog_generator',
-    '--no-issues',
-    '--no-unreleased',
-    '--release-branch master',
-    '--since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~300))',
-  ].join(' ')
-
-  sh(cmd, cb)
-})
-
 task('build:docs:docgen', () =>
   src(componentsSrc, { since: lastRun('build:docs:docgen') })
     .pipe(gulpReactDocgen())
@@ -147,16 +135,6 @@ task(
 // ----------------------------------------
 // Deploy
 // ----------------------------------------
-
-task('deploy:changelog', (cb) => {
-  const cmd = [
-    'git add CHANGELOG.md',
-    "git commit -m 'docs(changelog): update changelog [ci skip]'",
-    'git push',
-  ].join(' && ')
-
-  sh(cmd, cb)
-})
 
 task('deploy:docs', (cb) => {
   const relativePath = path.relative(process.cwd(), paths.docsDist())

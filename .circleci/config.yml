@@ -26,17 +26,14 @@ jobs:
           command: echo 'export PATH="${PATH}:$(npm bin)"' >> $BASH_ENV
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies
+            - v2-dependencies-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
           command: yarn
       - save_cache:
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          key: v2-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-            - .yarn-cache
-            - node_modules
       - run:
           name: Lint TypeScript
           command: yarn tsd:lint

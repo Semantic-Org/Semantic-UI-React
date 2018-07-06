@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "0.81.3",
+  "version": "0.82.0",
   "description": "The official Semantic-UI-React integration.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
@@ -14,12 +14,14 @@
   "sideEffects": false,
   "scripts": {
     "build": "gulp build",
+    "build:changelog": "github_changelog_generator --no-issues --no-unreleased --release-branch master --since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~300))",
     "build:docs": "gulp --series dll build:docs",
     "build:dist": "gulp --series dll build:dist",
     "ci": "yarn tsd:lint && yarn tsd:test && yarn lint && yarn test",
     "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs && gulp build:docs:cname",
+    "deploy:changelog": "git add CHANGELOG.md && git commit -m \"docs(changelog): update changelog [ci skip]\" && git push",
     "deploy:docs": "gulp deploy:docs",
-    "postdeploy:docs": "gulp --series build:changelog deploy:changelog",
+    "postdeploy:docs": "yarn build:changelog && yarn deploy:changelog",
     "lint": "cross-env NODE_ENV=production eslint .",
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --list-different \"**/*.{js,jsx,ts,tsx}\"",
