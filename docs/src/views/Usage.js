@@ -97,25 +97,6 @@ const Usage = ({ pkg, versions }) => (
             {'/semantic.min.css"></link>'}
           </pre>
         </Segment>
-        {/* ----------------------------------------
-       *  Content Delivery Network (CDN)
-       * -------------------------------------- */}
-        <Header as='h3'>Content Delivery Network (CDN)</Header>
-        <p>
-          You can use the default Semantic UI stylesheet by including a Semantic UI CDN link in your
-          <em> index.html</em> file.
-        </p>
-        <p>
-          This is the quickest way to get started with Semantic UI React. You won't be able to use
-          custom themes with this method.
-        </p>
-        <Segment>
-          <pre>
-            {'<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/'}
-            {versions.sui}
-            {'/semantic.min.css"></link>'}
-          </pre>
-        </Segment>
 
         {/* ----------------------------------------
           *  Semantic-UI-CSS package
