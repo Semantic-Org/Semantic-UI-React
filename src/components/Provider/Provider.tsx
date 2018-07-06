@@ -92,7 +92,13 @@ class Provider extends Component<any, any> {
   render() {
     const { componentVariables, siteVariables, children } = this.props
 
-    const theme = { siteVariables, componentVariables }
+    const theme: any = {}
+    if (siteVariables) {
+      theme.siteVariables = siteVariables
+    }
+    if (componentVariables) {
+      theme.componentVariables = componentVariables
+    }
 
     return (
       <RendererProvider renderer={this.props.rtl ? felaRtlRenderer : felaLtrRenderer}>
