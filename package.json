@@ -21,7 +21,7 @@
     "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs && gulp build:docs:cname",
     "deploy:changelog": "git add CHANGELOG.md && git commit -m \"docs(changelog): update changelog [ci skip]\" && git push",
     "deploy:docs": "gulp deploy:docs",
-    "postdeploy:docs": "yarn build:changelog && gulp deploy:changelog",
+    "postdeploy:docs": "yarn build:changelog && yarn deploy:changelog",
     "lint": "cross-env NODE_ENV=production eslint .",
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --list-different \"**/*.{js,jsx,ts,tsx}\"",
