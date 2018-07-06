@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.82.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.82.0) (2018-07-06)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.81.3...v0.82.0)
+
+**Merged pull requests:**
+
+- test\(Dimmer|Sidebar\): add missing tests [\#2978](https://github.com/Semantic-Org/Semantic-UI-React/pull/2978) ([layershifter](https://github.com/layershifter))
+- docs\(Usage\): fix version of SUIR [\#2977](https://github.com/Semantic-Org/Semantic-UI-React/pull/2977) ([layershifter](https://github.com/layershifter))
+- fix\(Dropdown\): allow `defaultValue` to be a boolean [\#2972](https://github.com/Semantic-Org/Semantic-UI-React/pull/2972) ([leonardosul](https://github.com/leonardosul))
+- fix\(Search\): fix definition of resultRenderer prop in typings [\#2962](https://github.com/Semantic-Org/Semantic-UI-React/pull/2962) ([jymboche](https://github.com/jymboche))
+- feat\(Input\): expose select\(\) method from ref [\#2928](https://github.com/Semantic-Org/Semantic-UI-React/pull/2928) ([kierenj](https://github.com/kierenj))
+- BREAKING\(package\): update to React 16 [\#2880](https://github.com/Semantic-Org/Semantic-UI-React/pull/2880) ([layershifter](https://github.com/layershifter))
+
 ## [v0.81.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.81.3) (2018-06-27)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.81.2...v0.81.3)
 
@@ -343,15 +355,6 @@
 - docs\(readme\): add amazon publishing to built with [\#2122](https://github.com/Semantic-Org/Semantic-UI-React/pull/2122) ([austinfox](https://github.com/austinfox))
 - perf\(lodash\): remove \_.omit and \_.isEqual [\#2111](https://github.com/Semantic-Org/Semantic-UI-React/pull/2111) ([levithomason](https://github.com/levithomason))
 - fix\(Modal\): add/remove dimmer classes in raf [\#2010](https://github.com/Semantic-Org/Semantic-UI-React/pull/2010) ([levithomason](https://github.com/levithomason))
-
-## [v0.74.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.74.2) (2017-09-25)
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.74.1...v0.74.2)
-
-**Merged pull requests:**
-
-- fix\(Dropdown\): omit `moveSelectionBy\(\)` when `options` aren't defined [\#2119](https://github.com/Semantic-Org/Semantic-UI-React/pull/2119) ([layershifter](https://github.com/layershifter))
-- fix\(Sticky\): `scrollContext` is used from actual props, rename doc examples [\#2118](https://github.com/Semantic-Org/Semantic-UI-React/pull/2118) ([layershifter](https://github.com/layershifter))
-- fix\(eventStack\): correct handling of removed targets [\#2117](https://github.com/Semantic-Org/Semantic-UI-React/pull/2117) ([layershifter](https://github.com/layershifter))
 
 
 
