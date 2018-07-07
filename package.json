@@ -31,7 +31,7 @@
     "start": "gulp --series dll docs",
     "satisfied": "satisfied --skip-invalid",
     "pretest": "yarn satisfied && gulp build:docs:docgen",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "yarn test --watchAll",
     "generate:component": "gulp generate:component"
   },
@@ -53,6 +53,7 @@
   },
   "homepage": "https://github.com/stardust-ui/stardust#readme",
   "jest": {
+    "coverageDirectory": "./coverage/",
     "testRegex": "/test/.*-test\\.tsx?$",
     "moduleFileExtensions": [
       "ts",
