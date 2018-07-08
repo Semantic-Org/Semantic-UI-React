@@ -11,7 +11,7 @@ docs/src/componentInfo
 docs/src/componentMenu.json
 docs/src/exampleSources.json
 docs/src/exampleMenus
-docs/src/exampleSources.json
 docs/dist/
 dll/
 node_modules/
+tmp/
