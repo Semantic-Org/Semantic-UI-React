@@ -1,8 +1,8 @@
-const nodeEnv = process.env.NODE_ENV
+const { NODE_ENV } = process.env
 
-const esBuild = nodeEnv === 'build-es'
-const libBuild = nodeEnv === 'build' || esBuild
-const docsBuild = nodeEnv === 'development' || nodeEnv === 'production'
+const isESBuild = NODE_ENV === 'build-es'
+const isLibBuild = NODE_ENV === 'build' || isESBuild
+const isDocsBuild = NODE_ENV === 'development' || NODE_ENV === 'production'
 
 const browsers = [
   'last 8 versions',
@@ -23,7 +23,7 @@ const plugins = [
     '@babel/plugin-transform-runtime',
     {
       polyfill: false,
-      regenerator: docsBuild,
+      regenerator: isDocsBuild,
     },
   ],
   // Plugins that allow to reduce the target bundle size
@@ -36,14 +36,14 @@ const plugins = [
     },
   ],
   // A plugin for react-static
-  docsBuild && [
+  isDocsBuild && [
     'universal-import',
     {
       disableWarnings: true,
     },
   ],
   // A plugin for removal of debug in production builds
-  libBuild && [
+  isLibBuild && [
     'filter-imports',
     {
       imports: {
@@ -60,7 +60,7 @@ module.exports = () => ({
     [
       '@babel/env',
       {
-        modules: esBuild ? false : 'commonjs',
+        modules: isESBuild ? false : 'commonjs',
         targets: { browsers },
       },
     ],
