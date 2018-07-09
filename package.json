@@ -13,7 +13,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "gulp build",
+    "build": "cross-env NODE_ENV=production gulp build",
     "build:changelog": "github_changelog_generator --no-issues --no-unreleased --release-branch master --since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~300))",
     "build:docs": "gulp --series dll build:docs",
     "build:dist": "gulp --series dll build:dist",
