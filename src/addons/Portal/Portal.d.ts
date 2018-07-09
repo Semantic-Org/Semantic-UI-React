@@ -53,6 +53,14 @@ export interface PortalProps {
   onClose?: (event: React.MouseEvent<HTMLElement>, data: PortalProps) => void
 
   /**
+   * Called when a click event happens on a document.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onDocumentClick?: (event: React.MouseEvent<HTMLElement>, data: PortalProps) => void
+
+  /**
    * Called when the portal is mounted on the DOM
    *
    * @param {null}

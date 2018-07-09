@@ -64,12 +64,20 @@ class Portal extends Component {
     mouseLeaveDelay: PropTypes.number,
 
     /**
-     * Called when a close event happens
+     * Called when a close event happens.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
      */
     onClose: PropTypes.func,
+
+    /**
+     * Called when a click event happens on a document.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onDocumentClick: PropTypes.func,
 
     /**
      * Called when the portal is mounted on the DOM.
@@ -140,7 +148,10 @@ class Portal extends Component {
   // ----------------------------------------
 
   handleDocumentClick = (e) => {
+    debug('handleDocumentClick()')
     const { closeOnDocumentClick } = this.props
+
+    _.invoke(this.props, 'onDocumentClick', e, this.props)
 
     if (
       !this.portalNode || // no portal
