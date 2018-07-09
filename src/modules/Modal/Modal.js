@@ -206,7 +206,7 @@ class Modal extends Component {
     this.setState({ scrolling: false })
     this.setPositionAndClassNames()
 
-    eventStack.sub('click', this.handleDocumentClick, { pool: eventPool })
+    eventStack.sub('click', this.handleDocumentClick, { pool: eventPool, target: this.dimmerRef })
     _.invoke(this.props, 'onMount', e, this.props)
   }
 
@@ -215,7 +215,7 @@ class Modal extends Component {
     debug('handlePortalUnmount()', { eventPool })
 
     cancelAnimationFrame(this.animationRequestId)
-    eventStack.unsub('click', this.handleDocumentClick, { pool: eventPool })
+    eventStack.unsub('click', this.handleDocumentClick, { pool: eventPool, target: this.dimmerRef })
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
