@@ -65,9 +65,6 @@
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    "roots": [
-      "<rootDir>/test/specs"
-    ],
     "moduleNameMapper": {
       "docs/(.*)$": "<rootDir>/docs/$1",
       "src/(.*)$": "<rootDir>/src/$1",
