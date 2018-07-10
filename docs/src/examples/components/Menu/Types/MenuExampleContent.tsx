@@ -1,7 +1,7 @@
 import React from 'react'
 import { Menu } from 'stardust'
 
-class MenuExampleContentProp extends React.Component {
+class MenuExampleContent extends React.Component {
   state = { activeItem: 'a' }
 
   handleItemClick = activeItem => () => {
@@ -35,4 +35,4 @@ class MenuExampleContentProp extends React.Component {
   }
 }
 
-export default MenuExampleContentProp
+export default MenuExampleContent

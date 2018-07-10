@@ -54,6 +54,7 @@
   "homepage": "https://github.com/stardust-ui/stardust#readme",
   "jest": {
     "coverageDirectory": "./coverage/",
+    "coverageReporters": ["json", "lcov"],
     "testRegex": "/test/.*-test\\.tsx?$",
     "moduleFileExtensions": [
       "ts",

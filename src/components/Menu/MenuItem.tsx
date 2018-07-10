@@ -29,6 +29,9 @@ class MenuItem extends React.Component<any, {}> {
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
 
+    /** MenuItem index inside Menu. */
+    index: PropTypes.number,
+
     /**
      * Called on click. When passed, the component will render as an `a`
      * tag by default instead of a `div`.
@@ -42,18 +45,31 @@ class MenuItem extends React.Component<any, {}> {
     styles: PropTypes.object,
   }
 
-  static handledProps = ['active', 'as', 'children', 'className', 'content', 'onClick', 'styles']
+  static handledProps = [
+    'active',
+    'as',
+    'children',
+    'className',
+    'content',
+    'index',
+    'onClick',
+    'styles',
+  ]
+
+  static defaultProps = {
+    as: 'li',
+  }
 
   handleClick = e => {
     _.invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {
-    const { children, className, content, onClick, styles } = this.props
+    const { children, className, content, styles } = this.props
 
     const classes = cx('ui-menu__item', styles.root, className)
     const anchorClasses = cx('ui-menu__item__anchor', styles.anchor)
-    const ElementType = getElementType(MenuItem, this.props, () => 'li')
+    const ElementType = getElementType(MenuItem, this.props)
     const rest = getUnhandledProps(MenuItem, this.props)
 
     if (childrenExist(children)) {
