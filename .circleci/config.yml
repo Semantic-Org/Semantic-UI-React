@@ -53,6 +53,9 @@ jobs:
           name: Lint JavaScript
           command: yarn lint
       - run:
+          name: Prettier
+          command: yarn prettier
+      - run:
           name: Test JavaScript
           command: yarn test --runInBand
       - run:
