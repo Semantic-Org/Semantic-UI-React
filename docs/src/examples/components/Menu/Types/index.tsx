@@ -15,6 +15,17 @@ const Types = () => (
       description="Menu item text can be defined with the content prop."
       examplePath="components/Menu/Types/MenuExampleContent"
     />
+    <ComponentExample
+      title="Secondary Menu"
+      description="A menu can adjust its appearance to de-emphasize its contents."
+      examplePath="components/Menu/Types/MenuExampleSecondary"
+    />
+    <ComponentExample
+      title="Pointing"
+      description="A menu can point to show its relationship to nearby content."
+      examplePath="components/Menu/Types/MenuExamplePointing"
+    />
+    <ComponentExample examplePath="components/Menu/Types/MenuExampleSecondaryPointing" />
   </ExampleSection>
 )
 

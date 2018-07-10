@@ -41,8 +41,14 @@ class MenuItem extends React.Component<any, {}> {
      */
     onClick: PropTypes.func,
 
+    /** A menu can point to show its relationship to nearby content. */
+    pointing: PropTypes.bool,
+
     /** FELA styles */
     styles: PropTypes.object,
+
+    /** The menu can have primary or secondary type */
+    type: PropTypes.oneOf(['default', 'primary', 'secondary']),
   }
 
   static handledProps = [
@@ -53,7 +59,9 @@ class MenuItem extends React.Component<any, {}> {
     'content',
     'index',
     'onClick',
+    'pointing',
     'styles',
+    'type',
   ]
 
   static defaultProps = {

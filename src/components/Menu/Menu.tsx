@@ -34,8 +34,14 @@ class Menu extends AutoControlledComponent {
     /** Shorthand array of props for Menu. */
     items: customPropTypes.collectionShorthand,
 
+    /** A menu can point to show its relationship to nearby content. */
+    pointing: PropTypes.bool,
+
     /** FELA styles */
     styles: PropTypes.object,
+
+    /** The menu can have primary or secondary type */
+    type: PropTypes.oneOf(['primary', 'secondary']),
   }
 
   static Item = MenuItem
@@ -49,7 +55,9 @@ class Menu extends AutoControlledComponent {
     'className',
     'defaultActiveIndex',
     'items',
+    'pointing',
     'styles',
+    'type',
   ]
 
   handleItemOverrides = predefinedProps => ({
@@ -63,18 +71,24 @@ class Menu extends AutoControlledComponent {
   })
 
   renderItems = () => {
-    const { items } = this.props
+    const { items, type, pointing } = this.props
     const { activeIndex } = this.state
 
     return _.map(items, (item, index) =>
       MenuItem.create(item, {
         defaultProps: {
+          type,
+          pointing,
           index,
           active: parseInt(activeIndex, 10) === index,
         },
         overrideProps: this.handleItemOverrides,
       }),
     )
+  }
+
+  static defaultProps = {
+    type: 'primary',
   }
 
   render() {
