@@ -89,7 +89,7 @@ describe('EventStack', () => {
       handler.should.have.been.calledOnce()
     })
 
-    it('unsubscribes but leaves eventTarget if it contains handlers', () => {
+    it('unsubscribes and leaves eventTarget if it contains handlers', () => {
       const clickHandler = sandbox.spy()
       const keyHandler = sandbox.spy()
 
@@ -104,7 +104,7 @@ describe('EventStack', () => {
       keyHandler.should.have.not.been.called()
     })
 
-    it('unsubscribes and leaves the default eventPool intact', () => {
+    it('unsubscribes and leaves an eventPool if contains handlers', () => {
       const firstHandler = sandbox.spy()
       const secondHandler = sandbox.spy()
 
