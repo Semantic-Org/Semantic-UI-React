@@ -132,7 +132,7 @@ export default (Component, options: any = {}) => {
     )
 
     // The component already has the prop, so we are testing if it's children also have the props,
-    // that is why we are testing if it is grater then 1
+    // that is why we are testing if it is greater then 1
     expect(component.find(props).length).toBeGreaterThan(1)
   })
 
