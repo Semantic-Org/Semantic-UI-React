@@ -104,6 +104,20 @@ describe('EventStack', () => {
       keyHandler.should.have.not.been.called()
     })
 
+    it('unsubscribes and leaves the default eventPool intact', () => {
+      const clickHandler = sandbox.spy()
+      const anotherClickHandler = sandbox.spy()
+
+      eventStack.sub('click', clickHandler)
+      eventStack.unsub('mouseup', clickHandler)
+      eventStack.sub('click', anotherClickHandler)
+
+      domEvent.click(document)
+
+      clickHandler.should.have.been.calledOnce()
+      anotherClickHandler.should.have.been.calledOnce()
+    })
+
     it('unsubscribes from same event multiple times', () => {
       const handler = sandbox.spy()
 
