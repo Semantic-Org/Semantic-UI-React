@@ -6,6 +6,10 @@ describe('fontSizeUtility', () => {
       expect(pxToRem(10)).toEqual('1rem')
     })
 
+    it('should throw error when called with a negative number.', () => {
+      expect(() => pxToRem(-1)).toThrowError()
+    })
+
     it('returns 1rem with base font size of 10px.', () => {
       setHTMLFontSize('10px')
       expect(pxToRem(10)).toEqual('1rem')
@@ -23,21 +27,21 @@ describe('fontSizeUtility', () => {
       expect(pxToRem(10)).toEqual('1.25rem')
     })
 
-    it('returns 0rem when pxToRem is called without a value', () => {
+    it('returns 0rem when pxToRem is called without a value.', () => {
       expect(pxToRem()).toEqual('0rem')
     })
 
-    it('returns 0rem when pxToRem is called with 0', () => {
+    it('returns 0rem when pxToRem is called with 0.', () => {
       expect(pxToRem(0)).toEqual('0rem')
     })
   })
 
   describe('setHTMLFontSize', () => {
-    it('throws when htmlFontSize is in rems', () => {
+    it('throws when htmlFontSize is in rems.', () => {
       expect(() => setHTMLFontSize('8rem')).toThrowError()
     })
 
-    it('throws when htmlFontSize is <= 0px', () => {
+    it('throws when htmlFontSize is <= 0px.', () => {
       expect(() => setHTMLFontSize('0px')).toThrowError()
 
       expect(() => setHTMLFontSize('-1px')).toThrowError()
