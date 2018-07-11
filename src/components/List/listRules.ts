@@ -4,11 +4,10 @@ import { debugRoot } from '../../styles/debugRules'
 // Root
 // ----------------------------------------
 
-const listRules = props => {
-  const { as, debugLayout } = props
-
-  return {
-    root: {
+const listRules = {
+  root: ({ props }) => {
+    const { as, debugLayout } = props
+    return {
       ...(debugLayout && debugRoot()),
       ...((as === 'ul' || as === 'ol') && {
         listStyle: 'none',
@@ -16,8 +15,8 @@ const listRules = props => {
         padding: 0,
         margin: 0,
       }),
-    },
-  }
+    }
+  },
 }
 
 export default listRules

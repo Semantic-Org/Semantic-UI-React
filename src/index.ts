@@ -14,5 +14,4 @@ export { default as ProviderConsumer } from './components/Provider/ProviderConsu
 export { default as Icon } from './components/Icon'
 export { default as Text } from './components/Text'
 export { default as Header } from './components/Header'
-export { HeaderContent } from './components/Header'
 export { HeaderSubheader } from './components/Header'

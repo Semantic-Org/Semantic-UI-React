@@ -28,11 +28,10 @@ const getIcon = (kind, name) => {
 
 const getSize = size => `${sizes.get(size)}em` || '1em'
 
-export default ({ color, kind, name, size }) => {
-  const { fontFamily, content } = getIcon(kind, name)
-
-  const computed = {
-    root: {
+const iconRules = {
+  root: ({ color, kind, name, size }) => {
+    const { fontFamily, content } = getIcon(kind, name)
+    return {
       fontFamily,
       color,
       display: 'inline-block',
@@ -57,8 +56,8 @@ export default ({ color, kind, name, size }) => {
         boxSizing: 'inherit',
         background: '0 0!important',
       },
-    },
-  }
-
-  return computed
+    }
+  },
 }
+
+export default iconRules

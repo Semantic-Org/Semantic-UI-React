@@ -422,8 +422,8 @@ class ComponentExample extends PureComponent<any, any> {
     return (
       <div>
         <Divider horizontal>{_.startCase(name).replace(/ /g, '')} Variables</Divider>
-        <Provider.Consumer>
-          {({ siteVariables }) => {
+        <Provider.Consumer
+          render={({ siteVariables }) => {
             const variablesFilename = `./${name}/${_.camelCase(name)}Variables.ts`
             const hasVariablesFile = _.includes(variablesContext.keys(), variablesFilename)
 
@@ -455,7 +455,7 @@ class ComponentExample extends PureComponent<any, any> {
               </div>
             )
           }}
-        </Provider.Consumer>
+        />
       </div>
     )
   }

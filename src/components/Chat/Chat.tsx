@@ -1,50 +1,47 @@
-import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenExist,
-  createComponent,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-} from '../../lib'
+import { childrenExist, customPropTypes, UIComponent } from '../../lib'
 import chatRules from './chatRules'
 import ChatMessage from './ChatMessage'
 
-const Chat: any = props => {
-  const { children, className, messages, styles } = props
-  const ElementType = getElementType(Chat, props)
-  const rest = getUnhandledProps(ChatMessage, props)
+class Chat extends UIComponent<any, any> {
+  static className = 'ui-chat'
 
-  return (
-    <ElementType {...rest} className={cx('ui-chat', styles.root, className)}>
-      {childrenExist(children) ? children : _.map(messages, message => ChatMessage.create(message))}
-    </ElementType>
-  )
+  static displayName = 'Chat'
+
+  static propTypes = {
+    as: customPropTypes.as,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
+    children: PropTypes.node,
+
+    /** Shorthand array of messages. */
+    messages: PropTypes.arrayOf(PropTypes.any),
+  }
+
+  static handledProps = ['as', 'className', 'children', 'messages']
+
+  static defaultProps = { as: 'ul' }
+
+  static rules = chatRules
+
+  static Message = ChatMessage
+
+  renderComponent({ ElementType, classes, rest }) {
+    const { children, messages } = this.props
+
+    return (
+      <ElementType {...rest} className={classes.root}>
+        {childrenExist(children)
+          ? children
+          : _.map(messages, message => ChatMessage.create(message))}
+      </ElementType>
+    )
+  }
 }
 
-Chat.propTypes = {
-  as: customPropTypes.as,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  children: PropTypes.node,
-
-  /** Shorthand array of messages. */
-  messages: PropTypes.arrayOf(PropTypes.any),
-
-  styles: PropTypes.object,
-  variables: PropTypes.object,
-  rules: PropTypes.object,
-}
-
-Chat.handledProps = ['as', 'className', 'children', 'messages', 'styles']
-
-Chat.defaultProps = { as: 'ul' }
-
-Chat.Message = ChatMessage
-
-export default createComponent(Chat, { rules: chatRules })
+export default Chat

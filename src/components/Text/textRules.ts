@@ -24,45 +24,45 @@ import {
 
 import { Sizes } from '../../lib/enums'
 
-export default ({ atMention, disabled, error, success, timestamp, size }) => ({
-  root: {
-    ...(atMention && { color: atMentionTextColor }),
-    ...(disabled && { color: disabledTextColor }),
-    ...(error && { color: errorTextColor }),
-    ...(success && { color: successTextColor }),
-    ...(timestamp && { color: timestampTextColor }),
+export default {
+  root: ({ props }) => ({
+    ...(props.atMention && { color: atMentionTextColor }),
+    ...(props.disabled && { color: disabledTextColor }),
+    ...(props.error && { color: errorTextColor }),
+    ...(props.success && { color: successTextColor }),
+    ...(props.timestamp && { color: timestampTextColor }),
 
-    ...(size === Sizes.ExtraSmall && {
+    ...(props.size === Sizes.ExtraSmall && {
       fontSize: textExtraSmallFontSize,
       lineHeight: textExtraSmallLineHeight,
     }),
-    ...(size === Sizes.Small && {
+    ...(props.size === Sizes.Small && {
       fontSize: textSmallFontSize,
       lineHeight: textSmallLineHeight,
     }),
-    ...(size === Sizes.Medium && {
+    ...(props.size === Sizes.Medium && {
       fontSize: textMediumFontSize,
       lineHeight: textMediumLineHeight,
     }),
-    ...(size === Sizes.Large && {
+    ...(props.size === Sizes.Large && {
       fontSize: textLargeFontSize,
       lineHeight: textLargeLineHeight,
     }),
-    ...(size === Sizes.ExtraLarge && {
+    ...(props.size === Sizes.ExtraLarge && {
       fontSize: textExtraLargeFontSize,
       lineHeight: textExtraLargeLineHeight,
     }),
-    ...(size === Sizes['2x'] && {
+    ...(props.size === Sizes['2x'] && {
       fontSize: textX2FontSize,
       lineHeight: textX2LineHeight,
     }),
-    ...(size === Sizes['3x'] && {
+    ...(props.size === Sizes['3x'] && {
       fontSize: textX3FontSize,
       lineHeight: textX3LineHeight,
     }),
-    ...(size === Sizes['4x'] && {
+    ...(props.size === Sizes['4x'] && {
       fontSize: textX4FontSize,
       lineHeight: textX4LineHeight,
     }),
-  },
-})
+  }),
+}

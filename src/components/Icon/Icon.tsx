@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cx from 'classnames'
-import _ from 'lodash'
-import { createComponent, getElementType, SUI, customPropTypes, getUnhandledProps } from '../../lib'
+import { customPropTypes, UIComponent, SUI } from '../../lib'
 
-import rules from './iconRules'
+import iconRules from './iconRules'
 
-class Icon extends React.Component<any, any> {
+class Icon extends UIComponent<any, any> {
+  static className = 'ui-icon'
+
+  static displayName = 'Icon'
+
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -15,36 +17,44 @@ class Icon extends React.Component<any, any> {
     className: PropTypes.string,
 
     /** Color of the icon. */
-    color: PropTypes.oneOf(SUI.COLORS),
+    color: PropTypes.oneOf([
+      'red',
+      'orange',
+      'yellow',
+      'olive',
+      'green',
+      'teal',
+      'blue',
+      'violet',
+      'purple',
+      'pink',
+      'brown',
+      'grey',
+      'black',
+    ]),
+
+    /** The type of font that needs to be used */
+    kind: PropTypes.string,
 
     /** Name of the icon. */
     name: customPropTypes.suggest(SUI.ALL_ICONS_IN_ALL_CONTEXTS),
 
     /** Size of the icon. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
-
-    /** The type of font that needs to be used */
-    kind: PropTypes.string,
-
-    /** FELA styles */
-    styles: PropTypes.object,
+    size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']),
   }
 
-  static handledProps = ['as', 'className', 'color', 'kind', 'name', 'size', 'styles']
+  static handledProps = ['as', 'className', 'color', 'kind', 'name', 'size']
 
   static defaultProps = {
     as: 'i',
     kind: 'FontAwesome',
   }
 
-  render() {
-    const { className, styles } = this.props
-    const classes = cx('ui-icon', styles.root, className)
-    const rest = getUnhandledProps(Icon, this.props)
+  static rules = iconRules
 
-    const ElementType = getElementType(Icon, this.props)
-    return <ElementType className={classes} {...rest} />
+  renderComponent({ ElementType, classes, rest }) {
+    return <ElementType className={classes.root} {...rest} />
   }
 }
 
-export default createComponent(Icon, { rules })
+export default Icon

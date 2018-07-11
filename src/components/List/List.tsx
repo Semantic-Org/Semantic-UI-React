@@ -1,15 +1,25 @@
 import _ from 'lodash'
-import cx from 'classnames'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { createComponent, customPropTypes, getUnhandledProps, getElementType } from '../../lib'
+import { customPropTypes, UIComponent } from '../../lib'
 import ListItem from './ListItem'
 import listRules from './listRules'
+import listVariables from './listVariables'
 
-class List extends React.Component<any, any> {
+class List extends UIComponent<any, any> {
+  static displayName = 'List'
+
+  static className = 'ui-list'
+
+  static rules = listRules
+
+  static variables = listVariables
+
   static propTypes = {
     as: customPropTypes.as,
+
+    children: PropTypes.node,
 
     /** Additional classes. */
     className: PropTypes.string,
@@ -31,8 +41,6 @@ class List extends React.Component<any, any> {
 
     /** Variables */
     variables: PropTypes.object,
-
-    children: PropTypes.node,
   }
 
   static defaultProps = {
@@ -56,23 +64,16 @@ class List extends React.Component<any, any> {
   // List props that are passed to each individual Item props
   static itemProps = ['debug', 'selection', 'truncateContent', 'truncateHeader', 'variables']
 
-  render() {
-    const { className, items, styles } = this.props
-
-    const ElementType = getElementType(List, this.props)
-    const rest = getUnhandledProps(List, this.props)
-
-    const classes = cx('ui-list', styles.root, className)
+  renderComponent({ ElementType, classes, rest }) {
+    const { items } = this.props
     const itemProps = _.pick(this.props, List.itemProps)
 
     return (
-      <ElementType className={classes} {...rest}>
+      <ElementType {...rest} className={classes.root}>
         {_.map(items, item => ListItem.create(item, { defaultProps: itemProps }))}
       </ElementType>
     )
   }
 }
 
-export default createComponent(List, {
-  rules: listRules,
-})
+export default List

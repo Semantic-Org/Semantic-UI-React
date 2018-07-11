@@ -1,7 +1,3 @@
-const GLOBALLY_KNOWN_PROPS = ['as', 'rules', 'styles', 'variables', 'childKey']
-
-const isKnownProp = prop => GLOBALLY_KNOWN_PROPS.some(x => x === prop)
-
 /**
  * Returns an object consisting of props beyond the scope of the Component.
  * Useful for getting and spreading unknown props from the user.
@@ -10,20 +6,9 @@ const isKnownProp = prop => GLOBALLY_KNOWN_PROPS.some(x => x === prop)
  * @returns {{}} A shallow copy of the prop object
  */
 const getUnhandledProps = (Component, props) => {
-  // TODO(zuko): we need to generated `handledProps`
-  const handledProps = Component.propTypes ? Object.keys(Component.propTypes) : []
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (!Array.isArray(handledProps)) {
-      const name = Component.displayName || Component.name
-
-      throw new Error(`\`${name}\` is missing static handledProps array.`)
-    }
-  }
+  const { handledProps = [] } = Component
 
   return Object.keys(props).reduce((acc, prop) => {
-    if (isKnownProp(prop)) return acc
-
     if (handledProps.indexOf(prop) === -1) acc[prop] = props[prop]
 
     return acc

@@ -1,7 +1,7 @@
 import { pxToRem } from '../../lib'
 
-export default ({ type, pointing }) => ({
-  root: {
+export default {
+  root: ({ props: { pointing, type } }) => ({
     display: 'flex',
     ...(type === 'primary' && {
       border: '1px solid rgba(34, 36, 38, .15)',
@@ -15,5 +15,5 @@ export default ({ type, pointing }) => ({
     margin: 0,
     padding: 0,
     listStyleType: 'none',
-  },
-})
+  }),
+}

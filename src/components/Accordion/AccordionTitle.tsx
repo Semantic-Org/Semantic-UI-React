@@ -1,21 +1,20 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
-import cx from 'classnames'
 
-import {
-  customPropTypes,
-  createComponent,
-  getElementType,
-  getUnhandledProps,
-  useKeyOnly,
-} from '../../lib'
+import { childrenExist, createShorthandFactory, customPropTypes, UIComponent } from '../../lib'
 import accordionTitleRules from './accordionTitleRules'
 
 /**
  * A standard AccordionTitle.
  */
-class AccordionTitle extends React.Component<any, any> {
+class AccordionTitle extends UIComponent<any, any> {
+  static displayName = 'AccordionTitle'
+
+  static create: Function
+
+  static className = 'ui-accordion__title'
+
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -42,48 +41,36 @@ class AccordionTitle extends React.Component<any, any> {
      * @param {object} data - All props.
      */
     onClick: PropTypes.func,
-
-    /** A bunch of styles we might not need. */
-    styles: PropTypes.object,
   }
 
-  static handledProps = ['as', 'className', 'styles', 'onClick']
-  static defaultProps = {
-    as: 'accordionTitle',
-  }
+  static handledProps = ['as', 'active', 'children', 'className', 'content', 'index', 'onClick']
+
+  static rules = accordionTitleRules
 
   handleClick = e => {
     _.invoke(this.props, 'onClick', e, this.props)
   }
 
-  render() {
-    const { active, children, styles, className, content } = this.props
+  renderComponent({ ElementType, classes, rest }) {
+    const { active, children, content } = this.props
 
-    const ElementType = getElementType(AccordionTitle, this.props)
-    const rest = getUnhandledProps(AccordionTitle, this.props)
-    const classes = cx(useKeyOnly(active, 'active'), 'ui-accordionTitle', styles.root, className)
-
-    if (_.isNil(content)) {
+    if (childrenExist(children)) {
       return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+        <ElementType {...rest} className={classes.root} onClick={this.handleClick}>
           {children}
         </ElementType>
       )
     }
 
-    return active ? (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        <span>&#9660;</span> {content}
-      </ElementType>
-    ) : (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        <span>&#9654;</span> {content}
+    return (
+      <ElementType {...rest} className={classes.root} onClick={this.handleClick}>
+        {active ? <span>&#9660;</span> : <span>&#9654;</span>}
+        {content}
       </ElementType>
     )
   }
 }
 
-export default createComponent(AccordionTitle, {
-  rules: accordionTitleRules,
-  shorthand: content => ({ content }),
-})
+AccordionTitle.create = createShorthandFactory(AccordionTitle, content => ({ content }))
+
+export default AccordionTitle

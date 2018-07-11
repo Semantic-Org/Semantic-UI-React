@@ -1,59 +1,52 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import cx from 'classnames'
 
-import {
-  childrenExist,
-  customPropTypes,
-  createComponent,
-  getElementType,
-  getUnhandledProps,
-} from '../../lib'
-import buttonRules, { ButtonType } from './buttonRules'
+import { UIComponent, childrenExist, customPropTypes } from '../../lib'
+import buttonRules from './buttonRules'
 import buttonVariables from './buttonVariables'
 
 /**
  * A button.
  */
-const Button: any = (props: any) => {
-  const ElementType = getElementType(Button, props)
-  const rest = getUnhandledProps(Button, props)
-  const { styles, className, children, content } = props
+class Button extends UIComponent<any, any> {
+  static displayName = 'Button'
 
-  return (
-    <ElementType {...rest} className={cx('ui-button', styles.root, className)}>
-      {childrenExist(children) ? children : content}
-    </ElementType>
-  )
+  static className = 'ui-button'
+
+  static rules = buttonRules
+
+  static variables = buttonVariables
+
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
+    /** A button can appear circular. */
+    circular: PropTypes.bool,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
+    /** A button can be formatted to show different levels of emphasis. */
+    type: PropTypes.oneOf(['primary', 'secondary']),
+  }
+
+  static handledProps = ['as', 'circular', 'className', 'content', 'type']
+
+  static defaultProps = {
+    as: 'button',
+  }
+
+  renderComponent({ ElementType, classes, rest }) {
+    const { children, content } = this.props
+    return (
+      <ElementType {...rest} className={classes.root}>
+        {childrenExist(children) ? children : content}
+      </ElementType>
+    )
+  }
 }
-
-Button.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
-
-  /** A button can appear circular. */
-  circular: PropTypes.bool,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /** Shorthand for primary content. */
-  content: customPropTypes.contentShorthand,
-
-  /** A bunch of styles we might not need. */
-  styles: PropTypes.object,
-
-  /** A button can be formatted to show different levels of emphasis. */
-  type: PropTypes.oneOf(['primary', 'secondary']),
-}
-
-Button.handledProps = ['as', 'circular', 'className', 'content', 'styles', 'type']
-
-Button.defaultProps = {
-  as: 'button',
-}
-
-export default createComponent(Button, {
-  rules: buttonRules,
-  variables: buttonVariables,
-})
+export default Button

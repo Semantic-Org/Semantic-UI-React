@@ -1,11 +1,10 @@
 import { pxToRem } from '../../lib'
 import { debugRoot } from '../../styles/debugRules'
 
-const listItemRules = props => {
-  const { debugLayout, important, selection, variables } = props
-
-  return {
-    root: {
+const listItemRules = {
+  root: ({ props, variables }) => {
+    const { debugLayout, important, selection } = props
+    return {
       ...(debugLayout && debugRoot()),
       gridTemplateRows: `minmax(${variables.itemHeight}, max-content)`,
       paddingLeft: variables.itemPaddingLeft,
@@ -24,9 +23,12 @@ const listItemRules = props => {
           cursor: 'pointer',
         },
       }),
-    },
+    }
+  },
 
-    media: {
+  media: ({ props }) => {
+    const { important } = props
+    return {
       ...(important && {
         '::before': {
           content: '""',
@@ -37,25 +39,25 @@ const listItemRules = props => {
           background: '#000',
         },
       }),
-    },
+    }
+  },
 
-    header: {
-      lineHeight: variables.headerLineHeight,
-    },
+  header: ({ props, variables }) => ({
+    lineHeight: variables.headerLineHeight,
+  }),
 
-    headerMedia: {
-      color: variables.headerMediaColor,
-      fontSize: variables.headerMediaFontSize,
-      lineHeight: variables.headerMediaLineHeight,
-    },
+  headerMedia: ({ props, variables }) => ({
+    color: variables.headerMediaColor,
+    fontSize: variables.headerMediaFontSize,
+    lineHeight: variables.headerMediaLineHeight,
+  }),
 
-    content: {
-      color: variables.contentColor,
-      fontSize: variables.contentFontSize,
-      lineHeight: variables.contentLineHeight,
-    },
-    contentMedia: {},
-  }
+  content: ({ props, variables }) => ({
+    color: variables.contentColor,
+    fontSize: variables.contentFontSize,
+    lineHeight: variables.contentLineHeight,
+  }),
+  contentMedia: () => ({}),
 }
 
 export default listItemRules

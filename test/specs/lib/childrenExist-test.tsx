@@ -10,7 +10,7 @@ describe('childrenExist', () => {
     const { props } = <div>text</div>
     expect(childrenExist(props.children)).toBe(true)
   })
-  test.only('returns true with empty child element', () => {
+  test('returns true with empty child element', () => {
     const { props } = (
       <div>
         <p />
@@ -18,7 +18,7 @@ describe('childrenExist', () => {
     )
     expect(childrenExist(props.children)).toBe(true)
   })
-  test.only('returns true with child element', () => {
+  test('returns true with child element', () => {
     const { props } = (
       <div>
         <p>text</p>

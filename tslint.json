@@ -8,6 +8,7 @@
     "max-line-length": [false],
     "no-increment-decrement": false,
     "object-curly-spacing": [false],
+    "object-shorthand-properties-first": [false],
     "quotemark": [false],
     "semicolon": [true, "never"],
     "ter-arrow-parens": [false],

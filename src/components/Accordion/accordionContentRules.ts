@@ -1,9 +1,9 @@
-const accordionContentRules = ({ active, variables }) => ({
-  root: {
+const accordionContentRules = {
+  root: ({ props }) => ({
     display: 'none',
     verticalAlign: 'middle',
-    ...(active && { display: 'block' }),
-  },
-})
+    ...(props.active && { display: 'block' }),
+  }),
+}
 
 export default accordionContentRules

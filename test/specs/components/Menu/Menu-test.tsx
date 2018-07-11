@@ -43,18 +43,17 @@ describe('Menu', () => {
         expect(menuItems.everyWhere(item => !item.is('[active="true"]'))).toBe(true)
       })
 
-      // TODO restore and fix this test after base component is merged
-      // it('should be set when item is clicked', (cb) => {
-      //   const wrapper = mountWithProvider(<Menu items={getItems()} />)
-      //   const menuItems = wrapper.find('MenuItem')
-      //   const firstItem = menuItems.at(0)
-      //   const secondItem = menuItems.at(1)
-      //
-      //   secondItem.simulate('click')
-      //
-      //   expect(firstItem.props().active).toBe(false)
-      //   expect(secondItem.props().active).toBe(true)
-      // })
+      it('should be set when item is clicked', () => {
+        const wrapper = mountWithProvider(<Menu items={getItems()} />)
+        const menuItems = wrapper.find('MenuItem')
+
+        menuItems.at(1).simulate('click')
+
+        const updatedItems = wrapper.find('MenuItem')
+
+        expect(updatedItems.at(0).props().active).toBe(false)
+        expect(updatedItems.at(1).props().active).toBe(true)
+      })
     })
   })
 })

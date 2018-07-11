@@ -5,11 +5,7 @@ import React from 'react'
 /**
  * The Provider's Consumer is for accessing the theme.
  */
-const ProviderConsumer: any = props => {
-  const { children } = props
-
-  return <FelaTheme render={children} />
-}
+const ProviderConsumer: any = props => <FelaTheme {...props} />
 
 ProviderConsumer.propTypes = {
   /**
@@ -17,7 +13,7 @@ ProviderConsumer.propTypes = {
    * @param {object} theme
    * @param {object} theme.siteVariables - The siteVariables passed from the nearest Provider.
    */
-  children: PropTypes.func.isRequired,
+  render: PropTypes.func.isRequired,
 }
 
 export default ProviderConsumer

@@ -1,7 +1,7 @@
 import { pxToRem } from '../../lib'
 
-export default ({ active, pointing, type }) => ({
-  root: {
+export default {
+  root: ({ props: { active, pointing, type } }) => ({
     color: 'rgba(0, 0, 0, .87)',
     lineHeight: 1,
     position: 'relative',
@@ -84,11 +84,12 @@ export default ({ active, pointing, type }) => ({
           transition: 'color .1s ease',
         }),
     }),
-  },
-  anchor: {
+  }),
+
+  anchor: () => ({
     color: 'inherit',
     ':hover': {
       color: 'inherit',
     },
-  },
-})
+  }),
+}

@@ -10,10 +10,6 @@ const TestComponent: any = props => {
 }
 
 describe('getUnhandledProps', () => {
-  test('removes the proprietary childKey prop', () => {
-    expect(shallow(<TestComponent childKey={1} />).props()).not.toHaveProperty('childKey')
-  })
-
   test('leaves props that are not defined in handledProps', () => {
     expect(shallow(<TestComponent data-leave-this="it is unhandled" />).props()).toHaveProperty(
       'data-leave-this',

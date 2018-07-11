@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { shallow, mount, render } from 'enzyme'
 import ReactDOMServer from 'react-dom/server'
 
 import { assertBodyContains, consoleUtil, syntheticEvent } from 'test/utils'
@@ -28,18 +28,6 @@ export default (Component, options: any = {}) => {
     throwError(`Components should export a class or function, got: ${componentType}.`)
   }
 
-  const renderWithProvider = testComponent => (
-    <Provider siteVariables={{}}>{testComponent}</Provider>
-  )
-
-  const getTestingRenderedComponent = mountedElement => {
-    let wrapper = mountedElement
-    while (wrapper.name() !== Component.wrappedComponent) {
-      wrapper = wrapper.childAt(0)
-    }
-    return wrapper
-  }
-
   // tests depend on Component constructor names, enforce them
   const constructorName = Component.prototype.constructor.name
   if (!constructorName) {
@@ -57,7 +45,7 @@ export default (Component, options: any = {}) => {
   // This is pretty ugly because:
   // - jest doesn't support custom error messages
   // - jest will run all test
-  const infoJSONPath = `docs/src/componentInfo/${Component.wrappedComponent}.info.json`
+  const infoJSONPath = `docs/src/componentInfo/${constructorName}.info.json`
 
   let info
 
@@ -79,17 +67,17 @@ export default (Component, options: any = {}) => {
   }
 
   // ----------------------------------------
-  // Component and file name
+  // Class and file name
   // ----------------------------------------
-  test(`wrappedComponent property matches filename "${Component.wrappedComponent}"`, () => {
-    expect(Component.wrappedComponent).toEqual(info.filenameWithoutExt)
+  test(`constructor name matches filename "${constructorName}"`, () => {
+    expect(constructorName).toEqual(info.filenameWithoutExt)
   })
 
   // ----------------------------------------
   // Is exported or private
   // ----------------------------------------
   // detect components like: stardust.H1
-  const isTopLevelAPIProp = _.has(stardust, Component.wrappedComponent)
+  const isTopLevelAPIProp = _.has(stardust, constructorName)
 
   // find the apiPath in the stardust object
   const foundAsSubcomponent = _.isFunction(_.get(stardust, info.apiPath))
@@ -126,9 +114,7 @@ export default (Component, options: any = {}) => {
     const propName = 'data-is-conformant-spread-props'
     const props = { [propName]: true }
 
-    const component = getTestingRenderedComponent(
-      mount(renderWithProvider(<Component {...requiredProps} {...props} />)),
-    )
+    const component = mount(<Component {...requiredProps} {...props} />)
 
     // The component already has the prop, so we are testing if it's children also have the props,
     // that is why we are testing if it is greater then 1
@@ -158,14 +144,19 @@ export default (Component, options: any = {}) => {
         ]
 
         tags.forEach(tag => {
-          const wrapper = mount(renderWithProvider(<Component {...requiredProps} as={tag} />))
-          const component = getTestingRenderedComponent(wrapper)
+          const component = mount(<Component {...requiredProps} as={tag} />)
 
           try {
-            expect(component.childAt(0).is(tag)).toEqual(true)
+            expect(component.is(tag)).toEqual(true)
           } catch (err) {
-            expect(component.childAt(0).type()).not.toEqual(Component)
-            expect(component.childAt(0).prop('as')).toEqual(tag)
+            // TODO: this needs to be addressed
+            // expect(component.type()).not.toEqual(Component)
+            expect(
+              component
+                .find('[as]')
+                .last()
+                .prop('as'),
+            ).toEqual(tag)
           }
         })
       })
@@ -173,14 +164,19 @@ export default (Component, options: any = {}) => {
       test('renders as a functional component or passes "as" to the next component', () => {
         const MyComponent = () => null
 
-        const wrapper = mount(renderWithProvider(<Component {...requiredProps} as={MyComponent} />))
-        const component = getTestingRenderedComponent(wrapper)
+        const component = mount(<Component {...requiredProps} as={MyComponent} />)
 
         try {
-          expect(component.childAt(0).type()).toEqual(MyComponent)
+          expect(component.type()).toEqual(MyComponent)
         } catch (err) {
-          expect(component.childAt(0).type()).not.toEqual(Component)
-          expect(component.childAt(0).prop('as')).toEqual(MyComponent)
+          // TODO: this needs to be addressed
+          // expect(component.type()).not.toEqual(Component)
+          expect(
+            component
+              .find('[as]')
+              .last()
+              .prop('as'),
+          ).toEqual(MyComponent)
         }
       })
 
@@ -191,23 +187,25 @@ export default (Component, options: any = {}) => {
           }
         }
 
-        const wrapper = mount(renderWithProvider(<Component {...requiredProps} as={MyComponent} />))
-        const component = getTestingRenderedComponent(wrapper)
-
+        const component = mount(<Component {...requiredProps} as={MyComponent} />)
         try {
-          expect(component.childAt(0).type()).toEqual(MyComponent)
+          expect(component.type()).toEqual(MyComponent)
         } catch (err) {
-          expect(component.childAt(0).type()).not.toEqual(Component)
-          expect(component.childAt(0).prop('as')).toEqual(MyComponent)
+          // TODO: this needs to be addressed
+          // expect(component.type()).not.toEqual(Component)
+          expect(
+            component
+              .find('[as]')
+              .last()
+              .prop('as'),
+          ).toEqual(MyComponent)
         }
       })
 
       test('passes extra props to the component it is renders as', () => {
         const MyComponent = () => null
         const wrapper = mount(
-          renderWithProvider(
-            <Component {...requiredProps} as={MyComponent} data-extra-prop="foo" />,
-          ),
+          <Component {...requiredProps} as={MyComponent} data-extra-prop="foo" />,
         )
 
         expect(wrapper.find('MyComponent[data-extra-prop="foo"]').length).toBeGreaterThan(0)
@@ -223,16 +221,15 @@ export default (Component, options: any = {}) => {
 
     test('Component.handledProps includes all handled props', () => {
       const computedProps = _.union(
-        Component.wrappedComponentAutoControlledProps,
-        _.keys(Component.wrappedComponentDefaultProps),
-        _.keys(Component.wrappedComponentPropTypes),
+        Component.autoControlledProps,
+        _.keys(Component.defaultProps),
+        _.keys(Component.propTypes),
       )
       const expectedProps = _.uniq(computedProps).sort()
 
       const message =
-        'It seems that not all props were defined in Component.handledProps, you need' +
-        ' to check that they are equal to the union of Component.wrappedComponentAutoControlledProps and keys of ' +
-        'Component.wrappedComponentDefaultProps and Component.propTypes'
+        'Not all handled props were defined in static handledProps. Add all props defined in' +
+        ' static autoControlledProps, static defaultProps and static propTypes must.'
 
       expect({
         message,
@@ -272,12 +269,17 @@ export default (Component, options: any = {}) => {
           'data-simulate-event-here': true,
         }
 
-        const wrapper = mount(renderWithProvider(<Component {...props} />))
-        const component = getTestingRenderedComponent(wrapper)
+        const component = mount(<Component {...props} />)
 
         const eventTarget = eventTargets[listenerName]
-          ? component.find(eventTargets[listenerName]).hostNodes()
-          : component.find('[data-simulate-event-here]').hostNodes()
+          ? component
+              .find(eventTargets[listenerName])
+              .hostNodes()
+              .first()
+          : component
+              .find('[data-simulate-event-here]')
+              .hostNodes()
+              .first()
 
         if (eventTarget.length === 0) {
           throw new Error(
@@ -294,8 +296,8 @@ export default (Component, options: any = {}) => {
         }
 
         // give event listeners opportunity to cleanup
-        if (wrapper.instance() && wrapper.instance().componentWillUnmount) {
-          wrapper.instance().componentWillUnmount()
+        if (component.instance() && component.instance().componentWillUnmount) {
+          component.instance().componentWillUnmount()
         }
 
         // <Dropdown onBlur={handleBlur} />
@@ -315,7 +317,7 @@ export default (Component, options: any = {}) => {
         let expectedArgs = [eventShape]
         let errorMessage = 'was not called with (event)'
 
-        if (_.has(Component.wrappedComponentPropTypes, listenerName)) {
+        if (_.has(Component.propTypes, listenerName)) {
           expectedArgs = [eventShape, component.props()]
           errorMessage = 'was not called with (event, data)'
         }
@@ -329,7 +331,7 @@ export default (Component, options: any = {}) => {
               `<${info.displayName} ${listenerName}={${handlerName}} />\n`,
               `${leftPad} ^ ${errorMessage}`,
               'It was called with args:',
-              JSON.stringify(handlerSpy.args, null, 2),
+              JSON.stringify(handlerSpy.mock.calls[0], null, 2),
             ].join('\n'),
           )
         }
@@ -338,26 +340,27 @@ export default (Component, options: any = {}) => {
   })
 
   // ----------------------------------------
-  // Has no deprecated _meta
-  // ----------------------------------------
-  describe('_meta', () => {
-    test('does not exist', () => {
-      expect(Component._meta).toBeUndefined()
-    })
-  })
-
-  // ----------------------------------------
   // Handles className
   // ----------------------------------------
-  describe('className (common)', () => {
-    test(`has the Stardust className "${info.componentClassName}"`, () => {
-      const wrapper = mount(renderWithProvider(<Component {...requiredProps} />))
-      const component = getTestingRenderedComponent(wrapper)
+  describe('static className (common)', () => {
+    test(`is a static equal to "${info.componentClassName}"`, () => {
+      expect(Component.className).toEqual(info.componentClassName)
+    })
+
+    test(`is applied to the root element`, () => {
+      const component = mount(<Component {...requiredProps} />)
 
       // only test components that implement className
-      if (component.childAt(0).prop('className')) {
+      if (component.find('[className]').hostNodes().length > 0) {
         expect(
-          _.includes(component.childAt(0).prop('className'), `${info.componentClassName}`),
+          _.includes(
+            component
+              .find('[className]')
+              .hostNodes()
+              .first()
+              .prop('className'),
+            `${info.componentClassName}`,
+          ),
         ).toEqual(true)
       }
     })
@@ -368,16 +371,14 @@ export default (Component, options: any = {}) => {
       // Portal powered components can render to two elements, a trigger and the actual component
       // The actual component is shown when the portal is open
       // If a trigger is rendered, open the portal and make assertions on the portal element
+      // TODO some component using renderPortal = 'true'
       if (rendersPortal) {
         const mountNode = document.createElement('div')
         document.body.appendChild(mountNode)
 
-        const wrapper = mount(
-          renderWithProvider(<Component {...requiredProps} className={className} />),
-          {
-            attachTo: mountNode,
-          },
-        )
+        const wrapper = mount(<Component {...requiredProps} className={className} />, {
+          attachTo: mountNode,
+        })
         wrapper.setProps({ open: true })
 
         // portals/popups/etc may render the component to somewhere besides descendants
@@ -387,13 +388,13 @@ export default (Component, options: any = {}) => {
         wrapper.detach()
         document.body.removeChild(mountNode)
       } else {
-        const wrapper = mount(
-          renderWithProvider(<Component {...requiredProps} className={className} />),
-        )
+        const component = mount(<Component {...requiredProps} className={className} />)
         expect(
           _.includes(
-            getTestingRenderedComponent(wrapper)
-              .childAt(0)
+            component
+              .find('[className]')
+              .hostNodes()
+              .first()
               .prop('className'),
             className,
           ),
@@ -402,19 +403,23 @@ export default (Component, options: any = {}) => {
     })
 
     test("user's className does not override the default classes", () => {
-      const wrapper = mount(renderWithProvider(<Component {...requiredProps} />))
-      const defaultClasses = getTestingRenderedComponent(wrapper)
-        .childAt(0)
+      const component = mount(<Component {...requiredProps} />)
+      const defaultClasses = component
+        .find('[className]')
+        .hostNodes()
+        .first()
         .prop('className')
 
       if (!defaultClasses) return
 
       const userClasses = 'generate'
       const wrapperWithCustomClasses = mount(
-        renderWithProvider(<Component {...requiredProps} className={userClasses} />),
+        <Component {...requiredProps} className={userClasses} />,
       )
-      const mixedClasses = getTestingRenderedComponent(wrapperWithCustomClasses)
-        .childAt(0)
+      const mixedClasses = wrapperWithCustomClasses
+        .find('[className]')
+        .hostNodes()
+        .first()
         .prop('className')
 
       const message = [
@@ -428,6 +433,15 @@ export default (Component, options: any = {}) => {
           result: true,
         })
       })
+    })
+  })
+
+  // ----------------------------------------
+  // displayName
+  // ----------------------------------------
+  describe('static displayName (common)', () => {
+    test('matches constructor name', () => {
+      expect(Component.displayName).toEqual(info.constructorName)
     })
   })
 }

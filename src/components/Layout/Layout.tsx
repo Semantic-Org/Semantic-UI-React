@@ -2,14 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
-import { createComponent, getUnhandledProps, getElementType, customPropTypes } from '../../lib'
+import { customPropTypes, UIComponent } from '../../lib'
 import layoutRules from './layoutRules'
 
-class Layout extends React.Component<any, any> {
+class Layout extends UIComponent<any, any> {
+  static className = 'ui-layout'
+
+  static displayName = 'Layout'
+
+  static rules = layoutRules
+
   static propTypes = {
     as: customPropTypes.as,
     className: PropTypes.string,
-    styles: PropTypes.object,
     debug: PropTypes.bool,
 
     renderStartArea: PropTypes.func,
@@ -77,7 +82,6 @@ class Layout extends React.Component<any, any> {
     'start',
     'startCSS',
     'startSize',
-    'styles',
     'truncateEnd',
     'truncateMain',
     'truncateStart',
@@ -92,28 +96,27 @@ class Layout extends React.Component<any, any> {
 
     // TODO: when an area is another Layout, do not wrap them in an extra div
     // TODO: option 1) higher value layouts could use start={Layout.create(start)} to ensure Areas are layout root
-    renderStartArea({ start, styles }) {
-      return start && <div className={cx('ui-layout__start', styles.start)}>{start}</div>
+    renderStartArea({ start, classes }) {
+      return start && <div className={cx('ui-layout__start', classes.start)}>{start}</div>
     },
 
-    renderMainArea({ main, styles }) {
-      return main && <div className={cx('ui-layout__main', styles.main)}>{main}</div>
+    renderMainArea({ main, classes }) {
+      return main && <div className={cx('ui-layout__main', classes.main)}>{main}</div>
     },
 
-    renderEndArea({ end, styles }) {
-      return end && <div className={cx('ui-layout__end', styles.end)}>{end}</div>
+    renderEndArea({ end, classes }) {
+      return end && <div className={cx('ui-layout__end', classes.end)}>{end}</div>
     },
 
     // Heads up!
     // IE11 Doesn't support grid-gap, insert virtual columns instead
-    renderGap({ gap, styles }) {
-      return gap && <span className={cx('ui-layout__gap', styles.gap)} />
+    renderGap({ gap, classes }) {
+      return gap && <span className={cx('ui-layout__gap', classes.gap)} />
     },
   }
 
-  render() {
+  renderComponent({ ElementType, classes, rest }) {
     const {
-      className,
       reducing,
       disappearing,
       start,
@@ -123,17 +126,14 @@ class Layout extends React.Component<any, any> {
       renderMainArea,
       renderEndArea,
       renderGap,
-      styles,
     } = this.props
-    const rest = getUnhandledProps(Layout, this.props)
-    const ElementType = getElementType(Layout, this.props)
 
-    const startArea = renderStartArea(this.props)
-    const mainArea = renderMainArea(this.props)
-    const endArea = renderEndArea(this.props)
+    const startArea = renderStartArea({ ...this.props, classes })
+    const mainArea = renderMainArea({ ...this.props, classes })
+    const endArea = renderEndArea({ ...this.props, classes })
 
     if (!startArea && !mainArea && !endArea) {
-      return <ElementType className={cx(className, 'ui-layout', styles.root)} {...rest} />
+      return <ElementType {...rest} className={classes.root} />
     }
 
     const activeAreas = [startArea, mainArea, endArea].filter(Boolean)
@@ -145,33 +145,29 @@ class Layout extends React.Component<any, any> {
     }
 
     if (reducing && isSingleArea) {
-      const classes = cx(
-        'ui-layout',
-        className,
-        styles.root,
+      const composedClasses = cx(
+        classes.root,
         startArea && 'ui-layout--reduced__start',
         mainArea && 'ui-layout--reduced__main',
         endArea && 'ui-layout--reduced__end',
       )
       return (
-        <ElementType className={classes} {...rest}>
+        <ElementType {...rest} className={composedClasses}>
           {start || main || end}
         </ElementType>
       )
     }
 
     return (
-      <ElementType className={cx(className, 'ui-layout', styles.root)} {...rest}>
+      <ElementType {...rest} className={classes.root}>
         {startArea}
-        {startArea && mainArea && renderGap(this.props)}
+        {startArea && mainArea && renderGap({ ...this.props, classes })}
         {mainArea}
-        {(startArea || mainArea) && endArea && renderGap(this.props)}
+        {(startArea || mainArea) && endArea && renderGap({ ...this.props, classes })}
         {endArea}
       </ElementType>
     )
   }
 }
 
-export default createComponent(Layout, {
-  rules: layoutRules,
-})
+export default Layout

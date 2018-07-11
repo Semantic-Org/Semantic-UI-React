@@ -1,6 +1,6 @@
-import { isConformant } from '../../commonTests'
+import { isConformant } from 'test/specs/commonTests'
 
-import Image from '../../../../src/components/Image/Image'
+import Image from 'src/components/Image/Image'
 
 describe('Image', () => {
   isConformant(Image)

@@ -2,12 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
-import { createComponent, customPropTypes, getUnhandledProps, pxToRem } from '../../lib'
+import { createShorthandFactory, customPropTypes, pxToRem, UIComponent } from '../../lib'
 import Layout from '../Layout'
 import listVariables from './listVariables'
 import listItemRules from './listItemRules'
 
-class ListItem extends React.Component<any, any> {
+class ListItem extends UIComponent<any, any> {
+  static create: Function
+
+  static displayName = 'ListItem'
+
+  static className = 'ui-list__item'
+
+  static rules = listItemRules
+
+  static variables = listVariables
+
   static propTypes = {
     as: customPropTypes.as,
 
@@ -37,9 +47,6 @@ class ListItem extends React.Component<any, any> {
     selection: PropTypes.bool,
     truncateContent: PropTypes.bool,
     truncateHeader: PropTypes.bool,
-
-    variables: PropTypes.any,
-    styles: PropTypes.object,
   }
 
   static handledProps = [
@@ -57,24 +64,22 @@ class ListItem extends React.Component<any, any> {
     'renderHeaderArea',
     'renderMainArea',
     'selection',
-    'styles',
     'truncateContent',
     'truncateHeader',
-    'variables',
   ]
 
   static defaultProps = {
     as: 'li',
 
-    renderMainArea: (props, state) => {
+    renderMainArea: (props, state, classes) => {
       const { renderHeaderArea, renderContentArea } = props
 
-      const headerArea = renderHeaderArea(props, state)
-      const contentArea = renderContentArea(props, state)
+      const headerArea = renderHeaderArea(props, state, classes)
+      const contentArea = renderContentArea(props, state, classes)
 
       return (
         <div
-          className="list-item__main"
+          className="ui-list__item__main"
           // vertical
           // disappearing
           // rootCSS={{
@@ -92,16 +97,16 @@ class ListItem extends React.Component<any, any> {
       )
     },
 
-    renderHeaderArea: (props, state) => {
-      const { debug, header, headerMedia, truncateHeader, styles } = props
+    renderHeaderArea: (props, state, classes) => {
+      const { debug, header, headerMedia, truncateHeader } = props
       const { isHovering } = state
 
-      const classes = cx('ui-list__item__header', styles.header)
-      const mediaClasses = cx('ui-list__item__headerMedia', styles.headerMedia)
+      const mergedClasses = cx('ui-list__item__header', classes.header)
+      const mediaClasses = cx('ui-list__item__headerMedia', classes.headerMedia)
 
       return !header && !headerMedia ? null : (
         <Layout
-          className={classes}
+          className={mergedClasses}
           alignItems="end"
           gap={pxToRem(8)}
           debug={debug}
@@ -114,15 +119,15 @@ class ListItem extends React.Component<any, any> {
       )
     },
 
-    renderContentArea: (props, state) => {
-      const { debug, content, contentMedia, styles, truncateContent } = props
+    renderContentArea: (props, state, classes) => {
+      const { debug, content, contentMedia, truncateContent } = props
       const { isHovering } = state
 
-      const classes = cx('ui-list__item__content', styles.content)
+      const mergedClasses = cx('ui-list__item__content', classes.content)
 
       return !content && !contentMedia ? null : (
         <Layout
-          className={classes}
+          className={mergedClasses}
           alignItems="start"
           gap={pxToRem(8)}
           debug={debug}
@@ -146,14 +151,12 @@ class ListItem extends React.Component<any, any> {
     this.setState({ isHovering: false })
   }
 
-  render() {
-    const { as, className, debug, endMedia, media, renderMainArea, styles } = this.props
+  renderComponent({ ElementType, classes, rest }) {
+    const { as, debug, endMedia, media, renderMainArea } = this.props
     const { isHovering } = this.state
 
-    const rest = getUnhandledProps(ListItem, this.props)
-
     const startArea = media
-    const mainArea = renderMainArea(this.props, this.state)
+    const mainArea = renderMainArea(this.props, this.state, classes)
     const endArea = isHovering && endMedia
 
     return (
@@ -161,7 +164,7 @@ class ListItem extends React.Component<any, any> {
         as={as}
         alignItems="center"
         gap={pxToRem(8)}
-        className={cx('ui-list__item', styles.root, className)}
+        className={classes.root}
         debug={debug}
         reducing
         start={startArea}
@@ -175,8 +178,6 @@ class ListItem extends React.Component<any, any> {
   }
 }
 
-export default createComponent(ListItem, {
-  rules: listItemRules,
-  variables: listVariables,
-  shorthand: main => ({ main }),
-})
+ListItem.create = createShorthandFactory(ListItem, main => ({ main }))
+
+export default ListItem

@@ -104,11 +104,7 @@ class Provider extends Component<any, any> {
 
     return (
       <RendererProvider renderer={this.props.rtl ? felaRtlRenderer : felaLtrRenderer}>
-        {siteVariables || componentVariables ? (
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
-        ) : (
-          children
-        )}
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
       </RendererProvider>
     )
   }

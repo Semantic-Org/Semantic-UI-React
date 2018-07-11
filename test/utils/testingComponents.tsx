@@ -13,11 +13,5 @@ export const getTestingRenderedComponent = (
   Element: React.ReactNode,
   options?: {},
 ) => {
-  let wrapper = mountWithProvider(Element, options)
-
-  while (wrapper.name() !== Component.wrappedComponent) {
-    wrapper = wrapper.childAt(0)
-  }
-
-  return wrapper
+  return mountWithProvider(Element, options).find(Component)
 }

@@ -1,6 +1,6 @@
-export default ({ textAlign }) => ({
-  root: {
-    textAlign,
+export default {
+  root: ({ props }) => ({
+    textAlign: props.textAlign,
     display: 'block',
-  },
-})
+  }),
+}

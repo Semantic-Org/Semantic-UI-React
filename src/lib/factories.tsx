@@ -89,18 +89,10 @@ export function createShorthand(
   // Get key
   // ----------------------------------------
 
-  // Use key, childKey, or generate key
-  if (_.isNil(props.key)) {
-    const { childKey } = props
-
-    if (!_.isNil(childKey)) {
-      // apply and consume the childKey
-      props.key = typeof childKey === 'function' ? childKey(props) : childKey
-      delete props.childKey
-    } else if (valIsString || valIsNumber) {
-      // use string/number shorthand values as the key
-      props.key = val
-    }
+  // Use key or generate key
+  if (_.isNil(props.key) && (valIsString || valIsNumber)) {
+    // use string/number shorthand values as the key
+    props.key = val
   }
 
   // ----------------------------------------

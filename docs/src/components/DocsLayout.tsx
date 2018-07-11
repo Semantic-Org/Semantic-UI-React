@@ -26,6 +26,8 @@ class DocsLayout extends Component<any, any> {
     sidebar: PropTypes.bool,
   }
 
+  static handledProps = ['component', 'history', 'location', 'match', 'render', 'sidebar']
+
   componentDidMount() {
     this.resetPage()
   }

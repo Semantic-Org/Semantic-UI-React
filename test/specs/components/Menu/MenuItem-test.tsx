@@ -1,46 +1,26 @@
 import React from 'react'
 
-import { isConformant } from '../../commonTests'
+import { isConformant } from 'test/specs/commonTests'
 import { getTestingRenderedComponent } from 'test/utils'
 import MenuItem from 'src/components/Menu/MenuItem'
 
 describe('MenuItem', () => {
   isConformant(MenuItem)
 
-  describe('children', () => {
-    it('render as `li > children`', () => {
-      const menuItem = getTestingRenderedComponent(
-        MenuItem,
-        <MenuItem>
-          <div>Home</div>
-        </MenuItem>,
-      )
-      expect(menuItem.childAt(0).is('li')).toBe(true)
-      expect(
-        menuItem
-          .childAt(0)
-          .childAt(0)
-          .html(),
-      ).toBe('<div>Home</div>')
-    })
+  it('content renders as `li > a`', () => {
+    const menuItem = getTestingRenderedComponent(MenuItem, <MenuItem content="Home" />).find(
+      '.ui-menu__item',
+    )
+
+    expect(menuItem.is('li')).toBe(true)
+    expect(menuItem.childAt(0).is('a')).toBe(true)
+    expect(menuItem.text()).toBe('Home')
   })
 
-  describe('content', () => {
-    it('renders as `li > a > content`', () => {
-      const menuItem = getTestingRenderedComponent(MenuItem, <MenuItem content="Home" />)
-      expect(menuItem.childAt(0).is('li')).toBe(true)
-      expect(
-        menuItem
-          .childAt(0)
-          .childAt(0)
-          .is('a'),
-      ).toBe(true)
-      expect(
-        menuItem
-          .childAt(0)
-          .childAt(0)
-          .text(),
-      ).toBe('Home')
-    })
+  it('children render directly inside `li`', () => {
+    const menuItem = getTestingRenderedComponent(MenuItem, <MenuItem>Home</MenuItem>)
+
+    expect(menuItem.find('.ui-menu__item').is('li')).toBe(true)
+    expect(menuItem.text()).toBe('Home')
   })
 })

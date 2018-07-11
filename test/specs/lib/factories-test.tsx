@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { shallow } from 'enzyme'
 import React, { isValidElement } from 'react'
 import { createShorthand, createShorthandFactory } from 'src/lib'
+import { consoleUtil } from 'test/utils'
 
 // ----------------------------------------
 // Utils
@@ -164,6 +165,11 @@ describe('factories', () => {
     })
 
     describe('key', () => {
+      beforeEach(() => {
+        // silence React's warning about accessing the `key` prop
+        consoleUtil.disableOnce()
+      })
+
       test('is not consumed', () => {
         expect(getShorthand({ value: { key: 123 } }).props).toHaveProperty('key')
       })
@@ -201,60 +207,6 @@ describe('factories', () => {
           expect(getShorthand({ value: { key: 0 } })).toHaveProperty('key', '0')
 
           expect(getShorthand({ value: { key: '' } })).toHaveProperty('key', '')
-        })
-      })
-    })
-
-    describe('childKey', () => {
-      test('is consumed', () => {
-        expect(getShorthand({ value: { childKey: 123 } }).props).not.toHaveProperty('childKey')
-      })
-
-      test('is called with the final `props` if it is a function', () => {
-        const props = { foo: 'bar', childKey: jest.fn(({ foo }) => foo) }
-        const element = getShorthand({ value: props })
-
-        expect(props.childKey).toHaveBeenCalledTimes(1)
-        expect(props.childKey).toHaveBeenCalledWith({ foo: 'bar', key: 'bar' })
-
-        expect(element.key).toBe('bar')
-      })
-
-      describe('on an element', () => {
-        const createWithChildKey = childKey => <div {...{ childKey } as any} />
-
-        test('works with a string', () => {
-          expect(getShorthand({ value: createWithChildKey('foo') })).toHaveProperty('key', 'foo')
-        })
-
-        test('works with a number', () => {
-          expect(getShorthand({ value: createWithChildKey(123) })).toHaveProperty('key', '123')
-        })
-
-        test('works with falsy values', () => {
-          expect(getShorthand({ value: createWithChildKey(null) })).toHaveProperty('key', null)
-
-          expect(getShorthand({ value: createWithChildKey(0) })).toHaveProperty('key', '0')
-
-          expect(getShorthand({ value: createWithChildKey('') })).toHaveProperty('key', '')
-        })
-      })
-
-      describe('on an object', () => {
-        test('works with a string', () => {
-          expect(getShorthand({ value: { childKey: 'foo' } })).toHaveProperty('key', 'foo')
-        })
-
-        test('works with a number', () => {
-          expect(getShorthand({ value: { childKey: 123 } })).toHaveProperty('key', '123')
-        })
-
-        test('works with falsy values', () => {
-          expect(getShorthand({ value: { childKey: null } })).toHaveProperty('key', null)
-
-          expect(getShorthand({ value: { childKey: 0 } })).toHaveProperty('key', '0')
-
-          expect(getShorthand({ value: { childKey: '' } })).toHaveProperty('key', '')
         })
       })
     })

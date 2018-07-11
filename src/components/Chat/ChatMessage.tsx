@@ -1,56 +1,53 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-import cx from 'classnames'
-import {
-  childrenExist,
-  createComponent,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-} from '../../lib'
+import { childrenExist, createShorthandFactory, customPropTypes, UIComponent } from '../../lib'
 
 import chatMessageRules from './chatMessageRules'
 import chatMessageVariables from './chatMessageVariables'
 
-const ChatMessage: any = props => {
-  const { children, content, styles, className } = props
-  const ElementType = getElementType(ChatMessage, props)
-  const rest = getUnhandledProps(ChatMessage, props)
+class ChatMessage extends UIComponent<any, any> {
+  static className = 'ui-chat__message'
 
-  return (
-    <ElementType {...rest} className={cx('ui-chat__message', styles.root, className)}>
-      {childrenExist(children) ? children : content}
-    </ElementType>
-  )
+  static create: Function
+
+  static displayName = 'ChatMessage'
+
+  static propTypes = {
+    as: customPropTypes.as,
+
+    /** Child content. */
+    children: PropTypes.node,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
+    /** Shorthand for the primary content. */
+    content: PropTypes.string,
+
+    /** Indicates whether message belongs to the current user. */
+    mine: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    as: 'li',
+  }
+
+  static rules = chatMessageRules
+
+  static variables = chatMessageVariables
+
+  renderComponent({ ElementType, classes, rest }) {
+    const { children, content } = this.props
+
+    return (
+      <ElementType {...rest} className={classes.root}>
+        {childrenExist(children) ? children : content}
+      </ElementType>
+    )
+  }
 }
 
-ChatMessage.propTypes = {
-  as: customPropTypes.as,
+ChatMessage.create = createShorthandFactory(ChatMessage, content => ({ content }))
 
-  /** Child content. */
-  children: PropTypes.node,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /** Shorthand for the primary content. */
-  content: PropTypes.string,
-
-  /** Indicates whether message belongs to the current user. */
-  mine: PropTypes.bool,
-
-  styles: PropTypes.object,
-  variables: PropTypes.object,
-  rules: PropTypes.object,
-}
-
-ChatMessage.defaultProps = {
-  as: 'li',
-}
-
-export default createComponent(ChatMessage, {
-  rules: chatMessageRules,
-  variables: chatMessageVariables,
-  shorthand: content => ({ content }),
-})
+export default ChatMessage

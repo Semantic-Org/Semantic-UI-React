@@ -33,5 +33,5 @@ export default name => {
 }
 
 /**
- * We should probably declare a @fontface rule here
+ * TODO We should probably declare a @fontface rule here
  */

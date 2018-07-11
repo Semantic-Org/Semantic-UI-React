@@ -1,16 +1,8 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
-import cx from 'classnames'
 
-import {
-  AutoControlledComponent as Component,
-  customPropTypes,
-  createComponent,
-  getElementType,
-  getUnhandledProps,
-  childrenExist,
-} from '../../lib'
+import { AutoControlledComponent, customPropTypes, childrenExist } from '../../lib'
 import accordionRules from './accordionRules'
 import AccordionTitle from './AccordionTitle'
 import AccordionContent from './AccordionContent'
@@ -18,7 +10,11 @@ import AccordionContent from './AccordionContent'
 /**
  * A standard Accordion.
  */
-class Accordion extends Component {
+class Accordion extends AutoControlledComponent<any, any> {
+  static displayName = 'Accordion'
+
+  static className = 'ui-accordion'
+
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -52,9 +48,6 @@ class Accordion extends Component {
      */
     onTitleClick: customPropTypes.every([customPropTypes.disallow(['children']), PropTypes.func]),
 
-    /** A bunch of styles we might not need. */
-    styles: PropTypes.object,
-
     /** Shorthand array of props for Accordion. */
     panels: customPropTypes.every([
       customPropTypes.disallow(['children']),
@@ -67,6 +60,8 @@ class Accordion extends Component {
     ]),
   }
 
+  static rules = accordionRules
+
   static handledProps = [
     'activeIndex',
     'as',
@@ -76,14 +71,7 @@ class Accordion extends Component {
     'exclusive',
     'onTitleClick',
     'panels',
-    'styles',
   ]
-
-  static defaultProps = {
-    as: 'accordion',
-    panels: [],
-    exclusive: false,
-  }
 
   static autoControlledProps = ['activeIndex']
 
@@ -117,7 +105,7 @@ class Accordion extends Component {
     },
   })
 
-  isIndexActive = index => {
+  isIndexActive = (index): boolean => {
     const { exclusive } = this.props
     const { activeIndex } = this.state
 
@@ -150,19 +138,15 @@ class Accordion extends Component {
     return children
   }
 
-  render() {
-    const { styles, className, children } = this.props
-    const rest = getUnhandledProps(Accordion, this.props)
-    const ElementType = getElementType(Accordion, this.props)
+  renderComponent({ ElementType, classes, rest }) {
+    const { children } = this.props
 
     return (
-      <ElementType {...rest} className={cx('ui-accordion', styles.root, className)}>
+      <ElementType {...rest} className={classes.root}>
         {childrenExist(children) ? children : this.renderPanels()}
       </ElementType>
     )
   }
 }
 
-export default createComponent(Accordion, {
-  rules: accordionRules,
-})
+export default Accordion

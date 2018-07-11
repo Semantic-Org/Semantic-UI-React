@@ -5,8 +5,8 @@ import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 const Variations = () => (
   <ExampleSection title="Variations">
     <ComponentExample
-      title="Accordion containing lists as children (non exclusive)"
-      description="An accordion can have different children."
+      title="Complex content"
+      description="An Accordion can compose complex children."
       examplePath="components/Accordion/Variations/AccordionExampleList"
     />
   </ExampleSection>

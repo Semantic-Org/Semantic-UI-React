@@ -1,4 +1,4 @@
-import { isConformant } from '../../commonTests'
+import { isConformant } from 'test/specs/commonTests'
 
 import Accordion from 'src/components/Accordion'
 

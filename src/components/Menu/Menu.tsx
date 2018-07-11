@@ -1,20 +1,18 @@
-import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  AutoControlledComponent,
-  childrenExist,
-  createComponent,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-} from '../../lib'
+import { AutoControlledComponent, childrenExist, customPropTypes } from '../../lib'
 import MenuItem from './MenuItem'
 import menuRules from './menuRules'
 
-class Menu extends AutoControlledComponent {
+class Menu extends AutoControlledComponent<any, any> {
+  static displayName = 'Menu'
+
+  static className = 'ui-menu'
+
+  static create: Function
+
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -37,16 +35,14 @@ class Menu extends AutoControlledComponent {
     /** A menu can point to show its relationship to nearby content. */
     pointing: PropTypes.bool,
 
-    /** FELA styles */
-    styles: PropTypes.object,
-
     /** The menu can have primary or secondary type */
     type: PropTypes.oneOf(['primary', 'secondary']),
   }
 
-  static Item = MenuItem
-
-  static autoControlledProps = ['activeIndex']
+  static defaultProps = {
+    as: 'ul',
+    type: 'primary',
+  }
 
   static handledProps = [
     'activeIndex',
@@ -56,9 +52,14 @@ class Menu extends AutoControlledComponent {
     'defaultActiveIndex',
     'items',
     'pointing',
-    'styles',
     'type',
   ]
+
+  static autoControlledProps = ['activeIndex']
+
+  static rules = menuRules
+
+  static Item = MenuItem
 
   handleItemOverrides = predefinedProps => ({
     onClick: (e, itemProps) => {
@@ -87,25 +88,14 @@ class Menu extends AutoControlledComponent {
     )
   }
 
-  static defaultProps = {
-    type: 'primary',
-  }
-
-  render() {
-    const { children, className, styles } = this.props
-
-    const classes = cx('ui-menu', styles.root, className)
-    const ElementType = getElementType(Menu, this.props, () => 'ul')
-    const rest = getUnhandledProps(Menu, this.props)
-
+  renderComponent({ ElementType, classes, rest }) {
+    const { children, content } = this.props
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes.root}>
         {childrenExist(children) ? children : this.renderItems()}
       </ElementType>
     )
   }
 }
 
-export default createComponent(Menu, {
-  rules: menuRules,
-})
+export default Menu
