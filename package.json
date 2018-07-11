@@ -16,7 +16,7 @@
     "ci": "yarn lint && yarn prettier && yarn test",
     "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs",
     "deploy:docs": "gulp deploy:docs",
-    "lint": "tslint -p .",
+    "lint": "tslint -t stylish -p .",
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --list-different \"**/*.{ts,tsx}\"",
     "prettier:fix": "prettier --write \"**/*.{ts,tsx}\"",
@@ -38,7 +38,7 @@
   "lint-staged": {
     "**/*.{ts,tsx}": [
       "prettier --write",
-      "tslint --fix",
+      "tslint -t stylish --fix",
       "git add"
     ]
   },

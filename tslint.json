@@ -1,17 +1,18 @@
 {
   "extends": "tslint-config-airbnb",
   "rules": {
-    "align": [false],
-    "semicolon": [true, "never"],
-    "no-increment-decrement": false,
-    "import-name": [false],
-    "max-line-length": [false],
-    "object-curly-spacing": [false],
-    "variable-name": false,
-    "quotemark": [false],
     "arrow-parens": false,
+    "align": [false],
+    "import-name": [false],
+    "linebreak-style": [true, "LF"],
+    "max-line-length": [false],
+    "no-increment-decrement": false,
+    "object-curly-spacing": [false],
+    "quotemark": [false],
+    "semicolon": [true, "never"],
     "ter-arrow-parens": [false],
     "ter-computed-property-spacing": [false],
-    "ter-indent": [false]
+    "ter-indent": [false],
+    "variable-name": false
   }
 }
