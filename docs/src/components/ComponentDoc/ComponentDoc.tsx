@@ -7,11 +7,13 @@ import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import componentInfoShape from 'docs/src/utils/componentInfoShape'
 import { scrollToAnchor, examplePathToHash, getFormattedHash } from 'docs/src/utils'
+import { accessibilityErrorMessage } from 'docs/src/constants'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 import ComponentSidebar from './ComponentSidebar'
+import ComponentDocTag from './ComponentDocTag'
 
 const topRowStyle = { margin: '1em' }
 const exampleEndStyle = {
@@ -82,6 +84,12 @@ class ComponentDoc extends Component<any, any> {
                 as="h1"
                 content={info.displayName}
                 subheader={_.join(info.docblock.description, ' ')}
+              />
+              <ComponentDocTag
+                title="Accessibility"
+                tag="accessibility"
+                errorMessage={accessibilityErrorMessage}
+                info={info}
               />
               <ComponentDocSee displayName={info.displayName} />
               <ComponentDocLinks

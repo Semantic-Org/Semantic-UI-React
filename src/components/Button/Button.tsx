@@ -7,6 +7,8 @@ import buttonVariables from './buttonVariables'
 
 /**
  * A button.
+ * @accessibility This is example usage of the accessibility tag.
+ * This should be replaced with the actual description after the PR is merged
  */
 class Button extends UIComponent<any, any> {
   static displayName = 'Button'
