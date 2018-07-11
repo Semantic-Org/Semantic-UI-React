@@ -20,7 +20,7 @@
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --list-different \"**/*.{ts,tsx}\"",
     "prettier:fix": "prettier --write \"**/*.{ts,tsx}\"",
-    "precommit": "lint-staged && gulp build:docs:toc",
+    "precommit": "lint-staged",
     "postcommit": "git update-index --again",
     "prerelease": "yarn ci && cross-env NODE_ENV=production yarn build",
     "postrelease": "yarn deploy:docs",
