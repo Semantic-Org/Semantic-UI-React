@@ -17,7 +17,7 @@ const webpackUMDConfig = {
     'react-dom': 'ReactDOM',
   },
   output: {
-    filename: '[name].min.js',
+    filename: 'stardust-ui-react.min.js',
     libraryTarget: 'umd',
     library: 'Stardust',
     path: paths.dist('umd'),

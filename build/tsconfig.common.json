@@ -6,7 +6,7 @@
     "baseUrl": "../",
     "paths": {
       "stardust": ["src"],
-      "stardust/*": ["src/*"]
+      "*": ["*", "types/*"]
     },
     "types": [
       "node",

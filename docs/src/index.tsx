@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
 // TODO make themes a monorepo of packages
-import { siteVariables, normalizeCSS } from 'stardust/themes/teams'
+import { siteVariables, normalizeCSS } from 'src/themes/teams'
 import { Provider } from 'stardust'
 
 import Router from './routes'

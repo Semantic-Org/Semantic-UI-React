@@ -5,6 +5,7 @@
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
   "module": "dist/es/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
     "src",
     "dist"
@@ -54,7 +55,10 @@
   "homepage": "https://github.com/stardust-ui/stardust#readme",
   "jest": {
     "coverageDirectory": "./coverage/",
-    "coverageReporters": ["json", "lcov"],
+    "coverageReporters": [
+      "json",
+      "lcov"
+    ],
     "testRegex": "/test/.*-test\\.tsx?$",
     "moduleFileExtensions": [
       "ts",
@@ -119,6 +123,7 @@
     "js-beautify": "^1.6.14",
     "leven": "^2.1.0",
     "lint-staged": "^7.0.2",
+    "merge2": "^1.2.2",
     "prettier": "1.12.0",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",

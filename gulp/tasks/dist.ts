@@ -1,9 +1,9 @@
 import { task, series, parallel, src, dest } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
+import merge2 from 'merge2'
 import rimraf from 'rimraf'
 import webpack from 'webpack'
 
-import sh from '../sh'
 import config from '../../config'
 
 const { paths } = config
@@ -22,13 +22,16 @@ task('clean:dist', cb => {
 // Build
 // ----------------------------------------
 task('build:dist:commonjs', () => {
-  const typescript = g.typescript.createProject(paths.base('build/tsconfig.commonjs.json'))
-  return src(paths.src('**/*.{ts,tsx}'))
-    .pipe(typescript())
-    .pipe(dest(paths.dist('commonjs')))
+  const tsConfig = paths.base('build/tsconfig.commonjs.json')
+  const settings = { declaration: true }
+  const typescript = g.typescript.createProject(tsConfig, settings)
+
+  const { dts, js } = src(paths.src('**/*.{ts,tsx}')).pipe(typescript())
+
+  return merge2([dts.pipe(dest(paths.dist('types'))), js.pipe(dest(paths.dist('commonjs')))])
 })
 
-task('build:dist:es', cb => {
+task('build:dist:es', () => {
   const typescript = g.typescript.createProject(paths.base('build/tsconfig.es.json'))
   return src(paths.src('**/*.{ts,tsx}'))
     .pipe(typescript())
