@@ -35,9 +35,15 @@ class Divider extends UIComponent<any, any> {
 
     /** Size multiplier (default 0) * */
     size: PropTypes.number,
+
+    /** A Divider can be formatted to show different levels of emphasis. */
+    type: PropTypes.oneOf(['primary', 'secondary']),
+
+    /** A divider can appear more important and draw the user's attention. */
+    important: PropTypes.bool,
   }
 
-  static handledProps = ['as', 'children', 'className', 'content', 'size']
+  static handledProps = ['as', 'children', 'className', 'content', 'important', 'size', 'type']
 
   static defaultProps = {
     size: 0,

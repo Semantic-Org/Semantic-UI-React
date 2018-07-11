@@ -7,7 +7,6 @@ import { assertBodyContains, consoleUtil, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
 
 import * as stardust from 'src/'
-import Provider from 'src/components/Provider'
 
 /**
  * Assert Component conforms to guidelines that are applicable to all components.

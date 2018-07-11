@@ -9,6 +9,11 @@ const Variations = () => (
       description="A divider can have different sizes."
       examplePath="components/Divider/Variations/DividerExampleSize"
     />
+    <ComponentExample
+      title="Important"
+      description="A divider can appear more important and draw the user's attention."
+      examplePath="components/Divider/Variations/DividerExampleImportant"
+    />
   </ExampleSection>
 )
 
