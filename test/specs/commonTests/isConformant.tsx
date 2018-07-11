@@ -1,4 +1,3 @@
-import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 import { shallow, mount } from 'enzyme'
@@ -7,8 +6,8 @@ import ReactDOMServer from 'react-dom/server'
 import { assertBodyContains, consoleUtil, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
 
-import * as stardust from '../../../src/'
-import Provider from '../../../src/components/Provider'
+import * as stardust from 'src/'
+import Provider from 'src/components/Provider'
 
 /**
  * Assert Component conforms to guidelines that are applicable to all components.
@@ -410,7 +409,7 @@ export default (Component, options: any = {}) => {
 
       if (!defaultClasses) return
 
-      const userClasses = faker.hacker.verb()
+      const userClasses = 'generate'
       const wrapperWithCustomClasses = mount(
         renderWithProvider(<Component {...requiredProps} className={userClasses} />),
       )

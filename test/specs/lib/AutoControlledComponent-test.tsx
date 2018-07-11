@@ -1,4 +1,3 @@
-import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 import { shallow } from 'enzyme'
@@ -50,7 +49,7 @@ describe('extending AutoControlledComponent', () => {
 
       const autoControlledProps = _.keys(makeProps())
       const randomProp = _.sample(autoControlledProps)
-      const randomValue = faker.hacker.verb()
+      const randomValue = 'transmit'
 
       TestClass = createTestClass({ autoControlledProps })
       const wrapper = shallow(<TestClass />)
@@ -66,7 +65,7 @@ describe('extending AutoControlledComponent', () => {
       TestClass = createTestClass({ autoControlledProps: [], state: {} })
       const wrapper = shallow(<TestClass />)
 
-      wrapper.instance().trySetState({ [faker.hacker.noun()]: faker.hacker.verb() })
+      wrapper.instance().trySetState({ ['system']: 'compress' })
 
       expect(wrapper.state()).toEqual({})
     })
@@ -78,7 +77,8 @@ describe('extending AutoControlledComponent', () => {
       const autoControlledProps = _.keys(props)
 
       const randomProp = _.sample(autoControlledProps)
-      const randomValue = faker.hacker.phrase()
+      const randomValue =
+        "You can't calculate the alarm without synthesizing the auxiliary CSS port!"
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
       const wrapper = shallow(<TestClass {...props} />)
@@ -99,7 +99,8 @@ describe('extending AutoControlledComponent', () => {
       const autoControlledProps = _.keys(props)
 
       const randomProp = _.sample(autoControlledProps)
-      const randomValue = faker.hacker.phrase()
+      const randomValue =
+        "hacking the system won't do anything, we need to back up the optical IB bandwidth!"
 
       props[randomProp] = undefined
 
@@ -118,7 +119,8 @@ describe('extending AutoControlledComponent', () => {
       const autoControlledProps = _.keys(props)
 
       const randomProp = _.sample(autoControlledProps)
-      const randomValue = faker.hacker.phrase()
+      const randomValue =
+        'Try to synthesize the TCP bandwidth, maybe it will reboot the auxiliary panel!'
 
       props[randomProp] = null
 
@@ -248,7 +250,8 @@ describe('extending AutoControlledComponent', () => {
       const defaultProps = makeDefaultProps(props)
 
       const randomProp = _.sample(autoControlledProps)
-      const randomValue = faker.hacker.phrase()
+      const randomValue =
+        "You can't program the system without synthesizing the virtual AGP circuit!"
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
       const wrapper = shallow(<TestClass {...defaultProps} />)
@@ -267,7 +270,8 @@ describe('extending AutoControlledComponent', () => {
       const autoControlledProps = _.keys(props)
 
       const randomProp = _.sample(autoControlledProps)
-      const randomValue = faker.hacker.phrase()
+      const randomValue =
+        'Try to synthesize the PNG protocol, maybe it will transmit the auxiliary firewall!'
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
       const wrapper = shallow(<TestClass {...props} />)
@@ -282,7 +286,7 @@ describe('extending AutoControlledComponent', () => {
       const props = makeProps()
 
       const randomProp = _.sample(_.keys(props))
-      const randomValue = faker.hacker.phrase()
+      const randomValue = 'We need to navigate the mobile GB bandwidth!'
 
       TestClass = createTestClass({ autoControlledProps: [], state: {} })
       const wrapper = shallow(<TestClass {...props} />)
@@ -300,7 +304,7 @@ describe('extending AutoControlledComponent', () => {
       const defaultProps = makeDefaultProps(props)
 
       const randomDefaultProp = _.sample(defaultProps)
-      const randomValue = faker.hacker.phrase()
+      const randomValue = 'We need to compress the solid state XML port!'
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
       const wrapper = shallow(<TestClass {...defaultProps} />)

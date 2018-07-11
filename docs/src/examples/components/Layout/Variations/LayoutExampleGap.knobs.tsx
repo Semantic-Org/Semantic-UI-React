@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { pxToRem } from 'src/lib'
 
 import Knobs from 'docs/src/components/Knobs/Knobs'
 
@@ -22,7 +21,7 @@ LayoutExampleGapKnobs.propTypes = {
 }
 
 LayoutExampleGapKnobs.defaultProps = {
-  gap: pxToRem(50),
+  gap: '4rem',
   vertical: false,
 }
 
