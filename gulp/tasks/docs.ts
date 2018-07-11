@@ -56,8 +56,8 @@ task(
 // ----------------------------------------
 
 const componentsSrc = [`${config.paths.src()}/components/*/[A-Z]*.tsx`]
-
 const examplesSrc = `${paths.docsSrc()}/examples/*/*/*/index.tsx`
+const markdownSrc = ['.github/CONTRIBUTING.md', 'README.md', 'specifications/*.md']
 
 task('build:docs:docgen', () =>
   src(componentsSrc, { since: lastRun('build:docs:docgen') })
@@ -89,7 +89,7 @@ task('build:docs:images', () =>
 )
 
 task('build:docs:toc', () =>
-  src(['.github/CONTRIBUTING.md', 'README.md', 'specifications/*.md']).pipe(
+  src(markdownSrc, { since: lastRun('build:docs:toc') }).pipe(
     through.obj((file, enc, done) => {
       sh(`doctoc ${file.path} --github --maxlevel 4 && git add ${file.path}`, done)
     }),
