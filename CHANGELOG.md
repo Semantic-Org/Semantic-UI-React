@@ -19,6 +19,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixes
 - Remove broken normalize.css button styles @levithomason ([#79](https://github.com/stardust-ui/react/pulls/79))
+- Add missing Button styles @levithomason ([#82](https://github.com/stardust-ui/react/pulls/82))
 
 ### Features
 - Add Divider `type` and `important` props @mnajdova ([#67](https://github.com/stardust-ui/react/pulls/67))
