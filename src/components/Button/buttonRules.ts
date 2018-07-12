@@ -1,3 +1,4 @@
+import { pxToRem } from '../../lib'
 import { IButtonVariables } from './buttonVariables'
 
 export default {
@@ -20,13 +21,16 @@ export default {
     return {
       backgroundColor,
       display: 'inline-block',
+      margin: `0 ${pxToRem(8)} 0 0`,
+      height: pxToRem(32),
+      width: pxToRem(96),
       verticalAlign: 'middle',
       cursor: 'pointer',
       borderWidth: 0,
+      borderRadius: pxToRem(4),
       ':hover': {
         backgroundColor: backgroundColorHover,
       },
-
       ...(props.circular && { borderRadius: circularRadius, width: circularWidth }),
 
       ...(props.type === 'primary' && {
