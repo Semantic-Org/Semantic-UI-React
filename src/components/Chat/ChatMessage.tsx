@@ -29,6 +29,8 @@ class ChatMessage extends UIComponent<any, any> {
     mine: PropTypes.bool,
   }
 
+  static handledProps = ['as', 'children', 'className', 'content', 'mine']
+
   static defaultProps = {
     as: 'li',
   }

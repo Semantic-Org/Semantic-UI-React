@@ -23,7 +23,7 @@ class Chat extends UIComponent<any, any> {
     messages: PropTypes.arrayOf(PropTypes.any),
   }
 
-  static handledProps = ['as', 'className', 'children', 'messages']
+  static handledProps = ['as', 'children', 'className', 'messages']
 
   static defaultProps = { as: 'ul' }
 
