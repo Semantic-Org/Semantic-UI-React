@@ -1,6 +1,6 @@
 <!--[ INSTRUCTIONS ]-----------------------------------------------------------
 
-  Add your PR to as line under [Unreleased].  The following headings are allowed:
+  Add your PR as line under [Unreleased].  The following headings are allowed:
 
   ### BREAKING CHANGES
   ### Fixes
