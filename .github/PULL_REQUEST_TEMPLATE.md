@@ -20,6 +20,7 @@
 - [ ] Teams Light theme
 - [ ] Teams Dark theme
 - [ ] Teams Contrast theme
+- [ ] Confirm RTL usage
 - [ ] [W3 accessibility](https://www.w3.org/standards/webdesign/accessibility) check
 - [ ] [Stardust accessibility](https://github.com/stardust-ui/accessibility) check
 - [ ] Update glossary props table
