@@ -24,6 +24,7 @@
 - [ ] [W3 accessibility](https://www.w3.org/standards/webdesign/accessibility) check
 - [ ] [Stardust accessibility](https://github.com/stardust-ui/accessibility) check
 - [ ] Update glossary props table
+- [ ] Update the CHANGELOG.md
 
 # API Proposal
 
