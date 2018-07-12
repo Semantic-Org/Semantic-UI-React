@@ -45,14 +45,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/stardust-ui/stardust.git"
+    "url": "git+ssh://github.com/stardust-ui/react.git"
   },
   "author": "Levi Thomason <me@levithomason.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/stardust-ui/stardust/issues"
+    "url": "https://github.com/stardust-ui/react/issues"
   },
-  "homepage": "https://github.com/stardust-ui/stardust#readme",
+  "homepage": "https://github.com/stardust-ui/react#readme",
   "jest": {
     "coverageDirectory": "./coverage/",
     "coverageReporters": [

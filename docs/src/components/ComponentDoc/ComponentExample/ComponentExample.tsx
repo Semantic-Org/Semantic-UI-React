@@ -236,8 +236,6 @@ class ComponentExample extends PureComponent<any, any> {
   }
 
   renderSourceCode = _.debounce(() => {
-    const { examplePath } = this.props
-
     try {
       const Example = evalTypeScript(this.state.sourceCode)
       const exampleElement = _.isFunction(Example) ? this.renderWithProvider(Example) : Example
