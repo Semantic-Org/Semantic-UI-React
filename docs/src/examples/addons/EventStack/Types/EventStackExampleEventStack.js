@@ -16,7 +16,7 @@ export default class EventStackExampleEventStack extends Component {
 
   updateLog = () =>
     this.setState({
-      log: [`${new Date().toLocaleTimeString()}: Click`, ...this.state.log].slice(0, 20),
+      log: [`${new Date().toLocaleTimeString()}: click`, ...this.state.log].slice(0, 20),
       logCount: this.state.logCount + 1,
     })
 
