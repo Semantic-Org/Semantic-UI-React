@@ -34,37 +34,39 @@ describe('Item', () => {
 
   describe('content prop', () => {
     it('renders ItemContent component', () => {
-      expect(shallow(<Item content={faker.hacker.phrase()} />)).have.descendants('ItemContent')
+      expect(shallow(<Item content={faker.hacker.phrase()} />).find('ItemContent')).toHaveLength(1)
     })
   })
 
   describe('description prop', () => {
     it('renders ItemContent component', () => {
-      expect(shallow(<Item description={faker.hacker.phrase()} />)).have.descendants('ItemContent')
+      expect(
+        shallow(<Item description={faker.hacker.phrase()} />).find('ItemContent'),
+      ).toHaveLength(1)
     })
   })
 
   describe('extra prop', () => {
     it('renders ItemContent component', () => {
-      expect(shallow(<Item extra={faker.hacker.phrase()} />)).have.descendants('ItemContent')
+      expect(shallow(<Item extra={faker.hacker.phrase()} />).find('ItemContent')).toHaveLength(1)
     })
   })
 
   describe('header prop', () => {
     it('renders ItemContent component', () => {
-      expect(shallow(<Item header={faker.hacker.phrase()} />)).have.descendants('ItemContent')
+      expect(shallow(<Item header={faker.hacker.phrase()} />).find('ItemContent')).toHaveLength(1)
     })
   })
 
   describe('image prop', () => {
     it('renders ItemImage component', () => {
-      expect(shallow(<Item image={faker.image.imageUrl()} />)).have.descendants('ItemImage')
+      expect(shallow(<Item image={faker.image.imageUrl()} />).find('ItemImage')).toHaveLength(1)
     })
   })
 
   describe('meta prop', () => {
     it('renders ItemContent component', () => {
-      expect(shallow(<Item meta={faker.hacker.phrase()} />)).have.descendants('ItemContent')
+      expect(shallow(<Item meta={faker.hacker.phrase()} />).find('ItemContent')).toHaveLength(1)
     })
   })
 })
