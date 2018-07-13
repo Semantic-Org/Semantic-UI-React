@@ -12,16 +12,16 @@ export default class EventStack extends PureComponent {
     name: PropTypes.string.isRequired,
 
     /** An event handler or array of event handlers. */
-    on: PropTypes.oneOfType(PropTypes.func, PropTypes.arrayOf(PropTypes.func)).isRequired,
+    on: PropTypes.oneOfType([PropTypes.func, PropTypes.arrayOf(PropTypes.func)]).isRequired,
 
     /** A name of pool. */
     pool: PropTypes.string,
 
     /** A DOM element on which we will subscribe. */
-    target: PropTypes.oneOfType(
+    target: PropTypes.oneOfType([
       PropTypes.oneOf(['document', 'window']),
       PropTypes.instanceOf(Element),
-    ).isRequired,
+    ]).isRequired,
   }
 
   static defaultProps = {

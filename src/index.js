@@ -1,5 +1,6 @@
 // Addons
 export Confirm from './addons/Confirm'
+export EventStack from './addons/EventStack'
 export MountNode from './addons/MountNode'
 export Pagination from './addons/Pagination'
 export PaginationItem from './addons/Pagination/PaginationItem'
