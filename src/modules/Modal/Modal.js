@@ -8,6 +8,7 @@ import {
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
+  eventStack,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -174,8 +175,8 @@ class Modal extends Component {
     this.trySetState({ open: false })
   }
 
-  handleDimmerClick = (e) => {
-    debug('handleDimmerClick()')
+  handleDocumentClick = (e) => {
+    debug('handleDocumentClick()')
     const { closeOnDimmerClick } = this.props
 
     if (!closeOnDimmerClick || doesNodeContainClick(this.ref, e)) return
@@ -199,18 +200,22 @@ class Modal extends Component {
   }
 
   handlePortalMount = (e) => {
-    debug('handlePortalMount()')
+    const { eventPool } = this.props
+    debug('handlePortalMount()', { eventPool })
 
     this.setState({ scrolling: false })
     this.setPositionAndClassNames()
 
+    eventStack.sub('click', this.handleDocumentClick, { pool: eventPool, target: this.dimmerRef })
     _.invoke(this.props, 'onMount', e, this.props)
   }
 
   handlePortalUnmount = (e) => {
-    debug('handlePortalUnmount()')
+    const { eventPool } = this.props
+    debug('handlePortalUnmount()', { eventPool })
 
     cancelAnimationFrame(this.animationRequestId)
+    eventStack.unsub('click', this.handleDocumentClick, { pool: eventPool, target: this.dimmerRef })
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
@@ -381,7 +386,7 @@ class Modal extends Component {
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
       >
-        <div className={dimmerClasses} onClick={this.handleDimmerClick} ref={this.handleDimmerRef}>
+        <div className={dimmerClasses} ref={this.handleDimmerRef}>
           {this.renderContent(rest)}
         </div>
       </Portal>

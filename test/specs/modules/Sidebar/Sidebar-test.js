@@ -47,6 +47,15 @@ describe('Sidebar', () => {
       expect(onHide).have.been.calledWithMatch({}, { visible: false })
     })
 
+    it('is called when a click on the document was done only once', () => {
+      const onHide = sandbox.spy()
+      const wrapper = mount(<Sidebar onHide={onHide} visible />)
+
+      domEvent.click(document)
+      wrapper.setProps({ visible: false })
+      onHide.should.have.been.calledOnce()
+    })
+
     it('is not called when a click was done inside the component', () => {
       const mountNode = document.createElement('div')
       const onHide = sandbox.spy()

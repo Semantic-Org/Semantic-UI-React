@@ -109,7 +109,8 @@ export default class Dropdown extends Component {
     defaultValue: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+      PropTypes.bool,
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
     ]),
 
     /** A dropdown menu can open to the left or to the right. */

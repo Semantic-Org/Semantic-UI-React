@@ -155,6 +155,25 @@ describe('Input', () => {
     })
   })
 
+  describe('select', () => {
+    it('can be set via a ref', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const value = 'expect this text to be selected'
+      const wrapper = mount(<Input value={value} />, { attachTo: mountNode })
+      wrapper.instance().select()
+
+      window
+        .getSelection()
+        .toString()
+        .should.equal(value)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+  })
+
   describe('loading', () => {
     it("don't add icon if it's defined", () => {
       expect(shallow(<Input icon='user' loading />).find('Icon')).have.prop('name', 'user')
