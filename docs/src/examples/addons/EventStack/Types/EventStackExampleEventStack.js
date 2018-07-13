@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Checkbox, EventStack, Label, Grid, Segment } from 'semantic-ui-react'
+import { Button, Checkbox, EventStack, Label, Grid, Icon, Segment } from 'semantic-ui-react'
 
 export default class EventStackExampleEventStack extends Component {
   state = {
@@ -39,7 +39,8 @@ export default class EventStackExampleEventStack extends Component {
               {enabled && <EventStack name='click' on={this.updateLog} target={node} />}
 
               <div ref={this.handleRef}>
-                An example element, click there when listener is enabled
+                An example element, <Icon name='hand pointer outline' /> click there when listener
+                is enabled.
               </div>
             </Segment>
           </Segment.Group>
