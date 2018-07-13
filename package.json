@@ -44,18 +44,22 @@
     "tsd:test": "gulp build:dist:commonjs:tsd && tsc -p ./ && rm test/typings.js"
   },
   "jest": {
+    "coverageDirectory": "./coverage/",
+    "coverageReporters": [
+      "json",
+      "lcov"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
     "moduleNameMapper": {
       "^docs/(.*)$": "<rootDir>/docs/$1",
       "^src/(.*)$": "<rootDir>/src/$1",
       "^test/(.*)$": "<rootDir>/test/$1"
     },
-    "roots": [
-      "<rootDir>/test/"
-    ],
-    "setupTestFrameworkScriptFile": "./test/setupTests.js",
-    "testMatch": [
-      "**/lib/**/*.js"
-    ]
+    "setupTestFrameworkScriptFile": "<rootDir>/test/setupTests.js",
+    "testRegex": "/test/specs/views/.*ItemGroup-test\\.js$"
   },
   "lint-staged": {
     "**/*.{js,jsx}": [
@@ -102,7 +106,7 @@
     "@types/react": "^16.0.0",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^8.2.3",
-    "babel-jest": "^23.2.0",
+    "babel-jest": "^23.4.0",
     "babel-loader": "^8.0.0-beta.3",
     "babel-plugin-filter-imports": "^2.0.0",
     "babel-plugin-lodash": "^3.2.11",
@@ -131,7 +135,7 @@
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
     "imports-loader": "^0.7.1",
-    "jest": "^23.2.0",
+    "jest": "^23.4.0",
     "js-beautify": "^1.6.14",
     "leven": "^2.1.0",
     "lint-staged": "^7.2.0",
