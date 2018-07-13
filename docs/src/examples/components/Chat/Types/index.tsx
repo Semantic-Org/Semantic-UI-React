@@ -1,6 +1,5 @@
 import React from 'react'
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
-import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
 const Types = () => (
@@ -10,10 +9,10 @@ const Types = () => (
       description="A default Chat."
       examplePath="components/Chat/Types/ChatExample"
     />
-    <ShorthandExample
+    <ComponentExample
       title="Shorthand"
       description="Chat messages can be defined with shorthand."
-      examplePath="components/Chat/Types/ChatExampleShorthand"
+      examplePath="components/Chat/Types/ChatExample"
     />
   </ExampleSection>
 )

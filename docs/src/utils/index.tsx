@@ -1,4 +1,5 @@
 export * from './constants'
+export * from './customCSS'
 export { default as componentInfoContext } from './componentInfoContext'
 export { default as componentInfoShape } from './componentInfoShape'
 export { default as exampleContext } from './exampleContext'
