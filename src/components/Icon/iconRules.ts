@@ -29,7 +29,7 @@ const getIcon = (kind, name) => {
 const getSize = size => `${sizes.get(size)}em` || '1em'
 
 const iconRules = {
-  root: ({ color, kind, name, size }) => {
+  root: ({ props: { color, kind, name, size } }) => {
     const { fontFamily, content } = getIcon(kind, name)
     return {
       fontFamily,
