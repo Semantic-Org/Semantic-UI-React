@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { PureComponent } from 'react'
 
-import { eventStack } from '../../lib'
+import { eventStack, isBrowser } from '../../lib'
 
 /**
  * This component exposes the EventStack API as public and provides a declarative way to manage it.
@@ -20,7 +20,9 @@ export default class EventStack extends PureComponent {
     /** A DOM element on which we will subscribe. */
     target: PropTypes.oneOfType([
       PropTypes.oneOf(['document', 'window']),
-      PropTypes.instanceOf(Element),
+      // Heads up!
+      // This condition for SSR safety.
+      PropTypes.instanceOf(isBrowser() ? window.HTMLElement : {}),
     ]).isRequired,
   }
 

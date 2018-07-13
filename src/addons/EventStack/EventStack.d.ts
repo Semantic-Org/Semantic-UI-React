@@ -15,7 +15,7 @@ export interface EventStackProps {
   pool?: string
 
   /** A DOM element on which we will subscribe. */
-  target: 'document' | 'window' | Element
+  target: 'document' | 'window' | HTMLElement
 }
 
 declare class EventStack extends React.Component<EventStackProps, {}> {}
