@@ -1,12 +1,9 @@
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import { Component } from 'react'
 
-import {
-  createShorthandFactory,
-  keyboardKey,
-  META,
-} from '../../lib'
+import { createShorthandFactory } from '../../lib'
 import MenuItem from '../../collections/Menu/MenuItem'
 
 /**
@@ -45,12 +42,6 @@ class PaginationItem extends Component {
       'nextItem',
       'lastItem',
     ]),
-  }
-
-  static _meta = {
-    name: 'PaginationItem',
-    parent: 'Pagination',
-    type: META.TYPES.ADDON,
   }
 
   handleClick = (e) => {

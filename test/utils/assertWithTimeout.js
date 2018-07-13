@@ -24,5 +24,4 @@ const assertWithTimeout = (assertion, done) => {
   assert()
 }
 
-
 export default assertWithTimeout

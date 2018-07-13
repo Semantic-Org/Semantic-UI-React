@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -16,10 +15,7 @@ import {
  */
 function TableHeader(props) {
   const { children, className, content, fullWidth } = props
-  const classes = cx(
-    useKeyOnly(fullWidth, 'full-width'),
-    className,
-  )
+  const classes = cx(useKeyOnly(fullWidth, 'full-width'), className)
   const rest = getUnhandledProps(TableHeader, props)
   const ElementType = getElementType(TableHeader, props)
 
@@ -28,12 +24,6 @@ function TableHeader(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-TableHeader._meta = {
-  name: 'TableHeader',
-  type: META.TYPES.COLLECTION,
-  parent: 'Table',
 }
 
 TableHeader.defaultProps = {

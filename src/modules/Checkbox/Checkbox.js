@@ -11,7 +11,6 @@ import {
   getUnhandledProps,
   htmlInputAttrs,
   makeDebugger,
-  META,
   partitionHTMLProps,
   useKeyOnly,
 } from '../../lib'
@@ -118,11 +117,6 @@ export default class Checkbox extends Component {
 
   static autoControlledProps = ['checked', 'indeterminate']
 
-  static _meta = {
-    name: 'Checkbox',
-    type: META.TYPES.MODULE,
-  }
-
   componentDidMount() {
     this.setIndeterminate()
   }
@@ -165,7 +159,11 @@ export default class Checkbox extends Component {
 
     if (!this.canToggle()) return
 
-    _.invoke(this.props, 'onClick', e, { ...this.props, checked: !checked, indeterminate: !!indeterminate })
+    _.invoke(this.props, 'onClick', e, {
+      ...this.props,
+      checked: !checked,
+      indeterminate: !!indeterminate,
+    })
     _.invoke(this.props, 'onChange', e, { ...this.props, checked: !checked, indeterminate: false })
 
     this.trySetState({ checked: !checked, indeterminate: false })
@@ -175,7 +173,11 @@ export default class Checkbox extends Component {
     debug('handleMouseDown()')
     const { checked, indeterminate } = this.state
 
-    _.invoke(this.props, 'onMouseDown', e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
+    _.invoke(this.props, 'onMouseDown', e, {
+      ...this.props,
+      checked: !!checked,
+      indeterminate: !!indeterminate,
+    })
     _.invoke(this.inputRef, 'focus')
 
     e.preventDefault()
@@ -234,6 +236,7 @@ export default class Checkbox extends Component {
           {...htmlInputProps}
           checked={checked}
           className='hidden'
+          disabled={disabled}
           id={id}
           name={name}
           onChange={this.handleInputClick}
@@ -247,7 +250,9 @@ export default class Checkbox extends Component {
          Heads Up!
          Do not remove empty labels, they are required by SUI CSS
          */}
-        {createHTMLLabel(label, { defaultProps: { htmlFor: id } }) || <label htmlFor={id} />}
+        {createHTMLLabel(label, { defaultProps: { htmlFor: id }, autoGenerateKey: false }) || (
+          <label htmlFor={id} />
+        )}
       </ElementType>
     )
   }

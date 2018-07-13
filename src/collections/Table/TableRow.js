@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useTextAlignProp,
@@ -51,7 +50,11 @@ function TableRow(props) {
   const ElementType = getElementType(TableRow, props)
 
   if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
   }
 
   return (
@@ -59,12 +62,6 @@ function TableRow(props) {
       {_.map(cells, cell => TableCell.create(cell, { defaultProps: { as: cellAs } }))}
     </ElementType>
   )
-}
-
-TableRow._meta = {
-  name: 'TableRow',
-  type: META.TYPES.COLLECTION,
-  parent: 'Table',
 }
 
 TableRow.defaultProps = {

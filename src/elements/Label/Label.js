@@ -5,12 +5,10 @@ import React, { Component } from 'react'
 
 import {
   childrenUtils,
-  createShorthand,
   createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -33,7 +31,14 @@ export default class Label extends Component {
     active: PropTypes.bool,
 
     /** A label can attach to a content segment. */
-    attached: PropTypes.oneOf(['top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right']),
+    attached: PropTypes.oneOf([
+      'top',
+      'bottom',
+      'top right',
+      'top left',
+      'bottom left',
+      'bottom right',
+    ]),
 
     /** A label can reduce its complexity. */
     basic: PropTypes.bool,
@@ -54,19 +59,13 @@ export default class Label extends Component {
     content: customPropTypes.contentShorthand,
 
     /** A label can position itself in the corner of an element. */
-    corner: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['left', 'right']),
-    ]),
+    corner: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['left', 'right'])]),
 
     /** Shorthand for LabelDetail. */
     detail: customPropTypes.itemShorthand,
 
     /** Formats the label as a dot. */
-    empty: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.demand(['circular']),
-    ]),
+    empty: customPropTypes.every([PropTypes.bool, customPropTypes.demand(['circular'])]),
 
     /** Float above another element in the upper right corner. */
     floating: PropTypes.bool,
@@ -78,10 +77,7 @@ export default class Label extends Component {
     icon: customPropTypes.itemShorthand,
 
     /** A label can be formatted to emphasize an image or prop can be used as shorthand for Image. */
-    image: PropTypes.oneOfType([
-      PropTypes.bool,
-      customPropTypes.itemShorthand,
-    ]),
+    image: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
 
     /**
      * Called on click.
@@ -109,21 +105,13 @@ export default class Label extends Component {
     removeIcon: customPropTypes.itemShorthand,
 
     /** A label can appear as a ribbon attaching itself to an element. */
-    ribbon: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['right']),
-    ]),
+    ribbon: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['right'])]),
 
     /** A label can have different sizes. */
     size: PropTypes.oneOf(SUI.SIZES),
 
     /** A label can appear as a tag. */
     tag: PropTypes.bool,
-  }
-
-  static _meta = {
-    name: 'Label',
-    type: META.TYPES.ELEMENT,
   }
 
   static Detail = LabelDetail
@@ -167,9 +155,10 @@ export default class Label extends Component {
       tag,
     } = this.props
 
-    const pointingClass = (pointing === true && 'pointing')
-      || ((pointing === 'left' || pointing === 'right') && `${pointing} pointing`)
-      || ((pointing === 'above' || pointing === 'below') && `pointing ${pointing}`)
+    const pointingClass =
+      (pointing === true && 'pointing') ||
+      ((pointing === 'left' || pointing === 'right') && `${pointing} pointing`) ||
+      ((pointing === 'above' || pointing === 'below') && `pointing ${pointing}`)
 
     const classes = cx(
       'ui',
@@ -194,18 +183,26 @@ export default class Label extends Component {
     const ElementType = getElementType(Label, this.props)
 
     if (!childrenUtils.isNil(children)) {
-      return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+          {children}
+        </ElementType>
+      )
     }
 
     const removeIconShorthand = _.isUndefined(removeIcon) ? 'delete' : removeIcon
 
     return (
       <ElementType className={classes} onClick={this.handleClick} {...rest}>
-        {Icon.create(icon)}
-        {typeof image !== 'boolean' && Image.create(image)}
+        {Icon.create(icon, { autoGenerateKey: false })}
+        {typeof image !== 'boolean' && Image.create(image, { autoGenerateKey: false })}
         {content}
-        {createShorthand(LabelDetail, val => ({ content: val }), detail)}
-        {onRemove && Icon.create(removeIconShorthand, { overrideProps: this.handleIconOverrides })}
+        {LabelDetail.create(detail, { autoGenerateKey: false })}
+        {onRemove &&
+          Icon.create(removeIconShorthand, {
+            autoGenerateKey: false,
+            overrideProps: this.handleIconOverrides,
+          })}
       </ElementType>
     )
   }

@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -31,12 +30,6 @@ function DropdownMenu(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-DropdownMenu._meta = {
-  name: 'DropdownMenu',
-  parent: 'Dropdown',
-  type: META.TYPES.MODULE,
 }
 
 DropdownMenu.propTypes = {

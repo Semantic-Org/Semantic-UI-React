@@ -1,10 +1,6 @@
 import React from 'react'
 
-import {
-  customPropTypes,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getUnhandledProps } from '../../lib'
 import TableHeader from './TableHeader'
 
 /**
@@ -15,12 +11,6 @@ function TableFooter(props) {
   const rest = getUnhandledProps(TableFooter, props)
 
   return <TableHeader {...rest} as={as} />
-}
-
-TableFooter._meta = {
-  name: 'TableFooter',
-  type: META.TYPES.COLLECTION,
-  parent: 'Table',
 }
 
 TableFooter.propTypes = {

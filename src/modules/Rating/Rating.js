@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
 } from '../../lib'
@@ -30,16 +29,10 @@ export default class Rating extends Component {
      * By default a rating will be only clearable if there is 1 icon.
      * Setting to `true`/`false` will allow or disallow a user to clear their rating.
      */
-    clearable: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['auto']),
-    ]),
+    clearable: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['auto'])]),
 
     /** The initial rating value. */
-    defaultRating: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    defaultRating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** You can disable or enable interactive rating.  Makes a read-only rating. */
     disabled: PropTypes.bool,
@@ -48,10 +41,7 @@ export default class Rating extends Component {
     icon: PropTypes.oneOf(['star', 'heart']),
 
     /** The total number of icons. */
-    maxRating: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    maxRating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * Called after user selects a new rating.
@@ -62,27 +52,17 @@ export default class Rating extends Component {
     onRate: PropTypes.func,
 
     /** The current number of active icons. */
-    rating: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** A progress bar can vary in size. */
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
   }
 
-  static autoControlledProps = [
-    'rating',
-  ]
+  static autoControlledProps = ['rating']
 
   static defaultProps = {
     clearable: 'auto',
     maxRating: 1,
-  }
-
-  static _meta = {
-    name: 'Rating',
-    type: META.TYPES.MODULE,
   }
 
   static Icon = RatingIcon
@@ -122,13 +102,7 @@ export default class Rating extends Component {
   }
 
   render() {
-    const {
-      className,
-      disabled,
-      icon,
-      maxRating,
-      size,
-    } = this.props
+    const { className, disabled, icon, maxRating, size } = this.props
     const { rating, selectedIndex, isSelecting } = this.state
 
     const classes = cx(
@@ -144,7 +118,12 @@ export default class Rating extends Component {
     const ElementType = getElementType(Rating, this.props)
 
     return (
-      <ElementType {...rest} className={classes} role='radiogroup' onMouseLeave={this.handleMouseLeave}>
+      <ElementType
+        {...rest}
+        className={classes}
+        role='radiogroup'
+        onMouseLeave={this.handleMouseLeave}
+      >
         {_.times(maxRating, i => (
           <RatingIcon
             active={rating >= i + 1}

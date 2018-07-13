@@ -7,20 +7,19 @@ import * as common from 'test/specs/commonTests'
 
 describe('Breadcrumb', () => {
   common.isConformant(Breadcrumb)
-  common.hasSubComponents(Breadcrumb, [BreadcrumbDivider, BreadcrumbSection])
+  common.hasSubcomponents(Breadcrumb, [BreadcrumbDivider, BreadcrumbSection])
   common.hasUIClassName(Breadcrumb)
   common.rendersChildren(Breadcrumb, {
     rendersContent: false,
   })
 
   it('renders a <div /> element', () => {
-    shallow(<Breadcrumb />)
-      .should.have.tagName('div')
+    shallow(<Breadcrumb />).should.have.tagName('div')
   })
 
   const sections = [
-    { content: 'Home', link: true },
-    { content: 'T-Shirt', href: 'google.com' },
+    { key: 'home', content: 'Home', link: true },
+    { key: 't-shirt', content: 'T-Shirt', href: 'google.com' },
   ]
 
   it('renders children with `sections` prop', () => {

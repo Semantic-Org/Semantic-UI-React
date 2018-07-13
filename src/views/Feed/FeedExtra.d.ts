@@ -1,32 +1,28 @@
-import * as React from 'react';
-import {
-  HtmlImageProps,
-  SemanticShorthandContent,
-  SemanticShorthandCollection
-} from '../..';
+import * as React from 'react'
+import { HtmlImageProps, SemanticShorthandContent, SemanticShorthandCollection } from '../..'
 
 export interface FeedExtraProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** An event can contain additional information like a set of images. */
-  images?: boolean | Array<SemanticShorthandCollection<HtmlImageProps>>;
+  images?: boolean | SemanticShorthandCollection<HtmlImageProps>[]
 
   /** An event can contain additional text information. */
-  text?: boolean;
+  text?: boolean
 }
 
-declare const FeedExtra: React.StatelessComponent<FeedExtraProps>;
+declare const FeedExtra: React.StatelessComponent<FeedExtraProps>
 
-export default FeedExtra;
+export default FeedExtra

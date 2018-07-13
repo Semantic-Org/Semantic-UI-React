@@ -1,46 +1,42 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import {
-  SemanticShorthandContent,
-  SemanticShorthandItem,
-  SemanticVERTICALALIGNMENTS
-} from '../..';
-import { ItemDescriptionProps } from './ItemDescription';
-import { ItemExtraProps } from './ItemExtra';
-import { ItemHeaderProps } from './ItemHeader';
-import { ItemMetaProps } from './ItemMeta';
+import { SemanticShorthandContent, SemanticShorthandItem, SemanticVERTICALALIGNMENTS } from '../..'
+import { ItemDescriptionProps } from './ItemDescription'
+import { ItemExtraProps } from './ItemExtra'
+import { ItemHeaderProps } from './ItemHeader'
+import { ItemMetaProps } from './ItemMeta'
 
 export interface ItemContentProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Shorthand for ItemDescription component. */
-  description?: SemanticShorthandItem<ItemDescriptionProps>;
+  description?: SemanticShorthandItem<ItemDescriptionProps>
 
   /** Shorthand for ItemExtra component. */
-  extra?: SemanticShorthandItem<ItemExtraProps>;
+  extra?: SemanticShorthandItem<ItemExtraProps>
 
   /** Shorthand for ItemHeader component. */
-  header?: SemanticShorthandItem<ItemHeaderProps>;
+  header?: SemanticShorthandItem<ItemHeaderProps>
 
   /** Shorthand for ItemMeta component. */
-  meta?: SemanticShorthandItem<ItemMetaProps>;
+  meta?: SemanticShorthandItem<ItemMetaProps>
 
   /** Content can specify its vertical alignment. */
-  verticalAlign?: SemanticVERTICALALIGNMENTS;
+  verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-declare const ItemContent: React.ComponentClass<ItemContentProps>;
+declare const ItemContent: React.ComponentClass<ItemContentProps>
 
-export default ItemContent;
+export default ItemContent

@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A message can contain a content.
@@ -24,12 +18,6 @@ function MessageContent(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-MessageContent._meta = {
-  name: 'MessageContent',
-  parent: 'Message',
-  type: META.TYPES.COLLECTION,
 }
 
 MessageContent.propTypes = {

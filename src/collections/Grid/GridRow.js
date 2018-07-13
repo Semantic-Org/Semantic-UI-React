@@ -6,7 +6,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useMultipleProp,
@@ -49,13 +48,11 @@ function GridRow(props) {
   const rest = getUnhandledProps(GridRow, props)
   const ElementType = getElementType(GridRow, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
-}
-
-GridRow._meta = {
-  name: 'GridRow',
-  parent: 'Grid',
-  type: META.TYPES.COLLECTION,
+  return (
+    <ElementType {...rest} className={classes}>
+      {children}
+    </ElementType>
+  )
 }
 
 GridRow.propTypes = {
@@ -85,7 +82,12 @@ GridRow.propTypes = {
 
   /** A row can specify that its columns should reverse order at different device sizes. */
   reversed: customPropTypes.multipleProp([
-    'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
+    'computer',
+    'computer vertically',
+    'mobile',
+    'mobile vertically',
+    'tablet',
+    'tablet vertically',
   ]),
 
   /** A row can stretch its contents to take up the entire column height. */

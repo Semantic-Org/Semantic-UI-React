@@ -1,64 +1,67 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticCOLORS, SemanticICONS } from '../..';
-import IconGroup from './IconGroup';
+import { SemanticCOLORS, SemanticICONS } from '../..'
+import IconGroup from './IconGroup'
 
-export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 
 export interface IconProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Formatted to appear bordered */
-  bordered?: boolean;
+  bordered?: boolean
 
   /** Icon can formatted to appear circular. */
-  circular?: boolean;
+  circular?: boolean
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Color of the icon. */
-  color?: SemanticCOLORS;
+  color?: SemanticCOLORS
 
   /** Icons can display a smaller corner icon. */
-  corner?: boolean;
+  corner?: boolean
 
   /** Show that the icon is inactive. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** Fitted, without space to left or right of Icon. */
-  fitted?: boolean;
+  fitted?: boolean
 
   /** Icon can flipped. */
-  flipped?: 'horizontally' | 'vertically';
+  flipped?: 'horizontally' | 'vertically'
 
   /** Formatted to have its colors inverted for contrast. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Icon can be formatted as a link. */
-  link?: boolean;
+  link?: boolean
 
   /** Icon can be used as a simple loader. */
-  loading?: boolean;
+  loading?: boolean
 
   /** Name of the icon. */
-  name?: SemanticICONS;
+  name?: SemanticICONS
 
   /** Icon can rotated. */
-  rotated?: 'clockwise' | 'counterclockwise';
+  rotated?: 'clockwise' | 'counterclockwise'
 
   /** Size of the icon. */
-  size?: IconSizeProp;
+  size?: IconSizeProp
+
+  /** Icon can have an aria hidden. */
+  'aria-hidden'?: string
 
   /** Icon can have an aria label. */
-  'aria-label'?: string;
+  'aria-label'?: string
 }
 
-declare class Icon extends React.Component<IconProps, {}> {
-  static Group: typeof IconGroup;
+declare class Icon extends React.PureComponent<IconProps, {}> {
+  static Group: typeof IconGroup
 }
 
-export default Icon;
+export default Icon

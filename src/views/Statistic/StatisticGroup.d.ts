@@ -1,42 +1,47 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticCOLORS, SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..';
-import { StatisticProps, StatisticSizeProp } from './Statistic';
+import {
+  SemanticCOLORS,
+  SemanticShorthandCollection,
+  SemanticShorthandContent,
+  SemanticWIDTHS,
+} from '../..'
+import { StatisticProps, StatisticSizeProp } from './Statistic'
 
 export interface StatisticGroupProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A statistic group can be formatted to be different colors. */
-  color?: SemanticCOLORS;
+  color?: SemanticCOLORS
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A statistic group can present its measurement horizontally. */
-  horizontal?: boolean;
+  horizontal?: boolean
 
   /** A statistic group can present its measurement horizontally. */
-  inverted?:boolean;
+  inverted?: boolean
 
   /** Array of props for Statistic. */
-  items?: SemanticShorthandCollection<StatisticProps>;
+  items?: SemanticShorthandCollection<StatisticProps>
 
   /** A statistic group can vary in size. */
-  size?: StatisticSizeProp;
+  size?: StatisticSizeProp
 
   /** A statistic group can have its items divided evenly. */
-  widths?: SemanticWIDTHS;
+  widths?: SemanticWIDTHS
 }
 
-declare const StatisticGroup: React.StatelessComponent<StatisticGroupProps>;
+declare const StatisticGroup: React.StatelessComponent<StatisticGroupProps>
 
-export default StatisticGroup;
+export default StatisticGroup

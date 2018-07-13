@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -52,11 +51,6 @@ function Loader(props) {
   )
 }
 
-Loader._meta = {
-  name: 'Loader',
-  type: META.TYPES.ELEMENT,
-}
-
 Loader.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
@@ -80,10 +74,7 @@ Loader.propTypes = {
   indeterminate: PropTypes.bool,
 
   /** Loaders can appear inline with content. */
-  inline: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['centered']),
-  ]),
+  inline: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['centered'])]),
 
   /** Loaders can have their colors inverted. */
   inverted: PropTypes.bool,

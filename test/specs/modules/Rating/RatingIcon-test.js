@@ -1,6 +1,6 @@
+import keyboardKey from 'keyboard-key'
 import React from 'react'
 
-import { keyboardKey } from 'src/lib'
 import RatingIcon from 'src/modules/Rating/RatingIcon'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
@@ -24,8 +24,7 @@ describe('RatingIcon', () => {
       const spy = sandbox.spy()
       const event = { keyCode: keyboardKey.Spacebar, preventDefault: sandbox.spy() }
 
-      mount(<RatingIcon index={0} onClick={spy} />)
-        .simulate('keyup', event)
+      mount(<RatingIcon index={0} onClick={spy} />).simulate('keyup', event)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event, { index: 0 })
@@ -36,8 +35,7 @@ describe('RatingIcon', () => {
       const spy = sandbox.spy()
       const event = { keyCode: keyboardKey.Enter, preventDefault: sandbox.spy() }
 
-      mount(<RatingIcon index={0} onClick={spy} />)
-        .simulate('keyup', event)
+      mount(<RatingIcon index={0} onClick={spy} />).simulate('keyup', event)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event, { index: 0 })

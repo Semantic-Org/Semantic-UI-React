@@ -3,13 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import { cloneElement, Component } from 'react'
 
-import {
-  makeDebugger,
-  META,
-  normalizeTransitionDuration,
-  SUI,
-  useKeyOnly,
-} from '../../lib'
+import { makeDebugger, normalizeTransitionDuration, SUI, useKeyOnly } from '../../lib'
 import TransitionGroup from './TransitionGroup'
 
 const debug = makeDebugger('transition')
@@ -95,11 +89,6 @@ export default class Transition extends Component {
     mountOnShow: true,
     transitionOnMount: false,
     unmountOnHide: false,
-  }
-
-  static _meta = {
-    name: 'Transition',
-    type: META.TYPES.MODULE,
   }
 
   static ENTERED = 'ENTERED'
@@ -219,11 +208,7 @@ export default class Transition extends Component {
       )
     }
 
-    return cx(
-      animation,
-      childClasses,
-      useKeyOnly(animating, 'animating transition'),
-    )
+    return cx(animation, childClasses, useKeyOnly(animating, 'animating transition'))
   }
 
   computeCompletedStatus = () => {
@@ -235,12 +220,7 @@ export default class Transition extends Component {
   }
 
   computeInitialStatuses = () => {
-    const {
-      visible,
-      mountOnShow,
-      transitionOnMount,
-      unmountOnHide,
-    } = this.props
+    const { visible, mountOnShow, transitionOnMount, unmountOnHide } = this.props
 
     if (visible) {
       if (transitionOnMount) {
@@ -270,7 +250,8 @@ export default class Transition extends Component {
     if (visible) {
       return {
         current: status === Transition.UNMOUNTED && Transition.EXITED,
-        next: (status !== Transition.ENTERING && status !== Transition.ENTERED) && Transition.ENTERING,
+        next:
+          status !== Transition.ENTERING && status !== Transition.ENTERED && Transition.ENTERING,
       }
     }
 
