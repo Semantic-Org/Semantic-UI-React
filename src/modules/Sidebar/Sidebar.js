@@ -3,12 +3,12 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
+import EventStack from '../../addons/EventStack'
 import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
-  eventStack,
   getUnhandledProps,
   getElementType,
   useKeyOnly,
@@ -100,40 +100,11 @@ class Sidebar extends Component {
 
   state = {}
 
-  componentDidMount() {
-    const { visible } = this.props
-
-    if (visible) this.addListener()
-  }
-
-  componentWillUnmount() {
-    const { visible } = this.props
-
-    if (visible) this.removeListener()
-  }
-
   componentDidUpdate(prevProps) {
     const { visible: prevVisible } = prevProps
     const { visible: currentVisible } = this.props
 
-    if (prevVisible === currentVisible) return
-
-    this.handleAnimationStart()
-
-    if (currentVisible) {
-      this.addListener()
-      return
-    }
-
-    this.removeListener()
-  }
-
-  addListener() {
-    eventStack.sub('click', this.handleDocumentClick)
-  }
-
-  removeListener() {
-    eventStack.unsub('click', this.handleDocumentClick)
+    if (prevVisible !== currentVisible) this.handleAnimationStart()
   }
 
   handleAnimationStart = () => {
@@ -191,6 +162,7 @@ class Sidebar extends Component {
       <Ref innerRef={this.handleRef}>
         <ElementType {...rest} className={classes}>
           {childrenUtils.isNil(children) ? content : children}
+          {visible && <EventStack name={'click'} on={this.handleDocumentClick} />}
         </ElementType>
       </Ref>
     )
