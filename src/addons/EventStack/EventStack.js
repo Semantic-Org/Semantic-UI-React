@@ -23,11 +23,12 @@ export default class EventStack extends PureComponent {
       // Heads up!
       // This condition for SSR safety.
       PropTypes.instanceOf(isBrowser() ? window.HTMLElement : {}),
-    ]).isRequired,
+    ]),
   }
 
   static defaultProps = {
     pool: 'default',
+    target: 'document',
   }
 
   componentDidMount() {
