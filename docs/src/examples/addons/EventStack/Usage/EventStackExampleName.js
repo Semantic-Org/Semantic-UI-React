@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Checkbox, EventStack, Label, Grid, Segment } from 'semantic-ui-react'
 
-export default class EventStackExampleEventStack extends Component {
+export default class EventStackExampleName extends Component {
   state = {
     enabled: false,
     log: [],
@@ -10,18 +10,20 @@ export default class EventStackExampleEventStack extends Component {
 
   clearLog = () => this.setState({ log: [], logCount: 0 })
 
-  handleRef = node => this.setState({ node })
-
   toggleEnabled = () => this.setState({ enabled: !this.state.enabled })
 
-  updateLog = () =>
+  updateLog = eventName => () =>
     this.setState({
-      log: [`${new Date().toLocaleTimeString()}: Click`, ...this.state.log].slice(0, 20),
+      log: [`${new Date().toLocaleTimeString()}: ${eventName}`, ...this.state.log].slice(0, 20),
       logCount: this.state.logCount + 1,
     })
 
+  handleResize = this.updateLog('resize')
+
+  handleScroll = this.updateLog('scroll')
+
   render() {
-    const { enabled, log, logCount, node } = this.state
+    const { enabled, log, logCount } = this.state
 
     return (
       <Grid columns={2}>
@@ -30,17 +32,16 @@ export default class EventStackExampleEventStack extends Component {
             <Segment>
               <Checkbox
                 checked={enabled}
-                label='Enable listener'
+                label='Enable listeners'
                 onChange={this.toggleEnabled}
                 toggle
               />
             </Segment>
             <Segment>
-              {enabled && <EventStack name='click' on={this.updateLog} target={node} />}
+              {enabled && <EventStack name='resize' on={this.handleResize} target='window' />}
+              {enabled && <EventStack name='scroll' on={this.handleScroll} target='window' />}
 
-              <div ref={this.handleRef}>
-                An example element, click there when listener is enabled
-              </div>
+              <p>When listeners are enabled try to resize or scroll window.</p>
             </Segment>
           </Segment.Group>
         </Grid.Column>
