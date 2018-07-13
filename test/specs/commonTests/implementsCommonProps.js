@@ -66,7 +66,7 @@ export const implementsHTMLIFrameProp = (Component, options = {}) => {
 export const implementsHTMLImageProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'image',
-    ShorthandComponent: 'image',
+    ShorthandComponent: 'img',
     mapValueToProps: src => ({ src }),
     ...options,
   })
