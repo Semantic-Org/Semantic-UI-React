@@ -53,13 +53,10 @@ export default class EventPool {
   }
 
   /**
-   * @param {String} eventType
+   * @return {Boolean}
    */
-  hasHandlers(eventType) {
-    const handlerSet = this.handlerSets.get(eventType)
-
-    if (handlerSet) return handlerSet.hasHandlers()
-    return false
+  hasHandlers() {
+    return this.handlerSets.size > 0
   }
 
   /**
