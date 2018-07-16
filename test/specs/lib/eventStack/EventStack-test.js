@@ -89,7 +89,7 @@ describe('EventStack', () => {
       expect(handler).toHaveBeenCalledTimes(1)
     })
 
-    it('unsubscribes but leaves eventTarget if it contains handlers', () => {
+    it('unsubscribes and leaves eventTarget if it contains handlers', () => {
       const clickHandler = jest.fn()
       const keyHandler = jest.fn()
 
@@ -102,6 +102,20 @@ describe('EventStack', () => {
 
       expect(clickHandler).toHaveBeenCalledTimes(1)
       expect(keyHandler).not.toHaveBeenCalled()
+    })
+
+    it('unsubscribes and leaves an eventPool if contains handlers', () => {
+      const firstHandler = jest.fn()
+      const secondHandler = jest.fn()
+
+      eventStack.sub('click', firstHandler)
+      eventStack.unsub('mouseup', firstHandler)
+      eventStack.sub('click', secondHandler)
+
+      domEvent.click(document)
+
+      expect(firstHandler).toHaveBeenCalledTimes(1)
+      expect(secondHandler).toHaveBeenCalledTimes(1)
     })
 
     it('unsubscribes from same event multiple times', () => {

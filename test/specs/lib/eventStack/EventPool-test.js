@@ -51,14 +51,16 @@ describe('EventPool', () => {
   })
 
   describe('hasHandlers', () => {
-    const pool = EventPool.createByType('default', 'click', [() => {}])
-
     it('returns "true" if has handlers', () => {
-      expect(pool.hasHandlers('click')).toBe(true)
+      const pool = EventPool.createByType('default', 'click', [() => {}])
+
+      expect(pool.hasHandlers()).toBe(true)
     })
 
     it('returns "false" if has not handlers', () => {
-      expect(pool.hasHandlers('mousedown')).toBe(false)
+      const pool = new EventPool('default', new Map())
+
+      expect(pool.hasHandlers()).toBe(false)
     })
   })
 
