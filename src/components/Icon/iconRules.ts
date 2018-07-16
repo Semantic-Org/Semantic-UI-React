@@ -54,7 +54,7 @@ const iconRules = {
       '::before': {
         content,
         boxSizing: 'inherit',
-        background: '0 0!important',
+        background: '0 0',
       },
     }
   },
