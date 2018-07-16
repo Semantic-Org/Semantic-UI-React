@@ -5,6 +5,8 @@
 import enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
+import consoleUtil from './utils/consoleUtil'
+
 // ----------------------------------------
 // Enzyme
 // ----------------------------------------
@@ -14,4 +16,11 @@ global.mount = enzyme.mount
 enzyme.configure({
   adapter: new Adapter(),
   disableLifecycleMethods: true,
+})
+
+// ----------------------------------------
+// Console util
+// ----------------------------------------
+afterEach(() => {
+  consoleUtil.afterTest()
 })

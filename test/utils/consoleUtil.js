@@ -18,21 +18,22 @@ const enable = () => Object.assign(console, original)
 const disable = () => Object.assign(console, disabled)
 
 /**
- * Silence the console for a single test.  It will be re-enabled after it().
+ * Silence the console for a single test. It will be re-enabled after it().
  */
 const disableOnce = () => {
   isDisabledOnce = true
   disable()
 }
 
-afterEach(() => {
+const afterTest = () => {
   if (isDisabledOnce) {
     isDisabledOnce = false
     enable()
   }
-})
+}
 
 export default {
+  afterTest,
   enable,
   disable,
   disableOnce,
