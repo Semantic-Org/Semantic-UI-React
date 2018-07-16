@@ -2,7 +2,6 @@ import React from 'react'
 
 import PortalInner from 'src/addons/Portal/PortalInner'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('PortalInner', () => {
   common.isConformant(PortalInner, {
@@ -12,20 +11,20 @@ describe('PortalInner', () => {
 
   describe('onMount', () => {
     it('called when mounting', () => {
-      const onMount = sandbox.spy()
+      const onMount = jest.fn()
       mount(
         <PortalInner onMount={onMount}>
           <p />
         </PortalInner>,
       )
 
-      expect(onMount).have.been.calledOnce()
+      expect(onMount).toHaveBeenCalledTimes(1)
     })
   })
 
   describe('onUnmount', () => {
     it('is called only once when unmounting', () => {
-      const onUnmount = sandbox.spy()
+      const onUnmount = jest.fn()
       const wrapper = mount(
         <PortalInner onUnmount={onUnmount}>
           <p />
@@ -33,7 +32,7 @@ describe('PortalInner', () => {
       )
 
       wrapper.unmount()
-      expect(onUnmount).have.been.calledOnce()
+      expect(onUnmount).toHaveBeenCalledTimes(1)
     })
   })
 })
