@@ -6,7 +6,7 @@ const ButtonExampleAnimated = () => (
     <Button animated>
       <Button.Content visible>Next</Button.Content>
       <Button.Content hidden>
-        <Icon name='right arrow' />
+        <Icon name='arrow right' />
       </Button.Content>
     </Button>
     <Button animated='vertical'>
