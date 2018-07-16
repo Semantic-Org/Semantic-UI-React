@@ -252,7 +252,7 @@ export default (Component, options = {}) => {
         const wrapper = mount(<Component {...requiredProps} />)
         // don't test components with no className at all (i.e. MessageItem)
         if (wrapper.prop('className')) {
-          expect(wrapper.hasClass(info.componentClassName)).toBeTruthy()
+          expect(wrapper.hasClass(info.componentClassName)).toBe(true)
         }
       })
 
@@ -282,7 +282,7 @@ export default (Component, options = {}) => {
             nestedShallow(<Component {...requiredProps} className={className} />, {
               nestingLevel,
             }).hasClass(className),
-          ).toBeTruthy()
+          ).toBe(true)
         }
       })
 

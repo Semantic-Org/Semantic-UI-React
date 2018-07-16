@@ -63,7 +63,7 @@ export default (Component, options = {}) => {
       const element = createElement(Component, { ...requiredProps, [propKey]: value })
       const wrapper = shallow(element)
 
-      expect(wrapper[assertMethod](expectedShorthandElement)).toBeTruthy()
+      expect(wrapper[assertMethod](expectedShorthandElement)).toBe(true)
 
       // Enzyme's .key() method is not consistent with React for elements with
       // no key (`undefined` vs `null`), so use the underlying element instead

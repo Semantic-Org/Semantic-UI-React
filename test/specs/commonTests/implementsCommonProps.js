@@ -195,7 +195,7 @@ export const implementsMultipleProp = (Component, propKey, propValues) => {
       it(`adds "${propVal} ${propKey}" to className`, () => {
         const wrapper = shallow(createElement(Component, { [propKey]: propVal }))
 
-        expect(wrapper.hasClass(`${propVal} ${propKey}`)).toBeTruthy()
+        expect(wrapper.hasClass(`${propVal} ${propKey}`)).toBe(true)
       })
     })
 
@@ -204,7 +204,7 @@ export const implementsMultipleProp = (Component, propKey, propValues) => {
       const propValue = propValues.join(' ')
       const wrapper = shallow(createElement(Component, { [propKey]: propValue }))
 
-      expect(wrapper.hasClass(className)).toBeTruthy()
+      expect(wrapper.hasClass(className)).toBe(true)
     })
   })
 }
@@ -235,14 +235,14 @@ export const implementsTextAlignProp = (
         it('adds "justified" without "aligned" to className', () => {
           const wrapper = shallow(<Component {...requiredProps} textAlign='justified' />)
 
-          expect(wrapper.hasClass('justified')).toBeTruthy()
-          expect(wrapper.hasClass('aligned')).toBeFalsy()
+          expect(wrapper.hasClass('justified')).toBe(true)
+          expect(wrapper.hasClass('aligned')).toBe(false)
         })
       } else {
         it(`adds "${propVal} aligned" to className`, () => {
           const wrapper = shallow(<Component {...requiredProps} textAlign={propVal} />)
 
-          expect(wrapper.hasClass(`${propVal} ${'aligned'}`)).toBeTruthy()
+          expect(wrapper.hasClass(`${propVal} ${'aligned'}`)).toBe(true)
         })
       }
     })
@@ -274,7 +274,7 @@ export const implementsVerticalAlignProp = (
       it(`adds "${propVal} aligned" to className`, () => {
         const wrapper = shallow(<Component {...requiredProps} verticalAlign={propVal} />)
 
-        expect(wrapper.hasClass(`${propVal} ${'aligned'}`)).toBeTruthy()
+        expect(wrapper.hasClass(`${propVal} ${'aligned'}`)).toBe(true)
       })
     })
   })
@@ -309,7 +309,7 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
           : numberToWord(width)
         const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: width }))
 
-        expect(wrapper.hasClass(expectClass)).toBeTruthy()
+        expect(wrapper.hasClass(expectClass)).toBe(true)
       })
     })
 
@@ -317,7 +317,7 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
       it('adds "equal width" to className', () => {
         const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: 'equal' }))
 
-        expect(wrapper.hasClass('equal width')).toBeTruthy()
+        expect(wrapper.hasClass('equal width')).toBe(true)
       })
     }
   })

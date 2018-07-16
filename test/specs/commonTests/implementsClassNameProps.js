@@ -60,7 +60,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
         },
       )
 
-      expect(wrapper.hasClass(className)).toBeTruthy()
+      expect(wrapper.hasClass(className)).toBe(true)
     })
 
     it('does not add prop value to className', () => {
@@ -74,7 +74,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
         },
       )
 
-      expect(wrapper.hasClass(value)).toBeFalsy()
+      expect(wrapper.hasClass(value)).toBe(false)
     })
   })
 }
@@ -108,18 +108,18 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
         shallow(createElement(Component, { ...requiredProps, [propKey]: true })).hasClass(
           className,
         ),
-      ).toBeTruthy()
+      ).toBe(true)
     })
 
     it('adds no className when false', () => {
       const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: false }))
 
-      expect(wrapper.hasClass(className)).toBeFalsy()
-      expect(wrapper.hasClass('true')).toBeFalsy()
-      expect(wrapper.hasClass('false')).toBeFalsy()
+      expect(wrapper.hasClass(className)).toBe(false)
+      expect(wrapper.hasClass('true')).toBe(false)
+      expect(wrapper.hasClass('false')).toBe(false)
 
       _.forEach(propValues, (propVal) => {
-        expect(wrapper.hasClass(propVal)).toBeFalsy()
+        expect(wrapper.hasClass(propVal)).toBe(false)
       })
     })
   })
@@ -155,7 +155,7 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
           },
         )
 
-        expect(wrapper.hasClass(propKey)).toBeFalsy()
+        expect(wrapper.hasClass(propKey)).toBe(false)
       })
     })
 
@@ -170,7 +170,7 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
           },
         )
 
-        expect(wrapper.hasClass(propKey)).toBeFalsy()
+        expect(wrapper.hasClass(propKey)).toBe(false)
       })
     })
   })

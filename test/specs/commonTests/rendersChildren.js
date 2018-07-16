@@ -34,7 +34,7 @@ export default (Component, options = {}) => {
         nestedShallow(createElement(Component, requiredProps, child), {
           nestingLevel,
         }).contains(child),
-      ).toBeTruthy()
+      ).toBe(true)
     })
 
     it('renders child number with 0 value', () => {
@@ -63,7 +63,7 @@ export default (Component, options = {}) => {
           nestedShallow(createElement(Component, { ...requiredProps, content: child }), {
             nestingLevel,
           }).contains(child),
-        ).toBeTruthy()
+        ).toBe(true)
       })
 
       it('renders child number with 0 value', () => {

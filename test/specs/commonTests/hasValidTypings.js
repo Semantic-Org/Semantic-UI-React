@@ -37,7 +37,7 @@ export default (Component, options = {}) => {
   describe('typings', () => {
     describe('structure', () => {
       it(`${tsFile} exists`, () => {
-        expect(tsContent).not.toBeFalsy()
+        expect(tsContent).not.toBe(false)
       })
     })
 
