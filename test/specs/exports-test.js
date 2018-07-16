@@ -24,12 +24,12 @@ describe('exports', () => {
 
       // require all components to be exported at the top level
       it('is exported at the top level', () => {
-        expect(isTopLevelAPIProp).toBeTruthy()
+        expect(isTopLevelAPIProp).toBe(true)
       })
 
       if (component.isChild) {
         it('is a static component on its parent', () => {
-          expect(foundAsSubcomponent).toBeTruthy()
+          expect(foundAsSubcomponent).toBe(true)
         })
       }
     })

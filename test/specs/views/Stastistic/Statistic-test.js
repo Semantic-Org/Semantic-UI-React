@@ -48,7 +48,7 @@ describe('Statistic', () => {
           .find('StatisticValue')
           .first()
           .prop('text'),
-      ).toBeTruthy()
+      ).toBe(true)
     })
   })
 })

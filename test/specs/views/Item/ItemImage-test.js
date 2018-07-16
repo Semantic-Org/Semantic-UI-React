@@ -13,11 +13,11 @@ describe('ItemImage', () => {
   it('is wrapped without ui', () => {
     const wrapper = shallow(<ItemImage />)
 
-    expect(wrapper.prop('wrapped')).toBeTruthy()
-    expect(wrapper.prop('ui')).toBeFalsy()
+    expect(wrapper.prop('wrapped')).toBe(true)
+    expect(wrapper.prop('ui')).toBe(false)
   })
 
   it('has ui with size prop', () => {
-    expect(shallow(<ItemImage size='small' />).prop('ui')).toBeTruthy()
+    expect(shallow(<ItemImage size='small' />).prop('ui')).toBe(true)
   })
 })

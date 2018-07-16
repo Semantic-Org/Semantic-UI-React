@@ -200,7 +200,7 @@ describe('extending AutoControlledComponent', () => {
       consoleUtil.disableOnce()
       TestClass.autoControlledProps.push('checked')
 
-      expect(shallow(<TestClass />).state('checked')).toBeFalsy()
+      expect(shallow(<TestClass />).state('checked')).toBe(false)
     })
 
     it('defaults "value" to an empty string if not present', () => {
