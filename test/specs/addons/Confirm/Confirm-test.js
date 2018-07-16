@@ -4,7 +4,7 @@ import React from 'react'
 
 import Confirm from 'src/addons/Confirm/Confirm'
 import Modal from 'src/modules/Modal/Modal'
-import { assertBodyContains, domEvent, sandbox } from 'test/utils'
+import { assertBodyContains, domEvent } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
 // ----------------------------------------
@@ -47,12 +47,12 @@ describe('Confirm', () => {
 
   describe('size', () => {
     it('has "small" size by default', () => {
-      expect(shallow(<Confirm />)).have.prop('size', 'small')
+      expect(shallow(<Confirm />).prop('size')).toBe('small')
     })
 
     _.forEach(['fullscreen', 'large', 'mini', 'small', 'tiny'], (size) => {
       it(`applies ${size} size`, () => {
-        expect(shallow(<Confirm size={size} />)).have.prop('size', size)
+        expect(shallow(<Confirm size={size} />).prop('size')).toBe(size)
       })
     })
   })
@@ -66,8 +66,9 @@ describe('Confirm', () => {
         shallow(<Confirm cancelButton='foo' />)
           .find('Button')
           .first()
-          .shallow(),
-      ).have.text('foo')
+          .shallow()
+          .text(),
+      ).toBe('foo')
     })
   })
 
@@ -79,8 +80,9 @@ describe('Confirm', () => {
       expect(
         shallow(<Confirm confirmButton='foo' />)
           .find('Button[primary]')
-          .shallow(),
-      ).have.text('foo')
+          .shallow()
+          .text(),
+      ).toBe('foo')
     })
   })
 
@@ -88,18 +90,8 @@ describe('Confirm', () => {
     let spy
 
     beforeEach(() => {
-      spy = sandbox.spy()
+      spy = jest.fn()
       wrapperMount(<Confirm onCancel={spy} defaultOpen />)
-    })
-
-    it('omitted when not defined', () => {
-      const click = () =>
-        shallow(<Confirm />)
-          .find('Button')
-          .first()
-          .simulate('click')
-
-      expect(click).not.toThrowError()
     })
 
     it('is called on Cancel button click', () => {
@@ -108,7 +100,7 @@ describe('Confirm', () => {
         .first()
         .simulate('click')
 
-      expect(spy).have.been.calledOnce()
+      expect(spy).toHaveBeenCalledTimes(1)
     })
 
     it('is passed to the Modal onClose prop', () => {
@@ -121,27 +113,27 @@ describe('Confirm', () => {
 
     it('is called on dimmer click', () => {
       domEvent.click('.ui.dimmer')
-      expect(spy).have.been.calledOnce()
+      expect(spy).toHaveBeenCalledTimes(1)
     })
 
     it('is called on click outside of the modal', () => {
       domEvent.click(document.querySelector('.ui.modal').parentNode)
-      expect(spy).have.been.calledOnce()
+      expect(spy).toHaveBeenCalledTimes(1)
     })
 
     it('is not called on click inside of the modal', () => {
       domEvent.click(document.querySelector('.ui.modal'))
-      expect(spy).not.have.been.calledOnce()
+      expect(spy).not.toHaveBeenCalledTimes(1)
     })
 
     it('is not called on body click', () => {
       domEvent.click('body')
-      expect(spy).not.have.been.calledOnce()
+      expect(spy).not.toHaveBeenCalled()
     })
 
     it('is called when pressing escape', () => {
       domEvent.keyDown(document, { key: 'Escape' })
-      expect(spy).have.been.calledOnce()
+      expect(spy).toHaveBeenCalledTimes(1)
     })
 
     it('is not called when pressing a key other than "Escape"', () => {
@@ -150,13 +142,13 @@ describe('Confirm', () => {
         if (val === keyboardKey.Escape) return
 
         domEvent.keyDown(document, { key })
-        expect(spy).not.have.been.called(`onClose was called when pressing "${key}"`)
+        expect(spy).not.toHaveBeenCalled()
       })
     })
 
     it('is not called when the open prop changes to false', () => {
       wrapper.setProps({ open: false })
-      expect(spy).not.have.been.called()
+      expect(spy).not.toHaveBeenCalled()
     })
   })
 
@@ -171,12 +163,12 @@ describe('Confirm', () => {
     })
 
     it('is called on OK button click', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       shallow(<Confirm onConfirm={spy} />)
         .find('Button[primary]')
         .simulate('click')
 
-      expect(spy).have.been.calledOnce()
+      expect(spy).toHaveBeenCalledTimes(1)
     })
   })
 
