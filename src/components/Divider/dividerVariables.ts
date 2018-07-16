@@ -10,7 +10,7 @@ export interface IDividerVariables {
 export default (siteVars: any): IDividerVariables => {
   return {
     defaultColor: siteVars.gray04,
-    defaultBackgroundColor: siteVars.gray14,
+    defaultBackgroundColor: siteVars.gray12,
     typePrimaryColor: siteVars.brand,
     typePrimaryBackgroundColor: siteVars.brand,
     typeSecondaryColor: siteVars.gray02,

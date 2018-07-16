@@ -6,11 +6,7 @@ const DividerExampleSize = () =>
   _.times(11, i => {
     const size = i
 
-    return (
-      <Divider key={size} size={size}>
-        Size {size}
-      </Divider>
-    )
+    return <Divider key={size} size={size} content={`Size ${size}`} />
   })
 
 export default DividerExampleSize
