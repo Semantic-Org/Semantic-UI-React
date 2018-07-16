@@ -2,7 +2,7 @@ import React from 'react'
 
 import TransitionablePortal from 'src/addons/TransitionablePortal/TransitionablePortal'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox, assertWithTimeout } from 'test/utils'
+import { domEvent, assertWithTimeout } from 'test/utils'
 
 // ----------------------------------------
 // Wrapper
@@ -33,13 +33,15 @@ describe('TransitionablePortal', () => {
 
   describe('children', () => {
     it('renders a Portal', () => {
-      expect(wrapperShallow(<TransitionablePortal {...requiredProps} />)).have.descendants('Portal')
+      expect(
+        wrapperShallow(<TransitionablePortal {...requiredProps} />).find('Portal'),
+      ).toHaveLength(1)
     })
 
     it('renders a Transition', () => {
-      expect(wrapperShallow(<TransitionablePortal {...requiredProps} />)).have.descendants(
-        'Transition',
-      )
+      expect(
+        wrapperShallow(<TransitionablePortal {...requiredProps} />).find('Transition'),
+      ).toHaveLength(1)
     })
   })
 
@@ -48,22 +50,22 @@ describe('TransitionablePortal', () => {
       wrapperMount(<TransitionablePortal {...requiredProps} />)
 
       wrapper.setProps({ open: true })
-      expect(wrapper).have.state('portalOpen', true)
+      expect(wrapper.state('portalOpen')).toBe(true)
       wrapper.setProps({ open: false })
-      expect(wrapper).have.state('portalOpen', false)
+      expect(wrapper.state('portalOpen')).toBe(false)
     })
 
     it('does not pass `open` prop to `portalOpen` when not defined', () => {
       wrapperMount(<TransitionablePortal {...requiredProps} />)
 
       wrapper.setProps({ transition: {} })
-      expect(wrapper).have.not.state('portalOpen')
+      expect(wrapper.state('portalOpen')).toBeUndefined()
     })
   })
 
   describe('onClose', () => {
     it('is called with (null, data) when Portal closes', (done) => {
-      const onClose = sandbox.spy()
+      const onClose = jest.fn()
       const trigger = <button />
       wrapperMount(
         <TransitionablePortal
@@ -78,8 +80,8 @@ describe('TransitionablePortal', () => {
       domEvent.click(document.body)
 
       assertWithTimeout(() => {
-        expect(onClose).have.been.calledOnce()
-        expect(onClose).have.been.calledWithMatch(null, { portalOpen: false })
+        expect(onClose).toHaveBeenCalledTimes(1)
+        expect(onClose).toHaveBeenCalledWith(null, expect.objectContaining({ portalOpen: false }))
       }, done)
     })
 
@@ -92,13 +94,13 @@ describe('TransitionablePortal', () => {
       wrapper.find('button').simulate('click')
       domEvent.click(document.body)
 
-      expect(wrapper).have.state('portalOpen', false)
+      expect(wrapper.state('portalOpen')).toBe(false)
     })
   })
 
   describe('onHide', () => {
     it('is called with (null, data) when exiting transition finished', (done) => {
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
       const trigger = <button />
       wrapperMount(
         <TransitionablePortal
@@ -112,45 +114,48 @@ describe('TransitionablePortal', () => {
 
       wrapper.setProps({ open: false })
       assertWithTimeout(() => {
-        expect(onHide).have.been.calledOnce()
-        expect(onHide).have.been.calledWithMatch(null, {
-          ...quickTransition,
-          portalOpen: false,
-          transitionVisible: false,
-        })
+        expect(onHide).toHaveBeenCalledTimes(1)
+        expect(onHide).toHaveBeenCalledWith(
+          null,
+          expect.objectContaining({
+            ...quickTransition,
+            portalOpen: false,
+            transitionVisible: false,
+          }),
+        )
       }, done)
     })
   })
 
   describe('onOpen', () => {
     it('is called with (null, data) when Portal opens', () => {
-      const onOpen = sandbox.spy()
+      const onOpen = jest.fn()
       const trigger = <button />
 
       wrapperMount(<TransitionablePortal {...requiredProps} onOpen={onOpen} trigger={trigger} />)
         .find('button')
         .simulate('click')
 
-      expect(onOpen).have.been.calledOnce()
-      expect(onOpen).have.been.calledWithMatch(null, { portalOpen: true })
+      expect(onOpen).toHaveBeenCalledTimes(1)
+      expect(onOpen).toHaveBeenCalledWith(null, expect.objectContaining({ portalOpen: true }))
     })
 
     it('changes `portalOpen` to true', () => {
       const trigger = <button />
       wrapperMount(<TransitionablePortal {...requiredProps} trigger={trigger} />)
 
-      wrapper.find('button').simulate('click', event)
-      expect(wrapper).have.state('portalOpen', true)
+      wrapper.find('button').simulate('click')
+      expect(wrapper.state('portalOpen')).toBe(true)
     })
   })
 
   describe('open', () => {
     it('does not block update of state on Portal close', () => {
       wrapperMount(<TransitionablePortal {...requiredProps} open />)
-      expect(wrapper).have.state('portalOpen', true)
+      expect(wrapper.state('portalOpen')).toBe(true)
 
       domEvent.click(document.body)
-      expect(wrapper).have.state('portalOpen', false)
+      expect(wrapper.state('portalOpen')).toBe(false)
     })
   })
 })
