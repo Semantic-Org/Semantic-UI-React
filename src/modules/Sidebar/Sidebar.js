@@ -162,7 +162,7 @@ class Sidebar extends Component {
       <Ref innerRef={this.handleRef}>
         <ElementType {...rest} className={classes}>
           {childrenUtils.isNil(children) ? content : children}
-          {visible && <EventStack name={'click'} on={this.handleDocumentClick} />}
+          {visible && <EventStack name='click' on={this.handleDocumentClick} />}
         </ElementType>
       </Ref>
     )
