@@ -37,7 +37,7 @@
     "start": "gulp --series dll docs",
     "satisfied": "satisfied --skip-invalid",
     "pretest": "yarn satisfied && gulp build:docs:docgen",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "yarn test --watchAll",
     "tsd:lint": "tslint \"./index.d.ts\" \"./src/**/*.d.ts\" \"./src/**/*.tsx\" \"./test/**/*.d.ts\" \"./test/**/*.tsx\"",
     "tsd:lint:fix": "yarn tsd:lint --fix",
@@ -59,7 +59,7 @@
       "^test/(.*)$": "<rootDir>/test/$1"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/test/setupTests.js",
-    "testRegex": "/test/specs/views/.*ItemGroup-test\\.js$"
+    "testRegex": "/test/specs/(lib|views)/.*-test\\.js$"
   },
   "lint-staged": {
     "**/*.{js,jsx}": [
