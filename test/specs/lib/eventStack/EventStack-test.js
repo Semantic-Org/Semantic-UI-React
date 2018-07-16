@@ -89,7 +89,7 @@ describe('EventStack', () => {
       handler.should.have.been.calledOnce()
     })
 
-    it('unsubscribes but leaves eventTarget if it contains handlers', () => {
+    it('unsubscribes and leaves eventTarget if it contains handlers', () => {
       const clickHandler = sandbox.spy()
       const keyHandler = sandbox.spy()
 
@@ -102,6 +102,20 @@ describe('EventStack', () => {
 
       clickHandler.should.have.been.calledOnce()
       keyHandler.should.have.not.been.called()
+    })
+
+    it('unsubscribes and leaves an eventPool if contains handlers', () => {
+      const firstHandler = sandbox.spy()
+      const secondHandler = sandbox.spy()
+
+      eventStack.sub('click', firstHandler)
+      eventStack.unsub('mouseup', firstHandler)
+      eventStack.sub('click', secondHandler)
+
+      domEvent.click(document)
+
+      firstHandler.should.have.been.calledOnce()
+      secondHandler.should.have.been.calledOnce()
     })
 
     it('unsubscribes from same event multiple times', () => {
