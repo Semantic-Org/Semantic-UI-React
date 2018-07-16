@@ -3,12 +3,12 @@ import React from 'react'
 import Pagination from 'src/addons/Pagination/Pagination'
 import PaginationItem from 'src/addons/Pagination/PaginationItem'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('Pagination', () => {
   common.isConformant(Pagination, {
+    rendersChildren: false,
     requiredProps: {
-      totalPages: 0,
+      totalPages: 1,
     },
   })
   common.hasSubcomponents(Pagination, [PaginationItem])
@@ -16,8 +16,8 @@ describe('Pagination', () => {
   describe('onPageChange', () => {
     it('is called with (e, data) when clicked on a pagination item', () => {
       const event = { target: null }
-      const onPageChange = sandbox.spy()
-      const onPageItemClick = sandbox.spy()
+      const onPageChange = jest.fn()
+      const onPageItemClick = jest.fn()
 
       mount(
         <Pagination
@@ -31,14 +31,20 @@ describe('Pagination', () => {
         .at(4)
         .simulate('click', event)
 
-      expect(onPageChange).have.been.calledOnce()
-      expect(onPageChange).have.been.calledWithMatch(event, { activePage: 3 })
-      expect(onPageItemClick).have.been.calledOnce()
-      expect(onPageItemClick).have.been.calledWithMatch(event, { value: 3 })
+      expect(onPageChange).toHaveBeenCalledTimes(1)
+      expect(onPageChange).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining({ activePage: 3 }),
+      )
+      expect(onPageItemClick).toHaveBeenCalledTimes(1)
+      expect(onPageItemClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining({ value: 3 }),
+      )
     })
 
     it('will be omitted if occurred for the same pagination item as the current', () => {
-      const onPageChange = sandbox.spy()
+      const onPageChange = jest.fn()
       const wrapper = mount(
         <Pagination
           activePage={1}
@@ -53,7 +59,7 @@ describe('Pagination', () => {
         .find('PaginationItem')
         .at(0)
         .simulate('click')
-      expect(onPageChange).have.not.been.called()
+      expect(onPageChange).not.toHaveBeenCalled()
     })
   })
 })
