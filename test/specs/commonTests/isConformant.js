@@ -3,7 +3,6 @@ import _ from 'lodash'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 
-import * as semanticUIReact from 'src/index.js'
 import {
   assertBodyContains,
   componentInfo,
@@ -60,26 +59,6 @@ export default (Component, options = {}) => {
   it(`constructor name matches filename "${constructorName}"`, () => {
     expect(constructorName).toBe(info.filenameWithoutExt)
   })
-
-  // ----------------------------------------
-  // Is exported or private
-  // ----------------------------------------
-  // detect components like: semanticUIReact.H1
-  const isTopLevelAPIProp = _.has(semanticUIReact, constructorName)
-
-  // find the apiPath in the semanticUIReact object
-  const foundAsSubcomponent = _.isFunction(_.get(semanticUIReact, info.apiPath))
-
-  // require all components to be exported at the top level
-  it('is exported at the top level', () => {
-    expect(isTopLevelAPIProp).toBeTruthy()
-  })
-
-  if (info.isChild) {
-    it('is a static component on its parent', () => {
-      expect(foundAsSubcomponent).toBeTruthy()
-    })
-  }
 
   // ----------------------------------------
   // Props
