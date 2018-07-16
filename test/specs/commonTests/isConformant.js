@@ -224,7 +224,7 @@ export default (Component, options = {}) => {
           let expectedArgs = [eventShape]
 
           if (_.has(Component.propTypes, listenerName)) {
-            expectedArgs = [eventShape, props]
+            expectedArgs = [eventShape, expect.objectContaining(props)]
           }
 
           // Components should return the event first, then any data
