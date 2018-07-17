@@ -9,13 +9,13 @@ describe('ButtonOr', () => {
 
   describe('text', () => {
     it('should not define attr when not defined', () => {
-      expect(shallow(<ButtonOr />)).have.not.attr('data-text')
+      expect(shallow(<ButtonOr />).prop('data-text')).toBeUndefined()
     })
 
     it('should pass value to attr', () => {
       const word = faker.lorem.word()
 
-      expect(shallow(<ButtonOr text={word} />)).have.attr('data-text', word)
+      expect(shallow(<ButtonOr text={word} />).prop('data-text')).toBe(word)
     })
   })
 })
