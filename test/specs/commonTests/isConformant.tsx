@@ -22,6 +22,11 @@ export default (Component, options: any = {}) => {
 
   const componentType = typeof Component
 
+  // This is added because of the FelaTheme wrapper and the component itself, because it is mounted
+  const getComponent = wrapper => {
+    return wrapper.childAt(0).childAt(0)
+  }
+
   // make sure components are properly exported
   if (componentType !== 'function') {
     throwError(`Components should export a class or function, got: ${componentType}.`)
@@ -143,19 +148,13 @@ export default (Component, options: any = {}) => {
         ]
 
         tags.forEach(tag => {
-          const component = mount(<Component {...requiredProps} as={tag} />)
-
+          const wrapper = mount(<Component {...requiredProps} as={tag} />)
+          const component = getComponent(wrapper)
           try {
             expect(component.is(tag)).toEqual(true)
           } catch (err) {
-            // TODO: this needs to be addressed
-            // expect(component.type()).not.toEqual(Component)
-            expect(
-              component
-                .find('[as]')
-                .last()
-                .prop('as'),
-            ).toEqual(tag)
+            expect(component.type()).not.toEqual(Component)
+            expect(component.prop('as')).toEqual(tag)
           }
         })
       })
@@ -163,13 +162,13 @@ export default (Component, options: any = {}) => {
       test('renders as a functional component or passes "as" to the next component', () => {
         const MyComponent = () => null
 
-        const component = mount(<Component {...requiredProps} as={MyComponent} />)
+        const wrapper = mount(<Component {...requiredProps} as={MyComponent} />)
+        const component = getComponent(wrapper)
 
         try {
           expect(component.type()).toEqual(MyComponent)
         } catch (err) {
-          // TODO: this needs to be addressed
-          // expect(component.type()).not.toEqual(Component)
+          expect(component.type()).not.toEqual(Component)
           expect(
             component
               .find('[as]')
@@ -186,18 +185,14 @@ export default (Component, options: any = {}) => {
           }
         }
 
-        const component = mount(<Component {...requiredProps} as={MyComponent} />)
+        const wrapper = mount(<Component {...requiredProps} as={MyComponent} />)
+        const component = getComponent(wrapper)
+
         try {
           expect(component.type()).toEqual(MyComponent)
         } catch (err) {
-          // TODO: this needs to be addressed
-          // expect(component.type()).not.toEqual(Component)
-          expect(
-            component
-              .find('[as]')
-              .last()
-              .prop('as'),
-          ).toEqual(MyComponent)
+          expect(component.type()).not.toEqual(Component)
+          expect(component.prop('as')).toEqual(MyComponent)
         }
       })
 

@@ -18,6 +18,7 @@ class Icon extends UIComponent<any, any> {
 
     /** Color of the icon. */
     color: PropTypes.oneOf([
+      'white',
       'red',
       'orange',
       'yellow',
