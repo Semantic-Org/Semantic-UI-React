@@ -23,6 +23,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Features
 - Add Divider `type` and `important` props @mnajdova ([#67](https://github.com/stardust-ui/react/pulls/67))
+- Add Menu `shape` property for describing the shape of the component, instead using the type property @mnajdova ([#68](https://github.com/stardust-ui/react/pull/68))
 
 ### Documentation
 - Add accessibility section to each component @mnajdova ([#46](https://github.com/stardust-ui/react/pulls/46))

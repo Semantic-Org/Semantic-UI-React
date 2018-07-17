@@ -10,24 +10,9 @@ const Types = () => (
       examplePath="components/Menu/Types/MenuExample"
     />
     <ComponentExample
-      title="Menu with content prop"
-      description="Menu item text can be defined with the content prop."
-      examplePath="components/Menu/Types/MenuExampleContent"
-    />
-    <ComponentExample
-      title="Secondary Menu"
-      description="A menu can adjust its appearance to de-emphasize its contents."
-      examplePath="components/Menu/Types/MenuExampleSecondary"
-    />
-    <ComponentExample
-      title="Pointing"
+      title="Default Primary"
       description="A menu can point to show its relationship to nearby content."
-      examplePath="components/Menu/Types/MenuExamplePointing"
-    />
-    <ComponentExample
-      title="Pointing"
-      description="A secondary menu can point to show its relationship to nearby content."
-      examplePath="components/Menu/Types/MenuExampleSecondaryPointing"
+      examplePath="components/Menu/Types/MenuExamplePrimary"
     />
   </ExampleSection>
 )
