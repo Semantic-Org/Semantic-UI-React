@@ -6,7 +6,6 @@ import StepContent from 'src/elements/Step/StepContent'
 import StepDescription from 'src/elements/Step/StepDescription'
 import StepTitle from 'src/elements/Step/StepTitle'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('Step', () => {
   common.isConformant(Step)
@@ -20,22 +19,19 @@ describe('Step', () => {
   common.propKeyOnlyToClassName(Step, 'disabled')
   common.propKeyOnlyToClassName(Step, 'link')
 
-  it('renders as a div by default', () => {
-    expect(shallow(<Step />)).have.tagName('div')
-  })
-
   describe('children', () => {
-    expect(shallow(<Step>{faker.hacker.phrase()}</Step>)).not.have.descendants('StepContent')
+    expect(shallow(<Step>{faker.hacker.phrase()}</Step>).find('StepContent')).toHaveLength(0)
   })
 
   describe('description', () => {
     it('passes prop to StepContent', () => {
       const description = faker.hacker.phrase()
 
-      expect(shallow(<Step description={description} />).find('StepContent')).have.prop(
-        'description',
-        description,
-      )
+      expect(
+        shallow(<Step description={description} />)
+          .find('StepContent')
+          .prop('description'),
+      ).toBe(description)
     })
   })
 
@@ -44,31 +40,34 @@ describe('Step', () => {
       const url = faker.internet.url()
       const wrapper = shallow(<Step href={url} />)
 
-      expect(wrapper).have.tagName('a')
-      expect(wrapper).have.attr('href', url)
+      expect(wrapper.type()).toBe('a')
+      expect(wrapper.prop('href')).toBe(url)
     })
   })
 
   describe('onClick', () => {
     it('is called with (e, data) when clicked', () => {
       const event = { target: null }
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
 
       shallow(<Step onClick={onClick} />).simulate('click', event)
 
-      expect(onClick).have.been.calledOnce()
-      expect(onClick).have.been.calledWithMatch(event, { onClick })
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining({ onClick }),
+      )
     })
 
     it('is not called when is disabled', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
 
       shallow(<Step disabled onClick={onClick} />).simulate('click')
-      expect(onClick).have.not.been.called()
+      expect(onClick).not.toHaveBeenCalled()
     })
 
     it('renders as `a` when defined', () => {
-      expect(shallow(<Step onClick={() => null} />)).have.tagName('a')
+      expect(shallow(<Step onClick={() => null} />).type()).toBe('a')
     })
   })
 
@@ -76,7 +75,11 @@ describe('Step', () => {
     it('passes prop to StepContent', () => {
       const title = faker.hacker.phrase()
 
-      expect(shallow(<Step title={title} />).find('StepContent')).have.prop('title', title)
+      expect(
+        shallow(<Step title={title} />)
+          .find('StepContent')
+          .prop('title'),
+      ).toBe(title)
     })
   })
 })

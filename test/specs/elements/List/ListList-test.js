@@ -9,11 +9,11 @@ describe('ListList', () => {
 
   describe('list', () => {
     it('omitted when rendered as `ol`', () => {
-      expect(shallow(<ListList as='ol' />)).not.have.className('list')
+      expect(shallow(<ListList as='ol' />).hasClass('list')).toBe(false)
     })
 
     it('omitted when rendered as `ul`', () => {
-      expect(shallow(<ListList as='ul' />)).not.have.className('list')
+      expect(shallow(<ListList as='ul' />).hasClass('list')).toBe(false)
     })
   })
 })

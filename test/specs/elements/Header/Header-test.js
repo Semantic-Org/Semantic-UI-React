@@ -37,19 +37,21 @@ describe('Header', () => {
 
   describe('icon', () => {
     it('adds an icon class when true', () => {
-      expect(shallow(<Header icon />)).have.className('icon')
+      expect(shallow(<Header icon />).hasClass('icon')).toBe(true)
     })
+
     it('does not add an icon class given a name', () => {
-      expect(shallow(<Header icon='user' />)).not.have.className('icon')
+      expect(shallow(<Header icon='user' />).hasClass('icon')).toBe(false)
     })
   })
 
   describe('image', () => {
     it('adds an image class when true', () => {
-      expect(shallow(<Header image />)).have.className('image')
+      expect(shallow(<Header image />).hasClass('image')).toBe(true)
     })
+
     it('does not add an Image when true', () => {
-      expect(shallow(<Header image />)).not.have.descendants('Image')
+      expect(shallow(<Header image />).find('Image')).toHaveLength(0)
     })
   })
 
@@ -58,21 +60,23 @@ describe('Header', () => {
       expect(
         shallow(<Header image='/images/wireframe/image.png' content='Bar' />)
           .find('HeaderContent')
-          .shallow(),
-      ).contain.text('Bar')
+          .shallow()
+          .text(),
+      ).toBe('Bar')
     })
     it('is wrapped in HeaderContent when there is an icon name', () => {
       expect(
         shallow(<Header icon='users' content='Friends' />)
           .find('HeaderContent')
-          .shallow(),
-      ).contain.text('Friends')
+          .shallow()
+          .text(),
+      ).toBe('Friends')
     })
     it('is not wrapped in HeaderContent when icon is true', () => {
       const wrapper = shallow(<Header icon content='Friends' />)
 
-      expect(wrapper).contain.text('Friends')
-      expect(wrapper).not.have.descendants('HeaderContent')
+      expect(wrapper.text()).toBe('Friends')
+      expect(wrapper.find('HeaderContent')).toHaveLength(0)
     })
   })
 
@@ -80,19 +84,20 @@ describe('Header', () => {
     it('adds HeaderSubheader as child when there is an icon', () => {
       const text = faker.hacker.phrase()
 
-      expect(shallow(<Header icon='user' subheader={text} />).find('HeaderSubheader')).have.prop(
-        'content',
-        text,
-      )
+      expect(
+        shallow(<Header icon='user' subheader={text} />)
+          .find('HeaderSubheader')
+          .prop('content'),
+      ).toBe(text)
     })
     it('adds HeaderSubheader as child when there is an image', () => {
       const text = faker.hacker.phrase()
 
       expect(
-        shallow(<Header image='/images/wireframe/image.png' subheader={text} />).find(
-          'HeaderSubheader',
-        ),
-      ).have.prop('content', text)
+        shallow(<Header image='/images/wireframe/image.png' subheader={text} />)
+          .find('HeaderSubheader')
+          .prop('content'),
+      ).toBe(text)
     })
   })
 })

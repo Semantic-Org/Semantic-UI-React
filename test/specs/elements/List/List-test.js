@@ -9,7 +9,6 @@ import ListItem from 'src/elements/List/ListItem'
 import ListList from 'src/elements/List/ListList'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('List', () => {
   common.isConformant(List)
@@ -51,8 +50,8 @@ describe('List', () => {
     })
 
     it('is called with (e, itemProps) when clicked', () => {
-      const onClick = sandbox.spy()
-      const onItemClick = sandbox.spy()
+      const onClick = jest.fn()
+      const onItemClick = jest.fn()
       const event = { target: null }
 
       const callbackData = { content: 'Notes', 'data-foo': 'bar' }
@@ -64,39 +63,37 @@ describe('List', () => {
         .shallow()
         .simulate('click', event)
 
-      expect(onClick).have.been.calledOnce()
-      expect(onClick).have.been.calledWithMatch(event, callbackData)
+      expect(onClick).toHaveBeenCalled()
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(callbackData),
+      )
 
-      expect(onItemClick).have.been.calledOnce()
-      expect(onItemClick).have.been.calledWithMatch(event, callbackData)
+      expect(onItemClick).toHaveBeenCalled()
+      expect(onItemClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(callbackData),
+      )
     })
   })
 
   describe('role', () => {
     it('is accessibile with no items', () => {
-      const wrapper = shallow(<List />)
-
-      expect(wrapper).have.prop('role', 'list')
+      expect(shallow(<List />).prop('role')).toBe('list')
     })
 
     it('is accessibile with items', () => {
-      const wrapper = shallow(<List items={items} />)
-
-      expect(wrapper).have.prop('role', 'list')
+      expect(shallow(<List items={items} />).prop('role')).toBe('list')
     })
   })
 
   describe('shorthand', () => {
     it('renders empty tr with no shorthand', () => {
-      const wrapper = shallow(<List />)
-
-      expect(wrapper.find('ListItem')).toHaveLength(0)
+      expect(shallow(<List />).find('ListItem')).toHaveLength(0)
     })
 
     it('renders the items', () => {
-      const wrapper = shallow(<List items={items} />)
-
-      expect(wrapper.find('ListItem')).toHaveLength(items.length)
+      expect(shallow(<List items={items} />).find('ListItem')).toHaveLength(items.length)
     })
   })
 })

@@ -21,19 +21,15 @@ describe('Loader', () => {
 
   describe('text (class)', () => {
     it('omitted by default', () => {
-      expect(shallow(<Loader />)).not.have.className('text')
+      expect(shallow(<Loader />).hasClass('text')).toBe(false)
     })
 
     it('add class when has children', () => {
-      const text = faker.hacker.phrase()
-
-      expect(shallow(<Loader>{text}</Loader>)).have.className('text')
+      expect(shallow(<Loader>{faker.hacker.phrase()}</Loader>).hasClass('text')).toBe(true)
     })
 
     it('add class when has content prop', () => {
-      const text = faker.hacker.phrase()
-
-      expect(shallow(<Loader content={text} />)).have.className('text')
+      expect(shallow(<Loader content={faker.hacker.phrase()} />).hasClass('text')).toBe(true)
     })
   })
 })

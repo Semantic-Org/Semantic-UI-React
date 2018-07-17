@@ -6,7 +6,9 @@ describe('IconGroup', () => {
   common.isConformant(IconGroup)
   common.rendersChildren(IconGroup)
 
-  it('renders as an <i> by default', () => {
-    expect(shallow(<IconGroup />)).have.tagName('i')
+  describe('as', () => {
+    it('renders as an "i" by default', () => {
+      expect(shallow(<IconGroup />).type()).toBe('i')
+    })
   })
 })

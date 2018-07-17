@@ -5,7 +5,6 @@ import React from 'react'
 import ListItem from 'src/elements/List/ListItem'
 import ListContent from 'src/elements/List/ListContent'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('ListItem', () => {
   common.isConformant(ListItem)
@@ -16,27 +15,30 @@ describe('ListItem', () => {
 
   describe('as', () => {
     it('omits className `list` when rendered as `li`', () => {
-      expect(shallow(<ListItem as='li' />)).not.have.className('item')
+      expect(shallow(<ListItem as='li' />).hasClass('item')).toBe(false)
     })
   })
 
   describe('onClick', () => {
     it('is called with (e, data) when clicked', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
       const event = { target: null }
       const props = { onClick, 'data-foo': 'bar' }
 
       shallow(<ListItem {...props} />).simulate('click', event)
 
-      expect(onClick).have.been.calledOnce()
-      expect(onClick).have.been.calledWithExactly(event, props)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(props),
+      )
     })
 
     it('is not called when is disabled', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
 
       shallow(<ListItem disabled onClick={onClick} />).simulate('click')
-      expect(onClick).have.callCount(0)
+      expect(onClick).not.toHaveBeenCalled()
     })
   })
 
@@ -44,13 +46,13 @@ describe('ListItem', () => {
     it('adds data attribute by default', () => {
       const value = faker.hacker.phrase()
 
-      expect(shallow(<ListItem value={value} />)).have.data('value', value)
+      expect(shallow(<ListItem value={value} />).prop('data-value')).toBe(value)
     })
 
     it('adds attribute when rendered as `li`', () => {
       const value = faker.hacker.phrase()
 
-      expect(shallow(<ListItem as='li' value={value} />)).have.attr('value', value)
+      expect(shallow(<ListItem as='li' value={value} />).prop('value')).toBe(value)
     })
   })
 
@@ -68,10 +70,10 @@ describe('ListItem', () => {
     })
 
     it('renders without wrapping ListContent when content passed as element', () => {
-      const spy = sandbox.spy(ListContent, 'create')
+      const create = jest.spyOn(ListContent, 'create')
       shallow(<ListItem {...baseProps} content={<div />} />)
 
-      expect(spy).not.have.been.called()
+      expect(create).not.toHaveBeenCalled()
     })
 
     it('renders wrapping ListContent when content passed as props', () => {
@@ -101,7 +103,7 @@ describe('ListItem', () => {
 
   describe('role', () => {
     it('adds role=listitem', () => {
-      expect(shallow(<ListItem />)).have.prop('role', 'listitem')
+      expect(shallow(<ListItem />).prop('role')).toBe('listitem')
     })
     it('adds role=listitem with children', () => {
       expect(
@@ -109,14 +111,16 @@ describe('ListItem', () => {
           <ListItem>
             <div>Test</div>
           </ListItem>,
-        ),
-      ).have.prop('role', 'listitem')
+        ).prop('role'),
+      ).toBe('listitem')
     })
+
     it('adds role=listitem with content', () => {
-      expect(shallow(<ListItem content={<div />} />)).have.prop('role', 'listitem')
+      expect(shallow(<ListItem content={<div />} />).prop('role')).toBe('listitem')
     })
+
     it('adds role=listitem with icon', () => {
-      expect(shallow(<ListItem icon='user' />)).have.prop('role', 'listitem')
+      expect(shallow(<ListItem icon='user' />).prop('role')).toBe('listitem')
     })
   })
 })

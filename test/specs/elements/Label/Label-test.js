@@ -6,7 +6,6 @@ import LabelDetail from 'src/elements/Label/LabelDetail'
 import LabelGroup from 'src/elements/Label/LabelGroup'
 import * as common from 'test/specs/commonTests'
 import { SUI } from 'src/lib'
-import { sandbox } from 'test/utils'
 
 describe('Label', () => {
   common.isConformant(Label)
@@ -47,101 +46,111 @@ describe('Label', () => {
   common.propValueOnlyToClassName(Label, 'size', SUI.SIZES)
 
   it('is a div by default', () => {
-    expect(shallow(<Label />)).have.tagName('div')
+    expect(shallow(<Label />).type()).toBe('div')
   })
 
   describe('removeIcon', () => {
     it('has no icon without onRemove', () => {
-      expect(shallow(<Label />)).not.have.descendants('Icon')
+      expect(shallow(<Label />).find('Icon')).toHaveLength(0)
     })
 
     it('has delete icon by default', () => {
-      expect(shallow(<Label onRemove={_.noop} />).find('Icon')).have.prop('name', 'delete')
+      expect(
+        shallow(<Label onRemove={_.noop} />)
+          .find('Icon')
+          .prop('name'),
+      ).toBe('delete')
     })
 
     it('uses passed removeIcon string', () => {
-      expect(shallow(<Label onRemove={_.noop} removeIcon='foo' />).find('Icon')).have.prop(
-        'name',
-        'foo',
-      )
+      expect(
+        shallow(<Label onRemove={_.noop} removeIcon='foo' />)
+          .find('Icon')
+          .prop('name'),
+      ).toBe('foo')
     })
 
     it('uses passed removeIcon props', () => {
       expect(
-        shallow(<Label onRemove={_.noop} removeIcon={{ 'data-foo': true }} />).find('Icon'),
-      ).have.prop('data-foo', true)
+        shallow(<Label onRemove={_.noop} removeIcon={{ 'data-foo': true }} />)
+          .find('Icon')
+          .prop('data-foo'),
+      ).toBe(true)
     })
 
     it('handles events on Label and Icon', () => {
       const event = { target: null }
-      const iconSpy = sandbox.spy()
-      const labelSpy = sandbox.spy()
+      const onClick = jest.fn()
+      const onRemove = jest.fn()
 
-      const iconProps = { 'data-foo': true, onClick: iconSpy }
-      const labelProps = { onRemove: labelSpy, removeIcon: iconProps }
+      const iconProps = { 'data-foo': true, onClick }
+      const labelProps = { onRemove, removeIcon: iconProps }
 
       mount(<Label {...labelProps} />)
         .find('Icon')
         .simulate('click', event)
 
-      expect(iconSpy).have.been.calledOnce()
-      expect(labelSpy).have.been.calledOnce()
-      expect(labelSpy).have.been.calledWithMatch(event, labelProps)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onRemove).toHaveBeenCalledTimes(1)
+      expect(onRemove).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(labelProps),
+      )
     })
   })
 
   describe('image', () => {
     it('adds an image class when true', () => {
-      expect(shallow(<Label image />)).have.className('image')
+      expect(shallow(<Label image />).hasClass('image')).toBe(true)
     })
+
     it('does not add an Image when true', () => {
-      expect(shallow(<Label image />)).not.have.descendants('Image')
+      expect(shallow(<Label image />).find('Image')).toHaveLength(0)
     })
   })
 
   describe('onClick', () => {
-    it('omitted when not defined', () => {
-      const click = () => shallow(<Label />).simulate('click')
-      expect(click).not.toThrowError()
-    })
-
     it('is called with (e) when clicked', () => {
-      const spy = sandbox.spy()
+      const onClick = jest.fn()
       const event = { target: null }
+      const props = { pointing: true, onClick }
 
-      shallow(<Label onClick={spy} />).simulate('click', event)
+      shallow(<Label {...props} />).simulate('click', event)
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(event)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(props),
+      )
     })
   })
 
   describe('pointing', () => {
     it('adds an poiting class when true', () => {
-      expect(shallow(<Label pointing />)).have.className('pointing')
+      expect(shallow(<Label pointing />).hasClass('pointing')).toBe(true)
     })
 
     it('does not add any poiting option class when true', () => {
       const options = ['above', 'below', 'left', 'right']
       const wrapper = shallow(<Label pointing />)
 
-      options.map(className => expect(wrapper).not.have.className(className))
+      options.map(className => expect(wrapper.hasClass(className)).toBe(false))
     })
 
     it('adds `above` as suffix', () => {
-      expect(shallow(<Label pointing='above' />)).have.className('pointing above')
+      expect(shallow(<Label pointing='above' />).hasClass('pointing above')).toBe(true)
     })
 
     it('adds `below` as suffix', () => {
-      expect(shallow(<Label pointing='below' />)).have.className('pointing below')
+      expect(shallow(<Label pointing='below' />).hasClass('pointing below')).toBe(true)
     })
 
     it('adds `left` as prefix', () => {
-      expect(shallow(<Label pointing='left' />)).have.className('left pointing')
+      expect(shallow(<Label pointing='left' />).hasClass('left pointing')).toBe(true)
     })
 
     it('adds `right` as prefix', () => {
-      expect(shallow(<Label pointing='right' />)).have.className('right pointing')
+      expect(shallow(<Label pointing='right' />).hasClass('right pointing')).toBe(true)
     })
   })
 })

@@ -55,29 +55,29 @@ describe('Image', () => {
       it(`keeps "${propName}" on root element by default`, () => {
         const wrapper = shallow(<Image {...{ [propName]: 'foo' }} />)
 
-        expect(wrapper).have.tagName('img')
-        expect(wrapper).have.prop(propName, 'foo')
+        expect(wrapper.type()).toBe('img')
+        expect(wrapper.prop(propName)).toBe('foo')
       })
 
       it(`passes "${propName}" to the img tag when wrapped`, () => {
-        expect(shallow(<Image wrapped {...{ [propName]: 'foo' }} />).find('img')).have.prop(
-          propName,
-          'foo',
-        )
+        expect(
+          shallow(<Image wrapped {...{ [propName]: 'foo' }} />)
+            .find('img')
+            .prop(propName),
+        ).toBe('foo')
       })
     })
   })
 
   describe('ui', () => {
     it('is true by default', () => {
-      expect(Image.defaultProps).have.key('ui')
-      expect(Image.defaultProps.ui).toBe(true)
+      expect(Image.defaultProps).toHaveProperty('ui', true)
     })
     it('adds the "ui" className when true', () => {
-      expect(shallow(<Image ui />)).have.className('ui')
+      expect(shallow(<Image ui />).hasClass('ui')).toBe(true)
     })
     it('removes the "ui" className when false', () => {
-      expect(shallow(<Image ui={false} />)).not.have.className('ui')
+      expect(shallow(<Image ui={false} />).hasClass('ui')).toBe(false)
     })
   })
 
