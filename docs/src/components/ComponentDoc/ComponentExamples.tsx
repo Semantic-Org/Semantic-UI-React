@@ -76,7 +76,7 @@ export default class ComponentExamples extends Component<IComponentExamples, any
   }
 
   private renderElementWrappedInGrid = (Element: JSX.Element) => (
-    <Grid padded>
+    <Grid>
       <Grid.Column>{Element}</Grid.Column>
     </Grid>
   )

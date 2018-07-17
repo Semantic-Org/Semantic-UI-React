@@ -4,24 +4,18 @@ import { Menu, Transition } from 'semantic-ui-react'
 
 import { updateForKeys } from 'docs/src/hoc'
 import ComponentControlsCopyLink from './ComponentControlsCopyLink'
-import ComponentControlsEditCode from './ComponentControlsEditCode'
 import ComponentControlsShowVariables from './ComponentControlsShowVariables'
 import ComponentControlsMaximize from './ComponentControlsMaximize'
-import ComponentControlsShowHtml from './ComponentControlsShowHtml'
 import ComponentControlsRtl from './ComponentControlsRtl'
 
 const ComponentControls: any = props => {
   const {
     anchorName,
     examplePath,
-    showHTML,
     showRtl,
-    showCode,
     showVariables,
     onCopyLink,
-    onShowHTML,
     onShowRtl,
-    onShowCode,
     onShowVariables,
     visible,
   } = props
@@ -33,10 +27,8 @@ const ComponentControls: any = props => {
         while Menu should have `display: inline-flex`
       */}
       <div>
-        <Menu color="green" compact icon size="small" text>
-          <ComponentControlsEditCode active={showCode} onClick={onShowCode} />
+        <Menu color="green" icon="labeled" size="tiny" floated="right" text>
           <ComponentControlsShowVariables active={showVariables} onClick={onShowVariables} />
-          <ComponentControlsShowHtml active={showHTML} onClick={onShowHTML} />
           <ComponentControlsRtl active={showRtl} onClick={onShowRtl} />
           <ComponentControlsMaximize examplePath={examplePath} />
           <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
@@ -50,17 +42,11 @@ ComponentControls.propTypes = {
   examplePath: PropTypes.string,
   anchorName: PropTypes.string,
   onCopyLink: PropTypes.func,
-  onShowCode: PropTypes.func,
-  onShowHTML: PropTypes.func,
   onShowRtl: PropTypes.func,
   onShowVariables: PropTypes.func,
-  showCode: PropTypes.bool,
-  showHTML: PropTypes.bool,
   showRtl: PropTypes.bool,
   showVariables: PropTypes.bool,
   visible: PropTypes.bool,
 }
 
-export default updateForKeys(['showCode', 'showHTML', 'showRtl', 'showVariables', 'visible'])(
-  ComponentControls,
-)
+export default updateForKeys(['showRtl', 'showVariables', 'visible'])(ComponentControls)

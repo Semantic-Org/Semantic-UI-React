@@ -29,6 +29,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Documentation
 - Add accessibility section to each component @mnajdova ([#46](https://github.com/stardust-ui/react/pulls/46))
 - Fix down doc site, bad links, and bad image src paths @levithomason ([#77](https://github.com/stardust-ui/react/pulls/77))
+- Add JSX and HTML code preview and card view for component examples in the doc site @Bugaa92 ([#62](https://github.com/stardust-ui/react/pull/62))
 
 <!--------------------------------[ v0.2.0 ]------------------------------- -->
 ## [v0.2.0](https://github.com/stardust-ui/react/tree/v0.2.0) (2014-07-10)

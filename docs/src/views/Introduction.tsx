@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import Editor from 'docs/src/components/Editor/Editor'
+import Editor from 'docs/src/components/Editor'
 import pkg from 'package.json'
 import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'semantic-ui-react'
 import Logo from '../components/Logo/Logo'

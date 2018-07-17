@@ -6,8 +6,6 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 import { Divider, Form, Grid, Menu, Segment, Visibility, SemanticCOLORS } from 'semantic-ui-react'
-import { pxToRem } from 'src/lib'
-import evalTypeScript from 'docs/src/utils/evalTypeScript'
 import { Provider } from 'stardust'
 
 import {
@@ -19,7 +17,9 @@ import {
   variablesContext,
   truncateStyle,
 } from 'docs/src/utils'
-import Editor from 'docs/src/components/Editor/Editor'
+import evalTypeScript from 'docs/src/utils/evalTypeScript'
+import { pxToRem, doesNodeContainClick } from 'src/lib'
+import Editor, { IEditorProps } from 'docs/src/components/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
 import ContributionPrompt from '../ContributionPrompt'
@@ -61,13 +61,34 @@ const errorStyle: CSSProperties = {
   background: '#fff2f2',
 }
 
-const controlsWrapperStyle: CSSProperties = {
-  minHeight: pxToRem(30),
-}
-
 const codeTypeApiButtonLabels: { [key in SourceCodeType]: string } = {
   normal: 'Children API',
   shorthand: 'Shorthand API',
+}
+
+const staticEditorProps = {
+  jsx: {
+    setOptions: {
+      fixedWidthGutter: true,
+    },
+    preview: {
+      size: 4,
+      label: 'Edit',
+      icon: 'code',
+    },
+  } as IEditorProps,
+  html: {
+    mode: 'html',
+    showGutter: false,
+    showCursor: false,
+    readOnly: true,
+    highlightActiveLine: false,
+    preview: {
+      size: 4,
+      label: 'Show more',
+      icon: 'html5',
+    },
+  } as IEditorProps,
 }
 
 /**
@@ -75,6 +96,7 @@ const codeTypeApiButtonLabels: { [key in SourceCodeType]: string } = {
  * Allows toggling the the raw `code` code block.
  */
 class ComponentExample extends PureComponent<IComponentExampleProps, IComponentExampleState> {
+  private componentRef: React.Component
   private sourceCodeMgr: ISourceCodeManager
   private anchorName: string
   private kebabExamplePath: string
@@ -110,6 +132,7 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
       handleMouseLeave: this.handleMouseLeave,
       handleMouseMove: this.handleMouseMove,
       showCode: this.isActiveHash(),
+      showHTML: false,
       sourceCode: this.sourceCodeMgr.currentCode,
       markup: renderToStaticMarkup(exampleElement),
     })
@@ -142,6 +165,10 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
   }
 
   private isActiveHash = () => this.anchorName === getFormattedHash(this.props.location.hash)
+
+  private clickedOutsideComponent = (e: Event): boolean => {
+    return !doesNodeContainClick((this.componentRef as any).ref, e)
+  }
 
   private updateHash = () => {
     if (this.isActiveState()) this.setHashAndScroll()
@@ -184,20 +211,28 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
     })
   }
 
-  private handleShowCodeClick = e => {
-    e.preventDefault()
-
-    const { showCode } = this.state
-
-    this.setState({ showCode: !showCode }, this.updateHash)
+  handleShowCode = (shouldShowCode: boolean) => {
+    if (shouldShowCode !== this.state.showCode) {
+      this.setState({ showCode: shouldShowCode }, this.updateHash)
+    }
   }
 
-  private handleShowHTMLClick = e => {
-    e.preventDefault()
+  handleShowCodeInactive = (e: Event) => {
+    if (this.clickedOutsideComponent(e)) {
+      this.handleShowCode(false)
+    }
+  }
 
-    const { showHTML } = this.state
+  handleShowHTML = (shouldShowHTML: boolean) => {
+    if (shouldShowHTML !== this.state.showHTML) {
+      this.setState({ showHTML: shouldShowHTML }, this.updateHash)
+    }
+  }
 
-    this.setState({ showHTML: !showHTML }, this.updateHash)
+  handleShowHTMLInactive = (e: Event) => {
+    if (this.clickedOutsideComponent(e)) {
+      this.handleShowHTML(false)
+    }
   }
 
   private handleShowRtlClick = e => {
@@ -392,11 +427,15 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
   }
 
   private renderCodeEditorMenu = (color: SemanticCOLORS): JSX.Element => {
-    const { copiedCode, error } = this.state
+    const { showCode, copiedCode, error } = this.state
     const codeHasChanged = this.sourceCodeMgr.originalCodeHasChanged
+    const codeEditorStyle: CSSProperties = {
+      margin: '0',
+      visibility: showCode ? 'visible' : 'hidden',
+    }
 
     return (
-      <Menu size="small" text widths="8" style={{ margin: '0' }}>
+      <Menu size="small" text widths="8" style={codeEditorStyle}>
         <Menu.Item
           active={copiedCode || !!error} // to show the color
           color={copiedCode ? 'green' : color}
@@ -425,7 +464,6 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
 
   private renderJSX = () => {
     const { error, showCode, sourceCode } = this.state
-    if (!showCode) return
 
     const color = error ? 'red' : 'black'
     const jsxStyle: CSSProperties = {
@@ -435,22 +473,32 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
       }),
     }
 
+    const editorProps: IEditorProps = {
+      ...staticEditorProps.jsx,
+      id: `${this.getKebabExamplePath()}-jsx`,
+      value: sourceCode,
+      onChange: this.handleChangeCode,
+      onClick: this.handleShowCode.bind(this, true),
+      onOutsideClick: this.handleShowCodeInactive,
+      ...(!showCode && {
+        active: false,
+        showCursor: false,
+        highlightActiveLine: false,
+      }),
+    }
+
     this.setGitHubHrefs()
 
     return (
       <div style={jsxStyle}>
-        {/* Copy|Reset|Edit menu */}
+        {/* Example Type Menu */}
         {this.renderApiCodeMenu(color)}
 
         {/* Code Editor */}
         {sourceCode != null && (
           <div>
             {this.renderCodeEditorMenu(color)}
-            <Editor
-              id={`${this.getKebabExamplePath()}-jsx`}
-              value={sourceCode}
-              onChange={this.handleChangeCode}
-            />
+            <Editor {...editorProps} />
           </div>
         )}
 
@@ -462,7 +510,6 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
 
   private renderHTML = () => {
     const { showHTML, markup } = this.state
-    if (!showHTML) return
 
     // add new lines between almost all adjacent elements
     // moves inline elements to their own line
@@ -476,15 +523,19 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
       end_with_newline: false,
     })
 
+    const editorProps: IEditorProps = {
+      ...staticEditorProps.html,
+      id: `${this.getKebabExamplePath()}-html`,
+      onClick: this.handleShowHTML.bind(this, true),
+      onOutsideClick: this.handleShowHTMLInactive,
+      value: beautifiedHTML,
+      active: showHTML,
+    }
+
     return (
       <div>
         <Divider horizontal>Rendered HTML</Divider>
-        <Editor
-          id={`${this.getKebabExamplePath()}-html`}
-          mode="html"
-          value={beautifiedHTML}
-          readOnly
-        />
+        <Editor {...editorProps} />
       </div>
     )
   }
@@ -566,16 +617,17 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
 
     const isActive = this.isActiveHash() || this.isActiveState()
 
-    const exampleStyle = {
+    const exampleStyle: CSSProperties = {
       position: 'relative',
       transition: 'box-shadow 200ms, background 200ms',
       background: '#fff',
+      boxShadow: '0 0 15px #ccc',
       ...(isActive
         ? {
-            boxShadow: '0 0 30px #ccc',
+            boxShadow: '0 0 40px #aaa',
           }
         : isHovering && {
-            boxShadow: '0 0 20px #ccc',
+            boxShadow: '0 0 30px #aaa',
             zIndex: 1,
           }),
     }
@@ -583,7 +635,12 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
     const knobs = this.renderKnobs()
 
     return (
-      <Visibility once={false} onTopPassed={this.handlePass} onTopPassedReverse={this.handlePass}>
+      <Visibility
+        once={false}
+        onTopPassed={this.handlePass}
+        onTopPassedReverse={this.handlePass}
+        ref={c => (this.componentRef = c)}
+      >
         <Grid
           className="docs-example"
           padded="vertically"
@@ -592,28 +649,29 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
           onMouseMove={handleMouseMove}
           style={exampleStyle}
         >
-          <Grid.Row>
-            <Grid.Column width={12}>
-              <ComponentExampleTitle
-                description={description}
-                title={title}
-                suiVersion={suiVersion}
-              />
-            </Grid.Column>
-            <Grid.Column textAlign="right" width={4} style={controlsWrapperStyle}>
+          <Grid.Row style={{ paddingBottom: 0 } as CSSProperties}>
+            <Grid.Column>
               <ComponentControls
                 anchorName={this.anchorName}
                 examplePath={examplePath}
                 onCopyLink={this.handleDirectLinkClick}
-                onShowCode={this.handleShowCodeClick}
-                onShowHTML={this.handleShowHTMLClick}
                 onShowRtl={this.handleShowRtlClick}
                 onShowVariables={this.handleShowVariablesClick}
                 showCode={showCode}
                 showHTML={showHTML}
                 showRtl={showRtl}
                 showVariables={showVariables}
-                visible={isActive || isHovering}
+                visible
+              />
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row style={{ paddingTop: 0 }}>
+            <Grid.Column>
+              <ComponentExampleTitle
+                description={description}
+                title={title}
+                suiVersion={suiVersion}
               />
             </Grid.Column>
           </Grid.Row>
