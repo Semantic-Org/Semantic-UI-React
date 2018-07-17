@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import { NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import { Menu, Icon, Input } from 'semantic-ui-react'
+import { Menu, Icon, Input as SemanticUIInput } from 'semantic-ui-react'
 
 import Logo from 'docs/src/components/Logo/Logo'
 import { getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
@@ -190,7 +190,7 @@ class Sidebar extends Component<any, any> {
           <Icon name="file alternate outline" /> CHANGELOG
         </Menu.Item>
         <Menu.Item active>
-          <Input
+          <SemanticUIInput
             className="transparent inverted icon"
             icon="search"
             placeholder="Search components..."

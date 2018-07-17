@@ -26,6 +26,7 @@ const fontAwesomeIcons = new Map([
   ['check', 'f00c'],
   ['minus', 'f068'],
   ['clock', 'f017'],
+  ['search', 'f002'],
 ])
 
 export default name => {
