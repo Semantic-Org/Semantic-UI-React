@@ -69,7 +69,7 @@ class DesktopContainer extends Component {
     const { fixed } = this.state
 
     return (
-      <Responsive {...Responsive.onlyComputer}>
+      <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -135,7 +135,7 @@ class MobileContainer extends Component {
     const { sidebarOpened } = this.state
 
     return (
-      <Responsive {...Responsive.onlyMobile}>
+      <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <Sidebar.Pushable>
           <Sidebar as={Menu} animation='uncover' inverted vertical visible={sidebarOpened}>
             <Menu.Item as='a' active>
