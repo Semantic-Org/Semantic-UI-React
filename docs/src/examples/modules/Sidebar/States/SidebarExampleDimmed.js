@@ -4,7 +4,7 @@ import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui
 export default class SidebarExampleDimmed extends Component {
   state = { visible: false }
 
-  handleButtonClick = () => this.setState({ visible: !this.state.visible })
+  handleSidebarShow = () => this.setState({ visible: true })
 
   handleSidebarHide = () => this.setState({ visible: false })
 
@@ -13,7 +13,7 @@ export default class SidebarExampleDimmed extends Component {
 
     return (
       <div>
-        <Button onClick={this.handleButtonClick}>Toggle visibility</Button>
+        <Button onClick={this.handleSidebarShow}>Show sidebar</Button>
 
         <Sidebar.Pushable as={Segment}>
           <Sidebar

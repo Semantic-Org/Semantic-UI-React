@@ -9,7 +9,7 @@ export default class VisibilityExampleCallbackFrequency extends Component {
 
   clearLog = () => this.setState({ log: [], logCount: 0 })
 
-  handleButtonClick = () => this.setState({ visible: !this.state.visible })
+  handleSidebarShow = () => this.setState({ visible: true })
 
   handleSidebarHide = () => this.setState({ visible: false })
 
@@ -26,7 +26,7 @@ export default class VisibilityExampleCallbackFrequency extends Component {
       <Grid columns={2}>
         <Grid.Row>
           <Grid.Column>
-            <Button onClick={this.handleButtonClick}>Toggle visibility</Button>
+            <Button onClick={this.handleSidebarShow}>Show sidebar</Button>
           </Grid.Column>
         </Grid.Row>
 
