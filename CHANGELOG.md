@@ -35,7 +35,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Add shorthand examples for the Label component @mnajdova ([#99](https://github.com/stardust-ui/react/pull/99))
 
 <!--------------------------------[ v0.2.0 ]------------------------------- -->
-## [v0.2.0](https://github.com/stardust-ui/react/tree/v0.2.0) (2014-07-10)
+## [v0.2.0](https://github.com/stardust-ui/react/tree/v0.2.0) (2018-07-10)
 [Compare changes](https://github.com/stardust-ui/react/compare/v0.1.0...v0.2.0)
 
 ### Fixes
@@ -55,6 +55,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Implement a base UIComponent @levithomason ([#21](https://github.com/stardust-ui/react/pulls/21))
 
 <!--------------------------------[ v0.1.0 ]------------------------------- -->
-## [v0.1.0](https://github.com/stardust-ui/react/tree/v0.2.0) (2014-07-05)
+## [v0.1.0](https://github.com/stardust-ui/react/tree/v0.2.0) (2018-07-05)
 
 Initial prototype release
