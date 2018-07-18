@@ -20,8 +20,10 @@ describe('TableRow', () => {
   common.propKeyOnlyToClassName(TableRow, 'positive')
   common.propKeyOnlyToClassName(TableRow, 'warning')
 
-  it('renders as a tr by default', () => {
-    expect(shallow(<TableRow />)).have.tagName('tr')
+  describe('as', () => {
+    it('is "tr" by default', () => {
+      expect(shallow(<TableRow />).type()).toBe('tr')
+    })
   })
 
   describe('shorthand', () => {
@@ -41,7 +43,7 @@ describe('TableRow', () => {
       expect(cellWrappers).toHaveLength(cells.length)
 
       cellWrappers.forEach((wrapper) => {
-        expect(wrapper.shallow()).have.tagName('th')
+        expect(wrapper.shallow().type()).toBe('th')
       })
     })
   })

@@ -42,15 +42,11 @@ describe('Menu', () => {
   common.propValueOnlyToClassName(Menu, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Menu, 'size', _.without(SUI.SIZES, 'medium', 'big'))
 
-  it('renders a `div` by default', () => {
-    expect(shallow(<Menu />)).have.tagName('div')
-  })
-
   describe('activeIndex', () => {
     const items = [{ key: 'home', name: 'home' }, { key: 'users', name: 'users' }]
 
     it('is null by default', () => {
-      expect(shallow(<Menu items={items} />)).not.have.descendants('.active')
+      expect(shallow(<Menu items={items} />).find('.active')).toHaveLength(0)
     })
 
     it('is set when clicking an item', () => {
@@ -62,34 +58,35 @@ describe('Menu', () => {
         .simulate('click')
 
       // must re-query for the menu items or we get a cached copy
-      expect(wrapper.find('MenuItem').at(1)).have.prop('active', true)
+      expect(
+        wrapper
+          .find('MenuItem')
+          .at(1)
+          .prop('active'),
+      ).toBe(true)
     })
 
     it('works as a string', () => {
       expect(
         mount(<Menu items={items} activeIndex={1} />)
           .find('MenuItem')
-          .at(1),
-      ).have.prop('active', true)
+          .at(1)
+          .prop('active'),
+      ).toBe(true)
     })
   })
 
   describe('items', () => {
-    const spy = jest.fn()
+    const onClick = jest.fn()
     const items = [
-      { key: 'home', name: 'home', onClick: spy, 'data-foo': 'something' },
+      { key: 'home', name: 'home', onClick, 'data-foo': 'something' },
       { key: 'users', name: 'users', active: true, 'data-foo': 'something' },
     ]
     const children = mount(<Menu items={items} />).find('MenuItem')
 
     it('renders children', () => {
-      expect(children.first()).have.prop('name', 'home')
-      expect(children.last()).have.prop('name', 'users')
-    })
-
-    it('onClick can omitted', () => {
-      const click = () => children.last().simulate('click')
-      expect(click).not.toThrowError()
+      expect(children.first().prop('name')).toBe('home')
+      expect(children.last().prop('name')).toBe('users')
     })
 
     it('passes onClick handler', () => {
@@ -98,12 +95,15 @@ describe('Menu', () => {
 
       children.first().simulate('click', event)
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(event, props)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(props),
+      )
     })
 
     it('passes arbitrary props', () => {
-      children.everyWhere(item => expect(item).have.prop('data-foo', 'something'))
+      children.everyWhere(item => expect(item.prop('data-foo')).toBe('something'))
     })
   })
 
@@ -120,24 +120,27 @@ describe('Menu', () => {
 
     it('is called with (e, { name, index }) when clicked', () => {
       const event = { target: null }
-      const itemSpy = jest.fn()
-      const menuSpy = jest.fn()
+      const onClick = jest.fn()
+      const onItemClick = jest.fn()
 
-      const items = [
-        { key: 'home', name: 'home' },
-        { key: 'users', name: 'users', onClick: itemSpy },
-      ]
+      const items = [{ key: 'home', name: 'home' }, { key: 'users', name: 'users', onClick }]
       const matchProps = { index: 1, name: 'users' }
 
-      mount(<Menu items={items} onItemClick={menuSpy} />)
+      mount(<Menu items={items} onItemClick={onItemClick} />)
         .find('MenuItem')
         .last()
         .simulate('click', event)
 
-      expect(itemSpy).have.been.calledOnce()
-      expect(itemSpy).have.been.calledWithMatch(event, matchProps)
-      expect(menuSpy).have.been.calledOnce()
-      expect(menuSpy).have.been.calledWithMatch(event, matchProps)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(matchProps),
+      )
+      expect(onItemClick).toHaveBeenCalledTimes(1)
+      expect(onItemClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(matchProps),
+      )
     })
   })
 })

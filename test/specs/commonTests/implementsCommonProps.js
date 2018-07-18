@@ -340,12 +340,10 @@ export const labelImplementsHtmlForProp = (Component, options = {}) => {
     it('adds htmlFor to label', () => {
       const id = 'id-for-test'
       const label = 'label-for-test'
-
       const wrapper = mount(<Component {...requiredProps} id={id} label={label} />)
-      const labelNode = wrapper.find('label')
 
-      expect(wrapper).to.have.descendants(`#${id}`)
-      expect(labelNode).have.prop('htmlFor', id)
+      expect(wrapper.find(`#${id}`).length).toBeGreaterThan(1)
+      expect(wrapper.find('label').prop('htmlFor')).toBe(id)
     })
   })
 }

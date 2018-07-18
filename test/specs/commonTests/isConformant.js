@@ -249,6 +249,9 @@ export default (Component, options = {}) => {
   if (rendersChildren) {
     describe('className (common)', () => {
       it(`has the Semantic UI className "${info.componentClassName}"`, () => {
+        // some components producing validateDOMNesting() warning
+        consoleUtil.disableOnce()
+
         const wrapper = mount(<Component {...requiredProps} />)
         // don't test components with no className at all (i.e. MessageItem)
         if (wrapper.prop('className')) {

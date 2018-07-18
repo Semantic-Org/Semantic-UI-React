@@ -22,25 +22,21 @@ describe('MenuItem', () => {
   common.propValueOnlyToClassName(MenuItem, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(MenuItem, 'position', ['left', 'right'])
 
-  it('renders a `div` by default', () => {
-    expect(shallow(<MenuItem />)).have.tagName('div')
-  })
-
   describe('name', () => {
     it('uses the name prop as Start Cased child text', () => {
-      expect(shallow(<MenuItem name='upcomingEvents' />)).contain.text('Upcoming Events')
+      expect(shallow(<MenuItem name='upcomingEvents' />).text()).toBe('Upcoming Events')
     })
   })
 
   describe('icon', () => {
     it('does not add `icon` className if there is also `name`', () => {
-      expect(shallow(<MenuItem icon='user' name='users' />)).not.have.className('icon')
+      expect(shallow(<MenuItem icon='user' name='users' />).hasClass('icon')).toBe(false)
     })
     it('does not add `icon` className if there is also `content`', () => {
-      expect(shallow(<MenuItem icon='user' content='Users' />)).not.have.className('icon')
+      expect(shallow(<MenuItem icon='user' content='Users' />).hasClass('icon')).toBe(false)
     })
     it('adds `icon` className if there is an `icon` without `name` or `content`', () => {
-      expect(shallow(<MenuItem icon='user' />)).have.className('icon')
+      expect(shallow(<MenuItem icon='user' />).hasClass('icon')).toBe(true)
     })
   })
 
@@ -52,19 +48,22 @@ describe('MenuItem', () => {
 
       shallow(<MenuItem onClick={onClick} {...props} />).simulate('click', event)
 
-      expect(onClick).have.been.calledOnce()
-      expect(onClick).have.been.calledWithMatch(event, props)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(props),
+      )
     })
 
     it('is not called when is disabled', () => {
       const onClick = jest.fn()
 
       shallow(<MenuItem disabled onClick={onClick} />).simulate('click')
-      expect(onClick).have.callCount(0)
+      expect(onClick).not.toHaveBeenCalled()
     })
 
     it('renders an `a` tag', () => {
-      expect(shallow(<MenuItem onClick={() => null} />)).have.tagName('a')
+      expect(shallow(<MenuItem onClick={() => null} />).type()).toBe('a')
     })
   })
 })

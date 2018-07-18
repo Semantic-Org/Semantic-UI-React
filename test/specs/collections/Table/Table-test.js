@@ -63,8 +63,8 @@ describe('Table', () => {
   )
 
   describe('as', () => {
-    it('renders as a table by default', () => {
-      expect(shallow(<Table />)).have.tagName('table')
+    it('is "table" by default', () => {
+      expect(shallow(<Table />).type()).toBe('table')
     })
   })
 

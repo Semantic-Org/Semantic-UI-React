@@ -1,4 +1,5 @@
 import React from 'react'
+
 import MessageItem from 'src/collections/Message/MessageItem'
 import * as common from 'test/specs/commonTests'
 
@@ -7,7 +8,9 @@ describe('MessageItem', () => {
   common.implementsCreateMethod(MessageItem)
   common.rendersChildren(MessageItem)
 
-  it('renders an li tag', () => {
-    expect(shallow(<MessageItem />)).have.tagName('li')
+  describe('as', () => {
+    it('is "li" by default', () => {
+      expect(shallow(<MessageItem />).type()).toBe('li')
+    })
   })
 })

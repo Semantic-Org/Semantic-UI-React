@@ -52,51 +52,54 @@ describe('Message', () => {
 
   describe('header', () => {
     it('adds MessageContent when defined', () => {
-      expect(shallow(<Message header='This is a message' />)).have.descendants('MessageContent')
+      expect(shallow(<Message header='This is a message' />).find('MessageContent')).toHaveLength(1)
     })
   })
 
   describe('icon', () => {
     it('does not have MessageContent by default', () => {
-      expect(shallow(<Message />)).not.have.descendants('.content')
+      expect(shallow(<Message />).find('.content')).toHaveLength(0)
     })
+
     it('renders children when "true"', () => {
       const text = 'child text'
       const node = <div id='foo' />
 
-      expect(shallow(<Message icon>{text}</Message>)).have.text(text)
-
-      expect(shallow(<Message icon>{node}</Message>)).toContain(node)
+      expect(shallow(<Message icon>{text}</Message>).text()).toContain(text)
+      expect(shallow(<Message icon>{node}</Message>).contains(node)).toBe(true)
     })
   })
 
   describe('list', () => {
     it('adds MessageContent when defined', () => {
-      expect(shallow(<Message list={[]} />)).have.descendants('MessageContent')
+      expect(shallow(<Message list={[]} />).find('MessageContent')).toHaveLength(1)
     })
   })
 
   describe('onDismiss', () => {
     it('has no close icon by default', () => {
-      expect(shallow(<Message />)).not.have.descendants('.close.icon')
+      expect(shallow(<Message />).find('.close.icon')).toHaveLength(0)
     })
 
     it('adds a close icon when defined', () => {
-      expect(mount(<Message onDismiss={() => undefined} />)).have.descendants('.close.icon')
+      expect(mount(<Message onDismiss={() => undefined} />).find('.close.icon')).toHaveLength(1)
     })
 
-    it('is called with (event) on close icon click', () => {
+    it('is called with (event, data) on close icon click', () => {
       const event = { fake: 'event data' }
       const props = { icon: true }
 
       const onDismiss = jest.fn()
       const wrapper = mount(<Message {...props} onDismiss={onDismiss} />)
 
-      expect(wrapper).have.descendants('.close.icon')
+      expect(wrapper.find('.close.icon')).toHaveLength(1)
       wrapper.find('.close.icon').simulate('click', event)
 
-      expect(onDismiss).have.been.calledOnce()
-      expect(onDismiss).have.been.calledWithMatch(event, props)
+      expect(onDismiss).toHaveBeenCalledTimes(1)
+      expect(onDismiss).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(props),
+      )
     })
   })
 })
