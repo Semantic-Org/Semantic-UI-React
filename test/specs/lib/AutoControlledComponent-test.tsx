@@ -3,17 +3,21 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { AutoControlledComponent } from 'src/lib'
 import { consoleUtil } from 'test/utils'
+import { IRenderResultConfig } from 'src/lib/renderComponent'
 
 let TestClass
 
 const createTestClass = (options = {}) =>
-  class Test extends AutoControlledComponent {
-    static autoControlledProps = options.autoControlledProps
-    static defaultProps = options.defaultProps
+  class Test extends AutoControlledComponent<{}, {}> {
+    static autoControlledProps = (options as any).autoControlledProps
+    static defaultProps = (options as any).defaultProps
     getInitialAutoControlledState() {
-      return options.state
+      return (options as any).state
     }
-    render = () => <div />
+    renderComponent(config: IRenderResultConfig<{}>): React.ReactNode {
+      return <div />
+    }
+    // render = () => <div />
   }
 
 const toDefaultName = prop => `default${prop.slice(0, 1).toUpperCase() + prop.slice(1)}`

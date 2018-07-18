@@ -1,7 +1,7 @@
 import React from 'react'
 import renderComponent, { IRenderResultConfig } from './renderComponent'
 
-class UIComponent<P, S> extends React.Component<P, S> {
+abstract class UIComponent<P, S> extends React.Component<P, S> {
   private readonly childClass = this.constructor as typeof UIComponent
   static defaultProps: { [key: string]: any }
   static displayName: string
@@ -12,21 +12,11 @@ class UIComponent<P, S> extends React.Component<P, S> {
 
   constructor(props, context) {
     super(props, context)
-    if (process.env.NODE_ENV !== 'production') {
-      const child = this.constructor
-      const childName = child.name
-
-      if (typeof this.renderComponent !== 'function') {
-        throw new Error(`${childName} extending UIComponent is missing a renderComponent() method.`)
-      }
-    }
 
     this.renderComponent = this.renderComponent.bind(this)
   }
 
-  renderComponent(config: IRenderResultConfig<P>): React.ReactNode {
-    throw new Error('renderComponent is not implemented.')
-  }
+  abstract renderComponent(config: IRenderResultConfig<P>): React.ReactNode
 
   render() {
     return renderComponent(
