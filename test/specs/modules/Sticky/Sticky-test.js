@@ -77,7 +77,7 @@ describe('Sticky', () => {
   })
 
   beforeEach(() => {
-    sandbox.stub(window, 'requestAnimationFrame').callsArg(0)
+    global.requestAnimationFrame = callback => callback()
     wrapper = undefined
   })
 
@@ -90,7 +90,7 @@ describe('Sticky', () => {
       const children = shallow(<Sticky />).children()
 
       expect(children).toHaveLength(2)
-      children.everyWhere(child => expect(child).have.tagName('div'))
+      children.everyWhere(child => expect(child.type()).toBe('div'))
     })
   })
 
@@ -99,23 +99,23 @@ describe('Sticky', () => {
       const onTop = jest.fn()
       mount(<Sticky context={mockContextEl()} onTop={onTop} />)
 
-      expect(onTop).have.been.calledOnce()
+      expect(onTop).toHaveBeenCalledTimes(1)
     })
 
     it('should not handle update on mount when not active', () => {
       const onTop = jest.fn()
       mount(<Sticky active={false} context={mockContextEl()} onTop={onTop} />)
 
-      expect(onTop).have.not.been.called()
+      expect(onTop).not.toHaveBeenCalled()
     })
 
     it('fires event when changes to true', () => {
       const onTop = jest.fn()
       wrapperMount(<Sticky active={false} context={mockContextEl()} onTop={onTop} />)
-      expect(onTop).have.not.been.called()
+      expect(onTop).not.toHaveBeenCalled()
 
       wrapper.setProps({ active: true })
-      expect(onTop).have.been.calledOnce()
+      expect(onTop).toHaveBeenCalledTimes(1)
     })
 
     it('omits event and removes styles when changes to false', () => {
@@ -128,15 +128,15 @@ describe('Sticky', () => {
       )
 
       _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
-        expect(wrapper.childAt(0).childAt(1)).have.className(className),
+        expect(wrapper.childAt(0).childAt(1).hasClass(className)).toBe(true),
       )
-      expect(onStick).have.been.calledOnce()
-      expect(onStick).have.been.calledWithMatch(undefined, positions)
+      expect(onStick).toHaveBeenCalledTimes(1)
+      expect(onStick).toHaveBeenCalledWith(undefined, expect.objectContaining(positions))
 
       wrapper.setProps({ active: false })
       scrollToTop()
       expect(wrapper.childAt(0).childAt(1)).have.not.className('fixed')
-      expect(onUnStick).not.have.been.called()
+      expect(onUnStick).not.toHaveBeenCalled()
     })
   })
 
@@ -150,7 +150,7 @@ describe('Sticky', () => {
       scrollAfterTrigger()
 
       _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
-        expect(wrapper.childAt(0).childAt(1)).have.className(className),
+        expect(wrapper.childAt(0).childAt(1).hasClass(className)).toBe(true),
       )
       expect(wrapper.childAt(0).childAt(1)).have.style('top', '12px')
     })
@@ -162,7 +162,7 @@ describe('Sticky', () => {
 
       scrollAfterContext()
       _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
-        expect(wrapper.childAt(0).childAt(1)).have.className(className),
+        expect(wrapper.childAt(0).childAt(1).hasClass(className)).toBe(true),
       )
       expect(wrapper.childAt(0).childAt(1)).have.style('bottom', '0px')
     })
@@ -175,12 +175,12 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} onBottom={onBottom} />)
 
       scrollAfterContext()
-      expect(onBottom).have.been.calledOnce()
-      expect(onBottom).have.been.calledWithMatch({}, positions)
+      expect(onBottom).toHaveBeenCalledTimes(1)
+      expect(onBottom).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining(positions))
       onBottom.resetHistory()
 
       scrollToTop()
-      expect(onBottom).not.have.been.called()
+      expect(onBottom).not.toHaveBeenCalled()
     })
   })
 
@@ -192,12 +192,12 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} onStick={onStick} />)
 
       scrollAfterTrigger()
-      expect(onStick).have.been.calledTwice()
-      expect(onStick).have.been.calledWithMatch({}, positions)
+      expect(onStick).toHaveBeenCalledTimes(2)
+      expect(onStick).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining(positions))
       onStick.resetHistory()
 
       scrollToTop()
-      expect(onStick).not.have.been.called()
+      expect(onStick).not.toHaveBeenCalled()
     })
   })
 
@@ -209,11 +209,11 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} onTop={onTop} />)
 
       scrollAfterContext()
-      expect(onTop).not.have.been.called()
+      expect(onTop).not.toHaveBeenCalled()
 
       scrollToTop()
-      expect(onTop).have.been.calledOnce()
-      expect(onTop).have.been.calledWithMatch({}, positions)
+      expect(onTop).toHaveBeenCalledTimes(1)
+      expect(onTop).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining(positions))
     })
   })
 
@@ -225,11 +225,11 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} onUnstick={onUnstick} />)
 
       scrollAfterTrigger()
-      expect(onUnstick).not.have.been.called()
+      expect(onUnstick).not.toHaveBeenCalled()
 
       scrollToTop()
-      expect(onUnstick).have.been.calledOnce()
-      expect(onUnstick).have.been.calledWithMatch({}, positions)
+      expect(onUnstick).toHaveBeenCalledTimes(1)
+      expect(onUnstick).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining(positions))
     })
   })
 
@@ -247,7 +247,7 @@ describe('Sticky', () => {
       domEvent.scroll(window)
 
       _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
-        expect(wrapper.childAt(0).childAt(1)).have.className(className),
+        expect(wrapper.childAt(0).childAt(1).hasClass(className)).toBe(true),
       )
       expect(wrapper.childAt(0).childAt(1)).have.style('bottom', '0px')
 
@@ -296,7 +296,7 @@ describe('Sticky', () => {
       instance.triggerRef = mockRect({ top: -1 })
       domEvent.scroll(window)
 
-      expect(onStick).have.been.called()
+      expect(onStick).toHaveBeenCalled()
     })
 
     it('should set a scroll context', () => {
@@ -307,10 +307,10 @@ describe('Sticky', () => {
       instance.triggerRef = mockRect({ top: -1 })
 
       domEvent.scroll(window)
-      expect(onStick).not.have.been.called()
+      expect(onStick).not.toHaveBeenCalled()
 
       domEvent.scroll(div)
-      expect(onStick).have.been.called()
+      expect(onStick).toHaveBeenCalled()
     })
 
     it('should not call onStick when context is null', () => {
@@ -320,7 +320,7 @@ describe('Sticky', () => {
       instance.triggerRef = mockRect({ top: -1 })
 
       domEvent.scroll(document)
-      expect(onStick).not.have.been.called()
+      expect(onStick).not.toHaveBeenCalled()
     })
 
     it('should call onStick when scrollContext changes', () => {
@@ -333,7 +333,7 @@ describe('Sticky', () => {
       renderedComponent.setProps({ scrollContext: div })
 
       domEvent.scroll(div)
-      expect(onStick).have.been.called()
+      expect(onStick).toHaveBeenCalled()
     })
 
     it('should not call onStick when scrollContext changes and component is unmounted', () => {
@@ -347,10 +347,10 @@ describe('Sticky', () => {
       renderedComponent.unmount()
 
       domEvent.scroll(div)
-      expect(onStick).not.have.been.called()
+      expect(onStick).not.toHaveBeenCalled()
 
       domEvent.scroll(document)
-      expect(onStick).not.have.been.called()
+      expect(onStick).not.toHaveBeenCalled()
     })
   })
 
@@ -360,7 +360,7 @@ describe('Sticky', () => {
       const update = jest.fn(instance, 'update')
 
       domEvent.scroll(window)
-      expect(update).have.been.calledOnce()
+      expect(update).toHaveBeenCalledTimes(1)
     })
 
     it('is called on resize', () => {
@@ -368,7 +368,7 @@ describe('Sticky', () => {
       const update = jest.fn(instance, 'update')
 
       domEvent.resize(window)
-      expect(update).have.been.calledOnce()
+      expect(update).toHaveBeenCalledTimes(1)
     })
 
     it('is not called after unmount', (done) => {
@@ -382,7 +382,7 @@ describe('Sticky', () => {
       domEvent.resize(window)
       wrapper.unmount()
       window.requestAnimationFrame(() => {
-        expect(update).not.have.been.called()
+        expect(update).not.toHaveBeenCalled()
         done()
       })
     })

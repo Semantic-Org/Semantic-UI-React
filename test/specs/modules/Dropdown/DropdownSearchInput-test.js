@@ -9,17 +9,17 @@ describe('DropdownSearchInput', () => {
 
   describe('aria', () => {
     it('should have aria-autocomplete', () => {
-      expect(shallow(<DropdownSearchInput />)).have.prop('aria-autocomplete', 'list')
+      expect(shallow(<DropdownSearchInput />).prop('aria-autocomplete')).toBe('list')
     })
   })
 
   describe('autoComplete', () => {
     it('should have autoComplete by default', () => {
-      expect(shallow(<DropdownSearchInput />)).have.prop('autoComplete', 'off')
+      expect(shallow(<DropdownSearchInput />).prop('autoComplete')).toBe('off')
     })
 
     it('should pass a defined value', () => {
-      expect(shallow(<DropdownSearchInput autoComplete='on' />)).have.prop('autoComplete', 'on')
+      expect(shallow(<DropdownSearchInput autoComplete='on' />).prop('autoComplete')).toBe('on')
     })
   })
 
@@ -32,8 +32,8 @@ describe('DropdownSearchInput', () => {
         .find('input')
         .simulate('change', e)
 
-      expect(onChange).have.been.calledOnce()
-      expect(onChange).have.been.calledWithMatch(e, { value: e.target.value })
+      expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onChange).toHaveBeenCalledWith(e, { value: e.target.value })
     })
   })
 
@@ -46,8 +46,8 @@ describe('DropdownSearchInput', () => {
       const wrapper = mount(<DropdownSearchInput inputRef={inputRef} />, { attachTo: mountNode })
       const input = document.querySelector('input')
 
-      expect(inputRef).have.been.calledOnce()
-      expect(inputRef).have.been.calledWithMatch(input)
+      expect(inputRef).toHaveBeenCalledTimes(1)
+      expect(inputRef).toHaveBeenCalledWith(input)
 
       wrapper.detach()
       document.body.removeChild(mountNode)
@@ -56,35 +56,35 @@ describe('DropdownSearchInput', () => {
 
   describe('tabIndex', () => {
     it('is not set by default', () => {
-      expect(shallow(<DropdownSearchInput />)).not.have.prop('tabIndex')
+      expect(shallow(<DropdownSearchInput />).prop('tabIndex')).toBeUndefined()
     })
 
     it('can be set explicitly', () => {
-      expect(shallow(<DropdownSearchInput tabIndex={123} />)).have.prop('tabIndex', 123)
+      expect(shallow(<DropdownSearchInput tabIndex={123} />).prop('tabIndex')).toBe(123)
     })
   })
 
   describe('type', () => {
     it('should have text by default', () => {
-      expect(shallow(<DropdownSearchInput />)).have.prop('type', 'text')
+      expect(shallow(<DropdownSearchInput />).prop('type')).toBe('text')
     })
 
     it('can be set explicitly', () => {
       const type = faker.random.word()
 
-      expect(shallow(<DropdownSearchInput type={type} />)).have.prop('type', type)
+      expect(shallow(<DropdownSearchInput type={type} />).prop('type')).toBe(type)
     })
   })
 
   describe('value', () => {
     it('is not set by default', () => {
-      expect(shallow(<DropdownSearchInput />)).not.have.prop('value')
+      expect(shallow(<DropdownSearchInput />).prop('value')).toBeUndefined()
     })
 
     it('can be set explicitly', () => {
       const value = faker.random.word()
 
-      expect(shallow(<DropdownSearchInput value={value} />)).have.prop('value', value)
+      expect(shallow(<DropdownSearchInput value={value} />).prop('value')).toBe(value)
     })
   })
 })

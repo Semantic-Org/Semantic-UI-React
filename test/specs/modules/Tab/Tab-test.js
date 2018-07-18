@@ -16,9 +16,7 @@ describe('Tab', () => {
 
   describe('menu', () => {
     it('passes the props to the Menu', () => {
-      expect(shallow(<Tab menu={{ 'data-foo': 'bar' }} />).find('Menu')).have.props({
-        'data-foo': 'bar',
-      })
+      expect(shallow(<Tab menu={{ 'data-foo': 'bar' }} />).find('Menu').prop('data-foo')).toBe('bar')
     })
 
     it('has an item for every menuItem in panes', () => {
@@ -66,7 +64,7 @@ describe('Tab', () => {
           .shallow()
           .childAt(0),
       ).toMatch('Menu')
-      expect(wrapper.find('Menu')).have.prop('tabular', 'right')
+      expect(wrapper.find('Menu').prop('tabular')).toBe('right')
     })
 
     it("does not infer tabular's value from tab's menuPosition if tabular is explicitly set", () => {
@@ -88,7 +86,7 @@ describe('Tab', () => {
           .shallow()
           .childAt(0),
       ).toMatch('Menu')
-      expect(wrapper.find('Menu')).have.prop('tabular', 'right')
+      expect(wrapper.find('Menu').prop('tabular')).toBe('right')
     })
 
     it('renders right when tabular is set to right', () => {
@@ -240,21 +238,17 @@ describe('Tab', () => {
 
   describe('activeIndex', () => {
     it('is passed to the Menu', () => {
-      const wrapper = mount(<Tab panes={panes} activeIndex={123} />)
-
-      expect(wrapper.find('Menu')).have.prop('activeIndex', 123)
+      expect(mount(<Tab panes={panes} activeIndex={123} />).find('Menu').prop('activeIndex')).toBe(123)
     })
 
     it('is set when clicking an item', () => {
       const wrapper = mount(<Tab panes={panes} />)
-
       expect(wrapper.find('TabPane[active]')).contain.text('Tab 1 Content')
 
       wrapper
         .find('MenuItem')
         .at(1)
         .simulate('click')
-
       expect(wrapper.find('TabPane[active]')).contain.text('Tab 2 Content')
     })
 
@@ -275,17 +269,17 @@ describe('Tab', () => {
 
       shallow(<Tab {...props} />)
 
-      expect(panes[activeIndex].render).have.been.calledOnce()
-      expect(panes[activeIndex].render).have.been.calledWithMatch(props)
+      expect(panes[activeIndex].render).toHaveBeenCalledTimes(1)
+      expect(panes[activeIndex].render).toHaveBeenCalledWith(props)
     })
   })
 
   describe('onTabChange', () => {
     it('is called with (e, { ...props, activeIndex }) a menu item is clicked', () => {
       const activeIndex = 1
-      const spy = jest.fn()
+      const onTabChange = jest.fn()
       const event = { fake: 'event' }
-      const props = { onTabChange: spy, panes }
+      const props = { onTabChange, panes }
 
       mount(<Tab {...props} />)
         .find('MenuItem')
@@ -294,11 +288,11 @@ describe('Tab', () => {
 
       // Since React will have generated a key the returned tab won't match
       // exactly so match on the props instead.
-      expect(spy).have.been.calledOnce()
-      expect(spy.firstCall.args[0]).toHaveProperty('fake', 'event')
-      expect(spy.firstCall.args[1]).toHaveProperty('activeIndex', 1)
-      expect(spy.firstCall.args[1]).toHaveProperty('onTabChange', spy)
-      expect(spy.firstCall.args[1]).toHaveProperty('panes', panes)
+      expect(onTabChange).toHaveBeenCalledTimes(1)
+      expect(onTabChange.firstCall.args[0]).toHaveProperty('fake', 'event')
+      expect(onTabChange.firstCall.args[1]).toHaveProperty('activeIndex', 1)
+      expect(onTabChange.firstCall.args[1]).toHaveProperty('onTabChange', onTabChange)
+      expect(onTabChange.firstCall.args[1]).toHaveProperty('panes', panes)
     })
     it('is called with the new proposed activeIndex, not the current', () => {
       const spy = jest.fn()

@@ -21,7 +21,7 @@ describe('AccordionAccordion', () => {
     ]
 
     it('defaults to -1', () => {
-      expect(shallow(<AccordionAccordion />)).have.state('activeIndex', -1)
+      expect(shallow(<AccordionAccordion />).state('activeIndex')).toBe(-1)
     })
 
     it('defaults to -1 when "exclusive" is false', () => {
@@ -31,9 +31,9 @@ describe('AccordionAccordion', () => {
     it('makes Accordion.Content at activeIndex - 0 "active"', () => {
       const wrapper = shallow(<AccordionAccordion activeIndex={0} panels={panels} />)
 
-      expect(wrapper.childAt(0)).have.prop('active', true)
-      expect(wrapper.childAt(1)).have.prop('active', false)
-      expect(wrapper.childAt(2)).have.prop('active', false)
+      expect(wrapper.childAt(0).prop('active')).toBe(true)
+      expect(wrapper.childAt(1).prop('active')).toBe(false)
+      expect(wrapper.childAt(2).prop('active')).toBe(false)
     })
 
     it('is toggled to -1 when clicking Title a second time', () => {
@@ -43,40 +43,40 @@ describe('AccordionAccordion', () => {
         .find(AccordionTitle)
         .at(0)
         .simulate('click')
-      expect(wrapper).have.state('activeIndex', 0)
+      expect(wrapper.state('activeIndex')).toBe(0)
 
       wrapper
         .find(AccordionTitle)
         .at(0)
         .simulate('click')
-      expect(wrapper).have.state('activeIndex', -1)
+      expect(wrapper.state('activeIndex')).toBe(-1)
     })
 
     it('sets the correct panel active', () => {
       const wrapper = shallow(<AccordionAccordion activeIndex={0} panels={panels} />)
 
-      expect(wrapper.childAt(0)).have.prop('active', true)
-      expect(wrapper.childAt(1)).have.prop('active', false)
-      expect(wrapper.childAt(2)).have.prop('active', false)
+      expect(wrapper.childAt(0).prop('active')).toBe(true)
+      expect(wrapper.childAt(1).prop('active')).toBe(false)
+      expect(wrapper.childAt(2).prop('active')).toBe(false)
 
       wrapper.setProps({ activeIndex: 1 })
-      expect(wrapper.childAt(0)).have.prop('active', false)
-      expect(wrapper.childAt(1)).have.prop('active', true)
-      expect(wrapper.childAt(2)).have.prop('active', false)
+      expect(wrapper.childAt(0).prop('active')).toBe(false)
+      expect(wrapper.childAt(1).prop('active')).toBe(true)
+      expect(wrapper.childAt(2).prop('active')).toBe(false)
     })
 
     it('can be an array', () => {
       const wrapper = shallow(
         <AccordionAccordion activeIndex={[0, 1]} exclusive={false} panels={panels} />,
       )
-      expect(wrapper.childAt(0)).have.prop('active', true)
-      expect(wrapper.childAt(1)).have.prop('active', true)
-      expect(wrapper.childAt(2)).have.prop('active', false)
+      expect(wrapper.childAt(0).prop('active')).toBe(true)
+      expect(wrapper.childAt(1).prop('active')).toBe(true)
+      expect(wrapper.childAt(2).prop('active')).toBe(false)
 
       wrapper.setProps({ activeIndex: [1, 2] })
-      expect(wrapper.childAt(0)).have.prop('active', false)
-      expect(wrapper.childAt(1)).have.prop('active', true)
-      expect(wrapper.childAt(2)).have.prop('active', true)
+      expect(wrapper.childAt(0).prop('active')).toBe(false)
+      expect(wrapper.childAt(1).prop('active')).toBe(true)
+      expect(wrapper.childAt(2).prop('active')).toBe(true)
     })
 
     it('can be inclusive and makes Accordion.Content at activeIndex - 1 "active"', () => {
@@ -84,9 +84,9 @@ describe('AccordionAccordion', () => {
         <AccordionAccordion activeIndex={[0]} exclusive={false} panels={panels} />,
       )
 
-      expect(wrapper.childAt(0)).have.prop('active', true)
-      expect(wrapper.childAt(1)).have.prop('active', false)
-      expect(wrapper.childAt(2)).have.prop('active', false)
+      expect(wrapper.childAt(0).prop('active')).toBe(true)
+      expect(wrapper.childAt(1).prop('active')).toBe(false)
+      expect(wrapper.childAt(2).prop('active')).toBe(false)
     })
 
     it('can be inclusive and allows multiple open', () => {
@@ -94,9 +94,9 @@ describe('AccordionAccordion', () => {
         <AccordionAccordion activeIndex={[0, 1]} exclusive={false} panels={panels} />,
       )
 
-      expect(wrapper.childAt(0)).have.prop('active', true)
-      expect(wrapper.childAt(1)).have.prop('active', true)
-      expect(wrapper.childAt(2)).have.prop('active', false)
+      expect(wrapper.childAt(0).prop('active')).toBe(true)
+      expect(wrapper.childAt(1).prop('active')).toBe(true)
+      expect(wrapper.childAt(2).prop('active')).toBe(false)
     })
 
     it('can be inclusive and can open multiple panels by clicking', () => {
@@ -106,17 +106,13 @@ describe('AccordionAccordion', () => {
         .find(AccordionTitle)
         .at(0)
         .simulate('click')
-      expect(wrapper)
-        .have.state('activeIndex')
-        .that.includes(0)
+      expect(wrapper.state('activeIndex')).toContain(0)
 
       wrapper
         .find(AccordionTitle)
         .at(1)
         .simulate('click')
-      expect(wrapper)
-        .have.state('activeIndex')
-        .that.includes(0, 1)
+      expect(wrapper.state('activeIndex')).toContain(0, 1)
     })
 
     it('can be inclusive and close multiple panels by clicking', () => {
@@ -128,9 +124,7 @@ describe('AccordionAccordion', () => {
         .find(AccordionTitle)
         .at(0)
         .simulate('click')
-      expect(wrapper)
-        .have.state('activeIndex')
-        .that.includes(1)
+      expect(wrapper.state('activeIndex')).toContain(1)
 
       wrapper
         .find(AccordionTitle)
@@ -142,8 +136,7 @@ describe('AccordionAccordion', () => {
 
   describe('defaultActiveIndex', () => {
     it('sets the initial activeIndex state', () => {
-      expect(shallow(<AccordionAccordion defaultActiveIndex={123} />)).have.state(
-        'activeIndex',
+      expect(shallow(<AccordionAccordion defaultActiveIndex={123} />).state('activeIndex')).toBe(
         123,
       )
     })
@@ -161,11 +154,11 @@ describe('AccordionAccordion', () => {
         .at(0)
         .simulate('click', event)
 
-      expect(onClick).have.been.calledOnce()
-      expect(onClick).have.been.calledWithMatch(event, { index: 0, content: 'A' })
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(event, { index: 0, content: 'A' })
 
-      expect(onTitleClick).have.been.calledOnce()
-      expect(onTitleClick).have.been.calledWithMatch(event, { index: 0, content: 'A' })
+      expect(onTitleClick).toHaveBeenCalledTimes(1)
+      expect(onTitleClick).toHaveBeenCalledWith(event, { index: 0, content: 'A' })
     })
   })
 
@@ -187,11 +180,11 @@ describe('AccordionAccordion', () => {
       const titles = children.find(AccordionTitle)
       const contents = children.find(AccordionContent)
 
-      expect(titles.at(0)).have.prop('content', 'A')
-      expect(contents.at(0)).have.prop('content', 'Content A')
+      expect(titles.at(0).prop('content')).toBe('A')
+      expect(contents.at(0).prop('content')).toBe('Content A')
 
-      expect(titles.at(1)).have.prop('content', 'B')
-      expect(contents.at(1)).have.prop('content', 'Content B')
+      expect(titles.at(1).prop('content')).toBe('B')
+      expect(contents.at(1).prop('content')).toBe('Content B')
     })
 
     it('passes onClick handler', () => {
@@ -200,14 +193,14 @@ describe('AccordionAccordion', () => {
         .at(0)
         .simulate('click', event)
 
-      expect(onClick).have.been.calledOnce()
-      expect(onClick).have.been.calledWithMatch(event, { content: 'A', index: 0 })
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(event, { content: 'A', index: 0 })
     })
 
     it('passes arbitrary props', () => {
       children
         .find(AccordionContent)
-        .everyWhere(item => expect(item).have.prop('data-foo', 'something'))
+        .everyWhere(item => expect(item.prop('data-foo')).toBe('something'))
     })
   })
 })

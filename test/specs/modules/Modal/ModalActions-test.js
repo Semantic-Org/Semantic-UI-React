@@ -18,12 +18,12 @@ describe('ModalActions', () => {
     const buttons = mount(<ModalActions actions={actions} />).find('Button')
 
     it('renders children', () => {
-      expect(buttons.at(0)).have.prop('content', 'Cancel')
-      expect(buttons.at(1)).have.prop('content', 'OK')
+      expect(buttons.at(0).prop('content')).toBe('Cancel')
+      expect(buttons.at(1).prop('content')).toBe('OK')
     })
 
     it('passes arbitrary props', () => {
-      buttons.everyWhere(action => expect(action).have.prop('data-foo', 'something'))
+      buttons.everyWhere(action => expect(action.prop('data-foo')).toBe('something'))
     })
   })
 
@@ -51,10 +51,10 @@ describe('ModalActions', () => {
         .last()
         .simulate('click', event)
 
-      expect(onActionClick).have.been.calledOnce()
-      expect(onActionClick).have.been.calledWithMatch(event, matchProps)
-      expect(onButtonClick).have.been.calledOnce()
-      expect(onButtonClick).have.been.calledWithMatch(event, matchProps)
+      expect(onActionClick).toHaveBeenCalledTimes(1)
+      expect(onActionClick).toHaveBeenCalledWith(event, matchProps)
+      expect(onButtonClick).toHaveBeenCalledTimes(1)
+      expect(onButtonClick).toHaveBeenCalledWith(event, matchProps)
     })
   })
 })

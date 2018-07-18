@@ -43,39 +43,39 @@ describe('DropdownItem', () => {
   describe('aria', () => {
     it('should render DropdownItem as role=option', () => {
       const wrapper = shallow(<DropdownItem />)
-      expect(wrapper).have.prop('role', 'option')
+      expect(wrapper.prop('role')).toBe('option')
     })
     it('should render DropdownItem with children as role=option', () => {
       const wrapper = shallow(<DropdownItem>Text</DropdownItem>)
-      expect(wrapper).have.prop('role', 'option')
+      expect(wrapper.prop('role')).toBe('option')
     })
     it('should render DropdownItem with description as role=option', () => {
       const wrapper = shallow(<DropdownItem description='Text' />)
-      expect(wrapper).have.prop('role', 'option')
+      expect(wrapper.prop('role')).toBe('option')
     })
     it('should render disabled DropdownItem with aria-disabled', () => {
       const wrapper = shallow(<DropdownItem disabled />)
-      expect(wrapper).have.prop('aria-disabled', true)
+      expect(wrapper.prop('aria-disabled')).toBe(true)
     })
     it('should render normal DropdownItem without aria-disabled', () => {
       const wrapper = shallow(<DropdownItem />)
-      expect(wrapper).not.have.prop('aria-disabled')
+      expect(wrapper.prop('aria-disabled')).toBeUndefined()
     })
     it('should render active DropdownItem with aria-checked', () => {
       const wrapper = shallow(<DropdownItem active />)
-      expect(wrapper).have.prop('aria-checked', true)
+      expect(wrapper.prop('aria-checked')).toBe(true)
     })
     it('should render normal DropdownItem without aria-disabled', () => {
       const wrapper = shallow(<DropdownItem />)
-      expect(wrapper).not.have.prop('aria-checked')
+      expect(wrapper.prop('aria-checked')).toBeUndefined()
     })
     it('should render selected DropdownItem with aria-selected', () => {
       const wrapper = shallow(<DropdownItem selected />)
-      expect(wrapper).have.prop('aria-selected', true)
+      expect(wrapper.prop('aria-selected')).toBe(true)
     })
     it('should render normal DropdownItem without aria-selected', () => {
       const wrapper = shallow(<DropdownItem />)
-      expect(wrapper).not.have.prop('aria-selected')
+      expect(wrapper.prop('aria-selected')).toBeUndefined()
     })
   })
 
@@ -123,8 +123,8 @@ describe('DropdownItem', () => {
 
       shallow(<DropdownItem onClick={onClick} {...props} />).simulate('click', event)
 
-      expect(onClick).have.been.calledOnce()
-      expect(onClick).have.been.calledWithMatch(event, props)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(event, props)
     })
   })
 })

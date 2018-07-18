@@ -21,7 +21,9 @@ describe('Accordion', () => {
   common.propKeyOnlyToClassName(Accordion, 'inverted')
   common.propKeyOnlyToClassName(Accordion, 'styled')
 
-  it('renders AccordionAccordion component', () => {
-    expect(shallow(<Accordion />)).have.descendants(AccordionAccordion)
+  describe('children', () => {
+    it('renders AccordionAccordion', () => {
+      expect(shallow(<Accordion />).find(AccordionAccordion)).toHaveLength(1)
+    })
   })
 })

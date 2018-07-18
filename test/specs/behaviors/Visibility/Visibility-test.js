@@ -122,7 +122,7 @@ describe('Visibility', () => {
 
         _.forEach(truthy, ([top, bottom]) => {
           mockScroll(top, bottom)
-          expect(onUpdate).have.been.calledWithMatch(null, {
+          expect(onUpdate).toHaveBeenCalledWith(null, {
             calculations: {
               [name]: true,
             },
@@ -131,7 +131,7 @@ describe('Visibility', () => {
 
         _.forEach(falsy, ([top, bottom]) => {
           mockScroll(top, bottom)
-          expect(onUpdate).have.been.calledWithMatch(null, {
+          expect(onUpdate).toHaveBeenCalledWith(null, {
             calculations: {
               [name]: false,
             },
@@ -149,7 +149,7 @@ describe('Visibility', () => {
         wrapperMount(<Visibility {...opts} continuous />)
 
         _.forEach(falsy, ([top, bottom]) => mockScroll(top, bottom))
-        expect(callback).not.have.been.called()
+        expect(callback).not.toHaveBeenCalled()
 
         _.forEach(truthy, ([top, bottom]) => mockScroll(top, bottom))
         expect(callback).have.callCount(truthy.length)
@@ -255,7 +255,7 @@ describe('Visibility', () => {
 
         window.pageYOffset = 5
         domEvent.scroll(window)
-        expect(onUpdate).have.been.calledWithMatch(null, {
+        expect(onUpdate).toHaveBeenCalledWith(null, {
           calculations: { direction: 'down' },
         })
       })
@@ -267,7 +267,7 @@ describe('Visibility', () => {
 
         window.pageYOffset = 50
         domEvent.scroll(window)
-        expect(onUpdate).have.been.calledWithMatch(null, {
+        expect(onUpdate).toHaveBeenCalledWith(null, {
           calculations: { direction: 'up' },
         })
       })
@@ -289,7 +289,7 @@ describe('Visibility', () => {
       mount(<Visibility context={div} onUpdate={onUpdate} />)
 
       domEvent.scroll(window)
-      expect(onUpdate).not.have.been.called()
+      expect(onUpdate).not.toHaveBeenCalled()
 
       domEvent.scroll(div)
       expect(onUpdate).have.been.called()
@@ -300,7 +300,7 @@ describe('Visibility', () => {
       mount(<Visibility context={null} onUpdate={onUpdate} />)
 
       domEvent.scroll(document)
-      expect(onUpdate).not.have.been.called()
+      expect(onUpdate).not.toHaveBeenCalled()
     })
 
     it('should call onUpdate when context changes', () => {
@@ -321,10 +321,10 @@ describe('Visibility', () => {
       renderedComponent.unmount()
 
       domEvent.scroll(div)
-      expect(onUpdate).not.have.been.called()
+      expect(onUpdate).not.toHaveBeenCalled()
 
       domEvent.scroll(document)
-      expect(onUpdate).not.have.been.called()
+      expect(onUpdate).not.toHaveBeenCalled()
     })
   })
 
@@ -348,7 +348,7 @@ describe('Visibility', () => {
       wrapperMount(<Visibility fireOnMount onUpdate={onUpdate} />)
 
       expect(onUpdate).have.been.calledOnce()
-      expect(onUpdate).have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: { height: 0, width: 0 },
         fireOnMount: true,
       })
@@ -486,7 +486,7 @@ describe('Visibility', () => {
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 100)
-      expect(onUpdate).have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           height: 100,
           width: window.innerWidth,
@@ -494,7 +494,7 @@ describe('Visibility', () => {
       })
 
       mockScroll(50, 3000)
-      expect(onUpdate).have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           height: 2950,
           width: window.innerWidth,
@@ -507,7 +507,7 @@ describe('Visibility', () => {
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 100)
-      expect(onUpdate).have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           percentagePassed: 0,
           pixelsPassed: 0,
@@ -515,7 +515,7 @@ describe('Visibility', () => {
       })
 
       mockScroll(-1, 99)
-      expect(onUpdate).have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           percentagePassed: 0.01,
           pixelsPassed: 1,
@@ -523,7 +523,7 @@ describe('Visibility', () => {
       })
 
       mockScroll(-2, 198)
-      expect(onUpdate).have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           percentagePassed: 0.01,
           pixelsPassed: 2,
@@ -531,7 +531,7 @@ describe('Visibility', () => {
       })
 
       mockScroll(-10, 0)
-      expect(onUpdate).have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           percentagePassed: 1,
           pixelsPassed: 10,
@@ -547,7 +547,7 @@ describe('Visibility', () => {
     })
 
     it('defaults to "events"', () => {
-      expect(wrapperMount(<Visibility />)).have.prop('updateOn', 'events')
+      expect(wrapperMount(<Visibility />).prop('updateOn')).toBe('events')
     })
 
     it('fires onUpdate after mount when updateOn="repaint"', (done) => {

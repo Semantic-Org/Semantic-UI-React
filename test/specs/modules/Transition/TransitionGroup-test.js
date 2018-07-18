@@ -43,8 +43,8 @@ describe('TransitionGroup', () => {
       )
         .children()
         .everyWhere((item) => {
-          expect(item).have.prop('animation', 'scale')
-          expect(item).have.prop('duration', 1500)
+          expect(item.prop('animation')).toBe('scale')
+          expect(item.prop('duration')).toBe(1500)
           expect(item.type()).toBe(Transition)
         })
     })
@@ -60,7 +60,7 @@ describe('TransitionGroup', () => {
       const child = wrapper.childAt(1)
       expect(child.key()).toBe('.$second')
       expect(child.type()).toBe(Transition)
-      expect(child).have.prop('transitionOnMount', true)
+      expect(child.prop('transitionOnMount')).toBe(true)
     })
 
     it('skips invalid children', () => {
@@ -87,9 +87,9 @@ describe('TransitionGroup', () => {
 
       expect(wrapper.children()).toHaveLength(2)
       expect(wrapper.childAt(0).type()).toBe(Transition)
-      expect(wrapper.childAt(0)).have.prop('visible', true)
+      expect(wrapper.childAt(0).prop('visible')).toBe(true)
       expect(wrapper.childAt(1).type()).toBe(Transition)
-      expect(wrapper.childAt(1)).have.prop('visible', false)
+      expect(wrapper.childAt(1).prop('visible')).toBe(false)
     })
 
     it('removes child after transition', (done) => {

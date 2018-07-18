@@ -474,8 +474,8 @@ describe('Search', () => {
       const onBlur = jest.fn()
       wrapperMount(<Search results={options} onBlur={onBlur} />).simulate('blur', nativeEvent)
 
-      expect(onBlur).have.been.calledOnce()
-      expect(onBlur).have.been.calledWithMatch(nativeEvent, { onBlur, results: options })
+      expect(onBlur).toHaveBeenCalledTimes(1)
+      expect(onBlur).toHaveBeenCalledWith(nativeEvent, { onBlur, results: options })
     })
   })
 
@@ -484,21 +484,21 @@ describe('Search', () => {
       const onFocus = jest.fn()
       wrapperMount(<Search results={options} onFocus={onFocus} />).simulate('focus', nativeEvent)
 
-      expect(onFocus).have.been.calledOnce()
-      expect(onFocus).have.been.calledWithMatch(nativeEvent, { onFocus, results: options })
+      expect(onFocus).toHaveBeenCalledTimes(1)
+      expect(onFocus).toHaveBeenCalledWith(nativeEvent, { onFocus, results: options })
     })
   })
 
   describe('onResultSelect', () => {
-    let spy
+    let onResultSelect
     beforeEach(() => {
-      spy = jest.fn()
+      onResultSelect = jest.fn()
     })
 
     it('is called with event and value on item click', () => {
       const randomIndex = _.random(options.length - 1)
       const randomResult = options[randomIndex]
-      wrapperMount(<Search results={options} minCharacters={0} onResultSelect={spy} />)
+      wrapperMount(<Search results={options} minCharacters={0} onResultSelect={onResultSelect} />)
 
       // open
       openSearchResults()
@@ -509,8 +509,8 @@ describe('Search', () => {
         .at(randomIndex)
         .simulate('click', nativeEvent)
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(
+      expect(onResultSelect).toHaveBeenCalledTimes(1)
+      expect(onResultSelect).toHaveBeenCalledWith(
         {},
         {
           minCharacters: 0,
@@ -522,7 +522,7 @@ describe('Search', () => {
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstResult = options[0]
       wrapperMount(
-        <Search results={options} minCharacters={0} onResultSelect={spy} selectFirstResult />,
+        <Search results={options} minCharacters={0} onResultSelect={onResultSelect} selectFirstResult />,
       )
 
       // open
@@ -531,18 +531,18 @@ describe('Search', () => {
 
       domEvent.keyDown(document, { key: 'Enter' })
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch({}, { result: firstResult })
+      expect(onResultSelect).toHaveBeenCalledTimes(1)
+      expect(onResultSelect).toHaveBeenCalledWith({}, { result: firstResult })
     })
     it('is not called when updating the value prop', () => {
       const value = _.sample(options).title
       const next = _.sample(_.without(options, value)).title
 
       wrapperMount(
-        <Search results={options} minCharacters={0} value={value} onResultSelect={spy} />,
+        <Search results={options} minCharacters={0} value={value} onResultSelect={onResultSelect} />,
       ).setProps({ value: next })
 
-      expect(spy).not.have.been.called()
+      expect(onResultSelect).not.toHaveBeenCalled()
     })
     it('does not call onResultSelect on query change', () => {
       const onResultSelectSpy = jest.fn()
@@ -553,7 +553,7 @@ describe('Search', () => {
       // simulate search
       wrapper.find('input.prompt').simulate('change', { target: { value: faker.hacker.noun() } })
 
-      expect(onResultSelectSpy).not.have.been.called()
+      expect(onResultSelectSpy).not.toHaveBeenCalled()
     })
   })
 
@@ -564,8 +564,8 @@ describe('Search', () => {
         .find('input.prompt')
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(
+      expect(spy).toHaveBeenCalledTimes(1)
+      expect(spy).toHaveBeenCalledWith(
         { target: { value: 'a' } },
         {
           minCharacters: 0,
@@ -591,8 +591,8 @@ describe('Search', () => {
       openSearchResults()
       domEvent.keyDown(document, { key: 'ArrowDown' })
 
-      expect(onSelectionChange).have.been.calledOnce()
-      expect(onSelectionChange).have.been.calledWithMatch(
+      expect(onSelectionChange).toHaveBeenCalledTimes(1)
+      expect(onSelectionChange).toHaveBeenCalledWith(
         {},
         {
           minCharacters: 0,
@@ -619,7 +619,7 @@ describe('Search', () => {
       openSearchResults()
       searchResultsIsOpen()
 
-      expect(instance.handleItemClick).not.have.been.called()
+      expect(instance.handleItemClick).not.toHaveBeenCalled()
 
       // click random item
       wrapper
@@ -627,7 +627,7 @@ describe('Search', () => {
         .at(_.random(0, options.length - 1))
         .simulate('click', nativeEvent)
 
-      expect(instance.handleItemClick).have.been.calledOnce()
+      expect(instance.handleItemClick).toHaveBeenCalledTimes(1)
     })
     it('renders new options when options change', () => {
       const customOptions = [

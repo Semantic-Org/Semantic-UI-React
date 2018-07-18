@@ -33,7 +33,7 @@ describe('DimmerInner', () => {
       const onClickOutside = jest.fn()
       shallow(<DimmerInner onClickOutside={onClickOutside} />).simulate('click')
 
-      expect(onClickOutside).have.been.calledOnce()
+      expect(onClickOutside).toHaveBeenCalledTimes(1)
     })
 
     it('omitted when click on children', () => {
@@ -53,7 +53,7 @@ describe('DimmerInner', () => {
         .find('div.content')
         .childAt(0)
         .simulate('click')
-      expect(onClickOutside).have.not.been.called()
+      expect(onClickOutside).not.toHaveBeenCalled()
 
       wrapper.unmount()
       document.body.removeChild(element)
@@ -65,7 +65,7 @@ describe('DimmerInner', () => {
       mount(
         <DimmerInner onClickOutside={onClickOutside}>{faker.hacker.phrase()}</DimmerInner>,
       ).simulate('click')
-      expect(onClickOutside).have.been.calledOnce()
+      expect(onClickOutside).toHaveBeenCalledTimes(1)
     })
 
     it('called when click on center', () => {
@@ -75,7 +75,7 @@ describe('DimmerInner', () => {
       )
 
       wrapper.find('div.content').simulate('click')
-      expect(onClickOutside).have.been.calledOnce()
+      expect(onClickOutside).toHaveBeenCalledTimes(1)
     })
   })
 })

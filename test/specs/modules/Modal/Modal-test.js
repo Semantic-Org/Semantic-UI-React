@@ -101,9 +101,9 @@ describe('Modal', () => {
       const modalActions = { onActionClick, actions: [{ key: 'ok', content: 'OK' }] }
       wrapperMount(<Modal actions={modalActions} defaultOpen />)
 
-      expect(onActionClick).not.have.been.called()
+      expect(onActionClick).not.toHaveBeenCalled()
       domEvent.click('.ui.modal .actions .button')
-      expect(onActionClick).have.been.calledOnce()
+      expect(onActionClick).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -115,8 +115,8 @@ describe('Modal', () => {
       wrapperMount(<Modal {...props} />)
       domEvent.click('.ui.modal .actions .button')
 
-      expect(onActionClick).have.been.calledOnce()
-      expect(onActionClick).have.been.calledWithMatch({}, props)
+      expect(onActionClick).toHaveBeenCalledTimes(1)
+      expect(onActionClick).toHaveBeenCalledWith({}, props)
     })
   })
 
@@ -127,23 +127,22 @@ describe('Modal', () => {
     })
 
     it('is passed to Portal open', () => {
-      expect(shallow(<Modal open />).find('Portal')).have.prop('open', true)
+      expect(shallow(<Modal open />).find('Portal').prop('open')).toBe(true)
 
-      expect(shallow(<Modal open={false} />).find('Portal')).have.prop('open', false)
+      expect(shallow(<Modal open={false} />).find('Portal').prop('open')).toBe(false)
     })
 
     it('is not passed to Modal', () => {
       expect(
         shallow(<Modal open />)
           .find('Portal')
-          .children(),
-      ).not.have.prop('open')
+          .children()
+      .prop('open')).toBeUndefined()
 
       expect(
         shallow(<Modal open={false} />)
           .find('Portal')
-          .children(),
-      ).not.have.prop('open')
+          .children().prop('open')).toBeUndefined()
     })
 
     it('does not show the modal when false', () => {
@@ -273,90 +272,90 @@ describe('Modal', () => {
 
   describe('onOpen', () => {
     it('is called on trigger click', () => {
-      const spy = jest.fn()
-      wrapperMount(<Modal onOpen={spy} trigger={<div id='trigger' />} />)
+      const onOpen = jest.fn()
+      wrapperMount(<Modal onOpen={onOpen} trigger={<div id='trigger' />} />)
 
       wrapper.find('#trigger').simulate('click')
-      expect(spy).have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
 
     it('is not called on body click', () => {
-      const spy = jest.fn()
-      wrapperMount(<Modal onOpen={spy} />)
+      const onOpen = jest.fn()
+      wrapperMount(<Modal onOpen={onOpen} />)
 
       domEvent.click(document.body)
-      expect(spy).not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
   })
 
   describe('onClose', () => {
-    let spy
+    let onOpen
 
     beforeEach(() => {
-      spy = jest.fn()
+      onOpen = jest.fn()
     })
 
     it('is called on dimmer click', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       domEvent.click('.ui.dimmer')
-      expect(spy).have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
 
     it('is called on click outside of the modal', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       domEvent.click(document.querySelector('.ui.modal').parentNode)
-      expect(spy).have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
 
     it('is not called on click inside of the modal', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       domEvent.click(document.querySelector('.ui.modal'))
-      expect(spy).not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is not called on body click', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       domEvent.click(document.body)
-      expect(spy).not.have.been.calledOnce()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is called when pressing escape', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       domEvent.keyDown(document, { key: 'Escape' })
-      expect(spy).have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
 
     it('is not called when the open prop changes to false', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       wrapper.setProps({ open: false })
-      expect(spy).not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is not called when open changes to false programmatically', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       wrapper.setProps({ open: false })
-      expect(spy).not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is not called on dimmer click when closeOnDimmerClick is false', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen closeOnDimmerClick={false} />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen closeOnDimmerClick={false} />)
 
       domEvent.click('.ui.dimmer')
-      expect(spy).not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is not called on body click when closeOnDocumentClick is false', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen closeOnDocumentClick={false} />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen closeOnDocumentClick={false} />)
 
       domEvent.click(document.body)
-      expect(spy).not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
   })
 
@@ -445,15 +444,15 @@ describe('Modal', () => {
     })
 
     it('triggers onClose when clicked', () => {
-      const spy = jest.fn()
+      const onOpen = jest.fn()
 
       wrapperMount(
-        <Modal onClose={spy} open closeIcon='bullseye'>
+        <Modal onClose={onOpen} open closeIcon='bullseye'>
           foo
         </Modal>,
       )
       domEvent.click('.ui.modal .icon.bullseye')
-      expect(spy).have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
   })
 

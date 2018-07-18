@@ -123,7 +123,7 @@ describe('Confirm', () => {
 
     it('is not called on click inside of the modal', () => {
       domEvent.click(document.querySelector('.ui.modal'))
-      expect(spy).not.toHaveBeenCalledTimes(1)
+      expect(spy).not.toHaveBeenCalled()
     })
 
     it('is not called on body click', () => {

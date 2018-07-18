@@ -32,7 +32,7 @@ describe('Dimmer', () => {
         const dimmer = mount(<Dimmer page active />)
         const classes = document.body.classList
 
-        expect(dimmer.find(Portal)).have.prop('open', true)
+        expect(dimmer.find(Portal).prop('open')).toBe(true)
 
         expect(classes.contains('dimmable')).toBe(true)
         expect(classes.contains('dimmed')).toBe(true)
@@ -42,7 +42,7 @@ describe('Dimmer', () => {
         const dimmer = mount(<Dimmer page active={false} />)
         const classes = document.body.classList
 
-        expect(dimmer.find(Portal)).have.prop('open', false)
+        expect(dimmer.find(Portal).prop('open')).toBe(false)
 
         expect(classes.contains('dimmable')).toBe(false)
         expect(classes.contains('dimmed')).toBe(false)

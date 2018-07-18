@@ -135,7 +135,7 @@ describe('Dropdown', () => {
 
   describe('defaultSearchQuery', () => {
     it('changes default value of searchQuery', () => {
-      expect(shallow(<Dropdown defaultSearchQuery='foo' />)).have.state('searchQuery', 'foo')
+      expect(shallow(<Dropdown defaultSearchQuery='foo' />).state('searchQuery')).toBe('foo')
     })
   })
 
@@ -159,33 +159,30 @@ describe('Dropdown', () => {
     wrapperMount(<Dropdown options={options} selection defaultOpen />)
 
     const instance = wrapper.instance()
-    sandbox.spy(instance.ref, 'blur')
+    const blur = jest.spyOn(instance.ref, 'blur')
 
     dropdownMenuIsOpen()
     wrapper.simulate('click')
     dropdownMenuIsClosed()
 
-    expect(instance.ref.blur).have.been.calledOnce()
+    expect(blur).toHaveBeenCalledTimes(1)
   })
 
   it('blurs the Dropdown node on close by clicking outside component', () => {
     wrapperMount(<Dropdown options={options} selection defaultOpen />)
 
     const instance = wrapper.instance()
-    sandbox.spy(instance.ref, 'blur')
+    const blur = jest.spyOn(instance.ref, 'blur')
 
     dropdownMenuIsOpen()
     document.body.click()
     dropdownMenuIsClosed()
 
-    expect(instance.ref.blur).have.been.calledOnce()
+    expect(blur).toHaveBeenCalledTimes(1)
   })
 
   it('does not close on click when search is true and options are empty', () => {
     wrapperMount(<Dropdown options={[]} search selection defaultOpen />)
-
-    const instance = wrapper.instance()
-    sandbox.spy(instance.ref, 'blur')
 
     dropdownMenuIsOpen()
     wrapper.simulate('click')
@@ -343,24 +340,24 @@ describe('Dropdown', () => {
 
   describe('handleBlur', () => {
     it('passes the event to the onBlur prop', () => {
-      const spy = jest.fn()
+      const onBlur = jest.fn()
       const event = { foo: 'bar' }
 
-      wrapperShallow(<Dropdown onBlur={spy} />).simulate('blur', event)
+      wrapperShallow(<Dropdown onBlur={onBlur} />).simulate('blur', event)
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(event)
+      expect(onBlur).toHaveBeenCalledTimes(1)
+      expect(onBlur).toHaveBeenCalledWith(event)
     })
 
     it('calls makeSelectedItemActive', () => {
       wrapperShallow(<Dropdown selectOnBlur />)
 
       const instance = wrapper.instance()
-      sandbox.spy(instance, 'makeSelectedItemActive')
+      const makeSelectedItemActive = jest.spyOn(instance, 'makeSelectedItemActive')
 
       wrapper.simulate('blur')
 
-      expect(instance.makeSelectedItemActive).have.been.calledOnce()
+      expect(makeSelectedItemActive).toHaveBeenCalledTimes(1)
     })
 
     it('sets focus state to false', () => {
@@ -386,7 +383,7 @@ describe('Dropdown', () => {
       wrapper.simulate('mousedown')
       wrapper.simulate('blur')
 
-      expect(spy).not.have.been.called()
+      expect(spy).not.toHaveBeenCalled()
     })
 
     it('does not call makeSelectedItemActive when the mouse is down', () => {
@@ -400,7 +397,7 @@ describe('Dropdown', () => {
       wrapper.simulate('mousedown')
       wrapper.simulate('blur')
 
-      expect(instance.makeSelectedItemActive).not.have.been.called()
+      expect(instance.makeSelectedItemActive).not.toHaveBeenCalled()
     })
 
     it('does not set focus state when the mouse is down', () => {
@@ -425,7 +422,7 @@ describe('Dropdown', () => {
       wrapper.simulate('click')
       dropdownMenuIsClosed()
 
-      expect(instance.handleClose).have.been.calledOnce()
+      expect(instance.handleClose).toHaveBeenCalledTimes(1)
     })
 
     it('prevents Space from opening a search Dropdown after selecting an item', () => {
@@ -499,7 +496,7 @@ describe('Dropdown', () => {
 
       wrapper.setProps({ options: [] })
 
-      expect(instance.setSelectedIndex).have.been.calledOnce()
+      expect(instance.setSelectedIndex).toHaveBeenCalledTimes(1)
     })
 
     it('will not call setSelectedIndex if options have not changed', () => {
@@ -510,7 +507,7 @@ describe('Dropdown', () => {
 
       wrapper.setProps({ options })
 
-      expect(instance.setSelectedIndex).not.have.been.calledOnce()
+      expect(instance.setSelectedIndex).not.toHaveBeenCalled()
     })
   })
 
@@ -557,8 +554,8 @@ describe('Dropdown', () => {
         .find('i.icon')
         .simulate('click', event)
 
-      expect(onClick).have.been.calledOnce()
-      expect(onClick).have.been.calledWithMatch(event, props)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(event, props)
     })
   })
 
@@ -815,7 +812,7 @@ describe('Dropdown', () => {
       // move selection down
       domEvent.keyDown(document, { key: 'ArrowDown' })
 
-      expect(instance.moveSelectionBy).have.been.calledOnce()
+      expect(instance.moveSelectionBy).toHaveBeenCalledTimes(1)
     })
     it('scrolls the selected item into view', () => {
       // get enough options to make the menu scrollable
@@ -1190,7 +1187,7 @@ describe('Dropdown', () => {
       wrapperMount(<Dropdown options={options} selection onOpen={onOpen} />)
 
       wrapper.simulate('click')
-      expect(onOpen).have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
 
     it('not called when dropdown would not open', () => {
@@ -1198,7 +1195,7 @@ describe('Dropdown', () => {
       wrapperMount(<Dropdown options={options} selection onOpen={onOpen} />)
 
       domEvent.keyDown(document, { key: 'ArrowDown' })
-      expect(onOpen).not.have.been.calledOnce()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is called once when the icon is clicked with a search prop', () => {
@@ -1208,7 +1205,7 @@ describe('Dropdown', () => {
         .find('i.icon')
         .simulate('click')
 
-      expect(onOpen).have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -1218,7 +1215,7 @@ describe('Dropdown', () => {
       wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
 
       wrapper.simulate('click')
-      expect(onClose).have.been.calledOnce()
+      expect(onClose).toHaveBeenCalledTimes(1)
     })
 
     it('called once even when blurred', () => {
@@ -1229,7 +1226,7 @@ describe('Dropdown', () => {
 
       wrapper.simulate('click')
       wrapper.simulate('blur')
-      expect(onClose).have.been.calledOnce()
+      expect(onClose).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -1268,11 +1265,11 @@ describe('Dropdown', () => {
       const instance = wrapper.instance()
       sandbox.spy(instance, 'scrollSelectedItemIntoView')
 
-      expect(instance.scrollSelectedItemIntoView).not.have.been.called()
+      expect(instance.scrollSelectedItemIntoView).not.toHaveBeenCalled()
 
       wrapper.setProps({ open: true })
 
-      expect(instance.scrollSelectedItemIntoView).have.been.calledOnce()
+      expect(instance.scrollSelectedItemIntoView).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -1411,7 +1408,7 @@ describe('Dropdown', () => {
           .at(randomIndex)
           .simulate('click', nativeEvent)
 
-        expect(spy).have.been.calledWithMatch({}, { value: randomValue })
+        expect(spy).toHaveBeenCalledWith({}, { value: randomValue })
       })
 
       it('refocuses search on select', () => {
@@ -1440,33 +1437,33 @@ describe('Dropdown', () => {
           .at(randomIndex)
           .simulate('click')
 
-        expect(spy).have.been.calledOnce()
-        expect(spy).have.been.calledWithMatch({}, { value: expected })
+        expect(spy).toHaveBeenCalledTimes(1)
+        expect(spy).toHaveBeenCalledWith({}, { value: expected })
       })
     })
   })
 
   describe('removing items on backspace', () => {
-    let spy
+    let onChange
     beforeEach(() => {
-      spy = jest.fn()
+      onChange = jest.fn()
     })
 
     it('does nothing without selected items', () => {
-      wrapperMount(<Dropdown options={options} selection multiple search onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection multiple search onChange={onChange} />)
 
       // open
       wrapper.simulate('click')
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      expect(spy).not.have.been.called()
+      expect(onChange).not.toHaveBeenCalled()
     })
     it('removes the last item when there is no search query', () => {
       const value = _.map(options, 'value')
       const expected = _.dropRight(value)
       wrapperMount(
-        <Dropdown options={options} selection value={value} multiple search onChange={spy} />,
+        <Dropdown options={options} selection value={value} multiple search onChange={onChange} />,
       )
 
       // open
@@ -1474,8 +1471,8 @@ describe('Dropdown', () => {
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch({}, { value: expected })
+      expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onChange).toHaveBeenCalledWith({}, { value: expected })
     })
     it('removes the last item when there is no search query when uncontrolled', () => {
       const value = _.map(options, 'value')
@@ -1487,7 +1484,7 @@ describe('Dropdown', () => {
           defaultValue={value}
           multiple
           search
-          onChange={spy}
+          onChange={onChange}
         />,
       )
 
@@ -1496,8 +1493,8 @@ describe('Dropdown', () => {
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch({}, { value: expected })
+      expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onChange).toHaveBeenCalledWith({}, { value: expected })
 
       expect(wrapper.state('value')).toEqual(expected)
     })
@@ -1506,7 +1503,7 @@ describe('Dropdown', () => {
       const searchQuery = _.sample(options).text
       const value = _.map(options, 'value')
       wrapperMount(
-        <Dropdown options={options} selection value={value} multiple search onChange={spy} />,
+        <Dropdown options={options} selection value={value} multiple search onChange={onChange} />,
       )
 
       // open and simulate search
@@ -1514,91 +1511,91 @@ describe('Dropdown', () => {
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      expect(spy).not.have.been.called()
+      expect(onChange).not.toHaveBeenCalled()
     })
     it('does not remove items for multiple dropdowns without search', () => {
       const value = _.map(options, 'value')
-      wrapperMount(<Dropdown options={options} selection value={value} multiple onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection value={value} multiple onChange={onChange} />)
 
       // open
       wrapper.simulate('click')
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      expect(spy).not.have.been.called()
+      expect(onChange).not.toHaveBeenCalled()
     })
   })
 
   describe('onChange', () => {
-    let spy
+    let onChange
     beforeEach(() => {
-      spy = jest.fn()
+      onChange = jest.fn()
     })
 
     it('is called with event and value on item click', () => {
       const randomIndex = _.random(options.length - 1)
       const randomValue = options[randomIndex].value
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection onChange={onChange} />)
         .simulate('click')
         .find('DropdownItem')
         .at(randomIndex)
         .simulate('click')
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch({}, { value: randomValue })
+      expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onChange).toHaveBeenCalledWith({}, { value: randomValue })
     })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstValue = options[0].value
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />).simulate('click')
+      wrapperMount(<Dropdown options={options} selection onChange={onChange} />).simulate('click')
 
       domEvent.keyDown(document, { key: 'Enter' })
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch({}, { value: firstValue })
+      expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onChange).toHaveBeenCalledWith({}, { value: firstValue })
     })
     it('is called with event and value when blurring', () => {
       const firstValue = options[0].value
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection onChange={onChange} />)
         .simulate('focus') // open, highlights first item
         .simulate('blur') // blur should activate selected item
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch({}, { value: firstValue })
+      expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onChange).toHaveBeenCalledWith({}, { value: firstValue })
     })
     it('is not called on blur when closed', () => {
-      wrapperMount(<Dropdown options={options} selection open={false} onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection open={false} onChange={onChange} />)
         .simulate('focus')
         .simulate('blur')
 
-      expect(spy).not.have.been.called()
+      expect(onChange).not.toHaveBeenCalled()
     })
     it('is not called on blur when selectOnBlur is false', () => {
-      wrapperMount(<Dropdown options={options} selection onChange={spy} selectOnBlur={false} />)
+      wrapperMount(<Dropdown options={options} selection onChange={onChange} selectOnBlur={false} />)
         .simulate('focus')
         .simulate('click')
 
       wrapper.simulate('blur')
 
-      expect(spy).not.have.been.called()
+      expect(onChange).not.toHaveBeenCalled()
     })
     it('is not called on blur with multiple select', () => {
-      wrapperMount(<Dropdown options={options} selection onChange={spy} multiple />)
+      wrapperMount(<Dropdown options={options} selection onChange={onChange} multiple />)
         .simulate('focus')
         .simulate('click')
 
       wrapper.simulate('blur')
 
-      expect(spy).not.have.been.called()
+      expect(onChange).not.toHaveBeenCalled()
     })
     it('is not called when updating the value prop', () => {
       const value = _.sample(options).value
       const next = _.sample(_.without(options, value)).value
 
-      wrapperMount(<Dropdown options={options} selection value={value} onChange={spy} />).setProps({
+      wrapperMount(<Dropdown options={options} selection value={value} onChange={onChange} />).setProps({
         value: next,
       })
 
-      expect(spy).not.have.been.called()
+      expect(onChange).not.toHaveBeenCalled()
     })
   })
 
@@ -1608,8 +1605,8 @@ describe('Dropdown', () => {
       wrapperMount(<Dropdown onClick={onClick} options={options} />)
       wrapper.simulate('click', { stopPropagation: _.noop })
 
-      expect(onClick).have.been.calledOnce()
-      expect(onClick).have.been.calledWithMatch({}, { options })
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith({}, { options })
     })
 
     it("toggles the dropdown when it's not searchable", () => {
@@ -1646,8 +1643,8 @@ describe('Dropdown', () => {
       wrapperMount(<Dropdown onFocus={onFocus} options={options} />)
       wrapper.simulate('focus')
 
-      expect(onFocus).have.been.calledOnce()
-      expect(onFocus).have.been.calledWithMatch({}, { options })
+      expect(onFocus).toHaveBeenCalledTimes(1)
+      expect(onFocus).toHaveBeenCalledWith({}, { options })
     })
 
     it("opens the dropdown when it's not searchable", () => {
@@ -1679,8 +1676,8 @@ describe('Dropdown', () => {
         .find('input.search')
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(
+      expect(spy).toHaveBeenCalledTimes(1)
+      expect(spy).toHaveBeenCalledWith(
         { target: { value: 'a' } },
         {
           search: true,
@@ -1728,7 +1725,7 @@ describe('Dropdown', () => {
       wrapper.simulate('click')
       dropdownMenuIsOpen()
 
-      expect(instance.handleItemClick).not.have.been.called()
+      expect(instance.handleItemClick).not.toHaveBeenCalled()
 
       // click random item
       wrapper
@@ -1736,7 +1733,7 @@ describe('Dropdown', () => {
         .at(_.random(0, options.length - 1))
         .simulate('click')
 
-      expect(instance.handleItemClick).have.been.calledOnce()
+      expect(instance.handleItemClick).toHaveBeenCalledTimes(1)
     })
     it('renders new options when options change', () => {
       const customOptions = [
@@ -1854,7 +1851,7 @@ describe('Dropdown', () => {
       // simulate search
       wrapper.find('input.search').simulate('change', { target: { value: faker.hacker.noun() } })
 
-      expect(onChangeSpy).not.have.been.called()
+      expect(onChangeSpy).not.toHaveBeenCalled()
     })
 
     it('filters the items based on display text', () => {
@@ -1883,8 +1880,8 @@ describe('Dropdown', () => {
       // search for value yields 2 results as per our custom search function
       search.simulate('change', { target: { value: searchQuery } })
 
-      expect(searchFunction).have.been.calledOnce()
-      expect(searchFunction).have.been.calledWithMatch(options, searchQuery)
+      expect(searchFunction).toHaveBeenCalledTimes(1)
+      expect(searchFunction).toHaveBeenCalledWith(options, searchQuery)
 
       expect(wrapper.find('DropdownItem')).toHaveLength(2)
     })
@@ -2054,7 +2051,7 @@ describe('Dropdown', () => {
       const instance = wrapper.instance()
       sandbox.spy(instance, 'renderText')
 
-      expect(instance.renderText).not.have.been.called()
+      expect(instance.renderText).not.toHaveBeenCalled()
 
       instance.render()
 
@@ -2301,9 +2298,9 @@ describe('Dropdown', () => {
         .first()
         .simulate('click')
 
-      expect(onChange).have.been.calledOnce()
-      expect(onAddItem).have.been.calledOnce()
-      expect(onAddItem).have.been.calledWithMatch({}, { value: 'boo' })
+      expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onAddItem).toHaveBeenCalledTimes(1)
+      expect(onAddItem).toHaveBeenCalledWith({}, { value: 'boo' })
       expect(onAddItem).have.been.calledImmediatelyAfter(onChange)
     })
 
@@ -2324,9 +2321,9 @@ describe('Dropdown', () => {
       search.simulate('change', { target: { value: 'boo' } })
       domEvent.keyDown(document, { key: 'Enter' })
 
-      expect(onChange).have.been.calledOnce()
-      expect(onAddItem).have.been.calledOnce()
-      expect(onAddItem).have.been.calledWithMatch({}, { value: 'boo' })
+      expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onAddItem).toHaveBeenCalledTimes(1)
+      expect(onAddItem).toHaveBeenCalledWith({}, { value: 'boo' })
       expect(onAddItem).have.been.calledImmediatelyAfter(onChange)
     })
 
@@ -2370,8 +2367,8 @@ describe('Dropdown', () => {
         'Dropdown `value` must not be an array when `multiple` is not set.' +
         ' Either set `multiple={true}` or use a string or number value.'
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(errorMessage)
+      expect(spy).toHaveBeenCalledTimes(1)
+      expect(spy).toHaveBeenCalledWith(errorMessage)
     })
 
     it('logs an error if dropdown is multiple and value not array', () => {
@@ -2388,8 +2385,8 @@ describe('Dropdown', () => {
         'Dropdown `value` must be an array when `multiple` is set.' +
         ` Received type: \`${Object.prototype.toString.call(nextValue)}\`.`
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(errorMessage)
+      expect(spy).toHaveBeenCalledTimes(1)
+      expect(spy).toHaveBeenCalledWith(errorMessage)
     })
   })
 
@@ -2409,7 +2406,7 @@ describe('Dropdown', () => {
     })
 
     it('does not change value when set to false', () => {
-      const spy = jest.fn()
+      const onChange = jest.fn()
       const value = options[0].value
 
       wrapperMount(
@@ -2417,7 +2414,7 @@ describe('Dropdown', () => {
           options={options}
           defaultValue={value}
           selectOnNavigation={false}
-          onChange={spy}
+          onChange={onChange}
         />,
       )
 
@@ -2426,7 +2423,7 @@ describe('Dropdown', () => {
 
       domEvent.keyDown(document, { key: 'ArrowDown' })
 
-      expect(spy).not.have.been.called()
+      expect(onChange).not.toHaveBeenCalled()
       expect(wrapper).have.state('value', value)
     })
   })

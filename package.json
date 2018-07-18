@@ -59,7 +59,7 @@
       "^test/(.*)$": "<rootDir>/test/$1"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/test/setupTests.js",
-    "testRegex": "/test/specs/(addons|collections|elements|lib|views)/.*-test\\.js$"
+    "testRegex": "/test/specs/(modules)/.*-test\\.js$"
   },
   "lint-staged": {
     "**/*.{js,jsx}": [

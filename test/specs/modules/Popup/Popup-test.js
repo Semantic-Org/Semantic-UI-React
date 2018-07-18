@@ -237,10 +237,7 @@ describe('Popup', () => {
 
   describe('hoverable', () => {
     it('can be set to stay visible while hovering the popup', () => {
-      expect(shallow(<Popup hoverable open />).find('Portal')).have.prop(
-        'closeOnPortalMouseLeave',
-        true,
-      )
+      expect(shallow(<Popup hoverable open />).find('Portal').prop('closeOnPortalMouseLeave')).toBe(true)
     })
   })
 
@@ -265,8 +262,8 @@ describe('Popup', () => {
         .simulate('click')
 
       domEvent.scroll(window)
-      expect(onClose).have.been.calledOnce()
-      expect(onClose).have.been.calledWithMatch({}, { content: 'foo', onClose, trigger })
+      expect(onClose).toHaveBeenCalledTimes(1)
+      expect(onClose).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining({ content: 'foo', onClose, trigger }))
     })
   })
 
@@ -386,9 +383,9 @@ describe('Popup', () => {
     })
 
     it('is passed to Portal open', () => {
-      expect(shallow(<Popup open />).find('Portal')).have.prop('open', true)
+      expect(shallow(<Popup open />).find('Portal').prop('open')).toBe(true)
 
-      expect(shallow(<Popup open={false} />).find('Portal')).have.prop('open', false)
+      expect(shallow(<Popup open={false} />).find('Portal').prop('open')).toBe(false)
     })
 
     it('does not show the popup when false', () => {
@@ -471,22 +468,22 @@ describe('Popup', () => {
 
     it('is not called on click inside of the popup', () => {
       domEvent.click(document.querySelector('.ui.popup'))
-      expect(onClose).not.have.been.calledOnce()
+      expect(onClose).not.toHaveBeenCalled()
     })
 
     it('is called on body click', () => {
       domEvent.click('body')
-      expect(onClose).have.been.calledOnce()
+      expect(onClose).toHaveBeenCalledTimes(1)
     })
 
     it('is called when pressing escape', () => {
       domEvent.keyDown(document, { key: 'Escape' })
-      expect(onClose).have.been.calledOnce()
+      expect(onClose).toHaveBeenCalledTimes(1)
     })
 
     it('is not called when the open prop changes to false', () => {
       wrapper.setProps({ open: false })
-      expect(onClose).not.have.been.called()
+      expect(onClose).not.toHaveBeenCalled()
     })
   })
 })

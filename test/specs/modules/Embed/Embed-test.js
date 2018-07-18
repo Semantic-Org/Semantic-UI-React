@@ -43,19 +43,19 @@ describe('Embed', () => {
 
   describe('active', () => {
     it('defaults to false', () => {
-      expect(shallow(<Embed />)).have.not.state('active')
+      expect(shallow(<Embed />).state('active')).toBeUndefined()
     })
 
     it('passes to state', () => {
-      expect(shallow(<Embed active />)).have.state('active', true)
+      expect(shallow(<Embed active />).state('active')).toBe(true)
     })
 
     it('renders nothing when false', () => {
       const children = 'child text'
 
-      expect(shallow(<Embed>{children}</Embed>)).not.toContain(
+      expect(shallow(<Embed>{children}</Embed>).contains(
         <div className='embed'>{children}</div>,
-      )
+      )).toBe(false)
     })
   })
 
@@ -87,9 +87,9 @@ describe('Embed', () => {
 
   describe('defaultActive', () => {
     it('sets the initial active state', () => {
-      expect(shallow(<Embed defaultActive />)).have.state('active', true)
+      expect(shallow(<Embed defaultActive />).state('active')).toBe(true)
 
-      expect(shallow(<Embed defaultActive={false} />)).have.state('active', false)
+      expect(shallow(<Embed defaultActive={false} />).state('active')).toBe(false)
     })
   })
 
@@ -124,14 +124,14 @@ describe('Embed', () => {
       const wrapper = mount(<Embed />)
 
       wrapper.simulate('click')
-      expect(wrapper).have.state('active', true)
+      expect(wrapper.state('active')).toBe(true)
     })
 
     it('omits state update if active', () => {
       const wrapper = mount(<Embed active />)
 
       wrapper.simulate('click')
-      expect(wrapper).have.state('active', true)
+      expect(wrapper.state('active')).toBe(true)
     })
   })
 
