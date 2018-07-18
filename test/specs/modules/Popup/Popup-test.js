@@ -147,19 +147,28 @@ describe('Popup', () => {
 
         const rect = document.querySelector('.popup.ui').getBoundingClientRect()
         const { top, right, bottom, left } = rect
-
         expect(top).to.be.at.least(0)
         expect(left).to.be.at.least(0)
         expect(bottom).to.be.at.most(document.documentElement.clientHeight)
         expect(right).to.be.at.most(document.documentElement.clientWidth)
       })
-      it('is positioned properly when open property is set', () => {
+      it('is positioned properly when open property is set', (done) => {
         wrapperMount(<Popup content='_' position={position} open trigger={<button>foo</button>} />)
-        const element = document.querySelector('.popup.ui')
-        element.style.should.have.property('top', '')
-        element.style.should.have.property('left', '')
-        element.style.should.have.property('bottom', '')
-        element.style.should.have.property('right', '')
+        setTimeout(() => {
+          const element = document.querySelector('.popup.ui')
+          const { top, left, bottom, right } = element.style
+          expect(element.style.position).to.equal('absolute')
+          expect(top).to.not.equal('')
+          expect(left).to.not.equal('')
+          expect(bottom).to.not.equal('')
+          expect(right).to.not.equal('')
+
+          // element.style.should.have.property('top', '')
+          // element.style.should.have.property('left', '')
+          // element.style.should.have.property('bottom', '')
+          // element.style.should.have.property('right', '')
+          done()
+        }, 1)
       })
       it('is the original if no horizontal position fits within the viewport', () => {
         wrapperMount(
@@ -321,17 +330,6 @@ describe('Popup', () => {
         assertInBody('.ui.popup.visible')
         done()
       }, 51)
-    })
-
-    it('it should appear when trigger has been mounted', (done) => {
-      const trigger = <button>foo</button>
-      wrapperMount(<Popup id='context-popup' open trigger={trigger} />)
-
-      setTimeout(() => {
-        const styles = document.querySelector('#context-popup').style
-        expect(styles.position).to.equal('absolute')
-        done()
-      }, 1)
     })
   })
 
