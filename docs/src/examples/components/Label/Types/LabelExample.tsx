@@ -1,6 +1,6 @@
 import React from 'react'
 import { Label } from 'stardust'
 
-const LabelExample = () => <Label content="You have 23 emails" />
+const LabelExample = () => <Label>You have 23 emails</Label>
 
 export default LabelExample
