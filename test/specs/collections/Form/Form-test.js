@@ -14,7 +14,7 @@ import FormSelect from 'src/collections/Form/FormSelect'
 import FormTextArea from 'src/collections/Form/FormTextArea'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { consoleUtil, sandbox } from 'test/utils'
+import { consoleUtil } from 'test/utils'
 
 describe('Form', () => {
   common.isConformant(Form)
@@ -66,7 +66,7 @@ describe('Form', () => {
       // In this test we pass some invalid values to verify correct work.
       consoleUtil.disableOnce()
 
-      const event = { preventDefault: sandbox.spy() }
+      const event = { preventDefault: jest.fn() }
 
       shallow(<Form />).simulate('submit', event)
       shallow(<Form action={false} />).simulate('submit', event)
@@ -76,7 +76,7 @@ describe('Form', () => {
     })
 
     it('does not prevent default on the event when there is an action', () => {
-      const event = { preventDefault: sandbox.spy() }
+      const event = { preventDefault: jest.fn() }
 
       shallow(<Form action='do not prevent default!' />).simulate('submit', event)
 
@@ -86,7 +86,7 @@ describe('Form', () => {
     })
 
     it('is called with (e, props) on submit', () => {
-      const onSubmit = sandbox.spy()
+      const onSubmit = jest.fn()
       const event = { name: 'foo' }
       const props = { 'data-bar': 'baz' }
 
@@ -97,7 +97,7 @@ describe('Form', () => {
     })
 
     it('passes all args to onSubmit', () => {
-      const onSubmit = sandbox.spy()
+      const onSubmit = jest.fn()
       const props = { 'data-baz': 'baz' }
       const event = { fake: 'event' }
       const args = ['some', 'extra', 'args']

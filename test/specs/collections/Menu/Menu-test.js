@@ -7,7 +7,6 @@ import MenuHeader from 'src/collections/Menu/MenuHeader'
 import MenuMenu from 'src/collections/Menu/MenuMenu'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('Menu', () => {
   common.isConformant(Menu)
@@ -76,7 +75,7 @@ describe('Menu', () => {
   })
 
   describe('items', () => {
-    const spy = sandbox.spy()
+    const spy = jest.fn()
     const items = [
       { key: 'home', name: 'home', onClick: spy, 'data-foo': 'something' },
       { key: 'users', name: 'users', active: true, 'data-foo': 'something' },
@@ -121,8 +120,8 @@ describe('Menu', () => {
 
     it('is called with (e, { name, index }) when clicked', () => {
       const event = { target: null }
-      const itemSpy = sandbox.spy()
-      const menuSpy = sandbox.spy()
+      const itemSpy = jest.fn()
+      const menuSpy = jest.fn()
 
       const items = [
         { key: 'home', name: 'home' },

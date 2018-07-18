@@ -7,7 +7,6 @@ import MessageHeader from 'src/collections/Message/MessageHeader'
 import MessageList from 'src/collections/Message/MessageList'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('Message', () => {
   common.isConformant(Message)
@@ -90,14 +89,14 @@ describe('Message', () => {
       const event = { fake: 'event data' }
       const props = { icon: true }
 
-      const spy = sandbox.spy()
-      const wrapper = mount(<Message {...props} onDismiss={spy} />)
+      const onDismiss = jest.fn()
+      const wrapper = mount(<Message {...props} onDismiss={onDismiss} />)
 
       expect(wrapper).have.descendants('.close.icon')
       wrapper.find('.close.icon').simulate('click', event)
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(event, props)
+      expect(onDismiss).have.been.calledOnce()
+      expect(onDismiss).have.been.calledWithMatch(event, props)
     })
   })
 })

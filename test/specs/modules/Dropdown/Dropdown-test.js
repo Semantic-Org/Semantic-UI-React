@@ -3,7 +3,7 @@ import faker from 'faker'
 import React from 'react'
 
 import * as common from 'test/specs/commonTests'
-import { consoleUtil, domEvent, sandbox } from 'test/utils'
+import { consoleUtil, domEvent } from 'test/utils'
 import Dropdown from 'src/modules/Dropdown/Dropdown'
 import DropdownDivider from 'src/modules/Dropdown/DropdownDivider'
 import DropdownHeader from 'src/modules/Dropdown/DropdownHeader'
@@ -343,7 +343,7 @@ describe('Dropdown', () => {
 
   describe('handleBlur', () => {
     it('passes the event to the onBlur prop', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       const event = { foo: 'bar' }
 
       wrapperShallow(<Dropdown onBlur={spy} />).simulate('blur', event)
@@ -379,7 +379,7 @@ describe('Dropdown', () => {
     })
 
     it('does not call onBlur when the mouse is down', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
 
       wrapperShallow(<Dropdown onBlur={spy} selectOnBlur />)
 
@@ -390,7 +390,7 @@ describe('Dropdown', () => {
     })
 
     it('does not call makeSelectedItemActive when the mouse is down', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
 
       wrapperShallow(<Dropdown onBlur={spy} selectOnBlur />)
 
@@ -550,7 +550,7 @@ describe('Dropdown', () => {
 
     it('passes onClick handler', () => {
       const event = { target: null }
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
       const props = { name: 'user', onClick }
 
       wrapperMount(<Dropdown icon={props} options={options} />)
@@ -1186,7 +1186,7 @@ describe('Dropdown', () => {
 
   describe('onOpen', () => {
     it('called when dropdown would open', () => {
-      const onOpen = sandbox.spy()
+      const onOpen = jest.fn()
       wrapperMount(<Dropdown options={options} selection onOpen={onOpen} />)
 
       wrapper.simulate('click')
@@ -1194,7 +1194,7 @@ describe('Dropdown', () => {
     })
 
     it('not called when dropdown would not open', () => {
-      const onOpen = sandbox.spy()
+      const onOpen = jest.fn()
       wrapperMount(<Dropdown options={options} selection onOpen={onOpen} />)
 
       domEvent.keyDown(document, { key: 'ArrowDown' })
@@ -1203,7 +1203,7 @@ describe('Dropdown', () => {
 
     it('is called once when the icon is clicked with a search prop', () => {
       // https://github.com/Semantic-Org/Semantic-UI-React/issues/2600
-      const onOpen = sandbox.spy()
+      const onOpen = jest.fn()
       wrapperMount(<Dropdown options={options} selection search onOpen={onOpen} />)
         .find('i.icon')
         .simulate('click')
@@ -1214,7 +1214,7 @@ describe('Dropdown', () => {
 
   describe('onClose', () => {
     it('called when dropdown would close', () => {
-      const onClose = sandbox.spy()
+      const onClose = jest.fn()
       wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
 
       wrapper.simulate('click')
@@ -1224,7 +1224,7 @@ describe('Dropdown', () => {
     it('called once even when blurred', () => {
       // Heads up!
       // Special test for: https://github.com/Semantic-Org/Semantic-UI-React/issues/2953
-      const onClose = sandbox.spy()
+      const onClose = jest.fn()
       wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
 
       wrapper.simulate('click')
@@ -1369,7 +1369,7 @@ describe('Dropdown', () => {
     describe('selecting items', () => {
       let spy
       beforeEach(() => {
-        spy = sandbox.spy()
+        spy = jest.fn()
       })
 
       it('does not close the menu on clicking on a label', () => {
@@ -1432,7 +1432,7 @@ describe('Dropdown', () => {
         const randomIndex = _.random(options.length - 1)
         const randomValue = value[randomIndex]
         const expected = _.without(value, randomValue)
-        const spy = sandbox.spy()
+        const spy = jest.fn()
         wrapperMount(<Dropdown options={options} selection value={value} multiple onChange={spy} />)
 
         wrapper
@@ -1449,7 +1449,7 @@ describe('Dropdown', () => {
   describe('removing items on backspace', () => {
     let spy
     beforeEach(() => {
-      spy = sandbox.spy()
+      spy = jest.fn()
     })
 
     it('does nothing without selected items', () => {
@@ -1532,7 +1532,7 @@ describe('Dropdown', () => {
   describe('onChange', () => {
     let spy
     beforeEach(() => {
-      spy = sandbox.spy()
+      spy = jest.fn()
     })
 
     it('is called with event and value on item click', () => {
@@ -1604,7 +1604,7 @@ describe('Dropdown', () => {
 
   describe('onClick', () => {
     it('is called with (event, props)', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
       wrapperMount(<Dropdown onClick={onClick} options={options} />)
       wrapper.simulate('click', { stopPropagation: _.noop })
 
@@ -1642,7 +1642,7 @@ describe('Dropdown', () => {
 
   describe('onFocus', () => {
     it('is called with (event, props)', () => {
-      const onFocus = sandbox.spy()
+      const onFocus = jest.fn()
       wrapperMount(<Dropdown onFocus={onFocus} options={options} />)
       wrapper.simulate('focus')
 
@@ -1674,7 +1674,7 @@ describe('Dropdown', () => {
 
   describe('onSearchChange', () => {
     it('is called with (event, value) on search input change', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       wrapperMount(<Dropdown options={options} search selection onSearchChange={spy} />)
         .find('input.search')
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
@@ -1848,7 +1848,7 @@ describe('Dropdown', () => {
     })
 
     it('does not call onChange on query change', () => {
-      const onChangeSpy = sandbox.spy()
+      const onChangeSpy = jest.fn()
       wrapperMount(<Dropdown options={options} selection search onChange={onChangeSpy} />)
 
       // simulate search
@@ -2281,8 +2281,8 @@ describe('Dropdown', () => {
     })
 
     it('calls onAddItem prop when clicking new value', () => {
-      const onAddItem = sandbox.spy()
-      const onChange = sandbox.spy()
+      const onAddItem = jest.fn()
+      const onChange = jest.fn()
       const search = wrapperMount(
         <Dropdown
           allowAdditions
@@ -2308,8 +2308,8 @@ describe('Dropdown', () => {
     })
 
     it('calls onAddItem prop when pressing enter on new value', () => {
-      const onAddItem = sandbox.spy()
-      const onChange = sandbox.spy()
+      const onAddItem = jest.fn()
+      const onChange = jest.fn()
       const search = wrapperMount(
         <Dropdown
           allowAdditions
@@ -2395,7 +2395,7 @@ describe('Dropdown', () => {
 
   describe('selectOnNavigation', () => {
     it('is on by default', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
 
       wrapperMount(<Dropdown options={options} defaultValue={options[0].value} onChange={spy} />)
 
@@ -2409,7 +2409,7 @@ describe('Dropdown', () => {
     })
 
     it('does not change value when set to false', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       const value = options[0].value
 
       wrapperMount(

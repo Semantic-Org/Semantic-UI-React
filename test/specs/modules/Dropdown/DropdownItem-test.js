@@ -2,7 +2,7 @@ import faker from 'faker'
 import React from 'react'
 
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
+
 import DropdownItem from 'src/modules/Dropdown/DropdownItem'
 import Flag from 'src/elements/Flag'
 
@@ -115,16 +115,16 @@ describe('DropdownItem', () => {
     })
 
     it('is called with (e, props) when clicked', () => {
-      const spy = sandbox.spy()
+      const onClick = jest.fn()
 
       const value = faker.hacker.phrase()
       const event = { target: null }
       const props = { value, 'data-foo': 'bar' }
 
-      shallow(<DropdownItem onClick={spy} {...props} />).simulate('click', event)
+      shallow(<DropdownItem onClick={onClick} {...props} />).simulate('click', event)
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(event, props)
+      expect(onClick).have.been.calledOnce()
+      expect(onClick).have.been.calledWithMatch(event, props)
     })
   })
 })

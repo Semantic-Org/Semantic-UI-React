@@ -2,7 +2,6 @@ import React from 'react'
 
 import BreadcrumbSection from 'src/collections/Breadcrumb/BreadcrumbSection'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('BreadcrumbSection', () => {
   common.isConformant(BreadcrumbSection)
@@ -37,7 +36,7 @@ describe('BreadcrumbSection', () => {
 
   describe('onClick', () => {
     it('is called with (e, props) when clicked', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
       const event = { target: null }
       const props = { active: true, content: 'home' }
 

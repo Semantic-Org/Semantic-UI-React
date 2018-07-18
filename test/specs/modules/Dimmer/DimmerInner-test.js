@@ -3,7 +3,6 @@ import React from 'react'
 
 import DimmerInner from 'src/modules/Dimmer/DimmerInner'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('DimmerInner', () => {
   common.isConformant(DimmerInner)
@@ -31,7 +30,7 @@ describe('DimmerInner', () => {
 
   describe('onClickOutside', () => {
     it('called when Dimmer has not children', () => {
-      const onClickOutside = sandbox.spy()
+      const onClickOutside = jest.fn()
       shallow(<DimmerInner onClickOutside={onClickOutside} />).simulate('click')
 
       expect(onClickOutside).have.been.calledOnce()
@@ -40,7 +39,7 @@ describe('DimmerInner', () => {
     it('omitted when click on children', () => {
       const element = document.createElement('div')
       document.body.appendChild(element)
-      const onClickOutside = sandbox.spy()
+      const onClickOutside = jest.fn()
       const wrapper = mount(
         <DimmerInner onClickOutside={onClickOutside}>
           <div>{faker.hacker.phrase()}</div>
@@ -61,7 +60,7 @@ describe('DimmerInner', () => {
     })
 
     it('called when click on Dimmer', () => {
-      const onClickOutside = sandbox.spy()
+      const onClickOutside = jest.fn()
 
       mount(
         <DimmerInner onClickOutside={onClickOutside}>{faker.hacker.phrase()}</DimmerInner>,
@@ -70,7 +69,7 @@ describe('DimmerInner', () => {
     })
 
     it('called when click on center', () => {
-      const onClickOutside = sandbox.spy()
+      const onClickOutside = jest.fn()
       const wrapper = mount(
         <DimmerInner onClickOutside={onClickOutside}>{faker.hacker.phrase()}</DimmerInner>,
       )

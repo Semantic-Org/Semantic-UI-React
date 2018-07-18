@@ -4,7 +4,7 @@ import React from 'react'
 import { htmlInputAttrs } from 'src/lib'
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 // ----------------------------------------
 // Wrapper
@@ -201,7 +201,7 @@ describe('Checkbox', () => {
 
   describe('onChange', () => {
     it('is called with (event { name, value, !checked }) on click', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
       mount(<Checkbox onChange={spy} {...expectProps} />).simulate('click')
 
@@ -216,21 +216,21 @@ describe('Checkbox', () => {
       )
     })
     it('is called once on input click when "id" prop is passed', () => {
-      const onChange = sandbox.spy()
+      const onChange = jest.fn()
       wrapperMount(<Checkbox id='foo' onChange={onChange} />)
 
       domEvent.click('.ui.checkbox input')
       expect(onChange).have.been.calledOnce()
     })
     it('is called once on label click when "id" prop is passed', () => {
-      const onChange = sandbox.spy()
+      const onChange = jest.fn()
       wrapperMount(<Checkbox id='foo' onChange={onChange} />)
 
       domEvent.click('.ui.checkbox label')
       expect(onChange).have.been.calledOnce()
     })
     it('is not called when the checkbox has the disabled prop set', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       mount(<Checkbox disabled onChange={spy} />).simulate('click')
       expect(spy).not.have.been.called()
     })
@@ -238,7 +238,7 @@ describe('Checkbox', () => {
 
   describe('onClick', () => {
     it('is called with (event { name, value, checked }) on label click', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
       mount(<Checkbox onClick={spy} {...expectProps} />).simulate('click')
 
@@ -253,21 +253,21 @@ describe('Checkbox', () => {
       )
     })
     it('is called once on input click when "id" prop is passed', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
       wrapperMount(<Checkbox id='foo' onClick={onClick} />)
 
       domEvent.click('.ui.checkbox input')
       expect(onClick).have.been.calledOnce()
     })
     it('is called once on label click when "id" prop is passed', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
       wrapperMount(<Checkbox id='foo' onClick={onClick} />)
 
       domEvent.click('.ui.checkbox label')
       expect(onClick).have.been.calledOnce()
     })
     it('is not called when the checkbox has the disabled prop set', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       mount(<Checkbox disabled onClick={spy} />).simulate('click')
       expect(spy).not.have.been.called()
     })
@@ -275,7 +275,7 @@ describe('Checkbox', () => {
 
   describe('onMouseDown', () => {
     it('is called with (event { name, value, checked }) on label mouse down', () => {
-      const onMousedDown = sandbox.spy()
+      const onMousedDown = jest.fn()
       const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
       mount(<Checkbox onMouseDown={onMousedDown} {...expectProps} />).simulate('mousedown')
 
@@ -290,7 +290,7 @@ describe('Checkbox', () => {
       )
     })
     it('prevents default event', () => {
-      const preventDefault = sandbox.spy()
+      const preventDefault = jest.fn()
       wrapperShallow(<Checkbox />)
 
       wrapper.simulate('mousedown', { preventDefault })

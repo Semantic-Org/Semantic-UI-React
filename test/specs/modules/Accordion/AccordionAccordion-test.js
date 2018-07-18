@@ -4,7 +4,6 @@ import AccordionAccordion from 'src/modules/Accordion/AccordionAccordion'
 import AccordionContent from 'src/modules/Accordion/AccordionContent'
 import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('AccordionAccordion', () => {
   common.isConformant(AccordionAccordion)
@@ -152,8 +151,8 @@ describe('AccordionAccordion', () => {
 
   describe('onTitleClick', () => {
     const event = { target: null }
-    const onClick = sandbox.spy()
-    const onTitleClick = sandbox.spy()
+    const onClick = jest.fn()
+    const onTitleClick = jest.fn()
     const panels = [{ key: 'A', title: { content: 'A', onClick } }, { key: 'B', title: 'B' }]
 
     it('is called with (e, titleProps) when clicked', () => {
@@ -172,7 +171,7 @@ describe('AccordionAccordion', () => {
 
   describe('panels', () => {
     const event = { target: null }
-    const onClick = sandbox.spy()
+    const onClick = jest.fn()
 
     const panels = [
       {

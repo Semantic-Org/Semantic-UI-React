@@ -4,7 +4,6 @@ import { SUI } from 'src/lib'
 import Transition from 'src/modules/Transition/Transition'
 import TransitionGroup from 'src/modules/Transition/TransitionGroup'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 let wrapper
 
@@ -337,7 +336,7 @@ describe('Transition', () => {
 
   describe('onComplete', () => {
     it('is called with (null, props) when transition completed', (done) => {
-      const onComplete = sandbox.spy()
+      const onComplete = jest.fn()
       const handleComplete = (...args) => {
         onComplete(...args)
 
@@ -360,7 +359,7 @@ describe('Transition', () => {
 
   describe('onHide', () => {
     it('is called with (null, props) when hidden', (done) => {
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
       const handleHide = (...args) => {
         onHide(...args)
 
@@ -379,7 +378,7 @@ describe('Transition', () => {
     })
 
     it('depends on the specified duration', (done) => {
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
       wrapperMount(
         <Transition duration={{ hide: 200 }} onHide={onHide} transitionOnMount={false}>
           <p />
@@ -403,7 +402,7 @@ describe('Transition', () => {
 
   describe('onShow', () => {
     it('is called with (null, props) when shown', (done) => {
-      const onShow = sandbox.spy()
+      const onShow = jest.fn()
       const handleShow = (...args) => {
         onShow(...args)
 
@@ -421,7 +420,7 @@ describe('Transition', () => {
     })
 
     it('depends on the specified duration', (done) => {
-      const onShow = sandbox.spy()
+      const onShow = jest.fn()
       wrapperMount(
         <Transition duration={{ show: 200 }} onShow={onShow} transitionOnMount>
           <p />
@@ -444,7 +443,7 @@ describe('Transition', () => {
 
   describe('onStart', () => {
     it('is called with (null, props) when transition started', (done) => {
-      const onStart = sandbox.spy()
+      const onStart = jest.fn()
       const handleStart = (...args) => {
         onStart(...args)
 

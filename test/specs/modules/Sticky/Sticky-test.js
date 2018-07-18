@@ -3,7 +3,7 @@ import React from 'react'
 
 import Sticky from 'src/modules/Sticky/Sticky'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 let contextEl
 let wrapper
@@ -96,21 +96,21 @@ describe('Sticky', () => {
 
   describe('active', () => {
     it('should handle update on mount when active', () => {
-      const onTop = sandbox.spy()
+      const onTop = jest.fn()
       mount(<Sticky context={mockContextEl()} onTop={onTop} />)
 
       expect(onTop).have.been.calledOnce()
     })
 
     it('should not handle update on mount when not active', () => {
-      const onTop = sandbox.spy()
+      const onTop = jest.fn()
       mount(<Sticky active={false} context={mockContextEl()} onTop={onTop} />)
 
       expect(onTop).have.not.been.called()
     })
 
     it('fires event when changes to true', () => {
-      const onTop = sandbox.spy()
+      const onTop = jest.fn()
       wrapperMount(<Sticky active={false} context={mockContextEl()} onTop={onTop} />)
       expect(onTop).have.not.been.called()
 
@@ -119,8 +119,8 @@ describe('Sticky', () => {
     })
 
     it('omits event and removes styles when changes to false', () => {
-      const onStick = sandbox.spy()
-      const onUnStick = sandbox.spy()
+      const onStick = jest.fn()
+      const onUnStick = jest.fn()
       mockContextEl()
       mockPositions({ bottomOffset: 10, height: 50 })
       wrapperMount(
@@ -169,7 +169,7 @@ describe('Sticky', () => {
   })
   describe('onBottom', () => {
     it('is called with (e, data) when is on bottom', () => {
-      const onBottom = sandbox.spy()
+      const onBottom = jest.fn()
       mockContextEl()
       mockPositions()
       wrapperMount(<Sticky {...positions} context={contextEl} onBottom={onBottom} />)
@@ -186,7 +186,7 @@ describe('Sticky', () => {
 
   describe('onStick', () => {
     it('is called with (e, data) when stick', () => {
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       mockContextEl()
       mockPositions({ bottomOffset: 10, height: 50 })
       wrapperMount(<Sticky {...positions} context={contextEl} onStick={onStick} />)
@@ -203,7 +203,7 @@ describe('Sticky', () => {
 
   describe('onTop', () => {
     it('is called with (e, data) when is on top', () => {
-      const onTop = sandbox.spy()
+      const onTop = jest.fn()
       mockContextEl()
       mockPositions({ bottomOffset: 10, height: 50 })
       wrapperMount(<Sticky {...positions} context={contextEl} onTop={onTop} />)
@@ -219,7 +219,7 @@ describe('Sticky', () => {
 
   describe('onUnstick', () => {
     it('is called with (e, data) when unstick', () => {
-      const onUnstick = sandbox.spy()
+      const onUnstick = jest.fn()
       mockContextEl()
       mockPositions({ bottomOffset: 10, height: 50 })
       wrapperMount(<Sticky {...positions} context={contextEl} onUnstick={onUnstick} />)
@@ -290,7 +290,7 @@ describe('Sticky', () => {
 
   describe('scrollContext', () => {
     it('should use window as default', () => {
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       const instance = mount(<Sticky onStick={onStick} />).instance()
 
       instance.triggerRef = mockRect({ top: -1 })
@@ -301,7 +301,7 @@ describe('Sticky', () => {
 
     it('should set a scroll context', () => {
       const div = document.createElement('div')
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       const instance = mount(<Sticky scrollContext={div} onStick={onStick} />).instance()
 
       instance.triggerRef = mockRect({ top: -1 })
@@ -314,7 +314,7 @@ describe('Sticky', () => {
     })
 
     it('should not call onStick when context is null', () => {
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       const instance = mount(<Sticky scrollContext={null} onStick={onStick} />).instance()
 
       instance.triggerRef = mockRect({ top: -1 })
@@ -325,7 +325,7 @@ describe('Sticky', () => {
 
     it('should call onStick when scrollContext changes', () => {
       const div = document.createElement('div')
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       const renderedComponent = mount(<Sticky scrollContext={null} onStick={onStick} />)
       const instance = renderedComponent.instance()
 
@@ -338,7 +338,7 @@ describe('Sticky', () => {
 
     it('should not call onStick when scrollContext changes and component is unmounted', () => {
       const div = document.createElement('div')
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       const renderedComponent = mount(<Sticky scrollContext={null} onStick={onStick} />)
       const instance = renderedComponent.instance()
 
@@ -357,7 +357,7 @@ describe('Sticky', () => {
   describe('update', () => {
     it('is called on scroll', () => {
       const instance = mount(<Sticky />).instance()
-      const update = sandbox.spy(instance, 'update')
+      const update = jest.fn(instance, 'update')
 
       domEvent.scroll(window)
       expect(update).have.been.calledOnce()
@@ -365,7 +365,7 @@ describe('Sticky', () => {
 
     it('is called on resize', () => {
       const instance = mount(<Sticky />).instance()
-      const update = sandbox.spy(instance, 'update')
+      const update = jest.fn(instance, 'update')
 
       domEvent.resize(window)
       expect(update).have.been.calledOnce()
@@ -377,7 +377,7 @@ describe('Sticky', () => {
       sandbox.stub(window, 'cancelAnimationFrame').callsFake(id => clearTimeout(id))
 
       const instance = wrapperMount(<Sticky />).instance()
-      const update = sandbox.spy(instance, 'update')
+      const update = jest.fn(instance, 'update')
 
       domEvent.resize(window)
       wrapper.unmount()

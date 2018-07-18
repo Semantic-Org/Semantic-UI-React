@@ -8,7 +8,7 @@ import SearchCategory from 'src/modules/Search/SearchCategory'
 import SearchResult from 'src/modules/Search/SearchResult'
 import SearchResults from 'src/modules/Search/SearchResults'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 let attachTo
 let options
@@ -471,7 +471,7 @@ describe('Search', () => {
 
   describe('onBlur', () => {
     it('is called with (event, data) on search input blur', () => {
-      const onBlur = sandbox.spy()
+      const onBlur = jest.fn()
       wrapperMount(<Search results={options} onBlur={onBlur} />).simulate('blur', nativeEvent)
 
       expect(onBlur).have.been.calledOnce()
@@ -481,7 +481,7 @@ describe('Search', () => {
 
   describe('onFocus', () => {
     it('is called with (event, data) on search input focus', () => {
-      const onFocus = sandbox.spy()
+      const onFocus = jest.fn()
       wrapperMount(<Search results={options} onFocus={onFocus} />).simulate('focus', nativeEvent)
 
       expect(onFocus).have.been.calledOnce()
@@ -492,7 +492,7 @@ describe('Search', () => {
   describe('onResultSelect', () => {
     let spy
     beforeEach(() => {
-      spy = sandbox.spy()
+      spy = jest.fn()
     })
 
     it('is called with event and value on item click', () => {
@@ -545,7 +545,7 @@ describe('Search', () => {
       expect(spy).not.have.been.called()
     })
     it('does not call onResultSelect on query change', () => {
-      const onResultSelectSpy = sandbox.spy()
+      const onResultSelectSpy = jest.fn()
       wrapperMount(
         <Search results={options} minCharacters={0} onResultSelect={onResultSelectSpy} />,
       )
@@ -559,7 +559,7 @@ describe('Search', () => {
 
   describe('onSearchChange', () => {
     it('is called with (event, value) on search input change', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       wrapperMount(<Search results={options} minCharacters={0} onSearchChange={spy} />)
         .find('input.prompt')
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
@@ -578,7 +578,7 @@ describe('Search', () => {
 
   describe('onSearchChange', () => {
     it('is called with (event, data) when the active selection index is changed', () => {
-      const onSelectionChange = sandbox.spy()
+      const onSelectionChange = jest.fn()
 
       wrapperMount(
         <Search

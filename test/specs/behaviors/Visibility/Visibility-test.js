@@ -3,7 +3,7 @@ import React from 'react'
 
 import Visibility from 'src/behaviors/Visibility'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 let wrapper
 
@@ -117,7 +117,7 @@ describe('Visibility', () => {
   describe('calculations', () => {
     _.forEach(expectations, ({ falsy, name, truthy }) => {
       it(`calculates ${name}`, () => {
-        const onUpdate = sandbox.spy()
+        const onUpdate = jest.fn()
         wrapperMount(<Visibility onUpdate={onUpdate} />)
 
         _.forEach(truthy, ([top, bottom]) => {
@@ -144,7 +144,7 @@ describe('Visibility', () => {
   describe('callbacks', () => {
     _.forEach(_.filter(expectations, 'callbackName'), ({ callbackName, falsy, truthy }) => {
       it(`fires ${callbackName}`, () => {
-        const callback = sandbox.spy()
+        const callback = jest.fn()
         const opts = { [callbackName]: callback }
         wrapperMount(<Visibility {...opts} continuous />)
 
@@ -156,7 +156,7 @@ describe('Visibility', () => {
       })
 
       it(`fires ${callbackName} once`, () => {
-        const callback = sandbox.spy()
+        const callback = jest.fn()
         const falsyCond = _.first(falsy)
         const truthyCond = _.first(truthy)
         const opts = { [callbackName]: callback }
@@ -173,7 +173,7 @@ describe('Visibility', () => {
       })
 
       it(`fires ${callbackName} when condition changes`, () => {
-        const callback = sandbox.spy()
+        const callback = jest.fn()
         const falsyCond = _.first(falsy)
         const truthyCond = _.first(truthy)
         const opts = { [callbackName]: callback }
@@ -194,8 +194,8 @@ describe('Visibility', () => {
           const falsyCond = _.first(falsy)
           const truthyCond = _.first(truthy)
 
-          const forward = sandbox.spy()
-          const reverse = sandbox.spy()
+          const forward = jest.fn()
+          const reverse = jest.fn()
           const opts = { [callbackName]: forward, [`${callbackName}Reverse`]: reverse }
 
           wrapperMount(<Visibility {...opts} />)
@@ -213,8 +213,8 @@ describe('Visibility', () => {
           const falsyCond = _.first(falsy)
           const truthyCond = _.first(truthy)
 
-          const forward = sandbox.spy()
-          const reverse = sandbox.spy()
+          const forward = jest.fn()
+          const reverse = jest.fn()
           const opts = { [callbackName]: forward, [`${callbackName}Reverse`]: reverse }
 
           wrapperMount(<Visibility {...opts} once={false} />)
@@ -250,7 +250,7 @@ describe('Visibility', () => {
       })
 
       it('returns up when scrolling down', () => {
-        const onUpdate = sandbox.spy()
+        const onUpdate = jest.fn()
         mount(<Visibility onUpdate={onUpdate} />)
 
         window.pageYOffset = 5
@@ -262,7 +262,7 @@ describe('Visibility', () => {
 
       it('returns up when scrolling up', () => {
         window.pageYOffset = 100
-        const onUpdate = sandbox.spy()
+        const onUpdate = jest.fn()
         mount(<Visibility onUpdate={onUpdate} />)
 
         window.pageYOffset = 50
@@ -276,7 +276,7 @@ describe('Visibility', () => {
 
   describe('context', () => {
     it('should use window as default scroll context', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       mount(<Visibility onUpdate={onUpdate} />)
 
       domEvent.scroll(window)
@@ -285,7 +285,7 @@ describe('Visibility', () => {
 
     it('should set a scroll context', () => {
       const div = document.createElement('div')
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       mount(<Visibility context={div} onUpdate={onUpdate} />)
 
       domEvent.scroll(window)
@@ -296,7 +296,7 @@ describe('Visibility', () => {
     })
 
     it('should not call onUpdate when context is null', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       mount(<Visibility context={null} onUpdate={onUpdate} />)
 
       domEvent.scroll(document)
@@ -305,7 +305,7 @@ describe('Visibility', () => {
 
     it('should call onUpdate when context changes', () => {
       const div = document.createElement('div')
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       const renderedComponent = mount(<Visibility context={null} onUpdate={onUpdate} />)
       renderedComponent.setProps({ context: div })
 
@@ -315,7 +315,7 @@ describe('Visibility', () => {
 
     it('should not call onUpdate when context changes and component is unmounted', () => {
       const div = document.createElement('div')
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       const renderedComponent = mount(<Visibility context={null} onUpdate={onUpdate} />)
       renderedComponent.setProps({ context: div })
       renderedComponent.unmount()
@@ -330,7 +330,7 @@ describe('Visibility', () => {
 
   describe('componentWillUnmount', () => {
     it('will cancel requestAnimationFrame', () => {
-      const cancelAnimationFrame = sandbox.spy(window, 'cancelAnimationFrame')
+      const cancelAnimationFrame = jest.fn(window, 'cancelAnimationFrame')
       wrapperMount(<Visibility />)
 
       mockScroll(0, 0)
@@ -342,7 +342,7 @@ describe('Visibility', () => {
 
   describe('fireOnMount', () => {
     it('fires callbacks after mount', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
 
       mockScroll(0, 0)
       wrapperMount(<Visibility fireOnMount onUpdate={onUpdate} />)
@@ -358,7 +358,7 @@ describe('Visibility', () => {
   describe('offset', () => {
     _.forEach(_.filter(expectations, 'callbackName'), ({ callbackName, falsy, name, truthy }) => {
       it(`fires ${name} when offset is number`, () => {
-        const callback = sandbox.spy()
+        const callback = jest.fn()
         const opts = { [callbackName]: callback }
 
         const offset = 10
@@ -373,7 +373,7 @@ describe('Visibility', () => {
       })
 
       it(`fires ${name} when offset is array`, () => {
-        const callback = sandbox.spy()
+        const callback = jest.fn()
         const opts = { [callbackName]: callback }
 
         const bottomOffset = 20
@@ -402,12 +402,12 @@ describe('Visibility', () => {
   describe('onPassed', () => {
     it('fires callback when pixels passed', () => {
       const onPassed = {
-        20: sandbox.spy(),
-        '20%': sandbox.spy(),
-        50: sandbox.spy(),
-        '50%': sandbox.spy(),
-        100: sandbox.spy(),
-        '100%': sandbox.spy(),
+        20: jest.fn(),
+        '20%': jest.fn(),
+        50: jest.fn(),
+        '50%': jest.fn(),
+        100: jest.fn(),
+        '100%': jest.fn(),
       }
       wrapperMount(<Visibility continuous onPassed={onPassed} />)
 
@@ -439,7 +439,7 @@ describe('Visibility', () => {
 
   describe('onUpdate', () => {
     it('fires when scrolling', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 0)
@@ -449,7 +449,7 @@ describe('Visibility', () => {
     })
 
     it('fires when window resized', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       domEvent.resize(window)
@@ -482,7 +482,7 @@ describe('Visibility', () => {
     })
 
     it('updates width and height after scroll', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 100)
@@ -503,7 +503,7 @@ describe('Visibility', () => {
     })
 
     it('shows passed pixels and percentage', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 100)
@@ -551,7 +551,7 @@ describe('Visibility', () => {
     })
 
     it('fires onUpdate after mount when updateOn="repaint"', (done) => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} updateOn='repaint' />)
 
       setTimeout(() => {
@@ -563,7 +563,7 @@ describe('Visibility', () => {
     })
 
     it('fires onUpdate after change to updateOn="repaint"', (done) => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       wrapper.setProps({ updateOn: 'repaint' })

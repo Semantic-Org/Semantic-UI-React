@@ -3,7 +3,6 @@ import React from 'react'
 import Tab from 'src/modules/Tab/Tab'
 import TabPane from 'src/modules/Tab/TabPane'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('Tab', () => {
   common.isConformant(Tab)
@@ -272,7 +271,7 @@ describe('Tab', () => {
     it('determines which pane render method is called', () => {
       const activeIndex = 1
       const props = { activeIndex, panes }
-      sandbox.spy(panes[activeIndex], 'render')
+      jest.fn(panes[activeIndex], 'render')
 
       shallow(<Tab {...props} />)
 
@@ -284,7 +283,7 @@ describe('Tab', () => {
   describe('onTabChange', () => {
     it('is called with (e, { ...props, activeIndex }) a menu item is clicked', () => {
       const activeIndex = 1
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       const event = { fake: 'event' }
       const props = { onTabChange: spy, panes }
 
@@ -302,7 +301,7 @@ describe('Tab', () => {
       expect(spy.firstCall.args[1]).toHaveProperty('panes', panes)
     })
     it('is called with the new proposed activeIndex, not the current', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
 
       const items = mount(<Tab activeIndex={-1} onTabChange={spy} panes={panes} />).find('MenuItem')
 

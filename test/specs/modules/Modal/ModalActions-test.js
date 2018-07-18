@@ -2,7 +2,6 @@ import React from 'react'
 
 import ModalActions from 'src/modules/Modal/ModalActions'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('ModalActions', () => {
   common.isConformant(ModalActions)
@@ -41,8 +40,8 @@ describe('ModalActions', () => {
 
     it('is called with (e, actionProps) when clicked', () => {
       const event = { target: null }
-      const onActionClick = sandbox.spy()
-      const onButtonClick = sandbox.spy()
+      const onActionClick = jest.fn()
+      const onButtonClick = jest.fn()
 
       const action = { key: 'users', content: 'Disable', onClick: onButtonClick }
       const matchProps = { content: 'Disable' }

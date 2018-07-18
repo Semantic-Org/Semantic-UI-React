@@ -2,7 +2,7 @@ import React from 'react'
 
 import Sidebar from 'src/modules/Sidebar/Sidebar'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 const nestingLevel = 1
 
@@ -28,7 +28,7 @@ describe('Sidebar', () => {
 
   describe('onHide', () => {
     it('is called when the "visible" prop changes to "false"', () => {
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
       const wrapper = mount(<Sidebar onHide={onHide} visible />)
       expect(onHide).have.not.been.called()
 
@@ -38,7 +38,7 @@ describe('Sidebar', () => {
     })
 
     it('is called when a click on the document was done', () => {
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
       mount(<Sidebar onHide={onHide} visible />)
       expect(onHide).have.not.been.called()
 
@@ -48,7 +48,7 @@ describe('Sidebar', () => {
     })
 
     it('is called when a click on the document was done only once', () => {
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
       const wrapper = mount(<Sidebar onHide={onHide} visible />)
 
       domEvent.click(document)
@@ -58,7 +58,7 @@ describe('Sidebar', () => {
 
     it('is not called when a click was done inside the component', () => {
       const mountNode = document.createElement('div')
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
 
       document.body.appendChild(mountNode)
       const wrapper = mount(
@@ -78,7 +78,7 @@ describe('Sidebar', () => {
 
   describe('onHidden', () => {
     it('is called when the "visible" prop was changed to "false"', (done) => {
-      const onHidden = sandbox.spy()
+      const onHidden = jest.fn()
       const wrapper = mount(<Sidebar duration={0} onHidden={onHidden} visible />)
 
       expect(onHidden).have.not.been.called()
@@ -95,7 +95,7 @@ describe('Sidebar', () => {
 
   describe('onShow', () => {
     it('is called when the "visible" prop was changed to "true"', (done) => {
-      const onShow = sandbox.spy()
+      const onShow = jest.fn()
       const wrapper = mount(<Sidebar duration={0} onShow={onShow} />)
 
       expect(onShow).have.not.been.called()
@@ -112,7 +112,7 @@ describe('Sidebar', () => {
 
   describe('onVisible', () => {
     it('is called when the "visible" prop changes to "true"', () => {
-      const onVisible = sandbox.spy()
+      const onVisible = jest.fn()
       const wrapper = mount(<Sidebar onVisible={onVisible} />)
       expect(onVisible).have.not.been.called()
 

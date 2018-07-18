@@ -3,7 +3,6 @@ import React from 'react'
 
 import RatingIcon from 'src/modules/Rating/RatingIcon'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('RatingIcon', () => {
   common.isConformant(RatingIcon)
@@ -13,7 +12,7 @@ describe('RatingIcon', () => {
 
   describe('onKeyUp', () => {
     it('omitted when not defined', () => {
-      const event = { keyCode: keyboardKey.Enter, preventDefault: sandbox.spy() }
+      const event = { keyCode: keyboardKey.Enter, preventDefault: jest.fn() }
       const keypress = () => shallow(<RatingIcon />).simulate('keyup', event)
 
       expect(keypress).not.toThrowError()
@@ -21,8 +20,8 @@ describe('RatingIcon', () => {
     })
 
     it('calls onClick with (e, index) when space key is pressed', () => {
-      const spy = sandbox.spy()
-      const event = { keyCode: keyboardKey.Spacebar, preventDefault: sandbox.spy() }
+      const spy = jest.fn()
+      const event = { keyCode: keyboardKey.Spacebar, preventDefault: jest.fn() }
 
       mount(<RatingIcon index={0} onClick={spy} />).simulate('keyup', event)
 
@@ -32,8 +31,8 @@ describe('RatingIcon', () => {
     })
 
     it('calls onClick with (e, index) when enter key is pressed', () => {
-      const spy = sandbox.spy()
-      const event = { keyCode: keyboardKey.Enter, preventDefault: sandbox.spy() }
+      const spy = jest.fn()
+      const event = { keyCode: keyboardKey.Enter, preventDefault: jest.fn() }
 
       mount(<RatingIcon index={0} onClick={spy} />).simulate('keyup', event)
 
@@ -43,8 +42,8 @@ describe('RatingIcon', () => {
     })
 
     it('does not call onClick when non space/enter key is pressed', () => {
-      const spy = sandbox.spy()
-      const event = { keyCode: keyboardKey.A, preventDefault: sandbox.spy() }
+      const spy = jest.fn()
+      const event = { keyCode: keyboardKey.A, preventDefault: jest.fn() }
 
       const keyup = () => shallow(<RatingIcon onClick={spy} />).simulate('keyup', event)
 

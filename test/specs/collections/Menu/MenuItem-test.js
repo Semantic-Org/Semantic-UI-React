@@ -3,7 +3,6 @@ import React from 'react'
 import MenuItem from 'src/collections/Menu/MenuItem'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('MenuItem', () => {
   common.isConformant(MenuItem)
@@ -47,7 +46,7 @@ describe('MenuItem', () => {
 
   describe('onClick', () => {
     it('is called with (e, data) when clicked', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
       const event = { target: null }
       const props = { name: 'home', index: 0 }
 
@@ -58,7 +57,7 @@ describe('MenuItem', () => {
     })
 
     it('is not called when is disabled', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
 
       shallow(<MenuItem disabled onClick={onClick} />).simulate('click')
       expect(onClick).have.callCount(0)

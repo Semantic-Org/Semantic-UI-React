@@ -8,13 +8,7 @@ import ModalActions from 'src/modules/Modal/ModalActions'
 import ModalDescription from 'src/modules/Modal/ModalDescription'
 import Portal from 'src/addons/Portal/Portal'
 
-import {
-  assertNodeContains,
-  assertBodyClasses,
-  assertBodyContains,
-  domEvent,
-  sandbox,
-} from 'test/utils'
+import { assertNodeContains, assertBodyClasses, assertBodyContains, domEvent } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 import isBrowser from 'src/lib/isBrowser'
 
@@ -103,7 +97,7 @@ describe('Modal', () => {
     })
 
     it('calls shorthand onActionClick callback', () => {
-      const onActionClick = sandbox.spy()
+      const onActionClick = jest.fn()
       const modalActions = { onActionClick, actions: [{ key: 'ok', content: 'OK' }] }
       wrapperMount(<Modal actions={modalActions} defaultOpen />)
 
@@ -115,7 +109,7 @@ describe('Modal', () => {
 
   describe('onActionClick', () => {
     it('is called when an action is clicked', () => {
-      const onActionClick = sandbox.spy()
+      const onActionClick = jest.fn()
       const props = { actions: ['OK'], defaultOpen: true, onActionClick }
 
       wrapperMount(<Modal {...props} />)
@@ -279,7 +273,7 @@ describe('Modal', () => {
 
   describe('onOpen', () => {
     it('is called on trigger click', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       wrapperMount(<Modal onOpen={spy} trigger={<div id='trigger' />} />)
 
       wrapper.find('#trigger').simulate('click')
@@ -287,7 +281,7 @@ describe('Modal', () => {
     })
 
     it('is not called on body click', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       wrapperMount(<Modal onOpen={spy} />)
 
       domEvent.click(document.body)
@@ -299,7 +293,7 @@ describe('Modal', () => {
     let spy
 
     beforeEach(() => {
-      spy = sandbox.spy()
+      spy = jest.fn()
     })
 
     it('is called on dimmer click', () => {
@@ -451,7 +445,7 @@ describe('Modal', () => {
     })
 
     it('triggers onClose when clicked', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
 
       wrapperMount(
         <Modal onClose={spy} open closeIcon='bullseye'>

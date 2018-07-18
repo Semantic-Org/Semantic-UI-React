@@ -3,7 +3,6 @@ import React from 'react'
 import AccordionPanel from 'src/modules/Accordion/AccordionPanel'
 import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('AccordionPanel', () => {
   common.isConformant(AccordionPanel, { rendersChildren: false })
@@ -44,8 +43,8 @@ describe('AccordionPanel', () => {
   describe('onTitleClick', () => {
     it('is called with (e, titleProps) when clicked', () => {
       const event = { target: null }
-      const onClick = sandbox.spy()
-      const onTitleClick = sandbox.spy()
+      const onClick = jest.fn()
+      const onTitleClick = jest.fn()
 
       mount(
         <AccordionPanel

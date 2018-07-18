@@ -7,7 +7,7 @@ import Popup, { POSITIONS } from 'src/modules/Popup/Popup'
 import PopupHeader from 'src/modules/Popup/PopupHeader'
 import PopupContent from 'src/modules/Popup/PopupContent'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 // ----------------------------------------
 // Wrapper
@@ -257,7 +257,7 @@ describe('Popup', () => {
     })
 
     it('is called with (e, props) when scroll', () => {
-      const onClose = sandbox.spy()
+      const onClose = jest.fn()
       const trigger = <button>foo</button>
 
       wrapperMount(<Popup content='foo' hideOnScroll onClose={onClose} trigger={trigger} />)
@@ -462,31 +462,31 @@ describe('Popup', () => {
   })
 
   describe('onClose', () => {
-    let spy
+    let onClose
 
     beforeEach(() => {
-      spy = sandbox.spy()
-      wrapperMount(<Popup onClose={spy} defaultOpen />)
+      onClose = jest.fn()
+      wrapperMount(<Popup onClose={onClose} defaultOpen />)
     })
 
     it('is not called on click inside of the popup', () => {
       domEvent.click(document.querySelector('.ui.popup'))
-      expect(spy).not.have.been.calledOnce()
+      expect(onClose).not.have.been.calledOnce()
     })
 
     it('is called on body click', () => {
       domEvent.click('body')
-      expect(spy).have.been.calledOnce()
+      expect(onClose).have.been.calledOnce()
     })
 
     it('is called when pressing escape', () => {
       domEvent.keyDown(document, { key: 'Escape' })
-      expect(spy).have.been.calledOnce()
+      expect(onClose).have.been.calledOnce()
     })
 
     it('is not called when the open prop changes to false', () => {
       wrapper.setProps({ open: false })
-      expect(spy).not.have.been.called()
+      expect(onClose).not.have.been.called()
     })
   })
 })

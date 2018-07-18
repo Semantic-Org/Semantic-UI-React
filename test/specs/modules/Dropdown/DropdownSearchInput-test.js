@@ -2,7 +2,6 @@ import faker from 'faker'
 import React from 'react'
 
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 import DropdownSearchInput from 'src/modules/Dropdown/DropdownSearchInput'
 
 describe('DropdownSearchInput', () => {
@@ -26,7 +25,7 @@ describe('DropdownSearchInput', () => {
 
   describe('onChange', () => {
     it('is called with (e, data) on change', () => {
-      const onChange = sandbox.spy()
+      const onChange = jest.fn()
       const e = { target: { value: 'value' } }
 
       shallow(<DropdownSearchInput onChange={onChange} />)
@@ -40,7 +39,7 @@ describe('DropdownSearchInput', () => {
 
   describe('inputRef', () => {
     it('maintains ref on input', () => {
-      const inputRef = sandbox.spy()
+      const inputRef = jest.fn()
       const mountNode = document.createElement('div')
       document.body.appendChild(mountNode)
 

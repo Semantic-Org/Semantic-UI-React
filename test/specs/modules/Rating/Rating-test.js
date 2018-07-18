@@ -4,7 +4,6 @@ import React from 'react'
 import { SUI } from 'src/lib'
 import Rating from 'src/modules/Rating/Rating'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('Rating', () => {
   common.isConformant(Rating)
@@ -278,16 +277,16 @@ describe('Rating', () => {
 
   describe('onRate', () => {
     it('is called with (event, { rating, maxRating } on icon click', () => {
-      const spy = sandbox.spy()
+      const onRate = jest.fn()
       const event = { fake: 'event data' }
 
-      mount(<Rating maxRating={3} onRate={spy} />)
+      mount(<Rating maxRating={3} onRate={onRate} />)
         .find('RatingIcon')
         .last()
         .simulate('click', event)
 
-      expect(spy).have.been.calledOnce()
-      expect(spy).have.been.calledWithMatch(event, { rating: 3, maxRating: 3 })
+      expect(onRate).have.been.calledOnce()
+      expect(onRate).have.been.calledWithMatch(event, { rating: 3, maxRating: 3 })
     })
   })
 
