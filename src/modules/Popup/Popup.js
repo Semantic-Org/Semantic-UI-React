@@ -356,6 +356,11 @@ export default class Popup extends Component {
   handleTriggerRef = (triggerRef) => {
     debug(`handleTriggerRef(${triggerRef})`)
     this.triggerRef = triggerRef
+    // if it is auto popup
+    // then set popup coordinates when triggerref is available
+    if (_.has(this.props, 'open')) {
+      this.setPopupStyle()
+    }
   }
 
   getContext = () => this.props.context || this.triggerRef
