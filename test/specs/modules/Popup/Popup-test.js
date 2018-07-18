@@ -322,6 +322,17 @@ describe('Popup', () => {
         done()
       }, 51)
     })
+
+    it('it should appear when trigger has been mounted', (done) => {
+      const trigger = <button>foo</button>
+      wrapperMount(<Popup id='context-popup' open trigger={trigger} />)
+
+      setTimeout(() => {
+        const styles = document.querySelector('#context-popup').style
+        expect(styles.position).to.equal('absolute')
+        done()
+      }, 1)
+    })
   })
 
   describe('context', () => {
