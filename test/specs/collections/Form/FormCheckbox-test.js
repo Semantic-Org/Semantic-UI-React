@@ -9,7 +9,13 @@ describe('FormCheckbox', () => {
     ignoredTypingsProps: ['type'],
   })
 
-  it('renders a FormField with a Checkbox control', () => {
-    expect(shallow(<FormCheckbox />).find('FormField')).have.prop('control', Checkbox)
+  describe('as', () => {
+    it('is "FormField" with a Checkbox control', () => {
+      expect(
+        shallow(<FormCheckbox />)
+          .find('FormField')
+          .prop('control'),
+      ).toBe(Checkbox)
+    })
   })
 })

@@ -92,7 +92,7 @@ describe('Form', () => {
 
       shallow(<Form {...props} onSubmit={onSubmit} />).simulate('submit', event)
 
-      expect(onSubmit).have.been.calledOnce()
+      expect(onSubmit).toHaveBeenCalledTimes(1)
       expect(onSubmit).have.been.calledWithMatch(event, props)
     })
 
@@ -104,7 +104,7 @@ describe('Form', () => {
 
       shallow(<Form {...props} onSubmit={onSubmit} />).simulate('submit', event, ...args)
 
-      expect(onSubmit).have.been.calledOnce()
+      expect(onSubmit).toHaveBeenCalledTimes(1)
       expect(onSubmit).have.been.calledWithMatch(event, props, ...args)
     })
   })
