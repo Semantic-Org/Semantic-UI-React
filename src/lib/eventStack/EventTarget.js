@@ -83,7 +83,6 @@ export default class EventTarget {
     this.handlers.set(eventType, handler)
     this.target.addEventListener(eventType, handler, {
       capture: true,
-      passive: true,
     })
   }
 
