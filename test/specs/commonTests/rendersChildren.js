@@ -54,7 +54,7 @@ export default (Component, options = {}) => {
           nestedShallow(createElement(Component, { ...requiredProps, content: text }), {
             nestingLevel,
           }).text(),
-        ).toBe(text)
+        ).toContain(text)
       })
 
       it('renders child components', () => {
@@ -71,7 +71,7 @@ export default (Component, options = {}) => {
           nestedShallow(createElement(Component, { ...requiredProps, content: 0 }), {
             nestingLevel,
           }).text(),
-        ).toBe('0')
+        ).toContain('0')
       })
     })
   }

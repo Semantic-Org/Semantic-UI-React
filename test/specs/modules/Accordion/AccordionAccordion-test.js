@@ -25,7 +25,7 @@ describe('AccordionAccordion', () => {
     })
 
     it('defaults to -1 when "exclusive" is false', () => {
-      expect(shallow(<AccordionAccordion exclusive={false} />)).toHaveLength(0)
+      expect(shallow(<AccordionAccordion exclusive={false} />).state('activeIndex')).toHaveLength(0)
     })
 
     it('makes Accordion.Content at activeIndex - 0 "active"', () => {
@@ -130,7 +130,7 @@ describe('AccordionAccordion', () => {
         .find(AccordionTitle)
         .at(1)
         .simulate('click')
-      expect(Object.keys(wrapper)).toHaveLength(0)
+      expect(wrapper.state('activeIndex')).toHaveLength(0)
     })
   })
 
@@ -155,10 +155,16 @@ describe('AccordionAccordion', () => {
         .simulate('click', event)
 
       expect(onClick).toHaveBeenCalledTimes(1)
-      expect(onClick).toHaveBeenCalledWith(event, { index: 0, content: 'A' })
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining({ index: 0, content: 'A' }),
+      )
 
       expect(onTitleClick).toHaveBeenCalledTimes(1)
-      expect(onTitleClick).toHaveBeenCalledWith(event, { index: 0, content: 'A' })
+      expect(onTitleClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining({ index: 0, content: 'A' }),
+      )
     })
   })
 
@@ -194,7 +200,10 @@ describe('AccordionAccordion', () => {
         .simulate('click', event)
 
       expect(onClick).toHaveBeenCalledTimes(1)
-      expect(onClick).toHaveBeenCalledWith(event, { content: 'A', index: 0 })
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining({ content: 'A', index: 0 }),
+      )
     })
 
     it('passes arbitrary props', () => {

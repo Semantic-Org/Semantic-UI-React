@@ -20,11 +20,19 @@ describe('DimmerInner', () => {
 
   describe('active', () => {
     it('adds "display: flex" after set to "true"', () => {
-      const wrapper = mount(<DimmerInner />)
-      wrapper.should.have.not.style('display')
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<DimmerInner />, { attachTo: mountNode })
+      const dimmer = document.querySelector('.ui.dimmer')
+
+      expect(dimmer.style.display).toBe('')
 
       wrapper.setProps({ active: true })
-      wrapper.should.have.style('display', 'flex')
+      expect(dimmer.style.display).toBe('flex')
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
     })
   })
 
