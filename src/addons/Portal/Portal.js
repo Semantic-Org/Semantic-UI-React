@@ -195,7 +195,7 @@ class Portal extends Component {
     _.invoke(trigger, 'props.onBlur', e, ...rest)
 
     // do not close if focus is given to the portal
-    const didFocusPortal = _.invoke(this, 'rootNode.contains', e.relatedTarget)
+    const didFocusPortal = _.invoke(this, 'portalNode.contains', e.relatedTarget)
 
     if (!closeOnTriggerBlur || didFocusPortal) return
 
