@@ -2,11 +2,9 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Icon, Menu } from 'semantic-ui-react'
 
-import ComponentControlsToolTip from './ComponentControlsToolTip'
-
 export default class ComponentControlsCopyLink extends Component<any, any> {
   private mounted: boolean
-  private readonly btnLabel = 'Direct link'
+  private readonly btnLabel = 'Permalink'
 
   public static propTypes = {
     anchorName: PropTypes.string,
@@ -32,12 +30,14 @@ export default class ComponentControlsCopyLink extends Component<any, any> {
     const { active } = this.state
 
     return (
-      <ComponentControlsToolTip content={active ? ' Copied Link!' : this.btnLabel}>
-        <Menu.Item href={`#${anchorName}`} onClick={this.handleClick}>
-          <Icon color={active ? 'green' : 'grey'} fitted name="linkify" size="large" />
-          {this.btnLabel}
-        </Menu.Item>
-      </ComponentControlsToolTip>
+      <Menu.Item
+        href={`#${anchorName}`}
+        onClick={this.handleClick}
+        color={active ? 'green' : undefined}
+      >
+        <Icon color={active ? 'green' : 'grey'} fitted name="linkify" size="large" />
+        {active ? 'Copied!' : this.btnLabel}
+      </Menu.Item>
     )
   }
 

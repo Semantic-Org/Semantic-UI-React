@@ -1,13 +1,12 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { CSSProperties, MouseEvent } from 'react'
+import React from 'react'
 import AceEditor, { AceEditorProps } from 'react-ace'
 import ace from 'brace'
 import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
 import 'brace/mode/html'
-import 'brace/theme/tomorrow'
-import EditorPreview, { IEditorPreviewProps } from './EditorPreview'
+import 'brace/theme/tomorrow_night'
 import { eventStack, doesNodeContainClick } from 'src/lib'
 
 const parentComponents = []
@@ -47,12 +46,11 @@ export interface IEditorProps extends AceEditorProps {
   onOutsideClick?: (e: Event) => void
   active?: boolean
   showCursor?: boolean
-  preview?: IEditorPreviewProps
+  highlightGutterLine?: boolean
 }
 
 class Editor extends React.Component<IEditorProps> {
   private lineCount: number
-  private showPreview: boolean
 
   private static readonly refName = 'aceEditor'
 
@@ -64,14 +62,13 @@ class Editor extends React.Component<IEditorProps> {
     onOutsideClick: PropTypes.func,
     active: PropTypes.bool,
     showCursor: PropTypes.bool,
-    preview: PropTypes.object,
   }
 
   public static defaultProps: IEditorProps = {
     id: '',
     value: '',
     mode: 'jsx',
-    theme: 'tomorrow',
+    theme: 'tomorrow_night',
     height: '100px',
     width: '100%',
     active: true,
@@ -83,40 +80,29 @@ class Editor extends React.Component<IEditorProps> {
     maxLines: Infinity,
     readOnly: false,
     highlightActiveLine: true,
+    highlightGutterLine: true,
     showCursor: true,
-    preview: {
-      size: 0,
-      label: 'Show more',
-    },
   }
 
   constructor(props: IEditorProps) {
     super(props)
 
     this.setLineCount(props.value)
-    this.setShouldShowPreviewFlag(props)
   }
 
   public componentWillReceiveProps(nextProps: IEditorProps) {
     const previousPros = this.props
-    const { value, active, showCursor, readOnly } = nextProps
+    const { value, active, showCursor } = nextProps
 
     if (showCursor !== previousPros.showCursor) {
       this.setCursorVisibility(showCursor)
     }
 
-    if (readOnly !== previousPros.readOnly) {
-      this.setReadonlyStyles(readOnly)
-    }
-
     if (value !== previousPros.value) {
       this.setLineCount(value)
-      this.setShouldShowPreviewFlag(nextProps)
     }
 
     if (active !== previousPros.active) {
-      this.setShouldShowPreviewFlag(nextProps)
-
       if (active) {
         this.editor.focus() // focus editor when editor is active
         this.addDocumentListener()
@@ -127,10 +113,9 @@ class Editor extends React.Component<IEditorProps> {
   }
 
   public componentDidMount() {
-    const { active, showCursor, readOnly } = this.props
+    const { active, showCursor } = this.props
 
     this.setCursorVisibility(showCursor)
-    this.setReadonlyStyles(readOnly)
 
     if (active) {
       this.addDocumentListener()
@@ -142,17 +127,11 @@ class Editor extends React.Component<IEditorProps> {
   }
 
   public render() {
-    const { id, active, onClick, showCursor, preview, maxLines, ...rest } = this.props
+    const { id, onClick, ...rest } = this.props
 
     return (
-      <div onClick={onClick} style={{ position: 'relative' } as CSSProperties}>
-        <AceEditor
-          name={id}
-          maxLines={this.showPreview ? preview.size : maxLines}
-          ref={Editor.refName}
-          {...rest}
-        />
-        {this.showPreview && <EditorPreview {...preview} />}
+      <div onClick={onClick}>
+        <AceEditor name={id} ref={Editor.refName} {...rest} />
       </div>
     )
   }
@@ -196,20 +175,6 @@ class Editor extends React.Component<IEditorProps> {
     this.safeCall(() => {
       this.cursor.style.display = visible ? '' : 'none'
     })
-  }
-
-  private setReadonlyStyles(readOnly: boolean): void {
-    this.safeCall(() => {
-      this.container.style.background = readOnly ? '#f1f1f1' : ''
-    })
-  }
-
-  private setShouldShowPreviewFlag(props: IEditorProps): void {
-    const { active, preview } = props
-
-    this.showPreview = active
-      ? false
-      : preview && !isNaN(preview.size) && this.lineCount > preview.size
   }
 
   private safeCall<T>(cb: () => T, logError?: boolean): T {

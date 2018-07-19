@@ -19,7 +19,7 @@ import {
 } from 'docs/src/utils'
 import evalTypeScript from 'docs/src/utils/evalTypeScript'
 import { pxToRem, doesNodeContainClick } from 'src/lib'
-import Editor, { IEditorProps } from 'docs/src/components/Editor'
+import Editor from 'docs/src/components/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
 import ContributionPrompt from '../ContributionPrompt'
@@ -49,46 +49,17 @@ interface IComponentExampleState {
   copiedCode: boolean
 }
 
+const EDITOR_BACKGROUND_COLOR = '#1D1F21'
+const EDITOR_GUTTER_COLOR = '#26282d'
+
 const childrenStyle: CSSProperties = {
   paddingTop: 0,
   maxWidth: pxToRem(500),
 }
 
-const errorStyle: CSSProperties = {
-  padding: '1em',
-  fontSize: pxToRem(9),
-  color: '#a33',
-  background: '#fff2f2',
-}
-
 const codeTypeApiButtonLabels: { [key in SourceCodeType]: string } = {
   normal: 'Children API',
   shorthand: 'Shorthand API',
-}
-
-const staticEditorProps = {
-  jsx: {
-    setOptions: {
-      fixedWidthGutter: true,
-    },
-    preview: {
-      size: 4,
-      label: 'Edit',
-      icon: 'code',
-    },
-  } as IEditorProps,
-  html: {
-    mode: 'html',
-    showGutter: false,
-    showCursor: false,
-    readOnly: true,
-    highlightActiveLine: false,
-    preview: {
-      size: 4,
-      label: 'Show more',
-      icon: 'html5',
-    },
-  } as IEditorProps,
 }
 
 /**
@@ -101,8 +72,6 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
   private anchorName: string
   private kebabExamplePath: string
   private KnobsComponent: any
-  private ghBugHref: string
-  private ghEditHref: string
 
   public state = { knobs: {} } as IComponentExampleState
 
@@ -159,9 +128,9 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
   }
 
   private isActiveState = () => {
-    const { showCode, showHTML, showRtl, showVariables } = this.state
+    const { showCode, showHTML, showVariables } = this.state
 
-    return showCode || showHTML || showRtl || showVariables
+    return showCode || showHTML || showVariables
   }
 
   private isActiveHash = () => this.anchorName === getFormattedHash(this.props.location.hash)
@@ -245,6 +214,14 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
     })
   }
 
+  private handleShowCodeClick = e => {
+    e.preventDefault()
+
+    const { showCode } = this.state
+
+    this.setState({ showCode: !showCode }, this.updateHash)
+  }
+
   private handleShowVariablesClick = e => {
     e.preventDefault()
 
@@ -282,7 +259,7 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
 
   private hasKnobs = () => _.includes(knobsContext.keys(), this.getKnobsFilename())
 
-  private renderError = _.debounce(error => {
+  private setErrorDebounced = _.debounce(error => {
     this.setState({ error })
   }, 800)
 
@@ -308,14 +285,14 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
       const exampleElement = this.renderExampleFromCode(this.state.sourceCode)
 
       if (!isValidElement(exampleElement)) {
-        this.renderError(
-          `Default export is not a valid element. Type:${{}.toString.call(exampleElement)}`,
+        this.setErrorDebounced(
+          `Default export is not a valid React element. Check the example syntax.`,
         )
       } else {
         // immediately render a null error
         // but also ensure the last debounced error call is a null error
         const error = null
-        this.renderError(error)
+        this.setErrorDebounced(error)
         this.setState({
           error,
           exampleElement,
@@ -323,7 +300,7 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
         })
       }
     } catch (err) {
-      this.renderError(err.message)
+      this.setErrorDebounced(err.message)
     }
   }, 250)
 
@@ -380,82 +357,83 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
     this.setState({ sourceCode: this.sourceCodeMgr.currentCode }, this.renderSourceCode)
   }
 
-  private setGitHubHrefs = () => {
-    const currentCodePath = this.sourceCodeMgr.currentPath
-
-    if (this.ghEditHref && this.ghBugHref) return
-
-    // get component name from file path:
-    // elements/Button/Types/ButtonButtonExample
-    const pathParts = currentCodePath.split(__PATH_SEP__)
-    const filename = pathParts[pathParts.length - 1]
-
-    this.ghEditHref = [
-      `${repoURL}/edit/master/docs/src/examples/${currentCodePath}.tsx`,
-      `?message=docs(${filename}): your description`,
-    ].join('')
-  }
-
   private setApiCodeType = (codeType: SourceCodeType) => {
     this.sourceCodeMgr.codeType = codeType
     this.updateAndRenderSourceCode()
   }
 
-  private renderApiCodeMenu = (color: SemanticCOLORS): JSX.Element => {
-    const menuItems = [SourceCodeType.shorthand, SourceCodeType.normal].map(codeType => {
-      const active = !!this.state.error || this.sourceCodeMgr.codeType === codeType
-      // we disable the menu button for Children API in case we don't have the example for it
-      const disabled =
-        codeType === SourceCodeType.normal && !this.sourceCodeMgr.isCodeValidForType(codeType)
+  private renderApiCodeMenu = (): JSX.Element => {
+    const { sourceCode } = this.state
+    const lineCount = sourceCode && sourceCode.match(/^/gm).length
 
+    const menuItems = [SourceCodeType.shorthand, SourceCodeType.normal].map(codeType => {
+      // we disable the menu button for Children API in case we don't have the example for it
       return {
-        active,
-        disabled,
+        active: this.sourceCodeMgr.codeType === codeType,
+        disabled:
+          codeType === SourceCodeType.normal && !this.sourceCodeMgr.isCodeValidForType(codeType),
         key: codeType,
-        icon: 'code',
-        color: active ? 'green' : color,
         onClick: this.setApiCodeType.bind(this, codeType),
         content: codeTypeApiButtonLabels[codeType],
       }
     })
 
     return (
-      <Divider horizontal style={{ marginBottom: 0 } as CSSProperties}>
-        <Menu size="small" items={menuItems} />
-      </Divider>
+      // match code editor background and gutter size and colors
+      <div style={{ background: EDITOR_BACKGROUND_COLOR } as CSSProperties}>
+        <div
+          style={
+            {
+              borderLeft: `${lineCount > 9 ? 41 : 34}px solid ${EDITOR_GUTTER_COLOR}`,
+              paddingBottom: '1rem',
+            } as CSSProperties
+          }
+        >
+          <Menu size="small" inverted secondary pointing items={menuItems} />
+        </div>
+      </div>
     )
   }
 
-  private renderCodeEditorMenu = (color: SemanticCOLORS): JSX.Element => {
-    const { showCode, copiedCode, error } = this.state
-    const codeHasChanged = this.sourceCodeMgr.originalCodeHasChanged
+  private renderCodeEditorMenu = (): JSX.Element => {
+    const { copiedCode } = this.state
+    const { originalCodeHasChanged, currentPath } = this.sourceCodeMgr
     const codeEditorStyle: CSSProperties = {
-      margin: '0',
-      visibility: showCode ? 'visible' : 'hidden',
+      position: 'absolute',
+      margin: 0,
+      top: '2px',
+      right: '0.5rem',
     }
 
+    // get component name from file path:
+    // elements/Button/Types/ButtonButtonExample
+    const pathParts = currentPath.split(__PATH_SEP__)
+    const filename = pathParts[pathParts.length - 1]
+
+    const ghEditHref = [
+      `${repoURL}/edit/master/docs/src/examples/${currentPath}.tsx`,
+      `?message=docs(${filename}): your description`,
+    ].join('')
+
     return (
-      <Menu size="small" text widths="8" style={codeEditorStyle}>
+      <Menu size="small" secondary inverted text style={codeEditorStyle}>
         <Menu.Item
-          active={copiedCode || !!error} // to show the color
-          color={copiedCode ? 'green' : color}
-          icon={!copiedCode && 'copy'}
-          content={copiedCode ? 'Copied!' : 'Copy'}
-          onClick={this.copyJSX}
-        />
-        <Menu.Item
-          active={codeHasChanged}
-          color={codeHasChanged ? 'red' : color}
+          style={!originalCodeHasChanged ? { opacity: 0.5, pointerEvents: 'none' } : undefined}
           icon="refresh"
           content="Reset"
           onClick={this.resetJSX}
         />
         <Menu.Item
-          active={!!error} // to show the color
-          color={color}
+          active={copiedCode} // to show the color
+          icon={copiedCode ? { color: 'green', name: 'check' } : 'copy'}
+          content="Copy"
+          onClick={this.copyJSX}
+        />
+        <Menu.Item
+          style={{ border: 'none' }}
           icon="github"
           content="Edit"
-          href={this.ghEditHref}
+          href={ghEditHref}
           target="_blank"
         />
       </Menu>
@@ -463,53 +441,45 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
   }
 
   private renderJSX = () => {
-    const { error, showCode, sourceCode } = this.state
+    const { showCode, sourceCode } = this.state
 
-    const color = error ? 'red' : 'black'
-    const jsxStyle: CSSProperties = {
-      width: '100%',
-      ...(error && {
-        boxShadow: `inset 0 0 0 1em ${errorStyle.background}`,
-      }),
-    }
-
-    const editorProps: IEditorProps = {
-      ...staticEditorProps.jsx,
-      id: `${this.getKebabExamplePath()}-jsx`,
-      value: sourceCode,
-      onChange: this.handleChangeCode,
-      onClick: this.handleShowCode.bind(this, true),
-      onOutsideClick: this.handleShowCodeInactive,
-      ...(!showCode && {
-        active: false,
-        showCursor: false,
-        highlightActiveLine: false,
-      }),
-    }
-
-    this.setGitHubHrefs()
+    if (!showCode) return null
 
     return (
-      <div style={jsxStyle}>
-        {/* Example Type Menu */}
-        {this.renderApiCodeMenu(color)}
+      <div>
+        {this.renderApiCodeMenu()}
 
-        {/* Code Editor */}
         {sourceCode != null && (
           <div>
-            {this.renderCodeEditorMenu(color)}
-            <Editor {...editorProps} />
+            {this.renderCodeEditorMenu()}
+            <Editor
+              setOptions={{ fixedWidthGutter: true, showFoldWidgets: false }}
+              id={`${this.getKebabExamplePath()}-jsx`}
+              value={sourceCode}
+              onChange={this.handleChangeCode}
+              onOutsideClick={this.handleShowCodeInactive}
+            />
           </div>
         )}
-
-        {/* Error */}
-        {error && <pre style={errorStyle}>{error}</pre>}
       </div>
     )
   }
 
+  private renderError = () => {
+    const { error } = this.state
+
+    if (!error) return null
+
+    return (
+      <Segment size="small" color="red" basic inverted padded secondary>
+        <pre>{error}</pre>
+      </Segment>
+    )
+  }
+
   private renderHTML = () => {
-    const { showHTML, markup } = this.state
+    const { error, showCode, markup } = this.state
+    if (error || !showCode) return null
 
     // add new lines between almost all adjacent elements
     // moves inline elements to their own line
@@ -523,19 +493,23 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
       end_with_newline: false,
     })
 
-    const editorProps: IEditorProps = {
-      ...staticEditorProps.html,
-      id: `${this.getKebabExamplePath()}-html`,
-      onClick: this.handleShowHTML.bind(this, true),
-      onOutsideClick: this.handleShowHTMLInactive,
-      value: beautifiedHTML,
-      active: showHTML,
-    }
-
     return (
       <div>
-        <Divider horizontal>Rendered HTML</Divider>
-        <Editor {...editorProps} />
+        <Divider inverted horizontal>
+          <span style={{ opacity: 0.5 }}>HTML</span>
+        </Divider>
+        <div style={{ padding: '1rem', filter: 'grayscale()' } as CSSProperties}>
+          <Editor
+            mode="html"
+            showGutter={false}
+            showCursor={false}
+            readOnly
+            highlightActiveLine={false}
+            id={`${this.getKebabExamplePath()}-html`}
+            onOutsideClick={this.handleShowHTMLInactive}
+            value={beautifiedHTML}
+          />
+        </div>
       </div>
     )
   }
@@ -548,7 +522,9 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
 
     return (
       <div>
-        <Divider horizontal>{_.startCase(name).replace(/ /g, '')} Variables</Divider>
+        <Divider inverted horizontal>
+          <span style={{ opacity: 0.5 }}>Theme</span>
+        </Divider>
         <Provider.Consumer
           render={({ siteVariables }) => {
             const variablesFilename = `./${name}/${_.camelCase(name)}Variables.ts`
@@ -556,7 +532,7 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
 
             if (!hasVariablesFile) {
               return (
-                <Segment size="small" secondary basic>
+                <Segment size="small" inverted padded basic>
                   This component has no variables to edit.
                 </Segment>
               )
@@ -566,20 +542,18 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
             const defaultVariables = variables(siteVariables)
 
             return (
-              <div>
-                <Form>
-                  <Form.Group inline>
-                    {_.map(defaultVariables, (val, key) => (
-                      <Form.Input
-                        key={key}
-                        label={key}
-                        defaultValue={val}
-                        onChange={this.handleVariableChange(name, key)}
-                      />
-                    ))}
-                  </Form.Group>
-                </Form>
-              </div>
+              <Form inverted style={{ padding: '1rem' }}>
+                <Form.Group inline>
+                  {_.map(defaultVariables, (val, key) => (
+                    <Form.Input
+                      key={key}
+                      label={key}
+                      defaultValue={val}
+                      onChange={this.handleVariableChange(name, key)}
+                    />
+                  ))}
+                </Form.Group>
+              </Form>
             )
           }}
         />
@@ -621,13 +595,13 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
       position: 'relative',
       transition: 'box-shadow 200ms, background 200ms',
       background: '#fff',
-      boxShadow: '0 0 15px #ccc',
+      boxShadow: '0 1px 2px #ccc',
       ...(isActive
         ? {
-            boxShadow: '0 0 40px #aaa',
+            boxShadow: '0 8px 32px #aaa',
           }
         : isHovering && {
-            boxShadow: '0 0 30px #aaa',
+            boxShadow: '0 2px 8px #bbb',
             zIndex: 1,
           }),
     }
@@ -641,63 +615,61 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
         onTopPassedReverse={this.handlePass}
         ref={c => (this.componentRef = c)}
       >
+        {/* Ensure anchor links don't occlude card shadow effect */}
+        <div id={this.anchorName} style={{ position: 'relative', bottom: '1rem' }} />
         <Grid
           className="docs-example"
-          padded="vertically"
-          id={this.anchorName}
           onMouseLeave={handleMouseLeave}
           onMouseMove={handleMouseMove}
           style={exampleStyle}
         >
-          <Grid.Row style={{ paddingBottom: 0 } as CSSProperties}>
-            <Grid.Column>
-              <ComponentControls
-                anchorName={this.anchorName}
-                examplePath={examplePath}
-                onCopyLink={this.handleDirectLinkClick}
-                onShowRtl={this.handleShowRtlClick}
-                onShowVariables={this.handleShowVariablesClick}
-                showCode={showCode}
-                showHTML={showHTML}
-                showRtl={showRtl}
-                showVariables={showVariables}
-                visible
-              />
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row style={{ paddingTop: 0 }}>
-            <Grid.Column>
-              <ComponentExampleTitle
-                description={description}
-                title={title}
-                suiVersion={suiVersion}
-              />
-            </Grid.Column>
-          </Grid.Row>
+          <Grid.Column width={16} style={{ borderBottom: '1px solid #ddd' }}>
+            <div style={{ display: 'flex' }}>
+              <div style={{ flex: '1' }}>
+                <ComponentExampleTitle
+                  description={description}
+                  title={title}
+                  suiVersion={suiVersion}
+                />
+              </div>
+              <div style={{ flex: '0 0 auto' }}>
+                <ComponentControls
+                  anchorName={this.anchorName}
+                  examplePath={examplePath}
+                  onShowCode={this.handleShowCodeClick}
+                  onCopyLink={this.handleDirectLinkClick}
+                  onShowRtl={this.handleShowRtlClick}
+                  onShowVariables={this.handleShowVariablesClick}
+                  showCode={showCode}
+                  showHTML={showHTML}
+                  showRtl={showRtl}
+                  showVariables={showVariables}
+                  visible
+                />
+              </div>
+            </div>
+            {knobs}
+          </Grid.Column>
 
           {children && (
-            <Grid.Row columns={1}>
-              <Grid.Column style={childrenStyle}>{children}</Grid.Column>
-            </Grid.Row>
+            <Grid.Column width={16} style={childrenStyle}>
+              {children}
+            </Grid.Column>
           )}
 
-          {knobs && (
-            <Grid.Row columns={1}>
-              <Grid.Column>{knobs}</Grid.Column>
-            </Grid.Row>
-          )}
-
-          <Grid.Row columns={1}>
-            <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
-              <div dir={this.state.showRtl ? 'rtl' : undefined}>{exampleElement}</div>
-            </Grid.Column>
-            <Grid.Column>
-              {this.renderJSX()}
-              {this.renderHTML()}
-              {this.renderVariables()}
-            </Grid.Column>
-          </Grid.Row>
+          <Grid.Column
+            width={16}
+            className={`rendered-example ${this.getKebabExamplePath()}`}
+            style={{ padding: '2rem' }}
+          >
+            <div dir={showRtl ? 'rtl' : undefined}>{exampleElement}</div>
+          </Grid.Column>
+          <Grid.Column width={16} style={{ padding: 0, background: EDITOR_BACKGROUND_COLOR }}>
+            {this.renderJSX()}
+            {this.renderError()}
+            {this.renderHTML()}
+            {this.renderVariables()}
+          </Grid.Column>
         </Grid>
         <Divider section horizontal />
       </Visibility>

@@ -5,21 +5,19 @@ import { Icon, Menu } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 
 import { neverUpdate } from 'docs/src/hoc'
-import ComponentControlsToolTip from './ComponentControlsToolTip'
 
-const ComponentControlsMaximize: any = ({ examplePath }) => {
-  const href = `/maximize/${_.kebabCase(examplePath.split('/').slice(-1))}`
-  const btnLabel = 'Full Screen'
+const ComponentControlsMaximize: any = ({ examplePath }) => (
+  <Menu.Item
+    as={NavLink}
+    to={`/maximize/${_.kebabCase(examplePath.split('/').slice(-1))}`}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Icon color="grey" fitted name="window maximize" size="large" />
+    Maximize
+  </Menu.Item>
+)
 
-  return (
-    <ComponentControlsToolTip content={btnLabel}>
-      <Menu.Item as={NavLink} to={href} target="_blank" rel="noopener noreferrer">
-        <Icon color="grey" fitted name="window maximize" size="large" />
-        {btnLabel}
-      </Menu.Item>
-    </ComponentControlsToolTip>
-  )
-}
 ComponentControlsMaximize.propTypes = {
   examplePath: PropTypes.string.isRequired,
 }

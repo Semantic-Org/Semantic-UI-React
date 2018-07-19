@@ -34,6 +34,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Add JSX and HTML code preview and card view for component examples in the doc site @Bugaa92 ([#62](https://github.com/stardust-ui/react/pull/62))
 - Add shorthand examples for the Label component @mnajdova ([#99](https://github.com/stardust-ui/react/pull/99))
 - Replace `stardust` imports with `@stardust-ui/react` to reflect the new npm package @davezuko ([#115](https://github.com/stardust-ui/react/pull/115]))
+- Further improve code edit experience @levithomason ([#100](https://github.com/stardust-ui/react/pulls/100))
 
 <!--------------------------------[ v0.2.0 ]------------------------------- -->
 ## [v0.2.0](https://github.com/stardust-ui/react/tree/v0.2.0) (2018-07-10)
