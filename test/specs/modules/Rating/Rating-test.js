@@ -91,7 +91,7 @@ describe('Rating', () => {
         .last()
         .simulate('mouseEnter')
         .simulate('click')
-      expect(wrapper).not.have.className('selected')
+      expect(wrapper.childAt(0).hasClass('selected')).toBe(false)
       expect(wrapper.find('RatingIcon[selected=true]')).toHaveLength(0)
     })
   })
@@ -104,7 +104,7 @@ describe('Rating', () => {
         .find('RatingIcon')
         .first()
         .simulate('mouseEnter')
-      expect(wrapper).have.className('selected')
+      expect(wrapper.childAt(0).hasClass('selected')).toBe(true)
     })
 
     it('selects icons up to and including the hovered icon', () => {
@@ -153,13 +153,23 @@ describe('Rating', () => {
         .find('RatingIcon')
         .at(0)
         .simulate('click')
-      expect(wrapper.find('RatingIcon').at(0).prop('active')).toBe(true)
+      expect(
+        wrapper
+          .find('RatingIcon')
+          .at(0)
+          .prop('active'),
+      ).toBe(true)
 
       wrapper
         .find('RatingIcon')
         .at(0)
         .simulate('click')
-      expect(wrapper.find('RatingIcon').at(0).prop('active')).toBe(false)
+      expect(
+        wrapper
+          .find('RatingIcon')
+          .at(0)
+          .prop('active'),
+      ).toBe(false)
     })
 
     it('allows clearing when true with a single icon', () => {
@@ -169,7 +179,12 @@ describe('Rating', () => {
         .find('RatingIcon')
         .at(0)
         .simulate('click')
-      expect(wrapper.find('RatingIcon').at(0).prop('active')).toBe(false)
+      expect(
+        wrapper
+          .find('RatingIcon')
+          .at(0)
+          .prop('active'),
+      ).toBe(false)
     })
 
     it('allows clearing when true with multiple icons', () => {
@@ -184,12 +199,10 @@ describe('Rating', () => {
 
     it('prevents clearing when false with a single icon', () => {
       const wrapper = mount(<Rating clearable={false} defaultRating={1} maxRating={1} />)
+      const icon = wrapper.find('RatingIcon').at(0)
 
-      wrapper
-        .find('RatingIcon')
-        .at(0)
-        .simulate('click')
-      expect(wrapper.prop('active')).toBe(true)
+      icon.simulate('click')
+      expect(icon.prop('active')).toBe(true)
     })
 
     it('prevents clearing when false with multiple icons', () => {
@@ -206,20 +219,16 @@ describe('Rating', () => {
   describe('disabled', () => {
     it('prevents the rating from being toggled', () => {
       const wrapper = mount(<Rating clearable='auto' disabled maxRating={1} rating={1} />)
+      const icon = wrapper.find('RatingIcon').at(0)
 
-      wrapper
-        .find('RatingIcon')
-        .at(0)
-        .simulate('click')
-      expect(wrapper.prop('active')).toBe(true)
+      icon.simulate('click')
+      expect(icon.prop('active')).toBe(true)
 
       const another = mount(<Rating clearable='auto' disabled maxRating={1} rating={0} />)
+      const anotherIcon = another.find('RatingIcon').at(0)
 
-      another
-        .find('RatingIcon')
-        .at(0)
-        .simulate('click')
-      expect(another.prop('active')).toBe(false)
+      anotherIcon.simulate('click')
+      expect(anotherIcon.prop('active')).toBe(false)
     })
 
     it('prevents the rating from being cleared', () => {
@@ -271,9 +280,7 @@ describe('Rating', () => {
     it('controls how many icons are displayed', () => {
       _.times(10, (i) => {
         const maxRating = i + 1
-        expect(shallow(<Rating maxRating={maxRating} />))
-          .have.exactly(maxRating)
-          .descendants('RatingIcon')
+        expect(shallow(<Rating maxRating={maxRating} />).find('RatingIcon')).toHaveLength(maxRating)
       })
     })
   })
@@ -289,7 +296,10 @@ describe('Rating', () => {
         .simulate('click', event)
 
       expect(onRate).toHaveBeenCalledTimes(1)
-      expect(onRate).toHaveBeenCalledWith(event, { rating: 3, maxRating: 3 })
+      expect(onRate).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining({ rating: 3, maxRating: 3 }),
+      )
     })
   })
 

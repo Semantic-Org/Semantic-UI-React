@@ -10,45 +10,41 @@ describe('RatingIcon', () => {
   common.propKeyOnlyToClassName(RatingIcon, 'active')
   common.propKeyOnlyToClassName(RatingIcon, 'selected')
 
-  describe('onKeyUp', () => {
-    it('omitted when not defined', () => {
-      const event = { keyCode: keyboardKey.Enter, preventDefault: jest.fn() }
-      const keypress = () => shallow(<RatingIcon />).simulate('keyup', event)
-
-      expect(keypress).not.toThrowError()
-      expect(event.preventDefault).not.toHaveBeenCalled()
-    })
-
+  describe('onClick', () => {
     it('calls onClick with (e, index) when space key is pressed', () => {
-      const spy = jest.fn()
+      const onClick = jest.fn()
       const event = { keyCode: keyboardKey.Spacebar, preventDefault: jest.fn() }
 
-      mount(<RatingIcon index={0} onClick={spy} />).simulate('keyup', event)
+      mount(<RatingIcon index={0} onClick={onClick} />).simulate('keyup', event)
 
-      expect(spy).toHaveBeenCalledTimes(1)
-      expect(spy).toHaveBeenCalledWith(event, { index: 0 })
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining({ index: 0 }),
+      )
       expect(event.preventDefault).toHaveBeenCalledTimes(1)
     })
 
     it('calls onClick with (e, index) when enter key is pressed', () => {
-      const spy = jest.fn()
+      const onClick = jest.fn()
       const event = { keyCode: keyboardKey.Enter, preventDefault: jest.fn() }
 
-      mount(<RatingIcon index={0} onClick={spy} />).simulate('keyup', event)
+      mount(<RatingIcon index={0} onClick={onClick} />).simulate('keyup', event)
 
-      expect(spy).toHaveBeenCalledTimes(1)
-      expect(spy).toHaveBeenCalledWith(event, { index: 0 })
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining({ index: 0 }),
+      )
       expect(event.preventDefault).toHaveBeenCalledTimes(1)
     })
 
     it('does not call onClick when non space/enter key is pressed', () => {
-      const spy = jest.fn()
+      const onClick = jest.fn()
       const event = { keyCode: keyboardKey.A, preventDefault: jest.fn() }
+      shallow(<RatingIcon onClick={onClick} />).simulate('keyup', event)
 
-      const keyup = () => shallow(<RatingIcon onClick={spy} />).simulate('keyup', event)
-
-      expect(keyup).not.toThrowError()
-      expect(spy).not.toHaveBeenCalled()
+      expect(onClick).not.toHaveBeenCalled()
       expect(event.preventDefault).not.toHaveBeenCalled()
     })
   })

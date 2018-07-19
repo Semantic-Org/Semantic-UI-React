@@ -34,7 +34,7 @@ describe('Sidebar', () => {
 
       wrapper.setProps({ visible: false })
       expect(onHide).toHaveBeenCalledTimes(1)
-      expect(onHide).toHaveBeenCalledWith(null, { visible: false })
+      expect(onHide).toHaveBeenCalledWith(null, expect.objectContaining({ visible: false }))
     })
 
     it('is called when a click on the document was done', () => {
@@ -44,7 +44,10 @@ describe('Sidebar', () => {
 
       domEvent.click(document)
       expect(onHide).toHaveBeenCalledTimes(1)
-      expect(onHide).toHaveBeenCalledWith({}, { visible: false })
+      expect(onHide).toHaveBeenCalledWith(
+        expect.any(Object),
+        expect.objectContaining({ visible: false }),
+      )
     })
 
     it('is called when a click on the document was done only once', () => {
@@ -86,7 +89,10 @@ describe('Sidebar', () => {
 
       setTimeout(() => {
         expect(onHidden).toHaveBeenCalledTimes(1)
-        expect(onHidden).toHaveBeenCalledWith(null, { duration: 0, visible: false })
+        expect(onHidden).toHaveBeenCalledWith(
+          null,
+          expect.objectContaining({ duration: 0, visible: false }),
+        )
 
         done()
       }, 0)
@@ -103,7 +109,10 @@ describe('Sidebar', () => {
 
       setTimeout(() => {
         expect(onShow).toHaveBeenCalledTimes(1)
-        expect(onShow).toHaveBeenCalledWith(null, { duration: 0, visible: true })
+        expect(onShow).toHaveBeenCalledWith(
+          null,
+          expect.objectContaining({ duration: 0, visible: true }),
+        )
 
         done()
       }, 0)
@@ -118,7 +127,7 @@ describe('Sidebar', () => {
 
       wrapper.setProps({ visible: true })
       expect(onVisible).toHaveBeenCalledTimes(1)
-      expect(onVisible).toHaveBeenCalledWith(null, { visible: true })
+      expect(onVisible).toHaveBeenCalledWith(null, expect.objectContaining({ visible: true }))
     })
   })
 })
