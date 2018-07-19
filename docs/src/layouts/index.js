@@ -1,3 +1,4 @@
+export AnotherGridLayout from './AnotherGridLayout'
 export AttachedContentLayout from './AttachedContentLayout'
 export BootstrapMigrationLayout from './BootstrapMigrationLayout'
 export FixedMenuLayout from './FixedMenuLayout'
