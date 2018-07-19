@@ -12,6 +12,6 @@ describe('TabPane', () => {
   common.propKeyOnlyToClassName(TabPane, 'loading')
 
   it('renders a Segment by default', () => {
-    expect(shallow(<TabPane />)).toMatch('Segment')
+    expect(shallow(<TabPane />).is('Segment')).toBe(true)
   })
 })

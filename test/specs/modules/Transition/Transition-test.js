@@ -5,9 +5,16 @@ import Transition from 'src/modules/Transition/Transition'
 import TransitionGroup from 'src/modules/Transition/TransitionGroup'
 import * as common from 'test/specs/commonTests'
 
+let attachTo
 let wrapper
 
-const wrapperMount = (...args) => (wrapper = mount(...args))
+const wrapperMount = (node, options) => {
+  attachTo = document.createElement('div')
+  document.body.appendChild(attachTo)
+
+  wrapper = mount(node, { ...options, attachTo })
+  return wrapper
+}
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Transition', () => {
@@ -15,11 +22,13 @@ describe('Transition', () => {
   common.hasValidTypings(Transition)
 
   beforeEach(() => {
+    attachTo = undefined
     wrapper = undefined
   })
 
   afterEach(() => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
+    if (attachTo) document.body.removeChild(attachTo)
   })
 
   describe('animation', () => {
@@ -129,7 +138,8 @@ describe('Transition', () => {
           <Transition>
             <p className='foo' />
           </Transition>,
-        ).find('p.foo')).toHaveLength(1)
+        ).find('p.foo'),
+      ).toHaveLength(1)
     })
 
     it('returns null when UNMOUNTED', () => {
@@ -181,90 +191,98 @@ describe('Transition', () => {
 
   describe('duration', () => {
     it('does not apply to style when ENTERED', () => {
-      expect(
-        wrapperShallow(
-          <Transition transitionOnMount={false}>
-            <p />
-          </Transition>,
-        ),
-      ).not.have.style('animation-duration')
+      wrapperMount(
+        <Transition transitionOnMount={false}>
+          <p />
+        </Transition>,
+      )
+      const child = document.querySelector('p')
+
+      expect(child.style.animationDuration).toBe('')
     })
 
     it('applies default value to style when ENTERING', () => {
-      wrapperShallow(
+      wrapperMount(
         <Transition>
           <p />
         </Transition>,
       )
+      const child = document.querySelector('p')
 
       wrapper.setState({ status: Transition.ENTERING })
-      expect(wrapper).have.style('animation-duration', '500ms')
+      expect(child.style.animationDuration).toBe('500ms')
     })
 
     it('applies numeric value to style when ENTERING', () => {
-      wrapperShallow(
+      wrapperMount(
         <Transition duration={1000}>
           <p />
         </Transition>,
       )
+      const child = document.querySelector('p')
 
       wrapper.setState({ status: Transition.ENTERING })
-      expect(wrapper).have.style('animation-duration', '1000ms')
+      expect(child.style.animationDuration).toBe('1000ms')
     })
 
     it('applies object value to style when ENTERING', () => {
-      wrapperShallow(
+      wrapperMount(
         <Transition duration={{ hide: 1000, show: 2000 }}>
           <p />
         </Transition>,
       )
+      const child = document.querySelector('p')
 
       wrapper.setState({ status: Transition.ENTERING })
-      expect(wrapper).have.style('animation-duration', '2000ms')
+      expect(child.style.animationDuration).toBe('2000ms')
     })
 
     it('does not apply to style when EXITED', () => {
-      wrapperShallow(
+      wrapperMount(
         <Transition>
           <p />
         </Transition>,
       )
+      const child = document.querySelector('p')
 
       wrapper.setState({ status: Transition.EXITED })
-      expect(wrapper).not.have.style('animation-duration')
+      expect(child.style.animationDuration).toBe('')
     })
 
     it('applies default value to style when EXITING', () => {
-      wrapperShallow(
+      wrapperMount(
         <Transition>
           <p />
         </Transition>,
       )
+      const child = document.querySelector('p')
 
       wrapper.setState({ animating: true, status: Transition.EXITING })
-      expect(wrapper).have.style('animation-duration')
+      expect(child.style.animationDuration).toBe('500ms')
     })
 
     it('applies numeric value to style when EXITING', () => {
-      wrapperShallow(
+      wrapperMount(
         <Transition duration={1000}>
           <p />
         </Transition>,
       )
-      wrapper.setState({ status: Transition.ENTERING })
+      const child = document.querySelector('p')
 
-      expect(wrapper).have.style('animation-duration', '1000ms')
+      wrapper.setState({ status: Transition.ENTERING })
+      expect(child.style.animationDuration).toBe('1000ms')
     })
 
     it('applies object value to style when EXITING', () => {
-      wrapperShallow(
+      wrapperMount(
         <Transition duration={{ hide: 1000, show: 2000 }}>
           <p />
         </Transition>,
       )
+      const child = document.querySelector('p')
 
       wrapper.setState({ status: Transition.EXITING })
-      expect(wrapper).have.style('animation-duration', '1000ms')
+      expect(child.style.animationDuration).toBe('1000ms')
     })
   })
 
@@ -340,10 +358,13 @@ describe('Transition', () => {
         onComplete(...args)
 
         expect(onComplete).toHaveBeenCalledTimes(1)
-        expect(onComplete).toHaveBeenCalledWith(null, expect.objectContaining({
-          duration: 0,
-          status: Transition.ENTERING,
-        }))
+        expect(onComplete).toHaveBeenCalledWith(
+          null,
+          expect.objectContaining({
+            duration: 0,
+            status: Transition.ENTERING,
+          }),
+        )
 
         done()
       }
@@ -363,7 +384,10 @@ describe('Transition', () => {
         onHide(...args)
 
         expect(onHide).toHaveBeenCalledTimes(1)
-        expect(onHide).toHaveBeenCalledWith(null, expect.objectContaining({ duration: 0, status: Transition.EXITED }))
+        expect(onHide).toHaveBeenCalledWith(
+          null,
+          expect.objectContaining({ duration: 0, status: Transition.EXITED }),
+        )
 
         done()
       }
@@ -406,7 +430,10 @@ describe('Transition', () => {
         onShow(...args)
 
         expect(onShow).toHaveBeenCalledTimes(1)
-        expect(onShow).toHaveBeenCalledWith(null, expect.objectContaining({ duration: 0, status: Transition.ENTERED }))
+        expect(onShow).toHaveBeenCalledWith(
+          null,
+          expect.objectContaining({ duration: 0, status: Transition.ENTERED }),
+        )
 
         done()
       }
@@ -447,10 +474,13 @@ describe('Transition', () => {
         onStart(...args)
 
         expect(onStart).toHaveBeenCalledTimes(1)
-        expect(onStart).toHaveBeenCalledWith(null, expect.objectContaining({
-          duration: 0,
-          status: Transition.ENTERING,
-        }))
+        expect(onStart).toHaveBeenCalledWith(
+          null,
+          expect.objectContaining({
+            duration: 0,
+            status: Transition.ENTERING,
+          }),
+        )
 
         done()
       }
@@ -465,14 +495,15 @@ describe('Transition', () => {
 
   describe('style', () => {
     it("passes element's style", () => {
-      wrapperShallow(
+      wrapperMount(
         <Transition>
           <p style={{ bottom: 5, top: 10 }} />
         </Transition>,
       )
+      const child = document.querySelector('p')
 
-      expect(wrapper).have.style('bottom', '5px')
-      expect(wrapper).have.style('top', '10px')
+      expect(child.style.bottom).toBe('5px')
+      expect(child.style.top).toBe('10px')
     })
   })
 
@@ -489,12 +520,13 @@ describe('Transition', () => {
     })
 
     it('updates status after mount when is true', () => {
-      expect(
-        wrapperMount(
-          <Transition transitionOnMount>
-            <p />
-          </Transition>,
-        ).state('status')).toBe(Transition.ENTERING)
+      wrapperMount(
+        <Transition transitionOnMount>
+          <p />
+        </Transition>,
+      )
+
+      expect(wrapper.state('status')).toBe(Transition.ENTERING)
     })
   })
 

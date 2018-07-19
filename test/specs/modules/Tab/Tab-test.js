@@ -16,7 +16,11 @@ describe('Tab', () => {
 
   describe('menu', () => {
     it('passes the props to the Menu', () => {
-      expect(shallow(<Tab menu={{ 'data-foo': 'bar' }} />).find('Menu').prop('data-foo')).toBe('bar')
+      expect(
+        shallow(<Tab menu={{ 'data-foo': 'bar' }} />)
+          .find('Menu')
+          .prop('data-foo'),
+      ).toBe('bar')
     })
 
     it('has an item for every menuItem in panes', () => {
@@ -26,44 +30,71 @@ describe('Tab', () => {
         .find('MenuItem')
 
       expect(items).toHaveLength(3)
-      expect(items.at(0).shallow()).contain.text('Tab 1')
-      expect(items.at(1).shallow()).contain.text('Tab 2')
-      expect(items.at(2).shallow()).contain.text('Tab 3')
+      expect(
+        items
+          .at(0)
+          .shallow()
+          .text(),
+      ).toBe('Tab 1')
+      expect(
+        items
+          .at(1)
+          .shallow()
+          .text(),
+      ).toBe('Tab 2')
+      expect(
+        items
+          .at(2)
+          .shallow()
+          .text(),
+      ).toBe('Tab 3')
     })
 
     it('renders above the pane by default', () => {
       const wrapper = shallow(<Tab panes={panes} />)
 
-      expect(wrapper.childAt(0)).toMatch('Menu')
-      expect(wrapper.childAt(1).shallow()).toMatch('Segment')
+      expect(wrapper.childAt(0).is('Menu')).toBe(true)
+      expect(
+        wrapper
+          .childAt(1)
+          .shallow()
+          .is('Segment'),
+      ).toBe(true)
     })
 
     it("renders below the pane when attached='bottom'", () => {
       const wrapper = shallow(<Tab menu={{ attached: 'bottom' }} panes={panes} />)
 
-      expect(wrapper.childAt(0).shallow()).toMatch('Segment')
-      expect(wrapper.childAt(1)).toMatch('Menu')
+      expect(
+        wrapper
+          .childAt(0)
+          .shallow()
+          .is('Segment'),
+      ).toBe(true)
+      expect(wrapper.childAt(1).is('Menu')).toBe(true)
     })
 
     it("infers tabular's value from tab's menuPosition if tabular is set to true", () => {
       const menu = { fluid: true, vertical: true, tabular: true }
       const wrapper = shallow(<Tab menu={menu} menuPosition='right' panes={panes} />)
 
-      expect(wrapper.childAt(0)).toMatch('Grid')
+      expect(wrapper.childAt(0).is('Grid')).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
-          .childAt(1),
-      ).toMatch('GridColumn')
+          .childAt(1)
+          .is('GridColumn'),
+      ).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
           .childAt(1)
           .shallow()
-          .childAt(0),
-      ).toMatch('Menu')
+          .childAt(0)
+          .is('Menu'),
+      ).toBe(true)
       expect(wrapper.find('Menu').prop('tabular')).toBe('right')
     })
 
@@ -71,21 +102,23 @@ describe('Tab', () => {
       const menu = { fluid: true, vertical: true, tabular: 'right' }
       const wrapper = shallow(<Tab menu={menu} menuPosition='left' panes={panes} />)
 
-      expect(wrapper.childAt(0)).toMatch('Grid')
-      expect(
-        wrapper
-          .childAt(0)
-          .shallow()
-          .childAt(0),
-      ).toMatch('GridColumn')
+      expect(wrapper.childAt(0).is('Grid')).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
           .childAt(0)
+          .is('GridColumn'),
+      ).toBe(true)
+      expect(
+        wrapper
+          .childAt(0)
           .shallow()
-          .childAt(0),
-      ).toMatch('Menu')
+          .childAt(0)
+          .shallow()
+          .childAt(0)
+          .is('Menu'),
+      ).toBe(true)
       expect(wrapper.find('Menu').prop('tabular')).toBe('right')
     })
 
@@ -93,36 +126,40 @@ describe('Tab', () => {
       const menu = { fluid: true, vertical: true, tabular: 'right' }
       const wrapper = shallow(<Tab menu={menu} panes={panes} />)
 
-      expect(wrapper.childAt(0)).toMatch('Grid')
-      expect(
-        wrapper
-          .childAt(0)
-          .shallow()
-          .childAt(0),
-      ).toMatch('GridColumn')
+      expect(wrapper.childAt(0).is('Grid')).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
           .childAt(0)
-          .shallow()
-          .childAt(0)
-          .shallow(),
-      ).toMatch('Segment')
+          .is('GridColumn'),
+      ).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
-          .childAt(1),
-      ).toMatch('GridColumn')
+          .childAt(0)
+          .shallow()
+          .childAt(0)
+          .shallow()
+          .is('Segment'),
+      ).toBe(true)
+      expect(
+        wrapper
+          .childAt(0)
+          .shallow()
+          .childAt(1)
+          .is('GridColumn'),
+      ).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
           .childAt(1)
           .shallow()
-          .childAt(0),
-      ).toMatch('Menu')
+          .childAt(0)
+          .is('Menu'),
+      ).toBe(true)
     })
   })
 
@@ -131,27 +168,30 @@ describe('Tab', () => {
       const menu = { fluid: true, vertical: true }
       const wrapper = shallow(<Tab menu={menu} menuPosition='left' panes={panes} />)
 
-      expect(wrapper.childAt(0)).toMatch('Grid')
-      expect(
-        wrapper
-          .childAt(0)
-          .shallow()
-          .childAt(0),
-      ).toMatch('GridColumn')
+      expect(wrapper.childAt(0).is('Grid')).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
           .childAt(0)
-          .shallow()
-          .childAt(0),
-      ).toMatch('Menu')
+          .is('GridColumn'),
+      ).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
-          .childAt(1),
-      ).toMatch('GridColumn')
+          .childAt(0)
+          .shallow()
+          .childAt(0)
+          .is('Menu'),
+      ).toBe(true)
+      expect(
+        wrapper
+          .childAt(0)
+          .shallow()
+          .childAt(1)
+          .is('GridColumn'),
+      ).toBe(true)
       expect(
         wrapper
           .childAt(0)
@@ -159,35 +199,39 @@ describe('Tab', () => {
           .childAt(1)
           .shallow()
           .childAt(0)
-          .shallow(),
-      ).toMatch('Segment')
+          .shallow()
+          .is('Segment'),
+      ).toBe(true)
     })
 
     it("renders left of the pane when set 'left', even if tabular is right", () => {
       const menu = { fluid: true, vertical: true, tabular: 'right' }
       const wrapper = shallow(<Tab menu={menu} menuPosition='left' panes={panes} />)
 
-      expect(wrapper.childAt(0)).toMatch('Grid')
-      expect(
-        wrapper
-          .childAt(0)
-          .shallow()
-          .childAt(0),
-      ).toMatch('GridColumn')
+      expect(wrapper.childAt(0).is('Grid')).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
           .childAt(0)
-          .shallow()
-          .childAt(0),
-      ).toMatch('Menu')
+          .is('GridColumn'),
+      ).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
-          .childAt(1),
-      ).toMatch('GridColumn')
+          .childAt(0)
+          .shallow()
+          .childAt(0)
+          .is('Menu'),
+      ).toBe(true)
+      expect(
+        wrapper
+          .childAt(0)
+          .shallow()
+          .childAt(1)
+          .is('GridColumn'),
+      ).toBe(true)
       expect(
         wrapper
           .childAt(0)
@@ -195,82 +239,94 @@ describe('Tab', () => {
           .childAt(1)
           .shallow()
           .childAt(0)
-          .shallow(),
-      ).toMatch('Segment')
+          .shallow()
+          .is('Segment'),
+      ).toBe(true)
     })
 
     it("renders right of the pane when set 'right'", () => {
       const menu = { fluid: true, vertical: true }
       const wrapper = shallow(<Tab menu={menu} menuPosition='right' panes={panes} />)
 
-      expect(wrapper.childAt(0)).toMatch('Grid')
-      expect(
-        wrapper
-          .childAt(0)
-          .shallow()
-          .childAt(0),
-      ).toMatch('GridColumn')
+      expect(wrapper.childAt(0).is('Grid')).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
           .childAt(0)
-          .shallow()
-          .childAt(0)
-          .shallow(),
-      ).toMatch('Segment')
+          .is('GridColumn'),
+      ).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
-          .childAt(1),
-      ).toMatch('GridColumn')
+          .childAt(0)
+          .shallow()
+          .childAt(0)
+          .shallow()
+          .is('Segment'),
+      ).toBe(true)
+      expect(
+        wrapper
+          .childAt(0)
+          .shallow()
+          .childAt(1)
+          .is('GridColumn'),
+      ).toBe(true)
       expect(
         wrapper
           .childAt(0)
           .shallow()
           .childAt(1)
           .shallow()
-          .childAt(0),
-      ).toMatch('Menu')
+          .childAt(0)
+          .is('Menu'),
+      ).toBe(true)
     })
   })
 
   describe('activeIndex', () => {
     it('is passed to the Menu', () => {
-      expect(mount(<Tab panes={panes} activeIndex={123} />).find('Menu').prop('activeIndex')).toBe(123)
+      expect(
+        mount(<Tab panes={panes} activeIndex={123} />)
+          .find('Menu')
+          .prop('activeIndex'),
+      ).toBe(123)
     })
 
     it('is set when clicking an item', () => {
       const wrapper = mount(<Tab panes={panes} />)
-      expect(wrapper.find('TabPane[active]')).contain.text('Tab 1 Content')
+      expect(wrapper.find('TabPane[active]').text()).toBe('Tab 1 Content')
 
       wrapper
         .find('MenuItem')
         .at(1)
         .simulate('click')
-      expect(wrapper.find('TabPane[active]')).contain.text('Tab 2 Content')
+      expect(wrapper.find('TabPane[active]').text()).toBe('Tab 2 Content')
     })
 
     it('can be set via props', () => {
       const wrapper = mount(<Tab panes={panes} activeIndex={1} />)
 
-      expect(wrapper.find('TabPane[active]')).contain.text('Tab 2 Content')
+      expect(wrapper.find('TabPane[active]').text()).toBe('Tab 2 Content')
 
-      expect(wrapper.setProps({ activeIndex: 2 }).find('TabPane[active]')).contain.text(
-        'Tab 3 Content',
-      )
+      expect(
+        wrapper
+          .setProps({ activeIndex: 2 })
+          .find('TabPane[active]')
+          .text(),
+      ).toBe('Tab 3 Content')
     })
 
     it('determines which pane render method is called', () => {
       const activeIndex = 1
       const props = { activeIndex, panes }
-      jest.fn(panes[activeIndex], 'render')
+      jest.spyOn(panes[activeIndex], 'render')
 
       shallow(<Tab {...props} />)
 
       expect(panes[activeIndex].render).toHaveBeenCalledTimes(1)
-      expect(panes[activeIndex].render).toHaveBeenCalledWith(props)
+      expect(panes[activeIndex].render).toHaveBeenCalledWith(expect.objectContaining(props))
     })
   })
 
@@ -289,29 +345,42 @@ describe('Tab', () => {
       // Since React will have generated a key the returned tab won't match
       // exactly so match on the props instead.
       expect(onTabChange).toHaveBeenCalledTimes(1)
-      expect(onTabChange.firstCall.args[0]).toHaveProperty('fake', 'event')
-      expect(onTabChange.firstCall.args[1]).toHaveProperty('activeIndex', 1)
-      expect(onTabChange.firstCall.args[1]).toHaveProperty('onTabChange', onTabChange)
-      expect(onTabChange.firstCall.args[1]).toHaveProperty('panes', panes)
+      expect(onTabChange).lastCalledWith(
+        expect.objectContaining({
+          fake: 'event',
+        }),
+        expect.objectContaining({ activeIndex: 1, onTabChange, panes }),
+      )
     })
     it('is called with the new proposed activeIndex, not the current', () => {
-      const spy = jest.fn()
+      const onTableChange = jest.fn()
 
-      const items = mount(<Tab activeIndex={-1} onTabChange={spy} panes={panes} />).find('MenuItem')
+      const items = mount(<Tab activeIndex={-1} onTabChange={onTableChange} panes={panes} />).find(
+        'MenuItem',
+      )
 
-      expect(spy).have.callCount(0)
+      expect(onTableChange).not.toHaveBeenCalled()
 
       items.at(0).simulate('click')
-      expect(spy).have.callCount(1)
-      expect(spy.lastCall.args[1]).toHaveProperty('activeIndex', 0)
+      expect(onTableChange).toHaveBeenCalledTimes(1)
+      expect(onTableChange).lastCalledWith(
+        expect.any(Object),
+        expect.objectContaining({ activeIndex: 0 }),
+      )
 
       items.at(1).simulate('click')
-      expect(spy).have.callCount(2)
-      expect(spy.lastCall.args[1]).toHaveProperty('activeIndex', 1)
+      expect(onTableChange).toHaveBeenCalledTimes(2)
+      expect(onTableChange).lastCalledWith(
+        expect.any(Object),
+        expect.objectContaining({ activeIndex: 1 }),
+      )
 
       items.at(2).simulate('click')
-      expect(spy).have.callCount(3)
-      expect(spy.lastCall.args[1]).toHaveProperty('activeIndex', 2)
+      expect(onTableChange).toHaveBeenCalledTimes(3)
+      expect(onTableChange).lastCalledWith(
+        expect.any(Object),
+        expect.objectContaining({ activeIndex: 2 }),
+      )
     })
   })
 
@@ -321,9 +390,9 @@ describe('Tab', () => {
       const items = mount(<Tab panes={textPanes} renderActiveOnly={false} />).find('TabPane')
 
       expect(items).toHaveLength(3)
-      expect(items.at(0)).contain.text('Tab 1')
-      expect(items.at(1)).contain.text('Tab 2')
-      expect(items.at(2)).contain.text('Tab 3')
+      expect(items.at(0).text()).toBe('Tab 1')
+      expect(items.at(1).text()).toBe('Tab 2')
+      expect(items.at(2).text()).toBe('Tab 3')
     })
   })
 })
