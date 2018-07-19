@@ -62,6 +62,17 @@ const codeTypeApiButtonLabels: { [key in SourceCodeType]: string } = {
   shorthand: 'Shorthand API',
 }
 
+const variablesPanelStyle = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  maxHeight: pxToRem(250),
+  overflowY: 'auto',
+}
+
+const variableInputStyle = {
+  paddingBottom: pxToRem(10),
+}
+
 /**
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
@@ -543,9 +554,10 @@ class ComponentExample extends PureComponent<IComponentExampleProps, IComponentE
 
             return (
               <Form inverted style={{ padding: '1rem' }}>
-                <Form.Group inline>
+                <Form.Group inline style={variablesPanelStyle}>
                   {_.map(defaultVariables, (val, key) => (
                     <Form.Input
+                      style={variableInputStyle}
                       key={key}
                       label={key}
                       defaultValue={val}
