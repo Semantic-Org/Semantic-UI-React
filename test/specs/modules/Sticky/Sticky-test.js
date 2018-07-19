@@ -128,7 +128,12 @@ describe('Sticky', () => {
       )
 
       _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
-        expect(wrapper.childAt(0).childAt(1).hasClass(className)).toBe(true),
+        expect(
+          wrapper
+            .childAt(0)
+            .childAt(1)
+            .hasClass(className),
+        ).toBe(true),
       )
       expect(onStick).toHaveBeenCalledTimes(1)
       expect(onStick).toHaveBeenCalledWith(undefined, expect.objectContaining(positions))
@@ -150,7 +155,12 @@ describe('Sticky', () => {
       scrollAfterTrigger()
 
       _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
-        expect(wrapper.childAt(0).childAt(1).hasClass(className)).toBe(true),
+        expect(
+          wrapper
+            .childAt(0)
+            .childAt(1)
+            .hasClass(className),
+        ).toBe(true),
       )
       expect(wrapper.childAt(0).childAt(1)).have.style('top', '12px')
     })
@@ -162,7 +172,12 @@ describe('Sticky', () => {
 
       scrollAfterContext()
       _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
-        expect(wrapper.childAt(0).childAt(1).hasClass(className)).toBe(true),
+        expect(
+          wrapper
+            .childAt(0)
+            .childAt(1)
+            .hasClass(className),
+        ).toBe(true),
       )
       expect(wrapper.childAt(0).childAt(1)).have.style('bottom', '0px')
     })
@@ -177,7 +192,7 @@ describe('Sticky', () => {
       scrollAfterContext()
       expect(onBottom).toHaveBeenCalledTimes(1)
       expect(onBottom).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining(positions))
-      onBottom.resetHistory()
+      onBottom.mockClear()
 
       scrollToTop()
       expect(onBottom).not.toHaveBeenCalled()
@@ -194,7 +209,7 @@ describe('Sticky', () => {
       scrollAfterTrigger()
       expect(onStick).toHaveBeenCalledTimes(2)
       expect(onStick).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining(positions))
-      onStick.resetHistory()
+      onStick.mockClear()
 
       scrollToTop()
       expect(onStick).not.toHaveBeenCalled()
@@ -247,7 +262,12 @@ describe('Sticky', () => {
       domEvent.scroll(window)
 
       _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
-        expect(wrapper.childAt(0).childAt(1).hasClass(className)).toBe(true),
+        expect(
+          wrapper
+            .childAt(0)
+            .childAt(1)
+            .hasClass(className),
+        ).toBe(true),
       )
       expect(wrapper.childAt(0).childAt(1)).have.style('bottom', '0px')
 
@@ -357,7 +377,7 @@ describe('Sticky', () => {
   describe('update', () => {
     it('is called on scroll', () => {
       const instance = mount(<Sticky />).instance()
-      const update = jest.fn(instance, 'update')
+      const update = jest.spyOn(instance, 'update')
 
       domEvent.scroll(window)
       expect(update).toHaveBeenCalledTimes(1)
@@ -365,26 +385,25 @@ describe('Sticky', () => {
 
     it('is called on resize', () => {
       const instance = mount(<Sticky />).instance()
-      const update = jest.fn(instance, 'update')
+      const update = jest.spyOn(instance, 'update')
 
       domEvent.resize(window)
       expect(update).toHaveBeenCalledTimes(1)
     })
 
     it('is not called after unmount', (done) => {
-      window.requestAnimationFrame.restore()
-      sandbox.stub(window, 'requestAnimationFrame').callsFake(fn => setTimeout(fn, 0))
-      sandbox.stub(window, 'cancelAnimationFrame').callsFake(id => clearTimeout(id))
+      global.requestAnimationFrame = fn => setTimeout(fn, 0)
+      global.cancelAnimationFrame = id => clearTimeout(id)
 
       const instance = wrapperMount(<Sticky />).instance()
-      const update = jest.fn(instance, 'update')
+      const update = jest.spyOn(instance, 'update')
 
       domEvent.resize(window)
       wrapper.unmount()
-      window.requestAnimationFrame(() => {
+      setTimeout(() => {
         expect(update).not.toHaveBeenCalled()
         done()
-      })
+      }, 0)
     })
   })
 })
