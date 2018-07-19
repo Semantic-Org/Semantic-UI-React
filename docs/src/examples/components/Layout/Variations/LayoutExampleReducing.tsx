@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout } from 'stardust'
+import { Layout } from '@stardust-ui/react'
 
 const LayoutExampleReducing = () => (
   <div>

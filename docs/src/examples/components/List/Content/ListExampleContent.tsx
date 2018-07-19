@@ -1,5 +1,5 @@
 import React from 'react'
-import { List } from 'stardust'
+import { List } from '@stardust-ui/react'
 
 const items = [
   'Program the sensor to the SAS alarm through the haptic SQL card!',

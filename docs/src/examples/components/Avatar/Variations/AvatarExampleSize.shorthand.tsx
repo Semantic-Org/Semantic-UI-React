@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-import { Avatar } from 'stardust'
+import { Avatar } from '@stardust-ui/react'
 
 const AvatarExampleSizeShorthand = () =>
   _.times(10, i => {

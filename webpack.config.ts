@@ -77,7 +77,7 @@ const webpackConfig: any = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
-      stardust: paths.src(),
+      '@stardust-ui/react': paths.src(),
       src: paths.src(),
       docs: paths.base('docs'),
       'package.json': paths.base('package.json'),

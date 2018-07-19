@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from 'stardust'
+import { Menu } from '@stardust-ui/react'
 
 const items = [
   { key: 'editorials', content: 'Editorials' },

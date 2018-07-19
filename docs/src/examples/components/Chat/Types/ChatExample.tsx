@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Chat } from 'stardust'
+import { Chat } from '@stardust-ui/react'
 
 const ChatExample = () => (
   <Chat>

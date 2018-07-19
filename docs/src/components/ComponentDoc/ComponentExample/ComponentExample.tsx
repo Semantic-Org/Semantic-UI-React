@@ -6,7 +6,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 import { Divider, Form, Grid, Menu, Segment, Visibility, SemanticCOLORS } from 'semantic-ui-react'
-import { Provider } from 'stardust'
+import { Provider } from '@stardust-ui/react'
 
 import {
   examplePathToHash,

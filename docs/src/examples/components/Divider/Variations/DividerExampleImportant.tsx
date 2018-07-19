@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider } from 'stardust'
+import { Divider } from '@stardust-ui/react'
 
 const DividerExampleImportant = () => <Divider important>This is important</Divider>
 

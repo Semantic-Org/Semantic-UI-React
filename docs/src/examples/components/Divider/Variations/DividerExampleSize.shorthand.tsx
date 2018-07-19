@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-import { Divider } from 'stardust'
+import { Divider } from '@stardust-ui/react'
 
 const DividerExampleSize = () =>
   _.times(11, i => {

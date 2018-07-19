@@ -1,5 +1,5 @@
 import React from 'react'
-import { List } from 'stardust'
+import { List } from '@stardust-ui/react'
 
 const imgStyle = { display: 'block', width: 28, borderRadius: 9999 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Chat } from 'stardust'
+import { Chat } from '@stardust-ui/react'
 
 const messages = [
   { key: 1, content: 'Hello', mine: true },

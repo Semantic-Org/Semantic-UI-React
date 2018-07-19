@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion, List, Image, Button } from 'stardust'
+import { Accordion, List, Image, Button } from '@stardust-ui/react'
 
 class AccordionExampleList extends React.Component {
   render() {

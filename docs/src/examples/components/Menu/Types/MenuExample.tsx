@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from 'stardust'
+import { Menu } from '@stardust-ui/react'
 
 class MenuExample extends React.Component {
   state = { activeItem: 'a' }

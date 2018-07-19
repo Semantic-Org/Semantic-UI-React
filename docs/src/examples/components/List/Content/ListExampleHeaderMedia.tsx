@@ -1,5 +1,5 @@
 import React from 'react'
-import { List } from 'stardust'
+import { List } from '@stardust-ui/react'
 
 const items = [
   { key: 'irving', header: 'Irving Kuhic', headerMedia: '7:26:56 AM' },

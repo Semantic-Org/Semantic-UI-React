@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from 'stardust'
+import { Icon } from '@stardust-ui/react'
 
 const IconExampleCircular = () => (
   <div>

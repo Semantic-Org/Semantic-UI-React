@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image } from 'stardust'
+import { Image } from '@stardust-ui/react'
 
 const ImageExampleAvatar = () => (
   <div>

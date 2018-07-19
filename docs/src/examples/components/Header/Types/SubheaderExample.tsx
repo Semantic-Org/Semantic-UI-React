@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from 'stardust'
+import { Header } from '@stardust-ui/react'
 
 const HeaderExampleSubheader = () => (
   <Header as="h2">
