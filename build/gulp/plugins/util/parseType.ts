@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const SUI = require('../../../src/lib/SUI')
+const SUI = require('../../../../src/lib/SUI')
 
 const evalValue = value => eval(value) // tslint:disable-line no-eval
 

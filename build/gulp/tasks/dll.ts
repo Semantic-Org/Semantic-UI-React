@@ -3,7 +3,7 @@ import loadPlugins from 'gulp-load-plugins'
 import rimraf from 'rimraf'
 import webpack from 'webpack'
 
-import config from '../../config'
+import config from '../../../config'
 
 const g = loadPlugins()
 const { log, PluginError } = g.util
@@ -21,7 +21,7 @@ task('clean:dll', cb => {
 // ----------------------------------------
 
 task('build:dll', cb => {
-  const webpackDLLConfig = require('../../build/webpack.config.dll').default
+  const webpackDLLConfig = require('../../webpack.config.dll').default
   const compiler = webpack(webpackDLLConfig)
 
   compiler.run((err, stats) => {

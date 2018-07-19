@@ -6,10 +6,10 @@ process.env.PATH =
   process.env.PATH + path.delimiter + path.resolve(__dirname, 'node_modules', '.bin')
 
 // load tasks in order of dependency usage
-require('./gulp/tasks/dll')
-require('./gulp/tasks/dist')
-require('./gulp/tasks/docs')
-require('./gulp/tasks/generate')
+require('./build/gulp/tasks/dll')
+require('./build/gulp/tasks/dist')
+require('./build/gulp/tasks/docs')
+require('./build/gulp/tasks/generate')
 
 // global tasks
 task('build', series('dll', parallel('dist', 'build:docs')))

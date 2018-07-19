@@ -4,7 +4,7 @@ import merge2 from 'merge2'
 import rimraf from 'rimraf'
 import webpack from 'webpack'
 
-import config from '../../config'
+import config from '../../../config'
 
 const { paths } = config
 const g = loadPlugins()
@@ -40,7 +40,7 @@ task('build:dist:es', () => {
 
 task('build:dist:umd', cb => {
   process.env.NODE_ENV = 'build'
-  const webpackUMDConfig = require('../../build/webpack.config.umd').default
+  const webpackUMDConfig = require('../../webpack.config.umd').default
   const compiler = webpack(webpackUMDConfig)
 
   compiler.run((err, stats) => {

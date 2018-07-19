@@ -10,7 +10,7 @@ import WebpackDevMiddleware from 'webpack-dev-middleware'
 import WebpackHotMiddleware from 'webpack-hot-middleware'
 
 import sh from '../sh'
-import config from '../../config'
+import config from '../../../config'
 import gulpComponentMenu from '../plugins/gulp-component-menu'
 import gulpExampleMenu from '../plugins/gulp-example-menu'
 import gulpReactDocgen from '../plugins/gulp-react-docgen'
@@ -97,7 +97,7 @@ task('build:docs:toc', () =>
 )
 
 task('build:docs:webpack', cb => {
-  const webpackConfig = require('../../webpack.config').default
+  const webpackConfig = require('../../../webpack.config').default
   const compiler = webpack(webpackConfig)
 
   compiler.run((err, stats) => {
@@ -147,7 +147,7 @@ task('deploy:docs', cb => {
 
 task('serve:docs', cb => {
   const app = express()
-  const webpackConfig = require('../../webpack.config').default
+  const webpackConfig = require('../../../webpack.config').default
   const compiler = webpack(webpackConfig)
 
   app
