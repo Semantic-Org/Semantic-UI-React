@@ -268,9 +268,7 @@ class Portal extends Component {
   open = (e) => {
     debug('open()')
 
-    const { onOpen } = this.props
-    if (onOpen) onOpen(e, this.props)
-
+    _.invoke(this.props, 'onOpen', e, this.props)
     this.trySetState({ open: true })
   }
 
@@ -286,9 +284,7 @@ class Portal extends Component {
   close = (e) => {
     debug('close()')
 
-    const { onClose } = this.props
-    if (onClose) onClose(e, this.props)
-
+    _.invoke(this.props, 'onClose', e, this.props)
     this.trySetState({ open: false })
   }
 
@@ -302,8 +298,8 @@ class Portal extends Component {
   }
 
   handleMount = (e, { node: target }) => {
-    debug('mountPortal()')
     const { eventPool } = this.props
+    debug('mountPortal()', { eventPool, target })
 
     this.portalNode = target
 

@@ -22,10 +22,10 @@ export default class EventTarget {
   addHandlers(poolName, eventType, eventHandlers) {
     this.removeTargetHandler(eventType)
 
-    if (!this.pools.has(poolName)) {
-      this.pools.set(poolName, EventPool.createByType(poolName, eventType, eventHandlers))
-    } else {
+    if (this.pools.has(poolName)) {
       this.pools.set(poolName, this.pools.get(poolName).addHandlers(eventType, eventHandlers))
+    } else {
+      this.pools.set(poolName, EventPool.createByType(poolName, eventType, eventHandlers))
     }
 
     this.addTargetHandler(eventType)
@@ -81,7 +81,9 @@ export default class EventTarget {
     const handler = this.createEmitter(eventType, this.pools)
 
     this.handlers.set(eventType, handler)
-    this.target.addEventListener(eventType, handler)
+    this.target.addEventListener(eventType, handler, {
+      capture: true,
+    })
   }
 
   /**
