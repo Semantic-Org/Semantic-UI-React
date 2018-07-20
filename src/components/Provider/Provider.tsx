@@ -90,11 +90,11 @@ class Provider extends Component<any, any> {
   }
 
   render() {
-    const { componentVariables, siteVariables, children } = this.props
+    const { componentVariables, siteVariables, children, rtl } = this.props
 
     // ensure we don't assign `undefined` values to the theme context
     // they will override values down stream
-    const theme: any = {}
+    const theme: any = { rtl: !!rtl }
     if (siteVariables) {
       theme.siteVariables = siteVariables
     }
