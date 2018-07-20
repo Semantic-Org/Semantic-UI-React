@@ -1,9 +1,8 @@
 import hoistStatics from 'hoist-non-react-statics'
-import _ from 'lodash'
 import React, { forwardRef } from 'react'
 
-import Ref from 'src/addons/Ref/Ref'
-import { isClassComponent } from './componentUtils'
+import Ref from '../../addons/Ref'
+import { isStatelessComponent, supportsRef } from '../componentUtils'
 
 /**
  * Use just a string for now (react 16.3), since react doesn't support Symbols in props yet
@@ -20,15 +19,19 @@ export const forwardRefSymbol = '__forwardRef__'
  */
 export const forwardFunctionFactory = Component => (props, ref) => {
   // eslint-disable-next-line react/prop-types
-  if (_.isUndefined(props.as) || _.isString(props.as) || isClassComponent(props.as)) {
+  if (isStatelessComponent(props.as)) {
+    return (
+      <Ref innerRef={ref}>
+        <Component {...props} />
+      </Ref>
+    )
+  }
+
+  if (supportsRef(props.as)) {
     return <Component {...{ [forwardRefSymbol]: ref, ...props }} />
   }
 
-  return (
-    <Ref innerRef={ref}>
-      <Component {...props} />
-    </Ref>
-  )
+  return Component
 }
 
 /**
