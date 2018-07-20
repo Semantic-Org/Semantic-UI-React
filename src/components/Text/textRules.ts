@@ -25,13 +25,13 @@ import {
 import { Sizes } from '../../lib/enums'
 
 export default {
-  root: ({ props }) => ({
+  root: ({ props, variables: v }) => ({
     ...(props.atMention && { color: atMentionTextColor }),
     ...(props.disabled && { color: disabledTextColor }),
     ...(props.error && { color: errorTextColor }),
     ...(props.success && { color: successTextColor }),
     ...(props.timestamp && { color: timestampTextColor }),
-
+    ...(props.important && { fontWeight: v.importantWeight }),
     ...(props.size === Sizes.ExtraSmall && {
       fontSize: textExtraSmallFontSize,
       lineHeight: textExtraSmallLineHeight,

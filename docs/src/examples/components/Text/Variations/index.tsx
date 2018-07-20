@@ -14,6 +14,11 @@ const Variations = () => (
       description="A Text component for timestamps."
       examplePath="components/Text/Variations/TextExampleTimestamp"
     />
+    <ComponentExample
+      title="Important"
+      description="A text can appear more important and draw user's attention."
+      examplePath="components/Text/Variations/TextExampleImportant"
+    />
   </ExampleSection>
 )
 

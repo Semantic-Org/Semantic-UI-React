@@ -3,6 +3,7 @@ import React from 'react'
 
 import { childrenExist, customPropTypes, UIComponent } from '../../lib'
 import textRules from './textRules'
+import textVariables from './textVariables'
 
 /**
  * A component containing text
@@ -29,6 +30,9 @@ class Text extends UIComponent<any, any> {
     /** Set as error Text component */
     error: PropTypes.bool,
 
+    /** The text can appear more important and draw user's attention */
+    important: PropTypes.bool,
+
     /** The size for the Text component */
     size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', '2x', '3x', '4x']),
 
@@ -51,11 +55,14 @@ class Text extends UIComponent<any, any> {
     'disabled',
     'error',
     'size',
+    'important',
     'success',
     'timestamp',
   ]
 
   static rules = textRules
+
+  static variables = textVariables
 
   renderComponent({ ElementType, classes, rest }) {
     const { children, content } = this.props

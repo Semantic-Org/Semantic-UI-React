@@ -29,6 +29,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Add Avatar component @mnajdova ([#75](https://github.com/stardust-ui/react/pull/75))
 - Add Menu `shape` property for describing the shape of the component, instead using the type property @mnajdova ([#68](https://github.com/stardust-ui/react/pull/68))
 - Add Input component @alinais ([#64](https://github.com/stardust-ui/react/pull/64))
+- Add Text `important` prop @mnajdova ([#120](https://github.com/stardust-ui/react/pull/120))
 - Add Avatar `alt` prop @mnajdova ([#124](https://github.com/stardust-ui/react/pull/124))
 
 ### Documentation
