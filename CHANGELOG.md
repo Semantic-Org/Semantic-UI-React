@@ -17,6 +17,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+<!--------------------------------[ v0.2.1 ]------------------------------- -->
+## [v0.2.1](https://github.com/stardust-ui/react/tree/v0.2.1) (2018-07-20)
+[Compare changes](https://github.com/stardust-ui/react/compare/v0.2.0...v0.2.1)
+
 ### Fixes
 - Remove broken normalize.css button styles @levithomason ([#79](https://github.com/stardust-ui/react/pulls/79))
 - Add missing Button styles @levithomason ([#82](https://github.com/stardust-ui/react/pulls/82))
@@ -24,7 +28,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Features
 - Add `rtl` flag to rules (styles) function @kuzhelov ([#109](https://github.com/stardust-ui/react/pull/109))
-- Add Icon `circular` and `bordered` props @kuzhelov [#85](https://github.com/stardust-ui/react/pull/85)
+- Add Icon `circular` and `bordered` props @kuzhelov ([#85](https://github.com/stardust-ui/react/pull/85))
 - Add Divider `type` and `important` props @mnajdova ([#67](https://github.com/stardust-ui/react/pulls/67))
 - Add Avatar component @mnajdova ([#75](https://github.com/stardust-ui/react/pull/75))
 - Add Menu `shape` property for describing the shape of the component, instead using the type property @mnajdova ([#68](https://github.com/stardust-ui/react/pull/68))
