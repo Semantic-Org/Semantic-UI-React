@@ -10,6 +10,11 @@ const Variations = () => (
       examplePath="components/Avatar/Variations/AvatarExampleSrc"
     />
     <ComponentExample
+      title="Alt"
+      description="The alternative text for the image used in the Avatar."
+      examplePath="components/Avatar/Variations/AvatarExampleAlt"
+    />
+    <ComponentExample
       title="Status"
       description="An Avatar can have a status icon showing his presence."
       examplePath="components/Avatar/Variations/AvatarExampleStatus"

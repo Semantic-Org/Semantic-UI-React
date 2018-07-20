@@ -16,13 +16,16 @@ class Avatar extends UIComponent<any, any> {
 
   static displayName = 'Avatar'
 
-  static handledProps = ['as', 'className', 'name', 'size', 'src', 'status']
+  static handledProps = ['alt', 'as', 'className', 'name', 'size', 'src', 'status']
 
   static rules = avatarRules
 
   static variables = avatarVariables
 
   static propTypes = {
+    /** The alternative text for the image used in the Avatar. */
+    alt: PropTypes.string,
+
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
@@ -86,12 +89,12 @@ class Avatar extends UIComponent<any, any> {
   }
 
   renderComponent({ ElementType, classes, rest }) {
-    const { src, name, status } = this.props
+    const { src, alt, name, status } = this.props
     const { icon = '', color = '' } = Avatar.statusToIcon[status] || {}
     return (
       <ElementType {...rest} className={classes.root}>
         {src ? (
-          <Image className={classes.imageAvatar} avatar src={src} title={name} />
+          <Image className={classes.imageAvatar} avatar src={src} alt={alt} title={name} />
         ) : (
           <Label
             className={classes.avatarLabel}
