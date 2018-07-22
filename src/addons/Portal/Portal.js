@@ -302,7 +302,7 @@ class Portal extends Component {
   }
 
   handleMount = (e, { node: target }) => {
-    debug('mountPortal()')
+    debug('handleMount()')
     const { eventPool } = this.props
 
     this.portalNode = target
@@ -316,7 +316,7 @@ class Portal extends Component {
   }
 
   handleUnmount = (e, { node: target }) => {
-    debug('unmountPortal()')
+    debug('handleUnmount()')
     const { eventPool } = this.props
 
     this.portalNode = null
@@ -330,6 +330,7 @@ class Portal extends Component {
   }
 
   handleTriggerRef = (c) => {
+    debug('handleTriggerRef()')
     this.triggerNode = c
     _.invoke(this.props, 'triggerRef', c)
   }
