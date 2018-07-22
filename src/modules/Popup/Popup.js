@@ -156,12 +156,13 @@ export default class Popup extends Component {
     this.mounted = false
   }
 
-  computePopupStyle(positions) {
+  computePopupStyle = (positions) => {
     const style = { position: 'absolute' }
     const context = this.getContext()
 
     // Do not access window/document when server side rendering
     if (!isBrowser()) return style
+    debug('computePopupStyle()')
 
     const { horizontalOffset, verticalOffset } = this.props
     const { pageYOffset, pageXOffset } = window
@@ -222,7 +223,8 @@ export default class Popup extends Component {
 
   // check if the style would display
   // the popup outside of the view port
-  isStyleInViewport(style) {
+  isStyleInViewport = (style) => {
+    debug(`isStyleInViewport(${style})`)
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement
 
@@ -251,10 +253,10 @@ export default class Popup extends Component {
     return true
   }
 
-  setPopupStyle() {
-    debug('setPopupStyle()')
+  setPopupStyle = () => {
     const context = this.getContext()
     if ((!this.coords && !context) || !this.popupCoords) return
+    debug('setPopupStyle()')
     let position = this.props.position
     let style = this.computePopupStyle(position)
     const { keepInViewPort } = this.props
@@ -274,7 +276,8 @@ export default class Popup extends Component {
     this.setState({ style, position })
   }
 
-  getPortalProps() {
+  getPortalProps = () => {
+    debug('getPortalProps()')
     const portalProps = {}
 
     const { on, hoverable } = this.props
@@ -305,6 +308,7 @@ export default class Popup extends Component {
   }
 
   hideOnScroll = (e) => {
+    debug('hideOnScroll()')
     this.setState({ closed: true })
 
     eventStack.unsub('scroll', this.hideOnScroll, { target: window })
@@ -333,9 +337,7 @@ export default class Popup extends Component {
     const { hideOnScroll } = this.props
 
     if (hideOnScroll) eventStack.sub('scroll', this.hideOnScroll, { target: window })
-    if (this.getContext()) {
-      this.setPopupStyle(this.props.position)
-    }
+    this.setPopupStyle()
     _.invoke(this.props, 'onMount', e, this.props)
   }
 
@@ -356,11 +358,7 @@ export default class Popup extends Component {
   handleTriggerRef = (triggerRef) => {
     debug(`handleTriggerRef(${triggerRef})`)
     this.triggerRef = triggerRef
-    // if it is auto popup
-    // then set popup coordinates when triggerref is available
-    if (_.has(this.props, 'open')) {
-      this.setPopupStyle()
-    }
+    this.setPopupStyle()
   }
 
   getContext = () => this.props.context || this.triggerRef
