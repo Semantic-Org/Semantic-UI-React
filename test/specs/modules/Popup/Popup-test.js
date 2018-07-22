@@ -139,7 +139,7 @@ describe('Popup', () => {
 
   describe('position', () => {
     POSITIONS.forEach((position) => {
-      it('is always within the viewport when the trigger is clicked', () => {
+      it(`"${position}" is always within the viewport when the trigger is clicked`, () => {
         wrapperMount(
           <Popup content='_' position={position} trigger={<button>foo</button>} on='click' />,
         )
@@ -152,7 +152,7 @@ describe('Popup', () => {
         expect(bottom).to.be.at.most(document.documentElement.clientHeight)
         expect(right).to.be.at.most(document.documentElement.clientWidth)
       })
-      it('is positioned properly when open property is set', (done) => {
+      it.only(`"${position}" is positioned properly when open property is set`, (done) => {
         wrapperMount(<Popup content='_' position={position} open trigger={<button>foo</button>} />)
         setTimeout(() => {
           const element = document.querySelector('.popup.ui')
@@ -162,15 +162,10 @@ describe('Popup', () => {
           expect(left).to.not.equal('')
           expect(bottom).to.not.equal('')
           expect(right).to.not.equal('')
-
-          // element.style.should.have.property('top', '')
-          // element.style.should.have.property('left', '')
-          // element.style.should.have.property('bottom', '')
-          // element.style.should.have.property('right', '')
           done()
         }, 1)
       })
-      it('is the original if no horizontal position fits within the viewport', () => {
+      it(`"${position}" is the original if no horizontal position fits within the viewport`, () => {
         wrapperMount(
           <Popup
             content='_'
@@ -186,7 +181,7 @@ describe('Popup', () => {
         expect(selectedPosition).to.equal(position)
       })
 
-      it('is the original if no vertical position fits within the viewport', () => {
+      it(`"${position}" is the original if no vertical position fits within the viewport`, () => {
         wrapperMount(
           <Popup
             content='_'
