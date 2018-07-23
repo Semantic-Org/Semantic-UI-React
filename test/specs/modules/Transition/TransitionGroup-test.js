@@ -10,7 +10,11 @@ const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('TransitionGroup', () => {
-  common.isConformant(TransitionGroup)
+  common.isConformant(TransitionGroup, {
+    requiredProps: {
+      as: 'div',
+    },
+  })
 
   beforeEach(() => {
     wrapper = undefined
@@ -23,7 +27,7 @@ describe('TransitionGroup', () => {
   describe('children', () => {
     it('wraps all children to Transition', () => {
       shallow(
-        <TransitionGroup>
+        <TransitionGroup as='div'>
           <div />
           <div />
           <div />
@@ -35,7 +39,7 @@ describe('TransitionGroup', () => {
 
     it('passes props to children', () => {
       shallow(
-        <TransitionGroup animation='scale' duration={1500}>
+        <TransitionGroup animation='scale' as='div' duration={1500}>
           <div />
           <div />
           <div />
@@ -51,7 +55,7 @@ describe('TransitionGroup', () => {
 
     it('wraps new child to Transition and sets transitionOnMount to true', () => {
       wrapperShallow(
-        <TransitionGroup>
+        <TransitionGroup as='div'>
           <div key='first' />
         </TransitionGroup>,
       )
@@ -65,20 +69,26 @@ describe('TransitionGroup', () => {
 
     it('skips invalid children', () => {
       wrapperShallow(
-        <TransitionGroup>
+        <TransitionGroup as='div'>
           <div key='first' />
         </TransitionGroup>,
       )
       wrapper.setProps({ children: [<div key='first' />, '', <div key='second' />] })
 
       wrapper.children().should.have.length(2)
-      wrapper.childAt(0).key().should.equal('.$first')
-      wrapper.childAt(1).key().should.equal('.$second')
+      wrapper
+        .childAt(0)
+        .key()
+        .should.equal('.$first')
+      wrapper
+        .childAt(1)
+        .key()
+        .should.equal('.$second')
     })
 
     it('sets visible to false when child was removed', () => {
       wrapperShallow(
-        <TransitionGroup>
+        <TransitionGroup as='div'>
           <div key='first' />
           <div key='second' />
         </TransitionGroup>,
@@ -86,15 +96,21 @@ describe('TransitionGroup', () => {
       wrapper.setProps({ children: [<div key='first' />] })
 
       wrapper.children().should.have.length(2)
-      wrapper.childAt(0).type().should.equal(Transition)
+      wrapper
+        .childAt(0)
+        .type()
+        .should.equal(Transition)
       wrapper.childAt(0).should.have.prop('visible', true)
-      wrapper.childAt(1).type().should.equal(Transition)
+      wrapper
+        .childAt(1)
+        .type()
+        .should.equal(Transition)
       wrapper.childAt(1).should.have.prop('visible', false)
     })
 
     it('removes child after transition', (done) => {
       wrapperMount(
-        <TransitionGroup duration={0}>
+        <TransitionGroup as='div' duration={0}>
           <div key='first' />
           <div key='second' />
         </TransitionGroup>,
