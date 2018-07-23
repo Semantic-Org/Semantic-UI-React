@@ -3,7 +3,7 @@ import { Icon } from 'semantic-ui-react'
 
 const IconExampleIconGroup = () => (
   <Icon.Group size='huge'>
-    <Icon size='big' name='thin circle' />
+    <Icon size='big' name='circle outline' />
     <Icon name='user' />
   </Icon.Group>
 )

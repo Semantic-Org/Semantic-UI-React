@@ -191,9 +191,6 @@ export default class IconSearch extends Component {
     return (
       <Grid columns={1} padded style={gridStyle}>
         <Grid.Column>
-          <Header as='h2'>Icon Set</Header>
-          <p>An icon set contains an arbitrary number of glyphs.</p>
-
           <Form>
             <Form.Group inline>
               <Form.Input
