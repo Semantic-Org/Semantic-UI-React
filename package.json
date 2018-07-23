@@ -85,7 +85,7 @@
     "@babel/preset-react": "^7.0.0-beta.49",
     "@babel/register": "^7.0.0-beta.49",
     "@babel/standalone": "^7.0.0-beta.49",
-    "@types/react": "^16.0.0",
+    "@types/react": "^16.3.0",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0-beta.3",
     "babel-plugin-filter-imports": "^2.0.0",
@@ -135,11 +135,11 @@
     "prettier": "^1.12.0",
     "puppeteer": "1.3.0",
     "raw-loader": "^0.5.1",
-    "react": "^16.0.0",
+    "react": "^16.3.0",
     "react-ace": "^5.1.2",
     "react-docgen": "^2.17.0",
     "react-document-title": "^2.0.3",
-    "react-dom": "^16.0.0",
+    "react-dom": "^16.3.0",
     "react-hot-loader": "^4.1.3",
     "react-router": "^4.1.2",
     "react-router-dom": "^4.1.2",
@@ -162,7 +162,7 @@
     "webpack-hot-middleware": "^2.18.2"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
   }
 }
