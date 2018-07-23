@@ -4,7 +4,7 @@
 
 The `EventStack` solves two design problems:
 1. Reduces the number of connected listeners to DOM nodes compared to `element.addListener()`.
-1. Respects event ordering. Example, two modals are open and you only want the top modal to close on document click.
+2. Respects event ordering. Example, two modals are open and you only want the top modal to close on document click.
 
 ## EventStack
 

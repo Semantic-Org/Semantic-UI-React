@@ -11,6 +11,7 @@ import ComponentControls from '../ComponentControls'
 import ComponentExampleRenderExample from './ComponentExampleRenderExample'
 import ComponentExampleRenderHtml from './ComponentExampleRenderHtml'
 import ComponentExampleTitle from './ComponentExampleTitle'
+import CarbonAdNative from '../../CarbonAd/CarbonAdNative'
 
 const childrenStyle = {
   paddingTop: 0,
@@ -269,25 +270,29 @@ class ComponentExample extends PureComponent {
 
     const exampleStyle = {
       position: 'relative',
-      transition: 'box-shadow 200ms, background 200ms',
+      background: '#fff',
+      boxShadow: '0 1px 2px #ccc',
       ...(isActive
         ? {
-          background: '#fff',
-          boxShadow: '0 0 30px #ccc',
+          boxShadow: '0 8px 32px #aaa',
         }
         : isHovering && {
-          background: '#fff',
-          boxShadow: '0 0 10px #ccc',
-          zIndex: 1,
+          boxShadow: '0 2px 8px #bbb',
         }),
     }
 
     return (
-      <Visibility once={false} onTopPassed={this.handlePass} onTopPassedReverse={this.handlePass}>
+      <Visibility
+        once={false}
+        onTopPassed={this.handlePass}
+        onTopPassedReverse={this.handlePass}
+        style={{ margin: '2rem 0' }}
+      >
+        {/* Ensure anchor links don't occlude card shadow effect */}
+        <div id={this.anchorName} style={{ position: 'relative', bottom: '1rem' }} />
         <Grid
           className='docs-example'
           padded='vertically'
-          id={this.anchorName}
           onMouseLeave={handleMouseLeave}
           onMouseMove={handleMouseMove}
           style={exampleStyle}
@@ -333,6 +338,7 @@ class ComponentExample extends PureComponent {
               {showHTML ? <ComponentExampleRenderHtml markup={markup} /> : null}
             </Grid.Column>
           </Grid.Row>
+          {isActive && <CarbonAdNative />}
         </Grid>
       </Visibility>
     )

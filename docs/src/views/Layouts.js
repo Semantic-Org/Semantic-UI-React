@@ -54,6 +54,13 @@ const LayoutsExample = () => (
             description=' Examples of replacements for components found in Bootstrap'
             image='/images/examples/bootstrap.png'
           />
+          <Card
+            as={NavLink}
+            to='/layouts/another-grid'
+            header='Another Grid'
+            description="An advanced example of the Grid's usage."
+            image='/images/examples/advanced-grid.png'
+          />
         </Card.Group>
 
         <Header as='h2' content='Pages' subheader='Starter page templates' />

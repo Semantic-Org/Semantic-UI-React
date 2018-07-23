@@ -49,13 +49,13 @@ export default class EventTarget {
     if (pool) {
       const newPool = pool.removeHandlers(eventType, eventHandlers)
 
-      if (newPool.hasHandlers(eventType)) {
-        this.removeTargetHandler(eventType)
+      if (newPool.hasHandlers()) {
         this.pools.set(poolName, newPool)
       } else {
-        this.removeTargetHandler(eventType)
         this.pools.delete(poolName)
       }
+
+      this.removeTargetHandler(eventType)
 
       if (this.pools.size > 0) this.addTargetHandler(eventType)
     }

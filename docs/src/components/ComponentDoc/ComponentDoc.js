@@ -12,7 +12,6 @@ import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 import ComponentSidebar from './ComponentSidebar'
 
-const topRowStyle = { margin: '1em' }
 const exampleEndStyle = {
   textAlign: 'center',
   opacity: 0.5,
@@ -79,8 +78,8 @@ class ComponentDoc extends Component {
 
     return (
       <DocsLayout additionalTitle={displayName} sidebar>
-        <Grid>
-          <Grid.Row style={topRowStyle}>
+        <Grid padded>
+          <Grid.Row>
             <Grid.Column>
               <Header
                 as='h1'

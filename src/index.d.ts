@@ -1892,6 +1892,7 @@ export type SemanticICONS =
   | 'feed'
   | 'female homosexual'
   | 'file text'
+  | 'file text outline'
   | 'find'
   | 'first aid'
   | 'fork'
