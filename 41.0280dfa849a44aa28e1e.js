@@ -1,6 +1,0 @@
-webpackJsonp([41],{3663:/*!*****************************************************!*\
-  !*** ./docs/src/exampleMenus/Divider.examples.json ***!
-  \*****************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-function(e,i){e.exports=[{sectionName:"Types",examples:[{title:"Divider",examplePath:"elements/Divider/Types/DividerExampleDivider"},{title:"Vertical Divider",examplePath:"elements/Divider/Types/DividerExampleVertical"},{title:"Horizontal Divider",examplePath:"elements/Divider/Types/DividerExampleHorizontal"}]},{sectionName:"Variations",examples:[{title:"Inverted",examplePath:"elements/Divider/Variations/DividerExampleInverted"},{title:"Fitted",examplePath:"elements/Divider/Variations/DividerExampleFitted"},{title:"Hidden",examplePath:"elements/Divider/Variations/DividerExampleHidden"},{title:"Section",examplePath:"elements/Divider/Variations/DividerExampleSection"},{title:"Clearing",examplePath:"elements/Divider/Variations/DividerExampleClearing"}]}]}});
