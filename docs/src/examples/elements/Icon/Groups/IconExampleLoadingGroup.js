@@ -8,7 +8,7 @@ const IconExampleLoadingGroup = () => (
       <Icon color='black' name='user' />
     </Icon.Group>
     <Icon.Group size='huge'>
-      <Icon loading size='big' name='sun' />
+      <Icon loading size='big' name='circle notch' />
       <Icon name='user' />
     </Icon.Group>
   </div>
