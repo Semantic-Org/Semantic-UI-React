@@ -55,7 +55,7 @@ const LayoutsExample = () => (
             image='/images/examples/bootstrap.png'
           />
           <Card
-            as={NavLink}
+            as={Link}
             to='/layouts/another-grid'
             header='Another Grid'
             description="An advanced example of the Grid's usage."
