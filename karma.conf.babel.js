@@ -69,7 +69,7 @@ export default (karmaConfig) => {
       const trailingSlash = isDir ? '/' : ''
 
       const original = `/${file}${trailingSlash}`
-      acc[original] = `/base/docs/app/${file}${trailingSlash}`
+      acc[original] = `/base/docs/public/${file}${trailingSlash}`
       return acc
     }, {}),
     reporters: ['mocha', 'coverage'],
