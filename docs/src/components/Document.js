@@ -27,6 +27,11 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       />
       <script src={`//cdn.jsdelivr.net/faker.js/${versions.faker}/faker.min.js`} />
 
+      <script crossOrigin='true' src={`//unpkg.com/prettier@${versions.prettier}/standalone.js`} />
+      <script
+        crossOrigin='true'
+        src={`//unpkg.com/prettier@${versions.prettier}/parser-babylon.js`}
+      />
       <script
         src={`//cdnjs.cloudflare.com/ajax/libs/prop-types/${versions.propTypes}/prop-types${
           siteData.dev ? '' : '.min'

@@ -121,6 +121,7 @@ if (!__TEST__) {
     '@babel/standalone': 'Babel',
     faker: 'faker',
     'prop-types': 'PropTypes',
+    'prettier/standalone': 'prettier',
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-dom/server': 'ReactDOMServer',

@@ -1,35 +1,22 @@
 import copyToClipboard from 'copy-to-clipboard'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React, { createElement, PureComponent } from 'react'
 import { withRouteData, withRouter } from 'react-static'
-import { Divider, Grid, Menu, Segment, Visibility } from 'semantic-ui-react'
+import { Grid, Visibility } from 'semantic-ui-react'
 
 import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
-import Editor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/Editor/Editor'
+import { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleRenderExample from './ComponentExampleRenderExample'
 import ComponentExampleRenderHtml from './ComponentExampleRenderHtml'
 import ComponentExampleTitle from './ComponentExampleTitle'
 import CarbonAdNative from '../../CarbonAd/CarbonAdNative'
+import renderExampleSourceCode from './renderExampleSourceCode'
 
 const childrenStyle = {
   paddingTop: 0,
   maxWidth: '50rem',
-}
-
-const errorStyle = {
-  fontSize: '0.9rem',
-  fontFamily: 'monospace',
-  whiteSpace: 'pre',
-}
-
-const htmlAreaStyle = {
-  padding: '1rem',
-  filter: 'grayscale()',
-}
-const htmlDividerStyle = {
-  opacity: 0.5,
 }
 
 const renderedExampleStyle = {
@@ -64,11 +51,18 @@ class ComponentExample extends PureComponent {
     const { examplePath } = this.props
     this.anchorName = examplePathToHash(examplePath)
 
+    const sourceCode = this.getOriginalSourceCode()
+
+    const { error, exampleElement, htmlMarkup } = renderExampleSourceCode(examplePath, sourceCode)
+
     this.setState({
       handleMouseLeave: this.handleMouseLeave,
       handleMouseMove: this.handleMouseMove,
       showCode: this.isActiveHash(),
-      sourceCode: this.getOriginalSourceCode(),
+      error,
+      htmlMarkup,
+      exampleElement,
+      sourceCode,
     })
   }
 
@@ -96,7 +90,10 @@ class ComponentExample extends PureComponent {
     return showCode || showHTML
   }
 
-  isActiveHash = () => this.anchorName === getFormattedHash(this.props.location.hash)
+  isActiveHash = () => {
+    const { exampleKeys, location } = this.props
+    return this.anchorName === getFormattedHash(exampleKeys, location.hash)
+  }
 
   updateHash = () => {
     if (this.isActiveState()) this.setHashAndScroll()
@@ -160,32 +157,18 @@ class ComponentExample extends PureComponent {
     if (title) _.invoke(this.context, 'onPassed', null, this.props)
   }
 
-  copyJSX = () => {
-    copyToClipboard(this.state.sourceCode)
-    this.setState({ copiedCode: true })
-    setTimeout(() => this.setState({ copiedCode: false }), 1000)
-  }
+  getGithubEditHref = () => {
+    const { examplePath } = this.props
 
-  resetJSX = () => {
-    const { examplePath, exampleSources } = this.state
-    const original = exampleSources[examplePath]
+    // get component name from file path:
+    // elements/Button/Types/ButtonButtonExample
+    const pathParts = examplePath.split(__PATH_SEP__)
+    const filename = pathParts[pathParts.length - 1]
 
-    // eslint-disable-next-line no-alert
-    if (this.hasOriginalCodeChanged() && confirm('Lose your changes?')) {
-      this.setState({ sourceCode: original })
-    }
-  }
-
-  hasOriginalCodeChanged = () => {
-    const { sourceCode } = this.state
-    const original = this.getOriginalSourceCode()
-
-    return sourceCode !== original
-  }
-
-  getOriginalSourceCode = () => {
-    const { examplePath, exampleSources } = this.state
-    return exampleSources[examplePath]
+    return [
+      `${repoURL}/edit/master/docs/src/examples/${examplePath}.js`,
+      `?message=docs(${filename}): your description`,
+    ].join('')
   }
 
   getKebabExamplePath = () => {
@@ -194,91 +177,34 @@ class ComponentExample extends PureComponent {
     return this.kebabExamplePath
   }
 
+  getOriginalSourceCode = () => {
+    const { examplePath, exampleSources } = this.props
+    return exampleSources[examplePath]
+  }
+
   handleChangeCode = (sourceCode) => {
-    this.setState({ sourceCode })
-  }
-
-  renderJSXControls = () => {
     const { examplePath } = this.props
-    const { copiedCode } = this.state
+    const { error, htmlMarkup, exampleElement } = renderExampleSourceCode(examplePath, sourceCode)
 
-    // get component name from file path:
-    // elements/Button/Types/ButtonButtonExample
-    const pathParts = examplePath.split(__PATH_SEP__)
-    const filename = pathParts[pathParts.length - 1]
-
-    const ghEditHref = [
-      `${repoURL}/edit/master/docs/src/examples/${examplePath}.js`,
-      `?message=docs(${filename}): your description`,
-    ].join('')
-
-    const codeEditorStyle = {
-      position: 'absolute',
-      margin: 0,
-      top: '2px',
-      right: '0.5rem',
-      zIndex: 1,
-    }
-
-    return (
-      <Menu size='small' secondary inverted text style={codeEditorStyle}>
-        <Menu.Item
-          style={
-            this.hasOriginalCodeChanged() ? undefined : { opacity: 0.5, pointerEvents: 'none' }
-          }
-          icon='refresh'
-          content='Reset'
-          onClick={this.resetJSX}
-        />
-        <Menu.Item
-          active={copiedCode} // to show the color
-          icon={copiedCode ? { color: 'green', name: 'check' } : 'copy'}
-          content='Copy'
-          onClick={this.copyJSX}
-        />
-        <Menu.Item
-          style={{ border: 'none' }}
-          icon='github'
-          content='Edit'
-          href={ghEditHref}
-          target='_blank'
-        />
-      </Menu>
-    )
+    this.setState({ error, htmlMarkup, exampleElement, sourceCode })
   }
 
-  renderJSX = () => {
-    const { error, showCode, sourceCode } = this.state
-    if (!showCode) return
+  renderOriginalExample = () => {
+    const { examplePath } = this.props
+    const OriginalExample = require(`docs/src/examples/${examplePath}`).default
 
-    const style = {
-      position: 'relative',
-    }
-
-    return (
-      <div style={style}>
-        {this.renderJSXControls()}
-        <Editor
-          id={`${this.getKebabExamplePath()}-jsx`}
-          value={sourceCode}
-          onChange={this.handleChangeCode}
-        />
-        {error && (
-          <Segment color='red' basic secondary inverted style={errorStyle}>
-            {error}
-          </Segment>
-        )}
-      </div>
-    )
+    return createElement(OriginalExample)
   }
 
   render() {
     const { children, description, examplePath, suiVersion, title } = this.props
     const {
+      error,
+      exampleElement,
       handleMouseLeave,
       handleMouseMove,
+      htmlMarkup,
       isHovering,
-      markup,
       showCode,
       showHTML,
       sourceCode,
@@ -307,61 +233,69 @@ class ComponentExample extends PureComponent {
         style={{ margin: '2rem 0' }}
       >
         {/* Ensure anchor links don't occlude card shadow effect */}
-        <div id={this.anchorName} style={{ position: 'relative', bottom: '1rem' }} />
-        <Grid
-          className='docs-example'
-          padded='vertically'
-          onMouseLeave={handleMouseLeave}
-          onMouseMove={handleMouseMove}
-          style={exampleStyle}
-        >
-          <Grid.Column width={12}>
-            <ComponentExampleTitle
-              description={description}
-              title={title}
-              suiVersion={suiVersion}
-            />
-          </Grid.Column>
-          <Grid.Column textAlign='right' width={4}>
-            <ComponentControls
-              anchorName={this.anchorName}
-              examplePath={examplePath}
-              onCopyLink={this.handleDirectLinkClick}
-              onShowCode={this.handleShowCodeClick}
-              onShowHTML={this.handleShowHTMLClick}
-              showCode={showCode}
-              showHTML={showHTML}
-            />
-          </Grid.Column>
-
-          {children && (
-            <Grid.Column width={16} style={childrenStyle}>
-              {children}
-            </Grid.Column>
-          )}
-
-          <Grid.Column
-            width={16}
-            className={`rendered-example ${this.getKebabExamplePath()}`}
-            style={renderedExampleStyle}
+        <div id={this.anchorName} style={{ paddingTop: '1rem' }}>
+          <Grid
+            className='docs-example'
+            padded='vertically'
+            onMouseLeave={handleMouseLeave}
+            onMouseMove={handleMouseMove}
+            style={exampleStyle}
           >
-            <ComponentExampleRenderExample
-              exampleHash={`rendered-example ${this.getKebabExamplePath()}`}
-              examplePath={examplePath}
-              sourceCode={sourceCode}
-            />
-          </Grid.Column>
-          {(showCode || showHTML) && (
+            <Grid.Column width={12}>
+              <ComponentExampleTitle
+                description={description}
+                title={title}
+                suiVersion={suiVersion}
+              />
+            </Grid.Column>
+            <Grid.Column textAlign='right' width={4}>
+              <ComponentControls
+                anchorName={this.anchorName}
+                examplePath={examplePath}
+                onCopyLink={this.handleDirectLinkClick}
+                onShowCode={this.handleShowCodeClick}
+                onShowHTML={this.handleShowHTMLClick}
+                showCode={showCode}
+                showHTML={showHTML}
+              />
+            </Grid.Column>
+
+            {children && (
+              <Grid.Column width={16} style={childrenStyle}>
+                {children}
+              </Grid.Column>
+            )}
+
             <Grid.Column
               width={16}
-              style={{ padding: '1rem 0 0', background: EDITOR_BACKGROUND_COLOR }}
+              className={`rendered-example ${this.getKebabExamplePath()}`}
+              style={renderedExampleStyle}
             >
-              {this.renderJSX()}
-              <ComponentExampleRenderHtml markup={markup} />
+              {exampleElement}
             </Grid.Column>
-          )}
-          {isActive && <CarbonAdNative inverted={this.isActiveState()} />}
-        </Grid>
+            {(showCode || showHTML) && (
+              <Grid.Column
+                width={16}
+                style={{ padding: '1rem 0 0', background: EDITOR_BACKGROUND_COLOR }}
+              >
+                <ComponentExampleRenderExample
+                  editorId={`${this.getKebabExamplePath()}-jsx`}
+                  githubEditHref={this.getGithubEditHref()}
+                  originalValue={this.getOriginalSourceCode()}
+                  value={sourceCode}
+                  error={error}
+                  onChange={this.handleChangeCode}
+                />
+
+                <ComponentExampleRenderHtml
+                  editorId={`${this.getKebabExamplePath()}-html`}
+                  value={htmlMarkup}
+                />
+              </Grid.Column>
+            )}
+            {isActive && <CarbonAdNative inverted={this.isActiveState()} />}
+          </Grid>
+        </div>
       </Visibility>
     )
   }

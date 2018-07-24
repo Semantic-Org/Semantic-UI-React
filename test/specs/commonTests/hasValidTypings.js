@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 import { customPropTypes } from 'src/lib'
-import { componentInfoContext } from 'test/utils'
+import { componentInfoContext } from 'docs/src/utils'
 import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
 
 const isShorthand = propType =>

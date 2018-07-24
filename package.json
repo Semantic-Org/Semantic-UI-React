@@ -119,7 +119,6 @@
     "gulp-util": "^3.0.8",
     "husky": "^0.14.3",
     "imports-loader": "^0.7.1",
-    "js-beautify": "^1.6.14",
     "karma": "^2.0.4",
     "karma-chrome-launcher": "^2.2.0",
     "karma-cli": "^1.0.1",
