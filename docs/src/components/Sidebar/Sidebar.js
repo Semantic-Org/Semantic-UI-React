@@ -208,11 +208,12 @@ class Sidebar extends Component {
         <Menu.Item>
           <CarbonAd />
         </Menu.Item>
-        <Menu.Item active>
+        <Menu.Item active color='teal'>
           <Ref innerRef={this.handleSearchRef}>
             <Input
-              className='transparent inverted icon'
+              inverted
               icon='search'
+              size='large'
               placeholder='Search components...'
               value={query}
               onChange={this.handleSearchChange}

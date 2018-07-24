@@ -86,10 +86,9 @@ const config = {
   compiler_vendor: [
     '@babel/standalone',
     'brace',
-    'brace/ext/language_tools',
     'brace/mode/jsx',
     'brace/mode/html',
-    'brace/theme/tomorrow',
+    'brace/theme/tomorrow_night',
     'classnames',
     'copy-to-clipboard',
     'faker',
