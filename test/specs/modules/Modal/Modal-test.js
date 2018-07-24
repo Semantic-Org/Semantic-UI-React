@@ -42,7 +42,6 @@ describe('Modal', () => {
 
   common.isConformant(Modal, { rendersPortal: true })
   common.hasSubcomponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
-  common.hasValidTypings(Modal)
 
   common.implementsShorthandProp(Modal, {
     propKey: 'header',

@@ -35,7 +35,6 @@ describe('Portal', () => {
   })
 
   common.hasSubcomponents(Portal, [PortalInner])
-  common.hasValidTypings(Portal)
 
   it('propTypes.children should be required', () => {
     Portal.propTypes.children.should.equal(PropTypes.node.isRequired)
