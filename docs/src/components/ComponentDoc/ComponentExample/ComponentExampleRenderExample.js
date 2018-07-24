@@ -27,6 +27,8 @@ const menuStyle = {
   zIndex: 100,
 }
 
+const disabledStyle = { opacity: 0.5, pointerEvents: 'none' }
+
 class ComponentExampleRenderExample extends PureComponent {
   state = {}
 
@@ -73,12 +75,17 @@ class ComponentExampleRenderExample extends PureComponent {
   }
 
   renderEditorMenu = () => {
-    const { githubEditHref } = this.props
+    const { error, githubEditHref } = this.props
     const { copiedCode, isConfirmingReset } = this.state
 
     return (
       <Menu size='small' secondary inverted text style={menuStyle}>
-        <Menu.Item icon='code' content='Prettier' onClick={this.handleFormat} />
+        <Menu.Item
+          icon='code'
+          content='Prettier'
+          onClick={this.handleFormat}
+          style={error ? disabledStyle : undefined}
+        />
         <Popup
           inverted
           wide
@@ -90,9 +97,7 @@ class ComponentExampleRenderExample extends PureComponent {
           onOpen={this.resetStart}
           trigger={
             <Menu.Item
-              style={
-                this.hasOriginalCodeChanged() ? undefined : { opacity: 0.5, pointerEvents: 'none' }
-              }
+              style={this.hasOriginalCodeChanged() ? undefined : disabledStyle}
               icon='refresh'
               content='Reset'
             />
@@ -102,7 +107,6 @@ class ComponentExampleRenderExample extends PureComponent {
           <Button inverted compact content='Nevermind' onClick={this.resetStop} />
         </Popup>
         <Menu.Item
-          active={copiedCode} // to show the color
           icon={copiedCode ? { color: 'green', name: 'check' } : 'copy'}
           content='Copy'
           onClick={this.handleCopy}

@@ -298,7 +298,7 @@ class ComponentExample extends PureComponent {
                 )}
               </Grid.Column>
             )}
-            {isActive && <CarbonAdNative inverted={this.isActiveState()} />}
+            {isActive && !error && <CarbonAdNative inverted={this.isActiveState()} />}
           </Grid>
         </div>
       </Visibility>
