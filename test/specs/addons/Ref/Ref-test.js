@@ -2,11 +2,10 @@ import faker from 'faker'
 import React from 'react'
 
 import Ref from 'src/addons/Ref/Ref'
-import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 import { CompositeClass, CompositeFunction, DOMClass, DOMFunction } from './fixtures'
 
-const mountNode = (Component, innerRef) => (
+const mountNode = (Component, innerRef) =>
   mount(
     <Ref innerRef={innerRef}>
       <Component />
@@ -14,17 +13,13 @@ const mountNode = (Component, innerRef) => (
   )
     .find('#node')
     .getDOMNode()
-)
 
 describe('Ref', () => {
-  common.hasValidTypings(Ref)
-
   describe('children', () => {
     it('renders single child', () => {
       const child = <div data-child={faker.hacker.noun()} />
 
-      shallow(<Ref>{child}</Ref>)
-        .should.contain(child)
+      shallow(<Ref>{child}</Ref>).should.contain(child)
     })
   })
 

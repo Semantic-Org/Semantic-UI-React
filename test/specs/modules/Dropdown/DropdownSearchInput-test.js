@@ -1,13 +1,10 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 import DropdownSearchInput from 'src/modules/Dropdown/DropdownSearchInput'
 
 describe('DropdownSearchInput', () => {
-  common.hasValidTypings(DropdownSearchInput)
-
   describe('aria', () => {
     it('should have aria-autocomplete', () => {
       shallow(<DropdownSearchInput />).should.have.prop('aria-autocomplete', 'list')

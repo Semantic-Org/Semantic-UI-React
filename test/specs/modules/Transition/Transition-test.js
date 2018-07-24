@@ -13,7 +13,6 @@ const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Transition', () => {
   common.hasSubcomponents(Transition, [TransitionGroup])
-  common.hasValidTypings(Transition)
 
   beforeEach(() => {
     wrapper = undefined
