@@ -2,46 +2,45 @@ import keyboardKey from 'keyboard-key'
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { findDOMNode } from 'react-dom'
-import { NavLink } from 'react-router-dom'
-import { withRouter } from 'react-router'
-import { Menu, Icon, Input } from 'semantic-ui-react'
+import { Link, withRouter } from 'react-static'
+import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
-import componentMenu from 'docs/src/componentMenu'
-import { getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
-import pkg from 'package.json'
+import { docTypes, getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
+import shallowEqual from 'src/lib/shallowEqual'
 
 const selectedItemLabelStyle = { color: '#35bdb2', float: 'right' }
 const selectedItemLabel = <span style={selectedItemLabelStyle}>Press Enter</span>
 
 class Sidebar extends Component {
   static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
+    componentMenu: docTypes.componentMenu.isRequired,
     history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
     style: PropTypes.object,
+    version: PropTypes.string.isRequired,
   }
+
   state = { query: '' }
-  filteredMenu = componentMenu
+
+  constructor(props) {
+    super(props)
+
+    this.filteredMenu = props.componentMenu
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(this.state, nextState)
+  }
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleDocumentKeyDown)
-    this.setSearchInput()
-  }
-
-  componentDidUpdate() {
-    this.setSearchInput()
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleDocumentKeyDown)
-  }
-
-  setSearchInput() {
-    // TODO: Replace findDOMNode with Ref component when it will be merged
-    this._searchInput = findDOMNode(this).querySelector('.ui.input input') // eslint-disable-line react/no-find-dom-node
   }
 
   handleDocumentKeyDown = (e) => {
@@ -94,6 +93,10 @@ class Sidebar extends Component {
     }
   }
 
+  handleSearchRef = (c) => {
+    this._searchInput = c
+  }
+
   menuItemsByType = _.map((nextType) => {
     const items = _.flow(
       _.filter(({ type }) => type === nextType),
@@ -102,12 +105,12 @@ class Sidebar extends Component {
           key={info.displayName}
           name={info.displayName}
           onClick={this.handleItemClick}
-          as={NavLink}
+          as={Link}
           to={getComponentPathname(info)}
           activeClassName='active'
         />
       )),
-    )(componentMenu)
+    )(this.props.componentMenu)
 
     return (
       <Menu.Item key={nextType}>
@@ -132,7 +135,7 @@ class Sidebar extends Component {
       } else if (new RegExp(escapedQuery, 'i').test(info.displayName)) {
         containsMatches.push(info)
       }
-    }, componentMenu)
+    }, this.props.componentMenu)
 
     this.filteredMenu = [...startsWithMatches, ...containsMatches]
     const menuItems = _.map((info) => {
@@ -147,7 +150,7 @@ class Sidebar extends Component {
           name={info.displayName}
           onClick={this.handleItemClick}
           active={isSelected}
-          as={NavLink}
+          as={Link}
           to={getComponentPathname(info)}
         >
           {info.displayName}
@@ -160,32 +163,33 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { style } = this.props
+    const { style, version } = this.props
     const { query } = this.state
+
     return (
-      <Menu vertical fixed='left' inverted style={{ ...style }}>
+      <Menu vertical fixed='left' inverted style={style}>
         <Menu.Item>
           <Logo spaced='right' size='mini' />
           <strong>
             Semantic UI React &nbsp;
             <small>
-              <em>{pkg.version}</em>
+              <em>{version}</em>
             </small>
           </strong>
         </Menu.Item>
         <Menu.Item>
           <Menu.Header>Getting Started</Menu.Header>
           <Menu.Menu>
-            <Menu.Item as={NavLink} to='/introduction' activeClassName='active'>
+            <Menu.Item as={Link} to='/' activeClassName='active'>
               Introduction
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/usage' activeClassName='active'>
+            <Menu.Item as={Link} to='/usage' activeClassName='active'>
               Usage
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/theming' activeClassName='active'>
+            <Menu.Item as={Link} to='/theming' activeClassName='active'>
               Theming
             </Menu.Item>
-            <Menu.Item as={NavLink} to='/layouts' activeClassName='active'>
+            <Menu.Item as={Link} to='/layouts' activeClassName='active'>
               Layouts
             </Menu.Item>
             <Menu.Item as='a' href={repoURL} target='_blank' rel='noopener noreferrer'>
@@ -205,14 +209,16 @@ class Sidebar extends Component {
           <CarbonAd />
         </Menu.Item>
         <Menu.Item active>
-          <Input
-            className='transparent inverted icon'
-            icon='search'
-            placeholder='Search components...'
-            value={query}
-            onChange={this.handleSearchChange}
-            onKeyDown={this.handleSearchKeyDown}
-          />
+          <Ref innerRef={this.handleSearchRef}>
+            <Input
+              className='transparent inverted icon'
+              icon='search'
+              placeholder='Search components...'
+              value={query}
+              onChange={this.handleSearchChange}
+              onKeyDown={this.handleSearchKeyDown}
+            />
+          </Ref>
         </Menu.Item>
         {query ? this.renderSearchItems() : this.menuItemsByType}
       </Menu>

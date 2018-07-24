@@ -1,12 +1,11 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import DocumentTitle from 'react-document-title'
-import { withRouter } from 'react-router'
+import { withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
-import componentInfoShape from 'docs/src/utils/componentInfoShape'
-import { scrollToAnchor, examplePathToHash, getFormattedHash } from 'docs/src/utils'
+import DocsLayout from 'docs/src/components/DocsLayout'
+import { docTypes, examplePathToHash, getFormattedHash, scrollToAnchor } from 'docs/src/utils'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
@@ -25,17 +24,21 @@ class ComponentDoc extends Component {
   }
 
   static propTypes = {
+    componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
+    displayName: PropTypes.string.isRequired,
+    exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     history: PropTypes.object.isRequired,
-    info: componentInfoShape.isRequired,
+    seeTags: docTypes.seeTags.isRequired,
+    sidebarSections: docTypes.sidebarSections.isRequired,
   }
 
   state = {}
 
   componentWillMount() {
-    const { history } = this.props
+    const { exampleKeys, history } = this.props
 
-    if (window.location.hash) {
-      const activePath = getFormattedHash(window.location.hash)
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const activePath = getFormattedHash(exampleKeys, window.location.hash)
       history.replace(`${window.location.pathname}#${activePath}`)
       this.setState({ activePath })
     }
@@ -47,8 +50,8 @@ class ComponentDoc extends Component {
     }
   }
 
-  componentWillReceiveProps({ info }) {
-    if (info.displayName !== this.props.info.displayName) {
+  componentWillReceiveProps({ displayName }) {
+    if (displayName !== this.props.displayName) {
       this.setState({ activePath: undefined })
     }
   }
@@ -69,34 +72,39 @@ class ComponentDoc extends Component {
   }
 
   render() {
-    const { info } = this.props
+    const { componentsInfo, displayName, seeTags, sidebarSections } = this.props
     const { activePath, examplesRef } = this.state
+    const componentInfo = componentsInfo[displayName]
 
     return (
-      <DocumentTitle title={`${info.displayName} | Semantic UI React`}>
+      <DocsLayout additionalTitle={displayName} sidebar>
         <Grid padded>
           <Grid.Row>
             <Grid.Column>
               <Header
                 as='h1'
-                content={info.displayName}
-                subheader={_.join(info.docblock.description, ' ')}
+                content={displayName}
+                subheader={_.join(componentInfo.docblock.description, ' ')}
               />
-              <ComponentDocSee displayName={info.displayName} />
+              <ComponentDocSee seeTags={seeTags} />
               <ComponentDocLinks
-                displayName={info.displayName}
-                parentDisplayName={info.parentDisplayName}
-                repoPath={info.repoPath}
-                type={info.type}
+                displayName={displayName}
+                parentDisplayName={componentInfo.parentDisplayName}
+                repoPath={componentInfo.repoPath}
+                type={componentInfo.type}
               />
-              <ComponentProps displayName={info.displayName} props={info.props} />
+              <ComponentProps componentsInfo={componentsInfo} displayName={displayName} />
             </Grid.Column>
           </Grid.Row>
 
           <Grid.Row columns='equal'>
             <Grid.Column>
               <div ref={this.handleExamplesRef}>
-                <ComponentExamples displayName={info.displayName} />
+                <ComponentExamples
+                  displayName={displayName}
+                  examplesExist={componentInfo.examplesExist}
+                  type={componentInfo.type}
+                />
               </div>
               <div style={exampleEndStyle}>
                 This is the bottom <Icon name='pointing down' />
@@ -105,16 +113,16 @@ class ComponentDoc extends Component {
             <Grid.Column computer={5} largeScreen={4} widescreen={4}>
               <ComponentSidebar
                 activePath={activePath}
-                displayName={info.displayName}
                 examplesRef={examplesRef}
                 onItemClick={this.handleSidebarItemClick}
+                sections={sidebarSections}
               />
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </DocumentTitle>
+      </DocsLayout>
     )
   }
 }
 
-export default withRouter(ComponentDoc)
+export default withRouteData(ComponentDoc)

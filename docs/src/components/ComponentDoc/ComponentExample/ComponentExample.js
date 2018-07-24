@@ -1,39 +1,17 @@
-import * as Babel from '@babel/standalone'
 import copyToClipboard from 'copy-to-clipboard'
-import { html } from 'js-beautify'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { PureComponent, createElement, isValidElement } from 'react'
-import { withRouter } from 'react-router'
-import { renderToStaticMarkup } from 'react-dom/server'
+import React, { PureComponent } from 'react'
+import { withRouteData, withRouter } from 'react-static'
 import { Divider, Grid, Menu, Visibility } from 'semantic-ui-react'
 
-import {
-  exampleContext,
-  examplePathToHash,
-  getFormattedHash,
-  repoURL,
-  scrollToAnchor,
-} from 'docs/src/utils'
+import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
 import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
+import ComponentExampleRenderExample from './ComponentExampleRenderExample'
+import ComponentExampleRenderHtml from './ComponentExampleRenderHtml'
 import ComponentExampleTitle from './ComponentExampleTitle'
 import CarbonAdNative from '../../CarbonAd/CarbonAdNative'
-
-const babelConfig = {
-  presets: [
-    [
-      'env',
-      {
-        targets: {
-          browsers: ['last 4 versions', 'not dead'],
-        },
-      },
-    ],
-    'react',
-    ['stage-1', { decoratorsLegacy: true }],
-  ],
-}
 
 const childrenStyle = {
   paddingTop: 0,
@@ -65,6 +43,8 @@ class ComponentExample extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     description: PropTypes.node,
+    exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+    exampleSources: PropTypes.objectOf(PropTypes.string).isRequired,
     examplePath: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -74,18 +54,14 @@ class ComponentExample extends PureComponent {
   }
 
   componentWillMount() {
-    const { examplePath } = this.props
+    const { exampleSources, examplePath } = this.props
     this.anchorName = examplePathToHash(examplePath)
 
-    const exampleElement = this.renderOriginalExample()
-
     this.setState({
-      exampleElement,
       handleMouseLeave: this.handleMouseLeave,
       handleMouseMove: this.handleMouseMove,
       showCode: this.isActiveHash(),
-      sourceCode: this.getOriginalSourceCode(),
-      markup: renderToStaticMarkup(exampleElement),
+      sourceCode: exampleSources[examplePath],
     })
   }
 
@@ -137,7 +113,7 @@ class ComponentExample extends PureComponent {
 
   handleDirectLinkClick = () => {
     this.setHashAndScroll()
-    copyToClipboard(window.location.href)
+    copyToClipboard(window && window.location.href)
   }
 
   handleMouseLeave = () => {
@@ -185,21 +161,13 @@ class ComponentExample extends PureComponent {
   }
 
   resetJSX = () => {
-    const { sourceCode } = this.state
-    const original = this.getOriginalSourceCode()
+    const { examplePath, exampleSources, sourceCode } = this.state
+    const original = exampleSources[examplePath]
+
     // eslint-disable-next-line no-alert
     if (sourceCode !== original && confirm('Lose your changes?')) {
       this.setState({ sourceCode: original })
-      this.renderSourceCode()
     }
-  }
-
-  getOriginalSourceCode = () => {
-    const { examplePath } = this.props
-
-    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../../examples/${examplePath}`)
-
-    return this.sourceCode
   }
 
   getKebabExamplePath = () => {
@@ -208,112 +176,8 @@ class ComponentExample extends PureComponent {
     return this.kebabExamplePath
   }
 
-  renderError = _.debounce((error) => {
-    this.setState({ error })
-  }, 800)
-
-  renderOriginalExample = () => {
-    const { examplePath } = this.props
-    return createElement(exampleContext(`./${examplePath}.js`).default)
-  }
-
-  renderSourceCode = _.debounce(() => {
-    const { examplePath } = this.props
-    const { sourceCode } = this.state
-    // Heads Up!
-    //
-    // These are used in the code editor scope when rewriting imports to const statements
-    // We use require() to preserve variable names
-    // Webpack rewrites import names
-    /* eslint-disable no-unused-vars */
-    const FAKER = require('faker')
-    const LODASH = require('lodash')
-    const REACT = require('react')
-    const SEMANTIC_UI_REACT = require('semantic-ui-react')
-    let WIREFRAME
-    let COMMON
-    /* eslint-enable no-unused-vars */
-
-    // Should use an AST transform here... oh well :/
-    // Rewrite the example file into an IIFE that returns a component
-    // which can be rendered in this ComponentExample's render() method
-
-    // rewrite imports to const statements against the UPPERCASE module names
-    const imports = _
-      .get(/(^[\s\S])*import[\s\S]*from[\s\S]*['"]\n/.exec(sourceCode), '[0]', '')
-      .replace(/[\s\n]+/g, ' ') // normalize spaces and make one line
-      .replace(/ import/g, '\nimport') // one import per line
-      .split('\n') // split lines
-      .filter(Boolean) // remove empty lines
-      .map((l) => {
-        // rewrite imports to const statements
-        const [defaultImport, destructuredImports, _module] = _.tail(
-          /import\s+([\w]+)?(?:\s*,\s*)?({[\s\w,]+})?\s+from\s+['"](?:.*\/)?([\w\-_]+)['"]/.exec(l),
-        )
-
-        const module = _.snakeCase(_module).toUpperCase()
-
-        if (module === 'COMMON') {
-          const componentPath = examplePath
-            .split(__PATH_SEP__)
-            .splice(0, 2)
-            .join(__PATH_SEP__)
-          COMMON = require(`docs/src/examples/${componentPath}/common`)
-        } else if (module === 'WIREFRAME') {
-          WIREFRAME = require('docs/src/examples/behaviors/Visibility/Wireframe').default
-        }
-
-        const constStatements = []
-        if (defaultImport) constStatements.push(`const ${defaultImport} = ${module}`)
-        if (destructuredImports) constStatements.push(`const ${destructuredImports} = ${module}`)
-        constStatements.push('\n')
-
-        return constStatements.join('\n')
-      })
-      .join('\n')
-
-    // capture the default export so we can return it from the IIFE
-    const defaultExport = _.get(
-      /export\s+default\s+(?:class|function)?(?:\s+)?(\w+)/.exec(sourceCode),
-      '[1]',
-    )
-
-    const body = _
-      .get(/(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode), '[0]', '')
-      .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '') // remove `export default Foo` statements
-      .replace(/export\s+default\s+/, '') // remove `export default ...`
-
-    const IIFE = `(function() {\n${imports}${body}return ${defaultExport}\n}())`
-
-    try {
-      const { code } = Babel.transform(IIFE, babelConfig)
-      const Example = eval(code) // eslint-disable-line no-eval
-      const exampleElement = _.isFunction(Example) ? <Example /> : Example
-
-      if (!isValidElement(exampleElement)) {
-        this.renderError(
-          `Default export is not a valid element. Type:${{}.toString.call(exampleElement)}`,
-        )
-      } else {
-        // immediately render a null error
-        // but also ensure the last debounced error call is a null error
-        const error = null
-        this.renderError(error)
-        this.setState({
-          error,
-          exampleElement,
-          markup: renderToStaticMarkup(exampleElement),
-        })
-      }
-    } catch (err) {
-      this.renderError(err.message)
-    }
-  }, 100)
-
-  getComponentName = () => this.props.examplePath.split('/')[1]
-
   handleChangeCode = (sourceCode) => {
-    this.setState({ sourceCode }, this.renderSourceCode)
+    this.setState({ sourceCode })
   }
 
   setGitHubHrefs = () => {
@@ -390,44 +254,16 @@ class ComponentExample extends PureComponent {
     )
   }
 
-  renderHTML = () => {
-    const { showHTML, markup } = this.state
-    if (!showHTML) return
-
-    // add new lines between almost all adjacent elements
-    // moves inline elements to their own line
-    const preFormattedHTML = markup.replace(/><(?!\/i|\/label|\/span|option)/g, '>\n<')
-
-    const beautifiedHTML = html(preFormattedHTML, {
-      indent_size: 2,
-      indent_char: ' ',
-      wrap_attributes: 'auto',
-      wrap_attributes_indent_size: 2,
-      end_with_newline: false,
-    })
-
-    return (
-      <div>
-        <Divider horizontal>Rendered HTML</Divider>
-        <Editor
-          id={`${this.getKebabExamplePath()}-html`}
-          mode='html'
-          value={beautifiedHTML}
-          readOnly
-        />
-      </div>
-    )
-  }
-
   render() {
     const { children, description, examplePath, suiVersion, title } = this.props
     const {
       handleMouseLeave,
       handleMouseMove,
-      exampleElement,
       isHovering,
+      markup,
       showCode,
       showHTML,
+      sourceCode,
     } = this.state
 
     const isActive = this.isActiveHash() || this.isActiveState()
@@ -491,11 +327,15 @@ class ComponentExample extends PureComponent {
 
           <Grid.Row columns={1}>
             <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
-              {exampleElement}
+              <ComponentExampleRenderExample
+                exampleHash={`rendered-example ${this.getKebabExamplePath()}`}
+                examplePath={examplePath}
+                sourceCode={sourceCode}
+              />
             </Grid.Column>
             <Grid.Column>
               {this.renderJSX()}
-              {this.renderHTML()}
+              {showHTML ? <ComponentExampleRenderHtml markup={markup} /> : null}
             </Grid.Column>
           </Grid.Row>
           {isActive && <CarbonAdNative />}
@@ -505,4 +345,4 @@ class ComponentExample extends PureComponent {
   }
 }
 
-export default withRouter(ComponentExample)
+export default withRouteData(withRouter(ComponentExample))

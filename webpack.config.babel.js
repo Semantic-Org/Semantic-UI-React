@@ -1,4 +1,3 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin'
 import _ from 'lodash'
 import webpack from 'webpack'
 
@@ -76,26 +75,6 @@ webpackConfig.plugins = [
   new webpack.DllReferencePlugin({
     context: paths.base('node_modules'),
     manifest: require(paths.base('dll/vendor-manifest.json')),
-  }),
-  new HtmlWebpackPlugin({
-    template: paths.docsSrc('index.ejs'),
-    filename: 'index.html',
-    hash: false,
-    inject: 'body',
-    minify: {
-      collapseWhitespace: true,
-    },
-    versions: {
-      babel: require('@babel/standalone/package.json').version,
-      faker: require('faker/package.json').version,
-      jsBeautify: require('js-beautify/package.json').version,
-      lodash: require('lodash/package.json').version,
-      propTypes: require('prop-types/package.json').version,
-      react: require('react/package.json').version,
-      reactDOM: require('react-dom/package.json').version,
-      sui: require('semantic-ui-css/package.json').version,
-      suir: require('./package.json').version,
-    },
   }),
 ]
 

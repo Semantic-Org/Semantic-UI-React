@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withSiteData } from 'react-static'
 import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'semantic-ui-react'
 
+import DocsLayout from 'docs/src/components/DocsLayout'
 import Editor from 'docs/src/components/Editor/Editor'
 import Logo from 'docs/src/components/Logo/Logo'
-import { semanticUIDocsURL, repoURL } from 'docs/src/utils'
-import pkg from 'package.json'
+import { btoa, semanticUIDocsURL, repoURL } from 'docs/src/utils'
 
 const AccordionJSX = `const panels = [{
   title: 'What is a dog?',
@@ -135,9 +135,9 @@ Comparison.propTypes = {
   html: PropTypes.string,
 }
 
-const Introduction = () => (
-  <Container id='introduction-page'>
-    <div>
+const Introduction = ({ pkg }) => (
+  <DocsLayout additionalTitle='Introduction'>
+    <Container id='introduction-page'>
       <Segment basic textAlign='center'>
         <Logo centered size='small' />
         <Header as='h1' textAlign='center'>
@@ -317,8 +317,15 @@ const Introduction = () => (
         <Divider hidden section />
         <Divider hidden section />
       </Segment>
-    </div>
-  </Container>
+    </Container>
+  </DocsLayout>
 )
 
-export default Introduction
+Introduction.propTypes = {
+  pkg: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
+export default withSiteData(Introduction)
