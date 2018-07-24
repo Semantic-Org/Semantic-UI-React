@@ -133,7 +133,7 @@
     "puppeteer": "1.3.0",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
-    "react-ace": "^5.1.2",
+    "react-ace": "^6.1.4",
     "react-docgen": "^2.17.0",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^4.3.3",

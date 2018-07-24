@@ -29,12 +29,14 @@ function Editor(props) {
       width='100%'
       height='100px'
       value={value}
-      enableBasicAutocompletion
-      enableLiveAutocompletion
+      enableBasicAutocompletion={!readOnly}
+      enableLiveAutocompletion={!readOnly}
       editorProps={{ $blockScrolling: Infinity }}
-      highlightActiveLine={false}
+      highlightActiveLine={!readOnly}
+      highlightGutterLine={!readOnly}
       maxLines={Infinity}
       readOnly={readOnly}
+      showCursor={!readOnly}
       showGutter={!readOnly}
       showPrintMargin={false}
       tabSize={2}

@@ -1,5 +1,5 @@
 import prettier from 'prettier/standalone'
-import prettierConfig from '../../../../../.prettierrc.json'
+import prettierConfig from '../../../.prettierrc.json'
 
 delete prettierConfig.$schema
 delete prettierConfig.overrides
@@ -13,8 +13,9 @@ const formatCode = (code) => {
     plugins: window.prettierPlugins,
   })
 
-  // remove beginning comma in JSX/HTML
-  return formatted.replace(/^;</, '<')
+  return formatted
+    .replace(/^;</, '<') // remove beginning comma in JSX/HTML
+    .replace(/="([\s\S]*?)?"/gm, "='$1'") // single quote JSX
 }
 
 export default formatCode

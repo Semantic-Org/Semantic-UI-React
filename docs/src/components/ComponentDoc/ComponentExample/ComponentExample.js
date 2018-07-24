@@ -1,17 +1,17 @@
 import copyToClipboard from 'copy-to-clipboard'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { createElement, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import { withRouteData, withRouter } from 'react-static'
 import { Grid, Visibility } from 'semantic-ui-react'
 
 import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
-import { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/Editor/Editor'
+import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
+
 import ComponentControls from '../ComponentControls'
 import ComponentExampleRenderExample from './ComponentExampleRenderExample'
 import ComponentExampleRenderHtml from './ComponentExampleRenderHtml'
 import ComponentExampleTitle from './ComponentExampleTitle'
-import CarbonAdNative from '../../CarbonAd/CarbonAdNative'
 import renderExampleSourceCode from './renderExampleSourceCode'
 
 const childrenStyle = {
@@ -21,6 +21,10 @@ const childrenStyle = {
 
 const renderedExampleStyle = {
   padding: '2rem',
+}
+
+const editorStyle = {
+  padding: 0,
 }
 
 /**
@@ -182,19 +186,20 @@ class ComponentExample extends PureComponent {
     return exampleSources[examplePath]
   }
 
-  handleChangeCode = (sourceCode) => {
+  handleChangeCode = _.debounce((sourceCode) => {
     const { examplePath } = this.props
     const { error, htmlMarkup, exampleElement } = renderExampleSourceCode(examplePath, sourceCode)
 
-    this.setState({ error, htmlMarkup, exampleElement, sourceCode })
-  }
+    const newState = { error, sourceCode }
 
-  renderOriginalExample = () => {
-    const { examplePath } = this.props
-    const OriginalExample = require(`docs/src/examples/${examplePath}`).default
+    // preserve the last good render if there is an error
+    if (!error) {
+      newState.htmlMarkup = htmlMarkup
+      newState.exampleElement = exampleElement
+    }
 
-    return createElement(OriginalExample)
-  }
+    this.setState(newState)
+  }, 30)
 
   render() {
     const { children, description, examplePath, suiVersion, title } = this.props
@@ -274,23 +279,23 @@ class ComponentExample extends PureComponent {
               {exampleElement}
             </Grid.Column>
             {(showCode || showHTML) && (
-              <Grid.Column
-                width={16}
-                style={{ padding: '1rem 0 0', background: EDITOR_BACKGROUND_COLOR }}
-              >
-                <ComponentExampleRenderExample
-                  editorId={`${this.getKebabExamplePath()}-jsx`}
-                  githubEditHref={this.getGithubEditHref()}
-                  originalValue={this.getOriginalSourceCode()}
-                  value={sourceCode}
-                  error={error}
-                  onChange={this.handleChangeCode}
-                />
-
-                <ComponentExampleRenderHtml
-                  editorId={`${this.getKebabExamplePath()}-html`}
-                  value={htmlMarkup}
-                />
+              <Grid.Column width={16} style={editorStyle}>
+                {showCode && (
+                  <ComponentExampleRenderExample
+                    editorId={`${this.getKebabExamplePath()}-jsx`}
+                    githubEditHref={this.getGithubEditHref()}
+                    originalValue={this.getOriginalSourceCode()}
+                    value={sourceCode}
+                    error={error}
+                    onChange={this.handleChangeCode}
+                  />
+                )}
+                {showHTML && (
+                  <ComponentExampleRenderHtml
+                    editorId={`${this.getKebabExamplePath()}-html`}
+                    value={htmlMarkup}
+                  />
+                )}
               </Grid.Column>
             )}
             {isActive && <CarbonAdNative inverted={this.isActiveState()} />}

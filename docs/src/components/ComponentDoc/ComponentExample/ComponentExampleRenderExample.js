@@ -1,27 +1,30 @@
 import copyToClipboard from 'copy-to-clipboard'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
-import { Segment, Menu } from 'semantic-ui-react'
+import { Button, Popup, Segment, Menu } from 'semantic-ui-react'
 
+import Editor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/Editor/Editor'
 import { updateForKeys } from 'docs/src/hoc'
-import Editor from 'docs/src/components/Editor/Editor'
+import { formatCode } from 'docs/src/utils'
 
 const rootStyle = {
   position: 'relative',
+  paddingTop: '1rem',
+  background: EDITOR_BACKGROUND_COLOR,
 }
 
 const errorStyle = {
   fontSize: '0.9rem',
   fontFamily: 'monospace',
-  whiteSpace: 'pre',
+  whiteSpace: 'pre-wrap',
 }
 
 const menuStyle = {
   position: 'absolute',
   margin: 0,
-  top: '2px',
-  right: '0.5rem',
-  zIndex: 1,
+  top: 0,
+  right: '1rem',
+  zIndex: 100,
 }
 
 class ComponentExampleRenderExample extends PureComponent {
@@ -37,40 +40,72 @@ class ComponentExampleRenderExample extends PureComponent {
     error: PropTypes.string,
   }
 
-  hasOriginalCodeChanged = () => this.props.value !== this.props.originalValue
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value && this.state.isConfirmingReset) {
+      this.resetStop()
+    }
+  }
 
-  copyJSX = () => {
-    copyToClipboard(this.state.value)
+  handleCopy = () => {
+    copyToClipboard(this.props.value)
     this.setState({ copiedCode: true })
     setTimeout(() => this.setState({ copiedCode: false }), 1000)
   }
 
-  resetJSX = () => {
-    // eslint-disable-next-line no-alert
-    if (this.hasOriginalCodeChanged() && confirm('Lose your changes?')) {
-      this.setState({ value: this.originalValue })
-    }
+  handleFormat = () => {
+    const { onChange, value } = this.props
+
+    onChange(formatCode(value))
+  }
+
+  hasOriginalCodeChanged = () => this.props.value !== this.props.originalValue
+
+  resetStart = () => this.setState({ isConfirmingReset: true })
+
+  resetStop = () => this.setState({ isConfirmingReset: false })
+
+  resetConfirm = () => {
+    const { onChange, originalValue } = this.props
+
+    this.setState({ isConfirmingReset: false }, () => {
+      onChange(originalValue)
+    })
   }
 
   renderEditorMenu = () => {
     const { githubEditHref } = this.props
-    const { copiedCode } = this.state
+    const { copiedCode, isConfirmingReset } = this.state
 
     return (
       <Menu size='small' secondary inverted text style={menuStyle}>
-        <Menu.Item
-          style={
-            this.hasOriginalCodeChanged() ? undefined : { opacity: 0.5, pointerEvents: 'none' }
+        <Menu.Item icon='code' content='Prettier' onClick={this.handleFormat} />
+        <Popup
+          inverted
+          wide
+          verticalOffset={5}
+          on='click'
+          position='top center'
+          size='small'
+          open={isConfirmingReset}
+          onOpen={this.resetStart}
+          trigger={
+            <Menu.Item
+              style={
+                this.hasOriginalCodeChanged() ? undefined : { opacity: 0.5, pointerEvents: 'none' }
+              }
+              icon='refresh'
+              content='Reset'
+            />
           }
-          icon='refresh'
-          content='Reset'
-          onClick={this.resetJSX}
-        />
+        >
+          <Button inverted compact color='red' content='Lose Changes' onClick={this.resetConfirm} />
+          <Button inverted compact content='Nevermind' onClick={this.resetStop} />
+        </Popup>
         <Menu.Item
           active={copiedCode} // to show the color
           icon={copiedCode ? { color: 'green', name: 'check' } : 'copy'}
           content='Copy'
-          onClick={this.copyJSX}
+          onClick={this.handleCopy}
         />
         <Menu.Item icon='github' content='Edit' href={githubEditHref} target='_blank' />
       </Menu>
