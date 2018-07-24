@@ -1,16 +1,13 @@
-import { customPropTypes } from 'src/lib'
+import * as customPropTypes from 'src/lib/customPropTypes'
 
 describe('suggest prop type', () => {
   it('should throw error when non-array argument given', () => {
-    expect(() => customPropTypes.suggest('foo')).to.throw(
-      Error,
-      /Invalid argument supplied to suggest, expected an instance of array./,
-    )
+    expect(() => customPropTypes.suggest('foo')).toThrowError(Error)
   })
 
   it('should return undefined when prop is valid', () => {
     const propType = customPropTypes.suggest(['foo', 'bar', 'baz'])
-    expect(propType({ name: 'bar' }, 'name', 'FooComponent')).to.equal(undefined)
+    expect(propType({ name: 'bar' }, 'name', 'FooComponent')).toBeUndefined()
   })
 
   it('should return Error with suggestions when prop is invalid', () => {
@@ -18,25 +15,29 @@ describe('suggest prop type', () => {
     const props = { name: 'bad', title: 'bat words' }
 
     const resultFooComponent = propType(props, 'name', 'FooComponent')
-    expect(resultFooComponent).to.be.an.instanceof(Error)
-    expect(resultFooComponent.message).to
-      .equal(`Invalid prop \`name\` of value \`bad\` supplied to \`FooComponent\`.
-
-Instead of \`bad\`, did you mean:
-  - bar
-  - baz
-  - foo
-`)
+    expect(resultFooComponent).toBeInstanceOf(Error)
+    expect(resultFooComponent.message).toBe(
+      [
+        'Invalid prop `name` of value `bad` supplied to `FooComponent`.\n',
+        '\n',
+        'Instead of `bad`, did you mean:\n',
+        '  - bar\n',
+        '  - baz\n',
+        '  - foo\n',
+      ].join(''),
+    )
 
     const resultBarComponent = propType(props, 'title', 'BarComponent')
-    expect(resultBarComponent).to.be.an.instanceof(Error)
-    expect(resultBarComponent.message).to
-      .equal(`Invalid prop \`title\` of value \`bat words\` supplied to \`BarComponent\`.
-
-Instead of \`bat words\`, did you mean:
-  - bar
-  - baz
-  - foo
-`)
+    expect(resultBarComponent).toBeInstanceOf(Error)
+    expect(resultBarComponent.message).toBe(
+      [
+        'Invalid prop `title` of value `bat words` supplied to `BarComponent`.\n',
+        '\n',
+        'Instead of `bat words`, did you mean:\n',
+        '  - bar\n',
+        '  - baz\n',
+        '  - foo\n',
+      ].join(''),
+    )
   })
 })

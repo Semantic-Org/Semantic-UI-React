@@ -29,8 +29,9 @@ describe('TableCell', () => {
   })
   common.propKeyOnlyToClassName(TableCell, 'warning')
 
-  it('renders as a td by default', () => {
-    shallow(<TableCell />)
-      .should.have.tagName('td')
+  describe('as', () => {
+    it('is "td" by default', () => {
+      expect(shallow(<TableCell />).type()).toBe('td')
+    })
   })
 })

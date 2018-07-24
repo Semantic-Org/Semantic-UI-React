@@ -10,39 +10,39 @@ import {
 describe('itemFactories', () => {
   describe('createEllipsisItem', () => {
     it('"active" is always false', () => {
-      createEllipsisItem(0).should.have.property('active', false)
+      expect(createEllipsisItem(0)).toHaveProperty('active', false)
     })
     it('"type" matches "ellipsisItem"', () => {
-      createEllipsisItem(0).should.have.property('type', 'ellipsisItem')
+      expect(createEllipsisItem(0)).toHaveProperty('type', 'ellipsisItem')
     })
     it('"value" matches passed argument', () => {
-      createEllipsisItem(5).should.have.property('value', 5)
+      expect(createEllipsisItem(5)).toHaveProperty('value', 5)
     })
   })
 
   describe('createFirstPage', () => {
     it('"active" is always false', () => {
-      createFirstPage().should.have.property('active', false)
+      expect(createFirstPage()).toHaveProperty('active', false)
     })
     it('"type" matches "firstItem"', () => {
-      createFirstPage().should.have.property('type', 'firstItem')
+      expect(createFirstPage()).toHaveProperty('type', 'firstItem')
     })
     it('"value" always returns 1', () => {
-      createFirstPage().should.have.property('value', 1)
+      expect(createFirstPage()).toHaveProperty('value', 1)
     })
   })
 
   describe('createPrevItem', () => {
     it('"active" is always false', () => {
-      createPrevItem(1).should.have.property('active', false)
+      expect(createPrevItem(1)).toHaveProperty('active', false)
     })
     it('"type" matches "prevItem"', () => {
-      createPrevItem(1).should.have.property('type', 'prevItem')
+      expect(createPrevItem(1)).toHaveProperty('type', 'prevItem')
     })
     it('"value" returns previous page number or 1', () => {
-      createPrevItem(1).should.have.property('value', 1)
-      createPrevItem(2).should.have.property('value', 1)
-      createPrevItem(3).should.have.property('value', 2)
+      expect(createPrevItem(1)).toHaveProperty('value', 1)
+      expect(createPrevItem(2)).toHaveProperty('value', 1)
+      expect(createPrevItem(3)).toHaveProperty('value', 2)
     })
   })
 
@@ -50,46 +50,46 @@ describe('itemFactories', () => {
     const pageFactory = createPageFactory(1)
 
     it('returns function', () => {
-      pageFactory.should.be.a('function')
+      expect(typeof pageFactory).toBe('function')
     })
     it('"active" is true when pageNumber is equal to activePage', () => {
-      pageFactory(1).should.have.property('active', true)
+      expect(pageFactory(1)).toHaveProperty('active', true)
     })
     it('"active" is false when pageNumber is not equal to activePage', () => {
-      pageFactory(2).should.have.property('active', false)
+      expect(pageFactory(2)).toHaveProperty('active', false)
     })
     it('"type" of created item matches "pageItem"', () => {
-      pageFactory(2).should.have.property('type', 'pageItem')
+      expect(pageFactory(2)).toHaveProperty('type', 'pageItem')
     })
     it('"value" returns pageNumber', () => {
-      pageFactory(1).should.have.property('value', 1)
-      pageFactory(2).should.have.property('value', 2)
+      expect(pageFactory(1)).toHaveProperty('value', 1)
+      expect(pageFactory(2)).toHaveProperty('value', 2)
     })
   })
 
   describe('createNextItem', () => {
     it('"active" is always false', () => {
-      createNextItem(0, 0).should.have.property('active', false)
+      expect(createNextItem(0, 0)).toHaveProperty('active', false)
     })
     it('"type" matches "nextItem"', () => {
-      createNextItem(0, 0).should.have.property('type', 'nextItem')
+      expect(createNextItem(0, 0)).toHaveProperty('type', 'nextItem')
     })
     it('"value" returns the smallest of the arguments', () => {
-      createNextItem(1, 3).should.have.property('value', 2)
-      createNextItem(2, 3).should.have.property('value', 3)
-      createNextItem(3, 3).should.have.property('value', 3)
+      expect(createNextItem(1, 3)).toHaveProperty('value', 2)
+      expect(createNextItem(2, 3)).toHaveProperty('value', 3)
+      expect(createNextItem(3, 3)).toHaveProperty('value', 3)
     })
   })
 
   describe('createLastItem', () => {
     it('"active" is always false', () => {
-      createLastItem(0).should.have.property('active', false)
+      expect(createLastItem(0)).toHaveProperty('active', false)
     })
     it('"type" matches "lastItem"', () => {
-      createLastItem(0).should.have.property('type', 'lastItem')
+      expect(createLastItem(0)).toHaveProperty('type', 'lastItem')
     })
     it('"value" matches passed argument', () => {
-      createLastItem(2).should.have.property('value', 2)
+      expect(createLastItem(2)).toHaveProperty('value', 2)
     })
   })
 })

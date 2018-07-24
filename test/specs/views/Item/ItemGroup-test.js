@@ -19,17 +19,24 @@ describe('ItemGroup', () => {
     it('renders children', () => {
       const firstText = faker.hacker.phrase()
       const secondText = faker.hacker.phrase()
-      const items = [
-        { content: firstText },
-        { content: secondText },
-      ]
+      const items = [{ content: firstText }, { content: secondText }]
 
       const wrapper = mount(<ItemGroup items={items} />)
       const itemWrappers = wrapper.find('Item')
 
-      wrapper.should.have.exactly(2).descendants('Item')
-      itemWrappers.first().find('ItemContent').should.contain.text(firstText)
-      itemWrappers.last().find('ItemContent').should.contain.text(secondText)
+      expect(wrapper.find('Item')).toHaveLength(2)
+      expect(
+        itemWrappers
+          .first()
+          .find('ItemContent')
+          .text(),
+      ).toBe(firstText)
+      expect(
+        itemWrappers
+          .last()
+          .find('ItemContent')
+          .text(),
+      ).toBe(secondText)
     })
   })
 })

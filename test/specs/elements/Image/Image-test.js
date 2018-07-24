@@ -40,17 +40,13 @@ describe('Image', () => {
 
   describe('as', () => {
     it('renders an img tag', () => {
-      shallow(<Image />)
-        .type()
-        .should.equal('img')
+      expect(shallow(<Image />).type()).toBe('img')
     })
   })
 
   describe('href', () => {
     it('renders an a tag', () => {
-      shallow(<Image href='http://google.com' />)
-        .type()
-        .should.equal('a')
+      expect(shallow(<Image href='http://google.com' />).type()).toBe('a')
     })
   })
 
@@ -59,36 +55,35 @@ describe('Image', () => {
       it(`keeps "${propName}" on root element by default`, () => {
         const wrapper = shallow(<Image {...{ [propName]: 'foo' }} />)
 
-        wrapper.should.have.tagName('img')
-        wrapper.should.have.prop(propName, 'foo')
+        expect(wrapper.type()).toBe('img')
+        expect(wrapper.prop(propName)).toBe('foo')
       })
 
       it(`passes "${propName}" to the img tag when wrapped`, () => {
-        shallow(<Image wrapped {...{ [propName]: 'foo' }} />)
-          .find('img')
-          .should.have.prop(propName, 'foo')
+        expect(
+          shallow(<Image wrapped {...{ [propName]: 'foo' }} />)
+            .find('img')
+            .prop(propName),
+        ).toBe('foo')
       })
     })
   })
 
   describe('ui', () => {
     it('is true by default', () => {
-      Image.defaultProps.should.have.any.keys('ui')
-      Image.defaultProps.ui.should.equal(true)
+      expect(Image.defaultProps).toHaveProperty('ui', true)
     })
     it('adds the "ui" className when true', () => {
-      shallow(<Image ui />).should.have.className('ui')
+      expect(shallow(<Image ui />).hasClass('ui')).toBe(true)
     })
     it('removes the "ui" className when false', () => {
-      shallow(<Image ui={false} />).should.not.have.className('ui')
+      expect(shallow(<Image ui={false} />).hasClass('ui')).toBe(false)
     })
   })
 
   describe('wrapped', () => {
     it('renders an div tag when true', () => {
-      shallow(<Image wrapped />)
-        .type()
-        .should.equal('div')
+      expect(shallow(<Image wrapped />).type()).toBe('div')
     })
   })
 })

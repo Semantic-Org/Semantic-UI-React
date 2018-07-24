@@ -7,7 +7,6 @@ import MessageHeader from 'src/collections/Message/MessageHeader'
 import MessageList from 'src/collections/Message/MessageList'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('Message', () => {
   common.isConformant(Message)
@@ -53,51 +52,54 @@ describe('Message', () => {
 
   describe('header', () => {
     it('adds MessageContent when defined', () => {
-      shallow(<Message header='This is a message' />).should.have.descendants('MessageContent')
+      expect(shallow(<Message header='This is a message' />).find('MessageContent')).toHaveLength(1)
     })
   })
 
   describe('icon', () => {
     it('does not have MessageContent by default', () => {
-      shallow(<Message />).should.not.have.descendants('.content')
+      expect(shallow(<Message />).find('.content')).toHaveLength(0)
     })
+
     it('renders children when "true"', () => {
       const text = 'child text'
       const node = <div id='foo' />
 
-      shallow(<Message icon>{text}</Message>).should.have.text(text)
-
-      shallow(<Message icon>{node}</Message>).should.contain(node)
+      expect(shallow(<Message icon>{text}</Message>).text()).toContain(text)
+      expect(shallow(<Message icon>{node}</Message>).contains(node)).toBe(true)
     })
   })
 
   describe('list', () => {
     it('adds MessageContent when defined', () => {
-      shallow(<Message list={[]} />).should.have.descendants('MessageContent')
+      expect(shallow(<Message list={[]} />).find('MessageContent')).toHaveLength(1)
     })
   })
 
   describe('onDismiss', () => {
     it('has no close icon by default', () => {
-      shallow(<Message />).should.not.have.descendants('.close.icon')
+      expect(shallow(<Message />).find('.close.icon')).toHaveLength(0)
     })
 
     it('adds a close icon when defined', () => {
-      render(<Message onDismiss={() => undefined} />).should.have.descendants('.close.icon')
+      expect(mount(<Message onDismiss={() => undefined} />).find('.close.icon')).toHaveLength(1)
     })
 
-    it('is called with (event) on close icon click', () => {
+    it('is called with (event, data) on close icon click', () => {
       const event = { fake: 'event data' }
       const props = { icon: true }
 
-      const spy = sandbox.spy()
-      const wrapper = mount(<Message {...props} onDismiss={spy} />)
+      const onDismiss = jest.fn()
+      const wrapper = mount(<Message {...props} onDismiss={onDismiss} />)
 
-      wrapper.should.have.descendants('.close.icon')
+      expect(wrapper.find('.close.icon')).toHaveLength(1)
       wrapper.find('.close.icon').simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      expect(onDismiss).toHaveBeenCalledTimes(1)
+      expect(onDismiss).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(props),
+      )
     })
   })
 })

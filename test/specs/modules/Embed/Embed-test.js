@@ -6,9 +6,8 @@ import * as common from 'test/specs/commonTests'
 const assertIframeSrc = (props, srcPart) => {
   const { id = 'default-test-id', source = 'youtube', ...rest } = props
 
-  shallow(<Embed active id={id} source={source} {...rest} />)
-    .find('iframe')
-    .should.have.attr('src')
+  expect(shallow(<Embed active id={id} source={source} {...rest} />).find('iframe'))
+    .have.attr('src')
     .which.contains(srcPart)
 }
 
@@ -44,17 +43,19 @@ describe('Embed', () => {
 
   describe('active', () => {
     it('defaults to false', () => {
-      shallow(<Embed />).should.have.not.state('active')
+      expect(shallow(<Embed />).state('active')).toBeUndefined()
     })
 
     it('passes to state', () => {
-      shallow(<Embed active />).should.have.state('active', true)
+      expect(shallow(<Embed active />).state('active')).toBe(true)
     })
 
     it('renders nothing when false', () => {
       const children = 'child text'
 
-      shallow(<Embed>{children}</Embed>).should.not.contain(<div className='embed'>{children}</div>)
+      expect(shallow(<Embed>{children}</Embed>).contains(
+        <div className='embed'>{children}</div>,
+      )).toBe(false)
     })
   })
 
@@ -86,9 +87,9 @@ describe('Embed', () => {
 
   describe('defaultActive', () => {
     it('sets the initial active state', () => {
-      shallow(<Embed defaultActive />).should.have.state('active', true)
+      expect(shallow(<Embed defaultActive />).state('active')).toBe(true)
 
-      shallow(<Embed defaultActive={false} />).should.have.state('active', false)
+      expect(shallow(<Embed defaultActive={false} />).state('active')).toBe(false)
     })
   })
 
@@ -101,36 +102,36 @@ describe('Embed', () => {
 
   describe('placeholder', () => {
     it('omitted by default', () => {
-      shallow(<Embed />)
-        .find('img.placeholder')
-        .should.have.length(0)
+      expect(shallow(<Embed />).find('img.placeholder')).toHaveLength(0)
     })
 
     it('renders img when defined', () => {
       const url = '/images/wireframe/image.png'
 
-      shallow(<Embed placeholder={url} />).should.contain(<img className='placeholder' src={url} />)
+      expect(shallow(<Embed placeholder={url} />)).toContain(
+        <img className='placeholder' src={url} />,
+      )
     })
   })
 
   describe('onClick', () => {
     it('omitted when not defined', () => {
       const click = () => shallow(<Embed />).simulate('click')
-      expect(click).to.not.throw()
+      expect(click).not.toThrowError()
     })
 
     it('updates state', () => {
       const wrapper = mount(<Embed />)
 
       wrapper.simulate('click')
-      wrapper.should.have.state('active', true)
+      expect(wrapper.state('active')).toBe(true)
     })
 
     it('omits state update if active', () => {
       const wrapper = mount(<Embed active />)
 
       wrapper.simulate('click')
-      wrapper.should.have.state('active', true)
+      expect(wrapper.state('active')).toBe(true)
     })
   })
 
@@ -151,9 +152,8 @@ describe('Embed', () => {
       const sources = ['youtube', 'vimeo']
 
       sources.forEach((source) => {
-        shallow(<Embed active id='foo' source={source} />)
-          .find('iframe')
-          .should.have.attr('title')
+        expect(shallow(<Embed active id='foo' source={source} />).find('iframe'))
+          .have.attr('title')
           .which.equals(`Embedded content from ${source}.`)
       })
     })
@@ -163,9 +163,7 @@ describe('Embed', () => {
     it('passes url to iframe', () => {
       const url = 'https://google.com'
 
-      shallow(<Embed active url={url} />)
-        .find('iframe')
-        .should.have.attr('src', url)
+      expect(shallow(<Embed active url={url} />).find('iframe')).have.attr('src', url)
     })
   })
 })

@@ -9,7 +9,6 @@ import ListItem from 'src/elements/List/ListItem'
 import ListList from 'src/elements/List/ListList'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('List', () => {
   common.isConformant(List)
@@ -47,12 +46,12 @@ describe('List', () => {
   describe('onItemClick', () => {
     it('can be omitted', () => {
       const click = () => shallow(<List items={items} />).simulate('click')
-      expect(click).to.not.throw()
+      expect(click).not.toThrowError()
     })
 
     it('is called with (e, itemProps) when clicked', () => {
-      const onClick = sandbox.spy()
-      const onItemClick = sandbox.spy()
+      const onClick = jest.fn()
+      const onItemClick = jest.fn()
       const event = { target: null }
 
       const callbackData = { content: 'Notes', 'data-foo': 'bar' }
@@ -64,39 +63,37 @@ describe('List', () => {
         .shallow()
         .simulate('click', event)
 
-      onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(event, callbackData)
+      expect(onClick).toHaveBeenCalled()
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(callbackData),
+      )
 
-      onItemClick.should.have.been.calledOnce()
-      onItemClick.should.have.been.calledWithMatch(event, callbackData)
+      expect(onItemClick).toHaveBeenCalled()
+      expect(onItemClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(callbackData),
+      )
     })
   })
 
   describe('role', () => {
     it('is accessibile with no items', () => {
-      const wrapper = shallow(<List />)
-
-      wrapper.should.have.prop('role', 'list')
+      expect(shallow(<List />).prop('role')).toBe('list')
     })
 
     it('is accessibile with items', () => {
-      const wrapper = shallow(<List items={items} />)
-
-      wrapper.should.have.prop('role', 'list')
+      expect(shallow(<List items={items} />).prop('role')).toBe('list')
     })
   })
 
   describe('shorthand', () => {
     it('renders empty tr with no shorthand', () => {
-      const wrapper = shallow(<List />)
-
-      wrapper.find('ListItem').should.have.lengthOf(0)
+      expect(shallow(<List />).find('ListItem')).toHaveLength(0)
     })
 
     it('renders the items', () => {
-      const wrapper = shallow(<List items={items} />)
-
-      wrapper.find('ListItem').should.have.lengthOf(items.length)
+      expect(shallow(<List items={items} />).find('ListItem')).toHaveLength(items.length)
     })
   })
 })

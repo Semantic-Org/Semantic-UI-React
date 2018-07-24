@@ -2,10 +2,14 @@ import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import * as semanticUIReact from 'semantic-ui-react'
 
-import { componentInfoContext } from 'docs/src/utils'
-import { assertBodyContains, consoleUtil, nestedShallow, sandbox, syntheticEvent } from 'test/utils'
+import {
+  assertBodyContains,
+  componentInfo,
+  consoleUtil,
+  nestedShallow,
+  syntheticEvent,
+} from 'test/utils'
 import helpers from './commonHelpers'
 import hasValidTypings from './hasValidTypings'
 
@@ -47,43 +51,14 @@ export default (Component, options = {}) => {
     )
   }
 
-  const info = componentInfoContext.byDisplayName[constructorName]
+  const info = componentInfo(constructorName)
 
   // ----------------------------------------
   // Class and file name
   // ----------------------------------------
   it(`constructor name matches filename "${constructorName}"`, () => {
-    constructorName.should.equal(info.filenameWithoutExt)
+    expect(constructorName).toBe(info.filenameWithoutExt)
   })
-
-  // ----------------------------------------
-  // Is exported or private
-  // ----------------------------------------
-  // detect components like: semanticUIReact.H1
-  const isTopLevelAPIProp = _.has(semanticUIReact, constructorName)
-
-  // find the apiPath in the semanticUIReact object
-  const foundAsSubcomponent = _.isFunction(_.get(semanticUIReact, info.apiPath))
-
-  // require all components to be exported at the top level
-  it('is exported at the top level', () => {
-    expect(isTopLevelAPIProp).to.equal(
-      true,
-      [`"${info.displayName}" must be exported at top level.`, 'Export it in `src/index.js`.'].join(
-        ' ',
-      ),
-    )
-  })
-
-  if (info.isChild) {
-    it('is a static component on its parent', () => {
-      expect(foundAsSubcomponent).to.equal(
-        true,
-        `\`${info.displayName}\` is a child component (is in ${info.repoPath}).` +
-          ` It must be a static prop of its parent \`${info.parentDisplayName}\``,
-      )
-    })
-  }
 
   // ----------------------------------------
   // Props
@@ -92,8 +67,9 @@ export default (Component, options = {}) => {
     it('spreads user props', () => {
       const propName = 'data-is-conformant-spread-props'
       const props = { [propName]: true }
+      const wrapper = shallow(<Component {...requiredProps} {...props} />)
 
-      shallow(<Component {...requiredProps} {...props} />).should.have.descendants(props)
+      expect(wrapper.find(props)).toHaveLength(1)
     })
   }
 
@@ -120,17 +96,20 @@ export default (Component, options = {}) => {
         ]
         try {
           tags.forEach((tag) => {
-            nestedShallow(<Component {...requiredProps} as={tag} />, {
-              nestingLevel,
-            }).should.have.tagName(tag)
+            expect(
+              nestedShallow(<Component {...requiredProps} as={tag} />, {
+                nestingLevel,
+              }).type(),
+            ).toBe(tag)
           })
         } catch (err) {
           tags.forEach((tag) => {
             const wrapper = nestedShallow(<Component {...requiredProps} as={tag} />, {
               nestingLevel,
             })
-            wrapper.type().should.not.equal(Component)
-            wrapper.should.have.prop('as', tag)
+
+            expect(wrapper.type()).not.toBe(Component)
+            expect(wrapper.prop('as')).toBe(tag)
           })
         }
       })
@@ -139,13 +118,15 @@ export default (Component, options = {}) => {
         const MyComponent = () => null
 
         try {
-          nestedShallow(<Component {...requiredProps} as={MyComponent} />, { nestingLevel })
-            .type()
-            .should.equal(MyComponent)
+          expect(
+            nestedShallow(<Component {...requiredProps} as={MyComponent} />, {
+              nestingLevel,
+            }).type(),
+          ).toBe(MyComponent)
         } catch (err) {
           const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
-          wrapper.type().should.not.equal(Component)
-          wrapper.should.have.prop('as', MyComponent)
+          expect(wrapper.type()).not.toBe(Component)
+          expect(wrapper.prop('as')).toBe(MyComponent)
         }
       })
 
@@ -158,30 +139,36 @@ export default (Component, options = {}) => {
         }
 
         try {
-          nestedShallow(<Component {...requiredProps} as={MyComponent} />, { nestingLevel })
-            .type()
-            .should.equal(MyComponent)
+          expect(
+            nestedShallow(<Component {...requiredProps} as={MyComponent} />, {
+              nestingLevel,
+            }).type(),
+          ).toBe(MyComponent)
         } catch (err) {
           const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
-          wrapper.type().should.not.equal(Component)
-          wrapper.should.have.prop('as', MyComponent)
+          expect(wrapper.type()).not.toBe(Component)
+          expect(wrapper.prop('as')).toBe(MyComponent)
         }
       })
 
       it('passes extra props to the component it is renders as', () => {
         const MyComponent = () => null
+        const wrapper = nestedShallow(
+          <Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />,
+          {
+            nestingLevel,
+          },
+        )
 
-        nestedShallow(<Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />, {
-          nestingLevel,
-        }).should.have.descendants('[data-extra-prop="foo"]')
+        expect(wrapper.find('[data-extra-prop="foo"]')).toHaveLength(1)
       })
     })
   }
 
   describe('handles props', () => {
     it('defines handled props in Component.handledProps', () => {
-      Component.should.have.any.keys('handledProps')
-      Component.handledProps.should.be.an('array')
+      expect(Component).toHaveProperty('handledProps')
+      expect(Array.isArray(Component.handledProps)).toBe(true)
     })
 
     it('Component.handledProps includes all handled props', () => {
@@ -192,11 +179,7 @@ export default (Component, options = {}) => {
       )
       const expectedProps = _.uniq(computedProps).sort()
 
-      Component.handledProps.should.to.deep.equal(
-        expectedProps,
-        'It seems that not all props were defined in Component.handledProps, you need to check that they are equal ' +
-          'to the union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes',
-      )
+      expect(Component.handledProps).toEqual(expectedProps)
     })
   })
 
@@ -217,11 +200,7 @@ export default (Component, options = {}) => {
         _.each(listeners, (listenerName) => {
           // onKeyDown => keyDown
           const eventName = _.camelCase(listenerName.replace('on', ''))
-
-          // onKeyDown => handleKeyDown
-          const handlerName = _.camelCase(listenerName.replace('on', 'handle'))
-
-          const handlerSpy = sandbox.spy()
+          const handlerSpy = jest.fn()
           const props = {
             ...requiredProps,
             [listenerName]: handlerSpy,
@@ -241,37 +220,15 @@ export default (Component, options = {}) => {
             wrapper.instance().componentWillUnmount()
           }
 
-          // <Dropdown onBlur={handleBlur} />
-          //                   ^ was not called once on "blur"
-          const leftPad = ' '.repeat(info.displayName.length + listenerName.length + 3)
-
-          handlerSpy.calledOnce.should.equal(
-            true,
-            `<${info.displayName} ${listenerName}={${handlerName}} />\n` +
-              `${leftPad} ^ was not called once on "${eventName}".` +
-              'You may need to hoist your event handlers up to the root element.\n',
-          )
-
+          expect(handlerSpy).toHaveBeenCalledTimes(1)
           let expectedArgs = [eventShape]
-          let errorMessage = 'was not called with (event)'
 
           if (_.has(Component.propTypes, listenerName)) {
-            expectedArgs = [eventShape, props]
-            errorMessage = 'was not called with (event, data)'
+            expectedArgs = [eventShape, expect.objectContaining(props)]
           }
 
           // Components should return the event first, then any data
-          handlerSpy
-            .calledWithMatch(...expectedArgs)
-            .should.equal(
-              true,
-              [
-                `<${info.displayName} ${listenerName}={${handlerName}} />\n`,
-                `${leftPad} ^ ${errorMessage}`,
-                'It was called with args:',
-                JSON.stringify(handlerSpy.args, null, 2),
-              ].join('\n'),
-            )
+          expect(handlerSpy).toHaveBeenCalledWith(...expectedArgs)
         })
       })
     })
@@ -282,7 +239,7 @@ export default (Component, options = {}) => {
   // ----------------------------------------
   describe('_meta', () => {
     it('does not exist', () => {
-      expect(Component._meta).to.be.undefined()
+      expect(Component._meta).toBeUndefined()
     })
   })
 
@@ -292,10 +249,13 @@ export default (Component, options = {}) => {
   if (rendersChildren) {
     describe('className (common)', () => {
       it(`has the Semantic UI className "${info.componentClassName}"`, () => {
-        const wrapper = render(<Component {...requiredProps} />)
+        // some components producing validateDOMNesting() warning
+        consoleUtil.disableOnce()
+
+        const wrapper = mount(<Component {...requiredProps} />)
         // don't test components with no className at all (i.e. MessageItem)
         if (wrapper.prop('className')) {
-          wrapper.should.have.className(info.componentClassName)
+          expect(wrapper.hasClass(info.componentClassName)).toBe(true)
         }
       })
 
@@ -321,9 +281,11 @@ export default (Component, options = {}) => {
           wrapper.detach()
           document.body.removeChild(mountNode)
         } else {
-          nestedShallow(<Component {...requiredProps} className={className} />, {
-            nestingLevel,
-          }).should.have.className(className)
+          expect(
+            nestedShallow(<Component {...requiredProps} className={className} />, {
+              nestingLevel,
+            }).hasClass(className),
+          ).toBe(true)
         }
       })
 
@@ -341,13 +303,7 @@ export default (Component, options = {}) => {
         ).prop('className')
 
         defaultClasses.split(' ').forEach((defaultClass) => {
-          mixedClasses.should.include(
-            defaultClass,
-            [
-              'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
-              'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
-            ].join(' '),
-          )
+          expect(mixedClasses).toContain(defaultClass)
         })
       })
     })
@@ -355,5 +311,5 @@ export default (Component, options = {}) => {
   // ----------------------------------------
   // Test typings
   // ----------------------------------------
-  hasValidTypings(Component, info, options)
+  hasValidTypings(Component, options)
 }

@@ -3,7 +3,7 @@ import React from 'react'
 
 import Sticky from 'src/modules/Sticky/Sticky'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 let contextEl
 let wrapper
@@ -77,7 +77,7 @@ describe('Sticky', () => {
   })
 
   beforeEach(() => {
-    sandbox.stub(window, 'requestAnimationFrame').callsArg(0)
+    global.requestAnimationFrame = callback => callback()
     wrapper = undefined
   })
 
@@ -89,38 +89,38 @@ describe('Sticky', () => {
     it('should create two divs', () => {
       const children = shallow(<Sticky />).children()
 
-      children.should.have.length(2)
-      children.everyWhere(child => child.should.have.tagName('div'))
+      expect(children).toHaveLength(2)
+      children.everyWhere(child => expect(child.type()).toBe('div'))
     })
   })
 
   describe('active', () => {
     it('should handle update on mount when active', () => {
-      const onTop = sandbox.spy()
+      const onTop = jest.fn()
       mount(<Sticky context={mockContextEl()} onTop={onTop} />)
 
-      onTop.should.have.been.calledOnce()
+      expect(onTop).toHaveBeenCalledTimes(1)
     })
 
     it('should not handle update on mount when not active', () => {
-      const onTop = sandbox.spy()
+      const onTop = jest.fn()
       mount(<Sticky active={false} context={mockContextEl()} onTop={onTop} />)
 
-      onTop.should.have.not.been.called()
+      expect(onTop).not.toHaveBeenCalled()
     })
 
     it('fires event when changes to true', () => {
-      const onTop = sandbox.spy()
+      const onTop = jest.fn()
       wrapperMount(<Sticky active={false} context={mockContextEl()} onTop={onTop} />)
-      onTop.should.have.not.been.called()
+      expect(onTop).not.toHaveBeenCalled()
 
       wrapper.setProps({ active: true })
-      onTop.should.have.been.calledOnce()
+      expect(onTop).toHaveBeenCalledTimes(1)
     })
 
     it('omits event and removes styles when changes to false', () => {
-      const onStick = sandbox.spy()
-      const onUnStick = sandbox.spy()
+      const onStick = jest.fn()
+      const onUnStick = jest.fn()
       mockContextEl()
       mockPositions({ bottomOffset: 10, height: 50 })
       wrapperMount(
@@ -128,21 +128,20 @@ describe('Sticky', () => {
       )
 
       _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        expect(
+          wrapper
+            .childAt(0)
+            .childAt(1)
+            .hasClass(className),
+        ).toBe(true),
       )
-      onStick.should.have.been.calledOnce()
-      onStick.should.have.been.calledWithMatch(undefined, positions)
+      expect(onStick).toHaveBeenCalledTimes(1)
+      expect(onStick).toHaveBeenCalledWith(undefined, expect.objectContaining(positions))
 
       wrapper.setProps({ active: false })
       scrollToTop()
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.not.className('fixed')
-      onUnStick.should.not.have.been.called()
+      expect(wrapper.childAt(0).childAt(1)).have.not.className('fixed')
+      expect(onUnStick).not.toHaveBeenCalled()
     })
   })
 
@@ -156,15 +155,14 @@ describe('Sticky', () => {
       scrollAfterTrigger()
 
       _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        expect(
+          wrapper
+            .childAt(0)
+            .childAt(1)
+            .hasClass(className),
+        ).toBe(true),
       )
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('top', '12px')
+      expect(wrapper.childAt(0).childAt(1)).have.style('top', '12px')
     })
 
     it('should stick to bottom of context', () => {
@@ -174,80 +172,79 @@ describe('Sticky', () => {
 
       scrollAfterContext()
       _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        expect(
+          wrapper
+            .childAt(0)
+            .childAt(1)
+            .hasClass(className),
+        ).toBe(true),
       )
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('bottom', '0px')
+      expect(wrapper.childAt(0).childAt(1)).have.style('bottom', '0px')
     })
   })
   describe('onBottom', () => {
     it('is called with (e, data) when is on bottom', () => {
-      const onBottom = sandbox.spy()
+      const onBottom = jest.fn()
       mockContextEl()
       mockPositions()
       wrapperMount(<Sticky {...positions} context={contextEl} onBottom={onBottom} />)
 
       scrollAfterContext()
-      onBottom.should.have.been.calledOnce()
-      onBottom.should.have.been.calledWithMatch({}, positions)
-      onBottom.resetHistory()
+      expect(onBottom).toHaveBeenCalledTimes(1)
+      expect(onBottom).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining(positions))
+      onBottom.mockClear()
 
       scrollToTop()
-      onBottom.should.not.have.been.called()
+      expect(onBottom).not.toHaveBeenCalled()
     })
   })
 
   describe('onStick', () => {
     it('is called with (e, data) when stick', () => {
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       mockContextEl()
       mockPositions({ bottomOffset: 10, height: 50 })
       wrapperMount(<Sticky {...positions} context={contextEl} onStick={onStick} />)
 
       scrollAfterTrigger()
-      onStick.should.have.been.calledTwice()
-      onStick.should.have.been.calledWithMatch({}, positions)
-      onStick.resetHistory()
+      expect(onStick).toHaveBeenCalledTimes(2)
+      expect(onStick).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining(positions))
+      onStick.mockClear()
 
       scrollToTop()
-      onStick.should.not.have.been.called()
+      expect(onStick).not.toHaveBeenCalled()
     })
   })
 
   describe('onTop', () => {
     it('is called with (e, data) when is on top', () => {
-      const onTop = sandbox.spy()
+      const onTop = jest.fn()
       mockContextEl()
       mockPositions({ bottomOffset: 10, height: 50 })
       wrapperMount(<Sticky {...positions} context={contextEl} onTop={onTop} />)
 
       scrollAfterContext()
-      onTop.should.not.have.been.called()
+      expect(onTop).not.toHaveBeenCalled()
 
       scrollToTop()
-      onTop.should.have.been.calledOnce()
-      onTop.should.have.been.calledWithMatch({}, positions)
+      expect(onTop).toHaveBeenCalledTimes(1)
+      expect(onTop).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining(positions))
     })
   })
 
   describe('onUnstick', () => {
     it('is called with (e, data) when unstick', () => {
-      const onUnstick = sandbox.spy()
+      const onUnstick = jest.fn()
       mockContextEl()
       mockPositions({ bottomOffset: 10, height: 50 })
       wrapperMount(<Sticky {...positions} context={contextEl} onUnstick={onUnstick} />)
 
       scrollAfterTrigger()
-      onUnstick.should.not.have.been.called()
+      expect(onUnstick).not.toHaveBeenCalled()
 
       scrollToTop()
-      onUnstick.should.have.been.calledOnce()
-      onUnstick.should.have.been.calledWithMatch({}, positions)
+      expect(onUnstick).toHaveBeenCalledTimes(1)
+      expect(onUnstick).toHaveBeenCalledWith(expect.any(Object), expect.objectContaining(positions))
     })
   })
 
@@ -265,33 +262,23 @@ describe('Sticky', () => {
       domEvent.scroll(window)
 
       _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        expect(
+          wrapper
+            .childAt(0)
+            .childAt(1)
+            .hasClass(className),
+        ).toBe(true),
       )
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('bottom', '0px')
+      expect(wrapper.childAt(0).childAt(1)).have.style('bottom', '0px')
 
       // Scroll a bit before the top: component should stick to screen bottom
       scrollAfterTrigger()
 
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('bottom', '30px')
+      expect(wrapper.childAt(0).childAt(1)).have.style('bottom', '30px')
       _.forEach(['ui', 'sticky', 'fixed', 'bottom'], className =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        expect(wrapper.childAt(0).childAt(1)).have.className(className),
       )
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.not.have.style('top')
+      expect(wrapper.childAt(0).childAt(1)).not.have.style('top')
     })
 
     it('should stop pushing when reaching top', () => {
@@ -306,15 +293,9 @@ describe('Sticky', () => {
 
       // Component should stick again to the top
       _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        expect(wrapper.childAt(0).childAt(1)).have.className(className),
       )
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('top', '10px')
+      expect(wrapper.childAt(0).childAt(1)).have.style('top', '10px')
     })
 
     it('should return true if oversized', () => {
@@ -323,51 +304,48 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} pushing />)
 
       scrollAfterTrigger()
-      wrapper
-        .instance()
-        .isOversized()
-        .should.be.equal(true)
+      expect(wrapper.instance().isOversized()).toBe(true)
     })
   })
 
   describe('scrollContext', () => {
     it('should use window as default', () => {
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       const instance = mount(<Sticky onStick={onStick} />).instance()
 
       instance.triggerRef = mockRect({ top: -1 })
       domEvent.scroll(window)
 
-      onStick.should.have.been.called()
+      expect(onStick).toHaveBeenCalled()
     })
 
     it('should set a scroll context', () => {
       const div = document.createElement('div')
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       const instance = mount(<Sticky scrollContext={div} onStick={onStick} />).instance()
 
       instance.triggerRef = mockRect({ top: -1 })
 
       domEvent.scroll(window)
-      onStick.should.not.have.been.called()
+      expect(onStick).not.toHaveBeenCalled()
 
       domEvent.scroll(div)
-      onStick.should.have.been.called()
+      expect(onStick).toHaveBeenCalled()
     })
 
     it('should not call onStick when context is null', () => {
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       const instance = mount(<Sticky scrollContext={null} onStick={onStick} />).instance()
 
       instance.triggerRef = mockRect({ top: -1 })
 
       domEvent.scroll(document)
-      onStick.should.not.have.been.called()
+      expect(onStick).not.toHaveBeenCalled()
     })
 
     it('should call onStick when scrollContext changes', () => {
       const div = document.createElement('div')
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       const renderedComponent = mount(<Sticky scrollContext={null} onStick={onStick} />)
       const instance = renderedComponent.instance()
 
@@ -375,12 +353,12 @@ describe('Sticky', () => {
       renderedComponent.setProps({ scrollContext: div })
 
       domEvent.scroll(div)
-      onStick.should.have.been.called()
+      expect(onStick).toHaveBeenCalled()
     })
 
     it('should not call onStick when scrollContext changes and component is unmounted', () => {
       const div = document.createElement('div')
-      const onStick = sandbox.spy()
+      const onStick = jest.fn()
       const renderedComponent = mount(<Sticky scrollContext={null} onStick={onStick} />)
       const instance = renderedComponent.instance()
 
@@ -389,44 +367,43 @@ describe('Sticky', () => {
       renderedComponent.unmount()
 
       domEvent.scroll(div)
-      onStick.should.not.have.been.called()
+      expect(onStick).not.toHaveBeenCalled()
 
       domEvent.scroll(document)
-      onStick.should.not.have.been.called()
+      expect(onStick).not.toHaveBeenCalled()
     })
   })
 
   describe('update', () => {
     it('is called on scroll', () => {
       const instance = mount(<Sticky />).instance()
-      const update = sandbox.spy(instance, 'update')
+      const update = jest.spyOn(instance, 'update')
 
       domEvent.scroll(window)
-      update.should.have.been.calledOnce()
+      expect(update).toHaveBeenCalledTimes(1)
     })
 
     it('is called on resize', () => {
       const instance = mount(<Sticky />).instance()
-      const update = sandbox.spy(instance, 'update')
+      const update = jest.spyOn(instance, 'update')
 
       domEvent.resize(window)
-      update.should.have.been.calledOnce()
+      expect(update).toHaveBeenCalledTimes(1)
     })
 
     it('is not called after unmount', (done) => {
-      window.requestAnimationFrame.restore()
-      sandbox.stub(window, 'requestAnimationFrame').callsFake(fn => setTimeout(fn, 0))
-      sandbox.stub(window, 'cancelAnimationFrame').callsFake(id => clearTimeout(id))
+      global.requestAnimationFrame = fn => setTimeout(fn, 0)
+      global.cancelAnimationFrame = id => clearTimeout(id)
 
       const instance = wrapperMount(<Sticky />).instance()
-      const update = sandbox.spy(instance, 'update')
+      const update = jest.spyOn(instance, 'update')
 
       domEvent.resize(window)
       wrapper.unmount()
-      window.requestAnimationFrame(() => {
-        update.should.not.have.been.called()
+      setTimeout(() => {
+        expect(update).not.toHaveBeenCalled()
         done()
-      })
+      }, 0)
     })
   })
 })

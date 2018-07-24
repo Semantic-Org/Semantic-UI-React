@@ -43,10 +43,12 @@ describe('Statistic', () => {
 
   describe('text', () => {
     it('passes value to StatisticValue', () => {
-      shallow(<Statistic text value='foo' />)
-        .find('StatisticValue')
-        .first()
-        .should.have.prop('text', true)
+      expect(
+        shallow(<Statistic text value='foo' />)
+          .find('StatisticValue')
+          .first()
+          .prop('text'),
+      ).toBe(true)
     })
   })
 })

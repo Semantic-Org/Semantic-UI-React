@@ -4,26 +4,26 @@ import isBrowser from 'src/lib/isBrowser'
 describe('getNodeFromProps', () => {
   describe('browser', () => {
     it('returns node when it defined', () => {
-      getNodeFromProps({ node: 'foo' }).should.equal('foo')
+      expect(getNodeFromProps({ node: 'foo' })).toBe('foo')
     })
 
     it('returns document.body by default', () => {
-      getNodeFromProps({}).should.equal(document.body)
+      expect(getNodeFromProps({})).toBe(document.body)
     })
   })
 
   describe('browser', () => {
-    before(() => {
+    beforeAll(() => {
       isBrowser.override = false
     })
 
-    after(() => {
+    afterAll(() => {
       isBrowser.override = null
     })
 
     it('always returns null', () => {
-      expect(getNodeFromProps({ node: 'foo' })).to.be.a('undefined')
-      expect(getNodeFromProps({})).to.be.a('undefined')
+      expect(getNodeFromProps({ node: 'foo' })).toBeUndefined()
+      expect(getNodeFromProps({})).toBeUndefined()
     })
   })
 })

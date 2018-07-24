@@ -11,8 +11,9 @@ describe('TableHeader', () => {
     className: 'full-width',
   })
 
-  it('renders as a thead by default', () => {
-    shallow(<TableHeader />)
-      .should.have.tagName('thead')
+  describe('as', () => {
+    it('is "thead" by default', () => {
+      expect(shallow(<TableHeader />).type()).toBe('thead')
+    })
   })
 })

@@ -8,8 +8,9 @@ describe('ListIcon', () => {
   common.isConformant(ListIcon)
   common.implementsVerticalAlignProp(ListIcon)
 
-  it('returns Icon component', () => {
-    shallow(<ListIcon />)
-      .should.have.descendants(Icon)
+  describe('children', () => {
+    it('returns an Icon', () => {
+      expect(shallow(<ListIcon />).find(Icon)).toHaveLength(1)
+    })
   })
 })

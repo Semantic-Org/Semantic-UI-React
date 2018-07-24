@@ -10,9 +10,13 @@ describe('FormInput', () => {
   })
   common.labelImplementsHtmlForProp(FormInput)
 
-  it('renders a FormField with a Input control', () => {
-    shallow(<FormInput />)
-      .find('FormField')
-      .should.have.prop('control', Input)
+  describe('as', () => {
+    it('is "FormField" with a Input control', () => {
+      expect(
+        shallow(<FormInput />)
+          .find('FormField')
+          .prop('control'),
+      ).toBe(Input)
+    })
   })
 })

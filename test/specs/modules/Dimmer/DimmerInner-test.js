@@ -3,7 +3,6 @@ import React from 'react'
 
 import DimmerInner from 'src/modules/Dimmer/DimmerInner'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('DimmerInner', () => {
   common.isConformant(DimmerInner)
@@ -21,26 +20,34 @@ describe('DimmerInner', () => {
 
   describe('active', () => {
     it('adds "display: flex" after set to "true"', () => {
-      const wrapper = mount(<DimmerInner />)
-      wrapper.should.have.not.style('display')
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<DimmerInner />, { attachTo: mountNode })
+      const dimmer = document.querySelector('.ui.dimmer')
+
+      expect(dimmer.style.display).toBe('')
 
       wrapper.setProps({ active: true })
-      wrapper.should.have.style('display', 'flex')
+      expect(dimmer.style.display).toBe('flex')
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
     })
   })
 
   describe('onClickOutside', () => {
     it('called when Dimmer has not children', () => {
-      const onClickOutside = sandbox.spy()
+      const onClickOutside = jest.fn()
       shallow(<DimmerInner onClickOutside={onClickOutside} />).simulate('click')
 
-      onClickOutside.should.have.been.calledOnce()
+      expect(onClickOutside).toHaveBeenCalledTimes(1)
     })
 
     it('omitted when click on children', () => {
       const element = document.createElement('div')
       document.body.appendChild(element)
-      const onClickOutside = sandbox.spy()
+      const onClickOutside = jest.fn()
       const wrapper = mount(
         <DimmerInner onClickOutside={onClickOutside}>
           <div>{faker.hacker.phrase()}</div>
@@ -54,29 +61,29 @@ describe('DimmerInner', () => {
         .find('div.content')
         .childAt(0)
         .simulate('click')
-      onClickOutside.should.have.not.been.called()
+      expect(onClickOutside).not.toHaveBeenCalled()
 
       wrapper.unmount()
       document.body.removeChild(element)
     })
 
     it('called when click on Dimmer', () => {
-      const onClickOutside = sandbox.spy()
+      const onClickOutside = jest.fn()
 
       mount(
         <DimmerInner onClickOutside={onClickOutside}>{faker.hacker.phrase()}</DimmerInner>,
       ).simulate('click')
-      onClickOutside.should.have.been.calledOnce()
+      expect(onClickOutside).toHaveBeenCalledTimes(1)
     })
 
     it('called when click on center', () => {
-      const onClickOutside = sandbox.spy()
+      const onClickOutside = jest.fn()
       const wrapper = mount(
         <DimmerInner onClickOutside={onClickOutside}>{faker.hacker.phrase()}</DimmerInner>,
       )
 
       wrapper.find('div.content').simulate('click')
-      onClickOutside.should.have.been.calledOnce()
+      expect(onClickOutside).toHaveBeenCalledTimes(1)
     })
   })
 })

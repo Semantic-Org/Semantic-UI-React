@@ -53,18 +53,28 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
 
     it('adds prop name to className', () => {
       consoleUtil.disableOnce()
-      nestedShallow(createElement(Component, { ...requiredProps, [propKey]: true }), {
-        nestingLevel,
-      }).should.have.className(className)
+      const wrapper = nestedShallow(
+        createElement(Component, { ...requiredProps, [propKey]: true }),
+        {
+          nestingLevel,
+        },
+      )
+
+      expect(wrapper.hasClass(className)).toBe(true)
     })
 
     it('does not add prop value to className', () => {
       consoleUtil.disableOnce()
 
       const value = 'foo-bar-baz'
-      nestedShallow(createElement(Component, { ...requiredProps, [propKey]: value }), {
-        nestingLevel,
-      }).should.not.have.className(value)
+      const wrapper = nestedShallow(
+        createElement(Component, { ...requiredProps, [propKey]: value }),
+        {
+          nestingLevel,
+        },
+      )
+
+      expect(wrapper.hasClass(value)).toBe(false)
     })
   })
 }
@@ -94,20 +104,22 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
     })
 
     it('adds only the name to className when true', () => {
-      shallow(
-        createElement(Component, { ...requiredProps, [propKey]: true }),
-      ).should.have.className(className)
+      expect(
+        shallow(createElement(Component, { ...requiredProps, [propKey]: true })).hasClass(
+          className,
+        ),
+      ).toBe(true)
     })
 
     it('adds no className when false', () => {
       const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: false }))
 
-      wrapper.should.not.have.className(className)
-      wrapper.should.not.have.className('true')
-      wrapper.should.not.have.className('false')
+      expect(wrapper.hasClass(className)).toBe(false)
+      expect(wrapper.hasClass('true')).toBe(false)
+      expect(wrapper.hasClass('false')).toBe(false)
 
-      _.each(propValues, (propVal) => {
-        wrapper.should.not.have.className(propVal)
+      _.forEach(propValues, (propVal) => {
+        expect(wrapper.hasClass(propVal)).toBe(false)
       })
     })
   })
@@ -136,9 +148,14 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
 
     it('adds prop value to className', () => {
       propValues.forEach((propValue) => {
-        nestedShallow(createElement(Component, { ...requiredProps, [propKey]: propValue }), {
-          nestingLevel,
-        }).should.have.className(propValue)
+        const wrapper = nestedShallow(
+          createElement(Component, { ...requiredProps, [propKey]: propValue }),
+          {
+            nestingLevel,
+          },
+        )
+
+        expect(wrapper.hasClass(propKey)).toBe(false)
       })
     })
 
@@ -146,9 +163,14 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
       consoleUtil.disableOnce()
 
       propValues.forEach((propValue) => {
-        nestedShallow(createElement(Component, { ...requiredProps, [propKey]: propValue }), {
-          nestingLevel,
-        }).should.not.have.className(propKey)
+        const wrapper = nestedShallow(
+          createElement(Component, { ...requiredProps, [propKey]: propValue }),
+          {
+            nestingLevel,
+          },
+        )
+
+        expect(wrapper.hasClass(propKey)).toBe(false)
       })
     })
   })

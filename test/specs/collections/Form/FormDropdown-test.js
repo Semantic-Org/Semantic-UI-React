@@ -8,9 +8,13 @@ describe('FormDropdown', () => {
   common.isConformant(FormDropdown)
   common.labelImplementsHtmlForProp(FormDropdown)
 
-  it('renders a FormField with a Dropdown control', () => {
-    shallow(<FormDropdown />)
-      .find('FormField')
-      .should.have.prop('control', Dropdown)
+  describe('as', () => {
+    it('is "FormField" with a Dropdown control', () => {
+      expect(
+        shallow(<FormDropdown />)
+          .find('FormField')
+          .prop('control'),
+      ).toBe(Dropdown)
+    })
   })
 })

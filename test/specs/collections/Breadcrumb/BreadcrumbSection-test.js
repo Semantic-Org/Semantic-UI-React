@@ -2,7 +2,6 @@ import React from 'react'
 
 import BreadcrumbSection from 'src/collections/Breadcrumb/BreadcrumbSection'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('BreadcrumbSection', () => {
   common.isConformant(BreadcrumbSection)
@@ -10,43 +9,44 @@ describe('BreadcrumbSection', () => {
 
   common.propKeyOnlyToClassName(BreadcrumbSection, 'active')
 
-  it('renders as a div by default', () => {
-    shallow(<BreadcrumbSection />)
-      .should.have.tagName('div')
+  describe('as', () => {
+    it('is "div" by default', () => {
+      expect(shallow(<BreadcrumbSection />).type()).toBe('div')
+    })
   })
 
   describe('link', () => {
-    it('is should be `a` when has prop link', () => {
-      shallow(<BreadcrumbSection link />)
-        .should.have.tagName('a')
+    it('is "a" when has prop link', () => {
+      expect(shallow(<BreadcrumbSection link />).type()).toBe('a')
     })
   })
 
   describe('href', () => {
     it('is not present by default', () => {
-      shallow(<BreadcrumbSection />)
-        .should.not.have.attr('href')
+      expect(shallow(<BreadcrumbSection />).prop('href')).toBeUndefined()
     })
 
     it('should have attr `href` when has prop', () => {
       const section = shallow(<BreadcrumbSection href='http://google.com' />)
 
-      section.should.have.tagName('a')
-      section.should.have.attr('href').and.equal('http://google.com')
+      expect(section.type()).toBe('a')
+      expect(section.prop('href')).toBe('http://google.com')
     })
   })
 
   describe('onClick', () => {
     it('is called with (e, props) when clicked', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
       const event = { target: null }
       const props = { active: true, content: 'home' }
 
-      shallow(<BreadcrumbSection onClick={onClick} {...props} />)
-        .simulate('click', event)
+      shallow(<BreadcrumbSection onClick={onClick} {...props} />).simulate('click', event)
 
-      onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(event, props)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(props),
+      )
     })
   })
 })

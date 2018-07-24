@@ -30,8 +30,7 @@ describe('FormField', () => {
       const controls = ['button', 'input', 'select', 'textarea']
 
       controls.forEach((control) => {
-        shallow(<FormField control={control} />)
-          .should.have.descendants(control)
+        expect(shallow(<FormField control={control} />).find(control)).toHaveLength(1)
       })
     })
   })
@@ -39,45 +38,49 @@ describe('FormField', () => {
   describe('label', () => {
     it('wraps html checkbox inputs', () => {
       const text = faker.hacker.phrase()
-      const label = shallow(<FormField control='input' label={text} type='checkbox' />)
-        .find('label')
+      const label = shallow(<FormField control='input' label={text} type='checkbox' />).find(
+        'label',
+      )
 
-      label.childAt(0).should.have.tagName('input')
-      label.should.contain.text(text)
+      expect(label.childAt(0).type()).toBe('input')
+      expect(label.text()).toContain(text)
     })
 
     it('wraps html radio inputs', () => {
       const text = faker.hacker.phrase()
-      const label = shallow(<FormField control='input' label={text} type='radio' />)
-        .find('label')
+      const label = shallow(<FormField control='input' label={text} type='radio' />).find('label')
 
-      label.childAt(0).should.have.tagName('input')
-      label.should.contain.text(text)
+      expect(label.childAt(0).type()).toBe('input')
+      expect(label.text()).toContain(text)
     })
 
     it('is passed to Checkbox controls', () => {
       const text = faker.hacker.phrase()
 
-      shallow(<FormField control={Checkbox} label={text} />)
-        .find('Checkbox')
-        .should.have.prop('label', text)
+      expect(
+        shallow(<FormField control={Checkbox} label={text} />)
+          .find('Checkbox')
+          .prop('label'),
+      ).toBe(text)
     })
 
     it('is passed to Radio controls', () => {
       const text = faker.hacker.phrase()
 
-      shallow(<FormField control={Radio} label={text} />)
-        .find('Radio')
-        .should.have.prop('label', text)
+      expect(
+        shallow(<FormField control={Radio} label={text} />)
+          .find('Radio')
+          .prop('label'),
+      ).toBe(text)
     })
 
     it('is sibling to text inputs', () => {
       const text = faker.hacker.phrase()
       const wrapper = shallow(<FormField control='input' label={text} type='text' />)
 
-      wrapper.childAt(0).should.have.tagName('label')
-      wrapper.childAt(0).should.contain.text(text)
-      wrapper.childAt(1).should.have.tagName('input')
+      expect(wrapper.childAt(0).type()).toBe('label')
+      expect(wrapper.childAt(0).text()).toBe(text)
+      expect(wrapper.childAt(1).type()).toBe('input')
     })
   })
 
@@ -86,15 +89,15 @@ describe('FormField', () => {
       const wrapper = shallow(<FormField control='input' />)
       const input = wrapper.find('input')
 
-      wrapper.should.have.exactly(1).descendants('input')
-      input.should.not.have.prop('disabled')
+      expect(wrapper.find('input')).toHaveLength(1)
+      expect(input.prop('disabled')).toBeUndefined()
     })
     it('is passed to the control', () => {
       const wrapper = shallow(<FormField control='input' disabled />)
       const input = wrapper.find('input')
 
-      wrapper.should.have.exactly(1).descendants('input')
-      input.should.have.prop('disabled', true)
+      expect(wrapper.find('input')).toHaveLength(1)
+      expect(input.prop('disabled')).toBe(true)
     })
   })
 
@@ -103,15 +106,15 @@ describe('FormField', () => {
       const wrapper = shallow(<FormField control='input' />)
       const input = wrapper.find('input')
 
-      wrapper.should.have.exactly(1).descendants('input')
-      input.should.not.have.prop('required')
+      expect(wrapper.find('input')).toHaveLength(1)
+      expect(input.prop('required')).toBeUndefined()
     })
     it('is passed to the control', () => {
       const wrapper = shallow(<FormField control='input' required />)
       const input = wrapper.find('input')
 
-      wrapper.should.have.exactly(1).descendants('input')
-      input.should.have.prop('required', true)
+      expect(wrapper.find('input')).toHaveLength(1)
+      expect(input.prop('required')).toBe(true)
     })
   })
 
@@ -120,15 +123,15 @@ describe('FormField', () => {
       const wrapper = shallow(<FormField control={Button} />)
       const button = wrapper.find('Button')
 
-      wrapper.should.have.exactly(1).descendants('Button')
-      button.should.not.have.prop('content')
+      expect(wrapper.find('Button')).toHaveLength(1)
+      expect(button.prop('content')).toBeUndefined()
     })
     it('is passed to the control', () => {
       const wrapper = shallow(<FormField control={Button} content='Click Me' />)
       const button = wrapper.find('Button')
 
-      wrapper.should.have.exactly(1).descendants('Button')
-      button.should.have.prop('content', 'Click Me')
+      expect(wrapper.find('Button')).toHaveLength(1)
+      expect(button.prop('content')).toBe('Click Me')
     })
   })
 })

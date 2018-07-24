@@ -1,6 +1,6 @@
 import EventStack from 'src/lib/eventStack/EventStack'
 import isBrowser from 'src/lib/isBrowser'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 let eventStack
 
@@ -10,64 +10,64 @@ describe('EventStack', () => {
   })
 
   describe('isBrowser', () => {
-    before(() => {
+    beforeAll(() => {
       isBrowser.override = false
     })
 
-    after(() => {
+    afterAll(() => {
       isBrowser.override = null
     })
 
     it('does not subscribes', () => {
-      const handler = sandbox.spy()
+      const handler = jest.fn()
 
       eventStack.sub('click', handler)
       domEvent.click(document)
 
-      handler.should.have.not.been.called()
+      expect(handler).not.toHaveBeenCalled()
     })
 
     it('does not unsubscribes', () => {
-      const handler = sandbox.spy()
+      const handler = jest.fn()
 
       eventStack.unsub('click', handler)
       domEvent.click(document)
 
-      handler.should.have.not.been.called()
+      expect(handler).not.toHaveBeenCalled()
     })
   })
 
   describe('sub', () => {
     it('subscribes for single target', () => {
-      const handler = sandbox.spy()
+      const handler = jest.fn()
 
       eventStack.sub('click', handler)
       domEvent.click(document)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).toHaveBeenCalledTimes(1)
     })
 
     it('subscribes for custom target', () => {
-      const handler = sandbox.spy()
+      const handler = jest.fn()
       const target = document.createElement('div')
 
       eventStack.sub('click', handler, { target })
       domEvent.click(target)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).toHaveBeenCalledTimes(1)
     })
 
     it('subscribes for multiple targets', () => {
-      const documentHandler = sandbox.spy()
-      const windowHandler = sandbox.spy()
+      const documentHandler = jest.fn()
+      const windowHandler = jest.fn()
 
       eventStack.sub('click', documentHandler)
       eventStack.sub('scroll', windowHandler, { target: window })
       domEvent.click(document)
       domEvent.scroll(window)
 
-      documentHandler.should.have.been.calledOnce()
-      windowHandler.should.have.been.calledOnce()
+      expect(documentHandler).toHaveBeenCalledTimes(1)
+      expect(windowHandler).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -78,7 +78,7 @@ describe('EventStack', () => {
     })
 
     it('unsubscribes and destroys eventTarget if it is empty', () => {
-      const handler = sandbox.spy()
+      const handler = jest.fn()
 
       eventStack.sub('click', handler)
       domEvent.click(document)
@@ -86,12 +86,12 @@ describe('EventStack', () => {
       eventStack.unsub('click', handler)
       domEvent.click(document)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).toHaveBeenCalledTimes(1)
     })
 
     it('unsubscribes and leaves eventTarget if it contains handlers', () => {
-      const clickHandler = sandbox.spy()
-      const keyHandler = sandbox.spy()
+      const clickHandler = jest.fn()
+      const keyHandler = jest.fn()
 
       eventStack.sub('click', clickHandler)
       eventStack.sub('keyDown', keyHandler)
@@ -100,13 +100,13 @@ describe('EventStack', () => {
       eventStack.unsub('click', clickHandler)
       domEvent.click(document)
 
-      clickHandler.should.have.been.calledOnce()
-      keyHandler.should.have.not.been.called()
+      expect(clickHandler).toHaveBeenCalledTimes(1)
+      expect(keyHandler).not.toHaveBeenCalled()
     })
 
     it('unsubscribes and leaves an eventPool if contains handlers', () => {
-      const firstHandler = sandbox.spy()
-      const secondHandler = sandbox.spy()
+      const firstHandler = jest.fn()
+      const secondHandler = jest.fn()
 
       eventStack.sub('click', firstHandler)
       eventStack.unsub('mouseup', firstHandler)
@@ -114,12 +114,12 @@ describe('EventStack', () => {
 
       domEvent.click(document)
 
-      firstHandler.should.have.been.calledOnce()
-      secondHandler.should.have.been.calledOnce()
+      expect(firstHandler).toHaveBeenCalledTimes(1)
+      expect(secondHandler).toHaveBeenCalledTimes(1)
     })
 
     it('unsubscribes from same event multiple times', () => {
-      const handler = sandbox.spy()
+      const handler = jest.fn()
 
       eventStack.sub('click', handler)
       domEvent.click(document)
@@ -128,7 +128,7 @@ describe('EventStack', () => {
       eventStack.unsub('click', handler)
       domEvent.click(document)
 
-      handler.should.have.been.calledOnce()
+      expect(handler).toHaveBeenCalledTimes(1)
     })
   })
 })

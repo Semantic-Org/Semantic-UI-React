@@ -3,7 +3,6 @@ import React from 'react'
 import AccordionPanel from 'src/modules/Accordion/AccordionPanel'
 import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('AccordionPanel', () => {
   common.isConformant(AccordionPanel, { rendersChildren: false })
@@ -27,8 +26,8 @@ describe('AccordionPanel', () => {
     it('should passed to children', () => {
       const wrapper = shallow(<AccordionPanel active content='Content' title='Title' />).at(0)
 
-      wrapper.at(0).should.have.prop('active', true)
-      wrapper.at(1).should.have.prop('active', true)
+      expect(wrapper.at(0).prop('active')).toBe(true)
+      expect(wrapper.at(1).prop('active')).toBe( true)
     })
   })
 
@@ -36,16 +35,16 @@ describe('AccordionPanel', () => {
     it('should passed to title', () => {
       const wrapper = shallow(<AccordionPanel content='Content' index={5} title='Title' />).at(0)
 
-      wrapper.at(0).should.have.prop('index', 5)
-      wrapper.at(1).should.have.not.prop('index')
+      expect(wrapper.at(0).prop('index')).toBe(5)
+      expect(wrapper.at(1).prop('index')).toBeUndefined()
     })
   })
 
   describe('onTitleClick', () => {
     it('is called with (e, titleProps) when clicked', () => {
       const event = { target: null }
-      const onClick = sandbox.spy()
-      const onTitleClick = sandbox.spy()
+      const onClick = jest.fn()
+      const onTitleClick = jest.fn()
 
       mount(
         <AccordionPanel
@@ -58,11 +57,11 @@ describe('AccordionPanel', () => {
         .at(0)
         .simulate('click', event)
 
-      onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(event, { content: 'Title' })
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(expect.objectContaining(event), expect.objectContaining({ content: 'Title' }))
 
-      onTitleClick.should.have.been.calledOnce()
-      onTitleClick.should.have.been.calledWithMatch(event, { content: 'Title' })
+      expect(onTitleClick).toHaveBeenCalledTimes(1)
+      expect(onTitleClick).toHaveBeenCalledWith(expect.objectContaining(event), expect.objectContaining({ content: 'Title' }))
     })
   })
 })

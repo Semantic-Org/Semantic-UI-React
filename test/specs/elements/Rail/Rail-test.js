@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import React from 'react'
 
 import Rail from 'src/elements/Rail/Rail'
 import { SUI } from 'src/lib'
@@ -20,9 +19,4 @@ describe('Rail', () => {
 
   common.propValueOnlyToClassName(Rail, 'position', SUI.FLOATS, { requiredProps })
   common.propValueOnlyToClassName(Rail, 'size', _.without(SUI.SIZES, 'medium'), { requiredProps })
-
-  it('renders an div element', () => {
-    shallow(<Rail {...requiredProps} />)
-      .should.have.tagName('div')
-  })
 })

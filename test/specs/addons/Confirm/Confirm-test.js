@@ -4,7 +4,7 @@ import React from 'react'
 
 import Confirm from 'src/addons/Confirm/Confirm'
 import Modal from 'src/modules/Modal/Modal'
-import { assertBodyContains, domEvent, sandbox } from 'test/utils'
+import { assertBodyContains, domEvent } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
 // ----------------------------------------
@@ -41,46 +41,48 @@ describe('Confirm', () => {
 
   describe('children', () => {
     it('renders a Modal', () => {
-      shallow(<Confirm />)
-        .type()
-        .should.equal(Modal)
+      expect(shallow(<Confirm />).type()).toBe(Modal)
     })
   })
 
   describe('size', () => {
     it('has "small" size by default', () => {
-      shallow(<Confirm />).should.have.prop('size', 'small')
+      expect(shallow(<Confirm />).prop('size')).toBe('small')
     })
 
     _.forEach(['fullscreen', 'large', 'mini', 'small', 'tiny'], (size) => {
       it(`applies ${size} size`, () => {
-        shallow(<Confirm size={size} />).should.have.prop('size', size)
+        expect(shallow(<Confirm size={size} />).prop('size')).toBe(size)
       })
     })
   })
 
   describe('cancelButton', () => {
     it('is "Cancel" by default', () => {
-      Confirm.defaultProps.cancelButton.should.equal('Cancel')
+      expect(Confirm.defaultProps.cancelButton).toBe('Cancel')
     })
     it('sets the cancel button text', () => {
-      shallow(<Confirm cancelButton='foo' />)
-        .find('Button')
-        .first()
-        .shallow()
-        .should.have.text('foo')
+      expect(
+        shallow(<Confirm cancelButton='foo' />)
+          .find('Button')
+          .first()
+          .shallow()
+          .text(),
+      ).toBe('foo')
     })
   })
 
   describe('confirmButton', () => {
     it('is "OK" by default', () => {
-      Confirm.defaultProps.confirmButton.should.equal('OK')
+      expect(Confirm.defaultProps.confirmButton).toBe('OK')
     })
     it('sets the confirm button text', () => {
-      shallow(<Confirm confirmButton='foo' />)
-        .find('Button[primary]')
-        .shallow()
-        .should.have.text('foo')
+      expect(
+        shallow(<Confirm confirmButton='foo' />)
+          .find('Button[primary]')
+          .shallow()
+          .text(),
+      ).toBe('foo')
     })
   })
 
@@ -88,18 +90,8 @@ describe('Confirm', () => {
     let spy
 
     beforeEach(() => {
-      spy = sandbox.spy()
+      spy = jest.fn()
       wrapperMount(<Confirm onCancel={spy} defaultOpen />)
-    })
-
-    it('omitted when not defined', () => {
-      const click = () =>
-        shallow(<Confirm />)
-          .find('Button')
-          .first()
-          .simulate('click')
-
-      expect(click).to.not.throw()
     })
 
     it('is called on Cancel button click', () => {
@@ -108,7 +100,7 @@ describe('Confirm', () => {
         .first()
         .simulate('click')
 
-      spy.should.have.been.calledOnce()
+      expect(spy).toHaveBeenCalledTimes(1)
     })
 
     it('is passed to the Modal onClose prop', () => {
@@ -121,27 +113,27 @@ describe('Confirm', () => {
 
     it('is called on dimmer click', () => {
       domEvent.click('.ui.dimmer')
-      spy.should.have.been.calledOnce()
+      expect(spy).toHaveBeenCalledTimes(1)
     })
 
     it('is called on click outside of the modal', () => {
       domEvent.click(document.querySelector('.ui.modal').parentNode)
-      spy.should.have.been.calledOnce()
+      expect(spy).toHaveBeenCalledTimes(1)
     })
 
     it('is not called on click inside of the modal', () => {
       domEvent.click(document.querySelector('.ui.modal'))
-      spy.should.not.have.been.calledOnce()
+      expect(spy).not.toHaveBeenCalled()
     })
 
     it('is not called on body click', () => {
       domEvent.click('body')
-      spy.should.not.have.been.calledOnce()
+      expect(spy).not.toHaveBeenCalled()
     })
 
     it('is called when pressing escape', () => {
       domEvent.keyDown(document, { key: 'Escape' })
-      spy.should.have.been.calledOnce()
+      expect(spy).toHaveBeenCalledTimes(1)
     })
 
     it('is not called when pressing a key other than "Escape"', () => {
@@ -150,13 +142,13 @@ describe('Confirm', () => {
         if (val === keyboardKey.Escape) return
 
         domEvent.keyDown(document, { key })
-        spy.should.not.have.been.called(`onClose was called when pressing "${key}"`)
+        expect(spy).not.toHaveBeenCalled()
       })
     })
 
     it('is not called when the open prop changes to false', () => {
       wrapper.setProps({ open: false })
-      spy.should.not.have.been.called()
+      expect(spy).not.toHaveBeenCalled()
     })
   })
 
@@ -167,16 +159,16 @@ describe('Confirm', () => {
           .find('Button[primary]')
           .simulate('click')
 
-      expect(click).to.not.throw()
+      expect(click).not.toThrowError()
     })
 
     it('is called on OK button click', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       shallow(<Confirm onConfirm={spy} />)
         .find('Button[primary]')
         .simulate('click')
 
-      spy.should.have.been.calledOnce()
+      expect(spy).toHaveBeenCalledTimes(1)
     })
   })
 

@@ -4,7 +4,7 @@ import React from 'react'
 import { htmlInputAttrs } from 'src/lib'
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 // ----------------------------------------
 // Wrapper
@@ -54,9 +54,11 @@ describe('Checkbox', () => {
   describe('aria', () => {
     ['aria-label', 'role'].forEach((propName) => {
       it(`passes "${propName}" to the <input>`, () => {
-        shallow(<Checkbox {...{ [propName]: 'foo' }} />)
-          .find('input')
-          .should.have.prop(propName)
+        expect(
+          shallow(<Checkbox {...{ [propName]: 'foo' }} />)
+            .find('input')
+            .prop(propName),
+        ).toBe('foo')
       })
     })
   })
@@ -65,32 +67,34 @@ describe('Checkbox', () => {
     it('can be checked and unchecked', () => {
       wrapperShallow(<Checkbox />)
 
-      wrapper.find('input').should.not.be.checked()
+      expect(wrapper.find('input').prop('checked')).toBe(false)
 
       wrapper.simulate('click')
-      wrapper.find('input').should.be.checked()
+      expect(wrapper.find('input').prop('checked')).toBe(true)
 
       wrapper.simulate('click')
-      wrapper.find('input').should.not.be.checked()
+      expect(wrapper.find('input').prop('checked')).toBe(false)
     })
     it('can be checked but not unchecked when radio', () => {
       wrapperShallow(<Checkbox radio />)
 
-      wrapper.find('input').should.not.be.checked()
+      expect(wrapper.find('input').prop('checked')).toBe(false)
 
       wrapper.simulate('click')
-      wrapper.find('input').should.be.checked()
+      expect(wrapper.find('input').prop('checked')).toBe(true)
 
       wrapper.simulate('click')
-      wrapper.find('input').should.be.checked()
+      expect(wrapper.find('input').prop('checked')).toBe(true)
     })
   })
 
   describe('defaultChecked', () => {
     it('sets the initial checked state', () => {
-      shallow(<Checkbox defaultChecked />)
-        .find('input')
-        .should.be.checked()
+      expect(
+        shallow(<Checkbox defaultChecked />)
+          .find('input')
+          .prop('checked'),
+      ).toBe(true)
     })
   })
 
@@ -99,19 +103,19 @@ describe('Checkbox', () => {
       wrapperMount(<Checkbox indeterminate />)
       const input = document.querySelector('.ui.checkbox input')
 
-      input.indeterminate.should.be.true()
+      expect(input.indeterminate).toBe(true)
 
       domEvent.click(input)
-      input.indeterminate.should.be.true()
+      expect(input.indeterminate).toBe(true)
     })
     it('can not be indeterminate', () => {
       wrapperMount(<Checkbox indeterminate={false} />)
       const input = document.querySelector('.ui.checkbox input')
 
-      input.indeterminate.should.be.false()
+      expect(input.indeterminate).toBe(false)
 
       domEvent.click(input)
-      input.indeterminate.should.be.false()
+      expect(input.indeterminate).toBe(false)
     })
   })
 
@@ -120,20 +124,20 @@ describe('Checkbox', () => {
       wrapperMount(<Checkbox defaultIndeterminate />)
       const input = document.querySelector('.ui.checkbox input')
 
-      input.indeterminate.should.be.true()
+      expect(input.indeterminate).toBe(true)
     })
 
     it('unsets indeterminate state on any click', () => {
       wrapperMount(<Checkbox defaultIndeterminate />)
       const input = document.querySelector('.ui.checkbox input')
 
-      input.indeterminate.should.be.true()
+      expect(input.indeterminate).toBe(true)
 
       domEvent.click(input)
-      input.indeterminate.should.be.false()
+      expect(input.indeterminate).toBe(false)
 
       domEvent.click(input)
-      input.indeterminate.should.be.false()
+      expect(input.indeterminate).toBe(false)
     })
   })
 
@@ -142,44 +146,54 @@ describe('Checkbox', () => {
       wrapperShallow(<Checkbox disabled />)
 
       wrapper.simulate('click')
-      wrapper.find('input').should.not.be.checked()
+      expect(wrapper.find('input').prop('checked')).toBe(false)
     })
 
     it('cannot be unchecked', () => {
       wrapperShallow(<Checkbox defaultChecked disabled />)
 
       wrapper.simulate('click')
-      wrapper.find('input').should.be.checked()
+      expect(wrapper.find('input').prop('checked')).toBe(true)
     })
 
     it('is applied to the underlying html input element', () => {
-      wrapperShallow(<Checkbox disabled />)
-        .find('input')
-        .should.have.prop('disabled', true)
+      expect(
+        wrapperShallow(<Checkbox disabled />)
+          .find('input')
+          .prop('disabled'),
+      ).toBe(true)
 
-      wrapperShallow(<Checkbox disabled={false} />)
-        .find('input')
-        .should.have.prop('disabled', false)
+      expect(
+        wrapperShallow(<Checkbox disabled={false} />)
+          .find('input')
+          .prop('disabled'),
+      ).toBe(false)
     })
   })
 
   describe('id', () => {
     it('passes value to the input', () => {
-      shallow(<Checkbox id='foo' />)
-        .find('input')
-        .should.have.prop('id', 'foo')
+      expect(
+        shallow(<Checkbox id='foo' />)
+          .find('input')
+          .prop('id'),
+      ).toBe('foo')
     })
 
     it('adds htmlFor prop to the label', () => {
-      shallow(<Checkbox id='foo' />)
-        .find('label')
-        .should.have.prop('htmlFor', 'foo')
+      expect(
+        shallow(<Checkbox id='foo' />)
+          .find('label')
+          .prop('htmlFor'),
+      ).toBe('foo')
     })
 
     it('adds htmlFor prop to the label when it is empty', () => {
-      shallow(<Checkbox id='foo' label={null} />)
-        .find('label')
-        .should.have.prop('htmlFor', 'foo')
+      expect(
+        shallow(<Checkbox id='foo' label={null} />)
+          .find('label')
+          .prop('htmlFor'),
+      ).toBe('foo')
     })
   })
 
@@ -189,132 +203,134 @@ describe('Checkbox', () => {
 
     _.forEach(props, (propName) => {
       it(`passes "${propName}" to the input`, () => {
-        shallow(<Checkbox {...{ [propName]: 'radio' }} />)
-          .find('input')
-          .should.have.prop(propName)
+        expect(
+          shallow(<Checkbox {...{ [propName]: 'radio' }} />)
+            .find('input')
+            .prop(propName),
+        ).toBeDefined()
       })
     })
   })
 
   describe('label', () => {
     it('adds the "fitted" class when not present', () => {
-      shallow(<Checkbox name='firstName' />).should.have.className('fitted')
+      expect(shallow(<Checkbox name='firstName' />).hasClass('fitted')).toBe(true)
     })
 
     it('adds the "fitted" class when is null', () => {
-      shallow(<Checkbox name='firstName' />).should.have.className('fitted')
+      expect(shallow(<Checkbox name='firstName' />).hasClass('fitted')).toBe(true)
     })
 
     it('does not add the "fitted" class when is not nil', () => {
-      shallow(<Checkbox name='firstName' label='' />).should.not.have.className('fitted')
+      expect(shallow(<Checkbox name='firstName' label='' />).hasClass('fitted')).toBe(false)
 
-      shallow(<Checkbox name='firstName' label={0} />).should.not.have.className('fitted')
+      expect(shallow(<Checkbox name='firstName' label={0} />).hasClass('fitted')).toBe(false)
     })
   })
 
   describe('onChange', () => {
     it('is called with (event { name, value, !checked }) on click', () => {
-      const spy = sandbox.spy()
+      const onChange = jest.fn()
       const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onChange={spy} {...expectProps} />).simulate('click')
+      mount(<Checkbox onChange={onChange} {...expectProps} />).simulate('click')
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(
-        {},
-        {
+      expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onChange).toHaveBeenCalledWith(
+        expect.any(Object),
+        expect.objectContaining({
           ...expectProps,
           checked: !expectProps.checked,
           indeterminate: false,
-        },
+        }),
       )
     })
     it('is called once on input click when "id" prop is passed', () => {
-      const onChange = sandbox.spy()
+      const onChange = jest.fn()
       wrapperMount(<Checkbox id='foo' onChange={onChange} />)
 
       domEvent.click('.ui.checkbox input')
-      onChange.should.have.been.calledOnce()
+      expect(onChange).toHaveBeenCalledTimes(1)
     })
     it('is called once on label click when "id" prop is passed', () => {
-      const onChange = sandbox.spy()
+      const onChange = jest.fn()
       wrapperMount(<Checkbox id='foo' onChange={onChange} />)
 
       domEvent.click('.ui.checkbox label')
-      onChange.should.have.been.calledOnce()
+      expect(onChange).toHaveBeenCalledTimes(1)
     })
     it('is not called when the checkbox has the disabled prop set', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       mount(<Checkbox disabled onChange={spy} />).simulate('click')
-      spy.should.not.have.been.called()
+      expect(spy).not.toHaveBeenCalled()
     })
   })
 
   describe('onClick', () => {
     it('is called with (event { name, value, checked }) on label click', () => {
-      const spy = sandbox.spy()
+      const onChange = jest.fn()
       const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onClick={spy} {...expectProps} />).simulate('click')
+      mount(<Checkbox onClick={onChange} {...expectProps} />).simulate('click')
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(
-        {},
-        {
+      expect(onChange).toHaveBeenCalledTimes(1)
+      expect(onChange).toHaveBeenCalledWith(
+        expect.any(Object),
+        expect.objectContaining({
           ...expectProps,
           checked: !expectProps.checked,
           indeterminate: expectProps.indeterminate,
-        },
+        }),
       )
     })
     it('is called once on input click when "id" prop is passed', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
       wrapperMount(<Checkbox id='foo' onClick={onClick} />)
 
       domEvent.click('.ui.checkbox input')
-      onClick.should.have.been.calledOnce()
+      expect(onClick).toHaveBeenCalledTimes(1)
     })
     it('is called once on label click when "id" prop is passed', () => {
-      const onClick = sandbox.spy()
+      const onClick = jest.fn()
       wrapperMount(<Checkbox id='foo' onClick={onClick} />)
 
       domEvent.click('.ui.checkbox label')
-      onClick.should.have.been.calledOnce()
+      expect(onClick).toHaveBeenCalledTimes(1)
     })
     it('is not called when the checkbox has the disabled prop set', () => {
-      const spy = sandbox.spy()
-      mount(<Checkbox disabled onClick={spy} />).simulate('click')
-      spy.should.not.have.been.called()
+      const onClick = jest.fn()
+      mount(<Checkbox disabled onClick={onClick} />).simulate('click')
+      expect(onClick).not.toHaveBeenCalled()
     })
   })
 
   describe('onMouseDown', () => {
     it('is called with (event { name, value, checked }) on label mouse down', () => {
-      const onMousedDown = sandbox.spy()
+      const onMousedDown = jest.fn()
       const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
       mount(<Checkbox onMouseDown={onMousedDown} {...expectProps} />).simulate('mousedown')
 
-      onMousedDown.should.have.been.calledOnce()
-      onMousedDown.should.have.been.calledWithMatch(
-        {},
-        {
+      expect(onMousedDown).toHaveBeenCalledTimes(1)
+      expect(onMousedDown).toHaveBeenCalledWith(
+        expect.any(Object),
+        expect.objectContaining({
           ...expectProps,
           checked: expectProps.checked,
           indeterminate: expectProps.indeterminate,
-        },
+        }),
       )
     })
     it('prevents default event', () => {
-      const preventDefault = sandbox.spy()
+      const preventDefault = jest.fn()
       wrapperShallow(<Checkbox />)
 
       wrapper.simulate('mousedown', { preventDefault })
-      preventDefault.should.have.been.calledOnce()
+      expect(preventDefault).toHaveBeenCalledTimes(1)
     })
     it('sets focus to container', () => {
       wrapperMount(<Checkbox />)
       const input = document.querySelector('.ui.checkbox input')
 
       domEvent.fire(input, 'mousedown')
-      document.activeElement.should.equal(input)
+      expect(document.activeElement).toBe(input)
     })
   })
 
@@ -323,53 +339,71 @@ describe('Checkbox', () => {
       wrapperShallow(<Checkbox readOnly />)
 
       wrapper.simulate('click')
-      wrapper.find('input').should.not.be.checked()
+      expect(wrapper.find('input').prop('checked')).toBe(false)
     })
     it('cannot be unchecked', () => {
       wrapperShallow(<Checkbox defaultChecked readOnly />)
 
       wrapper.simulate('click')
-      wrapper.find('input').should.be.checked()
+      expect(wrapper.find('input').prop('checked')).toBe(true)
     })
   })
 
   describe('tabIndex', () => {
     it('defaults to 0', () => {
-      shallow(<Checkbox />)
-        .find('input')
-        .should.have.prop('tabIndex', 0)
+      expect(
+        shallow(<Checkbox />)
+          .find('input')
+          .prop('tabIndex'),
+      ).toBe(0)
     })
+
     it('defaults to -1 when disabled', () => {
-      shallow(<Checkbox disabled />)
-        .find('input')
-        .should.have.prop('tabIndex', -1)
+      expect(
+        shallow(<Checkbox disabled />)
+          .find('input')
+          .prop('tabIndex'),
+      ).toBe(-1)
     })
+
     it('can be set explicitly', () => {
-      shallow(<Checkbox tabIndex={123} />)
-        .find('input')
-        .should.have.prop('tabIndex', 123)
+      expect(
+        shallow(<Checkbox tabIndex={123} />)
+          .find('input')
+          .prop('tabIndex'),
+      ).toBe(123)
     })
+
     it('can be set explicitly when disabled', () => {
-      shallow(<Checkbox tabIndex={123} disabled />)
-        .find('input')
-        .should.have.prop('tabIndex', 123)
+      expect(
+        shallow(<Checkbox tabIndex={123} disabled />)
+          .find('input')
+          .prop('tabIndex'),
+      ).toBe(123)
     })
   })
 
   describe('type', () => {
     it('renders an input of type checkbox when not set', () => {
-      shallow(<Checkbox />)
-        .find('input')
-        .should.have.prop('type', 'checkbox')
+      expect(
+        shallow(<Checkbox />)
+          .find('input')
+          .prop('type'),
+      ).toBe('checkbox')
     })
-    it('sets the input type ', () => {
-      shallow(<Checkbox type='checkbox' />)
-        .find('input')
-        .should.have.prop('type', 'checkbox')
 
-      shallow(<Checkbox type='radio' />)
-        .find('input')
-        .should.have.prop('type', 'radio')
+    it('sets the input type ', () => {
+      expect(
+        shallow(<Checkbox type='checkbox' />)
+          .find('input')
+          .prop('type'),
+      ).toBe('checkbox')
+
+      expect(
+        shallow(<Checkbox type='radio' />)
+          .find('input')
+          .prop('type'),
+      ).toBe('radio')
     })
   })
 })

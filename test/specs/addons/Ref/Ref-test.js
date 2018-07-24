@@ -3,10 +3,9 @@ import React from 'react'
 
 import Ref from 'src/addons/Ref/Ref'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 import { CompositeClass, CompositeFunction, DOMClass, DOMFunction } from './fixtures'
 
-const mountNode = (Component, innerRef) => (
+const mountNode = (Component, innerRef) =>
   mount(
     <Ref innerRef={innerRef}>
       <Component />
@@ -14,7 +13,6 @@ const mountNode = (Component, innerRef) => (
   )
     .find('#node')
     .getDOMNode()
-)
 
 describe('Ref', () => {
   common.hasValidTypings(Ref)
@@ -23,42 +21,41 @@ describe('Ref', () => {
     it('renders single child', () => {
       const child = <div data-child={faker.hacker.noun()} />
 
-      shallow(<Ref>{child}</Ref>)
-        .should.contain(child)
+      expect(shallow(<Ref>{child}</Ref>).contains(child)).toBe(true)
     })
   })
 
   describe('innerRef', () => {
     it('returns node from a functional component with DOM node', () => {
-      const innerRef = sandbox.spy()
+      const innerRef = jest.fn()
       const node = mountNode(DOMFunction, innerRef)
 
-      innerRef.should.have.been.calledOnce()
-      innerRef.should.have.been.calledWithMatch(node)
+      expect(innerRef).toHaveBeenCalledTimes(1)
+      expect(innerRef).toHaveBeenCalledWith(node)
     })
 
     it('returns node from a functional component', () => {
-      const innerRef = sandbox.spy()
+      const innerRef = jest.fn()
       const node = mountNode(CompositeFunction, innerRef)
 
-      innerRef.should.have.been.calledOnce()
-      innerRef.should.have.been.calledWithMatch(node)
+      expect(innerRef).toHaveBeenCalledTimes(1)
+      expect(innerRef).toHaveBeenCalledWith(node)
     })
 
     it('returns node from a class component with DOM node', () => {
-      const innerRef = sandbox.spy()
+      const innerRef = jest.fn()
       const node = mountNode(DOMClass, innerRef)
 
-      innerRef.should.have.been.calledOnce()
-      innerRef.should.have.been.calledWithMatch(node)
+      expect(innerRef).toHaveBeenCalledTimes(1)
+      expect(innerRef).toHaveBeenCalledWith(node)
     })
 
     it('returns node from a class component', () => {
-      const innerRef = sandbox.spy()
+      const innerRef = jest.fn()
       const node = mountNode(CompositeClass, innerRef)
 
-      innerRef.should.have.been.calledOnce()
-      innerRef.should.have.been.calledWithMatch(node)
+      expect(innerRef).toHaveBeenCalledTimes(1)
+      expect(innerRef).toHaveBeenCalledWith(node)
     })
   })
 })

@@ -45,7 +45,7 @@ jobs:
           command: yarn lint
       - run:
           name: Test JavaScript
-          command: yarn test
+          command: yarn test -w=4
       - run:
           name: Report coverage
           command: bash <(curl -s https://codecov.io/bash)

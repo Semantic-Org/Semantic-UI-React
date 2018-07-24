@@ -7,7 +7,6 @@ import MenuHeader from 'src/collections/Menu/MenuHeader'
 import MenuMenu from 'src/collections/Menu/MenuMenu'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('Menu', () => {
   common.isConformant(Menu)
@@ -43,15 +42,11 @@ describe('Menu', () => {
   common.propValueOnlyToClassName(Menu, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Menu, 'size', _.without(SUI.SIZES, 'medium', 'big'))
 
-  it('renders a `div` by default', () => {
-    shallow(<Menu />).should.have.tagName('div')
-  })
-
   describe('activeIndex', () => {
     const items = [{ key: 'home', name: 'home' }, { key: 'users', name: 'users' }]
 
     it('is null by default', () => {
-      shallow(<Menu items={items} />).should.not.have.descendants('.active')
+      expect(shallow(<Menu items={items} />).find('.active')).toHaveLength(0)
     })
 
     it('is set when clicking an item', () => {
@@ -63,36 +58,35 @@ describe('Menu', () => {
         .simulate('click')
 
       // must re-query for the menu items or we get a cached copy
-      wrapper
-        .find('MenuItem')
-        .at(1)
-        .should.have.prop('active', true)
+      expect(
+        wrapper
+          .find('MenuItem')
+          .at(1)
+          .prop('active'),
+      ).toBe(true)
     })
 
     it('works as a string', () => {
-      mount(<Menu items={items} activeIndex={1} />)
-        .find('MenuItem')
-        .at(1)
-        .should.have.prop('active', true)
+      expect(
+        mount(<Menu items={items} activeIndex={1} />)
+          .find('MenuItem')
+          .at(1)
+          .prop('active'),
+      ).toBe(true)
     })
   })
 
   describe('items', () => {
-    const spy = sandbox.spy()
+    const onClick = jest.fn()
     const items = [
-      { key: 'home', name: 'home', onClick: spy, 'data-foo': 'something' },
+      { key: 'home', name: 'home', onClick, 'data-foo': 'something' },
       { key: 'users', name: 'users', active: true, 'data-foo': 'something' },
     ]
     const children = mount(<Menu items={items} />).find('MenuItem')
 
     it('renders children', () => {
-      children.first().should.have.prop('name', 'home')
-      children.last().should.have.prop('name', 'users')
-    })
-
-    it('onClick can omitted', () => {
-      const click = () => children.last().simulate('click')
-      expect(click).to.not.throw()
+      expect(children.first().prop('name')).toBe('home')
+      expect(children.last().prop('name')).toBe('users')
     })
 
     it('passes onClick handler', () => {
@@ -101,12 +95,15 @@ describe('Menu', () => {
 
       children.first().simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(props),
+      )
     })
 
     it('passes arbitrary props', () => {
-      children.everyWhere(item => item.should.have.prop('data-foo', 'something'))
+      children.everyWhere(item => expect(item.prop('data-foo')).toBe('something'))
     })
   })
 
@@ -118,29 +115,32 @@ describe('Menu', () => {
           .first()
           .simulate('click')
 
-      expect(click).to.not.throw()
+      expect(click).not.toThrowError()
     })
 
     it('is called with (e, { name, index }) when clicked', () => {
       const event = { target: null }
-      const itemSpy = sandbox.spy()
-      const menuSpy = sandbox.spy()
+      const onClick = jest.fn()
+      const onItemClick = jest.fn()
 
-      const items = [
-        { key: 'home', name: 'home' },
-        { key: 'users', name: 'users', onClick: itemSpy },
-      ]
+      const items = [{ key: 'home', name: 'home' }, { key: 'users', name: 'users', onClick }]
       const matchProps = { index: 1, name: 'users' }
 
-      mount(<Menu items={items} onItemClick={menuSpy} />)
+      mount(<Menu items={items} onItemClick={onItemClick} />)
         .find('MenuItem')
         .last()
         .simulate('click', event)
 
-      itemSpy.should.have.been.calledOnce()
-      itemSpy.should.have.been.calledWithMatch(event, matchProps)
-      menuSpy.should.have.been.calledOnce()
-      menuSpy.should.have.been.calledWithMatch(event, matchProps)
+      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(matchProps),
+      )
+      expect(onItemClick).toHaveBeenCalledTimes(1)
+      expect(onItemClick).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(matchProps),
+      )
     })
   })
 })

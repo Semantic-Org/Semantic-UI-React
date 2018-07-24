@@ -30,7 +30,7 @@ describe('TransitionGroup', () => {
         </TransitionGroup>,
       )
         .children()
-        .everyWhere(item => item.type().should.equal(Transition))
+        .everyWhere(item => expect(item.type()).toBe(Transition))
     })
 
     it('passes props to children', () => {
@@ -43,9 +43,9 @@ describe('TransitionGroup', () => {
       )
         .children()
         .everyWhere((item) => {
-          item.should.have.prop('animation', 'scale')
-          item.should.have.prop('duration', 1500)
-          item.type().should.equal(Transition)
+          expect(item.prop('animation')).toBe('scale')
+          expect(item.prop('duration')).toBe(1500)
+          expect(item.type()).toBe(Transition)
         })
     })
 
@@ -58,9 +58,9 @@ describe('TransitionGroup', () => {
       wrapper.setProps({ children: [<div key='first' />, <div key='second' />] })
 
       const child = wrapper.childAt(1)
-      child.key().should.equal('.$second')
-      child.type().should.equal(Transition)
-      child.should.have.prop('transitionOnMount', true)
+      expect(child.key()).toBe('.$second')
+      expect(child.type()).toBe(Transition)
+      expect(child.prop('transitionOnMount')).toBe(true)
     })
 
     it('skips invalid children', () => {
@@ -71,9 +71,9 @@ describe('TransitionGroup', () => {
       )
       wrapper.setProps({ children: [<div key='first' />, '', <div key='second' />] })
 
-      wrapper.children().should.have.length(2)
-      wrapper.childAt(0).key().should.equal('.$first')
-      wrapper.childAt(1).key().should.equal('.$second')
+      expect(wrapper.children()).toHaveLength(2)
+      expect(wrapper.childAt(0).key()).toBe('.$first')
+      expect(wrapper.childAt(1).key()).toBe('.$second')
     })
 
     it('sets visible to false when child was removed', () => {
@@ -85,11 +85,11 @@ describe('TransitionGroup', () => {
       )
       wrapper.setProps({ children: [<div key='first' />] })
 
-      wrapper.children().should.have.length(2)
-      wrapper.childAt(0).type().should.equal(Transition)
-      wrapper.childAt(0).should.have.prop('visible', true)
-      wrapper.childAt(1).type().should.equal(Transition)
-      wrapper.childAt(1).should.have.prop('visible', false)
+      expect(wrapper.children()).toHaveLength(2)
+      expect(wrapper.childAt(0).type()).toBe(Transition)
+      expect(wrapper.childAt(0).prop('visible')).toBe(true)
+      expect(wrapper.childAt(1).type()).toBe(Transition)
+      expect(wrapper.childAt(1).prop('visible')).toBe(false)
     })
 
     it('removes child after transition', (done) => {
@@ -102,7 +102,7 @@ describe('TransitionGroup', () => {
       wrapper.setProps({ children: [<div key='first' />] })
 
       setTimeout(() => {
-        wrapper.children().should.have.length(1)
+        expect(wrapper.children()).toHaveLength(1)
         // TODO: Re-enable in future
         // wrapper.childAt(0).key().should.equal('.$first')
         done()

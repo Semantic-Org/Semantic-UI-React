@@ -14,7 +14,7 @@ import FormSelect from 'src/collections/Form/FormSelect'
 import FormTextArea from 'src/collections/Form/FormTextArea'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { consoleUtil, sandbox } from 'test/utils'
+import { consoleUtil } from 'test/utils'
 
 describe('Form', () => {
   common.isConformant(Form)
@@ -50,13 +50,13 @@ describe('Form', () => {
 
   describe('action', () => {
     it('is not set by default', () => {
-      shallow(<Form />).should.not.have.prop('action')
+      expect(shallow(<Form />).prop('action')).toBeUndefined()
     })
 
     it('applied when defined', () => {
       const action = faker.internet.url()
 
-      shallow(<Form action={action} />).should.have.prop('action', action)
+      expect(shallow(<Form action={action} />).prop('action')).toBe(action)
     })
   })
 
@@ -66,46 +66,52 @@ describe('Form', () => {
       // In this test we pass some invalid values to verify correct work.
       consoleUtil.disableOnce()
 
-      const event = { preventDefault: sandbox.spy() }
+      const event = { preventDefault: jest.fn() }
 
       shallow(<Form />).simulate('submit', event)
       shallow(<Form action={false} />).simulate('submit', event)
       shallow(<Form action={null} />).simulate('submit', event)
 
-      event.preventDefault.should.have.been.calledThrice()
+      expect(event.preventDefault).toHaveBeenCalledTimes(3)
     })
 
     it('does not prevent default on the event when there is an action', () => {
-      const event = { preventDefault: sandbox.spy() }
+      const event = { preventDefault: jest.fn() }
 
       shallow(<Form action='do not prevent default!' />).simulate('submit', event)
-
       shallow(<Form action='' />).simulate('submit', event)
 
-      event.preventDefault.should.not.have.been.called()
+      expect(event.preventDefault).not.toHaveBeenCalled()
     })
 
     it('is called with (e, props) on submit', () => {
-      const onSubmit = sandbox.spy()
+      const onSubmit = jest.fn()
       const event = { name: 'foo' }
       const props = { 'data-bar': 'baz' }
 
       shallow(<Form {...props} onSubmit={onSubmit} />).simulate('submit', event)
 
-      onSubmit.should.have.been.calledOnce()
-      onSubmit.should.have.been.calledWithMatch(event, props)
+      expect(onSubmit).toHaveBeenCalledTimes(1)
+      expect(onSubmit).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(props),
+      )
     })
 
     it('passes all args to onSubmit', () => {
-      const onSubmit = sandbox.spy()
+      const onSubmit = jest.fn()
       const props = { 'data-baz': 'baz' }
       const event = { fake: 'event' }
       const args = ['some', 'extra', 'args']
 
       shallow(<Form {...props} onSubmit={onSubmit} />).simulate('submit', event, ...args)
 
-      onSubmit.should.have.been.calledOnce()
-      onSubmit.should.have.been.calledWithMatch(event, props, ...args)
+      expect(onSubmit).toHaveBeenCalledTimes(1)
+      expect(onSubmit).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining(props),
+        ...args,
+      )
     })
   })
 })

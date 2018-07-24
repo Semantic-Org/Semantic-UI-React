@@ -13,16 +13,18 @@ describe('Feed', () => {
     rendersContent: false,
   })
 
-  common.propValueOnlyToClassName(Feed, 'size',
+  common.propValueOnlyToClassName(
+    Feed,
+    'size',
     _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
   )
 
   describe('events prop', () => {
     it('renders <FeedEvent>', () => {
       const events = _.times(3, () => ({ summary: faker.hacker.phrase() }))
+      const wrapper = shallow(<Feed events={events} />)
 
-      shallow(<Feed events={events} />)
-        .should.have.exactly(3).descendants('FeedEvent')
+      expect(wrapper.find('FeedEvent')).toHaveLength(3)
     })
   })
 })

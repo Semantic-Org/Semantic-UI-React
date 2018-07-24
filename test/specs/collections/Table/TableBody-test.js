@@ -9,8 +9,9 @@ describe('TableBody', () => {
     rendersContent: false,
   })
 
-  it('renders as a tbody by default', () => {
-    shallow(<TableBody />)
-      .should.have.tagName('tbody')
+  describe('as', () => {
+    it('is "tbody" by default', () => {
+      expect(shallow(<TableBody />).type()).toBe('tbody')
+    })
   })
 })

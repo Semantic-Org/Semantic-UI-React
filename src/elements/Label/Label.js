@@ -118,9 +118,7 @@ export default class Label extends Component {
   static Group = LabelGroup
 
   handleClick = (e) => {
-    const { onClick } = this.props
-
-    if (onClick) onClick(e, this.props)
+    _.invoke(this.props, 'onClick', e, this.props)
   }
 
   handleIconOverrides = predefinedProps => ({

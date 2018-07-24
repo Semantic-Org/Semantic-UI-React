@@ -1,5 +1,7 @@
+import _ from 'lodash'
 import React from 'react'
-import { getChildMapping, mergeChildMappings } from 'src/lib'
+
+import { getChildMapping, mergeChildMappings } from 'src/lib/childMapping'
 
 describe('childMapping', () => {
   describe('childMapping', () => {
@@ -10,8 +12,9 @@ describe('childMapping', () => {
           <div key='two' />
         </div>
       )
+      const keys = _.keys(getChildMapping(component.props.children))
 
-      getChildMapping(component.props.children).should.have.deep.keys(['.$one', '.$two'])
+      expect(keys).toEqual(expect.arrayContaining(['.$one', '.$two']))
     })
 
     it('skips invalid elements', () => {
@@ -22,8 +25,9 @@ describe('childMapping', () => {
           <div key='two' />
         </div>
       )
+      const keys = _.keys(getChildMapping(component.props.children))
 
-      getChildMapping(component.props.children).should.have.deep.keys(['.$one', '.$two'])
+      expect(keys).toEqual(expect.arrayContaining(['.$one', '.$two']))
     })
   })
 
@@ -32,7 +36,7 @@ describe('childMapping', () => {
       const prev = { one: true, two: true }
       const next = { one: true, two: true, three: true }
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         one: true,
         two: true,
         three: true,
@@ -43,7 +47,7 @@ describe('childMapping', () => {
       const prev = { one: true, two: true, three: true }
       const next = { one: true, two: true }
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         one: true,
         two: true,
         three: true,
@@ -54,7 +58,7 @@ describe('childMapping', () => {
       const prev = { one: true, two: true, three: true }
       const next = { one: true, two: true, four: true }
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         one: true,
         two: true,
         three: true,
@@ -66,7 +70,7 @@ describe('childMapping', () => {
       const prev = { one: true, two: true, four: true, five: true }
       const next = { one: true, two: true, three: true, five: true }
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         one: true,
         two: true,
         three: true,
@@ -79,7 +83,7 @@ describe('childMapping', () => {
       const prev = { one: true, two: true }
       const next = undefined
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         one: true,
         two: true,
       })
@@ -89,7 +93,7 @@ describe('childMapping', () => {
       const prev = undefined
       const next = { three: true, four: true }
 
-      mergeChildMappings(prev, next).should.deep.equal({
+      expect(mergeChildMappings(prev, next)).toEqual({
         three: true,
         four: true,
       })
@@ -99,7 +103,7 @@ describe('childMapping', () => {
       const prev = { one: true }
       const next = { one: false }
 
-      mergeChildMappings(prev, next).should.deep.equal({ one: false })
+      expect(mergeChildMappings(prev, next)).toEqual({ one: false })
     })
   })
 })

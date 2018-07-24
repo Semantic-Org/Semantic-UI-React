@@ -3,7 +3,7 @@ import React from 'react'
 import Responsive from 'src/addons/Responsive/Responsive'
 import { isBrowser } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 describe('Responsive', () => {
   common.isConformant(Responsive)
@@ -12,45 +12,41 @@ describe('Responsive', () => {
   })
 
   beforeEach(() => {
-    sandbox.stub(window, 'requestAnimationFrame').callsArg(0)
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb())
   })
 
   describe('children', () => {
     it('renders by default', () => {
-      shallow(<Responsive />).should.be.present()
+      expect(shallow(<Responsive>Visible</Responsive>).children()).toHaveLength(1)
     })
   })
 
   describe('fireOnMount', () => {
     it('do not fire onUpdate by default', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       mount(<Responsive onUpdate={onUpdate} />)
 
-      onUpdate.should.have.not.been.called()
+      expect(onUpdate).not.toHaveBeenCalled()
     })
 
     it('fires onUpdate after mount when true', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       mount(<Responsive fireOnMount onUpdate={onUpdate} />)
 
-      onUpdate.should.have.been.calledOnce()
+      expect(onUpdate).toHaveBeenCalledTimes(1)
     })
   })
 
   describe('getWidth', () => {
     it('defaults to window.innerWidth when is browser', () => {
-      sandbox.stub(window, 'innerWidth').value(500)
-      shallow(<Responsive />)
-        .state('width')
-        .should.equal(500)
+      global.innerWidth = 500
+      expect(shallow(<Responsive />).state('width')).toBe(500)
     })
 
     it('defaults to "0" when non-browser', () => {
       isBrowser.override = false
 
-      shallow(<Responsive />)
-        .state('width')
-        .should.equal(0)
+      expect(shallow(<Responsive />).state('width')).toBe(0)
 
       isBrowser.override = null
     })
@@ -59,102 +55,113 @@ describe('Responsive', () => {
       const getWidth = () => 500
       const wrapper = shallow(<Responsive getWidth={getWidth} />)
 
-      wrapper.state('width').should.equal(500)
+      expect(wrapper.state('width')).toBe(500)
     })
 
     it('is called on resize', () => {
-      const getWidth = sandbox.spy()
+      const getWidth = jest.fn()
       mount(<Responsive getWidth={getWidth} />)
 
-      getWidth.should.have.been.calledOnce()
-      getWidth.resetHistory()
+      expect(getWidth).toHaveBeenCalledTimes(1)
+      getWidth.mockClear()
 
       domEvent.fire(window, 'resize')
-      getWidth.should.have.been.calledOnce()
+      expect(getWidth).toHaveBeenCalledTimes(1)
     })
   })
 
   describe('maxWidth', () => {
     it('renders when fits', () => {
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.maxWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).should.not.be.blank()
+      global.innerWidth = Responsive.onlyMobile.maxWidth
+      expect(
+        shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).children(),
+      ).toHaveLength(1)
     })
 
     it('do not render when not fits', () => {
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.maxWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).should.be.blank()
+      global.innerWidth = Responsive.onlyTablet.maxWidth
+      expect(
+        shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).children(),
+      ).toHaveLength(0)
     })
   })
 
   describe('minWidth', () => {
     it('renders when fits', () => {
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).should.not.be.blank()
+      global.innerWidth = Responsive.onlyMobile.minWidth
+      expect(
+        shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).children(),
+      ).toHaveLength(1)
     })
 
     it('do not render when not fits', () => {
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).should.be.blank()
+      global.innerWidth = Responsive.onlyTablet.minWidth
+      expect(
+        shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).children(),
+      ).toHaveLength(0)
     })
   })
 
   describe('on window.resize', () => {
     it('renders using new width', () => {
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
+      global.innerWidth = Responsive.onlyMobile.minWidth
       const wrapper = mount(<Responsive {...Responsive.onlyMobile}>Mobile only</Responsive>)
-      wrapper.should.not.be.blank()
+      expect(wrapper.children()).toHaveLength(1)
 
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
+      global.innerWidth = Responsive.onlyTablet.minWidth
       domEvent.fire(window, 'resize')
 
       wrapper.update()
-      wrapper.should.be.blank()
+      expect(wrapper.children()).toHaveLength(0)
     })
   })
 
   describe('onUpdate', () => {
     it('is called with (e, data) when window was resized', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       const width = Responsive.onlyTablet.minWidth
       mount(<Responsive {...Responsive.onlyMobile} onUpdate={onUpdate} />)
 
-      sandbox.stub(window, 'innerWidth').value(width)
+      global.innerWidth = width
       domEvent.fire(window, 'resize')
 
-      onUpdate.should.have.been.calledOnce()
-      onUpdate.should.have.been.calledWithMatch({}, { ...Responsive.onlyMobile, width })
+      expect(onUpdate).toHaveBeenCalledTimes(1)
+      expect(onUpdate).toHaveBeenCalledWith(
+        expect.any(Object),
+        expect.objectContaining({ ...Responsive.onlyMobile, width }),
+      )
     })
   })
 
   describe('shouldComponentUpdate', () => {
-    it('returns true when width changes', () => {
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
+    it('renders when width changes', () => {
+      global.innerWidth = Responsive.onlyMobile.minWidth
       const wrapper = mount(<Responsive />)
       const instance = wrapper.instance()
-      const spy = sandbox.spy(instance, 'shouldComponentUpdate')
+      const render = jest.spyOn(instance, 'render')
 
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
+      global.innerWidth = Responsive.onlyTablet.minWidth
       domEvent.fire(window, 'resize')
-      spy.should.have.returned(true)
+      expect(render).toHaveBeenCalled()
     })
 
-    it('returns false when width stays the same', () => {
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
+    it('do not render when width stays the same', () => {
+      global.innerWidth = Responsive.onlyMobile.minWidth
       const wrapper = mount(<Responsive />)
       const instance = wrapper.instance()
-      const spy = sandbox.spy(instance, 'shouldComponentUpdate')
+      const render = jest.spyOn(instance, 'render')
 
       domEvent.fire(window, 'resize')
-      spy.should.have.returned(false)
+      expect(render).not.toHaveBeenCalled()
     })
 
-    it('returns true when props change', () => {
-      const wrapper = mount(<Responsive {...Responsive.onlyMobile} />)
+    it('renders when props change', () => {
+      const wrapper = shallow(<Responsive {...Responsive.onlyMobile} />)
       const instance = wrapper.instance()
-      const spy = sandbox.spy(instance, 'shouldComponentUpdate')
+      const render = jest.spyOn(instance, 'render')
 
       wrapper.setProps({ ...Responsive.onlyTablet })
-      spy.should.have.returned(true)
+      expect(render).toHaveBeenCalled()
     })
   })
 })

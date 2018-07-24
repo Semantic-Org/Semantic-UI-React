@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 import Portal from 'src/addons/Portal/Portal'
 import PortalInner from 'src/addons/Portal/PortalInner'
 
@@ -38,7 +38,7 @@ describe('Portal', () => {
   common.hasValidTypings(Portal)
 
   it('propTypes.children should be required', () => {
-    Portal.propTypes.children.should.equal(PropTypes.node.isRequired)
+    expect(Portal.propTypes.children).toBe(PropTypes.node.isRequired)
   })
 
   it('does not call this.setState() if portal is unmounted', () => {
@@ -48,9 +48,9 @@ describe('Portal', () => {
       </Portal>,
     )
 
-    const setState = sandbox.spy(wrapper, 'setState')
+    const setState = jest.fn(wrapper, 'setState')
     wrapper.unmount()
-    setState.should.not.have.been.called()
+    expect(setState).not.toHaveBeenCalled()
   })
 
   describe('open', () => {
@@ -60,11 +60,11 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
 
       // Enzyme docs say it merges previous props but without children, react complains
       wrapper.setProps({ open: true, children: <p /> })
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
     })
 
     it('closes the portal when toggled from true to false ', () => {
@@ -73,16 +73,16 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       wrapper.setProps({ open: false, children: <p /> })
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
     })
   })
 
   describe('onMount', () => {
     it('called when portal opens', () => {
-      const props = { open: false, onMount: sandbox.spy() }
+      const props = { open: false, onMount: jest.fn() }
       wrapperMount(
         <Portal {...props}>
           <p />
@@ -90,11 +90,11 @@ describe('Portal', () => {
       )
 
       wrapper.setProps({ open: true, children: <p /> })
-      props.onMount.should.have.been.calledOnce()
+      expect(props.onMount).toHaveBeenCalledTimes(1)
     })
 
     it('is not called when portal receives props', () => {
-      const props = { open: false, onMount: sandbox.spy() }
+      const props = { open: false, onMount: jest.fn() }
       wrapperMount(
         <Portal {...props}>
           <p />
@@ -102,16 +102,16 @@ describe('Portal', () => {
       )
 
       wrapper.setProps({ open: true, children: <p />, className: 'old' })
-      props.onMount.should.have.been.calledOnce()
+      expect(props.onMount).toHaveBeenCalledTimes(1)
 
       wrapper.setProps({ open: true, children: <p />, className: 'new' })
-      props.onMount.should.have.been.calledOnce()
+      expect(props.onMount).toHaveBeenCalledTimes(1)
     })
   })
 
   describe('onUnmount', () => {
     it('is called when portal closes', () => {
-      const props = { open: true, onUnmount: sandbox.spy() }
+      const props = { open: true, onUnmount: jest.fn() }
       wrapperMount(
         <Portal {...props}>
           <p />
@@ -119,11 +119,11 @@ describe('Portal', () => {
       )
 
       wrapper.setProps({ open: false, children: <p /> })
-      props.onUnmount.should.have.been.calledOnce()
+      expect(props.onUnmount).toHaveBeenCalledTimes(1)
     })
 
     it('is not called when portal receives props', () => {
-      const props = { open: true, onUnmount: sandbox.spy() }
+      const props = { open: true, onUnmount: jest.fn() }
       wrapperMount(
         <Portal {...props}>
           <p />
@@ -131,14 +131,14 @@ describe('Portal', () => {
       )
 
       wrapper.setProps({ open: false, children: <p />, className: 'old' })
-      props.onUnmount.should.have.been.calledOnce()
+      expect(props.onUnmount).toHaveBeenCalledTimes(1)
 
       wrapper.setProps({ open: false, children: <p />, className: 'new' })
-      props.onUnmount.should.have.been.calledOnce()
+      expect(props.onUnmount).toHaveBeenCalledTimes(1)
     })
 
     it('is called only once when portal closes and then is unmounted', () => {
-      const onUnmount = sandbox.spy()
+      const onUnmount = jest.fn()
       wrapperMount(
         <Portal onUnmount={onUnmount} open>
           <p />
@@ -147,11 +147,11 @@ describe('Portal', () => {
 
       wrapper.setProps({ open: false, children: <p /> })
       wrapper.unmount()
-      onUnmount.should.have.been.calledOnce()
+      expect(onUnmount).toHaveBeenCalledTimes(1)
     })
 
     it('is called only once when directly unmounting', () => {
-      const onUnmount = sandbox.spy()
+      const onUnmount = jest.fn()
       wrapperMount(
         <Portal onUnmount={onUnmount} open>
           <p />
@@ -159,7 +159,7 @@ describe('Portal', () => {
       )
 
       wrapper.unmount()
-      onUnmount.should.have.been.calledOnce()
+      expect(onUnmount).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -170,7 +170,7 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.instance().portalNode.tagName.should.equal('P')
+      expect(wrapper.instance().portalNode.tagName).toBe('P')
     })
 
     it('maintains ref to DOM node with React component', () => {
@@ -181,7 +181,7 @@ describe('Portal', () => {
           <EmptyComponent />
         </Portal>,
       )
-      wrapper.instance().portalNode.tagName.should.equal('P')
+      expect(wrapper.instance().portalNode.tagName).toBe('P')
     })
   })
 
@@ -193,7 +193,7 @@ describe('Portal', () => {
         </Portal>,
       )
 
-      expect(wrapper.html()).to.equal(null)
+      expect(wrapper.html()).toBe(null)
     })
 
     it('renders the trigger when set', () => {
@@ -205,13 +205,13 @@ describe('Portal', () => {
         </Portal>,
       )
 
-      wrapper.text().should.equal(text)
+      expect(wrapper.text()).toBe(text)
     })
 
     _.forEach(['onBlur', 'onClick', 'onFocus', 'onMouseLeave', 'onMouseEnter'], (handlerName) => {
       it(`handles ${handlerName} on trigger and passes all arguments`, () => {
         const event = { target: null }
-        const handler = sandbox.spy()
+        const handler = jest.fn()
         const Trigger = createHandlingComponent(handlerName)
         const trigger = <Trigger color='blue' handler={handler} />
 
@@ -223,11 +223,14 @@ describe('Portal', () => {
           .find('button')
           .simulate(_.toLower(handlerName.substring(2)), event)
 
-        handler.should.have.been.calledOnce()
-        handler.should.have.been.calledWithMatch(event, {
-          handler,
-          color: 'blue',
-        })
+        expect(handler).toHaveBeenCalledTimes(1)
+        expect(handler).toHaveBeenCalledWith(
+          expect.objectContaining(event),
+          expect.objectContaining({
+            handler,
+            color: 'blue',
+          }),
+        )
       })
     })
   })
@@ -241,17 +244,17 @@ describe('Portal', () => {
         </Portal>,
       )
 
-      wrapper.find(PortalInner).should.have.prop('mountNode', mountNode)
+      expect(wrapper.find(PortalInner).prop('mountNode')).toBe(mountNode)
     })
   })
 
   describe('openOnTriggerClick', () => {
     it('defaults to true', () => {
-      Portal.defaultProps.openOnTriggerClick.should.equal(true)
+      expect(Portal.defaultProps.openOnTriggerClick).toBe(true)
     })
 
     it('does not open the portal on trigger click when false', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       const trigger = <button onClick={spy}>button</button>
 
       wrapperMount(
@@ -259,15 +262,15 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
 
       wrapper.find('button').simulate('click')
-      wrapper.should.not.have.descendants(PortalInner)
-      spy.should.have.been.calledOnce()
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
+      expect(spy).toHaveBeenCalledTimes(1)
     })
 
     it('opens the portal on trigger click when true', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       const trigger = <button onClick={spy}>button</button>
 
       wrapperMount(
@@ -275,11 +278,11 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
 
       wrapper.find('button').simulate('click')
-      wrapper.should.have.descendants(PortalInner)
-      spy.should.have.been.calledOnce()
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
+      expect(spy).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -290,10 +293,10 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       wrapper.find('button').simulate('click')
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
     })
 
     it('closes the portal on click when set', () => {
@@ -302,10 +305,10 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       wrapper.find('button').simulate('click')
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
     })
   })
 
@@ -316,10 +319,10 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
 
       wrapper.find('button').simulate('mouseenter')
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
     })
 
     it('opens the portal on mouseenter when set', (done) => {
@@ -328,12 +331,12 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
 
       wrapper.find('button').simulate('mouseenter')
       setTimeout(() => {
         wrapper.update()
-        wrapper.should.have.descendants(PortalInner)
+        expect(wrapper.find(PortalInner)).toHaveLength(1)
 
         done()
       }, 1)
@@ -347,12 +350,12 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       wrapper.find('button').simulate('mouseleave')
       setTimeout(() => {
         wrapper.update()
-        wrapper.should.have.descendants(PortalInner)
+        expect(wrapper.find(PortalInner)).toHaveLength(1)
 
         done()
       }, 1)
@@ -364,12 +367,12 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       wrapper.find('button').simulate('mouseleave')
       setTimeout(() => {
         wrapper.update()
-        wrapper.should.not.have.descendants(PortalInner)
+        expect(wrapper.find(PortalInner)).toHaveLength(0)
 
         done()
       }, 1)
@@ -383,12 +386,12 @@ describe('Portal', () => {
           <p id='inner' />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       domEvent.mouseLeave('#inner')
       setTimeout(() => {
         wrapper.update()
-        wrapper.should.have.descendants(PortalInner)
+        expect(wrapper.find(PortalInner)).toHaveLength(1)
 
         done()
       }, 1)
@@ -400,12 +403,12 @@ describe('Portal', () => {
           <p id='inner' />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       domEvent.mouseLeave('#inner')
       setTimeout(() => {
         wrapper.update()
-        wrapper.should.not.have.descendants(PortalInner)
+        expect(wrapper.find(PortalInner)).toHaveLength(0)
 
         done()
       }, 1)
@@ -420,7 +423,7 @@ describe('Portal', () => {
           <p id='inner' />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       wrapper.find('button').simulate('mouseleave')
 
@@ -432,7 +435,7 @@ describe('Portal', () => {
       // The portal should close because closeOnPortalMouseLeave not set
       setTimeout(() => {
         wrapper.update()
-        wrapper.should.not.have.descendants(PortalInner)
+        expect(wrapper.find(PortalInner)).toHaveLength(0)
 
         done()
       }, delay + 1)
@@ -451,7 +454,7 @@ describe('Portal', () => {
           <p id='inner' />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       wrapper.find('button').simulate('mouseleave')
 
@@ -463,7 +466,7 @@ describe('Portal', () => {
       // The portal should not have closed
       setTimeout(() => {
         wrapper.update()
-        wrapper.should.have.descendants(PortalInner)
+        expect(wrapper.find(PortalInner)).toHaveLength(1)
 
         done()
       }, delay + 1)
@@ -477,10 +480,10 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
 
       wrapper.find('button').simulate('focus')
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
     })
 
     it('opens the portal on focus when set', () => {
@@ -489,10 +492,10 @@ describe('Portal', () => {
           <p id='inner' />
         </Portal>,
       )
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
 
       wrapper.find('button').simulate('focus')
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
     })
   })
 
@@ -503,10 +506,10 @@ describe('Portal', () => {
           <p id='inner' />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       wrapper.find('button').simulate('blur')
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
     })
 
     it('closes the portal on blur when set', () => {
@@ -515,10 +518,10 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       wrapper.find('button').simulate('blur')
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
     })
   })
 
@@ -529,11 +532,11 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       domEvent.keyDown(document, { key: 'Escape' })
       wrapper.update()
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
     })
 
     it('does not close the portal on escape when false', () => {
@@ -542,11 +545,11 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       domEvent.keyDown(document, { key: 'Escape' })
       wrapper.update()
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
     })
   })
 
@@ -557,11 +560,11 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       domEvent.click(document)
       wrapper.update()
-      wrapper.should.not.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(0)
     })
 
     it('does not close on click inside', () => {
@@ -570,11 +573,11 @@ describe('Portal', () => {
           <p id='inner' />
         </Portal>,
       )
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
 
       domEvent.click('#inner')
       wrapper.update()
-      wrapper.should.have.descendants(PortalInner)
+      expect(wrapper.find(PortalInner)).toHaveLength(1)
     })
   })
 
@@ -591,7 +594,7 @@ describe('Portal', () => {
       )
 
       setTimeout(() => {
-        document.activeElement.should.not.equal(document.getElementById('inner'))
+        expect(document.activeElement).not.toBe(document.getElementById('inner'))
         done()
       }, 0)
     })
@@ -601,22 +604,22 @@ describe('Portal', () => {
       document.body.appendChild(input)
 
       input.focus()
-      document.activeElement.should.equal(input)
+      expect(document.activeElement).toBe(input)
 
       wrapperMount(
         <Portal open>
           <p />
         </Portal>,
       )
-      document.activeElement.should.equal(input)
+      expect(document.activeElement).toBe(input)
 
       setTimeout(() => {
-        document.activeElement.should.equal(input)
+        expect(document.activeElement).toBe(input)
 
         wrapper.setProps({ open: false })
         wrapper.unmount()
 
-        document.activeElement.should.equal(input)
+        expect(document.activeElement).toBe(input)
 
         document.body.removeChild(input)
         done()
@@ -628,20 +631,20 @@ describe('Portal', () => {
       document.body.appendChild(input)
 
       input.focus()
-      document.activeElement.should.equal(input)
+      expect(document.activeElement).toBe(input)
 
       wrapperMount(
         <Portal defaultOpen>
           <p />
         </Portal>,
       )
-      document.activeElement.should.equal(input)
+      expect(document.activeElement).toBe(input)
 
       setTimeout(() => {
-        document.activeElement.should.equal(input)
+        expect(document.activeElement).toBe(input)
 
         wrapper.render()
-        document.activeElement.should.equal(input)
+        expect(document.activeElement).toBe(input)
 
         document.body.removeChild(input)
         done()
@@ -651,7 +654,7 @@ describe('Portal', () => {
 
   describe('triggerRef', () => {
     it('maintains ref on the trigger', () => {
-      const triggerRef = sandbox.spy()
+      const triggerRef = jest.fn()
       const mountNode = document.createElement('div')
       document.body.appendChild(mountNode)
 
@@ -663,8 +666,8 @@ describe('Portal', () => {
       )
       const trigger = document.querySelector('#trigger')
 
-      triggerRef.should.have.been.calledOnce()
-      triggerRef.should.have.been.calledWithMatch(trigger)
+      expect(triggerRef).toHaveBeenCalledTimes(1)
+      expect(triggerRef).toHaveBeenCalledWith(trigger)
 
       wrapper.detach()
       document.body.removeChild(mountNode)

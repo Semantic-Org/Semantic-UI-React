@@ -7,19 +7,17 @@ describe('ItemImage', () => {
   common.implementsCreateMethod(ItemImage)
 
   it('renders Image component', () => {
-    shallow(<ItemImage />)
-      .should.have.descendants('Image')
+    expect(shallow(<ItemImage />).find('Image')).toHaveLength(1)
   })
 
   it('is wrapped without ui', () => {
     const wrapper = shallow(<ItemImage />)
 
-    wrapper.should.have.prop('wrapped', true)
-    wrapper.should.have.prop('ui', false)
+    expect(wrapper.prop('wrapped')).toBe(true)
+    expect(wrapper.prop('ui')).toBe(false)
   })
 
   it('has ui with size prop', () => {
-    shallow(<ItemImage size='small' />)
-      .should.have.prop('ui', true)
+    expect(shallow(<ItemImage size='small' />).prop('ui')).toBe(true)
   })
 })

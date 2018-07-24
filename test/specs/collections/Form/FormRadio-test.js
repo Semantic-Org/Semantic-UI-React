@@ -9,9 +9,13 @@ describe('FormRadio', () => {
     ignoredTypingsProps: ['type'],
   })
 
-  it('renders a FormField with a Radio control', () => {
-    shallow(<FormRadio />)
-      .find('FormField')
-      .should.have.prop('control', Radio)
+  describe('as', () => {
+    it('is "FormField" with a Radio control', () => {
+      expect(
+        shallow(<FormRadio />)
+          .find('FormField')
+          .prop('control'),
+      ).toBe(Radio)
+    })
   })
 })

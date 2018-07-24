@@ -3,7 +3,7 @@ import React from 'react'
 
 import Visibility from 'src/behaviors/Visibility'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 let wrapper
 
@@ -117,12 +117,12 @@ describe('Visibility', () => {
   describe('calculations', () => {
     _.forEach(expectations, ({ falsy, name, truthy }) => {
       it(`calculates ${name}`, () => {
-        const onUpdate = sandbox.spy()
+        const onUpdate = jest.fn()
         wrapperMount(<Visibility onUpdate={onUpdate} />)
 
         _.forEach(truthy, ([top, bottom]) => {
           mockScroll(top, bottom)
-          onUpdate.should.have.been.calledWithMatch(null, {
+          expect(onUpdate).toHaveBeenCalledWith(null, {
             calculations: {
               [name]: true,
             },
@@ -131,7 +131,7 @@ describe('Visibility', () => {
 
         _.forEach(falsy, ([top, bottom]) => {
           mockScroll(top, bottom)
-          onUpdate.should.have.been.calledWithMatch(null, {
+          expect(onUpdate).toHaveBeenCalledWith(null, {
             calculations: {
               [name]: false,
             },
@@ -144,19 +144,19 @@ describe('Visibility', () => {
   describe('callbacks', () => {
     _.forEach(_.filter(expectations, 'callbackName'), ({ callbackName, falsy, truthy }) => {
       it(`fires ${callbackName}`, () => {
-        const callback = sandbox.spy()
+        const callback = jest.fn()
         const opts = { [callbackName]: callback }
         wrapperMount(<Visibility {...opts} continuous />)
 
         _.forEach(falsy, ([top, bottom]) => mockScroll(top, bottom))
-        callback.should.not.have.been.called()
+        expect(callback).not.toHaveBeenCalled()
 
         _.forEach(truthy, ([top, bottom]) => mockScroll(top, bottom))
-        callback.should.have.callCount(truthy.length)
+        expect(callback).have.callCount(truthy.length)
       })
 
       it(`fires ${callbackName} once`, () => {
-        const callback = sandbox.spy()
+        const callback = jest.fn()
         const falsyCond = _.first(falsy)
         const truthyCond = _.first(truthy)
         const opts = { [callbackName]: callback }
@@ -169,11 +169,11 @@ describe('Visibility', () => {
         mockScroll(...falsyCond)
         mockScroll(...truthyCond)
 
-        callback.should.have.been.calledOnce()
+        expect(callback).have.been.calledOnce()
       })
 
       it(`fires ${callbackName} when condition changes`, () => {
-        const callback = sandbox.spy()
+        const callback = jest.fn()
         const falsyCond = _.first(falsy)
         const truthyCond = _.first(truthy)
         const opts = { [callbackName]: callback }
@@ -184,7 +184,7 @@ describe('Visibility', () => {
         mockScroll(...truthyCond)
         mockScroll(...truthyCond)
 
-        callback.should.have.been.calledTwice()
+        expect(callback).have.been.calledTwice()
       })
     })
 
@@ -194,46 +194,46 @@ describe('Visibility', () => {
           const falsyCond = _.first(falsy)
           const truthyCond = _.first(truthy)
 
-          const forward = sandbox.spy()
-          const reverse = sandbox.spy()
+          const forward = jest.fn()
+          const reverse = jest.fn()
           const opts = { [callbackName]: forward, [`${callbackName}Reverse`]: reverse }
 
           wrapperMount(<Visibility {...opts} />)
 
           mockScroll(...truthyCond)
-          forward.should.have.been.calledOnce()
-          reverse.should.have.not.been.called()
+          expect(forward).have.been.calledOnce()
+          expect(reverse).have.not.been.called()
 
           mockScroll(...falsyCond)
-          forward.should.have.been.calledOnce()
-          reverse.should.have.been.calledOnce()
+          expect(forward).have.been.calledOnce()
+          expect(reverse).have.been.calledOnce()
         })
 
         it(`fires ${callbackName}Reverse when condition changes`, () => {
           const falsyCond = _.first(falsy)
           const truthyCond = _.first(truthy)
 
-          const forward = sandbox.spy()
-          const reverse = sandbox.spy()
+          const forward = jest.fn()
+          const reverse = jest.fn()
           const opts = { [callbackName]: forward, [`${callbackName}Reverse`]: reverse }
 
           wrapperMount(<Visibility {...opts} once={false} />)
 
           mockScroll(...truthyCond)
-          forward.should.have.been.calledOnce()
-          reverse.should.have.not.been.called()
+          expect(forward).have.been.calledOnce()
+          expect(reverse).have.not.been.called()
 
           mockScroll(...falsyCond)
-          forward.should.have.been.calledOnce()
-          reverse.should.have.been.calledOnce()
+          expect(forward).have.been.calledOnce()
+          expect(reverse).have.been.calledOnce()
 
           mockScroll(...truthyCond)
-          forward.should.have.been.calledTwice()
-          reverse.should.have.been.calledOnce()
+          expect(forward).have.been.calledTwice()
+          expect(reverse).have.been.calledOnce()
 
           mockScroll(...falsyCond)
-          forward.should.have.been.calledTwice()
-          reverse.should.have.been.calledTwice()
+          expect(forward).have.been.calledTwice()
+          expect(reverse).have.been.calledTwice()
         })
       })
     })
@@ -250,24 +250,24 @@ describe('Visibility', () => {
       })
 
       it('returns up when scrolling down', () => {
-        const onUpdate = sandbox.spy()
+        const onUpdate = jest.fn()
         mount(<Visibility onUpdate={onUpdate} />)
 
         window.pageYOffset = 5
         domEvent.scroll(window)
-        onUpdate.should.have.been.calledWithMatch(null, {
+        expect(onUpdate).toHaveBeenCalledWith(null, {
           calculations: { direction: 'down' },
         })
       })
 
       it('returns up when scrolling up', () => {
         window.pageYOffset = 100
-        const onUpdate = sandbox.spy()
+        const onUpdate = jest.fn()
         mount(<Visibility onUpdate={onUpdate} />)
 
         window.pageYOffset = 50
         domEvent.scroll(window)
-        onUpdate.should.have.been.calledWithMatch(null, {
+        expect(onUpdate).toHaveBeenCalledWith(null, {
           calculations: { direction: 'up' },
         })
       })
@@ -276,79 +276,79 @@ describe('Visibility', () => {
 
   describe('context', () => {
     it('should use window as default scroll context', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       mount(<Visibility onUpdate={onUpdate} />)
 
       domEvent.scroll(window)
-      onUpdate.should.have.been.called()
+      expect(onUpdate).have.been.called()
     })
 
     it('should set a scroll context', () => {
       const div = document.createElement('div')
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       mount(<Visibility context={div} onUpdate={onUpdate} />)
 
       domEvent.scroll(window)
-      onUpdate.should.not.have.been.called()
+      expect(onUpdate).not.toHaveBeenCalled()
 
       domEvent.scroll(div)
-      onUpdate.should.have.been.called()
+      expect(onUpdate).have.been.called()
     })
 
     it('should not call onUpdate when context is null', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       mount(<Visibility context={null} onUpdate={onUpdate} />)
 
       domEvent.scroll(document)
-      onUpdate.should.not.have.been.called()
+      expect(onUpdate).not.toHaveBeenCalled()
     })
 
     it('should call onUpdate when context changes', () => {
       const div = document.createElement('div')
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       const renderedComponent = mount(<Visibility context={null} onUpdate={onUpdate} />)
       renderedComponent.setProps({ context: div })
 
       domEvent.scroll(div)
-      onUpdate.should.have.been.called()
+      expect(onUpdate).have.been.called()
     })
 
     it('should not call onUpdate when context changes and component is unmounted', () => {
       const div = document.createElement('div')
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       const renderedComponent = mount(<Visibility context={null} onUpdate={onUpdate} />)
       renderedComponent.setProps({ context: div })
       renderedComponent.unmount()
 
       domEvent.scroll(div)
-      onUpdate.should.not.have.been.called()
+      expect(onUpdate).not.toHaveBeenCalled()
 
       domEvent.scroll(document)
-      onUpdate.should.not.have.been.called()
+      expect(onUpdate).not.toHaveBeenCalled()
     })
   })
 
   describe('componentWillUnmount', () => {
     it('will cancel requestAnimationFrame', () => {
-      const cancelAnimationFrame = sandbox.spy(window, 'cancelAnimationFrame')
+      const cancelAnimationFrame = jest.fn(window, 'cancelAnimationFrame')
       wrapperMount(<Visibility />)
 
       mockScroll(0, 0)
       wrapper.unmount()
 
-      cancelAnimationFrame.should.have.been.calledOnce()
+      expect(cancelAnimationFrame).have.been.calledOnce()
     })
   })
 
   describe('fireOnMount', () => {
     it('fires callbacks after mount', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
 
       mockScroll(0, 0)
       wrapperMount(<Visibility fireOnMount onUpdate={onUpdate} />)
 
-      onUpdate.should.have.been.calledOnce()
-      onUpdate.should.have.been.calledWithMatch(null, {
+      expect(onUpdate).have.been.calledOnce()
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: { height: 0, width: 0 },
         fireOnMount: true,
       })
@@ -358,7 +358,7 @@ describe('Visibility', () => {
   describe('offset', () => {
     _.forEach(_.filter(expectations, 'callbackName'), ({ callbackName, falsy, name, truthy }) => {
       it(`fires ${name} when offset is number`, () => {
-        const callback = sandbox.spy()
+        const callback = jest.fn()
         const opts = { [callbackName]: callback }
 
         const offset = 10
@@ -369,11 +369,11 @@ describe('Visibility', () => {
         mockScroll(...truthyCond)
         mockScroll(...falsyCond)
 
-        callback.should.have.been.calledOnce()
+        expect(callback).have.been.calledOnce()
       })
 
       it(`fires ${name} when offset is array`, () => {
-        const callback = sandbox.spy()
+        const callback = jest.fn()
         const opts = { [callbackName]: callback }
 
         const bottomOffset = 20
@@ -385,7 +385,7 @@ describe('Visibility', () => {
         mockScroll(...truthyCond)
         mockScroll(...falsyCond)
 
-        callback.should.have.been.calledOnce()
+        expect(callback).have.been.calledOnce()
       })
     })
   })
@@ -395,65 +395,65 @@ describe('Visibility', () => {
       wrapperMount(<Visibility />)
 
       wrapper.setProps({ once: false })
-      wrapper.instance().firedCallbacks.should.be.empty()
+      expect(wrapper.instance().firedCallbacks).toHaveLength(0)
     })
   })
 
   describe('onPassed', () => {
     it('fires callback when pixels passed', () => {
       const onPassed = {
-        20: sandbox.spy(),
-        '20%': sandbox.spy(),
-        50: sandbox.spy(),
-        '50%': sandbox.spy(),
-        100: sandbox.spy(),
-        '100%': sandbox.spy(),
+        20: jest.fn(),
+        '20%': jest.fn(),
+        50: jest.fn(),
+        '50%': jest.fn(),
+        100: jest.fn(),
+        '100%': jest.fn(),
       }
       wrapperMount(<Visibility continuous onPassed={onPassed} />)
 
       mockScroll(100, 200)
-      onPassed[20].should.not.have.been.called('20px')
+      expect(onPassed[20]).not.have.been.called('20px')
 
       mockScroll(-20, 180)
-      onPassed[20].should.have.been.called('20px')
-      onPassed['20%'].should.not.have.been.called('20%')
+      expect(onPassed[20]).have.been.called('20px')
+      expect(onPassed['20%']).not.have.been.called('20%')
 
       mockScroll(-40, 160)
-      onPassed['20%'].should.have.been.called('20%')
-      onPassed[50].should.not.have.been.called('50px')
+      expect(onPassed['20%']).have.been.called('20%')
+      expect(onPassed[50]).not.have.been.called('50px')
 
       mockScroll(-50, 150)
-      onPassed[50].should.have.been.called('50px')
-      onPassed['50%'].should.not.have.been.called('50%')
-      onPassed[100].should.not.have.been.called('100px')
+      expect(onPassed[50]).have.been.called('50px')
+      expect(onPassed['50%']).not.have.been.called('50%')
+      expect(onPassed[100]).not.have.been.called('100px')
 
       mockScroll(-100, 100)
-      onPassed['50%'].should.have.been.called('50%')
-      onPassed[100].should.have.been.called('100px')
-      onPassed['100%'].should.not.have.been.called('100%')
+      expect(onPassed['50%']).have.been.called('50%')
+      expect(onPassed[100]).have.been.called('100px')
+      expect(onPassed['100%']).not.have.been.called('100%')
 
       mockScroll(-200, 0)
-      onPassed['100%'].should.have.been.called('100%')
+      expect(onPassed['100%']).have.been.called('100%')
     })
   })
 
   describe('onUpdate', () => {
     it('fires when scrolling', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 0)
       mockScroll(0, 0)
 
-      onUpdate.should.have.been.calledTwice()
+      expect(onUpdate).have.been.calledTwice()
     })
 
     it('fires when window resized', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       domEvent.resize(window)
-      onUpdate.should.have.been.calledOnce()
+      expect(onUpdate).have.been.calledOnce()
     })
 
     it('passes calculations to onUpdate', () => {
@@ -463,28 +463,30 @@ describe('Visibility', () => {
       wrapperMount(<Visibility onUpdate={onUpdate} />)
       mockScroll(0, 0)
 
-      calculations.should.contain.all.keys([
-        'bottomPassed',
-        'bottomVisible',
-        'fits',
-        'height',
-        'offScreen',
-        'onScreen',
-        'passing',
-        'percentagePassed',
-        'pixelsPassed',
-        'topPassed',
-        'topVisible',
-        'width',
-      ])
+      expect(calculations).toEqual(
+        expect.arrayContaining([
+          'bottomPassed',
+          'bottomVisible',
+          'fits',
+          'height',
+          'offScreen',
+          'onScreen',
+          'passing',
+          'percentagePassed',
+          'pixelsPassed',
+          'topPassed',
+          'topVisible',
+          'width',
+        ]),
+      )
     })
 
     it('updates width and height after scroll', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 100)
-      onUpdate.should.have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           height: 100,
           width: window.innerWidth,
@@ -492,7 +494,7 @@ describe('Visibility', () => {
       })
 
       mockScroll(50, 3000)
-      onUpdate.should.have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           height: 2950,
           width: window.innerWidth,
@@ -501,11 +503,11 @@ describe('Visibility', () => {
     })
 
     it('shows passed pixels and percentage', () => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 100)
-      onUpdate.should.have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           percentagePassed: 0,
           pixelsPassed: 0,
@@ -513,7 +515,7 @@ describe('Visibility', () => {
       })
 
       mockScroll(-1, 99)
-      onUpdate.should.have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           percentagePassed: 0.01,
           pixelsPassed: 1,
@@ -521,7 +523,7 @@ describe('Visibility', () => {
       })
 
       mockScroll(-2, 198)
-      onUpdate.should.have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           percentagePassed: 0.01,
           pixelsPassed: 2,
@@ -529,7 +531,7 @@ describe('Visibility', () => {
       })
 
       mockScroll(-10, 0)
-      onUpdate.should.have.been.calledWithMatch(null, {
+      expect(onUpdate).toHaveBeenCalledWith(null, {
         calculations: {
           percentagePassed: 1,
           pixelsPassed: 10,
@@ -545,15 +547,15 @@ describe('Visibility', () => {
     })
 
     it('defaults to "events"', () => {
-      wrapperMount(<Visibility />).should.have.prop('updateOn', 'events')
+      expect(wrapperMount(<Visibility />).prop('updateOn')).toBe('events')
     })
 
     it('fires onUpdate after mount when updateOn="repaint"', (done) => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} updateOn='repaint' />)
 
       setTimeout(() => {
-        onUpdate.should.have.been.calledOnce()
+        expect(onUpdate).have.been.calledOnce()
         wrapper.unmount()
 
         done()
@@ -561,12 +563,12 @@ describe('Visibility', () => {
     })
 
     it('fires onUpdate after change to updateOn="repaint"', (done) => {
-      const onUpdate = sandbox.spy()
+      const onUpdate = jest.fn()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       wrapper.setProps({ updateOn: 'repaint' })
       setTimeout(() => {
-        onUpdate.should.have.been.calledOnce()
+        expect(onUpdate).have.been.calledOnce()
         wrapper.unmount()
 
         done()

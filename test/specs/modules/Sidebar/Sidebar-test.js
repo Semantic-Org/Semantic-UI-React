@@ -2,7 +2,7 @@ import React from 'react'
 
 import Sidebar from 'src/modules/Sidebar/Sidebar'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 const nestingLevel = 1
 
@@ -28,37 +28,40 @@ describe('Sidebar', () => {
 
   describe('onHide', () => {
     it('is called when the "visible" prop changes to "false"', () => {
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
       const wrapper = mount(<Sidebar onHide={onHide} visible />)
-      onHide.should.have.not.been.called()
+      expect(onHide).not.toHaveBeenCalled()
 
       wrapper.setProps({ visible: false })
-      onHide.should.have.been.calledOnce()
-      onHide.should.have.been.calledWithMatch(null, { visible: false })
+      expect(onHide).toHaveBeenCalledTimes(1)
+      expect(onHide).toHaveBeenCalledWith(null, expect.objectContaining({ visible: false }))
     })
 
     it('is called when a click on the document was done', () => {
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
       mount(<Sidebar onHide={onHide} visible />)
-      onHide.should.have.not.been.called()
+      expect(onHide).not.toHaveBeenCalled()
 
       domEvent.click(document)
-      onHide.should.have.been.calledOnce()
-      onHide.should.have.been.calledWithMatch({}, { visible: false })
+      expect(onHide).toHaveBeenCalledTimes(1)
+      expect(onHide).toHaveBeenCalledWith(
+        expect.any(Object),
+        expect.objectContaining({ visible: false }),
+      )
     })
 
     it('is called when a click on the document was done only once', () => {
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
       const wrapper = mount(<Sidebar onHide={onHide} visible />)
 
       domEvent.click(document)
       wrapper.setProps({ visible: false })
-      onHide.should.have.been.calledOnce()
+      expect(onHide).toHaveBeenCalledTimes(1)
     })
 
     it('is not called when a click was done inside the component', () => {
       const mountNode = document.createElement('div')
-      const onHide = sandbox.spy()
+      const onHide = jest.fn()
 
       document.body.appendChild(mountNode)
       const wrapper = mount(
@@ -69,7 +72,7 @@ describe('Sidebar', () => {
       )
 
       domEvent.click('div#child')
-      onHide.should.have.not.been.called()
+      expect(onHide).not.toHaveBeenCalled()
 
       wrapper.detach()
       document.body.removeChild(mountNode)
@@ -78,15 +81,18 @@ describe('Sidebar', () => {
 
   describe('onHidden', () => {
     it('is called when the "visible" prop was changed to "false"', (done) => {
-      const onHidden = sandbox.spy()
+      const onHidden = jest.fn()
       const wrapper = mount(<Sidebar duration={0} onHidden={onHidden} visible />)
 
-      onHidden.should.have.not.been.called()
+      expect(onHidden).not.toHaveBeenCalled()
       wrapper.setProps({ visible: false })
 
       setTimeout(() => {
-        onHidden.should.have.been.calledOnce()
-        onHidden.should.have.been.calledWithMatch(null, { duration: 0, visible: false })
+        expect(onHidden).toHaveBeenCalledTimes(1)
+        expect(onHidden).toHaveBeenCalledWith(
+          null,
+          expect.objectContaining({ duration: 0, visible: false }),
+        )
 
         done()
       }, 0)
@@ -95,15 +101,18 @@ describe('Sidebar', () => {
 
   describe('onShow', () => {
     it('is called when the "visible" prop was changed to "true"', (done) => {
-      const onShow = sandbox.spy()
+      const onShow = jest.fn()
       const wrapper = mount(<Sidebar duration={0} onShow={onShow} />)
 
-      onShow.should.have.not.been.called()
+      expect(onShow).not.toHaveBeenCalled()
       wrapper.setProps({ visible: true })
 
       setTimeout(() => {
-        onShow.should.have.been.calledOnce()
-        onShow.should.have.been.calledWithMatch(null, { duration: 0, visible: true })
+        expect(onShow).toHaveBeenCalledTimes(1)
+        expect(onShow).toHaveBeenCalledWith(
+          null,
+          expect.objectContaining({ duration: 0, visible: true }),
+        )
 
         done()
       }, 0)
@@ -112,13 +121,13 @@ describe('Sidebar', () => {
 
   describe('onVisible', () => {
     it('is called when the "visible" prop changes to "true"', () => {
-      const onVisible = sandbox.spy()
+      const onVisible = jest.fn()
       const wrapper = mount(<Sidebar onVisible={onVisible} />)
-      onVisible.should.have.not.been.called()
+      expect(onVisible).not.toHaveBeenCalled()
 
       wrapper.setProps({ visible: true })
-      onVisible.should.have.been.calledOnce()
-      onVisible.should.have.been.calledWithMatch(null, { visible: true })
+      expect(onVisible).toHaveBeenCalledTimes(1)
+      expect(onVisible).toHaveBeenCalledWith(null, expect.objectContaining({ visible: true }))
     })
   })
 })

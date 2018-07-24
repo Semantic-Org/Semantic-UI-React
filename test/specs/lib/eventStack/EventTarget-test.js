@@ -1,5 +1,5 @@
 import EventTarget from 'src/lib/eventStack/EventTarget'
-import { domEvent, sandbox } from 'test/utils'
+import { domEvent } from 'test/utils'
 
 describe('EventTarget', () => {
   let target
@@ -14,45 +14,45 @@ describe('EventTarget', () => {
 
   describe('addHandlers', () => {
     it('adds handlers', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       target.addHandlers('default', 'click', [handler1])
       target.addHandlers('default', 'click', [handler2])
       domEvent.click(document)
 
-      handler1.should.have.been.calledOnce()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(1)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
 
     it('handles multiple pools', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       target.addHandlers('default', 'click', [handler1])
       target.addHandlers('another', 'click', [handler2])
       domEvent.click(document)
 
-      handler1.should.have.been.calledOnce()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(1)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
   })
 
   describe('hasHandlers', () => {
     it('is "false" when has not handlers', () => {
-      target.hasHandlers().should.be.false()
+      expect(target.hasHandlers()).toBe(false)
     })
 
     it('is "true" when has handlers', () => {
       target.addHandlers('default', 'click', [() => {}])
-      target.hasHandlers().should.be.true()
+      expect(target.hasHandlers()).toBe(true)
     })
   })
 
   describe('removeHandlers', () => {
     it('removes handlers', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       target.addHandlers('default', 'click', [handler1, handler2])
       domEvent.click(document)
@@ -60,13 +60,13 @@ describe('EventTarget', () => {
       target.removeHandlers('default', 'click', [handler2])
       domEvent.click(document)
 
-      handler1.should.have.been.calledTwice()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(2)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
 
     it('removes handlers with multiple pools', () => {
-      const handler1 = sandbox.spy()
-      const handler2 = sandbox.spy()
+      const handler1 = jest.fn()
+      const handler2 = jest.fn()
 
       target.addHandlers('default', 'click', [handler1])
       target.addHandlers('another', 'click', [handler2])
@@ -75,8 +75,8 @@ describe('EventTarget', () => {
       target.removeHandlers('another', 'click', [handler2])
       domEvent.click(document)
 
-      handler1.should.have.been.calledTwice()
-      handler2.should.have.been.calledOnce()
+      expect(handler1).toHaveBeenCalledTimes(2)
+      expect(handler2).toHaveBeenCalledTimes(1)
     })
   })
 })

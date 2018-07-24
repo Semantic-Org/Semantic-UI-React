@@ -8,13 +8,7 @@ import ModalActions from 'src/modules/Modal/ModalActions'
 import ModalDescription from 'src/modules/Modal/ModalDescription'
 import Portal from 'src/addons/Portal/Portal'
 
-import {
-  assertNodeContains,
-  assertBodyClasses,
-  assertBodyContains,
-  domEvent,
-  sandbox,
-} from 'test/utils'
+import { assertNodeContains, assertBodyClasses, assertBodyContains, domEvent } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 import isBrowser from 'src/lib/isBrowser'
 
@@ -62,9 +56,7 @@ describe('Modal', () => {
   // The Modal is wrapped in a Portal, so we manually test a few things here.
 
   it('renders a Portal', () => {
-    wrapperShallow(<Modal open />)
-      .type()
-      .should.equal(Portal)
+    expect(wrapperShallow(<Modal open />).type()).toBe(Portal)
   })
 
   it('renders to the document body', () => {
@@ -75,17 +67,14 @@ describe('Modal', () => {
   it('renders child text', () => {
     wrapperMount(<Modal open>child text</Modal>)
 
-    document.querySelector('.ui.modal').innerText.should.equal('child text')
+    expect(document.querySelector('.ui.modal').innerText).toBe('child text')
   })
 
   it('renders child components', () => {
     const child = <div data-child />
     wrapperMount(<Modal open>{child}</Modal>)
 
-    document
-      .querySelector('.ui.modal')
-      .querySelector('[data-child]')
-      .should.not.equal(null, 'Modal did not render the child component.')
+    expect(document.querySelector('.ui.modal').querySelector('[data-child]')).not.toBe(null)
   })
 
   it("spreads the user's style prop on the Modal", () => {
@@ -94,8 +83,8 @@ describe('Modal', () => {
     wrapperMount(<Modal open style={style} />)
     const element = document.querySelector('.ui.modal')
 
-    element.style.should.have.property('marginTop', '1em')
-    element.style.should.have.property('top', '0px')
+    expect(element.style).toHaveProperty('marginTop', '1em')
+    expect(element.style).toHaveProperty('top', '0px')
   })
 
   describe('actions', () => {
@@ -108,26 +97,26 @@ describe('Modal', () => {
     })
 
     it('calls shorthand onActionClick callback', () => {
-      const onActionClick = sandbox.spy()
+      const onActionClick = jest.fn()
       const modalActions = { onActionClick, actions: [{ key: 'ok', content: 'OK' }] }
       wrapperMount(<Modal actions={modalActions} defaultOpen />)
 
-      onActionClick.should.not.have.been.called()
+      expect(onActionClick).not.toHaveBeenCalled()
       domEvent.click('.ui.modal .actions .button')
-      onActionClick.should.have.been.calledOnce()
+      expect(onActionClick).toHaveBeenCalledTimes(1)
     })
   })
 
   describe('onActionClick', () => {
     it('is called when an action is clicked', () => {
-      const onActionClick = sandbox.spy()
+      const onActionClick = jest.fn()
       const props = { actions: ['OK'], defaultOpen: true, onActionClick }
 
       wrapperMount(<Modal {...props} />)
       domEvent.click('.ui.modal .actions .button')
 
-      onActionClick.should.have.been.calledOnce()
-      onActionClick.should.have.been.calledWithMatch({}, props)
+      expect(onActionClick).toHaveBeenCalledTimes(1)
+      expect(onActionClick).toHaveBeenCalledWith({}, props)
     })
   })
 
@@ -138,25 +127,22 @@ describe('Modal', () => {
     })
 
     it('is passed to Portal open', () => {
-      shallow(<Modal open />)
-        .find('Portal')
-        .should.have.prop('open', true)
+      expect(shallow(<Modal open />).find('Portal').prop('open')).toBe(true)
 
-      shallow(<Modal open={false} />)
-        .find('Portal')
-        .should.have.prop('open', false)
+      expect(shallow(<Modal open={false} />).find('Portal').prop('open')).toBe(false)
     })
 
     it('is not passed to Modal', () => {
-      shallow(<Modal open />)
-        .find('Portal')
-        .children()
-        .should.not.have.prop('open')
+      expect(
+        shallow(<Modal open />)
+          .find('Portal')
+          .children()
+      .prop('open')).toBeUndefined()
 
-      shallow(<Modal open={false} />)
-        .find('Portal')
-        .children()
-        .should.not.have.prop('open')
+      expect(
+        shallow(<Modal open={false} />)
+          .find('Portal')
+          .children().prop('open')).toBeUndefined()
     })
 
     it('does not show the modal when false', () => {
@@ -223,7 +209,7 @@ describe('Modal', () => {
   describe('dimmer', () => {
     describe('defaults', () => {
       it('is set to true by default', () => {
-        Modal.defaultProps.dimmer.should.equal(true)
+        expect(Modal.defaultProps.dimmer).toBe(true)
       })
 
       it('is present by default', () => {
@@ -286,90 +272,90 @@ describe('Modal', () => {
 
   describe('onOpen', () => {
     it('is called on trigger click', () => {
-      const spy = sandbox.spy()
-      wrapperMount(<Modal onOpen={spy} trigger={<div id='trigger' />} />)
+      const onOpen = jest.fn()
+      wrapperMount(<Modal onOpen={onOpen} trigger={<div id='trigger' />} />)
 
       wrapper.find('#trigger').simulate('click')
-      spy.should.have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
 
     it('is not called on body click', () => {
-      const spy = sandbox.spy()
-      wrapperMount(<Modal onOpen={spy} />)
+      const onOpen = jest.fn()
+      wrapperMount(<Modal onOpen={onOpen} />)
 
       domEvent.click(document.body)
-      spy.should.not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
   })
 
   describe('onClose', () => {
-    let spy
+    let onOpen
 
     beforeEach(() => {
-      spy = sandbox.spy()
+      onOpen = jest.fn()
     })
 
     it('is called on dimmer click', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       domEvent.click('.ui.dimmer')
-      spy.should.have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
 
     it('is called on click outside of the modal', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       domEvent.click(document.querySelector('.ui.modal').parentNode)
-      spy.should.have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
 
     it('is not called on click inside of the modal', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       domEvent.click(document.querySelector('.ui.modal'))
-      spy.should.not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is not called on body click', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       domEvent.click(document.body)
-      spy.should.not.have.been.calledOnce()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is called when pressing escape', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       domEvent.keyDown(document, { key: 'Escape' })
-      spy.should.have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
 
     it('is not called when the open prop changes to false', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       wrapper.setProps({ open: false })
-      spy.should.not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is not called when open changes to false programmatically', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen />)
 
       wrapper.setProps({ open: false })
-      spy.should.not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is not called on dimmer click when closeOnDimmerClick is false', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen closeOnDimmerClick={false} />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen closeOnDimmerClick={false} />)
 
       domEvent.click('.ui.dimmer')
-      spy.should.not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
 
     it('is not called on body click when closeOnDocumentClick is false', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen closeOnDocumentClick={false} />)
+      wrapperMount(<Modal onClose={onOpen} defaultOpen closeOnDocumentClick={false} />)
 
       domEvent.click(document.body)
-      spy.should.not.have.been.called()
+      expect(onOpen).not.toHaveBeenCalled()
     })
   })
 
@@ -401,7 +387,7 @@ describe('Modal', () => {
 
   describe('closeOnDocumentClick', () => {
     it('is false by default', () => {
-      Modal.defaultProps.closeOnDocumentClick.should.equal(false)
+      expect(Modal.defaultProps.closeOnDocumentClick).toBe(false)
     })
     it('closes the modal on document click when true', () => {
       wrapperMount(<Modal defaultOpen closeOnDocumentClick />)
@@ -458,15 +444,15 @@ describe('Modal', () => {
     })
 
     it('triggers onClose when clicked', () => {
-      const spy = sandbox.spy()
+      const onOpen = jest.fn()
 
       wrapperMount(
-        <Modal onClose={spy} open closeIcon='bullseye'>
+        <Modal onClose={onOpen} open closeIcon='bullseye'>
           foo
         </Modal>,
       )
       domEvent.click('.ui.modal .icon.bullseye')
-      spy.should.have.been.calledOnce()
+      expect(onOpen).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -477,7 +463,7 @@ describe('Modal', () => {
       document.body.classList.remove('scrolling')
     })
 
-    after(() => {
+    afterAll(() => {
       window.innerHeight = innerHeight
     })
 
@@ -550,22 +536,22 @@ describe('Modal', () => {
   })
 
   describe('server-side', () => {
-    before(() => {
+    beforeAll(() => {
       isBrowser.override = false
     })
 
-    after(() => {
+    afterAll(() => {
       isBrowser.override = null
     })
 
     it('renders empty content when trigger is not a valid component', () => {
       const markup = ReactDOMServer.renderToStaticMarkup(<Modal />)
-      markup.should.equal('')
+      expect(markup).toBe('')
     })
 
     it('renders a valid trigger component', () => {
       const markup = ReactDOMServer.renderToStaticMarkup(<Modal trigger={<div id='trigger' />} />)
-      markup.should.equal('<div id="trigger"></div>')
+      expect(markup).toBe('<div id="trigger"></div>')
     })
   })
 })

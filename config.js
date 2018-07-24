@@ -5,7 +5,6 @@ import path from 'path'
 // ------------------------------------
 const env = process.env.NODE_ENV || 'development'
 const __DEV__ = env === 'development'
-const __TEST__ = env === 'test'
 const __PROD__ = env === 'production'
 
 const envConfig = {
@@ -51,18 +50,17 @@ const config = {
   // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
-  compiler_devtool: (__DEV__ || __TEST__) && 'cheap-source-map',
+  compiler_devtool: __DEV__ && 'cheap-source-map',
   compiler_globals: {
     'process.env': {
       NODE_ENV: JSON.stringify(env),
     },
     __DEV__,
     __PATH_SEP__: JSON.stringify(path.sep),
-    __TEST__,
     __PROD__,
   },
   compiler_hash_type: __PROD__ ? 'chunkhash' : 'hash',
-  compiler_fail_on_warning: __TEST__ || __PROD__,
+  compiler_fail_on_warning: __PROD__,
   compiler_output_path: paths.base(envConfig.dir_docs_dist),
   compiler_public_path: '/',
   compiler_stats: {

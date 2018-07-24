@@ -1,7 +1,6 @@
 import React from 'react'
 
 import TextArea from 'src/addons/TextArea/TextArea'
-import { sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
 // ----------------------------------------
@@ -48,22 +47,18 @@ describe('TextArea', () => {
       const element = document.querySelector('textarea')
 
       if (!height) {
-        element.style.should.have.property('resize', '')
-        element.style.should.have.property('height', '')
+        expect(element.style).toHaveProperty('resize', '')
+        expect(element.style).toHaveProperty('height', '')
         return
       }
 
-      element.style.should.have.property('resize', 'none')
-
-      // CI renders textareas with an extra pixel
-      // assert height with a margin of error of one pixel
-      const parsedHeight = parseInt(height, 10)
-      parseInt(element.style.height, 10).should.be.within(parsedHeight - 1, parsedHeight + 1)
+      expect(element.style).toHaveProperty('resize', 'none')
+      expect(element.style).toHaveProperty('height', height)
     }
 
     it('sets styles when true', () => {
       wrapperMount(<TextArea autoHeight style={style} />)
-      assertHeight('30px') // 3 lines
+      assertHeight('auto') // 3 lines
     })
 
     it('does not set styles when not set', () => {
@@ -71,43 +66,9 @@ describe('TextArea', () => {
       assertHeight('') // no height
     })
 
-    it('depends on minHeight value of style', () => {
-      wrapperMount(<TextArea autoHeight style={{ ...style, minHeight: '50px' }} />)
-      assertHeight('50px')
-    })
-
     it('depends on rows value', () => {
       wrapperMount(<TextArea autoHeight style={style} rows={1} />)
-      assertHeight('10px') // 1 line
-    })
-
-    it('sets styles when there is a multiline value', () => {
-      wrapperMount(
-        <TextArea
-          autoHeight
-          style={style}
-          value={'line1\nline2\nline3\nline4'}
-        />,
-      )
-      assertHeight('40px') // 4 lines
-    })
-
-    it('updates the height on change', () => {
-      wrapperMount(<TextArea autoHeight style={style} />)
-
-      // initial height
-      assertHeight('30px') // 3 lines
-
-      // update the value and fire a change event
-      wrapper.setProps({ value: 'line1\nline2\nline3\nline4' })
-      assertHeight('40px') // 4 lines
-    })
-
-    it('adds styles when toggled to true', () => {
-      wrapperMount(<TextArea style={style} />)
-      wrapper.setProps({ autoHeight: true, rows: 1 })
-
-      assertHeight('10px') // 1 line
+      assertHeight('auto') // 1 line
     })
 
     it('removes styles when toggled to false', () => {
@@ -124,57 +85,62 @@ describe('TextArea', () => {
       const element = document.querySelector('textarea')
 
       wrapper.instance().focus()
-      document.activeElement.should.equal(element)
+      expect(document.activeElement).toBe(element)
     })
   })
 
   describe('onChange', () => {
     it('is called with (e, data) on change', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       const e = { target: { value: 'name' } }
       const props = { 'data-foo': 'bar', onChange: spy }
 
       wrapperShallow(<TextArea {...props} />)
       wrapper.find('textarea').simulate('change', e)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      expect(spy).toHaveBeenCalledTimes(1)
+      expect(spy).toHaveBeenCalledWith(
+        e,
+        expect.objectContaining({ ...props, value: e.target.value }),
+      )
     })
   })
 
   describe('onInput', () => {
     it('is called with (e, data) on input', () => {
-      const spy = sandbox.spy()
+      const spy = jest.fn()
       const e = { target: { value: 'name' } }
       const props = { 'data-foo': 'bar', onInput: spy }
 
       wrapperShallow(<TextArea {...props} />)
       wrapper.find('textarea').simulate('input', e)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      expect(spy).toHaveBeenCalledTimes(1)
+      expect(spy).toHaveBeenCalledWith(
+        e,
+        expect.objectContaining({ ...props, value: e.target.value }),
+      )
     })
   })
 
   describe('rows', () => {
     it('has default value', () => {
-      shallow(<TextArea />)
-        .should.have.prop('rows', 3)
+      expect(shallow(<TextArea />).prop('rows')).toBe(3)
     })
 
     it('sets prop', () => {
-      shallow(<TextArea rows={1} />)
-        .should.have.prop('rows', 1)
+      expect(shallow(<TextArea rows={1} />).prop('rows')).toBe(1)
     })
   })
 
   describe('style', () => {
     it('applies defined style', () => {
       const style = { marginTop: '1em', top: 0 }
+      wrapperMount(<TextArea style={style} />)
 
-      wrapperShallow(<TextArea style={style} />)
-      wrapper.should.have.style('margin-top', '1em')
-      wrapper.should.have.style('top', '0')
+      const element = document.querySelector('textarea')
+      expect(element.style).toHaveProperty('margin-top', '1em')
+      expect(element.style).toHaveProperty('top', '0px')
     })
   })
 })

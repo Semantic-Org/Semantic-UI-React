@@ -13,7 +13,7 @@ describe('MountNode', () => {
       const node = document.createElement('div')
       shallow(<MountNode className='foo' node={node} />)
 
-      node.classList.contains('foo').should.be.equal(true)
+      expect(node.classList.contains('foo')).toBe(true)
     })
 
     it('will update className on specified node', () => {
@@ -21,18 +21,18 @@ describe('MountNode', () => {
       const wrapper = mount(<MountNode className='foo' node={node} />)
 
       wrapper.setProps({ className: 'bar' })
-      node.classList.contains('foo').should.be.equal(false)
-      node.classList.contains('bar').should.be.equal(true)
+      expect(node.classList.contains('foo')).toBe(false)
+      expect(node.classList.contains('bar')).toBe(true)
     })
 
     it('will remove className on specified node', () => {
       const node = document.createElement('div')
       const wrapper = mount(<MountNode className='foo' node={node} />)
 
-      node.classList.contains('foo').should.be.equal(true)
+      expect(node.classList.contains('foo')).toBe(true)
 
       wrapper.unmount()
-      node.classList.contains('foo').should.be.equal(false)
+      expect(node.classList.contains('foo')).toBe(false)
     })
   })
 
@@ -41,14 +41,14 @@ describe('MountNode', () => {
       const wrapper = shallow(<MountNode className='foo' />)
       const shouldUpdate = wrapper.instance().shouldComponentUpdate({ className: 'foo' })
 
-      shouldUpdate.should.be.equal(false)
+      expect(shouldUpdate).toBe(false)
     })
 
     it('will rerender when nextClassName is another', () => {
       const wrapper = shallow(<MountNode className='foo' />)
       const shouldUpdate = wrapper.instance().shouldComponentUpdate({ className: 'bar' })
 
-      shouldUpdate.should.be.equal(true)
+      expect(shouldUpdate).toBe(true)
     })
   })
 })

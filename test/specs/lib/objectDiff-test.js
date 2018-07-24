@@ -1,6 +1,5 @@
 import _ from 'lodash'
-
-import { objectDiff } from 'src/lib'
+import objectDiff from 'src/lib/objectDiff'
 
 describe('objectDiff', () => {
   let a
@@ -17,7 +16,7 @@ describe('objectDiff', () => {
     }))
   })
 
-  const assertDiff = diff => objectDiff(a, b).should.deep.equal(diff)
+  const assertDiff = diff => expect(objectDiff(a, b)).toEqual(diff)
 
   it('picks up undefined values', () => {
     b.nil = undefined

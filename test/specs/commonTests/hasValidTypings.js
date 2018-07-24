@@ -1,8 +1,9 @@
+import fs from 'fs'
 import _ from 'lodash'
 
-import { componentInfoContext } from 'docs/src/utils'
 import { customPropTypes } from 'src/lib'
-import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
+import { componentInfo } from 'test/utils'
+import { getNodes, getInterfaces, hasAnySignature } from './tsHelpers'
 
 const isShorthand = propType =>
   _.includes(
@@ -22,22 +23,21 @@ const shorthandMap = {
 /**
  * Assert Component has the valid typings.
  * @param {React.Component|Function} Component A component that should conform.
- * @param {Object} [componentInfo] The *.info.json for the Component
  * @param {Object} [options={}]
  * @param {array} [options.ignoredTypingsProps=[]] Props that will be ignored in tests.
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
-export default (Component, componentInfo, options = {}) => {
-  const { displayName, repoPath } = componentInfoContext.fromComponent(Component)
+export default (Component, options = {}) => {
+  const { displayName, repoPath } = componentInfo(Component.name)
   const { ignoredTypingsProps = [], requiredProps } = options
 
-  const tsFile = repoPath.replace('src/', '').replace('.js', '.d.ts')
-  const tsContent = requireTs(tsFile)
+  const tsFile = repoPath.replace('.js', '.d.ts')
+  const tsContent = fs.readFileSync(tsFile).toString()
 
   describe('typings', () => {
     describe('structure', () => {
       it(`${tsFile} exists`, () => {
-        tsContent.should.to.not.equal(false)
+        expect(tsContent).not.toBe(false)
       })
     })
 
@@ -47,12 +47,12 @@ export default (Component, componentInfo, options = {}) => {
 
     describe(`interface ${interfaceName}`, () => {
       it('has interface', () => {
-        interfaceObject.should.to.be.an('object')
+        expect(typeof interfaceObject).toBe('object')
       })
 
       it('is exported', () => {
         const { exported } = interfaceObject
-        exported.should.to.equal(true)
+        expect(exported).toBe(true)
       })
     })
 
@@ -60,7 +60,7 @@ export default (Component, componentInfo, options = {}) => {
       const { props } = interfaceObject
 
       it('has any signature', () => {
-        hasAnySignature(tsNodes).should.to.equal(true)
+        expect(hasAnySignature(tsNodes)).toBe(true)
       })
 
       it('match the typings interface', () => {
@@ -69,21 +69,12 @@ export default (Component, componentInfo, options = {}) => {
         const interfaceProps = _.without(_.map(props, 'name'), ...ignoredTypingsProps)
 
         componentProps.forEach((propName, index) => {
-          interfaceProps.should.include(
-            propName,
-            `propTypes define "${propName}" but it is missing in typings`,
-          )
-          interfaceProps[index].should.equal(
-            propName,
-            `propTypes define "${propName}" but its order doesn't match typings`,
-          )
+          expect(interfaceProps).toContain(propName)
+          expect(interfaceProps[index]).toBe(propName)
         })
 
         interfaceProps.forEach((propName) => {
-          componentProps.should.include(
-            propName,
-            `Typings define prop "${propName}" but it is missing in propTypes`,
-          )
+          expect(componentProps).toContain(propName)
         })
       })
 
@@ -92,17 +83,11 @@ export default (Component, componentInfo, options = {}) => {
         const interfaceRequired = _.map(_.filter(props, ['required', true]), 'name')
 
         componentRequired.forEach((propName) => {
-          interfaceRequired.should.include(
-            propName,
-            `Tests require prop "${propName}" but it is optional in typings`,
-          )
+          expect(interfaceRequired).toContain(propName)
         })
 
         interfaceRequired.forEach((propName) => {
-          componentRequired.should.include(
-            propName,
-            `Typings require "${propName}" but it is optional in tests`,
-          )
+          expect(componentRequired).toContain(propName)
         })
       })
     })
@@ -116,7 +101,7 @@ export default (Component, componentInfo, options = {}) => {
         it(`"${propName}" should have the correct shorthand type `, () => {
           const { type } = _.find(shorthands, ['name', propName])
 
-          shorthandMap[type].should.to.equal(propType)
+          expect(shorthandMap[type]).toBe(propType)
         })
       })
     })

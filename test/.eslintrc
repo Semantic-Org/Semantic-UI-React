@@ -1,19 +1,13 @@
 {
   "env": {
     "browser": true,
-    "node": true,
-    "mocha": true
+    "jest": true,
+    "node": true
   },
   "globals": {
-    "enzyme": false,
-    "expect": false,
     "mount": false,
-    "shallow": false,
-    "render": false
+    "shallow": false
   },
-  "plugins": [
-    "mocha"
-  ],
   "rules": {
     "jsx-a11y/alt-text": 0,
     "jsx-a11y/tabindex-no-positive": 0

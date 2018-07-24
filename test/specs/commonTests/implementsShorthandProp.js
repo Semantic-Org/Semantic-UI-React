@@ -45,7 +45,7 @@ export default (Component, options = {}) => {
     requiredProps = {},
   } = options
   const { assertRequired } = helpers('implementsShorthandProp', Component)
-  const assertMethod = assertExactMatch ? 'contain' : 'containMatchingElement'
+  const assertMethod = assertExactMatch ? 'contains' : 'containsMatchingElement'
 
   describe(`${propKey} shorthand prop (common)`, () => {
     assertRequired(Component, 'a `Component`')
@@ -63,32 +63,32 @@ export default (Component, options = {}) => {
       const element = createElement(Component, { ...requiredProps, [propKey]: value })
       const wrapper = shallow(element)
 
-      wrapper.should[assertMethod](expectedShorthandElement)
+      expect(wrapper[assertMethod](expectedShorthandElement)).toBe(true)
 
       // Enzyme's .key() method is not consistent with React for elements with
       // no key (`undefined` vs `null`), so use the underlying element instead
       // Will fail if more than one element of this type is found
       const shorthandElement = wrapper.find(ShorthandComponent).getElement()
-      expect(shorthandElement.key).to.equal(expectedShorthandElement.key, "key doesn't match")
+      expect(shorthandElement.key).toBe(expectedShorthandElement.key)
     }
 
     if (alwaysPresent || (Component.defaultProps && Component.defaultProps[propKey])) {
       it(`has default ${name} when not defined`, () => {
-        shallow(<Component {...requiredProps} />).should.have.descendants(name)
+        expect(shallow(<Component {...requiredProps} />).find(name)).toHaveLength(1)
       })
     } else {
       noDefaultClassNameFromProp(Component, propKey, [], options)
 
       it(`has no ${name} when not defined`, () => {
-        shallow(<Component {...requiredProps} />).should.not.have.descendants(name)
+        expect(shallow(<Component {...requiredProps} />).find(name)).toHaveLength(0)
       })
     }
 
     if (!alwaysPresent) {
       it(`has no ${name} when null`, () => {
-        shallow(
-          createElement(Component, { ...requiredProps, [propKey]: null }),
-        ).should.not.have.descendants(ShorthandComponent)
+        const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: null }))
+
+        expect(wrapper.find(ShorthandComponent)).toHaveLength(0)
       })
     }
 

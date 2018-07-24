@@ -4,7 +4,6 @@ import React from 'react'
 import { SUI } from 'src/lib'
 import Rating from 'src/modules/Rating/Rating'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('Rating', () => {
   common.isConformant(Rating)
@@ -26,18 +25,17 @@ describe('Rating', () => {
 
       const icons = wrapper.find('RatingIcon')
 
-      icons.at(0).should.have.prop('active', true)
-      icons.at(1).should.have.prop('active', true)
-      icons.at(2).should.have.prop('active', false)
+      expect(icons.at(0).prop('active')).toBe(true)
+      expect(icons.at(1).prop('active')).toBe(true)
+      expect(icons.at(2).prop('active')).toBe(false)
     })
 
     it('if no rating selected no icon should have aria-checked', () => {
-      const icons = mount(<Rating maxRating={3} />)
-        .find('RatingIcon')
+      const icons = mount(<Rating maxRating={3} />).find('RatingIcon')
 
-      icons.at(0).should.have.prop('aria-checked', false)
-      icons.at(1).should.have.prop('aria-checked', false)
-      icons.at(2).should.have.prop('aria-checked', false)
+      expect(icons.at(0).prop('aria-checked')).toBe(false)
+      expect(icons.at(1).prop('aria-checked')).toBe(false)
+      expect(icons.at(2).prop('aria-checked')).toBe(false)
     })
 
     it('makes the clicked icon aria-checked', () => {
@@ -50,9 +48,9 @@ describe('Rating', () => {
 
       const icons = wrapper.find('RatingIcon')
 
-      icons.at(0).should.have.prop('aria-checked', false)
-      icons.at(1).should.have.prop('aria-checked', true)
-      icons.at(2).should.have.prop('aria-checked', false)
+      expect(icons.at(0).prop('aria-checked')).toBe(false)
+      expect(icons.at(1).prop('aria-checked')).toBe(true)
+      expect(icons.at(2).prop('aria-checked')).toBe(false)
     })
 
     it('set aria-setsize on each rating icon', () => {
@@ -65,9 +63,9 @@ describe('Rating', () => {
 
       const icons = wrapper.find('RatingIcon')
 
-      icons.at(0).should.have.prop('aria-setsize', 3)
-      icons.at(1).should.have.prop('aria-setsize', 3)
-      icons.at(2).should.have.prop('aria-setsize', 3)
+      expect(icons.at(0).prop('aria-setsize')).toBe(3)
+      expect(icons.at(1).prop('aria-setsize')).toBe(3)
+      expect(icons.at(2).prop('aria-setsize')).toBe(3)
     })
 
     it('sets aria-posinset on each rating icon', () => {
@@ -80,9 +78,9 @@ describe('Rating', () => {
 
       const icons = wrapper.find('RatingIcon')
 
-      icons.at(0).should.have.prop('aria-posinset', 1)
-      icons.at(1).should.have.prop('aria-posinset', 2)
-      icons.at(2).should.have.prop('aria-posinset', 3)
+      expect(icons.at(0).prop('aria-posinset')).toBe(1)
+      expect(icons.at(1).prop('aria-posinset')).toBe(2)
+      expect(icons.at(2).prop('aria-posinset')).toBe(3)
     })
 
     it('removes the "selected" prop', () => {
@@ -93,11 +91,8 @@ describe('Rating', () => {
         .last()
         .simulate('mouseEnter')
         .simulate('click')
-      wrapper
-        .should.not.have.className('selected')
-      wrapper
-        .find('RatingIcon[selected=true]')
-        .should.have.length(0, 'Some RatingIcons did not remove their "selected" prop')
+      expect(wrapper.childAt(0).hasClass('selected')).toBe(false)
+      expect(wrapper.find('RatingIcon[selected=true]')).toHaveLength(0)
     })
   })
 
@@ -109,8 +104,7 @@ describe('Rating', () => {
         .find('RatingIcon')
         .first()
         .simulate('mouseEnter')
-      wrapper
-        .should.have.className('selected')
+      expect(wrapper.childAt(0).hasClass('selected')).toBe(true)
     })
 
     it('selects icons up to and including the hovered icon', () => {
@@ -123,9 +117,9 @@ describe('Rating', () => {
 
       const icons = wrapper.find('RatingIcon')
 
-      icons.at(0).should.have.prop('selected', true)
-      icons.at(1).should.have.prop('selected', true)
-      icons.at(2).should.have.prop('selected', false)
+      expect(icons.at(0).prop('selected')).toBe(true)
+      expect(icons.at(1).prop('selected')).toBe(true)
+      expect(icons.at(2).prop('selected')).toBe(false)
     })
 
     it('unselects icons on mouse leave', () => {
@@ -137,9 +131,7 @@ describe('Rating', () => {
         .simulate('mouseEnter')
       wrapper.simulate('mouseLeave')
 
-      wrapper
-        .find('RatingIcon[selected=true]')
-        .should.have.length(0, 'Some RatingIcons did not remove their "selected" prop')
+      expect(wrapper.find('RatingIcon[selected=true]')).toHaveLength(0)
     })
   })
 
@@ -151,9 +143,7 @@ describe('Rating', () => {
         .find('RatingIcon')
         .last()
         .simulate('click')
-      wrapper
-        .find('RatingIcon[active=true]')
-        .should.have.length(5, 'Some RatingIcons did not retain their "active" prop')
+      expect(wrapper.find('RatingIcon[active=true]')).toHaveLength(5)
     })
 
     it('allows toggling when set to "auto" with a single icon', () => {
@@ -163,19 +153,23 @@ describe('Rating', () => {
         .find('RatingIcon')
         .at(0)
         .simulate('click')
-      wrapper
-        .find('RatingIcon')
-        .at(0)
-        .should.have.prop('active', true)
+      expect(
+        wrapper
+          .find('RatingIcon')
+          .at(0)
+          .prop('active'),
+      ).toBe(true)
 
       wrapper
         .find('RatingIcon')
         .at(0)
         .simulate('click')
-      wrapper
-        .find('RatingIcon')
-        .at(0)
-        .should.have.prop('active', false)
+      expect(
+        wrapper
+          .find('RatingIcon')
+          .at(0)
+          .prop('active'),
+      ).toBe(false)
     })
 
     it('allows clearing when true with a single icon', () => {
@@ -185,10 +179,12 @@ describe('Rating', () => {
         .find('RatingIcon')
         .at(0)
         .simulate('click')
-      wrapper
-        .find('RatingIcon')
-        .at(0)
-        .should.have.prop('active', false)
+      expect(
+        wrapper
+          .find('RatingIcon')
+          .at(0)
+          .prop('active'),
+      ).toBe(false)
     })
 
     it('allows clearing when true with multiple icons', () => {
@@ -198,17 +194,15 @@ describe('Rating', () => {
         .find('RatingIcon')
         .at(3)
         .simulate('click')
-      wrapper
-        .find('RatingIcon[active=true]')
-        .should.have.length(0, 'Some RatingIcons did not remove their "active" prop')
+      expect(wrapper.find('RatingIcon[active=true]')).toHaveLength(0)
     })
 
     it('prevents clearing when false with a single icon', () => {
-      mount(<Rating clearable={false} defaultRating={1} maxRating={1} />)
-        .find('RatingIcon')
-        .at(0)
-        .simulate('click')
-        .should.have.prop('active', true)
+      const wrapper = mount(<Rating clearable={false} defaultRating={1} maxRating={1} />)
+      const icon = wrapper.find('RatingIcon').at(0)
+
+      icon.simulate('click')
+      expect(icon.prop('active')).toBe(true)
     })
 
     it('prevents clearing when false with multiple icons', () => {
@@ -218,25 +212,23 @@ describe('Rating', () => {
         .find('RatingIcon')
         .last()
         .simulate('click')
-      wrapper
-        .find('RatingIcon[active=true]')
-        .should.have.length(5, 'Some RatingIcons did not retain their "active" prop')
+      expect(wrapper.find('RatingIcon[active=true]')).toHaveLength(5)
     })
   })
 
   describe('disabled', () => {
     it('prevents the rating from being toggled', () => {
-      mount(<Rating clearable='auto' disabled maxRating={1} rating={1} />)
-        .find('RatingIcon')
-        .at(0)
-        .simulate('click')
-        .should.have.prop('active', true)
+      const wrapper = mount(<Rating clearable='auto' disabled maxRating={1} rating={1} />)
+      const icon = wrapper.find('RatingIcon').at(0)
 
-      mount(<Rating clearable='auto' disabled maxRating={1} rating={0} />)
-        .find('RatingIcon')
-        .at(0)
-        .simulate('click')
-        .should.have.prop('active', false)
+      icon.simulate('click')
+      expect(icon.prop('active')).toBe(true)
+
+      const another = mount(<Rating clearable='auto' disabled maxRating={1} rating={0} />)
+      const anotherIcon = another.find('RatingIcon').at(0)
+
+      anotherIcon.simulate('click')
+      expect(anotherIcon.prop('active')).toBe(false)
     })
 
     it('prevents the rating from being cleared', () => {
@@ -246,9 +238,7 @@ describe('Rating', () => {
         .find('RatingIcon')
         .last()
         .simulate('click')
-      wrapper
-        .find('RatingIcon[active=true]')
-        .should.have.length(3, 'Some RatingIcons lost their "active" prop')
+      expect(wrapper.find('RatingIcon[active=true]')).toHaveLength(3)
     })
 
     it('prevents icons from becoming selected on mouse enter', () => {
@@ -258,9 +248,7 @@ describe('Rating', () => {
         .find('RatingIcon')
         .last()
         .simulate('mouseEnter')
-      wrapper
-        .find('RatingIcon[selected=true]')
-        .should.have.length(0, 'Some RatingIcons became "selected"')
+      expect(wrapper.find('RatingIcon[selected=true]')).toHaveLength(0)
     })
 
     it('prevents icons from becoming unselected on mouse leave', () => {
@@ -270,15 +258,11 @@ describe('Rating', () => {
         .find('RatingIcon')
         .last()
         .simulate('mouseEnter')
-      wrapper
-        .find('RatingIcon[selected=true]')
-        .should.have.length(3, 'Not every RatingIcon was selected on mouseEnter')
+      expect(wrapper.find('RatingIcon[selected=true]')).toHaveLength(3)
 
       wrapper.setProps({ disabled: true })
       wrapper.simulate('mouseLeave')
-      wrapper
-        .find('RatingIcon[selected=true]')
-        .should.have.length(3, 'Some RatingIcons lost their "selected" prop')
+      expect(wrapper.find('RatingIcon[selected=true]')).toHaveLength(3)
     })
 
     it('prevents icons from becoming active on click', () => {
@@ -288,9 +272,7 @@ describe('Rating', () => {
         .find('RatingIcon')
         .last()
         .simulate('click')
-      wrapper
-        .find('RatingIcon[active=true]')
-        .should.have.length(0, 'Some RatingIcons became "active"')
+      expect(wrapper.find('RatingIcon[active=true]')).toHaveLength(0)
     })
   })
 
@@ -298,24 +280,26 @@ describe('Rating', () => {
     it('controls how many icons are displayed', () => {
       _.times(10, (i) => {
         const maxRating = i + 1
-        shallow(<Rating maxRating={maxRating} />)
-          .should.have.exactly(maxRating).descendants('RatingIcon')
+        expect(shallow(<Rating maxRating={maxRating} />).find('RatingIcon')).toHaveLength(maxRating)
       })
     })
   })
 
   describe('onRate', () => {
     it('is called with (event, { rating, maxRating } on icon click', () => {
-      const spy = sandbox.spy()
+      const onRate = jest.fn()
       const event = { fake: 'event data' }
 
-      mount(<Rating maxRating={3} onRate={spy} />)
+      mount(<Rating maxRating={3} onRate={onRate} />)
         .find('RatingIcon')
         .last()
         .simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, { rating: 3, maxRating: 3 })
+      expect(onRate).toHaveBeenCalledTimes(1)
+      expect(onRate).toHaveBeenCalledWith(
+        expect.objectContaining(event),
+        expect.objectContaining({ rating: 3, maxRating: 3 }),
+      )
     })
   })
 
@@ -325,9 +309,7 @@ describe('Rating', () => {
 
       _.times(10, (rating) => {
         wrapper.setProps({ rating })
-        wrapper
-          .find('RatingIcon[active=true]')
-          .should.have.length(rating, `Rating should have ${rating} RatingIcon with "active" prop`)
+        expect(wrapper.find('RatingIcon[active=true]')).toHaveLength(rating)
       })
     })
   })

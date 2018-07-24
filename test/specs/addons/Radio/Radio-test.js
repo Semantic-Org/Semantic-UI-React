@@ -9,18 +9,16 @@ describe('Radio', () => {
 
   it('renders a radio Checkbox', () => {
     const wrapper = shallow(<Radio />)
-    wrapper.type().should.equal(Checkbox)
+    expect(wrapper.type()).toBe(Checkbox)
 
-    wrapper.should.have.prop('radio', true)
+    expect(wrapper.prop('radio')).toBe(true)
   })
 
   it('is not a radio when slider', () => {
-    shallow(<Radio slider />)
-      .should.not.have.prop('radio')
+    expect(shallow(<Radio slider />).prop('radio')).toBeUndefined()
   })
 
   it('is not a radio when toggle', () => {
-    shallow(<Radio toggle />)
-      .should.not.have.prop('radio')
+    expect(shallow(<Radio toggle />).prop('radio')).toBeUndefined()
   })
 })
