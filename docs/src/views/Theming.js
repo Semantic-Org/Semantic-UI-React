@@ -1,9 +1,11 @@
 import React from 'react'
 import { Button, Container, Header, Segment } from 'semantic-ui-react'
 
+import DocsLayout from 'docs/src/components/DocsLayout'
+
 const LayoutsExample = () => (
-  <Container>
-    <div>
+  <DocsLayout additionalTitle='Theming'>
+    <Container>
       <Segment basic padded>
         <Header as='h1' content='Theming' subheader='An introduction to theming' />
       </Segment>
@@ -76,8 +78,8 @@ const LayoutsExample = () => (
           target='_blank'
         />
       </Segment>
-    </div>
-  </Container>
+    </Container>
+  </DocsLayout>
 )
 
 export default LayoutsExample

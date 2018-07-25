@@ -1,33 +1,3 @@
 {
-  "presets": [
-    "./build/preset-env",
-    "@babel/react"
-  ],
-  "plugins": [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-export-default-from",
-    "@babel/plugin-proposal-export-namespace-from",
-    "@babel/plugin-syntax-dynamic-import",
-    "lodash",
-    "transform-react-handled-props",
-    ["transform-react-remove-prop-types", {
-      "mode": "wrap"
-    }],
-    ["@babel/transform-runtime", {
-      "polyfill": false,
-      "regenerator": false
-    }]
-  ],
-  "env": {
-    "development": {
-      "plugins": [
-        "react-hot-loader/babel"
-      ]
-    },
-    "test": {
-      "plugins": [
-        ["istanbul", { "include": ["src"] }]
-      ]
-    }
-  }
+  "presets": ["./.babel-preset.js"]
 }

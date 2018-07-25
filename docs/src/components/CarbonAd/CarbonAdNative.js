@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import { Label } from 'semantic-ui-react'
 
 class CarbonAdNative extends Component {
+  static propTypes = {
+    inverted: PropTypes.bool,
+  }
+
   state = {}
 
   componentDidMount() {
@@ -63,19 +68,42 @@ class CarbonAdNative extends Component {
   }
 
   render() {
+    const { inverted } = this.props
     const { ad } = this.state
 
     if (!ad) return null
 
     const id = `carbon-native-${ad.timestamp}`
 
+    const colors = inverted
+      ? {
+        divider: '#333',
+        background: '#222',
+        backgroundHover: '#1d1d1d',
+        color: '#999',
+        colorHover: '#ccc',
+      }
+      : {
+        divider: '#eee',
+        background: '#fff',
+        backgroundHover: 'whitesmoke',
+        color: '#555',
+        colorHover: '#333',
+      }
+
     return (
       <a id={id} href={ad.statlink} target='_blank' rel='noopener noreferrer'>
-        <img src={ad.image} width='20' style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />
-        <strong>{ad.company}</strong>
+        <img src={ad.image} />
+        <span>{ad.company}</span>
         {' — '}
         <span>{ad.description}</span>
-        <Label basic horizontal content='Ad' style={{ float: 'right' }} />
+        <Label
+          content='Ad'
+          basic={!inverted}
+          color={inverted ? 'black' : undefined}
+          horizontal
+          style={{ position: 'absolute', right: '1rem', opacity: 0.5 }}
+        />
 
         {/* Impression */}
         <img src={`${ad.statimp}`} style={{ display: 'none' }} />
@@ -94,17 +122,30 @@ class CarbonAdNative extends Component {
 
         <style>{`
           #${id} {
-            transition: background 0.2s;
             display: block;
-            padding: 1rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 1rem 5rem 1rem 1rem;
             width: 100%;
-            background: #fff;
-            border-top: 1px solid #ddd;
-            color: inherit;
+            min-height: 3.5rem;
+            border-top: 1px solid ${colors.divider};
+            background: ${colors.background};
+            color: ${colors.color};
             cursor: pointer;
           }
+          #${id} > img {
+            vertical-align: middle;
+            width: 20px;
+            margin-right: 0.5rem;
+            opacity: 0.8;
+          }
           #${id}:hover {
-            background: whitesmoke;
+            background: ${colors.backgroundHover};
+            color: ${colors.colorHover};
+          }
+          #${id}:hover > img {
+            opacity: 1;
           }
         `}</style>
       </a>
