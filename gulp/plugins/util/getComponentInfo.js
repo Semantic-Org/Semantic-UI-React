@@ -3,6 +3,7 @@ import path from 'path'
 import { defaultHandlers, parse, resolver } from 'react-docgen'
 import fs from 'fs'
 
+import config from '../../../config'
 import { parseDefaultValue, parseDocblock, parserCustomHandler, parseType } from './'
 
 const getComponentInfo = (filepath) => {
@@ -81,6 +82,15 @@ const getComponentInfo = (filepath) => {
   // replace the component.description string with a parsed docblock object
   info.docblock = parseDocblock(info.description)
   delete info.description
+
+  // check that examples are present
+  info.examplesExist = false
+
+  if (info.isParent) {
+    info.examplesExist = fs.existsSync(
+      config.paths.docsSrc(`examples/${componentType}s/${dirname}/index.js`),
+    )
+  }
 
   // file and path info
   info.repoPath = absPath
