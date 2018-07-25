@@ -48,6 +48,16 @@ class ComponentExampleRenderExample extends PureComponent {
     }
   }
 
+  canBePrettified = () => {
+    const { error, value } = this.props
+
+    try {
+      return !error && value !== formatCode(value)
+    } catch (err) {
+      return false
+    }
+  }
+
   handleCopy = () => {
     copyToClipboard(this.props.value)
     this.setState({ copiedCode: true })
@@ -81,10 +91,12 @@ class ComponentExampleRenderExample extends PureComponent {
     return (
       <Menu size='small' secondary inverted text style={menuStyle}>
         <Menu.Item
-          icon='code'
+          icon={(error && 'bug') || (this.canBePrettified() ? 'magic' : 'check')}
+          color={error ? 'red' : undefined}
+          active={error}
           content='Prettier'
           onClick={this.handleFormat}
-          style={error ? disabledStyle : undefined}
+          style={!this.canBePrettified() ? disabledStyle : undefined}
         />
         <Popup
           inverted
@@ -97,8 +109,8 @@ class ComponentExampleRenderExample extends PureComponent {
           onOpen={this.resetStart}
           trigger={
             <Menu.Item
-              style={this.hasOriginalCodeChanged() ? undefined : disabledStyle}
-              icon='refresh'
+              style={!this.hasOriginalCodeChanged() ? disabledStyle : undefined}
+              icon={this.hasOriginalCodeChanged() ? 'refresh' : 'check'}
               content='Reset'
             />
           }

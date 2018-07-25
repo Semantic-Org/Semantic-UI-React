@@ -38,11 +38,13 @@ const semanticUIReactCompleter = {
 
     const addPropsFromAPIPath = (apiPath, score) => {
       const info = componentInfoContext.byAPIPath[apiPath]
+      if (!info) return
       addPropsFromInfo(info, score)
     }
 
     const addPropsFromDisplayName = (displayName, score) => {
       const info = componentInfoContext.byDisplayName[displayName]
+      if (!info) return
       addPropsFromInfo(info, score)
     }
 
