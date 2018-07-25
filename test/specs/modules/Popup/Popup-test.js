@@ -162,11 +162,7 @@ describe('Popup', () => {
           expect(left).to.not.equal('')
           expect(bottom).to.not.equal('')
           expect(right).to.not.equal('')
-
-          // element.style.should.have.property('top', '')
-          // element.style.should.have.property('left', '')
-          // element.style.should.have.property('bottom', '')
-          // element.style.should.have.property('right', '')
+          expect(element.parentNode).to.equal(document.body)
           done()
         }, 1)
       })

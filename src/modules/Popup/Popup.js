@@ -135,6 +135,9 @@ export default class Popup extends Component {
 
     /** Element to be rendered within the confines of the viewport whenever possible. */
     keepInViewPort: PropTypes.bool,
+
+    /** Always open popup when trigger prop is rendered on DOM */
+    open: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -359,7 +362,8 @@ export default class Popup extends Component {
     this.triggerRef = triggerRef
     // if it is auto popup
     // then set popup coordinates when triggerref is available
-    if (_.has(this.props, 'open')) {
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/2991
+    if (this.props.open) {
       this.setPopupStyle()
     }
   }
@@ -419,7 +423,11 @@ export default class Popup extends Component {
       </ElementType>
     )
 
-    const mergedPortalProps = { ...this.getPortalProps(), ...portalProps }
+    const mergedPortalProps = {
+      ...this.getPortalProps(),
+      ...portalProps,
+      open: this.props.open,
+    }
     debug('portal props:', mergedPortalProps)
 
     return (

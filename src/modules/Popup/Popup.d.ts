@@ -107,6 +107,9 @@ export interface PopupProps extends PortalProps {
 
   /** Element to be rendered within the confines of the viewport whenever possible. */
   keepInViewPort?: boolean
+
+  /** Always open popup when trigger prop is rendered on DOM */
+  open?: boolean
 }
 
 interface PopupComponent extends React.ComponentClass<PopupProps> {
