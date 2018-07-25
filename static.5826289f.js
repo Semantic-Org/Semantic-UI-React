@@ -26355,6 +26355,8 @@ var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(10));
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(5));
 
+var _invoke2 = _interopRequireDefault(__webpack_require__(17));
+
 var _classnames = _interopRequireDefault(__webpack_require__(16));
 
 var _keyboardKey = _interopRequireDefault(__webpack_require__(41));
@@ -26385,38 +26387,31 @@ function (_Component) {
     }
 
     return (0, _possibleConstructorReturn2.default)(_this, (_temp = _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(RatingIcon)).call.apply(_getPrototypeOf2, [this].concat(args))), (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "handleClick", function (e) {
-      var onClick = _this.props.onClick;
-      if (onClick) onClick(e, _this.props);
+      (0, _invoke2.default)(_this.props, 'onClick', e, _this.props);
     }), (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "handleKeyUp", function (e) {
-      var _this$props = _this.props,
-          onClick = _this$props.onClick,
-          onKeyUp = _this$props.onKeyUp;
-      if (onKeyUp) onKeyUp(e, _this.props);
+      (0, _invoke2.default)(_this.props, 'onKeyUp', e, _this.props);
 
-      if (onClick) {
-        switch (_keyboardKey.default.getCode(e)) {
-          case _keyboardKey.default.Enter:
-          case _keyboardKey.default.Spacebar:
-            e.preventDefault();
-            onClick(e, _this.props);
-            break;
+      switch (_keyboardKey.default.getCode(e)) {
+        case _keyboardKey.default.Enter:
+        case _keyboardKey.default.Spacebar:
+          e.preventDefault();
+          (0, _invoke2.default)(_this.props, 'onClick', e, _this.props);
+          break;
 
-          default:
-        }
+        default:
       }
     }), (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "handleMouseEnter", function (e) {
-      var onMouseEnter = _this.props.onMouseEnter;
-      if (onMouseEnter) onMouseEnter(e, _this.props);
+      (0, _invoke2.default)(_this.props, 'onMouseEnter', e, _this.props);
     }), _temp));
   }
 
   (0, _createClass2.default)(RatingIcon, [{
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          active = _this$props2.active,
-          className = _this$props2.className,
-          selected = _this$props2.selected;
+      var _this$props = this.props,
+          active = _this$props.active,
+          className = _this$props.className,
+          selected = _this$props.selected;
       var classes = (0, _classnames.default)((0, _lib.useKeyOnly)(active, 'active'), (0, _lib.useKeyOnly)(selected, 'selected'), 'icon', className);
       var rest = (0, _lib.getUnhandledProps)(RatingIcon, this.props);
       var ElementType = (0, _lib.getElementType)(RatingIcon, this.props);
