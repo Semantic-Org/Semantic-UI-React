@@ -11,9 +11,7 @@ const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('TransitionGroup', () => {
   common.isConformant(TransitionGroup, {
-    requiredProps: {
-      as: 'div',
-    },
+    rendersFragmentByDefault: true,
   })
 
   beforeEach(() => {
