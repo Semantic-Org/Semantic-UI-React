@@ -1,5 +1,5 @@
 import Document from './docs/src/components/Document'
-import { getCompletions, getComponentMenu } from './docs/src/staticUtils'
+import { getComponentMenu } from './docs/src/staticUtils'
 import config from './config'
 import pkg from './package'
 import getRoutes from './static.routes'
@@ -9,7 +9,6 @@ export default {
   Document,
   getSiteData: async ({ dev }) => ({
     dev,
-    completions: getCompletions(),
     componentMenu: getComponentMenu(),
     pkg: {
       description: pkg.description,
@@ -22,6 +21,7 @@ export default {
         standalone: require('@babel/standalone/package.json').version,
       },
       faker: require('faker/package.json').version,
+      prettier: require('prettier/package.json').version,
       propTypes: require('prop-types/package.json').version,
       react: require('react/package.json').version,
       sui: require('semantic-ui-css/package.json').version,

@@ -1,4 +1,3 @@
-export getCompletions from './getCompletions'
 export getComponentGroupInfo from './getComponentGroupInfo'
 export getComponentMenu from './getComponentMenu'
 export getExampleSources from './getExampleSources'

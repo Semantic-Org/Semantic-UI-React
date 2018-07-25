@@ -6,6 +6,7 @@ import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
 import { docTypes, examplePathToHash, getFormattedHash, scrollToAnchor } from 'docs/src/utils'
+import { isBrowser } from 'src/lib'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
@@ -37,7 +38,7 @@ class ComponentDoc extends Component {
   componentWillMount() {
     const { exampleKeys, history } = this.props
 
-    if (typeof window !== 'undefined' && window.location.hash) {
+    if (isBrowser() && window.location.hash) {
       const activePath = getFormattedHash(exampleKeys, window.location.hash)
       history.replace(`${window.location.pathname}#${activePath}`)
       this.setState({ activePath })

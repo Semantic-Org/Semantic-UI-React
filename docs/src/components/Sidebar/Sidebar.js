@@ -10,8 +10,13 @@ import Logo from 'docs/src/components/Logo/Logo'
 import { docTypes, getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
 import shallowEqual from 'src/lib/shallowEqual'
 
-const selectedItemLabelStyle = { color: '#35bdb2', float: 'right' }
-const selectedItemLabel = <span style={selectedItemLabelStyle}>Press Enter</span>
+const selectedItemLabelStyle = { color: '#fff', float: 'right' }
+const selectedItemLabel = (
+  <span style={selectedItemLabelStyle}>
+    <Icon name='exchange' rotated='clockwise' />
+    or Enter
+  </span>
+)
 
 class Sidebar extends Component {
   static propTypes = {
@@ -59,11 +64,12 @@ class Sidebar extends Component {
     if (document.activeElement === this._searchInput) this._searchInput.blur()
   }
 
-  handleSearchChange = e =>
+  handleSearchChange = (e) => {
     this.setState({
       selectedItemIndex: 0,
       query: e.target.value,
     })
+  }
 
   handleSearchKeyDown = (e) => {
     const { history } = this.props
@@ -159,7 +165,7 @@ class Sidebar extends Component {
       )
     }, this.filteredMenu)
 
-    return <Menu.Menu>{menuItems}</Menu.Menu>
+    return menuItems
   }
 
   render() {
@@ -211,9 +217,12 @@ class Sidebar extends Component {
         <Menu.Item active>
           <Ref innerRef={this.handleSearchRef}>
             <Input
-              className='transparent inverted icon'
-              icon='search'
-              placeholder='Search components...'
+              focus
+              inverted
+              transparent
+              icon='filter'
+              size='large'
+              placeholder='Filter Components'
               value={query}
               onChange={this.handleSearchChange}
               onKeyDown={this.handleSearchKeyDown}

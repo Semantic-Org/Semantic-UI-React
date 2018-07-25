@@ -1,5 +1,4 @@
 export assertBodyClasses from './assertBodyClasses'
-export componentInfoContext from './componentInfoContext'
 export * from './assertNodeContains'
 export assertWithTimeout from './assertWithTimeout'
 export consoleUtil from './consoleUtil'

@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import { Label } from 'semantic-ui-react'
 
 class CarbonAdNative extends Component {
+  static propTypes = {
+    inverted: PropTypes.bool,
+  }
+
   state = {}
 
   componentDidMount() {
@@ -63,19 +68,42 @@ class CarbonAdNative extends Component {
   }
 
   render() {
+    const { inverted } = this.props
     const { ad } = this.state
 
     if (!ad) return null
 
     const id = `carbon-native-${ad.timestamp}`
 
+    const colors = inverted
+      ? {
+        divider: '#333',
+        background: '#222',
+        backgroundHover: '#1d1d1d',
+        color: '#bbb',
+        colorHover: '#ccc',
+      }
+      : {
+        divider: '#eee',
+        background: '#fff',
+        backgroundHover: 'whitesmoke',
+        color: '#555',
+        colorHover: '#333',
+      }
+
     return (
       <a id={id} href={ad.statlink} target='_blank' rel='noopener noreferrer'>
         <img src={ad.image} width='20' style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />
-        <strong>{ad.company}</strong>
+        <span>{ad.company}</span>
         {' — '}
         <span>{ad.description}</span>
-        <Label basic horizontal content='Ad' style={{ float: 'right' }} />
+        <Label
+          content='Ad'
+          basic={!inverted}
+          color={inverted ? 'black' : undefined}
+          horizontal
+          style={{ float: 'right' }}
+        />
 
         {/* Impression */}
         <img src={`${ad.statimp}`} style={{ display: 'none' }} />
@@ -94,17 +122,17 @@ class CarbonAdNative extends Component {
 
         <style>{`
           #${id} {
-            transition: background 0.2s;
             display: block;
             padding: 1rem;
             width: 100%;
-            background: #fff;
-            border-top: 1px solid #ddd;
-            color: inherit;
+            border-top: 1px solid ${colors.divider};
+            background: ${colors.background};
+            color: ${colors.color};
             cursor: pointer;
           }
           #${id}:hover {
-            background: whitesmoke;
+            background: ${colors.backgroundHover};
+            color: ${colors.colorHover};
           }
         `}</style>
       </a>

@@ -1,53 +1,97 @@
-import ace from 'brace'
 import _ from 'lodash'
-import React, { Component } from 'react'
+import React from 'react'
 import Ace from 'react-ace'
 
+import 'brace'
 import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
 import 'brace/mode/html'
-import 'brace/theme/tomorrow'
+import 'brace/theme/tomorrow_night'
 
-import { docTypes } from 'docs/src/utils'
-import getUnhandledProps from 'src/lib/getUnhandledProps'
+import { componentInfoContext } from 'docs/src/utils'
 
-// Set up custom completers by using a ace extension
-// https://github.com/thlorenz/brace/issues/19
-const languageTools = ace.acequire('ace/ext/language_tools')
-let completionsAdded = false
+const semanticUIReactCompleter = {
+  getCompletions(editor, session, pos, prefix, callback) {
+    const completions = []
+    const value = session.getValue()
+    const currentRow = value.split('\n')[pos.row]
 
-const addCompletions = ({ components, props }) => {
-  if (completionsAdded) return
+    const addComponentDisplayName = (displayName, score) => {
+      completions.push({
+        score,
+        caption: displayName,
+        value: displayName,
+        meta: 'Component',
+      })
+    }
 
-  languageTools.addCompleter({
-    getCompletions(editor, session, pos, prefix, callback) {
-      callback(null, [
-        ..._.map(components, component => ({
-          caption: component,
-          value: component,
-          meta: 'Component',
-        })),
-        ..._.map(props, prop => ({ caption: prop, value: prop, meta: 'Component Prop' })),
-      ])
-    },
-  })
-  completionsAdded = true
+    const addPropsFromInfo = (info, score) => {
+      info.props.forEach((prop) => {
+        completions.push({
+          score,
+          caption: `${prop.name}`,
+          value: prop.name,
+          meta: `{${prop.type}} ${info.displayName}`,
+        })
+      })
+    }
+
+    const addPropsFromAPIPath = (apiPath, score) => {
+      const info = componentInfoContext.byAPIPath[apiPath]
+      addPropsFromInfo(info, score)
+    }
+
+    const addPropsFromDisplayName = (displayName, score) => {
+      const info = componentInfoContext.byDisplayName[displayName]
+      addPropsFromInfo(info, score)
+    }
+
+    //
+    // if we're on a semantic-ui-react import line, return top level components
+    //
+    if (/'semantic-ui-react'/.test(currentRow)) {
+      _.forEach(componentInfoContext.byDisplayName, (info, displayName) => {
+        if (info.isParent) addComponentDisplayName(displayName, 100)
+      })
+
+      return callback(null, completions)
+    }
+
+    //
+    // if we find a <Component on the same line, return props for it
+    //
+    const apiPath = currentRow.match(/<([A-Z][\w.]+)/)
+    if (apiPath) {
+      addPropsFromAPIPath(apiPath[1], 100)
+
+      return callback(null, completions)
+    }
+
+    //
+    // if we aren't sure where we are, return imported components, their props, and locals
+    //
+    const suirNamedImports = value.match(/import\s+\{([\s\S]+?)\}\s+from\s'semantic-ui-react'/)
+    const importedDisplayNames = _.words(suirNamedImports[1])
+
+    importedDisplayNames.forEach((displayName) => {
+      addPropsFromDisplayName(displayName, 200)
+      addComponentDisplayName(displayName, 100)
+    })
+
+    // local words
+    _.uniq(_.words(value)).forEach((word) => {
+      completions.push({
+        score: 0,
+        caption: word,
+        value: word,
+        meta: 'local',
+      })
+    })
+
+    callback(null, completions)
+  },
 }
 
-export default class EditorAce extends Component {
-  static propTypes = {
-    completions: docTypes.completions.isRequired,
-  }
+const EditorAce = props => <Ace {...props} enableBasicAutocompletion={[semanticUIReactCompleter]} />
 
-  componentWillMount() {
-    const { completions } = this.props
-
-    addCompletions(completions)
-  }
-
-  render() {
-    const rest = getUnhandledProps(EditorAce, this.props)
-
-    return <Ace {...rest} />
-  }
-}
+export default EditorAce

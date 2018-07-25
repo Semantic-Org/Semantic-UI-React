@@ -1,146 +1,136 @@
-import * as Babel from '@babel/standalone'
-import _ from 'lodash'
+import copyToClipboard from 'copy-to-clipboard'
 import PropTypes from 'prop-types'
-import React, { createElement, PureComponent, isValidElement } from 'react'
-import { renderToStaticMarkup } from 'react-dom/server'
+import React, { PureComponent } from 'react'
+import { Button, Popup, Segment, Menu } from 'semantic-ui-react'
 
+import Editor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/Editor/Editor'
 import { updateForKeys } from 'docs/src/hoc'
+import { formatCode } from 'docs/src/utils'
 
-const babelConfig = {
-  presets: [
-    [
-      'env',
-      {
-        targets: {
-          browsers: ['last 4 versions', 'not dead'],
-        },
-      },
-    ],
-    'react',
-    ['stage-1', { decoratorsLegacy: true }],
-  ],
+const rootStyle = {
+  position: 'relative',
+  paddingTop: '1rem',
+  background: EDITOR_BACKGROUND_COLOR,
 }
+
+const errorStyle = {
+  fontSize: '0.9rem',
+  fontFamily: 'monospace',
+  whiteSpace: 'pre-wrap',
+}
+
+const menuStyle = {
+  position: 'absolute',
+  margin: 0,
+  top: 0,
+  right: '1rem',
+  zIndex: 100,
+}
+
+const disabledStyle = { opacity: 0.5, pointerEvents: 'none' }
 
 class ComponentExampleRenderExample extends PureComponent {
+  state = {}
+
   static propTypes = {
-    exampleHash: PropTypes.string.isRequired,
+    editorId: PropTypes.string.isRequired,
     examplePath: PropTypes.string.isRequired,
-    onRenderCode: PropTypes.func.isRequired,
-    sourceCode: PropTypes.string.isRequired,
+    githubEditHref: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    originalValue: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string,
   }
 
-  constructor(props) {
-    super(props)
-    const exampleComponent = require(`docs/src/examples/${props.examplePath}`).default
-
-    this.state = { exampleElement: createElement(exampleComponent) }
-  }
-
-  componentWillReceiveProps({ sourceCode }) {
-    this.renderSourceCode(sourceCode)
-  }
-
-  renderError = _.debounce((error) => {
-    this.setState({ error })
-  }, 800)
-
-  renderSourceCode = _.debounce((sourceCode) => {
-    const { examplePath } = this.props
-    // Heads Up!
-    //
-    // These are used in the code editor scope when rewriting imports to const statements
-    // We use require() to preserve variable names
-    // Webpack rewrites import names
-    /* eslint-disable no-unused-vars */
-    const FAKER = require('faker')
-    const LODASH = require('lodash')
-    const REACT = require('react')
-    const SEMANTIC_UI_REACT = require('semantic-ui-react')
-    let WIREFRAME
-    let COMMON
-    /* eslint-enable no-unused-vars */
-
-    // Should use an AST transform here... oh well :/
-    // Rewrite the example file into an IIFE that returns a component
-    // which can be rendered in this ComponentExample's render() method
-
-    // rewrite imports to const statements against the UPPERCASE module names
-    const imports = _
-      .get(/(^[\s\S])*import[\s\S]*from[\s\S]*['"]\n/.exec(sourceCode), '[0]', '')
-      .replace(/[\s\n]+/g, ' ') // normalize spaces and make one line
-      .replace(/ import/g, '\nimport') // one import per line
-      .split('\n') // split lines
-      .filter(Boolean) // remove empty lines
-      .map((l) => {
-        // rewrite imports to const statements
-        const [defaultImport, destructuredImports, _module] = _.tail(
-          /import\s+([\w]+)?(?:\s*,\s*)?({[\s\w,]+})?\s+from\s+['"](?:.*\/)?([\w\-_]+)['"]/.exec(l),
-        )
-
-        const module = _.snakeCase(_module).toUpperCase()
-
-        if (module === 'COMMON') {
-          const componentPath = examplePath
-            .split(__PATH_SEP__)
-            .splice(0, 2)
-            .join(__PATH_SEP__)
-          COMMON = require(`docs/src/examples/${componentPath}/common`)
-        } else if (module === 'WIREFRAME') {
-          WIREFRAME = require('docs/src/examples/behaviors/Visibility/Wireframe').default
-        }
-
-        const constStatements = []
-        if (defaultImport) constStatements.push(`const ${defaultImport} = ${module}`)
-        if (destructuredImports) constStatements.push(`const ${destructuredImports} = ${module}`)
-        constStatements.push('\n')
-
-        return constStatements.join('\n')
-      })
-      .join('\n')
-
-    // capture the default export so we can return it from the IIFE
-    const defaultExport = _.get(
-      /export\s+default\s+(?:class|function)?(?:\s+)?(\w+)/.exec(sourceCode),
-      '[1]',
-    )
-
-    const body = _
-      .get(/(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode), '[0]', '')
-      .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '') // remove `export default Foo` statements
-      .replace(/export\s+default\s+/, '') // remove `export default ...`
-
-    const IIFE = `(function() {\n${imports}${body}return ${defaultExport}\n}())`
-
-    try {
-      const { code } = Babel.transform(IIFE, babelConfig)
-      const Example = eval(code) // eslint-disable-line no-eval
-      const exampleElement = _.isFunction(Example) ? <Example /> : Example
-
-      if (!isValidElement(exampleElement)) {
-        this.renderError(
-          `Default export is not a valid element. Type:${{}.toString.call(exampleElement)}`,
-        )
-      } else {
-        // immediately render a null error
-        // but also ensure the last debounced error call is a null error
-        this.renderError(null)
-        this.setState({
-          exampleElement,
-          error: null,
-          markup: renderToStaticMarkup(exampleElement),
-        })
-      }
-    } catch (err) {
-      this.renderError(err.message)
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value && this.state.isConfirmingReset) {
+      this.resetStop()
     }
-  }, 100)
+  }
+
+  handleCopy = () => {
+    copyToClipboard(this.props.value)
+    this.setState({ copiedCode: true })
+    setTimeout(() => this.setState({ copiedCode: false }), 1000)
+  }
+
+  handleFormat = () => {
+    const { onChange, value } = this.props
+
+    onChange(formatCode(value))
+  }
+
+  hasOriginalCodeChanged = () => this.props.value !== this.props.originalValue
+
+  resetStart = () => this.setState({ isConfirmingReset: true })
+
+  resetStop = () => this.setState({ isConfirmingReset: false })
+
+  resetConfirm = () => {
+    const { onChange, originalValue } = this.props
+
+    this.setState({ isConfirmingReset: false }, () => {
+      onChange(originalValue)
+    })
+  }
+
+  renderEditorMenu = () => {
+    const { error, githubEditHref } = this.props
+    const { copiedCode, isConfirmingReset } = this.state
+
+    return (
+      <Menu size='small' secondary inverted text style={menuStyle}>
+        <Menu.Item
+          icon='code'
+          content='Prettier'
+          onClick={this.handleFormat}
+          style={error ? disabledStyle : undefined}
+        />
+        <Popup
+          inverted
+          wide
+          verticalOffset={5}
+          on='click'
+          position='top center'
+          size='small'
+          open={isConfirmingReset}
+          onOpen={this.resetStart}
+          trigger={
+            <Menu.Item
+              style={this.hasOriginalCodeChanged() ? undefined : disabledStyle}
+              icon='refresh'
+              content='Reset'
+            />
+          }
+        >
+          <Button inverted compact color='red' content='Lose Changes' onClick={this.resetConfirm} />
+          <Button inverted compact content='Nevermind' onClick={this.resetStop} />
+        </Popup>
+        <Menu.Item
+          icon={copiedCode ? { color: 'green', name: 'check' } : 'copy'}
+          content='Copy'
+          onClick={this.handleCopy}
+        />
+        <Menu.Item icon='github' content='Edit' href={githubEditHref} target='_blank' />
+      </Menu>
+    )
+  }
 
   render() {
-    const { exampleHash } = this.props
-    const { exampleElement } = this.state
+    const { editorId, error, onChange, value } = this.props
 
-    return <div className={exampleHash}>{exampleElement}</div>
+    return (
+      <div style={rootStyle}>
+        {this.renderEditorMenu()}
+        <Editor id={editorId} value={value} onChange={onChange} />
+        {error && (
+          <Segment color='red' basic secondary inverted style={errorStyle}>
+            {error}
+          </Segment>
+        )}
+      </div>
+    )
   }
 }
 
-export default updateForKeys(['sourceCode'])(ComponentExampleRenderExample)
+export default updateForKeys(['value'])(ComponentExampleRenderExample)

@@ -21,6 +21,16 @@ const isOldHash = (hash) => {
  * @param {string} hash
  */
 const getFormattedHash = (exampleKeys, hash) => {
+  if (process.env.NODE_ENV !== 'production') {
+    if (!Array.isArray(exampleKeys)) {
+      throw new Error(
+        `getFormattedHash did not receive exampleKeys array, got: ${typeof exampleKeys}`,
+      )
+    }
+    if (typeof hash !== 'string') {
+      throw new Error(`getFormattedHash did not receive hash string, got: ${typeof hash}`)
+    }
+  }
   const hashString = (hash || '').replace('#', '')
 
   if (isOldHash(hashString)) {
