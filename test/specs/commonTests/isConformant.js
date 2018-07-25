@@ -227,13 +227,14 @@ export default (Component, options = {}) => {
 
           const handlerSpy = sandbox.spy()
           const props = {
-            as: rendersFragmentByDefault ? 'div' : undefined,
             ...requiredProps,
             [listenerName]: handlerSpy,
             'data-simulate-event-here': true,
           }
 
-          const wrapper = shallow(<Component {...props} />)
+          const wrapper = shallow(
+            <Component as={rendersFragmentByDefault ? 'div' : undefined} {...props} />,
+          )
 
           const eventTarget = eventTargets[listenerName]
             ? wrapper.find(eventTargets[listenerName])
