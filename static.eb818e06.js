@@ -19893,6 +19893,7 @@ var Comparison = function Comparison(_ref) {
   var jsx = _ref.jsx,
       html = _ref.html;
   return _react.default.createElement(_semanticUiReact.Segment, {
+    inverted: true,
     className: "code-example"
   }, _react.default.createElement(_semanticUiReact.Grid, {
     columns: "equal",
@@ -19904,6 +19905,7 @@ var Comparison = function Comparison(_ref) {
     widescreen: "7",
     width: "16"
   }, _react.default.createElement(_semanticUiReact.Label, {
+    color: "grey",
     size: "tiny",
     attached: "top left"
   }, "JSX"), _react.default.createElement(_Editor.default, {
@@ -19924,6 +19926,7 @@ var Comparison = function Comparison(_ref) {
     widescreen: "7",
     width: "16"
   }, _react.default.createElement(_semanticUiReact.Label, {
+    color: "grey",
     size: "tiny",
     attached: "top right"
   }, "Rendered HTML"), _react.default.createElement(_Editor.default, {
@@ -89855,16 +89858,30 @@ var _utils = __webpack_require__(27);
 var _shallowEqual = _interopRequireDefault(__webpack_require__(348));
 
 var selectedItemLabelStyle = {
-  color: '#fff',
-  float: 'right'
+  position: 'absolute',
+  right: 0,
+  top: 0,
+  bottom: 0,
+  padding: '4px 0.5rem',
+  margin: '2px',
+  color: '#8ff',
+  background: '#222'
 };
 
-var selectedItemLabel = _react.default.createElement("span", {
-  style: selectedItemLabelStyle
-}, _react.default.createElement(_semanticUiReact.Icon, {
-  name: "exchange",
-  rotated: "clockwise"
-}), "or Enter");
+var SelectedItemLabel = function SelectedItemLabel(_ref) {
+  var showArrows = _ref.showArrows;
+  return _react.default.createElement("span", {
+    style: selectedItemLabelStyle
+  }, showArrows && _react.default.createElement(_semanticUiReact.Icon, {
+    name: "exchange",
+    rotated: "clockwise"
+  }), showArrows && 'or ', "Enter");
+};
+
+SelectedItemLabel.handledProps = ["showArrows"];
+SelectedItemLabel.propTypes =  false ? {
+  showArrows: _propTypes.default.bool
+} : {};
 
 var Sidebar =
 /*#__PURE__*/
@@ -89880,12 +89897,10 @@ function (_Component) {
       query: ''
     });
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "handleDocumentKeyDown", function (e) {
-      var code = _keyboardKey.default.getCode(e);
-
-      var isAZ = code >= 65 && code <= 90;
+      var isSlash = _keyboardKey.default.getKey(e) === '/';
       var hasModifier = e.altKey || e.ctrlKey || e.metaKey;
       var bodyHasFocus = document.activeElement === document.body;
-      if (!hasModifier && isAZ && bodyHasFocus) _this._searchInput.focus();
+      if (!hasModifier && isSlash && bodyHasFocus) _this._searchInput.focus();
     });
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "handleItemClick", function () {
       var query = _this.state.query;
@@ -89895,6 +89910,9 @@ function (_Component) {
       if (document.activeElement === _this._searchInput) _this._searchInput.blur();
     });
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "handleSearchChange", function (e) {
+      // ignore first "/" on search focus
+      if (e.target.value === '/') return;
+
       _this.setState({
         selectedItemIndex: 0,
         query: e.target.value
@@ -89910,8 +89928,6 @@ function (_Component) {
         e.preventDefault();
         history.push(_this.selectedRoute);
         _this.selectedRoute = null;
-
-        _this._searchInput.blur();
 
         _this.setState({
           query: ''
@@ -89941,11 +89957,11 @@ function (_Component) {
       }
     });
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "handleSearchRef", function (c) {
-      _this._searchInput = c;
+      _this._searchInput = c && c.querySelector('input');
     });
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "menuItemsByType", (0, _map2.default)(function (nextType) {
-      var items = (0, _flow2.default)((0, _filter2.default)(function (_ref) {
-        var type = _ref.type;
+      var items = (0, _flow2.default)((0, _filter2.default)(function (_ref2) {
+        var type = _ref2.type;
         return type === nextType;
       }), (0, _map2.default)(function (info) {
         return _react.default.createElement(_semanticUiReact.Menu.Item, {
@@ -89978,6 +89994,7 @@ function (_Component) {
         }
       }, _this.props.componentMenu);
       _this.filteredMenu = startsWithMatches.concat(containsMatches);
+      var hasMultipleMatches = _this.filteredMenu.length > 1;
       var menuItems = (0, _map2.default)(function (info) {
         itemIndex += 1;
         var isSelected = itemIndex === selectedItemIndex;
@@ -89989,9 +90006,11 @@ function (_Component) {
           active: isSelected,
           as: _reactStatic.Link,
           to: (0, _utils.getComponentPathname)(info)
-        }, info.displayName, isSelected && selectedItemLabel);
+        }, info.displayName, isSelected && _react.default.createElement(SelectedItemLabel, {
+          showArrows: hasMultipleMatches
+        }));
       }, _this.filteredMenu);
-      return menuItems;
+      return _react.default.createElement(_semanticUiReact.Menu.Menu, null, menuItems);
     });
     _this.filteredMenu = props.componentMenu;
     return _this;
@@ -90019,28 +90038,40 @@ function (_Component) {
           style = _this$props.style,
           version = _this$props.version;
       var query = this.state.query;
-      return _react.default.createElement(_semanticUiReact.Menu, {
-        vertical: true,
-        fixed: "left",
-        inverted: true,
+      return _react.default.createElement("div", {
         style: style
+      }, _react.default.createElement(_semanticUiReact.Menu, {
+        fluid: true,
+        inverted: true,
+        vertical: true,
+        borderless: true,
+        compact: true,
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 1
+        }
       }, _react.default.createElement(_semanticUiReact.Menu.Item, null, _react.default.createElement(_Logo.default, {
         spaced: "right",
         size: "mini"
       }), _react.default.createElement("strong", null, "Semantic UI React \xA0", _react.default.createElement("small", null, _react.default.createElement("em", null, version)))), _react.default.createElement(_semanticUiReact.Menu.Item, null, _react.default.createElement(_semanticUiReact.Menu.Header, null, "Getting Started"), _react.default.createElement(_semanticUiReact.Menu.Menu, null, _react.default.createElement(_semanticUiReact.Menu.Item, {
         as: _reactStatic.Link,
+        exact: true,
         to: "/",
         activeClassName: "active"
       }, "Introduction"), _react.default.createElement(_semanticUiReact.Menu.Item, {
         as: _reactStatic.Link,
+        exact: true,
         to: "/usage",
         activeClassName: "active"
       }, "Usage"), _react.default.createElement(_semanticUiReact.Menu.Item, {
         as: _reactStatic.Link,
+        exact: true,
         to: "/theming",
         activeClassName: "active"
       }, "Theming"), _react.default.createElement(_semanticUiReact.Menu.Item, {
         as: _reactStatic.Link,
+        exact: true,
         to: "/layouts",
         activeClassName: "active"
       }, "Layouts"), _react.default.createElement(_semanticUiReact.Menu.Item, {
@@ -90057,21 +90088,35 @@ function (_Component) {
         rel: "noopener noreferrer"
       }, _react.default.createElement(_semanticUiReact.Icon, {
         name: "file alternate outline"
-      }), " CHANGELOG"))), _react.default.createElement(_semanticUiReact.Menu.Item, null, _react.default.createElement(_CarbonAd.default, null)), _react.default.createElement(_semanticUiReact.Menu.Item, {
-        active: true
+      }), " CHANGELOG"))), _react.default.createElement(_semanticUiReact.Menu.Item, {
+        style: {
+          boxShadow: '0 0.5rem 1rem black'
+        }
       }, _react.default.createElement(_semanticUiReact.Ref, {
         innerRef: this.handleSearchRef
       }, _react.default.createElement(_semanticUiReact.Input, {
-        focus: true,
-        inverted: true,
-        transparent: true,
-        icon: "filter",
-        size: "large",
-        placeholder: "Filter Components",
+        fluid: true,
+        icon: {
+          name: 'filter',
+          color: 'teal',
+          inverted: true,
+          bordered: true
+        },
+        placeholder: "Press \"/\" to filter",
         value: query,
         onChange: this.handleSearchChange,
         onKeyDown: this.handleSearchKeyDown
-      }))), query ? this.renderSearchItems() : this.menuItemsByType);
+      }))), _react.default.createElement("div", {
+        style: {
+          flex: 1,
+          marginTop: '1rem',
+          overflowY: 'scroll'
+        }
+      }, query ? this.renderSearchItems() : this.menuItemsByType), _react.default.createElement("div", {
+        style: {
+          flex: '0 0 auto'
+        }
+      }, _react.default.createElement(_CarbonAd.default, null))));
     }
   }]);
   return Sidebar;
@@ -90150,7 +90195,9 @@ var _invoke2 = _interopRequireDefault(__webpack_require__(17));
 var _react = _interopRequireWildcard(__webpack_require__(1));
 
 var style = {
-  minHeight: 173
+  padding: '1rem',
+  background: '#111',
+  boxShadow: '0 0 1rem black'
 };
 
 var CarbonAd =
@@ -91893,18 +91940,18 @@ var _objectSpread2 = _interopRequireDefault(__webpack_require__(19));
 
 var style = {};
 var sidebarWidth = 250;
-style.container = {};
 style.menu = {
   position: 'fixed',
+  display: 'flex',
+  flexDirection: 'column',
   top: 0,
   bottom: 0,
   left: 0,
   width: sidebarWidth,
-  paddingBottom: '1em',
   // match menu background
   // prevents a white background when items are filtered out by search
   background: '#1B1C1D',
-  overflowY: 'scroll'
+  overflowX: 'hidden'
 };
 style.sidebarMain = {
   marginLeft: sidebarWidth,
