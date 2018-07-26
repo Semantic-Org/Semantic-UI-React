@@ -206,7 +206,7 @@ class Sidebar extends Component {
               </small>
             </strong>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item style={{ boxShadow: '0 0 1rem black' }}>
             <Menu.Header>Getting Started</Menu.Header>
             <Menu.Menu>
               <Menu.Item as={Link} exact to='/' activeClassName='active'>
@@ -234,19 +234,19 @@ class Sidebar extends Component {
               </Menu.Item>
             </Menu.Menu>
           </Menu.Item>
-          <Menu.Item style={{ boxShadow: '0 0.5rem 1rem black' }}>
-            <Ref innerRef={this.handleSearchRef}>
-              <Input
-                fluid
-                icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
-                placeholder='Press &quot;/&quot; to filter'
-                value={query}
-                onChange={this.handleSearchChange}
-                onKeyDown={this.handleSearchKeyDown}
-              />
-            </Ref>
-          </Menu.Item>
           <div style={{ flex: 1, marginTop: '1rem', overflowY: 'scroll' }}>
+            <Menu.Item>
+              <Ref innerRef={this.handleSearchRef}>
+                <Input
+                  fluid
+                  icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
+                  placeholder='Press &quot;/&quot; to filter'
+                  value={query}
+                  onChange={this.handleSearchChange}
+                  onKeyDown={this.handleSearchKeyDown}
+                />
+              </Ref>
+            </Menu.Item>
             {query ? this.renderSearchItems() : this.menuItemsByType}
           </div>
           <div style={{ flex: '0 0 auto' }}>

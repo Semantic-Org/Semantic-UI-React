@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { Label } from 'semantic-ui-react'
+import { makeDebugger } from '../../../../src/lib'
+
+const debug = makeDebugger('carbon-ad-native')
 
 class CarbonAdNative extends Component {
   static propTypes = {
@@ -11,13 +14,16 @@ class CarbonAdNative extends Component {
   state = {}
 
   componentDidMount() {
-    this.getAd()
-
+    debug('componentDidMount', { mounted: this.mounted })
     this.mounted = true
+
+    this.getAd()
   }
 
   componentWillUpdate() {
-    if (Date.now() - this.timeOfLastAd > 10000) {
+    const shouldGetAd = Date.now() - this.timeOfLastAd > 10000
+    debug('componentWillUpdate', { mounted: this.mounted, shouldGetAd })
+    if (shouldGetAd) {
       this.getAd()
     }
   }
@@ -28,6 +34,7 @@ class CarbonAdNative extends Component {
   }
 
   cleanup = () => {
+    debug('cleanup', { script: this.script, mounted: this.mounted })
     if (!this.script) return
 
     document.getElementsByTagName('head')[0].removeChild(this.script)
@@ -35,6 +42,9 @@ class CarbonAdNative extends Component {
   }
 
   getAd = () => {
+    debug('getAd', { mounted: this.mounted })
+    if (!this.mounted) return
+
     window._handleNativeJSON = this.handleNativeJSON
     this.timeOfLastAd = Date.now()
 
@@ -51,15 +61,18 @@ class CarbonAdNative extends Component {
   }
 
   handleNativeJSON = (json) => {
+    debug('handleNativeJSON', { mounted: this.mounted })
     try {
-      const sanitized = json.ads
+      const sanitizedAd = json.ads
         .filter(ad => Object.keys(ad).length > 0)
         .filter(ad => !!ad.statlink)
+        .filter(Boolean)[0]
+      debug('handleNativeJSON sanitizedAd', sanitizedAd)
 
-      if (this.mounted) {
-        this.setState({ ad: sanitized[0] })
-      } else {
-        this.cleanup()
+      if (!sanitizedAd) {
+        this.getAd()
+      } else if (this.mounted) {
+        this.setState({ ad: sanitizedAd })
       }
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -71,6 +84,7 @@ class CarbonAdNative extends Component {
     const { inverted } = this.props
     const { ad } = this.state
 
+    debug('render', ad)
     if (!ad) return null
 
     const id = `carbon-native-${ad.timestamp}`
