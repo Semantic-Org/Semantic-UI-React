@@ -90054,7 +90054,11 @@ function (_Component) {
       }, _react.default.createElement(_semanticUiReact.Menu.Item, null, _react.default.createElement(_Logo.default, {
         spaced: "right",
         size: "mini"
-      }), _react.default.createElement("strong", null, "Semantic UI React \xA0", _react.default.createElement("small", null, _react.default.createElement("em", null, version)))), _react.default.createElement(_semanticUiReact.Menu.Item, null, _react.default.createElement(_semanticUiReact.Menu.Header, null, "Getting Started"), _react.default.createElement(_semanticUiReact.Menu.Menu, null, _react.default.createElement(_semanticUiReact.Menu.Item, {
+      }), _react.default.createElement("strong", null, "Semantic UI React \xA0", _react.default.createElement("small", null, _react.default.createElement("em", null, version)))), _react.default.createElement(_semanticUiReact.Menu.Item, {
+        style: {
+          boxShadow: '0 0 1rem black'
+        }
+      }, _react.default.createElement(_semanticUiReact.Menu.Header, null, "Getting Started"), _react.default.createElement(_semanticUiReact.Menu.Menu, null, _react.default.createElement(_semanticUiReact.Menu.Item, {
         as: _reactStatic.Link,
         exact: true,
         to: "/",
@@ -90088,11 +90092,13 @@ function (_Component) {
         rel: "noopener noreferrer"
       }, _react.default.createElement(_semanticUiReact.Icon, {
         name: "file alternate outline"
-      }), " CHANGELOG"))), _react.default.createElement(_semanticUiReact.Menu.Item, {
+      }), " CHANGELOG"))), _react.default.createElement("div", {
         style: {
-          boxShadow: '0 0.5rem 1rem black'
+          flex: 1,
+          marginTop: '1rem',
+          overflowY: 'scroll'
         }
-      }, _react.default.createElement(_semanticUiReact.Ref, {
+      }, _react.default.createElement(_semanticUiReact.Menu.Item, null, _react.default.createElement(_semanticUiReact.Ref, {
         innerRef: this.handleSearchRef
       }, _react.default.createElement(_semanticUiReact.Input, {
         fluid: true,
@@ -90106,13 +90112,7 @@ function (_Component) {
         value: query,
         onChange: this.handleSearchChange,
         onKeyDown: this.handleSearchKeyDown
-      }))), _react.default.createElement("div", {
-        style: {
-          flex: 1,
-          marginTop: '1rem',
-          overflowY: 'scroll'
-        }
-      }, query ? this.renderSearchItems() : this.menuItemsByType), _react.default.createElement("div", {
+      }))), query ? this.renderSearchItems() : this.menuItemsByType), _react.default.createElement("div", {
         style: {
           flex: '0 0 auto'
         }
@@ -90196,8 +90196,8 @@ var _react = _interopRequireWildcard(__webpack_require__(1));
 
 var style = {
   padding: '1rem',
-  background: '#111',
-  boxShadow: '0 0 1rem black'
+  background: '#222',
+  boxShadow: '0 0 2rem black'
 };
 
 var CarbonAd =
@@ -93066,6 +93066,10 @@ var _propTypes = _interopRequireDefault(__webpack_require__(11));
 
 var _semanticUiReact = __webpack_require__(2);
 
+var _lib = __webpack_require__(15);
+
+var debug = (0, _lib.makeDebugger)('carbon-ad-native');
+
 var CarbonAdNative =
 /*#__PURE__*/
 function (_Component) {
@@ -93083,10 +93087,18 @@ function (_Component) {
     }
 
     return (0, _possibleConstructorReturn2.default)(_this, (_temp = _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(CarbonAdNative)).call.apply(_getPrototypeOf2, [this].concat(args))), (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "state", {}), (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "cleanup", function () {
+      debug('cleanup', {
+        script: _this.script,
+        mounted: _this.mounted
+      });
       if (!_this.script) return;
       document.getElementsByTagName('head')[0].removeChild(_this.script);
       _this.script = null;
     }), (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "getAd", function () {
+      debug('getAd', {
+        mounted: _this.mounted
+      });
+      if (!_this.mounted) return;
       window._handleNativeJSON = _this.handleNativeJSON;
       _this.timeOfLastAd = Date.now();
 
@@ -93096,19 +93108,24 @@ function (_Component) {
       _this.script.src = "https://srv.buysellads.com/ads/CK7DC2QW.json?".concat(['segment=placement:reactsemanticuicom', 'callback=_handleNativeJSON', "v=".concat(Date.now())].join('&'));
       document.getElementsByTagName('head')[0].appendChild(_this.script);
     }), (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "handleNativeJSON", function (json) {
+      debug('handleNativeJSON', {
+        mounted: _this.mounted
+      });
+
       try {
-        var sanitized = json.ads.filter(function (ad) {
+        var sanitizedAd = json.ads.filter(function (ad) {
           return Object.keys(ad).length > 0;
         }).filter(function (ad) {
           return !!ad.statlink;
-        });
+        }).filter(Boolean)[0];
+        debug('handleNativeJSON sanitizedAd', sanitizedAd);
 
-        if (_this.mounted) {
+        if (!sanitizedAd) {
+          _this.getAd();
+        } else if (_this.mounted) {
           _this.setState({
-            ad: sanitized[0]
+            ad: sanitizedAd
           });
-        } else {
-          _this.cleanup();
         }
       } catch (err) {
         // eslint-disable-next-line no-console
@@ -93120,13 +93137,22 @@ function (_Component) {
   (0, _createClass2.default)(CarbonAdNative, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getAd();
+      debug('componentDidMount', {
+        mounted: this.mounted
+      });
       this.mounted = true;
+      this.getAd();
     }
   }, {
     key: "componentWillUpdate",
     value: function componentWillUpdate() {
-      if (Date.now() - this.timeOfLastAd > 10000) {
+      var shouldGetAd = Date.now() - this.timeOfLastAd > 10000;
+      debug('componentWillUpdate', {
+        mounted: this.mounted,
+        shouldGetAd: shouldGetAd
+      });
+
+      if (shouldGetAd) {
         this.getAd();
       }
     }
@@ -93141,6 +93167,7 @@ function (_Component) {
     value: function render() {
       var inverted = this.props.inverted;
       var ad = this.state.ad;
+      debug('render', ad);
       if (!ad) return null;
       var id = "carbon-native-".concat(ad.timestamp);
       var colors = inverted ? {
