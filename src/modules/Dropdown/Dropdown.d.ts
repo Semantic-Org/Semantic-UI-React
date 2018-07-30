@@ -14,7 +14,7 @@ export interface DropdownProps {
   as?: any
 
   /** Label prefixed to an option added by a user. */
-  additionLabel?: number | string
+  additionLabel?: number | string | React.ReactNode
 
   /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
   additionPosition?: 'top' | 'bottom'
