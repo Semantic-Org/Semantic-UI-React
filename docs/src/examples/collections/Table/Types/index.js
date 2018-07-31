@@ -2,6 +2,7 @@ import React from 'react'
 
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 const Types = () => (
   <ExampleSection title='Types'>
@@ -10,6 +11,8 @@ const Types = () => (
       description='A standard table.'
       examplePath='collections/Table/Types/TableExamplePagination'
     />
+    <ShorthandExample examplePath='collections/Table/Types/TableExamplePaginationShorthand' />
+
     <ComponentExample examplePath='collections/Table/Types/TableExamplePadded' />
     <ComponentExample examplePath='collections/Table/Types/TableExampleCollapsing' />
     <ComponentExample examplePath='collections/Table/Types/TableExampleCelledStriped' />
