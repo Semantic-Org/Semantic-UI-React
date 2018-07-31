@@ -14,6 +14,8 @@ const Types = () => (
     <ShorthandExample examplePath='collections/Table/Types/TableExamplePaginationShorthand' />
 
     <ComponentExample examplePath='collections/Table/Types/TableExamplePadded' />
+    <ShorthandExample examplePath='collections/Table/Types/TableExamplePaddedShorthand' />
+
     <ComponentExample examplePath='collections/Table/Types/TableExampleCollapsing' />
     <ComponentExample examplePath='collections/Table/Types/TableExampleCelledStriped' />
 
