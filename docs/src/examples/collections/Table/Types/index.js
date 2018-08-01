@@ -24,6 +24,8 @@ const Types = () => (
       description='A table may be formatted to emphasize a first column that defines a row content.'
       examplePath='collections/Table/Types/TableExampleDefinition'
     />
+    <ShorthandExample examplePath='collections/Table/Types/TableExampleDefinitionShorthand' />
+
     <ComponentExample examplePath='collections/Table/Types/TableExampleApprove' />
 
     <ComponentExample
