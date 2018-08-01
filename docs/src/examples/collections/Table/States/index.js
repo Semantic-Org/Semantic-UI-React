@@ -11,6 +11,8 @@ const States = () => (
       description='A cell or row may let a user know whether a value is good or bad.'
       examplePath='collections/Table/States/TableExamplePositiveNegative'
     />
+    <ShorthandExample examplePath='collections/Table/States/TableExamplePositiveNegativeShorthand' />
+
     <ComponentExample
       title='Error'
       description='A cell or row may call attention to an error or a negative value.'
