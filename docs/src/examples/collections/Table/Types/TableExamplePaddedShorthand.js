@@ -14,17 +14,17 @@ const tableData = [
   },
   {
     rating: 'A',
-    effect: 'Power Output',
+    effect: 'Weight',
     efficacy: 3,
-    consensus: 80,
-    studies: 18,
+    consensus: 100,
+    studies: 65,
     comments:
       'Creatine is the reference compound for power improvement, with numbers from one meta-analysis to assess potency',
   },
 ]
 
 const headerRow = [
-  { singleLine: true, content: 'Evidence Rating' },
+  { key: 'rating', singleLine: true, content: 'Evidence Rating' },
   'Effect',
   'Efficacy',
   'Consensus',
@@ -34,10 +34,20 @@ const headerRow = [
 const renderBodyRow = ({ rating, effect, efficacy, consensus, studies, comments }, i) => ({
   key: effect || `row-${i}`,
   cells: [
-    { content: <Header as='h2' textAlign='center' content={rating} /> },
-    { content: effect, singleLine: true },
-    { content: <Rating icon='star' defaultRating={efficacy} maxRating={3} /> },
-    { content: [`${consensus}%`, <br />, <a href='#'>{studies} studies</a>], textAlign: 'right' },
+    { key: 'rating', content: <Header as='h2' textAlign='center' content={rating} /> },
+    { key: 'effect', content: effect, singleLine: true },
+    { key: 'efficacy', content: <Rating icon='star' defaultRating={efficacy} maxRating={3} /> },
+    {
+      key: 'consensus',
+      content: (
+        <span>
+          {`${consensus}%`}
+          <br />
+          <a href='#'>{studies} studies</a>
+        </span>
+      ),
+      textAlign: 'right',
+    },
     comments,
   ],
 })
