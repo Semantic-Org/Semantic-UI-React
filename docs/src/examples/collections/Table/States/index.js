@@ -39,6 +39,7 @@ const States = () => (
       description='A cell can be disabled.'
       examplePath='collections/Table/States/TableExampleDisabled'
     />
+    <ShorthandExample examplePath='collections/Table/States/TableExampleDisabledShorthand' />
   </ExampleSection>
 )
 
