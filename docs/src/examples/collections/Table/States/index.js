@@ -32,6 +32,8 @@ const States = () => (
       description='A cell or row can be active or selected by a user.'
       examplePath='collections/Table/States/TableExampleActive'
     />
+    <ShorthandExample examplePath='collections/Table/States/TableExampleActiveShorthand' />
+
     <ComponentExample
       title='Disabled'
       description='A cell can be disabled.'
