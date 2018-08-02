@@ -2,16 +2,16 @@ import React from 'react'
 import { Table } from 'semantic-ui-react'
 
 const tableData = [
-  { name: 'Jamie', status: 'Approved', notes: 'Requires call' },
-  { name: 'John', status: 'Selected', notes: undefined },
-  { name: 'Jamie', status: 'Approved', notes: 'Requires call' },
-  { name: 'Jill', status: 'Approved', notes: undefined },
+  { id: '1', name: 'Jamie', status: 'Approved', notes: 'Requires call' },
+  { id: '2', name: 'John', status: 'Selected', notes: undefined },
+  { id: '3', name: 'Jamie', status: 'Approved', notes: 'Requires call' },
+  { id: '4', name: 'Jill', status: 'Approved', notes: undefined },
 ]
 
 const headerRow = ['Name', 'Status', 'Notes']
 
-const renderBodyRow = ({ name, status, notes }, i) => ({
-  key: name || `row-${i}`,
+const renderBodyRow = ({ id, name, status, notes }, i) => ({
+  key: id || `row-${i}`,
   active: !!(status && status.match('Selected')),
   cells: [
     name ? { key: 'name', content: name, active: name.match('Jill') } : 'No name specified',
