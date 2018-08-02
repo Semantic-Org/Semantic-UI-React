@@ -18,12 +18,15 @@ const States = () => (
       description='A cell or row may call attention to an error or a negative value.'
       examplePath='collections/Table/States/TableExampleError'
     />
+    <ShorthandExample examplePath='collections/Table/States/TableExampleErrorShorthand' />
+
     <ComponentExample
       title='Warning'
       description='A cell or row may warn a user.'
       examplePath='collections/Table/States/TableExampleWarning'
     />
     <ShorthandExample examplePath='collections/Table/States/TableExampleWarningShorthand' />
+
     <ComponentExample
       title='Active'
       description='A cell or row can be active or selected by a user.'
