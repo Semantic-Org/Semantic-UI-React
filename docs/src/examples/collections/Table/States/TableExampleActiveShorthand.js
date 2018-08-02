@@ -14,7 +14,7 @@ const renderBodyRow = ({ name, status, notes }, i) => ({
   key: name || `row-${i}`,
   active: !!(status && status.match('Selected')),
   cells: [
-    { key: 'name', content: name, active: name.match('Jill') } || 'No name specified',
+    name ? { key: 'name', content: name, active: name.match('Jill') } : 'No name specified',
     status || 'Unknown',
     notes || 'None',
   ],
