@@ -1,16 +1,20 @@
+import PropTypes from 'prop-types'
 import React from 'react'
-import pkg from 'package.json'
-import { NavLink } from 'react-router-dom'
+import { Link, withSiteData } from 'react-static'
 import { Button, Container, Header, List, Message, Segment } from 'semantic-ui-react'
 
+import DocsLayout from 'docs/src/components/DocsLayout'
 import Logo from 'docs/src/components/Logo/Logo'
-import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/src/utils'
+import {
+  docTypes,
+  semanticUIDocsURL,
+  semanticUIRepoURL,
+  semanticUICSSRepoURL,
+} from 'docs/src/utils'
 
-const suiCSSVersion = pkg.devDependencies['semantic-ui-css'].replace(/[~^]/, '')
-
-const Usage = () => (
-  <Container id='usage-page'>
-    <div>
+const Usage = ({ pkg, versions }) => (
+  <DocsLayout additionalTitle='Usage'>
+    <Container id='usage-page'>
       <Segment basic textAlign='center'>
         <Logo centered size='small' />
         <Header as='h1' textAlign='center'>
@@ -43,16 +47,16 @@ const Usage = () => (
         </p>
         <ul>
           <li>
-            <NavLink to='/elements/button#button-example-button'>Button</NavLink>
+            <Link to='/elements/button#button-example-button'>Button</Link>
           </li>
           <li>
-            <NavLink to='/elements/list#list-example-list'>List</NavLink>
+            <Link to='/elements/list#list-example-list'>List</Link>
           </li>
           <li>
-            <NavLink to='/views/card#card-example-card'>Card</NavLink>
+            <Link to='/views/card#card-example-card'>Card</Link>
           </li>
           <li>
-            <NavLink to='/modules/modal#modal-example-modal'>Modal</NavLink>
+            <Link to='/modules/modal#modal-example-modal'>Modal</Link>
           </li>
         </ul>
       </Segment>
@@ -89,7 +93,7 @@ const Usage = () => (
         <Segment>
           <pre>
             {'<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/'}
-            {suiCSSVersion}
+            {versions.sui}
             {'/semantic.min.css"></link>'}
           </pre>
         </Segment>
@@ -262,8 +266,16 @@ const Usage = () => (
           option in this release.
         </p>
       </Segment>
-    </div>
-  </Container>
+    </Container>
+  </DocsLayout>
 )
 
-export default Usage
+Usage.propTypes = {
+  pkg: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  versions: docTypes.versions,
+}
+
+export default withSiteData(Usage)

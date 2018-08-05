@@ -1,12 +1,8 @@
-import historyApiFallback from 'connect-history-api-fallback'
-import express from 'express'
 import { task, src, dest, lastRun, parallel, series, watch } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import path from 'path'
+import { build, start } from 'react-static/node'
 import rimraf from 'rimraf'
-import webpack from 'webpack'
-import WebpackDevMiddleware from 'webpack-dev-middleware'
-import WebpackHotMiddleware from 'webpack-hot-middleware'
 
 import sh from '../sh'
 import config from '../../config'
@@ -17,7 +13,7 @@ import gulpReactDocgen from '../plugins/gulp-react-docgen'
 
 const { paths } = config
 const g = loadPlugins()
-const { colors, log, PluginError } = g.util
+const { log } = g.util
 
 const handleWatchChange = e => log(`File ${e.path} was ${e.type}, running tasks...`)
 
@@ -55,6 +51,19 @@ task(
     'clean:docs:example-sources',
   ),
 )
+
+// ----------------------------------------
+// Build docs with React Static
+// ----------------------------------------
+
+task('build:docs:static:build', (cb) => {
+  build().then(cb)
+})
+
+task('build:docs:static:start', (cb) => {
+  start()
+  cb()
+})
 
 // ----------------------------------------
 // Build
@@ -111,49 +120,15 @@ task(
   ),
 )
 
-task('build:docs:html', () => src(paths.docsSrc('404.html')).pipe(dest(paths.docsDist())))
-
-task('build:docs:images', () =>
-  src(`${paths.docsPublic()}/**/*.{png,jpg,gif}`).pipe(dest(paths.docsDist())),
-)
-
 task('build:docs:toc', (cb) => {
   sh(`doctoc ${paths.base('.github/CONTRIBUTING.md')} --github --maxlevel 4`, cb)
-})
-
-task('build:docs:webpack', (cb) => {
-  const webpackConfig = require('../../webpack.config.babel').default
-  const compiler = webpack(webpackConfig)
-
-  compiler.run((err, stats) => {
-    const { errors, warnings } = stats.toJson()
-
-    log(stats.toString(config.compiler_stats))
-
-    if (err) {
-      log('Webpack compiler encountered a fatal error.')
-      throw new PluginError('webpack', err.toString())
-    }
-    if (errors.length > 0) {
-      log('Webpack compiler encountered errors.')
-      throw new PluginError('webpack', errors.toString())
-    }
-    if (warnings.length > 0 && config.compiler_fail_on_warning) {
-      throw new PluginError('webpack', warnings.toString())
-    }
-
-    cb(err)
-  })
 })
 
 task(
   'build:docs',
   series(
-    parallel(
-      'build:docs:toc',
-      series('clean:docs', parallel('build:docs:json', 'build:docs:html', 'build:docs:images')),
-    ),
-    'build:docs:webpack',
+    parallel('build:docs:toc', series('clean:docs', 'build:docs:json')),
+    'build:docs:static:build',
   ),
 )
 
@@ -167,44 +142,6 @@ task('deploy:docs', (cb) => {
 })
 
 // ----------------------------------------
-// Serve
-// ----------------------------------------
-
-task('serve:docs', (cb) => {
-  const app = express()
-  const webpackConfig = require('../../webpack.config.babel').default
-  const compiler = webpack(webpackConfig)
-
-  app
-    .use(
-      historyApiFallback({
-        verbose: false,
-      }),
-    )
-
-    .use(
-      WebpackDevMiddleware(compiler, {
-        publicPath: webpackConfig.output.publicPath,
-        contentBase: paths.docsPublic(),
-        hot: true,
-        quiet: false,
-        noInfo: true, // must be quiet for hot middleware to show overlay
-        lazy: false,
-        stats: config.compiler_stats,
-      }),
-    )
-
-    .use(WebpackHotMiddleware(compiler))
-
-    .use(express.static(paths.docsDist()))
-
-    .listen(config.server_port, config.server_host, () => {
-      log(colors.yellow('Server running at http://%s:%d'), config.server_host, config.server_port)
-      cb()
-    })
-})
-
-// ----------------------------------------
 // Watch
 // ----------------------------------------
 
@@ -214,20 +151,11 @@ task('watch:docs', (cb) => {
 
   // rebuild example menus
   watch(examplesSectionsSrc, series('build:docs:example-menu')).on('change', handleWatchChange)
-
-  // rebuild example sources
-  watch(examplesSrc, series('build:docs:example-sources')).on('change', handleWatchChange)
-
-  // rebuild images
-  watch(`${config.paths.docsPublic()}/**/*.{png,jpg,gif}`, series('build:docs:images')).on(
-    'change',
-    handleWatchChange,
-  )
   cb()
 })
 
 // ----------------------------------------
-// Default
+// Start
 // ----------------------------------------
 
-task('docs', series('build:docs', 'serve:docs', 'watch:docs'))
+task('start:docs', series('clean:docs', 'build:docs:json', 'build:docs:static:start', 'watch:docs'))

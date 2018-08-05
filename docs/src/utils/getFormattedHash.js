@@ -1,6 +1,4 @@
 import _ from 'lodash/fp'
-
-import exampleContext from './exampleContext'
 import examplePathToHash from './examplePathToHash'
 
 /**
@@ -19,21 +17,33 @@ const isOldHash = (hash) => {
 
 /**
  * Retrieve hash string from location path
+ * @param {string[]} exampleKeys
  * @param {string} hash
  */
-const getFormattedHash = (hash) => {
+const getFormattedHash = (exampleKeys, hash) => {
+  if (process.env.NODE_ENV !== 'production') {
+    if (!Array.isArray(exampleKeys)) {
+      throw new Error(
+        `getFormattedHash did not receive exampleKeys array, got: ${typeof exampleKeys}`,
+      )
+    }
+    if (typeof hash !== 'string') {
+      throw new Error(`getFormattedHash did not receive hash string, got: ${typeof hash}`)
+    }
+  }
   const hashString = (hash || '').replace('#', '')
 
   if (isOldHash(hashString)) {
     const filename = `${_.startCase(hashString).replace(/\s/g, '')}`
     const completeFilename = `/${filename}.js`
-    const exampleKeys = exampleContext.keys()
     const examplePath = _.find(key => _.endsWith(completeFilename, key), exampleKeys)
 
     // found old to new hashString match
     if (examplePath) {
       return examplePathToHash(examplePath)
     }
+
+    return null
   }
 
   return hashString

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-static'
 import { Message } from 'semantic-ui-react'
 
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'

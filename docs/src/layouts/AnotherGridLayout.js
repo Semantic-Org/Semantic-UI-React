@@ -9,7 +9,7 @@ const AnotherGridLayout = () => (
     {/* Heads up! We apply there some custom styling, you usually will not need it. */}
     <style>{`
       html, body {
-        background-color: #252839;
+        background-color: #252839 !important;
       }
 
       p {
