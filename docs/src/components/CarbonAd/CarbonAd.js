@@ -1,7 +1,11 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 
-const style = { minHeight: 173 }
+const style = {
+  padding: '1rem',
+  background: '#222',
+  boxShadow: '0 0 2rem black',
+}
 
 class CarbonAd extends Component {
   componentDidMount() {

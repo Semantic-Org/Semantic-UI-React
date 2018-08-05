@@ -1,5 +1,6 @@
 import { createElement } from 'react'
-import { exampleContext } from 'docs/src/utils'
+
+const exampleContext = require.context('docs/src/examples/', true, /(\w+Example\w*|index)\.js$/)
 
 describe('examples', () => {
   exampleContext.keys().forEach((path) => {
