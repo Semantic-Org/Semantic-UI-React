@@ -9,10 +9,10 @@ import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'do
 import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
 
 import ComponentControls from '../ComponentControls'
-import ComponentExampleRenderExample from './ComponentExampleRenderExample'
+import ComponentExampleRenderEditor from './ComponentExampleRenderEditor'
 import ComponentExampleRenderHtml from './ComponentExampleRenderHtml'
+import ComponentExampleRenderSource from './ComponentExampleRenderSource'
 import ComponentExampleTitle from './ComponentExampleTitle'
-import renderExampleSourceCode from './renderExampleSourceCode'
 
 const childrenStyle = {
   paddingTop: 0,
@@ -41,6 +41,7 @@ class ComponentExample extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     description: PropTypes.node,
+    displayName: PropTypes.string.isRequired,
     exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     exampleSources: PropTypes.objectOf(PropTypes.string).isRequired,
     examplePath: PropTypes.string.isRequired,
@@ -55,18 +56,11 @@ class ComponentExample extends PureComponent {
     const { examplePath } = this.props
     this.anchorName = examplePathToHash(examplePath)
 
-    const sourceCode = this.getOriginalSourceCode()
-
-    const { error, exampleElement, htmlMarkup } = renderExampleSourceCode(examplePath, sourceCode)
-
     this.setState({
       handleMouseLeave: this.handleMouseLeave,
       handleMouseMove: this.handleMouseMove,
       showCode: this.isActiveHash(),
-      error,
-      htmlMarkup,
-      exampleElement,
-      sourceCode,
+      sourceCode: this.getOriginalSourceCode(),
     })
   }
 
@@ -108,14 +102,6 @@ class ComponentExample extends PureComponent {
 
     history.replace(`${location.pathname}#${this.anchorName}`)
     scrollToAnchor()
-  }
-
-  removeHash = () => {
-    const { history, location } = this.props
-
-    history.replace(location.pathname)
-
-    this.clearActiveState()
   }
 
   handleDirectLinkClick = () => {
@@ -187,25 +173,17 @@ class ComponentExample extends PureComponent {
   }
 
   handleChangeCode = _.debounce((sourceCode) => {
-    const { examplePath } = this.props
-    const { error, htmlMarkup, exampleElement } = renderExampleSourceCode(examplePath, sourceCode)
-
-    const newState = { error, sourceCode }
-
-    // preserve the last good render if there is an error
-    if (!error) {
-      newState.htmlMarkup = htmlMarkup
-      newState.exampleElement = exampleElement
-    }
-
-    this.setState(newState)
+    this.setState({ sourceCode })
   }, 30)
 
+  handleRenderError = error => this.setState({ error: error.toString() })
+
+  handleRenderSuccess = (error, { markup }) => this.setState({ error, htmlMarkup: markup })
+
   render() {
-    const { children, description, examplePath, suiVersion, title } = this.props
+    const { children, description, displayName, examplePath, suiVersion, title } = this.props
     const {
       error,
-      exampleElement,
       handleMouseLeave,
       handleMouseMove,
       htmlMarkup,
@@ -276,12 +254,17 @@ class ComponentExample extends PureComponent {
               className={`rendered-example ${this.getKebabExamplePath()}`}
               style={renderedExampleStyle}
             >
-              {exampleElement}
+              <ComponentExampleRenderSource
+                displayName={displayName}
+                onError={this.handleRenderError}
+                onSuccess={this.handleRenderSuccess}
+                sourceCode={sourceCode}
+              />
             </Grid.Column>
             {(showCode || showHTML) && (
               <Grid.Column width={16} style={editorStyle}>
                 {showCode && (
-                  <ComponentExampleRenderExample
+                  <ComponentExampleRenderEditor
                     editorId={`${this.getKebabExamplePath()}-jsx`}
                     githubEditHref={this.getGithubEditHref()}
                     originalValue={this.getOriginalSourceCode()}
