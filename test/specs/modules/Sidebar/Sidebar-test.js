@@ -26,6 +26,16 @@ describe('Sidebar', () => {
     nestingLevel,
   })
 
+  describe('componentWillUnmount', () => {
+    it('will call "clearTimeout"', () => {
+      const clear = sandbox.spy(window, 'clearTimeout')
+      const wrapper = mount(<Sidebar />)
+
+      wrapper.setProps({ visible: true })
+      clear.should.have.been.calledOnce()
+    })
+  })
+
   describe('onHide', () => {
     it('is called when the "visible" prop changes to "false"', () => {
       const onHide = sandbox.spy()
