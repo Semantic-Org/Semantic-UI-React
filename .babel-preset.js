@@ -22,7 +22,6 @@ const plugins = [
   [
     '@babel/plugin-transform-runtime',
     {
-      polyfill: false,
       regenerator: isDocsBuild,
     },
   ],
