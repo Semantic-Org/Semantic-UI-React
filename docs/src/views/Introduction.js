@@ -107,10 +107,10 @@ const MenuItemLinkAugmentationHTML = `<div class="ui menu">
 </div>`
 
 const Comparison = ({ jsx, html }) => (
-  <Segment className='code-example'>
+  <Segment inverted className='code-example'>
     <Grid columns='equal' centered textAlign='left'>
       <Grid.Column computer='8' largeScreen='7' widescreen='7' width='16'>
-        <Label size='tiny' attached='top left'>
+        <Label color='grey' size='tiny' attached='top left'>
           JSX
         </Label>
         <Editor id={btoa(jsx)} value={jsx} readOnly />
@@ -121,7 +121,7 @@ const Comparison = ({ jsx, html }) => (
         </Divider>
       </Grid.Column>
       <Grid.Column computer='8' largeScreen='7' widescreen='7' width='16'>
-        <Label size='tiny' attached='top right'>
+        <Label color='grey' size='tiny' attached='top right'>
           Rendered HTML
         </Label>
         <Editor id={btoa(html)} mode='html' value={html} readOnly />

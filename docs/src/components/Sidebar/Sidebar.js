@@ -10,13 +10,26 @@ import Logo from 'docs/src/components/Logo/Logo'
 import { docTypes, getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
 import shallowEqual from 'src/lib/shallowEqual'
 
-const selectedItemLabelStyle = { color: '#fff', float: 'right' }
-const selectedItemLabel = (
+const selectedItemLabelStyle = {
+  position: 'absolute',
+  right: 0,
+  top: 0,
+  bottom: 0,
+  padding: '4px 0.5rem',
+  margin: '2px',
+  color: '#8ff',
+  background: '#222',
+}
+const SelectedItemLabel = ({ showArrows }) => (
   <span style={selectedItemLabelStyle}>
-    <Icon name='exchange' rotated='clockwise' />
-    or Enter
+    {showArrows && <Icon name='exchange' rotated='clockwise' />}
+    {showArrows && 'or '}
+    Enter
   </span>
 )
+SelectedItemLabel.propTypes = {
+  showArrows: PropTypes.bool,
+}
 
 class Sidebar extends Component {
   static propTypes = {
@@ -49,12 +62,11 @@ class Sidebar extends Component {
   }
 
   handleDocumentKeyDown = (e) => {
-    const code = keyboardKey.getCode(e)
-    const isAZ = code >= 65 && code <= 90
+    const isSlash = keyboardKey.getKey(e) === '/'
     const hasModifier = e.altKey || e.ctrlKey || e.metaKey
     const bodyHasFocus = document.activeElement === document.body
 
-    if (!hasModifier && isAZ && bodyHasFocus) this._searchInput.focus()
+    if (!hasModifier && isSlash && bodyHasFocus) this._searchInput.focus()
   }
 
   handleItemClick = () => {
@@ -65,6 +77,9 @@ class Sidebar extends Component {
   }
 
   handleSearchChange = (e) => {
+    // ignore first "/" on search focus
+    if (e.target.value === '/') return
+
     this.setState({
       selectedItemIndex: 0,
       query: e.target.value,
@@ -80,7 +95,6 @@ class Sidebar extends Component {
       e.preventDefault()
       history.push(this.selectedRoute)
       this.selectedRoute = null
-      this._searchInput.blur()
       this.setState({ query: '' })
     }
 
@@ -100,7 +114,7 @@ class Sidebar extends Component {
   }
 
   handleSearchRef = (c) => {
-    this._searchInput = c
+    this._searchInput = c && c.querySelector('input')
   }
 
   menuItemsByType = _.map((nextType) => {
@@ -144,6 +158,7 @@ class Sidebar extends Component {
     }, this.props.componentMenu)
 
     this.filteredMenu = [...startsWithMatches, ...containsMatches]
+    const hasMultipleMatches = this.filteredMenu.length > 1
     const menuItems = _.map((info) => {
       itemIndex += 1
       const isSelected = itemIndex === selectedItemIndex
@@ -160,12 +175,12 @@ class Sidebar extends Component {
           to={getComponentPathname(info)}
         >
           {info.displayName}
-          {isSelected && selectedItemLabel}
+          {isSelected && <SelectedItemLabel showArrows={hasMultipleMatches} />}
         </Menu.Item>
       )
     }, this.filteredMenu)
 
-    return menuItems
+    return <Menu.Menu>{menuItems}</Menu.Menu>
   }
 
   render() {
@@ -173,64 +188,72 @@ class Sidebar extends Component {
     const { query } = this.state
 
     return (
-      <Menu vertical fixed='left' inverted style={style}>
-        <Menu.Item>
-          <Logo spaced='right' size='mini' />
-          <strong>
-            Semantic UI React &nbsp;
-            <small>
-              <em>{version}</em>
-            </small>
-          </strong>
-        </Menu.Item>
-        <Menu.Item>
-          <Menu.Header>Getting Started</Menu.Header>
-          <Menu.Menu>
-            <Menu.Item as={Link} to='/' activeClassName='active'>
-              Introduction
+      <div style={style}>
+        <Menu
+          fluid
+          inverted
+          vertical
+          borderless
+          compact
+          style={{ display: 'flex', flexDirection: 'column', flex: 1 }}
+        >
+          <Menu.Item>
+            <Logo spaced='right' size='mini' />
+            <strong>
+              Semantic UI React &nbsp;
+              <small>
+                <em>{version}</em>
+              </small>
+            </strong>
+          </Menu.Item>
+          <Menu.Item style={{ boxShadow: '0 0 1rem black' }}>
+            <Menu.Header>Getting Started</Menu.Header>
+            <Menu.Menu>
+              <Menu.Item as={Link} exact to='/' activeClassName='active'>
+                Introduction
+              </Menu.Item>
+              <Menu.Item as={Link} exact to='/usage' activeClassName='active'>
+                Usage
+              </Menu.Item>
+              <Menu.Item as={Link} exact to='/theming' activeClassName='active'>
+                Theming
+              </Menu.Item>
+              <Menu.Item as={Link} exact to='/layouts' activeClassName='active'>
+                Layouts
+              </Menu.Item>
+              <Menu.Item as='a' href={repoURL} target='_blank' rel='noopener noreferrer'>
+                <Icon name='github' /> GitHub
+              </Menu.Item>
+              <Menu.Item
+                as='a'
+                href={`${repoURL}/blob/master/CHANGELOG.md`}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <Icon name='file alternate outline' /> CHANGELOG
+              </Menu.Item>
+            </Menu.Menu>
+          </Menu.Item>
+          <div style={{ flex: 1, marginTop: '1rem', overflowY: 'scroll' }}>
+            <Menu.Item>
+              <Ref innerRef={this.handleSearchRef}>
+                <Input
+                  fluid
+                  icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
+                  placeholder='Press &quot;/&quot; to filter'
+                  value={query}
+                  onChange={this.handleSearchChange}
+                  onKeyDown={this.handleSearchKeyDown}
+                />
+              </Ref>
             </Menu.Item>
-            <Menu.Item as={Link} to='/usage' activeClassName='active'>
-              Usage
-            </Menu.Item>
-            <Menu.Item as={Link} to='/theming' activeClassName='active'>
-              Theming
-            </Menu.Item>
-            <Menu.Item as={Link} to='/layouts' activeClassName='active'>
-              Layouts
-            </Menu.Item>
-            <Menu.Item as='a' href={repoURL} target='_blank' rel='noopener noreferrer'>
-              <Icon name='github' /> GitHub
-            </Menu.Item>
-            <Menu.Item
-              as='a'
-              href={`${repoURL}/blob/master/CHANGELOG.md`}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <Icon name='file alternate outline' /> CHANGELOG
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu.Item>
-        <Menu.Item>
-          <CarbonAd />
-        </Menu.Item>
-        <Menu.Item active>
-          <Ref innerRef={this.handleSearchRef}>
-            <Input
-              focus
-              inverted
-              transparent
-              icon='filter'
-              size='large'
-              placeholder='Filter Components'
-              value={query}
-              onChange={this.handleSearchChange}
-              onKeyDown={this.handleSearchKeyDown}
-            />
-          </Ref>
-        </Menu.Item>
-        {query ? this.renderSearchItems() : this.menuItemsByType}
-      </Menu>
+            {query ? this.renderSearchItems() : this.menuItemsByType}
+          </div>
+          <div style={{ flex: '0 0 auto' }}>
+            <CarbonAd />
+          </div>
+        </Menu>
+      </div>
     )
   }
 }

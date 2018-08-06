@@ -1257,12 +1257,11 @@ describe('Dropdown', () => {
     it('is called once when the icon is clicked with a search prop', () => {
       // https://github.com/Semantic-Org/Semantic-UI-React/issues/2600
       const onOpen = sandbox.spy()
-      wrapperMount(<Dropdown options={options} selection search onOpen={onOpen} />)
-        .find('i.icon')
-        .simulate('click')
+      wrapperShallow(<Dropdown options={options} selection search onOpen={onOpen} />)
+        .find('Icon')
+        .simulate('click', { stopPropagation: _.noop })
 
-      // Heads up! Test is temporiary disabled.
-      // onOpen.should.have.been.calledOnce()
+      onOpen.should.have.been.calledOnce()
     })
   })
 
@@ -1955,10 +1954,7 @@ describe('Dropdown', () => {
       // search for value yields 2 results as per our custom search function
       search.simulate('change', { target: { value: searchQuery } })
 
-      // Heads up! Test is temporiary disabled.
-      // searchFunction.should.have.been.calledOnce()
       searchFunction.should.have.been.calledWithMatch(options, searchQuery)
-
       wrapper
         .find('DropdownItem')
         .should.have.lengthOf(2, 'Searching with custom search function did not yield 2 results.')
