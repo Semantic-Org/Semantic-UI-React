@@ -139,6 +139,7 @@
     "react-hot-loader": "^4.3.4",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-source-render": "^1.1.1",
     "react-static": "^5.9.7",
     "react-static-routes": "^1.0.0",
     "react-test-renderer": "^16.4.2",

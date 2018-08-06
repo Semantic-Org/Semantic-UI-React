@@ -29,7 +29,7 @@ const menuStyle = {
 
 const disabledStyle = { opacity: 0.5, pointerEvents: 'none' }
 
-class ComponentExampleRenderExample extends PureComponent {
+class ComponentExampleRenderEditor extends PureComponent {
   state = {}
 
   static propTypes = {
@@ -145,4 +145,4 @@ class ComponentExampleRenderExample extends PureComponent {
   }
 }
 
-export default updateForKeys(['value'])(ComponentExampleRenderExample)
+export default updateForKeys(['error', 'value'])(ComponentExampleRenderEditor)
