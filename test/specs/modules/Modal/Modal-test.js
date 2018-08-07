@@ -486,6 +486,15 @@ describe('Modal', () => {
       assertBodyClasses('scrolling', false)
     })
 
+    it('does not add the scrolling class to the body when equal to the window height', (done) => {
+      wrapperMount(<Modal open style={{ height: window.innerHeight }}>foo</Modal>)
+
+      requestAnimationFrame(() => {
+        assertBodyClasses('scrolling', false)
+        done()
+      })
+    })
+
     it('adds the scrolling class to the body when taller than the window', (done) => {
       window.innerHeight = 10
       wrapperMount(<Modal open>foo</Modal>)
