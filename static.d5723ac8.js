@@ -90885,10 +90885,11 @@ function (_Component) {
       }), " CHANGELOG"))), _react.default.createElement("div", {
         style: {
           flex: 1,
-          marginTop: '1rem',
           overflowY: 'scroll'
         }
-      }, _react.default.createElement(_semanticUiReact.Menu.Item, null, _react.default.createElement(_semanticUiReact.Ref, {
+      }, _react.default.createElement(_semanticUiReact.Menu.Item, {
+        fitted: true
+      }, _react.default.createElement(_semanticUiReact.Ref, {
         innerRef: this.handleSearchRef
       }, _react.default.createElement(_semanticUiReact.Input, {
         fluid: true,
@@ -90898,7 +90899,7 @@ function (_Component) {
           inverted: true,
           bordered: true
         },
-        placeholder: "Press \"/\" to filter",
+        placeholder: "Press \"/\" to find a component",
         value: query,
         onChange: this.handleSearchChange,
         onKeyDown: this.handleSearchKeyDown
@@ -93563,6 +93564,10 @@ var renderedExampleStyle = {
 };
 var editorStyle = {
   padding: 0
+};
+var componentControlsStyle = {
+  flex: '0 0 auto',
+  width: 'auto'
   /**
    * Renders a `component` and the raw `code` that produced it.
    * Allows toggling the the raw `code` code block.
@@ -93756,19 +93761,18 @@ function (_PureComponent) {
         }
       }, _react.default.createElement(_semanticUiReact.Grid, {
         className: "docs-example",
+        columns: "equal",
         padded: "vertically",
         onMouseLeave: handleMouseLeave,
         onMouseMove: handleMouseMove,
         style: exampleStyle
-      }, _react.default.createElement(_semanticUiReact.Grid.Column, {
-        width: 12
-      }, _react.default.createElement(_ComponentExampleTitle.default, {
+      }, _react.default.createElement(_semanticUiReact.Grid.Column, null, _react.default.createElement(_ComponentExampleTitle.default, {
         description: description,
         title: title,
         suiVersion: suiVersion
       })), _react.default.createElement(_semanticUiReact.Grid.Column, {
         textAlign: "right",
-        width: 4
+        style: componentControlsStyle
       }, _react.default.createElement(_ComponentControls.default, {
         anchorName: this.anchorName,
         examplePath: examplePath,
@@ -94098,17 +94102,17 @@ var ComponentControls = function ComponentControls(props) {
     icon: "labeled",
     size: "tiny",
     text: true
-  }, _react.default.createElement(_ComponentControlsCopyLink.default, {
-    anchorName: anchorName,
-    onClick: onCopyLink
-  }), _react.default.createElement(_ComponentControlsMaximize.default, {
-    examplePath: examplePath
+  }, _react.default.createElement(_ComponentControlsEditCode.default, {
+    active: showCode,
+    onClick: onShowCode
   }), _react.default.createElement(_ComponentControlsShowHtml.default, {
     active: showHTML,
     onClick: onShowHTML
-  }), _react.default.createElement(_ComponentControlsEditCode.default, {
-    active: showCode,
-    onClick: onShowCode
+  }), _react.default.createElement(_ComponentControlsMaximize.default, {
+    examplePath: examplePath
+  }), _react.default.createElement(_ComponentControlsCopyLink.default, {
+    anchorName: anchorName,
+    onClick: onCopyLink
   }));
 };
 
@@ -94358,7 +94362,7 @@ function (_Component) {
         fitted: true,
         name: "linkify",
         size: "large"
-      }), active ? ' Copied Link!' : 'Direct link');
+      }), active ? ' Copied!' : 'Permalink');
     }
   }]);
   return ComponentControlsCopyLink;
