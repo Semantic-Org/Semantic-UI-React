@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import { Button, Checkbox, Divider, Grid, Segment } from 'semantic-ui-react'
 
@@ -10,27 +11,30 @@ export default class CheckboxExampleDOMComparison extends Component {
 
   clearLog = () => this.setState({ log: [] })
 
-  log = msg =>
+  log = (action, value) =>
     this.setState(({ log }) => ({
-      log: [`${new Date().toLocaleTimeString()}: ${msg}`, ...log].slice(0, 15),
+      log: [
+        `${new Date().toLocaleTimeString()}: ${_.padEnd(action, 10)} { checked: ${value} }`,
+        ...log,
+      ].slice(0, 15),
     }))
 
   toggle = () => this.setState(({ suirChecked }) => ({ suirChecked: !suirChecked }))
   toggleDOM = () => this.setState(({ domChecked }) => ({ domChecked: !domChecked }))
 
-  handleMouseDown = (e, { checked }) => this.log(`MouseDown     { checked: ${checked} }`)
-  handleMouseUp = (e, { checked }) => this.log(`MouseUp       { checked: ${checked} }`)
-  handleClick = (e, { checked }) => this.log(`Click         { checked: ${checked} }`)
+  handleMouseDown = (e, { checked }) => this.log('MouseDown', checked)
+  handleMouseUp = (e, { checked }) => this.log('MouseUp', checked)
+  handleClick = (e, { checked }) => this.log('Click', checked)
   handleChange = (e, { checked }) => {
-    this.log(`Change        { checked: ${checked} }`)
+    this.log('Change', checked)
     this.toggle()
   }
 
-  handleDOMMouseDown = e => this.log(`DOM MouseDown { checked: ${e.target.checked} }`)
-  handleDOMMouseUp = e => this.log(`DOM MouseUp   { checked: ${e.target.checked} }`)
-  handleDOMClick = e => this.log(`DOM Click     { checked: ${e.target.checked} }`)
+  handleDOMMouseDown = e => this.log('DOM MouseDown', e.target.checked)
+  handleDOMMouseUp = e => this.log('DOM MouseUp', e.target.checked)
+  handleDOMClick = e => this.log('DOM Click', e.target.checked)
   handleDOMChange = (e) => {
-    this.log(`DOM Change    { checked: ${e.target.checked} }`)
+    this.log('DOM Change', e.target.checked)
     this.toggleDOM()
   }
 
@@ -45,12 +49,12 @@ export default class CheckboxExampleDOMComparison extends Component {
           </Button>
           &emsp;
           <Checkbox
-            label='SUIR Checkbox'
             checked={suirChecked}
+            label='SUIR Checkbox'
+            onChange={this.handleChange}
+            onClick={this.handleClick}
             onMouseDown={this.handleMouseDown}
             onMouseUp={this.handleMouseUp}
-            onClick={this.handleClick}
-            onChange={this.handleChange}
           />
           &emsp;<code>{`{ checked: ${suirChecked} }`}</code>
           <Divider hidden />
@@ -60,12 +64,12 @@ export default class CheckboxExampleDOMComparison extends Component {
           &emsp;
           <label>
             <input
-              type='checkbox'
               checked={domChecked}
+              onChange={this.handleDOMChange}
+              onClick={this.handleDOMClick}
               onMouseDown={this.handleDOMMouseDown}
               onMouseUp={this.handleDOMMouseUp}
-              onClick={this.handleDOMClick}
-              onChange={this.handleDOMChange}
+              type='checkbox'
             />{' '}
             DOM Checkbox
           </label>
