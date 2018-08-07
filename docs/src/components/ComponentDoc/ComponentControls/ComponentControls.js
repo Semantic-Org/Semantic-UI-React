@@ -12,7 +12,7 @@ const ComponentControls = (props) => {
   const { anchorName, examplePath, showHTML, showCode, onCopyLink, onShowHTML, onShowCode } = props
 
   return (
-    <Menu color='green' compact icon size='small' text>
+    <Menu color='green' compact icon='labeled' size='tiny' text>
       <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
       <ComponentControlsMaximize examplePath={examplePath} />
       <ComponentControlsShowHtml active={showHTML} onClick={onShowHTML} />
@@ -29,7 +29,6 @@ ComponentControls.propTypes = {
   onShowHTML: PropTypes.func,
   showCode: PropTypes.bool,
   showHTML: PropTypes.bool,
-  visible: PropTypes.bool,
 }
 
-export default updateForKeys(['showCode', 'showHTML', 'visible'])(ComponentControls)
+export default updateForKeys(['showCode', 'showHTML'])(ComponentControls)
