@@ -44,6 +44,8 @@ export default () => {
     })
     let existingSources = {}
 
+    // Heads up!
+    // In watch mode we should update only single entry that matches changed file.
     if (file.contents) {
       existingSources = JSON.parse(file.contents.toString())
     }
