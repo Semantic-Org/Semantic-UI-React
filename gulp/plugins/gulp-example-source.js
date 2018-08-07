@@ -41,9 +41,14 @@ export default () => {
   function endStream(cb) {
     const file = new Vinyl({
       path: './exampleSources.json',
-      contents: Buffer.from(JSON.stringify(exampleSources, null, 2)),
     })
+    let existingSources = {}
 
+    if (file.contents) {
+      existingSources = JSON.parse(file.contents.toString())
+    }
+
+    file.contents = Buffer.from(JSON.stringify({ ...existingSources, ...exampleSources }, null, 2))
     this.push(file)
     cb()
   }
