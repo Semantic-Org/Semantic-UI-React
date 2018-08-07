@@ -27,6 +27,11 @@ const editorStyle = {
   padding: 0,
 }
 
+const componentControlsStyle = {
+  flex: '0 0 auto',
+  width: 'auto',
+}
+
 /**
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
@@ -219,19 +224,20 @@ class ComponentExample extends PureComponent {
         <div id={this.anchorName} style={{ paddingTop: '1rem' }}>
           <Grid
             className='docs-example'
+            columns='equal'
             padded='vertically'
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMove}
             style={exampleStyle}
           >
-            <Grid.Column width={12}>
+            <Grid.Column>
               <ComponentExampleTitle
                 description={description}
                 title={title}
                 suiVersion={suiVersion}
               />
             </Grid.Column>
-            <Grid.Column textAlign='right' width={4}>
+            <Grid.Column textAlign='right' style={componentControlsStyle}>
               <ComponentControls
                 anchorName={this.anchorName}
                 examplePath={examplePath}

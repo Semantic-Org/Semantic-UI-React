@@ -41,7 +41,7 @@ export default class ComponentControlsCopyLink extends Component {
     return (
       <Menu.Item href={`#${anchorName}`} onClick={this.handleClick}>
         <Icon color={active ? 'green' : 'grey'} fitted name='linkify' size='large' />
-        {active ? ' Copied Link!' : 'Direct link'}
+        {active ? ' Copied!' : 'Permalink'}
       </Menu.Item>
     )
   }

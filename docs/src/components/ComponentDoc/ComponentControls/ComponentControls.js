@@ -13,10 +13,10 @@ const ComponentControls = (props) => {
 
   return (
     <Menu color='green' compact icon='labeled' size='tiny' text>
-      <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
-      <ComponentControlsMaximize examplePath={examplePath} />
-      <ComponentControlsShowHtml active={showHTML} onClick={onShowHTML} />
       <ComponentControlsEditCode active={showCode} onClick={onShowCode} />
+      <ComponentControlsShowHtml active={showHTML} onClick={onShowHTML} />
+      <ComponentControlsMaximize examplePath={examplePath} />
+      <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
     </Menu>
   )
 }
