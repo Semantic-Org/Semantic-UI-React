@@ -5,6 +5,7 @@ import {
   SemanticShorthandCollection,
   SemanticShorthandContent,
   SemanticShorthandItem,
+  SemanticSIZES
 } from '../..'
 import MessageContent from './MessageContent'
 import { default as MessageHeader, MessageHeaderProps } from './MessageHeader'
@@ -72,7 +73,7 @@ export interface MessageProps {
   positive?: boolean
 
   /** A message can have different sizes. */
-  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
+  size?: SemanticSIZES
 
   /** A message may be formatted to display a positive message.  Same as `positive`. */
   success?: boolean
