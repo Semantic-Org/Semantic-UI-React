@@ -1,7 +1,7 @@
 import { task, src, dest, lastRun, parallel, series, watch } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import path from 'path'
-import { build, start } from 'react-static/node'
+import { build, reloadRoutes, start } from 'react-static/node'
 import rimraf from 'rimraf'
 
 import sh from '../sh'
@@ -15,7 +15,8 @@ const { paths } = config
 const g = loadPlugins()
 const { log } = g.util
 
-const handleWatchChange = e => log(`File ${e.path} was ${e.type}, running tasks...`)
+const handleWatchChange = filename =>
+  log(`File ${path.basename(filename)} was changed, running tasks...`)
 
 // ----------------------------------------
 // Clean
@@ -58,6 +59,11 @@ task(
 
 task('build:docs:static:build', (cb) => {
   build().then(cb)
+})
+
+task('build:docs:static:reload', (cb) => {
+  reloadRoutes()
+  cb()
 })
 
 task('build:docs:static:start', (cb) => {
@@ -147,10 +153,22 @@ task('deploy:docs', (cb) => {
 
 task('watch:docs', (cb) => {
   // rebuild component info
-  watch(componentsSrc, series('build:docs:docgen')).on('change', handleWatchChange)
+  watch(componentsSrc, series('build:docs:docgen', 'build:docs:static:reload')).on(
+    'change',
+    handleWatchChange,
+  )
 
   // rebuild example menus
-  watch(examplesSectionsSrc, series('build:docs:example-menu')).on('change', handleWatchChange)
+  watch(examplesSectionsSrc, series('build:docs:example-menu', 'build:docs:static:reload')).on(
+    'change',
+    handleWatchChange,
+  )
+
+  // rebuild example sources
+  watch(examplesSrc, series('build:docs:example-sources', 'build:docs:static:reload')).on(
+    'change',
+    handleWatchChange,
+  )
   cb()
 })
 
