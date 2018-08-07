@@ -1,8 +1,10 @@
 import React from 'react'
-import { Grid, Segment, Header, Icon } from 'semantic-ui-react'
+import { Grid, Header, Icon, Segment } from 'semantic-ui-react'
+
+import DocsLayout from 'docs/src/components/DocsLayout'
 
 const PageNotFound = () => (
-  <div>
+  <DocsLayout>
     <Grid padded textAlign='center' stretched>
       <Grid.Row columns='equal'>
         <Grid.Column>
@@ -43,7 +45,7 @@ const PageNotFound = () => (
         </Grid.Column>
       </Grid.Row>
     </Grid>
-  </div>
+  </DocsLayout>
 )
 
 export default PageNotFound

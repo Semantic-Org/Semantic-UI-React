@@ -1,13 +1,11 @@
 import AnchorJS from 'anchor-js'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-import { Route } from 'react-router-dom'
+import { Head, withRouter, withSiteData } from 'react-static'
 
 import Sidebar from 'docs/src/components/Sidebar/Sidebar'
 import style from 'docs/src/Style'
-import { scrollToAnchor } from 'docs/src/utils'
-import { getUnhandledProps } from 'src/lib'
+import { docTypes, scrollToAnchor } from 'docs/src/utils'
 
 const anchors = new AnchorJS({
   icon: '#',
@@ -15,12 +13,13 @@ const anchors = new AnchorJS({
 
 class DocsLayout extends Component {
   static propTypes = {
-    component: PropTypes.func,
-    history: PropTypes.object.isRequired,
+    additionalTitle: PropTypes.string,
+    children: PropTypes.node,
+    componentMenu: docTypes.componentMenu.isRequired,
     location: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
-    render: PropTypes.func,
     sidebar: PropTypes.bool,
+    title: PropTypes.string.isRequired,
+    versions: docTypes.versions,
   }
 
   componentDidMount() {
@@ -52,26 +51,23 @@ class DocsLayout extends Component {
     this.pathname = location.pathname
   }
 
-  renderChildren = (props) => {
-    const { component: Children, render, sidebar } = this.props
+  render() {
+    const { additionalTitle, children, componentMenu, sidebar, title, versions } = this.props
     const mainStyle = sidebar ? style.sidebarMain : style.main
 
-    if (render) return render()
     return (
       <div style={style.container}>
-        <Sidebar style={style.menu} />
-        <div style={mainStyle}>
-          <Children {...props} />
-        </div>
+        <Head>
+          <title>
+            {additionalTitle ? `${additionalTitle} - ` : ''}
+            {title}
+          </title>
+        </Head>
+        <Sidebar componentMenu={componentMenu} style={style.menu} version={versions.suir} />
+        <div style={mainStyle}>{children}</div>
       </div>
     )
   }
-
-  render() {
-    const rest = getUnhandledProps(DocsLayout, this.props)
-
-    return <Route {...rest} render={this.renderChildren} />
-  }
 }
 
-export default withRouter(DocsLayout)
+export default withSiteData(withRouter(DocsLayout))

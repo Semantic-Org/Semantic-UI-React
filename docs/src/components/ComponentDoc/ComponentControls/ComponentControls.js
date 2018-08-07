@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Menu, Transition } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 import { updateForKeys } from 'docs/src/hoc'
 import ComponentControlsCopyLink from './ComponentControlsCopyLink'
@@ -9,32 +9,15 @@ import ComponentControlsMaximize from './ComponentControlsMaximize'
 import ComponentControlsShowHtml from './ComponentControlsShowHtml'
 
 const ComponentControls = (props) => {
-  const {
-    anchorName,
-    examplePath,
-    showHTML,
-    showCode,
-    onCopyLink,
-    onShowHTML,
-    onShowCode,
-    visible,
-  } = props
+  const { anchorName, examplePath, showHTML, showCode, onCopyLink, onShowHTML, onShowCode } = props
 
   return (
-    <Transition duration={200} visible={!!visible} unmountOnHide>
-      {/*
-        Heads up! Don't remove this `div`, visible Transition applies `display: block`,
-        while Menu should have `display: inline-flex`
-      */}
-      <div>
-        <Menu color='green' compact icon size='small' text>
-          <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
-          <ComponentControlsMaximize examplePath={examplePath} />
-          <ComponentControlsShowHtml active={showHTML} onClick={onShowHTML} />
-          <ComponentControlsEditCode active={showCode} onClick={onShowCode} />
-        </Menu>
-      </div>
-    </Transition>
+    <Menu color='green' compact icon='labeled' size='tiny' text>
+      <ComponentControlsEditCode active={showCode} onClick={onShowCode} />
+      <ComponentControlsShowHtml active={showHTML} onClick={onShowHTML} />
+      <ComponentControlsMaximize examplePath={examplePath} />
+      <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
+    </Menu>
   )
 }
 
@@ -46,7 +29,6 @@ ComponentControls.propTypes = {
   onShowHTML: PropTypes.func,
   showCode: PropTypes.bool,
   showHTML: PropTypes.bool,
-  visible: PropTypes.bool,
 }
 
-export default updateForKeys(['showCode', 'showHTML', 'visible'])(ComponentControls)
+export default updateForKeys(['showCode', 'showHTML'])(ComponentControls)

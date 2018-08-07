@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withSiteData } from 'react-static'
 import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'semantic-ui-react'
 
+import DocsLayout from 'docs/src/components/DocsLayout'
 import Editor from 'docs/src/components/Editor/Editor'
 import Logo from 'docs/src/components/Logo/Logo'
-import { semanticUIDocsURL, repoURL } from 'docs/src/utils'
-import pkg from 'package.json'
+import { btoa, semanticUIDocsURL, repoURL } from 'docs/src/utils'
 
 const AccordionJSX = `const panels = [{
   title: 'What is a dog?',
@@ -107,10 +107,10 @@ const MenuItemLinkAugmentationHTML = `<div class="ui menu">
 </div>`
 
 const Comparison = ({ jsx, html }) => (
-  <Segment className='code-example'>
+  <Segment inverted className='code-example'>
     <Grid columns='equal' centered textAlign='left'>
       <Grid.Column computer='8' largeScreen='7' widescreen='7' width='16'>
-        <Label size='tiny' attached='top left'>
+        <Label color='grey' size='tiny' attached='top left'>
           JSX
         </Label>
         <Editor id={btoa(jsx)} value={jsx} readOnly />
@@ -121,7 +121,7 @@ const Comparison = ({ jsx, html }) => (
         </Divider>
       </Grid.Column>
       <Grid.Column computer='8' largeScreen='7' widescreen='7' width='16'>
-        <Label size='tiny' attached='top right'>
+        <Label color='grey' size='tiny' attached='top right'>
           Rendered HTML
         </Label>
         <Editor id={btoa(html)} mode='html' value={html} readOnly />
@@ -135,9 +135,9 @@ Comparison.propTypes = {
   html: PropTypes.string,
 }
 
-const Introduction = () => (
-  <Container id='introduction-page'>
-    <div>
+const Introduction = ({ pkg }) => (
+  <DocsLayout additionalTitle='Introduction'>
+    <Container id='introduction-page'>
       <Segment basic textAlign='center'>
         <Logo centered size='small' />
         <Header as='h1' textAlign='center'>
@@ -317,8 +317,15 @@ const Introduction = () => (
         <Divider hidden section />
         <Divider hidden section />
       </Segment>
-    </div>
-  </Container>
+    </Container>
+  </DocsLayout>
 )
 
-export default Introduction
+Introduction.propTypes = {
+  pkg: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
+export default withSiteData(Introduction)
