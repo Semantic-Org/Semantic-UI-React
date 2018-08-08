@@ -234,13 +234,13 @@ class Sidebar extends Component {
               </Menu.Item>
             </Menu.Menu>
           </Menu.Item>
-          <div style={{ flex: 1, marginTop: '1rem', overflowY: 'scroll' }}>
-            <Menu.Item>
+          <div style={{ flex: 1, overflowY: 'scroll' }}>
+            <Menu.Item fitted>
               <Ref innerRef={this.handleSearchRef}>
                 <Input
                   fluid
                   icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
-                  placeholder='Press &quot;/&quot; to filter'
+                  placeholder='Press &quot;/&quot; to find a component'
                   value={query}
                   onChange={this.handleSearchChange}
                   onKeyDown={this.handleSearchKeyDown}

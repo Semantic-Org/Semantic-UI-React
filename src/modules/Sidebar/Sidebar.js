@@ -110,6 +110,7 @@ class Sidebar extends Component {
     const { visible } = this.props
 
     if (visible) this.removeListener()
+    clearTimeout(this.animationTimer)
   }
 
   componentDidUpdate(prevProps) {

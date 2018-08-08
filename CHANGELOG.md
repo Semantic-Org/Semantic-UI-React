@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.82.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.82.2) (2018-08-07)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.82.1...v0.82.2)
+
+**Merged pull requests:**
+
+- docs\(perf\): refactor ComponentControls [\#3069](https://github.com/Semantic-Org/Semantic-UI-React/pull/3069) ([layershifter](https://github.com/layershifter))
+- chore\(package\): use react 16.4 in docs and tests [\#3068](https://github.com/Semantic-Org/Semantic-UI-React/pull/3068) ([layershifter](https://github.com/layershifter))
+-  chore\(package\): update Babel dependencies [\#3067](https://github.com/Semantic-Org/Semantic-UI-React/pull/3067) ([layershifter](https://github.com/layershifter))
+- docs\(Examples\): use react-source-render [\#3065](https://github.com/Semantic-Org/Semantic-UI-React/pull/3065) ([layershifter](https://github.com/layershifter))
+- docs\(IconExampleFitted\): better demonstrate fitted [\#3058](https://github.com/Semantic-Org/Semantic-UI-React/pull/3058) ([levithomason](https://github.com/levithomason))
+- fix\(Dropdown\): fix `additionLabel` definition [\#3055](https://github.com/Semantic-Org/Semantic-UI-React/pull/3055) ([DavidHall](https://github.com/DavidHall))
+- fix\(Sidebar\): clear timer when unmounting [\#3052](https://github.com/Semantic-Org/Semantic-UI-React/pull/3052) ([hissalht](https://github.com/hissalht))
+- docs\(src\): fix Sidebar filter and Intro editors [\#3044](https://github.com/Semantic-Org/Semantic-UI-React/pull/3044) ([levithomason](https://github.com/levithomason))
+- test\(Rating\): clean up tests [\#3041](https://github.com/Semantic-Org/Semantic-UI-React/pull/3041) ([layershifter](https://github.com/layershifter))
+- docs\(ComponentExample\): fix and improve edit experience [\#3038](https://github.com/Semantic-Org/Semantic-UI-React/pull/3038) ([levithomason](https://github.com/levithomason))
+- chore\(package\): update dev deps [\#3035](https://github.com/Semantic-Org/Semantic-UI-React/pull/3035) ([layershifter](https://github.com/layershifter))
+- fix\(Modal\): prevent resize loop for full screen height [\#3024](https://github.com/Semantic-Org/Semantic-UI-React/pull/3024) ([marcdavi-es](https://github.com/marcdavi-es))
+- docs\(build\): use react-static for prerender [\#2925](https://github.com/Semantic-Org/Semantic-UI-React/pull/2925) ([layershifter](https://github.com/layershifter))
+
 ## [v0.82.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.82.1) (2018-07-22)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.82.0...v0.82.1)
 
@@ -337,41 +356,6 @@
 - feat\(typings\): export DropdownOnSearchChangeData [\#2205](https://github.com/Semantic-Org/Semantic-UI-React/pull/2205) ([pierre-H](https://github.com/pierre-H))
 - chore\(circleci\): fix typo in a step name [\#2200](https://github.com/Semantic-Org/Semantic-UI-React/pull/2200) ([WiNloSt](https://github.com/WiNloSt))
 - fix\(TextArea\): fix autoHeight calculate wrong value on long text [\#2199](https://github.com/Semantic-Org/Semantic-UI-React/pull/2199) ([WiNloSt](https://github.com/WiNloSt))
-
-## [v0.75.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.75.0) (2017-10-16)
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.74.2...v0.75.0)
-
-**Merged pull requests:**
-
-- docs\(ISSUE\_TEMPLATE\): update link to SO and code template [\#2198](https://github.com/Semantic-Org/Semantic-UI-React/pull/2198) ([layershifter](https://github.com/layershifter))
-- feat\(Message\): add `top` to possible values of `attached` [\#2197](https://github.com/Semantic-Org/Semantic-UI-React/pull/2197) ([layershifter](https://github.com/layershifter))
-- style\(mixed\): fix spelling and grammar issues in comments and tests [\#2196](https://github.com/Semantic-Org/Semantic-UI-React/pull/2196) ([direvus](https://github.com/direvus))
-- docs\(Button\): add missing props to example [\#2191](https://github.com/Semantic-Org/Semantic-UI-React/pull/2191) ([patrikmolsson](https://github.com/patrikmolsson))
-- fix\(typings\): fix definition for Accordion.Accordion [\#2180](https://github.com/Semantic-Org/Semantic-UI-React/pull/2180) ([swASO](https://github.com/swASO))
-- docs\(README\): add aircip.ir and platform.nazarbazaar.ir to `built with` section [\#2179](https://github.com/Semantic-Org/Semantic-UI-React/pull/2179) ([ali-master](https://github.com/ali-master))
-- style\(Form\): fix typo in examples [\#2178](https://github.com/Semantic-Org/Semantic-UI-React/pull/2178) ([abhn](https://github.com/abhn))
-- docs\(examples\): fix webpack.config.js [\#2171](https://github.com/Semantic-Org/Semantic-UI-React/pull/2171) ([armendarabyan](https://github.com/armendarabyan))
-- feat\(typings\): add icon names for Icon [\#2167](https://github.com/Semantic-Org/Semantic-UI-React/pull/2167) ([vincealdrin](https://github.com/vincealdrin))
-- fix\(Form\): don't prevent form submission when action='' [\#2165](https://github.com/Semantic-Org/Semantic-UI-React/pull/2165) ([eug48](https://github.com/eug48))
-- fix\(Dropdown\): update text when item selected with keyboard [\#2162](https://github.com/Semantic-Org/Semantic-UI-React/pull/2162) ([ayastreb](https://github.com/ayastreb))
-- docs\(Portal\): remove useless props in PortalExampleControlled [\#2159](https://github.com/Semantic-Org/Semantic-UI-React/pull/2159) ([layershifter](https://github.com/layershifter))
-- test\(typings\): restore assertion for typings and propTypes order [\#2158](https://github.com/Semantic-Org/Semantic-UI-React/pull/2158) ([layershifter](https://github.com/layershifter))
-- docs\(Portal\): add controlled example [\#2156](https://github.com/Semantic-Org/Semantic-UI-React/pull/2156) ([layershifter](https://github.com/layershifter))
-- fix\(Modal\): set scrolling body class on re-open [\#2152](https://github.com/Semantic-Org/Semantic-UI-React/pull/2152) ([ayastreb](https://github.com/ayastreb))
-- test\(common\): support isConformant for portals [\#2146](https://github.com/Semantic-Org/Semantic-UI-React/pull/2146) ([levithomason](https://github.com/levithomason))
-- breaking\(Step\): refactor Step to use factories, update content props, add missing props [\#2145](https://github.com/Semantic-Org/Semantic-UI-React/pull/2145) ([layershifter](https://github.com/layershifter))
--  test\(mixed\): add test for `content` prop, remove useless tests [\#2144](https://github.com/Semantic-Org/Semantic-UI-React/pull/2144) ([layershifter](https://github.com/layershifter))
-- breaking\(Statistic\): refactor Statistic to use factories, update content props [\#2143](https://github.com/Semantic-Org/Semantic-UI-React/pull/2143) ([layershifter](https://github.com/layershifter))
-- feat\(Ref\): add component [\#2142](https://github.com/Semantic-Org/Semantic-UI-React/pull/2142) ([layershifter](https://github.com/layershifter))
-- perf\(Breadcrumb\): move computer of ElementType to method on BreadcrumbSection [\#2141](https://github.com/Semantic-Org/Semantic-UI-React/pull/2141) ([layershifter](https://github.com/layershifter))
-- fix\(Search\): simplify propTypes on SearchResult [\#2138](https://github.com/Semantic-Org/Semantic-UI-React/pull/2138) ([layershifter](https://github.com/layershifter))
-- docs\(readme\): url update in built with [\#2134](https://github.com/Semantic-Org/Semantic-UI-React/pull/2134) ([GautierT](https://github.com/GautierT))
-- chore\(package\): update to react 16 [\#2131](https://github.com/Semantic-Org/Semantic-UI-React/pull/2131) ([layershifter](https://github.com/layershifter))
-- fix\(Transition\): fix component wrapping inside Transition.Group [\#2130](https://github.com/Semantic-Org/Semantic-UI-React/pull/2130) ([layershifter](https://github.com/layershifter))
-- docs\(Dropdown\): fix DropdownRemoteExample [\#2126](https://github.com/Semantic-Org/Semantic-UI-React/pull/2126) ([patrikmolsson](https://github.com/patrikmolsson))
-- docs\(readme\): add amazon publishing to built with [\#2122](https://github.com/Semantic-Org/Semantic-UI-React/pull/2122) ([austinfox](https://github.com/austinfox))
-- perf\(lodash\): remove \_.omit and \_.isEqual [\#2111](https://github.com/Semantic-Org/Semantic-UI-React/pull/2111) ([levithomason](https://github.com/levithomason))
-- fix\(Modal\): add/remove dimmer classes in raf [\#2010](https://github.com/Semantic-Org/Semantic-UI-React/pull/2010) ([levithomason](https://github.com/levithomason))
 
 
 
