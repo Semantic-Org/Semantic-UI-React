@@ -864,9 +864,15 @@
   version "8.0.53"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
 
+"@types/prop-types@*":
+  version "15.5.4"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.4.tgz#9e6199bad131786e24c2baa2a82705a02139fbf8"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-helmet@^5.0.3":
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-5.0.6.tgz#49607cbb72e1bb7dcefa9174cb591434d3b6f0af"
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-5.0.7.tgz#1cae65b2c37fe54cf56f40cd388836d4619dbc51"
   dependencies:
     "@types/react" "*"
 
@@ -885,16 +891,11 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.0.18":
-  version "16.4.1"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.1.tgz#c53bbfb4a78933db587da085ac60dbf5fcf73f8f"
+"@types/react@*", "@types/react@^16.0.18", "@types/react@^16.4.8":
+  version "16.4.8"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.8.tgz#ff0440429783df0927bdcd430fa1225f7c08cf36"
   dependencies:
-    csstype "^2.2.0"
-
-"@types/react@^16.3.0":
-  version "16.4.7"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.7.tgz#f33f6d759a7e1833befa15224d68942d178a5a3f"
-  dependencies:
+    "@types/prop-types" "*"
     csstype "^2.2.0"
 
 abbrev@1:
