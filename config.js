@@ -1,4 +1,4 @@
-import path from 'path'
+const path = require('path')
 
 // ------------------------------------
 // Environment vars
@@ -93,4 +93,4 @@ const config = {
   ],
 }
 
-export default config
+module.exports = config
