@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Image as ImageComponent, Item } from 'semantic-ui-react'
+import { Icon, Image, Item } from 'semantic-ui-react'
 
 const paragraph = <Image src='/images/wireframe/short-paragraph.png' />
 
