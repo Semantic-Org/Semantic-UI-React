@@ -11,6 +11,8 @@ import { default as MessageHeader, MessageHeaderProps } from './MessageHeader'
 import { default as MessageItem, MessageItemProps } from './MessageItem'
 import MessageList from './MessageList'
 
+export type MessageSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
+
 export interface MessageProps {
   [key: string]: any
 
@@ -72,7 +74,7 @@ export interface MessageProps {
   positive?: boolean
 
   /** A message can have different sizes. */
-  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
+  size?: MessageSizeProp
 
   /** A message may be formatted to display a positive message.  Same as `positive`. */
   success?: boolean

@@ -88,7 +88,11 @@ export {
 export { default as MenuItem, MenuItemProps } from './dist/commonjs/collections/Menu/MenuItem'
 export { default as MenuMenu, MenuMenuProps } from './dist/commonjs/collections/Menu/MenuMenu'
 
-export { default as Message, MessageProps } from './dist/commonjs/collections/Message'
+export {
+  default as Message,
+  MessageProps,
+  MessageSizeProp,
+} from './dist/commonjs/collections/Message'
 export {
   default as MessageContent,
   MessageContentProps,
