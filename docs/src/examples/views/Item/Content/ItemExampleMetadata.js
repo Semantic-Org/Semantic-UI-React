@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image as ImageComponent, Item } from 'semantic-ui-react'
 
-const paragraph = <ImageComponent src='/images/wireframe/short-paragraph.png' />
+const paragraph = <Image src='/images/wireframe/short-paragraph.png' />
 
 const ItemExampleMetadata = () => (
   <Item.Group>
