@@ -43,12 +43,6 @@ const config = {
   paths,
 
   // ----------------------------------
-  // Server Configuration
-  // ----------------------------------
-  server_host: 'localhost',
-  server_port: process.env.PORT || 8080,
-
-  // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
   compiler_devtool: (__DEV__ || __TEST__) && 'cheap-source-map',
