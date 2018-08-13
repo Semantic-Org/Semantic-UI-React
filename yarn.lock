@@ -9578,18 +9578,7 @@ react-helmet@^5.2.0:
     prop-types "^15.5.4"
     react-side-effect "^1.1.0"
 
-react-hot-loader@^4:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.3.3.tgz#37409a3341c7787563d0972007ba02521f82f5d5"
-  dependencies:
-    fast-levenshtein "^2.0.6"
-    global "^4.3.0"
-    hoist-non-react-statics "^2.5.0"
-    prop-types "^15.6.1"
-    react-lifecycles-compat "^3.0.4"
-    shallowequal "^1.0.2"
-
-react-hot-loader@^4.3.4:
+react-hot-loader@^4, react-hot-loader@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.3.4.tgz#4f9bdd55bb20d77a6ae8931fa1c187e5f0ce6279"
   dependencies:
@@ -9647,9 +9636,9 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
-react-source-render@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-source-render/-/react-source-render-1.1.1.tgz#58cccc08b27b00bd326e235452ccdb15f96f029e"
+react-source-render@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-source-render/-/react-source-render-1.1.2.tgz#34bb2b7a84c3fe89647a424daaaf3825feb5e562"
   dependencies:
     deepmerge "^2.1.1"
     fast-deep-equal "^2.0.1"
@@ -10269,10 +10258,6 @@ requestretry@^1.2.2:
     lodash "^4.15.0"
     request "^2.74.0"
     when "^3.7.7"
-
-require-dir@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/require-dir/-/require-dir-1.0.0.tgz#c2639de72960ea1ee280279f2da35e03c6536b2d"
 
 require-directory@^2.1.1:
   version "2.1.1"
