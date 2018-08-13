@@ -15,6 +15,7 @@ import ComponentExampleRenderSource from './ComponentExampleRenderSource'
 import ComponentExampleTitle from './ComponentExampleTitle'
 
 const childrenStyle = {
+  paddingBottom: 0,
   paddingTop: 0,
   maxWidth: '50rem',
 }
@@ -224,35 +225,36 @@ class ComponentExample extends PureComponent {
         <div id={this.anchorName} style={{ paddingTop: '1rem' }}>
           <Grid
             className='docs-example'
-            columns='equal'
             padded='vertically'
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMove}
             style={exampleStyle}
           >
-            <Grid.Column>
-              <ComponentExampleTitle
-                description={description}
-                title={title}
-                suiVersion={suiVersion}
-              />
-            </Grid.Column>
-            <Grid.Column textAlign='right' style={componentControlsStyle}>
-              <ComponentControls
-                anchorName={this.anchorName}
-                examplePath={examplePath}
-                onCopyLink={this.handleDirectLinkClick}
-                onShowCode={this.handleShowCodeClick}
-                onShowHTML={this.handleShowHTMLClick}
-                showCode={showCode}
-                showHTML={showHTML}
-              />
-            </Grid.Column>
+            <Grid.Row columns='equal'>
+              <Grid.Column>
+                <ComponentExampleTitle
+                  description={description}
+                  title={title}
+                  suiVersion={suiVersion}
+                />
+              </Grid.Column>
+              <Grid.Column textAlign='right' style={componentControlsStyle}>
+                <ComponentControls
+                  anchorName={this.anchorName}
+                  examplePath={examplePath}
+                  onCopyLink={this.handleDirectLinkClick}
+                  onShowCode={this.handleShowCodeClick}
+                  onShowHTML={this.handleShowHTMLClick}
+                  showCode={showCode}
+                  showHTML={showHTML}
+                />
+              </Grid.Column>
+            </Grid.Row>
 
             {children && (
-              <Grid.Column width={16} style={childrenStyle}>
-                {children}
-              </Grid.Column>
+              <Grid.Row columns={1} style={childrenStyle}>
+                <Grid.Column>{children}</Grid.Column>
+              </Grid.Row>
             )}
 
             <Grid.Column
