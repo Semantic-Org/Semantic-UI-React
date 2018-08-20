@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useTextAlignProp,
@@ -21,6 +20,7 @@ import Card from './Card'
  */
 function CardGroup(props) {
   const {
+    centered,
     children,
     className,
     content,
@@ -33,6 +33,7 @@ function CardGroup(props) {
 
   const classes = cx(
     'ui',
+    useKeyOnly(centered, 'centered'),
     useKeyOnly(doubling, 'doubling'),
     useKeyOnly(stackable, 'stackable'),
     useTextAlignProp(textAlign),
@@ -43,26 +44,39 @@ function CardGroup(props) {
   const rest = getUnhandledProps(CardGroup, props)
   const ElementType = getElementType(CardGroup, props)
 
-  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
-  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
+  if (!childrenUtils.isNil(content)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {content}
+      </ElementType>
+    )
+  }
 
   const itemsJSX = _.map(items, (item) => {
     const key = item.key || [item.header, item.description].join('-')
     return <Card key={key} {...item} />
   })
 
-  return <ElementType {...rest} className={classes}>{itemsJSX}</ElementType>
-}
-
-CardGroup._meta = {
-  name: 'CardGroup',
-  parent: 'Card',
-  type: META.TYPES.VIEW,
+  return (
+    <ElementType {...rest} className={classes}>
+      {itemsJSX}
+    </ElementType>
+  )
 }
 
 CardGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
+
+  /** A group of cards can center itself inside its container. */
+  centered: PropTypes.bool,
 
   /** Primary content. */
   children: PropTypes.node,

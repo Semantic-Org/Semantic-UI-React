@@ -1,15 +1,13 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import {
   createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
-  shallowEqual,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -20,7 +18,7 @@ import IconGroup from './IconGroup'
  * An icon is a glyph used to represent something else.
  * @see Image
  */
-class Icon extends Component {
+class Icon extends PureComponent {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -66,21 +64,35 @@ class Icon extends Component {
 
     /** Size of the icon. */
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+
+    /** Icon can have an aria label. */
+    'aria-hidden': PropTypes.string,
+
+    /** Icon can have an aria label. */
+    'aria-label': PropTypes.string,
   }
 
   static defaultProps = {
     as: 'i',
   }
 
-  static _meta = {
-    name: 'Icon',
-    type: META.TYPES.ELEMENT,
-  }
-
   static Group = IconGroup
 
-  shouldComponentUpdate(nextProps) {
-    return !shallowEqual(this.props, nextProps)
+  getIconAriaOptions() {
+    const ariaOptions = {}
+    const { 'aria-label': ariaLabel, 'aria-hidden': ariaHidden } = this.props
+
+    if (_.isNil(ariaLabel)) {
+      ariaOptions['aria-hidden'] = 'true'
+    } else {
+      ariaOptions['aria-label'] = ariaLabel
+    }
+
+    if (!_.isNil(ariaHidden)) {
+      ariaOptions['aria-hidden'] = ariaHidden
+    }
+
+    return ariaOptions
   }
 
   render() {
@@ -120,8 +132,9 @@ class Icon extends Component {
     )
     const rest = getUnhandledProps(Icon, this.props)
     const ElementType = getElementType(Icon, this.props)
+    const ariaOptions = this.getIconAriaOptions()
 
-    return <ElementType {...rest} aria-hidden='true' className={classes} />
+    return <ElementType {...rest} {...ariaOptions} className={classes} />
   }
 }
 

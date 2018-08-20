@@ -1,8 +1,8 @@
-import webpack from 'webpack'
+const webpack = require('webpack')
 
-import config from './config'
-import pkg from './package.json'
-import webpackConfig from './webpack.config.babel'
+const config = require('./config')
+const pkg = require('./package.json')
+const webpackConfig = require('./webpack.config.babel')
 
 const { paths } = config
 
@@ -25,12 +25,16 @@ const webpackUMDConfig = {
     pathinfo: true,
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
         dead_code: true,
         warnings: false,
       },
+      output: { comments: false },
     }),
   ],
   module: {
@@ -39,4 +43,4 @@ const webpackUMDConfig = {
   },
 }
 
-export default webpackUMDConfig
+module.exports = webpackUMDConfig

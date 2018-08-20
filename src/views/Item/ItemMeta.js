@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
 } from '../../lib'
 
 /**
@@ -25,12 +24,6 @@ function ItemMeta(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-ItemMeta._meta = {
-  name: 'ItemMeta',
-  parent: 'Item',
-  type: META.TYPES.VIEW,
 }
 
 ItemMeta.propTypes = {

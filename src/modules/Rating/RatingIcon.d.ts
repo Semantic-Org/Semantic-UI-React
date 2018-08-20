@@ -1,19 +1,19 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export interface RatingIconProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?:any;
+  as?: any
 
   /** Indicates activity of an icon. */
-  active?: boolean;
+  active?: boolean
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** An index of icon inside Rating. */
-  index?: number;
+  index?: number
 
   /**
    * Called on click.
@@ -21,7 +21,7 @@ export interface RatingIconProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed rating.
    */
-  onClick?: (event: React.MouseEvent<HTMLElement>, data: RatingIconProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>, data: RatingIconProps) => void
 
   /**
    * Called on keyup.
@@ -29,7 +29,7 @@ export interface RatingIconProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed rating.
    */
-  onKeyUp?: (event: React.MouseEvent<HTMLElement>, data: RatingIconProps) => void;
+  onKeyUp?: (event: React.MouseEvent<HTMLElement>, data: RatingIconProps) => void
 
   /**
    * Called on mouseenter.
@@ -37,12 +37,12 @@ export interface RatingIconProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed rating.
    */
-  onMouseEnter?: (event: React.MouseEvent<HTMLElement>, data: RatingIconProps) => void;
+  onMouseEnter?: (event: React.MouseEvent<HTMLElement>, data: RatingIconProps) => void
 
   /** Indicates selection of an icon. */
-  selected?: boolean;
+  selected?: boolean
 }
 
-declare const RatingIcon: React.ComponentClass<RatingIconProps>;
+declare const RatingIcon: React.ComponentClass<RatingIconProps>
 
-export default RatingIcon;
+export default RatingIcon

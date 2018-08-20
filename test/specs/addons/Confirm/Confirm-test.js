@@ -1,9 +1,9 @@
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import React from 'react'
 
 import Confirm from 'src/addons/Confirm/Confirm'
 import Modal from 'src/modules/Modal/Modal'
-import { keyboardKey } from 'src/lib'
 import { assertBodyContains, domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
@@ -15,7 +15,6 @@ let wrapper
 // we need to unmount the modal after every test to remove it from the document
 // wrap the render methods to update a global wrapper that is unmounted after each test
 const wrapperMount = (...args) => (wrapper = mount(...args))
-const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Confirm', () => {
   beforeEach(() => {
@@ -40,19 +39,29 @@ describe('Confirm', () => {
     mapValueToProps: content => ({ content }),
   })
 
-  it('renders a small Modal', () => {
-    wrapperShallow(<Confirm />)
-    wrapper
-      .type()
-      .should.equal(Modal)
-    wrapper
-      .should.have.prop('size', 'small')
+  describe('children', () => {
+    it('renders a Modal', () => {
+      shallow(<Confirm />)
+        .type()
+        .should.equal(Modal)
+    })
+  })
+
+  describe('size', () => {
+    it('has "small" size by default', () => {
+      shallow(<Confirm />).should.have.prop('size', 'small')
+    })
+
+    _.forEach(['fullscreen', 'large', 'mini', 'small', 'tiny'], (size) => {
+      it(`applies ${size} size`, () => {
+        shallow(<Confirm size={size} />).should.have.prop('size', size)
+      })
+    })
   })
 
   describe('cancelButton', () => {
     it('is "Cancel" by default', () => {
-      Confirm.defaultProps.cancelButton
-        .should.equal('Cancel')
+      Confirm.defaultProps.cancelButton.should.equal('Cancel')
     })
     it('sets the cancel button text', () => {
       shallow(<Confirm cancelButton='foo' />)
@@ -65,8 +74,7 @@ describe('Confirm', () => {
 
   describe('confirmButton', () => {
     it('is "OK" by default', () => {
-      Confirm.defaultProps.confirmButton
-        .should.equal('OK')
+      Confirm.defaultProps.confirmButton.should.equal('OK')
     })
     it('sets the confirm button text', () => {
       shallow(<Confirm confirmButton='foo' />)
@@ -85,10 +93,11 @@ describe('Confirm', () => {
     })
 
     it('omitted when not defined', () => {
-      const click = () => shallow(<Confirm />)
-        .find('Button')
-        .first()
-        .simulate('click')
+      const click = () =>
+        shallow(<Confirm />)
+          .find('Button')
+          .first()
+          .simulate('click')
 
       expect(click).to.not.throw()
     })
@@ -153,9 +162,10 @@ describe('Confirm', () => {
 
   describe('onConfirm', () => {
     it('omitted when not defined', () => {
-      const click = () => shallow(<Confirm />)
-        .find('Button[primary]')
-        .simulate('click')
+      const click = () =>
+        shallow(<Confirm />)
+          .find('Button[primary]')
+          .simulate('click')
 
       expect(click).to.not.throw()
     })

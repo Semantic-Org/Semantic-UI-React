@@ -10,7 +10,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Header', () => {
   common.hasUIClassName(Header)
-  common.hasSubComponents(Header, [HeaderContent, HeaderSubheader])
+  common.hasSubcomponents(Header, [HeaderContent, HeaderSubheader])
   common.rendersChildren(Header)
 
   common.implementsIconProp(Header)
@@ -33,33 +33,29 @@ describe('Header', () => {
   common.propKeyOrValueAndKeyToClassName(Header, 'attached', ['top', 'bottom'])
 
   common.propValueOnlyToClassName(Header, 'color', SUI.COLORS)
-  common.propValueOnlyToClassName(Header, 'size', _.without(SUI.SIZES, 'big', 'massive'))
+  common.propValueOnlyToClassName(Header, 'size', _.without(SUI.SIZES, 'big', 'massive', 'mini'))
 
   describe('icon', () => {
     it('adds an icon class when true', () => {
-      shallow(<Header icon />)
-        .should.have.className('icon')
+      shallow(<Header icon />).should.have.className('icon')
     })
     it('does not add an icon class given a name', () => {
-      shallow(<Header icon='user' />)
-        .should.not.have.className('icon')
+      shallow(<Header icon='user' />).should.not.have.className('icon')
     })
   })
 
   describe('image', () => {
     it('adds an image class when true', () => {
-      shallow(<Header image />)
-        .should.have.className('image')
+      shallow(<Header image />).should.have.className('image')
     })
     it('does not add an Image when true', () => {
-      shallow(<Header image />)
-        .should.not.have.descendants('Image')
+      shallow(<Header image />).should.not.have.descendants('Image')
     })
   })
 
   describe('content', () => {
     it('is wrapped in HeaderContent when there is an image src', () => {
-      shallow(<Header image='foo.png' content='Bar' />)
+      shallow(<Header image='/images/wireframe/image.png' content='Bar' />)
         .find('HeaderContent')
         .shallow()
         .should.contain.text('Bar')
@@ -89,7 +85,7 @@ describe('Header', () => {
     it('adds HeaderSubheader as child when there is an image', () => {
       const text = faker.hacker.phrase()
 
-      shallow(<Header image='foo.png' subheader={text} />)
+      shallow(<Header image='/images/wireframe/image.png' subheader={text} />)
         .find('HeaderSubheader')
         .should.have.prop('content', text)
     })

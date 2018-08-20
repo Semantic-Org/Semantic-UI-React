@@ -1,22 +1,22 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface LabelDetailProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 }
 
-declare const LabelDetail: React.StatelessComponent<LabelDetailProps>;
+declare const LabelDetail: React.StatelessComponent<LabelDetailProps>
 
-export default LabelDetail;
+export default LabelDetail

@@ -1,140 +1,150 @@
-import historyApiFallback from 'connect-history-api-fallback'
-import express from 'express'
-import { task, src, dest, parallel, series, watch } from 'gulp'
+import { task, src, dest, lastRun, parallel, series, watch } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
+import path from 'path'
+import { build, reloadRoutes, start } from 'react-static/node'
 import rimraf from 'rimraf'
-import webpack from 'webpack'
-import WebpackDevMiddleware from 'webpack-dev-middleware'
-import WebpackHotMiddleware from 'webpack-hot-middleware'
 
+import sh from '../sh'
 import config from '../../config'
-import gulpMenuGen from '../plugins/gulp-menugen'
+import gulpComponentMenu from '../plugins/gulp-component-menu'
+import gulpExampleMenu from '../plugins/gulp-example-menu'
+import gulpExampleSources from '../plugins/gulp-example-source'
 import gulpReactDocgen from '../plugins/gulp-react-docgen'
 
+const { paths } = config
 const g = loadPlugins()
-const { colors, log, PluginError } = g.util
+const { log } = g.util
 
-const handleWatchChange = e => log(`File ${e.path} was ${e.type}, running tasks...`)
+const handleWatchChange = filename =>
+  log(`File ${path.basename(filename)} was changed, running tasks...`)
 
 // ----------------------------------------
 // Clean
 // ----------------------------------------
 
-task('clean:docs', (cb) => {
-  rimraf(config.paths.docsDist(), cb)
+task('clean:docs:component-info', (cb) => {
+  rimraf(paths.docsSrc('componentInfo'), cb)
+})
+
+task('clean:docs:component-menu', (cb) => {
+  rimraf(paths.docsSrc('componentMenu.json'), cb)
+})
+
+task('clean:docs:dist', (cb) => {
+  rimraf(paths.docsDist(), cb)
+})
+
+task('clean:docs:example-menus', (cb) => {
+  rimraf(paths.docsSrc('exampleMenus'), cb)
+})
+
+task('clean:docs:example-sources', (cb) => {
+  rimraf(paths.docsSrc('exampleSources.json'), cb)
+})
+
+task(
+  'clean:docs',
+  parallel(
+    'clean:docs:component-info',
+    'clean:docs:component-menu',
+    'clean:docs:dist',
+    'clean:docs:example-menus',
+    'clean:docs:example-sources',
+  ),
+)
+
+// ----------------------------------------
+// Build docs with React Static
+// ----------------------------------------
+
+task('build:docs:static:build', (cb) => {
+  build().then(cb)
+})
+
+task('build:docs:static:reload', (cb) => {
+  reloadRoutes()
+  cb()
+})
+
+task('build:docs:static:start', (cb) => {
+  start()
+  cb()
 })
 
 // ----------------------------------------
 // Build
 // ----------------------------------------
 
-task('build:docs:docgen', () => src([
-  `${config.paths.src()}/addons/**/*.js`,
-  `${config.paths.src()}/behaviors/**/*.js`,
-  `${config.paths.src()}/elements/**/*.js`,
-  `${config.paths.src()}/collections/**/*.js`,
-  `${config.paths.src()}/modules/**/*.js`,
-  `${config.paths.src()}/views/**/*.js`,
+const componentsSrc = [
+  `${paths.src()}/addons/*/*.js`,
+  `${paths.src()}/behaviors/*/*.js`,
+  `${paths.src()}/elements/*/*.js`,
+  `${paths.src()}/collections/*/*.js`,
+  `${paths.src()}/modules/*/*.js`,
+  `${paths.src()}/views/*/*.js`,
   '!**/index.js',
-])
-  // do not remove the function keyword
-  // we need 'this' scope here
-  .pipe(g.plumber(function handleError(err) {
-    log(err.toString())
-    this.emit('end')
-  }))
-  .pipe(gulpReactDocgen())
-  .pipe(dest(config.paths.docsSrc())))
+]
 
-task('build:docs:menugen', () => src(`${config.paths.docsSrc()}/Examples/**/index.js`)
-  // do not remove the function keyword
-  // we need 'this' scope here
-  .pipe(g.plumber(function handleError(err) {
-    log(err.toString())
-    this.emit('end')
-  }))
-  .pipe(gulpMenuGen())
-  .pipe(dest(config.paths.docsSrc())))
+const examplesSectionsSrc = `${paths.docsSrc()}/examples/*/*/*/index.js`
+const examplesSrc = `${paths.docsSrc()}/examples/*/*/*/!(*index).js`
 
-task('build:docs:html', () => src(config.paths.docsSrc('404.html'))
-  .pipe(dest(config.paths.docsDist())))
-
-task('build:docs:images', () => src(`${config.paths.docsSrc()}/**/*.{png,jpg,gif}`)
-  .pipe(dest(config.paths.docsDist())))
-
-task('build:docs:webpack', (cb) => {
-  const webpackConfig = require('../../webpack.config.babel').default
-  const compiler = webpack(webpackConfig)
-
-  compiler.run((err, stats) => {
-    const { errors, warnings } = stats.toJson()
-
-    log(stats.toString(config.compiler_stats))
-
-    if (err) {
-      log('Webpack compiler encountered a fatal error.')
-      throw new PluginError('webpack', err.toString())
-    }
-    if (errors.length > 0) {
-      log('Webpack compiler encountered errors.')
-      throw new PluginError('webpack', errors.toString())
-    }
-    if (warnings.length > 0 && config.compiler_fail_on_warning) {
-      throw new PluginError('webpack', warnings.toString())
-    }
-
-    cb(err)
-  })
+task('build:docs:cname', (cb) => {
+  sh(`echo react.semantic-ui.com > ${paths.docsDist('CNAME')}`, cb)
 })
 
-task('build:docs', series(
+task('build:docs:docgen', () =>
+  src(componentsSrc, { since: lastRun('build:docs:docgen') })
+    .pipe(gulpReactDocgen())
+    .pipe(dest(paths.docsSrc('componentInfo'))),
+)
+
+task('build:docs:component-menu', () =>
+  src(componentsSrc, { since: lastRun('build:docs:component-menu') })
+    .pipe(gulpComponentMenu())
+    .pipe(dest(paths.docsSrc())),
+)
+
+task('build:docs:example-menu', () =>
+  src(examplesSectionsSrc, { since: lastRun('build:docs:example-menu') })
+    .pipe(gulpExampleMenu())
+    .pipe(dest(paths.docsSrc('exampleMenus'))),
+)
+
+task('build:docs:example-sources', () =>
+  src(examplesSrc, { since: lastRun('build:docs:example-sources') })
+    .pipe(gulpExampleSources())
+    .pipe(dest(paths.docsSrc())),
+)
+
+task(
+  'build:docs:json',
   parallel(
-    'dll',
-    series(
-      'clean:docs',
-      parallel(
-        'build:docs:docgen',
-        'build:docs:menugen',
-        'build:docs:html',
-        'build:docs:images',
-      ),
-    ),
+    'build:docs:docgen',
+    'build:docs:component-menu',
+    'build:docs:example-menu',
+    'build:docs:example-sources',
   ),
-  'build:docs:webpack',
-))
+)
+
+task('build:docs:toc', (cb) => {
+  sh(`doctoc ${paths.base('.github/CONTRIBUTING.md')} --github --maxlevel 4`, cb)
+})
+
+task(
+  'build:docs',
+  series(
+    parallel('build:docs:toc', series('clean:docs', 'build:docs:json')),
+    'build:docs:static:build',
+  ),
+)
 
 // ----------------------------------------
-// Serve
+// Deploy
 // ----------------------------------------
 
-task('serve:docs', (cb) => {
-  const app = express()
-  const webpackConfig = require('../../webpack.config.babel').default
-  const compiler = webpack(webpackConfig)
-
-  app
-    .use(historyApiFallback({
-      verbose: false,
-    }))
-
-    .use(WebpackDevMiddleware(compiler, {
-      publicPath: webpackConfig.output.publicPath,
-      contentBase: config.paths.docsSrc(),
-      hot: true,
-      quiet: false,
-      noInfo: true, // must be quiet for hot middleware to show overlay
-      lazy: false,
-      stats: config.compiler_stats,
-    }))
-
-    .use(WebpackHotMiddleware(compiler))
-
-    .use(express.static(config.paths.docsDist()))
-
-    .listen(config.server_port, config.server_host, () => {
-      log(colors.yellow('Server running at http://%s:%d'), config.server_host, config.server_port)
-      cb()
-    })
+task('deploy:docs', (cb) => {
+  const relativePath = path.relative(process.cwd(), paths.docsDist())
+  sh(`gh-pages -d ${relativePath} -m "deploy docs [ci skip]"`, cb)
 })
 
 // ----------------------------------------
@@ -142,21 +152,28 @@ task('serve:docs', (cb) => {
 // ----------------------------------------
 
 task('watch:docs', (cb) => {
-  // rebuild doc info
-  watch(`${config.paths.src()}/**/*.js`, series('build:docs:docgen'))
-    .on('change', handleWatchChange)
+  // rebuild component info
+  watch(componentsSrc, series('build:docs:docgen', 'build:docs:static:reload')).on(
+    'change',
+    handleWatchChange,
+  )
 
-  // rebuild images
-  watch(`${config.paths.src()}/**/*.{png,jpg,gif}`, series('build:docs:images'))
-    .on('change', handleWatchChange)
+  // rebuild example menus
+  watch(examplesSectionsSrc, series('build:docs:example-menu', 'build:docs:static:reload')).on(
+    'change',
+    handleWatchChange,
+  )
+
+  // rebuild example sources
+  watch(examplesSrc, series('build:docs:example-sources', 'build:docs:static:reload')).on(
+    'change',
+    handleWatchChange,
+  )
   cb()
 })
 
 // ----------------------------------------
-// Default
+// Start
 // ----------------------------------------
 
-task('docs', series(
-  'build:docs',
-  'serve:docs',
-))
+task('start:docs', series('clean:docs', 'build:docs:json', 'build:docs:static:start', 'watch:docs'))

@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   numberToWordMap,
   SUI,
   useKeyOnly,
@@ -54,8 +53,20 @@ function StepGroup(props) {
   const rest = getUnhandledProps(StepGroup, props)
   const ElementType = getElementType(StepGroup, props)
 
-  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
-  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
+  if (!childrenUtils.isNil(children)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
+  if (!childrenUtils.isNil(content)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {content}
+      </ElementType>
+    )
+  }
 
   return (
     <ElementType {...rest} className={classes}>
@@ -64,21 +75,12 @@ function StepGroup(props) {
   )
 }
 
-StepGroup._meta = {
-  name: 'StepGroup',
-  parent: 'Step',
-  type: META.TYPES.ELEMENT,
-}
-
 StepGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
   /** Steps can be attached to other elements. */
-  attached: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['top', 'bottom']),
-  ]),
+  attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['top', 'bottom'])]),
 
   /** Primary content. */
   children: PropTypes.node,

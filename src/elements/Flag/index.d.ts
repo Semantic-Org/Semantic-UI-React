@@ -1,1 +1,1 @@
-export { default, FlagProps } from './Flag';
+export { default, FlagNameValues, FlagProps } from './Flag'

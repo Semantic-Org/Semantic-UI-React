@@ -1,11 +1,6 @@
 import React from 'react'
 
-import {
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 import Checkbox from '../../modules/Checkbox'
 import FormField from './FormField'
 
@@ -20,12 +15,6 @@ function FormCheckbox(props) {
   const ElementType = getElementType(FormCheckbox, props)
 
   return <ElementType {...rest} control={control} />
-}
-
-FormCheckbox._meta = {
-  name: 'FormCheckbox',
-  parent: 'Form',
-  type: META.TYPES.COLLECTION,
 }
 
 FormCheckbox.propTypes = {

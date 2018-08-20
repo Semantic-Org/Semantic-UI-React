@@ -33,26 +33,41 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // ----------------------------------------
 // Options
 // ----------------------------------------
-const getOptions = (count = 5) => _.times(count, (i) => {
-  const text = `${i}-item-text`
-  const value = `${i}-item-value`
-  return { text, value }
-})
+const getOptions = (count = 5) =>
+  _.times(count, (i) => {
+    const text = [i, ..._.times(3, faker.hacker.noun)].join(' ')
+    const value = _.snakeCase(text)
+    return { text, value }
+  })
 
 // -------------------------------
 // Common Assertions
 // -------------------------------
 const dropdownMenuIsClosed = () => {
-  const menu = wrapper.find('DropdownMenu')
   wrapper.should.not.have.className('visible')
-  menu.should.not.have.className('visible')
+
+  const menu = wrapper.find('DropdownMenu')
+  try {
+    // when shallow rendered
+    menu.should.not.have.prop('open', true)
+  } catch (err) {
+    // when mounted
+    menu.should.not.have.className('visible')
+  }
 }
 
 const dropdownMenuIsOpen = () => {
-  const menu = wrapper.find('DropdownMenu')
   wrapper.should.have.className('active')
   wrapper.should.have.className('visible')
-  menu.should.have.className('visible')
+
+  const menu = wrapper.find('DropdownMenu')
+  try {
+    // when shallow rendered
+    menu.should.have.prop('open', true)
+  } catch (err) {
+    // when mounted
+    menu.should.have.className('visible')
+  }
 }
 
 const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
@@ -71,7 +86,13 @@ describe.only('Dropdown', () => {
 
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
-  common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu, DropdownSearchInput])
+  common.hasSubcomponents(Dropdown, [
+    DropdownDivider,
+    DropdownHeader,
+    DropdownItem,
+    DropdownMenu,
+    DropdownSearchInput,
+  ])
 
   common.implementsIconProp(Dropdown, {
     assertExactMatch: false,
@@ -103,19 +124,24 @@ describe.only('Dropdown', () => {
   common.propKeyOnlyToClassName(Dropdown, 'upward')
 
   common.propKeyOrValueAndKeyToClassName(Dropdown, 'pointing', [
-    'left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right',
+    'left',
+    'right',
+    'top',
+    'top left',
+    'top right',
+    'bottom',
+    'bottom left',
+    'bottom right',
   ])
 
   describe('defaultSearchQuery', () => {
     it('changes default value of searchQuery', () => {
-      shallow(<Dropdown defaultSearchQuery='foo' />)
-        .should.have.state('searchQuery', 'foo')
+      shallow(<Dropdown defaultSearchQuery='foo' />).should.have.state('searchQuery', 'foo')
     })
   })
 
   it('closes on blur', () => {
-    wrapperMount(<Dropdown options={options} />)
-      .simulate('click')
+    wrapperMount(<Dropdown options={options} />).simulate('click')
 
     dropdownMenuIsOpen()
     wrapper.simulate('blur')
@@ -123,8 +149,7 @@ describe.only('Dropdown', () => {
   })
 
   it('does not close on blur with closeOnBlur set to false', () => {
-    wrapperMount(<Dropdown options={options} closeOnBlur={false} />)
-      .simulate('click')
+    wrapperMount(<Dropdown options={options} closeOnBlur={false} />).simulate('click')
 
     dropdownMenuIsOpen()
     wrapper.simulate('blur')
@@ -141,8 +166,7 @@ describe.only('Dropdown', () => {
     wrapper.simulate('click')
     dropdownMenuIsClosed()
 
-    instance.ref.blur
-      .should.have.been.calledOnce()
+    instance.ref.blur.should.have.been.calledOnce()
   })
 
   it('blurs the Dropdown node on close by clicking outside component', () => {
@@ -155,12 +179,11 @@ describe.only('Dropdown', () => {
     document.body.click()
     dropdownMenuIsClosed()
 
-    instance.ref.blur
-      .should.have.been.calledOnce()
+    instance.ref.blur.should.have.been.calledOnce()
   })
 
   it('does not close on click when search is true and options are empty', () => {
-    wrapperMount(<Dropdown options={{}} search selection defaultOpen />)
+    wrapperMount(<Dropdown options={[]} search selection defaultOpen />)
 
     const instance = wrapper.instance()
     sandbox.spy(instance.ref, 'blur')
@@ -206,18 +229,15 @@ describe.only('Dropdown', () => {
 
   describe('tabIndex', () => {
     it('defaults to 0', () => {
-      shallow(<Dropdown options={options} />)
-        .should.have.prop('tabIndex', 0)
+      shallow(<Dropdown options={options} />).should.have.prop('tabIndex', 0)
     })
 
     it('defaults to -1 when disabled', () => {
-      shallow(<Dropdown disabled options={options} />)
-        .should.have.prop('tabIndex', -1)
+      shallow(<Dropdown disabled options={options} />).should.have.prop('tabIndex', -1)
     })
 
     it('applies when defined', () => {
-      shallow(<Dropdown options={options} tabIndex={1} />)
-        .should.have.prop('tabIndex', 1)
+      shallow(<Dropdown options={options} tabIndex={1} />).should.have.prop('tabIndex', 1)
     })
 
     describe('tabIndex', () => {
@@ -246,13 +266,13 @@ describe.only('Dropdown', () => {
       })
 
       it('is not present on the root when is search', () => {
-        shallow(<Dropdown options={options} selection search />)
-          .should.not.have.prop('tabIndex')
+        shallow(<Dropdown options={options} selection search />).should.not.have.prop('tabIndex')
       })
 
       it('is not present on the root when is search and defined', () => {
-        shallow(<Dropdown options={options} selection search tabIndex={1} />)
-          .should.not.have.prop('tabIndex')
+        shallow(<Dropdown options={options} selection search tabIndex={1} />).should.not.have.prop(
+          'tabIndex',
+        )
       })
     })
   })
@@ -260,11 +280,17 @@ describe.only('Dropdown', () => {
   describe('aria', () => {
     it('should label normal dropdown as a listbox', () => {
       wrapperMount(<Dropdown />)
-      wrapper.find('div').at(0).should.have.prop('role', 'listbox')
+      wrapper
+        .find('div')
+        .at(0)
+        .should.have.prop('role', 'listbox')
     })
     it('should label search dropdown as a combobox', () => {
       wrapperMount(<Dropdown search />)
-      wrapper.find('div').at(0).should.have.prop('role', 'combobox')
+      wrapper
+        .find('div')
+        .at(0)
+        .should.have.prop('role', 'combobox')
     })
     it('should label search dropdownMenu as a listbox', () => {
       wrapperMount(<Dropdown search />)
@@ -280,31 +306,52 @@ describe.only('Dropdown', () => {
     })
     it('should label disabled dropdown as aria-disabled', () => {
       wrapperMount(<Dropdown disabled />)
-      wrapper.find('div').at(0).should.have.prop('aria-disabled', true)
+      wrapper
+        .find('div')
+        .at(0)
+        .should.have.prop('aria-disabled', true)
     })
     it('should label normal dropdown without aria-disabled', () => {
       wrapperMount(<Dropdown />)
-      wrapper.find('div').at(0).should.not.have.prop('aria-disabled')
+      wrapper
+        .find('div')
+        .at(0)
+        .should.not.have.prop('aria-disabled')
     })
     it('should label multiple dropdown as aria-multiselectable', () => {
       wrapperMount(<Dropdown multiple />)
-      wrapper.find('div').at(0).should.have.prop('aria-multiselectable', true)
+      wrapper
+        .find('div')
+        .at(0)
+        .should.have.prop('aria-multiselectable', true)
     })
     it('should not label multiple search dropdown as aria-multiselectable', () => {
       wrapperMount(<Dropdown search multiple />)
-      wrapper.find('div').at(0).should.not.have.prop('aria-multiselectable')
+      wrapper
+        .find('div')
+        .at(0)
+        .should.not.have.prop('aria-multiselectable')
     })
     it('should label normal dropdown without aria-multiselectable', () => {
       wrapperMount(<Dropdown />)
-      wrapper.find('div').at(0).should.not.have.prop('aria-multiselectable')
+      wrapper
+        .find('div')
+        .at(0)
+        .should.not.have.prop('aria-multiselectable')
     })
     it('should label loading dropdown as aria-busy', () => {
       wrapperMount(<Dropdown loading />)
-      wrapper.find('div').at(0).should.have.prop('aria-busy', true)
+      wrapper
+        .find('div')
+        .at(0)
+        .should.have.prop('aria-busy', true)
     })
     it('should label normal dropdown without aria-busy', () => {
       wrapperMount(<Dropdown />)
-      wrapper.find('div').at(0).should.not.have.prop('aria-busy')
+      wrapper
+        .find('div')
+        .at(0)
+        .should.not.have.prop('aria-busy')
     })
     it('should label search dropdown input aria-autocomplete=list', () => {
       wrapperMount(<Dropdown search />)
@@ -321,8 +368,7 @@ describe.only('Dropdown', () => {
       const spy = sandbox.spy()
       const event = { foo: 'bar' }
 
-      wrapperShallow(<Dropdown onBlur={spy} />)
-        .simulate('blur', event)
+      wrapperShallow(<Dropdown onBlur={spy} />).simulate('blur', event)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event)
@@ -336,8 +382,7 @@ describe.only('Dropdown', () => {
 
       wrapper.simulate('blur')
 
-      instance.makeSelectedItemActive
-        .should.have.been.calledOnce()
+      instance.makeSelectedItemActive.should.have.been.calledOnce()
     })
 
     it('sets focus state to false', () => {
@@ -377,8 +422,7 @@ describe.only('Dropdown', () => {
       wrapper.simulate('mousedown')
       wrapper.simulate('blur')
 
-      instance.makeSelectedItemActive
-        .should.not.have.been.called()
+      instance.makeSelectedItemActive.should.not.have.been.called()
     })
 
     it('does not set focus state when the mouse is down', () => {
@@ -403,9 +447,7 @@ describe.only('Dropdown', () => {
       wrapper.simulate('click')
       dropdownMenuIsClosed()
 
-      instance
-        .handleClose
-        .should.have.been.calledOnce()
+      instance.handleClose.should.have.been.calledOnce()
     })
 
     it('prevents Space from opening a search Dropdown after selecting an item', () => {
@@ -426,6 +468,7 @@ describe.only('Dropdown', () => {
         .first()
         .simulate('click')
         .should.have.prop('active', true)
+
       wrapper.should.have.state('value', options[0].value)
 
       dropdownMenuIsClosed()
@@ -440,12 +483,14 @@ describe.only('Dropdown', () => {
 
   describe('closeOnChange', () => {
     it('will close when defined and dropdown is multiple', () => {
-      wrapperMount(<Dropdown selection multiple search closeOnChange options={options} />)
-        .simulate('click')
+      wrapperMount(<Dropdown selection multiple search closeOnChange options={options} />).simulate(
+        'click',
+      )
 
       dropdownMenuIsOpen()
 
-      wrapper.find('DropdownItem')
+      wrapper
+        .find('DropdownItem')
         .first()
         .simulate('click', nativeEvent)
 
@@ -453,12 +498,12 @@ describe.only('Dropdown', () => {
     })
 
     it('will remain open when undefined and dropdown is multiple', () => {
-      wrapperMount(<Dropdown selection multiple search options={options} />)
-        .simulate('click')
+      wrapperMount(<Dropdown selection multiple search options={options} />).simulate('click')
 
       dropdownMenuIsOpen()
 
-      wrapper.find('DropdownItem')
+      wrapper
+        .find('DropdownItem')
         .first()
         .simulate('click', nativeEvent)
 
@@ -492,26 +537,20 @@ describe.only('Dropdown', () => {
 
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
-      wrapperShallow(<Dropdown />)
-        .simulate('mousedown')
+      wrapperShallow(<Dropdown />).simulate('mousedown')
 
-      wrapper.instance()
-        .isMouseDown
-        .should.equal(true)
+      wrapper.instance().isMouseDown.should.equal(true)
 
       domEvent.mouseUp(document)
 
-      wrapper.instance()
-        .isMouseDown
-        .should.equal(false)
+      wrapper.instance().isMouseDown.should.equal(false)
     })
   })
 
   describe('icon', () => {
     it('defaults to a dropdown icon', () => {
       Dropdown.defaultProps.icon.should.equal('dropdown')
-      wrapperRender(<Dropdown />)
-        .should.contain.descendants('.dropdown.icon')
+      wrapperRender(<Dropdown />).should.contain.descendants('.dropdown.icon')
     })
 
     it('always opens a dropdown on click', () => {
@@ -546,13 +585,11 @@ describe.only('Dropdown', () => {
 
   describe('searchQuery', () => {
     it('defaults to empty string', () => {
-      shallow(<Dropdown />)
-        .should.have.state('searchQuery', '')
+      shallow(<Dropdown />).should.have.state('searchQuery', '')
     })
 
     it('passes value to state', () => {
-      shallow(<Dropdown searchQuery='foo' />)
-        .should.have.state('searchQuery', 'foo')
+      shallow(<Dropdown searchQuery='foo' />).should.have.state('searchQuery', 'foo')
     })
   })
 
@@ -584,8 +621,7 @@ describe.only('Dropdown', () => {
 
       wrapperShallow(<Dropdown options={[]} selection value={value} />)
 
-      wrapper
-        .setProps({ options, value })
+      wrapper.setProps({ options, value })
 
       wrapper
         .find('DropdownItem')
@@ -595,8 +631,9 @@ describe.only('Dropdown', () => {
     it('is null when all options disabled', () => {
       const disabledOptions = options.map(o => ({ ...o, disabled: true }))
 
-      wrapperRender(<Dropdown options={disabledOptions} selection />)
-        .should.not.have.descendants('.selected')
+      wrapperRender(<Dropdown options={disabledOptions} selection />).should.not.have.descendants(
+        '.selected',
+      )
     })
     it('is set when clicking an item', () => {
       // random item, skip the first as it's selected by default
@@ -684,17 +721,13 @@ describe.only('Dropdown', () => {
         .find('input.search')
         .simulate('change', { target: { value: 'a' } })
 
-      wrapper
-        .find('.selected')
-        .should.contain.text('a1')
+      wrapper.find('.selected').should.contain.text('a1')
 
       // move selection down
       domEvent.keyDown(document, { key: 'ArrowDown' })
       wrapper.update()
 
-      wrapper
-        .find('.selected')
-        .should.contain.text('a2')
+      wrapper.find('.selected').should.contain.text('a2')
     })
     it('filters diacritics on options when using deburr prop', () => {
       const inputText = 'floresti'
@@ -712,9 +745,7 @@ describe.only('Dropdown', () => {
         .find('input.search')
         .simulate('change', { target: { value: inputText } })
 
-      wrapper
-        .find('.selected')
-        .should.contain.text(textToFind)
+      wrapper.find('.selected').should.contain.text(textToFind)
     })
     it('filters diacritics on input when using deburr prop', () => {
       const inputText = 'FLORÉŞTI'
@@ -732,9 +763,7 @@ describe.only('Dropdown', () => {
         .find('input.search')
         .simulate('change', { target: { value: inputText } })
 
-      wrapper
-        .find('.selected')
-        .should.contain.text(textToFind)
+      wrapper.find('.selected').should.contain.text(textToFind)
     })
     it('should not filter diacritics when deburr is not set', () => {
       const inputText = 'FLORÉŞTI'
@@ -755,9 +784,7 @@ describe.only('Dropdown', () => {
         .find('input.search')
         .simulate('change', { target: { value: inputText } })
 
-      wrapper
-        .find('.message')
-        .should.contain.text(noResultsText)
+      wrapper.find('.message').should.contain.text(noResultsText)
     })
     it('still works after encountering "no results"', () => {
       const opts = [
@@ -780,21 +807,21 @@ describe.only('Dropdown', () => {
       // no results is removed
       // first item is selected
       // down arrow moves selection
-      wrapper
-        .find('input.search')
-        .simulate('change', { target: { value: 'a' } })
+      wrapper.find('input.search').simulate('change', { target: { value: 'a' } })
 
       wrapper.should.not.have.descendants('.message')
 
-      wrapper
-        .should.have.exactly(1).descendants('.selected')
+      wrapper.should.have
+        .exactly(1)
+        .descendants('.selected')
         .which.contain.text('a1')
 
       // move selection down
       domEvent.keyDown(document, { key: 'ArrowDown' })
 
-      wrapper
-        .should.have.exactly(1).descendants('.selected')
+      wrapper.should.have
+        .exactly(1)
+        .descendants('.selected')
         .which.contain.text('a2')
     })
     it('skips over disabled items', () => {
@@ -807,25 +834,20 @@ describe.only('Dropdown', () => {
       wrapperMount(<Dropdown options={opts} search selection />)
       wrapper.simulate('click')
 
-      wrapper
-        .find('.selected')
-        .should.contain.text('a1')
+      wrapper.find('.selected').should.contain.text('a1')
 
       // move selection down
       domEvent.keyDown(document, { key: 'ArrowDown' })
       wrapper.update()
 
-      wrapper
-        .find('.selected')
-        .should.contain.text('a2')
+      wrapper.find('.selected').should.contain.text('a2')
     })
     it('does not enter an infinite loop when all items are disabled', () => {
       const opts = [
         { text: '1', value: '1', disabled: true },
         { text: '2', value: '2', disabled: true },
       ]
-      wrapperMount(<Dropdown options={opts} search selection />)
-        .simulate('click')
+      wrapperMount(<Dropdown options={opts} search selection />).simulate('click')
 
       const instance = wrapper.instance()
       sandbox.spy(instance, 'moveSelectionBy')
@@ -833,16 +855,13 @@ describe.only('Dropdown', () => {
       // move selection down
       domEvent.keyDown(document, { key: 'ArrowDown' })
 
-      instance
-        .moveSelectionBy
-        .should.have.been.calledOnce()
+      instance.moveSelectionBy.should.have.been.calledOnce()
     })
     it('scrolls the selected item into view', () => {
       // get enough options to make the menu scrollable
       const opts = getOptions(20)
 
-      wrapperMount(<Dropdown options={opts} selection />)
-        .simulate('click')
+      wrapperMount(<Dropdown options={opts} selection />).simulate('click')
 
       dropdownMenuIsOpen()
       const menu = document.querySelector('.ui.dropdown .menu.visible')
@@ -856,17 +875,13 @@ describe.only('Dropdown', () => {
       //
 
       // make sure first item is selected
-      wrapper
-        .find('.selected')
-        .should.contain.text(opts[0].text)
+      wrapper.find('.selected').should.contain.text(opts[0].text)
 
       // wrap selection to last item
       domEvent.keyDown(document, { key: 'ArrowUp' })
 
       // make sure last item is selected
-      wrapper
-        .find('.selected')
-        .should.contain.text(_.tail(opts).text)
+      wrapper.find('.selected').should.contain.text(_.tail(opts).text)
 
       // menu should be completely scrolled to the bottom
       const isMenuScrolledToBottom = menu.scrollTop + menu.clientHeight === menu.scrollHeight
@@ -882,9 +897,7 @@ describe.only('Dropdown', () => {
       domEvent.keyDown(document, { key: 'ArrowDown' })
 
       // make sure first item is selected
-      wrapper
-        .find('.selected')
-        .should.contain.text(opts[0].text)
+      wrapper.find('.selected').should.contain.text(opts[0].text)
 
       // Note: For some reason the first item's offsetTop is not 0 so we need
       // to find the item's offsetTop and ensure it's at the top.
@@ -902,11 +915,7 @@ describe.only('Dropdown', () => {
       wrapper
         .find('DropdownItem')
         .at(1)
-        .should.have.prop('selected', false)
-      wrapper
-        .find('DropdownItem')
-        .at(1)
-        .should.have.prop('active', false)
+        .should.have.props({ selected: false, active: false })
 
       // select and make active
       domEvent.keyDown(document, { key: 'ArrowDown' })
@@ -916,11 +925,10 @@ describe.only('Dropdown', () => {
       wrapper
         .find('DropdownItem')
         .at(1)
-        .should.have.prop('active', true)
+        .should.have.props({ selected: true, active: true })
     })
     it('closes the menu', () => {
-      wrapperMount(<Dropdown options={options} selection />)
-        .simulate('click')
+      wrapperMount(<Dropdown options={options} selection />).simulate('click')
 
       dropdownMenuIsOpen()
 
@@ -1031,9 +1039,7 @@ describe.only('Dropdown', () => {
         .at(_.random(options.length - 1))
         .simulate('click')
 
-      wrapper
-        .find('div.text')
-        .should.contain.text(text)
+      wrapper.find('div.text').should.contain.text(text)
     })
     it('is updated on item click if not already defined', () => {
       wrapperMount(<Dropdown options={options} selection />)
@@ -1048,30 +1054,21 @@ describe.only('Dropdown', () => {
         .simulate('click')
 
       // text updated
-      wrapper
-        .find('div.text')
-        .should.contain.text(item.text())
+      wrapper.find('div.text').should.contain.text(item.text())
     })
     it('is updated on item enter if multiple search results present', () => {
-      const searchOptions = [
-        { value: 0, text: 'foo' },
-        { value: 1, text: 'foe' },
-      ]
+      const searchOptions = [{ value: 0, text: 'foo' }, { value: 1, text: 'foe' }]
       wrapperMount(<Dropdown options={searchOptions} search selection />)
 
       // open and simulate search
-      wrapper
-        .simulate('click')
-        .setState({ searchQuery: 'fo' })
+      wrapper.simulate('click').setState({ searchQuery: 'fo' })
 
       // arrow down
       domEvent.keyDown(document, { key: 'ArrowDown' })
       domEvent.keyDown(document, { key: 'Enter' })
 
       // text updated
-      wrapper
-        .find('div.text')
-        .should.contain.text('foe')
+      wrapper.find('div.text').should.contain.text('foe')
     })
     it('displays if value is 0', () => {
       const text = faker.hacker.noun()
@@ -1082,14 +1079,10 @@ describe.only('Dropdown', () => {
       wrapper.simulate('click')
 
       // click item
-      const item = wrapper
-        .find('DropdownItem')
-        .simulate('click')
+      const item = wrapper.find('DropdownItem').simulate('click')
 
       // text updated
-      wrapper
-        .find('div.text')
-        .should.contain.text(item.text())
+      wrapper.find('div.text').should.contain.text(item.text())
     })
     it("does not display if value is ''", () => {
       const text = faker.hacker.noun()
@@ -1099,9 +1092,7 @@ describe.only('Dropdown', () => {
         .find('DropdownItem')
         .simulate('click')
 
-      wrapper
-        .find('div.text')
-        .should.contain.text('')
+      wrapper.find('div.text').should.contain.text('')
     })
     it('does not display if value is null', () => {
       const text = faker.hacker.noun()
@@ -1111,21 +1102,17 @@ describe.only('Dropdown', () => {
         .find('DropdownItem')
         .simulate('click')
 
-      wrapper
-        .find('div.text')
-        .should.contain.text('')
+      wrapper.find('div.text').should.contain.text('')
     })
     it('does not display if value is undefined', () => {
       const text = faker.hacker.noun()
 
-      wrapperMount(<Dropdown options={[{ value: undefined, text }]} selection />)
+      wrapperMount(<Dropdown options={[{ key: text, value: undefined, text }]} selection />)
         .simulate('click')
         .find('DropdownItem')
         .simulate('click')
 
-      wrapper
-        .find('div.text')
-        .should.contain.text('')
+      wrapper.find('div.text').should.contain.text('')
     })
   })
 
@@ -1137,13 +1124,6 @@ describe.only('Dropdown', () => {
       wrapperRender(<Dropdown options={options} trigger={trigger} />)
         .find('.trigger')
         .should.contain.text(text)
-    })
-    it('ignores the text prop', () => {
-      const text = faker.hacker.phrase()
-      const trigger = <div className='trigger'>{text}</div>
-
-      wrapperRender(<Dropdown options={options} trigger={trigger} text={text} />)
-        .should.not.have.descendants('div.text')
     })
   })
 
@@ -1158,8 +1138,8 @@ describe.only('Dropdown', () => {
 
     it('opens on arrow down when focused', () => {
       wrapperMount(<Dropdown options={options} selection />)
-      // Note: This mousedown is necessary to get the Dropdown focused
-      // without it being open.
+        // Note: This mousedown is necessary to get the Dropdown focused
+        // without it being open.
         .simulate('mousedown')
         .simulate('focus')
 
@@ -1170,8 +1150,8 @@ describe.only('Dropdown', () => {
 
     it('opens on space when focused', () => {
       wrapperMount(<Dropdown options={options} selection />)
-      // Note: This mousedown is necessary to get the Dropdown focused
-      // without it being open.
+        // Note: This mousedown is necessary to get the Dropdown focused
+        // without it being open.
         .simulate('mousedown')
         .simulate('focus')
 
@@ -1206,9 +1186,7 @@ describe.only('Dropdown', () => {
 
     it('closes on menu item click', () => {
       wrapperMount(<Dropdown options={options} selection />)
-      const item = wrapper
-        .find('DropdownItem')
-        .at(_.random(options.length - 1))
+      const item = wrapper.find('DropdownItem').at(_.random(options.length - 1))
 
       // open
       wrapper.simulate('click')
@@ -1221,9 +1199,7 @@ describe.only('Dropdown', () => {
 
     it('blurs after menu item click (mousedown)', () => {
       wrapperMount(<Dropdown options={options} selection />)
-      const item = wrapper
-        .find('DropdownItem')
-        .at(_.random(options.length - 1))
+      const item = wrapper.find('DropdownItem').at(_.random(options.length - 1))
 
       // open
       wrapper.simulate('click')
@@ -1244,7 +1220,7 @@ describe.only('Dropdown', () => {
       dropdownMenuIsOpen()
 
       // click outside
-      domEvent.click(document)
+      domEvent.click(document.body)
       dropdownMenuIsClosed()
     })
 
@@ -1252,9 +1228,7 @@ describe.only('Dropdown', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
       // open
-      wrapper
-        .find('Dropdown')
-        .simulate('click')
+      wrapper.find('Dropdown').simulate('click')
       dropdownMenuIsOpen()
 
       // esc
@@ -1279,14 +1253,35 @@ describe.only('Dropdown', () => {
       domEvent.keyDown(document, { key: 'ArrowDown' })
       onOpen.should.not.have.been.calledOnce()
     })
+
+    it('is called once when the icon is clicked with a search prop', () => {
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/2600
+      const onOpen = sandbox.spy()
+      wrapperShallow(<Dropdown options={options} selection search onOpen={onOpen} />)
+        .find('Icon')
+        .simulate('click', { stopPropagation: _.noop })
+
+      onOpen.should.have.been.calledOnce()
+    })
   })
 
   describe('onClose', () => {
     it('called when dropdown would close', () => {
       const onClose = sandbox.spy()
-      wrapperMount(<Dropdown options={options} selection defaultOpen onClose={onClose} />)
+      wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
 
       wrapper.simulate('click')
+      onClose.should.have.been.calledOnce()
+    })
+
+    it('called once even when blurred', () => {
+      // Heads up!
+      // Special test for: https://github.com/Semantic-Org/Semantic-UI-React/issues/2953
+      const onClose = sandbox.spy()
+      wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
+
+      wrapper.simulate('click')
+      wrapper.simulate('blur')
       onClose.should.have.been.calledOnce()
     })
   })
@@ -1313,13 +1308,11 @@ describe.only('Dropdown', () => {
       dropdownMenuIsClosed()
     })
     it('closes the menu when toggled from true to false', () => {
-      wrapperMount(<Dropdown options={options} selection open />)
-        .setProps({ open: false })
+      wrapperMount(<Dropdown options={options} selection open />).setProps({ open: false })
       dropdownMenuIsClosed()
     })
     it('opens the menu when toggled from false to true', () => {
-      wrapperMount(<Dropdown options={options} selection open={false} />)
-        .setProps({ open: true })
+      wrapperMount(<Dropdown options={options} selection open={false} />).setProps({ open: true })
       dropdownMenuIsOpen()
     })
     it('calls scrollSelectedItemIntoView when changed from false to true', () => {
@@ -1328,20 +1321,17 @@ describe.only('Dropdown', () => {
       const instance = wrapper.instance()
       sandbox.spy(instance, 'scrollSelectedItemIntoView')
 
-      instance.scrollSelectedItemIntoView
-        .should.not.have.been.called()
+      instance.scrollSelectedItemIntoView.should.not.have.been.called()
 
       wrapper.setProps({ open: true })
 
-      instance.scrollSelectedItemIntoView
-        .should.have.been.calledOnce()
+      instance.scrollSelectedItemIntoView.should.have.been.calledOnce()
     })
   })
 
   describe('multiple', () => {
     it('does not close the menu on item selection with enter', () => {
-      wrapperMount(<Dropdown options={options} selection multiple />)
-        .simulate('click')
+      wrapperMount(<Dropdown options={options} selection multiple />).simulate('click')
 
       dropdownMenuIsOpen()
 
@@ -1362,18 +1352,18 @@ describe.only('Dropdown', () => {
     it('filters active options out of the list', () => {
       // make all the items active, expect to see none in the list
       const value = _.map(options, 'value')
-      wrapperShallow(<Dropdown options={options} selection value={value} multiple />)
-        .should.not.have.descendants('DropdownItem')
+      wrapperShallow(
+        <Dropdown options={options} selection value={value} multiple />,
+      ).should.not.have.descendants('DropdownItem')
     })
     it('displays a label for active items', () => {
       // select a random item, expect a label with the item's text
       const activeItem = _.sample(options)
-      wrapperShallow(<Dropdown options={options} selection value={[activeItem.value]} multiple />)
-        .should.have.descendants('Label')
+      wrapperShallow(
+        <Dropdown options={options} selection value={[activeItem.value]} multiple />,
+      ).should.have.descendants('Label')
 
-      wrapper
-        .find('Label')
-        .should.have.prop('content', activeItem.text)
+      wrapper.find('Label').should.have.prop('content', activeItem.text)
     })
     it('keeps the selection within the range of remaining options', () => {
       // items are removed as they are made active
@@ -1388,8 +1378,7 @@ describe.only('Dropdown', () => {
       domEvent.keyDown(document, { key: 'ArrowUp' })
       wrapper.update()
 
-      wrapper
-        .should.have.exactly(options.length).descendants('DropdownItem')
+      wrapper.should.have.exactly(options.length).descendants('DropdownItem')
       wrapper
         .find('DropdownItem')
         .last()
@@ -1399,8 +1388,7 @@ describe.only('Dropdown', () => {
       wrapper.update()
 
       // one item should be gone, and the _new_ last item should be selected
-      wrapper
-        .should.have.exactly(options.length - 1).descendants('DropdownItem')
+      wrapper.should.have.exactly(options.length - 1).descendants('DropdownItem')
       wrapper
         .find('DropdownItem')
         .last()
@@ -1409,19 +1397,19 @@ describe.only('Dropdown', () => {
     it('has labels with delete icons', () => {
       // add a value so we have a label
       const value = [_.head(options).value]
-      wrapperRender(<Dropdown options={options} selection value={value} multiple />)
-        .should.have.descendants('.label')
+      wrapperRender(
+        <Dropdown options={options} selection value={value} multiple />,
+      ).should.have.descendants('.label')
 
-      wrapper
-        .find('.label')
-        .should.have.descendants('.delete.icon')
+      wrapper.find('.label').should.have.descendants('.delete.icon')
     })
     it('enables custom rendering', () => {
       const value = [_.head(options).value]
       const renderLabel = () => ({ content: 'My custom text!', as: 'div' })
 
-      wrapperRender(<Dropdown options={options} selection value={value} multiple renderLabel={renderLabel} />)
-        .should.have.descendants('.label')
+      wrapperRender(
+        <Dropdown options={options} selection value={value} multiple renderLabel={renderLabel} />,
+      ).should.have.descendants('.label')
 
       const label = wrapper.find('.label')
 
@@ -1469,7 +1457,9 @@ describe.only('Dropdown', () => {
         const randomIndex = _.random(options.length - 1)
         const randomValue = value[randomIndex]
 
-        wrapperMount(<Dropdown options={options} selection multiple value={value} onLabelClick={spy} />)
+        wrapperMount(
+          <Dropdown options={options} selection multiple value={value} onLabelClick={spy} />,
+        )
           .simulate('click', nativeEvent)
           .find('Label')
           .at(randomIndex)
@@ -1487,8 +1477,7 @@ describe.only('Dropdown', () => {
           .at(randomIndex)
           .simulate('click', nativeEvent)
 
-        wrapper.instance()
-          .searchRef.should.eq(document.activeElement)
+        wrapper.instance().searchRef.should.eq(document.activeElement)
       })
     })
     describe('removing items', () => {
@@ -1530,7 +1519,9 @@ describe.only('Dropdown', () => {
     it('removes the last item when there is no search query', () => {
       const value = _.map(options, 'value')
       const expected = _.dropRight(value)
-      wrapperMount(<Dropdown options={options} selection value={value} multiple search onChange={spy} />)
+      wrapperMount(
+        <Dropdown options={options} selection value={value} multiple search onChange={spy} />,
+      )
 
       // open
       wrapper.simulate('click')
@@ -1544,7 +1535,14 @@ describe.only('Dropdown', () => {
       const value = _.map(options, 'value')
       const expected = _.dropRight(value)
       wrapperMount(
-        <Dropdown options={options} selection defaultValue={value} multiple search onChange={spy} />,
+        <Dropdown
+          options={options}
+          selection
+          defaultValue={value}
+          multiple
+          search
+          onChange={spy}
+        />,
       )
 
       // open
@@ -1555,20 +1553,18 @@ describe.only('Dropdown', () => {
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch({}, { value: expected })
 
-      wrapper
-        .state('value')
-        .should.deep.equal(expected)
+      wrapper.state('value').should.deep.equal(expected)
     })
     it('does not remove the last item when there is a search query', () => {
       // search for random item
       const searchQuery = _.sample(options).text
       const value = _.map(options, 'value')
-      wrapperMount(<Dropdown options={options} selection value={value} multiple search onChange={spy} />)
+      wrapperMount(
+        <Dropdown options={options} selection value={value} multiple search onChange={spy} />,
+      )
 
       // open and simulate search
-      wrapper
-        .simulate('click')
-        .setState({ searchQuery })
+      wrapper.simulate('click').setState({ searchQuery })
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
@@ -1607,8 +1603,7 @@ describe.only('Dropdown', () => {
     })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstValue = options[0].value
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
-        .simulate('click')
+      wrapperMount(<Dropdown options={options} selection onChange={spy} />).simulate('click')
 
       domEvent.keyDown(document, { key: 'Enter' })
 
@@ -1653,8 +1648,9 @@ describe.only('Dropdown', () => {
       const value = _.sample(options).value
       const next = _.sample(_.without(options, value)).value
 
-      wrapperMount(<Dropdown options={options} selection value={value} onChange={spy} />)
-        .setProps({ value: next })
+      wrapperMount(<Dropdown options={options} selection value={value} onChange={spy} />).setProps({
+        value: next,
+      })
 
       spy.should.not.have.been.called()
     })
@@ -1738,10 +1734,13 @@ describe.only('Dropdown', () => {
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({ target: { value: 'a' } }, {
-        search: true,
-        searchQuery: 'a',
-      })
+      spy.should.have.been.calledWithMatch(
+        { target: { value: 'a' } },
+        {
+          search: true,
+          searchQuery: 'a',
+        },
+      )
     })
 
     it("don't open the menu on change if query's length is less than minCharacters", () => {
@@ -1750,9 +1749,7 @@ describe.only('Dropdown', () => {
       dropdownMenuIsClosed()
 
       // simulate search with query's length is less than minCharacters
-      wrapper
-        .find('input.search')
-        .simulate('change', { target: { value: 'a' } })
+      wrapper.find('input.search').simulate('change', { target: { value: 'a' } })
 
       dropdownMenuIsClosed()
     })
@@ -1801,24 +1798,15 @@ describe.only('Dropdown', () => {
         { text: 'cadabra', value: 'cadabra' },
         { text: 'bang', value: 'bang' },
       ]
-      wrapperMount(
-        <Dropdown options={customOptions} />,
-      )
-        .find('input.search')
+      wrapperMount(<Dropdown options={customOptions} />).find('input.search')
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(3)
+      wrapper.find('DropdownItem').should.have.lengthOf(3)
 
       wrapper.setProps({ options: [...customOptions, { text: 'bar', value: 'bar' }] })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(4)
+      wrapper.find('DropdownItem').should.have.lengthOf(4)
 
-      const newItem = wrapper
-        .find('DropdownItem')
-        .last()
+      const newItem = wrapper.find('DropdownItem').last()
 
       newItem.should.have.prop('text', 'bar')
       newItem.should.have.prop('value', 'bar')
@@ -1844,26 +1832,36 @@ describe.only('Dropdown', () => {
       wrapperShallow(<Dropdown options={customOptions} selection />)
       const items = wrapper.find('DropdownItem')
 
-      items.at(0).key().should.equal('0')
-      items.at(1).key().should.equal('bar')
-      items.at(2).key().should.equal('baz')
+      items
+        .at(0)
+        .key()
+        .should.equal('0')
+      items
+        .at(1)
+        .key()
+        .should.equal('bar')
+      items
+        .at(2)
+        .key()
+        .should.equal('baz')
     })
   })
 
   describe('search', () => {
     it('does not add a search input when not defined', () => {
-      wrapperShallow(<Dropdown options={options} selection />)
-        .should.not.have.descendants('input.search')
+      wrapperShallow(<Dropdown options={options} selection />).should.not.have.descendants(
+        'input.search',
+      )
     })
 
     it('adds a search input when present', () => {
       wrapperShallow(<Dropdown options={options} selection search />)
-        .should.have.exactly(1).descendants(DropdownSearchInput)
+        .should.have.exactly(1)
+        .descendants(DropdownSearchInput)
     })
 
     it('sets focus to the search input on open', () => {
-      wrapperMount(<Dropdown options={options} selection search />)
-        .simulate('click')
+      wrapperMount(<Dropdown options={options} selection search />).simulate('click')
 
       const activeElement = document.activeElement
       const searchIsFocused = activeElement === document.querySelector('input.search')
@@ -1873,7 +1871,9 @@ describe.only('Dropdown', () => {
     })
 
     it('sets focus to the search input on click on the placeholder', () => {
-      wrapperMount(<Dropdown minCharacters={3} options={options} placeholder='foo' selection search />)
+      wrapperMount(
+        <Dropdown minCharacters={3} options={options} placeholder='foo' selection search />,
+      )
         .find('.default.text')
         .simulate('click')
 
@@ -1891,9 +1891,7 @@ describe.only('Dropdown', () => {
       wrapperMount(<Dropdown options={options} selection search />)
 
       // open and simulate search
-      wrapper
-        .simulate('click')
-        .setState({ searchQuery })
+      wrapper.simulate('click').setState({ searchQuery })
 
       // click first item (we searched for exact text)
       wrapper
@@ -1911,9 +1909,7 @@ describe.only('Dropdown', () => {
       dropdownMenuIsClosed()
 
       // simulate search
-      wrapper
-        .find('input.search')
-        .simulate('change', { target: { value: faker.hacker.noun() } })
+      wrapper.find('input.search').simulate('change', { target: { value: faker.hacker.noun() } })
 
       dropdownMenuIsOpen()
     })
@@ -1923,16 +1919,15 @@ describe.only('Dropdown', () => {
       wrapperMount(<Dropdown options={options} selection search onChange={onChangeSpy} />)
 
       // simulate search
-      wrapper
-        .find('input.search')
-        .simulate('change', { target: { value: faker.hacker.noun() } })
+      wrapper.find('input.search').simulate('change', { target: { value: faker.hacker.noun() } })
 
       onChangeSpy.should.not.have.been.called()
     })
 
     it('filters the items based on display text', () => {
-      const search = wrapperMount(<Dropdown options={options} selection search />)
-        .find('input.search')
+      const search = wrapperMount(<Dropdown options={options} selection search />).find(
+        'input.search',
+      )
 
       // search for value yields 0 results
       search.simulate('change', { target: { value: _.sample(options).value } })
@@ -1951,24 +1946,24 @@ describe.only('Dropdown', () => {
 
     it('filters the items based on custom search function', () => {
       const searchFunction = sandbox.stub().returns(options.slice(0, 2))
-      const search = wrapperMount(<Dropdown options={options} selection search={searchFunction} />)
-        .find('input.search')
+      const search = wrapperMount(
+        <Dropdown options={options} selection search={searchFunction} />,
+      ).find('input.search')
       const searchQuery = '__nonExistingSearchQuery__'
 
       // search for value yields 2 results as per our custom search function
       search.simulate('change', { target: { value: searchQuery } })
 
-      searchFunction.should.have.been.calledOnce()
       searchFunction.should.have.been.calledWithMatch(options, searchQuery)
-
       wrapper
         .find('DropdownItem')
         .should.have.lengthOf(2, 'Searching with custom search function did not yield 2 results.')
     })
 
     it('sets the selected item to the first search result', () => {
-      const search = wrapperMount(<Dropdown options={options} selection search />)
-        .find('input.search')
+      const search = wrapperMount(<Dropdown options={options} selection search />).find(
+        'input.search',
+      )
 
       // the first item is selected by default
       // avoid it to prevent false positives
@@ -1988,12 +1983,27 @@ describe.only('Dropdown', () => {
       dropdownMenuIsOpen()
 
       // select the second item in the list
-      wrapper.find('DropdownItem').at(1).simulate('click')
-      wrapper.find('DropdownItem').at(1).should.have.prop('active', true)
-      wrapper.find('DropdownItem').at(1).should.have.prop('selected', true)
+      wrapper
+        .find('DropdownItem')
+        .at(1)
+        .simulate('click')
+      wrapper
+        .find('DropdownItem')
+        .at(1)
+        .should.have.prop('active', true)
+      wrapper
+        .find('DropdownItem')
+        .at(1)
+        .should.have.prop('selected', true)
 
-      wrapper.find('DropdownItem').at(0).should.have.prop('active', false)
-      wrapper.find('DropdownItem').at(0).should.have.prop('selected', false)
+      wrapper
+        .find('DropdownItem')
+        .at(0)
+        .should.have.prop('active', false)
+      wrapper
+        .find('DropdownItem')
+        .at(0)
+        .should.have.prop('selected', false)
 
       // search for a non-existent item, triggering the not found message
       const search = wrapper.find('input.search')
@@ -2008,11 +2018,23 @@ describe.only('Dropdown', () => {
       wrapper.simulate('click')
       dropdownMenuIsOpen()
 
-      wrapper.find('DropdownItem').at(1).should.have.prop('active', true)
-      wrapper.find('DropdownItem').at(1).should.have.prop('selected', true)
+      wrapper
+        .find('DropdownItem')
+        .at(1)
+        .should.have.prop('active', true)
+      wrapper
+        .find('DropdownItem')
+        .at(1)
+        .should.have.prop('selected', true)
 
-      wrapper.find('DropdownItem').at(0).should.have.prop('active', false)
-      wrapper.find('DropdownItem').at(0).should.have.prop('selected', false)
+      wrapper
+        .find('DropdownItem')
+        .at(0)
+        .should.have.prop('active', false)
+      wrapper
+        .find('DropdownItem')
+        .at(0)
+        .should.have.prop('selected', false)
     })
 
     it('set right selected index when click on option with search', () => {
@@ -2087,8 +2109,7 @@ describe.only('Dropdown', () => {
       wrapperMount(<Dropdown options={options} search selection />)
       wrapper.simulate('click')
 
-      wrapper.find('input.search')
-        .simulate('change', { target: { value: 'foo' } })
+      wrapper.find('input.search').simulate('change', { target: { value: 'foo' } })
       domEvent.keyDown(document, { key: 'Enter' })
 
       dropdownMenuIsOpen()
@@ -2097,19 +2118,16 @@ describe.only('Dropdown', () => {
 
   describe('no results message', () => {
     it('is shown when a search yields no results', () => {
-      const search = wrapperMount(<Dropdown options={options} selection search />)
-        .find('input.search')
+      const search = wrapperMount(<Dropdown options={options} selection search />).find(
+        'input.search',
+      )
 
-      wrapper
-        .find('.message')
-        .should.not.be.present()
+      wrapper.find('.message').should.not.be.present()
 
       // search for something we know will not exist
       search.simulate('change', { target: { value: '_________________' } })
 
-      wrapper
-        .find('.message')
-        .should.be.present()
+      wrapper.find('.message').should.be.present()
     })
 
     it('is not shown on multiple dropdowns with no remaining items', () => {
@@ -2122,53 +2140,48 @@ describe.only('Dropdown', () => {
       dropdownMenuIsOpen()
 
       // confirm there are no items
-      wrapper
-        .should.not.have.descendants('DropdownItem')
+      wrapper.should.not.have.descendants('DropdownItem')
 
       // expect no message
-      wrapper
-        .find('.message')
-        .should.not.be.present()
+      wrapper.find('.message').should.not.be.present()
     })
 
     it('uses default noResultsMessage', () => {
-      const search = wrapperMount(<Dropdown options={options} selection search />)
-        .find('input.search')
+      const search = wrapperMount(<Dropdown options={options} selection search />).find(
+        'input.search',
+      )
 
       // search for something we know will not exist
       search.simulate('change', { target: { value: '_________________' } })
 
-      wrapper
-        .find('.message')
-        .should.have.text('No results found.')
+      wrapper.find('.message').should.have.text('No results found.')
     })
 
     it('uses custom noResultsMessage', () => {
-      const search = wrapperMount(<Dropdown options={options} selection search noResultsMessage='Something custom' />)
-        .find('input.search')
+      const search = wrapperMount(
+        <Dropdown options={options} selection search noResultsMessage='Something custom' />,
+      ).find('input.search')
 
       // search for something we know will not exist
       search.simulate('change', { target: { value: '_________________' } })
 
-      wrapper
-        .find('.message')
-        .should.have.text('Something custom')
+      wrapper.find('.message').should.have.text('Something custom')
     })
 
     it('uses no noResultsMessage', () => {
-      const search = wrapperMount(<Dropdown options={options} selection search noResultsMessage='' />)
-        .find('input.search')
+      const search = wrapperMount(
+        <Dropdown options={options} selection search noResultsMessage='' />,
+      ).find('input.search')
 
       // search for something we know will not exist
       search.simulate('change', { target: { value: '_________________' } })
 
-      wrapper
-        .find('.message')
-        .should.have.text('')
+      wrapper.find('.message').should.have.text('')
     })
     it('is not shown when set to `null`', () => {
-      const search = wrapperMount(<Dropdown options={options} selection search noResultsMessage={null} />)
-        .find('input.search')
+      const search = wrapperMount(
+        <Dropdown options={options} selection search noResultsMessage={null} />,
+      ).find('input.search')
 
       // search for something we know will not exist
       search.simulate('change', { target: { value: '_________________' } })
@@ -2179,20 +2192,24 @@ describe.only('Dropdown', () => {
 
   describe('placeholder', () => {
     it('is present when defined', () => {
-      wrapperShallow(<Dropdown options={options} selection placeholder='hi' />)
-        .should.have.descendants('.default.text')
+      wrapperShallow(
+        <Dropdown options={options} selection placeholder='hi' />,
+      ).should.have.descendants('.default.text')
     })
     it('is not present when not defined', () => {
-      wrapperShallow(<Dropdown options={options} selection />)
-        .should.not.have.descendants('.default.text')
+      wrapperShallow(<Dropdown options={options} selection />).should.not.have.descendants(
+        '.default.text',
+      )
     })
     it('is not present when there is a value', () => {
-      wrapperShallow(<Dropdown options={options} selection value='hi' placeholder='hi' />)
-        .should.not.have.descendants('.default.text')
+      wrapperShallow(
+        <Dropdown options={options} selection value='hi' placeholder='hi' />,
+      ).should.not.have.descendants('.default.text')
     })
     it('is present on a multiple dropdown with an empty value array', () => {
-      wrapperShallow(<Dropdown options={options} selection multiple placeholder='hi' />)
-        .should.have.descendants('.default.text')
+      wrapperShallow(
+        <Dropdown options={options} selection multiple placeholder='hi' />,
+      ).should.have.descendants('.default.text')
     })
     it('has a filtered className when there is a search query', () => {
       wrapperShallow(<Dropdown options={options} selection search placeholder='hi' />)
@@ -2208,13 +2225,25 @@ describe.only('Dropdown', () => {
       const instance = wrapper.instance()
       sandbox.spy(instance, 'renderText')
 
-      instance.renderText
-        .should.not.have.been.called()
+      instance.renderText.should.not.have.been.called()
 
       instance.render()
 
-      instance.renderText
-        .should.have.been.called()
+      instance.renderText.should.have.been.called()
+    })
+  })
+
+  describe('lazyLoad', () => {
+    it('does not render options when closed', () => {
+      wrapperShallow(<Dropdown options={options} lazyLoad />).should.not.have.descendants(
+        'DropdownItem',
+      )
+    })
+
+    it('renders options when open', () => {
+      wrapperShallow(<Dropdown options={options} lazyLoad open />).should.have.descendants(
+        'DropdownItem',
+      )
     })
   })
 
@@ -2224,12 +2253,9 @@ describe.only('Dropdown', () => {
         <Dropdown text='required prop'>
           <Dropdown.Menu data-find-me />
         </Dropdown>,
-      )
-        .should.contain.descendants('DropdownMenu')
+      ).should.contain.descendants('DropdownMenu')
 
-      wrapper
-        .find('DropdownMenu')
-        .should.have.prop('data-find-me', true)
+      wrapper.find('DropdownMenu').should.have.prop('data-find-me', true)
     })
 
     it('opens on click', () => {
@@ -2249,12 +2275,9 @@ describe.only('Dropdown', () => {
         <Dropdown text='required prop'>
           <Dropdown.Menu data-foo-bar />
         </Dropdown>,
-      )
-        .should.contain.descendants('DropdownMenu')
+      ).should.contain.descendants('DropdownMenu')
 
-      wrapper
-        .find('DropdownMenu')
-        .should.have.prop('data-foo-bar', true)
+      wrapper.find('DropdownMenu').should.have.prop('data-foo-bar', true)
     })
 
     it("merges the user's menu className", () => {
@@ -2262,12 +2285,9 @@ describe.only('Dropdown', () => {
         <Dropdown text='required prop'>
           <Dropdown.Menu className='foo-bar' />
         </Dropdown>,
-      )
-        .should.contain.descendants('DropdownMenu')
+      ).should.contain.descendants('DropdownMenu')
 
-      const menu = wrapper
-        .find('DropdownMenu')
-        .shallow()
+      const menu = wrapper.find('DropdownMenu').shallow()
 
       menu.should.have.className('menu')
       menu.should.have.className('foo-bar')
@@ -2282,37 +2302,29 @@ describe.only('Dropdown', () => {
     ]
 
     it('adds an option for arbitrary search value', () => {
-      const search = wrapperMount(<Dropdown options={customOptions} selection search allowAdditions />)
-        .find('input.search')
+      const search = wrapperMount(
+        <Dropdown options={customOptions} selection search allowAdditions />,
+      ).find('input.search')
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(3)
+      wrapper.find('DropdownItem').should.have.lengthOf(3)
 
       search.simulate('change', { target: { value: 'boo' } })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(1)
+      wrapper.find('DropdownItem').should.have.lengthOf(1)
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.prop('value', 'boo')
+      wrapper.find('DropdownItem').should.have.prop('value', 'boo')
     })
 
     it('adds an option for prefix search value', () => {
-      const search = wrapperMount(<Dropdown options={customOptions} selection search allowAdditions />)
-        .find('input.search')
+      const search = wrapperMount(
+        <Dropdown options={customOptions} selection search allowAdditions />,
+      ).find('input.search')
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(3)
+      wrapper.find('DropdownItem').should.have.lengthOf(3)
 
       search.simulate('change', { target: { value: 'a' } })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(4)
+      wrapper.find('DropdownItem').should.have.lengthOf(4)
 
       wrapper
         .find('DropdownItem')
@@ -2321,23 +2333,20 @@ describe.only('Dropdown', () => {
     })
 
     it('uses default additionLabel', () => {
-      const search = wrapperMount(<Dropdown options={customOptions} selection search allowAdditions />)
-        .find('input.search')
+      const search = wrapperMount(
+        <Dropdown options={customOptions} selection search allowAdditions />,
+      ).find('input.search')
 
       search.simulate('change', { target: { value: 'boo' } })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(1)
+      wrapper.find('DropdownItem').should.have.lengthOf(1)
 
       wrapper
         .find('DropdownItem')
         .last()
         .should.have.prop('className', 'addition')
 
-      const text = wrapper
-        .find('DropdownItem')
-        .prop('text')
+      const text = wrapper.find('DropdownItem').prop('text')
 
       expect(text[0]).to.equal('Add ')
       shallow(text[1]).equals(<b key='addition-query'>boo</b>)
@@ -2346,23 +2355,18 @@ describe.only('Dropdown', () => {
     it('uses custom additionLabel string', () => {
       const search = wrapperMount(
         <Dropdown options={customOptions} selection search allowAdditions additionLabel='New: ' />,
-      )
-        .find('input.search')
+      ).find('input.search')
 
       search.simulate('change', { target: { value: 'boo' } })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(1)
+      wrapper.find('DropdownItem').should.have.lengthOf(1)
 
       wrapper
         .find('DropdownItem')
         .last()
         .should.have.prop('className', 'addition')
 
-      const text = wrapper
-        .find('DropdownItem')
-        .prop('text')
+      const text = wrapper.find('DropdownItem').prop('text')
 
       expect(text[0]).to.equal('New: ')
       shallow(text[1]).equals(<b key='addition-query'>boo</b>)
@@ -2370,24 +2374,25 @@ describe.only('Dropdown', () => {
 
     it('uses custom additionLabel element', () => {
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions additionLabel={<i>New: </i>} />,
-      )
-        .find('input.search')
+        <Dropdown
+          options={customOptions}
+          selection
+          search
+          allowAdditions
+          additionLabel={<i>New: </i>}
+        />,
+      ).find('input.search')
 
       search.simulate('change', { target: { value: 'boo' } })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(1)
+      wrapper.find('DropdownItem').should.have.lengthOf(1)
 
       wrapper
         .find('DropdownItem')
         .last()
         .should.have.prop('className', 'addition')
 
-      const text = wrapper
-        .find('DropdownItem')
-        .prop('text')
+      const text = wrapper.find('DropdownItem').prop('text')
 
       shallow(text[0]).equals(<i key='label'>New: </i>)
       shallow(text[1]).equals(<b key='addition-query'>boo</b>)
@@ -2396,23 +2401,18 @@ describe.only('Dropdown', () => {
     it('uses no additionLabel', () => {
       const search = wrapperMount(
         <Dropdown options={customOptions} selection search allowAdditions additionLabel='' />,
-      )
-        .find('input.search')
+      ).find('input.search')
 
       search.simulate('change', { target: { value: 'boo' } })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(1)
+      wrapper.find('DropdownItem').should.have.lengthOf(1)
 
       wrapper
         .find('DropdownItem')
         .last()
         .should.have.prop('className', 'addition')
 
-      const text = wrapper
-        .find('DropdownItem')
-        .prop('text')
+      const text = wrapper.find('DropdownItem').prop('text')
 
       expect(text[0]).to.equal('')
       shallow(text[1]).equals(<b key='addition-query'>boo</b>)
@@ -2420,15 +2420,18 @@ describe.only('Dropdown', () => {
 
     it('keeps custom value option (bottom) when options change', () => {
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions additionPosition='bottom' />,
-      )
-        .find('input.search')
+        <Dropdown
+          options={customOptions}
+          selection
+          search
+          allowAdditions
+          additionPosition='bottom'
+        />,
+      ).find('input.search')
 
       search.simulate('change', { target: { value: 'a' } })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(4)
+      wrapper.find('DropdownItem').should.have.lengthOf(4)
 
       wrapper
         .find('DropdownItem')
@@ -2437,9 +2440,7 @@ describe.only('Dropdown', () => {
 
       wrapper.setProps({ options: [...customOptions, { text: 'bar', value: 'bar' }] })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(5)
+      wrapper.find('DropdownItem').should.have.lengthOf(5)
 
       wrapper
         .find('DropdownItem')
@@ -2450,14 +2451,11 @@ describe.only('Dropdown', () => {
     it('keeps custom value option (top) when options change', () => {
       const search = wrapperMount(
         <Dropdown options={customOptions} selection search allowAdditions />,
-      )
-        .find('input.search')
+      ).find('input.search')
 
       search.simulate('change', { target: { value: 'a' } })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(4)
+      wrapper.find('DropdownItem').should.have.lengthOf(4)
 
       wrapper
         .find('DropdownItem')
@@ -2466,9 +2464,7 @@ describe.only('Dropdown', () => {
 
       wrapper.setProps({ options: [...customOptions, { text: 'bar', value: 'bar' }] })
 
-      wrapper
-        .find('DropdownItem')
-        .should.have.lengthOf(5)
+      wrapper.find('DropdownItem').should.have.lengthOf(5)
 
       wrapper
         .find('DropdownItem')
@@ -2488,8 +2484,7 @@ describe.only('Dropdown', () => {
           search
           selection
         />,
-      )
-        .find('input.search')
+      ).find('input.search')
 
       search.simulate('change', { target: { value: 'boo' } })
 
@@ -2516,8 +2511,7 @@ describe.only('Dropdown', () => {
           search
           selection
         />,
-      )
-        .find('input.search')
+      ).find('input.search')
 
       search.simulate('change', { target: { value: 'boo' } })
       domEvent.keyDown(document, { key: 'Enter' })
@@ -2531,8 +2525,7 @@ describe.only('Dropdown', () => {
     it('clears value of the searchQuery when selection is only option', () => {
       const search = wrapperMount(
         <Dropdown options={customOptions} selection search allowAdditions />,
-      )
-        .find('input.search')
+      ).find('input.search')
 
       search.simulate('change', { target: { value: 'boo' } })
       domEvent.keyDown(document, { key: 'Enter' })
@@ -2550,8 +2543,7 @@ describe.only('Dropdown', () => {
         .should.contain.text(text)
     })
     it('does not render a header when not present', () => {
-      wrapperRender(<Dropdown options={options} />)
-        .should.not.have.descendants('.menu .header')
+      wrapperRender(<Dropdown options={options} />).should.not.have.descendants('.menu .header')
     })
   })
 
@@ -2597,13 +2589,7 @@ describe.only('Dropdown', () => {
     it('is on by default', () => {
       const spy = sandbox.spy()
 
-      wrapperMount(
-        <Dropdown
-          options={options}
-          defaultValue={options[0].value}
-          onChange={spy}
-        />,
-      )
+      wrapperMount(<Dropdown options={options} defaultValue={options[0].value} onChange={spy} />)
 
       // open
       wrapper.simulate('click')
@@ -2634,6 +2620,80 @@ describe.only('Dropdown', () => {
 
       spy.should.not.have.been.called()
       wrapper.should.have.state('value', value)
+    })
+  })
+
+  describe('wrapSelection', () => {
+    it("does not move up on arrow up when first item is selected when open and 'wrapSelection' is false", () => {
+      wrapperMount(<Dropdown options={options} selection wrapSelection={false} />)
+
+      // open
+      wrapper
+        .simulate('click')
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('selected', true)
+
+      // arrow up
+      domEvent.keyDown(document, { key: 'ArrowUp' })
+      wrapper.update()
+
+      // selection should not move to last item
+      // should keep on first instead
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('selected', true)
+      wrapper
+        .find('DropdownItem')
+        .at(options.length - 1)
+        .should.have.prop('selected', false)
+    })
+    it("does not move down on arrow down when last item is selected when open and 'wrapSelection' is false", () => {
+      wrapperMount(<Dropdown options={options} selection wrapSelection={false} />)
+
+      // make last item selected
+      wrapper.setState({ selectedIndex: options.length - 1 })
+      // open
+      wrapper
+        .simulate('click')
+        .find('DropdownItem')
+        .at(options.length - 1)
+        .should.have.prop('selected', true)
+
+      // arrow down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      wrapper.update()
+
+      // selection should not move to first item
+      // should keep on last instead
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('selected', false)
+      wrapper
+        .find('DropdownItem')
+        .at(options.length - 1)
+        .should.have.prop('selected', true)
+    })
+  })
+
+  describe('upward', () => {
+    it('is false when there is enough space below', () => {
+      wrapperMount(<Dropdown options={options} />)
+
+      wrapper.simulate('click').should.not.have.className('upward')
+    })
+
+    it('is true when there is not enough space below', () => {
+      wrapperMount(
+        <Dropdown
+          options={options}
+          style={{ marginTop: document.documentElement.clientHeight - 50 }}
+        />,
+      )
+
+      wrapper.simulate('click').should.have.className('upward')
     })
   })
 })

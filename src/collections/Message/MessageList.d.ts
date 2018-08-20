@@ -1,24 +1,24 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandCollection } from '../..';
-import { MessageItemProps } from './MessageItem';
+import { SemanticShorthandCollection } from '../..'
+import { MessageItemProps } from './MessageItem'
 
 export interface MessageListProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand Message.Items. */
-  items?: SemanticShorthandCollection<MessageItemProps>;
+  items?: SemanticShorthandCollection<MessageItemProps>
 }
 
-declare const MessageList: React.StatelessComponent<MessageListProps>;
+declare const MessageList: React.StatelessComponent<MessageListProps>
 
-export default MessageList;
+export default MessageList

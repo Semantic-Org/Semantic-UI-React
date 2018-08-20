@@ -14,6 +14,7 @@ describe('CardGroup', () => {
   common.implementsTextAlignProp(CardGroup, _.without(SUI.TEXT_ALIGNMENTS, 'justified'))
   common.implementsWidthProp(CardGroup, SUI.WIDTHS, { propKey: 'itemsPerRow', canEqual: false })
 
+  common.propKeyOnlyToClassName(CardGroup, 'centered')
   common.propKeyOnlyToClassName(CardGroup, 'doubling')
   common.propKeyOnlyToClassName(CardGroup, 'stackable')
 
@@ -22,15 +23,18 @@ describe('CardGroup', () => {
     const secondText = faker.hacker.phrase()
 
     it('with `items` prop', () => {
-      const items = [
-        { header: firstText },
-        { header: secondText },
-      ]
+      const items = [{ header: firstText }, { header: secondText }]
 
       const wrapper = mount(<CardGroup items={items} />).find('Card')
 
-      wrapper.first().find('CardHeader').should.contain.text(firstText)
-      wrapper.last().find('CardHeader').should.contain.text(secondText)
+      wrapper
+        .first()
+        .find('CardHeader')
+        .should.contain.text(firstText)
+      wrapper
+        .last()
+        .find('CardHeader')
+        .should.contain.text(secondText)
     })
   })
 })

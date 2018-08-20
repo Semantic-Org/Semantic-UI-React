@@ -1,31 +1,31 @@
-import * as React from 'react';
-import { SemanticShorthandContent, SemanticTEXTALIGNMENTS } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent, SemanticTEXTALIGNMENTS } from '../..'
 
 export interface ContainerProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Container has no maximum width. */
-  fluid?: boolean;
+  fluid?: boolean
 
   /** Reduce maximum width to more naturally accommodate text. */
-  text?: boolean;
+  text?: boolean
 
   /** Describes how the text inside this component should be aligned. */
-  textAlign?: SemanticTEXTALIGNMENTS;
+  textAlign?: SemanticTEXTALIGNMENTS
 }
 
-declare const Container: React.StatelessComponent<ContainerProps>;
+declare const Container: React.StatelessComponent<ContainerProps>
 
-export default Container;
+export default Container

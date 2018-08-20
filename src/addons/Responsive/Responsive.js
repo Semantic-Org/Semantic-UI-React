@@ -8,7 +8,7 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  META,
+  shallowEqual,
 } from '../../lib'
 
 /**
@@ -25,17 +25,17 @@ export default class Responsive extends Component {
     /** Fires callbacks immediately after mount. */
     fireOnMount: PropTypes.bool,
 
+    /**
+     * Called to get width of screen. Defaults to using `window.innerWidth` when in a browser;
+     * otherwise, assumes a width of 0.
+     */
+    getWidth: PropTypes.func,
+
     /** The maximum width at which content will be displayed. */
-    maxWidth: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    maxWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** The minimum width at which content will be displayed. */
-    minWidth: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /**
      * Called on update.
@@ -46,9 +46,8 @@ export default class Responsive extends Component {
     onUpdate: PropTypes.func,
   }
 
-  static _meta = {
-    name: 'Responsive',
-    type: META.TYPES.ADDON,
+  static defaultProps = {
+    getWidth: () => (isBrowser() ? window.innerWidth : 0),
   }
 
   static onlyMobile = { minWidth: 320, maxWidth: 767 }
@@ -60,18 +59,26 @@ export default class Responsive extends Component {
   constructor(...args) {
     super(...args)
 
-    this.state = { width: isBrowser() ? window.innerWidth : 0 }
+    this.state = { width: _.invoke(this.props, 'getWidth') }
   }
 
   componentDidMount() {
     const { fireOnMount } = this.props
+
+    this.mounted = true
 
     eventStack.sub('resize', this.handleResize, { target: 'window' })
     if (fireOnMount) this.handleUpdate()
   }
 
   componentWillUnmount() {
+    this.mounted = false
     eventStack.unsub('resize', this.handleResize, { target: 'window' })
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    // Update when any prop changes or the width changes. If width does not change, no update is required.
+    return this.state.width !== nextState.width || !shallowEqual(this.props, nextProps)
   }
 
   // ----------------------------------------
@@ -92,6 +99,8 @@ export default class Responsive extends Component {
     return _.isNil(minWidth) ? true : width >= minWidth
   }
 
+  setSafeState = (...args) => this.mounted && this.setState(...args)
+
   isVisible = () => this.fitsMinWidth() && this.fitsMaxWidth()
 
   // ----------------------------------------
@@ -107,9 +116,9 @@ export default class Responsive extends Component {
 
   handleUpdate = (e) => {
     this.ticking = false
-    const width = window.innerWidth
+    const width = _.invoke(this.props, 'getWidth')
 
-    this.setState({ width })
+    this.setSafeState({ width })
     _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
   }
 

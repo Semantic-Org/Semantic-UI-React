@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useTextAlignProp,
 } from '../../lib'
@@ -18,11 +17,7 @@ import {
  */
 function CardDescription(props) {
   const { children, className, content, textAlign } = props
-  const classes = cx(
-    useTextAlignProp(textAlign),
-    'description',
-    className,
-  )
+  const classes = cx(useTextAlignProp(textAlign), 'description', className)
   const rest = getUnhandledProps(CardDescription, props)
   const ElementType = getElementType(CardDescription, props)
 
@@ -31,12 +26,6 @@ function CardDescription(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-CardDescription._meta = {
-  name: 'CardDescription',
-  parent: 'Card',
-  type: META.TYPES.VIEW,
 }
 
 CardDescription.propTypes = {

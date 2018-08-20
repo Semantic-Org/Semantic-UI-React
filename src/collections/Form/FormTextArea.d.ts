@@ -1,18 +1,18 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { TextAreaProps } from '../../addons/TextArea';
-import { FormFieldProps } from './FormField';
+import { TextAreaProps } from '../../addons/TextArea'
+import { FormFieldProps } from './FormField'
 
 export interface FormTextAreaProps extends FormFieldProps, TextAreaProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A FormField control prop. */
-  control?: any;
+  control?: any
 }
 
-declare const FormTextArea: React.StatelessComponent<FormTextAreaProps>;
+declare const FormTextArea: React.StatelessComponent<FormTextAreaProps>
 
-export default FormTextArea;
+export default FormTextArea

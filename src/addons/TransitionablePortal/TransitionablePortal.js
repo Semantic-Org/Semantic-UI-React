@@ -4,11 +4,7 @@ import React, { Component } from 'react'
 
 import Portal from '../Portal'
 import Transition from '../../modules/Transition'
-import {
-  getUnhandledProps,
-  makeDebugger,
-  META,
-} from '../../lib'
+import { getUnhandledProps, makeDebugger } from '../../lib'
 
 const debug = makeDebugger('transitionable_portal')
 
@@ -61,11 +57,6 @@ export default class TransitionablePortal extends Component {
     transition: PropTypes.object,
   }
 
-  static _meta = {
-    name: 'TransitionablePortal',
-    type: META.TYPES.ADDON,
-  }
-
   static defaultProps = {
     transition: {
       animation: 'scale',
@@ -88,9 +79,7 @@ export default class TransitionablePortal extends Component {
   componentWillReceiveProps({ open }) {
     debug('componentWillReceiveProps()', { open })
 
-    // Heads up! We apply `open` prop only when it's defined, otherwise it will break
-    // autocontrolled Portal
-    if (!_.isNil(open)) this.setState({ portalOpen: open })
+    this.setState({ portalOpen: open })
   }
 
   // ----------------------------------------
@@ -99,13 +88,8 @@ export default class TransitionablePortal extends Component {
 
   handlePortalClose = () => {
     debug('handlePortalClose()')
-    const { open } = this.props
-    const { portalOpen } = this.state
 
-    // Heads up! We simply call `onClose` when component is controlled with `open` prop.
-    // But, when it's autocontrolled we should change the state to opposite to keep the transition
-    // queue
-    if (_.isNil(open)) this.setState({ portalOpen: !portalOpen })
+    this.setState({ portalOpen: false })
   }
 
   handlePortalOpen = () => {
@@ -152,12 +136,7 @@ export default class TransitionablePortal extends Component {
     const rest = getUnhandledProps(TransitionablePortal, this.props)
 
     return (
-      <Portal
-        {...rest}
-        open={open}
-        onOpen={this.handlePortalOpen}
-        onClose={this.handlePortalClose}
-      >
+      <Portal {...rest} open={open} onOpen={this.handlePortalOpen} onClose={this.handlePortalClose}>
         <Transition
           {...transition}
           transitionOnMount
