@@ -423,7 +423,9 @@ export default class Dropdown extends Component {
       this.setSelectedIndex(nextProps.value)
     }
 
-    if (!_.isEqual(nextProps.options, this.props.options)) {
+    if (
+      !_.isEqual(this.getKeyAndValues(nextProps.options), this.getKeyAndValues(this.props.options))
+    ) {
       this.setSelectedIndex(undefined, nextProps.options)
     }
   }
@@ -786,6 +788,9 @@ export default class Dropdown extends Component {
   // ----------------------------------------
   // Getters
   // ----------------------------------------
+
+  getKeyAndValues = options =>
+    (options ? options.map(option => _.pick(option, ['key', 'value'])) : options)
 
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
