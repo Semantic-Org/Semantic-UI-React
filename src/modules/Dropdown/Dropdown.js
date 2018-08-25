@@ -640,8 +640,6 @@ export default class Dropdown extends Component {
     debug('closeOnDocumentClick()')
     debug(e)
 
-    if (!this.props.closeOnBlur) return
-
     // If event happened in the dropdown, ignore it
     if (this.ref && doesNodeContainClick(this.ref, e)) return
 
