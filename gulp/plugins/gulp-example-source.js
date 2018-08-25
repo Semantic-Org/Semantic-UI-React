@@ -1,14 +1,16 @@
-import Vinyl from 'vinyl'
 import gutil from 'gulp-util'
 import _ from 'lodash'
 import path from 'path'
 import through from 'through2'
+import Vinyl from 'vinyl'
 
+// Heads up!
+// This plugin is not universal, so it's okay to keep all existing sources as the state.
+// https://github.com/Semantic-Org/Semantic-UI-React/issues/3095
+const exampleSources = {}
 const pluginName = 'gulp-example-source'
 
 export default () => {
-  const exampleSources = {}
-
   function bufferContents(file, enc, cb) {
     if (file.isNull()) {
       cb(null, file)
@@ -41,16 +43,9 @@ export default () => {
   function endStream(cb) {
     const file = new Vinyl({
       path: './exampleSources.json',
+      contents: Buffer.from(JSON.stringify(exampleSources, null, 2)),
     })
-    let existingSources = {}
 
-    // Heads up!
-    // In watch mode we should update only single entry that matches changed file.
-    if (file.contents) {
-      existingSources = JSON.parse(file.contents.toString())
-    }
-
-    file.contents = Buffer.from(JSON.stringify({ ...existingSources, ...exampleSources }, null, 2))
     this.push(file)
     cb()
   }
