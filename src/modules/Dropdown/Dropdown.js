@@ -423,6 +423,9 @@ export default class Dropdown extends Component {
       this.setSelectedIndex(nextProps.value)
     }
 
+    // The selected index is only dependent on option keys/values.
+    // We only check those properties to avoid recursive performance impacts.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/3000
     if (
       !_.isEqual(this.getKeyAndValues(nextProps.options), this.getKeyAndValues(this.props.options))
     ) {
