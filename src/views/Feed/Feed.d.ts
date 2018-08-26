@@ -11,9 +11,11 @@ import FeedLike from './FeedLike'
 import FeedSummary from './FeedSummary'
 import FeedUser from './FeedUser'
 
-export interface FeedProps {
+export interface FeedProps extends StrictFeedProps {
   [key: string]: any
+}
 
+export interface StrictFeedProps {
   /** An element type to render as (string or function). */
   as?: any
 

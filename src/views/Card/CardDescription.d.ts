@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { SemanticShorthandContent } from '../..'
 
-export interface CardDescriptionProps {
+export interface CardDescriptionProps extends StrictCardDescriptionProps {
   [key: string]: any
+}
 
+export interface StrictCardDescriptionProps {
   /** An element type to render as (string or function). */
   as?: any
 

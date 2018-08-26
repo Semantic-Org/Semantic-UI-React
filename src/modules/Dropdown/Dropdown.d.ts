@@ -7,9 +7,11 @@ import { default as DropdownItem, DropdownItemProps } from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
 
-export interface DropdownProps {
+export interface DropdownProps extends StrictDropdownProps {
   [key: string]: any
+}
 
+export interface StrictDropdownProps {
   /** An element type to render as (string or function). */
   as?: any
 

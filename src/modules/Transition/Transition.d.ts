@@ -5,9 +5,11 @@ import TransitionGroup from './TransitionGroup'
 
 export type TRANSITION_STATUSES = 'ENTERED' | 'ENTERING' | 'EXITED' | 'EXITING' | 'UNMOUNTED'
 
-export interface TransitionProps {
+export interface TransitionProps extends StrictTransitionProps {
   [key: string]: any
+}
 
+export interface StrictTransitionProps {
   /** Named animation event to used. Must be defined in CSS. */
   animation?: SemanticTRANSITIONS
 

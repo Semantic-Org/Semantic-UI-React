@@ -3,9 +3,11 @@ import * as React from 'react'
 import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
 import { FeedLikeProps } from './FeedLike'
 
-export interface FeedMetaProps {
+export interface FeedMetaProps extends StrictFeedMetaProps {
   [key: string]: any
+}
 
+export interface StrictFeedMetaProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -13,9 +13,11 @@ import MessageList from './MessageList'
 
 export type MessageSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 
-export interface MessageProps {
+export interface MessageProps extends StrictMessageProps {
   [key: string]: any
+}
 
+export interface StrictMessageProps {
   /** An element type to render as (string or function). */
   as?: any
 

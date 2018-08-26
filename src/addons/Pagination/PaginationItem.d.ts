@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface PaginationItemProps {
+export interface PaginationItemProps extends StrictPaginationItemProps {
   [key: string]: any
+}
 
+export interface StrictPaginationItemProps {
   /** A pagination item can be active. */
   active?: boolean
 

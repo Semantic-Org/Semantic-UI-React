@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { SemanticShorthandContent } from '../..'
 
-export interface PopupContentProps {
+export interface PopupContentProps extends StrictPopupContentProps {
   [key: string]: any
+}
 
+export interface StrictPopupContentProps {
   /** An element type to render as (string or function). */
   as?: any
 

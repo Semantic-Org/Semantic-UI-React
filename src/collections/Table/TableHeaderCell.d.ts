@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { TableCellProps } from './TableCell'
+import { StrictTableCellProps } from './TableCell'
 
-export interface TableHeaderCellProps extends TableCellProps {
+export interface TableHeaderCellProps extends StrictTableHeaderCellProps {
   [key: string]: any
+}
 
+export interface StrictTableHeaderCellProps extends StrictTableCellProps {
   /** An element type to render as (string or function). */
   as?: any
 

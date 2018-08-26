@@ -6,9 +6,11 @@ import { ItemExtraProps } from './ItemExtra'
 import { ItemHeaderProps } from './ItemHeader'
 import { ItemMetaProps } from './ItemMeta'
 
-export interface ItemContentProps {
+export interface ItemContentProps extends StrictItemContentProps {
   [key: string]: any
+}
 
+export interface StrictItemContentProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -1,1 +1,1 @@
-export { default, StickyProps } from './Sticky'
+export { default, StickyProps, StrictStickyProps } from './Sticky'

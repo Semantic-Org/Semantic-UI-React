@@ -3,9 +3,11 @@ import * as React from 'react'
 import { SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..'
 import { CardProps } from './Card'
 
-export interface CardGroupProps {
+export interface CardGroupProps extends StrictCardGroupProps {
   [key: string]: any
+}
 
+export interface StrictCardGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 

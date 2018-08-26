@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface ResponsiveProps {
+export interface ResponsiveProps extends StrictResponsiveProps {
   [key: string]: any
+}
 
+export interface StrictResponsiveProps {
   /** An element type to render as (string or function). */
   as?: any
 

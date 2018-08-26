@@ -1,1 +1,1 @@
-export { default, ConfirmProps } from './Confirm'
+export { default, ConfirmProps, StrictConfirmProps } from './Confirm'

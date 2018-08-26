@@ -8,9 +8,11 @@ import {
 } from '../..'
 import { StatisticProps, StatisticSizeProp } from './Statistic'
 
-export interface StatisticGroupProps {
+export interface StatisticGroupProps extends StrictStatisticGroupProps {
   [key: string]: any
+}
 
+export interface StrictStatisticGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 

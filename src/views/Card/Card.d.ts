@@ -8,9 +8,11 @@ import CardGroup from './CardGroup'
 import { default as CardHeader, CardHeaderProps } from './CardHeader'
 import { default as CardMeta, CardMetaProps } from './CardMeta'
 
-export interface CardProps {
+export interface CardProps extends StrictCardProps {
   [key: string]: any
+}
 
+export interface StrictCardProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -13,9 +13,11 @@ export type GridReversedProp =
   | 'tablet'
   | 'tablet vertically'
 
-export interface GridProps {
+export interface GridProps extends StrictGridProps {
   [key: string]: any
+}
 
+export interface StrictGridProps {
   /** An element type to render as (string or function). */
   as?: any
 

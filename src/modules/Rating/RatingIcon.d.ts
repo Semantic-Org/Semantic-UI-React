@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface RatingIconProps {
+export interface RatingIconProps extends StrictRatingIconProps {
   [key: string]: any
+}
 
+export interface StrictRatingIconProps {
   /** An element type to render as (string or function). */
   as?: any
 
