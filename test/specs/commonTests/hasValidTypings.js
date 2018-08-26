@@ -43,7 +43,10 @@ export default (Component, componentInfo, options = {}) => {
 
     const tsNodes = getNodes(tsFile, tsContent)
     const interfaceName = `${displayName}Props`
-    const interfaceObject = _.find(getInterfaces(tsNodes), { name: interfaceName }) || {}
+    const interfaceObject =
+      _.find(getInterfaces(tsNodes), { name: `Strict${interfaceName}` }) ||
+      _.find(getInterfaces(tsNodes), { name: interfaceName }) ||
+      {}
 
     describe(`interface ${interfaceName}`, () => {
       it('has interface', () => {
