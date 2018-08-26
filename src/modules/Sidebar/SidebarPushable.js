@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A pushable sub-component for Sidebar.
@@ -24,12 +18,6 @@ function SidebarPushable(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-SidebarPushable._meta = {
-  name: 'SidebarPushable',
-  type: META.TYPES.MODULE,
-  parent: 'Sidebar',
 }
 
 SidebarPushable.propTypes = {

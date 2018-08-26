@@ -1,59 +1,23 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandContent } from '../..';
-import DimmerDimmable from './DimmerDimmable';
+import DimmerDimmable from './DimmerDimmable'
+import DimmerInner from './DimmerInner'
 
 export interface DimmerProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
+  [key: string]: any
 
   /** An active dimmer will dim its parent container. */
-  active?: boolean;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
-
-  /** A disabled dimmer cannot be activated */
-  disabled?: boolean;
-
-  /**
-   * Called when the dimmer is clicked.
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
-   */
-  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: DimmerProps) => void;
-
-  /**
-   * Handles click outside Dimmer's content, but inside Dimmer area.
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
-   */
-  onClickOutside?: (event: React.MouseEvent<HTMLDivElement>, data: DimmerProps) => void;
-
-  /** A dimmer can be formatted to have its colors inverted. */
-  inverted?: boolean;
+  active?: boolean
 
   /** A dimmer can be formatted to be fixed to the page. */
-  page?: boolean;
-
-  /** A dimmer can be controlled with simple prop. */
-  simple?: boolean;
+  page?: boolean
 }
 
 interface DimmerComponent extends React.ComponentClass<DimmerProps> {
-  Dimmable: typeof DimmerDimmable;
+  Dimmable: typeof DimmerDimmable
+  Inner: typeof DimmerInner
 }
 
-declare const Dimmer: DimmerComponent;
+declare const Dimmer: DimmerComponent
 
-export default Dimmer;
+export default Dimmer

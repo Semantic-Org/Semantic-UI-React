@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -15,13 +14,7 @@ import {
  * Used in some Button types, such as `animated`.
  */
 function ButtonContent(props) {
-  const {
-    children,
-    className,
-    content,
-    hidden,
-    visible,
-  } = props
+  const { children, className, content, hidden, visible } = props
   const classes = cx(
     useKeyOnly(visible, 'visible'),
     useKeyOnly(hidden, 'hidden'),
@@ -36,12 +29,6 @@ function ButtonContent(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-ButtonContent._meta = {
-  name: 'ButtonContent',
-  parent: 'Button',
-  type: META.TYPES.ELEMENT,
 }
 
 ButtonContent.propTypes = {

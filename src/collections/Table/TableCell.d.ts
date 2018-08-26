@@ -1,68 +1,68 @@
-import * as React from 'react';
+import * as React from 'react'
 
 import {
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
-  SemanticWIDTHS
-} from '../..';
-import { IconProps } from '../../elements/Icon';
+  SemanticWIDTHS,
+} from '../..'
+import { IconProps } from '../../elements/Icon'
 
 export interface TableCellProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A cell can be active or selected by a user. */
-  active?: boolean;
+  active?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** A table can be collapsing, taking up only as much space as its rows. */
-  collapsing?: boolean;
+  collapsing?: boolean
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A cell can be disabled. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** A cell may call attention to an error or a negative value. */
-  error?: boolean;
+  error?: boolean
 
   /** Add an Icon by name, props object, or pass an <Icon /> */
-  icon?: SemanticShorthandItem<IconProps>;
+  icon?: SemanticShorthandItem<IconProps>
 
   /** A cell may let a user know whether a value is bad. */
-  negative?: boolean;
+  negative?: boolean
 
   /** A cell may let a user know whether a value is good. */
-  positive?: boolean;
+  positive?: boolean
 
   /** A cell can be selectable. */
-  selectable?: boolean;
+  selectable?: boolean
 
   /** A cell can specify that its contents should remain on a single line and not wrap. */
-  singleLine?: boolean;
+  singleLine?: boolean
 
   /** A table cell can adjust its text alignment. */
-  textAlign?: 'center' | 'left' | 'right';
+  textAlign?: 'center' | 'left' | 'right'
 
   /** A table cell can adjust its text alignment. */
-  verticalAlign?: SemanticVERTICALALIGNMENTS;
+  verticalAlign?: SemanticVERTICALALIGNMENTS
 
   /** A cell may warn a user. */
-  warning?: boolean;
+  warning?: boolean
 
   /** A table can specify the width of individual columns independently. */
-  width?: SemanticWIDTHS;
+  width?: SemanticWIDTHS
 }
 
-declare const TableCell: React.StatelessComponent<TableCellProps>;
+declare const TableCell: React.StatelessComponent<TableCellProps>
 
-export default TableCell;
+export default TableCell

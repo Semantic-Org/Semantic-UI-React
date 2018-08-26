@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   SUI,
   useKeyOnly,
   useWidthProp,
@@ -115,12 +114,6 @@ function FormField(props) {
   )
 }
 
-FormField._meta = {
-  name: 'FormField',
-  parent: 'Form',
-  type: META.TYPES.COLLECTION,
-}
-
 FormField.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
@@ -157,10 +150,7 @@ FormField.propTypes = {
   // Do not disallow children with `label` shorthand
   // The `control` might accept a `label` prop and `children`
   /** Mutually exclusive with children. */
-  label: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.object,
-  ]),
+  label: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
 
   /** A field can show that input is mandatory. */
   required: PropTypes.bool,

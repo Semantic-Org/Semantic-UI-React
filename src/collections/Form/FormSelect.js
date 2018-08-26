@@ -1,12 +1,9 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 import Select from '../../addons/Select'
+import Dropdown from '../../modules/Dropdown'
 import FormField from './FormField'
 
 /**
@@ -15,17 +12,11 @@ import FormField from './FormField'
  * @see Select
  */
 function FormSelect(props) {
-  const { control } = props
+  const { control, options } = props
   const rest = getUnhandledProps(FormSelect, props)
   const ElementType = getElementType(FormSelect, props)
 
-  return <ElementType {...rest} control={control} />
-}
-
-FormSelect._meta = {
-  name: 'FormSelect',
-  parent: 'Form',
-  type: META.TYPES.COLLECTION,
+  return <ElementType {...rest} control={control} options={options} />
 }
 
 FormSelect.propTypes = {
@@ -34,6 +25,9 @@ FormSelect.propTypes = {
 
   /** A FormField control prop. */
   control: FormField.propTypes.control,
+
+  /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
+  options: PropTypes.arrayOf(PropTypes.shape(Dropdown.Item.propTypes)).isRequired,
 }
 
 FormSelect.defaultProps = {

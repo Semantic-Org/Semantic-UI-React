@@ -10,7 +10,7 @@ import { sandbox } from 'test/utils'
 
 describe('Step', () => {
   common.isConformant(Step)
-  common.hasSubComponents(Step, [StepContent, StepDescription, StepTitle])
+  common.hasSubcomponents(Step, [StepContent, StepDescription, StepTitle])
   common.rendersChildren(Step)
 
   common.implementsIconProp(Step)
@@ -21,13 +21,11 @@ describe('Step', () => {
   common.propKeyOnlyToClassName(Step, 'link')
 
   it('renders as a div by default', () => {
-    shallow(<Step />)
-      .should.have.tagName('div')
+    shallow(<Step />).should.have.tagName('div')
   })
 
   describe('children', () => {
-    shallow(<Step>{faker.hacker.phrase()}</Step>)
-      .should.not.have.descendants('StepContent')
+    shallow(<Step>{faker.hacker.phrase()}</Step>).should.not.have.descendants('StepContent')
   })
 
   describe('description', () => {
@@ -55,8 +53,7 @@ describe('Step', () => {
       const event = { target: null }
       const onClick = sandbox.spy()
 
-      shallow(<Step onClick={onClick} />)
-        .simulate('click', event)
+      shallow(<Step onClick={onClick} />).simulate('click', event)
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(event, { onClick })
@@ -65,14 +62,12 @@ describe('Step', () => {
     it('is not called when is disabled', () => {
       const onClick = sandbox.spy()
 
-      shallow(<Step disabled onClick={onClick} />)
-        .simulate('click')
+      shallow(<Step disabled onClick={onClick} />).simulate('click')
       onClick.should.have.not.been.called()
     })
 
     it('renders as `a` when defined', () => {
-      shallow(<Step onClick={() => null} />)
-        .should.have.tagName('a')
+      shallow(<Step onClick={() => null} />).should.have.tagName('a')
     })
   })
 

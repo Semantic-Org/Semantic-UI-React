@@ -1,45 +1,77 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
-import SidebarPushable from './SidebarPushable';
-import SidebarPusher from './SidebarPusher';
+import SidebarPushable from './SidebarPushable'
+import SidebarPusher from './SidebarPusher'
 
 export interface SidebarProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Animation style. */
-  animation?: 'overlay' | 'push' | 'scale down' | 'uncover' | 'slide out' | 'slide along';
+  animation?: 'overlay' | 'push' | 'scale down' | 'uncover' | 'slide out' | 'slide along'
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
-
-  /** Initial value of visible. */
-  defaultVisible?: boolean;
+  content?: SemanticShorthandContent
 
   /** Direction the sidebar should appear on. */
-  direction?: 'top' | 'right' | 'bottom' | 'left';
+  direction?: 'top' | 'right' | 'bottom' | 'left'
+
+  /** Duration of sidebar animation. */
+  duration?: number | string
+
+  /**
+   * Called before a sidebar begins to animate out.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onHide?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
+
+  /**
+   * Called after a sidebar has finished animating out.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onHidden?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
+
+  /**
+   * Called when a sidebar has finished animating in.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onShow?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
+
+  /**
+   * Called when a sidebar begins animating in.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onVisible?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
 
   /** Controls whether or not the sidebar is visible on the page. */
-  visible?: boolean;
+  visible?: boolean
 
-  /** Sidebar width */
-  width?: 'very thin' | 'thin' | 'wide' | 'very wide';
+  /** Sidebar width. */
+  width?: 'very thin' | 'thin' | 'wide' | 'very wide'
 }
 
 interface SidebarComponent extends React.ComponentClass<SidebarProps> {
-  Pushable: typeof SidebarPushable;
-  Pusher: typeof SidebarPusher;
+  Pushable: typeof SidebarPushable
+  Pusher: typeof SidebarPusher
 }
 
-declare const Sidebar: SidebarComponent;
+declare const Sidebar: SidebarComponent
 
-export default Sidebar;
+export default Sidebar

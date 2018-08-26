@@ -8,7 +8,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -18,11 +17,7 @@ import {
 function StatisticValue(props) {
   const { children, className, content, text } = props
 
-  const classes = cx(
-    useKeyOnly(text, 'text'),
-    'value',
-    className,
-  )
+  const classes = cx(useKeyOnly(text, 'text'), 'value', className)
   const rest = getUnhandledProps(StatisticValue, props)
   const ElementType = getElementType(StatisticValue, props)
 
@@ -31,12 +26,6 @@ function StatisticValue(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-StatisticValue._meta = {
-  name: 'StatisticValue',
-  parent: 'Statistic',
-  type: META.TYPES.VIEW,
 }
 
 StatisticValue.propTypes = {

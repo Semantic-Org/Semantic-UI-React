@@ -4,11 +4,7 @@ import React, { Component } from 'react'
 
 import Portal from '../Portal'
 import Transition from '../../modules/Transition'
-import {
-  getUnhandledProps,
-  makeDebugger,
-  META,
-} from '../../lib'
+import { getUnhandledProps, makeDebugger } from '../../lib'
 
 const debug = makeDebugger('transitionable_portal')
 
@@ -59,11 +55,6 @@ export default class TransitionablePortal extends Component {
 
     /** Transition props. */
     transition: PropTypes.object,
-  }
-
-  static _meta = {
-    name: 'TransitionablePortal',
-    type: META.TYPES.ADDON,
   }
 
   static defaultProps = {
@@ -145,12 +136,7 @@ export default class TransitionablePortal extends Component {
     const rest = getUnhandledProps(TransitionablePortal, this.props)
 
     return (
-      <Portal
-        {...rest}
-        open={open}
-        onOpen={this.handlePortalOpen}
-        onClose={this.handlePortalClose}
-      >
+      <Portal {...rest} open={open} onOpen={this.handlePortalOpen} onClose={this.handlePortalClose}>
         <Transition
           {...transition}
           transitionOnMount

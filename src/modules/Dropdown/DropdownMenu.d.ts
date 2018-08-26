@@ -1,31 +1,31 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface DropdownMenuProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A dropdown menu can open to the left or to the right. */
-  direction?: 'left'  | 'right';
+  direction?: 'left' | 'right'
 
   /** Whether or not the dropdown menu is displayed. */
-  open?: boolean;
+  open?: boolean
 
   /** A dropdown menu can scroll. */
-  scrolling?: boolean;
+  scrolling?: boolean
 }
 
-declare const DropdownMenu: React.StatelessComponent<DropdownMenuProps>;
+declare const DropdownMenu: React.StatelessComponent<DropdownMenuProps>
 
-export default DropdownMenu;
+export default DropdownMenu

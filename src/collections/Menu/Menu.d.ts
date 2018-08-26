@@ -1,57 +1,57 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticCOLORS, SemanticShorthandCollection, SemanticWIDTHS } from '../..';
-import MenuHeader from './MenuHeader';
-import { default as MenuItem, MenuItemProps } from './MenuItem';
-import MenuMenu from './MenuMenu';
+import { SemanticCOLORS, SemanticShorthandCollection, SemanticWIDTHS } from '../..'
+import MenuHeader from './MenuHeader'
+import { default as MenuItem, MenuItemProps } from './MenuItem'
+import MenuMenu from './MenuMenu'
 
 export interface MenuProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Index of the currently active item. */
-  activeIndex?: number | string;
+  activeIndex?: number | string
 
   /** A menu may be attached to other content segments. */
-  attached?: boolean | 'bottom' | 'top';
+  attached?: boolean | 'bottom' | 'top'
 
   /** A menu item or menu can have no borders. */
-  borderless?: boolean;
+  borderless?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Additional colors can be specified. */
-  color?: SemanticCOLORS;
+  color?: SemanticCOLORS
 
   /** A menu can take up only the space necessary to fit its content. */
-  compact?: boolean;
+  compact?: boolean
 
   /** Initial activeIndex value. */
-  defaultActiveIndex?: number | string;
+  defaultActiveIndex?: number | string
 
   /** A menu can be fixed to a side of its context. */
-  fixed?: 'left' | 'right' | 'bottom' | 'top';
+  fixed?: 'left' | 'right' | 'bottom' | 'top'
 
   /** A menu can be floated. */
-  floated?: boolean | 'right';
+  floated?: boolean | 'right'
 
   /** A vertical menu may take the size of its container. */
-  fluid?: boolean;
+  fluid?: boolean
 
   /** A menu may have labeled icons. */
-  icon?: boolean | 'labeled';
+  icon?: boolean | 'labeled'
 
   /** A menu may have its colors inverted to show greater contrast. */
-  inverted?: boolean;
+  inverted?: boolean
 
   /** Shorthand array of props for Menu. */
-  items?: SemanticShorthandCollection<MenuItemProps>;
+  items?: SemanticShorthandCollection<MenuItemProps>
 
   /**
    * onClick handler for MenuItem. Mutually exclusive with children.
@@ -59,42 +59,42 @@ export interface MenuProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All item props.
    */
-  onItemClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => void;
+  onItemClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => void
 
   /** A pagination menu is specially formatted to present links to pages of content. */
-  pagination?: boolean;
+  pagination?: boolean
 
   /** A menu can point to show its relationship to nearby content. */
-  pointing?: boolean;
+  pointing?: boolean
 
   /** A menu can adjust its appearance to de-emphasize its contents. */
-  secondary?: boolean;
+  secondary?: boolean
 
   /** A menu can vary in size. */
-  size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge' | 'massive';
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge' | 'massive'
 
   /** A menu can stack at mobile resolutions. */
-  stackable?: boolean;
+  stackable?: boolean
 
   /** A menu can be formatted to show tabs of information. */
-  tabular?: boolean | 'right';
+  tabular?: boolean | 'right'
 
   /** A menu can be formatted for text content. */
-  text?: boolean;
+  text?: boolean
 
   /** A vertical menu displays elements vertically. */
-  vertical?: boolean;
+  vertical?: boolean
 
   /** A menu can have its items divided evenly. */
-  widths?: SemanticWIDTHS;
+  widths?: SemanticWIDTHS
 }
 
 interface MenuComponent extends React.ComponentClass<MenuProps> {
-  Header: typeof MenuHeader;
-  Item: typeof MenuItem;
-  Menu: typeof MenuMenu;
+  Header: typeof MenuHeader
+  Item: typeof MenuItem
+  Menu: typeof MenuMenu
 }
 
-declare const Menu: MenuComponent;
+declare const Menu: MenuComponent
 
-export default Menu;
+export default Menu

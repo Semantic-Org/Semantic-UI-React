@@ -7,7 +7,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -85,12 +84,6 @@ export default class SearchResult extends Component {
     const { onClick } = this.props
 
     if (onClick) onClick(e, this.props)
-  }
-
-  static _meta = {
-    name: 'SearchResult',
-    parent: 'Search',
-    type: META.TYPES.MODULE,
   }
 
   render() {

@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 
-import Ref from 'src/addons/Ref/Ref'
+import Portal from 'src/addons/Portal/Portal'
 import { SUI } from 'src/lib'
 import Popup, { POSITIONS } from 'src/modules/Popup/Popup'
 import PopupHeader from 'src/modules/Popup/PopupHeader'
@@ -31,7 +31,6 @@ const assertInBody = (...args) => assertIn(document.body, ...args)
 describe('Popup', () => {
   beforeEach(() => {
     wrapper = undefined
-    document.body.innerHTML = ''
   })
 
   afterEach(() => {
@@ -39,7 +38,7 @@ describe('Popup', () => {
   })
 
   common.isConformant(Popup, { rendersPortal: true })
-  common.hasSubComponents(Popup, [PopupHeader, PopupContent])
+  common.hasSubcomponents(Popup, [PopupHeader, PopupContent])
   common.hasValidTypings(Popup)
 
   // Heads up!
@@ -51,7 +50,7 @@ describe('Popup', () => {
   it('renders a Portal', () => {
     wrapperShallow(<Popup />)
       .type()
-      .should.equal(Ref)
+      .should.equal(Portal)
   })
 
   it('renders to the document body', () => {
@@ -157,10 +156,10 @@ describe('Popup', () => {
       it('is positioned properly when open property is set', () => {
         wrapperMount(<Popup content='_' position={position} open trigger={<button>foo</button>} />)
         const element = document.querySelector('.popup.ui')
-        element.style.should.not.have.property('top', '')
-        element.style.should.not.have.property('left', '')
-        element.style.should.not.have.property('bottom', '')
-        element.style.should.not.have.property('right', '')
+        element.style.should.have.property('top', '')
+        element.style.should.have.property('left', '')
+        element.style.should.have.property('bottom', '')
+        element.style.should.have.property('right', '')
       })
       it('is the original if no horizontal position fits within the viewport', () => {
         wrapperMount(
@@ -289,13 +288,13 @@ describe('Popup', () => {
 
     it('it appears on hover', (done) => {
       const trigger = <button>foo</button>
-      wrapperMount(<Popup content='foo' trigger={trigger} />)
+      wrapperMount(<Popup content='foo' trigger={trigger} mouseEnterDelay={0} />)
 
       wrapper.find('button').simulate('mouseenter')
       setTimeout(() => {
         assertInBody('.ui.popup.visible')
         done()
-      }, 51)
+      }, 1)
     })
 
     it('it appears on focus', () => {
@@ -322,6 +321,74 @@ describe('Popup', () => {
         assertInBody('.ui.popup.visible')
         done()
       }, 51)
+    })
+  })
+
+  describe('context', () => {
+    // We're expecting to see this:
+    //
+    // |- context -----------------------------|
+    // |             99px x 10px               |
+    // |---------------------------------------|
+    //                  ---^---
+    //                 | popup |
+    //                  -------
+
+    it('aligns the popup to the context node', () => {
+      const context = document.createElement('div')
+      context.innerText = '.'
+      context.style.marginTop = '400px'
+      context.style.marginLeft = '400px'
+      context.style.width = '99px'
+      context.style.height = '10px'
+
+      document.body.appendChild(context)
+      const contextRect = context.getBoundingClientRect()
+
+      wrapperMount(
+        <Popup id='context-popup' context={context} content='.' position='bottom center' open />,
+      )
+
+      const popupRect = document.querySelector('#context-popup').getBoundingClientRect()
+
+      document.body.removeChild(context)
+
+      popupRect.top.should.equal(
+        contextRect.bottom,
+        "The popup's top should have been equal to the context's bottom.",
+      )
+    })
+
+    it('aligns the popup to the context node even when there is a trigger', () => {
+      const context = document.createElement('div')
+      context.innerText = '.'
+      context.style.marginTop = '400px'
+      context.style.marginLeft = '400px'
+      context.style.width = '99px'
+      context.style.height = '10px'
+
+      document.body.appendChild(context)
+      const contextRect = context.getBoundingClientRect()
+
+      wrapperMount(
+        <Popup
+          id='context-popup'
+          trigger={<button />}
+          context={context}
+          content='.'
+          position='bottom center'
+          open
+        />,
+      )
+
+      const popupRect = document.querySelector('#context-popup').getBoundingClientRect()
+
+      document.body.removeChild(context)
+
+      popupRect.top.should.equal(
+        contextRect.bottom,
+        "The popup's top should have been equal to the context's bottom.",
+      )
     })
   })
 

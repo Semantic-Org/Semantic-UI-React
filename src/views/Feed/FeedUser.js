@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  childrenUtils,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A feed can contain a user element.
@@ -24,12 +18,6 @@ function FeedUser(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-FeedUser._meta = {
-  name: 'FeedUser',
-  parent: 'Feed',
-  type: META.TYPES.VIEW,
 }
 
 FeedUser.propTypes = {

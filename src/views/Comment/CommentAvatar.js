@@ -2,13 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  createHTMLImage,
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { createHTMLImage, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A comment can contain an image or avatar.
@@ -24,12 +18,6 @@ function CommentAvatar(props) {
       {createHTMLImage(src, { autoGenerateKey: false })}
     </ElementType>
   )
-}
-
-CommentAvatar._meta = {
-  name: 'CommentAvatar',
-  parent: 'Comment',
-  type: META.TYPES.VIEW,
 }
 
 CommentAvatar.propTypes = {

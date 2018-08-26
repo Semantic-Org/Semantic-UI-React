@@ -1,9 +1,10 @@
 import cx from 'classnames'
 import keyboardKey from 'keyboard-key'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { customPropTypes, getElementType, getUnhandledProps, META, useKeyOnly } from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps, useKeyOnly } from '../../lib'
 
 /**
  * An internal icon sub-component for Rating component
@@ -54,44 +55,35 @@ export default class RatingIcon extends Component {
     as: 'i',
   }
 
-  static _meta = {
-    name: 'RatingIcon',
-    parent: 'Rating',
-    type: META.TYPES.MODULE,
-  }
-
   handleClick = (e) => {
-    const { onClick } = this.props
-
-    if (onClick) onClick(e, this.props)
+    _.invoke(this.props, 'onClick', e, this.props)
   }
 
   handleKeyUp = (e) => {
-    const { onClick, onKeyUp } = this.props
+    _.invoke(this.props, 'onKeyUp', e, this.props)
 
-    if (onKeyUp) onKeyUp(e, this.props)
-
-    if (onClick) {
-      switch (keyboardKey.getCode(e)) {
-        case keyboardKey.Enter:
-        case keyboardKey.Spacebar:
-          e.preventDefault()
-          onClick(e, this.props)
-          break
-        default:
-      }
+    switch (keyboardKey.getCode(e)) {
+      case keyboardKey.Enter:
+      case keyboardKey.Spacebar:
+        e.preventDefault()
+        _.invoke(this.props, 'onClick', e, this.props)
+        break
+      default:
     }
   }
 
   handleMouseEnter = (e) => {
-    const { onMouseEnter } = this.props
-
-    if (onMouseEnter) onMouseEnter(e, this.props)
+    _.invoke(this.props, 'onMouseEnter', e, this.props)
   }
 
   render() {
     const { active, className, selected } = this.props
-    const classes = cx(useKeyOnly(active, 'active'), useKeyOnly(selected, 'selected'), 'icon', className)
+    const classes = cx(
+      useKeyOnly(active, 'active'),
+      useKeyOnly(selected, 'selected'),
+      'icon',
+      className,
+    )
     const rest = getUnhandledProps(RatingIcon, this.props)
     const ElementType = getElementType(RatingIcon, this.props)
 

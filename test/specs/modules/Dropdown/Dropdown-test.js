@@ -35,8 +35,8 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // ----------------------------------------
 const getOptions = (count = 5) =>
   _.times(count, (i) => {
-    const text = `${i}-${faker.hacker.noun}`
-    const value = `${i}-${_.snakeCase(text)}`
+    const text = [i, ..._.times(3, faker.hacker.noun)].join(' ')
+    const value = _.snakeCase(text)
     return { text, value }
   })
 
@@ -86,7 +86,7 @@ describe('Dropdown', () => {
 
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
-  common.hasSubComponents(Dropdown, [
+  common.hasSubcomponents(Dropdown, [
     DropdownDivider,
     DropdownHeader,
     DropdownItem,
@@ -468,6 +468,7 @@ describe('Dropdown', () => {
         .first()
         .simulate('click')
         .should.have.prop('active', true)
+
       wrapper.should.have.state('value', options[0].value)
 
       dropdownMenuIsClosed()
@@ -914,11 +915,7 @@ describe('Dropdown', () => {
       wrapper
         .find('DropdownItem')
         .at(1)
-        .should.have.prop('selected', false)
-      wrapper
-        .find('DropdownItem')
-        .at(1)
-        .should.have.prop('active', false)
+        .should.have.props({ selected: false, active: false })
 
       // select and make active
       domEvent.keyDown(document, { key: 'ArrowDown' })
@@ -928,7 +925,7 @@ describe('Dropdown', () => {
       wrapper
         .find('DropdownItem')
         .at(1)
-        .should.have.prop('active', true)
+        .should.have.props({ selected: true, active: true })
     })
     it('closes the menu', () => {
       wrapperMount(<Dropdown options={options} selection />).simulate('click')
@@ -1110,7 +1107,7 @@ describe('Dropdown', () => {
     it('does not display if value is undefined', () => {
       const text = faker.hacker.noun()
 
-      wrapperMount(<Dropdown options={[{ value: undefined, text }]} selection />)
+      wrapperMount(<Dropdown options={[{ key: text, value: undefined, text }]} selection />)
         .simulate('click')
         .find('DropdownItem')
         .simulate('click')
@@ -1127,14 +1124,6 @@ describe('Dropdown', () => {
       wrapperRender(<Dropdown options={options} trigger={trigger} />)
         .find('.trigger')
         .should.contain.text(text)
-    })
-    it('ignores the text prop', () => {
-      const text = faker.hacker.phrase()
-      const trigger = <div className='trigger'>{text}</div>
-
-      wrapperRender(
-        <Dropdown options={options} trigger={trigger} text={text} />,
-      ).should.not.have.descendants('div.text')
     })
   })
 
@@ -1231,7 +1220,7 @@ describe('Dropdown', () => {
       dropdownMenuIsOpen()
 
       // click outside
-      domEvent.click(document)
+      domEvent.click(document.body)
       dropdownMenuIsClosed()
     })
 
@@ -1268,9 +1257,9 @@ describe('Dropdown', () => {
     it('is called once when the icon is clicked with a search prop', () => {
       // https://github.com/Semantic-Org/Semantic-UI-React/issues/2600
       const onOpen = sandbox.spy()
-      wrapperMount(<Dropdown options={options} selection search onOpen={onOpen} />)
-        .find('i.icon')
-        .simulate('click')
+      wrapperShallow(<Dropdown options={options} selection search onOpen={onOpen} />)
+        .find('Icon')
+        .simulate('click', { stopPropagation: _.noop })
 
       onOpen.should.have.been.calledOnce()
     })
@@ -1279,9 +1268,20 @@ describe('Dropdown', () => {
   describe('onClose', () => {
     it('called when dropdown would close', () => {
       const onClose = sandbox.spy()
-      wrapperMount(<Dropdown options={options} selection defaultOpen onClose={onClose} />)
+      wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
 
       wrapper.simulate('click')
+      onClose.should.have.been.calledOnce()
+    })
+
+    it('called once even when blurred', () => {
+      // Heads up!
+      // Special test for: https://github.com/Semantic-Org/Semantic-UI-React/issues/2953
+      const onClose = sandbox.spy()
+      wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
+
+      wrapper.simulate('click')
+      wrapper.simulate('blur')
       onClose.should.have.been.calledOnce()
     })
   })
@@ -1954,9 +1954,7 @@ describe('Dropdown', () => {
       // search for value yields 2 results as per our custom search function
       search.simulate('change', { target: { value: searchQuery } })
 
-      searchFunction.should.have.been.calledOnce()
       searchFunction.should.have.been.calledWithMatch(options, searchQuery)
-
       wrapper
         .find('DropdownItem')
         .should.have.lengthOf(2, 'Searching with custom search function did not yield 2 results.')
@@ -2145,6 +2143,20 @@ describe('Dropdown', () => {
       instance.render()
 
       instance.renderText.should.have.been.called()
+    })
+  })
+
+  describe('lazyLoad', () => {
+    it('does not render options when closed', () => {
+      wrapperShallow(<Dropdown options={options} lazyLoad />).should.not.have.descendants(
+        'DropdownItem',
+      )
+    })
+
+    it('renders options when open', () => {
+      wrapperShallow(<Dropdown options={options} lazyLoad open />).should.have.descendants(
+        'DropdownItem',
+      )
     })
   })
 
@@ -2576,6 +2588,25 @@ describe('Dropdown', () => {
         .find('DropdownItem')
         .at(options.length - 1)
         .should.have.prop('selected', true)
+    })
+  })
+
+  describe('upward', () => {
+    it('is false when there is enough space below', () => {
+      wrapperMount(<Dropdown options={options} />)
+
+      wrapper.simulate('click').should.not.have.className('upward')
+    })
+
+    it('is true when there is not enough space below', () => {
+      wrapperMount(
+        <Dropdown
+          options={options}
+          style={{ marginTop: document.documentElement.clientHeight - 50 }}
+        />,
+      )
+
+      wrapper.simulate('click').should.have.className('upward')
     })
   })
 })

@@ -2,23 +2,13 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import {
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  META,
-} from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A TextArea can be used to allow for extended user input.
  * @see Form
  */
 class TextArea extends Component {
-  static _meta = {
-    name: 'TextArea',
-    type: META.TYPES.ADDON,
-  }
-
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -41,19 +31,13 @@ class TextArea extends Component {
     onInput: PropTypes.func,
 
     /** Indicates row count for a TextArea. */
-    rows: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Custom TextArea style. */
     style: PropTypes.object,
 
     /** The value of the textarea. */
-    value: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   }
 
   static defaultProps = {
@@ -76,7 +60,7 @@ class TextArea extends Component {
     }
   }
 
-  focus = () => (this.ref.focus())
+  focus = () => this.ref.focus()
 
   handleChange = (e) => {
     const value = _.get(e, 'target.value')
@@ -102,21 +86,17 @@ class TextArea extends Component {
     const { autoHeight } = this.props
     if (!this.ref || !autoHeight) return
 
-    const {
-      minHeight,
-      borderBottomWidth,
-      borderTopWidth,
-    } = window.getComputedStyle(this.ref)
+    const { minHeight, borderBottomWidth, borderTopWidth } = window.getComputedStyle(this.ref)
 
-    const borderHeight = _.sum([
-      borderBottomWidth,
-      borderTopWidth,
-    ].map(x => parseFloat(x)))
+    const borderHeight = _.sum([borderBottomWidth, borderTopWidth].map(x => parseFloat(x)))
 
     // Measure the scrollHeight and update the height to match.
     this.ref.style.height = 'auto'
     this.ref.style.overflowY = 'hidden'
-    this.ref.style.height = `${Math.max(parseFloat(minHeight), Math.ceil(this.ref.scrollHeight + borderHeight))}px`
+    this.ref.style.height = `${Math.max(
+      parseFloat(minHeight),
+      Math.ceil(this.ref.scrollHeight + borderHeight),
+    )}px`
     this.ref.style.overflowY = ''
   }
 

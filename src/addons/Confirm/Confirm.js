@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { customPropTypes, getUnhandledProps, META } from '../../lib'
+import { customPropTypes, getUnhandledProps } from '../../lib'
 import Button from '../../elements/Button'
 import Modal from '../../modules/Modal'
 
@@ -52,11 +52,6 @@ class Confirm extends Component {
     confirmButton: 'OK',
     content: 'Are you sure?',
     size: 'small',
-  }
-
-  static _meta = {
-    name: 'Confirm',
-    type: META.TYPES.ADDON,
   }
 
   handleCancel = (e) => {

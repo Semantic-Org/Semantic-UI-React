@@ -1,42 +1,42 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..';
-import { CardProps } from './Card';
+import { SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..'
+import { CardProps } from './Card'
 
 export interface CardGroupProps {
-  [key: string]: any;
+  [key: string]: any
 
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** A group of cards can center itself inside its container. */
-  centered?: boolean;
+  centered?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** A group of cards can double its column width for mobile. */
-  doubling?: boolean;
+  doubling?: boolean
 
   /** Shorthand array of props for Card. */
-  items?: SemanticShorthandCollection<CardProps>;
+  items?: SemanticShorthandCollection<CardProps>
 
   /** A group of cards can set how many cards should exist in a row. */
-  itemsPerRow?: SemanticWIDTHS;
+  itemsPerRow?: SemanticWIDTHS
 
   /** A group of cards can automatically stack rows to a single columns on mobile devices. */
-  stackable?: boolean;
+  stackable?: boolean
 
   /** A card group can adjust its text alignment. */
-  textAlign?: 'center' | 'left' | 'right';
+  textAlign?: 'center' | 'left' | 'right'
 }
 
-declare const CardGroup: React.StatelessComponent<CardGroupProps>;
+declare const CardGroup: React.StatelessComponent<CardGroupProps>
 
-export default CardGroup;
+export default CardGroup

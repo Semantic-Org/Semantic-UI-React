@@ -1,6 +1,9 @@
-import * as React from 'react';
-import { Button } from '../';
+import * as React from 'react'
+import { Button, Dropdown } from '../'
 
-const Test = () => <Button />;
+const Test = () => <Button />
+const DropdownTest = () => (
+  <Dropdown additionLabel={<i style={{ color: 'red' }}>Custom Language: </i>} />
+)
 
-export default Test;
+export default Test
