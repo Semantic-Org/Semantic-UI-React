@@ -71,13 +71,17 @@ class ComponentExample extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
+    const { examplePath, exampleSources, location } = nextProps
+    const nextSourceCode = exampleSources[examplePath]
+
     // deactivate examples when switching from one to the next
-    if (
-      this.isActiveHash() &&
-      this.isActiveState() &&
-      this.props.location.hash !== nextProps.location.hash
-    ) {
+    if (this.isActiveHash() && this.isActiveState() && this.props.location.hash !== location.hash) {
       this.clearActiveState()
+    }
+
+    // for local environment
+    if (process.env.NODE_ENV !== 'production' && this.getOriginalSourceCode() !== nextSourceCode) {
+      this.setState({ sourceCode: nextSourceCode })
     }
   }
 
