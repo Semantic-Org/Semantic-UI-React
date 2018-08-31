@@ -106,6 +106,22 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
+    it('causes the style to be updated', () => {
+      wrapperMount(
+        <Popup
+          horizontalOffset={50}
+          position='bottom left'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+      const element = document.querySelector('.popup.ui')
+      element.style.should.have.property('left', '-50px')
+      wrapper.setProps({ horizontalOffset: 60 })
+      element.style.should.have.property('left', '-60px')
+    })
   })
 
   describe('verticalOffset', () => {
@@ -134,6 +150,22 @@ describe('Popup', () => {
 
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
+    })
+    it('causes the style to be updated', () => {
+      wrapperMount(
+        <Popup
+          verticalOffset={50}
+          position='bottom right'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+      const element = document.querySelector('.popup.ui')
+      element.style.should.have.property('top', '50px')
+      wrapper.setProps({ verticalOffset: 60 })
+      element.style.should.have.property('top', '60px')
     })
   })
 
