@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -139,18 +140,6 @@ export default class Checkbox extends Component {
     return disabled ? -1 : 0
   }
 
-  handleContainerClick = (e) => {
-    const { id } = this.props
-
-    if (_.isNil(id)) this.handleClick(e)
-  }
-
-  handleInputClick = (e) => {
-    const { id } = this.props
-
-    if (id) this.handleClick(e)
-  }
-
   handleInputRef = c => (this.inputRef = c)
 
   handleClick = (e) => {
@@ -167,6 +156,26 @@ export default class Checkbox extends Component {
     _.invoke(this.props, 'onChange', e, { ...this.props, checked: !checked, indeterminate: false })
 
     this.trySetState({ checked: !checked, indeterminate: false })
+  }
+
+  handleKeyDown = (e) => {
+    debug('handleKeyDown()', { key: keyboardKey.getCode(e) })
+    const { checked, indeterminate } = this.state
+
+    _.invoke(this.props, 'onKeyDown', e, {
+      ...this.props,
+      checked: !!checked,
+      indeterminate: !!indeterminate,
+    })
+
+    switch (keyboardKey.getCode(e)) {
+      case keyboardKey.Enter:
+      case keyboardKey.Spacebar:
+        this.handleClick(e)
+        break
+      default:
+        break
+    }
   }
 
   handleMouseDown = (e) => {
@@ -187,8 +196,11 @@ export default class Checkbox extends Component {
     debug('handleMouseUp()')
     const { checked, indeterminate } = this.state
 
-    _.invoke(this.props, 'onMouseUp', e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
-
+    _.invoke(this.props, 'onMouseUp', e, {
+      ...this.props,
+      checked: !!checked,
+      indeterminate: !!indeterminate,
+    })
     this.handleClick(e)
   }
 
@@ -202,7 +214,19 @@ export default class Checkbox extends Component {
   }
 
   render() {
-    const { className, disabled, label, id, name, radio, readOnly, slider, toggle, type, value } = this.props
+    const {
+      className,
+      disabled,
+      label,
+      id,
+      name,
+      radio,
+      readOnly,
+      slider,
+      toggle,
+      type,
+      value,
+    } = this.props
     const { checked, indeterminate } = this.state
 
     const classes = cx(
@@ -228,7 +252,6 @@ export default class Checkbox extends Component {
       <ElementType
         {...rest}
         className={classes}
-        onChange={this.handleContainerClick}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
       >
@@ -239,7 +262,7 @@ export default class Checkbox extends Component {
           disabled={disabled}
           id={id}
           name={name}
-          onChange={this.handleInputClick}
+          onKeyDown={this.handleKeyDown}
           readOnly
           ref={this.handleInputRef}
           tabIndex={this.computeTabIndex()}
