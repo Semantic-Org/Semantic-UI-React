@@ -141,14 +141,14 @@ describe('Checkbox', () => {
     it('cannot be checked', () => {
       wrapperShallow(<Checkbox disabled />)
 
-      wrapper.simulate('click')
+      wrapper.simulate('mouseup')
       wrapper.find('input').should.not.be.checked()
     })
 
     it('cannot be unchecked', () => {
       wrapperShallow(<Checkbox defaultChecked disabled />)
 
-      wrapper.simulate('click')
+      wrapper.simulate('mouseup')
       wrapper.find('input').should.be.checked()
     })
 
@@ -213,56 +213,62 @@ describe('Checkbox', () => {
   })
 
   describe('onChange', () => {
-    it('is called with (event { name, value, !checked }) on click', () => {
-      const onClick = sandbox.spy()
-      const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onChange={onClick} {...expectProps} />).simulate('click')
+    it('is called with (e, data) on mouse up', () => {
+      const onChange = sandbox.spy()
+      const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
+      mount(<Checkbox onChange={onChange} {...props} />).simulate('mouseup')
 
-      onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch(
         {},
         {
-          ...expectProps,
-          checked: !expectProps.checked,
+          ...props,
+          checked: true,
           indeterminate: false,
         },
       )
     })
+
+    it('is not called when on change when "id" is passed', () => {
+      const onChange = sandbox.spy()
+      mount(<Checkbox id='foo' onChange={onChange} />).simulate('mouseup')
+
+      onChange.should.have.not.been.called()
+    })
   })
 
   describe('onClick', () => {
-    it('is called with (event { name, value, checked }) on label click', () => {
+    it('is called with (event, data) on mouse up', () => {
       const onClick = sandbox.spy()
-      const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onClick={onClick} {...expectProps} />).simulate('click')
+      const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
+      mount(<Checkbox onClick={onClick} {...props} />).simulate('mouseup')
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(
         {},
         {
-          ...expectProps,
-          checked: !expectProps.checked,
-          indeterminate: expectProps.indeterminate,
+          ...props,
+          checked: true,
         },
       )
+    })
+
+    it('is not called when on change when "id" is passed', () => {
+      const onClick = sandbox.spy()
+      mount(<Checkbox id='foo' onClick={onClick} />).simulate('mouseup')
+
+      onClick.should.have.not.been.called()
     })
   })
 
   describe('onMouseDown', () => {
-    it('is called with (event { name, value, checked }) on label mouse down', () => {
+    it('is called with (event, data) on mouse down', () => {
       const onMousedDown = sandbox.spy()
-      const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onMouseDown={onMousedDown} {...expectProps} />).simulate('mousedown')
+      const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
+      mount(<Checkbox onMouseDown={onMousedDown} {...props} />).simulate('mousedown')
 
       onMousedDown.should.have.been.calledOnce()
-      onMousedDown.should.have.been.calledWithMatch(
-        {},
-        {
-          ...expectProps,
-          checked: expectProps.checked,
-          indeterminate: expectProps.indeterminate,
-        },
-      )
+      onMousedDown.should.have.been.calledWithMatch({}, props)
     })
     it('prevents default event', () => {
       const preventDefault = sandbox.spy()
@@ -277,6 +283,17 @@ describe('Checkbox', () => {
 
       domEvent.fire(input, 'mousedown')
       document.activeElement.should.equal(input)
+    })
+  })
+
+  describe('onMouseUp', () => {
+    it('is called with (event, data) on mouse up', () => {
+      const onMouseUp = sandbox.spy()
+      const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
+      mount(<Checkbox onMouseUp={onMouseUp} {...props} />).simulate('mouseup')
+
+      onMouseUp.should.have.been.calledOnce()
+      onMouseUp.should.have.been.calledWithMatch({}, props)
     })
   })
 
