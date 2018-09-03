@@ -1,5 +1,4 @@
 import cx from 'classnames'
-import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -142,11 +141,13 @@ export default class Checkbox extends Component {
 
   handleInputRef = c => (this.inputRef = c)
 
-  handleClick = (e) => {
-    debug('handleClick()')
+  handleChange = (e, fromMouseUp) => {
+    debug('handleChange()')
+    const { id } = this.props
     const { checked, indeterminate } = this.state
 
     if (!this.canToggle()) return
+    if (fromMouseUp && !_.isNil(id)) return
 
     _.invoke(this.props, 'onClick', e, {
       ...this.props,
@@ -156,26 +157,6 @@ export default class Checkbox extends Component {
     _.invoke(this.props, 'onChange', e, { ...this.props, checked: !checked, indeterminate: false })
 
     this.trySetState({ checked: !checked, indeterminate: false })
-  }
-
-  handleKeyDown = (e) => {
-    debug('handleKeyDown()', { key: keyboardKey.getCode(e) })
-    const { checked, indeterminate } = this.state
-
-    _.invoke(this.props, 'onKeyDown', e, {
-      ...this.props,
-      checked: !!checked,
-      indeterminate: !!indeterminate,
-    })
-
-    switch (keyboardKey.getCode(e)) {
-      case keyboardKey.Enter:
-      case keyboardKey.Spacebar:
-        this.handleClick(e)
-        break
-      default:
-        break
-    }
   }
 
   handleMouseDown = (e) => {
@@ -201,7 +182,7 @@ export default class Checkbox extends Component {
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
-    this.handleClick(e)
+    this.handleChange(e, true)
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we
@@ -252,6 +233,7 @@ export default class Checkbox extends Component {
       <ElementType
         {...rest}
         className={classes}
+        onChange={this.handleChange}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
       >
@@ -262,7 +244,6 @@ export default class Checkbox extends Component {
           disabled={disabled}
           id={id}
           name={name}
-          onKeyDown={this.handleKeyDown}
           readOnly
           ref={this.handleInputRef}
           tabIndex={this.computeTabIndex()}
