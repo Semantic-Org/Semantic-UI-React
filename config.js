@@ -1,4 +1,4 @@
-import path from 'path'
+const path = require('path')
 
 // ------------------------------------
 // Environment vars
@@ -41,12 +41,6 @@ const paths = {
 const config = {
   ...envConfig,
   paths,
-
-  // ----------------------------------
-  // Server Configuration
-  // ----------------------------------
-  server_host: 'localhost',
-  server_port: process.env.PORT || 8080,
 
   // ----------------------------------
   // Compiler Configuration
@@ -99,4 +93,4 @@ const config = {
   ],
 }
 
-export default config
+module.exports = config
