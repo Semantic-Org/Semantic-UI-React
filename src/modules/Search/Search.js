@@ -359,7 +359,7 @@ export default class Search extends Component {
     debug('handleInputClick()', e)
 
     // prevent closeOnDocumentClick()
-    e.nativeEvent.stopImmediatePropagation()
+    // e.nativeEvent.stopImmediatePropagation()
 
     this.tryOpen()
   }
@@ -370,7 +370,7 @@ export default class Search extends Component {
     const result = this.getSelectedResult(id)
 
     // prevent closeOnDocumentClick()
-    e.nativeEvent.stopImmediatePropagation()
+    // e.nativeEvent.stopImmediatePropagation()
 
     // notify the onResultSelect prop that the user is trying to change value
     this.setValue(result.title)
