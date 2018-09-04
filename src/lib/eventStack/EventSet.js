@@ -1,10 +1,16 @@
+import { createSet, getLastInSet } from './utils'
+
+/**
+ * Set() is chosen over arrays by performance benchmarks.
+ * @see https://jsperf.com/suir-array-set
+ */
 export default class EventSet {
   /**
-   * @param {Function[]} eventHandlers
+   * @param {Function[]|Set<Function>} eventHandlers
    */
   constructor(eventHandlers) {
     /** @private {Set<Function>} handlers */
-    this.handlers = new Set(eventHandlers)
+    this.handlers = createSet(eventHandlers)
   }
 
   /**
@@ -12,7 +18,7 @@ export default class EventSet {
    * @return {EventSet}
    */
   addHandlers(eventHandlers) {
-    const handlerSet = new Set(this.handlers)
+    const handlerSet = createSet(this.handlers)
 
     eventHandlers.forEach((eventHandler) => {
       // Heads up!
@@ -37,8 +43,7 @@ export default class EventSet {
       return
     }
 
-    const recentHandler = [...this.handlers].pop()
-
+    const recentHandler = getLastInSet(this.handlers)
     recentHandler(event)
   }
 
@@ -54,7 +59,7 @@ export default class EventSet {
    * @return {EventSet}
    */
   removeHandlers(eventHandlers) {
-    const handlerSet = new Set(this.handlers)
+    const handlerSet = createSet(this.handlers)
 
     eventHandlers.forEach((eventHandler) => {
       handlerSet.delete(eventHandler)
