@@ -2029,6 +2029,33 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('searchInput', () => {
+    it('overrides onChange handler', () => {
+      const onInputChange = sandbox.spy()
+      const onSearchChange = sandbox.spy()
+
+      wrapperShallow(
+        <Dropdown
+          onSearchChange={onSearchChange}
+          options={options}
+          search
+          searchInput={{ onChange: onInputChange }}
+        />,
+      )
+
+      wrapper
+        .find(DropdownSearchInput)
+        .shallow()
+        .simulate('change', {
+          stopPropagation: _.noop,
+          target: { value: faker.hacker.noun() },
+        })
+
+      onInputChange.should.have.been.calledOnce()
+      onSearchChange.should.have.been.calledOnce()
+    })
+  })
+
   describe('no results message', () => {
     it('is shown when a search yields no results', () => {
       const search = wrapperMount(<Dropdown options={options} selection search />).find(
