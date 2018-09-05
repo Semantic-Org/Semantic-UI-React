@@ -96,8 +96,10 @@ describe('Dropdown', () => {
 
   common.implementsIconProp(Dropdown, {
     assertExactMatch: false,
+    autoGenerateKey: false,
   })
   common.implementsShorthandProp(Dropdown, {
+    autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: DropdownHeader,
     mapValueToProps: val => ({ content: val }),
