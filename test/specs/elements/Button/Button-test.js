@@ -17,8 +17,9 @@ describe('Button', () => {
   common.rendersChildren(Button)
 
   common.implementsCreateMethod(Button)
-  common.implementsIconProp(Button)
+  common.implementsIconProp(Button, { autoGenerateKey: false })
   common.implementsLabelProp(Button, {
+    autoGenerateKey: false,
     shorthandDefaultProps: {
       basic: true,
       pointing: 'left',

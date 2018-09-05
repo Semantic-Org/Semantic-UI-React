@@ -1074,6 +1074,13 @@ export default class Dropdown extends Component {
     return _.isNil(tabIndex) ? 0 : tabIndex
   }
 
+  handleSearchInputOverrides = predefinedProps => ({
+    onChange: (e, inputProps) => {
+      _.invoke(predefinedProps, 'onChange', e, inputProps)
+      this.handleSearchChange(e, inputProps)
+    },
+  })
+
   // ----------------------------------------
   // Behavior
   // ----------------------------------------
@@ -1203,11 +1210,11 @@ export default class Dropdown extends Component {
     return DropdownSearchInput.create(searchInput, {
       defaultProps: {
         inputRef: this.handleSearchRef,
-        onChange: this.handleSearchChange,
         style: { width: this.computeSearchInputWidth() },
         tabIndex: this.computeSearchInputTabIndex(),
         value: searchQuery,
       },
+      overrideProps: this.handleSearchInputOverrides,
     })
   }
 

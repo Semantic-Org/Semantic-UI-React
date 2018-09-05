@@ -112,11 +112,11 @@ class ListItem extends Component {
     if (!childrenUtils.isNil(children)) {
       return (
         <ElementType
-          {...rest}
           {...valueProp}
           role='listitem'
           className={classes}
           onClick={this.handleClick}
+          {...rest}
         >
           {children}
         </ElementType>
@@ -130,11 +130,11 @@ class ListItem extends Component {
     if (!isValidElement(content) && _.isPlainObject(content)) {
       return (
         <ElementType
-          {...rest}
           {...valueProp}
           role='listitem'
           className={classes}
           onClick={this.handleClick}
+          {...rest}
         >
           {iconElement || imageElement}
           {ListContent.create(content, {
@@ -150,11 +150,11 @@ class ListItem extends Component {
     if (iconElement || imageElement) {
       return (
         <ElementType
-          {...rest}
           {...valueProp}
           role='listitem'
           className={classes}
           onClick={this.handleClick}
+          {...rest}
         >
           {iconElement || imageElement}
           {(content || headerElement || descriptionElement) && (
@@ -170,11 +170,11 @@ class ListItem extends Component {
 
     return (
       <ElementType
-        {...rest}
         {...valueProp}
         role='listitem'
         className={classes}
         onClick={this.handleClick}
+        {...rest}
       >
         {headerElement}
         {descriptionElement}

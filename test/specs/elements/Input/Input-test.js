@@ -56,16 +56,19 @@ describe('Input', () => {
   })
 
   common.implementsButtonProp(Input, {
+    autoGenerateKey: false,
     propKey: 'action',
   })
   common.implementsCreateMethod(Input)
-  common.implementsIconProp(Input)
+  common.implementsIconProp(Input, { autoGenerateKey: false })
   common.implementsLabelProp(Input, {
+    autoGenerateKey: false,
     shorthandDefaultProps: { className: 'label' },
   })
   common.implementsHTMLInputProp(Input, {
     alwaysPresent: true,
     assertExactMatch: false,
+    autoGenerateKey: false,
     shorthandDefaultProps: { type: 'text' },
   })
 

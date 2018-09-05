@@ -5,5 +5,5 @@ describe('FeedLike', () => {
   common.isConformant(FeedLike)
   common.rendersChildren(FeedLike)
 
-  common.implementsIconProp(FeedLike)
+  common.implementsIconProp(FeedLike, { autoGenerateKey: false })
 })
