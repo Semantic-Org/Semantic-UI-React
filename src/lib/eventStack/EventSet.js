@@ -77,6 +77,8 @@ export default class EventSet {
   }
 
   /**
+   * @see https://jsperf.com/suir-eventset-removehandlers
+   *
    * @param {Function[]} removalHandlers
    * @return {EventSet}
    */
