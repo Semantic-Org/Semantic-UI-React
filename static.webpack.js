@@ -19,6 +19,7 @@ export default (webpackConfig, { stage }) => ({
         'anchor-js': 'AnchorJS',
         '@babel/standalone': 'Babel',
         faker: 'faker',
+        'prettier/standalone': 'prettier',
         'prop-types': 'PropTypes',
         react: 'React',
         'react-dom': 'ReactDOM',

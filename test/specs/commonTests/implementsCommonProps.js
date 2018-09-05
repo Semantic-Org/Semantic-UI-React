@@ -98,6 +98,9 @@ export const implementsHTMLLabelProp = (Component, options = {}) => {
  *
  * @param {function} Component The component to test.
  * @param {object} [options={}]
+ * @param {boolean} [options.alwaysPresent] Whether or not the shorthand exists by default.
+ * @param {boolean} [options.autoGenerateKey=false] Whether or not automatic key generation is
+ *   allowed for the shorthand component.
  * @param {string} [options.propKey='icon'] The name of the shorthand prop.
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
@@ -119,6 +122,8 @@ export const implementsIconProp = (Component, options = {}) => {
  *
  * @param {function} Component The component to test.
  * @param {object} [options={}]
+ * @param {boolean} [options.autoGenerateKey=false] Whether or not automatic key generation is
+ *   allowed for the shorthand component.
  * @param {string} [options.propKey='image'] The name of the shorthand prop.
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
@@ -140,6 +145,8 @@ export const implementsImageProp = (Component, options = {}) => {
  *
  * @param {function} Component The component to test.
  * @param {object} [options={}]
+ * @param {boolean} [options.autoGenerateKey=false] Whether or not automatic key generation is
+ *   allowed for the shorthand component.
  * @param {string} [options.propKey='label'] The name of the shorthand prop.
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props

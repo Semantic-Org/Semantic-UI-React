@@ -14,8 +14,9 @@ describe('Image', () => {
   common.rendersChildren(Image)
 
   common.implementsCreateMethod(Image)
-  common.implementsLabelProp(Image)
+  common.implementsLabelProp(Image, { autoGenerateKey: false })
   common.implementsShorthandProp(Image, {
+    autoGenerateKey: false,
     propKey: 'dimmer',
     ShorthandComponent: Dimmer,
     mapValueToProps: val => ({ content: val }),
