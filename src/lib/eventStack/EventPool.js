@@ -1,4 +1,5 @@
 import EventSet from './EventSet'
+import { cloneMap } from './utils'
 
 export default class EventPool {
   /**
@@ -31,7 +32,7 @@ export default class EventPool {
    * @return {EventPool}
    */
   addHandlers(eventType, eventHandlers) {
-    const handlerSets = new Map(this.handlerSets)
+    const handlerSets = cloneMap(this.handlerSets)
 
     if (handlerSets.has(eventType)) {
       handlerSets.set(eventType, handlerSets.get(eventType).addHandlers(eventHandlers))
@@ -48,8 +49,11 @@ export default class EventPool {
    */
   dispatchEvent(eventType, event) {
     const handlerSet = this.handlerSets.get(eventType)
+    const shouldDispatchAll = this.poolName === 'default'
 
-    if (handlerSet) handlerSet.dispatchEvent(event, this.poolName === 'default')
+    if (handlerSet) {
+      handlerSet.dispatchEvent(event, shouldDispatchAll)
+    }
   }
 
   /**
@@ -65,7 +69,7 @@ export default class EventPool {
    * @return {EventPool}
    */
   removeHandlers(eventType, eventHandlers) {
-    const handlerSets = new Map(this.handlerSets)
+    const handlerSets = cloneMap(this.handlerSets)
 
     if (!handlerSets.has(eventType)) {
       return new EventPool(this.poolName, handlerSets)

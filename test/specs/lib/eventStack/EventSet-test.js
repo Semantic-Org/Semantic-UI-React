@@ -70,6 +70,22 @@ describe('EventSet', () => {
       handler1.should.have.been.calledOnce()
       handler2.should.have.not.been.called()
     })
+
+    it('dispatches with matching (reverse) order', () => {
+      const handler1 = sandbox.spy()
+      const handler2 = sandbox.spy()
+      const handler3 = sandbox.spy()
+
+      set = set.addHandlers([handler1, handler2, handler3, handler1])
+      set.dispatchEvent(null, true)
+
+      handler1.should.have.been.calledOnce()
+      handler2.should.have.been.calledOnce()
+      handler3.should.have.been.calledOnce()
+
+      handler3.should.have.been.calledAfter(handler1)
+      handler2.should.have.been.calledAfter(handler3)
+    })
   })
 
   describe('hasHandlers', () => {

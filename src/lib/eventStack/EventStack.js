@@ -1,7 +1,6 @@
 import isBrowser from '../isBrowser'
 import EventTarget from './EventTarget'
-import normalizeHandlers from './normalizeHandlers'
-import normalizeTarget from './normalizeTarget'
+import { normalizeHandlers, normalizeTarget } from './utils'
 
 export default class EventStack {
   /** @private {Map<String,EventTarget> */

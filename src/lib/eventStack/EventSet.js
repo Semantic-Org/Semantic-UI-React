@@ -52,9 +52,8 @@ export default class EventSet {
 
     let calledCount = 0
     const calledHandlers = new Set()
-    const length = this.handlers.length
 
-    for (let i = 0; i < length; i += 1) {
+    for (let i = this.handlers.length - 1; i >= 0; i -= 1) {
       const handler = this.handlers[i]
 
       calledHandlers.add(handler)
