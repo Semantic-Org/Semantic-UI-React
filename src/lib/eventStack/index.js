@@ -1,5 +1,3 @@
-import EventStack from './EventStack'
+import eventStack from '@semantic-ui-react/event-stack'
 
-const instance = new EventStack()
-
-export default instance
+export default eventStack
