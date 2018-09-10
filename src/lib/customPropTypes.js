@@ -8,7 +8,7 @@ const typeOf = (...args) => Object.prototype.toString.call(...args)
  * Ensure a component can render as a give prop value.
  */
 export const as = (...args) =>
-  PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.symbol])(...args)
+  PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string, PropTypes.symbol])(...args)
 
 /**
  * Ensure a prop is a valid DOM node.
