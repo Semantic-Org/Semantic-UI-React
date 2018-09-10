@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react'
 import { Divider } from 'semantic-ui-react'
 
 import Editor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/Editor/Editor'
-import { formatCode } from 'docs/src/utils'
+import formatCode from 'docs/src/utils/formatCode'
 
 const rootStyle = {
   padding: '1rem',
