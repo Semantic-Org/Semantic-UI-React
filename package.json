@@ -90,7 +90,7 @@
     "anchor-js": "^4.1.1",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.2",
-    "babel-plugin-filter-imports": "^2.0.0",
+    "babel-plugin-filter-imports": "^2.0.2",
     "babel-plugin-istanbul": "^5.0.1",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-react-handled-props": "^1.0.1",
