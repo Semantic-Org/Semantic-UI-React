@@ -1,0 +1,1 @@
+export mapTransitionProps from './mapTransitionProps'

@@ -94,12 +94,12 @@ task('build:docs:static:start', (cb) => {
 // ----------------------------------------
 
 const componentsSrc = [
-  toUniversalGlob(paths.src(), 'addons/*/*.js'),
-  toUniversalGlob(paths.src(), 'behaviors/*/*.js'),
-  toUniversalGlob(paths.src(), 'elements/*/*.js'),
-  toUniversalGlob(paths.src(), 'collections/*/*.js'),
-  toUniversalGlob(paths.src(), 'modules/*/*.js'),
-  toUniversalGlob(paths.src(), 'views/*/*.js'),
+  toUniversalGlob(paths.src(), 'addons/*/[A-Z]*.js'),
+  toUniversalGlob(paths.src(), 'behaviors/*/[A-Z]*.js'),
+  toUniversalGlob(paths.src(), 'elements/*/[A-Z]*.js'),
+  toUniversalGlob(paths.src(), 'collections/*/[A-Z]*.js'),
+  toUniversalGlob(paths.src(), 'modules/*/[A-Z]*.js'),
+  toUniversalGlob(paths.src(), 'views/*/[A-Z]*.js'),
   '!**/index.js',
 ]
 

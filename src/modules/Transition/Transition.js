@@ -1,7 +1,8 @@
+import AnimateHeight from 'react-animate-height'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import { cloneElement, Component } from 'react'
+import React, { cloneElement, Component } from 'react'
 
 import { makeDebugger, normalizeTransitionDuration, SUI, useKeyOnly } from '../../lib'
 import TransitionGroup from './TransitionGroup'
@@ -197,8 +198,8 @@ export default class Transition extends Component {
 
     if (directional) {
       return cx(
-        animation,
         childClasses,
+        (status === Transition.ENTERING || status === Transition.EXITING) && animation,
         useKeyOnly(animating, 'animating'),
         useKeyOnly(status === Transition.ENTERING, 'in'),
         useKeyOnly(status === Transition.EXITING, 'out'),
@@ -282,13 +283,18 @@ export default class Transition extends Component {
     debug('props', this.props)
     debug('state', this.state)
 
-    const { children } = this.props
+    const { children, duration, visible } = this.props
     const { status } = this.state
 
-    if (status === Transition.UNMOUNTED) return null
-    return cloneElement(children, {
-      className: this.computeClasses(),
-      style: this.computeStyle(),
-    })
+    return (
+      <AnimateHeight duration={duration} height={visible ? 'auto' : 0}>
+        {status === Transition.UNMOUNTED
+          ? null
+          : cloneElement(children, {
+            className: this.computeClasses(),
+            style: this.computeStyle(),
+          })}
+      </AnimateHeight>
+    )
   }
 }

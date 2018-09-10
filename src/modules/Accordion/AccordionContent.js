@@ -10,6 +10,7 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
+import { withTransition } from '../Transition'
 
 /**
  * A content sub-component for Accordion component.
@@ -27,6 +28,10 @@ function AccordionContent(props) {
   )
 }
 
+AccordionContent.defaultProps = {
+  transition: 'fade',
+}
+
 AccordionContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
@@ -42,8 +47,10 @@ AccordionContent.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
+
+  transition: '',
 }
 
 AccordionContent.create = createShorthandFactory(AccordionContent, content => ({ content }))
 
-export default AccordionContent
+export default withTransition(AccordionContent, { visibleProp: 'active' })
