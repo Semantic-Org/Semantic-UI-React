@@ -97,12 +97,12 @@ code:not(.hljs)::after {
 
 .carbon-text {
   display: block;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
 .carbon-poweredby {
   display: block;
-  margin-top: 0.5em;
+  margin-top: 0.25em;
   font-size: 0.8em;
   color: #ffffff;
   opacity: 0.5;

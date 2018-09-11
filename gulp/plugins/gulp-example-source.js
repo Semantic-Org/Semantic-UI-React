@@ -1,14 +1,16 @@
-import Vinyl from 'vinyl'
 import gutil from 'gulp-util'
 import _ from 'lodash'
 import path from 'path'
 import through from 'through2'
+import Vinyl from 'vinyl'
 
+// Heads up!
+// This plugin is not universal, so it's okay to keep all existing sources as the state.
+// https://github.com/Semantic-Org/Semantic-UI-React/issues/3095
+const exampleSources = {}
 const pluginName = 'gulp-example-source'
 
 export default () => {
-  const exampleSources = {}
-
   function bufferContents(file, enc, cb) {
     if (file.isNull()) {
       cb(null, file)
@@ -21,8 +23,7 @@ export default () => {
     }
 
     try {
-      const sourceName = _
-        .split(file.path, path.sep)
+      const sourceName = _.split(file.path, path.sep)
         .slice(-4)
         .join('/')
         .slice(0, -3)

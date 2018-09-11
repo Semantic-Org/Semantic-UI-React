@@ -1,7 +1,8 @@
 const { NODE_ENV } = process.env
 
 const isESBuild = NODE_ENV === 'build-es'
-const isLibBuild = NODE_ENV === 'build' || isESBuild
+const isUMDBuild = NODE_ENV === 'build-umd'
+const isLibBuild = NODE_ENV === 'build' || isESBuild || isUMDBuild
 const isDocsBuild = NODE_ENV === 'development' || NODE_ENV === 'production'
 
 const browsers = [
@@ -22,7 +23,6 @@ const plugins = [
   [
     '@babel/plugin-transform-runtime',
     {
-      polyfill: false,
       regenerator: isDocsBuild,
     },
   ],
@@ -32,7 +32,8 @@ const plugins = [
   [
     'transform-react-remove-prop-types',
     {
-      mode: 'wrap',
+      mode: isUMDBuild ? 'remove' : 'wrap',
+      removeImport: isUMDBuild,
     },
   ],
   // A plugin for react-static

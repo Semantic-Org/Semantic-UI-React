@@ -13,7 +13,7 @@ describe('Step', () => {
   common.hasSubcomponents(Step, [StepContent, StepDescription, StepTitle])
   common.rendersChildren(Step)
 
-  common.implementsIconProp(Step)
+  common.implementsIconProp(Step, { autoGenerateKey: false })
 
   common.propKeyOnlyToClassName(Step, 'active')
   common.propKeyOnlyToClassName(Step, 'completed')

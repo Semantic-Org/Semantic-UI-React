@@ -107,6 +107,10 @@ class Sidebar extends Component {
     if (prevVisible !== currentVisible) this.handleAnimationStart()
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.animationTimer)
+  }
+
   handleAnimationStart = () => {
     const { duration, visible } = this.props
     const callback = visible ? 'onVisible' : 'onHide'

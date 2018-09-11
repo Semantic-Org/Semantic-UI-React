@@ -5,7 +5,7 @@ import { Button, Popup, Segment, Menu } from 'semantic-ui-react'
 
 import Editor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/Editor/Editor'
 import { updateForKeys } from 'docs/src/hoc'
-import { formatCode } from 'docs/src/utils'
+import formatCode from 'docs/src/utils/formatCode'
 
 const rootStyle = {
   position: 'relative',
@@ -29,7 +29,7 @@ const menuStyle = {
 
 const disabledStyle = { opacity: 0.5, pointerEvents: 'none' }
 
-class ComponentExampleRenderExample extends PureComponent {
+class ComponentExampleRenderEditor extends PureComponent {
   state = {}
 
   static propTypes = {
@@ -145,4 +145,4 @@ class ComponentExampleRenderExample extends PureComponent {
   }
 }
 
-export default updateForKeys(['value'])(ComponentExampleRenderExample)
+export default updateForKeys(['error', 'value'])(ComponentExampleRenderEditor)
