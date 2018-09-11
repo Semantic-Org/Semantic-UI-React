@@ -1202,13 +1202,14 @@ export default class Dropdown extends Component {
     )
   }
 
-  renderSearchInput = () => {
+  renderSearchInput = (HTMLAttributes = {}) => {
     const { search, searchInput } = this.props
     const { searchQuery } = this.state
 
     if (!search) return null
     return DropdownSearchInput.create(searchInput, {
       defaultProps: {
+        ...HTMLAttributes,
         inputRef: this.handleSearchRef,
         style: { width: this.computeSearchInputWidth() },
         tabIndex: this.computeSearchInputTabIndex(),
@@ -1362,7 +1363,7 @@ export default class Dropdown extends Component {
       'dropdown',
       className,
     )
-    const rest = getUnhandledProps(Dropdown, this.props)
+    const { id, ...rest } = getUnhandledProps(Dropdown, this.props)
     const ElementType = getElementType(Dropdown, this.props)
     const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
 
@@ -1380,7 +1381,7 @@ export default class Dropdown extends Component {
         ref={this.handleRef}
       >
         {this.renderLabels()}
-        {this.renderSearchInput()}
+        {this.renderSearchInput({ id })}
         {this.renderSearchSizer()}
         {trigger || this.renderText()}
         {Icon.create(icon, {
