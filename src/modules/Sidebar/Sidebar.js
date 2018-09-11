@@ -1,9 +1,9 @@
+import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import EventStack from '../../addons/EventStack'
 import Ref from '../../addons/Ref'
 import {
   childrenUtils,
