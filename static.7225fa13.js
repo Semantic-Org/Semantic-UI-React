@@ -79067,16 +79067,14 @@ module.exports = require("debug");
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(0);
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
-var _eventStack = _interopRequireDefault(__webpack_require__(1396));
+var _eventStack = __webpack_require__(1396);
 
-var _default = _eventStack.default;
+var _default = _eventStack.instance;
 exports.default = _default;
 
 /***/ }),
