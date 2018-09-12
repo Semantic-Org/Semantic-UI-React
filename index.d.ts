@@ -341,6 +341,8 @@ export {
   TransitionProps,
   TransitionPropDuration,
   TRANSITION_STATUSES,
+  withTransition,
+  WithTransitionProps,
 } from './dist/commonjs/modules/Transition'
 export {
   default as TransitionGroup,

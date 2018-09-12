@@ -1,27 +1,31 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 
-import { mapTransitionProps } from './lib'
+import { partitionTransitionProps, transitionPropType } from './lib'
 import Transition from './Transition'
 
-function withTransition(WrappedComponent, options) {
-  const { visibleProp = 'visible' } = options
+/**
+ * A HOC that wraps a Transition component.
+ */
+function withTransition(options) {
+  return (WrappedComponent) => {
+    const { visibleProp = 'visible' } = options
 
-  function WithTransition(props) {
-    const { componentProps, transitionProps } = mapTransitionProps(props, visibleProp)
+    function WithTransition(props) {
+      const { componentProps, transitionProps } = partitionTransitionProps(props, visibleProp)
 
-    return (
-      <Transition {...transitionProps}>
-        <WrappedComponent {...componentProps} />
-      </Transition>
-    )
+      return (
+        <Transition {...transitionProps}>
+          <WrappedComponent {...componentProps} />
+        </Transition>
+      )
+    }
+
+    WithTransition.propTypes = {
+      transition: transitionPropType,
+    }
+
+    return WithTransition
   }
-
-  WithTransition.propTypes = {
-    transition: PropTypes.shape(Transition.propTypes),
-  }
-
-  return WithTransition
 }
 
 export default withTransition

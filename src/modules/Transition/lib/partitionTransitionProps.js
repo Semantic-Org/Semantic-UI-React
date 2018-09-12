@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const mapTransitionProps = (rawProps, visibleProp) => {
+const partitionTransitionProps = (rawProps, visibleProp) => {
   const { transition, ...componentProps } = rawProps
   const visible = rawProps[visibleProp]
 
@@ -14,4 +14,4 @@ const mapTransitionProps = (rawProps, visibleProp) => {
   }
 }
 
-export default mapTransitionProps
+export default partitionTransitionProps

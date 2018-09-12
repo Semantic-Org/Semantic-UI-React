@@ -11,6 +11,7 @@ import {
   useKeyOnly,
 } from '../../lib'
 import { withTransition } from '../Transition'
+import { transitionPropType } from '../Transition/lib'
 
 /**
  * A content sub-component for Accordion component.
@@ -26,10 +27,6 @@ function AccordionContent(props) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
-
-AccordionContent.defaultProps = {
-  transition: 'fade',
 }
 
 AccordionContent.propTypes = {
@@ -48,9 +45,20 @@ AccordionContent.propTypes = {
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
 
-  transition: '',
+  /** An accordion can have a transition. */
+  transition: transitionPropType,
 }
 
-AccordionContent.create = createShorthandFactory(AccordionContent, content => ({ content }))
+const Enhanced = withTransition({ visibleProp: 'active' })(AccordionContent)
 
-export default withTransition(AccordionContent, { visibleProp: 'active' })
+Enhanced.defaultProps = {
+  transition: {
+    animateHeight: true,
+    animation: 'fade',
+  },
+}
+
+Enhanced.create = createShorthandFactory(Enhanced, content => ({ content }))
+Enhanced.constructorName = 'AccordionContent'
+
+export default Enhanced

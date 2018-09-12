@@ -7,6 +7,8 @@ import React, { cloneElement, Component } from 'react'
 import { makeDebugger, normalizeTransitionDuration, SUI, useKeyOnly } from '../../lib'
 import TransitionGroup from './TransitionGroup'
 
+const animationStateClasses = {}
+
 const debug = makeDebugger('transition')
 
 const TRANSITION_TYPE = {
@@ -19,6 +21,9 @@ const TRANSITION_TYPE = {
  */
 export default class Transition extends Component {
   static propTypes = {
+    /** A component can animate like jQuery slideUp() and slideDown(). */
+    animateHeight: PropTypes.bool,
+
     /** Named animation event to used. Must be defined in CSS. */
     animation: PropTypes.oneOf(SUI.TRANSITIONS),
 
@@ -34,9 +39,6 @@ export default class Transition extends Component {
       }),
       PropTypes.string,
     ]),
-
-    /** Show the component; triggers the enter or exit animation. */
-    visible: PropTypes.bool,
 
     /** Wait until the first "enter" transition to mount the component (add it to the DOM). */
     mountOnShow: PropTypes.bool,
@@ -81,6 +83,9 @@ export default class Transition extends Component {
 
     /** Unmount the component (remove it from the DOM) when it is not shown. */
     unmountOnHide: PropTypes.bool,
+
+    /** Show the component; triggers the enter or exit animation. */
+    visible: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -283,18 +288,28 @@ export default class Transition extends Component {
     debug('props', this.props)
     debug('state', this.state)
 
-    const { children, duration, visible } = this.props
+    const { animateHeight, children, duration, visible } = this.props
     const { status } = this.state
 
-    return (
-      <AnimateHeight duration={duration} height={visible ? 'auto' : 0}>
-        {status === Transition.UNMOUNTED
-          ? null
-          : cloneElement(children, {
-            className: this.computeClasses(),
-            style: this.computeStyle(),
-          })}
+    const child =
+      status === Transition.UNMOUNTED
+        ? null
+        : cloneElement(children, {
+          className: this.computeClasses(),
+          style: this.computeStyle(),
+        })
+
+    return animateHeight ? (
+      <AnimateHeight
+        animateOpacity={false}
+        animationStateClasses={animationStateClasses}
+        duration={duration}
+        height={visible ? 'auto' : 0}
+      >
+        {child}
       </AnimateHeight>
+    ) : (
+      child
     )
   }
 }

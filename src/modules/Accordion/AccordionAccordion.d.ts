@@ -1,6 +1,7 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticShorthandItem } from '../../'
+import { SemanticShorthandCollection } from '../../'
+import { WithTransitionProp } from '../Transition'
 import { AccordionPanelProps } from './AccordionPanel'
 import { AccordionTitleProps } from './AccordionTitle'
 
@@ -35,6 +36,9 @@ export interface AccordionAccordionProps {
 
   /** Shorthand array of props for Accordion. */
   panels?: SemanticShorthandCollection<AccordionPanelProps>
+
+  /** An accordion can have a transition. */
+  transition?: WithTransitionProp
 }
 
 declare const AccordionAccordion: React.ComponentClass<AccordionAccordionProps>

@@ -8,6 +8,9 @@ export type TRANSITION_STATUSES = 'ENTERED' | 'ENTERING' | 'EXITED' | 'EXITING' 
 export interface TransitionProps {
   [key: string]: any
 
+  /** A component can animate like jQuery slideUp() and slideDown(). */
+  animateHeight?: boolean
+
   /** Named animation event to used. Must be defined in CSS. */
   animation?: SemanticTRANSITIONS
 
@@ -16,9 +19,6 @@ export interface TransitionProps {
 
   /** Duration of the CSS transition animation in milliseconds. */
   duration?: number | string | TransitionPropDuration
-
-  /** Show the component; triggers the enter or exit animation. */
-  visible?: boolean
 
   /** Wait until the first "enter" transition to mount the component (add it to the DOM). */
   mountOnShow?: boolean
@@ -63,6 +63,9 @@ export interface TransitionProps {
 
   /** Unmount the component (remove it from the DOM) when it is not shown. */
   unmountOnHide?: boolean
+
+  /** Show the component; triggers the enter or exit animation. */
+  visible?: boolean
 }
 
 export interface TransitionEventData extends TransitionProps {

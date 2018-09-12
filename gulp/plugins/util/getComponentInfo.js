@@ -42,7 +42,11 @@ const getComponentInfo = (filepath) => {
 
   // add exported Component info
   const Component = require(absPath).default
-  info.constructorName = _.get(Component, 'prototype.constructor.name', null)
+  info.constructorName = _.get(
+    Component,
+    'constructorName',
+    _.get(Component, 'prototype.constructor.name', null), // a fallback for enhanced components
+  )
 
   // add component type
   info.type = componentType
