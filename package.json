@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "0.82.3",
+  "version": "0.82.4",
   "description": "The official Semantic-UI-React integration.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
@@ -67,6 +67,7 @@
   "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
   "dependencies": {
     "@babel/runtime": "^7.0.0",
+    "@semantic-ui-react/event-stack": "^1.0.2",
     "classnames": "^2.2.6",
     "keyboard-key": "^1.0.2",
     "lodash": "^4.17.10",
@@ -91,7 +92,7 @@
     "anchor-js": "^4.1.1",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.2",
-    "babel-plugin-filter-imports": "^2.0.0",
+    "babel-plugin-filter-imports": "^2.0.2",
     "babel-plugin-istanbul": "^5.0.1",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-react-handled-props": "^1.0.1",
