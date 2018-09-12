@@ -1,3 +1,3 @@
-import eventStack from '@semantic-ui-react/event-stack'
+import { instance } from '@semantic-ui-react/event-stack'
 
-export default eventStack
+export default instance
