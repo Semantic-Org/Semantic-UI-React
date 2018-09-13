@@ -49,6 +49,7 @@ export default class AccordionTitle extends Component {
   render() {
     const { active, children, className, content } = this.props
 
+    // TODO: instead of adding 'active' class use renderActiveOnly logic ex: as in ../../../Tab/Tab.js 97:2
     const classes = cx(useKeyOnly(active, 'active'), 'title', className)
     const rest = getUnhandledProps(AccordionTitle, this.props)
     const ElementType = getElementType(AccordionTitle, this.props)
