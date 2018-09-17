@@ -423,7 +423,12 @@ export default class Dropdown extends Component {
       this.setSelectedIndex(nextProps.value)
     }
 
-    if (!_.isEqual(nextProps.options, this.props.options)) {
+    // The selected index is only dependent on option keys/values.
+    // We only check those properties to avoid recursive performance impacts.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/3000
+    if (
+      !_.isEqual(this.getKeyAndValues(nextProps.options), this.getKeyAndValues(this.props.options))
+    ) {
       this.setSelectedIndex(undefined, nextProps.options)
     }
   }
@@ -787,6 +792,9 @@ export default class Dropdown extends Component {
   // Getters
   // ----------------------------------------
 
+  getKeyAndValues = options =>
+    (options ? options.map(option => _.pick(option, ['key', 'value'])) : options)
+
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
   getMenuOptions = (value = this.state.value, options = this.props.options) => {
@@ -1066,6 +1074,13 @@ export default class Dropdown extends Component {
     return _.isNil(tabIndex) ? 0 : tabIndex
   }
 
+  handleSearchInputOverrides = predefinedProps => ({
+    onChange: (e, inputProps) => {
+      _.invoke(predefinedProps, 'onChange', e, inputProps)
+      this.handleSearchChange(e, inputProps)
+    },
+  })
+
   // ----------------------------------------
   // Behavior
   // ----------------------------------------
@@ -1195,11 +1210,11 @@ export default class Dropdown extends Component {
     return DropdownSearchInput.create(searchInput, {
       defaultProps: {
         inputRef: this.handleSearchRef,
-        onChange: this.handleSearchChange,
         style: { width: this.computeSearchInputWidth() },
         tabIndex: this.computeSearchInputTabIndex(),
         value: searchQuery,
       },
+      overrideProps: this.handleSearchInputOverrides,
     })
   }
 

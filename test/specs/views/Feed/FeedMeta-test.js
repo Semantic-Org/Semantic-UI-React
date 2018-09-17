@@ -7,6 +7,7 @@ describe('FeedMeta', () => {
   common.rendersChildren(FeedMeta)
 
   common.implementsShorthandProp(FeedMeta, {
+    autoGenerateKey: false,
     propKey: 'like',
     ShorthandComponent: FeedLike,
     mapValueToProps: val => ({ content: val }),

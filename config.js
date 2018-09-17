@@ -86,7 +86,6 @@ const config = {
     'classnames',
     'copy-to-clipboard',
     'faker',
-    'prettier/standalone',
     'react',
     'react-ace',
     'react-dom',
