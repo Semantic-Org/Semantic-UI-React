@@ -5,9 +5,11 @@ import IconGroup from './IconGroup'
 
 export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 
-export interface IconProps {
+export interface IconProps extends StrictIconProps {
   [key: string]: any
+}
 
+export interface StrictIconProps {
   /** An element type to render as (string or function). */
   as?: any
 

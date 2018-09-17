@@ -12,9 +12,11 @@ import { DimmerProps } from '../../modules/Dimmer'
 import { LabelProps } from '../Label'
 import ImageGroup from './ImageGroup'
 
-export interface ImageProps {
+export interface ImageProps extends StrictImageProps {
   [key: string]: any
+}
 
+export interface StrictImageProps {
   /** An element type to render as (string or function). */
   as?: any
 

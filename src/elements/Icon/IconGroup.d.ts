@@ -3,9 +3,11 @@ import * as React from 'react'
 import { SemanticShorthandContent } from '../..'
 import { IconSizeProp } from './Icon'
 
-export interface IconGroupProps {
+export interface IconGroupProps extends StrictIconGroupProps {
   [key: string]: any
+}
 
+export interface StrictIconGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 

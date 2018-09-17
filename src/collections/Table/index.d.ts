@@ -1,1 +1,1 @@
-export { default, TableProps } from './Table'
+export { default, TableProps, StrictTableProps } from './Table'

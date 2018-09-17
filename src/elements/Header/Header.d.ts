@@ -4,9 +4,11 @@ import { SemanticCOLORS, SemanticFLOATS, SemanticTEXTALIGNMENTS } from '../..'
 import HeaderContent from './HeaderContent'
 import HeaderSubHeader from './HeaderSubheader'
 
-export interface HeaderProps {
+export interface HeaderProps extends StrictHeaderProps {
   [key: string]: any
+}
 
+export interface StrictHeaderProps {
   /** An element type to render as (string or function). */
   as?: any
 

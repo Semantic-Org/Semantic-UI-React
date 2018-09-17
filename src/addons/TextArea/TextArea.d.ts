@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface TextAreaProps {
+export interface TextAreaProps extends StrictTextAreaProps {
   [key: string]: any
+}
 
+export interface StrictTextAreaProps {
   /** An element type to render as (string or function). */
   as?: any
 

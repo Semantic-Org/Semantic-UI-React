@@ -6,9 +6,11 @@ import { default as SearchCategory, SearchCategoryProps } from './SearchCategory
 import { default as SearchResult, SearchResultProps } from './SearchResult'
 import SearchResults from './SearchResults'
 
-export interface SearchProps {
+export interface SearchProps extends StrictSearchProps {
   [key: string]: any
+}
 
+export interface StrictSearchProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -10,9 +10,11 @@ import CommentGroup from './CommentGroup'
 import CommentMetadata from './CommentMetadata'
 import CommentText from './CommentText'
 
-export interface CommentProps {
+export interface CommentProps extends StrictCommentProps {
   [key: string]: any
+}
 
+export interface StrictCommentProps {
   /** An element type to render as (string or function). */
   as?: any
 

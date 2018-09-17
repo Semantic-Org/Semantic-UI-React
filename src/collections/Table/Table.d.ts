@@ -13,9 +13,11 @@ import TableHeader from './TableHeader'
 import TableHeaderCell from './TableHeaderCell'
 import { default as TableRow, TableRowProps } from './TableRow'
 
-export interface TableProps {
+export interface TableProps extends StrictTableProps {
   [key: string]: any
+}
 
+export interface StrictTableProps {
   /** An element type to render as (string or function). */
   as?: any
 

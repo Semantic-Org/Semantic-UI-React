@@ -4,9 +4,11 @@ import { SemanticShorthandItem } from '../../'
 import { AccordionContentProps } from './AccordionContent'
 import { AccordionTitleProps } from './AccordionTitle'
 
-export interface AccordionPanelProps {
+export interface AccordionPanelProps extends StrictAccordionPanelProps {
   [key: string]: any
+}
 
+export interface StrictAccordionPanelProps {
   /** Whether or not the title is in the open state. */
   active?: boolean
 

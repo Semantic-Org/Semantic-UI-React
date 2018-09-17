@@ -10,9 +10,11 @@ import SegmentGroup from './SegmentGroup'
 
 export type SegmentSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 
-export interface SegmentProps {
+export interface SegmentProps extends StrictSegmentProps {
   [key: string]: any
+}
 
+export interface StrictSegmentProps {
   /** An element type to render as (string or function). */
   as?: any
 

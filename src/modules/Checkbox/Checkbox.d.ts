@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { HtmlLabelProps, SemanticShorthandItem } from '../..'
 
-export interface CheckboxProps {
+export interface CheckboxProps extends StrictCheckboxProps {
   [key: string]: any
+}
 
+export interface StrictCheckboxProps {
   /** An element type to render as (string or function). */
   as?: any
 

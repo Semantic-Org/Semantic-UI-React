@@ -1,12 +1,14 @@
 import * as React from 'react'
 
-import { default as AccordionAccordion, AccordionAccordionProps } from './AccordionAccordion'
+import { default as AccordionAccordion, StrictAccordionAccordionProps } from './AccordionAccordion'
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'
 
-export interface AccordionProps extends AccordionAccordionProps {
+export interface AccordionProps extends StrictAccordionProps {
   [key: string]: any
+}
 
+export interface StrictAccordionProps extends StrictAccordionAccordionProps {
   /** Additional classes. */
   className?: string
 

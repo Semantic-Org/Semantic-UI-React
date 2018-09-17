@@ -12,9 +12,11 @@ import ButtonContent from './ButtonContent'
 import ButtonGroup from './ButtonGroup'
 import ButtonOr from './ButtonOr'
 
-export interface ButtonProps {
+export interface ButtonProps extends StrictButtonProps {
   [key: string]: any
+}
 
+export interface StrictButtonProps {
   /** An element type to render as (string or function). */
   as?: any
 

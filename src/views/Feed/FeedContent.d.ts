@@ -6,9 +6,11 @@ import { FeedExtraProps } from './FeedExtra'
 import { FeedMetaProps } from './FeedMeta'
 import { FeedSummaryProps } from './FeedSummary'
 
-export interface FeedContentProps {
+export interface FeedContentProps extends StrictFeedContentProps {
   [key: string]: any
+}
 
+export interface StrictFeedContentProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -3,9 +3,11 @@ import * as React from 'react'
 import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
 import { IconProps } from '../../elements/Icon'
 
-export interface FeedLikeProps {
+export interface FeedLikeProps extends StrictFeedLikeProps {
   [key: string]: any
+}
 
+export interface StrictFeedLikeProps {
   /** An element type to render as (string or function). */
   as?: any
 
