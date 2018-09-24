@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { SemanticShorthandContent } from '../../'
 
 export interface PlaceholderParagraphProps extends StrictPlaceholderParagraphProps {
   [key: string]: any
@@ -13,6 +14,9 @@ export interface StrictPlaceholderParagraphProps {
 
   /** Additional classes. */
   className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
 }
 
 interface PlaceholderParagraphComponent

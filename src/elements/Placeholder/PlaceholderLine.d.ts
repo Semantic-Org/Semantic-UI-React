@@ -8,11 +8,11 @@ export interface StrictPlaceholderLineProps {
   /** An element type to render as (string or function). */
   as?: any
 
-  /** Primary content. */
-  children?: React.ReactNode
-
   /** Additional classes. */
   className?: string
+
+  /** A line can specify how long its contents should appear. */
+  length?: 'full' | 'very long' | 'long' | 'medium' | 'short' | 'very short'
 }
 
 interface PlaceholderLineComponent extends React.StatelessComponent<PlaceholderLineProps> {}

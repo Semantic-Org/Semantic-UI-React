@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 export interface PlaceholderHeaderProps extends StrictPlaceholderHeaderProps {
   [key: string]: any
@@ -13,6 +14,12 @@ export interface StrictPlaceholderHeaderProps {
 
   /** Additional classes. */
   className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+
+  /** A placeholder can contain an image. */
+  image?: boolean
 }
 
 interface PlaceholderHeaderComponent extends React.StatelessComponent<PlaceholderHeaderProps> {}

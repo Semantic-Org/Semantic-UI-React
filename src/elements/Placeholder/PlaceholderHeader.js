@@ -39,9 +39,6 @@ PlaceholderHeader.propTypes = {
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
 
-  /** A fluid placeholder takes up the width of its container. */
-  fluid: PropTypes.bool,
-
   /** A placeholder can contain an image. */
   image: PropTypes.bool,
 }
