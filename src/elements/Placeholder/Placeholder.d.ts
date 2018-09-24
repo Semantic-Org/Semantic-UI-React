@@ -1,10 +1,10 @@
 import * as React from 'react'
+import { SemanticShorthandContent } from '../..'
 
 import PlaceholderHeader from './PlaceholderHeader'
 import PlaceholderImage from './PlaceholderImage'
 import PlaceholderLine from './PlaceholderLine'
 import PlaceholderParagraph from './PlaceholderParagraph'
-import { SemanticShorthandContent } from '../../index'
 
 export interface PlaceholderProps extends StrictPlaceholderProps {
   [key: string]: any

@@ -12,8 +12,7 @@ export interface StrictPlaceholderImageProps {
   className?: string
 
   /** An image can modify size correctly with responsive styles. */
-  shape?: 'square'
-  rectangular
+  shape?: 'square' | 'rectangular'
 }
 
 interface PlaceholderImageComponent extends React.StatelessComponent<PlaceholderImageProps> {}
