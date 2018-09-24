@@ -1,7 +1,7 @@
 import React from 'react'
 import { Placeholder } from 'semantic-ui-react'
 
-const PlaceholderExampleLineLength = () => (
+const PlaceholderExampleLineLengthWithHeader = () => (
   <Placeholder>
     <div className='ui placeholder'>
       <Placeholder.Header image>
@@ -16,4 +16,4 @@ const PlaceholderExampleLineLength = () => (
   </Placeholder>
 )
 
-export default PlaceholderExampleLineLength
+export default PlaceholderExampleLineLengthWithHeader

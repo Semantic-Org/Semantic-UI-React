@@ -1,7 +1,7 @@
 import React from 'react'
 import { Placeholder } from 'semantic-ui-react'
 
-const PlaceholderExampleHeader = () => (
+const PlaceholderExamplePlaceholder = () => (
   <Placeholder>
     <Placeholder.Header image>
       <Placeholder.Line />
@@ -16,4 +16,4 @@ const PlaceholderExampleHeader = () => (
   </Placeholder>
 )
 
-export default PlaceholderExampleHeader
+export default PlaceholderExamplePlaceholder

@@ -39,4 +39,4 @@ interface PlaceholderComponent extends React.StatelessComponent<PlaceholderProps
 
 declare const Placeholder: PlaceholderComponent
 
-export default PlaceholderComponent
+export default Placeholder

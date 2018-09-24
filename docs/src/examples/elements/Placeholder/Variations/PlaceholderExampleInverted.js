@@ -1,7 +1,7 @@
 import React from 'react'
 import { Placeholder, Segment } from 'semantic-ui-react'
 
-const PlaceholderExampleLineLength = () => (
+const PlaceholderExampleInverted = () => (
   <Segment inverted>
     <Placeholder inverted>
       <Placeholder.Header image>
@@ -17,4 +17,4 @@ const PlaceholderExampleLineLength = () => (
   </Segment>
 )
 
-export default PlaceholderExampleLineLength
+export default PlaceholderExampleInverted
