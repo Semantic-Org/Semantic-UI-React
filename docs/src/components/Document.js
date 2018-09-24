@@ -13,7 +13,7 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       <link rel='stylesheet' href='/style.css' />
       <link
         rel='stylesheet'
-        href={`//cdnjs.cloudflare.com/ajax/libs/semantic-ui/${versions.sui}/semantic.min.css`}
+        href={`//cdn.jsdelivr.net/npm/semantic-ui-css@${versions.sui}/semantic.min.css`}
       />
 
       <script src={`//cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`} />
