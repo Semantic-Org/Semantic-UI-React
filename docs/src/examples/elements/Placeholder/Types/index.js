@@ -1,30 +1,26 @@
-/* eslint-disable max-len */
-
 import React from 'react'
-import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 import { Message } from 'semantic-ui-react'
 
-const ContainerTypesExamples = () => (
+import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+
+const PlaceholderTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
-      title='Container'
-      description='A standard container.'
-      examplePath='elements/Container/Types/ContainerExampleContainer'
-    />
-    <ComponentExample
-      title='Text Container'
-      description='A container can reduce its maximum width to more naturally accommodate a single column of text.'
-      examplePath='elements/Container/Types/ContainerExampleText'
+      title='Placeholder'
+      description='A placeholder is used to reserve space for content that soon will appear in a layout.'
+      examplePath='elements/Placeholder/Types/PlaceholderExamplePlaceholder'
+      suiVersion='2.4.0'
     >
       <Message info>
-        <p>
-          A text container is a simpler markup alternative to using a grid with a single column, and
-          is designed to have a reasonable maximum width for displaying flowing text
-        </p>
+        Placeholders can include <code>PlaceholderParagraph</code>, <code>PlaceholderHeader</code>,
+        and <code>PlaceholderImage</code> to let you format the loaders to emulate the content being
+        loaded.
       </Message>
     </ComponentExample>
+    <ComponentExample examplePath='elements/Placeholder/Types/PlaceholderExampleGrid' />
+    <ComponentExample examplePath='elements/Placeholder/Types/PlaceholderExampleCard' />
   </ExampleSection>
 )
 
-export default ContainerTypesExamples
+export default PlaceholderTypesExamples

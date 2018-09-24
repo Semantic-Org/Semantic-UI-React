@@ -9,6 +9,8 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
+import PlaceholderHeader from './PlaceholderHeader'
+import PlaceholderImage from './PlaceholderImage'
 import PlaceholderLine from './PlaceholderLine'
 import PlaceholderParagraph from './PlaceholderParagraph'
 
@@ -54,6 +56,8 @@ Placeholder.propTypes = {
   inverted: PropTypes.bool,
 }
 
+Placeholder.Header = PlaceholderHeader
+Placeholder.Image = PlaceholderImage
 Placeholder.Line = PlaceholderLine
 Placeholder.Paragraph = PlaceholderParagraph
 

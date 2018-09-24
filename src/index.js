@@ -92,6 +92,12 @@ export ListList from './elements/List/ListList'
 
 export Loader from './elements/Loader'
 
+export Placeholder from './elements/Placeholder'
+export PlaceholderHeader from './elements/Placeholder/PlaceholderHeader'
+export PlaceholderImage from './elements/Placeholder/PlaceholderImage'
+export PlaceholderLine from './elements/Placeholder/PlaceholderLine'
+export PlaceholderParagraph from './elements/Placeholder/PlaceholderParagraph'
+
 export Rail from './elements/Rail'
 
 export Reveal from './elements/Reveal'

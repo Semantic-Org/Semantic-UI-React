@@ -4,7 +4,7 @@ import { Placeholder } from 'semantic-ui-react'
 const PlaceholderExampleLineLength = () => (
   <Placeholder>
     <Placeholder.Line length='full' />
-    <Placeholder.Line length='very' />
+    <Placeholder.Line length='very long' />
     <Placeholder.Line length='long' />
     <Placeholder.Line length='medium' />
     <Placeholder.Line length='short' />
