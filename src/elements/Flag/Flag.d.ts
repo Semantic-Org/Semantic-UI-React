@@ -152,6 +152,7 @@ export type FlagNameValues =
   | 'ga'
   | 'gabon'
   | 'gb'
+  | 'uk'
   | 'united kingdom'
   | 'gd'
   | 'grenada'
