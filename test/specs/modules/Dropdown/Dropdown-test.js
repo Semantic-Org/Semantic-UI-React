@@ -2099,7 +2099,7 @@ describe('Dropdown', () => {
       wrapper.find('.message').should.have.text('No results found.')
     })
 
-    it('uses custom noResultsMessage', () => {
+    it('uses custom string for noResultsMessage', () => {
       const search = wrapperMount(
         <Dropdown options={options} selection search noResultsMessage='Something custom' />,
       ).find('input.search')
@@ -2108,6 +2108,22 @@ describe('Dropdown', () => {
       search.simulate('change', { target: { value: '_________________' } })
 
       wrapper.find('.message').should.have.text('Something custom')
+    })
+
+    it('uses custom component for noResultsMessage', () => {
+      const search = wrapperMount(
+        <Dropdown
+          options={options}
+          selection
+          search
+          noResultsMessage={<span>Something custom</span>}
+        />,
+      ).find('input.search')
+
+      // search for something we know will not exist
+      search.simulate('change', { target: { value: '_________________' } })
+
+      wrapper.find('.message').should.contain.descendants('span')
     })
 
     it('uses no noResultsMessage', () => {

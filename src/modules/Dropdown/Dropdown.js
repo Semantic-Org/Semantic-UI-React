@@ -156,7 +156,7 @@ export default class Dropdown extends Component {
     multiple: PropTypes.bool,
 
     /** Message to display when there are no results. */
-    noResultsMessage: PropTypes.string,
+    noResultsMessage: PropTypes.node,
 
     /**
      * Called when a user adds a new item. Use this to update the options list.
