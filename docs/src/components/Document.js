@@ -59,8 +59,6 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
           versions.react
         }/umd/react-dom-server.browser${dev ? '.development' : '.production.min'}.js`}
       />
-
-      <script src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' />
     </Head>
     <Body>{children}</Body>
   </Html>
