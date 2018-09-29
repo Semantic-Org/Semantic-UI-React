@@ -5659,7 +5659,7 @@ var GridVariationsExamples = function GridVariationsExamples() {
     examplePath: "collections/Grid/Variations/GridExampleEqualWidthRow"
   }), _react.default.createElement(_ComponentExample.default, {
     title: "Stretched",
-    description: "A row can automatically resize all elements to split the available width evenly.",
+    description: "A row can automatically resize all elements to split the available height evenly.",
     examplePath: "collections/Grid/Variations/GridExampleStretched"
   }), _react.default.createElement(_ComponentExample.default, {
     examplePath: "collections/Grid/Variations/GridExampleStretchedEqual"
@@ -19054,7 +19054,7 @@ var EDITOR_GUTTER_COLOR = '#25282d'; // Heads up!
 exports.EDITOR_GUTTER_COLOR = EDITOR_GUTTER_COLOR;
 var AceEditor = (0, _lib.isBrowser)() ? (0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: "./EditorAce",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/src/components/Editor/Editor.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/src/components/Editor/Editor.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 447)), (0, _importCss2.default)("EditorAce", {
       disableWarnings: true
@@ -36908,6 +36908,16 @@ var _react = _interopRequireDefault(__webpack_require__(1));
 
 var _semanticUiReact = __webpack_require__(2);
 
+var genderOptions = [{
+  key: 'm',
+  text: 'Male',
+  value: 'male'
+}, {
+  key: 'f',
+  text: 'Female',
+  value: 'female'
+}];
+
 var FormExampleFieldControlId = function FormExampleFieldControlId() {
   return _react.default.createElement(_semanticUiReact.Form, null, _react.default.createElement(_semanticUiReact.Form.Group, {
     widths: "equal"
@@ -36921,6 +36931,18 @@ var FormExampleFieldControlId = function FormExampleFieldControlId() {
     control: _semanticUiReact.Input,
     label: "Last name",
     placeholder: "Last name"
+  }), _react.default.createElement(_semanticUiReact.Form.Field, {
+    control: _semanticUiReact.Select,
+    options: genderOptions,
+    label: {
+      children: 'Gender',
+      htmlFor: 'form-select-control-gender'
+    },
+    placeholder: "Gender",
+    search: true,
+    searchInput: {
+      id: 'form-select-control-gender'
+    }
   })), _react.default.createElement(_semanticUiReact.Form.Field, {
     id: "form-textarea-control-opinion",
     control: _semanticUiReact.TextArea,
@@ -77204,7 +77226,7 @@ var universalOptions = {
 };
 var t_0 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
   id: "../src/views/Introduction",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 333)), (0, _importCss9.default)("src-views-Introduction", {
       disableWarnings: true
@@ -77224,7 +77246,7 @@ var t_0 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
 }), universalOptions);
 var t_1 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
   id: "../src/views/Layouts",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 448)), (0, _importCss9.default)("src-views-Layouts", {
       disableWarnings: true
@@ -77244,7 +77266,7 @@ var t_1 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
 }), universalOptions);
 var t_2 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
   id: "../src/views/Theming",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 449)), (0, _importCss9.default)("src-views-Theming", {
       disableWarnings: true
@@ -77264,7 +77286,7 @@ var t_2 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
 }), universalOptions);
 var t_3 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
   id: "../src/views/Usage",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 450)), (0, _importCss9.default)("src-views-Usage", {
       disableWarnings: true
@@ -77284,7 +77306,7 @@ var t_3 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
 }), universalOptions);
 var t_4 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
   id: "../src/views/PageNotFound",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 451)), (0, _importCss9.default)("src-views-PageNotFound", {
       disableWarnings: true
@@ -77304,7 +77326,7 @@ var t_4 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
 }), universalOptions);
 var t_5 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
   id: "../src/components/ComponentDoc",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 452)), (0, _importCss9.default)("src-components-ComponentDoc", {
       disableWarnings: true
@@ -77324,7 +77346,7 @@ var t_5 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
 }), universalOptions);
 var t_6 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
   id: "../src/components/LayoutsLayout",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 456)), (0, _importCss9.default)("src-components-LayoutsLayout", {
       disableWarnings: true
@@ -77344,7 +77366,7 @@ var t_6 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
 }), universalOptions);
 var t_7 = (0, _reactUniversalComponent.default)((0, _universalImport9.default)({
   id: "../src/components/ExternalExampleLayout",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 467)), (0, _importCss9.default)("src-components-ExternalExampleLayout", {
       disableWarnings: true
