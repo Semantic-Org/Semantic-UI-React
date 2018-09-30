@@ -135,7 +135,7 @@
     "raw-loader": "^0.5.1",
     "react": "^16.4.2",
     "react-ace": "^6.1.4",
-    "react-docgen": "^2.21.0",
+    "react-docgen": "^3.0.0-rc.1",
     "react-dom": "^16.4.2",
     "react-hot-loader": "^4.3.6",
     "react-router": "^4.3.1",
