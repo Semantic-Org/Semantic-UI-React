@@ -5,7 +5,7 @@ import {
   SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
 export interface TableCellProps extends StrictTableCellProps {

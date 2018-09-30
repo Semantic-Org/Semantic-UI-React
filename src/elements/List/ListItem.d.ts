@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { ImageProps } from '../Image'
 import { ListContentProps } from './ListContent'
 import { ListDescriptionProps } from './ListDescription'

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticTRANSITIONS } from '../../'
+import { SemanticTRANSITIONS } from '../../generic'
 import TransitionGroup from './TransitionGroup'
 
 export type TRANSITION_STATUSES = 'ENTERED' | 'ENTERING' | 'EXITED' | 'EXITING' | 'UNMOUNTED'

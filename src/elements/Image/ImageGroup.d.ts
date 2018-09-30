@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticSIZES, SemanticShorthandContent } from '../..'
+import { SemanticSIZES, SemanticShorthandContent } from '../../generic'
 
 export interface ImageGroupProps extends StrictImageGroupProps {
   [key: string]: any

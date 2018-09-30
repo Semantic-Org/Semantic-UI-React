@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticShorthandItem } from '../../'
+import { SemanticShorthandCollection } from '../../generic'
 import { AccordionPanelProps } from './AccordionPanel'
 import { AccordionTitleProps } from './AccordionTitle'
 

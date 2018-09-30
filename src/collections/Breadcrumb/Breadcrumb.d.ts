@@ -4,7 +4,7 @@ import {
   SemanticShorthandCollection,
   SemanticShorthandContent,
   SemanticShorthandItem,
-} from '../..'
+} from '../../generic'
 import { IconProps } from '../../elements/Icon'
 import BreadcrumbDivider from './BreadcrumbDivider'
 import { default as BreadcrumbSection, BreadcrumbSectionProps } from './BreadcrumbSection'

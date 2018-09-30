@@ -5,7 +5,7 @@ import {
   SemanticFLOATS,
   SemanticShorthandContent,
   SemanticTEXTALIGNMENTS,
-} from '../..'
+} from '../../generic'
 import SegmentGroup from './SegmentGroup'
 
 export type SegmentSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'

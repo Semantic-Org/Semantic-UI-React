@@ -5,7 +5,7 @@ import {
   SemanticShorthandCollection,
   SemanticShorthandContent,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 import { StatisticProps, StatisticSizeProp } from './Statistic'
 
 export interface StatisticGroupProps extends StrictStatisticGroupProps {

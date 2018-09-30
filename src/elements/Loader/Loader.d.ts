@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent, SemanticSIZES } from '../..'
+import { SemanticShorthandContent, SemanticSIZES } from '../../generic'
 
 export interface LoaderProps extends StrictLoaderProps {
   [key: string]: any

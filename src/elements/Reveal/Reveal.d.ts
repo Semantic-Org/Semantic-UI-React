@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 import RevealContent from './RevealContent'
 
 export interface RevealProps extends StrictRevealProps {

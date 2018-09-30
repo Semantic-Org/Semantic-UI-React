@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { StrictPortalProps } from '../../addons/Portal'
 import { default as PopupContent, PopupContentProps } from './PopupContent'
 import { default as PopupHeader, PopupHeaderProps } from './PopupHeader'

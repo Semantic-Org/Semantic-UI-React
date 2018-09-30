@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { default as PaginationItem, PaginationItemProps } from './PaginationItem'
 
 export interface PaginationProps extends StrictPaginationProps {

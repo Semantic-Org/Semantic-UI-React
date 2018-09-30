@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticFLOATS, SemanticShorthandContent } from '../..'
+import { SemanticFLOATS, SemanticShorthandContent } from '../../generic'
 
 export interface RailProps extends StrictRailProps {
   [key: string]: any

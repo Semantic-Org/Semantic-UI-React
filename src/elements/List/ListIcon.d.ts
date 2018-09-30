@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticVERTICALALIGNMENTS } from '../..'
+import { SemanticVERTICALALIGNMENTS } from '../../generic'
 import { StrictIconProps } from '../Icon'
 
 export interface ListIconProps extends StrictListIconProps {

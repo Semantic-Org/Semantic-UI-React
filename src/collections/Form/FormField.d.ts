@@ -4,7 +4,7 @@ import {
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 
 export interface FormFieldProps extends StrictFormFieldProps {
   [key: string]: any

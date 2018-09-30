@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticFLOATS, SemanticTEXTALIGNMENTS } from '../..'
+import { SemanticCOLORS, SemanticFLOATS, SemanticTEXTALIGNMENTS } from '../../generic'
 import HeaderContent from './HeaderContent'
 import HeaderSubHeader from './HeaderSubheader'
 

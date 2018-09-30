@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { StrictPortalProps } from '../../addons/Portal'
 import { default as ModalActions, ModalActionsProps } from './ModalActions'
 import { default as ModalContent, ModalContentProps } from './ModalContent'

@@ -7,7 +7,7 @@ import {
   SemanticShorthandCollection,
   SemanticSIZES,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 import { ButtonProps } from './Button'
 
 export interface ButtonGroupProps extends StrictButtonGroupProps {

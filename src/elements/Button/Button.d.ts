@@ -6,7 +6,8 @@ import {
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticSIZES,
-} from '../..'
+} from '../../generic'
+import { IconProps } from '../Icon'
 import { LabelProps } from '../Label'
 import ButtonContent from './ButtonContent'
 import ButtonGroup from './ButtonGroup'
@@ -68,7 +69,7 @@ export interface StrictButtonProps {
   fluid?: boolean
 
   /** Add an Icon by name, props object, or pass an <Icon />. */
-  icon?: any
+  icon?: boolean | SemanticShorthandItem<IconProps>
 
   /** A button can be formatted to appear on dark backgrounds. */
   inverted?: boolean

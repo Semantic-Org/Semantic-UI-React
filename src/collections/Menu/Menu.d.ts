@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticShorthandCollection, SemanticWIDTHS } from '../..'
+import { SemanticCOLORS, SemanticShorthandCollection, SemanticWIDTHS } from '../../generic'
 import MenuHeader from './MenuHeader'
 import { default as MenuItem, MenuItemProps } from './MenuItem'
 import MenuMenu from './MenuMenu'

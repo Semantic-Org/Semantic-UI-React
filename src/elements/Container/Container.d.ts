@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent, SemanticTEXTALIGNMENTS } from '../..'
+import { SemanticShorthandContent, SemanticTEXTALIGNMENTS } from '../../generic'
 
 export interface ContainerProps extends StrictContainerProps {
   [key: string]: any
