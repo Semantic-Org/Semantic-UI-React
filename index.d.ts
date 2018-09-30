@@ -371,6 +371,11 @@ export {
   SegmentGroupProps,
   StrictSegmentGroupProps,
 } from './dist/commonjs/elements/Segment/SegmentGroup'
+export {
+  default as SegmentInline,
+  SegmentInlineProps,
+  StrictSegmentInlineProps,
+} from './dist/commonjs/elements/Segment/SegmentInline'
 
 export { default as Step, StepProps, StrictStepProps } from './dist/commonjs/elements/Step'
 export {

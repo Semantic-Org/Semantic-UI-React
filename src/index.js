@@ -105,6 +105,7 @@ export RevealContent from './elements/Reveal/RevealContent'
 
 export Segment from './elements/Segment'
 export SegmentGroup from './elements/Segment/SegmentGroup'
+export SegmentInline from './elements/Segment/SegmentInline'
 
 export Step from './elements/Step'
 export StepContent from './elements/Step/StepContent'
