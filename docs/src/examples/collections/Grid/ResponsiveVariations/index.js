@@ -1,4 +1,5 @@
 import React from 'react'
+import { Icon, Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -45,14 +46,37 @@ const GridResponsiveVariationsExamples = () => (
       title='Device Visibility'
       description='A column or row can appear only for a specific device, or screen sizes.'
       examplePath='collections/Grid/ResponsiveVariations/GridExampleOnly'
-    />
+    >
+      <Message info>
+        See SUI Container's{' '}
+        <a
+          href='https://semantic-ui.com/elements/container.html'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
+          documentation <Icon name='external alternate' />
+        </a>{' '}
+        for information on breakpoint calculations.
+      </Message>
+    </ComponentExample>
     <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridExampleOnlyMultiple' />
 
     <ComponentExample
       title='Responsive Width'
       description='A column can specify a width for a specific device.'
       examplePath='collections/Grid/ResponsiveVariations/GridExampleResponsiveWidth'
-    />
+    >
+      <Message info>
+        <p>
+          It's recommended to use a responsive pattern like <code>doubling</code> or{' '}
+          <code>stackable</code> to reduce complexity when designing responsively, however in some
+          circumstances specifying exact widths for screen sizes may be necessary.
+        </p>
+        <p>
+          Responsive width props are not compatible with the <code>width</code> prop.
+        </p>
+      </Message>
+    </ComponentExample>
   </ExampleSection>
 )
 
