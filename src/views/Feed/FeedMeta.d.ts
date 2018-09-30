@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { FeedLikeProps } from './FeedLike'
 
 export interface FeedMetaProps extends StrictFeedMetaProps {

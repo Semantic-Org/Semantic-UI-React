@@ -1,6 +1,10 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..'
+import {
+  SemanticShorthandCollection,
+  SemanticShorthandContent,
+  SemanticWIDTHS,
+} from '../../generic'
 import { CardProps } from './Card'
 
 export interface CardGroupProps extends StrictCardGroupProps {

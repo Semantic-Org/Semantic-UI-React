@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { InputProps } from '../../elements/Input'
 import { default as SearchCategory, SearchCategoryProps } from './SearchCategory'
 import { default as SearchResult, SearchResultProps } from './SearchResult'

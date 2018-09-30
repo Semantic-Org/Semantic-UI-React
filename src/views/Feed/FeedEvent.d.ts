@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { FeedContentProps } from './FeedContent'
 import { FeedDateProps } from './FeedDate'
 import { FeedLabelProps } from './FeedLabel'

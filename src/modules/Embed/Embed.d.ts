@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { HtmlIframeProps, SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { HtmlIframeProps, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
 export interface EmbedProps extends StrictEmbedProps {

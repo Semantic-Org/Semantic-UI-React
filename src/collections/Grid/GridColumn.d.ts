@@ -5,7 +5,7 @@ import {
   SemanticTEXTALIGNMENTS,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 
 export type GridOnlyProp =
   | string

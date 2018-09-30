@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { ButtonProps } from '../../elements/Button'
-import { SemanticShorthandCollection, SemanticShorthandContent } from '../..'
+import { SemanticShorthandCollection, SemanticShorthandContent } from '../../generic'
 
 export interface ModalActionsProps extends StrictModalActionsProps {
   [key: string]: any

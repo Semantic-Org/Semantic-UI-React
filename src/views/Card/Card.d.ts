@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { SemanticCOLORS, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { ImageProps } from '../../elements/Image'
 import CardContent from './CardContent'
 import { default as CardDescription, CardDescriptionProps } from './CardDescription'

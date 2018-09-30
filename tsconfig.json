@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "jsx": "react"
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true
   },
   "include": [
     "src/**/*.d.ts"

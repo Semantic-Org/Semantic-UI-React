@@ -7,7 +7,7 @@ import {
   SemanticSIZES,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 import { DimmerProps } from '../../modules/Dimmer'
 import { LabelProps } from '../Label'
 import ImageGroup from './ImageGroup'

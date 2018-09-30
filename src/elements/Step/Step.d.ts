@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../Icon'
 import StepContent from './StepContent'
 import { default as StepDescription, StepDescriptionProps } from './StepDescription'

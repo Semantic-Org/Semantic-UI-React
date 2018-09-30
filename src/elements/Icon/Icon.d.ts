@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticICONS } from '../..'
+import { SemanticCOLORS, SemanticICONS } from '../../generic'
 import IconGroup from './IconGroup'
 
 export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'

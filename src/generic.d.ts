@@ -56,9 +56,18 @@ export interface StrictHtmlSpanProps {
 // Types
 // ======================================================
 
-export type SemanticShorthandCollection<T> = SemanticShorthandItem<T>[]
+export type SemanticShorthandItemFunc<TProps> = (
+  component: React.ComponentType<TProps>,
+  props: TProps,
+  children?: React.ReactChildren,
+) => React.ReactElement<any> | null
+
+export type SemanticShorthandCollection<TProps> = SemanticShorthandItem<TProps>[]
 export type SemanticShorthandContent = React.ReactNode
-export type SemanticShorthandItem<T> = React.ReactNode | T
+export type SemanticShorthandItem<TProps> =
+  | React.ReactNode
+  | TProps
+  | SemanticShorthandItemFunc<TProps>
 
 // ======================================================
 // Styling

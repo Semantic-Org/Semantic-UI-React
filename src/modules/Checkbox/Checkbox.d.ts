@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { HtmlLabelProps, SemanticShorthandItem } from '../..'
+import { HtmlLabelProps, SemanticShorthandItem } from '../../generic'
 
 export interface CheckboxProps extends StrictCheckboxProps {
   [key: string]: any

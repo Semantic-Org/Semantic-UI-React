@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 import { IconSizeProp } from './Icon'
 
 export interface IconGroupProps extends StrictIconGroupProps {
