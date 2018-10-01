@@ -42,6 +42,13 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchSelectionTwo'
     />
     <ComponentExample
+      title='Clearable'
+      description='Using the clearable setting will let users remove their selection from a dropdown..'
+      examplePath='modules/Dropdown/Types/DropdownExampleClearable'
+      suiVersion='2.4.0'
+    />
+    <ComponentExample examplePath='modules/Dropdown/Types/DropdownExampleClearableMultiple' />
+    <ComponentExample
       title='Search Dropdown'
       description='A dropdown can be searchable.'
       examplePath='modules/Dropdown/Types/DropdownExampleSearchDropdown'
