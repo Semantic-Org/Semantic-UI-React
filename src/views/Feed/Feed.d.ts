@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection } from '../..'
+import { SemanticShorthandCollection } from '../../generic'
 import FeedContent from './FeedContent'
 import FeedDate from './FeedDate'
 import { default as FeedEvent, FeedEventProps } from './FeedEvent'

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticFLOATS, SemanticShorthandContent } from '../..'
+import { SemanticCOLORS, SemanticFLOATS, SemanticShorthandContent } from '../../generic'
 import StatisticGroup from './StatisticGroup'
 import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'

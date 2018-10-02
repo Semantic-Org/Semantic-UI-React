@@ -4,7 +4,7 @@ import {
   SemanticCOLORS,
   SemanticShorthandContent,
   SemanticShorthandItem,
-} from '../..'
+} from '../../generic'
 
 export interface ProgressProps extends StrictProgressProps {
   [key: string]: any

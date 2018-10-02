@@ -5,7 +5,7 @@ import {
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticSIZES,
-} from '../..'
+} from '../../generic'
 import { IconProps } from '../Icon'
 import { default as LabelDetail, LabelDetailProps } from './LabelDetail'
 import LabelGroup from './LabelGroup'

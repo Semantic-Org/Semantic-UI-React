@@ -5,7 +5,7 @@ import {
   SemanticFLOATS,
   SemanticShorthandContent,
   SemanticTEXTALIGNMENTS,
-} from '../..'
+} from '../../generic'
 import SegmentGroup from './SegmentGroup'
 import SegmentInline from './SegmentInline'
 

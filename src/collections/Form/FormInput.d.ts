@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { LabelProps } from '../../elements/Label'
 import { StrictInputProps } from '../../elements/Input'
 import { StrictFormFieldProps } from './FormField'

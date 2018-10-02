@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticTEXTALIGNMENTS, SemanticVERTICALALIGNMENTS, SemanticWIDTHS } from '../..'
+import { SemanticTEXTALIGNMENTS, SemanticVERTICALALIGNMENTS, SemanticWIDTHS } from '../../generic'
 import GridColumn from './GridColumn'
 import GridRow from './GridRow'
 

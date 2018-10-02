@@ -5,7 +5,7 @@ import {
   SemanticShorthandCollection,
   SemanticShorthandContent,
   SemanticShorthandItem,
-} from '../..'
+} from '../../generic'
 import MessageContent from './MessageContent'
 import { default as MessageHeader, MessageHeaderProps } from './MessageHeader'
 import { default as MessageItem, MessageItemProps } from './MessageItem'

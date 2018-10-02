@@ -400,7 +400,7 @@ export {
 } from './dist/commonjs/elements/Step/StepTitle'
 
 // Generics
-export * from './dist/commonjs'
+export * from './src/generic'
 
 // Modules
 export {

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 import CommentAction from './CommentAction'
 import CommentActions from './CommentActions'
 import CommentAuthor from './CommentAuthor'

@@ -5,7 +5,7 @@ import {
   SemanticTEXTALIGNMENTS,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 import { GridReversedProp } from './Grid'
 import { GridOnlyProp } from './GridColumn'
 

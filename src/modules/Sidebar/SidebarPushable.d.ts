@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
 export interface SidebarPushableProps extends StrictSidebarPushableProps {
   [key: string]: any

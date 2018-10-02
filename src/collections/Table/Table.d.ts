@@ -5,7 +5,7 @@ import {
   SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 import TableBody from './TableBody'
 import TableCell from './TableCell'
 import TableFooter from './TableFooter'

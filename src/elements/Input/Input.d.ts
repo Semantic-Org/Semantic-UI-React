@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { HtmlInputrops, SemanticShorthandItem, SemanticSIZES } from '../..'
+import { HtmlInputrops, SemanticShorthandItem, SemanticSIZES } from '../../generic'
 import { LabelProps } from '../Label'
 
 export interface InputProps extends StrictInputProps {

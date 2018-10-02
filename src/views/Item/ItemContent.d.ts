@@ -1,6 +1,10 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem, SemanticVERTICALALIGNMENTS } from '../..'
+import {
+  SemanticShorthandContent,
+  SemanticShorthandItem,
+  SemanticVERTICALALIGNMENTS,
+} from '../../generic'
 import { ItemDescriptionProps } from './ItemDescription'
 import { ItemExtraProps } from './ItemExtra'
 import { ItemHeaderProps } from './ItemHeader'

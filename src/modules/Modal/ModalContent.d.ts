@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
 export interface ModalContentProps extends StrictModalContentProps {
   [key: string]: any

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
 export interface CommentGroupProps extends StrictCommentGroupProps {
   [key: string]: any

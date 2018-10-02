@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { default as TabPane, TabPaneProps } from './TabPane'
 
 export interface TabProps extends StrictTabProps {

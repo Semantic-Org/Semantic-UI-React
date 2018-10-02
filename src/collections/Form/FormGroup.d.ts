@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticWIDTHS } from '../..'
+import { SemanticWIDTHS } from '../../generic'
 
 export interface FormGroupProps extends StrictFormGroupProps {
   [key: string]: any

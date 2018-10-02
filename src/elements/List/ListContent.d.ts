@@ -5,7 +5,7 @@ import {
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
-} from '../..'
+} from '../../generic'
 import { ListDescriptionProps } from './ListDescription'
 import { ListHeaderProps } from './ListHeader'
 
