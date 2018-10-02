@@ -6,21 +6,21 @@ const PlaceholderExampleImageShapeSquare = () => (
     <Card>
       <Card.Content>
         <Placeholder>
-          <Placeholder.Image shape='square' />
+          <Placeholder.Image square />
         </Placeholder>
       </Card.Content>
     </Card>
     <Card>
       <Card.Content>
         <Placeholder>
-          <Placeholder.Image shape='square' />
+          <Placeholder.Image square />
         </Placeholder>
       </Card.Content>
     </Card>
     <Card>
       <Card.Content>
         <Placeholder>
-          <Placeholder.Image shape='square' />
+          <Placeholder.Image square />
         </Placeholder>
       </Card.Content>
     </Card>

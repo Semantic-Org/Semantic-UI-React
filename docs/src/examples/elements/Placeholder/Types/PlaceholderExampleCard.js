@@ -49,7 +49,7 @@ export default class PlaceholderExampleCard extends Component {
             <Card key={card.header}>
               {loading ? (
                 <Placeholder>
-                  <Placeholder.Image shape='square' />
+                  <Placeholder.Image square />
                 </Placeholder>
               ) : (
                 <Image src={card.avatar} />

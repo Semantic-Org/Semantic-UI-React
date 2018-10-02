@@ -2,14 +2,19 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { customPropTypes, getElementType, getUnhandledProps, useKeyOnly } from '../../lib'
 
 /**
  * A placeholder can contain an image.
  */
 function PlaceholderImage(props) {
-  const { className, shape } = props
-  const classes = cx(shape, 'image', className)
+  const { className, square, rectangular } = props
+  const classes = cx(
+    useKeyOnly(square, 'square'),
+    useKeyOnly(rectangular, 'rectangular'),
+    'image',
+    className,
+  )
   const rest = getUnhandledProps(PlaceholderImage, props)
   const ElementType = getElementType(PlaceholderImage, props)
 
@@ -24,7 +29,10 @@ PlaceholderImage.propTypes = {
   className: PropTypes.string,
 
   /** An image can modify size correctly with responsive styles. */
-  shape: PropTypes.oneOf(['square', 'rectangular']),
+  square: customPropTypes.every([customPropTypes.disallow(['rectangular']), PropTypes.bool]),
+
+  /** An image can modify size correctly with responsive styles. */
+  rectangular: customPropTypes.every([customPropTypes.disallow(['square']), PropTypes.bool]),
 }
 
 export default PlaceholderImage
