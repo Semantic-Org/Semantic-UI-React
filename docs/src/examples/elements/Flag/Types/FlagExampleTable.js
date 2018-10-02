@@ -230,7 +230,7 @@ const countries = [
   { name: 'U.A.E.', countryCode: 'ae', alias: 'United Arab Emirates' },
   { name: 'Uganda', countryCode: 'ug' },
   { name: 'Ukraine', countryCode: 'ua' },
-  { name: 'United Kingdom', countryCode: 'gb' },
+  { name: 'United Kingdom', countryCode: 'gb', alias: 'uk' },
   { name: 'United States', countryCode: 'us', alias: 'America' },
   { name: 'Uruguay', countryCode: 'uy' },
   { name: 'US Minor Islands', countryCode: 'um' },

@@ -147,7 +147,7 @@
     "react-universal-component": "^2.9.0",
     "rimraf": "^2.6.2",
     "satisfied": "^1.1.2",
-    "semantic-ui-css": "^2.3.3",
+    "semantic-ui-css": "^2.4.0",
     "simulant": "^0.2.2",
     "sinon": "^6.2.0",
     "sinon-chai": "^3.2.0",

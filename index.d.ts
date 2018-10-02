@@ -326,6 +326,32 @@ export {
 
 export { default as Loader, LoaderProps, StrictLoaderProps } from './dist/commonjs/elements/Loader'
 
+export {
+  default as Placeholder,
+  PlaceholderProps,
+  StrictPlaceholderProps,
+} from './dist/commonjs/elements/Placeholder'
+export {
+  default as PlaceholderHeader,
+  PlaceholderHeaderProps,
+  StrictPlaceholderHeaderProps,
+} from './dist/commonjs/elements/Placeholder/PlaceholderHeader'
+export {
+  default as PlaceholderImage,
+  PlaceholderImageProps,
+  StrictPlaceholderImageProps,
+} from './dist/commonjs/elements/Placeholder/PlaceholderImage'
+export {
+  default as PlaceholderLine,
+  PlaceholderLineProps,
+  StrictPlaceholderLineProps,
+} from './dist/commonjs/elements/Placeholder/PlaceholderLine'
+export {
+  default as PlaceholderParagraph,
+  PlaceholderParagraphProps,
+  StrictPlaceholderParagraphProps,
+} from './dist/commonjs/elements/Placeholder/PlaceholderParagraph'
+
 export { default as Rail, RailProps, StrictRailProps } from './dist/commonjs/elements/Rail'
 
 export { default as Reveal, RevealProps, StrictRevealProps } from './dist/commonjs/elements/Reveal'
@@ -345,6 +371,11 @@ export {
   SegmentGroupProps,
   StrictSegmentGroupProps,
 } from './dist/commonjs/elements/Segment/SegmentGroup'
+export {
+  default as SegmentInline,
+  SegmentInlineProps,
+  StrictSegmentInlineProps,
+} from './dist/commonjs/elements/Segment/SegmentInline'
 
 export { default as Step, StepProps, StrictStepProps } from './dist/commonjs/elements/Step'
 export {

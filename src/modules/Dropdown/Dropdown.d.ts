@@ -39,6 +39,9 @@ export interface StrictDropdownProps {
   /** Additional classes. */
   className?: string
 
+  /** Using the clearable setting will let users remove their selection from a dropdown. */
+  clearable?: boolean
+
   /** Whether or not the menu should close when the dropdown is blurred. */
   closeOnBlur?: boolean
 
