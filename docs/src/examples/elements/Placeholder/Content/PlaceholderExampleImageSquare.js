@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Placeholder } from 'semantic-ui-react'
 
-const PlaceholderExampleImageShapeSquare = () => (
+const PlaceholderExampleImageSquare = () => (
   <Card.Group itemsPerRow={3}>
     <Card>
       <Card.Content>
@@ -27,4 +27,4 @@ const PlaceholderExampleImageShapeSquare = () => (
   </Card.Group>
 )
 
-export default PlaceholderExampleImageShapeSquare
+export default PlaceholderExampleImageSquare

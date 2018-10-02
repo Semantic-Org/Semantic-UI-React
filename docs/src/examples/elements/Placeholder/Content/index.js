@@ -39,13 +39,13 @@ const PlaceholderContentExamples = () => (
       description='A placeholder can contain an image.'
       examplePath='elements/Placeholder/Content/PlaceholderExampleImage'
     />
-    <ComponentExample examplePath='elements/Placeholder/Content/PlaceholderExampleImageShapeSquare'>
+    <ComponentExample examplePath='elements/Placeholder/Content/PlaceholderExampleImageSquare'>
       <Message info>
         Using <code>square</code> (1:1) or <code>rectangular</code> (4:3) will embed an aspect ratio
         into the image loader so that they modify size correctly with responsive styles.
       </Message>
     </ComponentExample>
-    <ComponentExample examplePath='elements/Placeholder/Content/PlaceholderExampleImageShapeRectangular' />
+    <ComponentExample examplePath='elements/Placeholder/Content/PlaceholderExampleImageRectangular' />
   </ExampleSection>
 )
 
