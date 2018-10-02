@@ -10,7 +10,10 @@ export interface StrictAccordionContentProps {
   as?: any
 
   /** Whether or not the content is visible. */
-  active?: boolean
+  active: boolean
+
+  /** Only render content or children if active */
+  renderActiveOnly?: boolean
 
   /** Primary content. */
   children?: React.ReactNode

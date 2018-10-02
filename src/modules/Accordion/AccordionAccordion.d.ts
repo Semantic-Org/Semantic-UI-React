@@ -37,6 +37,9 @@ export interface StrictAccordionAccordionProps {
 
   /** Shorthand array of props for Accordion. */
   panels?: SemanticShorthandCollection<AccordionPanelProps>
+
+  /** An Accordion will only render content from active panels */
+  renderActiveOnly?: boolean
 }
 
 declare const AccordionAccordion: React.ComponentClass<AccordionAccordionProps>

@@ -12,6 +12,9 @@ export interface StrictAccordionPanelProps {
   /** Whether or not the title is in the open state. */
   active?: boolean
 
+  /** Only render content if active */
+  renderActiveOnly?: boolean
+
   /** A shorthand for Accordion.Content. */
   content?: SemanticShorthandItem<AccordionContentProps>
 

@@ -170,22 +170,25 @@ describe('AccordionAccordion', () => {
     const panels = [
       {
         key: 'A',
-        title: { content: 'A', onClick },
+        title: { content: 'Title A', onClick },
         content: { content: 'Content A', 'data-foo': 'something' },
       },
-      { key: 'B', title: 'B', content: { content: 'Content B', 'data-foo': 'something' } },
+      { key: 'B', title: 'Title B', content: { content: 'Content B', 'data-foo': 'something' } },
     ]
-    const children = mount(<AccordionAccordion panels={panels} />)
+    const children = mount(<AccordionAccordion panels={panels} activeIndex={0} />)
 
-    it('renders children', () => {
+    it('renders title of all panels', () => {
       const titles = children.find(AccordionTitle)
+
+      titles.at(0).should.contain.text('Title A')
+      titles.at(1).should.contain.text('Title B')
+    })
+
+    it('renders only content of active panels', () => {
       const contents = children.find(AccordionContent)
 
-      titles.at(0).should.have.prop('content', 'A')
-      contents.at(0).should.have.prop('content', 'Content A')
-
-      titles.at(1).should.have.prop('content', 'B')
-      contents.at(1).should.have.prop('content', 'Content B')
+      contents.at(0).should.contain.text('Content A')
+      contents.at(1).should.not.contain.text('Content B')
     })
 
     it('passes onClick handler', () => {
@@ -195,7 +198,7 @@ describe('AccordionAccordion', () => {
         .simulate('click', event)
 
       onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(event, { content: 'A', index: 0 })
+      onClick.should.have.been.calledWithMatch(event, { content: 'Title A', index: 0 })
     })
 
     it('passes arbitrary props', () => {

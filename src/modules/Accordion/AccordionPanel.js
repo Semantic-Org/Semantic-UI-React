@@ -14,6 +14,9 @@ class AccordionPanel extends Component {
     /** Whether or not the title is in the open state. */
     active: PropTypes.bool,
 
+    /** Only render content if active */
+    renderActiveOnly: PropTypes.bool,
+
     /** A shorthand for Accordion.Content. */
     content: customPropTypes.itemShorthand,
 
@@ -40,7 +43,7 @@ class AccordionPanel extends Component {
   })
 
   render() {
-    const { active, content, index, title } = this.props
+    const { active, content, index, title, renderActiveOnly } = this.props
 
     return [
       AccordionTitle.create(title, {
@@ -50,7 +53,7 @@ class AccordionPanel extends Component {
       }),
       AccordionContent.create(content, {
         autoGenerateKey: false,
-        defaultProps: { active, key: 'content' },
+        defaultProps: { active, renderActiveOnly, key: 'content' },
       }),
     ]
   }

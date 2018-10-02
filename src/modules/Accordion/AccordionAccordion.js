@@ -60,10 +60,14 @@ export default class AccordionAccordion extends Component {
         }),
       ),
     ]),
+
+    /** An Accordion will only render content from active panels */
+    renderActiveOnly: PropTypes.bool,
   }
 
   static defaultProps = {
     exclusive: true,
+    renderActiveOnly: true,
   }
 
   static autoControlledProps = ['activeIndex']
@@ -89,6 +93,18 @@ export default class AccordionAccordion extends Component {
     _.invoke(this.props, 'onTitleClick', e, titleProps)
   }
 
+  renderPanels = (panels, renderActiveOnly) =>
+    _.map(panels, (panel, index) =>
+      AccordionPanel.create(panel, {
+        defaultProps: {
+          active: this.isIndexActive(index),
+          renderActiveOnly,
+          index,
+          onTitleClick: this.handleTitleClick,
+        },
+      }),
+    )
+
   isIndexActive = (index) => {
     const { exclusive } = this.props
     const { activeIndex } = this.state
@@ -97,7 +113,7 @@ export default class AccordionAccordion extends Component {
   }
 
   render() {
-    const { className, children, panels } = this.props
+    const { className, children, panels, renderActiveOnly } = this.props
 
     const classes = cx('accordion', className)
     const rest = getUnhandledProps(AccordionAccordion, this.props)
@@ -105,17 +121,7 @@ export default class AccordionAccordion extends Component {
 
     return (
       <ElementType {...rest} className={classes}>
-        {childrenUtils.isNil(children)
-          ? _.map(panels, (panel, index) =>
-            AccordionPanel.create(panel, {
-              defaultProps: {
-                active: this.isIndexActive(index),
-                index,
-                onTitleClick: this.handleTitleClick,
-              },
-            }),
-          )
-          : children}
+        {childrenUtils.isNil(children) ? this.renderPanels(panels, renderActiveOnly) : children}
       </ElementType>
     )
   }

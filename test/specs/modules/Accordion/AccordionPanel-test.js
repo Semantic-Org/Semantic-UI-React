@@ -30,7 +30,7 @@ describe('AccordionPanel', () => {
   })
 
   describe('active', () => {
-    it('should passed to children', () => {
+    it('should be passed to children', () => {
       const wrapper = shallow(<AccordionPanel active content='Content' title='Title' />)
 
       wrapper.at(0).should.have.prop('active', true)
@@ -39,11 +39,22 @@ describe('AccordionPanel', () => {
   })
 
   describe('index', () => {
-    it('should passed to title', () => {
+    it('should be passed to title', () => {
       const wrapper = shallow(<AccordionPanel content='Content' index={5} title='Title' />)
 
       wrapper.at(0).should.have.prop('index', 5)
-      wrapper.at(1).should.have.not.prop('index')
+      wrapper.at(1).should.not.have.prop('index')
+    })
+  })
+
+  describe('renderActiveOnly', () => {
+    it('should be passed to content', () => {
+      const wrapper = shallow(
+        <AccordionPanel content='Content' index={5} title='Title' renderActiveOnly={false} />,
+      )
+
+      wrapper.at(0).should.not.have.prop('renderActiveOnly')
+      wrapper.at(1).should.have.prop('renderActiveOnly', false)
     })
   })
 

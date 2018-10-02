@@ -11,18 +11,30 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+function shouldRender(active, renderActiveOnly) {
+  if (renderActiveOnly) {
+    return active
+  }
+
+  return true
+}
+
+function renderChildrenOrContent(children, content) {
+  return childrenUtils.isNil(children) ? content : children
+}
+
 /**
  * A content sub-component for Accordion component.
  */
 function AccordionContent(props) {
-  const { active, children, className, content } = props
+  const { active, renderActiveOnly, children, className, content } = props
   const classes = cx('content', useKeyOnly(active, 'active'), className)
   const rest = getUnhandledProps(AccordionContent, props)
   const ElementType = getElementType(AccordionContent, props)
 
   return (
     <ElementType {...rest} className={classes}>
-      {childrenUtils.isNil(children) ? content : children}
+      {shouldRender(active, renderActiveOnly) ? renderChildrenOrContent(children, content) : null}
     </ElementType>
   )
 }
@@ -34,6 +46,9 @@ AccordionContent.propTypes = {
   /** Whether or not the content is visible. */
   active: PropTypes.bool,
 
+  /** Only render content or children if active */
+  renderActiveOnly: PropTypes.bool,
+
   /** Primary content. */
   children: PropTypes.node,
 
@@ -42,6 +57,10 @@ AccordionContent.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
+}
+
+AccordionContent.defaultProps = {
+  renderActiveOnly: true,
 }
 
 AccordionContent.create = createShorthandFactory(AccordionContent, content => ({ content }))
