@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
 export interface SegmentInlineProps extends StrictSegmentInlineProps {
   [key: string]: any
