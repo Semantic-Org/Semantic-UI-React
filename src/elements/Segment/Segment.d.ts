@@ -7,6 +7,7 @@ import {
   SemanticTEXTALIGNMENTS,
 } from '../../generic'
 import SegmentGroup from './SegmentGroup'
+import SegmentInline from './SegmentInline'
 
 export type SegmentSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 
@@ -60,6 +61,9 @@ export interface StrictSegmentProps {
   /** A segment can increase its padding. */
   padded?: boolean | 'very'
 
+  /** A segment can be used to reserve space for conditionally displayed content. */
+  placeholder?: boolean
+
   /** Formatted to look like a pile of pages. */
   piled?: boolean
 
@@ -87,6 +91,7 @@ export interface StrictSegmentProps {
 
 interface SegmentComponent extends React.StatelessComponent<SegmentProps> {
   Group: typeof SegmentGroup
+  Inline: typeof SegmentInline
 }
 
 declare const Segment: SegmentComponent
