@@ -21,20 +21,18 @@ describe('AccordionAccordion', () => {
       { key: 'C', title: 'C', content: 'Something C' },
     ]
 
-    it('defaults to -1', () => {
-      shallow(<AccordionAccordion />).should.have.state('activeIndex', -1)
+    it('defaults to no open panels', () => {
+      const wrapper = shallow(<AccordionAccordion panels={panels} />)
+
+      wrapper.childAt(0).should.have.prop('active', false)
+      wrapper.childAt(1).should.have.prop('active', false)
+      wrapper.childAt(2).should.have.prop('active', false)
     })
 
-    it('defaults to -1 when "exclusive" is false', () => {
-      shallow(<AccordionAccordion exclusive={false} />)
-        .should.have.state('activeIndex')
-        .that.is.empty()
-    })
+    it('defaults to no open panels when not exclusive', () => {
+      const wrapper = shallow(<AccordionAccordion exclusive={false} panels={panels} />)
 
-    it('makes Accordion.Content at activeIndex - 0 "active"', () => {
-      const wrapper = shallow(<AccordionAccordion activeIndex={0} panels={panels} />)
-
-      wrapper.childAt(0).should.have.prop('active', true)
+      wrapper.childAt(0).should.have.prop('active', false)
       wrapper.childAt(1).should.have.prop('active', false)
       wrapper.childAt(2).should.have.prop('active', false)
     })
@@ -55,7 +53,15 @@ describe('AccordionAccordion', () => {
       wrapper.should.have.state('activeIndex', -1)
     })
 
-    it('sets the correct panel active', () => {
+    it('makes Accordion.Content at activeIndex - 0 "active"', () => {
+      const wrapper = shallow(<AccordionAccordion activeIndex={0} panels={panels} />)
+
+      wrapper.childAt(0).should.have.prop('active', true)
+      wrapper.childAt(1).should.have.prop('active', false)
+      wrapper.childAt(2).should.have.prop('active', false)
+    })
+
+    it('sets the correct panel as active', () => {
       const wrapper = shallow(<AccordionAccordion activeIndex={0} panels={panels} />)
 
       wrapper.childAt(0).should.have.prop('active', true)
@@ -140,6 +146,74 @@ describe('AccordionAccordion', () => {
   describe('defaultActiveIndex', () => {
     it('sets the initial activeIndex state', () => {
       shallow(<AccordionAccordion defaultActiveIndex={123} />).should.have.state('activeIndex', 123)
+    })
+  })
+
+  describe('exclusive', () => {
+    const panels = [
+      { key: 'A', title: 'A', content: 'Something A' },
+      { key: 'B', title: 'B', content: 'Something B' },
+    ]
+    const isActiveAtIndex = (wrapper, component, index) =>
+      wrapper
+        .find(component)
+        .at(index)
+        .prop('active')
+
+    it('the currently active pane will become inactive if another pane is clicked when exclusive', () => {
+      const wrapper = mount(<AccordionAccordion exclusive defaultActiveIndex={0} panels={panels} />)
+
+      expect(isActiveAtIndex(wrapper, AccordionTitle, 0)).to.equal(true)
+      expect(isActiveAtIndex(wrapper, AccordionContent, 0)).to.equal(true)
+      expect(isActiveAtIndex(wrapper, AccordionTitle, 1)).to.equal(false)
+      expect(isActiveAtIndex(wrapper, AccordionContent, 1)).to.equal(false)
+
+      wrapper
+        .find(AccordionTitle)
+        .at(1)
+        .simulate('click')
+
+      expect(isActiveAtIndex(wrapper, AccordionTitle, 0)).to.equal(false)
+      expect(isActiveAtIndex(wrapper, AccordionContent, 0)).to.equal(false)
+      expect(isActiveAtIndex(wrapper, AccordionTitle, 1)).to.equal(true)
+      expect(isActiveAtIndex(wrapper, AccordionContent, 1)).to.equal(true)
+    })
+
+    /**
+     * regression test for when a bug caused nothing to be active if
+     * defaultActiveIndex was numeric and exclusive was false
+     */
+    it(
+      'sets the pane at the given defaultActiveIndex to true even if defaultActiveIndex' +
+        ' is numeric and not exclusive',
+      () => {
+        const wrapper = mount(
+          <AccordionAccordion defaultActiveIndex={0} exclusive={false} panels={panels} />,
+        )
+
+        expect(isActiveAtIndex(wrapper, AccordionTitle, 0)).to.equal(true)
+        expect(isActiveAtIndex(wrapper, AccordionContent, 0)).to.equal(true)
+      },
+    )
+
+    /**
+     * regression test for when a bug caused a crash when clicking a title
+     * if defaultActiveIndex was numeric and exclusive was false
+     */
+    it('can click Title without errors if defaultActiveIndex is numeric and not exclusive', () => {
+      const wrapper = mount(
+        <AccordionAccordion defaultActiveIndex={0} exclusive={false} panels={panels} />,
+      )
+
+      wrapper
+        .find(AccordionTitle)
+        .at(1)
+        .simulate('click')
+
+      expect(isActiveAtIndex(wrapper, AccordionTitle, 0)).to.equal(true)
+      expect(isActiveAtIndex(wrapper, AccordionContent, 0)).to.equal(true)
+      expect(isActiveAtIndex(wrapper, AccordionTitle, 1)).to.equal(true)
+      expect(isActiveAtIndex(wrapper, AccordionContent, 1)).to.equal(true)
     })
   })
 

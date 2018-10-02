@@ -73,13 +73,27 @@ export default class AccordionAccordion extends Component {
   }
 
   computeNewIndex = (index) => {
-    const { exclusive } = this.props
-    const { activeIndex } = this.state
+    if (this.props.exclusive) {
+      return this.computeNewIndexIfExclusive(index)
+    }
 
-    if (exclusive) return index === activeIndex ? -1 : index
+    return this.computeNewIndexIfNotExclusive(index)
+  }
 
-    // check to see if index is in array, and remove it, if not then add it
-    return _.includes(activeIndex, index) ? _.without(activeIndex, index) : [...activeIndex, index]
+  computeNewIndexIfExclusive = (index) => {
+    if (this.state.activeIndex === index) {
+      return -1
+    }
+
+    return index
+  }
+
+  computeNewIndexIfNotExclusive = (index) => {
+    const activeIndexArray = _.castArray(this.state.activeIndex)
+
+    return _.includes(activeIndexArray, index)
+      ? _.without(activeIndexArray, index)
+      : [...activeIndexArray, index]
   }
 
   handleTitleClick = (e, titleProps) => {
@@ -89,12 +103,7 @@ export default class AccordionAccordion extends Component {
     _.invoke(this.props, 'onTitleClick', e, titleProps)
   }
 
-  isIndexActive = (index) => {
-    const { exclusive } = this.props
-    const { activeIndex } = this.state
-
-    return exclusive ? activeIndex === index : _.includes(activeIndex, index)
-  }
+  isIndexActive = index => _.includes(_.castArray(this.state.activeIndex), index)
 
   render() {
     const { className, children, panels } = this.props
