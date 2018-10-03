@@ -28,6 +28,7 @@ const externals = {
   faker,
   lodash: require('lodash'),
   react: React,
+  'prop-types': PropTypes,
   'semantic-ui-react': SUIR,
 }
 const commons = {

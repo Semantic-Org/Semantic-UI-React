@@ -10,7 +10,7 @@ describe('MenuItem', () => {
   common.rendersChildren(MenuItem)
 
   common.implementsCreateMethod(MenuItem)
-  common.implementsIconProp(MenuItem)
+  common.implementsIconProp(MenuItem, { autoGenerateKey: false })
 
   common.propKeyOnlyToClassName(MenuItem, 'active')
   common.propKeyOnlyToClassName(MenuItem, 'disabled')
@@ -24,29 +24,24 @@ describe('MenuItem', () => {
   common.propValueOnlyToClassName(MenuItem, 'position', ['left', 'right'])
 
   it('renders a `div` by default', () => {
-    shallow(<MenuItem />)
-      .should.have.tagName('div')
+    shallow(<MenuItem />).should.have.tagName('div')
   })
 
   describe('name', () => {
     it('uses the name prop as Start Cased child text', () => {
-      shallow(<MenuItem name='upcomingEvents' />)
-        .should.contain.text('Upcoming Events')
+      shallow(<MenuItem name='upcomingEvents' />).should.contain.text('Upcoming Events')
     })
   })
 
   describe('icon', () => {
     it('does not add `icon` className if there is also `name`', () => {
-      shallow(<MenuItem icon='user' name='users' />)
-        .should.not.have.className('icon')
+      shallow(<MenuItem icon='user' name='users' />).should.not.have.className('icon')
     })
     it('does not add `icon` className if there is also `content`', () => {
-      shallow(<MenuItem icon='user' content='Users' />)
-        .should.not.have.className('icon')
+      shallow(<MenuItem icon='user' content='Users' />).should.not.have.className('icon')
     })
     it('adds `icon` className if there is an `icon` without `name` or `content`', () => {
-      shallow(<MenuItem icon='user' />)
-        .should.have.className('icon')
+      shallow(<MenuItem icon='user' />).should.have.className('icon')
     })
   })
 
@@ -56,8 +51,7 @@ describe('MenuItem', () => {
       const event = { target: null }
       const props = { name: 'home', index: 0 }
 
-      shallow(<MenuItem onClick={onClick} {...props} />)
-        .simulate('click', event)
+      shallow(<MenuItem onClick={onClick} {...props} />).simulate('click', event)
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(event, props)
@@ -66,14 +60,12 @@ describe('MenuItem', () => {
     it('is not called when is disabled', () => {
       const onClick = sandbox.spy()
 
-      shallow(<MenuItem disabled onClick={onClick} />)
-        .simulate('click')
+      shallow(<MenuItem disabled onClick={onClick} />).simulate('click')
       onClick.should.have.callCount(0)
     })
 
     it('renders an `a` tag', () => {
-      shallow(<MenuItem onClick={() => null} />)
-        .should.have.tagName('a')
+      shallow(<MenuItem onClick={() => null} />).should.have.tagName('a')
     })
   })
 })

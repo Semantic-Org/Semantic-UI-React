@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface DropdownSearchInputProps {
+export interface DropdownSearchInputProps extends StrictDropdownSearchInputProps {
   [key: string]: any
+}
 
+export interface StrictDropdownSearchInputProps {
   /** An element type to render as (string or function). */
   as?: any
 

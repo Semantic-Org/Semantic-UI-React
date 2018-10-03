@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface ItemMetaProps {
+export interface ItemMetaProps extends StrictItemMetaProps {
   [key: string]: any
+}
 
+export interface StrictItemMetaProps {
   /** An element type to render as (string or function). */
   as?: any
 

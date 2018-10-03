@@ -1,15 +1,17 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { ImageProps } from '../Image'
 import { ListContentProps } from './ListContent'
 import { ListDescriptionProps } from './ListDescription'
 import { ListHeaderProps } from './ListHeader'
 import { ListIconProps } from './ListIcon'
 
-export interface ListItemProps {
+export interface ListItemProps extends StrictListItemProps {
   [key: string]: any
+}
 
+export interface StrictListItemProps {
   /** An element type to render as (string or function). */
   as?: any
 

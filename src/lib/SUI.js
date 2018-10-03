@@ -60,7 +60,6 @@ export const TRANSITIONS = [...DIRECTIONAL_TRANSITIONS, ...STATIC_TRANSITIONS]
 
 // Generated from:
 // https://github.com/Semantic-Org/Semantic-UI/blob/master/dist/components/icon.css
-// See our gulp tasks for details.
 export const ACCESSIBILITY = [
   'american sign language interpreting',
   'assistive listening systems',
@@ -166,8 +165,10 @@ export const ARROWS = [
   'share',
   'share square',
   'share square outline',
-  'sign in alternate',
-  'sign out alternate',
+  'sign-in',
+  'sign-out',
+  'sign-in alternate',
+  'sign-out alternate',
   'sort',
   'sort alphabet down',
   'sort alphabet up',
@@ -184,6 +185,8 @@ export const ARROWS = [
   'undo',
   'undo alternate',
   'upload',
+  'zoom-in',
+  'zoom-out',
 ]
 export const AUDIO_VIDEO = [
   'audio description',
@@ -812,8 +815,8 @@ export const INTERFACES = [
   'share square',
   'share square outline',
   'shield alternate',
-  'sign in alternate',
-  'sign out alternate',
+  'sign-in',
+  'sign-out',
   'signal',
   'sitemap',
   'sliders horizontal',
@@ -1508,7 +1511,7 @@ export const BRANDS = [
   'css3',
   'css3 alternate',
   'cuttlefish',
-  'd and',
+  'd and d',
   'dashcube',
   'delicious',
   'deploydog',
@@ -1617,7 +1620,7 @@ export const BRANDS = [
   'less',
   'linechat',
   'linkedin',
-  'linkedin in',
+  'linkedin alternate',
   'linode',
   'linux',
   'lyft',
@@ -1750,6 +1753,7 @@ export const BRANDS = [
   'vk',
   'vnv',
   'vuejs',
+  'wechat',
   'weibo',
   'weixin',
   'whatsapp',

@@ -96,8 +96,10 @@ describe('Dropdown', () => {
 
   common.implementsIconProp(Dropdown, {
     assertExactMatch: false,
+    autoGenerateKey: false,
   })
   common.implementsShorthandProp(Dropdown, {
+    autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: DropdownHeader,
     mapValueToProps: val => ({ content: val }),
@@ -360,6 +362,60 @@ describe('Dropdown', () => {
     it('should label search dropdown input type=text', () => {
       wrapperMount(<Dropdown search />)
       wrapper.find('input').should.have.prop('type', 'text')
+    })
+  })
+
+  describe('clearable', () => {
+    it('does not clear when value is empty', () => {
+      const onChange = sandbox.spy()
+      wrapperShallow(<Dropdown clearable onChange={onChange} />)
+
+      wrapper.find('Icon').simulate('click', { stopPropagation: _.noop })
+      onChange.should.have.not.been.called()
+    })
+
+    it('does not clear when is multiple and value is empty', () => {
+      const onChange = sandbox.spy()
+      wrapperShallow(<Dropdown clearable multiple onChange={onChange} />)
+
+      wrapper.find('Icon').simulate('click', { stopPropagation: _.noop })
+      onChange.should.have.not.been.called()
+    })
+
+    it('clears when value is not empty', () => {
+      const defaultValue = options[1].value
+      const event = { stopPropagation: _.noop }
+      const onChange = sandbox.spy()
+
+      wrapperShallow(
+        <Dropdown defaultValue={defaultValue} clearable onChange={onChange} options={options} />,
+      )
+      wrapper.find('Icon').simulate('click', event)
+
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch(event, { value: '' })
+      wrapper.should.have.state('selectedIndex', 0)
+    })
+
+    it('clears when value is multiple and is not empty', () => {
+      const defaultValue = _.map(options, 'value')
+      const event = { stopPropagation: _.noop }
+      const onChange = sandbox.spy()
+
+      wrapperShallow(
+        <Dropdown
+          defaultValue={defaultValue}
+          clearable
+          multiple
+          onChange={onChange}
+          options={options}
+        />,
+      )
+      wrapper.find('Icon').simulate('click', event)
+
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch(event, { value: [] })
+      wrapper.should.have.state('selectedIndex', 0)
     })
   })
 
@@ -2026,6 +2082,33 @@ describe('Dropdown', () => {
       domEvent.keyDown(document, { key: 'Enter' })
 
       dropdownMenuIsOpen()
+    })
+  })
+
+  describe('searchInput', () => {
+    it('overrides onChange handler', () => {
+      const onInputChange = sandbox.spy()
+      const onSearchChange = sandbox.spy()
+
+      wrapperShallow(
+        <Dropdown
+          onSearchChange={onSearchChange}
+          options={options}
+          search
+          searchInput={{ onChange: onInputChange }}
+        />,
+      )
+
+      wrapper
+        .find(DropdownSearchInput)
+        .shallow()
+        .simulate('change', {
+          stopPropagation: _.noop,
+          target: { value: faker.hacker.noun() },
+        })
+
+      onInputChange.should.have.been.calledOnce()
+      onSearchChange.should.have.been.calledOnce()
     })
   })
 

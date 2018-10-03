@@ -36,6 +36,7 @@ describe('Checkbox', () => {
 
   common.implementsHTMLLabelProp(Checkbox, {
     alwaysPresent: true,
+    autoGenerateKey: false,
   })
 
   beforeEach(() => {

@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { SemanticCOLORS, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
-export interface MenuItemProps {
+export interface MenuItemProps extends StrictMenuItemProps {
   [key: string]: any
+}
 
+export interface StrictMenuItemProps {
   /** An element type to render as (string or function). */
   as?: any
 

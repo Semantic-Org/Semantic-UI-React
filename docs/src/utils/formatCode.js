@@ -4,6 +4,10 @@ import prettierConfig from '../../../.prettierrc.json'
 delete prettierConfig.$schema
 delete prettierConfig.overrides
 
+// Heads up!
+// Please use this function directly and don't reexport it in utils.
+// https://github.com/prettier/prettier/issues/4959
+
 const formatCode = (code) => {
   if (!code) return ''
 

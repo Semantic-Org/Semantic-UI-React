@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface MountNodeProps {
+export interface MountNodeProps extends StrictMountNodeProps {
   [key: string]: any
+}
 
+export interface StrictMountNodeProps {
   /** Additional classes. */
   className?: string
 

@@ -12,33 +12,43 @@ export type SemanticVERTICALALIGNMENTS = 'top' | 'middle' | 'bottom'
 // Common element's props
 // ======================================================
 
-export interface HtmlLabelProps {
+export interface HtmlLabelProps extends StrictHtmlLabelProps {
   [key: string]: any
+}
 
+export interface StrictHtmlLabelProps {
   children?: React.ReactNode
 }
 
-export interface HtmlIframeProps {
+export interface HtmlIframeProps extends StrictHtmlIframeProps {
   [key: string]: any
+}
 
+export interface StrictHtmlIframeProps {
   src?: string
 }
 
-export interface HtmlImageProps {
+export interface HtmlImageProps extends StrictHtmlImageProps {
   [key: string]: any
+}
 
+export interface StrictHtmlImageProps {
   src?: string
 }
 
-export interface HtmlInputrops {
+export interface HtmlInputrops extends StrictHtmlInputrops {
   [key: string]: any
+}
 
+export interface StrictHtmlInputrops {
   type?: string
 }
 
-export interface HtmlSpanProps {
+export interface HtmlSpanProps extends StrictHtmlSpanProps {
   [key: string]: any
+}
 
+export interface StrictHtmlSpanProps {
   children?: React.ReactNode
 }
 
@@ -46,9 +56,18 @@ export interface HtmlSpanProps {
 // Types
 // ======================================================
 
-export type SemanticShorthandCollection<T> = SemanticShorthandItem<T>[]
+export type SemanticShorthandItemFunc<TProps> = (
+  component: React.ComponentType<TProps>,
+  props: TProps,
+  children?: React.ReactChildren,
+) => React.ReactElement<any> | null
+
+export type SemanticShorthandCollection<TProps> = SemanticShorthandItem<TProps>[]
 export type SemanticShorthandContent = React.ReactNode
-export type SemanticShorthandItem<T> = React.ReactNode | T
+export type SemanticShorthandItem<TProps> =
+  | React.ReactNode
+  | TProps
+  | SemanticShorthandItemFunc<TProps>
 
 // ======================================================
 // Styling
@@ -266,8 +285,10 @@ export type SemanticICONS =
   | 'share'
   | 'share square'
   | 'share square outline'
-  | 'sign in alternate'
-  | 'sign out alternate'
+  | 'sign-in'
+  | 'sign-out'
+  | 'sign-in alternate'
+  | 'sign-out alternate'
   | 'sort'
   | 'sort alphabet down'
   | 'sort alphabet up'
@@ -284,6 +305,8 @@ export type SemanticICONS =
   | 'undo'
   | 'undo alternate'
   | 'upload'
+  | 'zoom-in'
+  | 'zoom-out'
   | 'audio description'
   | 'backward'
   | 'circle'
@@ -880,8 +903,8 @@ export type SemanticICONS =
   | 'share square'
   | 'share square outline'
   | 'shield alternate'
-  | 'sign in alternate'
-  | 'sign out alternate'
+  | 'sign-in'
+  | 'sign-out'
   | 'signal'
   | 'sitemap'
   | 'sliders horizontal'
@@ -1526,6 +1549,16 @@ export type SemanticICONS =
   | 'btc'
   | 'buromobelexperte'
   | 'buysellads'
+  | 'cc amazon pay'
+  | 'cc amex'
+  | 'cc apple pay'
+  | 'cc diners club'
+  | 'cc discover'
+  | 'cc jcb'
+  | 'cc mastercard'
+  | 'cc paypal'
+  | 'cc stripe'
+  | 'cc visa'
   | 'centercode'
   | 'chrome'
   | 'cloudscale'
@@ -1540,7 +1573,7 @@ export type SemanticICONS =
   | 'css3'
   | 'css3 alternate'
   | 'cuttlefish'
-  | 'd and'
+  | 'd and d'
   | 'dashcube'
   | 'delicious'
   | 'deploydog'
@@ -1649,7 +1682,7 @@ export type SemanticICONS =
   | 'less'
   | 'linechat'
   | 'linkedin'
-  | 'linkedin in'
+  | 'linkedin alternate'
   | 'linode'
   | 'linux'
   | 'lyft'
@@ -1678,6 +1711,7 @@ export type SemanticICONS =
   | 'opencart'
   | 'openid'
   | 'opera'
+  | 'optin monster'
   | 'osi'
   | 'page4'
   | 'pagelines'
@@ -1781,6 +1815,7 @@ export type SemanticICONS =
   | 'vk'
   | 'vnv'
   | 'vuejs'
+  | 'wechat'
   | 'weibo'
   | 'weixin'
   | 'whatsapp'
@@ -1810,14 +1845,6 @@ export type SemanticICONS =
   | 'user doctor'
   | 'shield'
   | 'puzzle'
-  | 'cc amazon pay'
-  | 'cc diners club'
-  | 'cc discover'
-  | 'cc jcb'
-  | 'cc mastercard'
-  | 'cc paypal'
-  | 'cc stripe'
-  | 'cc visa'
   | 'add circle'
   | 'add square'
   | 'add to calendar'
@@ -1828,7 +1855,6 @@ export type SemanticICONS =
   | 'alarm'
   | 'ald'
   | 'als'
-  | 'cc amex'
   | 'announcement'
   | 'area chart'
   | 'area graph'
@@ -1956,7 +1982,6 @@ export type SemanticICONS =
   | 'new pied piper'
   | 'non binary transgender'
   | 'numbered list'
-  | 'optinmonster'
   | 'options'
   | 'other gender horizontal'
   | 'other gender vertical'

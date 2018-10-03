@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface VisibilityProps {
+export interface VisibilityProps extends StrictVisibilityProps {
   [key: string]: any
+}
 
+export interface StrictVisibilityProps {
   /** An element type to render as (string or function). */
   as?: any
 

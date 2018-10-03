@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent, SemanticTEXTALIGNMENTS } from '../..'
+import { SemanticShorthandContent, SemanticTEXTALIGNMENTS } from '../../generic'
 
-export interface ContainerProps {
+export interface ContainerProps extends StrictContainerProps {
   [key: string]: any
+}
 
+export interface StrictContainerProps {
   /** An element type to render as (string or function). */
   as?: any
 

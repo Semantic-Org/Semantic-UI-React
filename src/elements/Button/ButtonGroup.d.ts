@@ -7,12 +7,14 @@ import {
   SemanticShorthandCollection,
   SemanticSIZES,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 import { ButtonProps } from './Button'
 
-export interface ButtonGroupProps {
+export interface ButtonGroupProps extends StrictButtonGroupProps {
   [key: string]: any
+}
 
+export interface StrictButtonGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 
