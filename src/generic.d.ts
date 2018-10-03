@@ -12,33 +12,43 @@ export type SemanticVERTICALALIGNMENTS = 'top' | 'middle' | 'bottom'
 // Common element's props
 // ======================================================
 
-export interface HtmlLabelProps {
+export interface HtmlLabelProps extends StrictHtmlLabelProps {
   [key: string]: any
+}
 
+export interface StrictHtmlLabelProps {
   children?: React.ReactNode
 }
 
-export interface HtmlIframeProps {
+export interface HtmlIframeProps extends StrictHtmlIframeProps {
   [key: string]: any
+}
 
+export interface StrictHtmlIframeProps {
   src?: string
 }
 
-export interface HtmlImageProps {
+export interface HtmlImageProps extends StrictHtmlImageProps {
   [key: string]: any
+}
 
+export interface StrictHtmlImageProps {
   src?: string
 }
 
-export interface HtmlInputrops {
+export interface HtmlInputrops extends StrictHtmlInputrops {
   [key: string]: any
+}
 
+export interface StrictHtmlInputrops {
   type?: string
 }
 
-export interface HtmlSpanProps {
+export interface HtmlSpanProps extends StrictHtmlSpanProps {
   [key: string]: any
+}
 
+export interface StrictHtmlSpanProps {
   children?: React.ReactNode
 }
 
@@ -46,9 +56,18 @@ export interface HtmlSpanProps {
 // Types
 // ======================================================
 
-export type SemanticShorthandCollection<T> = SemanticShorthandItem<T>[]
+export type SemanticShorthandItemFunc<TProps> = (
+  component: React.ComponentType<TProps>,
+  props: TProps,
+  children?: React.ReactChildren,
+) => React.ReactElement<any> | null
+
+export type SemanticShorthandCollection<TProps> = SemanticShorthandItem<TProps>[]
 export type SemanticShorthandContent = React.ReactNode
-export type SemanticShorthandItem<T> = React.ReactNode | T
+export type SemanticShorthandItem<TProps> =
+  | React.ReactNode
+  | TProps
+  | SemanticShorthandItemFunc<TProps>
 
 // ======================================================
 // Styling

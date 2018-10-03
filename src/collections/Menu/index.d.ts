@@ -1,1 +1,1 @@
-export { default, MenuProps } from './Menu'
+export { default, MenuProps, StrictMenuProps } from './Menu'

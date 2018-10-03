@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface TableHeaderProps {
+export interface TableHeaderProps extends StrictTableHeaderProps {
   [key: string]: any
+}
 
+export interface StrictTableHeaderProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -1,12 +1,14 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
 import SidebarPushable from './SidebarPushable'
 import SidebarPusher from './SidebarPusher'
 
-export interface SidebarProps {
+export interface SidebarProps extends StrictSidebarProps {
   [key: string]: any
+}
 
+export interface StrictSidebarProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -1,13 +1,15 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
-import { ButtonProps } from '../../elements/Button'
+import { SemanticShorthandItem } from '../../generic'
+import { StrictButtonProps } from '../../elements/Button'
 import { LabelProps } from '../../elements/Label'
-import { FormFieldProps } from './FormField'
+import { StrictFormFieldProps } from './FormField'
 
-export interface FormButtonProps extends FormFieldProps, ButtonProps {
+export interface FormButtonProps extends StrictFormButtonProps {
   [key: string]: any
+}
 
+export interface StrictFormButtonProps extends StrictFormFieldProps, StrictButtonProps {
   /** An element type to render as (string or function). */
   as?: any
 

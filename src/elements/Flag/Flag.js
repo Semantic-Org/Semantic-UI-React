@@ -161,6 +161,7 @@ export const names = [
   'ga',
   'gabon',
   'gb',
+  'uk',
   'united kingdom',
   'gd',
   'grenada',

@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
-export interface DropdownHeaderProps {
+export interface DropdownHeaderProps extends StrictDropdownHeaderProps {
   [key: string]: any
+}
 
+export interface StrictDropdownHeaderProps {
   /** An element type to render as (string or function). */
   as?: any
 

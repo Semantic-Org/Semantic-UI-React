@@ -32,7 +32,7 @@ const GridVariationsExamples = () => (
 
     <ComponentExample
       title='Stretched'
-      description='A row can automatically resize all elements to split the available width evenly.'
+      description='A row can automatically resize all elements to split the available height evenly.'
       examplePath='collections/Grid/Variations/GridExampleStretched'
     />
     <ComponentExample examplePath='collections/Grid/Variations/GridExampleStretchedEqual' />

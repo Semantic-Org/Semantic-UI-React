@@ -1,1 +1,1 @@
-export { default, MountNodeProps } from './MountNode'
+export { default, MountNodeProps, StrictMountNodeProps } from './MountNode'

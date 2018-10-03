@@ -5,14 +5,16 @@ import {
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticSIZES,
-} from '../..'
+} from '../../generic'
 import { IconProps } from '../Icon'
 import { default as LabelDetail, LabelDetailProps } from './LabelDetail'
 import LabelGroup from './LabelGroup'
 
-export interface LabelProps {
+export interface LabelProps extends StrictLabelProps {
   [key: string]: any
+}
 
+export interface StrictLabelProps {
   /** An element type to render as (string or function). */
   as?: any
 

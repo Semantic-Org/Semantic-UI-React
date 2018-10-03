@@ -341,6 +341,7 @@ export const itemShorthand = (...args) =>
   every([
     disallow(['children']),
     PropTypes.oneOfType([
+      PropTypes.func,
       PropTypes.node,
       PropTypes.object,
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.node, PropTypes.object])),

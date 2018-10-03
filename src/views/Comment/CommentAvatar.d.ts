@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface CommentAvatarProps {
+export interface CommentAvatarProps extends StrictCommentAvatarProps {
   [key: string]: any
+}
 
+export interface StrictCommentAvatarProps {
   /** An element type to render as (string or function). */
   as?: any
 

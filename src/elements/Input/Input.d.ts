@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { HtmlInputrops, SemanticShorthandItem, SemanticSIZES } from '../..'
+import { HtmlInputrops, SemanticShorthandItem, SemanticSIZES } from '../../generic'
 import { LabelProps } from '../Label'
 
-export interface InputProps {
+export interface InputProps extends StrictInputProps {
   [key: string]: any
+}
 
+export interface StrictInputProps {
   /** An element type to render as (string or function). */
   as?: any
 

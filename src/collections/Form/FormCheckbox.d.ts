@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { CheckboxProps } from '../../modules/Checkbox'
-import { FormFieldProps } from './FormField'
+import { StrictCheckboxProps } from '../../modules/Checkbox'
+import { StrictFormFieldProps } from './FormField'
 
-export interface FormCheckboxProps extends FormFieldProps, CheckboxProps {
+export interface FormCheckboxProps extends StrictFormCheckboxProps {
   [key: string]: any
+}
 
+export interface StrictFormCheckboxProps extends StrictFormFieldProps, StrictCheckboxProps {
   /** An element type to render as (string or function). */
   as?: any
 

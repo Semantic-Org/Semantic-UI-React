@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..'
+import { SemanticShorthandCollection, SemanticShorthandContent } from '../../generic'
 import { StepProps } from './Step'
 
-export interface StepGroupProps {
+export interface StepGroupProps extends StrictStepGroupProps {
   [key: string]: any
+}
 
+export interface StrictStepGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 

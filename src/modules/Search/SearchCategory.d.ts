@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 import SearchResult from './SearchResult'
 
-export interface SearchCategoryProps {
+export interface SearchCategoryProps extends StrictSearchCategoryProps {
   [key: string]: any
+}
 
+export interface StrictSearchCategoryProps {
   /** An element type to render as (string or function). */
   as?: any
 

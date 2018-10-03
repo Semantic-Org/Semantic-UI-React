@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
-export interface BreadcrumbDividerProps {
+export interface BreadcrumbDividerProps extends StrictBreadcrumbDividerProps {
   [key: string]: any
+}
 
+export interface StrictBreadcrumbDividerProps {
   /** An element type to render as (string or function). */
   as?: any
 

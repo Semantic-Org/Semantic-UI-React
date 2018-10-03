@@ -4,4 +4,5 @@ export {
   VisibilityEventData,
   VisibilityOnPassed,
   VisibilityProps,
+  StrictVisibilityProps,
 } from './Visibility'
