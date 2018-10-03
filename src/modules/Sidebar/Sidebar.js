@@ -81,7 +81,7 @@ class Sidebar extends Component {
      */
     onVisible: PropTypes.func,
 
-    /** Existing element the sidebar will handle clicks. */
+    /** A sidebar can handle clicks on the passed element. */
     target: PropTypes.object,
 
     /** Controls whether or not the sidebar is visible on the page. */
