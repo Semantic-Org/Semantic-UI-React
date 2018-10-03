@@ -62,6 +62,9 @@ export interface StrictSidebarProps {
    */
   onVisible?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
 
+  /** Existing element the sidebar will handle clicks. */
+  target?: object
+
   /** Controls whether or not the sidebar is visible on the page. */
   visible?: boolean
 
