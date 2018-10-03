@@ -25,7 +25,7 @@ describe('TransitionGroup', () => {
   describe('children', () => {
     it('wraps all children to Transition', () => {
       shallow(
-        <TransitionGroup as='div'>
+        <TransitionGroup>
           <div />
           <div />
           <div />
@@ -37,7 +37,7 @@ describe('TransitionGroup', () => {
 
     it('passes props to children', () => {
       shallow(
-        <TransitionGroup animation='scale' as='div' duration={1500}>
+        <TransitionGroup animation='scale' duration={1500}>
           <div />
           <div />
           <div />
@@ -53,7 +53,7 @@ describe('TransitionGroup', () => {
 
     it('wraps new child to Transition and sets transitionOnMount to true', () => {
       wrapperShallow(
-        <TransitionGroup as='div'>
+        <TransitionGroup>
           <div key='first' />
         </TransitionGroup>,
       )
@@ -67,7 +67,7 @@ describe('TransitionGroup', () => {
 
     it('skips invalid children', () => {
       wrapperShallow(
-        <TransitionGroup as='div'>
+        <TransitionGroup>
           <div key='first' />
         </TransitionGroup>,
       )
@@ -86,7 +86,7 @@ describe('TransitionGroup', () => {
 
     it('sets visible to false when child was removed', () => {
       wrapperShallow(
-        <TransitionGroup as='div'>
+        <TransitionGroup>
           <div key='first' />
           <div key='second' />
         </TransitionGroup>,
@@ -108,7 +108,7 @@ describe('TransitionGroup', () => {
 
     it('removes child after transition', (done) => {
       wrapperMount(
-        <TransitionGroup as='div' duration={0}>
+        <TransitionGroup duration={0}>
           <div key='first' />
           <div key='second' />
         </TransitionGroup>,
@@ -116,11 +116,16 @@ describe('TransitionGroup', () => {
       wrapper.setProps({ children: [<div key='first' />] })
 
       setTimeout(() => {
+        wrapper.update()
+
         wrapper.children().should.have.length(1)
-        // TODO: Re-enable in future
-        // wrapper.childAt(0).key().should.equal('.$first')
+        wrapper
+          .childAt(0)
+          .key()
+          .should.equal('.$first')
+
         done()
-      }, 10)
+      }, 0)
     })
   })
 })
