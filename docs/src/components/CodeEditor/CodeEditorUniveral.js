@@ -12,17 +12,17 @@ export const EDITOR_GUTTER_COLOR = '#25282d'
 // Heads up!
 // Brace doesn't support SSR, so we don't include it during SSR build. The usage of the universal
 // component also allows us to load Editor lazy.
-const AceEditor = isBrowser()
-  ? universal(import('./EditorAce'), {
+const CodeEditor = isBrowser()
+  ? universal(import('./CodeEditor'), {
     loading: () => <Loader active inline='centered' />,
   })
   : () => null
 
-function Editor(props) {
+function CodeEditorUniveral(props) {
   const { id, mode, readOnly, value, ...rest } = props
 
   return (
-    <AceEditor
+    <CodeEditor
       name={id}
       mode={mode}
       theme='tomorrow_night'
@@ -45,15 +45,15 @@ function Editor(props) {
   )
 }
 
-Editor.propTypes = {
+CodeEditorUniveral.propTypes = {
   id: PropTypes.string.isRequired,
   mode: PropTypes.oneOf(['html', 'jsx']),
   value: PropTypes.string.isRequired,
   readOnly: PropTypes.bool,
 }
 
-Editor.defaultProps = {
+CodeEditorUniveral.defaultProps = {
   mode: 'jsx',
 }
 
-export default withSiteData(Editor)
+export default withSiteData(CodeEditorUniveral)
