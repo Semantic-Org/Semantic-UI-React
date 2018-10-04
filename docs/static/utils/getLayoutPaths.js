@@ -2,7 +2,7 @@ import fs from 'fs'
 import _ from 'lodash'
 import path from 'path'
 
-const layoutsDir = path.resolve(__dirname, '..', 'layouts')
+const layoutsDir = path.resolve(__dirname, '../../src/layouts')
 
 const getLayoutPaths = () =>
   new Promise((resolve) => {
