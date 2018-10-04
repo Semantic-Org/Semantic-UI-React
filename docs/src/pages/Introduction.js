@@ -4,7 +4,7 @@ import { Link, withSiteData } from 'react-static'
 import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
-import Editor from 'docs/src/components/Editor/Editor'
+import Editor from 'docs/src/components/CodeEditor'
 import Logo from 'docs/src/components/Logo/Logo'
 import { btoa, semanticUIDocsURL, repoURL } from 'docs/src/utils'
 
@@ -309,7 +309,9 @@ const Introduction = ({ pkg }) => (
         <p>
           Take a look at our
           <a href={`${repoURL}/blob/master/src/lib/AutoControlledComponent.js`}>
-            &nbsp;<code>AutoControlledComponent</code>&nbsp;
+            &nbsp;
+            <code>AutoControlledComponent</code>
+            &nbsp;
           </a>
           to see how this was done. See the docs try it out live.
         </p>

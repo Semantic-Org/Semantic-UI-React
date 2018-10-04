@@ -1,6 +1,6 @@
 import _ from 'lodash/fp'
 
-import { getComponentPathname } from '../utils'
+import { getComponentPathname } from '../../src/utils'
 import requireInfo from './requireInfo'
 
 /**

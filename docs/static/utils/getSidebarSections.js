@@ -1,6 +1,6 @@
 const getSidebarSections = (displayName) => {
   try {
-    return require(`../exampleMenus/${displayName}.examples.json`)
+    return require(`../../src/exampleMenus/${displayName}.examples.json`)
   } catch (e) {
     return []
   }

@@ -1,5 +1,5 @@
 import Document from './docs/src/components/Document'
-import { getComponentMenu } from './docs/src/staticUtils'
+import { getComponentMenu } from './docs/static/utils'
 import config from './config'
 import pkg from './package'
 import getRoutes from './static.routes'

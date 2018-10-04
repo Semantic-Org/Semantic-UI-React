@@ -87,6 +87,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@babel/standalone": "^7.0.0",
+    "@mdx-js/loader": "^0.15.5",
     "@types/react": "^16.0.18",
     "anchor-js": "^4.1.1",
     "babel-eslint": "^9.0.0",
