@@ -38,6 +38,18 @@ export default (webpackConfig, { stage }) => ({
           },
         },
       },
+      {
+        test: /.mdx?$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
+          '@mdx-js/loader',
+        ],
+      },
     ],
   },
   plugins: [
