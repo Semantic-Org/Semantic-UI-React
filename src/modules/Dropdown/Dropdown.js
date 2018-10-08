@@ -56,6 +56,9 @@ export default class Dropdown extends Component {
       PropTypes.bool,
     ]),
 
+    /** An input can have the auto complete. */
+    autoComplete: PropTypes.string,
+
     /** A Dropdown can reduce its complexity. */
     basic: PropTypes.bool,
 
@@ -335,6 +338,9 @@ export default class Dropdown extends Component {
       customPropTypes.disallow(['selection', 'text']),
       PropTypes.node,
     ]),
+
+    /** The HTML input type. */
+    type: PropTypes.string,
 
     /** Current value or value array if multiple. Creates a controlled component. */
     value: PropTypes.oneOfType([
@@ -1235,7 +1241,7 @@ export default class Dropdown extends Component {
   }
 
   renderSearchInput = () => {
-    const { search, searchInput } = this.props
+    const { search, searchInput, autoComplete, type } = this.props
     const { searchQuery } = this.state
 
     if (!search) return null
@@ -1245,6 +1251,8 @@ export default class Dropdown extends Component {
         style: { width: this.computeSearchInputWidth() },
         tabIndex: this.computeSearchInputTabIndex(),
         value: searchQuery,
+        autoComplete,
+        type,
       },
       overrideProps: this.handleSearchInputOverrides,
     })

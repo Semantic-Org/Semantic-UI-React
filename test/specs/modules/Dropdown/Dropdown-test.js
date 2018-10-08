@@ -279,6 +279,20 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('autoComplete', () => {
+    it('defaults to off', () => {
+      shallow(<Dropdown options={options} search />)
+        .find(DropdownSearchInput)
+        .should.have.prop('autoComplete', 'off')
+    })
+
+    it('allows explicitly setting the search input autocomplete prop', () => {
+      shallow(<Dropdown options={options} search autoComplete='nope' />)
+        .find(DropdownSearchInput)
+        .should.have.prop('autoComplete', 'nope')
+    })
+  })
+
   describe('aria', () => {
     it('should label normal dropdown as a listbox', () => {
       wrapperMount(<Dropdown />)
