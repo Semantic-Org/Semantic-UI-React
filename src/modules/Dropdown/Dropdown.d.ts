@@ -27,6 +27,9 @@ export interface StrictDropdownProps {
    */
   allowAdditions?: boolean
 
+  /** An input can have the auto complete. */
+  autoComplete?: string
+
   /** A Dropdown can reduce its complexity. */
   basic?: boolean
 
@@ -274,6 +277,9 @@ export interface StrictDropdownProps {
 
   /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
   trigger?: React.ReactNode
+
+  /** The HTML input type. */
+  type?: string
 
   /** Current value or value array if multiple. Creates a controlled component. */
   value?: boolean | number | string | (boolean | number | string)[]
