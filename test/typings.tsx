@@ -18,6 +18,17 @@ const ShorthandItemFuncAssert = () => (
   />
 )
 
+const ShorthandItemFuncChildren = () => (
+  <Button
+    content="Foo"
+    label={(Component, props, children) => (
+      <div className="bar">
+        <Component active={props.active}>{children}</Component>
+      </div>
+    )}
+  />
+)
+
 const ShorthandItemFuncNullAssert = () => <Button content="Foo" icon={() => null} />
 
 export default BasicAssert
