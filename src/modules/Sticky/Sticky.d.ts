@@ -63,6 +63,9 @@ export interface StrictStickyProps {
 
   /** Context which sticky should attach onscroll events. */
   scrollContext?: object
+
+  /** Custom Sticky style. */
+  style?: object
 }
 
 declare const Sticky: React.ComponentClass<StickyProps>

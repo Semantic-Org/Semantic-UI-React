@@ -74,6 +74,9 @@ export default class Sticky extends Component {
 
     /** Context which sticky should attach onscroll events. */
     scrollContext: PropTypes.object,
+
+    /** Custom Sticky style. */
+    style: PropTypes.object,
   }
 
   static defaultProps = {
@@ -207,6 +210,7 @@ export default class Sticky extends Component {
       bottom: bound ? 0 : bottom,
       top: bound ? undefined : top,
       width: this.triggerRect.width,
+      ...this.props.style,
     }
   }
 
