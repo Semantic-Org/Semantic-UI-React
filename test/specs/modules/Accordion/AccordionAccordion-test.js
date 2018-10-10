@@ -140,7 +140,7 @@ describe('AccordionAccordion', () => {
       consoleUtil.disableOnce()
 
       const consoleError = sandbox.spy(console, 'error')
-      shallow(<AccordionAccordion exclusive activeIndex={[1]} />)
+      mount(<AccordionAccordion exclusive activeIndex={[1]} />)
 
       consoleError.should.have.been.calledOnce()
     })
@@ -149,7 +149,7 @@ describe('AccordionAccordion', () => {
       consoleUtil.disableOnce()
 
       const consoleError = sandbox.spy(console, 'error')
-      shallow(<AccordionAccordion exclusive={false} activeIndex={1} />)
+      mount(<AccordionAccordion exclusive={false} activeIndex={1} />)
 
       consoleError.should.have.been.calledOnce()
     })
