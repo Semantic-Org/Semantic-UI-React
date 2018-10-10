@@ -138,7 +138,7 @@ describe('AccordionAccordion', () => {
 
     it('warns if is `exclusive` and is given an array', () => {
       consoleUtil.disableOnce()
-      
+
       const consoleError = sandbox.spy(console, 'error')
       shallow(<AccordionAccordion exclusive activeIndex={[1]} />)
 
