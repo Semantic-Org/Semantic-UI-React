@@ -13,6 +13,19 @@ import {
 } from '../../lib'
 import AccordionPanel from './AccordionPanel'
 
+const warnIfPropsAreInvalid = (props, state) => {
+  const { exclusive } = props
+  const { activeIndex } = state
+
+  /* eslint-disable no-console */
+  if (exclusive && typeof activeIndex !== 'number') {
+    console.error('`activeIndex` must be a number if `exclusive` is true')
+  } else if (!exclusive && !_.isArray(activeIndex)) {
+    console.error('`activeIndex` must be an array if `exclusive` is false')
+  }
+  /* eslint-enable no-console */
+}
+
 /**
  * An Accordion can contain sub-accordions.
  */
@@ -68,29 +81,19 @@ export default class AccordionAccordion extends Component {
 
   static autoControlledProps = ['activeIndex']
 
-  constructor(props) {
-    super(props)
-
-    this.notifyIfInvalidActiveIndexType(this.props.exclusive, this.state.activeIndex)
-  }
-
   getInitialAutoControlledState({ exclusive }) {
     return { activeIndex: exclusive ? -1 : [] }
   }
 
-  componentDidUpdate() {
-    this.notifyIfInvalidActiveIndexType(this.props.exclusive, this.state.activeIndex)
+  componentDidMount() {
+    if (process.env.NODE_ENV !== 'production') {
+      warnIfPropsAreInvalid(this.props, this.state)
+    }
   }
 
-  notifyIfInvalidActiveIndexType = (exclusive, activeIndex) => {
+  componentDidUpdate() {
     if (process.env.NODE_ENV !== 'production') {
-      /* eslint-disable no-console */
-      if (exclusive && typeof activeIndex !== 'number') {
-        console.error('`activeIndex` must be a number if `exclusive` is true')
-      } else if (!exclusive && !Array.isArray(activeIndex)) {
-        console.error('`activeIndex` must be an array if `exclusive` is false')
-      }
-      /* eslint-enable no-console */
+      warnIfPropsAreInvalid(this.props, this.state)
     }
   }
 
