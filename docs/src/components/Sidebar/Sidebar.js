@@ -221,6 +221,9 @@ class Sidebar extends Component {
               <Menu.Item as={Link} exact to='/layouts' activeClassName='active'>
                 Layouts
               </Menu.Item>
+              <Menu.Item as={Link} exact to='/prototypes' activeClassName='active'>
+                Prototypes
+              </Menu.Item>
               <Menu.Item as='a' href={repoURL} target='_blank' rel='noopener noreferrer'>
                 <Icon name='github' /> GitHub
               </Menu.Item>
