@@ -4,7 +4,7 @@ import AccordionAccordion from 'src/modules/Accordion/AccordionAccordion'
 import AccordionContent from 'src/modules/Accordion/AccordionContent'
 import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
 import * as common from 'test/specs/commonTests'
-import { sandbox, consoleUtil } from 'test/utils'
+import { consoleUtil, sandbox } from 'test/utils'
 
 describe('AccordionAccordion', () => {
   common.isConformant(AccordionAccordion)
@@ -135,31 +135,29 @@ describe('AccordionAccordion', () => {
         .simulate('click')
       wrapper.should.have.state('activeIndex').that.is.empty()
     })
+
+    it('warns if is `exclusive` and is given an array', () => {
+      consoleUtil.disableOnce()
+      
+      const consoleError = sandbox.spy(console, 'error')
+      shallow(<AccordionAccordion exclusive activeIndex={[1]} />)
+
+      consoleError.should.have.been.calledOnce()
+    })
+
+    it('warns if not `exclusive` and is given a number', () => {
+      consoleUtil.disableOnce()
+
+      const consoleError = sandbox.spy(console, 'error')
+      shallow(<AccordionAccordion exclusive={false} activeIndex={1} />)
+
+      consoleError.should.have.been.calledOnce()
+    })
   })
 
   describe('defaultActiveIndex', () => {
     it('sets the initial activeIndex state', () => {
       shallow(<AccordionAccordion defaultActiveIndex={123} />).should.have.state('activeIndex', 123)
-    })
-  })
-
-  describe('value validations', () => {
-    it('logs an error if exclusive and is given an array', () => {
-      consoleUtil.disableOnce()
-      const spy = sandbox.spy(console, 'error')
-
-      shallow(<AccordionAccordion exclusive activeIndex={[1]} />)
-
-      spy.should.have.been.calledOnce()
-    })
-
-    it('logs an error if not exclusive and is given a number', () => {
-      consoleUtil.disableOnce()
-      const spy = sandbox.spy(console, 'error')
-
-      shallow(<AccordionAccordion exclusive={false} activeIndex={1} />)
-
-      spy.should.have.been.calledOnce()
     })
   })
 
