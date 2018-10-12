@@ -112,6 +112,7 @@ This is a listing of example projects and guides that will help you integrate Se
 
 <details>
   <summary><b>How do I setup CSS?</b></summary>
+
   There are several options.  Refer to our doc on [CSS Usage][23].
 </details>
 
