@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 const style = {
   padding: '1rem',
@@ -33,7 +33,20 @@ class CarbonAd extends Component {
   }
 
   render() {
-    return <div id='docs-carbonads' style={style} />
+    return (
+      <Fragment>
+        <style>{`
+          #docs-carbonads div {
+            display: none;
+          }
+
+          #docs-carbonads #carbonads {
+            display: block;
+          }
+        `}</style>
+        <div id='docs-carbonads' style={style} />
+      </Fragment>
+    )
   }
 }
 
