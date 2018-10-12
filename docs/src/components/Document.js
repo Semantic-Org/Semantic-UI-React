@@ -26,7 +26,7 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       />
       <script
         src={`https://cdn.jsdelivr.net/npm/@babel/preset-env-standalone@${
-          versions.babel.standalone
+          versions.babel.standaloneEnv
         }/babel-preset-env.min.js`}
       />
       <script src={`https://cdn.jsdelivr.net/faker.js/${versions.faker}/faker.min.js`} />
