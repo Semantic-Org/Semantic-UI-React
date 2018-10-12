@@ -19,6 +19,7 @@ export default {
       anchor: require('anchor-js/package.json').version,
       babel: {
         standalone: require('@babel/standalone/package.json').version,
+        standaloneEnv: require('@babel/preset-env-standalone/package.json').version,
       },
       faker: require('faker/package.json').version,
       prettier: require('prettier/package.json').version,
