@@ -35,6 +35,9 @@ class CarbonAd extends Component {
   render() {
     return (
       <Fragment>
+        {/* Heads up! These styles prevents a bug with multiple ads.
+          * https://github.com/Semantic-Org/Semantic-UI-React/pull/3215
+          */}
         <style>{`
           #docs-carbonads div {
             display: none;
