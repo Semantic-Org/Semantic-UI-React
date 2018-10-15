@@ -9,12 +9,21 @@ import ComponentControlsMaximize from './ComponentControlsMaximize'
 import ComponentControlsShowHtml from './ComponentControlsShowHtml'
 
 const ComponentControls = (props) => {
-  const { anchorName, examplePath, showHTML, showCode, onCopyLink, onShowHTML, onShowCode } = props
+  const {
+    anchorName,
+    disableHtml,
+    examplePath,
+    showHTML,
+    showCode,
+    onCopyLink,
+    onShowHTML,
+    onShowCode,
+  } = props
 
   return (
     <Menu color='green' compact icon='labeled' size='tiny' text>
       <ComponentControlsEditCode active={showCode} onClick={onShowCode} />
-      <ComponentControlsShowHtml active={showHTML} onClick={onShowHTML} />
+      <ComponentControlsShowHtml active={showHTML} disabled={disableHtml} onClick={onShowHTML} />
       <ComponentControlsMaximize examplePath={examplePath} />
       <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
     </Menu>
@@ -24,6 +33,7 @@ const ComponentControls = (props) => {
 ComponentControls.propTypes = {
   examplePath: PropTypes.string,
   anchorName: PropTypes.string,
+  disableHtml: PropTypes.bool,
   onCopyLink: PropTypes.func,
   onShowCode: PropTypes.func,
   onShowHTML: PropTypes.func,

@@ -54,12 +54,19 @@ const resolver = (importPath, { displayName }) => {
   )
 }
 
-const ComponentExampleRenderSource = ({ displayName, onError, onSuccess, sourceCode }) => (
+const ComponentExampleRenderSource = ({
+  displayName,
+  onError,
+  onSuccess,
+  renderHtml,
+  sourceCode,
+}) => (
   <SourceRender
     babelConfig={babelConfig}
     displayName={displayName}
     onError={onError}
     onSuccess={onSuccess}
+    renderHtml={renderHtml}
     resolver={resolver}
     source={sourceCode}
   />
@@ -69,6 +76,7 @@ ComponentExampleRenderSource.propTypes = {
   displayName: PropTypes.string.isRequired,
   onError: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired,
+  renderHtml: PropTypes.bool.isRequired,
   sourceCode: PropTypes.string.isRequired,
 }
 
