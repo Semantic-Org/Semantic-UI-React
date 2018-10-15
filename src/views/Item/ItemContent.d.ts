@@ -1,14 +1,20 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem, SemanticVERTICALALIGNMENTS } from '../..'
+import {
+  SemanticShorthandContent,
+  SemanticShorthandItem,
+  SemanticVERTICALALIGNMENTS,
+} from '../../generic'
 import { ItemDescriptionProps } from './ItemDescription'
 import { ItemExtraProps } from './ItemExtra'
 import { ItemHeaderProps } from './ItemHeader'
 import { ItemMetaProps } from './ItemMeta'
 
-export interface ItemContentProps {
+export interface ItemContentProps extends StrictItemContentProps {
   [key: string]: any
+}
 
+export interface StrictItemContentProps {
   /** An element type to render as (string or function). */
   as?: any
 

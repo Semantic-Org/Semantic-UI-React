@@ -13,9 +13,10 @@ describe('Header', () => {
   common.hasSubcomponents(Header, [HeaderContent, HeaderSubheader])
   common.rendersChildren(Header)
 
-  common.implementsIconProp(Header)
-  common.implementsImageProp(Header)
+  common.implementsIconProp(Header, { autoGenerateKey: false })
+  common.implementsImageProp(Header, { autoGenerateKey: false })
   common.implementsShorthandProp(Header, {
+    autoGenerateKey: false,
     propKey: 'subheader',
     ShorthandComponent: HeaderSubheader,
     mapValueToProps: val => ({ content: val }),

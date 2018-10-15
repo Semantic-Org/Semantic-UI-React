@@ -1,1 +1,1 @@
-export { default, FeedProps } from './Feed'
+export { default, FeedProps, StrictFeedProps } from './Feed'

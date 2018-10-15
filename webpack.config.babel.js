@@ -1,11 +1,8 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import _ from 'lodash'
-import webpack from 'webpack'
-
-import config from './config'
+const webpack = require('webpack')
+const config = require('./config')
 
 const { paths } = config
-const { __DEV__, __TEST__, __PROD__ } = config.compiler_globals
+const { __TEST__, __PROD__ } = config.compiler_globals
 
 const webpackConfig = {
   name: 'client',
@@ -24,37 +21,6 @@ const webpackConfig = {
     },
   },
 }
-
-// ------------------------------------
-// Entry Points
-// ------------------------------------
-
-const webpackHotPath = `${config.compiler_public_path}__webpack_hmr`
-const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_
-  .map(
-    {
-      path: webpackHotPath, // The path which the middleware is serving the event stream on
-      timeout: 2000, // The time to wait after a disconnection before attempting to reconnect
-      overlay: true, // Set to false to disable the DOM-based client-side overlay.
-      reload: true, // Set to true to auto-reload the page when webpack gets stuck.
-      noInfo: false, // Set to true to disable informational console logging.
-      quiet: false, // Set to true to disable all console logging.
-    },
-    (val, key) => `&${key}=${val}`,
-  )
-  .join('')}`
-
-const APP_ENTRY = paths.docsSrc('index.js')
-
-webpackConfig.entry = __DEV__
-  ? {
-    app: [webpackHotMiddlewareEntry, APP_ENTRY],
-    vendor: [webpackHotMiddlewareEntry, ...config.compiler_vendor],
-  }
-  : {
-    app: APP_ENTRY,
-    vendor: config.compiler_vendor,
-  }
 
 // ------------------------------------
 // Bundle Output
@@ -77,26 +43,6 @@ webpackConfig.plugins = [
     context: paths.base('node_modules'),
     manifest: require(paths.base('dll/vendor-manifest.json')),
   }),
-  new HtmlWebpackPlugin({
-    template: paths.docsSrc('index.ejs'),
-    filename: 'index.html',
-    hash: false,
-    inject: 'body',
-    minify: {
-      collapseWhitespace: true,
-    },
-    versions: {
-      babel: require('@babel/standalone/package.json').version,
-      faker: require('faker/package.json').version,
-      jsBeautify: require('js-beautify/package.json').version,
-      lodash: require('lodash/package.json').version,
-      propTypes: require('prop-types/package.json').version,
-      react: require('react/package.json').version,
-      reactDOM: require('react-dom/package.json').version,
-      sui: require('semantic-ui-css/package.json').version,
-      suir: require('./package.json').version,
-    },
-  }),
 ]
 
 if (!__TEST__) {
@@ -106,13 +52,6 @@ if (!__TEST__) {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor'],
     }),
-  )
-}
-
-if (__DEV__) {
-  webpackConfig.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
   )
 }
 
@@ -170,16 +109,6 @@ if (!__TEST__) {
 // ------------------------------------
 // Rules
 // ------------------------------------
-const jsLoaders = [
-  {
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
-      plugins: __DEV__ ? ['react-hot-loader/babel'] : [],
-    },
-  },
-]
-
 webpackConfig.module.rules = [
   ...webpackConfig.module.rules,
   {
@@ -188,8 +117,13 @@ webpackConfig.module.rules = [
     //
     test: /\.js$/,
     exclude: /node_modules/,
-    use: jsLoaders,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        cacheDirectory: __TEST__,
+      },
+    },
   },
 ]
 
-export default webpackConfig
+module.exports = webpackConfig

@@ -1,13 +1,15 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
-import { PortalProps } from '../../addons/Portal'
+import { SemanticShorthandItem } from '../../generic'
+import { StrictPortalProps } from '../../addons/Portal'
 import { default as PopupContent, PopupContentProps } from './PopupContent'
 import { default as PopupHeader, PopupHeaderProps } from './PopupHeader'
 
-export interface PopupProps extends PortalProps {
+export interface PopupProps extends StrictPopupProps {
   [key: string]: any
+}
 
+export interface StrictPopupProps extends StrictPortalProps {
   /** An element type to render as (string or function). */
   as?: any
 

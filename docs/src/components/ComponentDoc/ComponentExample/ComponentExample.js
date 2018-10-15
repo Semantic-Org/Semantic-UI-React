@@ -1,53 +1,36 @@
-import * as Babel from '@babel/standalone'
 import copyToClipboard from 'copy-to-clipboard'
-import { html } from 'js-beautify'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { PureComponent, createElement, isValidElement } from 'react'
-import { withRouter } from 'react-router'
-import { renderToStaticMarkup } from 'react-dom/server'
-import { Divider, Grid, Menu, Visibility } from 'semantic-ui-react'
+import React, { PureComponent } from 'react'
+import { withRouteData, withRouter } from 'react-static'
+import { Grid, Visibility } from 'semantic-ui-react'
 
-import {
-  exampleContext,
-  examplePathToHash,
-  getFormattedHash,
-  repoURL,
-  scrollToAnchor,
-} from 'docs/src/utils'
-import Editor from 'docs/src/components/Editor/Editor'
+import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
+import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
+
 import ComponentControls from '../ComponentControls'
+import ComponentExampleRenderEditor from './ComponentExampleRenderEditor'
+import ComponentExampleRenderHtml from './ComponentExampleRenderHtml'
+import ComponentExampleRenderSource from './ComponentExampleRenderSource'
 import ComponentExampleTitle from './ComponentExampleTitle'
 
-const babelConfig = {
-  presets: [
-    [
-      'env',
-      {
-        targets: {
-          browsers: ['last 4 versions', 'not dead'],
-        },
-      },
-    ],
-    'react',
-    ['stage-1', { decoratorsLegacy: true }],
-  ],
-}
-
 const childrenStyle = {
+  paddingBottom: 0,
   paddingTop: 0,
   maxWidth: '50rem',
 }
 
-const errorStyle = {
-  padding: '1em',
-  fontSize: '0.9rem',
-  color: '#a33',
-  background: '#fff2f2',
+const renderedExampleStyle = {
+  padding: '2rem',
 }
 
-const controlsWrapperStyle = {
-  minHeight: '3rem',
+const editorStyle = {
+  padding: 0,
+}
+
+const componentControlsStyle = {
+  flex: '0 0 auto',
+  width: 'auto',
 }
 
 /**
@@ -64,6 +47,9 @@ class ComponentExample extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     description: PropTypes.node,
+    displayName: PropTypes.string.isRequired,
+    exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+    exampleSources: PropTypes.objectOf(PropTypes.string).isRequired,
     examplePath: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -76,26 +62,26 @@ class ComponentExample extends PureComponent {
     const { examplePath } = this.props
     this.anchorName = examplePathToHash(examplePath)
 
-    const exampleElement = this.renderOriginalExample()
-
     this.setState({
-      exampleElement,
       handleMouseLeave: this.handleMouseLeave,
       handleMouseMove: this.handleMouseMove,
       showCode: this.isActiveHash(),
       sourceCode: this.getOriginalSourceCode(),
-      markup: renderToStaticMarkup(exampleElement),
     })
   }
 
   componentWillReceiveProps(nextProps) {
+    const { examplePath, exampleSources, location } = nextProps
+    const nextSourceCode = exampleSources[examplePath]
+
     // deactivate examples when switching from one to the next
-    if (
-      this.isActiveHash() &&
-      this.isActiveState() &&
-      this.props.location.hash !== nextProps.location.hash
-    ) {
+    if (this.isActiveHash() && this.isActiveState() && this.props.location.hash !== location.hash) {
       this.clearActiveState()
+    }
+
+    // for local environment
+    if (process.env.NODE_ENV !== 'production' && this.getOriginalSourceCode() !== nextSourceCode) {
+      this.setState({ sourceCode: nextSourceCode })
     }
   }
 
@@ -112,11 +98,13 @@ class ComponentExample extends PureComponent {
     return showCode || showHTML
   }
 
-  isActiveHash = () => this.anchorName === getFormattedHash(this.props.location.hash)
+  isActiveHash = () => {
+    const { exampleKeys, location } = this.props
+    return this.anchorName === getFormattedHash(exampleKeys, location.hash)
+  }
 
   updateHash = () => {
     if (this.isActiveState()) this.setHashAndScroll()
-    else if (this.isActiveHash()) this.removeHash()
   }
 
   setHashAndScroll = () => {
@@ -126,17 +114,9 @@ class ComponentExample extends PureComponent {
     scrollToAnchor()
   }
 
-  removeHash = () => {
-    const { history, location } = this.props
-
-    history.replace(location.pathname)
-
-    this.clearActiveState()
-  }
-
   handleDirectLinkClick = () => {
     this.setHashAndScroll()
-    copyToClipboard(window.location.href)
+    copyToClipboard(window && window.location.href)
   }
 
   handleMouseLeave = () => {
@@ -177,28 +157,18 @@ class ComponentExample extends PureComponent {
     if (title) _.invoke(this.context, 'onPassed', null, this.props)
   }
 
-  copyJSX = () => {
-    copyToClipboard(this.state.sourceCode)
-    this.setState({ copiedCode: true })
-    setTimeout(() => this.setState({ copiedCode: false }), 1000)
-  }
-
-  resetJSX = () => {
-    const { sourceCode } = this.state
-    const original = this.getOriginalSourceCode()
-    // eslint-disable-next-line no-alert
-    if (sourceCode !== original && confirm('Lose your changes?')) {
-      this.setState({ sourceCode: original })
-      this.renderSourceCode()
-    }
-  }
-
-  getOriginalSourceCode = () => {
+  getGithubEditHref = () => {
     const { examplePath } = this.props
 
-    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../../examples/${examplePath}`)
+    // get component name from file path:
+    // elements/Button/Types/ButtonButtonExample
+    const pathParts = examplePath.split(__PATH_SEP__)
+    const filename = pathParts[pathParts.length - 1]
 
-    return this.sourceCode
+    return [
+      `${repoURL}/edit/master/docs/src/examples/${examplePath}.js`,
+      `?message=docs(${filename}): your description`,
+    ].join('')
   }
 
   getKebabExamplePath = () => {
@@ -207,296 +177,128 @@ class ComponentExample extends PureComponent {
     return this.kebabExamplePath
   }
 
-  renderError = _.debounce((error) => {
-    this.setState({ error })
-  }, 800)
-
-  renderOriginalExample = () => {
-    const { examplePath } = this.props
-    return createElement(exampleContext(`./${examplePath}.js`).default)
+  getOriginalSourceCode = () => {
+    const { examplePath, exampleSources } = this.props
+    return exampleSources[examplePath]
   }
 
-  renderSourceCode = _.debounce(() => {
-    const { examplePath } = this.props
-    const { sourceCode } = this.state
-    // Heads Up!
-    //
-    // These are used in the code editor scope when rewriting imports to const statements
-    // We use require() to preserve variable names
-    // Webpack rewrites import names
-    /* eslint-disable no-unused-vars */
-    const FAKER = require('faker')
-    const LODASH = require('lodash')
-    const REACT = require('react')
-    const SEMANTIC_UI_REACT = require('semantic-ui-react')
-    let WIREFRAME
-    let COMMON
-    /* eslint-enable no-unused-vars */
+  handleChangeCode = _.debounce((sourceCode) => {
+    this.setState({ sourceCode })
+  }, 30)
 
-    // Should use an AST transform here... oh well :/
-    // Rewrite the example file into an IIFE that returns a component
-    // which can be rendered in this ComponentExample's render() method
+  handleRenderError = error => this.setState({ error: error.toString() })
 
-    // rewrite imports to const statements against the UPPERCASE module names
-    const imports = _
-      .get(/(^[\s\S])*import[\s\S]*from[\s\S]*['"]\n/.exec(sourceCode), '[0]', '')
-      .replace(/[\s\n]+/g, ' ') // normalize spaces and make one line
-      .replace(/ import/g, '\nimport') // one import per line
-      .split('\n') // split lines
-      .filter(Boolean) // remove empty lines
-      .map((l) => {
-        // rewrite imports to const statements
-        const [defaultImport, destructuredImports, _module] = _.tail(
-          /import\s+([\w]+)?(?:\s*,\s*)?({[\s\w,]+})?\s+from\s+['"](?:.*\/)?([\w\-_]+)['"]/.exec(l),
-        )
-
-        const module = _.snakeCase(_module).toUpperCase()
-
-        if (module === 'COMMON') {
-          const componentPath = examplePath
-            .split(__PATH_SEP__)
-            .splice(0, 2)
-            .join(__PATH_SEP__)
-          COMMON = require(`docs/src/examples/${componentPath}/common`)
-        } else if (module === 'WIREFRAME') {
-          WIREFRAME = require('docs/src/examples/behaviors/Visibility/Wireframe').default
-        }
-
-        const constStatements = []
-        if (defaultImport) constStatements.push(`const ${defaultImport} = ${module}`)
-        if (destructuredImports) constStatements.push(`const ${destructuredImports} = ${module}`)
-        constStatements.push('\n')
-
-        return constStatements.join('\n')
-      })
-      .join('\n')
-
-    // capture the default export so we can return it from the IIFE
-    const defaultExport = _.get(
-      /export\s+default\s+(?:class|function)?(?:\s+)?(\w+)/.exec(sourceCode),
-      '[1]',
-    )
-
-    const body = _
-      .get(/(export\sdefault\sclass|const|class\s\S*\sextends)[\s\S]*/.exec(sourceCode), '[0]', '')
-      .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '') // remove `export default Foo` statements
-      .replace(/export\s+default\s+/, '') // remove `export default ...`
-
-    const IIFE = `(function() {\n${imports}${body}return ${defaultExport}\n}())`
-
-    try {
-      const { code } = Babel.transform(IIFE, babelConfig)
-      const Example = eval(code) // eslint-disable-line no-eval
-      const exampleElement = _.isFunction(Example) ? <Example /> : Example
-
-      if (!isValidElement(exampleElement)) {
-        this.renderError(
-          `Default export is not a valid element. Type:${{}.toString.call(exampleElement)}`,
-        )
-      } else {
-        // immediately render a null error
-        // but also ensure the last debounced error call is a null error
-        const error = null
-        this.renderError(error)
-        this.setState({
-          error,
-          exampleElement,
-          markup: renderToStaticMarkup(exampleElement),
-        })
-      }
-    } catch (err) {
-      this.renderError(err.message)
-    }
-  }, 100)
-
-  getComponentName = () => this.props.examplePath.split('/')[1]
-
-  handleChangeCode = (sourceCode) => {
-    this.setState({ sourceCode }, this.renderSourceCode)
-  }
-
-  setGitHubHrefs = () => {
-    const { examplePath } = this.props
-
-    if (this.ghEditHref && this.ghBugHref) return
-
-    // get component name from file path:
-    // elements/Button/Types/ButtonButtonExample
-    const pathParts = examplePath.split(__PATH_SEP__)
-    const filename = pathParts[pathParts.length - 1]
-
-    this.ghEditHref = [
-      `${repoURL}/edit/master/docs/src/examples/${examplePath}.js`,
-      `?message=docs(${filename}): your description`,
-    ].join('')
-  }
-
-  renderJSXControls = () => {
-    const { copiedCode, error } = this.state
-
-    this.setGitHubHrefs()
-
-    const color = error ? 'red' : 'black'
-    return (
-      <Divider horizontal fitted>
-        <Menu text>
-          <Menu.Item
-            active={copiedCode || !!error} // to show the color
-            color={copiedCode ? 'green' : color}
-            onClick={this.copyJSX}
-            icon={!copiedCode && 'copy'}
-            content={copiedCode ? 'Copied!' : 'Copy'}
-          />
-          <Menu.Item
-            active={!!error} // to show the color
-            color={color}
-            icon='refresh'
-            content='Reset'
-            onClick={this.resetJSX}
-          />
-          <Menu.Item
-            active={!!error} // to show the color
-            color={color}
-            icon='github'
-            content='Edit'
-            href={this.ghEditHref}
-            target='_blank'
-          />
-        </Menu>
-      </Divider>
-    )
-  }
-
-  renderJSX = () => {
-    const { error, showCode, sourceCode } = this.state
-    if (!showCode) return
-
-    const style = { width: '100%' }
-    if (error) {
-      style.boxShadow = `inset 0 0 0 1em ${errorStyle.background}`
-    }
-
-    return (
-      <div style={style}>
-        {this.renderJSXControls()}
-        <Editor
-          id={`${this.getKebabExamplePath()}-jsx`}
-          value={sourceCode}
-          onChange={this.handleChangeCode}
-        />
-        {error && <pre style={errorStyle}>{error}</pre>}
-      </div>
-    )
-  }
-
-  renderHTML = () => {
-    const { showHTML, markup } = this.state
-    if (!showHTML) return
-
-    // add new lines between almost all adjacent elements
-    // moves inline elements to their own line
-    const preFormattedHTML = markup.replace(/><(?!\/i|\/label|\/span|option)/g, '>\n<')
-
-    const beautifiedHTML = html(preFormattedHTML, {
-      indent_size: 2,
-      indent_char: ' ',
-      wrap_attributes: 'auto',
-      wrap_attributes_indent_size: 2,
-      end_with_newline: false,
-    })
-
-    return (
-      <div>
-        <Divider horizontal>Rendered HTML</Divider>
-        <Editor
-          id={`${this.getKebabExamplePath()}-html`}
-          mode='html'
-          value={beautifiedHTML}
-          readOnly
-        />
-      </div>
-    )
-  }
+  handleRenderSuccess = (error, { markup }) => this.setState({ error, htmlMarkup: markup })
 
   render() {
-    const { children, description, examplePath, suiVersion, title } = this.props
+    const { children, description, displayName, examplePath, suiVersion, title } = this.props
     const {
+      error,
       handleMouseLeave,
       handleMouseMove,
-      exampleElement,
+      htmlMarkup,
       isHovering,
       showCode,
       showHTML,
+      sourceCode,
     } = this.state
 
     const isActive = this.isActiveHash() || this.isActiveState()
 
     const exampleStyle = {
       position: 'relative',
-      transition: 'box-shadow 200ms, background 200ms',
+      background: '#fff',
+      boxShadow: '0 1px 2px #ccc',
       ...(isActive
         ? {
-          background: '#fff',
-          boxShadow: '0 0 30px #ccc',
+          boxShadow: '0 8px 32px #aaa',
         }
         : isHovering && {
-          background: '#fff',
-          boxShadow: '0 0 10px #ccc',
-          zIndex: 1,
+          boxShadow: '0 2px 8px #bbb',
         }),
     }
 
     return (
-      <Visibility once={false} onTopPassed={this.handlePass} onTopPassedReverse={this.handlePass}>
-        <Grid
-          className='docs-example'
-          padded='vertically'
-          id={this.anchorName}
-          onMouseLeave={handleMouseLeave}
-          onMouseMove={handleMouseMove}
-          style={exampleStyle}
-        >
-          <Grid.Row>
-            <Grid.Column width={12}>
-              <ComponentExampleTitle
-                description={description}
-                title={title}
-                suiVersion={suiVersion}
-              />
-            </Grid.Column>
-            <Grid.Column textAlign='right' width={4} style={controlsWrapperStyle}>
-              <ComponentControls
-                anchorName={this.anchorName}
-                examplePath={examplePath}
-                onCopyLink={this.handleDirectLinkClick}
-                onShowCode={this.handleShowCodeClick}
-                onShowHTML={this.handleShowHTMLClick}
-                showCode={showCode}
-                showHTML={showHTML}
-                visible={isActive || isHovering}
-              />
-            </Grid.Column>
-          </Grid.Row>
-
-          {children && (
-            <Grid.Row columns={1}>
-              <Grid.Column style={childrenStyle}>{children}</Grid.Column>
+      <Visibility
+        once={false}
+        onTopPassed={this.handlePass}
+        onTopPassedReverse={this.handlePass}
+        style={{ margin: '2rem 0' }}
+      >
+        {/* Ensure anchor links don't occlude card shadow effect */}
+        <div id={this.anchorName} style={{ paddingTop: '1rem' }}>
+          <Grid
+            className='docs-example'
+            padded='vertically'
+            onMouseLeave={handleMouseLeave}
+            onMouseMove={handleMouseMove}
+            style={exampleStyle}
+          >
+            <Grid.Row columns='equal'>
+              <Grid.Column>
+                <ComponentExampleTitle
+                  description={description}
+                  title={title}
+                  suiVersion={suiVersion}
+                />
+              </Grid.Column>
+              <Grid.Column textAlign='right' style={componentControlsStyle}>
+                <ComponentControls
+                  anchorName={this.anchorName}
+                  examplePath={examplePath}
+                  onCopyLink={this.handleDirectLinkClick}
+                  onShowCode={this.handleShowCodeClick}
+                  onShowHTML={this.handleShowHTMLClick}
+                  showCode={showCode}
+                  showHTML={showHTML}
+                />
+              </Grid.Column>
             </Grid.Row>
-          )}
 
-          <Grid.Row columns={1}>
-            <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
-              {exampleElement}
+            {children && (
+              <Grid.Row columns={1} style={childrenStyle}>
+                <Grid.Column>{children}</Grid.Column>
+              </Grid.Row>
+            )}
+
+            <Grid.Column
+              width={16}
+              className={`rendered-example ${this.getKebabExamplePath()}`}
+              style={renderedExampleStyle}
+            >
+              <ComponentExampleRenderSource
+                displayName={displayName}
+                onError={this.handleRenderError}
+                onSuccess={this.handleRenderSuccess}
+                sourceCode={sourceCode}
+              />
             </Grid.Column>
-            <Grid.Column>
-              {this.renderJSX()}
-              {this.renderHTML()}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+            {(showCode || showHTML) && (
+              <Grid.Column width={16} style={editorStyle}>
+                {showCode && (
+                  <ComponentExampleRenderEditor
+                    editorId={`${this.getKebabExamplePath()}-jsx`}
+                    githubEditHref={this.getGithubEditHref()}
+                    originalValue={this.getOriginalSourceCode()}
+                    value={sourceCode}
+                    error={error}
+                    onChange={this.handleChangeCode}
+                  />
+                )}
+                {showHTML && (
+                  <ComponentExampleRenderHtml
+                    editorId={`${this.getKebabExamplePath()}-html`}
+                    value={htmlMarkup}
+                  />
+                )}
+              </Grid.Column>
+            )}
+            {isActive && !error && <CarbonAdNative inverted={this.isActiveState()} />}
+          </Grid>
+        </div>
       </Visibility>
     )
   }
 }
 
-export default withRouter(ComponentExample)
+export default withRouteData(withRouter(ComponentExample))

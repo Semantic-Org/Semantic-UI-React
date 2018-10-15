@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface RefProps {
+export interface RefProps extends StrictRefProps {
   [key: string]: any
+}
 
+export interface StrictRefProps {
   /** Primary content. */
   children?: React.ReactNode
 

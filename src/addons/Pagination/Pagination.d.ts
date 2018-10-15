@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { default as PaginationItem, PaginationItemProps } from './PaginationItem'
 
-export interface PaginationProps {
+export interface PaginationProps extends StrictPaginationProps {
   [key: string]: any
+}
 
+export interface StrictPaginationProps {
   /** A pagination item can have an aria label. */
   'aria-label'?: string
 

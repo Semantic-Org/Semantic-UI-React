@@ -152,6 +152,17 @@ export default class Popup extends Component {
     this.mounted = true
   }
 
+  componentDidUpdate(prevProps) {
+    // if horizontal/vertical offsets change, re-calculate the CSS style
+    const { horizontalOffset, verticalOffset } = this.props
+    if (
+      horizontalOffset !== prevProps.horizontalOffset ||
+      verticalOffset !== prevProps.verticalOffset
+    ) {
+      this.setPopupStyle()
+    }
+  }
+
   componentWillUnmount() {
     this.mounted = false
   }

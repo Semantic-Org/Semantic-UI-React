@@ -1,13 +1,15 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { CardDescriptionProps } from './CardDescription'
 import { CardHeaderProps } from './CardHeader'
 import { CardMetaProps } from './CardMeta'
 
-export interface CardContentProps {
+export interface CardContentProps extends StrictCardContentProps {
   [key: string]: any
+}
 
+export interface StrictCardContentProps {
   /** An element type to render as (string or function). */
   as?: any
 

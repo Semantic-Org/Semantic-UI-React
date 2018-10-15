@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticVERTICALALIGNMENTS } from '../..'
-import { IconProps } from '../Icon'
+import { SemanticVERTICALALIGNMENTS } from '../../generic'
+import { StrictIconProps } from '../Icon'
 
-export interface ListIconProps extends IconProps {
+export interface ListIconProps extends StrictListIconProps {
   [key: string]: any
+}
 
+export interface StrictListIconProps extends StrictIconProps {
   /** Additional classes. */
   className?: string
 

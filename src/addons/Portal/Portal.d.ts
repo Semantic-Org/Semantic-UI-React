@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { default as PortalInner } from './PortalInner'
 
-export interface PortalProps {
+export interface PortalProps extends StrictPortalProps {
   [key: string]: any
+}
 
+export interface StrictPortalProps {
   /** Primary content. */
   children?: React.ReactNode
 

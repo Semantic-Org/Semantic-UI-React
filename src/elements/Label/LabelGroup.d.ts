@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticCOLORS, SemanticShorthandContent, SemanticSIZES } from '../..'
+import { SemanticCOLORS, SemanticShorthandContent, SemanticSIZES } from '../../generic'
 
-export interface LabelGroupProps {
+export interface LabelGroupProps extends StrictLabelGroupProps {
   [key: string]: any
+}
 
+export interface StrictLabelGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 

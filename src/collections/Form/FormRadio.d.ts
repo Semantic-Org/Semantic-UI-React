@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { RadioProps } from '../../addons/Radio'
-import { FormFieldProps } from './FormField'
+import { StrictRadioProps } from '../../addons/Radio'
+import { StrictFormFieldProps } from './FormField'
 
-export interface FormRadioProps extends FormFieldProps, RadioProps {
+export interface FormRadioProps extends StrictFormRadioProps {
   [key: string]: any
+}
 
+export interface StrictFormRadioProps extends StrictFormFieldProps, StrictRadioProps {
   /** An element type to render as (string or function). */
   as?: any
 

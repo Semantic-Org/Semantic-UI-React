@@ -1,14 +1,16 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { FeedDateProps } from './FeedDate'
 import { FeedExtraProps } from './FeedExtra'
 import { FeedMetaProps } from './FeedMeta'
 import { FeedSummaryProps } from './FeedSummary'
 
-export interface FeedContentProps {
+export interface FeedContentProps extends StrictFeedContentProps {
   [key: string]: any
+}
 
+export interface StrictFeedContentProps {
   /** An element type to render as (string or function). */
   as?: any
 

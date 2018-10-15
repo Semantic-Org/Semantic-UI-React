@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface DimmerInnerProps {
+export interface DimmerInnerProps extends StrictDimmerInnerProps {
   [key: string]: any
+}
 
+export interface StrictDimmerInnerProps {
   /** An element type to render as (string or function). */
   as?: any
 

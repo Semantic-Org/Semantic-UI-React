@@ -4,7 +4,6 @@
 .idea/
 .vscode/
 
-
 coverage/
 
 dist/
@@ -16,3 +15,4 @@ docs/src/exampleMenus
 docs/dist/
 
 package.json
+tmp/

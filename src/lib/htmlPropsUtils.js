@@ -29,6 +29,7 @@ export const htmlInputAttrs = [
   'readOnly',
   'required',
   'step',
+  'title',
   'type',
   'value',
 ]

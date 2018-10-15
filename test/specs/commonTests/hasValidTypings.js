@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
-import { componentInfoContext } from 'docs/src/utils'
 import { customPropTypes } from 'src/lib'
+import { componentInfoContext } from 'docs/src/utils'
 import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
 
 const isShorthand = propType =>
@@ -42,22 +42,37 @@ export default (Component, componentInfo, options = {}) => {
     })
 
     const tsNodes = getNodes(tsFile, tsContent)
-    const interfaceName = `${displayName}Props`
-    const interfaceObject = _.find(getInterfaces(tsNodes), { name: interfaceName }) || {}
 
-    describe(`interface ${interfaceName}`, () => {
+    const propsInterfaceName = `${displayName}Props`
+    const strictInterfaceName = `Strict${displayName}Props`
+
+    const propsInterfaceObject = _.find(getInterfaces(tsNodes), { name: propsInterfaceName })
+    const strictInterfaceObject = _.find(getInterfaces(tsNodes), { name: strictInterfaceName })
+
+    describe(`interface ${propsInterfaceName}`, () => {
       it('has interface', () => {
-        interfaceObject.should.to.be.an('object')
+        propsInterfaceObject.should.to.be.an('object')
       })
 
       it('is exported', () => {
-        const { exported } = interfaceObject
+        const { exported } = propsInterfaceObject
+        exported.should.to.equal(true)
+      })
+    })
+
+    describe(`interface ${strictInterfaceName}`, () => {
+      it('has interface', () => {
+        strictInterfaceObject.should.to.be.an('object')
+      })
+
+      it('is exported', () => {
+        const { exported } = strictInterfaceObject
         exported.should.to.equal(true)
       })
     })
 
     describe('props', () => {
-      const { props } = interfaceObject
+      const { props } = strictInterfaceObject
 
       it('has any signature', () => {
         hasAnySignature(tsNodes).should.to.equal(true)
@@ -108,7 +123,7 @@ export default (Component, componentInfo, options = {}) => {
     })
 
     describe('shorthands', () => {
-      const { shorthands } = interfaceObject
+      const { shorthands } = strictInterfaceObject
       const componentPropTypes = _.get(Component, 'propTypes')
       const componentShorthands = _.pickBy(componentPropTypes, isShorthand)
 

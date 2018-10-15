@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticWIDTHS } from '../..'
+import { SemanticWIDTHS } from '../../generic'
 
-export interface FormGroupProps {
+export interface FormGroupProps extends StrictFormGroupProps {
   [key: string]: any
+}
 
+export interface StrictFormGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 

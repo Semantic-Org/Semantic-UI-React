@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface TabPaneProps {
+export interface TabPaneProps extends StrictTabPaneProps {
   [key: string]: any
+}
 
+export interface StrictTabPaneProps {
   /** An element type to render as (string or function). */
   as?: any
 

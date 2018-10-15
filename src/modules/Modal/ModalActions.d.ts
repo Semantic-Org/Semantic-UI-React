@@ -1,11 +1,13 @@
 import * as React from 'react'
 
 import { ButtonProps } from '../../elements/Button'
-import { SemanticShorthandCollection, SemanticShorthandContent } from '../..'
+import { SemanticShorthandCollection, SemanticShorthandContent } from '../../generic'
 
-export interface ModalActionsProps {
+export interface ModalActionsProps extends StrictModalActionsProps {
   [key: string]: any
+}
 
+export interface StrictModalActionsProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface StepDescriptionProps {
+export interface StepDescriptionProps extends StrictStepDescriptionProps {
   [key: string]: any
+}
 
+export interface StrictStepDescriptionProps {
   /** An element type to render as (string or function). */
   as?: any
 

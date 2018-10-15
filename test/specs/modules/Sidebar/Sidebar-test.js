@@ -26,6 +26,16 @@ describe('Sidebar', () => {
     nestingLevel,
   })
 
+  describe('componentWillUnmount', () => {
+    it('will call "clearTimeout"', () => {
+      const clear = sandbox.spy(window, 'clearTimeout')
+      const wrapper = mount(<Sidebar />)
+
+      wrapper.setProps({ visible: true })
+      clear.should.have.been.calledOnce()
+    })
+  })
+
   describe('onHide', () => {
     it('is called when the "visible" prop changes to "false"', () => {
       const onHide = sandbox.spy()
@@ -119,6 +129,17 @@ describe('Sidebar', () => {
       wrapper.setProps({ visible: true })
       onVisible.should.have.been.calledOnce()
       onVisible.should.have.been.calledWithMatch(null, { visible: true })
+    })
+  })
+
+  describe('target', () => {
+    it('is passed to the EventStack component', () => {
+      const target = document.createElement('div')
+
+      const wrapper = shallow(<Sidebar target={target} visible />)
+      const stack = wrapper.find('EventStack')
+
+      stack.should.have.prop('target', target)
     })
   })
 })
