@@ -3,6 +3,7 @@ import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 const TabTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -16,21 +17,31 @@ const TabTypesExamples = () => (
           unmounts the current pane and mounts the new pane.
         </Message.Item>
         <Message.Item>
-          <code>renderActiveOnly={'{false}'}</code> All panes are rendered on Tab mount. Switching
-          tabs hides the current pane and shows the new pane, without unmounting panes.
+          <code>
+            renderActiveOnly=
+            {'{false}'}
+          </code>{' '}
+          All panes are rendered on Tab mount. Switching tabs hides the current pane and shows the
+          new pane, without unmounting panes.
         </Message.Item>
       </Message.List>
     </Message>
 
     <ComponentExample
       title='Basic'
-      description='A basic tab.'
+      description='A basic set of tabs.'
       examplePath='modules/Tab/Types/TabExampleBasic'
     />
+    <ShorthandExample examplePath='modules/Tab/Types/TabExampleBasicShorthand' />
     <ComponentExample
       description={
         <span>
-          A basic tab using <code>renderActiveOnly={'{false}'}</code>.
+          A basic tab using{' '}
+          <code>
+            renderActiveOnly=
+            {'{false}'}
+          </code>
+          .
         </span>
       }
       examplePath='modules/Tab/Types/TabExampleBasicAll'

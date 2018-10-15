@@ -10,9 +10,21 @@ describe('Tab', () => {
   common.hasSubcomponents(Tab, [TabPane])
 
   const panes = [
-    { menuItem: 'Tab 1', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
-    { menuItem: 'Tab 2', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-    { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+    { menuItem: 'Tab 1', render: () => <Tab.Pane key='tab1'>Tab 1 Content</Tab.Pane> },
+    { menuItem: 'Tab 2', render: () => <Tab.Pane key='tab2'>Tab 2 Content</Tab.Pane> },
+    { menuItem: 'Tab 3', render: () => <Tab.Pane key='tab3'>Tab 3 Content</Tab.Pane> },
+  ]
+
+  const childPanes = [
+    <Tab.Pane key='tab1' menuItem='Tab 1'>
+      Tab 1 Content
+    </Tab.Pane>,
+    <Tab.Pane key='tab2' menuItem='Tab 2'>
+      Tab 2 Content
+    </Tab.Pane>,
+    <Tab.Pane key='tab3' menuItem='Tab 3'>
+      Tab 3 Content
+    </Tab.Pane>,
   ]
 
   describe('menu', () => {
@@ -24,6 +36,27 @@ describe('Tab', () => {
 
     it('has an item for every menuItem in panes', () => {
       const items = shallow(<Tab panes={panes} />)
+        .find('Menu')
+        .shallow()
+        .find('MenuItem')
+
+      items.should.have.lengthOf(3)
+      items
+        .at(0)
+        .shallow()
+        .should.contain.text('Tab 1')
+      items
+        .at(1)
+        .shallow()
+        .should.contain.text('Tab 2')
+      items
+        .at(2)
+        .shallow()
+        .should.contain.text('Tab 3')
+    })
+
+    it('has an item for every menuItem in panes when passed as children', () => {
+      const items = shallow(<Tab>{childPanes}</Tab>)
         .find('Menu')
         .shallow()
         .find('MenuItem')
@@ -254,6 +287,19 @@ describe('Tab', () => {
       wrapper.find('TabPane[active]').should.contain.text('Tab 2 Content')
     })
 
+    it('is set when clicking an item that was passed through child props', () => {
+      const wrapper = mount(<Tab>{childPanes}</Tab>)
+
+      wrapper.find('TabPane[active]').should.contain.text('Tab 1 Content')
+
+      wrapper
+        .find('MenuItem')
+        .at(1)
+        .simulate('click')
+
+      wrapper.find('TabPane[active]').should.contain.text('Tab 2 Content')
+    })
+
     it('can be set via props', () => {
       const wrapper = mount(<Tab panes={panes} activeIndex={1} />)
 
@@ -319,9 +365,27 @@ describe('Tab', () => {
   })
 
   describe('renderActiveOnly', () => {
-    it('renders all tabs when false', () => {
+    it('renders all tabs when set to false', () => {
       const textPanes = [{ pane: 'Tab 1' }, { pane: 'Tab 2' }, { pane: 'Tab 3' }]
       const items = mount(<Tab panes={textPanes} renderActiveOnly={false} />).find('TabPane')
+
+      items.should.have.lengthOf(3)
+      items.at(0).should.contain.text('Tab 1')
+      items.at(1).should.contain.text('Tab 2')
+      items.at(2).should.contain.text('Tab 3')
+    })
+
+    it('renders all tabs when set to false and when panes are passed as children', () => {
+      const items = mount(<Tab renderActiveOnly={false}>{childPanes}</Tab>).find('TabPane')
+
+      items.should.have.lengthOf(3)
+      items.at(0).should.contain.text('Tab 1')
+      items.at(1).should.contain.text('Tab 2')
+      items.at(2).should.contain.text('Tab 3')
+    })
+
+    it('renders all tabs when set to false and when panes use menuItem and render props', () => {
+      const items = mount(<Tab panes={panes} renderActiveOnly={false} />).find('TabPane')
 
       items.should.have.lengthOf(3)
       items.at(0).should.contain.text('Tab 1')

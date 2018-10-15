@@ -4,6 +4,7 @@ import React from 'react'
 
 import {
   AutoControlledComponent as Component,
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -23,11 +24,17 @@ class Tab extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
+    /** Index of the currently active tab. */
+    activeIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+    /** Primary content. */
+    children: PropTypes.node,
+
     /** The initial activeIndex. */
     defaultActiveIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
-    /** Index of the currently active tab. */
-    activeIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    /** Shorthand props for the Grid. */
+    grid: PropTypes.object,
 
     /**
      * Shorthand props for the Menu.
@@ -37,9 +44,6 @@ class Tab extends Component {
 
     /** Align vertical menu */
     menuPosition: PropTypes.oneOf(['left', 'right']),
-
-    /** Shorthand props for the Grid. */
-    grid: PropTypes.object,
 
     /**
      * Called on tab change.
@@ -51,7 +55,7 @@ class Tab extends Component {
     onTabChange: PropTypes.func,
 
     /**
-     * Array of objects describing each Menu.Item and Tab.Pane:
+     * Shorthand array of objects describing each Menu.Item and Tab.Pane:
      * { menuItem: 'Home', render: () => <Tab.Pane /> }
      * or
      * { menuItem: 'Home', pane: 'Welcome' }
@@ -88,31 +92,52 @@ class Tab extends Component {
   }
 
   renderItems() {
-    const { panes, renderActiveOnly } = this.props
+    const { panes, renderActiveOnly, children } = this.props
     const { activeIndex } = this.state
 
-    if (renderActiveOnly) return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props)
-    return _.map(panes, ({ pane }, index) =>
-      TabPane.create(pane, {
+    const isMissingChildren = childrenUtils.isNil(children)
+
+    const items = isMissingChildren ? panes : children
+
+    if (renderActiveOnly) {
+      if (!isMissingChildren) {
+        return _.get(items, `[${activeIndex}]`)
+      }
+      return _.invoke(_.get(items, `[${activeIndex}]`), 'render', this.props)
+    }
+
+    return _.map(items, (item, index) => {
+      let pane = item
+
+      if (isMissingChildren) {
+        pane = item.pane || item.render(this.props)
+      }
+
+      return TabPane.create(pane, {
         overrideProps: {
           active: index === activeIndex,
         },
-      }),
-    )
+      })
+    })
   }
 
   renderMenu() {
-    const { menu, panes, menuPosition } = this.props
+    const { menu, panes, menuPosition, children } = this.props
+
     const { activeIndex } = this.state
 
     if (menu.tabular === true && menuPosition === 'right') {
       menu.tabular = 'right'
     }
 
+    const items = childrenUtils.isNil(children)
+      ? _.map(panes, 'menuItem')
+      : _.map(children, child => child.props.menuItem)
+
     return Menu.create(menu, {
       autoGenerateKey: false,
       overrideProps: {
-        items: _.map(panes, 'menuItem'),
+        items,
         onItemClick: this.handleItemClick,
         activeIndex,
       },

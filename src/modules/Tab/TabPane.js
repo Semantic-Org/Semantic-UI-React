@@ -57,6 +57,14 @@ TabPane.propTypes = {
 
   /** A Tab.Pane can display a loading indicator. */
   loading: PropTypes.bool,
+
+  /** Menu item to render that will select the tab */
+  menuItem: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
 }
 
 TabPane.create = createShorthandFactory(TabPane, content => ({ content }))

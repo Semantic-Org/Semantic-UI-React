@@ -11,20 +11,23 @@ export interface StrictTabProps {
   /** An element type to render as (string or function). */
   as?: any
 
+  /** Index of the currently active tab. */
+  activeIndex?: number | string
+
+  /** Primary content. */
+  children?: React.ReactNode
+
   /** The initial activeIndex. */
   defaultActiveIndex?: number | string
 
-  /** Index of the currently active tab. */
-  activeIndex?: number | string
+  /** Shorthand props for the Grid. */
+  grid?: any
 
   /** Shorthand props for the Menu. */
   menu?: any
 
   /** Align vertical menu */
   menuPosition?: 'left' | 'right'
-
-  /** Shorthand props for the Grid. */
-  grid?: any
 
   /**
    * Called on tab change.

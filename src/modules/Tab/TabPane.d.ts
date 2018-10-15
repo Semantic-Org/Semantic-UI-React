@@ -23,6 +23,9 @@ export interface StrictTabPaneProps {
 
   /** A Tab.Pane can display a loading indicator. */
   loading?: boolean
+
+  /** Menu item to render that will select the tab */
+  menuItem?: React.ReactNode | string | object | Function
 }
 
 declare const TabPane: React.StatelessComponent<TabPaneProps>
