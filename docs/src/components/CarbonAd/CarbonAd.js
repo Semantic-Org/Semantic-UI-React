@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 
 const style = {
-  padding: '1rem',
+  padding: '0.5rem',
   background: '#222',
   boxShadow: '0 0 2rem black',
 }
