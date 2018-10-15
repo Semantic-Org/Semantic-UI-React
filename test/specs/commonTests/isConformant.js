@@ -4,7 +4,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import * as semanticUIReact from 'semantic-ui-react'
 
-import { componentInfoContext } from 'docs/src/utils'
+import * as generatedInfo from 'docs/src/componentInfo'
 import { assertBodyContains, consoleUtil, nestedShallow, sandbox, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
 import hasValidTypings from './hasValidTypings'
@@ -47,7 +47,7 @@ export default (Component, options = {}) => {
     )
   }
 
-  const info = componentInfoContext.byDisplayName[constructorName]
+  const info = generatedInfo.byDisplayName[constructorName]
 
   // ----------------------------------------
   // Class and file name

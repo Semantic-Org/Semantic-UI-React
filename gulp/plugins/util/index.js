@@ -1,3 +1,4 @@
+export generateComponentIndex from './generateComponentIndex'
 export getComponentInfo from './getComponentInfo'
 export parseDefaultValue from './parseDefaultValue'
 export parseDocblock from './parseDocblock'

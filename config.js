@@ -1,3 +1,4 @@
+const _ = require('lodash')
 const path = require('path')
 
 // ------------------------------------
@@ -36,7 +37,10 @@ const paths = {
   docsDist: base.bind(null, envConfig.dir_docs_dist),
   docsPublic: base.bind(null, envConfig.dir_docs_public),
   docsSrc: base.bind(null, envConfig.dir_docs_src),
+  posix: undefined, // all the sibling values, but with forward slashes regardless the OS
 }
+
+paths.posix = _.mapValues(paths, func => (...args) => func(...args).replace(/\\/g, '/'))
 
 const config = {
   ...envConfig,

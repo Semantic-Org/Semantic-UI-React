@@ -1,11 +1,13 @@
 import { task, src, dest, lastRun, parallel, series, watch } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
+import remember from 'gulp-remember'
 import path from 'path'
 import { build, reloadRoutes, start } from 'react-static/node'
 import rimraf from 'rimraf'
 
 import sh from '../sh'
 import config from '../../config'
+import gulpComponentInfo from '../plugins/gulp-component-info'
 import gulpComponentMenu from '../plugins/gulp-component-menu'
 import gulpExampleMenu from '../plugins/gulp-example-menu'
 import gulpExampleSources from '../plugins/gulp-example-source'
@@ -18,22 +20,9 @@ const { log } = g.util
 const handleWatchChange = filename =>
   log(`File ${path.basename(filename)} was changed, running tasks...`)
 
-/**
- * Converts paths with globs to supported by chokidar, is more specific for Windows where
- * is different path sep.
- * Example of the failure behaviour: "C:\projects\docs/examples/index.js"
- *
- * @param {String} directory
- * @param {String} glob
- * @returns {String}
- */
-const toUniversalGlob = (directory, glob) => {
-  const relative = path
-    .relative(process.cwd(), directory)
-    .split(path.sep)
-    .join('/')
-
-  return `${relative}/${glob}`
+const handleWatchUnlink = group => (filename) => {
+  log(`File ${path.basename(filename)} was deleted, running tasks...`)
+  remember.forget(group, filename)
 }
 
 // ----------------------------------------
@@ -94,17 +83,17 @@ task('build:docs:static:start', (cb) => {
 // ----------------------------------------
 
 const componentsSrc = [
-  toUniversalGlob(paths.src(), 'addons/*/*.js'),
-  toUniversalGlob(paths.src(), 'behaviors/*/*.js'),
-  toUniversalGlob(paths.src(), 'elements/*/*.js'),
-  toUniversalGlob(paths.src(), 'collections/*/*.js'),
-  toUniversalGlob(paths.src(), 'modules/*/*.js'),
-  toUniversalGlob(paths.src(), 'views/*/*.js'),
+  `${paths.posix.src()}/addons/*/*.js`,
+  `${paths.posix.src()}/behaviors/*/*.js`,
+  `${paths.posix.src()}/elements/*/*.js`,
+  `${paths.posix.src()}/collections/*/*.js`,
+  `${paths.posix.src()}/modules/*/*.js`,
+  `${paths.posix.src()}/views/*/*.js`,
   '!**/index.js',
 ]
 
-const examplesSectionsSrc = toUniversalGlob(paths.docsSrc(), 'examples/*/*/*/index.js')
-const examplesSrc = toUniversalGlob(paths.docsSrc(), 'examples/*/*/*/!(*index).js')
+const examplesSectionsSrc = `${paths.posix.docsSrc()}/examples/*/*/*/index.js`
+const examplesSrc = `${paths.posix.docsSrc()}/examples/*/*/*/!(*index).js`
 
 task('build:docs:cname', (cb) => {
   sh(`echo react.semantic-ui.com > ${paths.docsDist('CNAME')}`, cb)
@@ -112,7 +101,9 @@ task('build:docs:cname', (cb) => {
 
 task('build:docs:docgen', () =>
   src(componentsSrc, { since: lastRun('build:docs:docgen') })
+    .pipe(remember('component-info'))
     .pipe(gulpReactDocgen())
+    .pipe(gulpComponentInfo())
     .pipe(dest(paths.docsSrc('componentInfo'))),
 )
 
@@ -124,12 +115,14 @@ task('build:docs:component-menu', () =>
 
 task('build:docs:example-menu', () =>
   src(examplesSectionsSrc, { since: lastRun('build:docs:example-menu') })
+    .pipe(remember('example-menu'))
     .pipe(gulpExampleMenu())
     .pipe(dest(paths.docsSrc('exampleMenus'))),
 )
 
 task('build:docs:example-sources', () =>
   src(examplesSrc, { since: lastRun('build:docs:example-sources') })
+    .pipe(remember('example-sources'))
     .pipe(gulpExampleSources())
     .pipe(dest(paths.docsSrc())),
 )
@@ -171,22 +164,19 @@ task('deploy:docs', (cb) => {
 
 task('watch:docs', () => {
   // rebuild component info
-  watch(componentsSrc, series('build:docs:docgen', 'build:docs:static:reload')).on(
-    'change',
-    handleWatchChange,
-  )
+  watch(componentsSrc, series('build:docs:docgen', 'build:docs:static:reload'))
+    .on('change', handleWatchChange)
+    .on('unlink', handleWatchUnlink('component-info'))
 
   // rebuild example menus
-  watch(examplesSectionsSrc, series('build:docs:example-menu', 'build:docs:static:reload')).on(
-    'change',
-    handleWatchChange,
-  )
+  watch(examplesSectionsSrc, series('build:docs:example-menu', 'build:docs:static:reload'))
+    .on('change', handleWatchChange)
+    .on('unlink', handleWatchUnlink('example-menu'))
 
   // rebuild example sources
-  watch(examplesSrc, series('build:docs:example-sources', 'build:docs:static:reload')).on(
-    'change',
-    handleWatchChange,
-  )
+  watch(examplesSrc, series('build:docs:example-sources', 'build:docs:static:reload'))
+    .on('change', handleWatchChange)
+    .on('unlink', handleWatchUnlink('example-sources'))
 })
 
 // ----------------------------------------

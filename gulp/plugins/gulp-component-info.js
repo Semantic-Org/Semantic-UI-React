@@ -1,13 +1,13 @@
 import gutil from 'gulp-util'
-import _ from 'lodash'
-import path from 'path'
 import through from 'through2'
 import Vinyl from 'vinyl'
 
-const pluginName = 'gulp-example-source'
+import { generateComponentIndex } from './util'
+
+const pluginName = 'gulp-component-info'
 
 export default () => {
-  const exampleSources = {}
+  const files = {}
 
   return through.obj(
     (file, enc, cb) => {
@@ -21,18 +21,13 @@ export default () => {
         return
       }
 
-      const sourceName = _.split(file.path, path.sep)
-        .slice(-4)
-        .join('/')
-        .slice(0, -3)
-
-      exampleSources[sourceName] = file.contents.toString()
-      cb()
+      files[file.basename] = JSON.parse(file.contents)
+      cb(null, file)
     },
     (cb) => {
       const indexFile = new Vinyl({
-        path: './exampleSources.json',
-        contents: Buffer.from(JSON.stringify(exampleSources, null, 2)),
+        path: './index.js',
+        contents: Buffer.from(generateComponentIndex(files)),
       })
 
       cb(null, indexFile)

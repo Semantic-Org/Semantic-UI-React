@@ -9,7 +9,7 @@ import 'brace/mode/html'
 import 'brace/mode/sh'
 import 'brace/theme/tomorrow_night'
 
-import { componentInfoContext } from 'docs/src/utils'
+import * as componentInfo from 'docs/src/componentInfo'
 
 const semanticUIReactCompleter = {
   getCompletions(editor, session, pos, prefix, callback) {
@@ -38,13 +38,13 @@ const semanticUIReactCompleter = {
     }
 
     const addPropsFromAPIPath = (apiPath, score) => {
-      const info = componentInfoContext.byAPIPath[apiPath]
+      const info = componentInfo.byAPIPath[apiPath]
       if (!info) return
       addPropsFromInfo(info, score)
     }
 
     const addPropsFromDisplayName = (displayName, score) => {
-      const info = componentInfoContext.byDisplayName[displayName]
+      const info = componentInfo.byDisplayName[displayName]
       if (!info) return
       addPropsFromInfo(info, score)
     }
@@ -53,7 +53,7 @@ const semanticUIReactCompleter = {
     // if we're on a semantic-ui-react import line, return top level components
     //
     if (/'semantic-ui-react'/.test(currentRow)) {
-      _.forEach(componentInfoContext.byDisplayName, (info, displayName) => {
+      _.forEach(componentInfo.byDisplayName, (info, displayName) => {
         if (info.isParent) addComponentDisplayName(displayName, 100)
       })
 

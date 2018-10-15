@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 import { customPropTypes } from 'src/lib'
-import { componentInfoContext } from 'docs/src/utils'
+import * as generatedInfo from 'docs/src/componentInfo'
 import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
 
 const isShorthand = propType =>
@@ -28,7 +28,7 @@ const shorthandMap = {
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
 export default (Component, componentInfo, options = {}) => {
-  const { displayName, repoPath } = componentInfoContext.fromComponent(Component)
+  const { displayName, repoPath } = generatedInfo.fromComponent(Component)
   const { ignoredTypingsProps = [], requiredProps } = options
 
   const tsFile = repoPath.replace('src/', '').replace('.js', '.d.ts')
