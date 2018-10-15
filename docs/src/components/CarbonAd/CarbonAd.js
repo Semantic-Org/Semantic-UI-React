@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 
+import { isBrowser } from 'src/lib'
+
 const style = {
   padding: '0.5rem',
   background: '#222',
@@ -8,16 +10,22 @@ const style = {
 }
 
 let isLoading = true
+let script
 
 const adExist = () => !!document.querySelector('#docs-carbonads #carbonads')
 
-const script = document.createElement('script')
-script.async = true
-script.id = '_carbonads_js'
-script.type = 'text/javascript'
-script.src = '//cdn.carbonads.com/carbon.js?serve=CK7DT23J&placement=reactsemanticuicom'
-script.onload = () => {
-  isLoading = false
+// Heads up!
+// We render docs with React-Static which performs SSR rendering.
+if (isBrowser()) {
+  script = document.createElement('script')
+
+  script.async = true
+  script.id = '_carbonads_js'
+  script.type = 'text/javascript'
+  script.src = '//cdn.carbonads.com/carbon.js?serve=CK7DT23J&placement=reactsemanticuicom'
+  script.onload = () => {
+    isLoading = false
+  }
 }
 
 const waitForLoad = () => {

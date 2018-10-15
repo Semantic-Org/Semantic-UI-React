@@ -15,7 +15,8 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production gulp build",
     "build:changelog": "github_changelog_generator --no-issues --no-unreleased --release-branch master --since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~300))",
-    "build:docs": "gulp --series build:docs",
+    "build:docs": "cross-env NODE_ENV=production gulp build:docs",
+    "build:docs:staging": "cross-env STAGING=true yarn build:docs && yarn serve docs/dist",
     "build:dist": "gulp --series build:dist",
     "ci": "yarn tsd:lint && yarn tsd:test && yarn lint && yarn test",
     "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs && gulp build:docs:cname",
