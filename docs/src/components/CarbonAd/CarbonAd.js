@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 const style = {
   padding: '1rem',
@@ -7,24 +7,44 @@ const style = {
   boxShadow: '0 0 2rem black',
 }
 
+let isLoading = true
+
+const adExist = () => !!document.querySelector('#docs-carbonads #carbonads')
+
+const script = document.createElement('script')
+script.async = true
+script.id = '_carbonads_js'
+script.type = 'text/javascript'
+script.src = '//cdn.carbonads.com/carbon.js?serve=CK7DT23J&placement=reactsemanticuicom'
+script.onload = () => {
+  isLoading = false
+}
+
+const waitForLoad = () => {
+  if (adExist()) isLoading = false
+  else setTimeout(waitForLoad, 50)
+}
+
 class CarbonAd extends Component {
   componentDidMount() {
-    this.lastHref = location.href
+    this.ifRef((ref) => {
+      // always add the script as it is used to insert the ad
+      ref.appendChild(script)
 
-    const script = document.createElement('script')
-    script.async = true
-    script.id = '_carbonads_js'
-    script.type = 'text/javascript'
-    script.src = '//cdn.carbonads.com/carbon.js?serve=CK7DT23J&placement=reactsemanticuicom'
-
-    this.ifRef(ref => ref.appendChild(script))
+      // On the first mount, the script fetches the first ad itself, so do nothing
+      // On subsequent mounts, we need to call refresh to insert a new ad
+      // Ensure we don't call refresh during an existing refresh or we'll get a double ad insert
+      // https://github.com/Semantic-Org/Semantic-UI-React/pull/3215
+      if (!isLoading) {
+        isLoading = true
+        _.invoke(window._carbonads, 'refresh')
+        waitForLoad()
+      }
+    })
   }
 
-  componentWillUpdate() {
-    if (location.href !== this.lastHref) {
-      this.lastHref = location.href
-      _.invoke(window._carbonads, 'refresh')
-    }
+  shouldComponentUpdate() {
+    return false
   }
 
   ifRef = (cb) => {
@@ -33,23 +53,7 @@ class CarbonAd extends Component {
   }
 
   render() {
-    return (
-      <Fragment>
-        {/* Heads up! These styles prevents a bug with multiple ads.
-          * https://github.com/Semantic-Org/Semantic-UI-React/pull/3215
-          */}
-        <style>{`
-          #docs-carbonads div {
-            display: none;
-          }
-
-          #docs-carbonads #carbonads {
-            display: block;
-          }
-        `}</style>
-        <div id='docs-carbonads' style={style} />
-      </Fragment>
-    )
+    return <div id='docs-carbonads' style={style} />
   }
 }
 
