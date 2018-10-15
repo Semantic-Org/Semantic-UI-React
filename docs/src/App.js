@@ -6,9 +6,7 @@ import Routes from 'react-static-routes'
 const App = () => (
   <Router>
     <Switch>
-      <Switch>
-        <Routes />
-      </Switch>
+      <Routes />
     </Switch>
   </Router>
 )

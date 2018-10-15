@@ -21,6 +21,7 @@ const ComponentControlsCodeSandbox = isBrowser()
 const ComponentControls = (props) => {
   const {
     anchorName,
+    disableHtml,
     exampleCode,
     examplePath,
     showHTML,
@@ -33,7 +34,7 @@ const ComponentControls = (props) => {
   return (
     <Menu color='green' compact icon='labeled' size='tiny' text>
       <ComponentControlsEditCode active={showCode} onClick={onShowCode} />
-      <ComponentControlsShowHtml active={showHTML} onClick={onShowHTML} />
+      <ComponentControlsShowHtml active={showHTML} disabled={disableHtml} onClick={onShowHTML} />
       <ComponentControlsCodeSandbox exampleCode={exampleCode} />
       <ComponentControlsMaximize examplePath={examplePath} />
       <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
@@ -42,9 +43,10 @@ const ComponentControls = (props) => {
 }
 
 ComponentControls.propTypes = {
+  anchorName: PropTypes.string,
+  disableHtml: PropTypes.bool,
   exampleCode: PropTypes.string,
   examplePath: PropTypes.string,
-  anchorName: PropTypes.string,
   onCopyLink: PropTypes.func,
   onShowCode: PropTypes.func,
   onShowHTML: PropTypes.func,
