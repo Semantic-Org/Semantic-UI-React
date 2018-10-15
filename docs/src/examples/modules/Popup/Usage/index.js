@@ -47,6 +47,7 @@ const PopupUsageExamples = () => (
       title='Default Open'
       description='A popup can appear open by default.'
       examplePath='modules/Popup/Usage/PopupExampleDefaultOpen'
+      renderHtml={false}
     />
   </ExampleSection>
 )
