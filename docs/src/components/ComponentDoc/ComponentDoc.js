@@ -33,7 +33,9 @@ class ComponentDoc extends Component {
     sidebarSections: docTypes.sidebarSections.isRequired,
   }
 
-  state = {}
+  state = {
+    autoScrollingToAnchor: false,
+  }
 
   componentWillMount() {
     const { exampleKeys, history } = this.props
@@ -58,7 +60,9 @@ class ComponentDoc extends Component {
   }
 
   handleExamplePassed = (e, { examplePath }) => {
-    this.setState({ activePath: examplePathToHash(examplePath) })
+    if (!this.state.autoScrollingToAnchor) {
+      this.setState({ activePath: examplePathToHash(examplePath) })
+    }
   }
 
   handleExamplesRef = examplesRef => this.setState({ examplesRef })
@@ -69,7 +73,11 @@ class ComponentDoc extends Component {
 
     history.replace(`${location.pathname}#${activePath}`)
     // set active hash path
-    this.setState({ activePath }, scrollToAnchor)
+    this.setState({ activePath, autoScrollingToAnchor: true }, scrollToAnchor)
+
+    // auto scrolling animation to anchor will finish after ~1 second
+    const ONE_SECOND = 1000
+    setTimeout(() => this.setState({ autoScrollingToAnchor: false }), ONE_SECOND)
   }
 
   render() {
