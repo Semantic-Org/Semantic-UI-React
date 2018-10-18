@@ -1,5 +1,5 @@
 require('@babel/register')({
-  ignore: [/node_modules/, /docs\/dist/],
+  ignore: [/node_modules/, /docs[\\/]dist/],
 })
 
 const { task, series, parallel } = require('gulp')
