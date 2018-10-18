@@ -578,7 +578,7 @@ const ResponsiveLayout = () => (
             <Item.Extra>
               <Button floated='right' primary>
                 Primary
-                <Icon name='right chevron' />
+                <Icon name='chevron right' />
               </Button>
               <Label>Limited</Label>
             </Item.Extra>
@@ -598,7 +598,7 @@ const ResponsiveLayout = () => (
             <Item.Extra>
               <Button primary floated='right'>
                 Primary
-                <Icon name='right chevron' />
+                <Icon name='chevron right' />
               </Button>
             </Item.Extra>
           </Item.Content>
