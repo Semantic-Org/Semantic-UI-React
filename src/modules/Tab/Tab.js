@@ -42,6 +42,16 @@ class Tab extends Component {
      */
     menu: PropTypes.object,
 
+    /**  */
+
+    /**
+     * Menu items to render that will select the tab.
+     * Supports anything that can be used to render a <Menu.Item>
+     */
+    menuItems: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object, PropTypes.func]),
+    ),
+
     /** Align vertical menu */
     menuPosition: PropTypes.oneOf(['left', 'right']),
 
@@ -122,7 +132,7 @@ class Tab extends Component {
   }
 
   renderMenu() {
-    const { menu, panes, menuPosition, children } = this.props
+    const { menu, menuItems, panes, menuPosition } = this.props
 
     const { activeIndex } = this.state
 
@@ -130,9 +140,7 @@ class Tab extends Component {
       menu.tabular = 'right'
     }
 
-    const items = childrenUtils.isNil(children)
-      ? _.map(panes, 'menuItem')
-      : _.map(children, child => child.props.menuItem)
+    const items = panes ? _.map(panes, 'menuItem') : menuItems
 
     return Menu.create(menu, {
       autoGenerateKey: false,

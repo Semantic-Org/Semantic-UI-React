@@ -26,6 +26,12 @@ export interface StrictTabProps {
   /** Shorthand props for the Menu. */
   menu?: any
 
+  /**
+   * Menu items to render that will select the tab.
+   * Supports anything that can be used to render a <Menu.Item>
+   */
+  menuItems?: (React.ReactNode | string | object | Function)[]
+
   /** Align vertical menu */
   menuPosition?: 'left' | 'right'
 
