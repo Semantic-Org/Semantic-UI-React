@@ -34,7 +34,7 @@ export default (webpackConfig, { stage }) => ({
         use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: true,
+            cacheDirectory: stage === 'dev',
           },
         },
       },
