@@ -19,14 +19,12 @@ const universalOptions = {
   },
 }
 
-  const t_0 = universal(import('../src/views/Introduction'), universalOptions)
-const t_1 = universal(import('../src/views/Layouts'), universalOptions)
-const t_2 = universal(import('../src/views/Theming'), universalOptions)
-const t_3 = universal(import('../src/views/Usage'), universalOptions)
-const t_4 = universal(import('../src/views/PageNotFound'), universalOptions)
-const t_5 = universal(import('../src/components/ComponentDoc'), universalOptions)
-const t_6 = universal(import('../src/components/LayoutsLayout'), universalOptions)
-const t_7 = universal(import('../src/components/ExternalExampleLayout'), universalOptions)
+  const t_0 = universal(import('../src/pages/Introduction'), universalOptions)
+const t_1 = universal(import('../src/pages/PageNotFound'), universalOptions)
+const t_2 = universal(import('../src/components/DocumentationPage'), universalOptions)
+const t_3 = universal(import('../src/components/ComponentDoc'), universalOptions)
+const t_4 = universal(import('../src/components/LayoutsLayout'), universalOptions)
+const t_5 = universal(import('../src/components/ExternalExampleLayout'), universalOptions)
 
 
 // Template Map
@@ -36,14 +34,12 @@ t_1,
 t_2,
 t_3,
 t_4,
-t_5,
-t_6,
-t_7
+t_5
 ]
 
 // Template Tree
 global.templateIDsByPath = global.templateIDsByPath || {
-  '404': 4
+  '404': 1
 }
 
 // Get template for given path
