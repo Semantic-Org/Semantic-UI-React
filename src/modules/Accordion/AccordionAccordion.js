@@ -13,6 +13,7 @@ import {
 } from '../../lib'
 import AccordionPanel from './AccordionPanel'
 
+
 const warnIfPropsAreInvalid = (props, state) => {
   const { exclusive } = props
   const { activeIndex } = state
