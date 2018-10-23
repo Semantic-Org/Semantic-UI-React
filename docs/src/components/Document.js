@@ -10,7 +10,7 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
 
       <link rel='shortcut icon' type='image/x-icon' href='/logo.png' />
-      <link rel='stylesheet' href='/style.css' />
+      <link rel='stylesheet' href={`/style.css?${versions.suir}`} />
       <link
         rel='stylesheet'
         href={`https://cdn.jsdelivr.net/npm/semantic-ui-css@${versions.sui}/semantic.min.css`}
@@ -26,7 +26,7 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       />
       <script
         src={`https://cdn.jsdelivr.net/npm/@babel/preset-env-standalone@${
-          versions.babel.standalone
+          versions.babel.standaloneEnv
         }/babel-preset-env.min.js`}
       />
       <script src={`https://cdn.jsdelivr.net/faker.js/${versions.faker}/faker.min.js`} />

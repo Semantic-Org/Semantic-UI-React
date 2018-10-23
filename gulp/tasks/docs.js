@@ -76,7 +76,7 @@ task(
 // ----------------------------------------
 
 task('build:docs:static:build', (cb) => {
-  build().then(cb)
+  build({ staging: !!process.env.STAGING }).then(cb)
 })
 
 task('build:docs:static:reload', (cb) => {
