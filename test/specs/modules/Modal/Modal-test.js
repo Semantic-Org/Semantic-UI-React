@@ -217,7 +217,7 @@ describe('Modal', () => {
   })
 
   describe('size', () => {
-    const sizes = ['fullscreen', 'large', 'mini', 'small', 'tiny']
+    const sizes = ['mini', 'tiny', 'small', 'large', 'fullscreen']
 
     sizes.forEach((size) => {
       it(`adds the "${size}" to the modal className`, () => {
