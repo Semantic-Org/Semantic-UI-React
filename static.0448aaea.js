@@ -30587,7 +30587,7 @@ var FixedMenuLayout = function FixedMenuLayout() {
   }, "Link Three"), _react.default.createElement(_semanticUiReact.List.Item, {
     as: "a"
   }, "Link Four"))), _react.default.createElement(_semanticUiReact.Grid.Column, {
-    width: 3
+    width: 7
   }, _react.default.createElement(_semanticUiReact.Header, {
     inverted: true,
     as: "h4",
@@ -32145,7 +32145,8 @@ function (_Component) {
         horizontal: true,
         inverted: true,
         divided: true,
-        link: true
+        link: true,
+        size: "small"
       }, _react.default.createElement(_semanticUiReact.List.Item, {
         as: "a",
         href: "#"
@@ -78294,7 +78295,7 @@ var universalOptions = {
 };
 var t_0 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
   id: "../src/pages/Introduction",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 270)), (0, _importCss7.default)("src-pages-Introduction", {
       disableWarnings: true
@@ -78314,7 +78315,7 @@ var t_0 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
 }), universalOptions);
 var t_1 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
   id: "../src/pages/PageNotFound",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 286)), (0, _importCss7.default)("src-pages-PageNotFound", {
       disableWarnings: true
@@ -78334,7 +78335,7 @@ var t_1 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
 }), universalOptions);
 var t_2 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
   id: "../src/components/DocumentationPage",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 460)), (0, _importCss7.default)("src-components-DocumentationPage", {
       disableWarnings: true
@@ -78354,7 +78355,7 @@ var t_2 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
 }), universalOptions);
 var t_3 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
   id: "../src/components/ComponentDoc",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 462)), (0, _importCss7.default)("src-components-ComponentDoc", {
       disableWarnings: true
@@ -78374,7 +78375,7 @@ var t_3 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
 }), universalOptions);
 var t_4 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
   id: "../src/components/LayoutsLayout",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 466)), (0, _importCss7.default)("src-components-LayoutsLayout", {
       disableWarnings: true
@@ -78394,7 +78395,7 @@ var t_4 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
 }), universalOptions);
 var t_5 = (0, _reactUniversalComponent.default)((0, _universalImport7.default)({
   id: "../src/components/ExternalExampleLayout",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/dist/react-static-routes.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/dist/react-static-routes.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 477)), (0, _importCss7.default)("src-components-ExternalExampleLayout", {
       disableWarnings: true
@@ -93566,7 +93567,7 @@ var EDITOR_GUTTER_COLOR = '#25282d'; // Heads up!
 exports.EDITOR_GUTTER_COLOR = EDITOR_GUTTER_COLOR;
 var CodeEditor = (0, _lib.isBrowser)() ? (0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: "./CodeEditor",
-  file: "/Users/levithomason/src/Semantic-UI-React/docs/src/components/CodeEditor/CodeEditorUniveral.js",
+  file: "/home/layershifter/WebstormProjects/Semantic-UI-React/docs/src/components/CodeEditor/CodeEditorUniveral.js",
   load: function load() {
     return Promise.all([new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 459)), (0, _importCss2.default)("CodeEditor", {
       disableWarnings: true
@@ -94348,7 +94349,7 @@ var _default = function _default(_ref) {
     components: components
   }, "This is the quickest way to get started with Semantic UI React. You won't be able to use\ncustom themes with this method."), _react.default.createElement(_CodeSnippet.default, {
     mode: "html",
-    value: "<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/semantic-ui/".concat(props.versions.sui, "/semantic.min.css\"></link>")
+    value: "<link rel=\"stylesheet\" href=\"//cdn.jsdelivr.net/npm/semantic-ui@".concat(props.versions.sui, "/dist/semantic.min.css\"></link>")
   }), _react.default.createElement(_tag.MDXTag, {
     name: "h3",
     components: components
