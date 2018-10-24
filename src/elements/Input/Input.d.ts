@@ -59,10 +59,10 @@ export interface StrictInputProps {
   /**
    * Called on change.
    *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and proposed value.
+   * @param {ChangeEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and a proposed value.
    */
-  onChange?: (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => void
 
   /** An Input can vary in size. */
   size?: SemanticSIZES
