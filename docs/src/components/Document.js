@@ -45,17 +45,17 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
         }.js`}
       />
       <script
-        src={`https://cdnjs.cloudflare.com/ajax/libs/react/${versions.react}/umd/react${
+        src={`https://cdn.jsdelivr.net/npm/react@${versions.react}/umd/react${
           dev ? '.development' : '.production.min'
         }.js`}
       />
       <script
-        src={`https://cdnjs.cloudflare.com/ajax/libs/react-dom/${versions.react}/umd/react-dom${
+        src={`https://cdn.jsdelivr.net/npm/react-dom@${versions.react}/umd/react-dom${
           dev ? '.development' : '.production.min'
         }.js`}
       />
       <script
-        src={`https://cdnjs.cloudflare.com/ajax/libs/react-dom/${
+        src={`https://cdn.jsdelivr.net/npm/react-dom@${
           versions.react
         }/umd/react-dom-server.browser${dev ? '.development' : '.production.min'}.js`}
       />
