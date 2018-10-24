@@ -6,6 +6,7 @@ import 'brace'
 import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
 import 'brace/mode/html'
+import 'brace/mode/sh'
 import 'brace/theme/tomorrow_night'
 
 import { componentInfoContext } from 'docs/src/utils'
@@ -94,6 +95,8 @@ const semanticUIReactCompleter = {
   },
 }
 
-const EditorAce = props => <Ace {...props} enableBasicAutocompletion={[semanticUIReactCompleter]} />
+const CodeEditor = props => (
+  <Ace {...props} enableBasicAutocompletion={[semanticUIReactCompleter]} />
+)
 
-export default EditorAce
+export default CodeEditor

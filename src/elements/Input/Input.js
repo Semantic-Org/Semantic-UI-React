@@ -79,8 +79,8 @@ class Input extends Component {
     /**
      * Called on change.
      *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props and proposed value.
+     * @param {ChangeEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and a proposed value.
      */
     onChange: PropTypes.func,
 

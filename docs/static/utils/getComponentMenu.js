@@ -1,4 +1,4 @@
-import componentMenu from '../componentMenu'
+import componentMenu from '../../src/componentMenu'
 
 const getComponentMenu = () => componentMenu
 

@@ -80,7 +80,7 @@ code:not(.hljs)::after {
 }
 
 #carbonads {
-  display: block;
+  line-height: 1.4;
 }
 
 #carbonads span {
@@ -93,17 +93,28 @@ code:not(.hljs)::after {
 
 .carbon-img img {
   display: block;
+  width: 98px;
+  height: 75px;
 }
 
 .carbon-text {
   display: block;
-  margin-top: 0.5em;
+  margin-top: 0.25em;
+  font-size: 0.9em;
+  color: #aaa;
+}
+.carbon-text:hover {
+  color: #ddd
 }
 
 .carbon-poweredby {
   display: block;
-  margin-top: 0.25em;
-  font-size: 0.8em;
+  margin-top: 0.125em;
+  font-size: 0.75em;
+  text-align: right;
   color: #ffffff;
   opacity: 0.5;
+}
+.carbon-poweredby:hover {
+  color: #ddd;
 }
