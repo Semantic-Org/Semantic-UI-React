@@ -9,9 +9,6 @@ import { sandbox } from 'test/utils'
 describe('AccordionPanel', () => {
   common.isConformant(AccordionPanel, { rendersChildren: false })
 
-  // TODO: Reenable tests in future
-  // https://github.com/airbnb/enzyme/issues/1553
-  //
   common.implementsShorthandProp(AccordionPanel, {
     assertExactMatch: false,
     autoGenerateKey: false,
@@ -33,8 +30,8 @@ describe('AccordionPanel', () => {
     it('should passed to children', () => {
       const wrapper = shallow(<AccordionPanel active content='Content' title='Title' />)
 
-      wrapper.at(0).should.have.prop('active', true)
-      wrapper.at(1).should.have.prop('active', true)
+      wrapper.childAt(0).should.have.prop('active', true)
+      wrapper.childAt(1).should.have.prop('active', true)
     })
   })
 
@@ -42,8 +39,8 @@ describe('AccordionPanel', () => {
     it('should passed to title', () => {
       const wrapper = shallow(<AccordionPanel content='Content' index={5} title='Title' />)
 
-      wrapper.at(0).should.have.prop('index', 5)
-      wrapper.at(1).should.have.not.prop('index')
+      wrapper.childAt(0).should.have.prop('index', 5)
+      wrapper.childAt(1).should.have.not.prop('index')
     })
   })
 

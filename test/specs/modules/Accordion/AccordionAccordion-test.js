@@ -4,7 +4,7 @@ import AccordionAccordion from 'src/modules/Accordion/AccordionAccordion'
 import AccordionContent from 'src/modules/Accordion/AccordionContent'
 import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
+import { consoleUtil, sandbox } from 'test/utils'
 
 describe('AccordionAccordion', () => {
   common.isConformant(AccordionAccordion)
@@ -134,6 +134,24 @@ describe('AccordionAccordion', () => {
         .at(1)
         .simulate('click')
       wrapper.should.have.state('activeIndex').that.is.empty()
+    })
+
+    it('warns if is `exclusive` and is given an array', () => {
+      consoleUtil.disableOnce()
+
+      const consoleError = sandbox.spy(console, 'error')
+      mount(<AccordionAccordion exclusive activeIndex={[1]} />)
+
+      consoleError.should.have.been.calledOnce()
+    })
+
+    it('warns if not `exclusive` and is given a number', () => {
+      consoleUtil.disableOnce()
+
+      const consoleError = sandbox.spy(console, 'error')
+      mount(<AccordionAccordion exclusive={false} activeIndex={1} />)
+
+      consoleError.should.have.been.calledOnce()
     })
   })
 
