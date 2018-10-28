@@ -24,6 +24,8 @@ const source = _.range(0, 3).reduce((memo) => {
 }, {})
 
 export default class SearchExampleCategory extends Component {
+  state = {}
+
   componentDidMount() {
     this.resetComponent()
   }

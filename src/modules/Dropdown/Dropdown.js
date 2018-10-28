@@ -412,7 +412,7 @@ export default class Dropdown extends Component {
       const isNextValueArray = Array.isArray(this.props.value)
       const hasValue = _.has(this.props, 'value')
 
-      if (hasValue && this.props.multiple && !isNextValueArray) {
+      if (hasValue && this.props.multiple && !isNextValueArray && this.props.value !== undefined) {
         console.error(
           'Dropdown `value` must be an array when `multiple` is set.' +
             ` Received type: \`${Object.prototype.toString.call(this.props.value)}\`.`,
