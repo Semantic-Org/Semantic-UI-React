@@ -20,11 +20,20 @@ export default class ComponentProps extends Component {
     activeDisplayName: null,
   }
 
+  componentWillReceiveProps2(nextProps) {
+    const currentName = this.props.displayName
+    const nextName = nextProps.displayName
+
+    if (currentName.displayName !== nextName && this.state.activeDisplayName !== null) {
+      this.setState({ activeDisplayName: null })
+    }
+  }
+
   componentDidUpdate(prevProps) {
     const currentName = prevProps.displayName
     const nextName = this.props.displayName
 
-    if (currentName.displayName !== nextName) {
+    if (currentName.displayName !== nextName && this.state.activeDisplayName !== null) {
       this.setState({ activeDisplayName: null })
     }
   }
