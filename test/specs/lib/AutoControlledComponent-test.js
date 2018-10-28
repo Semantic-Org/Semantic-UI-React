@@ -9,14 +9,15 @@ import { consoleUtil } from 'test/utils'
 let TestClass
 
 /* eslint-disable */
-const createTestClass = (options = {}) => class Test extends AutoControlledComponent {
-  static autoControlledProps = options.autoControlledProps
-  static defaultProps = options.defaultProps
-  getInitialAutoControlledState() {
-    return options.state
+const createTestClass = (options = {}) =>
+  class Test extends AutoControlledComponent {
+    static autoControlledProps = options.autoControlledProps
+    static defaultProps = options.defaultProps
+    getInitialAutoControlledState() {
+      return options.state
+    }
+    render = () => <div />
   }
-  render = () => <div />
-}
 /* eslint-enable */
 
 const toDefaultName = prop => `default${prop.slice(0, 1).toUpperCase() + prop.slice(1)}`
@@ -27,9 +28,10 @@ const makeProps = () => ({
   ion: 'belt',
 })
 
-const makeDefaultProps = props => _.transform(props, (res, val, key) => {
-  res[toDefaultName(key)] = val
-})
+const makeDefaultProps = props =>
+  _.transform(props, (res, val, key) => {
+    res[toDefaultName(key)] = val
+  })
 
 describe('extending AutoControlledComponent', () => {
   beforeEach(() => {
@@ -58,12 +60,9 @@ describe('extending AutoControlledComponent', () => {
       TestClass = createTestClass({ autoControlledProps })
       const wrapper = shallow(<TestClass />)
 
-      wrapper
-        .instance()
-        .trySetState({ [randomProp]: randomValue })
+      wrapper.instance().trySetState({ [randomProp]: randomValue })
 
-      wrapper
-        .should.have.state(randomProp, randomValue)
+      wrapper.should.have.state(randomProp, randomValue)
     })
 
     it('does not set state for non autoControlledProps', () => {
@@ -72,13 +71,9 @@ describe('extending AutoControlledComponent', () => {
       TestClass = createTestClass({ autoControlledProps: [], state: {} })
       const wrapper = shallow(<TestClass />)
 
-      wrapper
-        .instance()
-        .trySetState({ [faker.hacker.noun()]: faker.hacker.verb() })
+      wrapper.instance().trySetState({ [faker.hacker.noun()]: faker.hacker.verb() })
 
-      wrapper
-        .state()
-        .should.be.empty()
+      wrapper.state().should.be.empty()
     })
 
     it('does not set state for props defined by the parent', () => {
@@ -93,17 +88,13 @@ describe('extending AutoControlledComponent', () => {
       TestClass = createTestClass({ autoControlledProps, state: {} })
       const wrapper = shallow(<TestClass {...props} />)
 
-      wrapper
-        .instance()
-        .trySetState({ [randomProp]: randomValue })
+      wrapper.instance().trySetState({ [randomProp]: randomValue })
 
       // not updated
-      wrapper
-        .should.not.have.state(randomProp, randomValue)
+      wrapper.should.not.have.state(randomProp, randomValue)
 
       // is original value
-      wrapper
-        .should.have.state(randomProp, props[randomProp])
+      wrapper.should.have.state(randomProp, props[randomProp])
     })
 
     it('sets state for props passed as undefined by the parent', () => {
@@ -120,12 +111,9 @@ describe('extending AutoControlledComponent', () => {
       TestClass = createTestClass({ autoControlledProps, state: {} })
       const wrapper = shallow(<TestClass {...props} />)
 
-      wrapper
-        .instance()
-        .trySetState({ [randomProp]: randomValue })
+      wrapper.instance().trySetState({ [randomProp]: randomValue })
 
-      wrapper
-        .should.have.state(randomProp, randomValue)
+      wrapper.should.have.state(randomProp, randomValue)
     })
 
     it('does not set state for props passed as null by the parent', () => {
@@ -142,17 +130,13 @@ describe('extending AutoControlledComponent', () => {
       TestClass = createTestClass({ autoControlledProps, state: {} })
       const wrapper = shallow(<TestClass {...props} />)
 
-      wrapper
-        .instance()
-        .trySetState({ [randomProp]: randomValue })
+      wrapper.instance().trySetState({ [randomProp]: randomValue })
 
       // not updated
-      wrapper
-        .should.not.have.state(randomProp, randomValue)
+      wrapper.should.not.have.state(randomProp, randomValue)
 
       // is original value
-      wrapper
-        .should.have.state(randomProp, props[randomProp])
+      wrapper.should.have.state(randomProp, props[randomProp])
     })
   })
 
@@ -180,8 +164,7 @@ describe('extending AutoControlledComponent', () => {
       const props = makeProps()
 
       TestClass = createTestClass({ autoControlledProps: [], state: { foo: 'bar' } })
-      shallow(<TestClass {...props} />)
-        .should.have.state('foo', 'bar')
+      shallow(<TestClass {...props} />).should.have.state('foo', 'bar')
     })
 
     it('uses the initial state if default and regular props are undefined', () => {
@@ -192,8 +175,7 @@ describe('extending AutoControlledComponent', () => {
 
       TestClass = createTestClass({ autoControlledProps, defaultProps, state: { foo: 'bar' } })
 
-      shallow(<TestClass foo={undefined} />)
-        .should.have.state('foo', 'bar')
+      shallow(<TestClass foo={undefined} />).should.have.state('foo', 'bar')
     })
 
     it('uses the default prop if the regular prop is undefined', () => {
@@ -204,8 +186,7 @@ describe('extending AutoControlledComponent', () => {
 
       TestClass = createTestClass({ autoControlledProps, defaultProps, state: {} })
 
-      shallow(<TestClass foo={undefined} />)
-        .should.have.state('foo', 'default')
+      shallow(<TestClass foo={undefined} />).should.have.state('foo', 'default')
     })
 
     it('uses the regular prop when a default is also defined', () => {
@@ -216,24 +197,21 @@ describe('extending AutoControlledComponent', () => {
 
       TestClass = createTestClass({ autoControlledProps, defaultProps, state: {} })
 
-      shallow(<TestClass foo='initial' />)
-        .should.have.state('foo', 'initial')
+      shallow(<TestClass foo='initial' />).should.have.state('foo', 'initial')
     })
 
     it('defaults "checked" to false if not present', () => {
       consoleUtil.disableOnce()
       TestClass.autoControlledProps.push('checked')
 
-      shallow(<TestClass />)
-        .should.have.state('checked', false)
+      shallow(<TestClass />).should.have.state('checked', false)
     })
 
     it('defaults "value" to an empty string if not present', () => {
       consoleUtil.disableOnce()
       TestClass.autoControlledProps.push('value')
 
-      shallow(<TestClass />)
-        .should.have.state('value', '')
+      shallow(<TestClass />).should.have.state('value', '')
     })
 
     it('defaults "value" to an empty array if "multiple"', () => {
@@ -241,7 +219,8 @@ describe('extending AutoControlledComponent', () => {
       TestClass.autoControlledProps.push('value')
 
       shallow(<TestClass multiple />)
-        .state().should.deep.equal({ value: [] })
+        .state()
+        .should.deep.equal({ value: [] })
     })
   })
 
@@ -281,12 +260,9 @@ describe('extending AutoControlledComponent', () => {
       TestClass = createTestClass({ autoControlledProps, state: {} })
       const wrapper = shallow(<TestClass {...defaultProps} />)
 
-      wrapper
-        .instance()
-        .trySetState({ [randomProp]: randomValue })
+      wrapper.instance().trySetState({ [randomProp]: randomValue })
 
-      wrapper
-        .should.have.state(randomProp, randomValue)
+      wrapper.should.have.state(randomProp, randomValue)
     })
   })
 
@@ -301,13 +277,11 @@ describe('extending AutoControlledComponent', () => {
       const randomValue = faker.hacker.phrase()
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
-      const wrapper = shallow(<TestClass {...props} />)
+      const wrapper = mount(<TestClass {...props} />)
 
-      wrapper
-        .setProps({ [randomProp]: randomValue })
+      wrapper.setProps({ [randomProp]: randomValue })
 
-      wrapper
-        .should.have.state(randomProp, randomValue)
+      wrapper.should.have.state(randomProp, randomValue)
     })
 
     it('does not set state for props not in autoControlledProps', () => {
@@ -320,11 +294,9 @@ describe('extending AutoControlledComponent', () => {
       TestClass = createTestClass({ autoControlledProps: [], state: {} })
       const wrapper = shallow(<TestClass {...props} />)
 
-      wrapper
-        .setProps({ [randomProp]: randomValue })
+      wrapper.setProps({ [randomProp]: randomValue })
 
-      wrapper
-        .should.not.have.state(randomProp, randomValue)
+      wrapper.should.not.have.state(randomProp, randomValue)
     })
 
     it('does not set state for default props when changed', () => {
@@ -340,11 +312,9 @@ describe('extending AutoControlledComponent', () => {
       TestClass = createTestClass({ autoControlledProps, state: {} })
       const wrapper = shallow(<TestClass {...defaultProps} />)
 
-      wrapper
-        .setProps({ [randomDefaultProp]: randomValue })
+      wrapper.setProps({ [randomDefaultProp]: randomValue })
 
-      wrapper
-        .should.not.have.state(randomDefaultProp, randomValue)
+      wrapper.should.not.have.state(randomDefaultProp, randomValue)
     })
 
     it('does not return state to default props when setting props undefined', () => {
@@ -357,14 +327,11 @@ describe('extending AutoControlledComponent', () => {
       const wrapper = shallow(<TestClass foo='initial' />)
 
       // default value
-      wrapper
-        .should.have.state('foo', 'initial')
+      wrapper.should.have.state('foo', 'initial')
 
-      wrapper
-        .setProps({ foo: undefined })
+      wrapper.setProps({ foo: undefined })
 
-      wrapper
-        .should.not.have.state('foo', 'foo')
+      wrapper.should.not.have.state('foo', 'foo')
     })
 
     it('sets state to undefined for props passed as undefined by the parent', () => {
@@ -375,18 +342,15 @@ describe('extending AutoControlledComponent', () => {
       const randomProp = _.sample(autoControlledProps)
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
-      const wrapper = shallow(<TestClass {...props} />)
+      const wrapper = mount(<TestClass {...props} />)
 
       // state exists initially
-      wrapper
-        .should.have.state(randomProp)
+      wrapper.should.have.state(randomProp)
 
-      wrapper
-        .setProps({ [randomProp]: undefined })
+      wrapper.setProps({ [randomProp]: undefined })
 
       // use "should not have" to assert undefined state
-      wrapper
-        .should.not.have.state(randomProp)
+      wrapper.should.not.have.state(randomProp)
     })
 
     it('does not set state for props passed as null by the parent', () => {
@@ -398,13 +362,11 @@ describe('extending AutoControlledComponent', () => {
       const randomProp = _.sample(autoControlledProps)
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
-      const wrapper = shallow(<TestClass {...props} />)
+      const wrapper = mount(<TestClass {...props} />)
 
-      wrapper
-        .setProps({ [randomProp]: null })
+      wrapper.setProps({ [randomProp]: null })
 
-      wrapper
-        .should.have.state(randomProp, null)
+      wrapper.should.have.state(randomProp, null)
     })
   })
 })

@@ -42,8 +42,8 @@ class ComponentExampleRenderEditor extends PureComponent {
     error: PropTypes.string,
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.value !== nextProps.value && this.state.isConfirmingReset) {
+  componentDidUpdate(prevProps) {
+    if (this.props.value !== prevProps.value && this.state.isConfirmingReset) {
       this.resetStop()
     }
   }

@@ -91,7 +91,8 @@ export default class AccordionAccordion extends Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+    super.componentDidUpdate(prevProps, prevState)
     if (process.env.NODE_ENV !== 'production') {
       warnIfPropsAreInvalid(this.props, this.state)
     }

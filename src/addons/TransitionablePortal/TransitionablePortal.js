@@ -76,10 +76,10 @@ export default class TransitionablePortal extends Component {
   // Lifecycle
   // ----------------------------------------
 
-  componentWillReceiveProps({ open }) {
-    debug('componentWillReceiveProps()', { open })
+  componentDidUpdate(prevProps) {
+    debug('componentDidUpdate()', { open: this.props.open })
 
-    this.setState({ portalOpen: open })
+    if (prevProps.open !== this.props.open) this.setState({ portalOpen: this.props.open })
   }
 
   // ----------------------------------------

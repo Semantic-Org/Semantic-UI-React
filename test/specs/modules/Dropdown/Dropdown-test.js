@@ -651,14 +651,14 @@ describe('Dropdown', () => {
 
   describe('selected item', () => {
     it('defaults to the first item', () => {
-      wrapperShallow(<Dropdown options={options} selection />)
+      wrapperMount(<Dropdown options={options} selection />)
         .find('DropdownItem')
         .first()
         .should.have.prop('selected', true)
     })
     it('defaults to the first non-disabled item', () => {
       options[0].disabled = true
-      wrapperShallow(<Dropdown options={options} selection />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       // selection moved to second item
       wrapper
@@ -675,10 +675,12 @@ describe('Dropdown', () => {
       const randomIndex = 1 + _.random(options.length - 2)
       const value = options[randomIndex].value
 
-      wrapperShallow(<Dropdown options={[]} selection value={value} />)
+      wrapperMount(<Dropdown options={[]} selection value={value} />)
 
       wrapper.setProps({ options, value })
 
+      // Needs to go through two updates to reach the desired state
+      wrapper.update()
       wrapper
         .find('DropdownItem')
         .at(randomIndex)
@@ -1037,6 +1039,8 @@ describe('Dropdown', () => {
 
       // change value
       wrapper.setProps({ value: next })
+
+      wrapper.update()
 
       // next active item
       wrapper
@@ -2558,7 +2562,7 @@ describe('Dropdown', () => {
         'Dropdown `value` must not be an array when `multiple` is not set.' +
         ' Either set `multiple={true}` or use a string or number value.'
 
-      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledTwice()
       spy.should.have.been.calledWithMatch(errorMessage)
     })
 
@@ -2576,7 +2580,7 @@ describe('Dropdown', () => {
         'Dropdown `value` must be an array when `multiple` is set.' +
         ` Received type: \`${Object.prototype.toString.call(nextValue)}\`.`
 
-      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledTwice()
       spy.should.have.been.calledWithMatch(errorMessage)
     })
   })

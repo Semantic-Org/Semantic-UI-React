@@ -65,8 +65,9 @@ export default class DimmerInner extends Component {
     verticalAlign: PropTypes.oneOf(['bottom', 'top']),
   }
 
-  componentWillReceiveProps({ active: nextActive }) {
-    const { active: prevActive } = this.props
+  componentDidUpdate(prevProps) {
+    const { active: nextActive } = this.props
+    const { active: prevActive } = prevProps
 
     if (prevActive !== nextActive) this.toggleStyles(nextActive)
   }

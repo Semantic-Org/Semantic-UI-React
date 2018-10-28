@@ -86,11 +86,15 @@ export default class AutoControlledComponent extends Component {
         const defaultProp = getDefaultPropName(prop)
         // regular prop
         if (!_.has(propTypes, defaultProp)) {
-          console.error(`${name} is missing "${defaultProp}" propTypes validation for auto controlled prop "${prop}".`)
+          console.error(
+            `${name} is missing "${defaultProp}" propTypes validation for auto controlled prop "${prop}".`,
+          )
         }
         // its default prop
         if (!_.has(propTypes, prop)) {
-          console.error(`${name} is missing propTypes validation for auto controlled prop "${prop}".`)
+          console.error(
+            `${name} is missing propTypes validation for auto controlled prop "${prop}".`,
+          )
         }
       })
 
@@ -106,25 +110,31 @@ export default class AutoControlledComponent extends Component {
       // https://babeljs.io/blog/2015/06/07/react-on-es6-plus#property-initializers
       const illegalDefaults = _.intersection(autoControlledProps, _.keys(defaultProps))
       if (!_.isEmpty(illegalDefaults)) {
-        console.error([
-          'Do not set defaultProps for autoControlledProps. You can set defaults by',
-          'setting state in the constructor or using an ES7 property initializer',
-          '(https://babeljs.io/blog/2015/06/07/react-on-es6-plus#property-initializers)',
-          `See ${name} props: "${illegalDefaults}".`,
-        ].join(' '))
+        console.error(
+          [
+            'Do not set defaultProps for autoControlledProps. You can set defaults by',
+            'setting state in the constructor or using an ES7 property initializer',
+            '(https://babeljs.io/blog/2015/06/07/react-on-es6-plus#property-initializers)',
+            `See ${name} props: "${illegalDefaults}".`,
+          ].join(' '),
+        )
       }
 
       // prevent listing defaultProps in autoControlledProps
       //
       // Default props are automatically handled.
       // Listing defaults in autoControlledProps would result in allowing defaultDefaultValue props.
-      const illegalAutoControlled = _.filter(autoControlledProps, prop => _.startsWith(prop, 'default'))
+      const illegalAutoControlled = _.filter(autoControlledProps, prop =>
+        _.startsWith(prop, 'default'),
+      )
       if (!_.isEmpty(illegalAutoControlled)) {
-        console.error([
-          'Do not add default props to autoControlledProps.',
-          'Default props are automatically handled.',
-          `See ${name} autoControlledProps: "${illegalAutoControlled}".`,
-        ].join(' '))
+        console.error(
+          [
+            'Do not add default props to autoControlledProps.',
+            'Default props are automatically handled.',
+            `See ${name} autoControlledProps: "${illegalAutoControlled}".`,
+          ].join(' '),
+        )
       }
     }
 
@@ -152,19 +162,21 @@ export default class AutoControlledComponent extends Component {
     this.state = { ...state, ...initialAutoControlledState }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const { autoControlledProps } = this.constructor
 
     // Solve the next state for autoControlledProps
     const newState = autoControlledProps.reduce((acc, prop) => {
-      const isNextUndefined = _.isUndefined(nextProps[prop])
-      const propWasRemoved = !_.isUndefined(this.props[prop]) && isNextUndefined
+      const isNextUndefined = _.isUndefined(this.props[prop])
+      const propWasRemoved = !_.isUndefined(prevProps[prop]) && isNextUndefined
 
+      let value
       // if next is defined then use its value
-      if (!isNextUndefined) acc[prop] = nextProps[prop]
-
+      if (!isNextUndefined) value = this.props[prop]
       // reinitialize state for props just removed / set undefined
-      else if (propWasRemoved) acc[prop] = getAutoControlledStateValue(prop, nextProps)
+      else if (propWasRemoved) value = getAutoControlledStateValue(prop, this.props)
+
+      if (_.has(this.props, prop) && this.state[prop] !== value) acc[prop] = value
 
       return acc
     }, {})
@@ -185,11 +197,13 @@ export default class AutoControlledComponent extends Component {
       // warn about failed attempts to setState for keys not listed in autoControlledProps
       const illegalKeys = _.difference(_.keys(maybeState), autoControlledProps)
       if (!_.isEmpty(illegalKeys)) {
-        console.error([
-          `${name} called trySetState() with controlled props: "${illegalKeys}".`,
-          'State will not be set.',
-          'Only props in static autoControlledProps will be set on state.',
-        ].join(' '))
+        console.error(
+          [
+            `${name} called trySetState() with controlled props: "${illegalKeys}".`,
+            'State will not be set.',
+            'Only props in static autoControlledProps will be set on state.',
+          ].join(' '),
+        )
       }
     }
 

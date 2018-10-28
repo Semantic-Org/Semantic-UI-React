@@ -35,7 +35,7 @@ class ComponentDoc extends Component {
 
   state = {}
 
-  componentWillMount() {
+  componentDidMount() {
     const { exampleKeys, history } = this.props
 
     if (isBrowser() && window.location.hash) {
@@ -51,7 +51,7 @@ class ComponentDoc extends Component {
     }
   }
 
-  componentWillReceiveProps({ displayName }) {
+  componentDidUpdate({ displayName }) {
     if (displayName !== this.props.displayName) {
       this.setState({ activePath: undefined })
     }

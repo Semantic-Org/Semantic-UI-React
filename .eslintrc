@@ -36,6 +36,8 @@
     "react/jsx-filename-extension": [2, { "extensions": [".js"] }],
     "react/no-unused-prop-types": 0,
     "react/sort-comp": 0,
-    "react/require-default-props": 0
+    "react/require-default-props": 0,
+    "react/no-did-mount-set-state": 0, 
+    "react/no-did-update-set-state": 0
   }
 }

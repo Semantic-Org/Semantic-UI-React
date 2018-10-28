@@ -26,15 +26,21 @@ export default class ComponentSidebarSection extends PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const isActiveByProps = this.isActiveAccordion(nextProps)
+  componentDidUpdate(prevProps, prevState) {
+    const isActiveByProps = this.isActiveAccordion(this.props)
     const didCloseByProps = this.state.isActiveByProps && !isActiveByProps
+    const isActiveByUser = didCloseByProps ? false : prevState.isActiveByUser
 
-    // We allow the user to open accordions, but we close them when we scroll passed them
-    this.setState(prevState => ({
-      isActiveByProps,
-      isActiveByUser: didCloseByProps ? false : prevState.isActiveByUser,
-    }))
+    if (
+      this.state.isActiveByProps !== this.isActiveByProps ||
+      this.state.isActiveByUser !== isActiveByUser
+    ) {
+      // We allow the user to open accordions, but we close them when we scroll passed them
+      this.setState({
+        isActiveByProps,
+        isActiveByUser,
+      })
+    }
   }
 
   handleItemClick = examplePath => (e) => {

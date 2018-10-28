@@ -187,17 +187,18 @@ export default class Visibility extends Component {
   // Lifecycle
   // ----------------------------------------
 
-  componentWillReceiveProps({ continuous, once, context, updateOn }) {
+  componentDidUpdate(prevProps) {
+    const { continuous, once, context, updateOn } = this.props
     const cleanHappened =
-      continuous !== this.props.continuous ||
-      once !== this.props.once ||
-      updateOn !== this.props.updateOn
+      continuous !== prevProps.continuous ||
+      once !== prevProps.once ||
+      updateOn !== prevProps.updateOn
 
     // Heads up! We should clean up array of happened callbacks, if values of these props are changed
     if (cleanHappened) this.firedCallbacks = []
 
-    if (context !== this.props.context || updateOn !== this.props.updateOn) {
-      this.unattachHandlers(this.props.context)
+    if (context !== prevProps.context || updateOn !== prevProps.updateOn) {
+      this.unattachHandlers(prevProps.context)
       this.attachHandlers(context, updateOn)
     }
   }

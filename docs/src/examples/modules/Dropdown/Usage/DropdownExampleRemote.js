@@ -10,15 +10,16 @@ const getOptions = () =>
   })
 
 class DropdownExampleRemote extends Component {
-  componentWillMount() {
-    this.setState({
+  constructor(props) {
+    super(props)
+    this.state = {
       isFetching: false,
       multiple: true,
       search: true,
       searchQuery: null,
       value: [],
       options: getOptions(),
-    })
+    }
   }
 
   handleChange = (e, { value }) => this.setState({ value })

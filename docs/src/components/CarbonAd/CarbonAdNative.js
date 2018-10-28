@@ -20,9 +20,9 @@ class CarbonAdNative extends Component {
     this.getAd()
   }
 
-  componentWillUpdate() {
+  componentDidUpdate() {
     const shouldGetAd = Date.now() - this.timeOfLastAd > 10000
-    debug('componentWillUpdate', { mounted: this.mounted, shouldGetAd })
+    debug('componentDidUpdate', { mounted: this.mounted, shouldGetAd })
     if (shouldGetAd) {
       this.getAd()
     }

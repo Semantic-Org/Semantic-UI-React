@@ -58,24 +58,25 @@ class ComponentExample extends PureComponent {
     title: PropTypes.node,
   }
 
-  componentWillMount() {
-    const { examplePath } = this.props
+  constructor(props) {
+    super(props)
+    const { examplePath } = props
     this.anchorName = examplePathToHash(examplePath)
 
-    this.setState({
+    this.state = {
       handleMouseLeave: this.handleMouseLeave,
       handleMouseMove: this.handleMouseMove,
       showCode: this.isActiveHash(),
       sourceCode: this.getOriginalSourceCode(),
-    })
+    }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { examplePath, exampleSources, location } = nextProps
+  componentDidUpdate(prevProps) {
+    const { examplePath, exampleSources, location } = this.props
     const nextSourceCode = exampleSources[examplePath]
 
     // deactivate examples when switching from one to the next
-    if (this.isActiveHash() && this.isActiveState() && this.props.location.hash !== location.hash) {
+    if (this.isActiveHash() && this.isActiveState() && prevProps.location.hash !== location.hash) {
       this.clearActiveState()
     }
 

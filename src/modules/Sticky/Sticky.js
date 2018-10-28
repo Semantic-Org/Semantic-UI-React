@@ -100,26 +100,26 @@ export default class Sticky extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { active: current, scrollContext: currentScrollContext } = this.props
-    const { active: next, scrollContext: nextScrollContext } = nextProps
+  componentDidUpdate(prevProps) {
+    const { active: current, scrollContext: currentScrollContext } = prevProps
+    const { active: next, scrollContext: nextScrollContext } = this.props
 
     if (current === next) {
       if (currentScrollContext !== nextScrollContext) {
         this.removeListeners()
-        this.addListeners(nextProps)
+        this.addListeners(this.props)
       }
       return
     }
 
     if (next) {
       this.handleUpdate()
-      this.addListeners(nextProps)
+      this.addListeners(this.props)
       return
     }
 
     this.removeListeners()
-    this.setState({ sticky: false })
+    if (this.state.sticky) this.setState({ sticky: false })
   }
 
   componentWillUnmount() {
