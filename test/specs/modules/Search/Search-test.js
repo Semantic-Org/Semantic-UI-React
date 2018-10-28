@@ -129,7 +129,7 @@ describe('Search', () => {
       )
     })
     it('defaults to the first item with selectFirstResult', () => {
-      wrapperShallow(<Search results={options} minCharacters={0} selectFirstResult />)
+      wrapperMount(<Search results={options} minCharacters={0} selectFirstResult />)
         .find('SearchResult')
         .first()
         .should.have.prop('active', true)
@@ -265,7 +265,7 @@ describe('Search', () => {
     }, {})
 
     it('defaults to the first item with selectFirstResult', () => {
-      wrapperShallow(
+      wrapperMount(
         <Search results={categoryOptions} category minCharacters={0} selectFirstResult />,
       )
 

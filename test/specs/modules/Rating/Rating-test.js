@@ -32,8 +32,7 @@ describe('Rating', () => {
     })
 
     it('if no rating selected no icon should have aria-checked', () => {
-      const icons = mount(<Rating maxRating={3} />)
-        .find('RatingIcon')
+      const icons = mount(<Rating maxRating={3} />).find('RatingIcon')
 
       icons.at(0).should.have.prop('aria-checked', false)
       icons.at(1).should.have.prop('aria-checked', false)
@@ -93,8 +92,7 @@ describe('Rating', () => {
         .last()
         .simulate('mouseEnter')
         .simulate('click')
-      wrapper
-        .should.not.have.className('selected')
+      wrapper.should.not.have.className('selected')
       wrapper
         .find('RatingIcon[selected=true]')
         .should.have.length(0, 'Some RatingIcons did not remove their "selected" prop')
@@ -109,8 +107,7 @@ describe('Rating', () => {
         .find('RatingIcon')
         .first()
         .simulate('mouseEnter')
-      wrapper
-        .should.have.className('selected')
+      wrapper.should.have.className('selected')
     })
 
     it('selects icons up to and including the hovered icon', () => {
@@ -299,7 +296,8 @@ describe('Rating', () => {
       _.times(10, (i) => {
         const maxRating = i + 1
         shallow(<Rating maxRating={maxRating} />)
-          .should.have.exactly(maxRating).descendants('RatingIcon')
+          .should.have.exactly(maxRating)
+          .descendants('RatingIcon')
       })
     })
   })
@@ -325,6 +323,7 @@ describe('Rating', () => {
 
       _.times(10, (rating) => {
         wrapper.setProps({ rating })
+        wrapper.update()
         wrapper
           .find('RatingIcon[active=true]')
           .should.have.length(rating, `Rating should have ${rating} RatingIcon with "active" prop`)

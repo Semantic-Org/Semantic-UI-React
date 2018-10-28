@@ -56,30 +56,36 @@ describe('AccordionAccordion', () => {
     })
 
     it('sets the correct panel active', () => {
-      const wrapper = shallow(<AccordionAccordion activeIndex={0} panels={panels} />)
+      const wrapper = mount(<AccordionAccordion activeIndex={0} panels={panels} />)
 
-      wrapper.childAt(0).should.have.prop('active', true)
-      wrapper.childAt(1).should.have.prop('active', false)
-      wrapper.childAt(2).should.have.prop('active', false)
+      let panelsContainer = wrapper.childAt(0)
+      panelsContainer.childAt(0).should.have.prop('active', true)
+      panelsContainer.childAt(1).should.have.prop('active', false)
+      panelsContainer.childAt(2).should.have.prop('active', false)
 
       wrapper.setProps({ activeIndex: 1 })
-      wrapper.childAt(0).should.have.prop('active', false)
-      wrapper.childAt(1).should.have.prop('active', true)
-      wrapper.childAt(2).should.have.prop('active', false)
+      wrapper.update()
+      panelsContainer = wrapper.childAt(0)
+      panelsContainer.childAt(0).should.have.prop('active', false)
+      panelsContainer.childAt(1).should.have.prop('active', true)
+      panelsContainer.childAt(2).should.have.prop('active', false)
     })
 
     it('can be an array', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <AccordionAccordion activeIndex={[0, 1]} exclusive={false} panels={panels} />,
       )
-      wrapper.childAt(0).should.have.prop('active', true)
-      wrapper.childAt(1).should.have.prop('active', true)
-      wrapper.childAt(2).should.have.prop('active', false)
+      let panelsContainer = wrapper.childAt(0)
+      panelsContainer.childAt(0).should.have.prop('active', true)
+      panelsContainer.childAt(1).should.have.prop('active', true)
+      panelsContainer.childAt(2).should.have.prop('active', false)
 
       wrapper.setProps({ activeIndex: [1, 2] })
-      wrapper.childAt(0).should.have.prop('active', false)
-      wrapper.childAt(1).should.have.prop('active', true)
-      wrapper.childAt(2).should.have.prop('active', true)
+      wrapper.update()
+      panelsContainer = wrapper.childAt(0)
+      panelsContainer.childAt(0).should.have.prop('active', false)
+      panelsContainer.childAt(1).should.have.prop('active', true)
+      panelsContainer.childAt(2).should.have.prop('active', true)
     })
 
     it('can be inclusive and makes Accordion.Content at activeIndex - 1 "active"', () => {

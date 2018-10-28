@@ -191,23 +191,12 @@ export default class Search extends Component {
   static Result = SearchResult
   static Results = SearchResults
 
-  componentWillMount() {
-    debug('componentWillMount()')
+  componentDidMount() {
+    debug('componentDidMount()')
     const { open, value } = this.state
 
     this.setValue(value)
     if (open) this.open()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps)
-    debug('componentWillReceiveProps()')
-    debug('changed props:', objectDiff(nextProps, this.props))
-
-    if (!shallowEqual(nextProps.value, this.props.value)) {
-      debug('value changed, setting', nextProps.value)
-      this.setValue(nextProps.value)
-    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -216,8 +205,15 @@ export default class Search extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     // eslint-disable-line complexity
+    super.componentDidUpdate(prevProps, prevState)
     debug('componentDidUpdate()')
     debug('to state:', objectDiff(prevState, this.state))
+    debug('changed props:', objectDiff(prevProps, this.props))
+
+    if (!shallowEqual(this.props.value, prevProps.value)) {
+      debug('value changed, setting', this.props.value)
+      this.setValue(this.props.value)
+    }
 
     // focused / blurred
     if (!prevState.focus && this.state.focus) {

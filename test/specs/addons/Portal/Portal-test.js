@@ -69,6 +69,7 @@ describe('Portal', () => {
 
       // Enzyme docs say it merges previous props but without children, react complains
       wrapper.setProps({ open: true, children: <p /> })
+      wrapper.update()
       wrapper.should.have.descendants(PortalInner)
     })
 
@@ -81,6 +82,7 @@ describe('Portal', () => {
       wrapper.should.have.descendants(PortalInner)
 
       wrapper.setProps({ open: false, children: <p /> })
+      wrapper.update()
       wrapper.should.not.have.descendants(PortalInner)
     })
   })

@@ -113,7 +113,8 @@ export default class Checkbox extends Component {
     this.setIndeterminate()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+    super.componentDidUpdate(prevProps, prevState)
     this.setIndeterminate()
   }
 

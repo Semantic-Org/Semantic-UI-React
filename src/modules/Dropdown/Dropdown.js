@@ -382,8 +382,8 @@ export default class Dropdown extends Component {
     return { searchQuery: '' }
   }
 
-  componentWillMount() {
-    debug('componentWillMount()')
+  componentDidMount() {
+    debug('componentDidMount()')
     const { open, value } = this.state
 
     this.setValue(value)
@@ -395,23 +395,29 @@ export default class Dropdown extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps)
-    debug('componentWillReceiveProps()')
-    debug('to props:', objectDiff(this.props, nextProps))
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(nextProps, this.props) || !shallowEqual(nextState, this.state)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // eslint-disable-line complexity
+    super.componentDidUpdate(prevProps, prevState)
+    debug('componentDidUpdate()')
+    debug('to state:', objectDiff(prevState, this.state))
+    debug('to props:', objectDiff(prevProps, this.props))
 
     /* eslint-disable no-console */
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && this.props.value) {
       // in development, validate value type matches dropdown type
-      const isNextValueArray = Array.isArray(nextProps.value)
-      const hasValue = _.has(nextProps, 'value')
+      const isNextValueArray = Array.isArray(this.props.value)
+      const hasValue = _.has(this.props, 'value')
 
-      if (hasValue && nextProps.multiple && !isNextValueArray) {
+      if (hasValue && this.props.multiple && !isNextValueArray) {
         console.error(
           'Dropdown `value` must be an array when `multiple` is set.' +
-            ` Received type: \`${Object.prototype.toString.call(nextProps.value)}\`.`,
+            ` Received type: \`${Object.prototype.toString.call(this.props.value)}\`.`,
         )
-      } else if (hasValue && !nextProps.multiple && isNextValueArray) {
+      } else if (hasValue && !this.props.multiple && isNextValueArray) {
         console.error(
           'Dropdown `value` must not be an array when `multiple` is not set.' +
             ' Either set `multiple={true}` or use a string or number value.',
@@ -420,30 +426,20 @@ export default class Dropdown extends Component {
     }
     /* eslint-enable no-console */
 
-    if (!shallowEqual(nextProps.value, this.props.value)) {
-      debug('value changed, setting', nextProps.value)
-      this.setValue(nextProps.value)
-      this.setSelectedIndex(nextProps.value)
+    if (!shallowEqual(this.props.value, prevProps.value)) {
+      debug('value changed, setting', this.props.value)
+      this.setValue(this.props.value)
+      this.setSelectedIndex(this.props.value)
     }
 
     // The selected index is only dependent on option keys/values.
     // We only check those properties to avoid recursive performance impacts.
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/3000
     if (
-      !_.isEqual(this.getKeyAndValues(nextProps.options), this.getKeyAndValues(this.props.options))
+      !_.isEqual(this.getKeyAndValues(this.props.options), this.getKeyAndValues(prevProps.options))
     ) {
-      this.setSelectedIndex(undefined, nextProps.options)
+      this.setSelectedIndex(undefined, this.props.options)
     }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return !shallowEqual(nextProps, this.props) || !shallowEqual(nextState, this.state)
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    // eslint-disable-line complexity
-    debug('componentDidUpdate()')
-    debug('to state:', objectDiff(prevState, this.state))
 
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
