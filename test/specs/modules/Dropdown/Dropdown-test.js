@@ -2552,8 +2552,8 @@ describe('Dropdown', () => {
       consoleUtil.disableOnce()
       const spy = sandbox.spy(console, 'error')
 
-      const originalValue = _.pick(options, 'value')[0]
-      const nextValue = _.castArray(_.pick(options, 'value')[1])
+      const originalValue = _.pick(options[0], 'value')
+      const nextValue = _.castArray(_.pick(options[1], 'value'))
 
       wrapperMount(<Dropdown options={options} value={originalValue} selection />)
       wrapper.setProps({ value: nextValue })
@@ -2570,8 +2570,8 @@ describe('Dropdown', () => {
       consoleUtil.disableOnce()
       const spy = sandbox.spy(console, 'error')
 
-      const originalValue = _.castArray(_.pick(options, 'value')[0])
-      const nextValue = _.pick(options, 'value')[1]
+      const originalValue = _.castArray(_.pick(options[0], 'value'))
+      const nextValue = options[1]
 
       wrapperMount(<Dropdown options={options} value={originalValue} selection multiple />)
       wrapper.setProps({ value: nextValue })
