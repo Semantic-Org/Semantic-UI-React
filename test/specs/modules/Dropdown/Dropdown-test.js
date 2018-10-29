@@ -365,6 +365,60 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('clearable', () => {
+    it('does not clear when value is empty', () => {
+      const onChange = sandbox.spy()
+      wrapperShallow(<Dropdown clearable onChange={onChange} />)
+
+      wrapper.find('Icon').simulate('click', { stopPropagation: _.noop })
+      onChange.should.have.not.been.called()
+    })
+
+    it('does not clear when is multiple and value is empty', () => {
+      const onChange = sandbox.spy()
+      wrapperShallow(<Dropdown clearable multiple onChange={onChange} />)
+
+      wrapper.find('Icon').simulate('click', { stopPropagation: _.noop })
+      onChange.should.have.not.been.called()
+    })
+
+    it('clears when value is not empty', () => {
+      const defaultValue = options[1].value
+      const event = { stopPropagation: _.noop }
+      const onChange = sandbox.spy()
+
+      wrapperShallow(
+        <Dropdown defaultValue={defaultValue} clearable onChange={onChange} options={options} />,
+      )
+      wrapper.find('Icon').simulate('click', event)
+
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch(event, { value: '' })
+      wrapper.should.have.state('selectedIndex', 0)
+    })
+
+    it('clears when value is multiple and is not empty', () => {
+      const defaultValue = _.map(options, 'value')
+      const event = { stopPropagation: _.noop }
+      const onChange = sandbox.spy()
+
+      wrapperShallow(
+        <Dropdown
+          defaultValue={defaultValue}
+          clearable
+          multiple
+          onChange={onChange}
+          options={options}
+        />,
+      )
+      wrapper.find('Icon').simulate('click', event)
+
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch(event, { value: [] })
+      wrapper.should.have.state('selectedIndex', 0)
+    })
+  })
+
   describe('handleBlur', () => {
     it('passes the event to the onBlur prop', () => {
       const spy = sandbox.spy()

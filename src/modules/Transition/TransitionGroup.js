@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { cloneElement } from 'react'
+import React, { cloneElement, Fragment } from 'react'
 
 import {
   customPropTypes,
@@ -41,6 +41,7 @@ export default class TransitionGroup extends React.Component {
   }
 
   static defaultProps = {
+    as: Fragment,
     animation: 'fade',
     duration: 500,
   }

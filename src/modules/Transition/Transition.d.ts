@@ -1,18 +1,20 @@
 import * as React from 'react'
 
-import { SemanticTRANSITIONS } from '../../'
+import { SemanticTRANSITIONS } from '../../generic'
 import TransitionGroup from './TransitionGroup'
 
 export type TRANSITION_STATUSES = 'ENTERED' | 'ENTERING' | 'EXITED' | 'EXITING' | 'UNMOUNTED'
 
-export interface TransitionProps {
+export interface TransitionProps extends StrictTransitionProps {
   [key: string]: any
+}
+
+export interface StrictTransitionProps {
+  /** Named animation event to used. Must be defined in CSS. */
+  animation?: SemanticTRANSITIONS
 
   /** A component can animate like jQuery slideUp() and slideDown(). */
   animateHeight?: boolean
-
-  /** Named animation event to used. Must be defined in CSS. */
-  animation?: SemanticTRANSITIONS
 
   /** Primary content. */
   children?: React.ReactNode

@@ -1,14 +1,16 @@
 import * as React from 'react'
 
-import { HtmlSpanProps, SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { HtmlSpanProps, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { FlagProps } from '../../elements/Flag'
 import { IconProps } from '../../elements/Icon'
 import { ImageProps } from '../../elements/Image'
 import { LabelProps } from '../../elements/Label'
 
-export interface DropdownItemProps {
+export interface DropdownItemProps extends StrictDropdownItemProps {
   [key: string]: any
+}
 
+export interface StrictDropdownItemProps {
   /** An element type to render as (string or function). */
   as?: any
 

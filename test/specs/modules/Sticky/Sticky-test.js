@@ -401,6 +401,15 @@ describe('Sticky', () => {
     })
   })
 
+  describe('styleElement', () => {
+    it('is passed to macthing element', () => {
+      wrapperMount(<Sticky styleElement={{ zIndex: 10 }} />)
+      const element = wrapper.childAt(0).childAt(1)
+
+      element.should.have.style('z-index', '10')
+    })
+  })
+
   describe('update', () => {
     it('is called on scroll', () => {
       const instance = mount(<Sticky />).instance()

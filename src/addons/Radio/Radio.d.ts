@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { CheckboxProps } from '../../modules/Checkbox'
+import { StrictCheckboxProps } from '../../modules/Checkbox'
 
-export interface RadioProps extends CheckboxProps {
+export interface RadioProps extends StrictRadioProps {
   [key: string]: any
+}
 
+export interface StrictRadioProps extends StrictCheckboxProps {
   /** Format to emphasize the current selection state. */
   slider?: boolean
 

@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 import { SegmentSizeProp } from './Segment'
 
-export interface SegmentGroupProps {
+export interface SegmentGroupProps extends StrictSegmentGroupProps {
   [key: string]: any
+}
 
+export interface StrictSegmentGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 

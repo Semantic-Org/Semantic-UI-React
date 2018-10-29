@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 import { createShorthandFactory, customPropTypes } from '../../lib'
 import AccordionTitle from './AccordionTitle'
@@ -42,17 +42,19 @@ class AccordionPanel extends Component {
   render() {
     const { active, content, index, title } = this.props
 
-    return [
-      AccordionTitle.create(title, {
-        autoGenerateKey: false,
-        defaultProps: { active, index, key: 'title' },
-        overrideProps: this.handleTitleOverrides,
-      }),
-      AccordionContent.create(content, {
-        autoGenerateKey: false,
-        defaultProps: { active, key: 'content' },
-      }),
-    ]
+    return (
+      <Fragment>
+        {AccordionTitle.create(title, {
+          autoGenerateKey: false,
+          defaultProps: { active, index },
+          overrideProps: this.handleTitleOverrides,
+        })}
+        {AccordionContent.create(content, {
+          autoGenerateKey: false,
+          defaultProps: { active },
+        })}
+      </Fragment>
+    )
   }
 }
 

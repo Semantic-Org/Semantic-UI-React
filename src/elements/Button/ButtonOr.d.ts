@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface ButtonOrProps {
+export interface ButtonOrProps extends StrictButtonOrProps {
   [key: string]: any
+}
 
+export interface StrictButtonOrProps {
   /** An element type to render as (string or function). */
   as?: any
 

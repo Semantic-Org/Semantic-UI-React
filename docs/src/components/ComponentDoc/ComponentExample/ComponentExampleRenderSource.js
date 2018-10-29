@@ -9,6 +9,8 @@ import { updateForKeys } from 'docs/src/hoc'
 import * as selectCommon from 'docs/src/examples/addons/Select/common'
 import Wireframe from 'docs/src/examples/behaviors/Visibility/Wireframe'
 import * as dropdownCommon from 'docs/src/examples/modules/Dropdown/common'
+import SearchExampleStandard from 'docs/src/examples/modules/Search/Types/SearchExampleStandard'
+import SearchExampleCategory from 'docs/src/examples/modules/Search/Types/SearchExampleCategory'
 
 const babelConfig = {
   presets: [
@@ -28,6 +30,7 @@ const externals = {
   faker,
   lodash: require('lodash'),
   react: React,
+  'prop-types': PropTypes,
   'semantic-ui-react': SUIR,
 }
 const commons = {
@@ -38,7 +41,10 @@ const commons = {
 const resolver = (importPath, { displayName }) => {
   if (externals[importPath]) return externals[importPath]
   if (commons[displayName] && _.endsWith(importPath, '/common')) return commons[displayName]
+
   if (_.endsWith(importPath, '/Wireframe')) return Wireframe
+  if (_.endsWith(importPath, '/SearchExampleCategory')) return SearchExampleCategory
+  if (_.endsWith(importPath, '/SearchExampleStandard')) return SearchExampleStandard
 
   throw new Error(
     [

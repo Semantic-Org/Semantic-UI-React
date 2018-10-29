@@ -1,15 +1,17 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
-import { PortalProps } from '../../addons/Portal'
+import { SemanticShorthandItem } from '../../generic'
+import { StrictPortalProps } from '../../addons/Portal'
 import { default as ModalActions, ModalActionsProps } from './ModalActions'
 import { default as ModalContent, ModalContentProps } from './ModalContent'
 import ModalDescription from './ModalDescription'
 import { default as ModalHeader, ModalHeaderProps } from './ModalHeader'
 
-export interface ModalProps extends PortalProps {
+export interface ModalProps extends StrictModalProps {
   [key: string]: any
+}
 
+export interface StrictModalProps extends StrictPortalProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -99,7 +101,7 @@ export interface ModalProps extends PortalProps {
   open?: boolean
 
   /** A modal can vary in size. */
-  size?: 'fullscreen' | 'large' | 'mini' | 'small' | 'tiny'
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'fullscreen'
 
   /** Custom styles. */
   style?: React.CSSProperties

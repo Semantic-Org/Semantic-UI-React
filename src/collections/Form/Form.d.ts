@@ -10,9 +10,11 @@ import FormRadio from './FormRadio'
 import FormSelect from './FormSelect'
 import FormTextArea from './FormTextArea'
 
-export interface FormProps {
+export interface FormProps extends StrictFormProps {
   [key: string]: any
+}
 
+export interface StrictFormProps {
   /** An element type to render as (string or function). */
   as?: any
 

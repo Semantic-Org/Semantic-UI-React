@@ -16,6 +16,7 @@ import hasValidTypings from './hasValidTypings'
  * @param {Object} [options.eventTargets={}] Map of events and the child component to target.
  * @param {Number} [options.nestingLevel=0] The nesting level of the component.
  * @param {boolean} [options.rendersChildren=false] Does this component render any children?
+ * @param {boolean} [options.rendersFragmentByDefault=false] Does this component renders React.Fragment by default?
  * @param {boolean} [options.rendersPortal=false] Does this component render a Portal powered component?
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
@@ -25,6 +26,7 @@ export default (Component, options = {}) => {
     nestingLevel = 0,
     requiredProps = {},
     rendersChildren = true,
+    rendersFragmentByDefault = false,
     rendersPortal = false,
   } = options
   const { throwError } = helpers('isConformant', Component)
@@ -91,9 +93,11 @@ export default (Component, options = {}) => {
   if (rendersChildren) {
     it('spreads user props', () => {
       const propName = 'data-is-conformant-spread-props'
-      const props = { [propName]: true }
+      const props = { as: rendersFragmentByDefault ? 'div' : undefined, [propName]: true }
 
-      shallow(<Component {...requiredProps} {...props} />).should.have.descendants(props)
+      shallow(<Component {...props} {...requiredProps} />).should.have.descendants({
+        [propName]: true,
+      })
     })
   }
 
@@ -228,7 +232,9 @@ export default (Component, options = {}) => {
             'data-simulate-event-here': true,
           }
 
-          const wrapper = shallow(<Component {...props} />)
+          const wrapper = shallow(
+            <Component as={rendersFragmentByDefault ? 'div' : undefined} {...props} />,
+          )
 
           const eventTarget = eventTargets[listenerName]
             ? wrapper.find(eventTargets[listenerName])
@@ -321,9 +327,16 @@ export default (Component, options = {}) => {
           wrapper.detach()
           document.body.removeChild(mountNode)
         } else {
-          nestedShallow(<Component {...requiredProps} className={className} />, {
-            nestingLevel,
-          }).should.have.className(className)
+          nestedShallow(
+            <Component
+              as={rendersFragmentByDefault ? 'div' : undefined}
+              {...requiredProps}
+              className={className}
+            />,
+            {
+              nestingLevel,
+            },
+          ).should.have.className(className)
         }
       })
 

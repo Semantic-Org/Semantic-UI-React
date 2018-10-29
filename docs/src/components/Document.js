@@ -10,50 +10,55 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
 
       <link rel='shortcut icon' type='image/x-icon' href='/logo.png' />
-      <link rel='stylesheet' href='/style.css' />
+      <link rel='stylesheet' href={`/style.css?${versions.suir}`} />
       <link
         rel='stylesheet'
-        href={`//cdnjs.cloudflare.com/ajax/libs/semantic-ui/${versions.sui}/semantic.min.css`}
+        href={`https://cdn.jsdelivr.net/npm/semantic-ui-css@${versions.sui}/semantic.min.css`}
       />
 
-      <script src={`//cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`} />
       <script
-        src={`//cdn.jsdelivr.net/npm/@babel/standalone@${versions.babel.standalone}/babel.min.js`}
+        src={`https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`}
       />
       <script
-        src={`//cdn.jsdelivr.net/npm/@babel/preset-env-standalone@${
+        src={`https://cdn.jsdelivr.net/npm/@babel/standalone@${
           versions.babel.standalone
+        }/babel.min.js`}
+      />
+      <script
+        src={`https://cdn.jsdelivr.net/npm/@babel/preset-env-standalone@${
+          versions.babel.standaloneEnv
         }/babel-preset-env.min.js`}
       />
-      <script src={`//cdn.jsdelivr.net/faker.js/${versions.faker}/faker.min.js`} />
+      <script src={`https://cdn.jsdelivr.net/faker.js/${versions.faker}/faker.min.js`} />
 
-      <script crossOrigin='true' src={`//unpkg.com/prettier@${versions.prettier}/standalone.js`} />
       <script
         crossOrigin='true'
-        src={`//unpkg.com/prettier@${versions.prettier}/parser-babylon.js`}
+        src={`https://unpkg.com/prettier@${versions.prettier}/standalone.js`}
       />
       <script
-        src={`//cdnjs.cloudflare.com/ajax/libs/prop-types/${versions.propTypes}/prop-types${
+        crossOrigin='true'
+        src={`https://unpkg.com/prettier@${versions.prettier}/parser-babylon.js`}
+      />
+      <script
+        src={`https://cdnjs.cloudflare.com/ajax/libs/prop-types/${versions.propTypes}/prop-types${
           siteData.dev ? '' : '.min'
         }.js`}
       />
       <script
-        src={`//cdnjs.cloudflare.com/ajax/libs/react/${versions.react}/umd/react${
+        src={`https://cdn.jsdelivr.net/npm/react@${versions.react}/umd/react${
           dev ? '.development' : '.production.min'
         }.js`}
       />
       <script
-        src={`//cdnjs.cloudflare.com/ajax/libs/react-dom/${versions.react}/umd/react-dom${
+        src={`https://cdn.jsdelivr.net/npm/react-dom@${versions.react}/umd/react-dom${
           dev ? '.development' : '.production.min'
         }.js`}
       />
       <script
-        src={`//cdnjs.cloudflare.com/ajax/libs/react-dom/${
+        src={`https://cdn.jsdelivr.net/npm/react-dom@${
           versions.react
         }/umd/react-dom-server.browser${dev ? '.development' : '.production.min'}.js`}
       />
-
-      <script src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' />
     </Head>
     <Body>{children}</Body>
   </Html>

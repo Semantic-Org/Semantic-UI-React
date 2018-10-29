@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface CommentContentProps {
+export interface CommentContentProps extends StrictCommentContentProps {
   [key: string]: any
+}
 
+export interface StrictCommentContentProps {
   /** An element type to render as (string or function). */
   as?: any
 

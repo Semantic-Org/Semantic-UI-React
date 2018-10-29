@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface ModalContentProps {
+export interface ModalContentProps extends StrictModalContentProps {
   [key: string]: any
+}
 
+export interface StrictModalContentProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -74,6 +74,9 @@ export default class Dropdown extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Using the clearable setting will let users remove their selection from a dropdown. */
+    clearable: PropTypes.bool,
+
     /** Whether or not the menu should close when the dropdown is blurred. */
     closeOnBlur: PropTypes.bool,
 
@@ -692,12 +695,19 @@ export default class Dropdown extends Component {
   }
 
   handleIconClick = (e) => {
-    debug('handleIconClick()', e)
+    const { clearable } = this.props
+    const hasValue = this.hasValue()
+    debug('handleIconClick()', { e, clearable, hasValue })
 
     _.invoke(this.props, 'onClick', e, this.props)
     // prevent handleClick()
     e.stopPropagation()
-    this.toggle(e)
+
+    if (clearable && hasValue) {
+      this.clearValue(e)
+    } else {
+      this.toggle(e)
+    }
   }
 
   handleItemClick = (e, item) => {
@@ -1022,12 +1032,18 @@ export default class Dropdown extends Component {
   // Overrides
   // ----------------------------------------
 
-  handleIconOverrides = predefinedProps => ({
-    onClick: (e) => {
-      _.invoke(predefinedProps, 'onClick', e, predefinedProps)
-      this.handleIconClick(e)
-    },
-  })
+  handleIconOverrides = (predefinedProps) => {
+    const { clearable } = this.props
+    const classes = cx(clearable && this.hasValue() && 'clear', predefinedProps.className)
+
+    return {
+      className: classes,
+      onClick: (e) => {
+        _.invoke(predefinedProps, 'onClick', e, predefinedProps)
+        this.handleIconClick(e)
+      },
+    }
+  }
 
   // ----------------------------------------
   // Refs
@@ -1042,6 +1058,15 @@ export default class Dropdown extends Component {
   // ----------------------------------------
   // Helpers
   // ----------------------------------------
+
+  clearValue = (e) => {
+    const { multiple } = this.props
+    const newValue = multiple ? [] : ''
+
+    this.setValue(newValue)
+    this.setSelectedIndex(newValue)
+    this.handleChange(e, newValue)
+  }
 
   computeSearchInputTabIndex = () => {
     const { disabled, tabIndex } = this.props
@@ -1080,6 +1105,13 @@ export default class Dropdown extends Component {
       this.handleSearchChange(e, inputProps)
     },
   })
+
+  hasValue = () => {
+    const { multiple } = this.props
+    const { value } = this.state
+
+    return multiple ? !_.isEmpty(value) : !_.isNil(value) && value !== ''
+  }
 
   // ----------------------------------------
   // Behavior
@@ -1177,7 +1209,7 @@ export default class Dropdown extends Component {
   renderText = () => {
     const { multiple, placeholder, search, text } = this.props
     const { searchQuery, value, open } = this.state
-    const hasValue = multiple ? !_.isEmpty(value) : !_.isNil(value) && value !== ''
+    const hasValue = this.hasValue()
 
     const classes = cx(
       placeholder && !hasValue && 'default',

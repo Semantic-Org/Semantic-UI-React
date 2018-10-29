@@ -1,3 +1,4 @@
+import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -8,7 +9,6 @@ import {
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
-  eventStack,
   getUnhandledProps,
   getElementType,
   useKeyOnly,
@@ -81,6 +81,9 @@ class Sidebar extends Component {
      */
     onVisible: PropTypes.func,
 
+    /** A sidebar can handle clicks on the passed element. */
+    target: PropTypes.object,
+
     /** Controls whether or not the sidebar is visible on the page. */
     visible: PropTypes.bool,
 
@@ -100,41 +103,15 @@ class Sidebar extends Component {
 
   state = {}
 
-  componentDidMount() {
-    const { visible } = this.props
-
-    if (visible) this.addListener()
-  }
-
-  componentWillUnmount() {
-    const { visible } = this.props
-
-    if (visible) this.removeListener()
-    clearTimeout(this.animationTimer)
-  }
-
   componentDidUpdate(prevProps) {
     const { visible: prevVisible } = prevProps
     const { visible: currentVisible } = this.props
 
-    if (prevVisible === currentVisible) return
-
-    this.handleAnimationStart()
-
-    if (currentVisible) {
-      this.addListener()
-      return
-    }
-
-    this.removeListener()
+    if (prevVisible !== currentVisible) this.handleAnimationStart()
   }
 
-  addListener() {
-    eventStack.sub('click', this.handleDocumentClick)
-  }
-
-  removeListener() {
-    eventStack.unsub('click', this.handleDocumentClick)
+  componentWillUnmount() {
+    clearTimeout(this.animationTimer)
   }
 
   handleAnimationStart = () => {
@@ -172,7 +149,16 @@ class Sidebar extends Component {
   handleRef = c => (this.ref = c)
 
   render() {
-    const { animation, className, children, content, direction, visible, width } = this.props
+    const {
+      animation,
+      className,
+      children,
+      content,
+      direction,
+      target,
+      visible,
+      width,
+    } = this.props
     const { animating } = this.state
 
     const classes = cx(
@@ -192,6 +178,7 @@ class Sidebar extends Component {
       <Ref innerRef={this.handleRef}>
         <ElementType {...rest} className={classes}>
           {childrenUtils.isNil(children) ? content : children}
+          {visible && <EventStack name='click' on={this.handleDocumentClick} target={target} />}
         </ElementType>
       </Ref>
     )

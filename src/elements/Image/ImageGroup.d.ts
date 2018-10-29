@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticSIZES, SemanticShorthandContent } from '../..'
+import { SemanticSIZES, SemanticShorthandContent } from '../../generic'
 
-export interface ImageGroupProps {
+export interface ImageGroupProps extends StrictImageGroupProps {
   [key: string]: any
+}
 
+export interface StrictImageGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 

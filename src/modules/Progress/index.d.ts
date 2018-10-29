@@ -1,1 +1,1 @@
-export { default, ProgressProps } from './Progress'
+export { default, ProgressProps, StrictProgressProps } from './Progress'

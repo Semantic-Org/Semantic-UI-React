@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent, SemanticSIZES } from '../..'
+import { SemanticShorthandContent, SemanticSIZES } from '../../generic'
 
-export interface LoaderProps {
+export interface LoaderProps extends StrictLoaderProps {
   [key: string]: any
+}
 
+export interface StrictLoaderProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -8,7 +8,9 @@ const typeOf = (...args) => Object.prototype.toString.call(...args)
  * Ensure a component can render as a give prop value.
  */
 export const as = (...args) =>
-  PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string, PropTypes.symbol])(...args)
+  PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string, PropTypes.symbol])(
+    ...args,
+  )
 
 /**
  * Ensure a prop is a valid DOM node.
@@ -245,8 +247,7 @@ export const givenProps = (propsShape, validator) => (props, propName, component
 
   if (error) {
     // poor mans shallow pretty print, prevents JSON circular reference errors
-    const prettyProps = `{ ${_
-      .keys(_.pick(_.keys(propsShape), props))
+    const prettyProps = `{ ${_.keys(_.pick(_.keys(propsShape), props))
       .map((key) => {
         const val = props[key]
         let renderedValue = val
@@ -340,6 +341,7 @@ export const itemShorthand = (...args) =>
   every([
     disallow(['children']),
     PropTypes.oneOfType([
+      PropTypes.func,
       PropTypes.node,
       PropTypes.object,
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.node, PropTypes.object])),

@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 import RevealContent from './RevealContent'
 
-export interface RevealProps {
+export interface RevealProps extends StrictRevealProps {
   [key: string]: any
+}
 
+export interface StrictRevealProps {
   /** An element type to render as (string or function). */
   as?: any
 

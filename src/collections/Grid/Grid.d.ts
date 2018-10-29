@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticTEXTALIGNMENTS, SemanticVERTICALALIGNMENTS, SemanticWIDTHS } from '../..'
+import { SemanticTEXTALIGNMENTS, SemanticVERTICALALIGNMENTS, SemanticWIDTHS } from '../../generic'
 import GridColumn from './GridColumn'
 import GridRow from './GridRow'
 
@@ -13,9 +13,11 @@ export type GridReversedProp =
   | 'tablet'
   | 'tablet vertically'
 
-export interface GridProps {
+export interface GridProps extends StrictGridProps {
   [key: string]: any
+}
 
+export interface StrictGridProps {
   /** An element type to render as (string or function). */
   as?: any
 
