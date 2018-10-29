@@ -10,6 +10,7 @@ export interface ConfirmProps extends StrictConfirmProps {
   [key: string]: any
 }
 
+
 export interface StrictConfirmProps extends StrictModalProps {
   /** The cancel button text. */
   cancelButton?: SemanticShorthandItem<ButtonProps>
