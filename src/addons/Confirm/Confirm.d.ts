@@ -43,7 +43,7 @@ export interface StrictConfirmProps extends StrictModalProps {
   open?: boolean
 
   /** A confirm can vary in size. */
-  size?: 'fullscreen' | 'large' | 'mini' | 'small' | 'tiny'
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'fullscreen'
 }
 
 declare const Confirm: React.ComponentClass<ConfirmProps>

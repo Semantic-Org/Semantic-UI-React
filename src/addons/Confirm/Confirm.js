@@ -44,7 +44,7 @@ class Confirm extends Component {
     open: PropTypes.bool,
 
     /** A Confirm can vary in size */
-    size: PropTypes.oneOf(['fullscreen', 'large', 'mini', 'small', 'tiny']),
+    size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'fullscreen']),
   }
 
   static defaultProps = {
