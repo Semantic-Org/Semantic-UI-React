@@ -24,8 +24,11 @@ export default class Ref extends Component {
 
     // Heads up! Don't move this condition, it's a short circuit that avoids run of `findDOMNode`
     // if `innerRef` isn't passed
-    // eslint-disable-next-line react/no-find-dom-node
-    if (innerRef) innerRef(findDOMNode(this))
+    try {
+      // eslint-disable-next-line react/no-find-dom-node
+      if (innerRef) innerRef(findDOMNode(this))
+      // eslint-disable-next-line no-empty
+    } catch (_) {}
   }
 
   render() {
