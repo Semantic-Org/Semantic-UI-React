@@ -5,7 +5,6 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-static'
 import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
 
-import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
 import { docTypes, getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
 import shallowEqual from 'src/lib/shallowEqual'
@@ -247,9 +246,6 @@ class Sidebar extends Component {
             </Menu.Item>
             {query ? this.renderSearchItems() : this.menuItemsByType}
           </Menu>
-        </div>
-        <div style={{ flex: '0 0 auto' }}>
-          <CarbonAd />
         </div>
       </div>
     )

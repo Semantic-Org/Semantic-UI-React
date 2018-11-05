@@ -6,7 +6,6 @@ import { withRouteData, withRouter } from 'react-static'
 import { Grid, Visibility } from 'semantic-ui-react'
 
 import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
-import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
 
 import ComponentControls from '../ComponentControls'
 import ComponentExampleRenderEditor from './ComponentExampleRenderEditor'
@@ -293,7 +292,6 @@ class ComponentExample extends PureComponent {
                 )}
               </Grid.Column>
             )}
-            {isActive && !error && <CarbonAdNative inverted={this.isActiveState()} />}
           </Grid>
         </div>
       </Visibility>
