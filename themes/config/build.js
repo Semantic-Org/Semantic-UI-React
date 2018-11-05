@@ -20,7 +20,7 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages')
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter')
 const printBuildError = require('react-dev-utils/printBuildError')
 const shellJs = require('shelljs')
-const { getThemes } = require('./helpers')
+const { resolveApp, getThemes } = require('./helpers')
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild
@@ -39,7 +39,6 @@ if (!checkRequiredFiles([paths.themesIndex])) {
 const argv = process.argv.slice(2)
 const writeStatsJson = argv.indexOf('--stats') !== -1
 
-/* eslint-disable no-console, prefer-template */
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.themesDist)
@@ -56,23 +55,23 @@ measureFileSizesBeforeBuild(paths.themesDist)
         // eslint-disable-next-line object-curly-newline
         ({ theme, stats, previousFileSizes, warnings }) => {
           if (warnings.length) {
-            console.log(chalk.yellow(`Theme ${theme} compiled with warnings.\n`))
-            console.log(warnings.join('\n\n'))
-            console.log(
-              '\nSearch for the ' +
+            console.log(chalk.yellow(`Theme ${theme} compiled with warnings.\n`)) // eslint-disable-line no-console
+            console.log(warnings.join('\n\n')) // eslint-disable-line no-console
+            console.log( // eslint-disable-line no-console
+              '\nSearch for the ' + // eslint-disable-line prefer-template
                 chalk.underline(chalk.yellow('keywords')) +
                 ' to learn more about each warning.',
             )
-            console.log(
-              'To ignore, add ' +
+            console.log( // eslint-disable-line no-console
+              'To ignore, add ' + // eslint-disable-line prefer-template
                 chalk.cyan('// eslint-disable-next-line') +
                 ' to the line before.\n',
             )
           } else {
-            console.log(chalk.green(`\nTheme '${theme}' compiled successfully.\n`));
+            console.log(chalk.green(`\nTheme '${theme}' compiled successfully.\n`)) // eslint-disable-line no-console
           }
 
-          console.log('File sizes after gzip:\n')
+          console.log('File sizes after gzip:\n') // eslint-disable-line no-console
           printFileSizesAfterBuild(
             stats,
             previousFileSizes,
@@ -80,25 +79,26 @@ measureFileSizesBeforeBuild(paths.themesDist)
             WARN_AFTER_BUNDLE_GZIP_SIZE,
             WARN_AFTER_CHUNK_GZIP_SIZE,
           )
-          console.log()
+          console.log() // eslint-disable-line no-console
         },
       )
 
       fs.removeSync(`${paths.themesDist}/static`)
       fs.removeSync(`${paths.themesDist}/main.js`)
+      fs.removeSync(resolveApp('themes/webfonts'))
       shellJs.sed('-i', '@', '$', `${paths.themesDist}/palette.scss`)
       shellJs.sed('-i', '@', '@value ', `${paths.themesDist}/palette.css`)
       shellJs.sed('-i', ': @', ': ', `${paths.themesDist}/palette.css`)
     },
     (err) => {
-      console.log(chalk.red('Failed to compile.\n'))
+      console.log(chalk.red('Failed to compile.\n')) // eslint-disable-line no-console
       printBuildError(err)
       process.exit(1)
     },
   )
   .catch((err) => {
     if (err && err.message) {
-      console.log(err.message)
+      console.log(err.message) // eslint-disable-line no-console
     }
     process.exit(1)
   })
@@ -107,17 +107,17 @@ measureFileSizesBeforeBuild(paths.themesDist)
 function build(previousFileSizes) {
   const themes = getThemes()
   if (themes.length < 1) {
-    console.log('No themes were found.')
+    console.log('No themes were found.') // eslint-disable-line no-console
     return
   }
 
-  console.log(`\nPreparing to build the following themes: ${themes}...`)
+  console.log(`\nPreparing to build the following themes: ${themes}...`) // eslint-disable-line no-console
 
   return Promise.all(
     themes.map((theme) => {
       const compiler = webpack(config(theme))
-      return new Promise((resolve, reject) => { // eslint-disable-line consistent-return
-        console.log(`\nBuilding theme: ${theme}...`)
+      return new Promise((resolve, reject) => {
+        console.log(`\nBuilding theme: ${theme}...`) // eslint-disable-line no-console
         compiler.run((err, stats) => {
           let messages
           if (err) {
@@ -143,10 +143,11 @@ function build(previousFileSizes) {
           }
           if (
             process.env.CI &&
-            (typeof process.env.CI !== 'string' || process.env.CI.toLowerCase() !== 'false') &&
+            (typeof process.env.CI !== 'string' ||
+              process.env.CI.toLowerCase() !== 'false') &&
             messages.warnings.length
           ) {
-            console.log(
+            console.log( // eslint-disable-line no-console
               chalk.yellow(
                 '\nTreating warnings as errors because process.env.CI = true.\n' +
                   'Most CI servers set it automatically.\n',

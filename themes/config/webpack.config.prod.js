@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const paths = require('./paths')
 
 // common function to get style loaders
-const { themesRelativePaths, resolveApp, getStyleLoaders } = require('./helpers')
+const { getStyleLoaders } = require('./helpers')
 
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
@@ -64,6 +64,13 @@ module.exports = theme => ({
           //   test: [/\.less$/],
           //   loader: getStyleLoaders(),
           // },
+          {
+            test: [/\.eot$/, /\.ttf$/, /\.svg$/, /\.woff$/, /\.woff2$/],
+            loader: require.resolve('file-loader'),
+            options: {
+              name: '../webfonts/[name].[ext]',
+            },
+          },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
           // This loader doesn't use a "test" so it will catch all modules
