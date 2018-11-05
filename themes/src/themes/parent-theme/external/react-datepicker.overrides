@@ -1,0 +1,1 @@
+@import (less) '../../../../../node_modules/react-datepicker/dist/react-datepicker.css';
