@@ -15,3 +15,5 @@ docs/dist/
 dll/
 node_modules/
 tmp/
+
+themes/dist/
