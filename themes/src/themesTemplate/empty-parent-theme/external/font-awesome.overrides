@@ -4,28 +4,16 @@
 }
 
 .fal {
-  font-family: @icon__font-family !important;
+  font-family: @i-font-awesome__font-family !important;
   font-weight: 300 !important;
 }
 
 .far {
-  font-family: @icon__font-family !important;
+  font-family: @i-font-awesome__font-family !important;
   font-weight: 400 !important;
 }
 
 .fas {
-  font-family: @icon__font-family !important;
+  font-family: @i-font-awesome__font-family !important;
   font-weight: 900 !important;
-}
-
-.ui.dropdown > .dropdown.icon:before {
-  font-family: @icon__font-family !important;
-  font-weight: 900 !important;
-  content: '\f078';
-}
-
-.ui.modals.dimmer .ui.modal .close.icon:before {
-  font-family: @icon__font-family !important;
-  font-weight: 900 !important;
-  content: '\f00d';
 }
