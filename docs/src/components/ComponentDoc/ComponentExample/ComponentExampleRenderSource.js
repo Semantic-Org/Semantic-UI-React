@@ -32,6 +32,8 @@ const externals = {
   react: React,
   'prop-types': PropTypes,
   'semantic-ui-react': SUIR,
+  moment: require('moment'),
+  'react-datepicker': require('react-datepicker').default,
 }
 const commons = {
   Dropdown: dropdownCommon,

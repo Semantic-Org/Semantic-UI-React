@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import siteData from '../utils/docTypes/siteData'
+import { getThemes } from '../../../themes/config/helpers'
 
 const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) => (
   <Html lang='en-US'>
@@ -10,11 +11,18 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
 
       <link rel='shortcut icon' type='image/x-icon' href='/logo.png' />
-      <link rel='stylesheet' href={`/style.css?${versions.suir}`} />
-      <link
-        rel='stylesheet'
-        href={`https://cdn.jsdelivr.net/npm/semantic-ui-css@${versions.sui}/semantic.min.css`}
-      />
+
+      <link rel='stylesheet' type='text/css' href='/css/fa.css' />
+
+      {!dev && (
+        <link
+          id='theme-style'
+          themename={getThemes()[0]}
+          rel='stylesheet'
+          type='text/css'
+          href={`/css/sui-${getThemes()[0]}.css`}
+        />
+      )}
 
       <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`}

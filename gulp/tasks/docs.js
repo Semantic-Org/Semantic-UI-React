@@ -94,6 +94,7 @@ task('build:docs:static:start', (cb) => {
 // ----------------------------------------
 
 const componentsSrc = [
+  toUniversalGlob(paths.src(), 'externals/*/*.js'),
   toUniversalGlob(paths.src(), 'addons/*/*.js'),
   toUniversalGlob(paths.src(), 'behaviors/*/*.js'),
   toUniversalGlob(paths.src(), 'elements/*/*.js'),
@@ -144,26 +145,10 @@ task(
   ),
 )
 
-task('build:docs:toc', (cb) => {
-  sh(`doctoc ${paths.base('.github/CONTRIBUTING.md')} --github --maxlevel 4`, cb)
-})
-
 task(
   'build:docs',
-  series(
-    parallel('build:docs:toc', series('clean:docs', 'build:docs:json')),
-    'build:docs:static:build',
-  ),
+  series('clean:docs', 'build:docs:json', 'build:docs:static:build'),
 )
-
-// ----------------------------------------
-// Deploy
-// ----------------------------------------
-
-task('deploy:docs', (cb) => {
-  const relativePath = path.relative(process.cwd(), paths.docsDist())
-  sh(`gh-pages -d ${relativePath} -m "deploy docs [ci skip]"`, cb)
-})
 
 // ----------------------------------------
 // Watch

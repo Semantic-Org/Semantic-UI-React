@@ -1,4 +1,5 @@
 const path = require('path')
+const { themesRelativePaths } = require('./themes/config/helpers');
 
 // ------------------------------------
 // Environment vars
@@ -16,11 +17,11 @@ const envConfig = {
   // ----------------------------------
   path_base: __dirname,
   dir_src: 'src',
-  dir_dist: 'dist',
-  dir_dll: 'dll',
   dir_docs_dist: 'docs/dist',
   dir_docs_public: 'docs/public',
   dir_docs_src: 'docs/src',
+  dir_themes_src: themesRelativePaths.themesSrc,
+  dir_themes_dist: themesRelativePaths.themesDist,
 }
 
 // ------------------------------------
@@ -31,11 +32,11 @@ const base = (...args) => path.resolve(...[envConfig.path_base, ...args])
 const paths = {
   base,
   src: base.bind(null, envConfig.dir_src),
-  dist: base.bind(null, envConfig.dir_dist),
-  dll: base.bind(null, envConfig.dir_dll),
   docsDist: base.bind(null, envConfig.dir_docs_dist),
   docsPublic: base.bind(null, envConfig.dir_docs_public),
   docsSrc: base.bind(null, envConfig.dir_docs_src),
+  themesSrc: base.bind(null, envConfig.dir_themes_src),
+  themesDist: base.bind(null, envConfig.dir_themes_dist),
 }
 
 const config = {

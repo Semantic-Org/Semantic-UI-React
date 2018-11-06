@@ -1,0 +1,19 @@
+.fab {
+  font-family: 'Font Awesome 5 Brands' !important;
+  font-weight: normal !important;
+}
+
+.fal {
+  font-family: @i-font-awesome__font-family !important;
+  font-weight: 300 !important;
+}
+
+.far {
+  font-family: @i-font-awesome__font-family !important;
+  font-weight: 400 !important;
+}
+
+.fas {
+  font-family: @i-font-awesome__font-family !important;
+  font-weight: 900 !important;
+}

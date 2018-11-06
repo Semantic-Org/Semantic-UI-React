@@ -1,0 +1,5 @@
+@import '../../parent-theme/elements/button.overrides';
+
+.ui.button {
+  background-color: blue;
+}

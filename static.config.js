@@ -25,8 +25,8 @@ export default {
       prettier: require('prettier/package.json').version,
       propTypes: require('prop-types/package.json').version,
       react: require('react/package.json').version,
-      sui: require('semantic-ui-css/package.json').version,
-      suir: require('./package.json').version,
+      sui: require('semantic-ui-less/package.json').version,
+      suir: require('semantic-ui-react/package.json').version,
     },
   }),
   getRoutes,
@@ -35,6 +35,5 @@ export default {
     src: config.paths.docsSrc(),
     public: config.paths.docsPublic(),
   },
-  siteRoot: 'https://react.semantic-ui.com',
   webpack,
 }
