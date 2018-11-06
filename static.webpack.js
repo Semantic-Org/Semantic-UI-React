@@ -48,6 +48,7 @@ export default (webpackConfig, { stage }) => ({
       //     },
       //   ],
       //   include: config.paths.docsSrc,
+      //   exclude: config.paths.src,
       // },
       {
         // "oneOf" will traverse all following loaders until one will

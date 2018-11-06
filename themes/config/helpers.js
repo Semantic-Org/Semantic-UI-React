@@ -43,7 +43,7 @@ const getStyleLoaders = () => [
 const themesRelativePaths = {
   themesSrc: 'themes/src',
   themesDist: 'themes/dist',
-};
+}
 
 const getThemes = () =>
   fs.readdirSync(resolveApp(`${themesRelativePaths.themesSrc}/themes`)).filter((item) => {
