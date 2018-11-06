@@ -94,6 +94,7 @@ task('build:docs:static:start', (cb) => {
 // ----------------------------------------
 
 const componentsSrc = [
+  toUniversalGlob(paths.src(), 'externals/*/*.js'),
   toUniversalGlob(paths.src(), 'addons/*/*.js'),
   toUniversalGlob(paths.src(), 'behaviors/*/*.js'),
   toUniversalGlob(paths.src(), 'elements/*/*.js'),
