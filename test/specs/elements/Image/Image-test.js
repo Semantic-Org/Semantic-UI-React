@@ -3,7 +3,7 @@ import React from 'react'
 
 import Image from 'src/elements/Image/Image'
 import ImageGroup from 'src/elements/Image/ImageGroup'
-import { SUI } from 'src/lib'
+import { htmlImageProps, SUI } from 'src/lib'
 import Dimmer from 'src/modules/Dimmer/Dimmer'
 import * as common from 'test/specs/commonTests'
 
@@ -56,7 +56,7 @@ describe('Image', () => {
   })
 
   describe('image props', () => {
-    _.forEach(['alt', 'height', 'src', 'srcSet', 'width'], (propName) => {
+    _.forEach(htmlImageProps, (propName) => {
       it(`keeps "${propName}" on root element by default`, () => {
         const wrapper = shallow(<Image {...{ [propName]: 'foo' }} />)
 
