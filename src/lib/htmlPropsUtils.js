@@ -80,6 +80,8 @@ export const htmlInputEvents = [
 
 export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents]
 
+export const htmlImageProps = ['alt', 'height', 'src', 'srcSet', 'width']
+
 /**
  * Returns an array of objects consisting of: props of html input element and rest.
  * @param {object} props A ReactElement props object
