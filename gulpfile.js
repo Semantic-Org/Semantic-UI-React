@@ -9,8 +9,7 @@ const path = require('path')
 process.env.PATH = `${process.env.PATH}:${path.resolve('./node_modules/.bin')}`
 
 // load tasks in order of dependency usage
-require('./gulp/tasks/dll')
 require('./gulp/tasks/docs')
 
 // global tasks
-task('build', series('dll', 'build:docs'))
+task('build', series('build:docs'))
