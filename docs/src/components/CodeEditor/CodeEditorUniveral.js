@@ -14,8 +14,8 @@ export const EDITOR_GUTTER_COLOR = '#25282d'
 // component also allows us to load Editor lazy.
 const CodeEditor = isBrowser()
   ? universal(import('./CodeEditor'), {
-    loading: () => <Loader active inline='centered' />,
-  })
+      loading: () => <Loader active inline="centered" />,
+    })
   : () => null
 
 function CodeEditorUniveral(props) {
@@ -25,9 +25,9 @@ function CodeEditorUniveral(props) {
     <CodeEditor
       name={id}
       mode={mode}
-      theme='tomorrow_night'
-      width='100%'
-      height='100px'
+      theme="tomorrow_night"
+      width="100%"
+      height="100px"
       value={value}
       enableBasicAutocompletion={!readOnly}
       enableLiveAutocompletion={!readOnly}

@@ -60,7 +60,7 @@ class CarbonAdNative extends Component {
     document.getElementsByTagName('head')[0].appendChild(this.script)
   }
 
-  handleNativeJSON = (json) => {
+  handleNativeJSON = json => {
     debug('handleNativeJSON', { mounted: this.mounted })
     try {
       const sanitizedAd = json.ads
@@ -91,28 +91,28 @@ class CarbonAdNative extends Component {
 
     const colors = inverted
       ? {
-        divider: '#333',
-        background: '#222',
-        backgroundHover: '#1d1d1d',
-        color: '#999',
-        colorHover: '#ccc',
-      }
+          divider: '#333',
+          background: '#222',
+          backgroundHover: '#1d1d1d',
+          color: '#999',
+          colorHover: '#ccc',
+        }
       : {
-        divider: '#eee',
-        background: '#fff',
-        backgroundHover: 'whitesmoke',
-        color: '#555',
-        colorHover: '#333',
-      }
+          divider: '#eee',
+          background: '#fff',
+          backgroundHover: 'whitesmoke',
+          color: '#555',
+          colorHover: '#333',
+        }
 
     return (
-      <a id={id} href={ad.statlink} target='_blank' rel='noopener noreferrer'>
+      <a id={id} href={ad.statlink} target="_blank" rel="noopener noreferrer">
         <img src={ad.image} />
         <span>{ad.company}</span>
         {' — '}
         <span>{ad.description}</span>
         <Label
-          content='Ad'
+          content="Ad"
           basic={!inverted}
           color={inverted ? 'black' : undefined}
           horizontal

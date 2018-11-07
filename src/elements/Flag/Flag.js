@@ -530,6 +530,8 @@ class Flag extends PureComponent {
     const rest = getUnhandledProps(Flag, this.props)
     const ElementType = getElementType(Flag, this.props)
 
+    console.log('Flag props', rest)
+
     return <ElementType {...rest} className={classes} />
   }
 }

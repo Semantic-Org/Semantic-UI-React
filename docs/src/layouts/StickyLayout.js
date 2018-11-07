@@ -174,7 +174,9 @@ export default class StickyLayout extends Component {
         </Visibility>
 
         <Container text>
-          {_.times(3, i => <Paragraph key={i} />)}
+          {_.times(3, i => (
+            <Paragraph key={i} />
+          ))}
 
           {/* Example with overlay menu is more complex, SUI simply clones all elements inside, but we should use a
               different approach.
@@ -213,19 +215,25 @@ export default class StickyLayout extends Component {
             </Menu>
           </div>
 
-          {_.times(3, i => <Paragraph key={i} />)}
+          {_.times(3, i => (
+            <Paragraph key={i} />
+          ))}
           <LeftImage />
 
           <Paragraph />
           <RightImage />
 
-          {_.times(4, i => <Paragraph key={i} />)}
+          {_.times(4, i => (
+            <Paragraph key={i} />
+          ))}
           <LeftImage />
 
           <Paragraph />
           <RightImage />
 
-          {_.times(2, i => <Paragraph key={i} />)}
+          {_.times(2, i => (
+            <Paragraph key={i} />
+          ))}
         </Container>
 
         <Segment inverted style={{ margin: '5em 0em 0em', padding: '5em 0em' }} vertical>

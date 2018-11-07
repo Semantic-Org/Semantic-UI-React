@@ -35,7 +35,7 @@ const waitForLoad = () => {
 
 class CarbonAd extends Component {
   componentDidMount() {
-    this.ifRef((ref) => {
+    this.ifRef(ref => {
       // always add the script as it is used to insert the ad
       ref.appendChild(script)
 
@@ -55,13 +55,13 @@ class CarbonAd extends Component {
     return false
   }
 
-  ifRef = (cb) => {
+  ifRef = cb => {
     const ref = document.querySelector('#docs-carbonads')
     if (ref) cb(ref)
   }
 
   render() {
-    return <div id='docs-carbonads' style={style} />
+    return <div id="docs-carbonads" style={style} />
   }
 }
 

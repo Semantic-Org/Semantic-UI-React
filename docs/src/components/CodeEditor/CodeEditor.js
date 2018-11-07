@@ -27,7 +27,7 @@ const semanticUIReactCompleter = {
     }
 
     const addPropsFromInfo = (info, score) => {
-      info.props.forEach((prop) => {
+      info.props.forEach(prop => {
         completions.push({
           score,
           caption: `${prop.name}`,
@@ -76,13 +76,13 @@ const semanticUIReactCompleter = {
     const suirNamedImports = value.match(/import\s+\{([\s\S]+?)\}\s+from\s'semantic-ui-react'/)
     const importedDisplayNames = _.words(suirNamedImports[1])
 
-    importedDisplayNames.forEach((displayName) => {
+    importedDisplayNames.forEach(displayName => {
       addPropsFromDisplayName(displayName, 200)
       addComponentDisplayName(displayName, 100)
     })
 
     // local words
-    _.uniq(_.words(value)).forEach((word) => {
+    _.uniq(_.words(value)).forEach(word => {
       completions.push({
         score: 0,
         caption: word,
