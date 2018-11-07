@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Themed from './Themed'
 import Content from './Content'
 import Groups from './Groups'
 import States from './States'
@@ -8,6 +8,7 @@ import Variations from './Variations'
 
 const StepExamples = () => (
   <div>
+    <Themed />
     <Types />
     <Groups />
     <Content />

@@ -21,7 +21,7 @@ const ExampleSection = ({ title, children, ...rest }) => (
       </Header>
       {title === 'Themed' &&
         <Header as='h4' style={descriptionStyle} className='no-anchor'>
-          This section is intended as a reference of specific use cases of
+          This section is intended as a reference for specific use cases of
           components, or compositions of them, that are not covered in the
           component's default examples.
         </Header>

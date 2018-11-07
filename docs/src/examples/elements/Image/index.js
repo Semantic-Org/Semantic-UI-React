@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Themed from './Themed'
 import Groups from './Groups'
 import States from './States'
 import Types from './Types'
@@ -8,6 +8,7 @@ import Variations from './Variations'
 
 const ImageExamples = () => (
   <div>
+    <Themed />
     <Types />
     <States />
     <Variations />

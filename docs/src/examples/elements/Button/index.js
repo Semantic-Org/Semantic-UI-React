@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Themed from './Themed'
 import Content from './Content'
 import Groups from './Groups'
 import GroupVariations from './GroupVariations'
@@ -10,6 +10,7 @@ import Usage from './Usage'
 
 const ButtonExamples = () => (
   <div>
+    <Themed />
     <Types />
     <Groups />
     <Content />

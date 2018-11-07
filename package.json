@@ -8,8 +8,8 @@
     "build:themes": "rm -rf themes/dist && node themes/config/build.js",
     "build:docs": "rm -rf docs/dist && cross-env NODE_ENV=production gulp build:docs",
     "serve": "serve docs/dist",
-    "eslint": "eslint --ext .js ./docs ./themes",
-    "eslint:fix": "eslint --fix --ext .js ./docs ./themes"
+    "eslint": "eslint --ext .js ./docs ./themes .src/externals",
+    "eslint:fix": "eslint --fix --ext .js ./docs ./themes .src/externals"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",

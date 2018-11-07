@@ -14,7 +14,7 @@ const SECTION_ORDER = {
   Variations: 5,
   Groups: 6,
   DEFAULT_ORDER: 7,
-  Usage: 8,
+  Usage: 10,
 }
 
 const getSectionOrder = sectionName =>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Divider, Menu } from 'semantic-ui-react'
 
 import IconSearch from 'docs/src/components/IconSearch/IconSearch'
+import Themed from './Themed'
 import States from './States'
 import Variations from './Variations'
 import Groups from './Groups'
@@ -17,6 +18,7 @@ class IconExamples extends Component {
       0: <IconSearch />,
       1: (
         <div>
+          <Themed />
           <States />
           <Variations />
           <Groups />
