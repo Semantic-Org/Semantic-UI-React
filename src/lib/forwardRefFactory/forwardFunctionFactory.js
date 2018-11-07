@@ -1,7 +1,7 @@
 import React, { createElement } from 'react'
 
 import Ref from '../../addons/Ref'
-import { isStatelessComponent, supportsRef } from '../componentUtils'
+import { isBasic, isForwardRef } from '../componentUtils'
 
 /**
  * Use just a string for now (react 16.3), since react doesn't support Symbols in props yet.
@@ -17,23 +17,28 @@ export const forwardRefSymbol = '__forwardRef__'
  * @return {Function}
  */
 const forwardFunctionFactory = Component => (props, ref) => {
-  // eslint-disable-next-line react/prop-types
-  if (isStatelessComponent(props.as)) {
-    return (
-      <Ref innerRef={ref}>
-        <Component {...props} />
-      </Ref>
-    )
-  }
+  console.log('forwardFunctionFactory()', {
+    element: props.as,
+    isBasic: isBasic(props.as),
+    isForwardRef: isForwardRef(props.as),
+  })
 
-  if (supportsRef(props.as)) {
+  // The most simple case when `as='div'`
+  // This component supports ref forwarding!
+  // Magic happens there!
+  if (!props.as || isBasic(props.as) || isForwardRef(props.as)) {
     return createElement(Component, {
       ...props,
       [forwardRefSymbol]: ref,
     })
   }
 
-  return Component
+  // Need to get ref manually
+  return (
+    <Ref innerRef={ref}>
+      <Component {...props} />
+    </Ref>
+  )
 }
 
 export default forwardFunctionFactory
