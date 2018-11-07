@@ -14,6 +14,7 @@ import PortalInner from './PortalInner'
 
 const debug = makeDebugger('portal')
 
+
 /**
  * A component that allows you to render children outside their parent.
  * @see Modal
