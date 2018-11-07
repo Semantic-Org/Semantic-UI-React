@@ -19,8 +19,8 @@ const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles')
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages')
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter')
 const printBuildError = require('react-dev-utils/printBuildError')
+const path = require('path')
 const shellJs = require('shelljs')
-const { resolveApp, getThemes } = require('./helpers')
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild
@@ -85,7 +85,7 @@ measureFileSizesBeforeBuild(paths.themesDist)
 
       fs.removeSync(`${paths.themesDist}/static`)
       fs.removeSync(`${paths.themesDist}/main.js`)
-      fs.removeSync(resolveApp('themes/webfonts'))
+      fs.removeSync(path.resolve(paths.themesDist, '../webfonts'))
       shellJs.sed('-i', '@', '$', `${paths.themesDist}/palette.scss`)
       shellJs.sed('-i', '@', '@value ', `${paths.themesDist}/palette.css`)
       shellJs.sed('-i', ': @', ': ', `${paths.themesDist}/palette.css`)
