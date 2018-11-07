@@ -1,7 +1,7 @@
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { cloneElement } from 'react'
+import React, { cloneElement, Fragment } from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -338,29 +338,30 @@ class Portal extends Component {
     const { children, mountNode, trigger } = this.props
     const { open } = this.state
 
-    return [
-      open ? (
-        <PortalInner
-          key='inner'
-          mountNode={mountNode}
-          onMount={this.handleMount}
-          onUnmount={this.handleUnmount}
-        >
-          {children}
-        </PortalInner>
-      ) : null,
-      trigger ? (
-        <Ref innerRef={this.handleTriggerRef} key='trigger'>
-          {cloneElement(trigger, {
-            onBlur: this.handleTriggerBlur,
-            onClick: this.handleTriggerClick,
-            onFocus: this.handleTriggerFocus,
-            onMouseLeave: this.handleTriggerMouseLeave,
-            onMouseEnter: this.handleTriggerMouseEnter,
-          })}
-        </Ref>
-      ) : null,
-    ]
+    return (
+      <Fragment>
+        {open && (
+          <PortalInner
+            mountNode={mountNode}
+            onMount={this.handleMount}
+            onUnmount={this.handleUnmount}
+          >
+            {children}
+          </PortalInner>
+        )}
+        {trigger && (
+          <Ref innerRef={this.handleTriggerRef}>
+            {cloneElement(trigger, {
+              onBlur: this.handleTriggerBlur,
+              onClick: this.handleTriggerClick,
+              onFocus: this.handleTriggerFocus,
+              onMouseLeave: this.handleTriggerMouseLeave,
+              onMouseEnter: this.handleTriggerMouseEnter,
+            })}
+          </Ref>
+        )}
+      </Fragment>
+    )
   }
 }
 

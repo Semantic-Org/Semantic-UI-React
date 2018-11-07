@@ -1,12 +1,14 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
 import SidebarPushable from './SidebarPushable'
 import SidebarPusher from './SidebarPusher'
 
-export interface SidebarProps {
+export interface SidebarProps extends StrictSidebarProps {
   [key: string]: any
+}
 
+export interface StrictSidebarProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -59,6 +61,9 @@ export interface SidebarProps {
    * @param {object} data - All props.
    */
   onVisible?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
+
+  /** A sidebar can handle clicks on the passed element. */
+  target?: object
 
   /** Controls whether or not the sidebar is visible on the page. */
   visible?: boolean

@@ -1,0 +1,42 @@
+import { Button, Card, Header, Image } from 'semantic-ui-react'
+
+export const meta = {
+  title: 'Prototypes',
+}
+
+<Header as='h1' content='Prototypes' textAlign='center' />
+
+<Header
+  as='h2'
+  content='Integrations'
+  subheader='Examples of integrations with other libraries'
+/>
+
+<Card.Group stackable itemsPerRow='2'>
+  <Card>
+    <Image src='/images/prototypes/redux-form.png' />
+    <Card.Content>
+      <Card.Header>redux-form</Card.Header>
+      <Card.Description>
+        An example of fully working form powered by redux-form.
+      </Card.Description>
+    </Card.Content>
+    <Card.Content extra>
+      <Button.Group size='small' widths={2}>
+        <Button
+          content='Try on CodeSandbox'
+          href='https://codesandbox.io/s/jn0w4mxm5'
+          icon='codepen'
+          target='_blank'
+        />
+        <Button
+          color='black'
+          content='Source on Github'
+          href='https://github.com/layershifter/semantic-ui-react-redux-form'
+          icon='github'
+          target='_blank'
+        />
+      </Button.Group>
+    </Card.Content>
+  </Card>
+</Card.Group>

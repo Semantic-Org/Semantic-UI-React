@@ -31,7 +31,12 @@ const wrapperMount = (node, opts) => {
 
 describe('Portal', () => {
   afterEach(() => {
-    if (wrapper && wrapper.unmount) wrapper.unmount()
+    if (wrapper && wrapper.unmount) {
+      try {
+        wrapper.unmount()
+        // eslint-disable-next-line no-empty
+      } catch (e) {}
+    }
   })
 
   common.hasSubcomponents(Portal, [PortalInner])

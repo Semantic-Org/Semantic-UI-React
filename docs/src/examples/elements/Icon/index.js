@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Divider, Menu } from 'semantic-ui-react'
 
 import IconSearch from 'docs/src/components/IconSearch/IconSearch'
 import States from './States'
@@ -14,11 +14,7 @@ class IconExamples extends Component {
   handleMenuItemClick = (e, { index }) => this.setState({ activeIndex: index })
   renderActiveTab = () =>
     ({
-      0: (
-        <div>
-          <IconSearch />
-        </div>
-      ),
+      0: <IconSearch />,
       1: (
         <div>
           <States />
@@ -33,12 +29,14 @@ class IconExamples extends Component {
       <div>
         <Menu
           widths={2}
-          tabular
+          pointing
+          color='teal'
           defaultActiveIndex={0}
           items={tabs}
           onItemClick={this.handleMenuItemClick}
           style={{ marginBottom: 0 }}
         />
+        <Divider hidden />
         {this.renderActiveTab()}
       </div>
     )

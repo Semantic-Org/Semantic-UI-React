@@ -82,7 +82,12 @@ describe('Sticky', () => {
   })
 
   afterEach(() => {
-    if (wrapper && wrapper.unmount) wrapper.unmount()
+    if (wrapper && wrapper.unmount) {
+      try {
+        wrapper.unmount()
+        // eslint-disable-next-line no-empty
+      } catch (e) {}
+    }
   })
 
   describe('children', () => {
@@ -393,6 +398,15 @@ describe('Sticky', () => {
 
       domEvent.scroll(document)
       onStick.should.not.have.been.called()
+    })
+  })
+
+  describe('styleElement', () => {
+    it('is passed to macthing element', () => {
+      wrapperMount(<Sticky styleElement={{ zIndex: 10 }} />)
+      const element = wrapper.childAt(0).childAt(1)
+
+      element.should.have.style('z-index', '10')
     })
   })
 

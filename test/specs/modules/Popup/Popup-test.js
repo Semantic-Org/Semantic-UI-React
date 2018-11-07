@@ -79,8 +79,8 @@ describe('Popup', () => {
     assertInBody('.ui.popup.visible.some-class')
   })
 
-  describe('offest', () => {
-    it('accepts an offest to the left', () => {
+  describe('offset', () => {
+    it('accepts an offset to the left', () => {
       wrapperMount(
         <Popup
           horizontalOffset={50}
@@ -93,7 +93,7 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
-    it('accepts an offest to the right', () => {
+    it('accepts an offset to the right', () => {
       wrapperMount(
         <Popup
           horizontalOffset={50}
@@ -106,10 +106,26 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
+    it('causes the style to be updated', () => {
+      wrapperMount(
+        <Popup
+          horizontalOffset={50}
+          position='bottom left'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+      const element = document.querySelector('.popup.ui')
+      element.style.should.have.property('left', '-50px')
+      wrapper.setProps({ horizontalOffset: 60 })
+      element.style.should.have.property('left', '-60px')
+    })
   })
 
-  describe('verticalOffest', () => {
-    it('accepts a vertical offest to the top', () => {
+  describe('verticalOffset', () => {
+    it('accepts a vertical offset to the top', () => {
       wrapperMount(
         <Popup
           verticalOffset={50}
@@ -122,7 +138,7 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
-    it('accepts a vertical offest to the bottom', () => {
+    it('accepts a vertical offset to the bottom', () => {
       wrapperMount(
         <Popup
           verticalOffset={50}
@@ -134,6 +150,22 @@ describe('Popup', () => {
 
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
+    })
+    it('causes the style to be updated', () => {
+      wrapperMount(
+        <Popup
+          verticalOffset={50}
+          position='bottom right'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+      const element = document.querySelector('.popup.ui')
+      element.style.should.have.property('top', '50px')
+      wrapper.setProps({ verticalOffset: 60 })
+      element.style.should.have.property('top', '60px')
     })
   })
 

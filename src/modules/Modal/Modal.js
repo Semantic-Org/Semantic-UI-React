@@ -122,7 +122,7 @@ class Modal extends Component {
     open: PropTypes.bool,
 
     /** A modal can vary in size */
-    size: PropTypes.oneOf(['fullscreen', 'large', 'mini', 'small', 'tiny']),
+    size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'fullscreen']),
 
     /** Custom styles. */
     style: PropTypes.object,
@@ -252,7 +252,7 @@ class Modal extends Component {
       // SEE: https://github.com/Semantic-Org/Semantic-UI/issues/6185#issuecomment-376725956
       // const marginTop = -Math.round(height / 2)
       const marginTop = null
-      const scrolling = height >= window.innerHeight
+      const scrolling = height > window.innerHeight
 
       if (this.state.marginTop !== marginTop) {
         newState.marginTop = marginTop

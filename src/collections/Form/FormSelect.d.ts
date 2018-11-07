@@ -1,12 +1,14 @@
 import * as React from 'react'
 
-import { SelectProps } from '../../addons/Select'
+import { StrictSelectProps } from '../../addons/Select'
 import { DropdownItemProps } from '../../modules/Dropdown/DropdownItem'
-import { FormFieldProps } from './FormField'
+import { StrictFormFieldProps } from './FormField'
 
-export interface FormSelectProps extends FormFieldProps, SelectProps {
+export interface FormSelectProps extends StrictFormSelectProps {
   [key: string]: any
+}
 
+export interface StrictFormSelectProps extends StrictFormFieldProps, StrictSelectProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { HtmlInputrops, SemanticShorthandItem, SemanticSIZES } from '../..'
+import { HtmlInputrops, SemanticShorthandItem, SemanticSIZES } from '../../generic'
 import { LabelProps } from '../Label'
 
-export interface InputProps {
+export interface InputProps extends StrictInputProps {
   [key: string]: any
+}
 
+export interface StrictInputProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -57,10 +59,10 @@ export interface InputProps {
   /**
    * Called on change.
    *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and proposed value.
+   * @param {ChangeEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and a proposed value.
    */
-  onChange?: (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => void
 
   /** An Input can vary in size. */
   size?: SemanticSIZES

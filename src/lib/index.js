@@ -25,6 +25,7 @@ export {
   htmlInputAttrs,
   htmlInputEvents,
   htmlInputProps,
+  htmlImageProps,
   partitionHTMLProps,
 } from './htmlPropsUtils'
 

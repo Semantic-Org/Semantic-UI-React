@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface ListListProps {
+export interface ListListProps extends StrictListListProps {
   [key: string]: any
+}
 
+export interface StrictListListProps {
   /** An element type to render as (string or function). */
   as?: any
 

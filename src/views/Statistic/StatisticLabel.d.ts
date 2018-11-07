@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface StatisticLabelProps {
+export interface StatisticLabelProps extends StrictStatisticLabelProps {
   [key: string]: any
+}
 
+export interface StrictStatisticLabelProps {
   /** An element type to render as (string or function). */
   as?: any
 

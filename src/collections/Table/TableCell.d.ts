@@ -5,12 +5,14 @@ import {
   SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
-export interface TableCellProps {
+export interface TableCellProps extends StrictTableCellProps {
   [key: string]: any
+}
 
+export interface StrictTableCellProps {
   /** An element type to render as (string or function). */
   as?: any
 

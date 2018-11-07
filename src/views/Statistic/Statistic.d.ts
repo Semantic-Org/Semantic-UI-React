@@ -1,15 +1,17 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticFLOATS, SemanticShorthandContent } from '../..'
+import { SemanticCOLORS, SemanticFLOATS, SemanticShorthandContent } from '../../generic'
 import StatisticGroup from './StatisticGroup'
 import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'
 
 export type StatisticSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'huge'
 
-export interface StatisticProps {
+export interface StatisticProps extends StrictStatisticProps {
   [key: string]: any
+}
 
+export interface StrictStatisticProps {
   /** An element type to render as (string or function). */
   as?: any
 

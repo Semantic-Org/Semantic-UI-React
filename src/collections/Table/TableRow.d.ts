@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticVERTICALALIGNMENTS } from '../..'
+import { SemanticShorthandCollection, SemanticVERTICALALIGNMENTS } from '../../generic'
 import { TableCellProps } from './TableCell'
 
-export interface TableRowProps {
+export interface TableRowProps extends StrictTableRowProps {
   [key: string]: any
+}
 
+export interface StrictTableRowProps {
   /** An element type to render as (string or function). */
   as?: any
 

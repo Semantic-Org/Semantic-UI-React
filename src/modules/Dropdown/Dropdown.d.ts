@@ -7,14 +7,16 @@ import { default as DropdownItem, DropdownItemProps } from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
 
-export interface DropdownProps {
+export interface DropdownProps extends StrictDropdownProps {
   [key: string]: any
+}
 
+export interface StrictDropdownProps {
   /** An element type to render as (string or function). */
   as?: any
 
   /** Label prefixed to an option added by a user. */
-  additionLabel?: number | string
+  additionLabel?: number | string | React.ReactNode
 
   /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
   additionPosition?: 'top' | 'bottom'
@@ -36,6 +38,9 @@ export interface DropdownProps {
 
   /** Additional classes. */
   className?: string
+
+  /** Using the clearable setting will let users remove their selection from a dropdown. */
+  clearable?: boolean
 
   /** Whether or not the menu should close when the dropdown is blurred. */
   closeOnBlur?: boolean

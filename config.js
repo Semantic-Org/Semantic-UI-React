@@ -1,4 +1,4 @@
-import path from 'path'
+const path = require('path')
 
 // ------------------------------------
 // Environment vars
@@ -43,12 +43,6 @@ const config = {
   paths,
 
   // ----------------------------------
-  // Server Configuration
-  // ----------------------------------
-  server_host: 'localhost',
-  server_port: process.env.PORT || 8080,
-
-  // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
   compiler_devtool: (__DEV__ || __TEST__) && 'cheap-source-map',
@@ -86,10 +80,9 @@ const config = {
   compiler_vendor: [
     '@babel/standalone',
     'brace',
-    'brace/ext/language_tools',
     'brace/mode/jsx',
     'brace/mode/html',
-    'brace/theme/tomorrow',
+    'brace/theme/tomorrow_night',
     'classnames',
     'copy-to-clipboard',
     'faker',
@@ -99,4 +92,4 @@ const config = {
   ],
 }
 
-export default config
+module.exports = config

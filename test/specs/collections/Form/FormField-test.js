@@ -12,7 +12,7 @@ describe('FormField', () => {
   common.isConformant(FormField)
   common.rendersChildren(FormField)
 
-  common.implementsHTMLLabelProp(FormField)
+  common.implementsHTMLLabelProp(FormField, { autoGenerateKey: false })
   common.implementsWidthProp(FormField, SUI.WIDTHS, {
     canEqual: false,
     propKey: 'width',
@@ -30,8 +30,7 @@ describe('FormField', () => {
       const controls = ['button', 'input', 'select', 'textarea']
 
       controls.forEach((control) => {
-        shallow(<FormField control={control} />)
-          .should.have.descendants(control)
+        shallow(<FormField control={control} />).should.have.descendants(control)
       })
     })
   })
@@ -39,8 +38,9 @@ describe('FormField', () => {
   describe('label', () => {
     it('wraps html checkbox inputs', () => {
       const text = faker.hacker.phrase()
-      const label = shallow(<FormField control='input' label={text} type='checkbox' />)
-        .find('label')
+      const label = shallow(<FormField control='input' label={text} type='checkbox' />).find(
+        'label',
+      )
 
       label.childAt(0).should.have.tagName('input')
       label.should.contain.text(text)
@@ -48,8 +48,7 @@ describe('FormField', () => {
 
     it('wraps html radio inputs', () => {
       const text = faker.hacker.phrase()
-      const label = shallow(<FormField control='input' label={text} type='radio' />)
-        .find('label')
+      const label = shallow(<FormField control='input' label={text} type='radio' />).find('label')
 
       label.childAt(0).should.have.tagName('input')
       label.should.contain.text(text)

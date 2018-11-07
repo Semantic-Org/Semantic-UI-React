@@ -8,13 +8,13 @@ describe('BreadcrumbDivider', () => {
   common.rendersChildren(BreadcrumbDivider)
 
   common.implementsIconProp(BreadcrumbDivider, {
+    autoGenerateKey: false,
     shorthandDefaultProps: {
       className: 'divider',
     },
   })
 
   it('renders as a div by default', () => {
-    shallow(<BreadcrumbDivider />)
-      .should.have.tagName('div')
+    shallow(<BreadcrumbDivider />).should.have.tagName('div')
   })
 })

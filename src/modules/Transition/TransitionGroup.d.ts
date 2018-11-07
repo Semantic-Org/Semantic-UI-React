@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticTRANSITIONS } from '../../'
+import { SemanticTRANSITIONS } from '../../generic'
 import { TransitionPropDuration } from './Transition'
 
-export interface TransitionGroupProps {
+export interface TransitionGroupProps extends StrictTransitionGroupProps {
   [key: string]: any
+}
 
+export interface StrictTransitionGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 

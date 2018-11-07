@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { HtmlIframeProps, SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { HtmlIframeProps, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
-export interface EmbedProps {
+export interface EmbedProps extends StrictEmbedProps {
   [key: string]: any
+}
 
+export interface StrictEmbedProps {
   /** An element type to render as (string or function). */
   as?: any
 
