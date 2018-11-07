@@ -64,7 +64,8 @@ Run the dev server
 
 `yarn start`
 
-Navigate to `themes/src/<theme name>` and start writing your theme's overrides.
+Navigate to `themes/src/<theme name>` and start writing your theme's overrides as oulined in
+the [Semantic UI theming guide](https://semantic-ui.com/theming).
 The docs application should hot-reload when changes are made to the theme's `.less` files
 
 ## Credit

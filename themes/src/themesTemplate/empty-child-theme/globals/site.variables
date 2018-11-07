@@ -1,5 +1,0 @@
-@import '../../empty-parent-theme/globals/site.variables';
-
-@import '../external/font-awesome.variables';
-@import '../external/label.variables';
-@import '../external/react-datepicker.variables';

@@ -1,0 +1,1 @@
+@import '../../parent-theme/external/react-datepicker.overrides';

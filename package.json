@@ -4,7 +4,8 @@
   "description": "A theme builder for Semantic UI components.",
   "scripts": {
     "reset": "rm -rf node_modules/ && rm -rf yarn.lock && yarn install",
-    "start": "THEME=child-theme cross-env NODE_ENV=development gulp --series start:docs",
+    "start:light": "THEME=child-theme-light cross-env NODE_ENV=development gulp --series start:docs",
+    "start:dark": "THEME=child-theme-light cross-env NODE_ENV=development gulp --series start:docs",
     "build:themes": "rm -rf themes/dist && node themes/config/build.js",
     "build:docs": "rm -rf docs/dist && cross-env NODE_ENV=production gulp build:docs",
     "serve": "serve docs/dist",

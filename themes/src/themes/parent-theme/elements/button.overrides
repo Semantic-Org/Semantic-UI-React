@@ -1,0 +1,3 @@
+.ui.button {
+  padding: 20px;
+}
