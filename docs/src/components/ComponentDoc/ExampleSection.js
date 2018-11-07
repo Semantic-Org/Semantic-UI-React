@@ -3,10 +3,14 @@ import React from 'react'
 import { Grid, Header } from 'semantic-ui-react'
 
 const headerStyle = {
-  marginBottom: '1.5em',
   textAlign: 'center',
   textTransform: 'uppercase',
   opacity: 0.5,
+}
+
+const descriptionStyle = {
+  textAlign: 'center',
+  opacity: 0.7,
 }
 
 const ExampleSection = ({ title, children, ...rest }) => (
@@ -15,6 +19,13 @@ const ExampleSection = ({ title, children, ...rest }) => (
       <Header as='h2' style={headerStyle} className='no-anchor'>
         {title}
       </Header>
+      {title === 'Themed' &&
+        <Header as='h4' style={descriptionStyle} className='no-anchor'>
+          This section is intended as a reference of specific use cases of
+          components, or compositions of them, that are not covered in the
+          component's default examples.
+        </Header>
+      }
       {children}
     </Grid.Column>
   </Grid>

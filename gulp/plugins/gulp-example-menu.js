@@ -7,13 +7,14 @@ import through from 'through2'
 import { parseDocSection } from './util'
 
 const SECTION_ORDER = {
-  Types: 1,
-  States: 2,
-  Content: 3,
-  Variations: 4,
-  Groups: 5,
-  DEFAULT_ORDER: 6,
-  Usage: 9,
+  Themed: 1,
+  Types: 2,
+  States: 3,
+  Content: 4,
+  Variations: 5,
+  Groups: 6,
+  DEFAULT_ORDER: 7,
+  Usage: 8,
 }
 
 const getSectionOrder = sectionName =>
