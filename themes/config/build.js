@@ -21,6 +21,7 @@ const FileSizeReporter = require('react-dev-utils/FileSizeReporter')
 const printBuildError = require('react-dev-utils/printBuildError')
 const path = require('path')
 const shellJs = require('shelljs')
+const { getThemes } = require('./helpers')
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild
