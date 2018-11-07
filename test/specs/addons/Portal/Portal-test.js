@@ -415,6 +415,25 @@ describe('Portal', () => {
         done()
       }, 1)
     })
+
+    it("does not close the portal on mouseleave triggered by the portal's children", (done) => {
+      wrapperMount(
+        <Portal closeOnPortalMouseLeave defaultOpen mouseLeaveDelay={0} trigger={<button />}>
+          <div>
+            <p id='child' />
+          </div>
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
+
+      domEvent.mouseLeave('#child')
+      setTimeout(() => {
+        wrapper.update()
+        wrapper.should.have.descendants(PortalInner)
+
+        done()
+      }, 1)
+    })
   })
 
   describe('closeOnTriggerMouseLeave + closeOnPortalMouseLeave', () => {

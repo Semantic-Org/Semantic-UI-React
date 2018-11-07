@@ -173,6 +173,9 @@ class Portal extends Component {
 
     if (!closeOnPortalMouseLeave) return
 
+    // Do not close the portal when 'mouseleave' is triggered by children
+    if (e.target !== this.portalNode) return
+
     debug('handlePortalMouseLeave()')
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
   }
