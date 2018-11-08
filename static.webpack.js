@@ -143,7 +143,6 @@ export default (webpackConfig, { stage }) => ({
   ],
   resolve: {
     alias: {
-      'semantic-ui-react': config.paths.src('index.js'),
       '../../theme.config$': config.paths.themesSrc(`themes/${getTheme()}/theme.less`),
     },
     // Heads up!

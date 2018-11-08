@@ -13,7 +13,7 @@ const getStyleLoaders = () => [
   // },
   {
     loader: require.resolve('css-loader'),
-    options: { importLoaders: 1 },
+    options: { importLoaders: 1, minimize: true },
   },
   {
     // Options for PostCSS as we reference these options twice

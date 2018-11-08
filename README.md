@@ -35,7 +35,7 @@ which are consumed by the variables and overrides in the parent theme
 which are consumed by the variables and overrides in the parent theme
 
 I wrote it like this to be able to create nested themes that share common characteristics,
-e.g. light and dark themes for the same application where color variables are defined in the child theme,
+e.g. light and dark themes for the same application where color variables are defined in the child themes,
 and the overrides are defined in the parent theme, which consume the color variables.
 
 I also added the capability of using Font Awesome native classes so you can write
@@ -68,6 +68,34 @@ Navigate to `themes/src/<theme name>` and start writing your theme's overrides a
 the [Semantic UI theming guide](https://semantic-ui.com/theming).
 The docs application should hot-reload when changes are made to the theme's `.less` files
 
+
+## Consuming themes
+
+Once you are satisfied with the state of your themes, you can run
+
+`yarn build:themes`
+
+which will generate your themes' compiled CSS into `themes/dist/sui-<theme name>.css`.
+You can then consume this file in your web app and have all Semantic UI components themed to your preference.
+
+You can also run
+
+`yarn build:demo`
+
+Which will generate a [react-static](https://github.com/nozzle/react-static) application with the
+Semantic UI docs web app, with your themes and your custom examples. You can also deploy this application
+to your private domain if you want to make your themed components reviewable to anyone.
+
+Note: for the icons to work in applications that consume the themes, you must copy the Semantic UI icon and
+the Font Awesome webfont files to the application's public folder, these icons are respectively located in
+
+```
+node_modules/semantic-ui-less/themes/default/assets/fonts
+node_modules/@fortawesome/fontawesome-free/webfonts
+```
+
+
 ## Credit
 
 Made possible only by [@jlukic](https://github.com/jlukic) authoring [Semantic UI](https://semantic-ui.com/).
+The substantial contributions of [@lzear](https://github.com/lzear) are greatly appreciated!

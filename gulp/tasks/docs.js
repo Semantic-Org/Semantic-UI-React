@@ -151,6 +151,15 @@ task(
 )
 
 // ----------------------------------------
+// Deploy
+// ----------------------------------------
+
+task('deploy:docs', (cb) => {
+  const relativePath = path.relative(process.cwd(), paths.docsDist())
+  sh(`gh-pages -d ${relativePath} -m "deploy docs"`, cb)
+})
+
+// ----------------------------------------
 // Watch
 // ----------------------------------------
 
