@@ -1,0 +1,10 @@
+.div-funny {
+  padding: 40px;
+  border-width: 4px;
+  border-style: dotted dashed solid double;
+  border-color: @div-funny__border-color;
+  background-color: @div-funny__background-color;
+  color: @div-funny__color;
+  font-size: 20px;
+  font-weight: bold;
+}
