@@ -5,9 +5,24 @@ import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 const ReactDatepickerTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
-      title='Basic'
-      description='A basic react-datepicker'
-      examplePath='externals/ReactDatepicker/Types/ReactDatepickerExampleBasic'
+      title='Date'
+      description='A date picker'
+      examplePath='externals/ReactDatepicker/Types/ReactDatepickerExampleDate'
+    />
+    <ComponentExample
+      title='Time'
+      description='A time picker'
+      examplePath='externals/ReactDatepicker/Types/ReactDatepickerExampleTime'
+    />
+    <ComponentExample
+      title='Date & time'
+      description='A date & time picker'
+      examplePath='externals/ReactDatepicker/Types/ReactDatepickerExampleDateTime'
+    />
+    <ComponentExample
+      title='Date range'
+      description='A date range picker'
+      examplePath='externals/ReactDatepicker/Types/ReactDatepickerExampleDateRange'
     />
   </ExampleSection>
 )

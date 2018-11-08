@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import ReactDatepicker from 'react-datepicker'
 
-class ReactDatepickerExampleBasic extends Component {
+class ReactDatepickerExampleDate extends Component {
   state = {
     startDate: moment(),
   }
@@ -23,4 +23,4 @@ class ReactDatepickerExampleBasic extends Component {
   }
 }
 
-export default ReactDatepickerExampleBasic
+export default ReactDatepickerExampleDate
