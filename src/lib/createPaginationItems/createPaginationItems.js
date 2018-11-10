@@ -10,10 +10,11 @@ import { isSimplePagination, typifyOptions } from './paginationUtils'
 
 /**
  * @param {object} rawOptions
- * @param {number} rawOptions.activePage
- * @param {number} rawOptions.boundaryRange Number of always visible pages at the beginning and end.
- * @param {number} rawOptions.siblingRange Number of always visible pages before and after the current one.
- * @param {number} rawOptions.totalPages Total number of pages.
+ * @param {number|string} rawOptions.activePage
+ * @param {number|string} rawOptions.boundaryRange Number of always visible pages at the beginning and end.
+ * @param {boolean} rawOptions.hideEllipsis Marks if ellipsis should be hidden.
+ * @param {number|string} rawOptions.siblingRange Number of always visible pages before and after the current one.
+ * @param {number|string} rawOptions.totalPages Total number of pages.
  */
 const createPaginationItems = (rawOptions) => {
   const options = typifyOptions(rawOptions)
