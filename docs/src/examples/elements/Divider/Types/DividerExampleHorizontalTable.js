@@ -32,10 +32,10 @@ const DividerExampleHorizontalTable = () => (
           <Table.Cell>Weight</Table.Cell>
           <Table.Cell>6 ounces</Table.Cell>
         </Table.Row>
-        <tr>
+        <Table.Row>
           <Table.Cell>Color</Table.Cell>
           <Table.Cell>Yellowish</Table.Cell>
-        </tr>
+        </Table.Row>
         <Table.Row>
           <Table.Cell>Odor</Table.Cell>
           <Table.Cell>Not Much Usually</Table.Cell>
