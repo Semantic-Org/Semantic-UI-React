@@ -110,10 +110,22 @@ export default class Pagination extends Component {
   })
 
   render() {
-    const { 'aria-label': ariaLabel, boundaryRange, siblingRange, totalPages } = this.props
+    const {
+      'aria-label': ariaLabel,
+      boundaryRange,
+      ellipsisItem,
+      siblingRange,
+      totalPages,
+    } = this.props
     const { activePage } = this.state
 
-    const items = createPaginationItems({ activePage, boundaryRange, siblingRange, totalPages })
+    const items = createPaginationItems({
+      activePage,
+      boundaryRange,
+      hideEllipsis: _.isNil(ellipsisItem),
+      siblingRange,
+      totalPages,
+    })
     const rest = getUnhandledProps(Pagination, this.props)
 
     return (
