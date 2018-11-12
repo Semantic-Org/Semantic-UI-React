@@ -40,26 +40,24 @@ describe('Responsive', () => {
   describe('getWidth', () => {
     it('defaults to window.innerWidth when is browser', () => {
       sandbox.stub(window, 'innerWidth').value(500)
-      shallow(<Responsive />)
-        .state('width')
-        .should.equal(500)
+      const { getWidth } = shallow(<Responsive />).instance().props
+      getWidth().should.equal(500)
     })
 
     it('defaults to "0" when non-browser', () => {
       isBrowser.override = false
 
-      shallow(<Responsive />)
-        .state('width')
-        .should.equal(0)
+      const { getWidth } = shallow(<Responsive />).instance().props
+      getWidth().should.equal(0)
 
       isBrowser.override = null
     })
 
     it('allows a custom function that returns a number', () => {
-      const getWidth = () => 500
-      const wrapper = shallow(<Responsive getWidth={getWidth} />)
-
-      wrapper.state('width').should.equal(500)
+      const getWidth = sandbox.spy(() => 500)
+      mount(<Responsive getWidth={getWidth} />)
+      getWidth.should.have.been.calledOnce()
+      getWidth.should.have.returned(500)
     })
 
     it('is called on resize', () => {
@@ -80,6 +78,15 @@ describe('Responsive', () => {
       shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).should.not.be.blank()
     })
 
+    it('renders when next maxWidth fits', () => {
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.maxWidth)
+      const wrapper = mount(<Responsive {...Responsive.onlyMobile} />)
+      wrapper.should.be.blank()
+      wrapper.setProps({ ...Responsive.onlyTablet })
+      wrapper.update()
+      wrapper.should.not.be.blank()
+    })
+
     it('do not render when not fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.maxWidth)
       shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).should.be.blank()
@@ -90,6 +97,15 @@ describe('Responsive', () => {
     it('renders when fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
       shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).should.not.be.blank()
+    })
+
+    it('renders when next minWidth fits', () => {
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
+      const wrapper = mount(<Responsive {...Responsive.onlyTablet} />)
+      wrapper.should.be.blank()
+      wrapper.setProps({ ...Responsive.onlyMobile })
+      wrapper.update()
+      wrapper.should.not.be.blank()
     })
 
     it('do not render when not fits', () => {
@@ -126,35 +142,31 @@ describe('Responsive', () => {
     })
   })
 
-  describe('shouldComponentUpdate', () => {
-    it('returns true when width changes', () => {
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
-      const wrapper = mount(<Responsive />)
+  describe('render', () => {
+    it('does not re render if fit does not change', () => {
+      const wrapper = mount(<Responsive {...Responsive.onlyTablet} />)
       const instance = wrapper.instance()
-      const spy = sandbox.spy(instance, 'shouldComponentUpdate')
-
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
+      const spy = sandbox.spy(instance, 'render')
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth + 1)
       domEvent.fire(window, 'resize')
-      spy.should.have.returned(true)
+      spy.should.not.have.been.called()
     })
 
-    it('returns false when width stays the same', () => {
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
-      const wrapper = mount(<Responsive />)
+    it('re renders if fit changes', () => {
+      const wrapper = mount(<Responsive {...Responsive.onlyTablet} />)
       const instance = wrapper.instance()
-      const spy = sandbox.spy(instance, 'shouldComponentUpdate')
-
+      const spy = sandbox.spy(instance, 'render')
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth - 1)
       domEvent.fire(window, 'resize')
-      spy.should.have.returned(false)
+      spy.should.have.been.calledOnce()
     })
 
-    it('returns true when props change', () => {
+    it('re renders when props change', () => {
       const wrapper = mount(<Responsive {...Responsive.onlyMobile} />)
       const instance = wrapper.instance()
-      const spy = sandbox.spy(instance, 'shouldComponentUpdate')
-
-      wrapper.setProps({ ...Responsive.onlyTablet })
-      spy.should.have.returned(true)
+      const spy = sandbox.spy(instance, 'render')
+      wrapper.setProps({ as: 'h1' })
+      spy.should.have.been.called()
     })
   })
 })

@@ -8,7 +8,6 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  shallowEqual,
 } from '../../lib'
 
 /**
@@ -58,8 +57,8 @@ export default class Responsive extends Component {
 
   constructor(...args) {
     super(...args)
-
-    this.state = { width: _.invoke(this.props, 'getWidth') }
+    const width = _.invoke(this.props, 'getWidth')
+    this.state = { visible: this.isVisible(width) }
   }
 
   componentDidMount() {
@@ -71,37 +70,47 @@ export default class Responsive extends Component {
     if (fireOnMount) this.handleUpdate()
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.minWidth !== prevProps.minWidth || this.props.maxWidth !== prevProps.maxWidth) {
+      const width = _.invoke(this.props, 'getWidth')
+      this.updateVisibility(width)
+    }
+  }
+
   componentWillUnmount() {
     this.mounted = false
     eventStack.unsub('resize', this.handleResize, { target: 'window' })
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    // Update when any prop changes or the width changes. If width does not change, no update is required.
-    return this.state.width !== nextState.width || !shallowEqual(this.props, nextProps)
   }
 
   // ----------------------------------------
   // Helpers
   // ----------------------------------------
 
-  fitsMaxWidth = () => {
+  fitsMaxWidth = (width) => {
     const { maxWidth } = this.props
-    const { width } = this.state
 
     return _.isNil(maxWidth) ? true : width <= maxWidth
   }
 
-  fitsMinWidth = () => {
+  fitsMinWidth = (width) => {
     const { minWidth } = this.props
-    const { width } = this.state
 
     return _.isNil(minWidth) ? true : width >= minWidth
   }
 
   setSafeState = (...args) => this.mounted && this.setState(...args)
 
-  isVisible = () => this.fitsMinWidth() && this.fitsMaxWidth()
+  isVisible = width => this.fitsMinWidth(width) && this.fitsMaxWidth(width)
+
+  updateVisibility = (width) => {
+    const nextVisible = this.isVisible(width)
+    const { visible } = this.state
+    if (visible !== nextVisible) {
+      this.setSafeState({
+        visible: nextVisible,
+      })
+    }
+  }
 
   // ----------------------------------------
   // Event handlers
@@ -117,8 +126,7 @@ export default class Responsive extends Component {
   handleUpdate = (e) => {
     this.ticking = false
     const width = _.invoke(this.props, 'getWidth')
-
-    this.setSafeState({ width })
+    this.updateVisibility(width)
     _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
   }
 
@@ -128,11 +136,11 @@ export default class Responsive extends Component {
 
   render() {
     const { children } = this.props
+    const { visible } = this.state
 
     const ElementType = getElementType(Responsive, this.props)
     const rest = getUnhandledProps(Responsive, this.props)
-
-    if (this.isVisible()) return <ElementType {...rest}>{children}</ElementType>
+    if (visible) return <ElementType {...rest}>{children}</ElementType>
     return null
   }
 }
