@@ -127,10 +127,6 @@ export default (webpackConfig, { stage }) => ({
         to: config.paths.docsDist(`css/sui-${theme}.css`),
       })),
       {
-        from: config.paths.base('node_modules/semantic-ui-less/themes/default/assets/fonts'),
-        to: config.paths.docsDist('webfonts'),
-      },
-      {
         from: config.paths.base('node_modules/@fortawesome/fontawesome-free/css/all.min.css'),
         to: config.paths.docsDist('css/fa.css'),
       },

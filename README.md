@@ -54,15 +54,15 @@ Navigate to the cloned repo
 
 Install the repos dependencies
 
-`yarn reset`
+`yarn all:reset`
 
 Build the empty themes
 
-`yarn build:themes`
+`yarn themes:build`
 
 Run the dev server
 
-`yarn start`
+`yarn docs:start:light`
 
 Navigate to `themes/src/<theme name>` and start writing your theme's overrides as oulined in
 the [Semantic UI theming guide](https://semantic-ui.com/theming).
@@ -73,14 +73,14 @@ The docs application should hot-reload when changes are made to the theme's `.le
 
 Once you are satisfied with the state of your themes, you can run
 
-`yarn build:themes`
+`yarn themes:build`
 
 which will generate your themes' compiled CSS into `themes/dist/sui-<theme name>.css`.
 You can then consume this file in your web app and have all Semantic UI components themed to your preference.
 
 You can also run
 
-`yarn build:demo`
+`yarn docs:build`
 
 Which will generate a [react-static](https://github.com/nozzle/react-static) application with the
 Semantic UI docs web app, with your themes and your custom examples. You can also deploy this application

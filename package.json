@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "description": "A theme builder for Semantic UI components",
   "scripts": {
-    "reset": "rm -rf node_modules/ && rm -rf yarn.lock && yarn install",
-    "start:light": "THEME=child-theme-light cross-env NODE_ENV=development gulp --series start:docs",
-    "start:dark": "THEME=child-theme-dark cross-env NODE_ENV=development gulp --series start:docs",
-    "build:themes": "rm -rf themes/dist && node themes/config/build.js",
-    "build:docs": "rm -rf docs/dist && cross-env NODE_ENV=production gulp build:docs",
-    "serve:docs": "serve docs/dist",
-    "deploy:docs": "gulp deploy:docs",
-    "eslint": "eslint --ext .js ./docs ./themes .src/externals",
-    "eslint:fix": "eslint --fix --ext .js ./docs ./themes .src/externals"
+    "all:reset": "rm -rf node_modules/ && rm -rf yarn.lock && yarn install",
+    "all:eslint": "eslint --ext .js ./docs ./themes .src/externals",
+    "all:eslint:fix": "eslint --fix --ext .js ./docs ./themes .src/externals",
+    "docs:start:light": "THEME=child-theme-light cross-env NODE_ENV=development gulp --series start:docs",
+    "docs:start:dark": "THEME=child-theme-dark cross-env NODE_ENV=development gulp --series start:docs",
+    "docs:build": "rm -rf docs/dist && cross-env NODE_ENV=production gulp build:docs",
+    "docs:serve": "serve docs/dist",
+    "docs:deploy:docs": "gulp deploy:docs",
+    "themes:build": "rm -rf themes/dist && node themes/config/build.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
