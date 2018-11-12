@@ -87,6 +87,16 @@ describe('Responsive', () => {
       wrapper.should.not.be.blank()
     })
 
+    it('renders when next getWidth makes maxWidth fit', () => {
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.maxWidth)
+      const wrapper = mount(<Responsive {...Responsive.onlyMobile} />)
+      wrapper.should.be.blank()
+      const getWidth = () => Responsive.onlyMobile.maxWidth
+      wrapper.setProps({ getWidth })
+      wrapper.update()
+      wrapper.should.not.be.blank()
+    })
+
     it('do not render when not fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.maxWidth)
       shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).should.be.blank()
@@ -104,6 +114,16 @@ describe('Responsive', () => {
       const wrapper = mount(<Responsive {...Responsive.onlyTablet} />)
       wrapper.should.be.blank()
       wrapper.setProps({ ...Responsive.onlyMobile })
+      wrapper.update()
+      wrapper.should.not.be.blank()
+    })
+
+    it('renders when next getWidth makes minWidth fit', () => {
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.maxWidth)
+      const wrapper = mount(<Responsive {...Responsive.onlyTablet} />)
+      wrapper.should.be.blank()
+      const getWidth = () => Responsive.onlyTablet.minWidth
+      wrapper.setProps({ getWidth })
       wrapper.update()
       wrapper.should.not.be.blank()
     })

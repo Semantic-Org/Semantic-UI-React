@@ -71,7 +71,11 @@ export default class Responsive extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.minWidth !== prevProps.minWidth || this.props.maxWidth !== prevProps.maxWidth) {
+    if (
+      this.props.minWidth !== prevProps.minWidth ||
+      this.props.maxWidth !== prevProps.maxWidth ||
+      this.props.getWidth !== prevProps.getWidth
+    ) {
       const width = _.invoke(this.props, 'getWidth')
       this.updateVisibility(width)
     }
