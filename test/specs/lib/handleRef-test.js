@@ -5,16 +5,14 @@ import { sandbox } from 'test/utils'
 
 describe('handleRef', () => {
   it('throws an error when "ref" is string', () => {
-    const node = document.createElement('div')
-
     expect(() => {
-      handleRef('ref', node)
+      handleRef('ref', document.createElement('div'))
     }).to.throw()
   })
 
   it('does not do anything when "ref" is null', () => {
     expect(() => {
-      handleRef('ref', null)
+      handleRef(null, document.createElement('div'))
     }).to.not.throw()
   })
 
@@ -31,6 +29,6 @@ describe('handleRef', () => {
     const node = document.createElement('div')
 
     handleRef(ref, node)
-    ref.current.should.be(node)
+    ref.should.have.property('current', node)
   })
 })
