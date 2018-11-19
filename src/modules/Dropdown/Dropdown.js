@@ -3,6 +3,7 @@ import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Children, cloneElement } from 'react'
+import shallowEqual from 'shallowequal'
 
 import {
   AutoControlledComponent as Component,
@@ -14,7 +15,6 @@ import {
   getUnhandledProps,
   makeDebugger,
   objectDiff,
-  shallowEqual,
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'

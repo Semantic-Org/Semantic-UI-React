@@ -3,6 +3,7 @@ import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
+import shallowEqual from 'shallowequal'
 
 import {
   AutoControlledComponent as Component,
@@ -15,7 +16,6 @@ import {
   makeDebugger,
   objectDiff,
   partitionHTMLProps,
-  shallowEqual,
   SUI,
   useKeyOnly,
   useValueAndKey,

@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-static'
 import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
+import shallowEqual from 'shallowequal'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
 import { docTypes, getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
-import shallowEqual from 'src/lib/shallowEqual'
 
 const selectedItemLabelStyle = {
   position: 'absolute',
