@@ -37,13 +37,15 @@ export default class RefExampleRef extends Component {
           {isMounted && (
             <Table>
               <Table.Header>
-                <Table.HeaderCell>Type</Table.HeaderCell>
-                <Table.HeaderCell>
-                  <code>nodeName</code>
-                </Table.HeaderCell>
-                <Table.HeaderCell>
-                  <code>textContent</code>
-                </Table.HeaderCell>
+                <Table.Row>
+                  <Table.HeaderCell>Type</Table.HeaderCell>
+                  <Table.HeaderCell>
+                    <code>nodeName</code>
+                  </Table.HeaderCell>
+                  <Table.HeaderCell>
+                    <code>textContent</code>
+                  </Table.HeaderCell>
+                </Table.Row>
               </Table.Header>
 
               <Table.Body>
