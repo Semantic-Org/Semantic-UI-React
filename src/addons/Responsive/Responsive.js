@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import shallowEqual from 'shallowequal'
 
 import {
   customPropTypes,
@@ -8,7 +9,6 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  shallowEqual,
 } from '../../lib'
 
 /**
