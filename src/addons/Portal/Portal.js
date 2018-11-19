@@ -7,6 +7,7 @@ import {
   AutoControlledComponent as Component,
   doesNodeContainClick,
   eventStack,
+  handleRef,
   makeDebugger,
 } from '../../lib'
 import Ref from '../Ref'
@@ -115,7 +116,7 @@ class Portal extends Component {
      *
      * @param {HTMLElement} node - Referred node.
      */
-    triggerRef: PropTypes.func,
+    triggerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }
 
   static defaultProps = {
@@ -334,7 +335,7 @@ class Portal extends Component {
 
   handleTriggerRef = (c) => {
     this.triggerNode = c
-    _.invoke(this.props, 'triggerRef', c)
+    handleRef(this.props.triggerRef, c)
   }
 
   render() {

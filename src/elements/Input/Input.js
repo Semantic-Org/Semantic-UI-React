@@ -10,6 +10,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  handleRef,
   partitionHTMLProps,
   SUI,
   useKeyOnly,
@@ -129,7 +130,7 @@ class Input extends Component {
     ...defaultProps,
     ...child.props,
     ref: (c) => {
-      _.invoke(child, 'ref', c)
+      handleRef(child.ref, c)
       this.handleInputRef(c)
     },
   })
