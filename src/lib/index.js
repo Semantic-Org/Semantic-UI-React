@@ -20,6 +20,7 @@ export eventStack from './eventStack'
 export * from './factories'
 export getUnhandledProps from './getUnhandledProps'
 export getElementType from './getElementType'
+export handleRef from './handleRef'
 
 export {
   htmlInputAttrs,
