@@ -68,7 +68,7 @@
   "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "@semantic-ui-react/event-stack": "^3.0.0",
+    "@semantic-ui-react/event-stack": "^3.0.1",
     "classnames": "^2.2.6",
     "keyboard-key": "^1.0.2",
     "lodash": "^4.17.11",
