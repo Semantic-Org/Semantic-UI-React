@@ -4,11 +4,11 @@ import { StrictSelectProps } from '../../addons/Select'
 import { DropdownItemProps } from '../../modules/Dropdown/DropdownItem'
 import { StrictFormFieldProps } from './FormField'
 
-export interface FormSelectProps extends StrictFormSelectProps {
+export interface FormSelectProps<T = any> extends StrictFormSelectProps<T> {
   [key: string]: any
 }
 
-export interface StrictFormSelectProps extends StrictFormFieldProps, StrictSelectProps {
+export interface StrictFormSelectProps<T> extends StrictFormFieldProps, StrictSelectProps<T> {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -16,7 +16,7 @@ export interface StrictFormSelectProps extends StrictFormFieldProps, StrictSelec
   control?: any
 
   /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
-  options: DropdownItemProps[]
+  options: DropdownItemProps<T>[]
 }
 
 declare const FormSelect: React.StatelessComponent<FormSelectProps>
