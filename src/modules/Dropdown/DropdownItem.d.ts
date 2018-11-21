@@ -6,9 +6,7 @@ import { IconProps } from '../../elements/Icon'
 import { ImageProps } from '../../elements/Image'
 import { LabelProps } from '../../elements/Label'
 
-export interface DropdownItemProps extends StrictDropdownItemProps {
-  [key: string]: any
-}
+export type DropdownItemProps<T = any> = { [K in keyof T]: T[K] } & StrictDropdownItemProps
 
 export interface StrictDropdownItemProps {
   /** An element type to render as (string or function). */
