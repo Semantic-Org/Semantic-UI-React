@@ -6,13 +6,13 @@ import DropdownHeader from '../../modules/Dropdown/DropdownHeader'
 import DropdownItem, { DropdownItemProps } from '../../modules/Dropdown/DropdownItem'
 import DropdownMenu from '../../modules/Dropdown/DropdownMenu'
 
-export interface SelectProps extends StrictSelectProps {
+export interface SelectProps<T = any> extends StrictSelectProps<T> {
   [key: string]: any
 }
 
-export interface StrictSelectProps extends StrictDropdownProps {
+export interface StrictSelectProps<T> extends StrictDropdownProps<T> {
   /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
-  options: DropdownItemProps[]
+  options: DropdownItemProps<T>[]
 }
 
 interface SelectComponent extends React.StatelessComponent<SelectProps> {
