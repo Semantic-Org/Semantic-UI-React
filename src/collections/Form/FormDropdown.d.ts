@@ -3,11 +3,11 @@ import * as React from 'react'
 import { StrictDropdownProps } from '../../modules/Dropdown'
 import { StrictFormFieldProps } from './FormField'
 
-export interface FormDropdownProps extends StrictFormDropdownProps {
+export interface FormDropdownProps<T = any> extends StrictFormDropdownProps<T> {
   [key: string]: any
 }
 
-export interface StrictFormDropdownProps extends StrictFormFieldProps, StrictDropdownProps {
+export interface StrictFormDropdownProps<T> extends StrictFormFieldProps, StrictDropdownProps<T> {
   /** An element type to render as (string or function). */
   as?: any
 
