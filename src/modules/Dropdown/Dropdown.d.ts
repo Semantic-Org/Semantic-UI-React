@@ -7,11 +7,11 @@ import { default as DropdownItem, DropdownItemProps } from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
 
-export interface DropdownProps extends StrictDropdownProps {
+export interface DropdownProps<T = {}> extends StrictDropdownProps<T> {
   [key: string]: any
 }
 
-export interface StrictDropdownProps {
+export interface StrictDropdownProps<T> {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -208,7 +208,7 @@ export interface StrictDropdownProps {
   openOnFocus?: boolean
 
   /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
-  options?: DropdownItemProps[]
+  options?: DropdownItemProps<T>[]
 
   /** Placeholder text. */
   placeholder?: string
