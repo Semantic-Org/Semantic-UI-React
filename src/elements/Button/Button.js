@@ -157,9 +157,9 @@ class Button extends Component {
 
   computeButtonAriaRole(ElementType) {
     const { role } = this.props
-    
+
     if (!_.isNil(role)) return role
-    if (Element !== 'button') return 'button'
+    if (ElementType !== 'button') return 'button'
   }
 
   computeElementType = () => {
