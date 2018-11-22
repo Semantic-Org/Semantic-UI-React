@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import { Children, Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
+import handleRef from '../../lib/handleRef'
+
 /**
  * This component exposes a callback prop that always returns the DOM node of both functional and class component
  * children.
@@ -12,20 +14,20 @@ export default class Ref extends Component {
     children: PropTypes.element,
 
     /**
-     * Called when componentDidMount.
+     * Called when a child component will be mounted or updated.
      *
      * @param {HTMLElement} node - Referred node.
      */
-    innerRef: PropTypes.func,
+    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }
 
   componentDidMount() {
-    const { innerRef } = this.props
-
-    // Heads up! Don't move this condition, it's a short circuit that avoids run of `findDOMNode`
-    // if `innerRef` isn't passed
     // eslint-disable-next-line react/no-find-dom-node
-    if (innerRef) innerRef(findDOMNode(this))
+    handleRef(this.props.innerRef, findDOMNode(this))
+  }
+
+  componentWillUnmount() {
+    handleRef(this.props.innerRef, null)
   }
 
   render() {

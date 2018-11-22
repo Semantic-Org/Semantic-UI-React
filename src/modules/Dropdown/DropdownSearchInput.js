@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { createShorthandFactory, customPropTypes, getUnhandledProps } from '../../lib'
+import { createShorthandFactory, customPropTypes, getUnhandledProps, handleRef } from '../../lib'
 
 /**
  * A search item sub-component for Dropdown component.
@@ -20,7 +20,7 @@ class DropdownSearchInput extends Component {
     className: PropTypes.string,
 
     /** A ref handler for input. */
-    inputRef: PropTypes.func,
+    inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 
     /** An input can receive focus. */
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -43,7 +43,9 @@ class DropdownSearchInput extends Component {
     _.invoke(this.props, 'onChange', e, { ...this.props, value })
   }
 
-  handleRef = c => _.invoke(this.props, 'inputRef', c)
+  handleRef = (c) => {
+    handleRef(this.props.inputRef, c)
+  }
 
   render() {
     const { autoComplete, className, tabIndex, type, value } = this.props

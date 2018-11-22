@@ -13,7 +13,7 @@ export interface StrictRefProps {
    *
    * @param {HTMLElement} node - Referred node.
    */
-  innerRef?: (node: HTMLElement) => void
+  innerRef?: React.Ref<any>
 }
 
 declare class Ref extends React.Component<RefProps, {}> {}
