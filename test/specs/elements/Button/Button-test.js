@@ -246,7 +246,7 @@ describe('Button', () => {
     it('is not set by default', () => {
       shallow(<Button />).should.not.have.prop('role')
     })
-    it('defaults to button as not button', () => {
+    it('defaults to "button" when rendered as not "button" element', () => {
       shallow(<Button as='label' />).should.have.prop('role', 'button')
     })
     it('is configurable', () => {
