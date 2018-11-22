@@ -35,8 +35,8 @@ describe('PaginationItem', () => {
     it('is "false" by default', () => {
       const wrapper = shallow(<PaginationItem />)
 
-      wrapper.should.have.prop('disabled', true)
-      wrapper.should.have.prop('aria-disabled', true)
+      wrapper.should.have.prop('disabled', false)
+      wrapper.should.have.prop('aria-disabled', false)
     })
 
     it('is "true" when "type" is "ellipsisItem"', () => {
