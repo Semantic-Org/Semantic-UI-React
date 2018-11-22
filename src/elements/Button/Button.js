@@ -155,6 +155,13 @@ class Button extends Component {
   static Group = ButtonGroup
   static Or = ButtonOr
 
+  computeButtonAriaRole(ElementType) {
+    const { role } = this.props
+    
+    if (!_.isNil(role)) return role
+    if (Element !== 'button') return 'button'
+  }
+
   computeElementType = () => {
     const { attached, label } = this.props
 
@@ -183,17 +190,6 @@ class Button extends Component {
   }
 
   handleRef = c => (this.ref = c)
-
-  getButtonAriaOptions() {
-    const ariaOptions = {}
-    const { role } = this.props
-    if (role) {
-      ariaOptions.role = role
-    } else if (this.props.as !== 'button') {
-      ariaOptions.role = 'button'
-    }
-    return ariaOptions
-  }
 
   hasIconClass = () => {
     const { labelPosition, children, content, icon } = this.props
@@ -285,16 +281,16 @@ class Button extends Component {
 
     const classes = cx('ui', baseClasses, wrapperClasses, labeledClasses, 'button', className)
     const hasChildren = !childrenUtils.isNil(children)
-    const ariaOptions = this.getButtonAriaOptions()
+    const role = this.computeButtonAriaRole(ElementType)
 
     return (
       <ElementType
         {...rest}
-        {...ariaOptions}
         className={classes}
         disabled={(disabled && ElementType === 'button') || undefined}
         onClick={this.handleClick}
         ref={this.handleRef}
+        role={role}
         tabIndex={tabIndex}
       >
         {hasChildren && children}
