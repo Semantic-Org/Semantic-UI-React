@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import shallowEqual from 'shallowequal'
 
 import {
   customPropTypes,
@@ -10,6 +9,7 @@ import {
   getUnhandledProps,
   isBrowser,
 } from '../../lib'
+import isVisible from './lib/isVisible'
 
 /**
  * Responsive can control visibility of content.
@@ -56,10 +56,15 @@ export default class Responsive extends Component {
   static onlyLargeScreen = { minWidth: 1200, maxWidth: 1919 }
   static onlyWidescreen = { minWidth: 1920 }
 
-  constructor(...args) {
-    super(...args)
-    const width = _.invoke(this.props, 'getWidth')
-    this.state = { visible: this.isVisible(width) }
+  state = {
+    visible: true,
+  }
+
+  static getDerivedStateFromProps(props) {
+    const width = _.invoke(props, 'getWidth')
+    const visible = isVisible(width, props)
+
+    return { visible }
   }
 
   componentDidMount() {
@@ -69,48 +74,9 @@ export default class Responsive extends Component {
     if (fireOnMount) this.handleUpdate()
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.minWidth !== prevProps.minWidth ||
-      this.props.maxWidth !== prevProps.maxWidth ||
-      this.props.getWidth !== prevProps.getWidth
-    ) {
-      const width = _.invoke(this.props, 'getWidth')
-      this.updateVisibility(width)
-    }
-  }
-
   componentWillUnmount() {
     eventStack.unsub('resize', this.handleResize, { target: 'window' })
     cancelAnimationFrame(this.frameId)
-  }
-
-  // ----------------------------------------
-  // Helpers
-  // ----------------------------------------
-
-  fitsMaxWidth = (width) => {
-    const { maxWidth } = this.props
-
-    return _.isNil(maxWidth) ? true : width <= maxWidth
-  }
-
-  fitsMinWidth = (width) => {
-    const { minWidth } = this.props
-
-    return _.isNil(minWidth) ? true : width >= minWidth
-  }
-
-  isVisible = width => this.fitsMinWidth(width) && this.fitsMaxWidth(width)
-
-  updateVisibility = (width) => {
-    const nextVisible = this.isVisible(width)
-    const { visible } = this.state
-    if (visible !== nextVisible) {
-      this.setState({
-        visible: nextVisible,
-      })
-    }
   }
 
   // ----------------------------------------
@@ -126,9 +92,12 @@ export default class Responsive extends Component {
 
   handleUpdate = (e) => {
     this.ticking = false
-    const width = _.invoke(this.props, 'getWidth')
 
-    this.updateVisibility(width)
+    const { visible } = this.state
+    const width = _.invoke(this.props, 'getWidth')
+    const nextVisible = isVisible(width, this.props)
+
+    if (visible !== nextVisible) this.setState({ visible: nextVisible })
     _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
   }
 

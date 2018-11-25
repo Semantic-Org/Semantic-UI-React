@@ -17,7 +17,7 @@ describe('Responsive', () => {
 
   describe('children', () => {
     it('renders by default', () => {
-      shallow(<Responsive />).should.be.present()
+      mount(<Responsive />).should.be.present()
     })
   })
 
@@ -40,14 +40,14 @@ describe('Responsive', () => {
   describe('getWidth', () => {
     it('defaults to window.innerWidth when is browser', () => {
       sandbox.stub(window, 'innerWidth').value(500)
-      const { getWidth } = shallow(<Responsive />).instance().props
+      const { getWidth } = mount(<Responsive />).instance().props
       getWidth().should.equal(500)
     })
 
     it('defaults to "0" when non-browser', () => {
       isBrowser.override = false
 
-      const { getWidth } = shallow(<Responsive />).instance().props
+      const { getWidth } = mount(<Responsive />).instance().props
       getWidth().should.equal(0)
 
       isBrowser.override = null
@@ -75,7 +75,7 @@ describe('Responsive', () => {
   describe('maxWidth', () => {
     it('renders when fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.maxWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).should.not.be.blank()
+      mount(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).should.not.be.blank()
     })
 
     it('renders when next maxWidth fits', () => {
@@ -99,14 +99,14 @@ describe('Responsive', () => {
 
     it('do not render when not fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.maxWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).should.be.blank()
+      mount(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).should.be.blank()
     })
   })
 
   describe('minWidth', () => {
     it('renders when fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).should.not.be.blank()
+      mount(<Responsive {...Responsive.onlyMobile}>Show me!</Responsive>).should.not.be.blank()
     })
 
     it('renders when next minWidth fits', () => {
@@ -130,7 +130,7 @@ describe('Responsive', () => {
 
     it('do not render when not fits', () => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
-      shallow(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).should.be.blank()
+      mount(<Responsive {...Responsive.onlyMobile}>Hide me!</Responsive>).should.be.blank()
     })
   })
 
