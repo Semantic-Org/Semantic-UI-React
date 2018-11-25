@@ -14,12 +14,8 @@ export default class ComponentControlsCopyLink extends Component {
     return this.state.active !== nextState.active
   }
 
-  componentDidMount() {
-    this.mounted = true
-  }
-
   componentWillUnmount() {
-    this.mounted = false
+    clearTimeout(this.timeoutId)
   }
 
   handleClick = (e) => {
@@ -29,10 +25,8 @@ export default class ComponentControlsCopyLink extends Component {
     onClick()
 
     this.setState({ active: true })
-    setTimeout(this.resetActive, 3000)
+    this.timeoutId = setTimeout(() => this.setState({ active: false }), 3000)
   }
-
-  resetActive = () => this.mounted && this.setState({ active: false })
 
   render() {
     const { anchorName } = this.props

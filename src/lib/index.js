@@ -20,6 +20,7 @@ export eventStack from './eventStack'
 export * from './factories'
 export getUnhandledProps from './getUnhandledProps'
 export getElementType from './getElementType'
+export handleRef from './handleRef'
 
 export {
   htmlInputAttrs,
@@ -39,4 +40,3 @@ export { numberToWordMap, numberToWord } from './numberToWord'
 export normalizeOffset from './normalizeOffset'
 export normalizeTransitionDuration from './normalizeTransitionDuration'
 export objectDiff from './objectDiff'
-export shallowEqual from './shallowEqual'
