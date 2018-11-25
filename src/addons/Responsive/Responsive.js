@@ -65,15 +65,13 @@ export default class Responsive extends Component {
   componentDidMount() {
     const { fireOnMount } = this.props
 
-    this.mounted = true
-
     eventStack.sub('resize', this.handleResize, { target: 'window' })
     if (fireOnMount) this.handleUpdate()
   }
 
   componentWillUnmount() {
-    this.mounted = false
     eventStack.unsub('resize', this.handleResize, { target: 'window' })
+    cancelAnimationFrame(this.frameId)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -99,8 +97,6 @@ export default class Responsive extends Component {
     return _.isNil(minWidth) ? true : width >= minWidth
   }
 
-  setSafeState = (...args) => this.mounted && this.setState(...args)
-
   isVisible = () => this.fitsMinWidth() && this.fitsMaxWidth()
 
   // ----------------------------------------
@@ -111,14 +107,14 @@ export default class Responsive extends Component {
     if (this.ticking) return
 
     this.ticking = true
-    requestAnimationFrame(() => this.handleUpdate(e))
+    this.frameId = requestAnimationFrame(() => this.handleUpdate(e))
   }
 
   handleUpdate = (e) => {
     this.ticking = false
     const width = _.invoke(this.props, 'getWidth')
 
-    this.setSafeState({ width })
+    this.setState({ width })
     _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
   }
 
