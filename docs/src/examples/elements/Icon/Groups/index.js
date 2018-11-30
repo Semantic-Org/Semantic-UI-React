@@ -15,6 +15,7 @@ const IconGroupsExamples = () => (
       description='A group of icons can display a smaller corner icon.'
       examplePath='elements/Icon/Groups/IconExampleCornerGroup'
     />
+    <ComponentExample examplePath='elements/Icon/Groups/IconExampleCornerGroupPositions' />
     <ComponentExample examplePath='elements/Icon/Groups/IconExampleTwitterGroup' />
   </ExampleSection>
 )

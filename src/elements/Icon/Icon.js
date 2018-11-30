@@ -10,6 +10,7 @@ import {
   getUnhandledProps,
   SUI,
   useKeyOnly,
+  useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
 import IconGroup from './IconGroup'
@@ -36,7 +37,10 @@ class Icon extends PureComponent {
     color: PropTypes.oneOf(SUI.COLORS),
 
     /** Icons can display a smaller corner icon. */
-    corner: PropTypes.bool,
+    corner: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(['top left', 'top right', 'bottom left', 'bottom right']),
+    ]),
 
     /** Show that the icon is inactive. */
     disabled: PropTypes.bool,
@@ -119,12 +123,12 @@ class Icon extends PureComponent {
       size,
       useKeyOnly(bordered, 'bordered'),
       useKeyOnly(circular, 'circular'),
-      useKeyOnly(corner, 'corner'),
       useKeyOnly(disabled, 'disabled'),
       useKeyOnly(fitted, 'fitted'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(link, 'link'),
       useKeyOnly(loading, 'loading'),
+      useKeyOrValueAndKey(corner, 'corner'),
       useValueAndKey(flipped, 'flipped'),
       useValueAndKey(rotated, 'rotated'),
       'icon',
