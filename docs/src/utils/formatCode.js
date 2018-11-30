@@ -8,18 +8,16 @@ delete prettierConfig.overrides
 // Please use this function directly and don't reexport it in utils.
 // https://github.com/prettier/prettier/issues/4959
 
-const formatCode = (code) => {
+const formatCode = (code, parser = 'babylon') => {
   if (!code) return ''
 
   const formatted = prettier.format(code, {
     ...prettierConfig,
-    parser: 'babylon',
+    parser,
     plugins: window.prettierPlugins,
   })
 
-  return formatted
-    .replace(/^;</, '<') // remove beginning comma in JSX/HTML
-    .replace(/="([\s\S]*?)?"/gm, "='$1'") // single quote JSX
+  return formatted.replace(/^;</, '<') // remove beginning comma in JSX/HTML
 }
 
 export default formatCode
