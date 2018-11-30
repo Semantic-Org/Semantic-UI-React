@@ -94,7 +94,6 @@ export default class RatingIcon extends Component {
         onClick={this.handleClick}
         onKeyUp={this.handleKeyUp}
         onMouseEnter={this.handleMouseEnter}
-        tabIndex={0}
         role='radio'
       />
     )
