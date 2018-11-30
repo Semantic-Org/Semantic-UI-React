@@ -40,6 +40,10 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
         src={`https://unpkg.com/prettier@${versions.prettier}/parser-babylon.js`}
       />
       <script
+        crossOrigin='true'
+        src={`https://unpkg.com/prettier@${versions.prettier}/parser-html.js`}
+      />
+      <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/prop-types/${versions.propTypes}/prop-types${
           siteData.dev ? '' : '.min'
         }.js`}
