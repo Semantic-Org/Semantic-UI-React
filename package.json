@@ -50,6 +50,10 @@
       "eslint --fix",
       "git add"
     ],
+    "**/*.mdx": [
+      "prettier --parser mdx --write",
+      "git add"
+    ],
     "**/*.{ts,tsx}": [
       "prettier --write",
       "tslint --fix",
@@ -133,7 +137,7 @@
     "leven": "^2.1.0",
     "lint-staged": "^7.2.2",
     "mocha": "^5.2.0",
-    "prettier": "^1.14.2",
+    "prettier": "^1.15.3",
     "puppeteer": "^1.7.0",
     "raw-loader": "^0.5.1",
     "react": "^16.6.0",

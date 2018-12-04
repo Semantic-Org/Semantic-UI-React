@@ -123,9 +123,11 @@ export default class Rating extends Component {
         className={classes}
         role='radiogroup'
         onMouseLeave={this.handleMouseLeave}
+        tabIndex={disabled ? 0 : -1}
       >
         {_.times(maxRating, i => (
           <RatingIcon
+            tabIndex={disabled ? -1 : 0}
             active={rating >= i + 1}
             aria-checked={rating === i + 1}
             aria-posinset={i + 1}

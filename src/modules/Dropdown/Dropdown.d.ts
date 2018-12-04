@@ -116,7 +116,7 @@ export interface StrictDropdownProps {
   multiple?: boolean
 
   /** Message to display when there are no results. */
-  noResultsMessage?: string
+  noResultsMessage?: React.ReactNode
 
   /**
    * Called when a user adds a new item. Use this to update the options list.
