@@ -729,8 +729,7 @@ export default class Dropdown extends Component {
     this.setValue(newValue)
     this.setSelectedIndex(value)
 
-    const optionSize = _.size(this.getMenuOptions())
-    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
+    this.clearSearchQuery()
 
     this.handleChange(e, newValue)
     this.closeOnChange(e)
