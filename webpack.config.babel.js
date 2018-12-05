@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const config = require('./config')
 
 const { paths } = config
@@ -39,10 +40,7 @@ webpackConfig.output = {
 webpackConfig.plugins = [
   ...webpackConfig.plugins,
   new webpack.DefinePlugin(config.compiler_globals),
-  new webpack.DllReferencePlugin({
-    context: paths.base('node_modules'),
-    manifest: require(paths.base('dll/vendor-manifest.json')),
-  }),
+  // new BundleAnalyzerPlugin(),
 ]
 
 if (!__TEST__) {
@@ -85,6 +83,14 @@ if (!__TEST__) {
     'react-dom': 'ReactDOM',
     'react-dom/server': 'ReactDOMServer',
   }
+} else {
+  webpackConfig.externals = {
+    '@babel/standalone': 'Babel',
+    lodash: '_',
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    'react-dom/server': 'ReactDOMServer',
+  }
 }
 
 // ------------------------------------
@@ -94,7 +100,6 @@ webpackConfig.module.noParse = [
   ...webpackConfig.module.noParse,
   /\.json$/,
   /anchor-js/,
-  /@babel\/standalone/,
   /typescript\/lib/,
 ]
 

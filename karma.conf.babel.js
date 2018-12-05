@@ -56,6 +56,13 @@ export default (karmaConfig) => {
       },
     },
     files: [
+      './node_modules/@babel/standalone/babel.js',
+      './node_modules/lodash/lodash.js',
+      './node_modules/react/umd/react.development.js',
+      './node_modules/react-dom/umd/react-dom.development.js',
+      './node_modules/react-dom/umd/react-dom-server.browser.development.js',
+      './node_modules/typescript/lib/typescript.js',
+
       { pattern: 'docs/public/logo.png', watched: false, included: false, served: true },
       { pattern: 'docs/public/**/*.jpg', watched: false, included: false, served: true },
       { pattern: 'docs/public/**/*.png', watched: false, included: false, served: true },
