@@ -86,8 +86,9 @@ export default class DimmerInner extends Component {
 
     _.invoke(this.props, 'onClick', e, this.props)
 
-    if (!contentRef) return
-    if (contentRef !== e.target && doesNodeContainClick(contentRef, e)) return
+    if (contentRef && (contentRef !== e.target && doesNodeContainClick(contentRef, e))) {
+      return
+    }
 
     _.invoke(this.props, 'onClickOutside', e, this.props)
   }
