@@ -160,7 +160,13 @@ export default class Checkbox extends Component {
   }
 
   handleClick = (e) => {
-    _.invoke(this.props, 'onClick', e, this.props)
+    // We handle onClick in onChange if it is provided, to preserve proper call order.
+    // Don't call onClick twice if their is already an onChange handler, it calls onClick.
+    // https://github.com/Semantic-Org/Semantic-UI-React/pull/2748
+    const { onChange, onClick } = this.props
+    if (onChange || !onClick) return
+
+    onClick(e, this.props)
   }
 
   handleMouseDown = (e) => {
