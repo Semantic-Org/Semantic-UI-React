@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface AccordionTitleProps {
+export interface AccordionTitleProps extends StrictAccordionTitleProps {
   [key: string]: any
+}
 
+export interface StrictAccordionTitleProps {
   /** An element type to render as (string or function). */
   as?: any
 

@@ -67,8 +67,9 @@ class PaginationItem extends Component {
     return MenuItem.create(this.props, {
       defaultProps: {
         active,
-        disabled,
         'aria-current': active,
+        'aria-disabled': disabled,
+        disabled,
         onClick: this.handleClick,
         onKeyDown: this.handleKeyDown,
         tabIndex: disabled ? -1 : 0,

@@ -26,7 +26,7 @@ export default class MountNode extends Component {
     return nextClassName !== currentClassName
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const node = getNodeFromProps(this.props)
 
     if (node) {

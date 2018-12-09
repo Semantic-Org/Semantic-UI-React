@@ -8,8 +8,8 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  shallowEqual,
 } from '../../lib'
+import isVisible from './lib/isVisible'
 
 /**
  * Responsive can control visibility of content.
@@ -56,52 +56,28 @@ export default class Responsive extends Component {
   static onlyLargeScreen = { minWidth: 1200, maxWidth: 1919 }
   static onlyWidescreen = { minWidth: 1920 }
 
-  constructor(...args) {
-    super(...args)
+  state = {
+    visible: true,
+  }
 
-    this.state = { width: _.invoke(this.props, 'getWidth') }
+  static getDerivedStateFromProps(props) {
+    const width = _.invoke(props, 'getWidth')
+    const visible = isVisible(width, props)
+
+    return { visible }
   }
 
   componentDidMount() {
     const { fireOnMount } = this.props
-
-    this.mounted = true
 
     eventStack.sub('resize', this.handleResize, { target: 'window' })
     if (fireOnMount) this.handleUpdate()
   }
 
   componentWillUnmount() {
-    this.mounted = false
     eventStack.unsub('resize', this.handleResize, { target: 'window' })
+    cancelAnimationFrame(this.frameId)
   }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    // Update when any prop changes or the width changes. If width does not change, no update is required.
-    return this.state.width !== nextState.width || !shallowEqual(this.props, nextProps)
-  }
-
-  // ----------------------------------------
-  // Helpers
-  // ----------------------------------------
-
-  fitsMaxWidth = () => {
-    const { maxWidth } = this.props
-    const { width } = this.state
-
-    return _.isNil(maxWidth) ? true : width <= maxWidth
-  }
-
-  fitsMinWidth = () => {
-    const { minWidth } = this.props
-    const { width } = this.state
-
-    return _.isNil(minWidth) ? true : width >= minWidth
-  }
-
-  setSafeState = (...args) => this.mounted && this.setState(...args)
-
-  isVisible = () => this.fitsMinWidth() && this.fitsMaxWidth()
 
   // ----------------------------------------
   // Event handlers
@@ -111,14 +87,17 @@ export default class Responsive extends Component {
     if (this.ticking) return
 
     this.ticking = true
-    requestAnimationFrame(() => this.handleUpdate(e))
+    this.frameId = requestAnimationFrame(() => this.handleUpdate(e))
   }
 
   handleUpdate = (e) => {
     this.ticking = false
-    const width = _.invoke(this.props, 'getWidth')
 
-    this.setSafeState({ width })
+    const { visible } = this.state
+    const width = _.invoke(this.props, 'getWidth')
+    const nextVisible = isVisible(width, this.props)
+
+    if (visible !== nextVisible) this.setState({ visible: nextVisible })
     _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
   }
 
@@ -128,11 +107,12 @@ export default class Responsive extends Component {
 
   render() {
     const { children } = this.props
+    const { visible } = this.state
 
     const ElementType = getElementType(Responsive, this.props)
     const rest = getUnhandledProps(Responsive, this.props)
 
-    if (this.isVisible()) return <ElementType {...rest}>{children}</ElementType>
+    if (visible) return <ElementType {...rest}>{children}</ElementType>
     return null
   }
 }

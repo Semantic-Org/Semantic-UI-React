@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface StickyProps {
+export interface StickyProps extends StrictStickyProps {
   [key: string]: any
+}
 
+export interface StrictStickyProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -61,6 +63,9 @@ export interface StickyProps {
 
   /** Context which sticky should attach onscroll events. */
   scrollContext?: object
+
+  /** Custom style for sticky element. */
+  styleElement?: object
 }
 
 declare const Sticky: React.ComponentClass<StickyProps>

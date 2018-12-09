@@ -11,7 +11,7 @@ describe('MountNode', () => {
   describe('node', () => {
     it('will add className to specified node', () => {
       const node = document.createElement('div')
-      shallow(<MountNode className='foo' node={node} />)
+      mount(<MountNode className='foo' node={node} />)
 
       node.classList.contains('foo').should.be.equal(true)
     })

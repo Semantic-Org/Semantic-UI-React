@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../..'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface MessageHeaderProps {
+export interface MessageHeaderProps extends StrictMessageHeaderProps {
   [key: string]: any
+}
 
+export interface StrictMessageHeaderProps {
   /** An element type to render as (string or function). */
   as?: any
 

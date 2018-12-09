@@ -10,6 +10,7 @@ const PaginationTypesExamples = () => (
       description='A component to render a pagination.'
       examplePath='addons/Pagination/Types/PaginationExamplePagination'
     />
+    <ComponentExample examplePath='addons/Pagination/Types/PaginationExampleCompact' />
   </ExampleSection>
 )
 

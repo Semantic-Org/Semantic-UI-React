@@ -22,6 +22,7 @@ describe('Embed', () => {
   common.implementsHTMLIFrameProp(Embed, {
     alwaysPresent: true,
     assertExactMatch: false,
+    autoGenerateKey: false,
     requiredProps: {
       active: true,
       id: 'default-test-id',
@@ -36,7 +37,10 @@ describe('Embed', () => {
       width: '100%',
     },
   })
-  common.implementsIconProp(Embed, { alwaysPresent: true })
+  common.implementsIconProp(Embed, {
+    alwaysPresent: true,
+    autoGenerateKey: false,
+  })
 
   common.propKeyOnlyToClassName(Embed, 'active')
 

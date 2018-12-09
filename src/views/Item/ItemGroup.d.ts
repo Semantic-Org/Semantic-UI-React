@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticShorthandContent } from '../..'
+import { SemanticShorthandCollection, SemanticShorthandContent } from '../../generic'
 import { ItemProps } from './Item'
 
-export interface ItemGroupProps {
+export interface ItemGroupProps extends StrictItemGroupProps {
   [key: string]: any
+}
 
+export interface StrictItemGroupProps {
   /** An element type to render as (string or function). */
   as?: any
 

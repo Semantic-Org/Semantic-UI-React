@@ -1,9 +1,15 @@
 import * as React from 'react'
-import { HtmlImageProps, SemanticShorthandContent, SemanticShorthandCollection } from '../..'
+import {
+  HtmlImageProps,
+  SemanticShorthandContent,
+  SemanticShorthandCollection,
+} from '../../generic'
 
-export interface FeedExtraProps {
+export interface FeedExtraProps extends StrictFeedExtraProps {
   [key: string]: any
+}
 
+export interface StrictFeedExtraProps {
   /** An element type to render as (string or function). */
   as?: any
 

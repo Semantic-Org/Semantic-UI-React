@@ -148,12 +148,19 @@ export default class Popup extends Component {
 
   state = {}
 
-  componentDidMount() {
-    this.mounted = true
+  componentDidUpdate(prevProps) {
+    // if horizontal/vertical offsets change, re-calculate the CSS style
+    const { horizontalOffset, verticalOffset } = this.props
+    if (
+      horizontalOffset !== prevProps.horizontalOffset ||
+      verticalOffset !== prevProps.verticalOffset
+    ) {
+      this.setPopupStyle()
+    }
   }
 
   componentWillUnmount() {
-    this.mounted = false
+    clearTimeout(this.timeoutId)
   }
 
   computePopupStyle(positions) {
@@ -308,8 +315,8 @@ export default class Popup extends Component {
     this.setState({ closed: true })
 
     eventStack.unsub('scroll', this.hideOnScroll, { target: window })
-    setTimeout(() => {
-      if (this.mounted) this.setState({ closed: false })
+    this.timeoutId = setTimeout(() => {
+      this.setState({ closed: false })
     }, 50)
 
     this.handleClose(e)

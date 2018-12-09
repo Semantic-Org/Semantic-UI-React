@@ -1,12 +1,13 @@
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { cloneElement } from 'react'
+import React, { cloneElement, Fragment } from 'react'
 
 import {
   AutoControlledComponent as Component,
   doesNodeContainClick,
   eventStack,
+  handleRef,
   makeDebugger,
 } from '../../lib'
 import Ref from '../Ref'
@@ -115,7 +116,7 @@ class Portal extends Component {
      *
      * @param {HTMLElement} node - Referred node.
      */
-    triggerRef: PropTypes.func,
+    triggerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }
 
   static defaultProps = {
@@ -172,6 +173,9 @@ class Portal extends Component {
     const { closeOnPortalMouseLeave, mouseLeaveDelay } = this.props
 
     if (!closeOnPortalMouseLeave) return
+
+    // Do not close the portal when 'mouseleave' is triggered by children
+    if (e.target !== this.portalNode) return
 
     debug('handlePortalMouseLeave()')
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
@@ -331,36 +335,37 @@ class Portal extends Component {
 
   handleTriggerRef = (c) => {
     this.triggerNode = c
-    _.invoke(this.props, 'triggerRef', c)
+    handleRef(this.props.triggerRef, c)
   }
 
   render() {
     const { children, mountNode, trigger } = this.props
     const { open } = this.state
 
-    return [
-      open ? (
-        <PortalInner
-          key='inner'
-          mountNode={mountNode}
-          onMount={this.handleMount}
-          onUnmount={this.handleUnmount}
-        >
-          {children}
-        </PortalInner>
-      ) : null,
-      trigger ? (
-        <Ref innerRef={this.handleTriggerRef} key='trigger'>
-          {cloneElement(trigger, {
-            onBlur: this.handleTriggerBlur,
-            onClick: this.handleTriggerClick,
-            onFocus: this.handleTriggerFocus,
-            onMouseLeave: this.handleTriggerMouseLeave,
-            onMouseEnter: this.handleTriggerMouseEnter,
-          })}
-        </Ref>
-      ) : null,
-    ]
+    return (
+      <Fragment>
+        {open && (
+          <PortalInner
+            mountNode={mountNode}
+            onMount={this.handleMount}
+            onUnmount={this.handleUnmount}
+          >
+            {children}
+          </PortalInner>
+        )}
+        {trigger && (
+          <Ref innerRef={this.handleTriggerRef}>
+            {cloneElement(trigger, {
+              onBlur: this.handleTriggerBlur,
+              onClick: this.handleTriggerClick,
+              onFocus: this.handleTriggerFocus,
+              onMouseLeave: this.handleTriggerMouseLeave,
+              onMouseEnter: this.handleTriggerMouseEnter,
+            })}
+          </Ref>
+        )}
+      </Fragment>
+    )
   }
 }
 

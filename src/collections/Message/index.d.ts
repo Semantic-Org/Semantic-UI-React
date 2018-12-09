@@ -1,1 +1,1 @@
-export { default, MessageProps, MessageSizeProp } from './Message'
+export { default, MessageProps, StrictMessageProps, MessageSizeProp } from './Message'

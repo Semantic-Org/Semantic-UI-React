@@ -10,6 +10,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  handleRef,
   partitionHTMLProps,
   SUI,
   useKeyOnly,
@@ -79,8 +80,8 @@ class Input extends Component {
     /**
      * Called on change.
      *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props and proposed value.
+     * @param {ChangeEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and a proposed value.
      */
     onChange: PropTypes.func,
 
@@ -129,7 +130,7 @@ class Input extends Component {
     ...defaultProps,
     ...child.props,
     ref: (c) => {
-      _.invoke(child, 'ref', c)
+      handleRef(child.ref, c)
       this.handleInputRef(c)
     },
   })

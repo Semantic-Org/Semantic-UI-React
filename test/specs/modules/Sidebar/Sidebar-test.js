@@ -131,4 +131,15 @@ describe('Sidebar', () => {
       onVisible.should.have.been.calledWithMatch(null, { visible: true })
     })
   })
+
+  describe('target', () => {
+    it('is passed to the EventStack component', () => {
+      const target = document.createElement('div')
+
+      const wrapper = shallow(<Sidebar target={target} visible />)
+      const stack = wrapper.find('EventStack')
+
+      stack.should.have.prop('target', target)
+    })
+  })
 })

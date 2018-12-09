@@ -31,7 +31,12 @@ const wrapperMount = (node, opts) => {
 
 describe('Portal', () => {
   afterEach(() => {
-    if (wrapper && wrapper.unmount) wrapper.unmount()
+    if (wrapper && wrapper.unmount) {
+      try {
+        wrapper.unmount()
+        // eslint-disable-next-line no-empty
+      } catch (e) {}
+    }
   })
 
   common.hasSubcomponents(Portal, [PortalInner])
@@ -406,6 +411,25 @@ describe('Portal', () => {
       setTimeout(() => {
         wrapper.update()
         wrapper.should.not.have.descendants(PortalInner)
+
+        done()
+      }, 1)
+    })
+
+    it("does not close the portal on mouseleave triggered by the portal's children", (done) => {
+      wrapperMount(
+        <Portal closeOnPortalMouseLeave defaultOpen mouseLeaveDelay={0} trigger={<button />}>
+          <div>
+            <p id='child' />
+          </div>
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
+
+      domEvent.mouseLeave('#child')
+      setTimeout(() => {
+        wrapper.update()
+        wrapper.should.have.descendants(PortalInner)
 
         done()
       }, 1)

@@ -152,6 +152,7 @@ export type FlagNameValues =
   | 'ga'
   | 'gabon'
   | 'gb'
+  | 'uk'
   | 'united kingdom'
   | 'gd'
   | 'grenada'
@@ -493,9 +494,11 @@ export type FlagNameValues =
   | 'zw'
   | 'zimbabwe'
 
-export interface FlagProps {
+export interface FlagProps extends StrictFlagProps {
   [key: string]: any
+}
 
+export interface StrictFlagProps {
   /** An element type to render as (string or function). */
   as?: any
 

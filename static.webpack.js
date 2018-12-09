@@ -19,6 +19,7 @@ export default (webpackConfig, { stage }) => ({
         'anchor-js': 'AnchorJS',
         '@babel/standalone': 'Babel',
         faker: 'faker',
+        'prettier/standalone': 'prettier',
         'prop-types': 'PropTypes',
         react: 'React',
         'react-dom': 'ReactDOM',
@@ -33,9 +34,21 @@ export default (webpackConfig, { stage }) => ({
         use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: true,
+            cacheDirectory: stage === 'dev',
           },
         },
+      },
+      {
+        test: /.mdx?$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
+          '@mdx-js/loader',
+        ],
       },
     ],
   },

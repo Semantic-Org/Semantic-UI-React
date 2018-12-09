@@ -6,15 +6,18 @@ import {
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticSIZES,
-} from '../..'
+} from '../../generic'
+import { IconProps } from '../Icon'
 import { LabelProps } from '../Label'
 import ButtonContent from './ButtonContent'
 import ButtonGroup from './ButtonGroup'
 import ButtonOr from './ButtonOr'
 
-export interface ButtonProps {
+export interface ButtonProps extends StrictButtonProps {
   [key: string]: any
+}
 
+export interface StrictButtonProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -66,7 +69,7 @@ export interface ButtonProps {
   fluid?: boolean
 
   /** Add an Icon by name, props object, or pass an <Icon />. */
-  icon?: any
+  icon?: boolean | SemanticShorthandItem<IconProps>
 
   /** A button can be formatted to appear on dark backgrounds. */
   inverted?: boolean

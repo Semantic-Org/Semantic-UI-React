@@ -1,14 +1,16 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { ButtonProps } from '../../elements/Button'
-import { ModalProps } from '../../modules/Modal'
+import { StrictModalProps } from '../../modules/Modal'
 import { ModalContentProps } from '../../modules/Modal/ModalContent'
 import { ModalHeaderProps } from '../../modules/Modal/ModalHeader'
 
-export interface ConfirmProps extends ModalProps {
+export interface ConfirmProps extends StrictConfirmProps {
   [key: string]: any
+}
 
+export interface StrictConfirmProps extends StrictModalProps {
   /** The cancel button text. */
   cancelButton?: SemanticShorthandItem<ButtonProps>
 
@@ -41,7 +43,7 @@ export interface ConfirmProps extends ModalProps {
   open?: boolean
 
   /** A confirm can vary in size. */
-  size?: 'fullscreen' | 'large' | 'mini' | 'small' | 'tiny'
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'fullscreen'
 }
 
 declare const Confirm: React.ComponentClass<ConfirmProps>

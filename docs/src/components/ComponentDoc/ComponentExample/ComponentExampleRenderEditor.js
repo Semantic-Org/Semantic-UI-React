@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Button, Popup, Segment, Menu } from 'semantic-ui-react'
 
-import Editor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/Editor/Editor'
+import Editor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/CodeEditor'
 import { updateForKeys } from 'docs/src/hoc'
-import { formatCode } from 'docs/src/utils'
+import formatCode from 'docs/src/utils/formatCode'
 
 const rootStyle = {
   position: 'relative',

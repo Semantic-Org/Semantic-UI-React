@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface RefProps {
+export interface RefProps extends StrictRefProps {
   [key: string]: any
+}
 
+export interface StrictRefProps {
   /** Primary content. */
   children?: React.ReactNode
 
@@ -11,7 +13,7 @@ export interface RefProps {
    *
    * @param {HTMLElement} node - Referred node.
    */
-  innerRef?: (node: HTMLElement) => void
+  innerRef?: React.Ref<any>
 }
 
 declare class Ref extends React.Component<RefProps, {}> {}

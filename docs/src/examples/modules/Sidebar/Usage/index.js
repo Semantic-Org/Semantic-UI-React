@@ -10,6 +10,11 @@ const SidebarUsageExamples = () => (
       description='A sidebar can have callbacks.'
       examplePath='modules/Sidebar/Usage/SidebarExampleCallback'
     />
+    <ComponentExample
+      title='Target'
+      description='A sidebar can handle clicks on the passed element.'
+      examplePath='modules/Sidebar/Usage/SidebarExampleTarget'
+    />
   </ExampleSection>
 )
 

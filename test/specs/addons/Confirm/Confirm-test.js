@@ -29,11 +29,13 @@ describe('Confirm', () => {
   common.isConformant(Confirm)
 
   common.implementsShorthandProp(Confirm, {
+    autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: Modal.Header,
     mapValueToProps: content => ({ content }),
   })
   common.implementsShorthandProp(Confirm, {
+    autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: Modal.Content,
     mapValueToProps: content => ({ content }),
@@ -52,7 +54,7 @@ describe('Confirm', () => {
       shallow(<Confirm />).should.have.prop('size', 'small')
     })
 
-    _.forEach(['fullscreen', 'large', 'mini', 'small', 'tiny'], (size) => {
+    _.forEach(['mini', 'tiny', 'small', 'large', 'fullscreen'], (size) => {
       it(`applies ${size} size`, () => {
         shallow(<Confirm size={size} />).should.have.prop('size', size)
       })

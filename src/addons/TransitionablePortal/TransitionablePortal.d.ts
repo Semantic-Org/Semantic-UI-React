@@ -3,9 +3,11 @@ import * as React from 'react'
 import { TransitionEventData, TransitionProps } from '../../modules/Transition/Transition'
 import { PortalProps } from '../Portal/Portal'
 
-export interface TransitionablePortalProps {
+export interface TransitionablePortalProps extends StrictTransitionablePortalProps {
   [key: string]: any
+}
 
+export interface StrictTransitionablePortalProps {
   /** Primary content. */
   children: React.ReactNode
 
