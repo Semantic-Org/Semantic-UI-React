@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React from 'react'
 import { Link } from 'react-static'
 import { Header } from 'semantic-ui-react'
@@ -13,11 +12,10 @@ export const a = ({ children, href }) => <Link to={href}>{children}</Link>
 
 export const code = ({ className, children }) => {
   const mode = className.replace('language-', '')
-  const value = _.trim(children)
 
-  return <CodeSnippet mode={mode} value={value} />
+  return <CodeSnippet mode={mode} value={children} />
 }
 
-export const h1 = ({ children }) => <Header as='h1' content={children} />
+export const h1 = ({ children }) => <Header as='h1' content={children} textAlign='center' />
 
 export const h2 = ({ children }) => <Header as='h2' content={children} dividing />
