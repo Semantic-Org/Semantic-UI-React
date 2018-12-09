@@ -81,6 +81,14 @@ export default class Checkbox extends Component {
      */
     onMouseDown: PropTypes.func,
 
+    /**
+     * Called when the user releases the mouse.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and current checked/indeterminate state.
+     */
+    onMouseUp: PropTypes.func,
+
     /** Format as a radio element. This means it is an exclusive option. */
     radio: customPropTypes.every([PropTypes.bool, customPropTypes.disallow(['slider', 'toggle'])]),
 
@@ -131,25 +139,15 @@ export default class Checkbox extends Component {
     return disabled ? -1 : 0
   }
 
-  handleContainerClick = (e) => {
-    const { id } = this.props
-
-    if (_.isNil(id)) this.handleClick(e)
-  }
-
-  handleInputClick = (e) => {
-    const { id } = this.props
-
-    if (id) this.handleClick(e)
-  }
-
   handleInputRef = c => (this.inputRef = c)
 
-  handleClick = (e) => {
-    debug('handleClick()')
+  handleChange = (e, fromMouseUp) => {
+    debug('handleChange()')
+    const { id } = this.props
     const { checked, indeterminate } = this.state
 
     if (!this.canToggle()) return
+    if (fromMouseUp && !_.isNil(id)) return
 
     _.invoke(this.props, 'onClick', e, {
       ...this.props,
@@ -159,6 +157,16 @@ export default class Checkbox extends Component {
     _.invoke(this.props, 'onChange', e, { ...this.props, checked: !checked, indeterminate: false })
 
     this.trySetState({ checked: !checked, indeterminate: false })
+  }
+
+  handleClick = (e) => {
+    // We handle onClick in onChange if it is provided, to preserve proper call order.
+    // Don't call onClick twice if their is already an onChange handler, it calls onClick.
+    // https://github.com/Semantic-Org/Semantic-UI-React/pull/2748
+    const { onChange, onClick } = this.props
+    if (onChange || !onClick) return
+
+    onClick(e, this.props)
   }
 
   handleMouseDown = (e) => {
@@ -173,6 +181,18 @@ export default class Checkbox extends Component {
     _.invoke(this.inputRef, 'focus')
 
     e.preventDefault()
+  }
+
+  handleMouseUp = (e) => {
+    debug('handleMouseUp()')
+    const { checked, indeterminate } = this.state
+
+    _.invoke(this.props, 'onMouseUp', e, {
+      ...this.props,
+      checked: !!checked,
+      indeterminate: !!indeterminate,
+    })
+    this.handleChange(e, true)
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we
@@ -223,9 +243,10 @@ export default class Checkbox extends Component {
       <ElementType
         {...rest}
         className={classes}
-        onClick={this.handleContainerClick}
-        onChange={this.handleContainerClick}
+        onChange={this.handleChange}
+        onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
       >
         <input
           {...htmlInputProps}
@@ -234,7 +255,6 @@ export default class Checkbox extends Component {
           disabled={disabled}
           id={id}
           name={name}
-          onClick={this.handleInputClick}
           readOnly
           ref={this.handleInputRef}
           tabIndex={this.computeTabIndex()}
