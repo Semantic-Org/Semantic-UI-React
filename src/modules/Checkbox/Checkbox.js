@@ -159,6 +159,10 @@ export default class Checkbox extends Component {
     this.trySetState({ checked: !checked, indeterminate: false })
   }
 
+  handleClick = (e) => {
+    _.invoke(this.props, 'onClick', e, this.props)
+  }
+
   handleMouseDown = (e) => {
     debug('handleMouseDown()')
     const { checked, indeterminate } = this.state
@@ -234,6 +238,7 @@ export default class Checkbox extends Component {
         {...rest}
         className={classes}
         onChange={this.handleChange}
+        onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
       >
