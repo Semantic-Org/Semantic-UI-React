@@ -268,6 +268,7 @@ class Button extends Component {
           {labelPosition === 'left' && labelElement}
           <button
             className={buttonClasses}
+            aria-pressed={toggle ? (!!active) : undefined}
             disabled={disabled}
             ref={this.handleRef}
             tabIndex={tabIndex}
@@ -287,6 +288,7 @@ class Button extends Component {
       <ElementType
         {...rest}
         className={classes}
+        aria-pressed={toggle ? (!!active) : undefined}
         disabled={(disabled && ElementType === 'button') || undefined}
         onClick={this.handleClick}
         ref={this.handleRef}
