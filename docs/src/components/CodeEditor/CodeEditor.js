@@ -96,7 +96,11 @@ const semanticUIReactCompleter = {
 }
 
 const CodeEditor = props => (
-  <Ace {...props} enableBasicAutocompletion={[semanticUIReactCompleter]} />
+  <Ace
+    {...props}
+    name={`docs-editor-${_.uniqueId()}`}
+    enableBasicAutocompletion={[semanticUIReactCompleter]}
+  />
 )
 
 export default CodeEditor

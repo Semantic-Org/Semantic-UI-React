@@ -1,6 +1,10 @@
 import prettier from 'prettier/standalone'
 import prettierConfig from '../../../.prettierrc.json'
 
+const { printWidth } = prettierConfig.overrides.find(
+  ({ files }) => files === 'docs/src/examples/**/*.js',
+).options
+
 delete prettierConfig.$schema
 delete prettierConfig.overrides
 
@@ -13,6 +17,7 @@ const formatCode = (code, parser = 'babylon') => {
 
   const formatted = prettier.format(code, {
     ...prettierConfig,
+    printWidth,
     parser,
     plugins: window.prettierPlugins,
   })

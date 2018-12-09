@@ -19,11 +19,10 @@ const CodeEditor = isBrowser()
   : () => null
 
 function CodeEditorUniveral(props) {
-  const { id, mode, readOnly, value, ...rest } = props
+  const { mode, readOnly, value, ...rest } = props
 
   return (
     <CodeEditor
-      name={id}
       mode={mode}
       theme='tomorrow_night'
       width='100%'

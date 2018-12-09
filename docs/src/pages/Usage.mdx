@@ -1,4 +1,5 @@
-import { Button, Header, List, Message } from 'semantic-ui-react'
+import { Link } from 'react-static'
+import { Button, Divider, Header, Icon, List, Message, Segment, Tab } from 'semantic-ui-react'
 
 import CodeSnippet from 'docs/src/components/CodeSnippet'
 import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/src/utils'
@@ -7,199 +8,214 @@ export const meta = {
   title: 'Usage',
 }
 
-<Header as='h1' content='Usage' textAlign='center' />
+# Usage
 
-Semantic UI React provides the JavaScript for your components. You'll also need
-to include a stylesheet to provide the styling for your components. This is the typical
-pattern for component frameworks, such as Semantic UI or Bootstrap.
+## Install
 
-The method you choose to include the stylesheet in your project will depend on the level
-of customisation you require.
+Semantic UI React provides React components while Semantic UI provides themes as CSS stylesheets.
+Install the React components and choose a theme that suits your needs.
 
-<Header as='h2' content='Installation Options'/>
-  <ul>
-    <li><a href="#method-1-cdn">Method 1 - CDN</a></li>
-    <li><a href="#method-2-semantic-ui-css-package">Method 2 - Semantic-UI-CSS</a></li>
-    <li><a href="#method-3-semantic-ui-bundler-package">Method 3 - Semantic-UI Bundler Package</a></li>
-    <li><a href="#bundlers">Bundlers</a></li>
-  </ul>
+### Components
 
-### Usage Examples
+React components can be installed via <code>yarn</code>:
+
+<CodeSnippet mode='sh' value={`yarn add ${props.pkg.name}`} fitted />
+
+<Message info size='tiny' attached='bottom'>
+  <Icon name='idea' />
+  Themes from Semantic UI >=2.3.x require Semantic UI React >=0.81.0.
+</Message>
+
+### Theme
+
+Choose a theme and delivery method that suits your needs:
+
+<Tab
+  menu={{ attached: 'top', secondary: true, pointing: true, color: 'teal' }}
+  panes={[
+    {
+      menuItem: 'Default theme (CDN)',
+      render: () => (
+        <Tab.Pane style={{ fontSize: 'inherit' }}>
+          <p>
+            This is the quickest way to get started, just add this link to the{' '}
+            <code>{'<head>'}</code> of your <code>index.html</code> file.
+          </p>
+          <CodeSnippet
+            fitted
+            label='index.html'
+            mode='html'
+            value={`
+              <link
+                rel="stylesheet"
+                href="//cdn.jsdelivr.net/npm/semantic-ui@${
+                  props.versions.sui
+                }/dist/semantic.min.css"
+              />
+            `}
+          />
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: 'Default theme (NPM)',
+      render: () => (
+        <Tab.Pane style={{ fontSize: 'inherit' }}>
+          <p>
+            The <a href={semanticUICSSRepoURL}>Semantic UI CSS package</a> is automatically synced
+            with the main Semantic UI repository to provide a lightweight CSS only version of
+            Semantic UI.
+          </p>
+          <CodeSnippet mode='sh' value={'yarn add semantic-ui-css'} />
+          <p>After install, import the minified CSS file in your app's entry file:</p>
+          <CodeSnippet fitted label='index.js' value="import 'semantic-ui-css/semantic.min.css'" />
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: 'Custom theme (NPM)',
+      render: () => (
+        <Tab.Pane style={{ fontSize: 'inherit' }}>
+          <p>
+            The <a href={semanticUIRepoURL}>Semantic UI package</a> installs a Gulp build tool that
+            will walk you through creating a custom theme within your project. Install this as a dev
+            dependency:
+          </p>
+          <CodeSnippet mode='sh' value={'yarn add semantic-ui --dev'} />
+          <p>
+            After building a theme with Gulp, include the minified CSS file in your{' '}
+            <code>index.js</code> file:
+          </p>
+          <CodeSnippet label='index.js' value="import '../semantic/dist/semantic.min.css'" />
+          <p>
+            Detailed documentation on Semantic UI theming is provided{' '}
+            <a href={`${semanticUIDocsURL}usage/theming.html`}>here</a>.
+          </p>
+        </Tab.Pane>
+      ),
+    },
+  ]}
+/>
+
+<Divider hidden section />
+
+## Bundling
+
+Semantic UI React is fully supported by all modern JavaScript bundlers. We've made some
+example recipes with some of them. You can use these as a starting point for your project.
+
+<Tab
+  menu={{ attached: 'top', secondary: true, pointing: true, color: 'teal' }}
+  panes={[
+    {
+      menuItem: 'Webpack 2/3',
+      render: () => (
+        <Tab.Pane style={{ fontSize: 'inherit' }}>
+          <p>
+            Semantic UI React is fully supported by Webpack 2 and 3, including tree shaking as of{' '}
+            <code>semantic-ui-react@0.81.2</code>.
+          </p>
+          <p>
+            Please ensure that you build your app in production mode before release. Semantic UI
+            React includes several optimizations in production mode, such as stripping `propTypes`
+            from your build.
+          </p>
+          <Header as='h4'>Examples</Header>
+          <List>
+            <List.Item
+              icon='github'
+              content='Webpack 3 Example Project'
+              href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3'
+              rel='noopener noreferrer'
+              target='_blank'
+            />
+            <List.Item
+              icon='github'
+              content='Webpack 3 Example .babelrc'
+              href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3/.babelrc'
+              rel='noopener noreferrer'
+              target='_blank'
+            />
+            <List.Item
+              icon='github'
+              content='babel-plugin-lodash'
+              href='https://github.com/lodash/babel-plugin-lodash'
+              rel='noopener noreferrer'
+              target='_blank'
+            />
+          </List>
+          <Divider horizontal section>
+            Known Issues
+          </Divider>
+          <p>
+            Webpack 2/3 tree shaking does not completely remove unused exports, there are numerous
+            issues that are long-standing bugs:
+          </p>
+          <List>
+            <List.Item
+              icon='github'
+              href='https://github.com/webpack/webpack/issues/1750'
+              rel='noopener noreferrer'
+              target='_blank'
+              content='webpack/webpack#1750'
+            />
+            <List.Item
+              icon='github'
+              href='https://github.com/webpack/webpack/issues/2867'
+              rel='noopener noreferrer'
+              target='_blank'
+              content='webpack/webpack#2867'
+            />
+            <List.Item
+              icon='github'
+              href='https://github.com/webpack/webpack/issues/2899'
+              rel='noopener noreferrer'
+              target='_blank'
+              content='webpack/webpack#2899'
+            />
+            <List.Item
+              icon='github'
+              href='https://github.com/webpack/webpack/issues/3092'
+              rel='noopener noreferrer'
+              target='_blank'
+              content='webpack/webpack#3092'
+            />
+          </List>
+          <p>
+            Semantic UI React imports will be not optimized, so we recommend to use
+            <code>babel-plugin-lodash</code> in your builds. You can find example configuration in
+            <code>examples/webpack3</code> directory.
+          </p>
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: 'Webpack 4',
+      render: () => (
+        <Tab.Pane style={{ fontSize: 'inherit' }}>
+          <p>
+            Semantic UI React is fully supported by Webpack 4, including tree shaking as of{' '}
+            <code>semantic-ui-react@0.81.2</code>.
+          </p>
+          <p>
+            Please ensure that you build your app in production mode before release. Semantic UI
+            React includes several optimizations in production mode, such as stripping `propTypes`
+            from your build.
+          </p>
+        </Tab.Pane>
+      ),
+    },
+  ]}
+/>
+
+<Divider hidden section />
+
+## Examples
 
 For examples on how to import and use Semantic UI React components, click the code icon
-next to any example. Here are a few direct links:
+(<Icon name="code" />) next to any example. Here are a few direct links:
 
 - [Button](/elements/button#button-example-button)
 - [List](/elements/list#list-example-list)
 - [Card](/views/card#card-example-card)
 - [Modal](/modules/modal#modal-example-modal)
-
-<Message warning>
-  <Message.Header as='h3'>Semantic UI support</Message.Header>
-  <p>
-    The release 2.3 of Semantic UI introduced some backward incompatible changes, so you should use
-    corresponding version of Semantic UI React:
-  </p>
-  <Message.List>
-    <Message.Item>for SUI 2.2 use 0.80.2 and below</Message.Item>
-    <Message.Item>for SUI 2.3 use 0.81.0 and higher</Message.Item>
-  </Message.List>
-</Message>
-
-## Method 1: CDN
-
-The Semantic UI React package can be installed via Yarn (this provides the JavaScript for your components):
-
-<CodeSnippet mode='sh' value={`$ yarn add ${props.pkg.name}`} />
-
-You can use the default Semantic UI stylesheet by including a Semantic UI CDN link in your _index.html_ file.
-
-This is the quickest way to get started with Semantic UI React. You won't be able to use
-custom themes with this method.
-
-<CodeSnippet
-  mode='html'
-  value={`<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@${
-    props.versions.sui
-  }/dist/semantic.min.css"></link>`}
-/>
-
-## Method 2: Semantic UI CSS package
-
-The <a href={semanticUICSSRepoURL}>Semantic UI CSS package</a> is automatically synced
-with the main Semantic UI repository to provide a lightweight CSS only version of Semantic
-UI. You won't be able to use custom themes with this method.
-
-The Semantic UI React package can be installed via Yarn (this provides the JavaScript for your components):
-
-<CodeSnippet mode='sh' value={`$ yarn add ${props.pkg.name}`} />
-
-Semantic UI CSS can be installed as a package in your project using Yarn (this provides the CSS package for your components).
-
-```sh
-$ yarn add semantic-ui-css
-```
-
-After install, you'll need to include the minified CSS file in your _index.js_ file:
-
-```jsx
-import 'semantic-ui-css/semantic.min.css'
-```
-
-## Method 3: Semantic UI Bundler Package
-
-The full <a href={semanticUIRepoURL}>Semantic UI package</a> includes Gulp build tools so your project can preserve its own theme changes, allowing you to customise the style variables.
-
-<p>
-  Detailed documentation on theming in Semantic UI is provided{' '}
-  <a href={`${semanticUIDocsURL}usage/theming.html`}>here</a>.
-</p>
-
-```sh
-$ yarn add semantic-ui --dev
-```
-
-After building the project with Gulp, you'll need to include the minified CSS file in your _index.js_ file:
-
-```jsx
-import '../semantic/dist/semantic.min.css'
-```
-
-## Bundlers
-
-Semantic UI React is fully supported by all modern JavaScript bundlers. We made some
-example recipes with some of them. You can use them as start point for your projects.
-
-### Webpack 2/3
-
-Webpack 2/3 fully supports Semantic UI React, it also supports Tree Shaking. Please ensure that you
-build your app in production mode before release, it will strip `propTypes` from your build.
-
-<Message warning>
-  <p>
-    Webpack 2/3 tree shaking does not completely remove unused exports, there are numerous issues
-    that are long-standing bugs:
-  </p>
-  <List>
-    <List.Item
-      icon='github'
-      content={
-        <a
-          href='https://github.com/webpack/webpack/issues/1750'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          webpack/webpack#1750
-        </a>
-      }
-    />
-    <List.Item
-      icon='github'
-      content={
-        <a
-          href='https://github.com/webpack/webpack/issues/2867'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          webpack/webpack#2867
-        </a>
-      }
-    />
-    <List.Item
-      icon='github'
-      content={
-        <a
-          href='https://github.com/webpack/webpack/issues/2899'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          webpack/webpack#2899
-        </a>
-      }
-    />
-    <List.Item
-      icon='github'
-      content={
-        <a
-          href='https://github.com/webpack/webpack/issues/3092'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          webpack/webpack#3092
-        </a>
-      }
-    />
-  </List>
-  <p>
-    Semantic UI React imports will be not optimized, so we recommend to use
-    <code>babel-plugin-lodash</code> in your builds. You can find example configuration in
-    <code>examples/webpack3</code> directory.
-  </p>
-</Message>
-
-<Button
-  content='Webpack boilerplate'
-  href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3'
-  icon='github'
-  labelPosition='left'
-/>
-<Button
-  content='Example configuration of plugin'
-  href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3/.babelrc'
-  icon='github'
-  labelPosition='left'
-/>
-<Button
-  content='babel-plugin-lodash'
-  href='https://github.com/lodash/babel-plugin-lodash'
-  icon='github'
-  labelPosition='left'
-/>
-
-### Webpack 4
-
-Webpack 4 fully supports Semantic UI React, it also fully supports Tree Shaking. Please
-ensure that you build your app in production mode before release, it will strip `propTypes` from your build.
-
-Please ensure that you're using `semantic-ui-react@0.81.2` or higher because we added the
-[`sideEffects`](https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free) option in this release.
