@@ -1,5 +1,6 @@
 import prettier from 'prettier/standalone'
 import prettierConfig from '../../../.prettierrc.json'
+import isBrowser from '../../../src/lib/isBrowser'
 
 const { printWidth } = prettierConfig.overrides.find(
   ({ files }) => files === 'docs/src/examples/**/*.js',
@@ -19,7 +20,7 @@ const formatCode = (code, parser = 'babylon') => {
     ...prettierConfig,
     printWidth,
     parser,
-    plugins: window.prettierPlugins,
+    plugins: isBrowser() ? window.prettierPlugins : undefined,
   })
 
   return formatted.replace(/^;</, '<') // remove beginning comma in JSX/HTML
