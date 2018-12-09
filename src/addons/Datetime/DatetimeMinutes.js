@@ -90,7 +90,6 @@ export default class DatetimeMinutes extends Component {
     return (
       <ElementType
         {...rest}
-        headers={['Minute']}
         columns={3}
         cells={this.getCells()}
       />

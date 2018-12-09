@@ -11,11 +11,27 @@ const requiredProps = {
 describe('DatetimeHours', () => {
   common.isConformant(DatetimeHours, { requiredProps })
 
-  it('renders hours in a 12-hour clock', () => {
+  it('renders hours in a 12-hour format', () => {
     const date = new Date('2018 09 05')
 
-    const hours = 'Hour12:001:002:003:004:005:006:007:008:009:0010:0011:00'
+    const hours = '12:00 AM1:00 AM2:00 AM3:00 AM4:00 AM5:00 AM6:00 AM7:00 AM' +
+      '8:00 AM9:00 AM10:00 AM11:00 AM12:00 PM1:00 PM2:00 PM3:00 PM' +
+      '4:00 PM5:00 PM6:00 PM7:00 PM8:00 PM9:00 PM10:00 PM11:00 PM'
     mount(<DatetimeHours value={date} />).should.have.text(hours)
+  })
+
+  it('renders hours in a 24-hour format', () => {
+    const date = new Date('2018 09 05')
+
+    const hours = '00:0001:0002:0003:0004:0005:0006:0007:0008:0009:0010:00' +
+      '11:0012:0013:0014:0015:0016:0017:0018:0019:0020:0021:0022:0023:00'
+    mount(<DatetimeHours
+      formatter={(value) => {
+        const options = { hour12: false }
+        return value.toLocaleTimeString('en-US', options).substr(0, 5)
+      }}
+      value={date}
+    />).should.have.text(hours)
   })
 
   describe('onDateChange', () => {

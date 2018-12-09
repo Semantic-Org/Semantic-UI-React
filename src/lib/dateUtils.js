@@ -102,14 +102,21 @@ export function defaultDateFormatter(date) {
   return date ? `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}` : ''
 }
 
-function ampmFormatter(date) {
+/**
+* Determines whether a given date is 'AM' or 'PM'
+*
+* @param {Date} date - A date object.
+* @returns {string}
+*/
+export function ampmFormatter(date) {
   if (!date) return ''
   return date.getHours() > 11 ? 'PM' : 'AM'
 }
 
 export function defaultHourFormatter(date) {
   if (!date) return ''
-  return date.getHours() % 12 || 12
+  if (date.getHours() < 12) return `${date.getHours() % 12 || 12}:00 AM`
+  return `${date.getHours() % 12 || 12}:00 PM`
 }
 
 export function defaultMinuteFormatter(date) {
@@ -135,4 +142,3 @@ export function defaultTimeFormatter(date) {
 export function getDateString(date) {
   return `${date.getFullYear()}${date.getMonth()}${date.getDate()}`
 }
-

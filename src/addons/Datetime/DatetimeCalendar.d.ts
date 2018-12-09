@@ -6,6 +6,9 @@ export interface DatetimeCalendarProps {
   /** An element type to render as (string or function). */
   as?: any;
 
+  /** Enables date selection. */
+  date?: boolean;
+
   /**
    * Formats the date string in the input and calendar.
    * A function that receives a date argument and returns a formatted date
