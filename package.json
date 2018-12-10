@@ -14,7 +14,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "cross-env NODE_ENV=production gulp build",
-    "build:changelog": "github_changelog_generator --no-issues --no-unreleased --release-branch master --since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~300))",
+    "build:changelog": "github_changelog_generator --user Semantic-Org --project Semantic-UI-React --no-issues --no-unreleased --release-branch master --breaking-labels breaking-change --since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~250))",
     "build:docs": "cross-env NODE_ENV=production gulp build:docs",
     "build:docs:staging": "cross-env STAGING=true yarn build:docs && yarn serve docs/dist",
     "build:dist": "gulp --series build:dist",
