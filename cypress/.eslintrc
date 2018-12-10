@@ -1,0 +1,13 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "cy": true
+  },
+  "plugins": [
+    "mocha"
+  ]
+}

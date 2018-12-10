@@ -6,7 +6,7 @@ general:
 jobs:
   build:
     docker:
-      - image: circleci/node:8-browsers
+      - image: circleci/node:10-browsers
     environment:
       TZ: "/usr/share/zoneinfo/America/Los_Angeles"
     steps:
@@ -49,3 +49,37 @@ jobs:
       - run:
           name: Report coverage
           command: bash <(curl -s https://codecov.io/bash)
+
+  visual-regressions:
+    docker:
+      # the Docker image with Cypress dependencies
+      - image: cypress/base:10
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    environment:
+      TZ: "/usr/share/zoneinfo/America/Los_Angeles"
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-deps-{{ .Branch }}
+            - v1-deps
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache
+      - run:
+          name: Test Visual Regressions
+          command: yarn run test:visual
+
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - build
+      - visual-regressions

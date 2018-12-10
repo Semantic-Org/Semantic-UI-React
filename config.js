@@ -47,6 +47,7 @@ const config = {
   compiler_globals: {
     'process.env': {
       NODE_ENV: JSON.stringify(env),
+      FAKER_SEED: process.env.FAKER_SEED,
     },
     __DEV__,
     __PATH_SEP__: JSON.stringify(path.sep),

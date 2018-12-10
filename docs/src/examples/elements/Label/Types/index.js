@@ -8,7 +8,7 @@ const LabelTypes = () => (
     <ComponentExample
       title='Label'
       description='A label'
-      examplePath='elements/Label/Types/LabelExampleBasic'
+      examplePath='elements/Label/Types/LabelExampleLabel'
     />
     <ComponentExample examplePath='elements/Label/Types/LabelExampleImage' />
     <ComponentExample examplePath='elements/Label/Types/LabelExampleImageColored' />
