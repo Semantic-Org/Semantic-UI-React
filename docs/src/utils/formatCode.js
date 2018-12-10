@@ -1,5 +1,10 @@
 import prettier from 'prettier/standalone'
 import prettierConfig from '../../../.prettierrc.json'
+import isBrowser from '../../../src/lib/isBrowser'
+
+const { printWidth } = prettierConfig.overrides.find(
+  ({ files }) => files === 'docs/src/examples/**/*.js',
+).options
 
 delete prettierConfig.$schema
 delete prettierConfig.overrides
@@ -8,18 +13,19 @@ delete prettierConfig.overrides
 // Please use this function directly and don't reexport it in utils.
 // https://github.com/prettier/prettier/issues/4959
 
-const formatCode = (code) => {
-  if (!code) return ''
+const formatCode = isBrowser()
+  ? (code, parser = 'babylon') => {
+    if (!code) return ''
 
-  const formatted = prettier.format(code, {
-    ...prettierConfig,
-    parser: 'babylon',
-    plugins: window.prettierPlugins,
-  })
+    const formatted = prettier.format(code, {
+      ...prettierConfig,
+      printWidth,
+      parser,
+      plugins: window.prettierPlugins,
+    })
 
-  return formatted
-    .replace(/^;</, '<') // remove beginning comma in JSX/HTML
-    .replace(/="([\s\S]*?)?"/gm, "='$1'") // single quote JSX
-}
+    return formatted.replace(/^;</, '<') // remove beginning semi in JSX/HTML
+  }
+  : x => x
 
 export default formatCode

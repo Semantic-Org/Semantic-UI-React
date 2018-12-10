@@ -101,7 +101,7 @@ export interface StrictModalProps extends StrictPortalProps {
   open?: boolean
 
   /** A modal can vary in size. */
-  size?: 'fullscreen' | 'large' | 'mini' | 'small' | 'tiny'
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'fullscreen'
 
   /** Custom styles. */
   style?: React.CSSProperties

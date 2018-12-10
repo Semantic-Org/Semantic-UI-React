@@ -177,7 +177,9 @@ class ComponentExample extends PureComponent {
   }
 
   getKebabExamplePath = () => {
-    if (!this.kebabExamplePath) this.kebabExamplePath = _.kebabCase(this.props.examplePath)
+    if (!this.kebabExamplePath) {
+      this.kebabExamplePath = _.kebabCase(this.props.examplePath)
+    }
 
     return this.kebabExamplePath
   }
@@ -292,7 +294,6 @@ class ComponentExample extends PureComponent {
               <Grid.Column width={16} style={editorStyle}>
                 {showCode && (
                   <ComponentExampleRenderEditor
-                    editorId={`${this.getKebabExamplePath()}-jsx`}
                     githubEditHref={this.getGithubEditHref()}
                     originalValue={this.getOriginalSourceCode()}
                     value={sourceCode}
@@ -300,12 +301,7 @@ class ComponentExample extends PureComponent {
                     onChange={this.handleChangeCode}
                   />
                 )}
-                {showHTML && (
-                  <ComponentExampleRenderHtml
-                    editorId={`${this.getKebabExamplePath()}-html`}
-                    value={htmlMarkup}
-                  />
-                )}
+                {showHTML && <ComponentExampleRenderHtml value={htmlMarkup} />}
               </Grid.Column>
             )}
             {isActive && !error && <CarbonAdNative inverted={this.isActiveState()} />}

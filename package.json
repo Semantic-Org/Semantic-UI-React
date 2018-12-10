@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "0.83.0",
+  "version": "0.84.0",
   "description": "The official Semantic-UI-React integration.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
@@ -14,7 +14,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "cross-env NODE_ENV=production gulp build",
-    "build:changelog": "github_changelog_generator --no-issues --no-unreleased --release-branch master --since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~300))",
+    "build:changelog": "github_changelog_generator --user Semantic-Org --project Semantic-UI-React --no-issues --no-unreleased --release-branch master --breaking-labels breaking-change --since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~250))",
     "build:docs": "cross-env NODE_ENV=production gulp build:docs",
     "build:docs:staging": "cross-env STAGING=true yarn build:docs && yarn serve docs/dist",
     "build:dist": "gulp --series build:dist",
@@ -50,6 +50,10 @@
       "eslint --fix",
       "git add"
     ],
+    "**/*.mdx": [
+      "prettier --parser mdx --write",
+      "git add"
+    ],
     "**/*.{ts,tsx}": [
       "prettier --write",
       "tslint --fix",
@@ -68,7 +72,7 @@
   "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "@semantic-ui-react/event-stack": "^3.0.0",
+    "@semantic-ui-react/event-stack": "^3.0.1",
     "classnames": "^2.2.6",
     "keyboard-key": "^1.0.2",
     "lodash": "^4.17.11",
@@ -133,11 +137,11 @@
     "leven": "^2.1.0",
     "lint-staged": "^7.2.2",
     "mocha": "^5.2.0",
-    "prettier": "^1.14.2",
+    "prettier": "^1.15.3",
     "puppeteer": "^1.7.0",
     "raw-loader": "^0.5.1",
     "react": "^16.6.0",
-    "react-ace": "^6.1.4",
+    "react-ace": "^6.2.0",
     "react-docgen": "^3.0.0-rc.1",
     "react-dom": "^16.6.0",
     "react-hot-loader": "^4.3.11",

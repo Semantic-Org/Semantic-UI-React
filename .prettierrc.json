@@ -1,5 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/prettierrc",
+  "arrowParens": "always",
+  "jsxSingleQuote": true,
   "printWidth": 100,
   "tabWidth": 2,
   "semi": false,
@@ -16,6 +18,12 @@
       "files": "*.{ts,tsx}",
       "options": {
         "semi": true
+      }
+    },
+    {
+      "files": "docs/src/examples/**/*.js",
+      "options": {
+        "printWidth": 80
       }
     }
   ]

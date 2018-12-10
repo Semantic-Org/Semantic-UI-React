@@ -3,6 +3,7 @@ import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Children, cloneElement } from 'react'
+import shallowEqual from 'shallowequal'
 
 import {
   AutoControlledComponent as Component,
@@ -14,7 +15,6 @@ import {
   getUnhandledProps,
   makeDebugger,
   objectDiff,
-  shallowEqual,
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
@@ -159,7 +159,7 @@ export default class Dropdown extends Component {
     multiple: PropTypes.bool,
 
     /** Message to display when there are no results. */
-    noResultsMessage: PropTypes.string,
+    noResultsMessage: PropTypes.node,
 
     /**
      * Called when a user adds a new item. Use this to update the options list.
@@ -729,8 +729,7 @@ export default class Dropdown extends Component {
     this.setValue(newValue)
     this.setSelectedIndex(value)
 
-    const optionSize = _.size(this.getMenuOptions())
-    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
+    this.clearSearchQuery()
 
     this.handleChange(e, newValue)
     this.closeOnChange(e)

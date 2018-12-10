@@ -3,7 +3,6 @@ import React, { PureComponent } from 'react'
 import { Divider } from 'semantic-ui-react'
 
 import Editor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/CodeEditor'
-import formatCode from 'docs/src/utils/formatCode'
 
 const rootStyle = {
   padding: '1rem',
@@ -16,22 +15,21 @@ const dividerStyle = {
 
 export default class ComponentExampleRenderHtml extends PureComponent {
   static propTypes = {
-    editorId: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
   }
 
   render() {
-    const { editorId, value } = this.props
+    const { value } = this.props
 
     // remove new line at eof after formatting for a tighter fit
-    const formattedCode = formatCode(value).replace(/\s+$/, '')
+    const formattedCode = value.trim()
 
     return (
       <div style={rootStyle}>
         <Divider fitted inverted horizontal style={dividerStyle}>
           HTML
         </Divider>
-        <Editor id={editorId} mode='html' value={formattedCode} readOnly />
+        <Editor mode='html' value={formattedCode} readOnly />
       </div>
     )
   }

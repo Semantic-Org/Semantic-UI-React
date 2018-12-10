@@ -33,7 +33,6 @@ class ComponentExampleRenderEditor extends PureComponent {
   state = {}
 
   static propTypes = {
-    editorId: PropTypes.string.isRequired,
     examplePath: PropTypes.string.isRequired,
     githubEditHref: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -129,12 +128,12 @@ class ComponentExampleRenderEditor extends PureComponent {
   }
 
   render() {
-    const { editorId, error, onChange, value } = this.props
+    const { error, onChange, value } = this.props
 
     return (
       <div style={rootStyle}>
         {this.renderEditorMenu()}
-        <Editor id={editorId} value={value} onChange={onChange} />
+        <Editor value={value} onChange={onChange} />
         {error && (
           <Segment color='red' basic secondary inverted style={errorStyle}>
             {error}

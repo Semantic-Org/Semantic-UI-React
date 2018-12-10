@@ -20,6 +20,9 @@ export interface StrictPaginationProps {
   /** Number of always visible pages at the beginning and end. */
   boundaryRange?: number | string
 
+  /** A pagination can be disabled. */
+  disabled?: boolean
+
   /** A shorthand for PaginationItem. */
   ellipsisItem?: SemanticShorthandItem<PaginationItemProps>
 

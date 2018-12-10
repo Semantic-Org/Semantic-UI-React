@@ -17,12 +17,18 @@ describe('Icon', () => {
 
   common.propKeyOnlyToClassName(Icon, 'bordered')
   common.propKeyOnlyToClassName(Icon, 'circular')
-  common.propKeyOnlyToClassName(Icon, 'corner')
   common.propKeyOnlyToClassName(Icon, 'disabled')
   common.propKeyOnlyToClassName(Icon, 'fitted')
   common.propKeyOnlyToClassName(Icon, 'inverted')
   common.propKeyOnlyToClassName(Icon, 'link')
   common.propKeyOnlyToClassName(Icon, 'loading')
+
+  common.propKeyOrValueAndKeyToClassName(Icon, 'corner', [
+    'top left',
+    'top right',
+    'bottom left',
+    'bottom right',
+  ])
 
   common.propValueOnlyToClassName(Icon, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Icon, 'name', ['money'])

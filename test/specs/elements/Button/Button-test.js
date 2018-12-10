@@ -113,6 +113,24 @@ describe('Button', () => {
     })
   })
 
+  describe('toggle', () => {
+    it('is not set by default', () => {
+      shallow(<Button />).should.not.have.prop('toggle')
+    })
+
+    it('should have aria-pressed', () => {
+      shallow(<Button toggle />).should.have.prop('aria-pressed')
+    })
+
+    it('aria-pressed should be true when active', () => {
+      shallow(<Button toggle active />).should.have.prop('aria-pressed', true)
+    })
+
+    it('aria-pressed should be false when inactive', () => {
+      shallow(<Button toggle />).should.have.prop('aria-pressed', false)
+    })
+  })
+
   describe('icon', () => {
     it('adds className icon', () => {
       shallow(<Button icon='user' />).should.have.className('icon')
@@ -243,12 +261,15 @@ describe('Button', () => {
   })
 
   describe('role', () => {
-    it('defaults to a button', () => {
-      Button.defaultProps.role.should.equal('button')
-      shallow(<Button />).should.have.prop('role', 'button')
+    it('is not set by default', () => {
+      shallow(<Button />).should.not.have.prop('role')
+    })
+    it('defaults to "button" when rendered as not "button" element', () => {
+      shallow(<Button as='label' />).should.have.prop('role', 'button')
     })
     it('is configurable', () => {
       shallow(<Button role='link' />).should.have.prop('role', 'link')
+      shallow(<Button role='button' />).should.have.prop('role', 'button')
     })
   })
 

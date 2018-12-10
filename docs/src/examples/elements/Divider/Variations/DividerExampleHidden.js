@@ -1,14 +1,16 @@
 import React from 'react'
-import { Divider, Segment } from 'semantic-ui-react'
+import { Divider, Header, Image } from 'semantic-ui-react'
 
 const DividerExampleHidden = () => (
-  <Segment>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-    labore...
+  <React.Fragment>
+    <Header as='h3'>Section One</Header>
+    <Image src='/images/wireframe/short-paragraph.png' />
+
     <Divider hidden />
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-    labore...
-  </Segment>
+
+    <Header as='h3'>Section Two</Header>
+    <Image src='/images/wireframe/short-paragraph.png' />
+  </React.Fragment>
 )
 
 export default DividerExampleHidden

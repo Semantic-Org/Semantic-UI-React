@@ -38,11 +38,6 @@ const CheckboxStatesExamples = () => (
       description='A checkbox can be read-only and unable to change states.'
       examplePath='modules/Checkbox/States/CheckboxExampleDisabled'
     />
-    <ComponentExample
-      title='Remote Control'
-      description='You can trigger events remotely.'
-      examplePath='modules/Checkbox/States/CheckboxExampleRemoteControl'
-    />
   </ExampleSection>
 )
 
