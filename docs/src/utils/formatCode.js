@@ -13,17 +13,19 @@ delete prettierConfig.overrides
 // Please use this function directly and don't reexport it in utils.
 // https://github.com/prettier/prettier/issues/4959
 
-const formatCode = (code, parser = 'babylon') => {
-  if (!code) return ''
+const formatCode = isBrowser()
+  ? (code, parser = 'babylon') => {
+    if (!code) return ''
 
-  const formatted = prettier.format(code, {
-    ...prettierConfig,
-    printWidth,
-    parser,
-    plugins: isBrowser() ? window.prettierPlugins : undefined,
-  })
+    const formatted = prettier.format(code, {
+      ...prettierConfig,
+      printWidth,
+      parser,
+      plugins: window.prettierPlugins,
+    })
 
-  return formatted.replace(/^;</, '<') // remove beginning comma in JSX/HTML
-}
+    return formatted.replace(/^;</, '<') // remove beginning semi in JSX/HTML
+  }
+  : x => x
 
 export default formatCode
