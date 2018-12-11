@@ -78,7 +78,9 @@ export const htmlInputEvents = [
   'onTouchStart',
 ]
 
-export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents]
+export const testAttributes = ['data-testid']
+
+export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents, ...testAttributes]
 
 export const htmlImageProps = ['alt', 'height', 'src', 'srcSet', 'width']
 
