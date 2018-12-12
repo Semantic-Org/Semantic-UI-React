@@ -117,7 +117,7 @@ class Sidebar extends Component {
 
     this.setState({ animating: true }, () => {
       clearTimeout(this.animationTimer)
-      this.animationTimer = setTimeout(this.handleAnimationEnd, this.animationDuration)
+      this.animationTimer = setTimeout(this.handleAnimationEnd, Sidebar.animationDuration)
 
       if (this.skipNextCallback) {
         this.skipNextCallback = false

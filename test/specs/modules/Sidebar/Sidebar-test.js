@@ -88,6 +88,7 @@ describe('Sidebar', () => {
 
   describe('onHidden', () => {
     it('is called when the "visible" prop was changed to "false"', (done) => {
+      Sidebar.animationDuration = 0
       const onHidden = sandbox.spy()
       const wrapper = mount(<Sidebar onHidden={onHidden} visible />)
 
@@ -105,6 +106,7 @@ describe('Sidebar', () => {
 
   describe('onShow', () => {
     it('is called when the "visible" prop was changed to "true"', (done) => {
+      Sidebar.animationDuration = 0
       const onShow = sandbox.spy()
       const wrapper = mount(<Sidebar onShow={onShow} />)
 
