@@ -46,9 +46,6 @@ class Sidebar extends Component {
     /** Direction the sidebar should appear on. */
     direction: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
-    /** Duration of sidebar animation. */
-    duration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
     /**
      * Called before a sidebar begins to animate out.
      *
@@ -93,9 +90,9 @@ class Sidebar extends Component {
 
   static defaultProps = {
     direction: 'left',
-    duration: 500,
   }
 
+  static animationDuration = 500
   static autoControlledProps = ['visible']
 
   static Pushable = SidebarPushable
@@ -115,12 +112,12 @@ class Sidebar extends Component {
   }
 
   handleAnimationStart = () => {
-    const { duration, visible } = this.props
+    const { visible } = this.props
     const callback = visible ? 'onVisible' : 'onHide'
 
     this.setState({ animating: true }, () => {
       clearTimeout(this.animationTimer)
-      this.animationTimer = setTimeout(this.handleAnimationEnd, duration)
+      this.animationTimer = setTimeout(this.handleAnimationEnd, this.animationDuration)
 
       if (this.skipNextCallback) {
         this.skipNextCallback = false
