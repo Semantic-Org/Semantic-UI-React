@@ -91,11 +91,12 @@ class TextArea extends Component {
     const borderHeight = _.sum([borderBottomWidth, borderTopWidth].map(x => parseFloat(x)))
 
     // Measure the scrollHeight and update the height to match.
+    const scrollHeight = this.ref.scrollHeight
     this.ref.style.height = 'auto'
     this.ref.style.overflowY = 'hidden'
     this.ref.style.height = `${Math.max(
       parseFloat(minHeight),
-      Math.ceil(this.ref.scrollHeight + borderHeight),
+      Math.ceil(scrollHeight + borderHeight),
     )}px`
     this.ref.style.overflowY = ''
   }
