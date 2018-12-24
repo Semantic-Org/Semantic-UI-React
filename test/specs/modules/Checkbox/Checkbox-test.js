@@ -239,10 +239,10 @@ describe('Checkbox', () => {
   })
 
   describe('onClick', () => {
-    it('is called with (event, data) on click', () => {
+    it('is called with (event, data) on mouseup', () => {
       const onClick = sandbox.spy()
       const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onClick={onClick} {...props} />).simulate('click')
+      mount(<Checkbox onClick={onClick} {...props} />).simulate('mouseup')
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(

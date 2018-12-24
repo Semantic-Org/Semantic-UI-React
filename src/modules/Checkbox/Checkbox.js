@@ -143,11 +143,17 @@ export default class Checkbox extends Component {
 
   handleChange = (e, fromMouseUp) => {
     debug('handleChange()')
-    const { id } = this.props
+    const { id, indeterminate } = this.props
     const { checked } = this.state
 
     if (!this.canToggle()) return
     if (fromMouseUp && !_.isNil(id)) return
+
+    _.invoke(this.props, 'onClick', e, {
+      ...this.props,
+      checked: !checked,
+      indeterminate: !!indeterminate,
+    })
 
     _.invoke(this.props, 'onChange', e, {
       ...this.props,
@@ -158,19 +164,10 @@ export default class Checkbox extends Component {
     this.trySetState({ checked: !checked, indeterminate: false })
   }
 
-  handleClick = (e) => {
+  handleClick = () => {
     debug('handleClick()')
-    const { id } = this.props
-    const { checked, indeterminate } = this.state
-
-    if (!this.canToggle()) return
-    if (!_.isNil(id)) return
-
-    _.invoke(this.props, 'onClick', e, {
-      ...this.props,
-      checked: !checked,
-      indeterminate: !!indeterminate,
-    })
+    // handleClick is left empty because it's already called within handleChange, and also
+    // to avoid duplicate calls matching all DOM Checkbox comparisons.
   }
 
   handleMouseDown = (e) => {
