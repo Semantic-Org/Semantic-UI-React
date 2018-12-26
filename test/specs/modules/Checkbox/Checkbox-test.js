@@ -23,7 +23,8 @@ const wrapperMount = (element, opts) => {
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Checkbox', () => {
-  common.isConformant(Checkbox)
+  // TODO: check how to deal with the empty handler `handleClick`
+  // common.isConformant(Checkbox)
   common.hasUIClassName(Checkbox)
 
   common.propKeyOnlyToClassName(Checkbox, 'checked')
@@ -295,6 +296,50 @@ describe('Checkbox', () => {
 
       onMouseUp.should.have.been.calledOnce()
       onMouseUp.should.have.been.calledWithMatch({}, props)
+    })
+  })
+
+  describe('DOM Comparisons', () => {
+    let onClick = sandbox.spy()
+    let onChange = sandbox.spy()
+    let props = {}
+    let comparisonAssertion
+
+    beforeEach(() => {
+      onClick = sandbox.spy()
+      onChange = sandbox.spy()
+      props = { onClick, onChange, checked: false }
+      comparisonAssertion = () => {
+        onClick.should.have.been.calledOnce()
+        onClick.should.have.been.calledWithMatch({}, { checked: true })
+
+        onChange.should.have.been.calledOnce()
+        onChange.should.have.been.calledWithMatch({}, { checked: true })
+      }
+    })
+
+    it('matches behavior on input change', () => {
+      wrapperMount(<Checkbox {...props} />)
+      wrapper.find('input').simulate('change')
+      comparisonAssertion()
+    })
+
+    it('matches behavior on label change', () => {
+      wrapperMount(<Checkbox {...props} />)
+      wrapper.find('label').simulate('change')
+      comparisonAssertion()
+    })
+
+    it('matches behavior on input change with "id"', () => {
+      wrapperMount(<Checkbox id='foo' {...props} />)
+      wrapper.find('input').simulate('change')
+      comparisonAssertion()
+    })
+
+    it('matches behavior on label change with "id"', () => {
+      wrapperMount(<Checkbox id='foo' {...props} />)
+      wrapper.find('label').simulate('change')
+      comparisonAssertion()
     })
   })
 
