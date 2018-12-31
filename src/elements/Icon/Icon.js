@@ -74,6 +74,13 @@ class Icon extends PureComponent {
 
     /** Icon can have an aria label. */
     'aria-label': PropTypes.string,
+
+     /**
+     * Called after user's click.
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onClick: PropTypes.func,
   }
 
   static defaultProps = {
@@ -97,6 +104,18 @@ class Icon extends PureComponent {
     }
 
     return ariaOptions
+  }
+
+  handleClick = (e) => {
+    const { disabled, onClick } = this.props
+
+    if (disabled) {
+      e.preventDefault()
+      return
+    }
+    if (onClick) {
+      _.invoke(this.props, 'onClick', e, this.props)
+    }
   }
 
   render() {
@@ -138,7 +157,7 @@ class Icon extends PureComponent {
     const ElementType = getElementType(Icon, this.props)
     const ariaOptions = this.getIconAriaOptions()
 
-    return <ElementType {...rest} {...ariaOptions} className={classes} />
+    return <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}/>
   }
 }
 

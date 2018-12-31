@@ -68,4 +68,25 @@ describe('Icon', () => {
       wrapper.should.have.prop('aria-label', 'icon')
     })
   })
+
+  describe('onClick', () => {
+    it('is called with (e, data) when clicked', () => {
+      const onClick = sandbox.spy()
+
+      shallow(<Icon onClick={onClick} />).simulate('click', syntheticEvent)
+
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithExactly(syntheticEvent, {
+        onClick,
+        ...Icon.defaultProps,
+      })
+    })
+
+    it('is not called when is disabled', () => {
+      const onClick = sandbox.spy()
+
+      shallow(<Icon disabled onClick={onClick} />).simulate('click', syntheticEvent)
+      onClick.should.have.callCount(0)
+    })
+  })
 })
