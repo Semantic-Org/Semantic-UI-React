@@ -99,6 +99,16 @@ class Icon extends PureComponent {
     return ariaOptions
   }
 
+  handleClick = (e) => {
+    const { disabled } = this.props
+
+    if (disabled) {
+      e.preventDefault()
+      return
+    }
+    _.invoke(this.props, 'onClick', e, this.props)
+  }
+
   render() {
     const {
       bordered,
@@ -138,7 +148,7 @@ class Icon extends PureComponent {
     const ElementType = getElementType(Icon, this.props)
     const ariaOptions = this.getIconAriaOptions()
 
-    return <ElementType {...rest} {...ariaOptions} className={classes} />
+    return <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick} />
   }
 }
 
