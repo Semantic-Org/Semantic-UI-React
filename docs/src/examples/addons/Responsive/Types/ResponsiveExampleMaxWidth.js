@@ -7,7 +7,7 @@ const ResponsiveExampleMaxWidth = () => (
       Visible only if display has <code>767px</code> width and lower
     </Responsive>
     <Responsive as={Segment} maxWidth={2569}>
-      Visible only if display has <code>2569px</code> width
+      Visible only if display has <code>2569px</code> width and lower
     </Responsive>
   </Segment.Group>
 )
