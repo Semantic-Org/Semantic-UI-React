@@ -7,8 +7,6 @@ import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
-const syntheticEvent = { preventDefault: () => undefined }
-
 describe('Icon', () => {
   common.isConformant(Icon)
   common.hasSubcomponents(Icon, [IconGroup])
