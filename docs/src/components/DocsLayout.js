@@ -1,10 +1,11 @@
 import AnchorJS from 'anchor-js'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Head, withRouter, withSiteData } from 'react-static'
+import { Head, withSiteData } from 'react-static'
 
 import Sidebar from 'docs/src/components/Sidebar/Sidebar'
 import style from 'docs/src/Style'
+import { withLocation } from 'docs/src/hoc'
 import { docTypes, scrollToAnchor } from 'docs/src/utils'
 
 const anchors = new AnchorJS({
@@ -70,4 +71,5 @@ class DocsLayout extends Component {
   }
 }
 
-export default withSiteData(withRouter(DocsLayout))
+// TODO: ROUTER
+export default withSiteData(withLocation(DocsLayout))

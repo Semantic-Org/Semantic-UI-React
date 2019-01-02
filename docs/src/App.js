@@ -1,16 +1,10 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
-import { Router, Switch } from 'react-static'
-import Routes from 'react-static-routes'
+import { Root, Routes } from 'react-static'
 
 const App = () => (
-  <Router>
-    <Switch>
-      <Switch>
-        <Routes />
-      </Switch>
-    </Switch>
-  </Router>
+  <Root disableScroller>
+    <Routes/>
+  </Root>
 )
 
-export default hot(module)(App)
+export default App

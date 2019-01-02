@@ -1,5 +1,5 @@
+import { Link } from '@reach/router'
 import React from 'react'
-import { Link } from 'react-static'
 import { Header } from 'semantic-ui-react'
 
 import CodeSnippet from 'docs/src/components/CodeSnippet'

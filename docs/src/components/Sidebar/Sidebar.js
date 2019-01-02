@@ -1,14 +1,18 @@
+import { Link, navigate } from '@reach/router'
+import cx from 'classnames'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-static'
 import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
 import shallowEqual from 'shallowequal'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
+import { withLocation } from 'docs/src/hoc'
 import { docTypes, getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
+
+const mapLinkProps = ({ isCurrent }) => ({ className: cx(isCurrent && 'active', 'item') })
 
 const selectedItemLabelStyle = {
   position: 'absolute',
@@ -34,7 +38,6 @@ SelectedItemLabel.propTypes = {
 class Sidebar extends Component {
   static propTypes = {
     componentMenu: docTypes.componentMenu.isRequired,
-    history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     style: PropTypes.object,
@@ -87,13 +90,12 @@ class Sidebar extends Component {
   }
 
   handleSearchKeyDown = (e) => {
-    const { history } = this.props
     const { selectedItemIndex } = this.state
     const code = keyboardKey.getCode(e)
 
     if (code === keyboardKey.Enter && this.selectedRoute) {
       e.preventDefault()
-      history.push(this.selectedRoute)
+      navigate(this.selectedRoute)
       this.selectedRoute = null
       this.setState({ query: '' })
     }
@@ -122,12 +124,12 @@ class Sidebar extends Component {
       _.filter(({ type }) => type === nextType),
       _.map(info => (
         <Menu.Item
+          as={Link}
           key={info.displayName}
           name={info.displayName}
           onClick={this.handleItemClick}
-          as={Link}
+          getProps={mapLinkProps}
           to={getComponentPathname(info)}
-          activeClassName='active'
         />
       )),
     )(this.props.componentMenu)
@@ -216,19 +218,19 @@ class Sidebar extends Component {
             <Menu.Item>
               <Menu.Header>Getting Started</Menu.Header>
               <Menu.Menu>
-                <Menu.Item as={Link} exact to='/' activeClassName='active'>
+                <Menu.Item as={Link} to='/' getProps={mapLinkProps}>
                   Introduction
                 </Menu.Item>
-                <Menu.Item as={Link} exact to='/usage' activeClassName='active'>
+                <Menu.Item as={Link} to='/usage' getProps={mapLinkProps}>
                   Usage
                 </Menu.Item>
-                <Menu.Item as={Link} exact to='/theming' activeClassName='active'>
+                <Menu.Item as={Link} to='/theming' getProps={mapLinkProps}>
                   Theming
                 </Menu.Item>
-                <Menu.Item as={Link} exact to='/layouts' activeClassName='active'>
+                <Menu.Item as={Link} to='/layouts' getProps={mapLinkProps}>
                   Layouts
                 </Menu.Item>
-                <Menu.Item as={Link} exact to='/prototypes' activeClassName='active'>
+                <Menu.Item as={Link} to='/prototypes' getProps={mapLinkProps}>
                   Prototypes
                 </Menu.Item>
               </Menu.Menu>
@@ -256,4 +258,4 @@ class Sidebar extends Component {
   }
 }
 
-export default withRouter(Sidebar)
+export default withLocation(Sidebar)

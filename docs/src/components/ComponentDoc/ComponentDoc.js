@@ -1,3 +1,4 @@
+import {navigate } from '@reach/router'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -28,7 +29,6 @@ class ComponentDoc extends Component {
     componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
     displayName: PropTypes.string.isRequired,
     exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
-    history: PropTypes.object.isRequired,
     seeTags: docTypes.seeTags.isRequired,
     sidebarSections: docTypes.sidebarSections.isRequired,
   }
@@ -36,11 +36,10 @@ class ComponentDoc extends Component {
   state = {}
 
   componentWillMount() {
-    const { exampleKeys, history } = this.props
+    const { exampleKeys } = this.props
 
     if (isBrowser() && window.location.hash) {
       const activePath = getFormattedHash(exampleKeys, window.location.hash)
-      history.replace(`${window.location.pathname}#${activePath}`)
       this.setState({ activePath })
     }
   }
@@ -64,10 +63,9 @@ class ComponentDoc extends Component {
   handleExamplesRef = examplesRef => this.setState({ examplesRef })
 
   handleSidebarItemClick = (e, { examplePath }) => {
-    const { history } = this.props
     const activePath = examplePathToHash(examplePath)
 
-    history.replace(`${location.pathname}#${activePath}`)
+    navigate(`${location.pathname}#${activePath}`, { replace: true })
     // set active hash path
     this.setState({ activePath }, scrollToAnchor)
   }

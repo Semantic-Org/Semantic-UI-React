@@ -1,6 +1,6 @@
+import { Link } from '@reach/router'
 import _ from 'lodash'
 import React from 'react'
-import { Link } from 'react-static'
 import { Header, List } from 'semantic-ui-react'
 
 import { docTypes } from 'docs/src/utils'

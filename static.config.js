@@ -3,7 +3,6 @@ import { getComponentMenu } from './docs/static/utils'
 import config from './config'
 import pkg from './package'
 import getRoutes from './static.routes'
-import webpack from './static.webpack'
 
 export default {
   Document,
@@ -36,5 +35,4 @@ export default {
     public: config.paths.docsPublic(),
   },
   siteRoot: 'https://react.semantic-ui.com',
-  webpack,
 }

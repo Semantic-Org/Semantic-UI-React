@@ -22,7 +22,7 @@ export default async () => {
     },
     {
       component: 'docs/src/pages/PageNotFound',
-      is404: true,
+      path: '404',
     },
 
     // Routes for pages, i.e /theming

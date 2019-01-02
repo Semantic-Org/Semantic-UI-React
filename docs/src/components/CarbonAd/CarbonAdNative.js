@@ -68,7 +68,7 @@ class CarbonAdNative extends Component {
         .filter(ad => !!ad.statlink)
         .filter(Boolean)[0]
       debug('handleNativeJSON sanitizedAd', sanitizedAd)
-
+      throw {}
       if (!sanitizedAd) {
         this.getAd()
       } else if (this.mounted) {

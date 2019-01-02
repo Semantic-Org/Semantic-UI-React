@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { createElement, PureComponent } from 'react'
-import { Link, withRouteData } from 'react-static'
+import { Link } from '@reach/router'
+import { withRouteData } from 'react-static'
 import { Button } from 'semantic-ui-react'
 
 import { repoURL } from 'docs/src/utils'

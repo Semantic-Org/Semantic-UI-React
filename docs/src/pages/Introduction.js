@@ -1,6 +1,7 @@
+import { Link } from '@reach/router'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Link, withSiteData } from 'react-static'
+import { withSiteData } from 'react-static'
 import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
