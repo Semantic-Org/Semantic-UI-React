@@ -75,21 +75,19 @@ describe('Icon', () => {
   describe('onClick', () => {
     it('is called with (e, data) when clicked', () => {
       const onClick = sandbox.spy()
-
-      shallow(<Icon onClick={onClick} />).simulate('click', syntheticEvent)
+      mount(<Icon onClick={onClick} />).simulate('click')
 
       onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithExactly(syntheticEvent, {
-        onClick,
-        ...Icon.defaultProps,
-      })
+      onClick.should.have.been.calledWithMatch({ type: 'click' }, { onClick })
     })
 
-    it('is not called when is disabled', () => {
+    it('is not called when "disabled" is true', () => {
       const onClick = sandbox.spy()
+      const preventDefault = sandbox.spy()
+      mount(<Icon disabled onClick={onClick} />).simulate('click', { preventDefault })
 
-      shallow(<Icon disabled onClick={onClick} />).simulate('click', syntheticEvent)
-      onClick.should.have.callCount(0)
+      onClick.should.have.not.been.called()
+      preventDefault.should.have.calledOnce()
     })
   })
 })
