@@ -143,8 +143,8 @@ export default class Checkbox extends Component {
 
   handleChange = (e, fromMouseUp) => {
     debug('handleChange()')
-    const { id, indeterminate } = this.props
-    const { checked } = this.state
+    const { id } = this.props
+    const { checked, indeterminate } = this.state
 
     if (!this.canToggle()) return
     if (fromMouseUp && !_.isNil(id)) return
@@ -154,7 +154,6 @@ export default class Checkbox extends Component {
       checked: !checked,
       indeterminate: !!indeterminate,
     })
-
     _.invoke(this.props, 'onChange', e, {
       ...this.props,
       checked: !checked,
