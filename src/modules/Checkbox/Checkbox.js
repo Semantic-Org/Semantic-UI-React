@@ -165,8 +165,8 @@ export default class Checkbox extends Component {
 
   handleClick = () => {
     debug('handleClick()')
-    // handleClick is left empty because it's already called within handleChange, and also
-    // to avoid duplicate calls matching all DOM Checkbox comparisons.
+    // handleClick is left empty because it's already called within handleChange,
+    // and also to avoid duplicate calls, matching all DOM Checkbox comparisons.
   }
 
   handleMouseDown = (e) => {
