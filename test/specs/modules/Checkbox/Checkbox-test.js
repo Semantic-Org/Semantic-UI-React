@@ -256,7 +256,7 @@ describe('Checkbox', () => {
       )
     })
 
-    it('is not called when on change when "id" is passed', () => {
+    it('is not called when "id" is passed', () => {
       const onClick = sandbox.spy()
       mount(<Checkbox id='foo' onClick={onClick} />).simulate('mouseup')
 
@@ -385,12 +385,7 @@ describe('Checkbox', () => {
         const onChange = sandbox.spy()
 
         wrapperMount(
-          <Checkbox
-            {...props}
-            data-id={dataId}
-            onClick={onClick}
-            onChange={onChange}
-          />,
+          <Checkbox {...props} data-id={dataId} onClick={onClick} onChange={onChange} />,
           { attachTo },
         )
         domEvent.fire(document.querySelector(selector), event)
@@ -400,6 +395,35 @@ describe('Checkbox', () => {
 
         onChange.should.have.been.calledAfter(onClick)
       })
+    })
+  })
+
+  describe('Controlled component', () => {
+    class ControlledCheckbox extends React.Component {
+      state = { checked: false }
+      toggle = () => this.setState(prevState => ({ checked: !prevState.checked }))
+      render() {
+        return (
+          <Checkbox
+            label='Check this box'
+            onChange={this.toggle}
+            onClick={this.toggle}
+            checked={this.state.checked}
+          />
+        )
+      }
+    }
+
+    it('toggles state on "change" with "setState" as function', () => {
+      wrapperShallow(<ControlledCheckbox />)
+      wrapper.find('Checkbox').simulate('change')
+      wrapper.state().should.eql({ checked: true })
+    })
+
+    it('toggles state on "click" with "setState" as function', () => {
+      wrapperShallow(<ControlledCheckbox />)
+      wrapper.find('Checkbox').simulate('click')
+      wrapper.state().should.eql({ checked: true })
     })
   })
 })
