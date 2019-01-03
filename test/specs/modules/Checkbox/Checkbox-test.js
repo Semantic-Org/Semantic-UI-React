@@ -399,30 +399,27 @@ describe('Checkbox', () => {
   })
 
   describe('Controlled component', () => {
-    class ControlledCheckbox extends React.Component {
-      state = { checked: false }
-      toggle = () => this.setState(prevState => ({ checked: !prevState.checked }))
-      render() {
-        return (
-          <Checkbox
-            label='Check this box'
-            onChange={this.toggle}
-            onClick={this.toggle}
-            checked={this.state.checked}
-          />
-        )
+    const getControlledCheckbox = isOnClick =>
+      class ControlledCheckbox extends React.Component {
+        state = { checked: false }
+        toggle = () => this.setState(prevState => ({ checked: !prevState.checked }))
+        render() {
+          const handler = isOnClick ? { onClick: this.toggle } : { onChange: this.toggle }
+          return <Checkbox label='Check this box' checked={this.state.checked} {...handler} />
+        }
       }
-    }
 
     it('toggles state on "change" with "setState" as function', () => {
-      wrapperShallow(<ControlledCheckbox />)
-      wrapper.find('Checkbox').simulate('change')
+      const ControlledCheckbox = getControlledCheckbox(false)
+      wrapperMount(<ControlledCheckbox />)
+      domEvent.fire(document.querySelector('input'), 'click')
       wrapper.state().should.eql({ checked: true })
     })
 
     it('toggles state on "click" with "setState" as function', () => {
-      wrapperShallow(<ControlledCheckbox />)
-      wrapper.find('Checkbox').simulate('click')
+      const ControlledCheckbox = getControlledCheckbox(true)
+      wrapperMount(<ControlledCheckbox />)
+      domEvent.fire(document.querySelector('input'), 'click')
       wrapper.state().should.eql({ checked: true })
     })
   })
