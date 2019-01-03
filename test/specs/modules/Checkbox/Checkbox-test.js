@@ -23,8 +23,9 @@ const wrapperMount = (element, opts) => {
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Checkbox', () => {
-  // TODO: check how to deal with the empty handler `handleClick`
-  // common.isConformant(Checkbox)
+  common.isConformant(Checkbox, {
+    disabledHandlers: ['onClick'],
+  })
   common.hasUIClassName(Checkbox)
 
   common.propKeyOnlyToClassName(Checkbox, 'checked')
