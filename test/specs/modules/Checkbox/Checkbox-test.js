@@ -299,50 +299,6 @@ describe('Checkbox', () => {
     })
   })
 
-  describe('DOM Comparisons', () => {
-    let onClick = sandbox.spy()
-    let onChange = sandbox.spy()
-    let props = {}
-    let comparisonAssertion
-
-    beforeEach(() => {
-      onClick = sandbox.spy()
-      onChange = sandbox.spy()
-      props = { onClick, onChange, checked: false }
-      comparisonAssertion = () => {
-        onClick.should.have.been.calledOnce()
-        onClick.should.have.been.calledWithMatch({}, { checked: true })
-
-        onChange.should.have.been.calledOnce()
-        onChange.should.have.been.calledWithMatch({}, { checked: true })
-      }
-    })
-
-    it('matches behavior on input change', () => {
-      wrapperMount(<Checkbox {...props} />)
-      wrapper.find('input').simulate('change')
-      comparisonAssertion()
-    })
-
-    it('matches behavior on label change', () => {
-      wrapperMount(<Checkbox {...props} />)
-      wrapper.find('label').simulate('change')
-      comparisonAssertion()
-    })
-
-    it('matches behavior on input change with "id"', () => {
-      wrapperMount(<Checkbox id='foo' {...props} />)
-      wrapper.find('input').simulate('change')
-      comparisonAssertion()
-    })
-
-    it('matches behavior on label change with "id"', () => {
-      wrapperMount(<Checkbox id='foo' {...props} />)
-      wrapper.find('label').simulate('change')
-      comparisonAssertion()
-    })
-  })
-
   describe('readOnly', () => {
     it('cannot be checked', () => {
       wrapperShallow(<Checkbox readOnly />)
@@ -395,6 +351,54 @@ describe('Checkbox', () => {
       shallow(<Checkbox type='radio' />)
         .find('input')
         .should.have.prop('type', 'radio')
+    })
+  })
+
+  describe('comparisons with native DOM', () => {
+    const assertMatrix = [
+      {
+        description: 'click on label: fires on mouse up',
+        event: 'mouseup',
+        target: 'label',
+      },
+      {
+        description: 'key on input: fires on space key',
+        event: 'click',
+        target: 'input',
+      },
+
+      {
+        description: 'click on label: fires on mouse click',
+        event: 'click',
+        target: 'label',
+        id: 'foo',
+      },
+    ]
+
+    assertMatrix.forEach(({ description, event, target, ...props }) => {
+      it(description, () => {
+        const dataId = _.uniqueId('checkbox')
+        const selector = `[data-id=${dataId}] ${target}`
+
+        const onClick = sandbox.spy()
+        const onChange = sandbox.spy()
+
+        wrapperMount(
+          <Checkbox
+            {...props}
+            data-id={dataId}
+            onClick={onClick}
+            onChange={onChange}
+          />,
+          { attachTo },
+        )
+        domEvent.fire(document.querySelector(selector), event)
+
+        onClick.should.have.been.calledOnce()
+        onChange.should.have.been.calledOnce()
+
+        onChange.should.have.been.calledAfter(onClick)
+      })
     })
   })
 })
