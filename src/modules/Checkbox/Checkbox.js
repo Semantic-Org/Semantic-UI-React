@@ -149,6 +149,8 @@ export default class Checkbox extends Component {
     if (!this.canToggle()) return
     if (fromMouseUp && !_.isNil(id)) return
 
+    // We don't have a separate click handler as it's already called in here,
+    // and also to avoid duplicate calls, matching all DOM Checkbox comparisons.
     _.invoke(this.props, 'onClick', e, {
       ...this.props,
       checked: !checked,
@@ -161,30 +163,6 @@ export default class Checkbox extends Component {
     })
 
     this.trySetState({ checked: !checked, indeterminate: false })
-  }
-
-  handleClick = (e) => {
-    const { onChange } = this.props
-    const { checked, indeterminate } = this.state
-
-    // https://github.com/Semantic-Org/Semantic-UI-React/pull/3351
-    //
-    // We need to avoid duplicate calls to onClick.
-    // We need to handle clicks on the root and bubble clicks from the label and input.
-    // The order of the events needs to match that of a vanilla DOM checkbox.
-    //
-    // The browser calls onClick AFTER onChange since onClick is on the root element.
-    // Because of this, we call onClick in handleChange to preserve the correct order.
-    // In that case, we skip calls to onClick here to avoid duplicate calls.
-    if (onChange) return
-
-    debug('handleClick()')
-
-    _.invoke(this.props, 'onClick', e, {
-      ...this.props,
-      checked: !checked,
-      indeterminate: !!indeterminate,
-    })
   }
 
   handleMouseDown = (e) => {
@@ -262,7 +240,6 @@ export default class Checkbox extends Component {
         {...rest}
         className={classes}
         onChange={this.handleChange}
-        onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
       >
