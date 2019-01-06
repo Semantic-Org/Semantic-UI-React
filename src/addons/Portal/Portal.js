@@ -160,7 +160,7 @@ class Portal extends Component {
   handleEscape = (e) => {
     if (!this.props.closeOnEscape) return
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
-    if (e.path.find(element => element.classList && element.classList.contains('dropdown'))) {
+    if (e.target.classList && e.target.classList.contains('dropdown')) {
       return
     }
     debug('handleEscape()')

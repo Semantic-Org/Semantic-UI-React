@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
 import Portal from 'src/addons/Portal/Portal'
+import Dropdown from 'src/modules/Dropdown/Dropdown';
 import PortalInner from 'src/addons/Portal/PortalInner'
 
 let wrapper
@@ -569,6 +570,27 @@ describe('Portal', () => {
       wrapper.should.have.descendants(PortalInner)
 
       domEvent.keyDown(document, { key: 'Escape' })
+      wrapper.update()
+      wrapper.should.have.descendants(PortalInner)
+    })
+
+    it('does not close the portal on escape when dropdown child is focussed', () => {
+      wrapperMount(
+        <Portal closeOnEscape defaultOpen>
+          <Dropdown
+            id='dropdown'
+            placeholder='Skills'
+            options={[
+              { key: 'angular', text: 'Angular', value: 'angular' },
+              { key: 'css', text: 'CSS', value: 'css' },
+            ]}
+          />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
+
+      domEvent.click('.ui.dropdown')
+      domEvent.keyDown(document.getElementById('dropdown'), { key: 'Escape' })
       wrapper.update()
       wrapper.should.have.descendants(PortalInner)
     })
