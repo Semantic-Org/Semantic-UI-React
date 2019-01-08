@@ -141,19 +141,13 @@ export default class Checkbox extends Component {
 
   handleInputRef = c => (this.inputRef = c)
 
-  handleChange = (e, fromMouseUp) => {
-    debug('handleChange()')
-    const { id } = this.props
-    const { checked, indeterminate } = this.state
+  handleChange = (e) => {
+    const { checked } = this.state
 
     if (!this.canToggle()) return
-    if (fromMouseUp && !_.isNil(id)) return
 
-    _.invoke(this.props, 'onClick', e, {
-      ...this.props,
-      checked: !checked,
-      indeterminate: !!indeterminate,
-    })
+    debug('handleChange()', _.get(e, 'target.tagName'))
+
     _.invoke(this.props, 'onChange', e, {
       ...this.props,
       checked: !checked,
@@ -164,27 +158,30 @@ export default class Checkbox extends Component {
   }
 
   handleClick = (e) => {
-    const { onChange } = this.props
+    const { id } = this.props
     const { checked, indeterminate } = this.state
+    const tagName = _.get(e, 'target.tagName')
+
+    const isLabelClickAndForwardedToInput = tagName === 'LABEL' && !_.isNil(id)
 
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3351
-    //
-    // We need to avoid duplicate calls to onClick.
-    // We need to handle clicks on the root and bubble clicks from the label and input.
-    // The order of the events needs to match that of a vanilla DOM checkbox.
-    //
-    // The browser calls onClick AFTER onChange since onClick is on the root element.
-    // Because of this, we call onClick in handleChange to preserve the correct order.
-    // In that case, we skip calls to onClick here to avoid duplicate calls.
-    if (onChange) return
 
-    debug('handleClick()')
+    if (!isLabelClickAndForwardedToInput) {
+      debug('handleClick()', tagName)
 
-    _.invoke(this.props, 'onClick', e, {
-      ...this.props,
-      checked: !checked,
-      indeterminate: !!indeterminate,
-    })
+      _.invoke(this.props, 'onClick', e, {
+        ...this.props,
+        checked: !checked,
+        indeterminate: !!indeterminate,
+      })
+    }
+
+    if (this.isClickFromMouse) {
+      this.isClickFromMouse = false
+      if (tagName === 'LABEL' && _.isNil(id)) {
+        this.handleChange(e)
+      }
+    }
   }
 
   handleMouseDown = (e) => {
@@ -196,12 +193,12 @@ export default class Checkbox extends Component {
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
-    _.invoke(this.inputRef, 'focus')
 
-    e.preventDefault()
+    _.invoke(this.inputRef, 'focus')
   }
 
   handleMouseUp = (e) => {
+    this.isClickFromMouse = true
     debug('handleMouseUp()')
     const { checked, indeterminate } = this.state
 
@@ -210,7 +207,6 @@ export default class Checkbox extends Component {
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
-    this.handleChange(e, true)
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we

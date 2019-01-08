@@ -22,10 +22,8 @@ const wrapperMount = (element, opts) => {
 }
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
-describe('Checkbox', () => {
-  common.isConformant(Checkbox, {
-    disabledHandlers: ['onClick'],
-  })
+describe.only('Checkbox', () => {
+  common.isConformant(Checkbox)
   common.hasUIClassName(Checkbox)
 
   common.propKeyOnlyToClassName(Checkbox, 'checked')
@@ -66,25 +64,27 @@ describe('Checkbox', () => {
 
   describe('checking', () => {
     it('can be checked and unchecked', () => {
+      const event = { target: { tagName: 'LABEL' } }
       wrapperShallow(<Checkbox />)
 
       wrapper.find('input').should.not.be.checked()
 
-      wrapper.simulate('mouseup')
+      wrapper.find('label').simulate('click', event)
       wrapper.find('input').should.be.checked()
 
-      wrapper.simulate('mouseup')
+      wrapper.find('label').simulate('click', event)
       wrapper.find('input').should.not.be.checked()
     })
     it('can be checked but not unchecked when radio', () => {
+      const event = { target: { tagName: 'LABEL' } }
       wrapperShallow(<Checkbox radio />)
 
       wrapper.find('input').should.not.be.checked()
 
-      wrapper.simulate('mouseup')
+      wrapper.find('label').simulate('click', event)
       wrapper.find('input').should.be.checked()
 
-      wrapper.simulate('mouseup')
+      wrapper.find('label').simulate('click', event)
       wrapper.find('input').should.be.checked()
     })
   })
@@ -144,14 +144,14 @@ describe('Checkbox', () => {
     it('cannot be checked', () => {
       wrapperShallow(<Checkbox disabled />)
 
-      wrapper.simulate('mouseup')
+      wrapper.simulate('click')
       wrapper.find('input').should.not.be.checked()
     })
 
     it('cannot be unchecked', () => {
       wrapperShallow(<Checkbox defaultChecked disabled />)
 
-      wrapper.simulate('mouseup')
+      wrapper.simulate('click')
       wrapper.find('input').should.be.checked()
     })
 
@@ -216,10 +216,12 @@ describe('Checkbox', () => {
   })
 
   describe('onChange', () => {
-    it('is called with (e, data) on mouse up', () => {
+    it('is called with (e, data) on label click', () => {
       const onChange = sandbox.spy()
       const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onChange={onChange} {...props} />).simulate('mouseup')
+      mount(<Checkbox onChange={onChange} {...props} />)
+        .find('label')
+        .simulate('click')
 
       onChange.should.have.been.calledOnce()
       onChange.should.have.been.calledWithMatch(
@@ -234,7 +236,9 @@ describe('Checkbox', () => {
 
     it('is not called when on change when "id" is passed', () => {
       const onChange = sandbox.spy()
-      mount(<Checkbox id='foo' onChange={onChange} />).simulate('mouseup')
+      mount(<Checkbox id='foo' onChange={onChange} />)
+        .find('label')
+        .simulate('click')
 
       onChange.should.have.not.been.called()
     })
@@ -272,13 +276,6 @@ describe('Checkbox', () => {
 
       onMousedDown.should.have.been.calledOnce()
       onMousedDown.should.have.been.calledWithMatch({}, props)
-    })
-    it('prevents default event', () => {
-      const preventDefault = sandbox.spy()
-      wrapperShallow(<Checkbox />)
-
-      wrapper.simulate('mousedown', { preventDefault })
-      preventDefault.should.have.been.calledOnce()
     })
     it('sets focus to container', () => {
       wrapperMount(<Checkbox />)
@@ -357,19 +354,26 @@ describe('Checkbox', () => {
 
   describe('comparisons with native DOM', () => {
     const assertMatrix = [
+      // Heads up!
+      // Space key invokes a click on the hidden input.
       {
-        description: 'click on label: fires on mouse up',
-        event: 'mouseup',
-        target: 'label',
-      },
-      {
-        description: 'key on input: fires on space key',
+        description: 'space key',
         event: 'click',
         target: 'input',
       },
-
       {
-        description: 'click on label: fires on mouse click',
+        description: 'space key with an id',
+        event: 'click',
+        target: 'input',
+        id: 'foo',
+      },
+      {
+        description: 'click on label',
+        event: 'click',
+        target: 'label',
+      },
+      {
+        description: 'click on label with an id',
         event: 'click',
         target: 'label',
         id: 'foo',
@@ -388,7 +392,7 @@ describe('Checkbox', () => {
           <Checkbox {...props} data-id={dataId} onClick={onClick} onChange={onChange} />,
           { attachTo },
         )
-        domEvent.fire(document.querySelector(selector), event)
+        domEvent.fire(selector, event)
 
         onClick.should.have.been.calledOnce()
         onChange.should.have.been.calledOnce()
@@ -399,28 +403,36 @@ describe('Checkbox', () => {
   })
 
   describe('Controlled component', () => {
-    const getControlledCheckbox = isOnClick =>
+    it('toggles state on "change" with "setState" as function', () => {
+      // eslint-disable-next-line react/no-multi-comp
       class ControlledCheckbox extends React.Component {
-        state = { checked: false }
-        toggle = () => this.setState(prevState => ({ checked: !prevState.checked }))
+        state = {}
+        toggle = () => this.setState(({ checked }) => ({ checked: !checked }))
         render() {
-          const handler = isOnClick ? { onClick: this.toggle } : { onChange: this.toggle }
-          return <Checkbox label='Check this box' checked={this.state.checked} {...handler} />
+          return <Checkbox checked={this.state.checked} onChange={this.toggle} />
         }
       }
 
-    it('toggles state on "change" with "setState" as function', () => {
-      const ControlledCheckbox = getControlledCheckbox(false)
       wrapperMount(<ControlledCheckbox />)
-      domEvent.fire(document.querySelector('input'), 'click')
-      wrapper.state().should.eql({ checked: true })
+      const inputNode = wrapper.find('input').instance()
+      inputNode.click()
+      inputNode.should.have.property('checked', true)
     })
 
     it('toggles state on "click" with "setState" as function', () => {
-      const ControlledCheckbox = getControlledCheckbox(true)
+      // eslint-disable-next-line react/no-multi-comp
+      class ControlledCheckbox extends React.Component {
+        state = {}
+        toggle = () => this.setState(({ checked }) => ({ checked: !checked }))
+        render() {
+          return <Checkbox checked={this.state.checked} onClick={this.toggle} />
+        }
+      }
       wrapperMount(<ControlledCheckbox />)
-      domEvent.fire(document.querySelector('input'), 'click')
-      wrapper.state().should.eql({ checked: true })
+        .find('input')
+        .simulate('click')
+        .instance()
+        .should.have.property('checked', true)
     })
   })
 })

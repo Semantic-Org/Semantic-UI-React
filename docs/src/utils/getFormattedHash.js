@@ -12,7 +12,7 @@ const isOldHash = (hash) => {
 
   if (!firstPart) return false
 
-  return !_.includes(firstPart, ['types', 'states', 'variations'])
+  return !_.includes(firstPart, ['types', 'states', 'variations', 'usage'])
 }
 
 /**
@@ -43,7 +43,7 @@ const getFormattedHash = (exampleKeys, hash) => {
       return examplePathToHash(examplePath)
     }
 
-    return null
+    return hashString
   }
 
   return hashString
