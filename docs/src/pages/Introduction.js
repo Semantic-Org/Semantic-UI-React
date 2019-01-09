@@ -6,7 +6,7 @@ import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'se
 import DocsLayout from 'docs/src/components/DocsLayout'
 import Editor from 'docs/src/components/CodeEditor'
 import Logo from 'docs/src/components/Logo/Logo'
-import { btoa, semanticUIDocsURL, repoURL } from 'docs/src/utils'
+import { semanticUIDocsURL, repoURL } from 'docs/src/utils'
 
 const AccordionJSX = `const panels = [{
   title: 'What is a dog?',
@@ -113,7 +113,7 @@ const Comparison = ({ jsx, html }) => (
         <Label color='grey' size='tiny' attached='top left'>
           JSX
         </Label>
-        <Editor id={btoa(jsx)} value={jsx} readOnly />
+        <Editor value={jsx} readOnly />
       </Grid.Column>
       <Grid.Column largeScreen='2' only='large screen' textAlign='center'>
         <Divider vertical>
@@ -124,7 +124,7 @@ const Comparison = ({ jsx, html }) => (
         <Label color='grey' size='tiny' attached='top right'>
           Rendered HTML
         </Label>
-        <Editor id={btoa(html)} mode='html' value={html} readOnly />
+        <Editor mode='html' value={html} readOnly />
       </Grid.Column>
     </Grid>
   </Segment>
@@ -168,8 +168,8 @@ const Introduction = ({ pkg }) => (
       </Segment>
 
       {/* ----------------------------------------
-        *  jQuery Free
-        * -------------------------------------- */}
+       *  jQuery Free
+       * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           jQuery Free
@@ -186,8 +186,8 @@ const Introduction = ({ pkg }) => (
       </Segment>
 
       {/* ----------------------------------------
-        *  Declarative API
-        * -------------------------------------- */}
+       *  Declarative API
+       * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           Declarative API
@@ -199,8 +199,8 @@ const Introduction = ({ pkg }) => (
       </Segment>
 
       {/* ----------------------------------------
-        *  Augmentation
-        * -------------------------------------- */}
+       *  Augmentation
+       * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           Augmentation
@@ -221,8 +221,8 @@ const Introduction = ({ pkg }) => (
       </Segment>
 
       {/* ----------------------------------------
-        *  Shorthand Props
-        * -------------------------------------- */}
+       *  Shorthand Props
+       * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           Shorthand Props
@@ -262,8 +262,8 @@ const Introduction = ({ pkg }) => (
       </Segment>
 
       {/* ----------------------------------------
-        *  Sub Components
-        * -------------------------------------- */}
+       *  Sub Components
+       * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           Sub Components
@@ -276,8 +276,8 @@ const Introduction = ({ pkg }) => (
       </Segment>
 
       {/* ----------------------------------------
-        *  Auto Controlled State
-        * -------------------------------------- */}
+       *  Auto Controlled State
+       * -------------------------------------- */}
       <Segment basic padded>
         <Header as='h2' dividing>
           Auto Controlled State

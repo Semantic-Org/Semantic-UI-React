@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { withRouteData, withSiteData } from 'react-static'
-import { Container } from 'semantic-ui-react'
+import { Container, Divider } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
 import * as components from './components'
@@ -11,8 +11,10 @@ const DocumentationPage = ({ pageName, ...rest }) => {
 
   return (
     <DocsLayout additionalTitle={meta.title}>
-      <Container style={{ padding: 15 }}>
+      <Container text>
+        <Divider hidden />
         <MarkdownComponent {...rest} components={components} />
+        <Divider hidden section />
       </Container>
     </DocsLayout>
   )
