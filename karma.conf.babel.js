@@ -2,7 +2,7 @@ import fs from 'fs'
 import { executablePath } from 'puppeteer'
 
 import config from './config'
-import webpackConfig from './webpack.config.babel'
+import webpackConfig from './webpack.karma.config'
 
 process.env.CHROME_BIN = executablePath()
 
@@ -61,7 +61,6 @@ export default (karmaConfig) => {
       './node_modules/react/umd/react.development.js',
       './node_modules/react-dom/umd/react-dom.development.js',
       './node_modules/react-dom/umd/react-dom-server.browser.development.js',
-      './node_modules/typescript/lib/typescript.js',
 
       { pattern: 'docs/public/logo.png', watched: false, included: false, served: true },
       { pattern: 'docs/public/**/*.jpg', watched: false, included: false, served: true },
@@ -71,12 +70,13 @@ export default (karmaConfig) => {
     formatError,
     frameworks: ['mocha'],
     // make karma serve all files that the web server does: /* => /docs/app/*
-    proxies: fs.readdirSync(paths.docsSrc()).reduce((acc, file) => {
-      const isDir = fs.statSync(paths.docsSrc(file)).isDirectory()
+    proxies: fs.readdirSync(paths.docsPublic()).reduce((acc, file) => {
+      const isDir = fs.statSync(paths.docsPublic(file)).isDirectory()
       const trailingSlash = isDir ? '/' : ''
 
       const original = `/${file}${trailingSlash}`
       acc[original] = `/base/docs/public/${file}${trailingSlash}`
+
       return acc
     }, {}),
     reporters: ['mocha', 'coverage'],

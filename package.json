@@ -165,7 +165,6 @@
     "typescript": "^2.9.2",
     "vinyl": "^2.2.0",
     "webpack": "^3.6.0",
-    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-dev-middleware": "^1.12.0"
   },
   "peerDependencies": {
