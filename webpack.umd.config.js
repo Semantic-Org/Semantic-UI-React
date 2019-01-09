@@ -2,7 +2,7 @@ const webpack = require('webpack')
 
 const config = require('./config')
 const pkg = require('./package.json')
-const webpackConfig = require('./webpack.config.babel')
+const webpackConfig = require('./webpack.karma.config')
 
 const { paths } = config
 
