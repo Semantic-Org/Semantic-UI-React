@@ -1967,6 +1967,7 @@ export type SemanticICONS =
   | 'list layout'
   | 'magnify'
   | 'mail forward'
+  | 'mail outline'
   | 'mail square'
   | 'mail'
   | 'male homosexual'
