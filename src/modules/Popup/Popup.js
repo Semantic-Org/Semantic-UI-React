@@ -135,12 +135,16 @@ export default class Popup extends Component {
 
     /** Element to be rendered within the confines of the viewport whenever possible. */
     keepInViewPort: PropTypes.bool,
+
+    /** Disables the popup and only renders the element passed via trigger prop */
+    disabled: PropTypes.bool,
   }
 
   static defaultProps = {
     position: 'top left',
     on: 'hover',
     keepInViewPort: true,
+    disabled: false,
   }
 
   static Content = PopupContent
@@ -379,6 +383,7 @@ export default class Popup extends Component {
       size,
       trigger,
       wide,
+      disabled,
     } = this.props
 
     const { position, closed } = this.state
@@ -395,7 +400,7 @@ export default class Popup extends Component {
       className,
     )
 
-    if (closed) return trigger
+    if (closed || disabled) return trigger
 
     const unhandled = getUnhandledProps(Popup, this.props)
     const portalPropNames = Portal.handledProps
