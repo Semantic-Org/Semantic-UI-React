@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { navigate } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
@@ -29,6 +29,7 @@ class ComponentDoc extends Component {
     componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
     displayName: PropTypes.string.isRequired,
     exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+    history: PropTypes.object.isRequired,
     seeTags: docTypes.seeTags.isRequired,
     sidebarSections: docTypes.sidebarSections.isRequired,
   }
@@ -63,9 +64,10 @@ class ComponentDoc extends Component {
   handleExamplesRef = examplesRef => this.setState({ examplesRef })
 
   handleSidebarItemClick = (e, { examplePath }) => {
+    const { history } = this.props
     const activePath = examplePathToHash(examplePath)
 
-    navigate(`${location.pathname}#${activePath}`, { replace: true })
+    history.replace(`${location.pathname}#${activePath}`)
     // set active hash path
     this.setState({ activePath }, scrollToAnchor)
   }
@@ -124,4 +126,4 @@ class ComponentDoc extends Component {
   }
 }
 
-export default withRouteData(ComponentDoc)
+export default withRouteData(withRouter(ComponentDoc))

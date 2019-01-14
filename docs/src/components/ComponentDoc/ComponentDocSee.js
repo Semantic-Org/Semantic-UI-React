@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Header, List } from 'semantic-ui-react'
 
 import { docTypes } from 'docs/src/utils'
