@@ -24,7 +24,14 @@ export default {
       prettier: require('prettier/package.json').version,
       propTypes: require('prop-types/package.json').version,
       react: require('react/package.json').version,
-      sui: require('semantic-ui-css/package.json').version,
+      // Heads up!
+      // https://github.com/Semantic-Org/Semantic-UI/issues/6646
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/3345
+      // `semantic-ui-css` and `semantic-ui-less` packages are not properly released:
+      //  - prebuilt CSS of 2.4.1 points to 2.4.0
+      //  - 2.4.2 is missing on NPM
+      // sui: require('semantic-ui-css/package.json').version,
+      sui: '2.4.2',
       suir: require('./package.json').version,
     },
   }),
