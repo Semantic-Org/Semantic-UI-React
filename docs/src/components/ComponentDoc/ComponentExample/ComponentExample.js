@@ -1,13 +1,12 @@
-import { navigate } from '@reach/router'
 import copyToClipboard from 'copy-to-clipboard'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
-import { scrollTo, withRouteData } from 'react-static'
+import { withRouter } from 'react-router-dom'
+import { withRouteData } from 'react-static'
 import { Grid, Visibility } from 'semantic-ui-react'
 
-import { withLocation } from 'docs/src/hoc'
-import { examplePathToHash, getFormattedHash, repoURL } from 'docs/src/utils'
+import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
 import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
 
 import ComponentControls from '../ComponentControls'
@@ -53,9 +52,9 @@ class ComponentExample extends PureComponent {
     exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     exampleSources: PropTypes.objectOf(PropTypes.string).isRequired,
     examplePath: PropTypes.string.isRequired,
+    history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
-    navigate: PropTypes.func.isRequired,
     suiVersion: PropTypes.string,
     title: PropTypes.node,
   }
@@ -70,12 +69,6 @@ class ComponentExample extends PureComponent {
       showCode: this.isActiveHash(),
       sourceCode: this.getOriginalSourceCode(),
     })
-
-    console.log('MOUNT')
-  }
-
-  componentWillUnmount() {
-    console.log('UNMOUNT')
   }
 
   componentWillReceiveProps(nextProps) {
@@ -116,12 +109,10 @@ class ComponentExample extends PureComponent {
   }
 
   setHashAndScroll = () => {
-    const { location } = this.props
+    const { history, location } = this.props
 
-   // navigate(`#${this.anchorName}`, { replace: true })
-    // scrollToAnchor()
-    scrollTo(document.getElementById(this.anchorName))
-    console.log('CLICK')
+    history.replace(`${location.pathname}#${this.anchorName}`)
+    scrollToAnchor()
   }
 
   handleDirectLinkClick = () => {
@@ -164,7 +155,7 @@ class ComponentExample extends PureComponent {
   handlePass = () => {
     const { title } = this.props
 
-    // if (title) _.invoke(this.context, 'onPassed', null, this.props)
+    if (title) _.invoke(this.context, 'onPassed', null, this.props)
   }
 
   getGithubEditHref = () => {
@@ -235,7 +226,7 @@ class ComponentExample extends PureComponent {
         once={false}
         onTopPassed={this.handlePass}
         onTopPassedReverse={this.handlePass}
-        // style={{ margin: '2rem 0' }}
+        style={{ margin: '2rem 0' }}
       >
         {/* Ensure anchor links don't occlude card shadow effect */}
         <div id={this.anchorName} style={{ paddingTop: '1rem' }}>
@@ -273,32 +264,32 @@ class ComponentExample extends PureComponent {
               </Grid.Row>
             )}
 
-            {/*<Grid.Column*/}
-              {/*width={16}*/}
-              {/*className={`rendered-example ${this.getKebabExamplePath()}`}*/}
-              {/*style={renderedExampleStyle}*/}
-            {/*>*/}
-              {/*<ComponentExampleRenderSource*/}
-                {/*displayName={displayName}*/}
-                {/*onError={this.handleRenderError}*/}
-                {/*onSuccess={this.handleRenderSuccess}*/}
-                {/*sourceCode={sourceCode}*/}
-              {/*/>*/}
-            {/*</Grid.Column>*/}
-            {/*{(showCode || showHTML) && (*/}
-              {/*<Grid.Column width={16} style={editorStyle}>*/}
-                {/*{showCode && (*/}
-                  {/*<ComponentExampleRenderEditor*/}
-                    {/*githubEditHref={this.getGithubEditHref()}*/}
-                    {/*originalValue={this.getOriginalSourceCode()}*/}
-                    {/*value={sourceCode}*/}
-                    {/*error={error}*/}
-                    {/*onChange={this.handleChangeCode}*/}
-                  {/*/>*/}
-                {/*)}*/}
-                {/*{showHTML && <ComponentExampleRenderHtml value={htmlMarkup} />}*/}
-              {/*</Grid.Column>*/}
-            {/*)}*/}
+            <Grid.Column
+              width={16}
+              className={`rendered-example ${this.getKebabExamplePath()}`}
+              style={renderedExampleStyle}
+            >
+              <ComponentExampleRenderSource
+                displayName={displayName}
+                onError={this.handleRenderError}
+                onSuccess={this.handleRenderSuccess}
+                sourceCode={sourceCode}
+              />
+            </Grid.Column>
+            {(showCode || showHTML) && (
+              <Grid.Column width={16} style={editorStyle}>
+                {showCode && (
+                  <ComponentExampleRenderEditor
+                    githubEditHref={this.getGithubEditHref()}
+                    originalValue={this.getOriginalSourceCode()}
+                    value={sourceCode}
+                    error={error}
+                    onChange={this.handleChangeCode}
+                  />
+                )}
+                {showHTML && <ComponentExampleRenderHtml value={htmlMarkup} />}
+              </Grid.Column>
+            )}
             {isActive && !error && <CarbonAdNative inverted={this.isActiveState()} />}
           </Grid>
         </div>
@@ -307,4 +298,4 @@ class ComponentExample extends PureComponent {
   }
 }
 
-export default withRouteData(withLocation(ComponentExample))
+export default withRouteData(withRouter(ComponentExample))

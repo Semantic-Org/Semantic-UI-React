@@ -1,5 +1,5 @@
-import { Link } from '@reach/router'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
@@ -13,7 +13,8 @@ const TransitionablePortalUsageExamples = () => (
       examplePath='addons/TransitionablePortal/Usage/TransitionablePortalExampleTransition'
     >
       <Message info>
-        See <Link to='/modules/transition'>Transition</Link> for more examples of usage.
+        See <Link to='/modules/transition'>Transition</Link> for more examples
+        of usage.
       </Message>
     </ComponentExample>
   </ExampleSection>

@@ -1,7 +1,7 @@
-import {navigate } from '@reach/router'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { navigate } from 'react-router-dom'
 import { withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 

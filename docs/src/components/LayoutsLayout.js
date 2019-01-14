@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { createElement, PureComponent } from 'react'
-import { Link } from '@reach/router'
+import { Link } from 'react-router-dom'
 import { withRouteData } from 'react-static'
 import { Button } from 'semantic-ui-react'
 

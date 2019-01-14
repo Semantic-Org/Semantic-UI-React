@@ -9962,10 +9962,10 @@ react-static-plugin-react-router@^6.1.1:
   resolved "https://registry.yarnpkg.com/react-static-plugin-react-router/-/react-static-plugin-react-router-6.1.1.tgz#164c73327f4be96e536ac80a0f6d9196e4d48c4c"
   integrity sha512-F9ZWDfEsciBTvKpjxqycPOr+D30NDOfflOrwQNH6WTohn6jyE/DQ+PPGD3WzdKTwqR4sPzHV445QyuiBznLwig==
 
-react-static@^6.0.19:
-  version "6.0.19"
-  resolved "https://registry.yarnpkg.com/react-static/-/react-static-6.0.19.tgz#1a6b0b833380c7e9d904caed2051019d8d6e3ddb"
-  integrity sha512-rMv0blXkx5MqbhRkGyefxkzAyInv3vSY+RWo3gnwli2ZhUiiU9DkiaMA5DNDY851QZUCaDecXRMjAFlQ4B1epA==
+react-static@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/react-static/-/react-static-6.2.0.tgz#3e1a66354f89c5307a9863c8d0a2708d584e187b"
+  integrity sha512-TS6xwgupJs4HNH6ryvh6ph0yBrtMCGPYNfQIdOw5hlbCsQDwuqbo1HDnOWlsU43uPwqfd0WSut7SCEsUgtqShg==
   dependencies:
     "@babel/cli" "^7.1.5"
     "@babel/core" "^7.2.2"
@@ -10037,7 +10037,6 @@ react-static@^6.0.19:
     thread-loader "^1.2.0"
     uglifyjs-webpack-plugin "^2.0.1"
     upath "^1.1.0"
-    update-notifier "^2.5.0"
     url-loader "^1.1.2"
     webpack "^4.25.1"
     webpack-bundle-analyzer "^3.0.3"
@@ -12314,22 +12313,6 @@ update-notifier@^2.1.0:
     chalk "^2.0.1"
     configstore "^3.0.0"
     import-lazy "^2.1.0"
-    is-installed-globally "^0.1.0"
-    is-npm "^1.0.0"
-    latest-version "^3.0.0"
-    semver-diff "^2.0.0"
-    xdg-basedir "^3.0.0"
-
-update-notifier@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/update-notifier/-/update-notifier-2.5.0.tgz#d0744593e13f161e406acb1d9408b72cad08aff6"
-  integrity sha512-gwMdhgJHGuj/+wHJJs9e6PcCszpxR1b236igrOkUofGhqJuG+amlIKwApH1IW1WWl7ovZxsX49lMBWLxSdm5Dw==
-  dependencies:
-    boxen "^1.2.1"
-    chalk "^2.0.1"
-    configstore "^3.0.0"
-    import-lazy "^2.1.0"
-    is-ci "^1.0.10"
     is-installed-globally "^0.1.0"
     is-npm "^1.0.0"
     latest-version "^3.0.0"

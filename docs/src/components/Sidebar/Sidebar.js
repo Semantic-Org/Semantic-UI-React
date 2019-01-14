@@ -1,18 +1,14 @@
-import { Link, navigate } from '@reach/router'
-import cx from 'classnames'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { NavLink, withRouter } from 'react-router-dom'
 import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
 import shallowEqual from 'shallowequal'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
-import { withLocation } from 'docs/src/hoc'
 import { docTypes, getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
-
-const mapLinkProps = ({ isCurrent }) => ({ className: cx(isCurrent && 'active', 'item') })
 
 const selectedItemLabelStyle = {
   position: 'absolute',
@@ -38,6 +34,7 @@ SelectedItemLabel.propTypes = {
 class Sidebar extends Component {
   static propTypes = {
     componentMenu: docTypes.componentMenu.isRequired,
+    history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     style: PropTypes.object,
@@ -90,12 +87,13 @@ class Sidebar extends Component {
   }
 
   handleSearchKeyDown = (e) => {
+    const { history } = this.props
     const { selectedItemIndex } = this.state
     const code = keyboardKey.getCode(e)
 
     if (code === keyboardKey.Enter && this.selectedRoute) {
       e.preventDefault()
-      navigate(this.selectedRoute)
+      history.push(this.selectedRoute)
       this.selectedRoute = null
       this.setState({ query: '' })
     }
@@ -124,12 +122,12 @@ class Sidebar extends Component {
       _.filter(({ type }) => type === nextType),
       _.map(info => (
         <Menu.Item
-          as={Link}
           key={info.displayName}
           name={info.displayName}
           onClick={this.handleItemClick}
-          getProps={mapLinkProps}
+          as={NavLink}
           to={getComponentPathname(info)}
+          activeClassName='active'
         />
       )),
     )(this.props.componentMenu)
@@ -173,7 +171,7 @@ class Sidebar extends Component {
           name={info.displayName}
           onClick={this.handleItemClick}
           active={isSelected}
-          as={Link}
+          as={NavLink}
           to={getComponentPathname(info)}
         >
           {info.displayName}
@@ -218,19 +216,19 @@ class Sidebar extends Component {
             <Menu.Item>
               <Menu.Header>Getting Started</Menu.Header>
               <Menu.Menu>
-                <Menu.Item as={Link} to='/' getProps={mapLinkProps}>
+                <Menu.Item as={NavLink} exact to='/' activeClassName='active'>
                   Introduction
                 </Menu.Item>
-                <Menu.Item as={Link} to='/usage' getProps={mapLinkProps}>
+                <Menu.Item as={NavLink} exact to='/usage' activeClassName='active'>
                   Usage
                 </Menu.Item>
-                <Menu.Item as={Link} to='/theming' getProps={mapLinkProps}>
+                <Menu.Item as={NavLink} exact to='/theming' activeClassName='active'>
                   Theming
                 </Menu.Item>
-                <Menu.Item as={Link} to='/layouts' getProps={mapLinkProps}>
+                <Menu.Item as={NavLink} exact to='/layouts' activeClassName='active'>
                   Layouts
                 </Menu.Item>
-                <Menu.Item as={Link} to='/prototypes' getProps={mapLinkProps}>
+                <Menu.Item as={NavLink} exact to='/prototypes' activeClassName='active'>
                   Prototypes
                 </Menu.Item>
               </Menu.Menu>
@@ -240,7 +238,7 @@ class Sidebar extends Component {
                 <Input
                   fluid
                   icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
-                  placeholder='Press &quot;/&quot; to filter components'
+                  placeholder='Press "/" to filter components'
                   value={query}
                   onChange={this.handleSearchChange}
                   onKeyDown={this.handleSearchKeyDown}
@@ -258,4 +256,4 @@ class Sidebar extends Component {
   }
 }
 
-export default withLocation(Sidebar)
+export default withRouter(Sidebar)

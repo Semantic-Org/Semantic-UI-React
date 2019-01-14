@@ -1,5 +1,5 @@
-import { Link } from '@reach/router'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Message } from 'semantic-ui-react'
 
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -71,7 +71,8 @@ const Types = () => (
       examplePath='collections/Menu/Types/MenuExamplePagination'
     >
       <Message info>
-        For fully featured pagination, see <Link to='/addons/pagination'>Pagination</Link> addon.
+        For fully featured pagination, see{' '}
+        <Link to='/addons/pagination'>Pagination</Link> addon.
       </Message>
     </ComponentExample>
   </ExampleSection>
