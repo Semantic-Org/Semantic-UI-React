@@ -41,6 +41,6 @@ export default {
     src: config.paths.docsSrc(),
     public: config.paths.docsPublic(),
   },
-  plugins: ['react-static-plugin-react-router'],
+  plugins: ['react-static-plugin-mdx', 'react-static-plugin-react-router'],
   siteRoot: 'https://react.semantic-ui.com',
 }

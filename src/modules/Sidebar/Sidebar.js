@@ -15,6 +15,8 @@ import {
 } from '../../lib'
 import SidebarPushable from './SidebarPushable'
 import SidebarPusher from './SidebarPusher'
+import { withSiteData } from 'react-static'
+import { withRouter } from 'react-router-dom'
 
 /**
  * A sidebar hides additional content beside a page.
@@ -182,4 +184,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar
+export default withSiteData(Sidebar)
