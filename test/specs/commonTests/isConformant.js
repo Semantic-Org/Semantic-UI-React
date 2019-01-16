@@ -13,6 +13,7 @@ import hasValidTypings from './hasValidTypings'
  * Assert Component conforms to guidelines that are applicable to all components.
  * @param {React.Component|Function} Component A component that should conform.
  * @param {Object} [options={}]
+ * @param {String[]} [options.disabledHandlers=[]] An array of listeners that are disabled.
  * @param {Object} [options.eventTargets={}] Map of events and the child component to target.
  * @param {Number} [options.nestingLevel=0] The nesting level of the component.
  * @param {boolean} [options.rendersChildren=false] Does this component render any children?
@@ -22,6 +23,7 @@ import hasValidTypings from './hasValidTypings'
  */
 export default (Component, options = {}) => {
   const {
+    disabledHandlers = [],
     eventTargets = {},
     nestingLevel = 0,
     requiredProps = {},
@@ -218,7 +220,7 @@ export default (Component, options = {}) => {
       // This test catches the case where a developer forgot to call the event prop
       // after handling it internally. It also catch cases where the synthetic event was not passed back.
       _.each(syntheticEvent.types, ({ eventShape, listeners }) => {
-        _.each(listeners, (listenerName) => {
+        _.each(_.without(listeners, ...disabledHandlers), (listenerName) => {
           // onKeyDown => keyDown
           const eventName = _.camelCase(listenerName.replace('on', ''))
 
