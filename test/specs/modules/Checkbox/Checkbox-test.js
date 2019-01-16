@@ -23,7 +23,9 @@ const wrapperMount = (element, opts) => {
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Checkbox', () => {
-  common.isConformant(Checkbox)
+  common.isConformant(Checkbox, {
+    disabledHandlers: ['onClick'],
+  })
   common.hasUIClassName(Checkbox)
 
   common.propKeyOnlyToClassName(Checkbox, 'checked')
@@ -239,7 +241,7 @@ describe('Checkbox', () => {
   })
 
   describe('onClick', () => {
-    it('is called with (event, data) on mouse up', () => {
+    it('is called with (event, data) on mouseup', () => {
       const onClick = sandbox.spy()
       const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
       mount(<Checkbox onClick={onClick} {...props} />).simulate('mouseup')
@@ -254,7 +256,7 @@ describe('Checkbox', () => {
       )
     })
 
-    it('is not called when on change when "id" is passed', () => {
+    it('is not called when "id" is passed', () => {
       const onClick = sandbox.spy()
       mount(<Checkbox id='foo' onClick={onClick} />).simulate('mouseup')
 
@@ -350,6 +352,75 @@ describe('Checkbox', () => {
       shallow(<Checkbox type='radio' />)
         .find('input')
         .should.have.prop('type', 'radio')
+    })
+  })
+
+  describe('comparisons with native DOM', () => {
+    const assertMatrix = [
+      {
+        description: 'click on label: fires on mouse up',
+        event: 'mouseup',
+        target: 'label',
+      },
+      {
+        description: 'key on input: fires on space key',
+        event: 'click',
+        target: 'input',
+      },
+
+      {
+        description: 'click on label: fires on mouse click',
+        event: 'click',
+        target: 'label',
+        id: 'foo',
+      },
+    ]
+
+    assertMatrix.forEach(({ description, event, target, ...props }) => {
+      it(description, () => {
+        const dataId = _.uniqueId('checkbox')
+        const selector = `[data-id=${dataId}] ${target}`
+
+        const onClick = sandbox.spy()
+        const onChange = sandbox.spy()
+
+        wrapperMount(
+          <Checkbox {...props} data-id={dataId} onClick={onClick} onChange={onChange} />,
+          { attachTo },
+        )
+        domEvent.fire(selector, event)
+
+        onClick.should.have.been.calledOnce()
+        onChange.should.have.been.calledOnce()
+
+        onChange.should.have.been.calledAfter(onClick)
+      })
+    })
+  })
+
+  describe('Controlled component', () => {
+    const getControlledCheckbox = isOnClick =>
+      class ControlledCheckbox extends React.Component {
+        state = { checked: false }
+        toggle = () => this.setState(prevState => ({ checked: !prevState.checked }))
+        render() {
+          const handler = isOnClick ? { onClick: this.toggle } : { onChange: this.toggle }
+          return <Checkbox label='Check this box' checked={this.state.checked} {...handler} />
+        }
+      }
+
+    it('toggles state on "change" with "setState" as function', () => {
+      const ControlledCheckbox = getControlledCheckbox(false)
+      wrapperMount(<ControlledCheckbox />)
+      domEvent.fire(document.querySelector('input'), 'click')
+      wrapper.state().should.eql({ checked: true })
+    })
+
+    it('toggles state on "click" with "setState" as function', () => {
+      const ControlledCheckbox = getControlledCheckbox(true)
+      wrapperMount(<ControlledCheckbox />)
+      domEvent.fire(document.querySelector('input'), 'click')
+      wrapper.state().should.eql({ checked: true })
     })
   })
 })
