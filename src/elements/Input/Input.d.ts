@@ -83,6 +83,7 @@ export interface InputOnChangeData extends InputProps {
 
 declare class Input extends React.Component<InputProps, {}> {
   focus: () => void
+  select: () => void
 }
 
 export default Input

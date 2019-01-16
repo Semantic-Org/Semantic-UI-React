@@ -16,6 +16,15 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 
+// Heads up!
+// We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
+// For more advanced usage please check Responsive docs under the "Usage" section.
+const getWidth = () => {
+  const isSSR = typeof window === 'undefined'
+
+  return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
+}
+
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
@@ -69,7 +78,7 @@ class DesktopContainer extends Component {
     const { fixed } = this.state
 
     return (
-      <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -131,7 +140,11 @@ class MobileContainer extends Component {
     const { sidebarOpened } = this.state
 
     return (
-      <Responsive as={Sidebar.Pushable} maxWidth={Responsive.onlyMobile.maxWidth}>
+      <Responsive
+        as={Sidebar.Pushable}
+        getWidth={getWidth}
+        maxWidth={Responsive.onlyMobile.maxWidth}
+      >
         <Sidebar
           as={Menu}
           animation='push'
