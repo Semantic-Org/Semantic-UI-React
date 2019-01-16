@@ -5,6 +5,7 @@ const { paths } = config
 
 const webpackConfig = {
   name: 'client',
+  mode: 'development',
   target: 'web',
   devtool: config.compiler_devtool,
   module: {
@@ -53,7 +54,7 @@ webpackConfig.externals = {
 // ------------------------------------
 // No Parse
 // ------------------------------------
-webpackConfig.module.noParse = [...webpackConfig.module.noParse, /\.json$/, /typescript\/lib/]
+webpackConfig.module.noParse = [...webpackConfig.module.noParse, /typescript\/lib/]
 
 // ------------------------------------
 // Rules

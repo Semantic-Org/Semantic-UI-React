@@ -1,5 +1,5 @@
 import path from 'path'
-import webpack from 'webpack'
+import webpack from 'react-static/node_modules/webpack'
 
 import config from './config'
 

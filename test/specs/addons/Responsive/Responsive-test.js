@@ -164,29 +164,36 @@ describe('Responsive', () => {
 
   describe('render', () => {
     it('does not re render if fit does not change', () => {
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth + 1)
+
       const wrapper = mount(<Responsive {...Responsive.onlyTablet} />)
       const instance = wrapper.instance()
-      const spy = sandbox.spy(instance, 'render')
-      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth + 1)
+      const render = sandbox.spy(instance, 'render')
+
       domEvent.fire(window, 'resize')
-      spy.should.not.have.been.called()
+      render.should.not.have.been.called()
     })
 
     it('re renders if fit changes', () => {
+      sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)
+
       const wrapper = mount(<Responsive {...Responsive.onlyTablet} />)
       const instance = wrapper.instance()
-      const spy = sandbox.spy(instance, 'render')
+      const render = sandbox.spy(instance, 'render')
+
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth - 1)
       domEvent.fire(window, 'resize')
-      spy.should.have.been.calledOnce()
+
+      render.should.have.been.calledOnce()
     })
 
     it('re renders when props change', () => {
       const wrapper = mount(<Responsive {...Responsive.onlyMobile} />)
       const instance = wrapper.instance()
-      const spy = sandbox.spy(instance, 'render')
+      const render = sandbox.spy(instance, 'render')
+
       wrapper.setProps({ as: 'h1' })
-      spy.should.have.been.called()
+      render.should.have.been.called()
     })
   })
 })
