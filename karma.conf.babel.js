@@ -69,6 +69,9 @@ export default (karmaConfig) => {
     ],
     formatError,
     frameworks: ['mocha'],
+    mochaReporter: {
+      output: 'minimal',
+    },
     // make karma serve all files that the web server does: /* => /docs/app/*
     proxies: fs.readdirSync(paths.docsPublic()).reduce((acc, file) => {
       const isDir = fs.statSync(paths.docsPublic(file)).isDirectory()
