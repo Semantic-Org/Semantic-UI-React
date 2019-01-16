@@ -388,7 +388,7 @@ describe('Checkbox', () => {
           <Checkbox {...props} data-id={dataId} onClick={onClick} onChange={onChange} />,
           { attachTo },
         )
-        domEvent.fire(document.querySelector(selector), event)
+        domEvent.fire(selector, event)
 
         onClick.should.have.been.calledOnce()
         onChange.should.have.been.calledOnce()
