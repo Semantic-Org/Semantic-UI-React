@@ -430,15 +430,32 @@ describe('Dropdown', () => {
       spy.should.have.been.calledWithMatch(event)
     })
 
-    it('calls makeSelectedItemActive', () => {
-      wrapperShallow(<Dropdown selectOnBlur />)
+    it('calls handleChange with the selected option on blur', () => {
+      wrapperShallow(<Dropdown selectOnBlur options={options} />)
 
       const instance = wrapper.instance()
-      sandbox.spy(instance, 'makeSelectedItemActive')
+      wrapper.simulate('click', { stopPropagation: _.noop })
+      dropdownMenuIsOpen()
+      sandbox.spy(instance, 'handleChange')
+
+      const event = { stopPropagation: _.noop }
+      wrapper.simulate('blur', event)
+
+      instance.handleChange.should.have.been.calledWithMatch(event, options[0].value)
+    })
+
+    it('does not call handleChange if the value has not changed', () => {
+      wrapperShallow(<Dropdown selectOnBlur options={options} />)
+
+      const instance = wrapper.instance()
+      wrapper.setState({ selectedIndex: 2, value: options[2].value })
+      wrapper.simulate('click', { stopPropagation: _.noop })
+      dropdownMenuIsOpen()
+      sandbox.spy(instance, 'handleChange')
 
       wrapper.simulate('blur')
 
-      instance.makeSelectedItemActive.should.have.been.calledOnce()
+      instance.handleChange.should.not.have.been.called()
     })
 
     it('sets focus state to false', () => {
