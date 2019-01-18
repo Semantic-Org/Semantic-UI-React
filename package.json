@@ -74,7 +74,7 @@
     "@babel/runtime": "^7.1.2",
     "@semantic-ui-react/event-stack": "^3.0.1",
     "classnames": "^2.2.6",
-    "keyboard-key": "^1.0.2",
+    "keyboard-key": "^1.0.4",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "shallowequal": "^1.1.0"
