@@ -110,7 +110,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** Element to be rendered within the confines of the viewport whenever possible. */
   keepInViewPort?: boolean
 
-  /** Disables the popup and only renders the element passed via trigger prop */
+  /** A disabled popup only renders its trigger. */
   disabled?: boolean
 }
 
