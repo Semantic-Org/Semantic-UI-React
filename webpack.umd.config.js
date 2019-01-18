@@ -2,7 +2,6 @@ const webpack = require('webpack')
 
 const config = require('./config')
 const pkg = require('./package.json')
-const webpackConfig = require('./webpack.karma.config')
 
 const { paths } = config
 
@@ -31,8 +30,18 @@ const webpackUMDConfig = {
     }),
   ],
   module: {
-    noParse: webpackConfig.module.noParse,
-    rules: webpackConfig.module.rules,
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        },
+      },
+    ],
   },
   performance: {
     maxEntrypointSize: 750000,
