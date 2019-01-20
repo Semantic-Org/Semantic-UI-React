@@ -4,7 +4,7 @@ import { SemanticCOLORS, SemanticICONS } from '../../generic'
 import IconGroup from './IconGroup'
 
 export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
-export type IconCorner = 'bottom right' | 'top right' | 'top left' | 'center' | 'bottom left'
+export type IconCorner = 'bottom right' | 'top right' | 'top left' | 'bottom left'
 
 export interface IconProps extends StrictIconProps {
   [key: string]: any
