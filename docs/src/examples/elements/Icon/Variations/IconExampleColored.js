@@ -16,6 +16,7 @@ const IconExampleColored = () => (
     <Icon color='brown' name='users' />
     <Icon color='grey' name='users' />
     <Icon color='black' name='users' />
+    <Icon color='white' name='users' />
   </div>
 )
 
