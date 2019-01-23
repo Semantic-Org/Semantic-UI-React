@@ -55,6 +55,9 @@ export default class Popup extends Component {
     /** Existing element the pop-up should be bound to. */
     context: PropTypes.object,
 
+    /** A disabled popup only renders its trigger. */
+    disabled: PropTypes.bool,
+
     /** A flowing Popup has no maximum width and continues to flow to fit its content. */
     flowing: PropTypes.bool,
 
@@ -141,6 +144,7 @@ export default class Popup extends Component {
     position: 'top left',
     on: 'hover',
     keepInViewPort: true,
+    disabled: false,
   }
 
   static Content = PopupContent
@@ -379,6 +383,7 @@ export default class Popup extends Component {
       size,
       trigger,
       wide,
+      disabled,
     } = this.props
 
     const { position, closed } = this.state
@@ -395,7 +400,7 @@ export default class Popup extends Component {
       className,
     )
 
-    if (closed) return trigger
+    if (closed || disabled) return trigger
 
     const unhandled = getUnhandledProps(Popup, this.props)
     const portalPropNames = Portal.handledProps

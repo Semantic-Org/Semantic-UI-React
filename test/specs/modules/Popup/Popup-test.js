@@ -464,6 +464,26 @@ describe('Popup', () => {
     })
   })
 
+  describe('disabled', () => {
+    it('is not disabled by default', () => {
+      shallow(<Popup />)
+        .find('Portal')
+        .should.exist()
+    })
+
+    it('does not render Portal if disabled', () => {
+      shallow(<Popup disabled />)
+        .find('Portal')
+        .should.not.exist()
+    })
+
+    it('does not render Portal even with open prop', () => {
+      shallow(<Popup open disabled />)
+        .find('Portal')
+        .should.not.exist()
+    })
+  })
+
   describe('basic', () => {
     it('adds basic to the popup className', () => {
       wrapperMount(<Popup basic open />)
