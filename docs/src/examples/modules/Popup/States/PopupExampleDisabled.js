@@ -3,9 +3,9 @@ import { Button, Popup } from 'semantic-ui-react'
 
 const PopupExampleDisabled = () => (
   <Popup
-    trigger={<Button content='Button' />}
     content='I will not render.'
     disabled
+    trigger={<Button content='Button' />}
   />
 )
 
