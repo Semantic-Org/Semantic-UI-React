@@ -28,6 +28,9 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** Existing element the pop-up should be bound to. */
   context?: object
 
+  /** A disabled popup only renders its trigger. */
+  disabled?: boolean
+
   /** A flowing Popup has no maximum width and continues to flow to fit its content. */
   flowing?: boolean
 
@@ -109,9 +112,6 @@ export interface StrictPopupProps extends StrictPortalProps {
 
   /** Element to be rendered within the confines of the viewport whenever possible. */
   keepInViewPort?: boolean
-
-  /** A disabled popup only renders its trigger. */
-  disabled?: boolean
 }
 
 interface PopupComponent extends React.ComponentClass<PopupProps> {
