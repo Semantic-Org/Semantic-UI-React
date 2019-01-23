@@ -142,6 +142,7 @@
     "raw-loader": "^1.0.0",
     "react": "^16.6.0",
     "react-ace": "^6.2.0",
+    "react-codesandboxer": "^3.1.1",
     "react-docgen": "^3.0.0-rc.1",
     "react-dom": "^16.6.0",
     "react-hot-loader": "^4.3.11",

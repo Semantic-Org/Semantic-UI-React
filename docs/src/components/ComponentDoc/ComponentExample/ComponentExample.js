@@ -247,6 +247,7 @@ class ComponentExample extends PureComponent {
               <Grid.Column textAlign='right' style={componentControlsStyle}>
                 <ComponentControls
                   anchorName={this.anchorName}
+                  exampleCode={sourceCode}
                   examplePath={examplePath}
                   onCopyLink={this.handleDirectLinkClick}
                   onShowCode={this.handleShowCodeClick}
