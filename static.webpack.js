@@ -3,7 +3,6 @@ import webpack from 'react-static/node_modules/webpack'
 
 import config from './config'
 
-
 export default (webpackConfig, { stage }) => ({
   ...webpackConfig,
   devtool: config.compiler_devtool,
