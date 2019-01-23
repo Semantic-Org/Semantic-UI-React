@@ -55,6 +55,9 @@ export default class Popup extends Component {
     /** Existing element the pop-up should be bound to. */
     context: PropTypes.object,
 
+    /** A disabled popup only renders its trigger. */
+    disabled: PropTypes.bool,
+
     /** A flowing Popup has no maximum width and continues to flow to fit its content. */
     flowing: PropTypes.bool,
 
@@ -135,9 +138,6 @@ export default class Popup extends Component {
 
     /** Element to be rendered within the confines of the viewport whenever possible. */
     keepInViewPort: PropTypes.bool,
-
-    /** A disabled popup only renders its trigger. */
-    disabled: PropTypes.bool,
   }
 
   static defaultProps = {
