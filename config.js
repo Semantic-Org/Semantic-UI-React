@@ -43,7 +43,7 @@ const config = {
   // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
-  compiler_devtool: (__DEV__ || __TEST__) && 'cheap-source-map',
+  compiler_devtool: (__DEV__ || __TEST__) && 'cheap-eval-source-map',
   compiler_globals: {
     'process.env': {
       NODE_ENV: JSON.stringify(env),
