@@ -73,20 +73,21 @@ export type SemanticShorthandItem<TProps> =
 // Styling
 // ======================================================
 
-export type SemanticCOLORS =
-  | 'red'
-  | 'orange'
-  | 'yellow'
-  | 'olive'
-  | 'green'
-  | 'teal'
-  | 'blue'
-  | 'violet'
-  | 'purple'
-  | 'pink'
-  | 'brown'
-  | 'grey'
-  | 'black'
+export enum SemanticCOLORS {
+  red = 'red',
+  orange = 'orange',
+  yellow = 'yellow',
+  olivde = 'olive',
+  green = 'green',
+  teal = 'teal',
+  blue = 'blue',
+  violet = 'violet',
+  purple = 'purple',
+  pink = 'pink',
+  brown = 'brown',
+  grey = 'grey',
+  black = 'black'
+}
 export type SemanticSIZES =
   | 'mini'
   | 'tiny'
