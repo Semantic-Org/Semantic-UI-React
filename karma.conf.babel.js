@@ -91,12 +91,8 @@ export default (karmaConfig) => {
       'test/tests.bundle.js': ['webpack'],
     },
     webpack: {
+      ...webpackConfig,
       entry: './test/tests.bundle.js',
-      externals: webpackConfig.externals,
-      devtool: config.compiler_devtool,
-      module: webpackConfig.module,
-      plugins: webpackConfig.plugins,
-      resolve: webpackConfig.resolve,
     },
     webpackServer: {
       progress: false,

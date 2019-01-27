@@ -61,7 +61,7 @@ module.exports = () => ({
     [
       '@babel/env',
       {
-        modules: isESBuild ? false : 'commonjs',
+        modules: isESBuild || isUMDBuild ? false : 'commonjs',
         targets: { browsers },
       },
     ],
