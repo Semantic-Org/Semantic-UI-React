@@ -17,7 +17,6 @@ const envConfig = {
   path_base: __dirname,
   dir_src: 'src',
   dir_dist: 'dist',
-  dir_dll: 'dll',
   dir_docs_dist: 'docs/dist',
   dir_docs_public: 'docs/public',
   dir_docs_src: 'docs/src',
@@ -32,7 +31,6 @@ const paths = {
   base,
   src: base.bind(null, envConfig.dir_src),
   dist: base.bind(null, envConfig.dir_dist),
-  dll: base.bind(null, envConfig.dir_dll),
   docsDist: base.bind(null, envConfig.dir_docs_dist),
   docsPublic: base.bind(null, envConfig.dir_docs_public),
   docsSrc: base.bind(null, envConfig.dir_docs_src),
@@ -55,7 +53,7 @@ const config = {
     __TEST__,
     __PROD__,
   },
-  compiler_hash_type: __PROD__ ? 'chunkhash' : 'hash',
+  compiler_hash_type: 'hash',
   compiler_fail_on_warning: __TEST__ || __PROD__,
   compiler_output_path: paths.base(envConfig.dir_docs_dist),
   compiler_public_path: '/',
@@ -77,19 +75,6 @@ const config = {
     chunksSort: '', // (string) sort the chunks by that field
     assetsSort: '', // (string) sort the assets by that field
   },
-  compiler_vendor: [
-    '@babel/standalone',
-    'brace',
-    'brace/mode/jsx',
-    'brace/mode/html',
-    'brace/theme/tomorrow_night',
-    'classnames',
-    'copy-to-clipboard',
-    'faker',
-    'react',
-    'react-ace',
-    'react-dom',
-  ],
 }
 
 module.exports = config

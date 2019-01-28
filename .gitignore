@@ -12,6 +12,5 @@ docs/src/componentMenu.json
 docs/src/exampleSources.json
 docs/src/exampleMenus
 docs/dist/
-dll/
 node_modules/
 tmp/

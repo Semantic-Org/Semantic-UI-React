@@ -5,6 +5,7 @@ import Icon from 'src/elements/Icon/Icon'
 import IconGroup from 'src/elements/Icon/IconGroup'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('Icon', () => {
   common.isConformant(Icon)
@@ -66,6 +67,25 @@ describe('Icon', () => {
 
       wrapper.should.not.have.prop('aria-hidden')
       wrapper.should.have.prop('aria-label', 'icon')
+    })
+  })
+
+  describe('onClick', () => {
+    it('is called with (e, data) when clicked', () => {
+      const onClick = sandbox.spy()
+      mount(<Icon onClick={onClick} />).simulate('click')
+
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch({ type: 'click' }, { onClick })
+    })
+
+    it('is not called when "disabled" is true', () => {
+      const onClick = sandbox.spy()
+      const preventDefault = sandbox.spy()
+      mount(<Icon disabled onClick={onClick} />).simulate('click', { preventDefault })
+
+      onClick.should.have.not.been.called()
+      preventDefault.should.have.calledOnce()
     })
   })
 })

@@ -27,9 +27,6 @@ export interface StrictSidebarProps {
   /** Direction the sidebar should appear on. */
   direction?: 'top' | 'right' | 'bottom' | 'left'
 
-  /** Duration of sidebar animation. */
-  duration?: number | string
-
   /**
    * Called before a sidebar begins to animate out.
    *

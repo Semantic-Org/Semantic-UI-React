@@ -261,6 +261,7 @@ class ComponentExample extends PureComponent {
                 <ComponentControls
                   anchorName={this.anchorName}
                   disableHtml={!renderHtml}
+                  exampleCode={sourceCode}
                   examplePath={examplePath}
                   onCopyLink={this.handleDirectLinkClick}
                   onShowCode={this.handleShowCodeClick}

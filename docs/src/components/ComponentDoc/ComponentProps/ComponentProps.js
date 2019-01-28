@@ -50,7 +50,7 @@ export default class ComponentProps extends Component {
 
     return (
       <div>
-        <Checkbox slider checked={!!activeDisplayName} label='Props' onClick={this.handleToggle} />
+        <Checkbox slider checked={!!activeDisplayName} label='Props' onChange={this.handleToggle} />
         <ComponentPropsComponents
           activeDisplayName={activeDisplayName}
           displayNames={displayNames}

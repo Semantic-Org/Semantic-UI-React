@@ -88,15 +88,16 @@ describe('Sidebar', () => {
 
   describe('onHidden', () => {
     it('is called when the "visible" prop was changed to "false"', (done) => {
+      Sidebar.animationDuration = 0
       const onHidden = sandbox.spy()
-      const wrapper = mount(<Sidebar duration={0} onHidden={onHidden} visible />)
+      const wrapper = mount(<Sidebar onHidden={onHidden} visible />)
 
       onHidden.should.have.not.been.called()
       wrapper.setProps({ visible: false })
 
       setTimeout(() => {
         onHidden.should.have.been.calledOnce()
-        onHidden.should.have.been.calledWithMatch(null, { duration: 0, visible: false })
+        onHidden.should.have.been.calledWithMatch(null, { visible: false })
 
         done()
       }, 0)
@@ -105,15 +106,16 @@ describe('Sidebar', () => {
 
   describe('onShow', () => {
     it('is called when the "visible" prop was changed to "true"', (done) => {
+      Sidebar.animationDuration = 0
       const onShow = sandbox.spy()
-      const wrapper = mount(<Sidebar duration={0} onShow={onShow} />)
+      const wrapper = mount(<Sidebar onShow={onShow} />)
 
       onShow.should.have.not.been.called()
       wrapper.setProps({ visible: true })
 
       setTimeout(() => {
         onShow.should.have.been.calledOnce()
-        onShow.should.have.been.calledWithMatch(null, { duration: 0, visible: true })
+        onShow.should.have.been.calledWithMatch(null, { visible: true })
 
         done()
       }, 0)

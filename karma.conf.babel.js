@@ -2,7 +2,7 @@ import fs from 'fs'
 import { executablePath } from 'puppeteer'
 
 import config from './config'
-import webpackConfig from './webpack.config.babel'
+import webpackConfig from './webpack.karma.config'
 
 process.env.CHROME_BIN = executablePath()
 
@@ -56,6 +56,12 @@ export default (karmaConfig) => {
       },
     },
     files: [
+      './node_modules/@babel/standalone/babel.js',
+      './node_modules/lodash/lodash.js',
+      './node_modules/react/umd/react.development.js',
+      './node_modules/react-dom/umd/react-dom.development.js',
+      './node_modules/react-dom/umd/react-dom-server.browser.development.js',
+
       { pattern: 'docs/public/logo.png', watched: false, included: false, served: true },
       { pattern: 'docs/public/**/*.jpg', watched: false, included: false, served: true },
       { pattern: 'docs/public/**/*.png', watched: false, included: false, served: true },
@@ -63,13 +69,17 @@ export default (karmaConfig) => {
     ],
     formatError,
     frameworks: ['mocha'],
+    mochaReporter: {
+      output: 'minimal',
+    },
     // make karma serve all files that the web server does: /* => /docs/app/*
-    proxies: fs.readdirSync(paths.docsSrc()).reduce((acc, file) => {
-      const isDir = fs.statSync(paths.docsSrc(file)).isDirectory()
+    proxies: fs.readdirSync(paths.docsPublic()).reduce((acc, file) => {
+      const isDir = fs.statSync(paths.docsPublic(file)).isDirectory()
       const trailingSlash = isDir ? '/' : ''
 
       const original = `/${file}${trailingSlash}`
       acc[original] = `/base/docs/public/${file}${trailingSlash}`
+
       return acc
     }, {}),
     reporters: ['mocha', 'coverage'],
@@ -81,12 +91,8 @@ export default (karmaConfig) => {
       'test/tests.bundle.js': ['webpack'],
     },
     webpack: {
+      ...webpackConfig,
       entry: './test/tests.bundle.js',
-      externals: webpackConfig.externals,
-      devtool: config.compiler_devtool,
-      module: webpackConfig.module,
-      plugins: webpackConfig.plugins,
-      resolve: webpackConfig.resolve,
     },
     webpackServer: {
       progress: false,

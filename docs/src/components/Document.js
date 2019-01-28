@@ -13,9 +13,12 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       <link rel='stylesheet' href={`/style.css?${versions.suir}`} />
       <link
         rel='stylesheet'
-        href={`https://cdn.jsdelivr.net/npm/semantic-ui-css@${versions.sui}/semantic.min.css`}
+        href={`https://cdn.jsdelivr.net/npm/semantic-ui@${versions.sui}/dist/semantic.min.css`}
       />
 
+      <script
+        src='https://cdn.jsdelivr.net/npm/@babel/polyfill@7.0.0/dist/polyfill.min.js'
+      />
       <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`}
       />
