@@ -54,8 +54,13 @@ class ComponentExample extends PureComponent {
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
+    renderHtml: PropTypes.bool,
     suiVersion: PropTypes.string,
     title: PropTypes.node,
+  }
+
+  static defaultProps = {
+    renderHtml: true,
   }
 
   componentWillMount() {
@@ -193,7 +198,15 @@ class ComponentExample extends PureComponent {
   handleRenderSuccess = (error, { markup }) => this.setState({ error, htmlMarkup: markup })
 
   render() {
-    const { children, description, displayName, examplePath, suiVersion, title } = this.props
+    const {
+      children,
+      description,
+      displayName,
+      examplePath,
+      renderHtml,
+      suiVersion,
+      title,
+    } = this.props
     const {
       error,
       handleMouseLeave,
@@ -247,6 +260,7 @@ class ComponentExample extends PureComponent {
               <Grid.Column textAlign='right' style={componentControlsStyle}>
                 <ComponentControls
                   anchorName={this.anchorName}
+                  disableHtml={!renderHtml}
                   exampleCode={sourceCode}
                   examplePath={examplePath}
                   onCopyLink={this.handleDirectLinkClick}
@@ -273,6 +287,7 @@ class ComponentExample extends PureComponent {
                 displayName={displayName}
                 onError={this.handleRenderError}
                 onSuccess={this.handleRenderSuccess}
+                renderHtml={renderHtml}
                 sourceCode={sourceCode}
               />
             </Grid.Column>
