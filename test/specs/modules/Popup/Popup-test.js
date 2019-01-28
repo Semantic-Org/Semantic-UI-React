@@ -184,7 +184,7 @@ describe('Popup', () => {
         expect(bottom).to.be.at.most(document.documentElement.clientHeight)
         expect(right).to.be.at.most(document.documentElement.clientWidth)
       })
-      it.only(`"${position}" is positioned properly when open property is set`, (done) => {
+      it(`"${position}" is positioned properly when open property is set`, (done) => {
         wrapperMount(<Popup content='_' position={position} open trigger={<button>foo</button>} />)
         setTimeout(() => {
           const element = document.querySelector('.popup.ui')
