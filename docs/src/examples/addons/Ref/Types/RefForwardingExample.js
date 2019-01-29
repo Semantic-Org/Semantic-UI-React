@@ -7,7 +7,7 @@ const ExampleButton = React.forwardRef((props, ref) => (
   </div>
 ))
 
-class RefForwardingExample extends Component {
+export default class RefForwardingExample extends Component {
   forwardedRef = React.createRef()
   state = { isMounted: false }
 
@@ -55,5 +55,3 @@ class RefForwardingExample extends Component {
     )
   }
 }
-
-export default RefForwardingExample
