@@ -14,8 +14,8 @@ describe('RefForward', () => {
 
       mount(<RefForward innerRef={innerRef}>{<ForwardedRef ref={forwardedRef} />}</RefForward>)
 
-      forwardedRef.current.tagName.should.be('BUTTON')
-      innerRef.current.tagName.should.be('BUTTON')
+      expect(forwardedRef.current.tagName).to.equal('BUTTON')
+      expect(innerRef.current.tagName).to.equal('BUTTON')
     })
   })
 })
