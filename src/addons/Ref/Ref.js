@@ -1,38 +1,36 @@
 import PropTypes from 'prop-types'
-import { Children, Component } from 'react'
-import { findDOMNode } from 'react-dom'
+import React from 'react'
+import { isForwardRef } from 'react-is'
 
-import handleRef from '../../lib/handleRef'
+import RefFindNode from './RefFindNode'
+import RefForward from './RefForward'
 
 /**
- * This component exposes a callback prop that always returns the DOM node of both functional and class component
- * children.
+ * This component exposes a prop that supports functional and createRef() API and returns the DOM
+ * node of both functional and class component children.
  */
-export default class Ref extends Component {
-  static propTypes = {
-    /** Primary content. */
-    children: PropTypes.element,
+function Ref(props) {
+  const { children, innerRef } = props
 
-    /**
-     * Called when a child component will be mounted or updated.
-     *
-     * @param {HTMLElement} node - Referred node.
-     */
-    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }
+  const child = React.Children.only(children)
+  const ElementType = isForwardRef(child) ? RefForward : RefFindNode
 
-  componentDidMount() {
-    // eslint-disable-next-line react/no-find-dom-node
-    handleRef(this.props.innerRef, findDOMNode(this))
-  }
-
-  componentWillUnmount() {
-    handleRef(this.props.innerRef, null)
-  }
-
-  render() {
-    const { children } = this.props
-
-    return Children.only(children)
-  }
+  return <ElementType innerRef={innerRef}>{child}</ElementType>
 }
+
+Ref.propTypes = {
+  /** Primary content. */
+  children: PropTypes.element.isRequired,
+
+  /**
+   * Called when a child component will be mounted or updated.
+   *
+   * @param {HTMLElement} node - Referred node.
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+}
+
+Ref.FindNode = RefFindNode
+Ref.Forward = RefForward
+
+export default Ref

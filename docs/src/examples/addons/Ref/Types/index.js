@@ -9,11 +9,20 @@ const RefTypesExamples = () => (
       title='Ref'
       description={
         <span>
-          A component exposes the <code>innerRef</code> prop that always returns the DOM node of
-          both functional and class component children.
+          A component exposes the <code>innerRef</code> prop that always returns
+          the DOM node of both functional and class component children.
         </span>
       }
       examplePath='addons/Ref/Types/RefExampleRef'
+    />
+    <ComponentExample
+      title='Forward Ref'
+      description={
+        <span>
+          Works with <code>forwardRef</code> API.
+        </span>
+      }
+      examplePath='addons/Ref/Types/RefForwardingExample'
     />
   </ExampleSection>
 )
