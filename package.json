@@ -77,6 +77,7 @@
     "keyboard-key": "^1.0.4",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
+    "react-is": "^16.7.0",
     "shallowequal": "^1.1.0"
   },
   "devDependencies": {

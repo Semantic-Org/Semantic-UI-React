@@ -3,62 +3,38 @@ import React from 'react'
 
 import Ref from 'src/addons/Ref/Ref'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
-import { CompositeClass, CompositeFunction, DOMClass, DOMFunction } from './fixtures'
-
-const mountNode = (Component, innerRef) => (
-  mount(
-    <Ref innerRef={innerRef}>
-      <Component />
-    </Ref>,
-  )
-    .find('#node')
-    .getDOMNode()
-)
+import { CompositeClass, ForwardedRef } from './fixtures'
 
 describe('Ref', () => {
-  common.hasValidTypings(Ref)
+  common.isConformant(Ref, { rendersChildren: false })
 
   describe('children', () => {
     it('renders single child', () => {
       const child = <div data-child={faker.hacker.noun()} />
 
-      shallow(<Ref>{child}</Ref>)
-        .should.contain(child)
-    })
-  })
-
-  describe('innerRef', () => {
-    it('returns node from a functional component with DOM node', () => {
-      const innerRef = sandbox.spy()
-      const node = mountNode(DOMFunction, innerRef)
-
-      innerRef.should.have.been.calledOnce()
-      innerRef.should.have.been.calledWithMatch(node)
+      shallow(<Ref>{child}</Ref>).should.contain(child)
     })
 
-    it('returns node from a functional component', () => {
-      const innerRef = sandbox.spy()
-      const node = mountNode(CompositeFunction, innerRef)
+    it('renders RefFindNode when a component is passed', () => {
+      const innerRef = React.createRef()
+      const wrapper = shallow(
+        <Ref innerRef={innerRef}>
+          <CompositeClass />
+        </Ref>,
+      )
 
-      innerRef.should.have.been.calledOnce()
-      innerRef.should.have.been.calledWithMatch(node)
+      wrapper.should.have.type(Ref.FindNode)
     })
 
-    it('returns node from a class component with DOM node', () => {
-      const innerRef = sandbox.spy()
-      const node = mountNode(DOMClass, innerRef)
+    it('renders RefForward when a component wrapper with forwardRef() is passed', () => {
+      const innerRef = React.createRef()
+      const wrapper = shallow(
+        <Ref innerRef={innerRef}>
+          <ForwardedRef />
+        </Ref>,
+      )
 
-      innerRef.should.have.been.calledOnce()
-      innerRef.should.have.been.calledWithMatch(node)
-    })
-
-    it('returns node from a class component', () => {
-      const innerRef = sandbox.spy()
-      const node = mountNode(CompositeClass, innerRef)
-
-      innerRef.should.have.been.calledOnce()
-      innerRef.should.have.been.calledWithMatch(node)
+      wrapper.should.have.type(Ref.Forward)
     })
   })
 })
