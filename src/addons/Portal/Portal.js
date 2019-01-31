@@ -198,8 +198,10 @@ class Portal extends Component {
     // Call original event handler
     _.invoke(trigger, 'props.onBlur', e, ...rest)
 
+    // IE 11 doesn't work with relatedTarget in blur events
+    const target = e.relatedTarget || document.activeElement
     // do not close if focus is given to the portal
-    const didFocusPortal = _.invoke(this, 'portalNode.contains', e.relatedTarget)
+    const didFocusPortal = _.invoke(this, 'portalNode.contains', target)
 
     if (!closeOnTriggerBlur || didFocusPortal) return
 
