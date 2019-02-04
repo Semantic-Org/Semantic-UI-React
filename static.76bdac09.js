@@ -21440,10 +21440,11 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      if (!(0, _lib.isBrowser)()) return null;
       var _this$props = this.props,
           children = _this$props.children,
           _this$props$mountNode = _this$props.mountNode,
-          mountNode = _this$props$mountNode === void 0 ? (0, _lib.isBrowser)() ? document.body : null : _this$props$mountNode;
+          mountNode = _this$props$mountNode === void 0 ? document.body : _this$props$mountNode;
       return (0, _reactDom.createPortal)(_react.default.createElement(_Ref.default, {
         innerRef: this.handleRef
       }, children), mountNode);
