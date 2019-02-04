@@ -52,7 +52,9 @@ class PortalInner extends Component {
   }
 
   render() {
-    const { children, mountNode = isBrowser() ? document.body : null } = this.props
+    if (!isBrowser()) return null
+
+    const { children, mountNode = document.body } = this.props
 
     return createPortal(<Ref innerRef={this.handleRef}>{children}</Ref>, mountNode)
   }
