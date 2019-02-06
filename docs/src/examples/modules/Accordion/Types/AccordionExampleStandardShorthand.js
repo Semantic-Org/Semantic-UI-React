@@ -38,6 +38,26 @@ const panels = [
       ),
     },
   },
+  {
+    key: 'care-for-dogs',
+    title:{
+      children:(
+        <div>
+          <Icon name='question'/> How do I care for a dog?
+        </div>
+      ),
+    },
+    content: {
+      content: (
+        <div>
+          <p>
+            It is entirely acceptable to feed your dog a pure kibble diet.
+            Or you can mix their diet up with some cooked or raw meat, fish, vegetables and rice. 
+          </p>
+        </div>
+      ),
+    },   
+  },
 ]
 
 const AccordionExampleStandardShorthand = () => <Accordion defaultActiveIndex={0} panels={panels} />
