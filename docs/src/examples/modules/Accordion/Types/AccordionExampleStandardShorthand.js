@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion } from 'semantic-ui-react'
+import { Accordion, Icon } from 'semantic-ui-react'
 
 const panels = [
   {
@@ -25,14 +25,15 @@ const panels = [
       content: (
         <div>
           <p>
-            Three common ways for a prospective owner to acquire a dog is from pet shops, private
-            owners, or shelters.
+            Three common ways for a prospective owner to acquire a dog is from
+            pet shops, private owners, or shelters.
           </p>
           <p>
-            A pet shop may be the most convenient way to buy a dog. Buying a dog from a private
-            owner allows you to assess the pedigree and upbringing of your dog before choosing to
-            take it home. Lastly, finding your dog from a shelter, helps give a good home to a dog
-            who may not find one so readily.
+            A pet shop may be the most convenient way to buy a dog. Buying a dog
+            from a private owner allows you to assess the pedigree and
+            upbringing of your dog before choosing to take it home. Lastly,
+            finding your dog from a shelter, helps give a good home to a dog who
+            may not find one so readily.
           </p>
         </div>
       ),
@@ -40,10 +41,10 @@ const panels = [
   },
   {
     key: 'care-for-dogs',
-    title:{
-      children:(
+    title: {
+      children: (
         <div>
-          <Icon name='question'/> How do I care for a dog?
+          <Icon name='question' /> How do I care for a dog?
         </div>
       ),
     },
@@ -51,15 +52,18 @@ const panels = [
       content: (
         <div>
           <p>
-            It is entirely acceptable to feed your dog a pure kibble diet.
-            Or you can mix their diet up with some cooked or raw meat, fish, vegetables and rice. 
+            It is entirely acceptable to feed your dog a pure kibble diet. Or
+            you can mix their diet up with some cooked or raw meat, fish,
+            vegetables and rice.
           </p>
         </div>
       ),
-    },   
+    },
   },
 ]
 
-const AccordionExampleStandardShorthand = () => <Accordion defaultActiveIndex={0} panels={panels} />
+const AccordionExampleStandardShorthand = () => (
+  <Accordion defaultActiveIndex={0} panels={panels} />
+)
 
 export default AccordionExampleStandardShorthand
