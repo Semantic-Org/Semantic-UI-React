@@ -181,6 +181,10 @@ export default class Checkbox extends Component {
 
   handleMouseUp = (e) => {
     debug('handleMouseUp()')
+
+    // Right and middle mouse button check disabled.
+    if (e.button !== 0) return
+
     const { checked, indeterminate } = this.state
 
     _.invoke(this.props, 'onMouseUp', e, {
