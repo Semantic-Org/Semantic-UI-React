@@ -32,6 +32,9 @@ export default class AccordionTitle extends Component {
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
 
+    /** Shorthand for Icon. */
+    icon: customPropTypes.itemShorthand,
+
     /** AccordionTitle index inside Accordion. */
     index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
@@ -47,7 +50,7 @@ export default class AccordionTitle extends Component {
   handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
-    const { active, children, className, content } = this.props
+    const { active, children, className, content, icon } = this.props
 
     const classes = cx(useKeyOnly(active, 'active'), 'title', className)
     const rest = getUnhandledProps(AccordionTitle, this.props)
@@ -63,7 +66,7 @@ export default class AccordionTitle extends Component {
 
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        <Icon name='dropdown' />
+        {Icon.create(_.isNil(icon) ? 'dropdown' : icon, { autoGenerateKey: false })}
         {content}
       </ElementType>
     )
