@@ -1957,6 +1957,17 @@ describe('Dropdown', () => {
       )
     })
 
+    it('sets focus to the search input on click Dropdown when is opened', () => {
+      wrapperMount(<Dropdown open options={options} multiple selection search />)
+      wrapper.simulate('click')
+
+      const activeElement = document.activeElement
+      const searchIsFocused = activeElement === document.querySelector('input.search')
+      searchIsFocused.should.be.true(
+        `Expected "input.search" to be the active element but found ${activeElement} instead.`,
+      )
+    })
+
     it('clears the search query when an item is selected', () => {
       // search for random item
       const searchQuery = _.sample(options).text
