@@ -189,7 +189,7 @@ export default class Checkbox extends Component {
       indeterminate: !!indeterminate,
     })
 
-    // Right and middle mouse button check disabled.
+    // Handle mouseUp only on the left mouse button.
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/3419
     if (e.button === 0) this.handleChange(e, true)
   }
