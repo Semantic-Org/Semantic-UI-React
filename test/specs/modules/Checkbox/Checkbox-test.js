@@ -6,6 +6,8 @@ import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
 
+const mockedMouseEvent = { button: 0 }
+
 // ----------------------------------------
 // Wrapper
 // ----------------------------------------
@@ -21,10 +23,10 @@ const wrapperMount = (element, opts) => {
   return wrapper
 }
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
-const mockedMouseLeftClickEvent = { button: 0 }
+
 describe('Checkbox', () => {
   common.isConformant(Checkbox, {
-    disabledHandlers: ['onClick', 'onMouseUp'],
+    disabledHandlers: ['onClick'],
   })
   common.hasUIClassName(Checkbox)
 
@@ -70,10 +72,10 @@ describe('Checkbox', () => {
 
       wrapper.find('input').should.not.be.checked()
 
-      wrapper.simulate('mouseup', mockedMouseLeftClickEvent)
+      wrapper.simulate('mouseup', mockedMouseEvent)
       wrapper.find('input').should.be.checked()
 
-      wrapper.simulate('mouseup', mockedMouseLeftClickEvent)
+      wrapper.simulate('mouseup', mockedMouseEvent)
       wrapper.find('input').should.not.be.checked()
     })
     it('can be checked but not unchecked when radio', () => {
@@ -81,10 +83,10 @@ describe('Checkbox', () => {
 
       wrapper.find('input').should.not.be.checked()
 
-      wrapper.simulate('mouseup', mockedMouseLeftClickEvent)
+      wrapper.simulate('mouseup', mockedMouseEvent)
       wrapper.find('input').should.be.checked()
 
-      wrapper.simulate('mouseup', mockedMouseLeftClickEvent)
+      wrapper.simulate('mouseup', mockedMouseEvent)
       wrapper.find('input').should.be.checked()
     })
   })
@@ -144,14 +146,14 @@ describe('Checkbox', () => {
     it('cannot be checked', () => {
       wrapperShallow(<Checkbox disabled />)
 
-      wrapper.simulate('mouseup', mockedMouseLeftClickEvent)
+      wrapper.simulate('mouseup', mockedMouseEvent)
       wrapper.find('input').should.not.be.checked()
     })
 
     it('cannot be unchecked', () => {
       wrapperShallow(<Checkbox defaultChecked disabled />)
 
-      wrapper.simulate('mouseup', mockedMouseLeftClickEvent)
+      wrapper.simulate('mouseup', mockedMouseEvent)
       wrapper.find('input').should.be.checked()
     })
 
@@ -219,10 +221,7 @@ describe('Checkbox', () => {
     it('is called with (e, data) on mouse up', () => {
       const onChange = sandbox.spy()
       const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onChange={onChange} {...props} />).simulate(
-        'mouseup',
-        mockedMouseLeftClickEvent,
-      )
+      mount(<Checkbox onChange={onChange} {...props} />).simulate('mouseup', mockedMouseEvent)
 
       onChange.should.have.been.calledOnce()
       onChange.should.have.been.calledWithMatch(
@@ -237,21 +236,14 @@ describe('Checkbox', () => {
 
     it('is not called when on change when "id" is passed', () => {
       const onChange = sandbox.spy()
-      mount(<Checkbox id='foo' onChange={onChange} />).simulate(
-        'mouseup',
-        mockedMouseLeftClickEvent,
-      )
+      mount(<Checkbox id='foo' onChange={onChange} />).simulate('mouseup', mockedMouseEvent)
 
       onChange.should.have.not.been.called()
     })
 
-    it('is not called with left button click in mouse up', () => {
+    it('is not called with other button click in mouse up', () => {
       const onChange = sandbox.spy()
-      const mockedMouseRightClickEvent = { button: 2 }
-      mount(<Checkbox id='foo' onChange={onChange} />).simulate(
-        'mouseup',
-        mockedMouseRightClickEvent,
-      )
+      mount(<Checkbox id='foo' onChange={onChange} />).simulate('mouseup', { button: 2 })
 
       onChange.should.have.not.been.called()
     })
@@ -261,10 +253,7 @@ describe('Checkbox', () => {
     it('is called with (event, data) on mouseup', () => {
       const onClick = sandbox.spy()
       const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onClick={onClick} {...props} />).simulate(
-        'mouseup',
-        mockedMouseLeftClickEvent,
-      )
+      mount(<Checkbox onClick={onClick} {...props} />).simulate('mouseup', mockedMouseEvent)
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(
@@ -278,7 +267,7 @@ describe('Checkbox', () => {
 
     it('is not called when "id" is passed', () => {
       const onClick = sandbox.spy()
-      mount(<Checkbox id='foo' onClick={onClick} />).simulate('mouseup', mockedMouseLeftClickEvent)
+      mount(<Checkbox id='foo' onClick={onClick} />).simulate('mouseup', mockedMouseEvent)
 
       onClick.should.have.not.been.called()
     })
@@ -321,13 +310,17 @@ describe('Checkbox', () => {
     it('is called with (event, data) on mouse up', () => {
       const onMouseUp = sandbox.spy()
       const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onMouseUp={onMouseUp} {...props} />).simulate(
-        'mouseup',
-        mockedMouseLeftClickEvent,
-      )
+      mount(<Checkbox onMouseUp={onMouseUp} {...props} />).simulate('mouseup', mockedMouseEvent)
 
       onMouseUp.should.have.been.calledOnce()
       onMouseUp.should.have.been.calledWithMatch({}, props)
+    })
+
+    it('is called with (event, data) on mouse up with right button', () => {
+      const onMouseUp = sandbox.spy()
+      mount(<Checkbox id='foo' onMouseUp={onMouseUp} />).simulate('mouseup', { button: 2 })
+
+      onMouseUp.should.have.been.calledOnce()
     })
   })
 

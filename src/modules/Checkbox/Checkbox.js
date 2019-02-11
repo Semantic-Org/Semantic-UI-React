@@ -181,10 +181,6 @@ export default class Checkbox extends Component {
 
   handleMouseUp = (e) => {
     debug('handleMouseUp()')
-
-    // Right and middle mouse button check disabled.
-    if (e.button !== 0) return
-
     const { checked, indeterminate } = this.state
 
     _.invoke(this.props, 'onMouseUp', e, {
@@ -192,7 +188,10 @@ export default class Checkbox extends Component {
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
-    this.handleChange(e, true)
+
+    // Right and middle mouse button check disabled.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/3419
+    if (e.button === 0) this.handleChange(e, true)
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we
