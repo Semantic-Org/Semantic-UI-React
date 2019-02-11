@@ -188,7 +188,10 @@ export default class Checkbox extends Component {
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
-    this.handleChange(e, true)
+
+    // Handle mouseUp only on the left mouse button.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/3419
+    if (e.button === 0) this.handleChange(e, true)
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we
