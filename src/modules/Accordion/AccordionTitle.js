@@ -55,6 +55,7 @@ export default class AccordionTitle extends Component {
     const classes = cx(useKeyOnly(active, 'active'), 'title', className)
     const rest = getUnhandledProps(AccordionTitle, this.props)
     const ElementType = getElementType(AccordionTitle, this.props)
+    const iconValue = _.isNil(icon) ? 'dropdown' : icon
 
     if (_.isNil(content)) {
       return (
@@ -66,7 +67,7 @@ export default class AccordionTitle extends Component {
 
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {Icon.create(_.isNil(icon) ? 'dropdown' : icon, { autoGenerateKey: false })}
+        {Icon.create(iconValue, { autoGenerateKey: false })}
         {content}
       </ElementType>
     )
