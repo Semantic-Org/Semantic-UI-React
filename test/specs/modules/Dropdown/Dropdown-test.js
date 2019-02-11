@@ -1963,18 +1963,8 @@ describe('Dropdown', () => {
       )
     })
 
-    it('sets focus to the search input on click Dropdown When open', () => {
-      wrapperMount(
-        <Dropdown
-          minCharacters={3}
-          options={options}
-          placeholder='foo'
-          multiple
-          selection
-          search
-          open
-        />,
-      )
+    it('sets focus to the search input on click Dropdown when is opened', () => {
+      wrapperMount(<Dropdown open options={options} multiple selection search />)
       wrapper.simulate('click')
 
       const activeElement = document.activeElement
