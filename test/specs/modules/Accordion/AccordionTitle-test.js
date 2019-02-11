@@ -9,7 +9,10 @@ describe('AccordionTitle', () => {
   common.rendersChildren(AccordionTitle)
 
   common.implementsCreateMethod(AccordionTitle)
-  common.implementsIconProp(AccordionTitle, { autoGenerateKey: false })
+  common.implementsIconProp(AccordionTitle, {
+    alwaysPresent: true,
+    autoGenerateKey: false,
+  })
 
   common.propKeyOnlyToClassName(AccordionTitle, 'active')
 

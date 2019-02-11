@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -57,7 +58,7 @@ export default class AccordionTitle extends Component {
     const ElementType = getElementType(AccordionTitle, this.props)
     const iconValue = _.isNil(icon) ? 'dropdown' : icon
 
-    if (_.isNil(content)) {
+    if (!childrenUtils.isNil(children)) {
       return (
         <ElementType {...rest} className={classes} onClick={this.handleClick}>
           {children}
