@@ -746,7 +746,7 @@ export default class Dropdown extends Component {
     // Notify the onAddItem prop if this is a new value
     if (isAdditionItem) _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
 
-    if (multiple && search && this.searchRef) this.searchRef.focus()
+    if (search && this.searchRef) this.searchRef.focus()
   }
 
   handleFocus = (e) => {
