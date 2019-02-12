@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+
+import { IconProps } from '../../elements/Icon'
+import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 
 export interface AccordionTitleProps extends StrictAccordionTitleProps {
   [key: string]: any
@@ -20,6 +22,9 @@ export interface StrictAccordionTitleProps {
 
   /** Shorthand for primary content. */
   content?: SemanticShorthandContent
+
+  /** Shorthand for Icon. */
+  icon?: SemanticShorthandItem<IconProps>
 
   /** AccordionTitle index inside Accordion. */
   index?: number | string

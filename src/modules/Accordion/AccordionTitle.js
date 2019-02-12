@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -32,6 +33,9 @@ export default class AccordionTitle extends Component {
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
 
+    /** Shorthand for Icon. */
+    icon: customPropTypes.itemShorthand,
+
     /** AccordionTitle index inside Accordion. */
     index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
@@ -47,13 +51,14 @@ export default class AccordionTitle extends Component {
   handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
-    const { active, children, className, content } = this.props
+    const { active, children, className, content, icon } = this.props
 
     const classes = cx(useKeyOnly(active, 'active'), 'title', className)
     const rest = getUnhandledProps(AccordionTitle, this.props)
     const ElementType = getElementType(AccordionTitle, this.props)
+    const iconValue = _.isNil(icon) ? 'dropdown' : icon
 
-    if (_.isNil(content)) {
+    if (!childrenUtils.isNil(children)) {
       return (
         <ElementType {...rest} className={classes} onClick={this.handleClick}>
           {children}
@@ -63,7 +68,7 @@ export default class AccordionTitle extends Component {
 
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        <Icon name='dropdown' />
+        {Icon.create(iconValue, { autoGenerateKey: false })}
         {content}
       </ElementType>
     )

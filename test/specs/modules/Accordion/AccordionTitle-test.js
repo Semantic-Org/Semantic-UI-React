@@ -9,6 +9,10 @@ describe('AccordionTitle', () => {
   common.rendersChildren(AccordionTitle)
 
   common.implementsCreateMethod(AccordionTitle)
+  common.implementsIconProp(AccordionTitle, {
+    alwaysPresent: true,
+    autoGenerateKey: false,
+  })
 
   common.propKeyOnlyToClassName(AccordionTitle, 'active')
 
@@ -18,8 +22,7 @@ describe('AccordionTitle', () => {
       const event = { target: null }
       const props = { content: 'title', index: 0 }
 
-      shallow(<AccordionTitle onClick={spy} {...props} />)
-        .simulate('click', event)
+      shallow(<AccordionTitle onClick={spy} {...props} />).simulate('click', event)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event, props)
