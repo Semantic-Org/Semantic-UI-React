@@ -539,7 +539,7 @@ describe('Dropdown', () => {
       wrapper.should.have.state('value', options[0].value)
       dropdownMenuIsClosed()
 
-      // The dropdown will be still focus after an item will be selected, we should remove
+      // The dropdown will be still focused after an item will be selected, we should remove
       // focus from it before
       document.activeElement.blur()
 
