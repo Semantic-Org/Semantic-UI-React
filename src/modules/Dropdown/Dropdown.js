@@ -328,7 +328,7 @@ export default class Dropdown extends Component {
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** The text displayed in the dropdown, usually for the active item. */
-    text: PropTypes.string,
+    text: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 
     /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
     trigger: customPropTypes.every([
