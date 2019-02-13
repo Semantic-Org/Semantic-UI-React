@@ -45,6 +45,8 @@ class TextArea extends Component {
     rows: 3,
   }
 
+  initialHeight = null
+
   componentDidMount() {
     this.updateHeight()
   }
@@ -82,11 +84,22 @@ class TextArea extends Component {
     this.ref.style.resize = null
   }
 
+  setInitialHeight(height) {
+    if (!this.initialHeight) {
+      this.initialHeight = height
+    }
+  }
+
   updateHeight = () => {
     const { autoHeight } = this.props
     if (!this.ref || !autoHeight) return
 
-    const { minHeight, borderBottomWidth, borderTopWidth } = window.getComputedStyle(this.ref)
+    const { minHeight, borderBottomWidth, borderTopWidth, height } = window.getComputedStyle(
+      this.ref,
+    )
+
+    this.setInitialHeight(height)
+    this.ref.style.height = this.initialHeight
 
     const borderHeight = _.sum([borderBottomWidth, borderTopWidth].map(x => parseFloat(x)))
     const scrollHeight = this.ref.scrollHeight

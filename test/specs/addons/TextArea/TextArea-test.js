@@ -82,13 +82,7 @@ describe('TextArea', () => {
     })
 
     it('sets styles when there is a multiline value', () => {
-      wrapperMount(
-        <TextArea
-          autoHeight
-          style={style}
-          value={'line1\nline2\nline3\nline4'}
-        />,
-      )
+      wrapperMount(<TextArea autoHeight style={style} value={'line1\nline2\nline3\nline4'} />)
       assertHeight('40px') // 4 lines
     })
 
@@ -101,6 +95,18 @@ describe('TextArea', () => {
       // update the value and fire a change event
       wrapper.setProps({ value: 'line1\nline2\nline3\nline4' })
       assertHeight('40px') // 4 lines
+    })
+
+    it('shrinks height when new line is deleted', () => {
+      const initialValue = 'line1\nline2\nline3\nline4'
+      wrapperMount(<TextArea autoHeight style={style} value={initialValue} />)
+
+      // initial height
+      assertHeight('40px') // 4 lines
+
+      // update the value and fire a change event
+      wrapper.setProps({ value: 'line1\nline2\nline3' })
+      assertHeight('30px') // 3 lines
     })
 
     it('adds styles when toggled to true', () => {
@@ -158,13 +164,11 @@ describe('TextArea', () => {
 
   describe('rows', () => {
     it('has default value', () => {
-      shallow(<TextArea />)
-        .should.have.prop('rows', 3)
+      shallow(<TextArea />).should.have.prop('rows', 3)
     })
 
     it('sets prop', () => {
-      shallow(<TextArea rows={1} />)
-        .should.have.prop('rows', 1)
+      shallow(<TextArea rows={1} />).should.have.prop('rows', 1)
     })
   })
 
