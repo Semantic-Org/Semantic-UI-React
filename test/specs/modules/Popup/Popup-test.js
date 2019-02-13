@@ -171,7 +171,7 @@ describe('Popup', () => {
 
   describe('position', () => {
     POSITIONS.forEach((position) => {
-      it('is always within the viewport when the trigger is clicked', () => {
+      it(`"${position}" is always within the viewport when the trigger is clicked`, () => {
         wrapperMount(
           <Popup content='_' position={position} trigger={<button>foo</button>} on='click' />,
         )
@@ -179,21 +179,25 @@ describe('Popup', () => {
 
         const rect = document.querySelector('.popup.ui').getBoundingClientRect()
         const { top, right, bottom, left } = rect
-
         expect(top).to.be.at.least(0)
         expect(left).to.be.at.least(0)
         expect(bottom).to.be.at.most(document.documentElement.clientHeight)
         expect(right).to.be.at.most(document.documentElement.clientWidth)
       })
-      it('is positioned properly when open property is set', () => {
+      it(`"${position}" is positioned properly when open property is set`, (done) => {
         wrapperMount(<Popup content='_' position={position} open trigger={<button>foo</button>} />)
-        const element = document.querySelector('.popup.ui')
-        element.style.should.have.property('top', '')
-        element.style.should.have.property('left', '')
-        element.style.should.have.property('bottom', '')
-        element.style.should.have.property('right', '')
+        setTimeout(() => {
+          const element = document.querySelector('.popup.ui')
+          const { top, left, bottom, right } = element.style
+          expect(element.style.position).to.equal('absolute')
+          expect(top).to.not.equal('')
+          expect(left).to.not.equal('')
+          expect(bottom).to.not.equal('')
+          expect(right).to.not.equal('')
+          done()
+        }, 1)
       })
-      it('is the original if no horizontal position fits within the viewport', () => {
+      it(`"${position}" is the original if no horizontal position fits within the viewport`, () => {
         wrapperMount(
           <Popup
             content='_'
@@ -209,7 +213,7 @@ describe('Popup', () => {
         expect(selectedPosition).to.equal(position)
       })
 
-      it('is the original if no vertical position fits within the viewport', () => {
+      it(`"${position}" is the original if no vertical position fits within the viewport`, () => {
         wrapperMount(
           <Popup
             content='_'
@@ -461,6 +465,26 @@ describe('Popup', () => {
       wrapper.setProps({ open: false })
 
       assertInBody('.ui.popup.visible', false)
+    })
+  })
+
+  describe('disabled', () => {
+    it('is not disabled by default', () => {
+      shallow(<Popup />)
+        .find('Portal')
+        .should.exist()
+    })
+
+    it('does not render Portal if disabled', () => {
+      shallow(<Popup disabled />)
+        .find('Portal')
+        .should.not.exist()
+    })
+
+    it('does not render Portal even with open prop', () => {
+      shallow(<Popup open disabled />)
+        .find('Portal')
+        .should.not.exist()
     })
   })
 

@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { createPortal } from 'react-dom'
 
-import { isBrowser } from '../../lib'
+import { isBrowser, makeDebugger } from '../../lib'
 import Ref from '../Ref'
+
+const debug = makeDebugger('portalInner')
 
 /**
  * An inner component that allows you to render children outside their parent.
@@ -35,17 +37,24 @@ class PortalInner extends Component {
   }
 
   componentDidMount() {
+    debug('componentDidMount()')
     _.invoke(this.props, 'onMount', null, { ...this.props, node: this.ref })
   }
 
   componentWillUnmount() {
+    debug('componentWillUnmount()')
     _.invoke(this.props, 'onUnmount', null, { ...this.props, node: this.ref })
   }
 
-  handleRef = c => (this.ref = c)
+  handleRef = (c) => {
+    debug('handleRef')
+    this.ref = c
+  }
 
   render() {
-    const { children, mountNode = isBrowser() ? document.body : null } = this.props
+    if (!isBrowser()) return null
+
+    const { children, mountNode = document.body } = this.props
 
     return createPortal(<Ref innerRef={this.handleRef}>{children}</Ref>, mountNode)
   }

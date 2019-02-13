@@ -576,27 +576,32 @@ export default class Dropdown extends Component {
   }
 
   makeSelectedItemActive = (e) => {
-    const { open } = this.state
+    const { open, value } = this.state
     const { multiple } = this.props
 
     const item = this.getSelectedItem()
-    const value = _.get(item, 'value')
+    const selectedValue = _.get(item, 'value')
 
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
-    if (_.isNil(value) || !open) return
+    if (_.isNil(selectedValue) || !open) return
 
     // state value may be undefined
-    const newValue = multiple ? _.union(this.state.value, [value]) : value
+    const newValue = multiple ? _.union(this.state.value, [selectedValue]) : selectedValue
+    const valueHasChanged = multiple ? !!_.difference(newValue, value).length : newValue !== value
 
-    // notify the onChange prop that the user is trying to change value
-    this.setValue(newValue)
-    this.setSelectedIndex(newValue)
-    this.handleChange(e, newValue)
+    if (valueHasChanged) {
+      // notify the onChange prop that the user is trying to change value
+      this.setValue(newValue)
+      this.setSelectedIndex(newValue)
+      this.handleChange(e, newValue)
 
-    // Heads up! This event handler should be called after `onChange`
-    // Notify the onAddItem prop if this is a new value
-    if (item['data-additional']) _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
+      // Heads up! This event handler should be called after `onChange`
+      // Notify the onAddItem prop if this is a new value
+      if (item['data-additional']) {
+        _.invoke(this.props, 'onAddItem', e, { ...this.props, value: selectedValue })
+      }
+    }
   }
 
   selectItemOnEnter = (e) => {
@@ -686,7 +691,10 @@ export default class Dropdown extends Component {
     e.stopPropagation()
 
     if (!search) return this.toggle(e)
-    if (open) return
+    if (open) {
+      if (this.searchRef) this.searchRef.focus()
+      return
+    }
     if (searchQuery.length >= minCharacters || minCharacters === 1) {
       this.open(e)
       return

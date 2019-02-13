@@ -43,6 +43,12 @@ const PopupUsageExamples = () => (
       description='A popup can open over a DOM node when controlled.'
       examplePath='modules/Popup/Usage/PopupExampleContextControlled'
     />
+    <ComponentExample
+      title='Default Open'
+      description='A popup can appear open by default.'
+      examplePath='modules/Popup/Usage/PopupExampleDefaultOpen'
+      renderHtml={false}
+    />
   </ExampleSection>
 )
 

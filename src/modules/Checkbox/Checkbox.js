@@ -149,24 +149,20 @@ export default class Checkbox extends Component {
     if (!this.canToggle()) return
     if (fromMouseUp && !_.isNil(id)) return
 
+    // We don't have a separate click handler as it's already called in here,
+    // and also to avoid duplicate calls, matching all DOM Checkbox comparisons.
     _.invoke(this.props, 'onClick', e, {
       ...this.props,
       checked: !checked,
       indeterminate: !!indeterminate,
     })
-    _.invoke(this.props, 'onChange', e, { ...this.props, checked: !checked, indeterminate: false })
+    _.invoke(this.props, 'onChange', e, {
+      ...this.props,
+      checked: !checked,
+      indeterminate: false,
+    })
 
     this.trySetState({ checked: !checked, indeterminate: false })
-  }
-
-  handleClick = (e) => {
-    // We handle onClick in onChange if it is provided, to preserve proper call order.
-    // Don't call onClick twice if their is already an onChange handler, it calls onClick.
-    // https://github.com/Semantic-Org/Semantic-UI-React/pull/2748
-    const { onChange, onClick } = this.props
-    if (onChange || !onClick) return
-
-    onClick(e, this.props)
   }
 
   handleMouseDown = (e) => {
@@ -192,7 +188,10 @@ export default class Checkbox extends Component {
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
-    this.handleChange(e, true)
+
+    // Handle mouseUp only on the left mouse button.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/3419
+    if (e.button === 0) this.handleChange(e, true)
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we
@@ -244,7 +243,6 @@ export default class Checkbox extends Component {
         {...rest}
         className={classes}
         onChange={this.handleChange}
-        onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
       >

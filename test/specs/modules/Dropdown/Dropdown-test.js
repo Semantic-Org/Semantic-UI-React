@@ -430,15 +430,32 @@ describe('Dropdown', () => {
       spy.should.have.been.calledWithMatch(event)
     })
 
-    it('calls makeSelectedItemActive', () => {
-      wrapperShallow(<Dropdown selectOnBlur />)
+    it('calls handleChange with the selected option on blur', () => {
+      wrapperShallow(<Dropdown selectOnBlur options={options} />)
 
       const instance = wrapper.instance()
-      sandbox.spy(instance, 'makeSelectedItemActive')
+      wrapper.simulate('click', { stopPropagation: _.noop })
+      dropdownMenuIsOpen()
+      sandbox.spy(instance, 'handleChange')
+
+      const event = { stopPropagation: _.noop }
+      wrapper.simulate('blur', event)
+
+      instance.handleChange.should.have.been.calledWithMatch(event, options[0].value)
+    })
+
+    it('does not call handleChange if the value has not changed', () => {
+      wrapperShallow(<Dropdown selectOnBlur options={options} />)
+
+      const instance = wrapper.instance()
+      wrapper.setState({ selectedIndex: 2, value: options[2].value })
+      wrapper.simulate('click', { stopPropagation: _.noop })
+      dropdownMenuIsOpen()
+      sandbox.spy(instance, 'handleChange')
 
       wrapper.simulate('blur')
 
-      instance.makeSelectedItemActive.should.have.been.calledOnce()
+      instance.handleChange.should.not.have.been.called()
     })
 
     it('sets focus state to false', () => {
@@ -519,20 +536,16 @@ describe('Dropdown', () => {
         .find('DropdownItem')
         .first()
         .simulate('click')
-      wrapper
-        .find('DropdownItem')
-        .first()
-        .simulate('click')
-        .should.have.prop('active', true)
-
       wrapper.should.have.state('value', options[0].value)
-
       dropdownMenuIsClosed()
+
+      // The dropdown will be still focused after an item will be selected, we should remove
+      // focus from it before
+      document.activeElement.blur()
 
       // doesn't open on space
       domEvent.keyDown(document, { key: ' ' })
       wrapper.update()
-
       dropdownMenuIsClosed()
     })
   })
@@ -593,12 +606,11 @@ describe('Dropdown', () => {
 
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
-      wrapperShallow(<Dropdown />).simulate('mousedown')
+      wrapperMount(<Dropdown />).simulate('mousedown')
 
       wrapper.instance().isMouseDown.should.equal(true)
 
       domEvent.mouseUp(document)
-
       wrapper.instance().isMouseDown.should.equal(false)
     })
   })
@@ -1932,6 +1944,17 @@ describe('Dropdown', () => {
       )
         .find('.default.text')
         .simulate('click')
+
+      const activeElement = document.activeElement
+      const searchIsFocused = activeElement === document.querySelector('input.search')
+      searchIsFocused.should.be.true(
+        `Expected "input.search" to be the active element but found ${activeElement} instead.`,
+      )
+    })
+
+    it('sets focus to the search input on click Dropdown when is opened', () => {
+      wrapperMount(<Dropdown open options={options} multiple selection search />)
+      wrapper.simulate('click')
 
       const activeElement = document.activeElement
       const searchIsFocused = activeElement === document.querySelector('input.search')

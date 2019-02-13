@@ -32,7 +32,14 @@ export default () => ({
       'semantic-ui-react': config.paths.src('index.js'),
     }
     webpackConfig.resolve.modules.push(config.paths.base())
-
+    // // Heads up!
+    // // There modules should be manually transipiled because they are not compatible with IE11
+    // path.resolve(__dirname, 'node_modules/ansi-styles'),
+    //   path.resolve(__dirname, 'node_modules/debug'),
+    //
+    //   path.resolve(__dirname, 'docs'),
+    //   path.resolve(__dirname, 'src'),
+    //   path.resolve(__dirname, 'tmp'),
     return webpackConfig
   },
 })
