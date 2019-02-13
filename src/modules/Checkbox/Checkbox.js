@@ -258,6 +258,7 @@ export default class Checkbox extends Component {
           tabIndex={this.computeTabIndex()}
           type={type}
           value={value}
+          onClick={e => e.stopPropagation()}
         />
         {/*
          Heads Up!

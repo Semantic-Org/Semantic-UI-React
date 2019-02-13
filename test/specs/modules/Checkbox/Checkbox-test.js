@@ -199,6 +199,18 @@ describe('Checkbox', () => {
           .should.have.prop(propName)
       })
     })
+
+    it('does not propagate click', () => {
+      const onClick = sandbox.spy()
+      mount(
+        <div role='presentation' onClick={onClick}>
+          <Checkbox id='foo' />
+        </div>,
+      )
+        .find('input')
+        .simulate('click')
+      onClick.should.not.have.been.called()
+    })
   })
 
   describe('label', () => {
