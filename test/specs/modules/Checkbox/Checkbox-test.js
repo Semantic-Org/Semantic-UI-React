@@ -199,17 +199,49 @@ describe('Checkbox', () => {
           .should.have.prop(propName)
       })
     })
+  })
 
-    it('does not propagate click', () => {
-      const onClick = sandbox.spy()
-      mount(
-        <div role='presentation' onClick={onClick}>
-          <Checkbox id='foo' />
-        </div>,
-      )
-        .find('input')
-        .simulate('click')
-      onClick.should.not.have.been.called()
+  describe('click propagation', () => {
+    const assertions = [
+      {
+        description: 'propagates once on "label" without "id"',
+        id: undefined,
+        target: 'label',
+        propagates: true,
+      },
+      {
+        description: 'does not propagate on "input" without "id"',
+        id: undefined,
+        target: 'input',
+        propagates: false,
+      },
+      {
+        description: 'propagates once on "label" with "id"',
+        id: 'foo',
+        target: 'label',
+        propagates: true,
+      },
+      {
+        description: 'does not propagate on "input" with "id"',
+        id: 'foo',
+        target: 'input',
+        propagates: false,
+      },
+    ]
+
+    assertions.forEach((assertion) => {
+      it(assertion.description, () => {
+        const onClick = sandbox.spy()
+        wrapperMount(
+          <div role='presentation' onClick={onClick}>
+            <Checkbox id={assertion.id} />
+          </div>,
+        )
+        const target = document.querySelector(`.ui.checkbox ${assertion.target}`)
+        domEvent.click(target)
+        if (assertion.propagates) onClick.should.have.been.calledOnce()
+        else onClick.should.not.have.been.called()
+      })
     })
   })
 
