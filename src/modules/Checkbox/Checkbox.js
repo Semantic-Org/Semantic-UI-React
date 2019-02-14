@@ -203,6 +203,12 @@ export default class Checkbox extends Component {
     if (this.inputRef) this.inputRef.indeterminate = !!indeterminate
   }
 
+  handleInputClick = (e) => {
+    e.stopPropagation()
+    // To prevent two clicks from being fired from the component we have to stop the propagation
+    // from the "input" click: https://github.com/Semantic-Org/Semantic-UI-React/issues/3433
+  }
+
   render() {
     const {
       className,
@@ -253,12 +259,12 @@ export default class Checkbox extends Component {
           disabled={disabled}
           id={id}
           name={name}
+          onClick={this.handleInputClick}
           readOnly
           ref={this.handleInputRef}
           tabIndex={this.computeTabIndex()}
           type={type}
           value={value}
-          onClick={e => e.stopPropagation()}
         />
         {/*
          Heads Up!
