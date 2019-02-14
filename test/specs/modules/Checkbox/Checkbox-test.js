@@ -202,34 +202,34 @@ describe('Checkbox', () => {
   })
 
   describe('click propagation', () => {
-    const assertions = [
+    const assertMatrix = [
       {
         description: 'propagates once on "label" without "id"',
         id: undefined,
         target: 'label',
-        propagates: true,
+        propagations: 1,
       },
       {
         description: 'does not propagate on "input" without "id"',
         id: undefined,
         target: 'input',
-        propagates: false,
+        propagations: 0,
       },
       {
         description: 'propagates once on "label" with "id"',
         id: 'foo',
         target: 'label',
-        propagates: true,
+        propagations: 1,
       },
       {
         description: 'does not propagate on "input" with "id"',
         id: 'foo',
         target: 'input',
-        propagates: false,
+        propagations: 0,
       },
     ]
 
-    assertions.forEach((assertion) => {
+    assertMatrix.forEach((assertion) => {
       it(assertion.description, () => {
         const onClick = sandbox.spy()
         wrapperMount(
@@ -237,10 +237,8 @@ describe('Checkbox', () => {
             <Checkbox id={assertion.id} />
           </div>,
         )
-        const target = document.querySelector(`.ui.checkbox ${assertion.target}`)
-        domEvent.click(target)
-        if (assertion.propagates) onClick.should.have.been.calledOnce()
-        else onClick.should.not.have.been.called()
+        domEvent.click(`.ui.checkbox ${assertion.target}`)
+        onClick.should.have.been.callCount(assertion.propagations)
       })
     })
   })
