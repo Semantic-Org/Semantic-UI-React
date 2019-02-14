@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { createSharedData } from 'react-static/node'
 
 import {
   getComponentGroupInfo,
@@ -13,6 +14,7 @@ import { getComponentPathname } from './docs/src/utils'
 
 export default async () => {
   const exampleSources = getExampleSources()
+  const sharedExampleSources = createSharedData(exampleSources)
 
   return [
     {
@@ -46,12 +48,14 @@ export default async () => {
 
         return {
           componentsInfo,
-          exampleSources,
           sidebarSections,
           displayName: baseInfo.displayName,
           exampleKeys: _.map(_.flatMap(sidebarSections, 'examples'), 'examplePath'),
           seeTags: getInfoForSeeTags(componentsInfo[baseInfo.displayName]),
         }
+      },
+      sharedData: {
+        exampleSources: sharedExampleSources,
       },
     })),
 

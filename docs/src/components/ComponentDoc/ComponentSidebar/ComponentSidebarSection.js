@@ -63,7 +63,7 @@ export default class ComponentSidebarSection extends PureComponent {
           <b>{sectionName}</b>
           <Icon name='dropdown' />
         </Accordion.Title>
-        <Accordion.Content as={Menu.Menu} active={active}>
+        <Accordion.Content active={active} className='menu'>
           {_.map(examples, ({ title, examplePath }) => (
             <Menu.Item
               key={examplePath}

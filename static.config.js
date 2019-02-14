@@ -6,6 +6,7 @@ import getRoutes from './static.routes'
 
 export default {
   Document,
+  disablePreload: true,
   getSiteData: async ({ dev }) => ({
     dev,
     componentMenu: getComponentMenu(),

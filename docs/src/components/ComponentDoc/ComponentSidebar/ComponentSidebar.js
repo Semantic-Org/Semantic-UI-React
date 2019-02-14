@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Accordion, Menu, Sticky } from 'semantic-ui-react'
+import { Accordion, Sticky } from 'semantic-ui-react'
 
 import { updateForKeys } from 'docs/src/hoc'
 import { docTypes } from 'docs/src/utils'
@@ -17,7 +17,7 @@ const sidebarStyle = {
 
 const ComponentSidebar = ({ activePath, examplesRef, onItemClick, sections }) => (
   <Sticky context={examplesRef} offset={15}>
-    <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
+    <Accordion className='fluid vertical text menu' style={sidebarStyle}>
       {_.map(sections, ({ examples, sectionName }) => (
         <ComponentSidebarSection
           activePath={activePath}
@@ -27,7 +27,7 @@ const ComponentSidebar = ({ activePath, examplesRef, onItemClick, sections }) =>
           onItemClick={onItemClick}
         />
       ))}
-    </Menu>
+    </Accordion>
   </Sticky>
 )
 

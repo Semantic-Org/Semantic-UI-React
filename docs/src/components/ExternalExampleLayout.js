@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types'
-import { createElement } from 'react'
+import React, { createElement } from 'react'
 import { withRouteData } from 'react-static'
+
+import NoSSR from 'docs/src/components/NoSSR'
 
 const ExternalExampleLayout = (props) => {
   const exampleComponent = require(`docs/src/examples/${props.path}`).default
 
-  return createElement(exampleComponent)
+  return <NoSSR>{createElement(exampleComponent)}</NoSSR>
 }
 
 ExternalExampleLayout.propTypes = {

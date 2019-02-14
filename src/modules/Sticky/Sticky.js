@@ -196,9 +196,9 @@ export default class Sticky extends Component {
 
   assignRects = () => {
     const { context } = this.props
-
+    console.log(context)
     this.triggerRect = this.triggerRef.getBoundingClientRect()
-    this.contextRect = (context || document.body).getBoundingClientRect()
+    this.contextRect = (context.current || context || document.body).getBoundingClientRect()
     this.stickyRect = this.stickyRef.getBoundingClientRect()
   }
 

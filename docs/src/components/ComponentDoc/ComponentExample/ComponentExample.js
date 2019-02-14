@@ -8,6 +8,7 @@ import { Grid, Visibility } from 'semantic-ui-react'
 
 import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
 import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
+import NoSSR from 'docs/src/components/NoSSR'
 
 import ComponentControls from '../ComponentControls'
 import ComponentExampleRenderEditor from './ComponentExampleRenderEditor'
@@ -50,7 +51,10 @@ class ComponentExample extends PureComponent {
     description: PropTypes.node,
     displayName: PropTypes.string.isRequired,
     exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
-    exampleSources: PropTypes.objectOf(PropTypes.string).isRequired,
+    exampleSources: PropTypes.shape({
+      data: PropTypes.objectOf(PropTypes.string),
+      hash: PropTypes.string,
+    }).isRequired,
     examplePath: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -78,7 +82,7 @@ class ComponentExample extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const { examplePath, exampleSources, location } = nextProps
-    const nextSourceCode = exampleSources[examplePath]
+    const nextSourceCode = exampleSources[examplePath] || exampleSources.data[examplePath]
 
     // deactivate examples when switching from one to the next
     if (this.isActiveHash() && this.isActiveState() && this.props.location.hash !== location.hash) {
@@ -187,7 +191,8 @@ class ComponentExample extends PureComponent {
 
   getOriginalSourceCode = () => {
     const { examplePath, exampleSources } = this.props
-    return exampleSources[examplePath]
+
+    return exampleSources[examplePath] || exampleSources.data[examplePath]
   }
 
   handleChangeCode = _.debounce((sourceCode) => {
@@ -284,13 +289,15 @@ class ComponentExample extends PureComponent {
               className={`rendered-example ${this.getKebabExamplePath()}`}
               style={renderedExampleStyle}
             >
-              <ComponentExampleRenderSource
-                displayName={displayName}
-                onError={this.handleRenderError}
-                onSuccess={this.handleRenderSuccess}
-                renderHtml={renderHtml}
-                sourceCode={sourceCode}
-              />
+              <NoSSR>
+                <ComponentExampleRenderSource
+                  displayName={displayName}
+                  onError={this.handleRenderError}
+                  onSuccess={this.handleRenderSuccess}
+                  renderHtml={renderHtml}
+                  sourceCode={sourceCode}
+                />
+              </NoSSR>
             </Grid.Column>
             {(showCode || showHTML) && (
               <Grid.Column width={16} style={editorStyle}>

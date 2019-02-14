@@ -4,19 +4,17 @@ import universal from 'react-universal-component'
 import { Menu } from 'semantic-ui-react'
 
 import { updateForKeys } from 'docs/src/hoc'
-import { isBrowser } from 'src/lib'
 import ComponentControlsCopyLink from './ComponentControlsCopyLink'
 import ComponentControlsEditCode from './ComponentControlsEditCode'
 import ComponentControlsMaximize from './ComponentControlsMaximize'
 import ComponentControlsShowHtml from './ComponentControlsShowHtml'
+import NoSSR from '../../NoSSR'
 
-const ComponentControlsCodeSandbox = isBrowser()
-  ? universal(import('./ComponentControlsCodeSandbox'), {
-    loading: () => (
-      <Menu.Item disabled icon={{ loading: true, name: 'spinner', title: 'Loading...' }} />
-    ),
-  })
-  : () => null
+const ComponentControlsCodeSandbox = universal(import('./ComponentControlsCodeSandbox'), {
+  loading: () => (
+    <Menu.Item disabled icon={{ loading: true, name: 'spinner', title: 'Loading...' }} />
+  ),
+})
 
 const ComponentControls = (props) => {
   const {
@@ -35,7 +33,9 @@ const ComponentControls = (props) => {
     <Menu color='green' compact icon='labeled' size='tiny' text>
       <ComponentControlsEditCode active={showCode} onClick={onShowCode} />
       <ComponentControlsShowHtml active={showHTML} disabled={disableHtml} onClick={onShowHTML} />
-      <ComponentControlsCodeSandbox exampleCode={exampleCode} />
+      <NoSSR>
+        <ComponentControlsCodeSandbox exampleCode={exampleCode} />
+      </NoSSR>
       <ComponentControlsMaximize examplePath={examplePath} />
       <ComponentControlsCopyLink anchorName={anchorName} onClick={onCopyLink} />
     </Menu>

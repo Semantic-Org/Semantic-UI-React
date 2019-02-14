@@ -56,8 +56,8 @@ class LayoutsLayout extends PureComponent {
         <div style={docsButtonStyle}>
           <Button as={Link} to='/layouts' color='teal' icon='left arrow' content='Layouts' />
           <Button
-            as={Link}
-            to={`${repoURL}/blob/master/docs/src/layouts/${componentFilename}`}
+            as='a'
+            href={`${repoURL}/blob/master/docs/src/layouts/${componentFilename}`}
             icon='github'
             content='Source'
             secondary
