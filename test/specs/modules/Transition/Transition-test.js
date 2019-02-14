@@ -59,6 +59,40 @@ describe('Transition', () => {
         wrapper.should.not.have.className('out')
       })
     })
+
+    it('custom animation', () => {
+      const animation = 'jump'
+      wrapperShallow(
+        <Transition animation={animation} transitionOnMount={false}>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.className(animation)
+      wrapper.should.not.have.className('in')
+
+      wrapper.setState({ status: Transition.EXITING })
+      wrapper.should.have.className(animation)
+      wrapper.should.not.have.className('out')
+    })
+
+    it('custom directional animation', () => {
+      const animation = 'reveal left'
+      wrapperShallow(
+        <Transition directional animation={animation} transitionOnMount={false}>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.className(animation)
+      wrapper.should.have.className('in')
+
+      wrapper.setState({ status: Transition.EXITING })
+      wrapper.should.have.className(animation)
+      wrapper.should.have.className('out')
+    })
   })
 
   describe('className', () => {

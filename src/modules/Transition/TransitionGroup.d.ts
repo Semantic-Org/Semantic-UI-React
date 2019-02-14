@@ -12,7 +12,10 @@ export interface StrictTransitionGroupProps {
   as?: any
 
   /** Named animation event to used. Must be defined in CSS. */
-  animation?: SemanticTRANSITIONS
+  animation?: SemanticTRANSITIONS | string
+
+  /** whether it is directional animation event or not. */
+  directional?: boolean
 
   /** Primary content. */
   children?: React.ReactNode
