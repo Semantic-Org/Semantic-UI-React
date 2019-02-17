@@ -10,7 +10,11 @@ export default class ButtonExampleFocus extends Component {
     return (
       <Grid>
         <Grid.Column width={8}>
-          <Button content='A button that can be focused' primary ref={this.handleRef} />
+          <Button
+            content='A button that can be focused'
+            primary
+            ref={this.handleRef}
+          />
         </Grid.Column>
         <Grid.Column width={8}>
           <Button content='Set focused' onClick={this.handleClick} />

@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import {
   Button,
   Checkbox,
   Divider,
   Grid,
   Label,
+  Ref,
   Segment,
   Sticky,
   Visibility,
@@ -19,12 +20,14 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
     logCount: 0,
     once: true,
   }
-
-  handleContextRef = contextRef => this.setState({ contextRef })
+  contextRef = createRef()
 
   updateLog = eventName => () =>
     this.setState({
-      log: [`${new Date().toLocaleTimeString()}: ${eventName}`, ...this.state.log].slice(0, 20),
+      log: [
+        `${new Date().toLocaleTimeString()}: ${eventName}`,
+        ...this.state.log,
+      ].slice(0, 20),
       logCount: this.state.logCount + 1,
     })
 
@@ -35,10 +38,10 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
   toggleContinuous = () => this.setState({ continuous: !this.state.continuous })
 
   render() {
-    const { continuous, contextRef, log, logCount, once } = this.state
+    const { continuous, log, logCount, once } = this.state
 
     return (
-      <div ref={this.handleContextRef}>
+      <Ref innerRef={this.contextRef}>
         <Grid columns={2}>
           <Grid.Column>
             <Visibility
@@ -58,10 +61,15 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
           </Grid.Column>
 
           <Grid.Column>
-            <Sticky context={contextRef}>
+            <Sticky context={this.contextRef}>
               <Segment.Group>
                 <Segment>
-                  <Checkbox checked={once} label='Once' onChange={this.toggleOnce} toggle />
+                  <Checkbox
+                    checked={once}
+                    label='Once'
+                    onChange={this.toggleOnce}
+                    toggle
+                  />
                   <Divider />
                   <Checkbox
                     checked={continuous}
@@ -71,19 +79,28 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
                   />
                 </Segment>
                 <Segment>
-                  <Button compact size='small' floated='right' onClick={this.clearLog}>
+                  <Button
+                    compact
+                    size='small'
+                    floated='right'
+                    onClick={this.clearLog}
+                  >
                     Clear
                   </Button>
                   Event Log <Label circular>{logCount}</Label>
                 </Segment>
                 <Segment secondary>
-                  <pre>{log.map((e, i) => <div key={i}>{e}</div>)}</pre>
+                  <pre>
+                    {log.map((e, i) => (
+                      <div key={i}>{e}</div>
+                    ))}
+                  </pre>
                 </Segment>
               </Segment.Group>
             </Sticky>
           </Grid.Column>
         </Grid>
-      </div>
+      </Ref>
     )
   }
 }

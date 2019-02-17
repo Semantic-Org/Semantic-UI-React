@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Grid, Sticky, Table, Visibility } from 'semantic-ui-react'
+import React, { Component, createRef } from 'react'
+import { Grid, Sticky, Table, Ref, Visibility } from 'semantic-ui-react'
 
 import Wireframe from '../Wireframe'
 
@@ -21,16 +21,15 @@ export default class VisibilityExampleVisibility extends Component {
       offScreen: false,
     },
   }
-
-  handleContextRef = contextRef => this.setState({ contextRef })
+  contextRef = createRef()
 
   handleUpdate = (e, { calculations }) => this.setState({ calculations })
 
   render() {
-    const { calculations, contextRef } = this.state
+    const { calculations } = this.state
 
     return (
-      <div ref={this.handleContextRef}>
+      <Ref innerRef={this.contextRef}>
         <Grid columns={2}>
           <Grid.Column>
             <Visibility onUpdate={this.handleUpdate}>
@@ -39,7 +38,7 @@ export default class VisibilityExampleVisibility extends Component {
           </Grid.Column>
 
           <Grid.Column>
-            <Sticky context={contextRef}>
+            <Sticky context={this.contextRef}>
               <Table celled>
                 <Table.Header>
                   <Table.Row>
@@ -54,11 +53,15 @@ export default class VisibilityExampleVisibility extends Component {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell>pixelsPassed</Table.Cell>
-                    <Table.Cell>{calculations.pixelsPassed.toFixed()}px</Table.Cell>
+                    <Table.Cell>
+                      {calculations.pixelsPassed.toFixed()}px
+                    </Table.Cell>
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell>percentagePassed</Table.Cell>
-                    <Table.Cell>{(calculations.percentagePassed * 100).toFixed()}%</Table.Cell>
+                    <Table.Cell>
+                      {(calculations.percentagePassed * 100).toFixed()}%
+                    </Table.Cell>
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell>fits</Table.Cell>
@@ -86,11 +89,15 @@ export default class VisibilityExampleVisibility extends Component {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell>topVisible</Table.Cell>
-                    <Table.Cell>{calculations.topVisible.toString()}</Table.Cell>
+                    <Table.Cell>
+                      {calculations.topVisible.toString()}
+                    </Table.Cell>
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell>bottomVisible</Table.Cell>
-                    <Table.Cell>{calculations.bottomVisible.toString()}</Table.Cell>
+                    <Table.Cell>
+                      {calculations.bottomVisible.toString()}
+                    </Table.Cell>
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell>topPassed</Table.Cell>
@@ -98,14 +105,16 @@ export default class VisibilityExampleVisibility extends Component {
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell>bottomPassed</Table.Cell>
-                    <Table.Cell>{calculations.bottomPassed.toString()}</Table.Cell>
+                    <Table.Cell>
+                      {calculations.bottomPassed.toString()}
+                    </Table.Cell>
                   </Table.Row>
                 </Table.Body>
               </Table>
             </Sticky>
           </Grid.Column>
         </Grid>
-      </div>
+      </Ref>
     )
   }
 }
