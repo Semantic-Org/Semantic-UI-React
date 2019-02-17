@@ -14,6 +14,7 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  isRefObject,
 } from '../../lib'
 import Portal from '../../addons/Portal'
 import PopupContent from './PopupContent'
@@ -53,7 +54,7 @@ export default class Popup extends Component {
     content: customPropTypes.itemShorthand,
 
     /** Existing element the pop-up should be bound to. */
-    context: PropTypes.object,
+    context: PropTypes.oneOfType([PropTypes.object, customPropTypes.refObject]),
 
     /** A disabled popup only renders its trigger. */
     disabled: PropTypes.bool,
@@ -372,7 +373,12 @@ export default class Popup extends Component {
     this.setPopupStyle()
   }
 
-  getContext = () => this.props.context || this.triggerRef
+  getContext = () => {
+    const { context } = this.props
+    const contextFromProp = isRefObject(context) ? context.current : context
+
+    return contextFromProp || this.triggerRef
+  }
 
   render() {
     const {
