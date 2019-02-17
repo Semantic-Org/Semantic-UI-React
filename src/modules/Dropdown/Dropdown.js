@@ -1144,7 +1144,10 @@ export default class Dropdown extends Component {
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
-    if (!hasSearchFocus) {
+
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/2641
+    // onBlur no longer is called
+    if (!hasFocus) {
       this.ref.blur()
     }
 
