@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Input from 'src/elements/Input/Input'
-import { htmlInputProps, SUI } from 'src/lib'
+import { htmlInputProps } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
@@ -95,7 +95,14 @@ describe('Input', () => {
   common.propKeyOnlyToClassName(Input, 'transparent')
   common.propKeyOnlyToClassName(Input, 'icon')
 
-  common.propValueOnlyToClassName(Input, 'size', SUI.SIZES)
+  common.propValueOnlyToClassName(Input, 'size', [
+    'mini',
+    'small',
+    'large',
+    'big',
+    'huge',
+    'massive',
+  ])
 
   it('renders with conditional children', () => {
     shallow(
