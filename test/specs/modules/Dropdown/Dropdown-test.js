@@ -2119,6 +2119,24 @@ describe('Dropdown', () => {
 
       dropdownMenuIsOpen()
     })
+
+    it('sets focus to the search input after selection', () => {
+      wrapperMount(<Dropdown open options={options} selection search />)
+
+      // random item, skip the first as it's selected by default
+      const randomIndex = 1 + _.random(options.length - 2)
+
+      wrapper
+        .find('DropdownItem')
+        .at(randomIndex)
+        .simulate('click')
+
+      const activeElement = document.activeElement
+      const searchIsFocused = activeElement === document.querySelector('input.search')
+      searchIsFocused.should.be.true(
+        `Expected "input.search" to be the active element but found ${activeElement} instead.`,
+      )
+    })
   })
 
   describe('searchInput', () => {
