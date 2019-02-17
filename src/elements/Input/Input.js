@@ -12,7 +12,6 @@ import {
   getUnhandledProps,
   handleRef,
   partitionHTMLProps,
-  SUI,
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
@@ -86,7 +85,7 @@ class Input extends Component {
     onChange: PropTypes.func,
 
     /** An Input can vary in size. */
-    size: PropTypes.oneOf(SUI.SIZES),
+    size: PropTypes.oneOf(['mini', 'small', 'large', 'big', 'huge', 'massive']),
 
     /** An Input can receive focus. */
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
