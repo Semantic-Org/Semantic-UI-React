@@ -518,10 +518,8 @@ export default class Dropdown extends Component {
     debug('openOnSpace()')
 
     if (keyboardKey.getCode(e) !== keyboardKey.Spacebar) return
-    if (this.state.open) return
 
     e.preventDefault()
-
     this.open(e)
   }
 
@@ -621,11 +619,14 @@ export default class Dropdown extends Component {
 
     this.isMouseDown = true
     _.invoke(this.props, 'onMouseDown', e, this.props)
+    document.addEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
   handleDocumentMouseUp = () => {
     debug('handleDocumentMouseUp()')
+
     this.isMouseDown = false
+    document.removeEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
   handleClick = (e) => {
@@ -1375,8 +1376,6 @@ export default class Dropdown extends Component {
           autoGenerateKey: false,
         })}
         {this.renderMenu()}
-
-        <EventStack name='mouseup' on={this.handleDocumentMouseUp} />
 
         {open && <EventStack name='keydown' on={this.closeOnEscape} />}
         {open && <EventStack name='keydown' on={this.moveSelectionOnKeyDown} />}
