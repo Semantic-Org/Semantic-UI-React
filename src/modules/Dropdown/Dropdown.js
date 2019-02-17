@@ -577,7 +577,7 @@ export default class Dropdown extends Component {
     this.makeSelectedItemActive(e)
     this.closeOnChange(e)
     this.clearSearchQuery()
-    if (search && this.searchRef) this.searchRef.focus()
+    if (search) _.invoke(this.searchRef, 'focus')
   }
 
   removeItemOnBackspace = (e) => {
@@ -641,14 +641,14 @@ export default class Dropdown extends Component {
 
     if (!search) return this.toggle(e)
     if (open) {
-      if (this.searchRef) this.searchRef.focus()
+      _.invoke(this.searchRef, 'focus')
       return
     }
     if (searchQuery.length >= minCharacters || minCharacters === 1) {
       this.open(e)
       return
     }
-    if (this.searchRef) this.searchRef.focus()
+    _.invoke(this.searchRef, 'focus')
   }
 
   handleIconClick = (e) => {
@@ -695,7 +695,7 @@ export default class Dropdown extends Component {
     // Notify the onAddItem prop if this is a new value
     if (isAdditionItem) _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
 
-    if (search && this.searchRef) this.searchRef.focus()
+    if (search) _.invoke(this.searchRef, 'focus')
   }
 
   handleFocus = (e) => {
@@ -1119,7 +1119,7 @@ export default class Dropdown extends Component {
     debug('open()', { disabled, open, search })
 
     if (disabled) return
-    if (search && this.searchRef) this.searchRef.focus()
+    if (search) _.invoke(this.searchRef, 'focus')
 
     _.invoke(this.props, 'onOpen', e, this.props)
 
