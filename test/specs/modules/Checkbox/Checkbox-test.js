@@ -68,25 +68,30 @@ describe('Checkbox', () => {
 
   describe('checking', () => {
     it('can be checked and unchecked', () => {
-      wrapperShallow(<Checkbox />)
+      wrapperMount(<Checkbox />)
 
       wrapper.find('input').should.not.be.checked()
 
-      wrapper.simulate('mouseup', mockedMouseEvent)
+      wrapper.find('label').simulate('mouseup')
+      wrapper.find('label').simulate('click')
       wrapper.find('input').should.be.checked()
 
-      wrapper.simulate('mouseup', mockedMouseEvent)
+      wrapper.find('label').simulate('mouseup')
+      wrapper.find('label').simulate('click')
       wrapper.find('input').should.not.be.checked()
     })
+
     it('can be checked but not unchecked when radio', () => {
-      wrapperShallow(<Checkbox radio />)
+      wrapperMount(<Checkbox radio />)
 
       wrapper.find('input').should.not.be.checked()
 
-      wrapper.simulate('mouseup', mockedMouseEvent)
+      wrapper.find('label').simulate('mouseup')
+      wrapper.find('label').simulate('click')
       wrapper.find('input').should.be.checked()
 
-      wrapper.simulate('mouseup', mockedMouseEvent)
+      wrapper.find('label').simulate('mouseup')
+      wrapper.find('label').simulate('click')
       wrapper.find('input').should.be.checked()
     })
   })
@@ -201,48 +206,6 @@ describe('Checkbox', () => {
     })
   })
 
-  describe('click propagation', () => {
-    const assertMatrix = [
-      {
-        description: 'propagates once on "label" without "id"',
-        id: undefined,
-        target: 'label',
-        propagations: 1,
-      },
-      {
-        description: 'does not propagate on "input" without "id"',
-        id: undefined,
-        target: 'input',
-        propagations: 0,
-      },
-      {
-        description: 'propagates once on "label" with "id"',
-        id: 'foo',
-        target: 'label',
-        propagations: 1,
-      },
-      {
-        description: 'does not propagate on "input" with "id"',
-        id: 'foo',
-        target: 'input',
-        propagations: 0,
-      },
-    ]
-
-    assertMatrix.forEach((assertion) => {
-      it(assertion.description, () => {
-        const onClick = sandbox.spy()
-        wrapperMount(
-          <div role='presentation' onClick={onClick}>
-            <Checkbox id={assertion.id} />
-          </div>,
-        )
-        domEvent.click(`.ui.checkbox ${assertion.target}`)
-        onClick.should.have.been.callCount(assertion.propagations)
-      })
-    })
-  })
-
   describe('label', () => {
     it('adds the "fitted" class when not present', () => {
       shallow(<Checkbox name='firstName' />).should.have.className('fitted')
@@ -263,7 +226,11 @@ describe('Checkbox', () => {
     it('is called with (e, data) on mouse up', () => {
       const onChange = sandbox.spy()
       const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onChange={onChange} {...props} />).simulate('mouseup', mockedMouseEvent)
+
+      wrapperMount(<Checkbox onChange={onChange} {...props} />)
+
+      wrapper.find('label').simulate('mouseup')
+      wrapper.find('label').simulate('click')
 
       onChange.should.have.been.calledOnce()
       onChange.should.have.been.calledWithMatch(
@@ -292,10 +259,10 @@ describe('Checkbox', () => {
   })
 
   describe('onClick', () => {
-    it('is called with (event, data) on mouseup', () => {
+    it('is called with (event, data) on click', () => {
       const onClick = sandbox.spy()
       const props = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onClick={onClick} {...props} />).simulate('mouseup', mockedMouseEvent)
+      mount(<Checkbox onClick={onClick} {...props} />).simulate('click')
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(
@@ -332,13 +299,7 @@ describe('Checkbox', () => {
       onMousedDown.should.have.been.calledOnce()
       onMousedDown.should.have.been.calledWithMatch({}, props)
     })
-    it('prevents default event', () => {
-      const preventDefault = sandbox.spy()
-      wrapperShallow(<Checkbox />)
 
-      wrapper.simulate('mousedown', { preventDefault })
-      preventDefault.should.have.been.calledOnce()
-    })
     it('sets focus to container', () => {
       wrapperMount(<Checkbox />)
       const input = document.querySelector('.ui.checkbox input')
@@ -368,15 +329,17 @@ describe('Checkbox', () => {
 
   describe('readOnly', () => {
     it('cannot be checked', () => {
-      wrapperShallow(<Checkbox readOnly />)
+      wrapperMount(<Checkbox readOnly />)
 
-      wrapper.simulate('click')
+      wrapper.find('label').simulate('mouseup')
+      wrapper.find('label').simulate('click')
       wrapper.find('input').should.not.be.checked()
     })
     it('cannot be unchecked', () => {
-      wrapperShallow(<Checkbox defaultChecked readOnly />)
+      wrapperMount(<Checkbox defaultChecked readOnly />)
 
-      wrapper.simulate('click')
+      wrapper.find('label').simulate('mouseup')
+      wrapper.find('label').simulate('click')
       wrapper.find('input').should.be.checked()
     })
   })
@@ -424,40 +387,77 @@ describe('Checkbox', () => {
   describe('comparisons with native DOM', () => {
     const assertMatrix = [
       {
-        description: 'click on label: fires on mouse up',
-        event: 'mouseup',
+        description: 'click on label: fires on mouse click',
+        events: {
+          label: ['mouseup', 'click'],
+          input: ['click'],
+        },
+        target: 'label',
+      },
+      {
+        description: 'click on input: fires on mouse click',
+        events: {
+          label: ['mouseup', 'click'],
+          input: ['click'],
+        },
         target: 'label',
       },
       {
         description: 'key on input: fires on space key',
-        event: 'click',
+        events: {
+          label: ['mouseup', 'click'],
+          input: ['click'],
+        },
         target: 'input',
       },
 
       {
-        description: 'click on label: fires on mouse click',
-        event: 'click',
-        target: 'label',
+        description: 'click on label with "id": fires on mouse click',
+        events: {
+          label: ['mouseup', 'click'],
+          input: ['click'],
+        },
+        id: 'foo',
+      },
+      {
+        description: 'click on input with "id": fires on mouse click',
+        events: {
+          label: ['mouseup', 'click'],
+          input: ['click'],
+        },
+        id: 'foo',
+      },
+      {
+        description: 'key on input with "id: fires on space key',
+        events: {
+          input: ['click'],
+        },
         id: 'foo',
       },
     ]
 
-    assertMatrix.forEach(({ description, event, target, ...props }) => {
+    assertMatrix.forEach(({ description, events, ...props }) => {
       it(description, () => {
         const dataId = _.uniqueId('checkbox')
-        const selector = `[data-id=${dataId}] ${target}`
 
         const onClick = sandbox.spy()
         const onChange = sandbox.spy()
+        const onParentClick = sandbox.spy()
 
         wrapperMount(
-          <Checkbox {...props} data-id={dataId} onClick={onClick} onChange={onChange} />,
+          <div onClick={onParentClick} role='presentation'>
+            <Checkbox {...props} data-id={dataId} onClick={onClick} onChange={onChange} />
+          </div>,
           { attachTo },
         )
-        domEvent.fire(selector, event)
+
+        _.forEach(events, (event, target) => {
+          domEvent.fire(`[data-id=${dataId}] ${target}`, event)
+        })
 
         onClick.should.have.been.calledOnce()
         onChange.should.have.been.calledOnce()
+        onParentClick.should.have.been.calledOnce()
 
         onChange.should.have.been.calledAfter(onClick)
       })
@@ -469,6 +469,7 @@ describe('Checkbox', () => {
       class ControlledCheckbox extends React.Component {
         state = { checked: false }
         toggle = () => this.setState(prevState => ({ checked: !prevState.checked }))
+
         render() {
           const handler = isOnClick ? { onClick: this.toggle } : { onChange: this.toggle }
           return <Checkbox label='Check this box' checked={this.state.checked} {...handler} />
