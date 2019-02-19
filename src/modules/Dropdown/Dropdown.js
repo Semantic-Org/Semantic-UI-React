@@ -1,3 +1,4 @@
+import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'classnames'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
@@ -10,7 +11,6 @@ import {
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
-  eventStack,
   getElementType,
   getUnhandledProps,
   makeDebugger,
@@ -379,7 +379,7 @@ export default class Dropdown extends Component {
   static SearchInput = DropdownSearchInput
 
   getInitialAutoControlledState() {
-    return { searchQuery: '' }
+    return { focus: false, searchQuery: '' }
   }
 
   componentWillMount() {
@@ -391,7 +391,6 @@ export default class Dropdown extends Component {
 
     if (open) {
       this.open()
-      this.attachHandlersOnOpen()
     }
   }
 
@@ -444,72 +443,35 @@ export default class Dropdown extends Component {
     // eslint-disable-line complexity
     debug('componentDidUpdate()')
     debug('to state:', objectDiff(prevState, this.state))
+    const { closeOnBlur, minCharacters, openOnFocus, search } = this.props
 
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
       debug('dropdown focused')
       if (!this.isMouseDown) {
-        const { minCharacters, openOnFocus, search } = this.props
         const openable = !search || (search && minCharacters === 1 && !this.state.open)
 
         debug('mouse is not down, opening')
         if (openOnFocus && openable) this.open()
       }
-      if (!this.state.open) {
-        eventStack.sub('keydown', [this.openOnArrow, this.openOnSpace])
-      } else {
-        eventStack.sub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
-      }
-      eventStack.sub('keydown', this.removeItemOnBackspace)
     } else if (prevState.focus && !this.state.focus) {
       debug('dropdown blurred')
-      const { closeOnBlur } = this.props
+
       if (!this.isMouseDown && closeOnBlur) {
         debug('mouse is not down and closeOnBlur=true, closing')
         this.close()
       }
-      eventStack.unsub('keydown', [
-        this.openOnArrow,
-        this.openOnSpace,
-        this.moveSelectionOnKeyDown,
-        this.selectItemOnEnter,
-        this.removeItemOnBackspace,
-      ])
     }
 
     // opened / closed
     if (!prevState.open && this.state.open) {
       debug('dropdown opened')
-      this.attachHandlersOnOpen()
       this.setOpenDirection()
       this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
       this.handleClose()
-      eventStack.unsub('keydown', [
-        this.closeOnEscape,
-        this.moveSelectionOnKeyDown,
-        this.selectItemOnEnter,
-      ])
-      eventStack.unsub('click', this.closeOnDocumentClick)
-      if (!this.state.focus) {
-        eventStack.unsub('keydown', this.removeItemOnBackspace)
-      }
     }
-  }
-
-  componentWillUnmount() {
-    debug('componentWillUnmount()')
-
-    eventStack.unsub('keydown', [
-      this.openOnArrow,
-      this.openOnSpace,
-      this.moveSelectionOnKeyDown,
-      this.selectItemOnEnter,
-      this.removeItemOnBackspace,
-      this.closeOnEscape,
-    ])
-    eventStack.unsub('click', this.closeOnDocumentClick)
   }
 
   // ----------------------------------------
@@ -556,10 +518,8 @@ export default class Dropdown extends Component {
     debug('openOnSpace()')
 
     if (keyboardKey.getCode(e) !== keyboardKey.Spacebar) return
-    if (this.state.open) return
 
     e.preventDefault()
-
     this.open(e)
   }
 
@@ -617,7 +577,7 @@ export default class Dropdown extends Component {
     this.makeSelectedItemActive(e)
     this.closeOnChange(e)
     this.clearSearchQuery()
-    if (search && this.searchRef) this.searchRef.focus()
+    if (search) _.invoke(this.searchRef, 'focus')
   }
 
   removeItemOnBackspace = (e) => {
@@ -650,17 +610,6 @@ export default class Dropdown extends Component {
     this.close()
   }
 
-  attachHandlersOnOpen = () => {
-    eventStack.sub('keydown', [
-      this.closeOnEscape,
-      this.moveSelectionOnKeyDown,
-      this.selectItemOnEnter,
-      this.removeItemOnBackspace,
-    ])
-    eventStack.sub('click', this.closeOnDocumentClick)
-    eventStack.unsub('keydown', [this.openOnArrow, this.openOnSpace])
-  }
-
   // ----------------------------------------
   // Component Event Handlers
   // ----------------------------------------
@@ -669,15 +618,15 @@ export default class Dropdown extends Component {
     debug('handleMouseDown()')
 
     this.isMouseDown = true
-    eventStack.sub('mouseup', this.handleDocumentMouseUp)
     _.invoke(this.props, 'onMouseDown', e, this.props)
+    document.addEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
   handleDocumentMouseUp = () => {
     debug('handleDocumentMouseUp()')
 
     this.isMouseDown = false
-    eventStack.unsub('mouseup', this.handleDocumentMouseUp)
+    document.removeEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
   handleClick = (e) => {
@@ -692,14 +641,14 @@ export default class Dropdown extends Component {
 
     if (!search) return this.toggle(e)
     if (open) {
-      if (this.searchRef) this.searchRef.focus()
+      _.invoke(this.searchRef, 'focus')
       return
     }
     if (searchQuery.length >= minCharacters || minCharacters === 1) {
       this.open(e)
       return
     }
-    if (this.searchRef) this.searchRef.focus()
+    _.invoke(this.searchRef, 'focus')
   }
 
   handleIconClick = (e) => {
@@ -746,7 +695,7 @@ export default class Dropdown extends Component {
     // Notify the onAddItem prop if this is a new value
     if (isAdditionItem) _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
 
-    if (multiple && search && this.searchRef) this.searchRef.focus()
+    if (search) _.invoke(this.searchRef, 'focus')
   }
 
   handleFocus = (e) => {
@@ -1170,7 +1119,7 @@ export default class Dropdown extends Component {
     debug('open()', { disabled, open, search })
 
     if (disabled) return
-    if (search && this.searchRef) this.searchRef.focus()
+    if (search) _.invoke(this.searchRef, 'focus')
 
     _.invoke(this.props, 'onOpen', e, this.props)
 
@@ -1192,15 +1141,15 @@ export default class Dropdown extends Component {
     debug('handleClose()')
 
     const hasSearchFocus = document.activeElement === this.searchRef
-    const hasDropdownFocus = document.activeElement === this.ref
-    const hasFocus = hasSearchFocus || hasDropdownFocus
-
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
     if (!hasSearchFocus) {
       this.ref.blur()
     }
+
+    const hasDropdownFocus = document.activeElement === this.ref
+    const hasFocus = hasSearchFocus || hasDropdownFocus
 
     // We need to keep the virtual model in sync with the browser focus change
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/692
@@ -1368,7 +1317,7 @@ export default class Dropdown extends Component {
       simple,
       trigger,
     } = this.props
-    const { open, upward } = this.state
+    const { focus, open, upward } = this.state
 
     // Classes
     const classes = cx(
@@ -1427,6 +1376,15 @@ export default class Dropdown extends Component {
           autoGenerateKey: false,
         })}
         {this.renderMenu()}
+
+        {open && <EventStack name='keydown' on={this.closeOnEscape} />}
+        {open && <EventStack name='keydown' on={this.moveSelectionOnKeyDown} />}
+        {open && <EventStack name='click' on={this.closeOnDocumentClick} />}
+        {open && <EventStack name='keydown' on={this.selectItemOnEnter} />}
+
+        {focus && <EventStack name='keydown' on={this.removeItemOnBackspace} />}
+        {focus && !open && <EventStack name='keydown' on={this.openOnArrow} />}
+        {focus && !open && <EventStack name='keydown' on={this.openOnSpace} />}
       </ElementType>
     )
   }

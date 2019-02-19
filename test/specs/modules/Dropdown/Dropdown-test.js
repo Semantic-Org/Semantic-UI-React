@@ -421,13 +421,13 @@ describe('Dropdown', () => {
 
   describe('handleBlur', () => {
     it('passes the event to the onBlur prop', () => {
-      const spy = sandbox.spy()
+      const onBlur = sandbox.spy()
       const event = { foo: 'bar' }
 
-      wrapperShallow(<Dropdown onBlur={spy} />).simulate('blur', event)
+      wrapperShallow(<Dropdown onBlur={onBlur} />).simulate('blur', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event)
+      onBlur.should.have.been.calledOnce()
+      onBlur.should.have.been.calledWithMatch(event)
     })
 
     it('calls handleChange with the selected option on blur', () => {
@@ -474,14 +474,14 @@ describe('Dropdown', () => {
     })
 
     it('does not call onBlur when the mouse is down', () => {
-      const spy = sandbox.spy()
+      const onBlur = sandbox.spy()
 
-      wrapperShallow(<Dropdown onBlur={spy} selectOnBlur />)
+      wrapperShallow(<Dropdown onBlur={onBlur} selectOnBlur />)
 
       wrapper.simulate('mousedown')
       wrapper.simulate('blur')
 
-      spy.should.not.have.been.called()
+      onBlur.should.not.have.been.called()
     })
 
     it('does not call makeSelectedItemActive when the mouse is down', () => {
@@ -1290,6 +1290,19 @@ describe('Dropdown', () => {
       // click outside
       domEvent.click(document.body)
       dropdownMenuIsClosed()
+    })
+
+    it('handles focus correctly', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+      wrapper.should.have.state('focus', false)
+
+      // focus
+      wrapper.getDOMNode().focus()
+      wrapper.should.have.state('focus', true)
+
+      // click outside
+      domEvent.click(document.body)
+      wrapper.should.have.state('focus', false)
     })
 
     it('closes on esc key', () => {
@@ -2105,6 +2118,24 @@ describe('Dropdown', () => {
       domEvent.keyDown(document, { key: 'Enter' })
 
       dropdownMenuIsOpen()
+    })
+
+    it('sets focus to the search input after selection', () => {
+      wrapperMount(<Dropdown open options={options} selection search />)
+
+      // random item, skip the first as it's selected by default
+      const randomIndex = 1 + _.random(options.length - 2)
+
+      wrapper
+        .find('DropdownItem')
+        .at(randomIndex)
+        .simulate('click')
+
+      const activeElement = document.activeElement
+      const searchIsFocused = activeElement === document.querySelector('input.search')
+      searchIsFocused.should.be.true(
+        `Expected "input.search" to be the active element but found ${activeElement} instead.`,
+      )
     })
   })
 
