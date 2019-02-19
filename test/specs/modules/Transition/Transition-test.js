@@ -73,23 +73,6 @@ describe('Transition', () => {
       wrapper.setState({ status: Transition.EXITING })
       wrapper.should.have.className('jump')
     })
-
-    it('custom directional animation', () => {
-      const animation = 'reveal left'
-      wrapperShallow(
-        <Transition directional animation={animation} transitionOnMount={false}>
-          <p />
-        </Transition>,
-      )
-
-      wrapper.setState({ status: Transition.ENTERING })
-      wrapper.should.have.className(animation)
-      wrapper.should.have.className('in')
-
-      wrapper.setState({ status: Transition.EXITING })
-      wrapper.should.have.className(animation)
-      wrapper.should.have.className('out')
-    })
   })
 
   describe('className', () => {
@@ -151,6 +134,36 @@ describe('Transition', () => {
       wrapper.should.have.className('animating')
       wrapper.should.have.className('visible')
       wrapper.should.have.className('transition')
+    })
+  })
+
+  describe('directional', () => {
+    it('adds classes when is "true"', () => {
+      wrapperShallow(
+        <Transition directional transitionOnMount={false}>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.className('in')
+
+      wrapper.setState({ status: Transition.EXITING })
+      wrapper.should.have.className('out')
+    })
+    
+    it('do not add classes when is "false"', () => {
+      wrapperShallow(
+        <Transition directional transitionOnMount={false}>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.not.className('in')
+
+      wrapper.setState({ status: Transition.EXITING })
+      wrapper.should.have.not.className('out')
     })
   })
 
