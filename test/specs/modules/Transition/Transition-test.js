@@ -154,7 +154,7 @@ describe('Transition', () => {
 
     it('do not add classes when is "false"', () => {
       wrapperShallow(
-        <Transition directional transitionOnMount={false}>
+        <Transition directional={false} transitionOnMount={false}>
           <p />
         </Transition>,
       )
