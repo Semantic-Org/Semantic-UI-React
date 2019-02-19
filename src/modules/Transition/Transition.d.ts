@@ -16,7 +16,7 @@ export interface StrictTransitionProps {
   /** Primary content. */
   children?: React.ReactNode
 
-  /** Whether it is directional animation event or not. */
+  /** Whether it is directional animation event or not. Use it only for custom transitions. */
   directional?: boolean
 
   /** Duration of the CSS transition animation in milliseconds. */
