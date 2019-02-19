@@ -69,7 +69,7 @@ describe('Transition', () => {
 
       wrapper.setState({ status: Transition.ENTERING })
       wrapper.should.have.className('jump')
-      
+
       wrapper.setState({ status: Transition.EXITING })
       wrapper.should.have.className('jump')
     })
@@ -151,7 +151,7 @@ describe('Transition', () => {
       wrapper.setState({ status: Transition.EXITING })
       wrapper.should.have.className('out')
     })
-    
+
     it('do not add classes when is "false"', () => {
       wrapperShallow(
         <Transition directional transitionOnMount={false}>
