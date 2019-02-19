@@ -223,7 +223,7 @@ export default class Checkbox extends Component {
   setIndeterminate = () => {
     const { indeterminate } = this.state
 
-    if (this.inputRef.current) this.inputRef.current.indeterminate = !!indeterminate
+    _.set(this.inputRef, 'current.indeterminate', !!indeterminate)
   }
 
   render() {
