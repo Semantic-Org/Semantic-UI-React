@@ -60,21 +60,18 @@ describe('Transition', () => {
       })
     })
 
-    it('custom animation', () => {
-      const animation = 'jump'
+    it('supports custom animations', () => {
       wrapperShallow(
-        <Transition animation={animation} transitionOnMount={false}>
+        <Transition animation='jump' transitionOnMount={false}>
           <p />
         </Transition>,
       )
 
       wrapper.setState({ status: Transition.ENTERING })
-      wrapper.should.have.className(animation)
-      wrapper.should.not.have.className('in')
-
+      wrapper.should.have.className('jump')
+      
       wrapper.setState({ status: Transition.EXITING })
-      wrapper.should.have.className(animation)
-      wrapper.should.not.have.className('out')
+      wrapper.should.have.className('jump')
     })
 
     it('custom directional animation', () => {
