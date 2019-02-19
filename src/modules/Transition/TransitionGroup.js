@@ -26,11 +26,11 @@ export default class TransitionGroup extends React.Component {
     /** Named animation event to used. Must be defined in CSS. */
     animation: PropTypes.oneOfType([PropTypes.oneOf(SUI.TRANSITIONS), PropTypes.string]),
 
-    /** whether it is directional animation event or not. */
-    directional: PropTypes.bool,
-
     /** Primary content. */
     children: PropTypes.node,
+
+    /** Whether it is directional animation event or not. Use it only for custom transitions. */
+    directional: PropTypes.bool,
 
     /** Duration of the CSS transition animation in milliseconds. */
     duration: PropTypes.oneOfType([
