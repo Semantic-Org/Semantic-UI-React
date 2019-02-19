@@ -37,7 +37,7 @@ describe('TransitionGroup', () => {
 
     it('passes props to children', () => {
       shallow(
-        <TransitionGroup directional animation='scale' duration={1500}>
+        <TransitionGroup animation='scale' directional duration={1500}>
           <div />
           <div />
           <div />
@@ -45,8 +45,8 @@ describe('TransitionGroup', () => {
       )
         .children()
         .everyWhere((item) => {
-          item.should.have.prop('directional', true)
           item.should.have.prop('animation', 'scale')
+          item.should.have.prop('directional', true)
           item.should.have.prop('duration', 1500)
           item.type().should.equal(Transition)
         })
