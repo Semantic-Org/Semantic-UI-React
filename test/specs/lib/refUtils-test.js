@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { createRef } from 'react'
 
-import handleRef from 'src/lib/handleRef'
+import { handleRef, isRef } from 'src/lib/refUtils'
 import { sandbox } from 'test/utils'
 
 describe('handleRef', () => {
@@ -30,5 +30,23 @@ describe('handleRef', () => {
 
     handleRef(ref, node)
     ref.should.have.property('current', node)
+  })
+})
+
+describe('isRef', () => {
+  it('returns a correct result for each input', () => {
+    const fixtures = [
+      { value: true, result: false },
+      { value: null, result: false },
+      { value: '', result: false },
+      { value: {}, result: false },
+
+      { value: createRef(), result: true },
+      { value: { current: document.createElement('div') }, result: true },
+    ]
+
+    fixtures.forEach((fixture) => {
+      expect(isRef(fixture.value)).to.equal(fixture.result)
+    })
   })
 })
