@@ -379,7 +379,6 @@ describe('Checkbox', () => {
           label: ['mouseup', 'click'],
           input: ['click'],
         },
-        target: 'label',
       },
       {
         description: 'click on input: fires on mouse click',
@@ -387,7 +386,6 @@ describe('Checkbox', () => {
           label: ['mouseup', 'click'],
           input: ['click'],
         },
-        target: 'label',
       },
       {
         description: 'key on input: fires on space key',
@@ -395,7 +393,6 @@ describe('Checkbox', () => {
           label: ['mouseup', 'click'],
           input: ['click'],
         },
-        target: 'input',
       },
 
       {
