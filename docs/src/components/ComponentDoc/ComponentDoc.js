@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
@@ -34,6 +34,7 @@ class ComponentDoc extends Component {
   }
 
   state = {}
+  examplesRef = createRef()
 
   componentWillMount() {
     const { exampleKeys, history } = this.props
@@ -61,8 +62,6 @@ class ComponentDoc extends Component {
     this.setState({ activePath: examplePathToHash(examplePath) })
   }
 
-  handleExamplesRef = examplesRef => this.setState({ examplesRef })
-
   handleSidebarItemClick = (e, { examplePath }) => {
     const { history } = this.props
     const activePath = examplePathToHash(examplePath)
@@ -74,7 +73,7 @@ class ComponentDoc extends Component {
 
   render() {
     const { componentsInfo, displayName, seeTags, sidebarSections } = this.props
-    const { activePath, examplesRef } = this.state
+    const { activePath } = this.state
     const componentInfo = componentsInfo[displayName]
 
     return (
@@ -100,7 +99,7 @@ class ComponentDoc extends Component {
 
           <Grid.Row columns='equal'>
             <Grid.Column>
-              <div ref={this.handleExamplesRef}>
+              <div ref={this.examplesRef}>
                 <ComponentExamples
                   displayName={displayName}
                   examplesExist={componentInfo.examplesExist}
@@ -114,7 +113,7 @@ class ComponentDoc extends Component {
             <Grid.Column computer={5} largeScreen={4} widescreen={4}>
               <ComponentSidebar
                 activePath={activePath}
-                examplesRef={examplesRef}
+                examplesRef={this.examplesRef}
                 onItemClick={this.handleSidebarItemClick}
                 sections={sidebarSections}
               />
