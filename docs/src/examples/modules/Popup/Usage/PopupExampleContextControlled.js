@@ -13,12 +13,7 @@ class PopupExampleContextControlled extends React.Component {
     return (
       <div>
         <Button content='Open controlled Popup' onClick={this.toggle} />
-        <Popup
-          context={node}
-          content='Hello'
-          position='top center'
-          open={open}
-        />
+        <Popup context={node} content='Hello' position='top center' open={open} />
         ---------->
         <strong ref={this.handleRef}>here</strong>
       </div>

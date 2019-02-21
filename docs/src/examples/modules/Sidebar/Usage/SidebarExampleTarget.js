@@ -1,13 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Button,
-  Header,
-  Image,
-  Menu,
-  Ref,
-  Segment,
-  Sidebar,
-} from 'semantic-ui-react'
+import { Button, Header, Image, Menu, Ref, Segment, Sidebar } from 'semantic-ui-react'
 
 export default class VisibilityExampleTarget extends Component {
   state = {}
@@ -53,12 +45,14 @@ export default class VisibilityExampleTarget extends Component {
               <Menu.Item as='a'>Channels</Menu.Item>
             </Sidebar>
           )}
+
           <Ref innerRef={this.handleSegmentRef}>
             <Segment>
               <Header as='h3'>Clickable area</Header>
               <p>When you will click there, the sidebar will be closed.</p>
             </Segment>
           </Ref>
+
           <Segment>
             <Header as='h3'>Application Content</Header>
             <Image src='/images/wireframe/paragraph.png' />
