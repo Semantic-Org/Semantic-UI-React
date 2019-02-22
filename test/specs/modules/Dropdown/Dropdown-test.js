@@ -1261,6 +1261,7 @@ describe('Dropdown', () => {
       dropdownMenuIsOpen()
 
       // select item
+      item.simulate('mousedown')
       item.simulate('click')
       dropdownMenuIsClosed()
     })
@@ -2135,6 +2136,22 @@ describe('Dropdown', () => {
       const searchIsFocused = activeElement === document.querySelector('input.search')
       searchIsFocused.should.be.true(
         `Expected "input.search" to be the active element but found ${activeElement} instead.`,
+      )
+    })
+
+    it('sets focus to the dropdown after selection', () => {
+      const randomIndex = _.random(options.length - 1)
+
+      wrapperMount(<Dropdown options={options} selection />)
+        .simulate('click', nativeEvent)
+        .find('DropdownItem')
+        .at(randomIndex)
+        .simulate('click', nativeEvent)
+
+      const activeElement = document.activeElement
+      const dropdownIsFocused = activeElement === document.querySelector('div.dropdown')
+      dropdownIsFocused.should.be.true(
+        `Expected Dropdown to be the active element but found ${activeElement} instead.`,
       )
     })
   })

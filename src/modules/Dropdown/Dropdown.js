@@ -470,7 +470,7 @@ export default class Dropdown extends Component {
       this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
-      this.handleClose()
+      // this.handleClose()
     }
   }
 
@@ -489,7 +489,7 @@ export default class Dropdown extends Component {
     const { closeOnChange, multiple } = this.props
     const shouldClose = _.isUndefined(closeOnChange) ? !multiple : closeOnChange
 
-    if (shouldClose) this.close(e)
+    if (shouldClose) this.close(e, () => {})
   }
 
   closeOnEscape = (e) => {
@@ -695,7 +695,11 @@ export default class Dropdown extends Component {
     // Notify the onAddItem prop if this is a new value
     if (isAdditionItem) _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
 
-    if (search) _.invoke(this.searchRef, 'focus')
+    if (search) {
+      _.invoke(this.searchRef, 'focus')
+    } else {
+      _.invoke(this.ref, 'focus')
+    }
   }
 
   handleFocus = (e) => {
@@ -1127,13 +1131,13 @@ export default class Dropdown extends Component {
     this.scrollSelectedItemIntoView()
   }
 
-  close = (e) => {
+  close = (e, callback = this.handleClose) => {
     const { open } = this.state
     debug('close()', { open })
 
     if (open) {
       _.invoke(this.props, 'onClose', e, this.props)
-      this.trySetState({ open: false })
+      this.trySetState({ open: false }, undefined, callback)
     }
   }
 
@@ -1144,7 +1148,7 @@ export default class Dropdown extends Component {
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
-    if (!hasSearchFocus) {
+    if (!hasSearchFocus && this.ref) {
       this.ref.blur()
     }
 
