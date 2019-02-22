@@ -246,7 +246,7 @@ describe('Input', () => {
 
       ref.should.have.been.calledOnce()
       ref.should.have.been.calledWithMatch(input)
-      wrapper.instance().inputRef.should.equal(input)
+      wrapper.instance().inputRef.current.should.equal(input)
 
       wrapper.detach()
       document.body.removeChild(mountNode)

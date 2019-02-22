@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
@@ -45,6 +45,8 @@ class TextArea extends Component {
     rows: 3,
   }
 
+  ref = createRef()
+
   componentDidMount() {
     this.updateHeight()
   }
@@ -60,7 +62,7 @@ class TextArea extends Component {
     }
   }
 
-  focus = () => this.ref.focus()
+  focus = () => this.ref.current.focus()
 
   handleChange = (e) => {
     const value = _.get(e, 'target.value')
@@ -75,30 +77,30 @@ class TextArea extends Component {
     this.updateHeight()
   }
 
-  handleRef = c => (this.ref = c)
-
   removeAutoHeightStyles = () => {
-    this.ref.style.height = null
-    this.ref.style.resize = null
+    this.ref.current.style.height = null
+    this.ref.current.style.resize = null
   }
 
   updateHeight = () => {
     const { autoHeight } = this.props
-    if (!this.ref || !autoHeight) return
+    if (!this.ref.current || !autoHeight) return
 
-    const { minHeight, borderBottomWidth, borderTopWidth } = window.getComputedStyle(this.ref)
+    const { minHeight, borderBottomWidth, borderTopWidth } = window.getComputedStyle(
+      this.ref.current,
+    )
 
     const borderHeight = _.sum([borderBottomWidth, borderTopWidth].map(x => parseFloat(x)))
-    const scrollHeight = this.ref.scrollHeight
+    const scrollHeight = this.ref.current.scrollHeight
 
     // Measure the scrollHeight and update the height to match.
-    this.ref.style.height = 'auto'
-    this.ref.style.overflowY = 'hidden'
-    this.ref.style.height = `${Math.max(
+    this.ref.current.style.height = 'auto'
+    this.ref.current.style.overflowY = 'hidden'
+    this.ref.current.style.height = `${Math.max(
       parseFloat(minHeight),
       Math.ceil(scrollHeight + borderHeight),
     )}px`
-    this.ref.style.overflowY = ''
+    this.ref.current.style.overflowY = ''
   }
 
   render() {
@@ -113,7 +115,7 @@ class TextArea extends Component {
         {...rest}
         onChange={this.handleChange}
         onInput={this.handleInput}
-        ref={this.handleRef}
+        ref={this.ref}
         rows={rows}
         style={{ resize, ...style }}
         value={value}
