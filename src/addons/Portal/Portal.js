@@ -1,10 +1,11 @@
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { cloneElement, Fragment } from 'react'
+import React, { cloneElement, createRef, Fragment } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  customPropTypes,
   doesNodeContainClick,
   eventStack,
   handleRef,
@@ -111,12 +112,8 @@ class Portal extends Component {
     /** Element to be rendered in-place where the portal is defined. */
     trigger: PropTypes.node,
 
-    /**
-     * Called with a ref to the trigger node.
-     *
-     * @param {HTMLElement} node - Referred node.
-     */
-    triggerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    /** Called with a ref to the trigger node. */
+    triggerRef: customPropTypes.ref,
   }
 
   static defaultProps = {
@@ -129,6 +126,9 @@ class Portal extends Component {
   static autoControlledProps = ['open']
 
   static Inner = PortalInner
+
+  contentRef = createRef()
+  triggerRef = createRef()
 
   componentWillUnmount() {
     // Clean up timers
@@ -144,9 +144,9 @@ class Portal extends Component {
     const { closeOnDocumentClick } = this.props
 
     if (
-      !this.portalNode || // no portal
-      doesNodeContainClick(this.triggerNode, e) || // event happened in trigger (delegate to trigger handlers)
-      doesNodeContainClick(this.portalNode, e) // event happened in the portal
+      !this.contentRef.current || // no portal
+      doesNodeContainClick(this.triggerRef.current, e) || // event happened in trigger (delegate to trigger handlers)
+      doesNodeContainClick(this.contentRef.current, e) // event happened in the portal
     ) {
       return
     } // ignore the click
@@ -175,7 +175,7 @@ class Portal extends Component {
     if (!closeOnPortalMouseLeave) return
 
     // Do not close the portal when 'mouseleave' is triggered by children
-    if (e.target !== this.portalNode) return
+    if (e.target !== this.contentRef.current) return
 
     debug('handlePortalMouseLeave()')
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
@@ -201,7 +201,7 @@ class Portal extends Component {
     // IE 11 doesn't work with relatedTarget in blur events
     const target = e.relatedTarget || document.activeElement
     // do not close if focus is given to the portal
-    const didFocusPortal = _.invoke(this, 'portalNode.contains', target)
+    const didFocusPortal = _.invoke(this.contentRef.current, 'contains', target)
 
     if (!closeOnTriggerBlur || didFocusPortal) return
 
@@ -311,8 +311,6 @@ class Portal extends Component {
     debug('handleMount()')
     const { eventPool } = this.props
 
-    this.portalNode = target
-
     eventStack.sub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target })
     eventStack.sub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target })
     eventStack.sub('click', this.handleDocumentClick, { pool: eventPool })
@@ -325,8 +323,6 @@ class Portal extends Component {
     debug('handleUnmount()')
     const { eventPool } = this.props
 
-    this.portalNode = null
-
     eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target })
     eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target })
     eventStack.unsub('click', this.handleDocumentClick, { pool: eventPool })
@@ -337,7 +333,7 @@ class Portal extends Component {
 
   handleTriggerRef = (c) => {
     debug('handleTriggerRef()')
-    this.triggerNode = c
+    this.triggerRef.current = c
     handleRef(this.props.triggerRef, c)
   }
 
@@ -349,6 +345,7 @@ class Portal extends Component {
       <Fragment>
         {open && (
           <PortalInner
+            innerRef={this.contentRef}
             mountNode={mountNode}
             onMount={this.handleMount}
             onUnmount={this.handleUnmount}
