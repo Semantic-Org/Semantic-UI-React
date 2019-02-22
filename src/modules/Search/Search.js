@@ -552,6 +552,7 @@ export default class Search extends Component {
         key={childKey || result.title}
         active={selectedIndex === offsetIndex}
         onClick={this.handleItemClick}
+        onMouseDown={e => e.preventDefault()}
         renderer={resultRenderer}
         {...result}
         id={offsetIndex} // Used to lookup the result on item click
