@@ -396,5 +396,10 @@ export const deprecate = (help, validator) => (props, propName, componentName, .
   return error
 }
 
+/** A checker that matches the React.RefObject type. */
+export const refObject = PropTypes.shape({
+  current: PropTypes.object,
+})
+
 /** A checker that matches the React.Ref type. */
-export const ref = PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+export const ref = PropTypes.oneOfType([PropTypes.func, refObject])
