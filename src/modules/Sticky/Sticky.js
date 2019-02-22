@@ -9,7 +9,7 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  isRef,
+  isRefObject,
 } from '../../lib'
 
 /**
@@ -33,7 +33,7 @@ export default class Sticky extends Component {
     className: PropTypes.string,
 
     /** Context which sticky element should stick to. */
-    context: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.ref]),
+    context: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
 
     /** Offset in pixels from the top of the screen when fixing element to viewport. */
     offset: PropTypes.number,
@@ -74,7 +74,7 @@ export default class Sticky extends Component {
     pushing: PropTypes.bool,
 
     /** Context which sticky should attach onscroll events. */
-    scrollContext: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.ref]),
+    scrollContext: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
 
     /** Custom style for sticky element. */
     styleElement: PropTypes.object,
@@ -142,7 +142,7 @@ export default class Sticky extends Component {
 
   addListeners = (props) => {
     const { scrollContext } = props
-    const scrollContextNode = isRef(scrollContext) ? scrollContext.current : scrollContext
+    const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
 
     if (scrollContextNode) {
       eventStack.sub('resize', this.handleUpdate, { target: scrollContextNode })
@@ -152,7 +152,7 @@ export default class Sticky extends Component {
 
   removeListeners = () => {
     const { scrollContext } = this.props
-    const scrollContextNode = isRef(scrollContext) ? scrollContext.current : scrollContext
+    const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
 
     if (scrollContextNode) {
       eventStack.unsub('resize', this.handleUpdate, { target: scrollContextNode })
@@ -202,7 +202,7 @@ export default class Sticky extends Component {
 
   assignRects = () => {
     const { context } = this.props
-    const contextNode = isRef(context) ? context.current : context || document.body
+    const contextNode = isRefObject(context) ? context.current : context || document.body
 
     this.triggerRect = this.triggerRef.current.getBoundingClientRect()
     this.contextRect = contextNode.getBoundingClientRect()
