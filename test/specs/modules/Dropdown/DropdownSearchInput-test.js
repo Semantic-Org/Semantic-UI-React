@@ -38,23 +38,6 @@ describe('DropdownSearchInput', () => {
     })
   })
 
-  describe('inputRef', () => {
-    it('maintains ref on input', () => {
-      const inputRef = sandbox.spy()
-      const mountNode = document.createElement('div')
-      document.body.appendChild(mountNode)
-
-      const wrapper = mount(<DropdownSearchInput inputRef={inputRef} />, { attachTo: mountNode })
-      const input = document.querySelector('input')
-
-      inputRef.should.have.been.calledOnce()
-      inputRef.should.have.been.calledWithMatch(input)
-
-      wrapper.detach()
-      document.body.removeChild(mountNode)
-    })
-  })
-
   describe('tabIndex', () => {
     it('is not set by default', () => {
       shallow(<DropdownSearchInput />).should.not.have.prop('tabIndex')
