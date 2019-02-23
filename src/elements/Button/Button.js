@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 import {
   childrenUtils,
@@ -155,6 +155,8 @@ class Button extends Component {
   static Group = ButtonGroup
   static Or = ButtonOr
 
+  ref = createRef()
+
   computeButtonAriaRole(ElementType) {
     const { role } = this.props
 
@@ -176,7 +178,7 @@ class Button extends Component {
     if (ElementType === 'div') return 0
   }
 
-  focus = () => _.invoke(this.ref, 'focus')
+  focus = () => _.invoke(this.ref.current, 'focus')
 
   handleClick = (e) => {
     const { disabled } = this.props
@@ -188,8 +190,6 @@ class Button extends Component {
 
     _.invoke(this.props, 'onClick', e, this.props)
   }
-
-  handleRef = c => (this.ref = c)
 
   hasIconClass = () => {
     const { labelPosition, children, content, icon } = this.props
@@ -268,9 +268,9 @@ class Button extends Component {
           {labelPosition === 'left' && labelElement}
           <button
             className={buttonClasses}
-            aria-pressed={toggle ? (!!active) : undefined}
+            aria-pressed={toggle ? !!active : undefined}
             disabled={disabled}
-            ref={this.handleRef}
+            ref={this.ref}
             tabIndex={tabIndex}
           >
             {Icon.create(icon, { autoGenerateKey: false })} {content}
@@ -288,10 +288,10 @@ class Button extends Component {
       <ElementType
         {...rest}
         className={classes}
-        aria-pressed={toggle ? (!!active) : undefined}
+        aria-pressed={toggle ? !!active : undefined}
         disabled={(disabled && ElementType === 'button') || undefined}
         onClick={this.handleClick}
-        ref={this.handleRef}
+        ref={this.ref}
         role={role}
         tabIndex={tabIndex}
       >
