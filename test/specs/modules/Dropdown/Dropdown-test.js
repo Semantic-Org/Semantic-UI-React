@@ -162,33 +162,33 @@ describe('Dropdown', () => {
     wrapperMount(<Dropdown options={options} selection defaultOpen />)
 
     const instance = wrapper.instance()
-    sandbox.spy(instance.ref, 'blur')
+    sandbox.spy(instance.ref.current, 'blur')
 
     dropdownMenuIsOpen()
     wrapper.simulate('click')
     dropdownMenuIsClosed()
 
-    instance.ref.blur.should.have.been.calledOnce()
+    instance.ref.current.blur.should.have.been.calledOnce()
   })
 
   it('blurs the Dropdown node on close by clicking outside component', () => {
     wrapperMount(<Dropdown options={options} selection defaultOpen />)
 
     const instance = wrapper.instance()
-    sandbox.spy(instance.ref, 'blur')
+    sandbox.spy(instance.ref.current, 'blur')
 
     dropdownMenuIsOpen()
     document.body.click()
     dropdownMenuIsClosed()
 
-    instance.ref.blur.should.have.been.calledOnce()
+    instance.ref.current.blur.should.have.been.calledOnce()
   })
 
   it('does not close on click when search is true and options are empty', () => {
     wrapperMount(<Dropdown options={[]} search selection defaultOpen />)
 
     const instance = wrapper.instance()
-    sandbox.spy(instance.ref, 'blur')
+    sandbox.spy(instance.ref.current, 'blur')
 
     dropdownMenuIsOpen()
     wrapper.simulate('click')
@@ -1558,7 +1558,7 @@ describe('Dropdown', () => {
           .at(randomIndex)
           .simulate('click', nativeEvent)
 
-        wrapper.instance().searchRef.should.eq(document.activeElement)
+        wrapper.instance().searchRef.current.should.eq(document.activeElement)
       })
     })
     describe('removing items', () => {
