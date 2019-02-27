@@ -521,6 +521,18 @@ describe('Search', () => {
       onBlur.should.have.been.calledOnce()
       onBlur.should.have.been.calledWithMatch(nativeEvent, { onBlur, results: options })
     })
+
+    it('is not called on an item click', () => {
+      const onBlur = sandbox.spy()
+      wrapperMount(<Search results={options} onBlur={onBlur} />)
+
+      openSearchResults()
+      wrapper
+        .find('SearchResult')
+        .at('0')
+        .simulate('click', nativeEvent)
+      onBlur.should.have.not.been.called()
+    })
   })
 
   describe('onFocus', () => {

@@ -378,17 +378,24 @@ export default class Search extends Component {
     this.close()
   }
 
+  handleItemMouseDown = (e) => {
+    debug('handleItemMouseDown()')
+    // We should prevent default to prevent blur events.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/3298
+    e.preventDefault()
+  }
+
   handleFocus = (e) => {
     debug('handleFocus()')
-    const { onFocus } = this.props
-    if (onFocus) onFocus(e, this.props)
+
+    _.invoke(this.props, 'onFocus', e, this.props)
     this.setState({ focus: true })
   }
 
   handleBlur = (e) => {
     debug('handleBlur()')
-    const { onBlur } = this.props
-    if (onBlur) onBlur(e, this.props)
+
+    _.invoke(this.props, 'onBlur', e, this.props)
     this.setState({ focus: false })
   }
 
@@ -552,7 +559,7 @@ export default class Search extends Component {
         key={childKey || result.title}
         active={selectedIndex === offsetIndex}
         onClick={this.handleItemClick}
-        onMouseDown={e => e.preventDefault()}
+        onMouseDown={this.handleItemMouseDown}
         renderer={resultRenderer}
         {...result}
         id={offsetIndex} // Used to lookup the result on item click
