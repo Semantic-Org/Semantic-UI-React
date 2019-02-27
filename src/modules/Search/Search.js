@@ -380,7 +380,8 @@ export default class Search extends Component {
 
   handleItemMouseDown = (e) => {
     debug('handleItemMouseDown()')
-    // We should prevent default to prevent blur events.
+
+    // Heads up! We should prevent default to prevent blur events.
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/3298
     e.preventDefault()
   }
