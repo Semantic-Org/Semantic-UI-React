@@ -2,6 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
+import Ref from '../../addons/Ref'
 import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
@@ -61,14 +62,15 @@ class TextArea extends Component {
     const ElementType = getElementType(TextArea, this.props)
 
     return (
-      <ElementType
-        {...rest}
-        onChange={this.handleChange}
-        onInput={this.handleInput}
-        ref={this.ref}
-        rows={rows}
-        value={value}
-      />
+      <Ref innerRef={this.ref}>
+        <ElementType
+          {...rest}
+          onChange={this.handleChange}
+          onInput={this.handleInput}
+          rows={rows}
+          value={value}
+        />
+      </Ref>
     )
   }
 }

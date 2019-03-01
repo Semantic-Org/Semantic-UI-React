@@ -5,7 +5,7 @@ import ReactDOMServer from 'react-dom/server'
 import * as semanticUIReact from 'semantic-ui-react'
 
 import { componentInfoContext } from 'docs/src/utils'
-import { assertBodyContains, consoleUtil, nestedShallow, sandbox, syntheticEvent } from 'test/utils'
+import { assertBodyContains, consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import helpers from './commonHelpers'
 import hasValidTypings from './hasValidTypings'
 
@@ -124,13 +124,15 @@ export default (Component, options = {}) => {
         ]
         try {
           tags.forEach((tag) => {
-            nestedShallow(<Component {...requiredProps} as={tag} />, {
+            shallow(<Component {...requiredProps} as={tag} />, {
+              autoNesting: true,
               nestingLevel,
             }).should.have.tagName(tag)
           })
         } catch (err) {
           tags.forEach((tag) => {
-            const wrapper = nestedShallow(<Component {...requiredProps} as={tag} />, {
+            const wrapper = shallow(<Component {...requiredProps} as={tag} />, {
+              autoNesting: true,
               nestingLevel,
             })
             wrapper.type().should.not.equal(Component)
@@ -143,7 +145,10 @@ export default (Component, options = {}) => {
         const MyComponent = () => null
 
         try {
-          nestedShallow(<Component {...requiredProps} as={MyComponent} />, { nestingLevel })
+          shallow(<Component {...requiredProps} as={MyComponent} />, {
+            autoNesting: true,
+            nestingLevel,
+          })
             .type()
             .should.equal(MyComponent)
         } catch (err) {
@@ -162,7 +167,10 @@ export default (Component, options = {}) => {
         }
 
         try {
-          nestedShallow(<Component {...requiredProps} as={MyComponent} />, { nestingLevel })
+          shallow(<Component {...requiredProps} as={MyComponent} />, {
+            autoNesting: true,
+            nestingLevel,
+          })
             .type()
             .should.equal(MyComponent)
         } catch (err) {
@@ -175,7 +183,8 @@ export default (Component, options = {}) => {
       it('passes extra props to the component it is renders as', () => {
         const MyComponent = () => null
 
-        nestedShallow(<Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />, {
+        shallow(<Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />, {
+          autoNesting: true,
           nestingLevel,
         }).should.have.descendants('[data-extra-prop="foo"]')
       })
@@ -327,13 +336,14 @@ export default (Component, options = {}) => {
           wrapper.detach()
           document.body.removeChild(mountNode)
         } else {
-          nestedShallow(
+          shallow(
             <Component
               as={rendersFragmentByDefault ? 'div' : undefined}
               {...requiredProps}
               className={className}
             />,
             {
+              autoNesting: true,
               nestingLevel,
             },
           ).should.have.className(className)
@@ -341,17 +351,18 @@ export default (Component, options = {}) => {
       })
 
       it("user's className does not override the default classes", () => {
-        const defaultClasses = nestedShallow(<Component {...requiredProps} />, {
+        const defaultClasses = shallow(<Component {...requiredProps} />, {
+          autoNesting: true,
           nestingLevel,
         }).prop('className')
 
         if (!defaultClasses) return
 
         const userClasses = faker.hacker.verb()
-        const mixedClasses = nestedShallow(
-          <Component {...requiredProps} className={userClasses} />,
-          { nestingLevel },
-        ).prop('className')
+        const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />, {
+          autoNesting: true,
+          nestingLevel,
+        }).prop('className')
 
         defaultClasses.split(' ').forEach((defaultClass) => {
           mixedClasses.should.include(

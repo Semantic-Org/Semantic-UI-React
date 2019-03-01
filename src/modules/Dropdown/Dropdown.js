@@ -1353,37 +1353,38 @@ export default class Dropdown extends Component {
     const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
 
     return (
-      <ElementType
-        {...rest}
-        {...ariaOptions}
-        className={classes}
-        onBlur={this.handleBlur}
-        onClick={this.handleClick}
-        onMouseDown={this.handleMouseDown}
-        onFocus={this.handleFocus}
-        onChange={this.handleChange}
-        tabIndex={this.computeTabIndex()}
-        ref={this.ref}
-      >
-        {this.renderLabels()}
-        {this.renderSearchInput()}
-        {this.renderSearchSizer()}
-        {trigger || this.renderText()}
-        {Icon.create(icon, {
-          overrideProps: this.handleIconOverrides,
-          autoGenerateKey: false,
-        })}
-        {this.renderMenu()}
+      <Ref innerRef={this.ref}>
+        <ElementType
+          {...rest}
+          {...ariaOptions}
+          className={classes}
+          onBlur={this.handleBlur}
+          onClick={this.handleClick}
+          onMouseDown={this.handleMouseDown}
+          onFocus={this.handleFocus}
+          onChange={this.handleChange}
+          tabIndex={this.computeTabIndex()}
+        >
+          {this.renderLabels()}
+          {this.renderSearchInput()}
+          {this.renderSearchSizer()}
+          {trigger || this.renderText()}
+          {Icon.create(icon, {
+            overrideProps: this.handleIconOverrides,
+            autoGenerateKey: false,
+          })}
+          {this.renderMenu()}
 
-        {open && <EventStack name='keydown' on={this.closeOnEscape} />}
-        {open && <EventStack name='keydown' on={this.moveSelectionOnKeyDown} />}
-        {open && <EventStack name='click' on={this.closeOnDocumentClick} />}
-        {open && <EventStack name='keydown' on={this.selectItemOnEnter} />}
+          {open && <EventStack name='keydown' on={this.closeOnEscape} />}
+          {open && <EventStack name='keydown' on={this.moveSelectionOnKeyDown} />}
+          {open && <EventStack name='click' on={this.closeOnDocumentClick} />}
+          {open && <EventStack name='keydown' on={this.selectItemOnEnter} />}
 
-        {focus && <EventStack name='keydown' on={this.removeItemOnBackspace} />}
-        {focus && !open && <EventStack name='keydown' on={this.openOnArrow} />}
-        {focus && !open && <EventStack name='keydown' on={this.openOnSpace} />}
-      </ElementType>
+          {focus && <EventStack name='keydown' on={this.removeItemOnBackspace} />}
+          {focus && !open && <EventStack name='keydown' on={this.openOnArrow} />}
+          {focus && !open && <EventStack name='keydown' on={this.openOnSpace} />}
+        </ElementType>
+      </Ref>
     )
   }
 }

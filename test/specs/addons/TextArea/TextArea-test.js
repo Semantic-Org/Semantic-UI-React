@@ -80,11 +80,11 @@ describe('TextArea', () => {
 
   describe('rows', () => {
     it('has default value', () => {
-      shallow(<TextArea />).should.have.prop('rows', 3)
+      shallow(<TextArea />, { autoNesting: true }).should.have.prop('rows', 3)
     })
 
     it('sets prop', () => {
-      shallow(<TextArea rows={1} />).should.have.prop('rows', 1)
+      shallow(<TextArea rows={1} />, { autoNesting: true }).should.have.prop('rows', 1)
     })
   })
 })

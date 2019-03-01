@@ -17,6 +17,7 @@ import {
   isRefObject,
 } from '../../lib'
 import Portal from '../../addons/Portal'
+import Ref from '../../addons/Ref'
 import PopupContent from './PopupContent'
 import PopupHeader from './PopupHeader'
 
@@ -427,11 +428,14 @@ export default class Popup extends Component {
     const ElementType = getElementType(Popup, this.props)
 
     const popupJSX = (
-      <ElementType {...rest} className={classes} style={style} ref={this.handlePopupRef}>
-        {children}
-        {childrenUtils.isNil(children) && PopupHeader.create(header, { autoGenerateKey: false })}
-        {childrenUtils.isNil(children) && PopupContent.create(content, { autoGenerateKey: false })}
-      </ElementType>
+      <Ref innerRef={this.handlePopupRef}>
+        <ElementType {...rest} className={classes} style={style}>
+          {children}
+          {childrenUtils.isNil(children) && PopupHeader.create(header, { autoGenerateKey: false })}
+          {childrenUtils.isNil(children) &&
+            PopupContent.create(content, { autoGenerateKey: false })}
+        </ElementType>
+      </Ref>
     )
 
     const mergedPortalProps = { ...this.getPortalProps(), ...portalProps }
