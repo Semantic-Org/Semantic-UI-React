@@ -3,6 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
+import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
@@ -266,15 +267,16 @@ class Button extends Component {
       return (
         <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
           {labelPosition === 'left' && labelElement}
-          <button
-            className={buttonClasses}
-            aria-pressed={toggle ? !!active : undefined}
-            disabled={disabled}
-            ref={this.ref}
-            tabIndex={tabIndex}
-          >
-            {Icon.create(icon, { autoGenerateKey: false })} {content}
-          </button>
+          <Ref innerRef={this.ref}>
+            <button
+              className={buttonClasses}
+              aria-pressed={toggle ? !!active : undefined}
+              disabled={disabled}
+              tabIndex={tabIndex}
+            >
+              {Icon.create(icon, { autoGenerateKey: false })} {content}
+            </button>
+          </Ref>
           {(labelPosition === 'right' || !labelPosition) && labelElement}
         </ElementType>
       )
@@ -285,20 +287,21 @@ class Button extends Component {
     const role = this.computeButtonAriaRole(ElementType)
 
     return (
-      <ElementType
-        {...rest}
-        className={classes}
-        aria-pressed={toggle ? !!active : undefined}
-        disabled={(disabled && ElementType === 'button') || undefined}
-        onClick={this.handleClick}
-        ref={this.ref}
-        role={role}
-        tabIndex={tabIndex}
-      >
-        {hasChildren && children}
-        {!hasChildren && Icon.create(icon, { autoGenerateKey: false })}
-        {!hasChildren && content}
-      </ElementType>
+      <Ref innerRef={this.ref}>
+        <ElementType
+          {...rest}
+          className={classes}
+          aria-pressed={toggle ? !!active : undefined}
+          disabled={(disabled && ElementType === 'button') || undefined}
+          onClick={this.handleClick}
+          role={role}
+          tabIndex={tabIndex}
+        >
+          {hasChildren && children}
+          {!hasChildren && Icon.create(icon, { autoGenerateKey: false })}
+          {!hasChildren && content}
+        </ElementType>
+      </Ref>
     )
   }
 }

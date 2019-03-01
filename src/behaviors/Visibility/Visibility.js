@@ -2,6 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
+import Ref from '../../addons/Ref'
 import {
   eventStack,
   customPropTypes,
@@ -406,9 +407,9 @@ export default class Visibility extends Component {
     const rest = getUnhandledProps(Visibility, this.props)
 
     return (
-      <ElementType {...rest} ref={this.ref}>
-        {children}
-      </ElementType>
+      <Ref innerRef={this.ref}>
+        <ElementType {...rest}>{children}</ElementType>
+      </Ref>
     )
   }
 }

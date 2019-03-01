@@ -3,6 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
+import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
@@ -135,13 +136,15 @@ export default class DimmerInner extends Component {
     const childrenContent = childrenUtils.isNil(children) ? content : children
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick} ref={this.containerRef}>
-        {childrenContent && (
-          <div className='content' ref={this.contentRef}>
-            {childrenContent}
-          </div>
-        )}
-      </ElementType>
+      <Ref innerRef={this.containerRef}>
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+          {childrenContent && (
+            <div className='content' ref={this.contentRef}>
+              {childrenContent}
+            </div>
+          )}
+        </ElementType>
+      </Ref>
     )
   }
 }

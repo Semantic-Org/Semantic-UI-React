@@ -57,8 +57,8 @@ const dropdownMenuIsClosed = () => {
 }
 
 const dropdownMenuIsOpen = () => {
-  wrapper.should.have.className('active')
-  wrapper.should.have.className('visible')
+  wrapper.childAt(0).should.have.className('active')
+  wrapper.childAt(0).should.have.className('visible')
 
   const menu = wrapper.find('DropdownMenu')
   try {
@@ -231,15 +231,21 @@ describe('Dropdown', () => {
 
   describe('tabIndex', () => {
     it('defaults to 0', () => {
-      shallow(<Dropdown options={options} />).should.have.prop('tabIndex', 0)
+      wrapperShallow(<Dropdown options={options} />)
+
+      wrapper.childAt(0).should.have.prop('tabIndex', 0)
     })
 
     it('defaults to -1 when disabled', () => {
-      shallow(<Dropdown disabled options={options} />).should.have.prop('tabIndex', -1)
+      wrapperShallow(<Dropdown disabled options={options} />)
+
+      wrapper.childAt(0).should.have.prop('tabIndex', -1)
     })
 
     it('applies when defined', () => {
-      shallow(<Dropdown options={options} tabIndex={1} />).should.have.prop('tabIndex', 1)
+      wrapperShallow(<Dropdown options={options} tabIndex={1} />)
+
+      wrapper.childAt(0).should.have.prop('tabIndex', 1)
     })
 
     describe('tabIndex', () => {
@@ -424,7 +430,8 @@ describe('Dropdown', () => {
       const onBlur = sandbox.spy()
       const event = { foo: 'bar' }
 
-      wrapperShallow(<Dropdown onBlur={onBlur} />).simulate('blur', event)
+      wrapperShallow(<Dropdown onBlur={onBlur} />)
+      wrapper.childAt(0).simulate('blur', event)
 
       onBlur.should.have.been.calledOnce()
       onBlur.should.have.been.calledWithMatch(event)
@@ -434,12 +441,12 @@ describe('Dropdown', () => {
       wrapperShallow(<Dropdown selectOnBlur options={options} />)
 
       const instance = wrapper.instance()
-      wrapper.simulate('click', { stopPropagation: _.noop })
+      wrapper.childAt(0).simulate('click', { stopPropagation: _.noop })
       dropdownMenuIsOpen()
       sandbox.spy(instance, 'handleChange')
 
       const event = { stopPropagation: _.noop }
-      wrapper.simulate('blur', event)
+      wrapper.childAt(0).simulate('blur', event)
 
       instance.handleChange.should.have.been.calledWithMatch(event, options[0].value)
     })
@@ -449,11 +456,11 @@ describe('Dropdown', () => {
 
       const instance = wrapper.instance()
       wrapper.setState({ selectedIndex: 2, value: options[2].value })
-      wrapper.simulate('click', { stopPropagation: _.noop })
+      wrapper.childAt(0).simulate('click', { stopPropagation: _.noop })
       dropdownMenuIsOpen()
       sandbox.spy(instance, 'handleChange')
 
-      wrapper.simulate('blur')
+      wrapper.childAt(0).simulate('blur')
 
       instance.handleChange.should.not.have.been.called()
     })
@@ -461,7 +468,7 @@ describe('Dropdown', () => {
     it('sets focus state to false', () => {
       wrapperShallow(<Dropdown selectOnBlur />)
 
-      wrapper.simulate('blur')
+      wrapper.childAt(0).simulate('blur')
       wrapper.should.have.state('focus', false)
     })
 
@@ -469,7 +476,7 @@ describe('Dropdown', () => {
       wrapperShallow(<Dropdown />)
 
       wrapper.setState({ searchQuery: 'foo' })
-      wrapper.simulate('blur')
+      wrapper.childAt(0).simulate('blur')
       wrapper.should.have.state('searchQuery', '')
     })
 
