@@ -7,7 +7,7 @@ const LoaderExampleLoader = () => (
       <Loader />
     </Dimmer>
 
-    <Image src='/assets/images/wireframe/short-paragraph.png' />
+    <Image src='/images/wireframe/short-paragraph.png' />
   </Segment>
 )
 

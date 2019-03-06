@@ -1,8 +1,7 @@
-import webpack from 'webpack'
+const webpack = require('webpack')
 
-import config from './config'
-import pkg from './package.json'
-import webpackConfig from './webpack.config.babel'
+const config = require('./config')
+const pkg = require('./package.json')
 
 const { paths } = config
 
@@ -16,6 +15,7 @@ const webpackUMDConfig = {
     react: 'React',
     'react-dom': 'ReactDOM',
   },
+  mode: 'production',
   output: {
     filename: '[name].min.js',
     libraryTarget: 'umd',
@@ -25,18 +25,28 @@ const webpackUMDConfig = {
     pathinfo: true,
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        unused: true,
-        dead_code: true,
-        warnings: false,
-      },
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
   ],
   module: {
-    noParse: webpackConfig.module.noParse,
-    rules: webpackConfig.module.rules,
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        },
+      },
+    ],
+  },
+  performance: {
+    maxEntrypointSize: 750000,
+    maxAssetSize: 750000,
   },
 }
 
-export default webpackUMDConfig
+module.exports = webpackUMDConfig

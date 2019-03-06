@@ -1,13 +1,15 @@
-import * as React from 'react';
-import { TableHeaderProps } from './TableHeader';
+import * as React from 'react'
+import { StrictTableHeaderProps } from './TableHeader'
 
-export interface TableFooterProps extends TableHeaderProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
+export interface TableFooterProps extends StrictTableFooterProps {
+  [key: string]: any
 }
 
-declare const TableFooter: React.StatelessComponent<TableFooterProps>;
+export interface StrictTableFooterProps extends StrictTableHeaderProps {
+  /** An element type to render as (string or function). */
+  as?: any
+}
 
-export default TableFooter;
+declare const TableFooter: React.StatelessComponent<TableFooterProps>
+
+export default TableFooter

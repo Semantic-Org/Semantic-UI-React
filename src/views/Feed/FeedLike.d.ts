@@ -1,27 +1,29 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
-import { IconProps } from '../../elements/Icon';
+import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import { IconProps } from '../../elements/Icon'
 
-export interface FeedLikeProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
-
-  /** Shorthand for icon. Mutually exclusive with children. */
-  icon?: SemanticShorthandItem<IconProps>;
+export interface FeedLikeProps extends StrictFeedLikeProps {
+  [key: string]: any
 }
 
-declare const FeedLike: React.StatelessComponent<FeedLikeProps>;
+export interface StrictFeedLikeProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default FeedLike;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+
+  /** Shorthand for icon. Mutually exclusive with children. */
+  icon?: SemanticShorthandItem<IconProps>
+}
+
+declare const FeedLike: React.StatelessComponent<FeedLikeProps>
+
+export default FeedLike

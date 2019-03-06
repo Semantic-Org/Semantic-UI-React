@@ -56,7 +56,7 @@ const LeftImage = () => (
   <Image
     floated='left'
     size='medium'
-    src='/assets/images/wireframe/square-image.png'
+    src='/images/wireframe/square-image.png'
     style={{ margin: '2em 2em 2em -4em' }}
   />
 )
@@ -65,7 +65,7 @@ const RightImage = () => (
   <Image
     floated='right'
     size='medium'
-    src='/assets/images/wireframe/square-image.png'
+    src='/images/wireframe/square-image.png'
     style={{ margin: '2em -4em 2em 2em' }}
   />
 )
@@ -139,7 +139,7 @@ export default class StickyLayout extends Component {
         >
           <Menu
             borderless
-            fixed={menuFixed && 'top'}
+            fixed={menuFixed ? 'top' : undefined}
             style={menuFixed ? fixedMenuStyle : menuStyle}
           >
             <Container text>
@@ -270,7 +270,7 @@ export default class StickyLayout extends Component {
             </Grid>
             <Divider inverted section />
             <Image src='/logo.png' centered size='mini' />
-            <List horizontal inverted divided link>
+            <List horizontal inverted divided link size='small'>
               <List.Item as='a' href='#'>
                 Site Map
               </List.Item>

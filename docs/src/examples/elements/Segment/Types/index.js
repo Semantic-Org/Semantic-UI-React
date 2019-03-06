@@ -1,4 +1,6 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
+
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
@@ -9,6 +11,20 @@ const SegmentTypesExamples = () => (
       description='A segment of content.'
       examplePath='elements/Segment/Types/SegmentExampleSegment'
     />
+
+    <ComponentExample
+      title='Placeholder Segment'
+      description='A segment can be used to reserve space for conditionally displayed content.'
+      examplePath='elements/Segment/Types/SegmentExamplePlaceholder'
+      suiVersion='2.4.0'
+    />
+    <ComponentExample examplePath='elements/Segment/Types/SegmentExamplePlaceholderInline'>
+      <Message info>
+        To use inline-block content inside a placeholder, wrap the content in <code>inline</code>.
+      </Message>
+    </ComponentExample>
+    <ComponentExample examplePath='elements/Segment/Types/SegmentExamplePlaceholderGrid' />
+
     <ComponentExample
       title='Raised'
       description='A segment may be formatted to raise above the page.'

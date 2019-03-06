@@ -53,7 +53,7 @@ const ThemingLayout = () => (
           padded
           stackable
           style={{ margin: '-1.5em', width: 400 }}
-          textAlign='middle'
+          textAlign='center'
         >
           <Grid.Column color='red' style={{ margin: '0.5em', height: 50 }}>
             Red
@@ -211,7 +211,7 @@ const ThemingLayout = () => (
           <Button>Two</Button>
         </Button.Group>
         <Segment attached>
-          <Image src='/assets/images/wireframe/paragraph.png' />
+          <Image src='/images/wireframe/paragraph.png' />
         </Segment>
         <Button.Group attached='bottom' widths={2}>
           <Button>One</Button>
@@ -224,8 +224,8 @@ const ThemingLayout = () => (
         <Button size='tiny'>Tiny</Button>
         <Button size='small'>Small</Button>
         <Button size='large'>Large</Button>
-        <Button size='big button'>Big</Button>
-        <Button size='huge button'>Huge</Button>
+        <Button size='big'>Big</Button>
+        <Button size='huge'>Huge</Button>
         <Button size='massive'>Massive</Button>
 
         <Divider />

@@ -1,13 +1,12 @@
-import * as React from 'react';
+import * as React from 'react'
 
-export interface TextAreaProps {
-  [key: string]: any;
+export interface TextAreaProps extends StrictTextAreaProps {
+  [key: string]: any
+}
 
+export interface StrictTextAreaProps {
   /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Indicates whether height of the textarea fits the content or not. */
-  autoHeight?: boolean;
+  as?: any
 
   /**
    * Called on change.
@@ -15,7 +14,7 @@ export interface TextAreaProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaProps) => void;
+  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaProps) => void
 
   /**
    * Called on input.
@@ -23,20 +22,17 @@ export interface TextAreaProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onInput?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaProps) => void;
+  onInput?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaProps) => void
 
   /** Indicates row count for a TextArea. */
-  rows?: number | string;
-
-  /** Custom TextArea style. */
-  style?: Object;
+  rows?: number | string
 
   /** The value of the textarea. */
-  value?: number | string;
+  value?: number | string
 }
 
 declare class TextArea extends React.Component<TextAreaProps, {}> {
-  focus: () => void;
+  focus: () => void
 }
 
-export default TextArea;
+export default TextArea

@@ -1,15 +1,17 @@
-import * as React from 'react';
+import * as React from 'react'
 
-export interface DropdownDividerProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Additional classes. */
-  className?: string;
+export interface DropdownDividerProps extends StrictDropdownDividerProps {
+  [key: string]: any
 }
 
-declare const DropdownDivider: React.ComponentClass<DropdownDividerProps>;
+export interface StrictDropdownDividerProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default DropdownDivider;
+  /** Additional classes. */
+  className?: string
+}
+
+declare const DropdownDivider: React.ComponentClass<DropdownDividerProps>
+
+export default DropdownDivider

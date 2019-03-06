@@ -1,1 +1,6 @@
-export { default, TransitionablePortalProps, TransitionablePortalState } from './TransitionablePortal';
+export {
+  default,
+  TransitionablePortalProps,
+  StrictTransitionablePortalProps,
+  TransitionablePortalState,
+} from './TransitionablePortal'

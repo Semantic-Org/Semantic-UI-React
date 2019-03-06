@@ -1,26 +1,33 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
 
-export interface AccordionTitleProps {
-  [key: string]: any;
+import { IconProps } from '../../elements/Icon'
+import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 
+export interface AccordionTitleProps extends StrictAccordionTitleProps {
+  [key: string]: any
+}
+
+export interface StrictAccordionTitleProps {
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Whether or not the title is in the open state. */
-  active?: boolean;
+  active?: boolean
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
+
+  /** Shorthand for Icon. */
+  icon?: SemanticShorthandItem<IconProps>
 
   /** AccordionTitle index inside Accordion. */
-  index?: number | string;
+  index?: number | string
 
   /**
    * Called on click.
@@ -28,9 +35,9 @@ export interface AccordionTitleProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void
 }
 
-declare const AccordionTitle: React.ComponentClass<AccordionTitleProps>;
+declare const AccordionTitle: React.ComponentClass<AccordionTitleProps>
 
-export default AccordionTitle;
+export default AccordionTitle

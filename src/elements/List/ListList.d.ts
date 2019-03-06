@@ -1,22 +1,24 @@
-import * as React from 'react';
-import {SemanticShorthandContent} from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface ListListProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+export interface ListListProps extends StrictListListProps {
+  [key: string]: any
 }
 
-declare const ListList: React.StatelessComponent<ListListProps>;
+export interface StrictListListProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default ListList;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+}
+
+declare const ListList: React.StatelessComponent<ListListProps>
+
+export default ListList

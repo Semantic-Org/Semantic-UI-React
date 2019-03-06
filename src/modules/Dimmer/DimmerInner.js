@@ -1,8 +1,9 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
+import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
@@ -14,7 +15,7 @@ import {
 } from '../../lib'
 
 /**
- *
+ * An inner element for a Dimmer.
  */
 export default class DimmerInner extends Component {
   static propTypes = {
@@ -65,11 +66,8 @@ export default class DimmerInner extends Component {
     verticalAlign: PropTypes.oneOf(['bottom', 'top']),
   }
 
-  componentWillReceiveProps({ active: nextActive }) {
-    const { active: prevActive } = this.props
-
-    if (prevActive !== nextActive) this.toggleStyles(nextActive)
-  }
+  containerRef = createRef()
+  contentRef = createRef()
 
   componentDidMount() {
     const { active } = this.props
@@ -77,31 +75,35 @@ export default class DimmerInner extends Component {
     this.toggleStyles(active)
   }
 
+  componentDidUpdate(prevProps) {
+    const { active: currentActive } = this.props
+    const { active: prevActive } = prevProps
+
+    if (prevActive !== currentActive) this.toggleStyles(currentActive)
+  }
+
   handleClick = (e) => {
+    const contentRef = this.contentRef.current
+
     _.invoke(this.props, 'onClick', e, this.props)
 
-    if (
-      this.contentRef &&
-      (this.contentRef !== e.target && doesNodeContainClick(this.contentRef, e))
-    ) {
+    if (contentRef && (contentRef !== e.target && doesNodeContainClick(contentRef, e))) {
       return
     }
+
     _.invoke(this.props, 'onClickOutside', e, this.props)
   }
 
-  handleRef = c => (this.ref = c)
-
-  handleContentRef = c => (this.contentRef = c)
-
   toggleStyles(active) {
-    if (!this.ref) return
+    const containerRef = this.containerRef.current
+
+    if (!containerRef) return
 
     if (active) {
-      this.ref.style.setProperty('display', 'flex', 'important')
-      return
+      containerRef.style.setProperty('display', 'flex', 'important')
+    } else {
+      containerRef.style.removeProperty('display')
     }
-
-    this.ref.style.removeProperty('display')
   }
 
   render() {
@@ -134,13 +136,15 @@ export default class DimmerInner extends Component {
     const childrenContent = childrenUtils.isNil(children) ? content : children
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick} ref={this.handleRef}>
-        {childrenContent && (
-          <div className='content' ref={this.handleContentRef}>
-            {childrenContent}
-          </div>
-        )}
-      </ElementType>
+      <Ref innerRef={this.containerRef}>
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+          {childrenContent && (
+            <div className='content' ref={this.contentRef}>
+              {childrenContent}
+            </div>
+          )}
+        </ElementType>
+      </Ref>
     )
   }
 }

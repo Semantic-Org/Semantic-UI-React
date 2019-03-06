@@ -13,9 +13,10 @@ describe('Header', () => {
   common.hasSubcomponents(Header, [HeaderContent, HeaderSubheader])
   common.rendersChildren(Header)
 
-  common.implementsIconProp(Header)
-  common.implementsImageProp(Header)
+  common.implementsIconProp(Header, { autoGenerateKey: false })
+  common.implementsImageProp(Header, { autoGenerateKey: false })
   common.implementsShorthandProp(Header, {
+    autoGenerateKey: false,
     propKey: 'subheader',
     ShorthandComponent: HeaderSubheader,
     mapValueToProps: val => ({ content: val }),
@@ -55,7 +56,7 @@ describe('Header', () => {
 
   describe('content', () => {
     it('is wrapped in HeaderContent when there is an image src', () => {
-      shallow(<Header image='/assets/images/wireframe/image.png' content='Bar' />)
+      shallow(<Header image='/images/wireframe/image.png' content='Bar' />)
         .find('HeaderContent')
         .shallow()
         .should.contain.text('Bar')
@@ -85,7 +86,7 @@ describe('Header', () => {
     it('adds HeaderSubheader as child when there is an image', () => {
       const text = faker.hacker.phrase()
 
-      shallow(<Header image='/assets/images/wireframe/image.png' subheader={text} />)
+      shallow(<Header image='/images/wireframe/image.png' subheader={text} />)
         .find('HeaderSubheader')
         .should.have.prop('content', text)
     })

@@ -28,7 +28,7 @@ export default class DimmerExampleEvents extends Component {
         onMouseEnter={this.handleShow}
         onMouseLeave={this.handleHide}
         size='medium'
-        src='/assets/images/wireframe/image.png'
+        src='/images/wireframe/image.png'
       />
     )
   }

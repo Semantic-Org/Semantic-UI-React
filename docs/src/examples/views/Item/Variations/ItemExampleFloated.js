@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button, Image, Item } from 'semantic-ui-react'
 
-const paragraph = <Image src='/assets/images/wireframe/short-paragraph.png' />
+const paragraph = <Image src='/images/wireframe/short-paragraph.png' />
 
 const ItemExampleFloated = () => (
   <Item.Group relaxed>
     <Item>
-      <Item.Image size='small' src='/assets/images/wireframe/image.png' />
+      <Item.Image size='small' src='/images/wireframe/image.png' />
 
       <Item.Content verticalAlign='middle'>
         <Item.Header>Content A</Item.Header>
@@ -18,7 +18,7 @@ const ItemExampleFloated = () => (
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/assets/images/wireframe/image.png' />
+      <Item.Image size='small' src='/images/wireframe/image.png' />
 
       <Item.Content verticalAlign='middle'>
         <Item.Header>Content B</Item.Header>
@@ -30,7 +30,7 @@ const ItemExampleFloated = () => (
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/assets/images/wireframe/image.png' />
+      <Item.Image size='small' src='/images/wireframe/image.png' />
 
       <Item.Content verticalAlign='middle'>
         <Item.Header>Content C</Item.Header>

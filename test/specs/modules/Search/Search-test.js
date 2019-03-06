@@ -36,7 +36,7 @@ const getOptions = (count = 5) =>
   _.times(count, i => ({
     title: [i, ..._.times(3, faker.hacker.noun)].join(' '),
     description: [i, ..._.times(3, faker.hacker.noun)].join(' '),
-    image: '/assets/images/wireframe/image.png',
+    image: '/images/wireframe/image.png',
     price: [i, faker.finance.amount(0, 100, 2, '$')].join(' '),
   }))
 
@@ -520,6 +520,18 @@ describe('Search', () => {
 
       onBlur.should.have.been.calledOnce()
       onBlur.should.have.been.calledWithMatch(nativeEvent, { onBlur, results: options })
+    })
+
+    it('is not called on an item click', () => {
+      const onBlur = sandbox.spy()
+      wrapperMount(<Search results={options} onBlur={onBlur} />)
+
+      openSearchResults()
+      wrapper
+        .find('SearchResult')
+        .at('0')
+        .simulate('click', nativeEvent)
+      onBlur.should.have.not.been.called()
     })
   })
 

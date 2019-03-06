@@ -2,12 +2,13 @@ import _ from 'lodash'
 
 import Segment from 'src/elements/Segment/Segment'
 import SegmentGroup from 'src/elements/Segment/SegmentGroup'
+import SegmentInline from 'src/elements/Segment/SegmentInline'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 
 describe('Segment', () => {
   common.isConformant(Segment)
-  common.hasSubcomponents(Segment, [SegmentGroup])
+  common.hasSubcomponents(Segment, [SegmentGroup, SegmentInline])
   common.hasUIClassName(Segment)
   common.rendersChildren(Segment)
 

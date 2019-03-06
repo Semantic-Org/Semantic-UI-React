@@ -29,11 +29,13 @@ describe('Confirm', () => {
   common.isConformant(Confirm)
 
   common.implementsShorthandProp(Confirm, {
+    autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: Modal.Header,
     mapValueToProps: content => ({ content }),
   })
   common.implementsShorthandProp(Confirm, {
+    autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: Modal.Content,
     mapValueToProps: content => ({ content }),
@@ -49,41 +51,39 @@ describe('Confirm', () => {
 
   describe('size', () => {
     it('has "small" size by default', () => {
-      shallow(<Confirm />)
-        .should.have.prop('size', 'small')
+      shallow(<Confirm />).should.have.prop('size', 'small')
     })
 
-    _.forEach(['fullscreen', 'large', 'mini', 'small', 'tiny'], (size) => {
+    _.forEach(['mini', 'tiny', 'small', 'large', 'fullscreen'], (size) => {
       it(`applies ${size} size`, () => {
-        shallow(<Confirm size={size} />)
-          .should.have.prop('size', size)
+        shallow(<Confirm size={size} />).should.have.prop('size', size)
       })
     })
   })
 
   describe('cancelButton', () => {
     it('is "Cancel" by default', () => {
-      Confirm.defaultProps.cancelButton
-        .should.equal('Cancel')
+      Confirm.defaultProps.cancelButton.should.equal('Cancel')
     })
     it('sets the cancel button text', () => {
       shallow(<Confirm cancelButton='foo' />)
         .find('Button')
         .first()
         .shallow()
+        .childAt(0)
         .should.have.text('foo')
     })
   })
 
   describe('confirmButton', () => {
     it('is "OK" by default', () => {
-      Confirm.defaultProps.confirmButton
-        .should.equal('OK')
+      Confirm.defaultProps.confirmButton.should.equal('OK')
     })
     it('sets the confirm button text', () => {
       shallow(<Confirm confirmButton='foo' />)
         .find('Button[primary]')
         .shallow()
+        .childAt(0)
         .should.have.text('foo')
     })
   })
@@ -97,10 +97,11 @@ describe('Confirm', () => {
     })
 
     it('omitted when not defined', () => {
-      const click = () => shallow(<Confirm />)
-        .find('Button')
-        .first()
-        .simulate('click')
+      const click = () =>
+        shallow(<Confirm />)
+          .find('Button')
+          .first()
+          .simulate('click')
 
       expect(click).to.not.throw()
     })
@@ -165,9 +166,10 @@ describe('Confirm', () => {
 
   describe('onConfirm', () => {
     it('omitted when not defined', () => {
-      const click = () => shallow(<Confirm />)
-        .find('Button[primary]')
-        .simulate('click')
+      const click = () =>
+        shallow(<Confirm />)
+          .find('Button[primary]')
+          .simulate('click')
 
       expect(click).to.not.throw()
     })

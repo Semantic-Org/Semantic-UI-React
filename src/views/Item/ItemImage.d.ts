@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { ImageProps } from '../../elements/Image';
+import * as React from 'react'
+import { ImageProps, StrictImageProps } from '../../elements/Image'
 
-export interface ItemImageProps extends ImageProps {
-}
+export interface ItemImageProps extends ImageProps {}
 
-declare const ItemImage: React.StatelessComponent<ItemImageProps>;
+export interface StrictItemImageProps extends StrictImageProps {}
 
-export default ItemImage;
+declare const ItemImage: React.StatelessComponent<ItemImageProps>
+
+export default ItemImage

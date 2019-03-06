@@ -1,18 +1,20 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { DropdownProps } from '../../modules/Dropdown';
-import { FormFieldProps } from './FormField';
+import { StrictDropdownProps } from '../../modules/Dropdown'
+import { StrictFormFieldProps } from './FormField'
 
-export interface FormDropdownProps extends FormFieldProps, DropdownProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** A FormField control prop. */
-  control?: any;
+export interface FormDropdownProps extends StrictFormDropdownProps {
+  [key: string]: any
 }
 
-declare const FormDropdown: React.StatelessComponent<FormDropdownProps>;
+export interface StrictFormDropdownProps extends StrictFormFieldProps, StrictDropdownProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default FormDropdown;
+  /** A FormField control prop. */
+  control?: any
+}
+
+declare const FormDropdown: React.StatelessComponent<FormDropdownProps>
+
+export default FormDropdown

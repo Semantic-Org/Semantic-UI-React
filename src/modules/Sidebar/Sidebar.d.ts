@@ -1,32 +1,31 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-import SidebarPushable from './SidebarPushable';
-import SidebarPusher from './SidebarPusher';
+import SidebarPushable from './SidebarPushable'
+import SidebarPusher from './SidebarPusher'
 
-export interface SidebarProps {
-  [key: string]: any;
+export interface SidebarProps extends StrictSidebarProps {
+  [key: string]: any
+}
 
+export interface StrictSidebarProps {
   /** An element type to render as (string or function). */
-  as?: any;
+  as?: any
 
   /** Animation style. */
-  animation?: 'overlay' | 'push' | 'scale down' | 'uncover' | 'slide out' | 'slide along';
+  animation?: 'overlay' | 'push' | 'scale down' | 'uncover' | 'slide out' | 'slide along'
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /** Additional classes. */
-  className?: string;
+  className?: string
 
   /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+  content?: SemanticShorthandContent
 
   /** Direction the sidebar should appear on. */
-  direction?: 'top' | 'right' | 'bottom' | 'left';
-
-  /** Duration of sidebar animation. */
-  duration?: number | string;
+  direction?: 'top' | 'right' | 'bottom' | 'left'
 
   /**
    * Called before a sidebar begins to animate out.
@@ -34,7 +33,7 @@ export interface SidebarProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onHide?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void;
+  onHide?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
 
   /**
    * Called after a sidebar has finished animating out.
@@ -42,7 +41,7 @@ export interface SidebarProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onHidden?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void;
+  onHidden?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
 
   /**
    * Called when a sidebar has finished animating in.
@@ -50,7 +49,7 @@ export interface SidebarProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onShow?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void;
+  onShow?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
 
   /**
    * Called when a sidebar begins animating in.
@@ -58,20 +57,23 @@ export interface SidebarProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onVisible?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void;
+  onVisible?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
+
+  /** A sidebar can handle clicks on the passed element. */
+  target?: object | React.RefObject<HTMLElement>
 
   /** Controls whether or not the sidebar is visible on the page. */
-  visible?: boolean;
+  visible?: boolean
 
   /** Sidebar width. */
-  width?: 'very thin' | 'thin' | 'wide' | 'very wide';
+  width?: 'very thin' | 'thin' | 'wide' | 'very wide'
 }
 
 interface SidebarComponent extends React.ComponentClass<SidebarProps> {
-  Pushable: typeof SidebarPushable;
-  Pusher: typeof SidebarPusher;
+  Pushable: typeof SidebarPushable
+  Pusher: typeof SidebarPusher
 }
 
-declare const Sidebar: SidebarComponent;
+declare const Sidebar: SidebarComponent
 
-export default Sidebar;
+export default Sidebar

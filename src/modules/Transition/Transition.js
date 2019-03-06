@@ -19,10 +19,13 @@ const TRANSITION_TYPE = {
 export default class Transition extends Component {
   static propTypes = {
     /** Named animation event to used. Must be defined in CSS. */
-    animation: PropTypes.oneOf(SUI.TRANSITIONS),
+    animation: PropTypes.oneOfType([PropTypes.oneOf(SUI.TRANSITIONS), PropTypes.string]),
 
     /** Primary content. */
     children: PropTypes.element.isRequired,
+
+    /** Whether it is directional animation event or not. Use it only for custom transitions. */
+    directional: PropTypes.bool,
 
     /** Duration of the CSS transition animation in milliseconds. */
     duration: PropTypes.oneOfType([
@@ -114,7 +117,6 @@ export default class Transition extends Component {
   componentDidMount() {
     debug('componentDidMount()')
 
-    this.mounted = true
     this.updateStatus()
   }
 
@@ -124,7 +126,7 @@ export default class Transition extends Component {
     const { current: status, next } = this.computeStatuses(nextProps)
 
     this.nextStatus = next
-    if (status) this.setSafeState({ status })
+    if (status) this.setState({ status })
   }
 
   componentDidUpdate() {
@@ -136,7 +138,7 @@ export default class Transition extends Component {
   componentWillUnmount() {
     debug('componentWillUnmount()')
 
-    this.mounted = false
+    clearTimeout(this.timeoutId)
   }
 
   // ----------------------------------------
@@ -148,12 +150,12 @@ export default class Transition extends Component {
     const status = this.nextStatus
 
     this.nextStatus = null
-    this.setSafeState({ status, animating: true }, () => {
+    this.setState({ status, animating: true }, () => {
       const durationType = TRANSITION_TYPE[status]
       const durationValue = normalizeTransitionDuration(duration, durationType)
 
       _.invoke(this.props, 'onStart', null, { ...this.props, status })
-      setTimeout(this.handleComplete, durationValue)
+      this.timeoutId = setTimeout(this.handleComplete, durationValue)
     })
   }
 
@@ -170,7 +172,7 @@ export default class Transition extends Component {
     const status = this.computeCompletedStatus()
     const callback = current === Transition.ENTERING ? 'onShow' : 'onHide'
 
-    this.setSafeState({ status, animating: false }, () => {
+    this.setState({ status, animating: false }, () => {
       _.invoke(this.props, callback, null, { ...this.props, status })
     })
   }
@@ -189,13 +191,13 @@ export default class Transition extends Component {
   // ----------------------------------------
 
   computeClasses = () => {
-    const { animation, children } = this.props
+    const { animation, directional, children } = this.props
     const { animating, status } = this.state
 
     const childClasses = _.get(children, 'props.className')
-    const directional = _.includes(SUI.DIRECTIONAL_TRANSITIONS, animation)
+    const isDirectional = _.isNil(directional) ? _.includes(SUI.DIRECTIONAL_TRANSITIONS, animation) : directional
 
-    if (directional) {
+    if (isDirectional) {
       return cx(
         animation,
         childClasses,
@@ -270,8 +272,6 @@ export default class Transition extends Component {
 
     return { ...childStyle, animationDuration }
   }
-
-  setSafeState = (...args) => this.mounted && this.setState(...args)
 
   // ----------------------------------------
   // Render

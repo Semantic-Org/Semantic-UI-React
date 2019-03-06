@@ -19,9 +19,6 @@ class DropdownSearchInput extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-    /** A ref handler for input. */
-    inputRef: PropTypes.func,
-
     /** An input can receive focus. */
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
@@ -43,8 +40,6 @@ class DropdownSearchInput extends Component {
     _.invoke(this.props, 'onChange', e, { ...this.props, value })
   }
 
-  handleRef = c => _.invoke(this.props, 'inputRef', c)
-
   render() {
     const { autoComplete, className, tabIndex, type, value } = this.props
     const classes = cx('search', className)
@@ -57,7 +52,6 @@ class DropdownSearchInput extends Component {
         autoComplete={autoComplete}
         className={classes}
         onChange={this.handleChange}
-        ref={this.handleRef}
         tabIndex={tabIndex}
         type={type}
         value={value}

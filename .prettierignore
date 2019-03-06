@@ -4,14 +4,14 @@
 .idea/
 .vscode/
 
-
 coverage/
 
 dist/
-dll/
 docs/src/componentInfo
 docs/src/componentMenu.json
+docs/src/exampleSources.json
 docs/src/exampleMenus
 docs/dist/
 
 package.json
+tmp/

@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface ModalDescriptionProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+export interface ModalDescriptionProps extends StrictModalDescriptionProps {
+  [key: string]: any
 }
 
-declare const ModalDescription: React.StatelessComponent<ModalDescriptionProps>;
+export interface StrictModalDescriptionProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default ModalDescription;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+}
+
+declare const ModalDescription: React.StatelessComponent<ModalDescriptionProps>
+
+export default ModalDescription

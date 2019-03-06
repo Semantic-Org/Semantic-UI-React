@@ -482,7 +482,7 @@ const ResponsiveLayout = () => (
           <Table.Row>
             <Table.Cell>
               <Header as='h4' image>
-                <Image rounded size='mini' src='/assets/images/wireframe/square-image.png' />
+                <Image rounded size='mini' src='/images/wireframe/square-image.png' />
                 <Header.Content>
                   Lena
                   <Header.Subheader>Human Resources</Header.Subheader>
@@ -494,7 +494,7 @@ const ResponsiveLayout = () => (
           <Table.Row>
             <Table.Cell>
               <Header as='h4' image>
-                <Image rounded size='mini' src='/assets/images/wireframe/square-image.png' />
+                <Image rounded size='mini' src='/images/wireframe/square-image.png' />
                 <Header.Content>
                   Matthew
                   <Header.Subheader>Fabric Design</Header.Subheader>
@@ -506,7 +506,7 @@ const ResponsiveLayout = () => (
           <Table.Row>
             <Table.Cell>
               <Header as='h4' image>
-                <Image rounded size='mini' src='/assets/images/wireframe/square-image.png' />
+                <Image rounded size='mini' src='/images/wireframe/square-image.png' />
                 <Header.Content>
                   Lindsay
                   <Header.Subheader>Entertainment</Header.Subheader>
@@ -518,7 +518,7 @@ const ResponsiveLayout = () => (
           <Table.Row>
             <Table.Cell>
               <Header as='h4' image>
-                <Image rounded size='mini' src='/assets/images/wireframe/square-image.png' />
+                <Image rounded size='mini' src='/images/wireframe/square-image.png' />
                 <Header.Content>
                   Mark
                   <Header.Subheader>Executive</Header.Subheader>
@@ -547,7 +547,7 @@ const ResponsiveLayout = () => (
     <Container>
       <Item.Group divided>
         <Item>
-          <Item.Image src='/assets/images/wireframe/image.png' />
+          <Item.Image src='/images/wireframe/image.png' />
           <Item.Content>
             <Item.Header as='a'>Content Header</Item.Header>
             <Item.Meta>
@@ -558,14 +558,14 @@ const ResponsiveLayout = () => (
               A description which may flow for several lines and give context to the content.
             </Item.Description>
             <Item.Extra>
-              <Image avatar circular src='/assets/images/wireframe/square-image.png' />
+              <Image avatar circular src='/images/wireframe/square-image.png' />
               Username
             </Item.Extra>
           </Item.Content>
         </Item>
 
         <Item>
-          <Item.Image src='/assets/images/wireframe/image.png' />
+          <Item.Image src='/images/wireframe/image.png' />
           <Item.Content>
             <Item.Header as='a'>Content Header</Item.Header>
             <Item.Meta>
@@ -578,14 +578,14 @@ const ResponsiveLayout = () => (
             <Item.Extra>
               <Button floated='right' primary>
                 Primary
-                <Icon name='right chevron' />
+                <Icon name='chevron right' />
               </Button>
               <Label>Limited</Label>
             </Item.Extra>
           </Item.Content>
         </Item>
         <Item>
-          <Item.Image src='/assets/images/wireframe/image.png' />
+          <Item.Image src='/images/wireframe/image.png' />
           <Item.Content>
             <Item.Header as='a'>Content Header</Item.Header>
             <Item.Meta>
@@ -598,7 +598,7 @@ const ResponsiveLayout = () => (
             <Item.Extra>
               <Button primary floated='right'>
                 Primary
-                <Icon name='right chevron' />
+                <Icon name='chevron right' />
               </Button>
             </Item.Extra>
           </Item.Content>

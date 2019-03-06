@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Checkbox } from 'semantic-ui-react'
 
-import { getComponentGroup } from 'docs/src/utils'
+import { docTypes } from 'docs/src/utils'
 import ComponentTable from '../ComponentTable'
 import ComponentPropsComponents from './ComponentPropsComponents'
 import ComponentPropsDescription from './ComponentPropsDescription'
@@ -12,24 +12,20 @@ const propsContainerStyle = { overflowX: 'auto' }
 
 export default class ComponentProps extends Component {
   static propTypes = {
+    componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
     displayName: PropTypes.string.isRequired,
-    props: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
-  componentWillMount() {
-    const { displayName } = this.props
-
-    this.setState({ componentGroup: getComponentGroup(displayName) })
+  state = {
+    activeDisplayName: null,
   }
 
-  componentWillReceiveProps({ displayName: next }) {
-    const current = this.props.displayName
+  componentWillReceiveProps(nextProps) {
+    const currentName = this.props.displayName
+    const nextName = nextProps.displayName
 
-    if (current !== next) {
-      this.setState({
-        activeDisplayName: null,
-        componentGroup: getComponentGroup(next),
-      })
+    if (currentName.displayName !== nextName) {
+      this.setState({ activeDisplayName: null })
     }
   }
 
@@ -45,15 +41,16 @@ export default class ComponentProps extends Component {
   }
 
   render() {
-    const { displayName } = this.props
-    const { activeDisplayName, componentGroup } = this.state
-    const displayNames = _.keys(componentGroup)
-    const { docblock, props } = componentGroup[activeDisplayName] || {}
+    const { displayName, componentsInfo } = this.props
+    const { activeDisplayName } = this.state
+
+    const displayNames = _.keys(componentsInfo)
+    const { docblock, props } = componentsInfo[activeDisplayName] || {}
     const description = _.get(docblock, 'description', [])
 
     return (
       <div>
-        <Checkbox slider checked={!!activeDisplayName} label='Props' onClick={this.handleToggle} />
+        <Checkbox slider checked={!!activeDisplayName} label='Props' onChange={this.handleToggle} />
         <ComponentPropsComponents
           activeDisplayName={activeDisplayName}
           displayNames={displayNames}

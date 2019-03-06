@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface FeedUserProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+export interface FeedUserProps extends StrictFeedUserProps {
+  [key: string]: any
 }
 
-declare const FeedUser: React.StatelessComponent<FeedUserProps>;
+export interface StrictFeedUserProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default FeedUser;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+}
+
+declare const FeedUser: React.StatelessComponent<FeedUserProps>
+
+export default FeedUser

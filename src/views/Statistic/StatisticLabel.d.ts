@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface StatisticLabelProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+export interface StatisticLabelProps extends StrictStatisticLabelProps {
+  [key: string]: any
 }
 
-declare const StatisticLabel: React.StatelessComponent<StatisticLabelProps>;
+export interface StrictStatisticLabelProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default StatisticLabel;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+}
+
+declare const StatisticLabel: React.StatelessComponent<StatisticLabelProps>
+
+export default StatisticLabel

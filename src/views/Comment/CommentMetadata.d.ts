@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface CommentMetadataProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+export interface CommentMetadataProps extends StrictCommentMetadataProps {
+  [key: string]: any
 }
 
-declare const CommentMetadata: React.StatelessComponent<CommentMetadataProps>;
+export interface StrictCommentMetadataProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default CommentMetadata;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+}
+
+declare const CommentMetadata: React.StatelessComponent<CommentMetadataProps>
+
+export default CommentMetadata

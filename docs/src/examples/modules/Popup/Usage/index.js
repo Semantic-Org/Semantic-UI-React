@@ -34,6 +34,21 @@ const PopupUsageExamples = () => (
       description='A popup can have its visibility controlled from outside.'
       examplePath='modules/Popup/Usage/PopupExampleControlled'
     />
+    <ComponentExample
+      title='Context'
+      description='A popup can open over a DOM node when using a trigger.'
+      examplePath='modules/Popup/Usage/PopupExampleContext'
+    />
+    <ComponentExample
+      description='A popup can open over a DOM node when controlled.'
+      examplePath='modules/Popup/Usage/PopupExampleContextControlled'
+    />
+    <ComponentExample
+      title='Default Open'
+      description='A popup can appear open by default.'
+      examplePath='modules/Popup/Usage/PopupExampleDefaultOpen'
+      renderHtml={false}
+    />
   </ExampleSection>
 )
 

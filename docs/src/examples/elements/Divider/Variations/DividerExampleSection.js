@@ -1,13 +1,15 @@
 import React from 'react'
-import { Divider, Segment } from 'semantic-ui-react'
+import { Divider, Header, Image, Segment } from 'semantic-ui-react'
 
 const DividerExampleSection = () => (
   <Segment>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-    labore...
+    <Header as='h3'>Section One</Header>
+    <Image src='/images/wireframe/short-paragraph.png' />
+
     <Divider section />
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-    labore...
+
+    <Header as='h3'>Section Two</Header>
+    <Image src='/images/wireframe/short-paragraph.png' />
   </Segment>
 )
 

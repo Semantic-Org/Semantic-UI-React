@@ -14,7 +14,7 @@ const wrapperMount = (node, opts) => {
 
 const mockScroll = (top, bottom) => {
   if (wrapper) {
-    wrapper.instance().ref = {
+    wrapper.instance().ref.current = {
       getBoundingClientRect: () => ({
         bottom,
         top,
@@ -111,7 +111,12 @@ describe('Visibility', () => {
   })
 
   afterEach(() => {
-    if (wrapper && wrapper.unmount) wrapper.unmount()
+    if (wrapper && wrapper.unmount) {
+      try {
+        wrapper.unmount()
+        // eslint-disable-next-line no-empty
+      } catch (e) {}
+    }
   })
 
   describe('calculations', () => {

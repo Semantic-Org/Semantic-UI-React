@@ -2,9 +2,9 @@ import copyToClipboard from 'copy-to-clipboard'
 import _ from 'lodash/fp'
 import leven from 'leven'
 import React, { Component } from 'react'
+import { Form, Grid, Header, Icon, Message, Popup } from 'semantic-ui-react'
 
-import { SUI } from 'src/lib'
-import { Form, Grid, Header, Icon, Message, Popup } from 'src'
+import * as SUI from 'src/lib/SUI'
 
 const gridStyle = {
   background: '#fff',
@@ -115,7 +115,6 @@ export default class IconSearch extends Component {
       mouseEnterDelay={1000}
       inverted
       closeOnTriggerClick={false}
-      closeOnRootNodeClick={false}
       closeOnDocumentClick={false}
       style={{ width: '8em', textAlign: 'center' }}
       size='mini'
@@ -192,9 +191,6 @@ export default class IconSearch extends Component {
     return (
       <Grid columns={1} padded style={gridStyle}>
         <Grid.Column>
-          <Header as='h2'>Icon Set</Header>
-          <p>An icon set contains an arbitrary number of glyphs.</p>
-
           <Form>
             <Form.Group inline>
               <Form.Input

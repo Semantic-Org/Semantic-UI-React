@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Children, cloneElement, Component } from 'react'
+import React, { Children, cloneElement, Component, createRef } from 'react'
 
 import {
   childrenUtils,
@@ -10,8 +10,8 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  handleRef,
   partitionHTMLProps,
-  SUI,
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
@@ -79,13 +79,13 @@ class Input extends Component {
     /**
      * Called on change.
      *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props and proposed value.
+     * @param {ChangeEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and a proposed value.
      */
     onChange: PropTypes.func,
 
     /** An Input can vary in size. */
-    size: PropTypes.oneOf(SUI.SIZES),
+    size: PropTypes.oneOf(['mini', 'small', 'large', 'big', 'huge', 'massive']),
 
     /** An Input can receive focus. */
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -101,6 +101,8 @@ class Input extends Component {
     type: 'text',
   }
 
+  inputRef = createRef()
+
   computeIcon = () => {
     const { loading, icon } = this.props
 
@@ -115,7 +117,9 @@ class Input extends Component {
     if (disabled) return -1
   }
 
-  focus = () => this.inputRef.focus()
+  focus = () => this.inputRef.current.focus()
+
+  select = () => this.inputRef.current.select()
 
   handleChange = (e) => {
     const value = _.get(e, 'target.value')
@@ -127,12 +131,10 @@ class Input extends Component {
     ...defaultProps,
     ...child.props,
     ref: (c) => {
-      _.invoke(child, 'ref', c)
-      this.handleInputRef(c)
+      handleRef(child.ref, c)
+      this.inputRef.current = c
     },
   })
-
-  handleInputRef = c => (this.inputRef = c)
 
   partitionProps = () => {
     const { disabled, type } = this.props
@@ -148,7 +150,7 @@ class Input extends Component {
         type,
         tabIndex,
         onChange: this.handleChange,
-        ref: this.handleInputRef,
+        ref: this.inputRef,
       },
       rest,
     ]
@@ -230,8 +232,8 @@ class Input extends Component {
         {actionPosition === 'left' && actionElement}
         {labelPosition !== 'right' && labelElement}
         {createHTMLInput(input || type, { defaultProps: htmlInputProps, autoGenerateKey: false })}
-        {actionPosition !== 'left' && actionElement}
         {Icon.create(this.computeIcon(), { autoGenerateKey: false })}
+        {actionPosition !== 'left' && actionElement}
         {labelPosition === 'right' && labelElement}
       </ElementType>
     )

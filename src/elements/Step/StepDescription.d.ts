@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface StepDescriptionProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+export interface StepDescriptionProps extends StrictStepDescriptionProps {
+  [key: string]: any
 }
 
-declare const StepDescription: React.StatelessComponent<StepDescriptionProps>;
+export interface StrictStepDescriptionProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default StepDescription;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+}
+
+declare const StepDescription: React.StatelessComponent<StepDescriptionProps>
+
+export default StepDescription

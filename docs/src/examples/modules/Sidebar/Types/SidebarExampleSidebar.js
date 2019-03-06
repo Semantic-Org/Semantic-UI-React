@@ -4,8 +4,8 @@ import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui
 export default class SidebarExampleSidebar extends Component {
   state = { visible: false }
 
-  handleButtonClick = () => this.setState({ visible: !this.state.visible })
-
+  handleHideClick = () => this.setState({ visible: false })
+  handleShowClick = () => this.setState({ visible: true })
   handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
@@ -13,7 +13,14 @@ export default class SidebarExampleSidebar extends Component {
 
     return (
       <div>
-        <Button onClick={this.handleButtonClick}>Toggle visibility</Button>
+        <Button.Group>
+          <Button disabled={visible} onClick={this.handleShowClick}>
+            Show sidebar
+          </Button>
+          <Button disabled={!visible} onClick={this.handleHideClick}>
+            Hide sidebar
+          </Button>
+        </Button.Group>
 
         <Sidebar.Pushable as={Segment}>
           <Sidebar
@@ -43,7 +50,7 @@ export default class SidebarExampleSidebar extends Component {
           <Sidebar.Pusher>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
-              <Image src='/assets/images/wireframe/paragraph.png' />
+              <Image src='/images/wireframe/paragraph.png' />
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>

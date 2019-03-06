@@ -1,27 +1,32 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { SemanticTRANSITIONS } from '../../';
-import TransitionGroup from './TransitionGroup';
+import { SemanticTRANSITIONS } from '../../generic'
+import TransitionGroup from './TransitionGroup'
 
-export type TRANSITION_STATUSES = 'ENTERED' | 'ENTERING' | 'EXITED' | 'EXITING' | 'UNMOUNTED';
+export type TRANSITION_STATUSES = 'ENTERED' | 'ENTERING' | 'EXITED' | 'EXITING' | 'UNMOUNTED'
 
-export interface TransitionProps {
-  [key: string]: any;
+export interface TransitionProps extends StrictTransitionProps {
+  [key: string]: any
+}
 
+export interface StrictTransitionProps {
   /** Named animation event to used. Must be defined in CSS. */
-  animation?: SemanticTRANSITIONS;
+  animation?: SemanticTRANSITIONS | string
 
   /** Primary content. */
-  children?: React.ReactNode;
+  children?: React.ReactNode
+
+  /** Whether it is directional animation event or not. Use it only for custom transitions. */
+  directional?: boolean
 
   /** Duration of the CSS transition animation in milliseconds. */
-  duration?: number | string | TransitionPropDuration;
+  duration?: number | string | TransitionPropDuration
 
   /** Show the component; triggers the enter or exit animation. */
-  visible?: boolean;
+  visible?: boolean
 
   /** Wait until the first "enter" transition to mount the component (add it to the DOM). */
-  mountOnShow?: boolean;
+  mountOnShow?: boolean
 
   /**
    * Callback on each transition that changes visibility to shown.
@@ -29,7 +34,7 @@ export interface TransitionProps {
    * @param {null}
    * @param {object} data - All props with status.
    */
-  onComplete?: (nothing: null, data: TransitionEventData) => void;
+  onComplete?: (nothing: null, data: TransitionEventData) => void
 
   /**
    * Callback on each transition that changes visibility to hidden.
@@ -37,7 +42,7 @@ export interface TransitionProps {
    * @param {null}
    * @param {object} data - All props with status.
    */
-  onHide?: (nothing: null, data: TransitionEventData) => void;
+  onHide?: (nothing: null, data: TransitionEventData) => void
 
   /**
    * Callback on each transition that changes visibility to shown.
@@ -45,7 +50,7 @@ export interface TransitionProps {
    * @param {null}
    * @param {object} data - All props with status.
    */
-  onShow?: (nothing: null, data: TransitionEventData) => void;
+  onShow?: (nothing: null, data: TransitionEventData) => void
 
   /**
    * Callback on animation start.
@@ -53,37 +58,37 @@ export interface TransitionProps {
    * @param {null}
    * @param {object} data - All props with status.
    */
-  onStart?: (nothing: null, data: TransitionEventData) => void;
+  onStart?: (nothing: null, data: TransitionEventData) => void
 
   /** React's key of the element. */
-  reactKey?: string;
+  reactKey?: string
 
   /** Run the enter animation when the component mounts, if it is initially shown. */
-  transitionOnMount?: boolean;
+  transitionOnMount?: boolean
 
   /** Unmount the component (remove it from the DOM) when it is not shown. */
-  unmountOnHide?: boolean;
+  unmountOnHide?: boolean
 }
 
 export interface TransitionEventData extends TransitionProps {
-  status: TRANSITION_STATUSES;
+  status: TRANSITION_STATUSES
 }
 
 export interface TransitionPropDuration {
-  hide: number;
-  show: number;
+  hide: number
+  show: number
 }
 
 interface TransitionComponent extends React.ComponentClass<TransitionProps> {
-  Group: typeof TransitionGroup;
+  Group: typeof TransitionGroup
 
-  ENTERED: 'ENTERED';
-  ENTERING: 'ENTERING';
-  EXITED: 'EXITED';
-  EXITING: 'EXITING';
-  UNMOUNTED: 'UNMOUNTED';
+  ENTERED: 'ENTERED'
+  ENTERING: 'ENTERING'
+  EXITED: 'EXITED'
+  EXITING: 'EXITING'
+  UNMOUNTED: 'UNMOUNTED'
 }
 
-declare const Transition: TransitionComponent;
+declare const Transition: TransitionComponent
 
-export default Transition;
+export default Transition

@@ -57,8 +57,8 @@ const dropdownMenuIsClosed = () => {
 }
 
 const dropdownMenuIsOpen = () => {
-  wrapper.should.have.className('active')
-  wrapper.should.have.className('visible')
+  wrapper.childAt(0).should.have.className('active')
+  wrapper.childAt(0).should.have.className('visible')
 
   const menu = wrapper.find('DropdownMenu')
   try {
@@ -96,8 +96,10 @@ describe('Dropdown', () => {
 
   common.implementsIconProp(Dropdown, {
     assertExactMatch: false,
+    autoGenerateKey: false,
   })
   common.implementsShorthandProp(Dropdown, {
+    autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: DropdownHeader,
     mapValueToProps: val => ({ content: val }),
@@ -160,33 +162,33 @@ describe('Dropdown', () => {
     wrapperMount(<Dropdown options={options} selection defaultOpen />)
 
     const instance = wrapper.instance()
-    sandbox.spy(instance.ref, 'blur')
+    sandbox.spy(instance.ref.current, 'blur')
 
     dropdownMenuIsOpen()
     wrapper.simulate('click')
     dropdownMenuIsClosed()
 
-    instance.ref.blur.should.have.been.calledOnce()
+    instance.ref.current.blur.should.have.been.calledOnce()
   })
 
   it('blurs the Dropdown node on close by clicking outside component', () => {
     wrapperMount(<Dropdown options={options} selection defaultOpen />)
 
     const instance = wrapper.instance()
-    sandbox.spy(instance.ref, 'blur')
+    sandbox.spy(instance.ref.current, 'blur')
 
     dropdownMenuIsOpen()
     document.body.click()
     dropdownMenuIsClosed()
 
-    instance.ref.blur.should.have.been.calledOnce()
+    instance.ref.current.blur.should.have.been.calledOnce()
   })
 
   it('does not close on click when search is true and options are empty', () => {
     wrapperMount(<Dropdown options={[]} search selection defaultOpen />)
 
     const instance = wrapper.instance()
-    sandbox.spy(instance.ref, 'blur')
+    sandbox.spy(instance.ref.current, 'blur')
 
     dropdownMenuIsOpen()
     wrapper.simulate('click')
@@ -229,15 +231,21 @@ describe('Dropdown', () => {
 
   describe('tabIndex', () => {
     it('defaults to 0', () => {
-      shallow(<Dropdown options={options} />).should.have.prop('tabIndex', 0)
+      wrapperShallow(<Dropdown options={options} />)
+
+      wrapper.childAt(0).should.have.prop('tabIndex', 0)
     })
 
     it('defaults to -1 when disabled', () => {
-      shallow(<Dropdown disabled options={options} />).should.have.prop('tabIndex', -1)
+      wrapperShallow(<Dropdown disabled options={options} />)
+
+      wrapper.childAt(0).should.have.prop('tabIndex', -1)
     })
 
     it('applies when defined', () => {
-      shallow(<Dropdown options={options} tabIndex={1} />).should.have.prop('tabIndex', 1)
+      wrapperShallow(<Dropdown options={options} tabIndex={1} />)
+
+      wrapper.childAt(0).should.have.prop('tabIndex', 1)
     })
 
     describe('tabIndex', () => {
@@ -363,32 +371,104 @@ describe('Dropdown', () => {
     })
   })
 
-  describe('handleBlur', () => {
-    it('passes the event to the onBlur prop', () => {
-      const spy = sandbox.spy()
-      const event = { foo: 'bar' }
+  describe('clearable', () => {
+    it('does not clear when value is empty', () => {
+      const onChange = sandbox.spy()
+      wrapperShallow(<Dropdown clearable onChange={onChange} />)
 
-      wrapperShallow(<Dropdown onBlur={spy} />).simulate('blur', event)
-
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event)
+      wrapper.find('Icon').simulate('click', { stopPropagation: _.noop })
+      onChange.should.have.not.been.called()
     })
 
-    it('calls makeSelectedItemActive', () => {
-      wrapperShallow(<Dropdown selectOnBlur />)
+    it('does not clear when is multiple and value is empty', () => {
+      const onChange = sandbox.spy()
+      wrapperShallow(<Dropdown clearable multiple onChange={onChange} />)
+
+      wrapper.find('Icon').simulate('click', { stopPropagation: _.noop })
+      onChange.should.have.not.been.called()
+    })
+
+    it('clears when value is not empty', () => {
+      const defaultValue = options[1].value
+      const event = { stopPropagation: _.noop }
+      const onChange = sandbox.spy()
+
+      wrapperShallow(
+        <Dropdown defaultValue={defaultValue} clearable onChange={onChange} options={options} />,
+      )
+      wrapper.find('Icon').simulate('click', event)
+
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch(event, { value: '' })
+      wrapper.should.have.state('selectedIndex', 0)
+    })
+
+    it('clears when value is multiple and is not empty', () => {
+      const defaultValue = _.map(options, 'value')
+      const event = { stopPropagation: _.noop }
+      const onChange = sandbox.spy()
+
+      wrapperShallow(
+        <Dropdown
+          defaultValue={defaultValue}
+          clearable
+          multiple
+          onChange={onChange}
+          options={options}
+        />,
+      )
+      wrapper.find('Icon').simulate('click', event)
+
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch(event, { value: [] })
+      wrapper.should.have.state('selectedIndex', 0)
+    })
+  })
+
+  describe('handleBlur', () => {
+    it('passes the event to the onBlur prop', () => {
+      const onBlur = sandbox.spy()
+      const event = { foo: 'bar' }
+
+      wrapperShallow(<Dropdown onBlur={onBlur} />)
+      wrapper.childAt(0).simulate('blur', event)
+
+      onBlur.should.have.been.calledOnce()
+      onBlur.should.have.been.calledWithMatch(event)
+    })
+
+    it('calls handleChange with the selected option on blur', () => {
+      wrapperShallow(<Dropdown selectOnBlur options={options} />)
 
       const instance = wrapper.instance()
-      sandbox.spy(instance, 'makeSelectedItemActive')
+      wrapper.childAt(0).simulate('click', { stopPropagation: _.noop })
+      dropdownMenuIsOpen()
+      sandbox.spy(instance, 'handleChange')
 
-      wrapper.simulate('blur')
+      const event = { stopPropagation: _.noop }
+      wrapper.childAt(0).simulate('blur', event)
 
-      instance.makeSelectedItemActive.should.have.been.calledOnce()
+      instance.handleChange.should.have.been.calledWithMatch(event, options[0].value)
+    })
+
+    it('does not call handleChange if the value has not changed', () => {
+      wrapperShallow(<Dropdown selectOnBlur options={options} />)
+
+      const instance = wrapper.instance()
+      wrapper.setState({ selectedIndex: 2, value: options[2].value })
+      wrapper.childAt(0).simulate('click', { stopPropagation: _.noop })
+      dropdownMenuIsOpen()
+      sandbox.spy(instance, 'handleChange')
+
+      wrapper.childAt(0).simulate('blur')
+
+      instance.handleChange.should.not.have.been.called()
     })
 
     it('sets focus state to false', () => {
       wrapperShallow(<Dropdown selectOnBlur />)
 
-      wrapper.simulate('blur')
+      wrapper.childAt(0).simulate('blur')
       wrapper.should.have.state('focus', false)
     })
 
@@ -396,19 +476,19 @@ describe('Dropdown', () => {
       wrapperShallow(<Dropdown />)
 
       wrapper.setState({ searchQuery: 'foo' })
-      wrapper.simulate('blur')
+      wrapper.childAt(0).simulate('blur')
       wrapper.should.have.state('searchQuery', '')
     })
 
     it('does not call onBlur when the mouse is down', () => {
-      const spy = sandbox.spy()
+      const onBlur = sandbox.spy()
 
-      wrapperShallow(<Dropdown onBlur={spy} selectOnBlur />)
+      wrapperShallow(<Dropdown onBlur={onBlur} selectOnBlur />)
 
       wrapper.simulate('mousedown')
       wrapper.simulate('blur')
 
-      spy.should.not.have.been.called()
+      onBlur.should.not.have.been.called()
     })
 
     it('does not call makeSelectedItemActive when the mouse is down', () => {
@@ -463,19 +543,16 @@ describe('Dropdown', () => {
         .find('DropdownItem')
         .first()
         .simulate('click')
-      wrapper
-        .find('DropdownItem')
-        .first()
-        .simulate('click')
-        .should.have.prop('active', true)
       wrapper.should.have.state('value', options[0].value)
-
       dropdownMenuIsClosed()
+
+      // The dropdown will be still focused after an item will be selected, we should remove
+      // focus from it before
+      document.activeElement.blur()
 
       // doesn't open on space
       domEvent.keyDown(document, { key: ' ' })
       wrapper.update()
-
       dropdownMenuIsClosed()
     })
   })
@@ -536,12 +613,11 @@ describe('Dropdown', () => {
 
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
-      wrapperShallow(<Dropdown />).simulate('mousedown')
+      wrapperMount(<Dropdown />).simulate('mousedown')
 
       wrapper.instance().isMouseDown.should.equal(true)
 
       domEvent.mouseUp(document)
-
       wrapper.instance().isMouseDown.should.equal(false)
     })
   })
@@ -914,11 +990,7 @@ describe('Dropdown', () => {
       wrapper
         .find('DropdownItem')
         .at(1)
-        .should.have.prop('selected', false)
-      wrapper
-        .find('DropdownItem')
-        .at(1)
-        .should.have.prop('active', false)
+        .should.have.props({ selected: false, active: false })
 
       // select and make active
       domEvent.keyDown(document, { key: 'ArrowDown' })
@@ -928,7 +1000,7 @@ describe('Dropdown', () => {
       wrapper
         .find('DropdownItem')
         .at(1)
-        .should.have.prop('active', true)
+        .should.have.props({ selected: true, active: true })
     })
     it('closes the menu', () => {
       wrapperMount(<Dropdown options={options} selection />).simulate('click')
@@ -1227,6 +1299,19 @@ describe('Dropdown', () => {
       dropdownMenuIsClosed()
     })
 
+    it('handles focus correctly', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+      wrapper.should.have.state('focus', false)
+
+      // focus
+      wrapper.getDOMNode().focus()
+      wrapper.should.have.state('focus', true)
+
+      // click outside
+      domEvent.click(document.body)
+      wrapper.should.have.state('focus', false)
+    })
+
     it('closes on esc key', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
@@ -1260,9 +1345,9 @@ describe('Dropdown', () => {
     it('is called once when the icon is clicked with a search prop', () => {
       // https://github.com/Semantic-Org/Semantic-UI-React/issues/2600
       const onOpen = sandbox.spy()
-      wrapperMount(<Dropdown options={options} selection search onOpen={onOpen} />)
-        .find('i.icon')
-        .simulate('click')
+      wrapperShallow(<Dropdown options={options} selection search onOpen={onOpen} />)
+        .find('Icon')
+        .simulate('click', { stopPropagation: _.noop })
 
       onOpen.should.have.been.calledOnce()
     })
@@ -1271,9 +1356,20 @@ describe('Dropdown', () => {
   describe('onClose', () => {
     it('called when dropdown would close', () => {
       const onClose = sandbox.spy()
-      wrapperMount(<Dropdown options={options} selection defaultOpen onClose={onClose} />)
+      wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
 
       wrapper.simulate('click')
+      onClose.should.have.been.calledOnce()
+    })
+
+    it('called once even when blurred', () => {
+      // Heads up!
+      // Special test for: https://github.com/Semantic-Org/Semantic-UI-React/issues/2953
+      const onClose = sandbox.spy()
+      wrapperMount(<Dropdown defaultOpen onClose={onClose} options={options} selection />)
+
+      wrapper.simulate('click')
+      wrapper.simulate('blur')
       onClose.should.have.been.calledOnce()
     })
   })
@@ -1469,7 +1565,7 @@ describe('Dropdown', () => {
           .at(randomIndex)
           .simulate('click', nativeEvent)
 
-        wrapper.instance().searchRef.should.eq(document.activeElement)
+        wrapper.instance().searchRef.current.should.eq(document.activeElement)
       })
     })
     describe('removing items', () => {
@@ -1876,6 +1972,17 @@ describe('Dropdown', () => {
       )
     })
 
+    it('sets focus to the search input on click Dropdown when is opened', () => {
+      wrapperMount(<Dropdown open options={options} multiple selection search />)
+      wrapper.simulate('click')
+
+      const activeElement = document.activeElement
+      const searchIsFocused = activeElement === document.querySelector('input.search')
+      searchIsFocused.should.be.true(
+        `Expected "input.search" to be the active element but found ${activeElement} instead.`,
+      )
+    })
+
     it('clears the search query when an item is selected', () => {
       // search for random item
       const searchQuery = _.sample(options).text
@@ -1946,9 +2053,7 @@ describe('Dropdown', () => {
       // search for value yields 2 results as per our custom search function
       search.simulate('change', { target: { value: searchQuery } })
 
-      searchFunction.should.have.been.calledOnce()
       searchFunction.should.have.been.calledWithMatch(options, searchQuery)
-
       wrapper
         .find('DropdownItem')
         .should.have.lengthOf(2, 'Searching with custom search function did not yield 2 results.')
@@ -2021,6 +2126,51 @@ describe('Dropdown', () => {
 
       dropdownMenuIsOpen()
     })
+
+    it('sets focus to the search input after selection', () => {
+      wrapperMount(<Dropdown open options={options} selection search />)
+
+      // random item, skip the first as it's selected by default
+      const randomIndex = 1 + _.random(options.length - 2)
+
+      wrapper
+        .find('DropdownItem')
+        .at(randomIndex)
+        .simulate('click')
+
+      const activeElement = document.activeElement
+      const searchIsFocused = activeElement === document.querySelector('input.search')
+      searchIsFocused.should.be.true(
+        `Expected "input.search" to be the active element but found ${activeElement} instead.`,
+      )
+    })
+  })
+
+  describe('searchInput', () => {
+    it('overrides onChange handler', () => {
+      const onInputChange = sandbox.spy()
+      const onSearchChange = sandbox.spy()
+
+      wrapperShallow(
+        <Dropdown
+          onSearchChange={onSearchChange}
+          options={options}
+          search
+          searchInput={{ onChange: onInputChange }}
+        />,
+      )
+
+      wrapper
+        .find(DropdownSearchInput)
+        .shallow()
+        .simulate('change', {
+          stopPropagation: _.noop,
+          target: { value: faker.hacker.noun() },
+        })
+
+      onInputChange.should.have.been.calledOnce()
+      onSearchChange.should.have.been.calledOnce()
+    })
   })
 
   describe('no results message', () => {
@@ -2064,7 +2214,7 @@ describe('Dropdown', () => {
       wrapper.find('.message').should.have.text('No results found.')
     })
 
-    it('uses custom noResultsMessage', () => {
+    it('uses custom string for noResultsMessage', () => {
       const search = wrapperMount(
         <Dropdown options={options} selection search noResultsMessage='Something custom' />,
       ).find('input.search')
@@ -2073,6 +2223,22 @@ describe('Dropdown', () => {
       search.simulate('change', { target: { value: '_________________' } })
 
       wrapper.find('.message').should.have.text('Something custom')
+    })
+
+    it('uses custom component for noResultsMessage', () => {
+      const search = wrapperMount(
+        <Dropdown
+          options={options}
+          selection
+          search
+          noResultsMessage={<span>Something custom</span>}
+        />,
+      ).find('input.search')
+
+      // search for something we know will not exist
+      search.simulate('change', { target: { value: '_________________' } })
+
+      wrapper.find('.message').should.contain.descendants('span')
     })
 
     it('uses no noResultsMessage', () => {
@@ -2137,6 +2303,20 @@ describe('Dropdown', () => {
       instance.render()
 
       instance.renderText.should.have.been.called()
+    })
+  })
+
+  describe('lazyLoad', () => {
+    it('does not render options when closed', () => {
+      wrapperShallow(<Dropdown options={options} lazyLoad />).should.not.have.descendants(
+        'DropdownItem',
+      )
+    })
+
+    it('renders options when open', () => {
+      wrapperShallow(<Dropdown options={options} lazyLoad open />).should.have.descendants(
+        'DropdownItem',
+      )
     })
   })
 

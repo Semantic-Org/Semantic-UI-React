@@ -27,6 +27,7 @@ describe('Item', () => {
   })
 
   common.implementsShorthandProp(Item, {
+    autoGenerateKey: false,
     propKey: 'image',
     ShorthandComponent: ItemImage,
     mapValueToProps: val => ({ src: val }),

@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface PopupHeaderProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+export interface PopupHeaderProps extends StrictPopupHeaderProps {
+  [key: string]: any
 }
 
-declare const PopupHeader: React.StatelessComponent<PopupHeaderProps>;
+export interface StrictPopupHeaderProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default PopupHeader;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+}
+
+declare const PopupHeader: React.StatelessComponent<PopupHeaderProps>
+
+export default PopupHeader

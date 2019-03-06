@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 
-import Ref from 'src/addons/Ref/Ref'
+import Portal from 'src/addons/Portal/Portal'
 import { SUI } from 'src/lib'
 import Popup, { POSITIONS } from 'src/modules/Popup/Popup'
 import PopupHeader from 'src/modules/Popup/PopupHeader'
@@ -50,7 +50,7 @@ describe('Popup', () => {
   it('renders a Portal', () => {
     wrapperShallow(<Popup />)
       .type()
-      .should.equal(Ref)
+      .should.equal(Portal)
   })
 
   it('renders to the document body', () => {
@@ -79,8 +79,8 @@ describe('Popup', () => {
     assertInBody('.ui.popup.visible.some-class')
   })
 
-  describe('offest', () => {
-    it('accepts an offest to the left', () => {
+  describe('offset', () => {
+    it('accepts an offset to the left', () => {
       wrapperMount(
         <Popup
           horizontalOffset={50}
@@ -93,7 +93,7 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
-    it('accepts an offest to the right', () => {
+    it('accepts an offset to the right', () => {
       wrapperMount(
         <Popup
           horizontalOffset={50}
@@ -106,10 +106,26 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
+    it('causes the style to be updated', () => {
+      wrapperMount(
+        <Popup
+          horizontalOffset={50}
+          position='bottom left'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+      const element = document.querySelector('.popup.ui')
+      element.style.should.have.property('left', '-50px')
+      wrapper.setProps({ horizontalOffset: 60 })
+      element.style.should.have.property('left', '-60px')
+    })
   })
 
-  describe('verticalOffest', () => {
-    it('accepts a vertical offest to the top', () => {
+  describe('verticalOffset', () => {
+    it('accepts a vertical offset to the top', () => {
       wrapperMount(
         <Popup
           verticalOffset={50}
@@ -122,7 +138,7 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
-    it('accepts a vertical offest to the bottom', () => {
+    it('accepts a vertical offset to the bottom', () => {
       wrapperMount(
         <Popup
           verticalOffset={50}
@@ -135,11 +151,27 @@ describe('Popup', () => {
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
+    it('causes the style to be updated', () => {
+      wrapperMount(
+        <Popup
+          verticalOffset={50}
+          position='bottom right'
+          content='foo'
+          trigger={<button>foo</button>}
+        />,
+      )
+
+      wrapper.find('button').simulate('click')
+      const element = document.querySelector('.popup.ui')
+      element.style.should.have.property('top', '50px')
+      wrapper.setProps({ verticalOffset: 60 })
+      element.style.should.have.property('top', '60px')
+    })
   })
 
   describe('position', () => {
     POSITIONS.forEach((position) => {
-      it('is always within the viewport when the trigger is clicked', () => {
+      it(`"${position}" is always within the viewport when the trigger is clicked`, () => {
         wrapperMount(
           <Popup content='_' position={position} trigger={<button>foo</button>} on='click' />,
         )
@@ -147,21 +179,25 @@ describe('Popup', () => {
 
         const rect = document.querySelector('.popup.ui').getBoundingClientRect()
         const { top, right, bottom, left } = rect
-
         expect(top).to.be.at.least(0)
         expect(left).to.be.at.least(0)
         expect(bottom).to.be.at.most(document.documentElement.clientHeight)
         expect(right).to.be.at.most(document.documentElement.clientWidth)
       })
-      it('is positioned properly when open property is set', () => {
+      it(`"${position}" is positioned properly when open property is set`, (done) => {
         wrapperMount(<Popup content='_' position={position} open trigger={<button>foo</button>} />)
-        const element = document.querySelector('.popup.ui')
-        element.style.should.not.have.property('top', '')
-        element.style.should.not.have.property('left', '')
-        element.style.should.not.have.property('bottom', '')
-        element.style.should.not.have.property('right', '')
+        setTimeout(() => {
+          const element = document.querySelector('.popup.ui')
+          const { top, left, bottom, right } = element.style
+          expect(element.style.position).to.equal('absolute')
+          expect(top).to.not.equal('')
+          expect(left).to.not.equal('')
+          expect(bottom).to.not.equal('')
+          expect(right).to.not.equal('')
+          done()
+        }, 1)
       })
-      it('is the original if no horizontal position fits within the viewport', () => {
+      it(`"${position}" is the original if no horizontal position fits within the viewport`, () => {
         wrapperMount(
           <Popup
             content='_'
@@ -177,7 +213,7 @@ describe('Popup', () => {
         expect(selectedPosition).to.equal(position)
       })
 
-      it('is the original if no vertical position fits within the viewport', () => {
+      it(`"${position}" is the original if no vertical position fits within the viewport`, () => {
         wrapperMount(
           <Popup
             content='_'
@@ -324,6 +360,74 @@ describe('Popup', () => {
     })
   })
 
+  describe('context', () => {
+    // We're expecting to see this:
+    //
+    // |- context -----------------------------|
+    // |             99px x 10px               |
+    // |---------------------------------------|
+    //                  ---^---
+    //                 | popup |
+    //                  -------
+
+    it('aligns the popup to the context node', () => {
+      const context = document.createElement('div')
+      context.innerText = '.'
+      context.style.marginTop = '400px'
+      context.style.marginLeft = '400px'
+      context.style.width = '99px'
+      context.style.height = '10px'
+
+      document.body.appendChild(context)
+      const contextRect = context.getBoundingClientRect()
+
+      wrapperMount(
+        <Popup id='context-popup' context={context} content='.' position='bottom center' open />,
+      )
+
+      const popupRect = document.querySelector('#context-popup').getBoundingClientRect()
+
+      document.body.removeChild(context)
+
+      popupRect.top.should.equal(
+        contextRect.bottom,
+        "The popup's top should have been equal to the context's bottom.",
+      )
+    })
+
+    it('aligns the popup to the context node even when there is a trigger', () => {
+      const context = document.createElement('div')
+      context.innerText = '.'
+      context.style.marginTop = '400px'
+      context.style.marginLeft = '400px'
+      context.style.width = '99px'
+      context.style.height = '10px'
+
+      document.body.appendChild(context)
+      const contextRect = context.getBoundingClientRect()
+
+      wrapperMount(
+        <Popup
+          id='context-popup'
+          trigger={<button />}
+          context={context}
+          content='.'
+          position='bottom center'
+          open
+        />,
+      )
+
+      const popupRect = document.querySelector('#context-popup').getBoundingClientRect()
+
+      document.body.removeChild(context)
+
+      popupRect.top.should.equal(
+        contextRect.bottom,
+        "The popup's top should have been equal to the context's bottom.",
+      )
+    })
+  })
+
   describe('open', () => {
     it('is not open by default', () => {
       wrapperMount(<Popup />)
@@ -361,6 +465,26 @@ describe('Popup', () => {
       wrapper.setProps({ open: false })
 
       assertInBody('.ui.popup.visible', false)
+    })
+  })
+
+  describe('disabled', () => {
+    it('is not disabled by default', () => {
+      shallow(<Popup />)
+        .find('Portal')
+        .should.exist()
+    })
+
+    it('does not render Portal if disabled', () => {
+      shallow(<Popup disabled />)
+        .find('Portal')
+        .should.not.exist()
+    })
+
+    it('does not render Portal even with open prop', () => {
+      shallow(<Popup open disabled />)
+        .find('Portal')
+        .should.not.exist()
     })
   })
 

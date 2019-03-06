@@ -22,13 +22,13 @@ const HorizontalSidebar = ({ animation, direction, visible }) => (
       </Grid.Row>
       <Grid columns={3} divided>
         <Grid.Column>
-          <Image src='/assets/images/wireframe/media-paragraph.png' />
+          <Image src='/images/wireframe/media-paragraph.png' />
         </Grid.Column>
         <Grid.Column>
-          <Image src='/assets/images/wireframe/media-paragraph.png' />
+          <Image src='/images/wireframe/media-paragraph.png' />
         </Grid.Column>
         <Grid.Column>
-          <Image src='/assets/images/wireframe/media-paragraph.png' />
+          <Image src='/images/wireframe/media-paragraph.png' />
         </Grid.Column>
       </Grid>
     </Grid>
@@ -139,7 +139,7 @@ export default class SidebarExampleTransitions extends Component {
           <Sidebar.Pusher dimmed={dimmed && visible}>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
-              <Image src='/assets/images/wireframe/paragraph.png' />
+              <Image src='/images/wireframe/paragraph.png' />
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>

@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface ItemMetaProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+export interface ItemMetaProps extends StrictItemMetaProps {
+  [key: string]: any
 }
 
-declare const ItemMeta: React.StatelessComponent<ItemMetaProps>;
+export interface StrictItemMetaProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default ItemMeta;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+}
+
+declare const ItemMeta: React.StatelessComponent<ItemMetaProps>
+
+export default ItemMeta

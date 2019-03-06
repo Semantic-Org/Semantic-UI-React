@@ -1,15 +1,18 @@
 import React from 'react'
-import { Segment, Button, Divider } from 'semantic-ui-react'
+import { Button, Divider, Input, Segment } from 'semantic-ui-react'
 
 const DividerExampleHorizontal = () => (
-  <Segment padded>
-    <Button primary fluid>
-      Login
-    </Button>
+  <Segment basic textAlign='center'>
+    <Input
+      action={{ color: 'blue', content: 'Search' }}
+      icon='search'
+      iconPosition='left'
+      placeholder='Order #'
+    />
+
     <Divider horizontal>Or</Divider>
-    <Button secondary fluid>
-      Sign Up Now
-    </Button>
+
+    <Button color='teal' content='Create New Order' icon='add' labelPosition='left' />
   </Segment>
 )
 

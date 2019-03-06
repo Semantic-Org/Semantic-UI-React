@@ -29,5 +29,43 @@ describe('createPaginationItems', () => {
       { active: false, type: 'lastItem', value: 30 },
     ])
   })
-})
 
+  it('creates an array of item objects when "hideEllipsis" is true', () => {
+    createPaginationItems({
+      activePage: 1,
+      boundaryRange: 0,
+      hideEllipsis: true,
+      siblingRange: 1,
+      totalPages: 10,
+    }).should.deep.equal([
+      { active: false, type: 'firstItem', value: 1 },
+      { active: false, type: 'prevItem', value: 1 },
+
+      { active: true, type: 'pageItem', value: 1 },
+      { active: false, type: 'pageItem', value: 2 },
+      { active: false, type: 'pageItem', value: 3 },
+
+      { active: false, type: 'nextItem', value: 2 },
+      { active: false, type: 'lastItem', value: 10 },
+    ])
+  })
+
+  it('creates an array of item objects when is simple', () => {
+    createPaginationItems({
+      activePage: 1,
+      boundaryRange: 2,
+      siblingRange: 2,
+      totalPages: 3,
+    }).should.deep.equal([
+      { active: false, type: 'firstItem', value: 1 },
+      { active: false, type: 'prevItem', value: 1 },
+
+      { active: true, type: 'pageItem', value: 1 },
+      { active: false, type: 'pageItem', value: 2 },
+      { active: false, type: 'pageItem', value: 3 },
+
+      { active: false, type: 'nextItem', value: 2 },
+      { active: false, type: 'lastItem', value: 3 },
+    ])
+  })
+})

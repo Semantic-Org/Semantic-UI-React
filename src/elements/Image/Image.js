@@ -9,6 +9,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  htmlImageProps,
   partitionHTMLProps,
   SUI,
   useKeyOnly,
@@ -19,8 +20,6 @@ import {
 import Dimmer from '../../modules/Dimmer'
 import Label from '../Label/Label'
 import ImageGroup from './ImageGroup'
-
-const imageProps = ['alt', 'height', 'src', 'srcSet', 'width']
 
 /**
  * An image is a graphic representation of something.
@@ -70,7 +69,7 @@ function Image(props) {
     className,
   )
   const rest = getUnhandledProps(Image, props)
-  const [imgTagProps, rootProps] = partitionHTMLProps(rest, { htmlProps: imageProps })
+  const [imgTagProps, rootProps] = partitionHTMLProps(rest, { htmlProps: htmlImageProps })
   const ElementType = getElementType(Image, props, () => {
     if (
       !_.isNil(dimmer) ||

@@ -3,31 +3,31 @@ export default class NodeRegistry {
     this.nodes = new Map()
   }
 
-  add = (node, component) => {
-    if (this.nodes.has(node)) {
-      const set = this.nodes.get(node)
+  add = (nodeRef, component) => {
+    if (this.nodes.has(nodeRef)) {
+      const set = this.nodes.get(nodeRef)
 
       set.add(component)
       return
     }
 
-    this.nodes.set(node, new Set([component]))
+    this.nodes.set(nodeRef, new Set([component]))
   }
 
-  del = (node, component) => {
-    if (!this.nodes.has(node)) return
+  del = (nodeRef, component) => {
+    if (!this.nodes.has(nodeRef)) return
 
-    const set = this.nodes.get(node)
+    const set = this.nodes.get(nodeRef)
 
     if (set.size === 1) {
-      this.nodes.delete(node)
+      this.nodes.delete(nodeRef)
       return
     }
 
     set.delete(component)
   }
 
-  emit = (node, callback) => {
-    callback(node, this.nodes.get(node))
+  emit = (nodeRef, callback) => {
+    callback(nodeRef, this.nodes.get(nodeRef))
   }
 }

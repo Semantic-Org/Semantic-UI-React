@@ -13,6 +13,15 @@ describe('Pagination', () => {
   })
   common.hasSubcomponents(Pagination, [PaginationItem])
 
+  describe('disabled', () => {
+    it('is passed to an each item', () => {
+      const wrapper = shallow(<Pagination activePage={1} disabled totalPages={3} />)
+      const items = wrapper.find('PaginationItem')
+
+      items.everyWhere(item => item.prop('disabled', true)).should.to.equal(true)
+    })
+  })
+
   describe('onPageChange', () => {
     it('is called with (e, data) when clicked on a pagination item', () => {
       const event = { target: null }

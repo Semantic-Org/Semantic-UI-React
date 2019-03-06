@@ -19,11 +19,22 @@ describe('DimmerInner', () => {
   common.propKeyOnlyToClassName(DimmerInner, 'inverted')
   common.propKeyOnlyToClassName(DimmerInner, 'simple')
 
+  describe('active', () => {
+    it('adds "display: flex" after set to "true"', () => {
+      const wrapper = mount(<DimmerInner />)
+      wrapper.should.have.not.style('display')
+
+      wrapper.setProps({ active: true })
+      wrapper.should.have.style('display', 'flex')
+    })
+  })
+
   describe('onClickOutside', () => {
     it('called when Dimmer has not children', () => {
       const onClickOutside = sandbox.spy()
-      shallow(<DimmerInner onClickOutside={onClickOutside} />).simulate('click')
+      const wrapper = shallow(<DimmerInner onClickOutside={onClickOutside} />)
 
+      wrapper.childAt(0).simulate('click')
       onClickOutside.should.have.been.calledOnce()
     })
 

@@ -3,9 +3,9 @@ import { Icon } from 'semantic-ui-react'
 
 const IconExampleFitted = () => (
   <div>
-    <p>Tight spacing</p>
-    <Icon fitted name='help' />
-    <p>Tight spacing</p>
+    This icon<Icon fitted name='help' />is fitted.
+    <br />
+    This icon<Icon name='help' />is not.
   </div>
 )
 

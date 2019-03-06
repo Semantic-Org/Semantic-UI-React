@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface HeaderSubheaderProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+export interface HeaderSubheaderProps extends StrictHeaderSubheaderProps {
+  [key: string]: any
 }
 
-declare const HeaderSubHeader: React.StatelessComponent<HeaderSubheaderProps>;
+export interface StrictHeaderSubheaderProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default HeaderSubHeader;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+}
+
+declare const HeaderSubHeader: React.StatelessComponent<HeaderSubheaderProps>
+
+export default HeaderSubHeader

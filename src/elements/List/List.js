@@ -147,7 +147,7 @@ class List extends Component {
 
     if (!childrenUtils.isNil(children)) {
       return (
-        <ElementType {...rest} role='list' className={classes}>
+        <ElementType role='list' className={classes} {...rest}>
           {children}
         </ElementType>
       )
@@ -155,14 +155,14 @@ class List extends Component {
 
     if (!childrenUtils.isNil(content)) {
       return (
-        <ElementType {...rest} role='list' className={classes}>
+        <ElementType role='list' className={classes} {...rest}>
           {content}
         </ElementType>
       )
     }
 
     return (
-      <ElementType {...rest} role='list' className={classes}>
+      <ElementType role='list' className={classes} {...rest}>
         {_.map(items, item => ListItem.create(item, { overrideProps: this.handleItemOverrides }))}
       </ElementType>
     )

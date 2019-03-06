@@ -13,7 +13,7 @@ const EmbedExampleIframe = () => (
         padding: 10,
       },
     }}
-    placeholder='/assets/images/image-16by9.png'
+    placeholder='/images/image-16by9.png'
     source='youtube'
   />
 )

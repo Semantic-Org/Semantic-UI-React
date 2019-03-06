@@ -8,9 +8,9 @@
  * @param {number} options.totalPages Total number of pages.
  * @return {boolean}
  */
-export const isSimplePagination = ({ boundaryRange, siblingRange, totalPages }) => {
+export const isSimplePagination = ({ boundaryRange, hideEllipsis, siblingRange, totalPages }) => {
   const boundaryRangeSize = 2 * boundaryRange
-  const ellipsisSize = 2
+  const ellipsisSize = hideEllipsis ? 0 : 2
   const siblingRangeSize = 2 * siblingRange
 
   return 1 + ellipsisSize + siblingRangeSize + boundaryRangeSize >= totalPages
@@ -19,11 +19,13 @@ export const isSimplePagination = ({ boundaryRange, siblingRange, totalPages }) 
 export const typifyOptions = ({
   activePage,
   boundaryRange,
+  hideEllipsis,
   siblingRange,
   totalPages,
 }) => ({
   activePage: +activePage,
   boundaryRange: +boundaryRange,
+  hideEllipsis: !!hideEllipsis,
   siblingRange: +siblingRange,
   totalPages: +totalPages,
 })

@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { SemanticShorthandContent } from '../..';
+import * as React from 'react'
+import { SemanticShorthandContent } from '../../generic'
 
-export interface ModalHeaderProps {
-  [key: string]: any;
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Shorthand for primary content. */
-  content?: SemanticShorthandContent;
+export interface ModalHeaderProps extends StrictModalHeaderProps {
+  [key: string]: any
 }
 
-declare const ModalHeader: React.StatelessComponent<ModalHeaderProps>;
+export interface StrictModalHeaderProps {
+  /** An element type to render as (string or function). */
+  as?: any
 
-export default ModalHeader;
+  /** Primary content. */
+  children?: React.ReactNode
+
+  /** Additional classes. */
+  className?: string
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent
+}
+
+declare const ModalHeader: React.StatelessComponent<ModalHeaderProps>
+
+export default ModalHeader

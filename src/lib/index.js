@@ -25,6 +25,7 @@ export {
   htmlInputAttrs,
   htmlInputEvents,
   htmlInputProps,
+  htmlImageProps,
   partitionHTMLProps,
 } from './htmlPropsUtils'
 
@@ -38,4 +39,4 @@ export { numberToWordMap, numberToWord } from './numberToWord'
 export normalizeOffset from './normalizeOffset'
 export normalizeTransitionDuration from './normalizeTransitionDuration'
 export objectDiff from './objectDiff'
-export shallowEqual from './shallowEqual'
+export { handleRef, isRefObject } from './refUtils'

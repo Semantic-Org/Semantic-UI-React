@@ -9,8 +9,8 @@ export default class VisibilityExampleCallbackFrequency extends Component {
 
   clearLog = () => this.setState({ log: [], logCount: 0 })
 
-  handleButtonClick = () => this.setState({ visible: !this.state.visible })
-
+  handleHideClick = () => this.setState({ visible: false })
+  handleShowClick = () => this.setState({ visible: true })
   handleSidebarHide = () => this.setState({ visible: false })
 
   updateLog = eventName => () =>
@@ -26,7 +26,14 @@ export default class VisibilityExampleCallbackFrequency extends Component {
       <Grid columns={2}>
         <Grid.Row>
           <Grid.Column>
-            <Button onClick={this.handleButtonClick}>Toggle visibility</Button>
+            <Button.Group>
+              <Button disabled={visible} onClick={this.handleShowClick}>
+                Show sidebar
+              </Button>
+              <Button disabled={!visible} onClick={this.handleHideClick}>
+                Hide sidebar
+              </Button>
+            </Button.Group>
           </Grid.Column>
         </Grid.Row>
 
@@ -57,7 +64,7 @@ export default class VisibilityExampleCallbackFrequency extends Component {
               <Sidebar.Pusher>
                 <Segment basic>
                   <Header as='h3'>Application Content</Header>
-                  <Image src='/assets/images/wireframe/paragraph.png' />
+                  <Image src='/images/wireframe/paragraph.png' />
                 </Segment>
               </Sidebar.Pusher>
             </Sidebar.Pushable>
@@ -72,7 +79,11 @@ export default class VisibilityExampleCallbackFrequency extends Component {
                 Event Log <Label circular>{logCount}</Label>
               </Segment>
               <Segment secondary>
-                <pre>{log.map((e, i) => <div key={i}>{e}</div>)}</pre>
+                <pre>
+                  {log.map((e, i) => (
+                    <div key={i}>{e}</div>
+                  ))}
+                </pre>
               </Segment>
             </Segment.Group>
           </Grid.Column>

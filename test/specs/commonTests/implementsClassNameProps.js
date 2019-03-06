@@ -1,7 +1,7 @@
 import { createElement } from 'react'
 import _ from 'lodash'
 
-import { consoleUtil, nestedShallow } from 'test/utils'
+import { consoleUtil } from 'test/utils'
 import {
   classNamePropValueBeforePropName,
   noClassNameFromBoolProps,
@@ -53,7 +53,8 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
 
     it('adds prop name to className', () => {
       consoleUtil.disableOnce()
-      nestedShallow(createElement(Component, { ...requiredProps, [propKey]: true }), {
+      shallow(createElement(Component, { ...requiredProps, [propKey]: true }), {
+        autoNesting: true,
         nestingLevel,
       }).should.have.className(className)
     })
@@ -62,7 +63,8 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
       consoleUtil.disableOnce()
 
       const value = 'foo-bar-baz'
-      nestedShallow(createElement(Component, { ...requiredProps, [propKey]: value }), {
+      shallow(createElement(Component, { ...requiredProps, [propKey]: value }), {
+        autoNesting: true,
         nestingLevel,
       }).should.not.have.className(value)
     })
@@ -94,9 +96,9 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
     })
 
     it('adds only the name to className when true', () => {
-      shallow(
-        createElement(Component, { ...requiredProps, [propKey]: true }),
-      ).should.have.className(className)
+      shallow(createElement(Component, { ...requiredProps, [propKey]: true }), {
+        autoNesting: true,
+      }).should.have.className(className)
     })
 
     it('adds no className when false', () => {
@@ -136,7 +138,8 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
 
     it('adds prop value to className', () => {
       propValues.forEach((propValue) => {
-        nestedShallow(createElement(Component, { ...requiredProps, [propKey]: propValue }), {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }), {
+          autoNesting: true,
           nestingLevel,
         }).should.have.className(propValue)
       })
@@ -146,7 +149,8 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
       consoleUtil.disableOnce()
 
       propValues.forEach((propValue) => {
-        nestedShallow(createElement(Component, { ...requiredProps, [propKey]: propValue }), {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }), {
+          autoNesting: true,
           nestingLevel,
         }).should.not.have.className(propKey)
       })

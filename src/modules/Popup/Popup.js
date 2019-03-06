@@ -14,11 +14,12 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  isRefObject,
 } from '../../lib'
 import Portal from '../../addons/Portal'
+import Ref from '../../addons/Ref'
 import PopupContent from './PopupContent'
 import PopupHeader from './PopupHeader'
-import Ref from '../../addons/Ref'
 
 const debug = makeDebugger('popup')
 
@@ -52,6 +53,12 @@ export default class Popup extends Component {
 
     /** Simple text content for the popover. */
     content: customPropTypes.itemShorthand,
+
+    /** Existing element the pop-up should be bound to. */
+    context: PropTypes.oneOfType([PropTypes.object, customPropTypes.refObject]),
+
+    /** A disabled popup only renders its trigger. */
+    disabled: PropTypes.bool,
 
     /** A flowing Popup has no maximum width and continues to flow to fit its content. */
     flowing: PropTypes.bool,
@@ -139,6 +146,7 @@ export default class Popup extends Component {
     position: 'top left',
     on: 'hover',
     keepInViewPort: true,
+    disabled: false,
   }
 
   static Content = PopupContent
@@ -146,25 +154,34 @@ export default class Popup extends Component {
 
   state = {}
 
-  componentDidMount() {
-    this.mounted = true
+  componentDidUpdate(prevProps) {
+    // if horizontal/vertical offsets change, re-calculate the CSS style
+    const { horizontalOffset, verticalOffset } = this.props
+    if (
+      horizontalOffset !== prevProps.horizontalOffset ||
+      verticalOffset !== prevProps.verticalOffset
+    ) {
+      this.setPopupStyle()
+    }
   }
 
   componentWillUnmount() {
-    this.mounted = false
+    clearTimeout(this.timeoutId)
   }
 
-  computePopupStyle(positions) {
+  computePopupStyle = (positions) => {
     const style = { position: 'absolute' }
+    const context = this.getContext()
 
     // Do not access window/document when server side rendering
     if (!isBrowser()) return style
+    debug('computePopupStyle()')
 
     const { horizontalOffset, verticalOffset } = this.props
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement
 
-    const coords = this.coords || this.triggerRef.getBoundingClientRect()
+    const coords = this.coords || context.getBoundingClientRect()
     if (_.includes(positions, 'right')) {
       style.right = Math.round(clientWidth - (coords.right + pageXOffset))
       style.left = 'auto'
@@ -219,7 +236,8 @@ export default class Popup extends Component {
 
   // check if the style would display
   // the popup outside of the view port
-  isStyleInViewport(style) {
+  isStyleInViewport = (style) => {
+    debug(`isStyleInViewport(${style})`)
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement
 
@@ -248,8 +266,10 @@ export default class Popup extends Component {
     return true
   }
 
-  setPopupStyle() {
-    if ((!this.coords && !this.triggerRef) || !this.popupCoords) return
+  setPopupStyle = () => {
+    const context = this.getContext()
+    if ((!this.coords && !context) || !this.popupCoords) return
+    debug('setPopupStyle()')
     let position = this.props.position
     let style = this.computePopupStyle(position)
     const { keepInViewPort } = this.props
@@ -269,7 +289,8 @@ export default class Popup extends Component {
     this.setState({ style, position })
   }
 
-  getPortalProps() {
+  getPortalProps = () => {
+    debug('getPortalProps()')
     const portalProps = {}
 
     const { on, hoverable } = this.props
@@ -300,11 +321,12 @@ export default class Popup extends Component {
   }
 
   hideOnScroll = (e) => {
+    debug('hideOnScroll()')
     this.setState({ closed: true })
 
     eventStack.unsub('scroll', this.hideOnScroll, { target: window })
-    setTimeout(() => {
-      if (this.mounted) this.setState({ closed: false })
+    this.timeoutId = setTimeout(() => {
+      this.setState({ closed: false })
     }, 50)
 
     this.handleClose(e)
@@ -318,10 +340,9 @@ export default class Popup extends Component {
 
   handleOpen = (e) => {
     debug('handleOpen()')
-    this.coords = e.currentTarget.getBoundingClientRect()
 
-    const { onOpen } = this.props
-    if (onOpen) onOpen(e, this.props)
+    this.coords = this.getContext().getBoundingClientRect()
+    _.invoke(this.props, 'onOpen', e, this.props)
   }
 
   handlePortalMount = (e) => {
@@ -329,7 +350,7 @@ export default class Popup extends Component {
     const { hideOnScroll } = this.props
 
     if (hideOnScroll) eventStack.sub('scroll', this.hideOnScroll, { target: window })
-    this.setPosition()
+    this.setPopupStyle()
     _.invoke(this.props, 'onMount', e, this.props)
   }
 
@@ -337,30 +358,27 @@ export default class Popup extends Component {
     debug('handlePortalUnmount()')
     const { hideOnScroll } = this.props
 
-    cancelAnimationFrame(this.animationRequestId)
     if (hideOnScroll) eventStack.unsub('scroll', this.hideOnScroll, { target: window })
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
   handlePopupRef = (popupRef) => {
-    debug('popupMounted()')
+    debug(`handlePopupRef(${popupRef})`)
     this.popupCoords = popupRef ? popupRef.getBoundingClientRect() : null
     this.setPopupStyle()
   }
 
   handleTriggerRef = (triggerRef) => {
-    debug('triggerMounted()')
-    if (triggerRef) {
-      this.triggerRef = triggerRef
-    }
+    debug(`handleTriggerRef(${triggerRef})`)
+    this.triggerRef = triggerRef
+    this.setPopupStyle()
   }
 
-  setPosition = () => {
-    if (this.triggerRef) {
-      this.setPopupStyle(this.props.position)
-    }
+  getContext = () => {
+    const { context } = this.props
+    const contextFromProp = isRefObject(context) ? context.current : context
 
-    this.animationRequestId = requestAnimationFrame(this.setPosition)
+    return contextFromProp || this.triggerRef
   }
 
   render() {
@@ -375,6 +393,7 @@ export default class Popup extends Component {
       size,
       trigger,
       wide,
+      disabled,
     } = this.props
 
     const { position, closed } = this.state
@@ -391,7 +410,7 @@ export default class Popup extends Component {
       className,
     )
 
-    if (closed) return trigger
+    if (closed || disabled) return trigger
 
     const unhandled = getUnhandledProps(Popup, this.props)
     const portalPropNames = Portal.handledProps
@@ -409,29 +428,31 @@ export default class Popup extends Component {
     const ElementType = getElementType(Popup, this.props)
 
     const popupJSX = (
-      <ElementType {...rest} className={classes} style={style} ref={this.handlePopupRef}>
-        {children}
-        {childrenUtils.isNil(children) && PopupHeader.create(header, { autoGenerateKey: false })}
-        {childrenUtils.isNil(children) && PopupContent.create(content, { autoGenerateKey: false })}
-      </ElementType>
+      <Ref innerRef={this.handlePopupRef}>
+        <ElementType {...rest} className={classes} style={style}>
+          {children}
+          {childrenUtils.isNil(children) && PopupHeader.create(header, { autoGenerateKey: false })}
+          {childrenUtils.isNil(children) &&
+            PopupContent.create(content, { autoGenerateKey: false })}
+        </ElementType>
+      </Ref>
     )
 
     const mergedPortalProps = { ...this.getPortalProps(), ...portalProps }
     debug('portal props:', mergedPortalProps)
 
     return (
-      <Ref innerRef={this.handleTriggerRef}>
-        <Portal
-          {...mergedPortalProps}
-          trigger={trigger}
-          onClose={this.handleClose}
-          onMount={this.handlePortalMount}
-          onOpen={this.handleOpen}
-          onUnmount={this.handlePortalUnmount}
-        >
-          {popupJSX}
-        </Portal>
-      </Ref>
+      <Portal
+        {...mergedPortalProps}
+        onClose={this.handleClose}
+        onMount={this.handlePortalMount}
+        onOpen={this.handleOpen}
+        onUnmount={this.handlePortalUnmount}
+        trigger={trigger}
+        triggerRef={this.handleTriggerRef}
+      >
+        {popupJSX}
+      </Portal>
     )
   }
 }

@@ -29,7 +29,7 @@ const StepExampleAttached = () => (
     </Step.Group>
 
     <Segment attached>
-      <Image src='/assets/images/wireframe/paragraph.png' />
+      <Image src='/images/wireframe/paragraph.png' />
     </Segment>
 
     <Step.Group attached='bottom'>

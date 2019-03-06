@@ -90,7 +90,7 @@ describe('ListItem', () => {
 
       it(`renders wrapping ListContent when image and ${key} present`, () => {
         const wrapper = shallow(
-          <ListItem {..._.pick(baseProps, key)} image='/assets/images/wireframe/image.png' />,
+          <ListItem {..._.pick(baseProps, key)} image='/images/wireframe/image.png' />,
         )
 
         wrapper.find('Image').should.have.lengthOf(1)
@@ -103,6 +103,7 @@ describe('ListItem', () => {
     it('adds role=listitem', () => {
       shallow(<ListItem />).should.have.prop('role', 'listitem')
     })
+
     it('adds role=listitem with children', () => {
       shallow(
         <ListItem>
@@ -110,11 +111,33 @@ describe('ListItem', () => {
         </ListItem>,
       ).should.have.prop('role', 'listitem')
     })
+
     it('adds role=listitem with content', () => {
       shallow(<ListItem content={<div />} />).should.have.prop('role', 'listitem')
     })
+
     it('adds role=listitem with icon', () => {
       shallow(<ListItem icon='user' />).should.have.prop('role', 'listitem')
+    })
+
+    it('allows role override without children', () => {
+      shallow(<ListItem role='option' />).should.have.prop('role', 'option')
+    })
+
+    it('allows role override with children', () => {
+      shallow(
+        <ListItem role='option'>
+          <div>Test</div>
+        </ListItem>,
+      ).should.have.prop('role', 'option')
+    })
+
+    it('allows role override with content', () => {
+      shallow(<ListItem role='option' content={<div />} />).should.have.prop('role', 'option')
+    })
+
+    it('allows role override with icon', () => {
+      shallow(<ListItem role='option' icon='user' />).should.have.prop('role', 'option')
     })
   })
 })
