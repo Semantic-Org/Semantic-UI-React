@@ -1689,6 +1689,25 @@ describe('Dropdown', () => {
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch({}, { value: randomValue })
     })
+    it('is not called when value is not changed on item click', () => {
+      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+
+      wrapper
+        .simulate('click')
+        .find('DropdownItem')
+        .at(0)
+        .simulate('click')
+
+      spy.should.have.been.calledOnce()
+
+      wrapper
+        .simulate('click')
+        .find('DropdownItem')
+        .at(0)
+        .simulate('click')
+
+      spy.should.have.been.calledOnce()
+    })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstValue = options[0].value
       wrapperMount(<Dropdown options={options} selection onChange={spy} />).simulate('click')

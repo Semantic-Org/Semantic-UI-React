@@ -686,6 +686,11 @@ export default class Dropdown extends Component {
 
     const isAdditionItem = item['data-additional']
     const newValue = multiple ? _.union(this.state.value, [value]) : value
+    const valueHasChanged = multiple
+      ? !!_.difference(newValue, this.state.value).length
+      : newValue !== this.state.value
+
+    if (!valueHasChanged) return
 
     // notify the onChange prop that the user is trying to change value
     this.setValue(newValue)
