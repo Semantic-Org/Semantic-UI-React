@@ -11,8 +11,9 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleDropdown'
     >
       <ContributionPrompt>
-        Dropdown state is not fully managed when using the subcomponent API. The shorthand props API
-        fully manages state but needs to be extended to support the markup shown here.
+        Dropdown state is not fully managed when using the subcomponent API. The
+        shorthand props API fully manages state but needs to be extended to
+        support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
@@ -38,10 +39,6 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchSelection'
     />
     <ComponentExample
-      description='Dropdowns can support content that may not be allowed inside option tags.'
-      examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchSelectionTwo'
-    />
-    <ComponentExample
       title='Clearable'
       description='Using the clearable setting will let users remove their selection from a dropdown..'
       examplePath='modules/Dropdown/Types/DropdownExampleClearable'
@@ -59,8 +56,9 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleSearchInMenu'
     >
       <ContributionPrompt>
-        Dropdown state is not fully managed when using the subcomponent API. The shorthand props API
-        fully manages state but needs to be extended to support the markup shown here.
+        Dropdown state is not fully managed when using the subcomponent API. The
+        shorthand props API fully manages state but needs to be extended to
+        support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
@@ -68,8 +66,9 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchInMenu'
     >
       <ContributionPrompt>
-        Dropdown state is not fully managed when using the subcomponent API. The shorthand props API
-        fully manages state but needs to be extended to support the markup shown here.
+        Dropdown state is not fully managed when using the subcomponent API. The
+        shorthand props API fully manages state but needs to be extended to
+        support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
@@ -84,8 +83,8 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExamplePointing'
     >
       <ContributionPrompt>
-        The example below shows (roughly) the desired markup but is not functional since we don't
-        currently support nested dropdowns.
+        The example below shows (roughly) the desired markup but is not
+        functional since we don't currently support nested dropdowns.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample examplePath='modules/Dropdown/Types/DropdownExamplePointingTwo' />

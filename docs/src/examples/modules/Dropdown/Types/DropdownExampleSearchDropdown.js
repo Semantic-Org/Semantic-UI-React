@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-export const languageOptions = [
+const languageOptions = [
   { key: 'Arabic', text: 'Arabic', value: 'Arabic' },
   { key: 'Chinese', text: 'Chinese', value: 'Chinese' },
   { key: 'Danish', text: 'Danish', value: 'Danish' },
