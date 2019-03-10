@@ -1,7 +1,15 @@
+import _ from 'lodash'
 import React, { Component, createRef } from 'react'
-import { Grid, Sticky, Table, Ref, Visibility } from 'semantic-ui-react'
-
-import Wireframe from '../Wireframe'
+import {
+  Divider,
+  Grid,
+  Image,
+  Segment,
+  Sticky,
+  Table,
+  Ref,
+  Visibility,
+} from 'semantic-ui-react'
 
 export default class VisibilityExampleVisibility extends Component {
   state = {
@@ -33,7 +41,30 @@ export default class VisibilityExampleVisibility extends Component {
         <Grid columns={2}>
           <Grid.Column>
             <Visibility onUpdate={this.handleUpdate}>
-              <Wireframe />
+              <Segment>
+                {_.map(
+                  [
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                  ],
+                  (src, index, images) => (
+                    <React.Fragment key={index}>
+                      <Image src={src} />
+                      {index !== images.length - 1 && <Divider />}
+                    </React.Fragment>
+                  ),
+                )}
+              </Segment>
             </Visibility>
           </Grid.Column>
 

@@ -1,17 +1,17 @@
+import _ from 'lodash'
 import React, { Component, createRef } from 'react'
 import {
   Button,
   Checkbox,
   Divider,
   Grid,
+  Image,
   Label,
   Ref,
   Segment,
   Sticky,
   Visibility,
 } from 'semantic-ui-react'
-
-import Wireframe from '../Wireframe'
 
 export default class VisibilityExampleCallbackFrequency extends Component {
   state = {
@@ -60,7 +60,30 @@ export default class VisibilityExampleCallbackFrequency extends Component {
               onOnScreen={this.updateLog('onOnScreen')}
               onOffScreen={this.updateLog('onOffScreen')}
             >
-              <Wireframe />
+              <Segment>
+                {_.map(
+                  [
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                  ],
+                  (src, index, images) => (
+                    <React.Fragment key={index}>
+                      <Image src={src} />
+                      {index !== images.length - 1 && <Divider />}
+                    </React.Fragment>
+                  ),
+                )}
+              </Segment>
             </Visibility>
           </Grid.Column>
 
