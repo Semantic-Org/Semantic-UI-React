@@ -1,3 +1,5 @@
+import makeDebugger from './makeDebugger'
+
 export AutoControlledComponent from './AutoControlledComponent'
 export { getChildMapping, mergeChildMappings } from './childMapping'
 export * as childrenUtils from './childrenUtils'
@@ -13,8 +15,6 @@ export {
 } from './classNameBuilders'
 
 export * as customPropTypes from './customPropTypes'
-
-export { debug, makeDebugger } from './debug'
 export eventStack from './eventStack'
 
 export * from './factories'
@@ -40,3 +40,5 @@ export normalizeOffset from './normalizeOffset'
 export normalizeTransitionDuration from './normalizeTransitionDuration'
 export objectDiff from './objectDiff'
 export { handleRef, isRefObject } from './refUtils'
+
+export { makeDebugger }

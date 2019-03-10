@@ -1,4 +1,4 @@
-import _debug from 'debug'
+import debug from 'debug'
 import isBrowser from './isBrowser'
 
 if (isBrowser() && process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
@@ -18,7 +18,7 @@ if (isBrowser() && process.env.NODE_ENV !== 'production' && process.env.NODE_ENV
   }
 
   // enable what ever settings we got from storage
-  _debug.enable(DEBUG)
+  debug.enable(DEBUG)
 }
 
 /**
@@ -31,12 +31,6 @@ if (isBrowser() && process.env.NODE_ENV !== 'production' && process.env.NODE_ENV
  * debug('Some message')
  * @returns {Function}
  */
-export const makeDebugger = namespace => _debug(`semanticUIReact:${namespace}`)
+const makeDebugger = namespace => debug(`semanticUIReact:${namespace}`)
 
-/**
- * Default debugger, simple log.
- * @example
- * import { debug } from 'src/lib'
- * debug('Some message')
- */
-export const debug = makeDebugger('log')
+export default makeDebugger
