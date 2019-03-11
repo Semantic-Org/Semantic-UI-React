@@ -1697,16 +1697,16 @@ describe('Dropdown', () => {
         .find('DropdownItem')
         .at(0)
         .simulate('click')
-
       spy.should.have.been.calledOnce()
+      dropdownMenuIsClosed()
 
       wrapper
         .simulate('click')
         .find('DropdownItem')
         .at(0)
         .simulate('click')
-
       spy.should.have.been.calledOnce()
+      dropdownMenuIsClosed()
     })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstValue = options[0].value

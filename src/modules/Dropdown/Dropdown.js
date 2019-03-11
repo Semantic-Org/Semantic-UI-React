@@ -676,6 +676,7 @@ export default class Dropdown extends Component {
     debug('handleItemClick()', item)
 
     const { multiple, search } = this.props
+    const { value: currentValue } = this.state
     const { value } = item
 
     // prevent toggle() in handleClick()
@@ -687,18 +688,18 @@ export default class Dropdown extends Component {
     const isAdditionItem = item['data-additional']
     const newValue = multiple ? _.union(this.state.value, [value]) : value
     const valueHasChanged = multiple
-      ? !!_.difference(newValue, this.state.value).length
-      : newValue !== this.state.value
-
-    if (!valueHasChanged) return
+      ? !!_.difference(newValue, currentValue).length
+      : newValue !== currentValue
 
     // notify the onChange prop that the user is trying to change value
-    this.setValue(newValue)
-    this.setSelectedIndex(value)
+    if (valueHasChanged) {
+      this.setValue(newValue)
+      this.setSelectedIndex(value)
+
+      this.handleChange(e, newValue)
+    }
 
     this.clearSearchQuery()
-
-    this.handleChange(e, newValue)
     this.closeOnChange(e)
 
     // Heads up! This event handler should be called after `onChange`
