@@ -1,15 +1,16 @@
+import _ from 'lodash'
 import React, { Component, createRef } from 'react'
 import {
   Checkbox,
+  Divider,
   Grid,
+  Image,
   Segment,
   Sticky,
   Table,
   Ref,
   Visibility,
 } from 'semantic-ui-react'
-
-import Wireframe from '../Wireframe'
 
 export default class VisibilityExampleUpdateOn extends Component {
   state = {
@@ -33,7 +34,32 @@ export default class VisibilityExampleUpdateOn extends Component {
       <Ref innerRef={this.contextRef}>
         <Grid columns={2}>
           <Grid.Column>
-            {showWireframe ? <Wireframe /> : null}
+            {showWireframe ? (
+              <Segment>
+                {_.map(
+                  [
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                  ],
+                  (src, index, images) => (
+                    <React.Fragment key={index}>
+                      <Image src={src} />
+                      {index !== images.length - 1 && <Divider />}
+                    </React.Fragment>
+                  ),
+                )}
+              </Segment>
+            ) : null}
 
             <Visibility
               offset={[10, 10]}

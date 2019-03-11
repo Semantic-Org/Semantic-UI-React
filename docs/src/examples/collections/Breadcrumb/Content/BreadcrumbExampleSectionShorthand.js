@@ -6,6 +6,8 @@ const sections = [
   { key: 'search', content: 'Search', active: true },
 ]
 
-const BreadcrumbExampleSectionProps = () => <Breadcrumb sections={sections} />
+const BreadcrumbExampleSectionShorthand = () => (
+  <Breadcrumb sections={sections} />
+)
 
-export default BreadcrumbExampleSectionProps
+export default BreadcrumbExampleSectionShorthand
