@@ -1,7 +1,6 @@
 import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'classnames'
 import keyboardKey from 'keyboard-key'
-
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Children, cloneElement, createRef } from 'react'
