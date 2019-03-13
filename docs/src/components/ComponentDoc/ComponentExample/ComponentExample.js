@@ -4,10 +4,10 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { withRouter } from 'react-router-dom'
-import { withRouteData } from 'react-static'
+import { scrollTo, withRouteData } from 'react-static'
 import { Grid, Visibility } from 'semantic-ui-react'
 
-import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
+import { examplePathToHash, getFormattedHash, repoURL } from 'docs/src/utils'
 import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
 import NoSSR from 'docs/src/components/NoSSR'
 
@@ -120,7 +120,7 @@ class ComponentExample extends PureComponent {
     const { history, location } = this.props
 
     history.replace(`${location.pathname}#${this.anchorName}`)
-    scrollToAnchor()
+    scrollTo(document.querySelector(`#${this.anchorName}`))
   }
 
   handleDirectLinkClick = () => {

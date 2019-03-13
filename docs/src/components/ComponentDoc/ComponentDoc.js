@@ -2,11 +2,11 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 import { withRouter } from 'react-router-dom'
-import { withRouteData } from 'react-static'
+import { scrollTo, withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
-import { docTypes, examplePathToHash, getFormattedHash, scrollToAnchor } from 'docs/src/utils'
+import { docTypes, examplePathToHash, getFormattedHash } from 'docs/src/utils'
 import { isBrowser } from 'src/lib'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
@@ -68,7 +68,9 @@ class ComponentDoc extends Component {
 
     history.replace(`${location.pathname}#${activePath}`)
     // set active hash path
-    this.setState({ activePath }, scrollToAnchor)
+    this.setState({ activePath }, () => {
+      scrollTo(document.querySelector(`${activePath}`))
+    })
   }
 
   render() {

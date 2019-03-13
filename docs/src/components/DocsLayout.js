@@ -2,11 +2,11 @@ import AnchorJS from 'anchor-js'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Head, withSiteData } from 'react-static'
+import { Head, scrollTo, withSiteData } from 'react-static'
 
 import Sidebar from 'docs/src/components/Sidebar/Sidebar'
 import style from 'docs/src/Style'
-import { docTypes, scrollToAnchor } from 'docs/src/utils'
+import { docTypes } from 'docs/src/utils'
 
 const anchors = new AnchorJS({
   icon: '#',
@@ -48,7 +48,11 @@ class DocsLayout extends Component {
     anchors.remove([1, 2, 3, 4, 5, 6].map(n => `.rendered-example h${n}`).join(', '))
     anchors.remove('.no-anchor')
 
-    this.scrollStartTimeout = setTimeout(scrollToAnchor, 500)
+    this.scrollStartTimeout = setTimeout(() => {
+      if (location.hash) {
+        scrollTo(document.querySelector(location.hash))
+      }
+    }, 500)
     this.pathname = location.pathname
   }
 
