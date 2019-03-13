@@ -65,17 +65,6 @@ describe('extending AutoControlledComponent', () => {
       wrapper.should.have.state(randomProp, randomValue)
     })
 
-    it('does not set state for non autoControlledProps', () => {
-      consoleUtil.disableOnce()
-
-      TestClass = createTestClass({ autoControlledProps: [], state: {} })
-      const wrapper = shallow(<TestClass />)
-
-      wrapper.instance().trySetState({ [faker.hacker.noun()]: faker.hacker.verb() })
-
-      wrapper.state().should.be.empty()
-    })
-
     it('does not set state for props defined by the parent', () => {
       consoleUtil.disableOnce()
 

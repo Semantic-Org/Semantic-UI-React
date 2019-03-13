@@ -758,7 +758,7 @@ export default class Dropdown extends Component {
     const newQuery = value
 
     _.invoke(this.props, 'onSearchChange', e, { ...this.props, searchQuery: newQuery })
-    this.trySetState({ searchQuery: newQuery }, { selectedIndex: 0 })
+    this.trySetState({ searchQuery: newQuery, selectedIndex: 0 })
 
     // open search dropdown on search query
     if (!open && newQuery.length >= minCharacters) {
@@ -1138,7 +1138,7 @@ export default class Dropdown extends Component {
 
     if (open) {
       _.invoke(this.props, 'onClose', e, this.props)
-      this.trySetState({ open: false }, undefined, callback)
+      this.trySetState({ open: false }, callback)
     }
   }
 

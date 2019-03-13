@@ -182,38 +182,16 @@ export default class AutoControlledComponent extends Component {
    * Safely attempt to set state for props that might be controlled by the user.
    * Second argument is a state object that is always passed to setState.
    * @param {object} maybeState State that corresponds to controlled props.
-   * @param {object} [state] Actual state, useful when you also need to setState.
    * @param {function} [callback] a setState callback
    */
-  trySetState = (maybeState, state, callback = () => {}) => {
-    const { autoControlledProps } = this.constructor
-    if (process.env.NODE_ENV !== 'production') {
-      const { name } = this.constructor
-      // warn about failed attempts to setState for keys not listed in autoControlledProps
-      const illegalKeys = _.difference(_.keys(maybeState), autoControlledProps)
-      if (!_.isEmpty(illegalKeys)) {
-        console.error(
-          [
-            `${name} called trySetState() with controlled props: "${illegalKeys}".`,
-            'State will not be set.',
-            'Only props in static autoControlledProps will be set on state.',
-          ].join(' '),
-        )
-      }
-    }
-
-    let newState = Object.keys(maybeState).reduce((acc, prop) => {
+  trySetState = (maybeState, callback = () => {}) => {
+    const newState = Object.keys(maybeState).reduce((acc, prop) => {
       // ignore props defined by the parent
       if (this.props[prop] !== undefined) return acc
-
-      // ignore props not listed in auto controlled props
-      if (autoControlledProps.indexOf(prop) === -1) return acc
 
       acc[prop] = maybeState[prop]
       return acc
     }, {})
-
-    if (state) newState = { ...newState, ...state }
 
     if (Object.keys(newState).length > 0) this.setState(newState, callback)
   }

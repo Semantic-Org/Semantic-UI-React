@@ -83,7 +83,7 @@ export default class Rating extends Component {
     }
 
     // set rating
-    this.trySetState({ rating: newRating }, { isSelecting: false })
+    this.trySetState({ rating: newRating, isSelecting: false })
     if (onRate) onRate(e, { ...this.props, rating: newRating })
   }
 
