@@ -118,6 +118,7 @@ code:not(.hljs)::after {
   font-size: 10px;
   color: #fff;
   opacity: 0.5;
+  white-space: nowrap;
 }
 .carbon-poweredby:hover {
   color: #ddd;
