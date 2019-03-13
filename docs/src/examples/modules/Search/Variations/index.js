@@ -18,7 +18,7 @@ const SearchVariationsExamples = () => (
     />
     <ShorthandExample
       title='Input'
-      description='A search can be passed an input via shorthand props.'
+      description='A search can receive an input via shorthand props.'
       examplePath='modules/Search/Variations/SearchExampleInput'
     />
   </ExampleSection>
