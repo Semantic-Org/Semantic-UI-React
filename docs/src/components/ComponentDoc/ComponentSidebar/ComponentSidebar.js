@@ -16,7 +16,7 @@ const sidebarStyle = {
 }
 
 const ComponentSidebar = ({ activePath, examplesRef, onItemClick, sections }) => (
-  <Sticky context={examplesRef} offset={15}>
+  <Sticky context={examplesRef} offset={14}>
     <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
       {_.map(sections, ({ examples, sectionName }) => (
         <ComponentSidebarSection
