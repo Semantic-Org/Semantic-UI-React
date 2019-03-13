@@ -5,7 +5,7 @@ import React from 'react'
 import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**
- * A modal can have a header.
+ * A modal can contain a description with one or more paragraphs.
  */
 function ModalDescription(props) {
   const { children, className, content } = props

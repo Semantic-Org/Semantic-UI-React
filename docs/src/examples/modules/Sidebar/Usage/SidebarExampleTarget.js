@@ -1,15 +1,20 @@
-import React, { Component } from 'react'
-import { Button, Header, Image, Menu, Ref, Segment, Sidebar } from 'semantic-ui-react'
+import React, { Component, createRef } from 'react'
+import {
+  Button,
+  Header,
+  Image,
+  Menu,
+  Ref,
+  Segment,
+  Sidebar,
+} from 'semantic-ui-react'
 
 export default class VisibilityExampleTarget extends Component {
   state = {}
+  segmentRef = createRef()
 
   handleHideClick = () => this.setState({ visible: false })
   handleShowClick = () => this.setState({ visible: true })
-
-  handleSegmentRef = (c) => {
-    this.segmentRef = c
-  }
 
   handleSidebarHide = () => this.setState({ visible: false })
 
@@ -28,25 +33,23 @@ export default class VisibilityExampleTarget extends Component {
         </Button.Group>
 
         <Sidebar.Pushable as={Segment.Group} raised>
-          {this.segmentRef && (
-            <Sidebar
-              as={Menu}
-              animation='overlay'
-              icon='labeled'
-              inverted
-              onHide={this.handleSidebarHide}
-              vertical
-              target={this.segmentRef}
-              visible={visible}
-              width='thin'
-            >
-              <Menu.Item as='a'>Home</Menu.Item>
-              <Menu.Item as='a'>Games</Menu.Item>
-              <Menu.Item as='a'>Channels</Menu.Item>
-            </Sidebar>
-          )}
+          <Sidebar
+            as={Menu}
+            animation='overlay'
+            icon='labeled'
+            inverted
+            onHide={this.handleSidebarHide}
+            vertical
+            target={this.segmentRef}
+            visible={visible}
+            width='thin'
+          >
+            <Menu.Item as='a'>Home</Menu.Item>
+            <Menu.Item as='a'>Games</Menu.Item>
+            <Menu.Item as='a'>Channels</Menu.Item>
+          </Sidebar>
 
-          <Ref innerRef={this.handleSegmentRef}>
+          <Ref innerRef={this.segmentRef}>
             <Segment>
               <Header as='h3'>Clickable area</Header>
               <p>When you will click there, the sidebar will be closed.</p>

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
-import handleRef from '../../lib/handleRef'
+import { handleRef } from '../../lib/refUtils'
 
 export default class RefFindNode extends Component {
   static propTypes = {
@@ -17,9 +17,23 @@ export default class RefFindNode extends Component {
     innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }
 
+  prevNode = null
+
   componentDidMount() {
     // eslint-disable-next-line react/no-find-dom-node
-    handleRef(this.props.innerRef, findDOMNode(this))
+    this.prevNode = findDOMNode(this)
+
+    handleRef(this.props.innerRef, this.prevNode)
+  }
+
+  componentDidUpdate() {
+    // eslint-disable-next-line react/no-find-dom-node
+    const currentNode = findDOMNode(this)
+
+    if (this.prevNode !== currentNode) {
+      this.prevNode = currentNode
+      handleRef(this.props.innerRef, currentNode)
+    }
   }
 
   componentWillUnmount() {

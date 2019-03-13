@@ -24,10 +24,13 @@ export default class TransitionGroup extends React.Component {
     as: customPropTypes.as,
 
     /** Named animation event to used. Must be defined in CSS. */
-    animation: PropTypes.oneOf(SUI.TRANSITIONS),
+    animation: PropTypes.oneOfType([PropTypes.oneOf(SUI.TRANSITIONS), PropTypes.string]),
 
     /** Primary content. */
     children: PropTypes.node,
+
+    /** Whether it is directional animation event or not. Use it only for custom transitions. */
+    directional: PropTypes.bool,
 
     /** Duration of the CSS transition animation in milliseconds. */
     duration: PropTypes.oneOfType([
@@ -109,13 +112,14 @@ export default class TransitionGroup extends React.Component {
   }
 
   wrapChild = (child, options = {}) => {
-    const { animation, duration } = this.props
+    const { animation, directional, duration } = this.props
     const { key } = child
     const { visible = true, transitionOnMount = false } = options
 
     return (
       <Transition
         animation={animation}
+        directional={directional}
         duration={duration}
         key={key}
         onHide={this.handleOnHide}

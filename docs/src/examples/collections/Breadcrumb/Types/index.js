@@ -1,6 +1,8 @@
 import React from 'react'
+
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 
 const BreadcrumbTypesExamples = () => (
   <div>
@@ -8,10 +10,9 @@ const BreadcrumbTypesExamples = () => (
       <ComponentExample
         title='Breadcrumb'
         description='A standard breadcrumb.'
-        examplePath='collections/Breadcrumb/Types/BreadcrumbExampleStandard'
+        examplePath='collections/Breadcrumb/Types/BreadcrumbExample'
       />
-      <ComponentExample examplePath='collections/Breadcrumb/Types/BreadcrumbExampleDivider' />
-      <ComponentExample examplePath='collections/Breadcrumb/Types/BreadcrumbExampleProps' />
+      <ShorthandExample examplePath='collections/Breadcrumb/Types/BreadcrumbExampleShorthand' />
     </ExampleSection>
   </div>
 )

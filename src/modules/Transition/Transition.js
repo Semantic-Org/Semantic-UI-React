@@ -19,10 +19,13 @@ const TRANSITION_TYPE = {
 export default class Transition extends Component {
   static propTypes = {
     /** Named animation event to used. Must be defined in CSS. */
-    animation: PropTypes.oneOf(SUI.TRANSITIONS),
+    animation: PropTypes.oneOfType([PropTypes.oneOf(SUI.TRANSITIONS), PropTypes.string]),
 
     /** Primary content. */
     children: PropTypes.element.isRequired,
+
+    /** Whether it is directional animation event or not. Use it only for custom transitions. */
+    directional: PropTypes.bool,
 
     /** Duration of the CSS transition animation in milliseconds. */
     duration: PropTypes.oneOfType([
@@ -188,13 +191,13 @@ export default class Transition extends Component {
   // ----------------------------------------
 
   computeClasses = () => {
-    const { animation, children } = this.props
+    const { animation, directional, children } = this.props
     const { animating, status } = this.state
 
     const childClasses = _.get(children, 'props.className')
-    const directional = _.includes(SUI.DIRECTIONAL_TRANSITIONS, animation)
+    const isDirectional = _.isNil(directional) ? _.includes(SUI.DIRECTIONAL_TRANSITIONS, animation) : directional
 
-    if (directional) {
+    if (isDirectional) {
       return cx(
         animation,
         childClasses,

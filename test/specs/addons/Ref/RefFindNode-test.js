@@ -49,5 +49,37 @@ describe('RefFindNode', () => {
       innerRef.should.have.been.calledOnce()
       innerRef.should.have.been.calledWithMatch(node)
     })
+
+    it('passes an updated node', () => {
+      const innerRef = sandbox.spy()
+      const wrapper = mount(
+        <RefFindNode innerRef={innerRef}>
+          <div />
+        </RefFindNode>,
+      )
+
+      innerRef.should.have.been.calledOnce()
+      innerRef.should.have.calledWithMatch({ tagName: 'DIV' })
+
+      wrapper.setProps({ children: <button /> })
+      innerRef.should.have.been.calledTwice()
+      innerRef.should.have.calledWithMatch({ tagName: 'BUTTON' })
+    })
+
+    it('skips an update if node did not change', () => {
+      const innerRef = sandbox.spy()
+      const wrapper = mount(
+        <RefFindNode innerRef={innerRef}>
+          <div />
+        </RefFindNode>,
+      )
+
+      innerRef.should.have.been.calledOnce()
+      innerRef.should.have.calledWithMatch({ tagName: 'DIV' })
+
+      wrapper.setProps({ children: <div /> })
+      innerRef.should.have.been.calledOnce()
+      innerRef.should.have.calledWithMatch({ tagName: 'DIV' })
+    })
   })
 })

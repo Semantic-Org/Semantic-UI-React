@@ -1,7 +1,7 @@
 import * as PropTypes from 'prop-types'
 import { cloneElement, Component } from 'react'
 
-import handleRef from '../../lib/handleRef'
+import { handleRef } from '../../lib/refUtils'
 
 export default class RefForward extends Component {
   static propTypes = {

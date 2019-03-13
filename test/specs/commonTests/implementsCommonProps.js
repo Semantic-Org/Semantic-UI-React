@@ -260,9 +260,11 @@ export const implementsVerticalAlignProp = (
 
     alignments.forEach((propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
-        shallow(<Component {...requiredProps} verticalAlign={propVal} />).should.have.className(
-          `${propVal} ${'aligned'}`,
-        )
+        const wrapper = shallow(<Component {...requiredProps} verticalAlign={propVal} />, {
+          autoNesting: true,
+        })
+
+        wrapper.should.have.className(`${propVal} ${'aligned'}`)
       })
     })
   })

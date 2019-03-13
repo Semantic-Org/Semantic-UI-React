@@ -49,7 +49,7 @@ export interface StrictTabProps {
    * }
    */
   panes?: {
-    content?: SemanticShorthandItem<TabPaneProps>;
+    pane?: SemanticShorthandItem<TabPaneProps>;
     menuItem?: any;
     render?: () => React.ReactNode;
   }[]

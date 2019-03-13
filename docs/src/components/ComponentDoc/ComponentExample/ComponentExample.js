@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import copyToClipboard from 'copy-to-clipboard'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -73,8 +74,6 @@ class ComponentExample extends PureComponent {
     this.anchorName = examplePathToHash(examplePath)
 
     this.setState({
-      handleMouseLeave: this.handleMouseLeave,
-      handleMouseMove: this.handleMouseMove,
       showCode: this.isActiveHash(),
       sourceCode: this.getOriginalSourceCode(),
     })
@@ -127,22 +126,6 @@ class ComponentExample extends PureComponent {
   handleDirectLinkClick = () => {
     this.setHashAndScroll()
     copyToClipboard(window && window.location.href)
-  }
-
-  handleMouseLeave = () => {
-    this.setState({
-      isHovering: false,
-      handleMouseLeave: null,
-      handleMouseMove: this.handleMouseMove,
-    })
-  }
-
-  handleMouseMove = () => {
-    this.setState({
-      isHovering: true,
-      handleMouseLeave: this.handleMouseLeave,
-      handleMouseMove: null,
-    })
   }
 
   handleShowCodeClick = (e) => {
@@ -213,31 +196,9 @@ class ComponentExample extends PureComponent {
       suiVersion,
       title,
     } = this.props
-    const {
-      error,
-      handleMouseLeave,
-      handleMouseMove,
-      htmlMarkup,
-      isHovering,
-      showCode,
-      showHTML,
-      sourceCode,
-    } = this.state
+    const { error, htmlMarkup, showCode, showHTML, sourceCode } = this.state
 
     const isActive = this.isActiveHash() || this.isActiveState()
-
-    const exampleStyle = {
-      position: 'relative',
-      background: '#fff',
-      boxShadow: '0 1px 2px #ccc',
-      ...(isActive
-        ? {
-          boxShadow: '0 8px 32px #aaa',
-        }
-        : isHovering && {
-          boxShadow: '0 2px 8px #bbb',
-        }),
-    }
 
     return (
       <Visibility
@@ -248,13 +209,7 @@ class ComponentExample extends PureComponent {
       >
         {/* Ensure anchor links don't occlude card shadow effect */}
         <div id={this.anchorName} style={{ paddingTop: '1rem' }}>
-          <Grid
-            className='docs-example'
-            padded='vertically'
-            onMouseLeave={handleMouseLeave}
-            onMouseMove={handleMouseMove}
-            style={exampleStyle}
-          >
+          <Grid className={cx('docs-example', { active: isActive })} padded='vertically'>
             <Grid.Row columns='equal'>
               <Grid.Column>
                 <ComponentExampleTitle

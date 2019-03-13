@@ -1,13 +1,20 @@
+import faker from 'faker'
+import _ from 'lodash'
 import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-import { stateOptions } from '../common'
-// stateOptions = [ { key: 'AL', value: 'AL', text: 'Alabama' }, ...  ]
+const addressDefinitions = faker.definitions.address
+const stateOptions = _.map(addressDefinitions.state, (state, index) => ({
+  key: addressDefinitions.state_abbr[index],
+  text: state,
+  value: addressDefinitions.state_abbr[index],
+}))
 
 export default class DropdownExampleSearchQuery extends Component {
   state = { searchQuery: '' }
 
-  handleChange = (e, { searchQuery, value }) => this.setState({ searchQuery, value })
+  handleChange = (e, { searchQuery, value }) =>
+    this.setState({ searchQuery, value })
 
   handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
 

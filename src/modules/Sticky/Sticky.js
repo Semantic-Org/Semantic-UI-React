@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 import {
   eventStack,
@@ -9,6 +9,7 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
+  isRefObject,
 } from '../../lib'
 
 /**
@@ -32,7 +33,7 @@ export default class Sticky extends Component {
     className: PropTypes.string,
 
     /** Context which sticky element should stick to. */
-    context: PropTypes.object,
+    context: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
 
     /** Offset in pixels from the top of the screen when fixing element to viewport. */
     offset: PropTypes.number,
@@ -73,7 +74,7 @@ export default class Sticky extends Component {
     pushing: PropTypes.bool,
 
     /** Context which sticky should attach onscroll events. */
-    scrollContext: PropTypes.object,
+    scrollContext: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
 
     /** Custom style for sticky element. */
     styleElement: PropTypes.object,
@@ -89,6 +90,9 @@ export default class Sticky extends Component {
   state = {
     sticky: false,
   }
+
+  stickyRef = createRef()
+  triggerRef = createRef()
 
   componentDidMount() {
     if (!isBrowser()) return
@@ -138,19 +142,21 @@ export default class Sticky extends Component {
 
   addListeners = (props) => {
     const { scrollContext } = props
+    const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
 
-    if (scrollContext) {
-      eventStack.sub('resize', this.handleUpdate, { target: scrollContext })
-      eventStack.sub('scroll', this.handleUpdate, { target: scrollContext })
+    if (scrollContextNode) {
+      eventStack.sub('resize', this.handleUpdate, { target: scrollContextNode })
+      eventStack.sub('scroll', this.handleUpdate, { target: scrollContextNode })
     }
   }
 
   removeListeners = () => {
     const { scrollContext } = this.props
+    const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
 
-    if (scrollContext) {
-      eventStack.unsub('resize', this.handleUpdate, { target: scrollContext })
-      eventStack.unsub('scroll', this.handleUpdate, { target: scrollContext })
+    if (scrollContextNode) {
+      eventStack.unsub('resize', this.handleUpdate, { target: scrollContextNode })
+      eventStack.unsub('scroll', this.handleUpdate, { target: scrollContextNode })
     }
   }
 
@@ -196,10 +202,11 @@ export default class Sticky extends Component {
 
   assignRects = () => {
     const { context } = this.props
-    console.log(context)
-    this.triggerRect = this.triggerRef.getBoundingClientRect()
-    this.contextRect = (context.current || context || document.body).getBoundingClientRect()
-    this.stickyRect = this.stickyRef.getBoundingClientRect()
+    const contextNode = isRefObject(context) ? context.current : context || document.body
+
+    this.triggerRect = this.triggerRef.current.getBoundingClientRect()
+    this.contextRect = contextNode.getBoundingClientRect()
+    this.stickyRect = this.stickyRef.current.getBoundingClientRect()
   }
 
   computeStyle() {
@@ -288,14 +295,6 @@ export default class Sticky extends Component {
   }
 
   // ----------------------------------------
-  // Refs
-  // ----------------------------------------
-
-  handleStickyRef = c => (this.stickyRef = c)
-
-  handleTriggerRef = c => (this.triggerRef = c)
-
-  // ----------------------------------------
   // Render
   // ----------------------------------------
 
@@ -320,8 +319,8 @@ export default class Sticky extends Component {
 
     return (
       <ElementType {...rest} className={containerClasses}>
-        <div ref={this.handleTriggerRef} />
-        <div className={cx(elementClasses)} ref={this.handleStickyRef} style={this.computeStyle()}>
+        <div ref={this.triggerRef} />
+        <div className={elementClasses} ref={this.stickyRef} style={this.computeStyle()}>
           {children}
         </div>
       </ElementType>

@@ -34,8 +34,8 @@ class ComponentDoc extends Component {
     sidebarSections: docTypes.sidebarSections.isRequired,
   }
 
-  examplesRef = createRef()
   state = {}
+  examplesRef = createRef()
 
   componentWillMount() {
     const { exampleKeys } = this.props

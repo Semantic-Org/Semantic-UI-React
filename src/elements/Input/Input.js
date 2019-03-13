@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Children, cloneElement, Component } from 'react'
+import React, { Children, cloneElement, Component, createRef } from 'react'
 
 import {
   childrenUtils,
@@ -12,7 +12,6 @@ import {
   getUnhandledProps,
   handleRef,
   partitionHTMLProps,
-  SUI,
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
@@ -86,7 +85,7 @@ class Input extends Component {
     onChange: PropTypes.func,
 
     /** An Input can vary in size. */
-    size: PropTypes.oneOf(SUI.SIZES),
+    size: PropTypes.oneOf(['mini', 'small', 'large', 'big', 'huge', 'massive']),
 
     /** An Input can receive focus. */
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -102,6 +101,8 @@ class Input extends Component {
     type: 'text',
   }
 
+  inputRef = createRef()
+
   computeIcon = () => {
     const { loading, icon } = this.props
 
@@ -116,9 +117,9 @@ class Input extends Component {
     if (disabled) return -1
   }
 
-  focus = () => this.inputRef.focus()
+  focus = () => this.inputRef.current.focus()
 
-  select = () => this.inputRef.select()
+  select = () => this.inputRef.current.select()
 
   handleChange = (e) => {
     const value = _.get(e, 'target.value')
@@ -131,11 +132,9 @@ class Input extends Component {
     ...child.props,
     ref: (c) => {
       handleRef(child.ref, c)
-      this.handleInputRef(c)
+      this.inputRef.current = c
     },
   })
-
-  handleInputRef = c => (this.inputRef = c)
 
   partitionProps = () => {
     const { disabled, type } = this.props
@@ -151,7 +150,7 @@ class Input extends Component {
         type,
         tabIndex,
         onChange: this.handleChange,
-        ref: this.handleInputRef,
+        ref: this.inputRef,
       },
       rest,
     ]

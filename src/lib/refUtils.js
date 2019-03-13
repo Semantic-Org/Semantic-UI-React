@@ -4,7 +4,7 @@
  * @param {Function|Object} ref An ref object or function
  * @param {HTMLElement} node A node that should be passed by ref
  */
-const handleRef = (ref, node) => {
+export const handleRef = (ref, node) => {
   if (process.env.NODE_ENV !== 'production') {
     if (typeof ref === 'string') {
       throw new Error(
@@ -28,4 +28,7 @@ const handleRef = (ref, node) => {
   }
 }
 
-export default handleRef
+export const isRefObject = ref =>
+  // https://github.com/facebook/react/blob/v16.8.2/packages/react-reconciler/src/ReactFiberCommitWork.js#L665
+  // eslint-disable-next-line
+  ref !== null && typeof ref === 'object' && ref.hasOwnProperty('current')
