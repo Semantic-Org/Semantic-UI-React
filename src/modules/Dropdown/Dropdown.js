@@ -475,7 +475,6 @@ export default class Dropdown extends Component {
       this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
-      // this.handleClose()
     }
   }
 
@@ -700,17 +699,18 @@ export default class Dropdown extends Component {
     }
 
     this.clearSearchQuery()
+
+    if (search) {
+      _.invoke(this.searchRef.current, 'focus')
+    } else {
+      _.invoke(this.ref.current, 'focus')
+    }
+
     this.closeOnChange(e)
 
     // Heads up! This event handler should be called after `onChange`
     // Notify the onAddItem prop if this is a new value
     if (isAdditionItem) _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
-
-    if (search) {
-      _.invoke(this.searchRef.current, 'focus')
-    } else {
-      _.invoke(this.ref, 'focus')
-    }
   }
 
   handleFocus = (e) => {
@@ -1149,7 +1149,7 @@ export default class Dropdown extends Component {
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
-    if (!hasSearchFocus && this.ref) {
+    if (!hasSearchFocus && this.ref.current) {
       this.ref.current.blur()
     }
 
