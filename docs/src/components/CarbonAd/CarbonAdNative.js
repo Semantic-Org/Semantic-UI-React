@@ -71,7 +71,7 @@ class CarbonAdNative extends PureComponent {
         .filter(ad => !!ad.statlink)
         .filter(Boolean)[0]
       debug('handleNativeJSON sanitizedAd', sanitizedAd)
-      throw {}
+
       if (!sanitizedAd) {
         this.failedAds += 1
 
