@@ -95011,6 +95011,7 @@ var _semanticUiReact = __webpack_require__(2);
 var _lib = __webpack_require__(15);
 
 var debug = (0, _lib.makeDebugger)('carbon-ad-native');
+var MAX_FAILED_ADS = 10;
 
 var CarbonAdNative =
 /*#__PURE__*/
@@ -95067,11 +95068,17 @@ function (_PureComponent) {
         debug('handleNativeJSON sanitizedAd', sanitizedAd);
 
         if (!sanitizedAd) {
-          _this.getAd();
+          _this.failedAds += 1;
+
+          if (_this.failedAds < MAX_FAILED_ADS) {
+            _this.getAd();
+          }
         } else if (_this.mounted) {
           _this.setState({
             ad: sanitizedAd
           });
+
+          _this.failedAds = 0;
         }
       } catch (err) {
         // eslint-disable-next-line no-console
@@ -95088,6 +95095,7 @@ function (_PureComponent) {
         mounted: this.mounted
       });
       this.mounted = true;
+      this.failedAds = 0;
       this.getAd();
     }
   }, {
