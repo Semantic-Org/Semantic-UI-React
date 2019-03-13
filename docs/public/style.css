@@ -54,6 +54,18 @@ code:not(.hljs)::after {
   content: '\00a0';
 }
 
+.docs-example {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 2px #ccc;
+}
+.docs-example:hover {
+  box-shadow: 0 2px 8px #bbb;
+}
+.docs-example.active {
+  box-shadow: 0 8px 32px #aaa;
+}
+
 .docs-icon-set-column {
   cursor: pointer;
 }
@@ -106,6 +118,7 @@ code:not(.hljs)::after {
   font-size: 10px;
   color: #fff;
   opacity: 0.5;
+  white-space: nowrap;
 }
 .carbon-poweredby:hover {
   color: #ddd;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 import { Label } from 'semantic-ui-react'
@@ -6,7 +6,7 @@ import { makeDebugger } from '../../../../src/lib'
 
 const debug = makeDebugger('carbon-ad-native')
 
-class CarbonAdNative extends Component {
+class CarbonAdNative extends PureComponent {
   static propTypes = {
     inverted: PropTypes.bool,
   }
