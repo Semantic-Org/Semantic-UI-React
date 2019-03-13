@@ -10,10 +10,8 @@ import { updateForKeys } from 'docs/src/hoc'
 const appTemplate = `import React from "react";
 import ReactDOM from "react-dom";
 import { Container, Header, List } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
 
 import Example from "./example";
-import pkg from "./package.json";
 
 const App = ({ children }) => (
   <Container style={{ margin: 20 }}>
@@ -37,6 +35,12 @@ const App = ({ children }) => (
   </Container>
 );
 
+// TODO: Switch to https://github.com/palmerhq/the-platform#stylesheet when it will be stable
+const styleLink = document.createElement("link");
+styleLink.rel = "stylesheet";
+styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
+document.head.appendChild(styleLink);
+
 ReactDOM.render(
   <App>
     <Example />
@@ -44,10 +48,7 @@ ReactDOM.render(
   document.getElementById("root")
 );
 `
-const dependencies = {
-  ..._.mapValues(externals, () => 'latest'),
-  'semantic-ui-css': 'latest',
-}
+const dependencies = _.mapValues(externals, () => 'latest')
 
 class ComponentControlsShowCode extends React.Component {
   static propTypes = {
@@ -95,8 +96,6 @@ class ComponentControlsShowCode extends React.Component {
         examplePath='/'
         example={exampleCode}
         dependencies={dependencies}
-        /* Magic trick to reload sources on passed code update */
-        key={exampleCode}
         name='semantic-ui-react-example'
         providedFiles={{
           'index.js': { content: appTemplate },

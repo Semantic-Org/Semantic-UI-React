@@ -26,7 +26,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   content?: SemanticShorthandItem<PopupContentProps>
 
   /** Existing element the pop-up should be bound to. */
-  context?: object
+  context?: object | React.RefObject<HTMLElement>
 
   /** A disabled popup only renders its trigger. */
   disabled?: boolean

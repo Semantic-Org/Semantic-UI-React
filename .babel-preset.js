@@ -48,7 +48,7 @@ const plugins = [
     'filter-imports',
     {
       imports: {
-        debug: ['default'],
+        './makeDebugger': ['default'],
         '../../lib': ['makeDebugger'],
       },
     },

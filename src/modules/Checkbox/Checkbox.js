@@ -3,6 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { createRef } from 'react'
 
+import Ref from '../../addons/Ref'
 import {
   AutoControlledComponent as Component,
   createHTMLLabel,
@@ -261,6 +262,13 @@ export default class Checkbox extends Component {
     const ElementType = getElementType(Checkbox, this.props)
     const [htmlInputProps, rest] = partitionHTMLProps(unhandled, { htmlProps: htmlInputAttrs })
 
+    // Heads Up!
+    // Do not remove empty labels, they are required by SUI CSS
+    const labelElement = createHTMLLabel(label, {
+      defaultProps: { htmlFor: id },
+      autoGenerateKey: false,
+    }) || <label htmlFor={id} />
+
     return (
       <ElementType
         {...rest}
@@ -270,27 +278,21 @@ export default class Checkbox extends Component {
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
       >
-        <input
-          {...htmlInputProps}
-          checked={checked}
-          className='hidden'
-          disabled={disabled}
-          id={id}
-          name={name}
-          readOnly
-          ref={this.inputRef}
-          tabIndex={this.computeTabIndex()}
-          type={type}
-          value={value}
-        />
-        {/*
-         Heads Up!
-         Do not remove empty labels, they are required by SUI CSS
-         */}
-        {createHTMLLabel(label, {
-          defaultProps: { htmlFor: id, ref: this.labelRef },
-          autoGenerateKey: false,
-        }) || <label htmlFor={id} ref={this.labelRef} />}
+        <Ref innerRef={this.inputRef}>
+          <input
+            {...htmlInputProps}
+            checked={checked}
+            className='hidden'
+            disabled={disabled}
+            id={id}
+            name={name}
+            readOnly
+            tabIndex={this.computeTabIndex()}
+            type={type}
+            value={value}
+          />
+        </Ref>
+        <Ref innerRef={this.labelRef}>{labelElement}</Ref>
       </ElementType>
     )
   }

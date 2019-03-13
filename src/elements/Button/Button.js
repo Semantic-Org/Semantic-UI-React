@@ -1,8 +1,9 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
+import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
@@ -155,6 +156,8 @@ class Button extends Component {
   static Group = ButtonGroup
   static Or = ButtonOr
 
+  ref = createRef()
+
   computeButtonAriaRole(ElementType) {
     const { role } = this.props
 
@@ -176,7 +179,7 @@ class Button extends Component {
     if (ElementType === 'div') return 0
   }
 
-  focus = () => _.invoke(this.ref, 'focus')
+  focus = () => _.invoke(this.ref.current, 'focus')
 
   handleClick = (e) => {
     const { disabled } = this.props
@@ -188,8 +191,6 @@ class Button extends Component {
 
     _.invoke(this.props, 'onClick', e, this.props)
   }
-
-  handleRef = c => (this.ref = c)
 
   hasIconClass = () => {
     const { labelPosition, children, content, icon } = this.props
@@ -266,15 +267,16 @@ class Button extends Component {
       return (
         <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
           {labelPosition === 'left' && labelElement}
-          <button
-            className={buttonClasses}
-            aria-pressed={toggle ? (!!active) : undefined}
-            disabled={disabled}
-            ref={this.handleRef}
-            tabIndex={tabIndex}
-          >
-            {Icon.create(icon, { autoGenerateKey: false })} {content}
-          </button>
+          <Ref innerRef={this.ref}>
+            <button
+              className={buttonClasses}
+              aria-pressed={toggle ? !!active : undefined}
+              disabled={disabled}
+              tabIndex={tabIndex}
+            >
+              {Icon.create(icon, { autoGenerateKey: false })} {content}
+            </button>
+          </Ref>
           {(labelPosition === 'right' || !labelPosition) && labelElement}
         </ElementType>
       )
@@ -285,20 +287,21 @@ class Button extends Component {
     const role = this.computeButtonAriaRole(ElementType)
 
     return (
-      <ElementType
-        {...rest}
-        className={classes}
-        aria-pressed={toggle ? (!!active) : undefined}
-        disabled={(disabled && ElementType === 'button') || undefined}
-        onClick={this.handleClick}
-        ref={this.handleRef}
-        role={role}
-        tabIndex={tabIndex}
-      >
-        {hasChildren && children}
-        {!hasChildren && Icon.create(icon, { autoGenerateKey: false })}
-        {!hasChildren && content}
-      </ElementType>
+      <Ref innerRef={this.ref}>
+        <ElementType
+          {...rest}
+          className={classes}
+          aria-pressed={toggle ? !!active : undefined}
+          disabled={(disabled && ElementType === 'button') || undefined}
+          onClick={this.handleClick}
+          role={role}
+          tabIndex={tabIndex}
+        >
+          {hasChildren && children}
+          {!hasChildren && Icon.create(icon, { autoGenerateKey: false })}
+          {!hasChildren && content}
+        </ElementType>
+      </Ref>
     )
   }
 }

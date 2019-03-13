@@ -45,9 +45,7 @@ class PaginationItem extends Component {
   }
 
   handleClick = (e) => {
-    const { type } = this.props
-
-    if (type !== 'ellipsisItem') _.invoke(this.props, 'onClick', e, this.props)
+    _.invoke(this.props, 'onClick', e, this.props)
   }
 
   handleKeyDown = (e) => {

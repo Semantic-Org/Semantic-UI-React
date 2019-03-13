@@ -1,20 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { Input, Button } from 'semantic-ui-react'
 
 class InputExampleRefFocus extends Component {
-  handleRef = (c) => {
-    this.inputRef = c
-  }
-
-  focus = () => {
-    this.inputRef.focus()
-  }
+  inputRef = createRef()
+  handleClick = () => this.inputRef.current.focus()
 
   render() {
     return (
       <div>
-        <Button content='focus' onClick={this.focus} />
-        <Input ref={this.handleRef} placeholder='Search...' />
+        <Button content='focus' onClick={this.handleClick} />
+        <Input ref={this.inputRef} placeholder='Search...' />
       </div>
     )
   }

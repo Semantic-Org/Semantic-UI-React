@@ -1,6 +1,4 @@
 import React from 'react'
-
-import { nestedShallow } from 'test/utils'
 import helpers from './commonHelpers'
 
 /**
@@ -17,6 +15,9 @@ export default (Component, options = {}) => {
   it('has the "ui" className', () => {
     assertRequired(Component, 'a `Component`')
 
-    nestedShallow(<Component {...requiredProps} />, { nestingLevel }).should.have.className('ui')
+    shallow(<Component {...requiredProps} />, {
+      autoNesting: true,
+      nestingLevel,
+    }).should.have.className('ui')
   })
 }

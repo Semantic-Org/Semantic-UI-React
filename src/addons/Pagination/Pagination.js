@@ -108,7 +108,7 @@ export default class Pagination extends Component {
     key: `${type}-${value}`,
     onClick: (e, itemProps) => {
       _.invoke(predefinedProps, 'onClick', e, itemProps)
-      this.handleItemClick(e, itemProps)
+      if (itemProps.type !== 'ellipsisItem') this.handleItemClick(e, itemProps)
     },
   })
 

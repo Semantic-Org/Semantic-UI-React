@@ -14,9 +14,6 @@ export interface StrictDropdownSearchInputProps {
   /** Additional classes. */
   className?: string
 
-  /** A ref handler for input. */
-  inputRef?: React.Ref<HTMLInputElement>
-
   /** An input can receive focus. */
   tabIndex?: number | string
 
