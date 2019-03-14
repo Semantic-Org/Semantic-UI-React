@@ -1,3 +1,4 @@
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
@@ -32,7 +33,8 @@ const ListVariations = () => (
       examplePath='elements/List/Variations/ListExampleAnimated'
     >
       <Message info>
-        Be sure content can fit on one line, otherwise text content will reflow when hovered.
+        Be sure content can fit on one line, otherwise text content will reflow
+        when hovered.
       </Message>
     </ComponentExample>
 

@@ -1,3 +1,4 @@
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
@@ -18,7 +19,8 @@ const LoaderStatesExamples = () => (
       examplePath='elements/Loader/States/LoaderExampleActive'
     >
       <Message info>
-        An active loader may not be clearly visible without using a <code>Dimmer</code>.
+        An active loader may not be clearly visible without using a{' '}
+        <code>Dimmer</code>.
       </Message>
     </ComponentExample>
 

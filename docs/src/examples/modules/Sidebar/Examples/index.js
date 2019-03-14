@@ -1,3 +1,4 @@
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Icon, Table } from 'semantic-ui-react'
 
@@ -103,8 +104,8 @@ const SidebarExamplesExamples = () => (
       title='Displaying Multiple'
       description={
         <span>
-          Multiple sidebars can be displayed at the same time only when using a supported animation
-          like
+          Multiple sidebars can be displayed at the same time only when using a
+          supported animation like
           <code>push</code> or <code>overlay</code>.
         </span>
       }

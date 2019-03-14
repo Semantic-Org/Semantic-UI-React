@@ -1,3 +1,4 @@
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -31,7 +32,9 @@ const ImageVariationsExamples = () => (
       description='An image may appear circular.'
       examplePath='elements/Image/Variations/ImageExampleCircular'
     >
-      <Message warning>Perfectly circular images require a perfectly square image file.</Message>
+      <Message warning>
+        Perfectly circular images require a perfectly square image file.
+      </Message>
     </ComponentExample>
     <ComponentExample
       title='Vertically Aligned'

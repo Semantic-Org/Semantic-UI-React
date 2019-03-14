@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -19,8 +20,9 @@ const ContainerTypesExamples = () => (
     >
       <Message info>
         <p>
-          A text container is a simpler markup alternative to using a grid with a single column, and
-          is designed to have a reasonable maximum width for displaying flowing text
+          A text container is a simpler markup alternative to using a grid with
+          a single column, and is designed to have a reasonable maximum width
+          for displaying flowing text
         </p>
       </Message>
     </ComponentExample>

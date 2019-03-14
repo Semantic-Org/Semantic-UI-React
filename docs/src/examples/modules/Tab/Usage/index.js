@@ -1,3 +1,4 @@
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
@@ -30,7 +31,8 @@ const TabUsageExamples = () => (
       title='Pane Shorthands'
       description={
         <span>
-          You can use an item shorthands when you're using <code>renderActiveOnly={'{false}'}</code>.
+          You can use an item shorthands when you're using{' '}
+          <code>renderActiveOnly={'{false}'}</code>.
         </span>
       }
       examplePath='modules/Tab/Usage/TabExamplePaneShorthand'

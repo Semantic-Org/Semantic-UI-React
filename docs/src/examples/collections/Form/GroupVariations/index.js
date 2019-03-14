@@ -1,3 +1,4 @@
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
@@ -12,9 +13,11 @@ const FormGroupVariationsExamples = () => (
       examplePath='collections/Form/GroupVariations/FormExampleEvenlyDividedGroup'
     >
       <Message info>
-        When using the <code>widths='equal'</code> prop declaration on a <code>Form.Group</code>,
-        all child <code>Form.Dropdown</code>, <code>Form.Input</code>, <code>Form.Select</code>
-        components must be rendered with a <code>fluid</code> prop to work correctly.
+        When using the <code>widths='equal'</code> prop declaration on a{' '}
+        <code>Form.Group</code>, all child <code>Form.Dropdown</code>,{' '}
+        <code>Form.Input</code>, <code>Form.Select</code>
+        components must be rendered with a <code>fluid</code> prop to work
+        correctly.
       </Message>
     </ComponentExample>
     <ComponentExample

@@ -1,3 +1,4 @@
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Message, Icon } from 'semantic-ui-react'
 

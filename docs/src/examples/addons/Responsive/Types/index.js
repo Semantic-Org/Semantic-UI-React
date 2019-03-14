@@ -1,3 +1,4 @@
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
@@ -12,8 +13,8 @@ const ResponsiveTypesExamples = () => (
       examplePath='addons/Responsive/Types/ResponsiveExampleResponsive'
     >
       <Message info>
-        Instead of <code>Grid</code> visibility breakpoints, <code>Responsive</code> doesn't render
-        invisible content.
+        Instead of <code>Grid</code> visibility breakpoints,{' '}
+        <code>Responsive</code> doesn't render invisible content.
       </Message>
     </ComponentExample>
     <ComponentExample

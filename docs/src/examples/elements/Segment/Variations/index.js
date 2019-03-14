@@ -1,3 +1,4 @@
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -16,8 +17,9 @@ const SegmentVariationsExamples = () => (
       examplePath='elements/Segment/Variations/SegmentExampleAttached'
     >
       <Message info>
-        Attached segments are designed to be used with other <code>attached</code> variations like
-        the attached Header or attached Messages.
+        Attached segments are designed to be used with other{' '}
+        <code>attached</code> variations like the attached Header or attached
+        Messages.
       </Message>
     </ComponentExample>
     <ComponentExample
@@ -70,8 +72,8 @@ const SegmentVariationsExamples = () => (
       examplePath='elements/Segment/Variations/SegmentExampleCircular'
     >
       <Message info>
-        Perfectly circular Segments require content with equal width and height. Otherwise, they
-        will flow to the size of the content.
+        Perfectly circular Segments require content with equal width and height.
+        Otherwise, they will flow to the size of the content.
       </Message>
     </ComponentExample>
     <ComponentExample

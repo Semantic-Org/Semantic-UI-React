@@ -1,3 +1,4 @@
+/* eslint no-restricted-imports: 0 */
 import React from 'react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
@@ -9,8 +10,8 @@ const TransitionUsageExamples = () => (
       title='Duration'
       description={
         <span>
-          Duration of the CSS transition animation can be defined separately for <code>hide</code>{' '}
-          and <code>show</code>
+          Duration of the CSS transition animation can be defined separately for{' '}
+          <code>hide</code> and <code>show</code>
           animations.
         </span>
       }
