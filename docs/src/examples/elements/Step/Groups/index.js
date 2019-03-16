@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Icon, Message } from 'semantic-ui-react'
 
@@ -17,8 +16,8 @@ const StepGroupsExamples = () => (
         <Icon name='mobile' />
         <Message.Content>
           <Message.Header>Responsive Element</Message.Header>
-          Steps will automatically stack on mobile. To make steps automatically
-          stack for tablet use the <code>stackable='tablet'</code> variation.
+          Steps will automatically stack on mobile. To make steps automatically stack for tablet use
+          the <code>stackable='tablet'</code> variation.
         </Message.Content>
       </Message>
     </ComponentExample>

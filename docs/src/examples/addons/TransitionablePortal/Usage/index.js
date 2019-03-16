@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Link } from 'react-static'
 import { Message } from 'semantic-ui-react'
@@ -14,8 +13,7 @@ const TransitionablePortalUsageExamples = () => (
       examplePath='addons/TransitionablePortal/Usage/TransitionablePortalExampleTransition'
     >
       <Message info>
-        See <Link to='/modules/transition'>Transition</Link> for more examples
-        of usage.
+        See <Link to='/modules/transition'>Transition</Link> for more examples of usage.
       </Message>
     </ComponentExample>
   </ExampleSection>

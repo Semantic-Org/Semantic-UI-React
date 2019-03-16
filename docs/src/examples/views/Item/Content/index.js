@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
@@ -50,7 +49,7 @@ const Content = () => (
 
     <ComponentExample
       title='Rating'
-      description='An item can contain icons signifying a "like" or "favorite" action.'
+      description='An item can contain icons signifying a &quot;like&quot; or &quot;favorite&quot; action.'
       examplePath='views/Item/Content/ItemExampleRatings'
     />
   </ExampleSection>

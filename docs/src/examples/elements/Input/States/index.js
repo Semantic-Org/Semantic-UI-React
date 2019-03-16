@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -17,8 +16,8 @@ const InputStatesExamples = () => (
       examplePath='elements/Input/States/InputExampleLoading'
     >
       <Message>
-        Loading inputs automatically modify the input's icon on loading state to
-        show loading indication.
+        Loading inputs automatically modify the input's icon on loading state to show loading
+        indication.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Input/States/InputExampleLeftLoading' />

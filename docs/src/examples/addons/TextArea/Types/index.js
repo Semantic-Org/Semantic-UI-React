@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
@@ -13,9 +12,8 @@ const TextAreaTypesExamples = () => (
       examplePath='addons/TextArea/Types/TextAreaExampleTextArea'
     >
       <Message info>
-        You should always wrap a <code>Textarea</code> with a <code>Form</code>{' '}
-        component to get styles applied because Semantic UI applies styles for{' '}
-        <code>.ui.form textarea</code>.
+        You should always wrap a <code>Textarea</code> with a <code>Form</code> component to get
+        styles applied because Semantic UI applies styles for <code>.ui.form textarea</code>.
       </Message>
     </ComponentExample>
   </ExampleSection>

@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
@@ -80,7 +79,7 @@ const DropdownUsageExamples = () => (
     <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleTriggerImage' />
     <ComponentExample
       title='Multiple Custom Label'
-      description='A "multiple" dropdown can render customized label for selected items.'
+      description='A &quot;multiple&quot; dropdown can render customized label for selected items.'
       examplePath='modules/Dropdown/Usage/DropdownExampleMultipleCustomLabel'
     />
     <ComponentExample
@@ -99,8 +98,8 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleSearchQuery'
     >
       <Message info>
-        This example also shows how to override default bevahiour of the search
-        query and keep entered value after selection.
+        This example also shows how to override default bevahiour of the search query and keep
+        entered value after selection.
       </Message>
     </ComponentExample>
     <ComponentExample

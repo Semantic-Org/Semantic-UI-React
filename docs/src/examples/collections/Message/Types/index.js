@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Icon } from 'semantic-ui-react'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -44,8 +43,8 @@ const MessageTypesExamples = () => (
     >
       <strong>
         <Icon name='warning circle' />
-        Dismissible blocks do not automatically close. Use the{' '}
-        <code>onDismiss</code> callback to remove the message.
+        Dismissible blocks do not automatically close. Use the <code>onDismiss</code> callback to
+        remove the message.
       </strong>
     </ComponentExample>
   </ExampleSection>

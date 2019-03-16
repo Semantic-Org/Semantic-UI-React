@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
@@ -13,14 +12,12 @@ const TabTypesExamples = () => (
       </Message.Header>
       <Message.List>
         <Message.Item>
-          <code>renderActiveOnly</code> (default) Only the active pane is
-          rendered. Switching tabs unmounts the current pane and mounts the new
-          pane.
+          <code>renderActiveOnly</code> (default) Only the active pane is rendered. Switching tabs
+          unmounts the current pane and mounts the new pane.
         </Message.Item>
         <Message.Item>
-          <code>renderActiveOnly={'{false}'}</code> All panes are rendered on
-          Tab mount. Switching tabs hides the current pane and shows the new
-          pane, without unmounting panes.
+          <code>renderActiveOnly={'{false}'}</code> All panes are rendered on Tab mount. Switching
+          tabs hides the current pane and shows the new pane, without unmounting panes.
         </Message.Item>
       </Message.List>
     </Message>

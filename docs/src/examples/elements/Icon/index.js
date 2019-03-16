@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React, { Component } from 'react'
 import { Divider, Menu } from 'semantic-ui-react'
 

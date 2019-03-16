@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Link } from 'react-static'
 import { Message } from 'semantic-ui-react'
@@ -72,8 +71,7 @@ const Types = () => (
       examplePath='collections/Menu/Types/MenuExamplePagination'
     >
       <Message info>
-        For fully featured pagination, see{' '}
-        <Link to='/addons/pagination'>Pagination</Link> addon.
+        For fully featured pagination, see <Link to='/addons/pagination'>Pagination</Link> addon.
       </Message>
     </ComponentExample>
   </ExampleSection>

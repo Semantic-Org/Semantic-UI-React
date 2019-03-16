@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
@@ -37,8 +36,7 @@ const LoaderVariationsExamples = () => (
       examplePath='elements/Loader/Variations/LoaderExampleSizesInverted'
     >
       <Message info>
-        Loaders will automatically be inverted inside{' '}
-        <code>inverted Dimmer</code>.
+        Loaders will automatically be inverted inside <code>inverted Dimmer</code>.
       </Message>
     </ComponentExample>
   </ExampleSection>

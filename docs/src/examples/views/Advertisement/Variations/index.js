@@ -1,4 +1,3 @@
-/* eslint no-restricted-imports: 0 */
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
@@ -18,8 +17,8 @@ const Variations = () => (
       examplePath='views/Advertisement/Variations/AdvertisementExampleTest'
     >
       <Message info>
-        You can adjust the text displayed for your test ad placement by changing
-        the value of the <code>test</code> prop.
+        You can adjust the text displayed for your test ad placement by changing the value of the{' '}
+        <code>test</code> prop.
       </Message>
     </ComponentExample>
   </ExampleSection>
