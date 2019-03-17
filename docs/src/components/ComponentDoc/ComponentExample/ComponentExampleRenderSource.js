@@ -1,18 +1,12 @@
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 import SourceRender from 'react-source-render'
 
 import { updateForKeys } from 'docs/src/hoc'
-import SearchExampleStandard from 'docs/src/examples/modules/Search/Types/SearchExampleStandard'
-import SearchExampleCategory from 'docs/src/examples/modules/Search/Types/SearchExampleCategory'
 import { babelConfig, externals } from './renderConfig'
 
 const resolver = (importPath, { displayName }) => {
   if (externals[importPath]) return externals[importPath]
-
-  if (_.endsWith(importPath, '/SearchExampleCategory')) return SearchExampleCategory
-  if (_.endsWith(importPath, '/SearchExampleStandard')) return SearchExampleStandard
 
   throw new Error(
     [
