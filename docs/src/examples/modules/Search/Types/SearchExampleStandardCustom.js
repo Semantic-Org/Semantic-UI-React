@@ -18,13 +18,10 @@ resultRenderer.propTypes = {
   description: PropTypes.string,
 }
 
-export default class SearchExampleStandard extends Component {
-  componentWillMount() {
-    this.resetComponent()
-  }
+const initialState = { isLoading: false, results: [], value: '' }
 
-  resetComponent = () =>
-    this.setState({ isLoading: false, results: [], value: '' })
+export default class SearchExampleStandard extends Component {
+  state = initialState
 
   handleResultSelect = (e, { result }) => this.setState({ value: result.title })
 
@@ -32,7 +29,7 @@ export default class SearchExampleStandard extends Component {
     this.setState({ isLoading: true, value })
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent()
+      if (this.state.value.length < 1) return this.setState(initialState)
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
       const isMatch = result => re.test(result.title)

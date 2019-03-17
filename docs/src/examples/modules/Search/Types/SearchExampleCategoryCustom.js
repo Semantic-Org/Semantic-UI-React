@@ -17,6 +17,8 @@ resultRenderer.propTypes = {
   description: PropTypes.string,
 }
 
+const initialState = { isLoading: false, results: [], value: '' }
+
 const getResults = () =>
   _.times(5, () => ({
     title: faker.company.companyName(),
@@ -38,12 +40,7 @@ const source = _.range(0, 3).reduce((memo) => {
 }, {})
 
 export default class SearchExampleCategory extends Component {
-  componentWillMount() {
-    this.resetComponent()
-  }
-
-  resetComponent = () =>
-    this.setState({ isLoading: false, results: [], value: '' })
+  state = initialState
 
   handleResultSelect = (e, { result }) => this.setState({ value: result.title })
 
@@ -51,7 +48,7 @@ export default class SearchExampleCategory extends Component {
     this.setState({ isLoading: true, value })
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent()
+      if (this.state.value.length < 1) return this.setState(initialState)
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
       const isMatch = result => re.test(result.title)
