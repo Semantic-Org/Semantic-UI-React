@@ -1,18 +1,16 @@
 import cx from 'classnames'
 import copyToClipboard from 'copy-to-clipboard'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
-import { withRouteData, withRouter } from 'react-static'
-import { Grid, Visibility } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import VisibilitySensor from 'react-visibility-sensor'
+import { Grid } from 'semantic-ui-react'
 
-import { examplePathToHash, repoURL, scrollToAnchor } from 'docs/src/utils'
+import { examplePathToHash, scrollToAnchor } from 'docs/src/utils'
 import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
-
+import formatCode from 'docs/src/utils/formatCode'
 import ComponentControls from '../ComponentControls'
-import ComponentExampleRenderEditor from './ComponentExampleRenderEditor'
-import ComponentExampleRenderHtml from './ComponentExampleRenderHtml'
-import ComponentExampleRenderSource from './ComponentExampleRenderSource'
+import ExampleEditor from '../ExampleEditor'
+import ComponentDocContext from '../ComponentDocContext'
 import ComponentExampleTitle from './ComponentExampleTitle'
 
 const childrenStyle = {
@@ -20,15 +18,6 @@ const childrenStyle = {
   paddingTop: 0,
   maxWidth: '50rem',
 }
-
-const renderedExampleStyle = {
-  padding: '2rem',
-}
-
-const editorStyle = {
-  padding: 0,
-}
-
 const componentControlsStyle = {
   flex: '0 0 auto',
   width: 'auto',
@@ -38,21 +27,16 @@ const componentControlsStyle = {
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
  */
-class ComponentExample extends PureComponent {
-  static contextTypes = {
-    onPassed: PropTypes.func,
-  }
-
+class ComponentExample extends Component {
   static propTypes = {
     children: PropTypes.node,
     description: PropTypes.node,
-    displayName: PropTypes.string.isRequired,
-    exampleSources: PropTypes.objectOf(PropTypes.string).isRequired,
     examplePath: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
+    onVisibilityChange: PropTypes.func.isRequired,
     renderHtml: PropTypes.bool,
+    sourceCode: PropTypes.string.isRequired,
     suiVersion: PropTypes.string,
     title: PropTypes.node,
   }
@@ -64,24 +48,21 @@ class ComponentExample extends PureComponent {
   constructor(props) {
     super(props)
 
-    const originalSourceCode = props.exampleSources[props.examplePath]
     const anchorName = examplePathToHash(props.examplePath)
     const hashName = `#${anchorName}`
 
     this.state = {
       anchorName,
       hashName,
-      originalSourceCode,
+      originalSourceCode: props.sourceCode,
       showCode: hashName === props.location.hash,
-      sourceCode: originalSourceCode,
+      sourceCode: props.sourceCode,
     }
   }
 
   static getDerivedStateFromProps(props, state) {
     const willBeActiveHash = state.hashName === props.location.hash
-    const derivedState = {
-      isActiveHash: willBeActiveHash,
-    }
+    const derivedState = { isActiveHash: willBeActiveHash }
 
     // deactivate examples when switching from one to the next
     if (state.isActiveHash && !willBeActiveHash) {
@@ -92,16 +73,6 @@ class ComponentExample extends PureComponent {
     return derivedState
   }
 
-  isActiveState = () => {
-    const { showCode, showHTML } = this.state
-
-    return showCode || showHTML
-  }
-
-  updateHash = () => {
-    if (this.isActiveState()) this.setHashAndScroll()
-  }
-
   setHashAndScroll = () => {
     const { history, location } = this.props
     const { anchorName } = this.state
@@ -110,97 +81,58 @@ class ComponentExample extends PureComponent {
     scrollToAnchor()
   }
 
+  handleCodeChange = (sourceCode) => this.setState({ sourceCode })
+
+  handleCodeFormat = () =>
+    this.setState((prevState) => ({ sourceCode: formatCode(prevState.sourceCode) }))
+
+  handleCodeReset = () =>
+    this.setState((prevState) => ({ sourceCode: prevState.originalSourceCode }))
+
   handleDirectLinkClick = () => {
     this.setHashAndScroll()
     copyToClipboard(window && window.location.href)
   }
 
   handleShowCodeClick = (e) => {
-    e.preventDefault()
-
     const { showCode } = this.state
 
-    this.setState({ showCode: !showCode }, this.updateHash)
-  }
-
-  handleShowHTMLClick = (e) => {
     e.preventDefault()
+    const nextShowCode = !showCode
 
-    const { showHTML } = this.state
-
-    this.setState({ showHTML: !showHTML }, this.updateHash)
+    if (nextShowCode) this.setHashAndScroll()
+    this.setState({ showCode: nextShowCode })
   }
 
-  handlePass = () => {
-    const { title } = this.props
+  handleVisibility = (willVisible) => {
+    const { examplePath, onVisibilityChange, title } = this.props
+    const { wasEverVisible } = this.state
 
-    if (title) _.invoke(this.context, 'onPassed', null, this.props)
-  }
-
-  getGithubEditHref = () => {
-    const { examplePath } = this.props
-
-    // get component name from file path:
-    // elements/Button/Types/ButtonButtonExample
-    const pathParts = examplePath.split(__PATH_SEP__)
-    const filename = pathParts[pathParts.length - 1]
-
-    return [
-      `${repoURL}/edit/master/docs/src/examples/${examplePath}.js`,
-      `?message=docs(${filename}): your description`,
-    ].join('')
-  }
-
-  getKebabExamplePath = () => {
-    if (!this.kebabExamplePath) {
-      this.kebabExamplePath = _.kebabCase(this.props.examplePath)
+    if (willVisible && !wasEverVisible) {
+      this.setState({ wasEverVisible: true })
     }
-
-    return this.kebabExamplePath
+    if (title) onVisibilityChange(examplePath, willVisible)
   }
-
-  handleChangeCode = _.debounce((sourceCode) => {
-    this.setState({ sourceCode })
-  }, 30)
-
-  handleRenderError = (error) => this.setState({ error: error.toString() })
-
-  handleRenderSuccess = (error, { markup }) => this.setState({ error, htmlMarkup: markup })
 
   render() {
-    const {
-      children,
-      description,
-      displayName,
-      examplePath,
-      renderHtml,
-      suiVersion,
-      title,
-    } = this.props
-
+    const { children, description, examplePath, renderHtml, suiVersion, title } = this.props
     const {
       anchorName,
-      error,
-      htmlMarkup,
       isActiveHash,
-      originalSourceCode,
       showCode,
-      showHTML,
+      originalSourceCode,
       sourceCode,
+      wasEverVisible,
     } = this.state
 
-    const isActive = isActiveHash || this.isActiveState()
-
     return (
-      <Visibility
-        once={false}
-        onTopPassed={this.handlePass}
-        onTopPassedReverse={this.handlePass}
-        style={{ margin: '2rem 0' }}
+      <VisibilitySensor
+        delayedCall={!wasEverVisible}
+        partialVisibility
+        onChange={this.handleVisibility}
       >
-        {/* Ensure anchor links don't occlude card shadow effect */}
-        <div id={anchorName} style={{ paddingTop: '1rem' }}>
-          <Grid className={cx('docs-example', { active: isActive })} padded='vertically'>
+        <div id={anchorName} style={{ marginTop: '1rem' }}>
+          <Grid className={cx('docs-example', showCode && 'active')} padded='vertically'>
             <Grid.Row columns='equal'>
               <Grid.Column>
                 <ComponentExampleTitle
@@ -217,9 +149,8 @@ class ComponentExample extends PureComponent {
                   examplePath={examplePath}
                   onCopyLink={this.handleDirectLinkClick}
                   onShowCode={this.handleShowCodeClick}
-                  onShowHTML={this.handleShowHTMLClick}
                   showCode={showCode}
-                  showHTML={showHTML}
+                  visible={wasEverVisible}
                 />
               </Grid.Column>
             </Grid.Row>
@@ -230,39 +161,41 @@ class ComponentExample extends PureComponent {
               </Grid.Row>
             )}
 
-            <Grid.Column
-              width={16}
-              className={`rendered-example ${this.getKebabExamplePath()}`}
-              style={renderedExampleStyle}
-            >
-              <ComponentExampleRenderSource
-                displayName={displayName}
-                onError={this.handleRenderError}
-                onSuccess={this.handleRenderSuccess}
+            <Grid.Row style={{ paddingBottom: wasEverVisible && 0 }}>
+              <ExampleEditor
+                examplePath={examplePath}
+                hasCodeChanged={originalSourceCode !== sourceCode}
+                onCodeChange={this.handleCodeChange}
+                onCodeFormat={this.handleCodeFormat}
+                onCodeReset={this.handleCodeReset}
                 renderHtml={renderHtml}
+                showCode={showCode}
                 sourceCode={sourceCode}
+                title={title}
+                visible={wasEverVisible}
               />
-            </Grid.Column>
-            {(showCode || showHTML) && (
-              <Grid.Column width={16} style={editorStyle}>
-                {showCode && (
-                  <ComponentExampleRenderEditor
-                    githubEditHref={this.getGithubEditHref()}
-                    originalValue={originalSourceCode}
-                    value={sourceCode}
-                    error={error}
-                    onChange={this.handleChangeCode}
-                  />
-                )}
-                {showHTML && <ComponentExampleRenderHtml value={htmlMarkup} />}
-              </Grid.Column>
-            )}
-            {isActive && !error && <CarbonAdNative inverted={this.isActiveState()} />}
+            </Grid.Row>
+            {isActiveHash && <CarbonAdNative inverted={showCode} />}
           </Grid>
         </div>
-      </Visibility>
+      </VisibilitySensor>
     )
   }
 }
 
-export default withRouteData(withRouter(ComponentExample))
+const Wrapper = (props) => (
+  <ComponentDocContext.Consumer>
+    {(contextProps) => {
+      return (
+        <ComponentExample
+          {...props}
+          {...contextProps}
+          /* eslint-disable-next-line react/prop-types */
+          sourceCode={contextProps.exampleSources[props.examplePath]}
+        />
+      )
+    }}
+  </ComponentDocContext.Consumer>
+)
+
+export default Wrapper

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import CodeEditor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/CodeEditor'
-import formatCode from '../../utils/formatCode'
+import formatCode from 'docs/src/utils/formatCode'
 
 const containerStyle = {
   padding: '1rem',
@@ -25,7 +25,7 @@ const labelStyle = {
 
 const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
   <div style={{ ...containerStyle, margin: fitted ? 0 : '1rem 0' }}>
-    <div style={labelStyle}>{label || mode}</div>
+    {label === false ? null : <div style={labelStyle}>{label || mode}</div>}
 
     <CodeEditor
       highlightActiveLine={false}
@@ -45,7 +45,7 @@ const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
 
 CodeSnippet.propTypes = {
   fitted: PropTypes.bool,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   mode: PropTypes.oneOf(['html', 'jsx', 'sh']),
   value: PropTypes.string.isRequired,
 }

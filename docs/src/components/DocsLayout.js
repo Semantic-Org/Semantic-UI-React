@@ -53,20 +53,19 @@ class DocsLayout extends Component {
   }
 
   render() {
-    const { additionalTitle, children, componentMenu, sidebar, title, versions } = this.props
+    const { additionalTitle, children, sidebar, title } = this.props
     const mainStyle = sidebar ? style.sidebarMain : style.main
 
     return (
-      <div style={style.container}>
+      <React.Fragment>
         <Head>
           <title>
             {additionalTitle ? `${additionalTitle} - ` : ''}
             {title}
           </title>
         </Head>
-        <Sidebar componentMenu={componentMenu} style={style.menu} version={versions.suir} />
         <div style={mainStyle}>{children}</div>
-      </div>
+      </React.Fragment>
     )
   }
 }

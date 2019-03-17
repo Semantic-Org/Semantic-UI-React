@@ -20,15 +20,6 @@ export default class ComponentProps extends Component {
     activeDisplayName: null,
   }
 
-  componentWillReceiveProps(nextProps) {
-    const currentName = this.props.displayName
-    const nextName = nextProps.displayName
-
-    if (currentName.displayName !== nextName) {
-      this.setState({ activeDisplayName: null })
-    }
-  }
-
   handleComponentClick = (e, { name }) => {
     this.setState({ activeDisplayName: name })
   }
@@ -49,7 +40,7 @@ export default class ComponentProps extends Component {
     const description = _.get(docblock, 'description', [])
 
     return (
-      <div>
+      <React.Fragment>
         <Checkbox slider checked={!!activeDisplayName} label='Props' onChange={this.handleToggle} />
         <ComponentPropsComponents
           activeDisplayName={activeDisplayName}
@@ -64,7 +55,7 @@ export default class ComponentProps extends Component {
             <ComponentTable displayName={activeDisplayName} props={props} />
           </div>
         )}
-      </div>
+      </React.Fragment>
     )
   }
 }

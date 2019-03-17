@@ -92,12 +92,16 @@ code:not(.hljs)::after {
   transform: scale(1.5);
 }
 
-#carbonads {
-  padding: 8px 8px;
-  line-height: 1.2;
+#docs-carbonads {
   background: #222;
   box-shadow: 0 0 2em black;
   border-top: 1px solid #444;
+  min-height: 150px;
+}
+
+#carbonads {
+  padding: 8px 8px;
+  line-height: 1.2;
 }
 
 #carbonads img {

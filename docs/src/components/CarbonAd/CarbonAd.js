@@ -29,6 +29,14 @@ const waitForLoad = () => {
 
 class CarbonAd extends Component {
   componentDidMount() {
+    this.loadAd()
+  }
+
+  componentDidUpdate() {
+    this.loadAd()
+  }
+
+  loadAd = () => {
     this.ifRef((ref) => {
       // always add the script as it is used to insert the ad
       ref.appendChild(script)
@@ -43,10 +51,6 @@ class CarbonAd extends Component {
         waitForLoad()
       }
     })
-  }
-
-  shouldComponentUpdate() {
-    return false
   }
 
   ifRef = (cb) => {

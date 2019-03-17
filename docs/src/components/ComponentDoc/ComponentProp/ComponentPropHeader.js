@@ -1,8 +1,6 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 
-import { neverUpdate } from 'docs/src/hoc'
-
 const ComponentPropHeader = () => (
   <Table.Header>
     <Table.Row>
@@ -14,4 +12,4 @@ const ComponentPropHeader = () => (
   </Table.Header>
 )
 
-export default neverUpdate(ComponentPropHeader)
+export default ComponentPropHeader

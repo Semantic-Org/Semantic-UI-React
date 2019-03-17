@@ -1,16 +1,17 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
-import { withRouteData } from 'react-static'
+import { withRouter, withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
-import { docTypes, examplePathToHash, scrollToAnchor } from 'docs/src/utils'
+import { docTypes, examplePathToHash } from 'docs/src/utils'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 import ComponentSidebar from './ComponentSidebar'
+import ComponentDocContext from './ComponentDocContext'
 
 const exampleEndStyle = {
   textAlign: 'center',
@@ -19,14 +20,11 @@ const exampleEndStyle = {
 }
 
 class ComponentDoc extends Component {
-  static childContextTypes = {
-    onPassed: PropTypes.func,
-  }
-
   static propTypes = {
     componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
     displayName: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
     seeTags: docTypes.seeTags.isRequired,
     sidebarSections: docTypes.sidebarSections.isRequired,
   }
@@ -34,35 +32,34 @@ class ComponentDoc extends Component {
   state = {}
   examplesRef = createRef()
 
-  getChildContext() {
+  static getDerivedStateFromProps(props, state) {
+    const resetOccurred = props.displayName !== state.displayName
+
     return {
-      onPassed: this.handleExamplePassed,
+      displayName: props.displayName,
+      exampleStates: resetOccurred ? {} : state.exampleStates,
     }
   }
 
-  componentWillReceiveProps({ displayName }) {
-    if (displayName !== this.props.displayName) {
-      this.setState({ activePath: undefined })
-    }
-  }
-
-  handleExamplePassed = (e, { examplePath }) => {
-    this.setState({ activePath: examplePathToHash(examplePath) })
-  }
+  handleExampleVisibility = (examplePath, visible) =>
+    this.setState((prevState) => ({
+      exampleStates: {
+        ...prevState.exampleStates,
+        [examplePath]: visible,
+      },
+    }))
 
   handleSidebarItemClick = (e, { examplePath }) => {
-    const { history } = this.props
-    const activePath = examplePathToHash(examplePath)
+    const { history, location } = this.props
 
-    history.replace(`${window.location.pathname}#${activePath}`)
-    // set active hash path
-    this.setState({ activePath }, scrollToAnchor)
+    history.replace(`${location.pathname}#${examplePathToHash(examplePath)}`)
   }
 
   render() {
     const { componentsInfo, displayName, seeTags, sidebarSections } = this.props
-    const { activePath } = this.state
+    const activePath = _.findKey(this.state.exampleStates)
     const componentInfo = componentsInfo[displayName]
+    const contextValue = { ...this.props, onVisibilityChange: this.handleExampleVisibility }
 
     return (
       <DocsLayout additionalTitle={displayName} sidebar>
@@ -88,11 +85,13 @@ class ComponentDoc extends Component {
           <Grid.Row columns='equal'>
             <Grid.Column>
               <div ref={this.examplesRef}>
-                <ComponentExamples
-                  displayName={displayName}
-                  examplesExist={componentInfo.examplesExist}
-                  type={componentInfo.type}
-                />
+                <ComponentDocContext.Provider value={contextValue}>
+                  <ComponentExamples
+                    displayName={displayName}
+                    examplesExist={componentInfo.examplesExist}
+                    type={componentInfo.type}
+                  />
+                </ComponentDocContext.Provider>
               </div>
               <div style={exampleEndStyle}>
                 This is the bottom <Icon name='pointing down' />
@@ -113,4 +112,4 @@ class ComponentDoc extends Component {
   }
 }
 
-export default withRouteData(ComponentDoc)
+export default withRouteData(withRouter(ComponentDoc))

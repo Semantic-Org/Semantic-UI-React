@@ -2,7 +2,7 @@ import keyboardKey from 'keyboard-key'
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-static'
+import { Link } from 'react-static'
 import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
 import shallowEqual from 'shallowequal'
 
@@ -49,9 +49,9 @@ class Sidebar extends Component {
     this.filteredMenu = props.componentMenu
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !shallowEqual(this.state, nextState)
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return !shallowEqual(this.state, nextState)
+  // }
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleDocumentKeyDown)
@@ -256,4 +256,4 @@ class Sidebar extends Component {
   }
 }
 
-export default withRouter(Sidebar)
+export default Sidebar
