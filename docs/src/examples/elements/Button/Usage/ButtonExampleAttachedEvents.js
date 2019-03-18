@@ -14,7 +14,7 @@ export default class ButtonExampleAttachedEvents extends Component {
     }
   }
 
-  updateLog = message => this.setState({ log: [message, ...this.state.log] })
+  updateLog = message => this.setState(prevState => ({ log: [message, ...prevState.log] }))
 
   render() {
     const { log } = this.state

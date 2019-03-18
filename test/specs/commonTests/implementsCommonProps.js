@@ -5,7 +5,7 @@ import Icon from 'src/elements/Icon'
 import Image from 'src/elements/Image'
 import Label from 'src/elements/Label'
 import { numberToWord, SUI } from 'src/lib'
-import { implementsShorthandProp } from './'
+import implementsShorthandProp from './implementsShorthandProp'
 import { noClassNameFromBoolProps, noDefaultClassNameFromProp } from './classNameHelpers'
 import helpers from './commonHelpers'
 

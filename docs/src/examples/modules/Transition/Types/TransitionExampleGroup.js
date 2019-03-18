@@ -7,9 +7,9 @@ const users = ['ade', 'chris', 'christian', 'daniel', 'elliot', 'helen']
 export default class TransitionExampleGroup extends Component {
   state = { items: users.slice(0, 3) }
 
-  handleAdd = () => this.setState({ items: users.slice(0, this.state.items.length + 1) })
+  handleAdd = () => this.setState(prevState => ({ items: users.slice(0, prevState.items.length + 1) }))
 
-  handleRemove = () => this.setState({ items: this.state.items.slice(0, -1) })
+  handleRemove = () => this.setState(prevState => ({ items: prevState.items.slice(0, -1) }))
 
   render() {
     const { items } = this.state

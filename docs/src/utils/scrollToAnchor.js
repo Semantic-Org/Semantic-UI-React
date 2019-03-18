@@ -3,12 +3,12 @@ const mathSign =
   function mathSign(x) {
     const val = +x
 
-    if (val === 0 || isNaN(val)) return val
+    if (val === 0 || Number.isNaN(val)) return val
     return val > 0 ? 1 : -1
   }
 
 const scrollToAnchor = (lastOffsetY, lastAcceleration = 0.1) => {
-  const anchor = location.hash && document.querySelector(location.hash)
+  const anchor = window.location.hash && document.querySelector(window.location.hash)
   const offsetY = window.scrollY || window.pageYOffset
 
   // no scroll to target, stop
@@ -23,7 +23,7 @@ const scrollToAnchor = (lastOffsetY, lastAcceleration = 0.1) => {
   if (lastOffsetY === offsetY) return
 
   // more scrolling to do!
-  scrollBy(0, scrollStep * acceleration)
+  window.scrollBy(0, scrollStep * acceleration)
   requestAnimationFrame(() => scrollToAnchor(offsetY, acceleration))
 }
 

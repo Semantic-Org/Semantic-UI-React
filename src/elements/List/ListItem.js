@@ -11,7 +11,7 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
-import Image from '../../elements/Image'
+import Image from '../Image'
 import ListContent from './ListContent'
 import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'
@@ -184,6 +184,6 @@ class ListItem extends Component {
   }
 }
 
-ListItem.create = createShorthandFactory(ListItem, content => ({ content }))
+ListItem.create = createShorthandFactory(ListItem, (content) => ({ content }))
 
 export default ListItem

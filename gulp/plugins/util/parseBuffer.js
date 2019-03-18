@@ -1,4 +1,4 @@
-import { parse } from 'babylon'
+import { parse } from '@babel/parser'
 
 const parseBuffer = buffer => parse(buffer.toString(), {
   plugins: [

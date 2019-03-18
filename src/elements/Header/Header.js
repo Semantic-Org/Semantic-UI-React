@@ -14,8 +14,8 @@ import {
   useKeyOrValueAndKey,
   useKeyOnly,
 } from '../../lib'
-import Icon from '../../elements/Icon'
-import Image from '../../elements/Image'
+import Icon from '../Icon'
+import Image from '../Image'
 
 import HeaderSubheader from './HeaderSubheader'
 import HeaderContent from './HeaderContent'
