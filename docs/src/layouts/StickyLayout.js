@@ -119,7 +119,8 @@ export default class StickyLayout extends Component {
           html, body {
             background: #fff;
           }
-        `}</style>
+        `}
+        </style>
 
         <Container text style={{ marginTop: '2em' }}>
           <Header as='h1'>Sticky Example</Header>

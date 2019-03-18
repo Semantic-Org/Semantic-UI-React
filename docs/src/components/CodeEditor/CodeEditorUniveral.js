@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { withSiteData } from 'react-static'
 import universal from 'react-universal-component'
 import { Loader } from 'semantic-ui-react'
 
@@ -14,8 +13,8 @@ export const EDITOR_GUTTER_COLOR = '#25282d'
 // component also allows us to load Editor lazy.
 const CodeEditor = isBrowser()
   ? universal(import('./CodeEditor'), {
-    loading: () => <Loader active inline='centered' />,
-  })
+      loading: () => <Loader active inline='centered' />,
+    })
   : () => null
 
 function CodeEditorUniveral(props) {
@@ -46,7 +45,7 @@ function CodeEditorUniveral(props) {
 
 CodeEditorUniveral.propTypes = {
   id: PropTypes.string.isRequired,
-  mode: PropTypes.oneOf(['html', 'jsx']),
+  mode: PropTypes.oneOf(['html', 'jsx', 'sh']),
   value: PropTypes.string.isRequired,
   readOnly: PropTypes.bool,
 }
@@ -55,4 +54,4 @@ CodeEditorUniveral.defaultProps = {
   mode: 'jsx',
 }
 
-export default withSiteData(CodeEditorUniveral)
+export default CodeEditorUniveral

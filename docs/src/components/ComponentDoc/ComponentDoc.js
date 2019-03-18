@@ -66,7 +66,7 @@ class ComponentDoc extends Component {
     const { history } = this.props
     const activePath = examplePathToHash(examplePath)
 
-    history.replace(`${location.pathname}#${activePath}`)
+    history.replace(`${window.location.pathname}#${activePath}`)
     // set active hash path
     this.setState({ activePath }, scrollToAnchor)
   }

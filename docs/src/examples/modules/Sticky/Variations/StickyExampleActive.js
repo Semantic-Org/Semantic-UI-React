@@ -17,7 +17,7 @@ export default class StickyExampleActive extends Component {
   state = { active: true }
   contextRef = createRef()
 
-  handleToggle = () => this.setState({ active: !this.state.active })
+  handleToggle = () => this.setState(prevState => ({ active: !prevState.active }))
 
   render() {
     const { active } = this.state

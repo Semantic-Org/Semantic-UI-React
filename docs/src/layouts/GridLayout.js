@@ -35,7 +35,8 @@ const InlineStyle = () => (
         left: 0em;
       }
     }
-  `}</style>
+  `}
+  </style>
 )
 
 const GridLayout = () => (

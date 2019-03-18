@@ -192,10 +192,10 @@ const ThemingLayout = () => (
         </Button.Group>
 
         <Button.Group>
-          <Button icon='align left icon' />
-          <Button icon='align center icon' />
-          <Button icon='align right icon' />
-          <Button icon='align justify icon' />
+          <Button icon='align left' />
+          <Button icon='align center' />
+          <Button icon='align right' />
+          <Button icon='align justify' />
         </Button.Group>
 
         <Button.Group>
