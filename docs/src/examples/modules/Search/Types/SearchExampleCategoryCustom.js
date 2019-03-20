@@ -4,7 +4,7 @@ import faker from 'faker'
 import React, { Component } from 'react'
 import { Search, Grid, Header, Segment, Label } from 'semantic-ui-react'
 
-const categoryRenderer = ({ name }) => <Label as={'span'} content={name} />
+const categoryRenderer = ({ name }) => <Label as='span' content={name} />
 
 categoryRenderer.propTypes = {
   name: PropTypes.string,

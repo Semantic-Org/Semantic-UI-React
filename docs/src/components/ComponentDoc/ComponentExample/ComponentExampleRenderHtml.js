@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react'
 import { Divider } from 'semantic-ui-react'
 
 import Editor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/CodeEditor'
+import formatCode from 'docs/src/utils/formatCode'
 
 const rootStyle = {
   padding: '1rem',
@@ -22,7 +23,7 @@ export default class ComponentExampleRenderHtml extends PureComponent {
     const { value } = this.props
 
     // remove new line at eof after formatting for a tighter fit
-    const formattedCode = value.trim()
+    const formattedCode = formatCode(value, 'html').replace(/\s+$/, '')
 
     return (
       <div style={rootStyle}>

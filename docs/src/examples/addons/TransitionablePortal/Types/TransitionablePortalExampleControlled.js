@@ -4,8 +4,7 @@ import { Button, Header, Segment, TransitionablePortal } from 'semantic-ui-react
 export default class TransitionablePortalExampleControlled extends Component {
   state = { open: false }
 
-  handleClick = () => this.setState({ open: !this.state.open })
-
+  handleClick = () => this.setState(prevState => ({ open: !prevState.open }))
   handleClose = () => this.setState({ open: false })
 
   render() {

@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 
 export default class MenuExampleHeaderVertical extends Component {
+  state = {}
   handleItemClick = name => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state || {}
+    const { activeItem } = this.state
 
     return (
       <Menu vertical>
