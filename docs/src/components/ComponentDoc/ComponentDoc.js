@@ -38,10 +38,13 @@ class ComponentDoc extends Component {
 
   componentWillMount() {
     const { exampleKeys, history } = this.props
+    const { pathname, hash } = window.location
 
-    if (isBrowser() && window.location.hash) {
-      const activePath = getFormattedHash(exampleKeys, window.location.hash)
-      history.replace(`${window.location.pathname}#${activePath}`)
+    if (isBrowser() && hash) {
+      const activePath = getFormattedHash(exampleKeys, hash)
+      if (activePath && activePath !== hash) {
+        history.replace({ pathname, hash: activePath })
+      }
       this.setState({ activePath })
     }
   }
