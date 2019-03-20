@@ -10,6 +10,11 @@ const StickyUsageExamples = () => (
       description='Define the offset from the top/bottom of the screen when fixing element to viewport.'
       examplePath='modules/Sticky/Usage/StickyExampleOffset'
     />
+    <ComponentExample
+      title='Above Content'
+      description='Sticky content that is above other content'
+      examplePath='modules/Sticky/Usage/StickyExampleAboveContent'
+    />
   </ExampleSection>
 )
 

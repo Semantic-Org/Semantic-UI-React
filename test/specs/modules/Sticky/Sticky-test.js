@@ -199,6 +199,20 @@ describe('Sticky', () => {
         .childAt(1)
         .should.have.style('bottom', '0px')
     })
+
+    it('should preserve sticky element height', () => {
+      mockContextEl()
+      mockPositions({ bottomOffset: 0, height: 100, offset: 0 })
+      wrapperMount(<Sticky {...positions} context={contextEl} />)
+
+      // Scroll after trigger
+      scrollAfterTrigger()
+
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .should.have.style('height', '100px')
+    })
   })
   describe('onBottom', () => {
     it('is called with (e, data) when is on bottom', () => {

@@ -97,8 +97,7 @@ export default class DimmerInner extends Component {
   toggleStyles(active) {
     const containerRef = this.containerRef.current
 
-    if (!containerRef) return
-
+    if (!containerRef || !containerRef.style) return
     if (active) {
       containerRef.style.setProperty('display', 'flex', 'important')
     } else {
