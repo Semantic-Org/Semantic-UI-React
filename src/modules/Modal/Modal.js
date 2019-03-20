@@ -162,7 +162,7 @@ class Modal extends Component {
   // Do not access document when server side rendering
   getMountNode = () => (isBrowser() ? this.props.mountNode || document.body : null)
 
-  handleActionsOverrides = predefinedProps => ({
+  handleActionsOverrides = (predefinedProps) => ({
     onActionClick: (e, actionProps) => {
       _.invoke(predefinedProps, 'onActionClick', e, actionProps)
       _.invoke(this.props, 'onActionClick', e, this.props)
@@ -188,7 +188,7 @@ class Modal extends Component {
     this.trySetState({ open: false })
   }
 
-  handleIconOverrides = predefinedProps => ({
+  handleIconOverrides = (predefinedProps) => ({
     onClick: (e) => {
       _.invoke(predefinedProps, 'onClick', e)
       this.handleClose(e)
@@ -231,7 +231,7 @@ class Modal extends Component {
   setDimmerNodeStyle = () => {
     debug('setDimmerNodeStyle()')
 
-    if (this.dimmerRef.current) {
+    if (this.dimmerRef.current && this.dimmerRef.current.style) {
       this.dimmerRef.current.style.setProperty('display', 'flex', 'important')
     }
   }
