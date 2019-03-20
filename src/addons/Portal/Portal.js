@@ -1,3 +1,4 @@
+import EventStack from '@semantic-ui-react/event-stack'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -7,7 +8,6 @@ import {
   AutoControlledComponent as Component,
   customPropTypes,
   doesNodeContainClick,
-  eventStack,
   handleRef,
   makeDebugger,
 } from '../../lib'
@@ -307,27 +307,13 @@ class Portal extends Component {
     return setTimeout(() => this.close(eventClone), delay || 0)
   }
 
-  handleMount = (e, { node: target }) => {
+  handleMount = () => {
     debug('handleMount()')
-    const { eventPool } = this.props
-
-    eventStack.sub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target })
-    eventStack.sub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target })
-    eventStack.sub('click', this.handleDocumentClick, { pool: eventPool })
-    eventStack.sub('keydown', this.handleEscape, { pool: eventPool })
-
     _.invoke(this.props, 'onMount', null, this.props)
   }
 
-  handleUnmount = (e, { node: target }) => {
+  handleUnmount = () => {
     debug('handleUnmount()')
-    const { eventPool } = this.props
-
-    eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target })
-    eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target })
-    eventStack.unsub('click', this.handleDocumentClick, { pool: eventPool })
-    eventStack.unsub('keydown', this.handleEscape, { pool: eventPool })
-
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
@@ -338,20 +324,37 @@ class Portal extends Component {
   }
 
   render() {
-    const { children, mountNode, trigger } = this.props
+    const { children, eventPool, mountNode, trigger } = this.props
     const { open } = this.state
 
     return (
       <Fragment>
         {open && (
-          <PortalInner
-            innerRef={this.contentRef}
-            mountNode={mountNode}
-            onMount={this.handleMount}
-            onUnmount={this.handleUnmount}
-          >
-            {children}
-          </PortalInner>
+          <Fragment>
+            <PortalInner
+              innerRef={this.contentRef}
+              mountNode={mountNode}
+              onMount={this.handleMount}
+              onUnmount={this.handleUnmount}
+            >
+              {children}
+            </PortalInner>
+
+            <EventStack
+              name='mouseleave'
+              on={this.handlePortalMouseLeave}
+              pool={eventPool}
+              target={this.contentRef}
+            />
+            <EventStack
+              name='mouseenter'
+              on={this.handlePortalMouseEnter}
+              pool={eventPool}
+              target={this.contentRef}
+            />
+            <EventStack name='click' on={this.handleDocumentClick} pool={eventPool} />
+            <EventStack name='keydown' on={this.handleEscape} pool={eventPool} />
+          </Fragment>
         )}
         {trigger && (
           <Ref innerRef={this.handleTriggerRef}>
