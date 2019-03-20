@@ -4,6 +4,7 @@ import { Form } from 'semantic-ui-react'
 const options = [
   { key: 'm', text: 'Male', value: 'male' },
   { key: 'f', text: 'Female', value: 'female' },
+  { key: 'n', text: 'Neutral', value: 'neutral' },
 ]
 
 class FormExampleSubcomponentControl extends Component {
