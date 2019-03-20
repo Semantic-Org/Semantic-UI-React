@@ -609,7 +609,6 @@ export const GENDERS = [
   'mars stroke vertical',
   'mercury',
   'neuter',
-  'other',
   'transgender',
   'transgender alternate',
   'venus',
