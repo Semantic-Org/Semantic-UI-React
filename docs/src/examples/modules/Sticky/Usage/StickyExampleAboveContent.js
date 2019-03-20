@@ -2,8 +2,6 @@ import React, { Component, createRef } from 'react'
 import { Image, Input, Menu, Segment, Sticky } from 'semantic-ui-react'
 import _ from 'lodash'
 
-const Placeholder = () => <Image src='/images/wireframe/paragraph.png' />
-
 export default class StickyExampleAboveContent extends Component {
   contextRef = createRef()
 
@@ -16,12 +14,8 @@ export default class StickyExampleAboveContent extends Component {
             tabular
             style={{ backgroundColor: '#fff', paddingTop: '1em' }}
           >
-            <Menu.Item name='bio' active onClick={this.handleItemClick} />
-            <Menu.Item
-              name='photos'
-              active={false}
-              onClick={this.handleItemClick}
-            />
+            <Menu.Item as='a' active name='bio' />
+            <Menu.Item as='a' active={false} name='photos' />
             <Menu.Menu position='right'>
               <Menu.Item>
                 <Input
@@ -34,9 +28,7 @@ export default class StickyExampleAboveContent extends Component {
           </Menu>
         </Sticky>
         <Segment attached='bottom'>
-          {_.times(10, i => (
-            <Placeholder key={i} />
-          ))}
+          {_.times(5, i => <Image key={i} src='/images/wireframe/paragraph.png' />)}
         </Segment>
       </div>
     )
