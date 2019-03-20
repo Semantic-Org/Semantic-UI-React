@@ -22,8 +22,7 @@ const isMeanableMember = (path) => {
     return typeName.startsWith('PropTypes')
   }
 
-  if (namedTypes.MemberExpression.check(path.node)) return true
-  return false
+  return !!namedTypes.MemberExpression.check(path.node)
 }
 
 const amendPropTypes = (documentation, path) => {

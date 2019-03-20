@@ -169,7 +169,8 @@ class CarbonAdNative extends PureComponent {
           #${id}:hover > img {
             opacity: 1;
           }
-        `}</style>
+        `}
+        </style>
       </a>
     )
   }

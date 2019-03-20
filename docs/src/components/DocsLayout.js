@@ -6,6 +6,7 @@ import { Head, withRouter, withSiteData } from 'react-static'
 import Sidebar from 'docs/src/components/Sidebar/Sidebar'
 import style from 'docs/src/Style'
 import { docTypes, scrollToAnchor } from 'docs/src/utils'
+import { isBrowser } from 'src/lib'
 
 const anchors = new AnchorJS({
   icon: '#',
@@ -41,10 +42,10 @@ class DocsLayout extends Component {
 
     clearTimeout(this.scrollStartTimeout)
 
-    scrollTo(0, 0)
+    if (isBrowser()) window.scrollTo(0, 0)
 
     anchors.add('h2, h3, h4, h5, h6')
-    anchors.remove([1, 2, 3, 4, 5, 6].map(n => `.rendered-example h${n}`).join(', '))
+    anchors.remove([1, 2, 3, 4, 5, 6].map((n) => `.rendered-example h${n}`).join(', '))
     anchors.remove('.no-anchor')
 
     this.scrollStartTimeout = setTimeout(scrollToAnchor, 500)

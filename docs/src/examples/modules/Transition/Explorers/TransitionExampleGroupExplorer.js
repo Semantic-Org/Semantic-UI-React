@@ -34,7 +34,7 @@ export default class TransitionExampleSingleExplorer extends Component {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-  handleVisibility = () => this.setState({ visible: !this.state.visible })
+  handleVisibility = () => this.setState(prevState => ({ visible: !prevState.visible }))
 
   render() {
     const { animation, duration, visible } = this.state

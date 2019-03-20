@@ -14,7 +14,7 @@ delete prettierConfig.overrides
 // https://github.com/prettier/prettier/issues/4959
 
 const formatCode = isBrowser()
-  ? (code, parser = 'babylon') => {
+  ? (code, parser = 'babel') => {
     if (!code) return ''
 
     const formatted = prettier.format(code, {

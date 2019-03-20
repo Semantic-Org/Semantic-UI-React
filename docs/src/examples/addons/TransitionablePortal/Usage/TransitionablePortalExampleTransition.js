@@ -33,8 +33,7 @@ export default class TransitionablePortalExampleTransition extends Component {
   state = { animation: transitions[0], duration: 500, open: false }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
-  handleClick = () => this.setState({ open: !this.state.open })
+  handleClick = () => this.setState(prevState => ({ open: !prevState.open }))
 
   render() {
     const { animation, duration, open } = this.state
