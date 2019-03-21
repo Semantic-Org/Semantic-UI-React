@@ -5,8 +5,7 @@ import { withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
-import { docTypes, examplePathToHash, getFormattedHash, scrollToAnchor } from 'docs/src/utils'
-import { isBrowser } from 'src/lib'
+import { docTypes, examplePathToHash, scrollToAnchor } from 'docs/src/utils'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
@@ -35,19 +34,6 @@ class ComponentDoc extends Component {
 
   state = {}
   examplesRef = createRef()
-
-  componentWillMount() {
-    const { exampleKeys, history } = this.props
-    const { pathname, hash } = window.location
-
-    if (isBrowser() && hash) {
-      const activePath = getFormattedHash(exampleKeys, hash)
-      if (activePath && activePath !== hash) {
-        history.replace({ pathname, hash: activePath })
-      }
-      this.setState({ activePath })
-    }
-  }
 
   getChildContext() {
     return {
