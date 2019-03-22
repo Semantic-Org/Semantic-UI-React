@@ -6,7 +6,7 @@ import React, { PureComponent } from 'react'
 import { withRouteData, withRouter } from 'react-static'
 import { Grid, Visibility } from 'semantic-ui-react'
 
-import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
+import { examplePathToHash, repoURL, scrollToAnchor } from 'docs/src/utils'
 import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
 
 import ComponentControls from '../ComponentControls'
@@ -39,8 +39,6 @@ const componentControlsStyle = {
  * Allows toggling the the raw `code` code block.
  */
 class ComponentExample extends PureComponent {
-  state = {}
-
   static contextTypes = {
     onPassed: PropTypes.func,
   }
@@ -49,7 +47,6 @@ class ComponentExample extends PureComponent {
     children: PropTypes.node,
     description: PropTypes.node,
     displayName: PropTypes.string.isRequired,
-    exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     exampleSources: PropTypes.objectOf(PropTypes.string).isRequired,
     examplePath: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
@@ -64,36 +61,39 @@ class ComponentExample extends PureComponent {
     renderHtml: true,
   }
 
-  componentWillMount() {
-    const { examplePath } = this.props
-    this.anchorName = examplePathToHash(examplePath)
+  static getDerivedStateFromProps(props, state = {}) {
+    const { examplePath, exampleSources, location } = props
 
-    this.setState({
-      showCode: this.isActiveHash(),
-      sourceCode: this.getOriginalSourceCode(),
-    })
-  }
+    const anchorName = examplePathToHash(examplePath)
+    const isActiveHash = anchorName === location.hash
+    const originalSourceCode = exampleSources[examplePath]
 
-  componentWillReceiveProps(nextProps) {
-    const { examplePath, exampleSources, location } = nextProps
-    const nextSourceCode = exampleSources[examplePath]
+    const derivedState = {
+      anchorName,
+      hash: location.hash,
+      isActiveHash,
+      originalSourceCode,
+    }
 
     // deactivate examples when switching from one to the next
-    if (this.isActiveHash() && this.isActiveState() && this.props.location.hash !== location.hash) {
-      this.clearActiveState()
+    if (state.isActiveHash && !isActiveHash) {
+      derivedState.showCode = false
+      derivedState.showHTML = false
     }
 
-    // for local environment
-    if (process.env.NODE_ENV !== 'production' && this.getOriginalSourceCode() !== nextSourceCode) {
-      this.setState({ sourceCode: nextSourceCode })
-    }
+    return derivedState
   }
 
-  clearActiveState = () => {
-    this.setState({
-      showCode: false,
-      showHTML: false,
-    })
+  constructor(props) {
+    super(props)
+
+    const state = ComponentExample.getDerivedStateFromProps(props)
+
+    this.state = {
+      ...state,
+      showCode: state.isActiveHash,
+      sourceCode: state.originalSourceCode,
+    }
   }
 
   isActiveState = () => {
@@ -102,19 +102,15 @@ class ComponentExample extends PureComponent {
     return showCode || showHTML
   }
 
-  isActiveHash = () => {
-    const { exampleKeys, location } = this.props
-    return this.anchorName === getFormattedHash(exampleKeys, location.hash)
-  }
-
   updateHash = () => {
     if (this.isActiveState()) this.setHashAndScroll()
   }
 
   setHashAndScroll = () => {
     const { history, location } = this.props
+    const { anchorName } = this.state
 
-    history.replace(`${location.pathname}#${this.anchorName}`)
+    history.replace(`${location.pathname}#${anchorName}`)
     scrollToAnchor()
   }
 
@@ -167,16 +163,11 @@ class ComponentExample extends PureComponent {
     return this.kebabExamplePath
   }
 
-  getOriginalSourceCode = () => {
-    const { examplePath, exampleSources } = this.props
-    return exampleSources[examplePath]
-  }
-
   handleChangeCode = _.debounce((sourceCode) => {
     this.setState({ sourceCode })
   }, 30)
 
-  handleRenderError = error => this.setState({ error: error.toString() })
+  handleRenderError = (error) => this.setState({ error: error.toString() })
 
   handleRenderSuccess = (error, { markup }) => this.setState({ error, htmlMarkup: markup })
 
@@ -190,9 +181,19 @@ class ComponentExample extends PureComponent {
       suiVersion,
       title,
     } = this.props
-    const { error, htmlMarkup, showCode, showHTML, sourceCode } = this.state
 
-    const isActive = this.isActiveHash() || this.isActiveState()
+    const {
+      anchorName,
+      error,
+      htmlMarkup,
+      isActiveHash,
+      originalSourceCode,
+      showCode,
+      showHTML,
+      sourceCode,
+    } = this.state
+
+    const isActive = isActiveHash || this.isActiveState()
 
     return (
       <Visibility
@@ -202,7 +203,7 @@ class ComponentExample extends PureComponent {
         style={{ margin: '2rem 0' }}
       >
         {/* Ensure anchor links don't occlude card shadow effect */}
-        <div id={this.anchorName} style={{ paddingTop: '1rem' }}>
+        <div id={anchorName} style={{ paddingTop: '1rem' }}>
           <Grid className={cx('docs-example', { active: isActive })} padded='vertically'>
             <Grid.Row columns='equal'>
               <Grid.Column>
@@ -214,7 +215,7 @@ class ComponentExample extends PureComponent {
               </Grid.Column>
               <Grid.Column textAlign='right' style={componentControlsStyle}>
                 <ComponentControls
-                  anchorName={this.anchorName}
+                  anchorName={anchorName}
                   disableHtml={!renderHtml}
                   exampleCode={sourceCode}
                   examplePath={examplePath}
@@ -251,7 +252,7 @@ class ComponentExample extends PureComponent {
                 {showCode && (
                   <ComponentExampleRenderEditor
                     githubEditHref={this.getGithubEditHref()}
-                    originalValue={this.getOriginalSourceCode()}
+                    originalValue={originalSourceCode}
                     value={sourceCode}
                     error={error}
                     onChange={this.handleChangeCode}
