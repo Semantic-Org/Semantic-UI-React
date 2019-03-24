@@ -82,6 +82,7 @@
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react-is": "^16.7.0",
+    "react-popper": "^1.3.3",
     "shallowequal": "^1.1.0"
   },
   "devDependencies": {
