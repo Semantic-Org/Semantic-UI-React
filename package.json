@@ -82,6 +82,7 @@
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react-is": "^16.7.0",
+    "react-popper": "^1.3.3",
     "shallowequal": "^1.1.0"
   },
   "devDependencies": {
@@ -151,9 +152,9 @@
     "react-codesandboxer": "^3.1.3",
     "react-docgen": "^4.1.0",
     "react-dom": "^16.8.4",
-    "react-hot-loader": "^4.3.11",
-    "react-router": "^4.4.0",
-    "react-router-dom": "^4.4.0",
+    "react-hot-loader": "^4.8.0",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "react-source-render": "^1.2.0",
     "react-static": "^5.9.7",
     "react-static-routes": "^1.0.0",
@@ -181,6 +182,8 @@
   },
   "resolutions": {
     "babel-plugin-universal-import": "^2.0.2",
-    "react-universal-component": "^3.0.3"
+    "react-universal-component": "^3.0.3",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0"
   }
 }

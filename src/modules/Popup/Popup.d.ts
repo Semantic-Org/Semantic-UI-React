@@ -46,11 +46,14 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** Invert the colors of the popup */
   inverted?: boolean
 
-  /** Horizontal offset in pixels to be applied to the popup. */
-  horizontalOffset?: number
-
-  /** Vertical offset in pixels to be applied to the popup. */
-  verticalOffset?: number
+  /** Offset value to apply to rendered popup. Accepts the following units:
+   * - px or unit-less, interpreted as pixels
+   * - %, percentage relative to the length of the trigger element
+   * - %p, percentage relative to the length of the popup element
+   * - vw, CSS viewport width unit
+   * - vh, CSS viewport height unit
+   */
+  offset?: number | string
 
   /** Events triggering the popup. */
   on?: 'hover' | 'click' | 'focus' | ('hover' | 'click' | 'focus')[]
@@ -109,9 +112,6 @@ export interface StrictPopupProps extends StrictPortalProps {
 
   /** Popup width. */
   wide?: boolean | 'very'
-
-  /** Element to be rendered within the confines of the viewport whenever possible. */
-  keepInViewPort?: boolean
 }
 
 interface PopupComponent extends React.ComponentClass<PopupProps> {
