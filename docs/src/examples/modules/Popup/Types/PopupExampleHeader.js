@@ -19,17 +19,17 @@ const users = [
   },
 ]
 
-const PopupExampleTitled = () => (
+const PopupExampleHeader = () => (
   <React.Fragment>
     {users.map((user) => (
       <Popup
-        key={user.name}
-        trigger={<Image src={user.avatar} avatar />}
-        header={user.name}
         content={user.bio}
+        key={user.name}
+        header={user.name}
+        trigger={<Image src={user.avatar} avatar />}
       />
     ))}
   </React.Fragment>
 )
 
-export default PopupExampleTitled
+export default PopupExampleHeader
