@@ -77,7 +77,7 @@ export default class Popup extends Component {
      * - vw, CSS viewport width unit
      * - vh, CSS viewport height unit
      */
-    offset: PropTypes.oneOfType(PropTypes.number, PropTypes.string),
+    offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** Events triggering the popup. */
     on: PropTypes.oneOfType([
