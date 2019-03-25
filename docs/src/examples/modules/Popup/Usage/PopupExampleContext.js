@@ -6,7 +6,7 @@ class PopupExampleContextControlled extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Popup
           trigger={<Button content='Trigger Popup' />}
           context={this.contextRef}
@@ -15,7 +15,7 @@ class PopupExampleContextControlled extends React.Component {
         />
         ---------->
         <strong ref={this.contextRef}>here</strong>
-      </div>
+      </React.Fragment>
     )
   }
 }

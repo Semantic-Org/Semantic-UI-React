@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Popup } from 'semantic-ui-react'
 
 const PopupExampleHideOnScroll = () => (
-  <div>
+  <React.Fragment>
     <Popup
       trigger={<Button icon>Click me</Button>}
       content='Hide the popup on any scroll event'
@@ -14,7 +14,7 @@ const PopupExampleHideOnScroll = () => (
       content='Hide the popup on any scroll event'
       hideOnScroll
     />
-  </div>
+  </React.Fragment>
 )
 
 export default PopupExampleHideOnScroll

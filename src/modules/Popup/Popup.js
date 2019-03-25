@@ -70,11 +70,14 @@ export default class Popup extends Component {
     /** Invert the colors of the Popup. */
     inverted: PropTypes.bool,
 
-    /** Horizontal offset in pixels to be applied to the Popup. */
-    horizontalOffset: PropTypes.number,
-
-    /** Vertical offset in pixels to be applied to the Popup. */
-    verticalOffset: PropTypes.number,
+    /** Offset value to apply to rendered popup. Accepts the following units:
+     * - px or unit-less, interpreted as pixels
+     * - %, percentage relative to the length of the trigger element
+     * - %p, percentage relative to the length of the popup element
+     * - vw, CSS viewport width unit
+     * - vh, CSS viewport height unit
+     */
+    offset: PropTypes.oneOfType(PropTypes.number, PropTypes.string),
 
     /** Events triggering the popup. */
     on: PropTypes.oneOfType([
@@ -131,9 +134,10 @@ export default class Popup extends Component {
   }
 
   static defaultProps = {
-    position: 'top left',
-    on: 'hover',
     disabled: false,
+    offset: 0,
+    on: 'hover',
+    position: 'top left',
   }
 
   static Content = PopupContent
@@ -281,14 +285,14 @@ export default class Popup extends Component {
   }
 
   render() {
-    const { context, disabled, horizontalOffset, position, trigger, verticalOffset } = this.props
+    const { context, disabled, offset, position, trigger } = this.props
     const { closed, portalRestProps } = this.state
 
     if (closed || disabled) return trigger
 
     const modifiers = {
       arrow: { enabled: false },
-      offset: { offset: `${horizontalOffset}, ${verticalOffset}` },
+      offset: { offset },
     }
     const referenceElement = createReferenceProxy(_.isNil(context) ? this.triggerRef : context)
 

@@ -20,8 +20,8 @@ const users = [
 ]
 
 const PopupExampleTitled = () => (
-  <div>
-    {users.map(user => (
+  <React.Fragment>
+    {users.map((user) => (
       <Popup
         key={user.name}
         trigger={<Image src={user.avatar} avatar />}
@@ -29,7 +29,7 @@ const PopupExampleTitled = () => (
         content={user.bio}
       />
     ))}
-  </div>
+  </React.Fragment>
 )
 
 export default PopupExampleTitled

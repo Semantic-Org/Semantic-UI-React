@@ -83,25 +83,6 @@ describe('Popup', () => {
     })
   })
 
-  describe('offset', () => {
-    it('accepts an offset to the left', () => {
-      wrapperMount(
-        <Popup
-          content='foo'
-          open
-          horizontalOffset={50}
-          position='bottom right'
-          verticalOffset={100}
-        />,
-      )
-
-      const modifiers = wrapper.find('Popper').prop('modifiers')
-      const offset = modifiers.offset
-
-      offset.should.have.property('offset', '50, 100')
-    })
-  })
-
   describe('basic', () => {
     it('adds basic to the popup className', () => {
       wrapperMount(<Popup basic open />)
@@ -174,6 +155,17 @@ describe('Popup', () => {
     it('adds inverted to the popup className', () => {
       wrapperMount(<Popup inverted open />)
       assertInBody('.ui.inverted.popup.visible')
+    })
+  })
+
+  describe('offset', () => {
+    it('passes values to Popper', () => {
+      wrapperMount(<Popup content='foo' open offset='50, 100' position='bottom right' />)
+
+      const modifiers = wrapper.find('Popper').prop('modifiers')
+      const offset = modifiers.offset
+
+      offset.should.have.property('offset', '50, 100')
     })
   })
 
