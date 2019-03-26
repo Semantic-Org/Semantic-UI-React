@@ -61,39 +61,33 @@ class ComponentExample extends PureComponent {
     renderHtml: true,
   }
 
-  static getDerivedStateFromProps(props, state = {}) {
-    const { examplePath, exampleSources, location } = props
+  constructor(props) {
+    super(props)
 
-    const anchorName = examplePathToHash(examplePath)
-    const isActiveHash = anchorName === location.hash
-    const originalSourceCode = exampleSources[examplePath]
+    const originalSourceCode = props.exampleSources[props.examplePath]
+    const anchorName = examplePathToHash(props.examplePath)
 
-    const derivedState = {
+    this.state = {
       anchorName,
-      hash: location.hash,
-      isActiveHash,
       originalSourceCode,
+      showCode: `#${anchorName}` === props.location.hash,
+      sourceCode: originalSourceCode,
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const willBeActiveHash = `#${state.anchorName}` === props.location.hash
+    const derivedState = {
+      isActiveHash: willBeActiveHash,
     }
 
     // deactivate examples when switching from one to the next
-    if (state.isActiveHash && !isActiveHash) {
+    if (state.isActiveHash && !willBeActiveHash) {
       derivedState.showCode = false
       derivedState.showHTML = false
     }
 
     return derivedState
-  }
-
-  constructor(props) {
-    super(props)
-
-    const state = ComponentExample.getDerivedStateFromProps(props)
-
-    this.state = {
-      ...state,
-      showCode: state.isActiveHash,
-      sourceCode: state.originalSourceCode,
-    }
   }
 
   isActiveState = () => {

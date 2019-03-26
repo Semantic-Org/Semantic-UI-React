@@ -36,7 +36,7 @@ export default async () => {
     })),
 
     // Routes for components, i.e. /element/button
-    ..._.map(getComponentMenu(), baseInfo => ({
+    ..._.map(getComponentMenu(), (baseInfo) => ({
       path: getComponentPathname(baseInfo),
       component: 'docs/src/components/ComponentDoc',
       priority: 0.8,
@@ -49,7 +49,6 @@ export default async () => {
           exampleSources,
           sidebarSections,
           displayName: baseInfo.displayName,
-          exampleKeys: _.map(_.flatMap(sidebarSections, 'examples'), 'examplePath'),
           seeTags: getInfoForSeeTags(componentsInfo[baseInfo.displayName]),
         }
       },
