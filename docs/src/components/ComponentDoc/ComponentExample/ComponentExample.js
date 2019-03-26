@@ -66,17 +66,19 @@ class ComponentExample extends PureComponent {
 
     const originalSourceCode = props.exampleSources[props.examplePath]
     const anchorName = examplePathToHash(props.examplePath)
+    const hashName = `#${anchorName}`
 
     this.state = {
       anchorName,
+      hashName,
       originalSourceCode,
-      showCode: `#${anchorName}` === props.location.hash,
+      showCode: hashName === props.location.hash,
       sourceCode: originalSourceCode,
     }
   }
 
   static getDerivedStateFromProps(props, state) {
-    const willBeActiveHash = `#${state.anchorName}` === props.location.hash
+    const willBeActiveHash = state.hashName === props.location.hash
     const derivedState = {
       isActiveHash: willBeActiveHash,
     }
