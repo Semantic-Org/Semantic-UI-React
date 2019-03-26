@@ -26,7 +26,6 @@ class ComponentDoc extends Component {
   static propTypes = {
     componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
     displayName: PropTypes.string.isRequired,
-    exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     history: PropTypes.object.isRequired,
     seeTags: docTypes.seeTags.isRequired,
     sidebarSections: docTypes.sidebarSections.isRequired,
