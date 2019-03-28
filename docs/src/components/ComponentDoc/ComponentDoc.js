@@ -35,11 +35,9 @@ class ComponentDoc extends Component {
   examplesRef = createRef()
 
   static getDerivedStateFromProps(props, state) {
-    const { displayName } = props
-
     return {
-      displayName,
-      activePath: displayName === state.displayName ? state.activePath : undefined,
+      displayName: props.displayName,
+      activePath: props.displayName === state.displayName ? state.activePath : undefined,
     }
   }
 
