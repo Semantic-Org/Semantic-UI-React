@@ -34,15 +34,16 @@ class ComponentDoc extends Component {
   state = {}
   examplesRef = createRef()
 
-  getChildContext() {
+  static getDerivedStateFromProps(props, state) {
     return {
-      onPassed: this.handleExamplePassed,
+      displayName: props.displayName,
+      activePath: props.displayName === state.displayName ? state.activePath : undefined,
     }
   }
 
-  componentWillReceiveProps({ displayName }) {
-    if (displayName !== this.props.displayName) {
-      this.setState({ activePath: undefined })
+  getChildContext() {
+    return {
+      onPassed: this.handleExamplePassed,
     }
   }
 
