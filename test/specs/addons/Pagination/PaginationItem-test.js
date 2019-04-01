@@ -74,15 +74,6 @@ describe('PaginationItem', () => {
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(event, { onClick })
     })
-
-    it('is omitted when "type" is "ellipsisItem"', () => {
-      const event = { target: null }
-      const onClick = sandbox.spy()
-
-      shallow(<PaginationItem onClick={onClick} type='ellipsisItem' />).simulate('click', event)
-
-      onClick.should.have.been.not.called()
-    })
   })
 
   describe('onKeyDown', () => {

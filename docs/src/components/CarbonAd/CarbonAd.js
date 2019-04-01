@@ -3,12 +3,6 @@ import React, { Component } from 'react'
 
 import { isBrowser } from 'src/lib'
 
-const style = {
-  padding: '0.5rem',
-  background: '#222',
-  boxShadow: '0 0 2rem black',
-}
-
 let isLoading = true
 let script
 
@@ -61,7 +55,7 @@ class CarbonAd extends Component {
   }
 
   render() {
-    return <div id='docs-carbonads' style={style} />
+    return <div id='docs-carbonads' />
   }
 }
 

@@ -10,7 +10,12 @@ const options = [
 const DropdownExampleFloating = () => (
   <Button.Group color='teal'>
     <Button>Save</Button>
-    <Dropdown options={options} floating button className='icon' />
+    <Dropdown
+      className='button icon'
+      floating
+      options={options}
+      trigger={<React.Fragment />}
+    />
   </Button.Group>
 )
 

@@ -21,7 +21,7 @@ export const domNode = (props, propName) => {
   // skip if prop is valid
   if (props[propName] instanceof Element) return
 
-  throw new Error(`Invalid prop "${propName}" supplied, expected a DOM node.`)
+  return new Error(`Invalid prop "${propName}" supplied, expected a DOM node.`)
 }
 
 /**
@@ -395,3 +395,11 @@ export const deprecate = (help, validator) => (props, propName, componentName, .
 
   return error
 }
+
+/** A checker that matches the React.RefObject type. */
+export const refObject = PropTypes.shape({
+  current: PropTypes.object,
+})
+
+/** A checker that matches the React.Ref type. */
+export const ref = PropTypes.oneOfType([PropTypes.func, refObject])

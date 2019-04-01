@@ -14,7 +14,7 @@ const wrapperMount = (node, opts) => {
 
 const mockScroll = (top, bottom) => {
   if (wrapper) {
-    wrapper.instance().ref = {
+    wrapper.instance().ref.current = {
       getBoundingClientRect: () => ({
         bottom,
         top,

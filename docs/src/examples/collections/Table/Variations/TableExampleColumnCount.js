@@ -32,7 +32,7 @@ const TableExampleColumnCount = () => (
         <Table.Cell>Jill</Table.Cell>
         <Table.Cell>Denied</Table.Cell>
         <Table.Cell>22</Table.Cell>
-        <Table.Cell>Female</Table.Cell>
+        <Table.Cell>Other</Table.Cell>
         <Table.Cell>None</Table.Cell>
       </Table.Row>
     </Table.Body>

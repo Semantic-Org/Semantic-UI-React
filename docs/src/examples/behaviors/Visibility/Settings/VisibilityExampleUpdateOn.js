@@ -1,7 +1,16 @@
-import React, { Component } from 'react'
-import { Checkbox, Grid, Segment, Sticky, Table, Visibility } from 'semantic-ui-react'
-
-import Wireframe from '../Wireframe'
+import _ from 'lodash'
+import React, { Component, createRef } from 'react'
+import {
+  Checkbox,
+  Divider,
+  Grid,
+  Image,
+  Segment,
+  Sticky,
+  Table,
+  Ref,
+  Visibility,
+} from 'semantic-ui-react'
 
 export default class VisibilityExampleUpdateOn extends Component {
   state = {
@@ -11,25 +20,52 @@ export default class VisibilityExampleUpdateOn extends Component {
     },
     showWireframe: true,
   }
-
-  handleContextRef = (contextRef) => {
-    if (!this.state.contextRef) this.setState({ contextRef })
-  }
+  contextRef = createRef()
 
   handleUpdate = (e, { calculations }) => this.setState({ calculations })
 
-  handleWireframe = (e, { checked }) => this.setState({ showWireframe: checked })
+  handleWireframe = (e, { checked }) =>
+    this.setState({ showWireframe: checked })
 
   render() {
-    const { calculations, contextRef, showWireframe } = this.state
+    const { calculations, showWireframe } = this.state
 
     return (
-      <div ref={this.handleContextRef}>
+      <Ref innerRef={this.contextRef}>
         <Grid columns={2}>
           <Grid.Column>
-            {showWireframe ? <Wireframe /> : null}
+            {showWireframe ? (
+              <Segment>
+                {_.map(
+                  [
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                  ],
+                  (src, index, images) => (
+                    <React.Fragment key={index}>
+                      <Image src={src} />
+                      {index !== images.length - 1 && <Divider />}
+                    </React.Fragment>
+                  ),
+                )}
+              </Segment>
+            ) : null}
 
-            <Visibility offset={[10, 10]} onUpdate={this.handleUpdate} updateOn='repaint'>
+            <Visibility
+              offset={[10, 10]}
+              onUpdate={this.handleUpdate}
+              updateOn='repaint'
+            >
               <Segment>
                 It's a tricky <code>Segment</code>
               </Segment>
@@ -37,7 +73,7 @@ export default class VisibilityExampleUpdateOn extends Component {
           </Grid.Column>
 
           <Grid.Column>
-            <Sticky context={contextRef}>
+            <Sticky context={this.contextRef}>
               <Segment>
                 <Checkbox
                   checked={showWireframe}
@@ -56,11 +92,15 @@ export default class VisibilityExampleUpdateOn extends Component {
                   <Table.Body>
                     <Table.Row>
                       <Table.Cell>topVisible</Table.Cell>
-                      <Table.Cell>{calculations.topVisible.toString()}</Table.Cell>
+                      <Table.Cell>
+                        {calculations.topVisible.toString()}
+                      </Table.Cell>
                     </Table.Row>
                     <Table.Row>
                       <Table.Cell>bottomVisible</Table.Cell>
-                      <Table.Cell>{calculations.bottomVisible.toString()}</Table.Cell>
+                      <Table.Cell>
+                        {calculations.bottomVisible.toString()}
+                      </Table.Cell>
                     </Table.Row>
                   </Table.Body>
                 </Table>
@@ -68,7 +108,7 @@ export default class VisibilityExampleUpdateOn extends Component {
             </Sticky>
           </Grid.Column>
         </Grid>
-      </div>
+      </Ref>
     )
   }
 }

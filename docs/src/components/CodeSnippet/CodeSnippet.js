@@ -36,7 +36,7 @@ const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
       showCursor={false}
       value={(mode === 'sh'
         ? value.replace(/^/g, '$  ')
-        : formatCode(value, mode === 'html' ? 'html' : 'babylon')
+        : formatCode(value, mode === 'html' ? 'html' : 'babel')
       ).trim()}
       {...rest}
     />
@@ -46,7 +46,7 @@ const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
 CodeSnippet.propTypes = {
   fitted: PropTypes.bool,
   label: PropTypes.string,
-  mode: PropTypes.oneOf(['html', 'jsx', 'sh']).isRequired,
+  mode: PropTypes.oneOf(['html', 'jsx', 'sh']),
   value: PropTypes.string.isRequired,
 }
 

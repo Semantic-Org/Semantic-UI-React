@@ -1,7 +1,8 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
+import Ref from '../../addons/Ref'
 import {
   eventStack,
   customPropTypes,
@@ -180,8 +181,8 @@ export default class Visibility extends Component {
     topPassed: false,
     topVisible: false,
   }
-
   firedCallbacks = []
+  ref = createRef()
 
   // ----------------------------------------
   // Lifecycle
@@ -361,7 +362,7 @@ export default class Visibility extends Component {
 
   computeCalculations() {
     const { offset } = this.props
-    const { bottom, height, top, width } = this.ref.getBoundingClientRect()
+    const { bottom, height, top, width } = this.ref.current.getBoundingClientRect()
     const [topOffset, bottomOffset] = normalizeOffset(offset)
 
     const newOffset = this.getPageYOffset()
@@ -404,12 +405,6 @@ export default class Visibility extends Component {
   }
 
   // ----------------------------------------
-  // Refs
-  // ----------------------------------------
-
-  handleRef = c => (this.ref = c)
-
-  // ----------------------------------------
   // Render
   // ----------------------------------------
 
@@ -419,9 +414,9 @@ export default class Visibility extends Component {
     const rest = getUnhandledProps(Visibility, this.props)
 
     return (
-      <ElementType {...rest} ref={this.handleRef}>
-        {children}
-      </ElementType>
+      <Ref innerRef={this.ref}>
+        <ElementType {...rest}>{children}</ElementType>
+      </Ref>
     )
   }
 }

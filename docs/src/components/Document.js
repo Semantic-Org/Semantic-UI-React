@@ -16,6 +16,7 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
         href={`https://cdn.jsdelivr.net/npm/semantic-ui@${versions.sui}/dist/semantic.min.css`}
       />
 
+      <script src='https://cdn.jsdelivr.net/npm/@babel/polyfill@7.0.0/dist/polyfill.min.js' />
       <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`}
       />
@@ -54,9 +55,15 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
         }.js`}
       />
       <script
-        src={`https://cdn.jsdelivr.net/npm/react-dom@${versions.react}/umd/react-dom${
-          dev ? '.development' : '.production.min'
-        }.js`}
+        src={
+          dev
+            ? ` https://cdn.jsdelivr.net/npm/@hot-loader/react-dom@${
+                versions.react
+              }/umd/react-dom.development.js`
+            : `https://cdn.jsdelivr.net/npm/react-dom@${
+                versions.react
+              }/umd/react-dom.production.min.js`
+        }
       />
       <script
         src={`https://cdn.jsdelivr.net/npm/react-dom@${

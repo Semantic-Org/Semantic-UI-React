@@ -4,7 +4,10 @@ import { defaultHandlers, parse, resolver } from 'react-docgen'
 import fs from 'fs'
 
 import config from '../../../config'
-import { parseDefaultValue, parseDocblock, parserCustomHandler, parseType } from './'
+import parseDefaultValue from './parseDefaultValue'
+import parseDocblock from './parseDocblock'
+import parserCustomHandler from './parserCustomHandler'
+import parseType from './parseType'
 
 const getComponentInfo = (filepath) => {
   const absPath = path.resolve(process.cwd(), filepath)

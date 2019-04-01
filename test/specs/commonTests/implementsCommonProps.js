@@ -5,7 +5,7 @@ import Icon from 'src/elements/Icon'
 import Image from 'src/elements/Image'
 import Label from 'src/elements/Label'
 import { numberToWord, SUI } from 'src/lib'
-import { implementsShorthandProp } from './'
+import implementsShorthandProp from './implementsShorthandProp'
 import { noClassNameFromBoolProps, noDefaultClassNameFromProp } from './classNameHelpers'
 import helpers from './commonHelpers'
 
@@ -260,9 +260,11 @@ export const implementsVerticalAlignProp = (
 
     alignments.forEach((propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
-        shallow(<Component {...requiredProps} verticalAlign={propVal} />).should.have.className(
-          `${propVal} ${'aligned'}`,
-        )
+        const wrapper = shallow(<Component {...requiredProps} verticalAlign={propVal} />, {
+          autoNesting: true,
+        })
+
+        wrapper.should.have.className(`${propVal} ${'aligned'}`)
       })
     })
   })

@@ -1,12 +1,11 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
-import { docTypes, examplePathToHash, getFormattedHash, scrollToAnchor } from 'docs/src/utils'
-import { isBrowser } from 'src/lib'
+import { docTypes, examplePathToHash, scrollToAnchor } from 'docs/src/utils'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
@@ -27,21 +26,18 @@ class ComponentDoc extends Component {
   static propTypes = {
     componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
     displayName: PropTypes.string.isRequired,
-    exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     history: PropTypes.object.isRequired,
     seeTags: docTypes.seeTags.isRequired,
     sidebarSections: docTypes.sidebarSections.isRequired,
   }
 
   state = {}
+  examplesRef = createRef()
 
-  componentWillMount() {
-    const { exampleKeys, history } = this.props
-
-    if (isBrowser() && window.location.hash) {
-      const activePath = getFormattedHash(exampleKeys, window.location.hash)
-      history.replace(`${window.location.pathname}#${activePath}`)
-      this.setState({ activePath })
+  static getDerivedStateFromProps(props, state) {
+    return {
+      displayName: props.displayName,
+      activePath: props.displayName === state.displayName ? state.activePath : undefined,
     }
   }
 
@@ -51,30 +47,22 @@ class ComponentDoc extends Component {
     }
   }
 
-  componentWillReceiveProps({ displayName }) {
-    if (displayName !== this.props.displayName) {
-      this.setState({ activePath: undefined })
-    }
-  }
-
   handleExamplePassed = (e, { examplePath }) => {
     this.setState({ activePath: examplePathToHash(examplePath) })
   }
-
-  handleExamplesRef = examplesRef => this.setState({ examplesRef })
 
   handleSidebarItemClick = (e, { examplePath }) => {
     const { history } = this.props
     const activePath = examplePathToHash(examplePath)
 
-    history.replace(`${location.pathname}#${activePath}`)
+    history.replace(`${window.location.pathname}#${activePath}`)
     // set active hash path
     this.setState({ activePath }, scrollToAnchor)
   }
 
   render() {
     const { componentsInfo, displayName, seeTags, sidebarSections } = this.props
-    const { activePath, examplesRef } = this.state
+    const { activePath } = this.state
     const componentInfo = componentsInfo[displayName]
 
     return (
@@ -100,7 +88,7 @@ class ComponentDoc extends Component {
 
           <Grid.Row columns='equal'>
             <Grid.Column>
-              <div ref={this.handleExamplesRef}>
+              <div ref={this.examplesRef}>
                 <ComponentExamples
                   displayName={displayName}
                   examplesExist={componentInfo.examplesExist}
@@ -114,7 +102,7 @@ class ComponentDoc extends Component {
             <Grid.Column computer={5} largeScreen={4} widescreen={4}>
               <ComponentSidebar
                 activePath={activePath}
-                examplesRef={examplesRef}
+                examplesRef={this.examplesRef}
                 onItemClick={this.handleSidebarItemClick}
                 sections={sidebarSections}
               />

@@ -82,7 +82,7 @@ export default class SidebarExampleTransitions extends Component {
   }
 
   handleAnimationChange = animation => () =>
-    this.setState({ animation, visible: !this.state.visible })
+    this.setState(prevState => ({ animation, visible: !prevState.visible }))
 
   handleDimmedChange = (e, { checked }) => this.setState({ dimmed: checked })
 

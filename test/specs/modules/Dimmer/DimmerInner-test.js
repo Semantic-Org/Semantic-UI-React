@@ -32,8 +32,9 @@ describe('DimmerInner', () => {
   describe('onClickOutside', () => {
     it('called when Dimmer has not children', () => {
       const onClickOutside = sandbox.spy()
-      shallow(<DimmerInner onClickOutside={onClickOutside} />).simulate('click')
+      const wrapper = shallow(<DimmerInner onClickOutside={onClickOutside} />)
 
+      wrapper.childAt(0).simulate('click')
       onClickOutside.should.have.been.calledOnce()
     })
 

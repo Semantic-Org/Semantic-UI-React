@@ -2,7 +2,7 @@ import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 import Ref from '../../addons/Ref'
 import {
@@ -79,7 +79,7 @@ class Sidebar extends Component {
     onVisible: PropTypes.func,
 
     /** A sidebar can handle clicks on the passed element. */
-    target: PropTypes.object,
+    target: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
 
     /** Controls whether or not the sidebar is visible on the page. */
     visible: PropTypes.bool,
@@ -99,6 +99,7 @@ class Sidebar extends Component {
   static Pusher = SidebarPusher
 
   state = {}
+  ref = createRef()
 
   componentDidUpdate(prevProps) {
     const { visible: prevVisible } = prevProps
@@ -137,13 +138,11 @@ class Sidebar extends Component {
   }
 
   handleDocumentClick = (e) => {
-    if (!doesNodeContainClick(this.ref, e)) {
+    if (!doesNodeContainClick(this.ref.current, e)) {
       this.skipNextCallback = true
       _.invoke(this.props, 'onHide', e, { ...this.props, visible: false })
     }
   }
-
-  handleRef = c => (this.ref = c)
 
   render() {
     const {
@@ -172,7 +171,7 @@ class Sidebar extends Component {
     const ElementType = getElementType(Sidebar, this.props)
 
     return (
-      <Ref innerRef={this.handleRef}>
+      <Ref innerRef={this.ref}>
         <ElementType {...rest} className={classes}>
           {childrenUtils.isNil(children) ? content : children}
           {visible && <EventStack name='click' on={this.handleDocumentClick} target={target} />}

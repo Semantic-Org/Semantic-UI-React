@@ -27,7 +27,8 @@ const AnotherGridLayout = () => (
         text-align: center;
       }
     }
-    `}</style>
+    `}
+    </style>
 
     <Header as='h2' icon inverted textAlign='center'>
       <Icon name='grid layout' />
@@ -277,7 +278,8 @@ const AnotherGridLayout = () => (
       .ui[class*="vertically divided"].grid > .row:before {
         box-shadow: 0 -1px 0 0 rgba(212, 212, 212, 1.0);
       }
-    `}</style>
+    `}
+    </style>
     <Header as='h2' inverted textAlign='center'>
       Divided
     </Header>
@@ -352,7 +354,8 @@ const AnotherGridLayout = () => (
       #nested_3 p {
         background-color: #fff;
       }
-    `}</style>
+    `}
+    </style>
     <Header as='h2' inverted textAlign='center'>
       Nested
     </Header>
@@ -400,7 +403,8 @@ const AnotherGridLayout = () => (
         background-color: 000;
         opacity: 0.1;
       }
-    `}</style>
+    `}
+    </style>
     <Header as='h2' inverted textAlign='center'>
       Color variations
     </Header>
@@ -508,7 +512,8 @@ const AnotherGridLayout = () => (
       #db_3 p {
         background-color: #21ba45;
       }
-    `}</style>
+    `}
+    </style>
     <Header as='h2' inverted textAlign='center'>
       Doubling column width (mobile)
     </Header>

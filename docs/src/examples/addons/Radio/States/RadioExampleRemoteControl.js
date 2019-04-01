@@ -3,7 +3,7 @@ import { Button, Radio } from 'semantic-ui-react'
 
 export default class RadioExampleRemoteControl extends Component {
   state = { checked: false }
-  toggle = () => this.setState({ checked: !this.state.checked })
+  toggle = () => this.setState(prevState => ({ checked: !prevState.checked }))
 
   render() {
     return (

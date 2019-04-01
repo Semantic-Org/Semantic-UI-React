@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { createPortal } from 'react-dom'
 
-import { isBrowser } from '../../lib'
+import { customPropTypes, handleRef, isBrowser, makeDebugger } from '../../lib'
 import Ref from '../Ref'
+
+const debug = makeDebugger('portalInner')
 
 /**
  * An inner component that allows you to render children outside their parent.
@@ -13,6 +15,9 @@ class PortalInner extends Component {
   static propTypes = {
     /** Primary content. */
     children: PropTypes.node.isRequired,
+
+    /** Called with a ref to the inner node. */
+    innerRef: customPropTypes.ref,
 
     /** The node where the portal should mount. */
     mountNode: PropTypes.any,
@@ -35,17 +40,23 @@ class PortalInner extends Component {
   }
 
   componentDidMount() {
-    _.invoke(this.props, 'onMount', null, { ...this.props, node: this.ref })
+    debug('componentDidMount()')
+    _.invoke(this.props, 'onMount', null, this.props)
   }
 
   componentWillUnmount() {
-    _.invoke(this.props, 'onUnmount', null, { ...this.props, node: this.ref })
+    debug('componentWillUnmount()')
+    _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
-  handleRef = c => (this.ref = c)
+  handleRef = (c) => {
+    debug('handleRef', c)
+    handleRef(this.props.innerRef, c)
+  }
 
   render() {
-    const { children, mountNode = isBrowser() ? document.body : null } = this.props
+    if (!isBrowser()) return null
+    const { children, mountNode = document.body } = this.props
 
     return createPortal(<Ref innerRef={this.handleRef}>{children}</Ref>, mountNode)
   }
