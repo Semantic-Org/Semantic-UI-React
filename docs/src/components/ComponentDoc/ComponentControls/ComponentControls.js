@@ -3,7 +3,6 @@ import React from 'react'
 import universal from 'react-universal-component'
 import { Menu } from 'semantic-ui-react'
 
-import { updateForKeys } from 'docs/src/hoc'
 import { isBrowser } from 'src/lib'
 import ComponentControlsCopyLink from './ComponentControlsCopyLink'
 import ComponentControlsEditCode from './ComponentControlsEditCode'
@@ -12,10 +11,10 @@ import ComponentControlsShowHtml from './ComponentControlsShowHtml'
 
 const ComponentControlsCodeSandbox = isBrowser()
   ? universal(import('./ComponentControlsCodeSandbox'), {
-    loading: () => (
-      <Menu.Item disabled icon={{ loading: true, name: 'spinner', title: 'Loading...' }} />
-    ),
-  })
+      loading: () => (
+        <Menu.Item disabled icon={{ loading: true, name: 'spinner', title: 'Loading...' }} />
+      ),
+    })
   : () => null
 
 const ComponentControls = (props) => {
@@ -54,4 +53,4 @@ ComponentControls.propTypes = {
   showHTML: PropTypes.bool,
 }
 
-export default updateForKeys(['exampleCode', 'showCode', 'showHTML'])(ComponentControls)
+export default React.memo(ComponentControls)
