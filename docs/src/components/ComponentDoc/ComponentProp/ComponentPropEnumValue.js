@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { neverUpdate } from 'docs/src/hoc'
-
 const spanStyle = {
   display: 'inline-block',
   paddingRight: '0.2em',
@@ -18,4 +16,6 @@ ComponentPropEnumValue.propTypes = {
   children: PropTypes.node,
 }
 
-export default neverUpdate(ComponentPropEnumValue)
+const areEqual = () => true
+
+export default React.memo(ComponentPropEnumValue, areEqual)

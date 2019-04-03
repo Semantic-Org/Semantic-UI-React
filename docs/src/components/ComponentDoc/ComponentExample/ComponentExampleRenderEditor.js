@@ -4,7 +4,6 @@ import React, { PureComponent } from 'react'
 import { Button, Popup, Segment, Menu } from 'semantic-ui-react'
 
 import Editor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/CodeEditor'
-import { updateForKeys } from 'docs/src/hoc'
 import formatCode from 'docs/src/utils/formatCode'
 
 const rootStyle = {
@@ -144,4 +143,4 @@ class ComponentExampleRenderEditor extends PureComponent {
   }
 }
 
-export default updateForKeys(['error', 'value'])(ComponentExampleRenderEditor)
+export default ComponentExampleRenderEditor
