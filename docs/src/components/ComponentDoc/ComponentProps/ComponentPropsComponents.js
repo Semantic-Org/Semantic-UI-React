@@ -37,4 +37,8 @@ ComponentPropsComponents.propTypes = {
   parentDisplayName: PropTypes.string.isRequired,
 }
 
-export default React.memo(ComponentPropsComponents)
+const areEqual = (prevProps, nextProps) =>
+  prevProps.activeDisplayName === nextProps.activeDisplayName &&
+  prevProps.parentDisplayName === nextProps.parentDisplayName
+
+export default React.memo(ComponentPropsComponents, areEqual)

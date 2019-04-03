@@ -65,4 +65,6 @@ ComponentPropFunctionSignature.propTypes = {
   tags: PropTypes.array,
 }
 
-export default ComponentPropFunctionSignature
+const areEqual = () => true
+
+export default React.memo(ComponentPropFunctionSignature, areEqual)

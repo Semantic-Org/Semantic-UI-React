@@ -12,4 +12,6 @@ const ComponentTableHeader = () => (
   </Table.Header>
 )
 
-export default ComponentTableHeader
+const areEqual = () => true
+
+export default React.memo(ComponentTableHeader, areEqual)

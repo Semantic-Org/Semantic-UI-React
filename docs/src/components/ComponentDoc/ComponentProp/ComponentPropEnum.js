@@ -38,4 +38,4 @@ ComponentPropEnum.propTypes = {
   values: PropTypes.array,
 }
 
-export default ComponentPropEnum
+export default React.memo(ComponentPropEnum)

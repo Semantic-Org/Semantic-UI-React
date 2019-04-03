@@ -16,4 +16,6 @@ ComponentPropEnumValue.propTypes = {
   children: PropTypes.node,
 }
 
-export default ComponentPropEnumValue
+const areEqual = () => true
+
+export default React.memo(ComponentPropEnumValue, areEqual)

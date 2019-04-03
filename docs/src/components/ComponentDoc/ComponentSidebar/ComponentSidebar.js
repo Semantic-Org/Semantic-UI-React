@@ -37,4 +37,6 @@ ComponentSidebar.propTypes = {
   sections: docTypes.sidebarSections.isRequired,
 }
 
-export default React.memo(ComponentSidebar)
+const areEqual = (prevProps, nextProps) => prevProps.activePath === nextProps.activePath
+
+export default React.memo(ComponentSidebar, areEqual)
