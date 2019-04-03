@@ -1,3 +1,4 @@
+const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
 
 const config = require('./config')
@@ -46,6 +47,17 @@ const webpackUMDConfig = {
   performance: {
     maxEntrypointSize: 750000,
     maxAssetSize: 750000,
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+        },
+      }),
+    ],
   },
 }
 

@@ -47,5 +47,8 @@ jobs:
           name: Test JavaScript
           command: yarn test
       - run:
+          name: Test UMD bundle
+          command: yarn test:umd
+      - run:
           name: Report coverage
           command: bash <(curl -s https://codecov.io/bash)
