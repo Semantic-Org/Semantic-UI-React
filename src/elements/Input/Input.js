@@ -59,7 +59,7 @@ class Input extends Component {
     icon: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
 
     /** An Icon can appear inside an Input on the left or right. */
-    iconPosition: PropTypes.oneOf(['left']),
+    iconPosition: PropTypes.oneOf(['left', 'right']),
 
     /** Shorthand for creating the HTML Input. */
     input: customPropTypes.itemShorthand,

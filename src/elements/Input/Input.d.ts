@@ -38,8 +38,8 @@ export interface StrictInputProps {
   /** Optional Icon to display inside the Input. */
   icon?: any | SemanticShorthandItem<InputProps>
 
-  /** An Icon can appear inside an Input on the left. */
-  iconPosition?: 'left'
+  /** An Icon can appear inside an Input on the left or right. */
+  iconPosition?: 'left' | 'right'
 
   /** Shorthand for creating the HTML Input. */
   input?: SemanticShorthandItem<HtmlInputrops>
