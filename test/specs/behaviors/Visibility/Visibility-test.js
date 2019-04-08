@@ -256,7 +256,7 @@ describe('Visibility', () => {
 
       it('returns up when scrolling down', () => {
         const onUpdate = sandbox.spy()
-        mount(<Visibility onUpdate={onUpdate} context={window} />)
+        mount(<Visibility onUpdate={onUpdate} />)
 
         window.pageYOffset = 5
         domEvent.scroll(window)
@@ -274,6 +274,20 @@ describe('Visibility', () => {
         domEvent.scroll(window)
         onUpdate.should.have.been.calledWithMatch(null, {
           calculations: { direction: 'up' },
+        })
+      })
+
+      it('gets direction from `context` element', () => {
+        const context = document.createElement('div')
+        const onUpdate = sandbox.spy()
+
+        sandbox.stub(context, 'scrollTop').value(0)
+        mount(<Visibility context={context} onUpdate={onUpdate} />)
+
+        sandbox.stub(context, 'scrollTop').value(5)
+        domEvent.scroll(context)
+        onUpdate.should.have.been.calledWithMatch(null, {
+          calculations: { direction: 'down' },
         })
       })
     })
@@ -367,8 +381,8 @@ describe('Visibility', () => {
         const opts = { [callbackName]: callback }
 
         const offset = 10
-        const falsyCond = _.map(_.first(falsy), value => value + offset)
-        const truthyCond = _.map(_.first(truthy), value => value + offset)
+        const falsyCond = _.map(_.first(falsy), (value) => value + offset)
+        const truthyCond = _.map(_.first(truthy), (value) => value + offset)
 
         wrapperMount(<Visibility {...opts} offset={offset} />)
         mockScroll(...truthyCond)
@@ -546,7 +560,7 @@ describe('Visibility', () => {
   describe('updateOn', () => {
     beforeEach(() => {
       requestAnimationFrame.restore()
-      sandbox.stub(window, 'requestAnimationFrame').callsFake(fn => setTimeout(() => fn(), 0))
+      sandbox.stub(window, 'requestAnimationFrame').callsFake((fn) => setTimeout(() => fn(), 0))
     })
 
     it('defaults to "events"', () => {

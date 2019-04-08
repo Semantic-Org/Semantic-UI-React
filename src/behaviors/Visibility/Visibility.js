@@ -200,7 +200,6 @@ export default class Visibility extends Component {
     if (context !== this.props.context || updateOn !== this.props.updateOn) {
       this.unattachHandlers(this.props.context)
       this.attachHandlers(context, updateOn)
-      this.pageYOffset = (context ? context.scrollTop : window.pageYOffset)
     }
   }
 
@@ -401,7 +400,12 @@ export default class Visibility extends Component {
 
   getPageYOffset() {
     const { context } = this.props
-    return context ? context.scrollTop : window.pageYOffset
+
+    if (context) {
+      return context === window ? window.pageYOffset : context.scrollTop
+    }
+
+    return 0
   }
 
   // ----------------------------------------
