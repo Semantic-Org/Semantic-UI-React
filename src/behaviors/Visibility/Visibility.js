@@ -402,6 +402,7 @@ export default class Visibility extends Component {
     const { context } = this.props
 
     if (context) {
+      // Heads up! `window` doesn't have `pageYOffset` property
       return context === window ? window.pageYOffset : context.scrollTop
     }
 
