@@ -5,7 +5,6 @@ import CodeSandboxer from 'react-codesandboxer'
 import { Menu } from 'semantic-ui-react'
 
 import { externals } from 'docs/src/components/ComponentDoc/ComponentExample/renderConfig'
-import { updateForKeys } from 'docs/src/hoc'
 
 const appTemplate = `import React from "react";
 import ReactDOM from "react-dom";
@@ -50,7 +49,7 @@ ReactDOM.render(
 `
 const dependencies = _.mapValues(externals, () => 'latest')
 
-class ComponentControlsShowCode extends React.Component {
+class ComponentControlsCodeSandbox extends React.Component {
   static propTypes = {
     exampleCode: PropTypes.string.isRequired,
   }
@@ -123,4 +122,4 @@ class ComponentControlsShowCode extends React.Component {
   }
 }
 
-export default updateForKeys(['exampleCode'])(ComponentControlsShowCode)
+export default React.memo(ComponentControlsCodeSandbox)

@@ -1,8 +1,6 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 
-import { neverUpdate } from 'docs/src/hoc'
-
 const ComponentTableHeader = () => (
   <Table.Header>
     <Table.Row>
@@ -14,4 +12,6 @@ const ComponentTableHeader = () => (
   </Table.Header>
 )
 
-export default neverUpdate(ComponentTableHeader)
+const areEqual = () => true
+
+export default React.memo(ComponentTableHeader, areEqual)
