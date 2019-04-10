@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Link } from 'react-static'
 import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
-import shallowEqual from 'shallowequal'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
@@ -120,7 +119,7 @@ class Sidebar extends Component {
   menuItemsByType = _.map((nextType) => {
     const items = _.flow(
       _.filter(({ type }) => type === nextType),
-      _.map(info => (
+      _.map((info) => (
         <Menu.Item
           key={info.displayName}
           name={info.displayName}
@@ -238,7 +237,7 @@ class Sidebar extends Component {
                 <Input
                   fluid
                   icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
-                  placeholder='Press &quot;/&quot; to filter components'
+                  placeholder='Press "/" to filter components'
                   value={query}
                   onChange={this.handleSearchChange}
                   onKeyDown={this.handleSearchKeyDown}

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Head, withRouter, withSiteData } from 'react-static'
 
-import Sidebar from 'docs/src/components/Sidebar/Sidebar'
 import style from 'docs/src/Style'
 import { docTypes, scrollToAnchor } from 'docs/src/utils'
 import { isBrowser } from 'src/lib'

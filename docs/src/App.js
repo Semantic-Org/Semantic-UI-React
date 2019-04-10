@@ -10,10 +10,17 @@ const App = ({ componentMenu, versions }) => (
   <div style={style.container}>
     <Router>
       <React.Fragment>
-        <Route path="/">
-          {(props) => <Sidebar {...props} componentMenu={componentMenu} style={style.menu} version={versions.suir}/>}
+        <Route path='/'>
+          {(props) => (
+            <Sidebar
+              {...props}
+              componentMenu={componentMenu}
+              style={style.menu}
+              version={versions.suir}
+            />
+          )}
         </Route>
-        <Routes/>
+        <Routes />
       </React.Fragment>
     </Router>
   </div>
