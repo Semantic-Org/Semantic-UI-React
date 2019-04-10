@@ -1,10 +1,10 @@
 import AnchorJS from 'anchor-js'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Head, withRouter, withSiteData } from 'react-static'
+import { Head, withRouter } from 'react-static'
 
 import style from 'docs/src/Style'
-import { docTypes, scrollToAnchor } from 'docs/src/utils'
+import { scrollToAnchor } from 'docs/src/utils'
 import { isBrowser } from 'src/lib'
 
 const anchors = new AnchorJS({
@@ -15,11 +15,9 @@ class DocsLayout extends Component {
   static propTypes = {
     additionalTitle: PropTypes.string,
     children: PropTypes.node,
-    componentMenu: docTypes.componentMenu.isRequired,
     location: PropTypes.object.isRequired,
     sidebar: PropTypes.bool,
     title: PropTypes.string.isRequired,
-    versions: docTypes.versions,
   }
 
   componentDidMount() {
@@ -69,4 +67,4 @@ class DocsLayout extends Component {
   }
 }
 
-export default withSiteData(withRouter(DocsLayout))
+export default withRouter(DocsLayout)

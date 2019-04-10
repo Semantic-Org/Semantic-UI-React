@@ -48,10 +48,6 @@ class Sidebar extends Component {
     this.filteredMenu = props.componentMenu
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return !shallowEqual(this.state, nextState)
-  // }
-
   componentDidMount() {
     document.addEventListener('keydown', this.handleDocumentKeyDown)
   }
