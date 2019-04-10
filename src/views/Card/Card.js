@@ -140,7 +140,13 @@ export default class Card extends Component {
 
     return (
       <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-        {Image.create(image, { autoGenerateKey: false })}
+        {Image.create(image, {
+          autoGenerateKey: false,
+          defaultProps: {
+            ui: false,
+            wrapped: true,
+          },
+        })}
         {(description || header || meta) && (
           <CardContent description={description} header={header} meta={meta} />
         )}

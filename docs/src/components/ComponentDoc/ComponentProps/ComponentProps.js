@@ -16,8 +16,13 @@ export default class ComponentProps extends Component {
     displayName: PropTypes.string.isRequired,
   }
 
-  state = {
-    activeDisplayName: null,
+  state = {}
+
+  static getDerivedStateFromProps(props, state) {
+    return {
+      displayName: props.displayName,
+      activeDisplayName: props.displayName === state.displayName ? state.activeDisplayName : null,
+    }
   }
 
   handleComponentClick = (e, { name }) => {

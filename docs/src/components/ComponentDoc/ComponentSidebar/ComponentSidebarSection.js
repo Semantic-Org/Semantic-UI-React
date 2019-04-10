@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Accordion, Icon, Menu } from 'semantic-ui-react'
 
+import { examplePathToHash } from 'docs/src/utils'
+
 export default class ComponentSidebarSection extends PureComponent {
   static propTypes = {
     activePath: PropTypes.string,
@@ -17,22 +19,20 @@ export default class ComponentSidebarSection extends PureComponent {
     onTitleClick: PropTypes.func,
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      isActiveByProps: this.isActiveAccordion(),
-    }
-  }
+  state = {}
 
-  componentWillReceiveProps(nextProps) {
-    const isActiveByProps = this.isActiveAccordion(nextProps)
-    const didCloseByProps = this.state.isActiveByProps && !isActiveByProps
+  static getDerivedStateFromProps(props, state) {
+    const isActiveByProps = (props.examples || []).some((item) => {
+      const exampleHash = examplePathToHash(item.examplePath)
+      return exampleHash === props.activePath
+    })
+    const didCloseByProps = state.isActiveByProps && !isActiveByProps
 
     // We allow the user to open accordions, but we close them when we scroll passed them
-    this.setState((prevState) => ({
+    return {
       isActiveByProps,
-      isActiveByUser: didCloseByProps ? false : prevState.isActiveByUser,
-    }))
+      isActiveByUser: didCloseByProps ? false : state.isActiveByUser,
+    }
   }
 
   handleItemClick = (examplePath) => (e) => {
@@ -42,11 +42,6 @@ export default class ComponentSidebarSection extends PureComponent {
   handleTitleClick = () => {
     this.setState((prevState) => ({ isActiveByUser: !prevState.isActiveByUser }))
   }
-
-  isActiveAccordion = (props = this.props) =>
-    (props.examples || []).findIndex((item) => {
-      return item.examplePath === props.activePath
-    }) !== -1
 
   render() {
     const { activePath, examples, sectionName } = this.props
@@ -64,7 +59,7 @@ export default class ComponentSidebarSection extends PureComponent {
           {_.map(examples, ({ title, examplePath }) => (
             <Menu.Item
               key={examplePath}
-              active={activePath === examplePath}
+              active={activePath === examplePathToHash(examplePath)}
               content={title}
               onClick={this.handleItemClick(examplePath)}
             />

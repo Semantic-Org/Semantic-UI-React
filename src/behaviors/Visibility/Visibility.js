@@ -209,7 +209,7 @@ export default class Visibility extends Component {
     if (!isBrowser()) return
     const { context, fireOnMount, updateOn } = this.props
 
-    this.pageYOffset = window.pageYOffset
+    this.pageYOffset = this.getPageYOffset()
     this.attachHandlers(context, updateOn)
 
     if (fireOnMount) this.update()
@@ -310,7 +310,7 @@ export default class Visibility extends Component {
 
     this.oldCalculations = this.calculations
     this.calculations = this.computeCalculations()
-    this.pageYOffset = window.pageYOffset
+    this.pageYOffset = this.getPageYOffset()
 
     const {
       onBottomPassed,
@@ -364,7 +364,8 @@ export default class Visibility extends Component {
     const { bottom, height, top, width } = this.ref.current.getBoundingClientRect()
     const [topOffset, bottomOffset] = normalizeOffset(offset)
 
-    const direction = window.pageYOffset > this.pageYOffset ? 'down' : 'up'
+    const newOffset = this.getPageYOffset()
+    const direction = newOffset > this.pageYOffset ? 'down' : 'up'
     const topPassed = top < topOffset
     const bottomPassed = bottom < bottomOffset
 
@@ -395,6 +396,17 @@ export default class Visibility extends Component {
       topVisible,
       width,
     }
+  }
+
+  getPageYOffset() {
+    const { context } = this.props
+
+    if (context) {
+      // Heads up! `window` doesn't have `pageYOffset` property
+      return context === window ? window.pageYOffset : context.scrollTop
+    }
+
+    return 0
   }
 
   // ----------------------------------------
