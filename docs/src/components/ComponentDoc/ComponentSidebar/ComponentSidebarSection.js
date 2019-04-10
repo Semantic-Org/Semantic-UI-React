@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Accordion, Icon, Menu } from 'semantic-ui-react'
 
+
 import { examplePathToHash } from 'docs/src/utils'
 
 export default class ComponentSidebarSection extends PureComponent {
