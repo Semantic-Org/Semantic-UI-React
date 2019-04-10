@@ -183,19 +183,20 @@ class ComponentExample extends Component {
   }
 }
 
-const Wrapper = (props) => (
-  <ComponentDocContext.Consumer>
-    {(contextProps) => {
-      return (
-        <ComponentExample
-          {...props}
-          {...contextProps}
-          /* eslint-disable-next-line react/prop-types */
-          sourceCode={contextProps.exampleSources[props.examplePath]}
-        />
-      )
-    }}
-  </ComponentDocContext.Consumer>
-)
+/* TODO: Replace this temporary component with hooks */
+const Wrapper = (props) => {
+  const { exampleSources, ...rest } = React.useContext(ComponentDocContext)
+  /* eslint-disable-next-line react/prop-types */
+  const sourceCode = exampleSources[props.examplePath]
+
+  return (
+    <ComponentExample
+      {...props}
+      {...rest}
+      /* eslint-disable-next-line react/prop-types */
+      sourceCode={sourceCode}
+    />
+  )
+}
 
 export default Wrapper

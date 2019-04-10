@@ -23,4 +23,4 @@ ComponentDocSee.propTypes = {
   seeTags: docTypes.seeTags.isRequired,
 }
 
-export default React.memo(ComponentDocSee)
+export default ComponentDocSee
