@@ -27,6 +27,7 @@ class ComponentDoc extends Component {
     location: PropTypes.object.isRequired,
     seeTags: docTypes.seeTags.isRequired,
     sidebarSections: docTypes.sidebarSections.isRequired,
+    title: PropTypes.string.isRequired,
   }
 
   state = {}
@@ -62,7 +63,8 @@ class ComponentDoc extends Component {
     const contextValue = { ...this.props, onVisibilityChange: this.handleExampleVisibility }
 
     return (
-      <DocsLayout additionalTitle={displayName} sidebar>
+      /* TODO: use `title` from context */
+      <DocsLayout additionalTitle={displayName} sidebar title='Semantic UI React'>
         <Grid padded>
           <Grid.Row>
             <Grid.Column>

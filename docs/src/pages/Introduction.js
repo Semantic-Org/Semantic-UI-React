@@ -130,8 +130,8 @@ Comparison.propTypes = {
   html: PropTypes.string,
 }
 
-const Introduction = ({ pkg }) => (
-  <DocsLayout additionalTitle='Introduction'>
+const Introduction = ({ pkg, title }) => (
+  <DocsLayout additionalTitle='Introduction' title={title}>
     <Container id='introduction-page'>
       <Segment basic textAlign='center'>
         <Logo centered size='small' />
@@ -323,6 +323,7 @@ Introduction.propTypes = {
     description: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default withSiteData(Introduction)

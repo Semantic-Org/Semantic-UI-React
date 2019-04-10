@@ -1,5 +1,7 @@
 import _ from 'lodash'
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import { isBrowser } from 'src/lib'
 
@@ -28,6 +30,14 @@ const waitForLoad = () => {
 }
 
 class CarbonAd extends Component {
+  static propTypes = {
+    location: PropTypes.object.isRequired,
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.location.pathname !== nextProps.location.pathname
+  }
+
   componentDidMount() {
     this.loadAd()
   }
@@ -63,4 +73,4 @@ class CarbonAd extends Component {
   }
 }
 
-export default CarbonAd
+export default withRouter(CarbonAd)
