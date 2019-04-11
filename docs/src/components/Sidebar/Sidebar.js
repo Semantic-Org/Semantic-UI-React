@@ -120,7 +120,7 @@ class Sidebar extends Component {
   menuItemsByType = _.map((nextType) => {
     const items = _.flow(
       _.filter(({ type }) => type === nextType),
-      _.map(info => (
+      _.map((info) => (
         <Menu.Item
           key={info.displayName}
           name={info.displayName}
@@ -220,13 +220,19 @@ class Sidebar extends Component {
                   Introduction
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/usage' activeClassName='active'>
-                  Usage
+                  Get Started
+                </Menu.Item>
+                <Menu.Item as={Link} exact to='/augmentation' activeClassName='active'>
+                  Augmentation
+                </Menu.Item>
+                <Menu.Item as={Link} exact to='/shorthand-props' activeClassName='active'>
+                  Shorthand Props
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/theming' activeClassName='active'>
                   Theming
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/layouts' activeClassName='active'>
-                  Layouts
+                  Layout examples
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/prototypes' activeClassName='active'>
                   Prototypes
@@ -238,7 +244,7 @@ class Sidebar extends Component {
                 <Input
                   fluid
                   icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
-                  placeholder='Press &quot;/&quot; to filter components'
+                  placeholder='Press "/" to filter components'
                   value={query}
                   onChange={this.handleSearchChange}
                   onKeyDown={this.handleSearchKeyDown}
