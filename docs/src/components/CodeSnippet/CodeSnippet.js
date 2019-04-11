@@ -50,7 +50,7 @@ const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
 CodeSnippet.propTypes = {
   fitted: PropTypes.bool,
   label: PropTypes.string,
-  mode: PropTypes.oneOf(['html', 'json', 'js', 'jsx', 'sh']),
+  mode: PropTypes.oneOf(['html', 'json', 'jsx', 'sh']),
   value: PropTypes.string.isRequired,
 }
 
