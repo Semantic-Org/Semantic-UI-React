@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Menu } from 'semantic-ui-react'
 
-import { updateForKeys } from 'docs/src/hoc'
-
 const ComponentPropsComponents = ({
   activeDisplayName,
   displayNames,
@@ -15,7 +13,7 @@ const ComponentPropsComponents = ({
 
   return (
     <Menu color='green' compact size='small' secondary>
-      {_.map(displayNames, displayName => (
+      {_.map(displayNames, (displayName) => (
         <Menu.Item
           key={displayName}
           active={activeDisplayName === displayName}
@@ -39,4 +37,8 @@ ComponentPropsComponents.propTypes = {
   parentDisplayName: PropTypes.string.isRequired,
 }
 
-export default updateForKeys(['activeDisplayName', 'parentDisplayName'])(ComponentPropsComponents)
+const areEqual = (prevProps, nextProps) =>
+  prevProps.activeDisplayName === nextProps.activeDisplayName &&
+  prevProps.parentDisplayName === nextProps.parentDisplayName
+
+export default React.memo(ComponentPropsComponents, areEqual)
