@@ -32,7 +32,7 @@ export default (webpackConfig, { stage }) => ({
         test: /\.js$/,
         include: [
           // Heads up!
-          // There modules should be manually transipiled because they are not compatible with IE11
+          // There modules should be manually transpiled because they are not compatible with IE11
           path.resolve(__dirname, 'node_modules/ansi-styles'),
           path.resolve(__dirname, 'node_modules/debug'),
 
