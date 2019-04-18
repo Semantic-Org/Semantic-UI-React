@@ -77,6 +77,15 @@ export interface StrictTableProps {
    */
   renderBodyRow?: (data: any, index: number) => any
 
+  /**
+   * Mapped over `headerData` and should return shorthand for each Table.Row to be placed within Table.Header.
+   *
+   * @param {*} data - An element in the `tableData` array.
+   * @param {number} index - The index of the current element in `tableData`.
+   * @returns {*} Shorthand for a Table.Row.
+   */
+  renderHeaderRow?: (data: any, index: number) => any
+
   /** A table can have its rows appear selectable. */
   selectable?: boolean
 
@@ -100,6 +109,9 @@ export interface StrictTableProps {
 
   /** Data to be passed to the renderBodyRow function. */
   tableData?: any[]
+
+  /** Data to be passed to the renderHeaderRow function. */
+  headerData?: any[]
 
   /** A table can adjust its text alignment. */
   textAlign?: 'center' | 'left' | 'right'
