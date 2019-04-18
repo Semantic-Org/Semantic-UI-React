@@ -43,7 +43,6 @@ function Table(props) {
     inverted,
     padded,
     renderBodyRow,
-    renderHeaderRow,
     selectable,
     singleLine,
     size,
@@ -52,7 +51,7 @@ function Table(props) {
     striped,
     structured,
     tableData,
-    headerData,
+    headers,
     textAlign,
     unstackable,
     verticalAlign,
@@ -100,12 +99,10 @@ function Table(props) {
     headerElements = (
       <TableHeader>{TableRow.create(headerRow, { defaultProps: { cellAs: 'th' } })}</TableHeader>
     )
-  } else if (renderHeaderRow && headerData) {
+  } else if (headers) {
     headerElements = (
       <TableHeader>
-        {_.map(tableData, (data, index) =>
-          TableRow.create(renderHeaderRow(data, index), { defaultProps: { cellAs: 'th' } }),
-        )}
+        {_.map(headers, (data) => TableRow.create(data, { defaultProps: { cellAs: 'th' } }))}
       </TableHeader>
     )
   }
@@ -190,19 +187,6 @@ Table.propTypes = {
     PropTypes.func,
   ]),
 
-  /**
-   * Mapped over `headerData` and should return shorthand for each Table.Row to be placed within Table.Header.
-   *
-   * @param {*} data - An element in the `tableData` array.
-   * @param {number} index - The index of the current element in `tableData`.
-   * @returns {*} Shorthand for a Table.Row.
-   */
-  renderHeaderRow: customPropTypes.every([
-    customPropTypes.disallow(['children', 'headerRow']),
-    customPropTypes.demand(['headerData']),
-    PropTypes.func,
-  ]),
-
   /** A table can have its rows appear selectable. */
   selectable: PropTypes.bool,
 
@@ -231,11 +215,10 @@ Table.propTypes = {
     PropTypes.array,
   ]),
 
-  /** Data to be passed to the renderHeaderRow function. */
-  headerData: customPropTypes.every([
+  /** Shorthand for multiple TableRows to be placed within Table.Header. */
+  headers: customPropTypes.every([
     customPropTypes.disallow(['children', 'headerRow']),
-    customPropTypes.demand(['renderHeaderRow']),
-    PropTypes.array,
+    PropTypes.arrayOf(customPropTypes.itemShorthand),
   ]),
 
   /** A table can adjust its text alignment. */
