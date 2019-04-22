@@ -94,22 +94,18 @@ function Table(props) {
     )
   }
 
-  let headerElements
-  if (headerRow) {
-    headerElements = (
-      <TableHeader>{TableRow.create(headerRow, { defaultProps: { cellAs: 'th' } })}</TableHeader>
-    )
-  } else if (headerRows) {
-    headerElements = (
-      <TableHeader>
-        {_.map(headerRows, (data) => TableRow.create(data, { defaultProps: { cellAs: 'th' } }))}
-      </TableHeader>
-    )
-  }
+  const hasHeader = headerRow || headerRows
+  const headerShorthandOptions = { defaultProps: { cellAs: 'th' } }
+  const headerElement = hasHeader && (
+    <TableHeader>
+      {TableRow.create(headerRow, headerShorthandOptions)}
+      {_.map(headerRows, (data) => TableRow.create(data, headerShorthandOptions))}
+    </TableHeader>
+  )
 
   return (
     <ElementType {...rest} className={classes}>
-      {headerElements}
+      {headerElement}
       <TableBody>
         {renderBodyRow &&
           _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
