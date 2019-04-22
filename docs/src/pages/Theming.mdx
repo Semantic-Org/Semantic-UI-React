@@ -1,17 +1,17 @@
-import { Button, Header, Message } from 'semantic-ui-react'
+import { Button, Message } from 'semantic-ui-react'
 
 export const meta = {
   title: 'Theming',
+  prevPage: { title: 'Shorthand Props', href: '/shorthand-props' },
+  nextPage: { title: 'Layout examples', href: '/layouts' },
 }
-
-<Header as='h1' content='Theming' textAlign='center' />
 
 ## Preface
 
 Semantic UI React does not have own styling system and fully relies on the theming of
 Semantic UI. It's really powerful, you don't need to know LESS or CSS you can simply
 update values of variables or use styles from predefined themes.
-  
+
 In fact, all you know about theming and styling of Semantic UI is fully applicable to Semantic UI React.
 
 <Button
@@ -32,7 +32,7 @@ In fact, all you know about theming and styling of Semantic UI is fully applicab
 ## Quick start
 
 Semantic UI offers its own build system that uses Gulp and produces prepared CSS files.
-  
+
 In all cases we recommend to use the LESS package and tune it into your build system with Webpack. The LESS package also does not depend on Gulp and other cruft things.
 However, this package is not friendly for Webpack and requires additional configuration.
 

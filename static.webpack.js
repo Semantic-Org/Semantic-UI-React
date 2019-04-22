@@ -9,22 +9,22 @@ export default (webpackConfig, { stage }) => ({
   entry:
     stage === 'prod'
       ? {
-        main: [config.paths.docsSrc('index.js'), config.paths.src('index.js')],
-      }
+          main: [config.paths.docsSrc('index.js'), config.paths.src('index.js')],
+        }
       : webpackConfig.entry,
   externals:
     stage === 'node'
       ? webpackConfig.externals
       : {
-        'anchor-js': 'AnchorJS',
-        '@babel/standalone': 'Babel',
-        faker: 'faker',
-        'prettier/standalone': 'prettier',
-        'prop-types': 'PropTypes',
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'react-dom/server': 'ReactDOMServer',
-      },
+          'anchor-js': 'AnchorJS',
+          '@babel/standalone': 'Babel',
+          faker: 'faker',
+          'prettier/standalone': 'prettier',
+          'prop-types': 'PropTypes',
+          react: 'React',
+          'react-dom': 'ReactDOM',
+          'react-dom/server': 'ReactDOMServer',
+        },
   module: {
     ...webpackConfig.module,
     rules: [

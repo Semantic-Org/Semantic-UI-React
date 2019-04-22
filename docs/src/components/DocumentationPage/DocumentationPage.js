@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { withRouteData, withSiteData } from 'react-static'
-import { Container, Divider } from 'semantic-ui-react'
+import { Container, Divider, Header } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
 import * as components from './components'
+import DocumentationPageFooter from './DocumentationPageFooter'
 
 const DocumentationPage = ({ pageName, ...rest }) => {
   const { default: MarkdownComponent, meta } = require(`docs/src/pages/${pageName}`)
@@ -13,7 +14,9 @@ const DocumentationPage = ({ pageName, ...rest }) => {
     <DocsLayout additionalTitle={meta.title}>
       <Container text>
         <Divider hidden />
+        <Header as='h1' content={meta.title} textAlign='center' />
         <MarkdownComponent {...rest} components={components} />
+        <DocumentationPageFooter prevPage={meta.prevPage} nextPage={meta.nextPage} />
         <Divider hidden section />
       </Container>
     </DocsLayout>
