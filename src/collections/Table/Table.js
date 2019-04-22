@@ -40,6 +40,7 @@ function Table(props) {
     fixed,
     footerRow,
     headerRow,
+    headerRows,
     inverted,
     padded,
     renderBodyRow,
@@ -51,7 +52,6 @@ function Table(props) {
     striped,
     structured,
     tableData,
-    headers,
     textAlign,
     unstackable,
     verticalAlign,
@@ -99,10 +99,10 @@ function Table(props) {
     headerElements = (
       <TableHeader>{TableRow.create(headerRow, { defaultProps: { cellAs: 'th' } })}</TableHeader>
     )
-  } else if (headers) {
+  } else if (headerRows) {
     headerElements = (
       <TableHeader>
-        {_.map(headers, (data) => TableRow.create(data, { defaultProps: { cellAs: 'th' } }))}
+        {_.map(headerRows, (data) => TableRow.create(data, { defaultProps: { cellAs: 'th' } }))}
       </TableHeader>
     )
   }
@@ -166,7 +166,16 @@ Table.propTypes = {
   footerRow: customPropTypes.itemShorthand,
 
   /** Shorthand for a TableRow to be placed within Table.Header. */
-  headerRow: customPropTypes.itemShorthand,
+  headerRow: customPropTypes.every([
+    customPropTypes.disallow(['headerRows']),
+    customPropTypes.itemShorthand,
+  ]),
+
+  /** Shorthand for multiple TableRows to be placed within Table.Header. */
+  headerRows: customPropTypes.every([
+    customPropTypes.disallow(['headerRow']),
+    customPropTypes.collectionShorthand,
+  ]),
 
   /** A table's colors can be inverted. */
   inverted: PropTypes.bool,
@@ -213,12 +222,6 @@ Table.propTypes = {
     customPropTypes.disallow(['children']),
     customPropTypes.demand(['renderBodyRow']),
     PropTypes.array,
-  ]),
-
-  /** Shorthand for multiple TableRows to be placed within Table.Header. */
-  headers: customPropTypes.every([
-    customPropTypes.disallow(['children', 'headerRow']),
-    PropTypes.arrayOf(customPropTypes.itemShorthand),
   ]),
 
   /** A table can adjust its text alignment. */

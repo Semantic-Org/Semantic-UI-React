@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import {
   SemanticCOLORS,
+  SemanticShorthandCollection,
   SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS,
@@ -62,6 +63,9 @@ export interface StrictTableProps {
   /** Shorthand for a TableRow to be placed within Table.Header. */
   headerRow?: SemanticShorthandItem<TableRowProps>
 
+  /** Shorthand for multiple TableRows to be placed within Table.Header. */
+  headerRows?: SemanticShorthandCollection<TableRowProps>
+
   /** A table's colors can be inverted. */
   inverted?: boolean
 
@@ -100,9 +104,6 @@ export interface StrictTableProps {
 
   /** Data to be passed to the renderBodyRow function. */
   tableData?: any[]
-
-  /** Shorthand for multiple TableRows to be placed within Table.Header. */
-  headers?: any[]
 
   /** A table can adjust its text alignment. */
   textAlign?: 'center' | 'left' | 'right'
