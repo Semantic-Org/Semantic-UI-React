@@ -94,9 +94,9 @@ function Table(props) {
     )
   }
 
-  const hasHeader = headerRow || headerRows
+  const hasHeaderRows = headerRow || headerRows
   const headerShorthandOptions = { defaultProps: { cellAs: 'th' } }
-  const headerElement = hasHeader && (
+  const headerElement = hasHeaderRows && (
     <TableHeader>
       {TableRow.create(headerRow, headerShorthandOptions)}
       {_.map(headerRows, (data) => TableRow.create(data, headerShorthandOptions))}

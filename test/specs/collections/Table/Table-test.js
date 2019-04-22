@@ -107,7 +107,7 @@ describe('Table', () => {
       ],
     })
 
-    const headers = [
+    const headerRows = [
       {
         key: 0,
         cells: [
@@ -165,7 +165,7 @@ describe('Table', () => {
     })
 
     it('renders the table with 2 lines header', () => {
-      wrapperMount({ renderBodyRow: renderBodyRowWithSpan, footerRow, tableData, headers })
+      wrapperMount({ renderBodyRow: renderBodyRowWithSpan, footerRow, tableData, headerRows })
 
       thead.should.have.lengthOf(1)
       thead.find('tr').should.have.lengthOf(2)
