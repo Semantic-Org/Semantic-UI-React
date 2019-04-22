@@ -13,7 +13,9 @@ const ComponentTable = ({ props }) => (
   <Table compact='very' basic='very'>
     <ComponentTableHeader />
     <Table.Body>
-      {_.map(props, propDef => <ComponentTableRow {...propDef} key={propDef.name} />)}
+      {_.map(props, (propDef) => (
+        <ComponentTableRow {...propDef} key={propDef.name} />
+      ))}
     </Table.Body>
   </Table>
 )
@@ -22,4 +24,4 @@ ComponentTable.propTypes = {
   props: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default ComponentTable
+export default React.memo(ComponentTable)

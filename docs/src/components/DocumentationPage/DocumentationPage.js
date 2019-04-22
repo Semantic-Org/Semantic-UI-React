@@ -7,11 +7,11 @@ import DocsLayout from 'docs/src/components/DocsLayout'
 import * as components from './components'
 import DocumentationPageFooter from './DocumentationPageFooter'
 
-const DocumentationPage = ({ pageName, ...rest }) => {
+const DocumentationPage = ({ pageName, title, ...rest }) => {
   const { default: MarkdownComponent, meta } = require(`docs/src/pages/${pageName}`)
 
   return (
-    <DocsLayout additionalTitle={meta.title}>
+    <DocsLayout additionalTitle={meta.title} title={title}>
       <Container text>
         <Divider hidden />
         <Header as='h1' content={meta.title} textAlign='center' />
@@ -25,6 +25,7 @@ const DocumentationPage = ({ pageName, ...rest }) => {
 
 DocumentationPage.propTypes = {
   pageName: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default withSiteData(withRouteData(DocumentationPage))
