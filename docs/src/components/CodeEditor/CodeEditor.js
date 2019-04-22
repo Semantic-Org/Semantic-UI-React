@@ -5,6 +5,7 @@ import Ace from 'react-ace'
 import 'brace'
 import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
+import 'brace/mode/json'
 import 'brace/mode/html'
 import 'brace/mode/sh'
 import 'brace/theme/tomorrow_night'
@@ -95,7 +96,7 @@ const semanticUIReactCompleter = {
   },
 }
 
-const CodeEditor = props => (
+const CodeEditor = (props) => (
   <Ace
     {...props}
     name={`docs-editor-${_.uniqueId()}`}

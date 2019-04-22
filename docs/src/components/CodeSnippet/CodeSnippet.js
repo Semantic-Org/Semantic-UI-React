@@ -23,6 +23,13 @@ const labelStyle = {
   zIndex: 100,
 }
 
+const formatters = {
+  html: (val) => formatCode(val, 'html'),
+  json: (val) => val,
+  jsx: (val) => formatCode(val, 'babel').replace(/^;</m, '<'), // will replace ";" from the beginning of line
+  sh: (val) => val.replace(/^/g, '$  '),
+}
+
 const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
   <div style={{ ...containerStyle, margin: fitted ? 0 : '1rem 0' }}>
     <div style={labelStyle}>{label || mode}</div>
@@ -34,10 +41,7 @@ const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
       readOnly
       showGutter={false}
       showCursor={false}
-      value={(mode === 'sh'
-        ? value.replace(/^/g, '$  ')
-        : formatCode(value, mode === 'html' ? 'html' : 'babel')
-      ).trim()}
+      value={formatters[mode](value).trim()}
       {...rest}
     />
   </div>
@@ -46,7 +50,7 @@ const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
 CodeSnippet.propTypes = {
   fitted: PropTypes.bool,
   label: PropTypes.string,
-  mode: PropTypes.oneOf(['html', 'jsx', 'sh']),
+  mode: PropTypes.oneOf(['html', 'json', 'jsx', 'sh']),
   value: PropTypes.string.isRequired,
 }
 
