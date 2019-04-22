@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Accordion, Icon, Menu } from 'semantic-ui-react'
 
-import { examplePathToHash } from 'docs/src/utils'
-
 export default class ComponentSidebarSection extends PureComponent {
   static propTypes = {
     activePath: PropTypes.string,
@@ -22,10 +20,9 @@ export default class ComponentSidebarSection extends PureComponent {
   state = {}
 
   static getDerivedStateFromProps(props, state) {
-    const isActiveByProps = (props.examples || []).some((item) => {
-      const exampleHash = examplePathToHash(item.examplePath)
-      return exampleHash === props.activePath
-    })
+    const isActiveByProps = (props.examples || []).some(
+      (item) => item.examplePath === props.activePath,
+    )
     const didCloseByProps = state.isActiveByProps && !isActiveByProps
 
     // We allow the user to open accordions, but we close them when we scroll passed them
@@ -59,7 +56,7 @@ export default class ComponentSidebarSection extends PureComponent {
           {_.map(examples, ({ title, examplePath }) => (
             <Menu.Item
               key={examplePath}
-              active={activePath === examplePathToHash(examplePath)}
+              active={activePath === examplePath}
               content={title}
               onClick={this.handleItemClick(examplePath)}
             />
