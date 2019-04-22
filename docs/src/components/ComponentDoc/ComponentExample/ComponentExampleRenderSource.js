@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import SourceRender from 'react-source-render'
 
-import { updateForKeys } from 'docs/src/hoc'
 import { babelConfig, externals } from './renderConfig'
 
 const resolver = (importPath, { displayName }) => {
@@ -42,4 +41,4 @@ ComponentExampleRenderSource.propTypes = {
   sourceCode: PropTypes.string.isRequired,
 }
 
-export default updateForKeys(['sourceCode'])(ComponentExampleRenderSource)
+export default React.memo(ComponentExampleRenderSource)
