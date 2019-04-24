@@ -32,13 +32,13 @@ describe('Confirm', () => {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: Modal.Header,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
   common.implementsShorthandProp(Confirm, {
     autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: Modal.Content,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
 
   describe('children', () => {
@@ -124,22 +124,26 @@ describe('Confirm', () => {
     })
 
     it('is called on dimmer click', () => {
-      domEvent.click('.ui.dimmer')
+      domEvent.mouseDown('.ui.dimmer')
+      domEvent.mouseUp('.ui.dimmer')
       spy.should.have.been.calledOnce()
     })
 
     it('is called on click outside of the modal', () => {
-      domEvent.click(document.querySelector('.ui.modal').parentNode)
+      domEvent.mouseDown(document.querySelector('.ui.modal').parentNode)
+      domEvent.mouseUp(document.querySelector('.ui.modal').parentNode)
       spy.should.have.been.calledOnce()
     })
 
     it('is not called on click inside of the modal', () => {
-      domEvent.click(document.querySelector('.ui.modal'))
+      domEvent.mouseDown(document.querySelector('.ui.modal'))
+      domEvent.mouseUp(document.querySelector('.ui.modal'))
       spy.should.not.have.been.calledOnce()
     })
 
     it('is not called on body click', () => {
-      domEvent.click('body')
+      domEvent.mouseDown('body')
+      domEvent.mouseUp('body')
       spy.should.not.have.been.calledOnce()
     })
 

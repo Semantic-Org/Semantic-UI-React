@@ -53,13 +53,13 @@ describe('Modal', () => {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: ModalHeader,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
   common.implementsShorthandProp(Modal, {
     autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: ModalContent,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
 
   // Heads up!
@@ -319,28 +319,32 @@ describe('Modal', () => {
     it('is called on dimmer click', () => {
       wrapperMount(<Modal onClose={spy} defaultOpen />)
 
-      domEvent.click('.ui.dimmer')
+      domEvent.mouseDown('.ui.dimmer')
+      domEvent.mouseUp('.ui.dimmer')
       spy.should.have.been.calledOnce()
     })
 
     it('is called on click outside of the modal', () => {
       wrapperMount(<Modal onClose={spy} defaultOpen />)
 
-      domEvent.click(document.querySelector('.ui.modal').parentNode)
+      domEvent.mouseDown(document.querySelector('.ui.modal').parentNode)
+      domEvent.mouseUp(document.querySelector('.ui.modal').parentNode)
       spy.should.have.been.calledOnce()
     })
 
     it('is not called on click inside of the modal', () => {
       wrapperMount(<Modal onClose={spy} defaultOpen />)
 
-      domEvent.click(document.querySelector('.ui.modal'))
+      domEvent.mouseDown(document.querySelector('.ui.modal'))
+      domEvent.mouseUp(document.querySelector('.ui.modal'))
       spy.should.not.have.been.called()
     })
 
     it('is not called on body click', () => {
       wrapperMount(<Modal onClose={spy} defaultOpen />)
 
-      domEvent.click(document.body)
+      domEvent.mouseDown(document.body)
+      domEvent.mouseUp(document.body)
       spy.should.not.have.been.calledOnce()
     })
 
@@ -368,14 +372,16 @@ describe('Modal', () => {
     it('is not called on dimmer click when closeOnDimmerClick is false', () => {
       wrapperMount(<Modal onClose={spy} defaultOpen closeOnDimmerClick={false} />)
 
-      domEvent.click('.ui.dimmer')
+      domEvent.mouseDown('.ui.dimmer')
+      domEvent.mouseUp('.ui.dimmer')
       spy.should.not.have.been.called()
     })
 
     it('is not called on body click when closeOnDocumentClick is false', () => {
       wrapperMount(<Modal onClose={spy} defaultOpen closeOnDocumentClick={false} />)
 
-      domEvent.click(document.body)
+      domEvent.mouseDown(document.body)
+      domEvent.mouseUp(document.body)
       spy.should.not.have.been.called()
     })
   })
@@ -541,7 +547,8 @@ describe('Modal', () => {
 
       requestAnimationFrame(() => {
         assertBodyClasses('scrolling')
-        domEvent.click('.ui.dimmer')
+        domEvent.mouseDown('.ui.dimmer')
+        domEvent.mouseUp('.ui.dimmer')
 
         assertBodyClasses('scrolling', false)
 
