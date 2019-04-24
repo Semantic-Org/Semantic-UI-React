@@ -98,7 +98,7 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleSearchQuery'
     >
       <Message info>
-        This example also shows how to override default bevahiour of the search query and keep
+        This example also shows how to override default behaviour of the search query and keep
         entered value after selection.
       </Message>
     </ComponentExample>
