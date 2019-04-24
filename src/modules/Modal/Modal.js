@@ -153,6 +153,7 @@ class Modal extends Component {
 
   ref = createRef()
   dimmerRef = createRef()
+  mouseDownEvent = null
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
@@ -178,11 +179,20 @@ class Modal extends Component {
     this.trySetState({ open: false })
   }
 
-  handleDocumentClick = (e) => {
-    debug('handleDocumentClick()')
+  handleDocumentMouseDown = (e) => {
+    this.mouseDownEvent = e
+  }
+
+  handleDocumentMouseUp = (e) => {
+    debug('handleDocumentMouseUp()')
     const { closeOnDimmerClick } = this.props
 
-    if (!closeOnDimmerClick || doesNodeContainClick(this.ref.current, e)) return
+    if (
+      !closeOnDimmerClick ||
+      doesNodeContainClick(this.ref.current, this.mouseDownEvent) ||
+      doesNodeContainClick(this.ref.current, e)
+    )
+      return
 
     _.invoke(this.props, 'onClose', e, this.props)
     this.trySetState({ open: false })
@@ -209,7 +219,11 @@ class Modal extends Component {
     this.setState({ scrolling: false })
     this.setPositionAndClassNames()
 
-    eventStack.sub('click', this.handleDocumentClick, {
+    eventStack.sub('mousedown', this.handleDocumentMouseDown, {
+      pool: eventPool,
+      target: this.dimmerRef.current,
+    })
+    eventStack.sub('mouseup', this.handleDocumentMouseUp, {
       pool: eventPool,
       target: this.dimmerRef.current,
     })
@@ -221,7 +235,11 @@ class Modal extends Component {
     debug('handlePortalUnmount()', { eventPool })
 
     cancelAnimationFrame(this.animationRequestId)
-    eventStack.unsub('click', this.handleDocumentClick, {
+    eventStack.unsub('mousedown', this.handleDocumentMouseDown, {
+      pool: eventPool,
+      target: this.dimmerRef.current,
+    })
+    eventStack.unsub('mouseup', this.handleDocumentMouseUp, {
       pool: eventPool,
       target: this.dimmerRef.current,
     })
