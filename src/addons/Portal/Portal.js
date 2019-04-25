@@ -145,13 +145,17 @@ class Portal extends Component {
     this.latestDocumentMouseDownEvent = e
   }
 
-  handleDocumentMouseUp = (e) => {
+  handleDocumentClick = (e) => {
     const { closeOnDocumentClick } = this.props
+
+    const previousDocumentMouseDownEvent = this.latestDocumentMouseDownEvent
+    delete this.latestDocumentMouseDownEvent
 
     if (
       !this.contentRef.current || // no portal
       doesNodeContainClick(this.triggerRef.current, e) || // event happened in trigger (delegate to trigger handlers)
-      doesNodeContainClick(this.contentRef.current, this.latestDocumentMouseDownEvent) || // event originated in the portal but was ended ouside
+      (previousDocumentMouseDownEvent &&
+        doesNodeContainClick(this.contentRef.current, previousDocumentMouseDownEvent)) || // event originated in the portal but was ended ouside
       doesNodeContainClick(this.contentRef.current, e) // event happened in the portal
     ) {
       return
@@ -359,7 +363,7 @@ class Portal extends Component {
               target={this.contentRef}
             />
             <EventStack name='mousedown' on={this.handleDocumentMouseDown} pool={eventPool} />
-            <EventStack name='mouseup' on={this.handleDocumentMouseUp} pool={eventPool} />
+            <EventStack name='click' on={this.handleDocumentClick} pool={eventPool} />
             <EventStack name='keydown' on={this.handleEscape} pool={eventPool} />
           </Fragment>
         )}

@@ -19,16 +19,12 @@ export const fire = (node, eventType, data = {}) => {
 }
 
 /**
- * Dispatch 'mousedown', 'mouseup' and 'click' events on a DOM node.
+ * Dispatch a 'click' event on a DOM node.
  * @param {String|Object} node A querySelector string or DOM node.
  * @param {Object} [data] Additional event data.
  * @returns {Object} The event
  */
-export const click = (node, data) => {
-  fire(node, 'mousedown', data)
-  fire(node, 'mouseup', data)
-  fire(node, 'click', data)
-}
+export const click = (node, data) => fire(node, 'click', data)
 
 /**
  * Dispatch a 'keydown' event on a DOM node.
