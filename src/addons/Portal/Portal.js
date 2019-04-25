@@ -145,7 +145,7 @@ class Portal extends Component {
     this.latestDocumentMouseDownEvent = e
   }
 
-  handleDocumentClick = (e) => {
+  handleDocumentMouseUp = (e) => {
     const { closeOnDocumentClick } = this.props
 
     if (
@@ -158,7 +158,7 @@ class Portal extends Component {
     } // ignore the click
 
     if (closeOnDocumentClick) {
-      debug('handleDocumentClick()')
+      debug('handleDocumentMouseUp()')
       this.close(e)
     }
   }
@@ -359,7 +359,7 @@ class Portal extends Component {
               target={this.contentRef}
             />
             <EventStack name='mousedown' on={this.handleDocumentMouseDown} pool={eventPool} />
-            <EventStack name='click' on={this.handleDocumentClick} pool={eventPool} />
+            <EventStack name='mouseup' on={this.handleDocumentMouseUp} pool={eventPool} />
             <EventStack name='keydown' on={this.handleEscape} pool={eventPool} />
           </Fragment>
         )}
