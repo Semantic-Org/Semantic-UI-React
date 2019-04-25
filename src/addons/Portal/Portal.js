@@ -162,7 +162,7 @@ class Portal extends Component {
     } // ignore the click
 
     if (closeOnDocumentClick) {
-      debug('handleDocumentMouseUp()')
+      debug('handleDocumentClick()')
       this.close(e)
     }
   }
