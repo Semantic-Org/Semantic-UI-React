@@ -153,7 +153,7 @@ class Modal extends Component {
 
   ref = createRef()
   dimmerRef = createRef()
-  mouseDownEvent = null
+  latestDocumentMouseDownEvent = null
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
@@ -180,16 +180,19 @@ class Modal extends Component {
   }
 
   handleDocumentMouseDown = (e) => {
-    this.mouseDownEvent = e
+    this.latestDocumentMouseDownEvent = e
   }
 
-  handleDocumentMouseUp = (e) => {
-    debug('handleDocumentMouseUp()')
+  handleDocumentClick = (e) => {
+    debug('handleDocumentClick()')
     const { closeOnDimmerClick } = this.props
+
+    const previousDocumentMouseDownEvent = this.latestDocumentMouseDownEvent
+    delete this.latestDocumentMouseDownEvent
 
     if (
       !closeOnDimmerClick ||
-      doesNodeContainClick(this.ref.current, this.mouseDownEvent) ||
+      doesNodeContainClick(this.ref.current, previousDocumentMouseDownEvent) ||
       doesNodeContainClick(this.ref.current, e)
     )
       return
@@ -223,7 +226,7 @@ class Modal extends Component {
       pool: eventPool,
       target: this.dimmerRef.current,
     })
-    eventStack.sub('mouseup', this.handleDocumentMouseUp, {
+    eventStack.sub('click', this.handleDocumentClick, {
       pool: eventPool,
       target: this.dimmerRef.current,
     })
@@ -239,7 +242,7 @@ class Modal extends Component {
       pool: eventPool,
       target: this.dimmerRef.current,
     })
-    eventStack.unsub('mouseup', this.handleDocumentMouseUp, {
+    eventStack.unsub('click', this.handleDocumentClick, {
       pool: eventPool,
       target: this.dimmerRef.current,
     })
