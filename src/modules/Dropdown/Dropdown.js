@@ -1175,7 +1175,7 @@ export default class Dropdown extends Component {
     )
     let _text = placeholder
     if (searchQuery) {
-      _text = null
+      _text = searchQuery
     } else if (text) {
       _text = text
     } else if (open && !multiple) {
