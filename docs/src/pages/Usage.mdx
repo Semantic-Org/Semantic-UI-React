@@ -5,10 +5,9 @@ import CodeSnippet from 'docs/src/components/CodeSnippet'
 import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/src/utils'
 
 export const meta = {
-  title: 'Usage',
+  title: 'Get Started',
+  nextPage: { title: 'Augmentation', href: '/augmentation' },
 }
-
-# Usage
 
 ## Install
 
@@ -25,6 +24,8 @@ React components can be installed via <code>yarn</code>:
   <Icon name='idea' />
   Themes from Semantic UI >=2.3.x require Semantic UI React >=0.81.0.
 </Message>
+
+If you are using TypeScript, you don't need to install anything, typings are included with the package.
 
 ### Theme
 
@@ -89,7 +90,8 @@ Choose a theme and delivery method that suits your needs:
           <CodeSnippet label='index.js' value="import '../semantic/dist/semantic.min.css'" />
           <p>
             Detailed documentation on Semantic UI theming is provided{' '}
-            <a href={`${semanticUIDocsURL}usage/theming.html`}>here</a>.
+            <a href={`${semanticUIDocsURL}usage/theming.html`}>here</a> and in our{' '}
+            <Link to='/theming'>Theming guide</Link>.
           </p>
         </Tab.Pane>
       ),
@@ -107,6 +109,34 @@ example recipes with some of them. You can use these as a starting point for you
 <Tab
   menu={{ attached: 'top', secondary: true, pointing: true, color: 'teal' }}
   panes={[
+    {
+      menuItem: 'Create React App',
+      render: () => (
+        <Tab.Pane style={{ fontSize: 'inherit' }}>
+          <p>
+            Semantic UI React is fully compatible with <code>create-app-react</code> and works out
+            the box. Setup of custom theme is covered in <Link to='/theming'>Theming guide</Link>.
+          </p>
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: 'Webpack 4',
+      render: () => (
+        <Tab.Pane style={{ fontSize: 'inherit' }}>
+          <p>
+            Semantic UI React is fully supported by Webpack 4, including tree shaking as of{' '}
+            <code>semantic-ui-react@0.81.2</code>.
+          </p>
+          <p>
+            Please ensure that you build your app in production mode before release. Semantic UI
+            React includes several optimizations in production mode, such as stripping{' '}
+            <code>propTypes</code>
+            from your build.
+          </p>
+        </Tab.Pane>
+      ),
+    },
     {
       menuItem: 'Webpack 2/3',
       render: () => (
@@ -185,22 +215,6 @@ example recipes with some of them. You can use these as a starting point for you
             Semantic UI React imports will be not optimized, so we recommend to use
             <code>babel-plugin-lodash</code> in your builds. You can find example configuration in
             <code>examples/webpack3</code> directory.
-          </p>
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: 'Webpack 4',
-      render: () => (
-        <Tab.Pane style={{ fontSize: 'inherit' }}>
-          <p>
-            Semantic UI React is fully supported by Webpack 4, including tree shaking as of{' '}
-            <code>semantic-ui-react@0.81.2</code>.
-          </p>
-          <p>
-            Please ensure that you build your app in production mode before release. Semantic UI
-            React includes several optimizations in production mode, such as stripping `propTypes`
-            from your build.
           </p>
         </Tab.Pane>
       ),

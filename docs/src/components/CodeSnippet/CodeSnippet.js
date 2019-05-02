@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import CodeEditor, { EDITOR_BACKGROUND_COLOR } from 'docs/src/components/CodeEditor'
-import formatCode from '../../utils/formatCode'
+import formatCode from 'docs/src/utils/formatCode'
 
 const containerStyle = {
   padding: '1rem',
@@ -23,9 +23,16 @@ const labelStyle = {
   zIndex: 100,
 }
 
+const formatters = {
+  html: (val) => formatCode(val, 'html'),
+  json: (val) => val,
+  jsx: (val) => formatCode(val, 'babel').replace(/^;</m, '<'), // will replace ";" from the beginning of line
+  sh: (val) => val.replace(/^/g, '$  '),
+}
+
 const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
   <div style={{ ...containerStyle, margin: fitted ? 0 : '1rem 0' }}>
-    <div style={labelStyle}>{label || mode}</div>
+    {label === false ? null : <div style={labelStyle}>{label || mode}</div>}
 
     <CodeEditor
       highlightActiveLine={false}
@@ -34,10 +41,7 @@ const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
       readOnly
       showGutter={false}
       showCursor={false}
-      value={(mode === 'sh'
-        ? value.replace(/^/g, '$  ')
-        : formatCode(value, mode === 'html' ? 'html' : 'babel')
-      ).trim()}
+      value={formatters[mode](value).trim()}
       {...rest}
     />
   </div>
@@ -45,8 +49,8 @@ const CodeSnippet = ({ fitted, label, mode, value, ...rest }) => (
 
 CodeSnippet.propTypes = {
   fitted: PropTypes.bool,
-  label: PropTypes.string,
-  mode: PropTypes.oneOf(['html', 'jsx', 'sh']),
+  label: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  mode: PropTypes.oneOf(['html', 'json', 'jsx', 'sh']),
   value: PropTypes.string.isRequired,
 }
 

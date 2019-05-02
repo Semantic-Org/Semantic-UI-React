@@ -1,5 +1,7 @@
 import _ from 'lodash'
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import { isBrowser } from 'src/lib'
 
@@ -28,7 +30,23 @@ const waitForLoad = () => {
 }
 
 class CarbonAd extends Component {
+  static propTypes = {
+    location: PropTypes.object.isRequired,
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.location.pathname !== nextProps.location.pathname
+  }
+
   componentDidMount() {
+    this.loadAd()
+  }
+
+  componentDidUpdate() {
+    this.loadAd()
+  }
+
+  loadAd = () => {
     this.ifRef((ref) => {
       // always add the script as it is used to insert the ad
       ref.appendChild(script)
@@ -45,10 +63,6 @@ class CarbonAd extends Component {
     })
   }
 
-  shouldComponentUpdate() {
-    return false
-  }
-
   ifRef = (cb) => {
     const ref = document.querySelector('#docs-carbonads')
     if (ref) cb(ref)
@@ -59,4 +73,4 @@ class CarbonAd extends Component {
   }
 }
 
-export default CarbonAd
+export default withRouter(CarbonAd)
