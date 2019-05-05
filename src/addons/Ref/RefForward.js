@@ -1,4 +1,4 @@
-import * as PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { cloneElement, Component } from 'react'
 
 import { handleRef } from '../../lib/refUtils'

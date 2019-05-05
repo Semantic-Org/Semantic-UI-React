@@ -4,7 +4,7 @@ import * as React from 'react'
 import CodeSandboxer from 'react-codesandboxer'
 import { Menu } from 'semantic-ui-react'
 
-import { externals } from 'docs/src/components/ComponentDoc/ComponentExample/renderConfig'
+import { externals } from 'docs/src/components/ComponentDoc/ExampleEditor/renderConfig'
 
 const appTemplate = `import React from "react";
 import ReactDOM from "react-dom";
@@ -52,6 +52,7 @@ const dependencies = _.mapValues(externals, () => 'latest')
 class ComponentControlsCodeSandbox extends React.Component {
   static propTypes = {
     exampleCode: PropTypes.string.isRequired,
+    visible: PropTypes.bool.isRequired,
   }
 
   state = {
@@ -73,7 +74,7 @@ class ComponentControlsCodeSandbox extends React.Component {
   }
 
   render() {
-    const { exampleCode } = this.props
+    const { exampleCode, visible } = this.props
     const { sandboxUrl } = this.state
 
     if (sandboxUrl) {
@@ -89,7 +90,7 @@ class ComponentControlsCodeSandbox extends React.Component {
       )
     }
 
-    return (
+    return visible ? (
       <CodeSandboxer
         afterDeploy={this.handleDeploy}
         examplePath='/'
@@ -118,8 +119,10 @@ class ComponentControlsCodeSandbox extends React.Component {
           )
         }}
       </CodeSandboxer>
+    ) : (
+      <Menu.Item as='a' content='CodeSandbox' icon={{ loading: true, name: 'spinner' }} />
     )
   }
 }
 
-export default React.memo(ComponentControlsCodeSandbox)
+export default ComponentControlsCodeSandbox

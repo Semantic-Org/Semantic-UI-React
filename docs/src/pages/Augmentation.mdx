@@ -1,10 +1,10 @@
-import { Header, Message } from 'semantic-ui-react'
+import { Message } from 'semantic-ui-react'
 
 export const meta = {
   title: 'Augmentation',
+  prevPage: { title: 'Get Started', href: '/usage' },
+  nextPage: { title: 'Shorthand Props', href: '/shorthand-props' },
 }
-
-<Header as='h1' content='Augmentation' textAlign='center' />
 
 React components are inherently composable. Semantic UI React makes them even more so with the `as` prop feature: you can control the rendered HTML tag, or render one component as another component.
 
@@ -25,7 +25,6 @@ Augmentation is powerful. You can compose component features and props without a
 
 ```jsx
 import { Link } from 'react-router-dom'
-
 ;<Menu>
   // 💡 `to` does not belong to `Menu.Item` props and will be passed to `Link`
   <Menu.Item as={Link} to='/home'>
