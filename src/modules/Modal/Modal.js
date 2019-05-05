@@ -186,13 +186,12 @@ class Modal extends Component {
   handleDocumentClick = (e) => {
     debug('handleDocumentClick()')
     const { closeOnDimmerClick } = this.props
-
-    const previousDocumentMouseDownEvent = this.latestDocumentMouseDownEvent
-    delete this.latestDocumentMouseDownEvent
+    const currentDocumentMouseDownEvent = this.latestDocumentMouseDownEvent
+    this.latestDocumentMouseDownEvent = null
 
     if (
       !closeOnDimmerClick ||
-      doesNodeContainClick(this.ref.current, previousDocumentMouseDownEvent) ||
+      doesNodeContainClick(this.ref.current, currentDocumentMouseDownEvent) ||
       doesNodeContainClick(this.ref.current, e)
     )
       return
