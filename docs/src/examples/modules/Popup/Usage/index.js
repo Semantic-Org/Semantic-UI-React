@@ -9,7 +9,7 @@ const PopupUsageExamples = () => (
     <ComponentExample
       title='Offset'
       description='A popup position can be offset from its position.'
-      examplePath='modules/Popup/Variations/PopupExampleOffset'
+      examplePath='modules/Popup/Usage/PopupExampleOffset'
     >
       <Message info>
         <p>
