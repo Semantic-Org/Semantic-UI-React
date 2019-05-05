@@ -71,7 +71,7 @@ const PopupUsageExamples = () => (
     <ComponentExample
       title='Hide on scroll'
       description='A popup can be hidden on a scroll event.'
-      examplePath='modules/Popup/Variations/PopupExampleHideOnScroll'
+      examplePath='modules/Popup/Usage/PopupExampleHideOnScroll'
     />
     <ComponentExample
       title='Default Open'
