@@ -11,6 +11,13 @@ body {
   opacity: 0;
 }
 
+blockquote {
+  border-left: 3px solid rgba(34, 36, 38, .15);
+  margin-left: 0;
+  padding-left: 10px;
+  font-style: italic;
+}
+
 h1:hover > .anchorjs-link:not(:hover),
 h2:hover > .anchorjs-link:not(:hover),
 h3:hover > .anchorjs-link:not(:hover),
@@ -59,9 +66,11 @@ code:not(.hljs)::after {
   background: #fff;
   box-shadow: 0 1px 2px #ccc;
 }
+
 .docs-example:hover {
   box-shadow: 0 2px 8px #bbb;
 }
+
 .docs-example.active {
   box-shadow: 0 8px 32px #aaa;
 }
@@ -92,12 +101,16 @@ code:not(.hljs)::after {
   transform: scale(1.5);
 }
 
-#carbonads {
-  padding: 8px 8px;
-  line-height: 1.2;
+#docs-carbonads {
   background: #222;
   box-shadow: 0 0 2em black;
   border-top: 1px solid #444;
+  min-height: 150px;
+}
+
+#carbonads {
+  padding: 8px 8px;
+  line-height: 1.2;
 }
 
 #carbonads img {
@@ -109,6 +122,7 @@ code:not(.hljs)::after {
   font-size: 13px;
   color: #aaa;
 }
+
 .carbon-text:hover {
   color: #ddd;
 }
@@ -120,6 +134,7 @@ code:not(.hljs)::after {
   opacity: 0.5;
   white-space: nowrap;
 }
+
 .carbon-poweredby:hover {
   color: #ddd;
 }
