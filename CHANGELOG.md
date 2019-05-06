@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.87.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.87.1) (2019-05-06)
+
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.87.0...v0.87.1)
+
+**Merged pull requests:**
+
+- chore\(package\): remove `browser` field [\#3598](https://github.com/Semantic-Org/Semantic-UI-React/pull/3598) ([layershifter](https://github.com/layershifter))
+
 ## [v0.87.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.87.0) (2019-05-06)
 
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.86.0...v0.87.0)
