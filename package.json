@@ -6,6 +6,7 @@
   "main": "dist/commonjs/index.js",
   "module": "dist/es/index.js",
   "types": "index.d.ts",
+  "unpkg": "dist/umd/semantic-ui-react.min.js",
   "files": [
     "src",
     "dist",
