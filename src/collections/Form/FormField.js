@@ -143,7 +143,7 @@ FormField.propTypes = {
   disabled: PropTypes.bool,
 
   /** Individual fields may display an error state along with a message */
-  error: customPropTypes.some([PropTypes.string, PropTypes.bool]),
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 
   /** A field can have its label next to instead of above it. */
   inline: PropTypes.bool,
