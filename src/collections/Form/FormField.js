@@ -6,6 +6,7 @@ import React, { createElement } from 'react'
 import {
   childrenUtils,
   createHTMLLabel,
+  createHTMLSpan,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -110,6 +111,7 @@ function FormField(props) {
         autoGenerateKey: false,
       })}
       {createElement(control, controlProps)}
+      {typeof error === 'string' && createHTMLSpan(error)}
     </ElementType>
   )
 }
@@ -140,8 +142,8 @@ FormField.propTypes = {
   /** Individual fields may be disabled. */
   disabled: PropTypes.bool,
 
-  /** Individual fields may display an error state. */
-  error: PropTypes.bool,
+  /** Individual fields may display an error state along with a message */
+  error: customPropTypes.some([PropTypes.string, PropTypes.bool]),
 
   /** A field can have its label next to instead of above it. */
   inline: PropTypes.bool,
