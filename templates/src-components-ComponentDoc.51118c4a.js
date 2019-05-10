@@ -1411,7 +1411,7 @@ var _NoSSR = _interopRequireDefault(__webpack_require__(1175));
 var CodeEditor = _react.default.lazy(function () {
   return (0, _universalImport2.default)({
     id: "./CodeEditor",
-    file: "/Users/levithomason/src/Semantic-UI-React/docs/src/components/CodeEditor/index.js",
+    file: "C:\\Users\\olfedias\\WebstormProjects\\Semantic-UI-React\\docs\\src\\components\\CodeEditor\\index.js",
     load: function load() {
       return Promise.all([__webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 1003)), (0, _importCss2.default)("CodeEditor", {
         disableWarnings: true
@@ -39193,6 +39193,7 @@ var editorStyle = {
 var errorStyle = {
   fontSize: '0.9rem',
   fontFamily: 'monospace',
+  margin: 0,
   whiteSpace: 'pre-wrap'
 };
 var getKebabExamplePath = (0, _memoize2.default)(function (examplePath) {
@@ -39243,7 +39244,7 @@ var ExampleEditor = function ExampleEditor(props) {
         secondary: true,
         inverted: true,
         style: errorStyle
-      }, error), _react.default.createElement(_CodeSnippet.default, {
+      }, error.toString()), _react.default.createElement(_CodeSnippet.default, {
         fitted: true,
         mode: "html",
         value: markup
@@ -39612,7 +39613,7 @@ var disabledStyle = {
 var getGithubEditHref = function getGithubEditHref(examplePath) {
   // get component name from file path:
   // elements/Button/Types/ButtonButtonExample
-  var pathParts = examplePath.split("/");
+  var pathParts = examplePath.split("\\");
   var filename = pathParts[pathParts.length - 1];
   return ["".concat(_utils.repoURL, "/edit/master/docs/src/examples/").concat(examplePath, ".js"), "?message=docs(".concat(filename, "): your description")].join('');
 };
