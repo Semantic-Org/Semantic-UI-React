@@ -21,6 +21,7 @@ const editorStyle = {
 const errorStyle = {
   fontSize: '0.9rem',
   fontFamily: 'monospace',
+  margin: 0,
   whiteSpace: 'pre-wrap',
 }
 
@@ -72,7 +73,7 @@ const ExampleEditor = (props) => {
 
                   {error && (
                     <Segment color='red' basic secondary inverted style={errorStyle}>
-                      {error}
+                      {error.toString()}
                     </Segment>
                   )}
                   <CodeSnippet fitted mode='html' value={markup} />
