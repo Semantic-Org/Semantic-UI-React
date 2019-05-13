@@ -17,6 +17,10 @@ class CreateReferenceProxy {
   get clientHeight() {
     return this.getBoundingClientRect().height
   }
+
+  get parentNode() {
+    return this.ref.current.parentNode
+  }
 }
 
 /**
