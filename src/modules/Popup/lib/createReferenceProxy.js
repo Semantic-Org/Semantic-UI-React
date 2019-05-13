@@ -19,7 +19,7 @@ class ReferenceProxy {
   }
 
   get parentNode() {
-    return this.ref.current.parentNode
+    return this.ref.current ? this.ref.current.parentNode : undefined
   }
 }
 
