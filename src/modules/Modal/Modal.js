@@ -250,9 +250,10 @@ class Modal extends Component {
 
   setDimmerNodeStyle = () => {
     debug('setDimmerNodeStyle()')
+    const { current } = this.dimmerRef
 
-    if (this.dimmerRef.current && this.dimmerRef.current.style) {
-      this.dimmerRef.current.style.setProperty('display', 'flex', 'important')
+    if (current && current.style && current.style.display !== 'flex') {
+      current.style.setProperty('display', 'flex', 'important')
     }
   }
 
