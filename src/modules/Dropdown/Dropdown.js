@@ -769,8 +769,8 @@ export default class Dropdown extends Component {
   // Getters
   // ----------------------------------------
 
-  getKeyAndValues = options =>
-    (options ? options.map(option => _.pick(option, ['key', 'value'])) : options)
+  getKeyAndValues = (options) =>
+    options ? options.map((option) => _.pick(option, ['key', 'value'])) : options
 
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
@@ -782,7 +782,7 @@ export default class Dropdown extends Component {
 
     // filter out active options
     if (multiple) {
-      filteredOptions = _.filter(filteredOptions, opt => !_.includes(value, opt.value))
+      filteredOptions = _.filter(filteredOptions, (opt) => !_.includes(value, opt.value))
     }
 
     // filter by search query
@@ -795,7 +795,7 @@ export default class Dropdown extends Component {
 
         const re = new RegExp(_.escapeRegExp(strippedQuery), 'i')
 
-        filteredOptions = _.filter(filteredOptions, opt =>
+        filteredOptions = _.filter(filteredOptions, (opt) =>
           re.test(deburr ? _.deburr(opt.text) : opt.text),
         )
       }
@@ -1056,7 +1056,7 @@ export default class Dropdown extends Component {
     return _.isNil(tabIndex) ? 0 : tabIndex
   }
 
-  handleSearchInputOverrides = predefinedProps => ({
+  handleSearchInputOverrides = (predefinedProps) => ({
     onChange: (e, inputProps) => {
       _.invoke(predefinedProps, 'onChange', e, inputProps)
       this.handleSearchChange(e, inputProps)
@@ -1157,7 +1157,7 @@ export default class Dropdown extends Component {
     this.setState({ focus: hasFocus })
   }
 
-  toggle = e => (this.state.open ? this.close(e) : this.open(e))
+  toggle = (e) => (this.state.open ? this.close(e) : this.open(e))
 
   // ----------------------------------------
   // Render
@@ -1185,7 +1185,7 @@ export default class Dropdown extends Component {
     }
 
     return (
-      <div className={classes} role='alert' aria-live='polite'>
+      <div className={classes} role='alert' aria-live='polite' aria-atomic>
         {_text}
       </div>
     )
@@ -1257,8 +1257,8 @@ export default class Dropdown extends Component {
     }
 
     const isActive = multiple
-      ? optValue => _.includes(value, optValue)
-      : optValue => optValue === value
+      ? (optValue) => _.includes(value, optValue)
+      : (optValue) => optValue === value
 
     return _.map(options, (opt, i) =>
       DropdownItem.create({
