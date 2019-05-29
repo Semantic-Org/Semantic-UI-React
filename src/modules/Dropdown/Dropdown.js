@@ -81,6 +81,9 @@ export default class Dropdown extends Component {
     /** Whether or not the menu should close when the dropdown is blurred. */
     closeOnBlur: PropTypes.bool,
 
+    /** Whether or not the dropdown should close when the escape key is pressed. */
+    closeOnEscape: PropTypes.bool,
+
     /**
      * Whether or not the menu should close when a value is selected from the dropdown.
      * By default, multiple selection dropdowns will remain open on change, while single
@@ -359,6 +362,7 @@ export default class Dropdown extends Component {
     additionLabel: 'Add ',
     additionPosition: 'top',
     closeOnBlur: true,
+    closeOnEscape: true,
     deburr: false,
     icon: 'dropdown',
     minCharacters: 1,
@@ -498,9 +502,12 @@ export default class Dropdown extends Component {
   }
 
   closeOnEscape = (e) => {
+    if (!this.props.closeOnEscape) return
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
     e.preventDefault()
-    this.close()
+
+    debug('closeOnEscape()')
+    this.close(e)
   }
 
   moveSelectionOnKeyDown = (e) => {
