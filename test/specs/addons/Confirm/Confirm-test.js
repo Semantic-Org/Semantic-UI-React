@@ -29,14 +29,16 @@ describe('Confirm', () => {
   common.isConformant(Confirm)
 
   common.implementsShorthandProp(Confirm, {
+    autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: Modal.Header,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
   common.implementsShorthandProp(Confirm, {
+    autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: Modal.Content,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
 
   describe('children', () => {
@@ -52,7 +54,7 @@ describe('Confirm', () => {
       shallow(<Confirm />).should.have.prop('size', 'small')
     })
 
-    _.forEach(['fullscreen', 'large', 'mini', 'small', 'tiny'], (size) => {
+    _.forEach(['mini', 'tiny', 'small', 'large', 'fullscreen'], (size) => {
       it(`applies ${size} size`, () => {
         shallow(<Confirm size={size} />).should.have.prop('size', size)
       })
@@ -68,6 +70,7 @@ describe('Confirm', () => {
         .find('Button')
         .first()
         .shallow()
+        .childAt(0)
         .should.have.text('foo')
     })
   })
@@ -80,6 +83,7 @@ describe('Confirm', () => {
       shallow(<Confirm confirmButton='foo' />)
         .find('Button[primary]')
         .shallow()
+        .childAt(0)
         .should.have.text('foo')
     })
   })

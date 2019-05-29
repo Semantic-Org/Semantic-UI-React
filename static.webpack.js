@@ -1,5 +1,5 @@
 import path from 'path'
-import webpack from 'webpack'
+import webpack from 'react-static/node_modules/webpack'
 
 import config from './config'
 
@@ -9,33 +9,56 @@ export default (webpackConfig, { stage }) => ({
   entry:
     stage === 'prod'
       ? {
-        main: [config.paths.docsSrc('index.js'), config.paths.src('index.js')],
-      }
+          main: [config.paths.docsSrc('index.js'), config.paths.src('index.js')],
+        }
       : webpackConfig.entry,
   externals:
     stage === 'node'
       ? webpackConfig.externals
       : {
-        'anchor-js': 'AnchorJS',
-        '@babel/standalone': 'Babel',
-        faker: 'faker',
-        'prop-types': 'PropTypes',
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'react-dom/server': 'ReactDOMServer',
-      },
+          'anchor-js': 'AnchorJS',
+          '@babel/standalone': 'Babel',
+          faker: 'faker',
+          'prettier/standalone': 'prettier',
+          'prop-types': 'PropTypes',
+          react: 'React',
+          'react-dom': 'ReactDOM',
+          'react-dom/server': 'ReactDOMServer',
+        },
   module: {
     ...webpackConfig.module,
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        include: [
+          // Heads up!
+          // There modules should be manually transpiled because they are not compatible with IE11
+          path.resolve(__dirname, 'node_modules/ansi-styles'),
+          path.resolve(__dirname, 'node_modules/debug'),
+
+          path.resolve(__dirname, 'docs'),
+          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'tmp'),
+        ],
         use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: true,
+            cacheDirectory: stage === 'dev',
+            configFile: path.resolve(__dirname, '.babelrc'),
           },
         },
+      },
+      {
+        test: /.mdx?$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
+          '@mdx-js/loader',
+        ],
       },
     ],
   },

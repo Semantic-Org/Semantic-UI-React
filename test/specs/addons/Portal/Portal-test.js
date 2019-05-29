@@ -9,13 +9,13 @@ import PortalInner from 'src/addons/Portal/PortalInner'
 
 let wrapper
 
-const createHandlingComponent = eventName =>
+const createHandlingComponent = (eventName) =>
   class HandlingComponent extends Component {
     static propTypes = {
       handler: PropTypes.func,
     }
 
-    handleEvent = e => this.props.handler(e, this.props)
+    handleEvent = (e) => this.props.handler(e, this.props)
 
     render() {
       const buttonProps = { [eventName]: this.handleEvent }
@@ -31,7 +31,12 @@ const wrapperMount = (node, opts) => {
 
 describe('Portal', () => {
   afterEach(() => {
-    if (wrapper && wrapper.unmount) wrapper.unmount()
+    if (wrapper && wrapper.unmount) {
+      try {
+        wrapper.unmount()
+        // eslint-disable-next-line no-empty
+      } catch (e) {}
+    }
   })
 
   common.hasSubcomponents(Portal, [PortalInner])
@@ -170,7 +175,7 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.instance().portalNode.tagName.should.equal('P')
+      wrapper.instance().contentRef.current.tagName.should.equal('P')
     })
 
     it('maintains ref to DOM node with React component', () => {
@@ -181,7 +186,7 @@ describe('Portal', () => {
           <EmptyComponent />
         </Portal>,
       )
-      wrapper.instance().portalNode.tagName.should.equal('P')
+      wrapper.instance().contentRef.current.tagName.should.equal('P')
     })
   })
 
@@ -410,6 +415,25 @@ describe('Portal', () => {
         done()
       }, 1)
     })
+
+    it("does not close the portal on mouseleave triggered by the portal's children", (done) => {
+      wrapperMount(
+        <Portal closeOnPortalMouseLeave defaultOpen mouseLeaveDelay={0} trigger={<button />}>
+          <div>
+            <p id='child' />
+          </div>
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
+
+      domEvent.mouseLeave('#child')
+      setTimeout(() => {
+        wrapper.update()
+        wrapper.should.have.descendants(PortalInner)
+
+        done()
+      }, 1)
+    })
   })
 
   describe('closeOnTriggerMouseLeave + closeOnPortalMouseLeave', () => {
@@ -573,6 +597,20 @@ describe('Portal', () => {
       wrapper.should.have.descendants(PortalInner)
 
       domEvent.click('#inner')
+      wrapper.update()
+      wrapper.should.have.descendants(PortalInner)
+    })
+
+    it('does not close on mousedown inside and mouseup outside', () => {
+      wrapperMount(
+        <Portal closeOnDocumentClick defaultOpen>
+          <p id='inner' />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
+
+      domEvent.mouseDown('#inner')
+      domEvent.click(document)
       wrapper.update()
       wrapper.should.have.descendants(PortalInner)
     })

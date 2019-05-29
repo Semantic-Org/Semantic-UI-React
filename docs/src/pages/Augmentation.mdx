@@ -1,0 +1,34 @@
+import { Message } from 'semantic-ui-react'
+
+export const meta = {
+  title: 'Augmentation',
+  prevPage: { title: 'Get Started', href: '/usage' },
+  nextPage: { title: 'Shorthand Props', href: '/shorthand-props' },
+}
+
+React components are inherently composable. Semantic UI React makes them even more so with the `as` prop feature: you can control the rendered HTML tag, or render one component as another component.
+
+```jsx
+<>
+  // will produce <button class='ui button' />
+  <Button />
+  // 🔨 will produce <a class='ui button' />
+  <Button as='a' />
+</>
+```
+
+Augmentation is powerful. You can compose component features and props without adding extra nested components. This is essential for working with `MenuLink`s and `react-router`.
+
+<Message info size='mini'>
+  Unhandled props by a component are passed to the component you are rendering <code>as</code>.
+</Message>
+
+```jsx
+import { Link } from 'react-router-dom'
+;<Menu>
+  // 💡 `to` does not belong to `Menu.Item` props and will be passed to `Link`
+  <Menu.Item as={Link} to='/home'>
+    Home
+  </Menu.Item>
+</Menu>
+```

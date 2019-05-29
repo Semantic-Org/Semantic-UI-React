@@ -9,11 +9,13 @@ import Adapter from 'enzyme-adapter-react-16'
 import dirtyChai from 'dirty-chai'
 import sinonChai from 'sinon-chai'
 
+import nestedShallow from './utils/nestedShallow'
+
 // ----------------------------------------
 // Enzyme
 // ----------------------------------------
 global.enzyme = enzyme
-global.shallow = enzyme.shallow
+global.shallow = nestedShallow
 global.render = enzyme.render
 global.mount = enzyme.mount
 
@@ -48,7 +50,7 @@ let info
 let warn
 let error
 
-const throwOnConsole = method => (...args) => {
+const throwOnConsole = (method) => (...args) => {
   throw new Error(
     `console.${method} should never be called but was called with:\n${args.join(' ')}`,
   )

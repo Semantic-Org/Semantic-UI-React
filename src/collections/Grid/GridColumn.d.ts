@@ -5,7 +5,7 @@ import {
   SemanticTEXTALIGNMENTS,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 
 export type GridOnlyProp =
   | string
@@ -16,9 +16,11 @@ export type GridOnlyProp =
   | 'tablet'
   | 'widescreen'
 
-export interface GridColumnProps {
+export interface GridColumnProps extends StrictGridColumnProps {
   [key: string]: any
+}
 
+export interface StrictGridColumnProps {
   /** An element type to render as (string or function). */
   as?: any
 

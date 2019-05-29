@@ -45,9 +45,7 @@ class PaginationItem extends Component {
   }
 
   handleClick = (e) => {
-    const { type } = this.props
-
-    if (type !== 'ellipsisItem') _.invoke(this.props, 'onClick', e, this.props)
+    _.invoke(this.props, 'onClick', e, this.props)
   }
 
   handleKeyDown = (e) => {
@@ -67,8 +65,9 @@ class PaginationItem extends Component {
     return MenuItem.create(this.props, {
       defaultProps: {
         active,
-        disabled,
         'aria-current': active,
+        'aria-disabled': disabled,
+        disabled,
         onClick: this.handleClick,
         onKeyDown: this.handleKeyDown,
         tabIndex: disabled ? -1 : 0,

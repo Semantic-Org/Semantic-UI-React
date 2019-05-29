@@ -1,13 +1,15 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticShorthandCollection, SemanticWIDTHS } from '../..'
+import { SemanticCOLORS, SemanticShorthandCollection, SemanticWIDTHS } from '../../generic'
 import MenuHeader from './MenuHeader'
 import { default as MenuItem, MenuItemProps } from './MenuItem'
 import MenuMenu from './MenuMenu'
 
-export interface MenuProps {
+export interface MenuProps extends StrictMenuProps {
   [key: string]: any
+}
 
+export interface StrictMenuProps {
   /** An element type to render as (string or function). */
   as?: any
 

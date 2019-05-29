@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React from 'react'
 
 import Table from 'src/collections/Table/Table'
@@ -10,6 +9,7 @@ import TableHeaderCell from 'src/collections/Table/TableHeaderCell'
 import TableRow from 'src/collections/Table/TableRow'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
+import * as _ from 'lodash'
 
 describe('Table', () => {
   common.isConformant(Table)
@@ -92,9 +92,31 @@ describe('Table', () => {
 
     const tableData = [
       { name: undefined, status: undefined, notes: undefined },
-      { name: 'Jimmy', status: 'Requires Action', notes: undefined },
-      { name: 'Jamie', status: undefined, notes: 'Hostile' },
-      { name: 'Jill', status: undefined, notes: undefined },
+      { name: 'Jimmy', lastName: 'Hendrix', status: 'Requires Action', notes: undefined },
+      { name: 'Jamie', lastName: 'Lannister', status: undefined, notes: 'Hostile' },
+      { name: 'Jill', lastName: undefined, status: undefined, notes: undefined },
+    ]
+
+    const renderBodyRowWithSpan = ({ name, lastName, status, notes }, index) => ({
+      key: index,
+      cells: [
+        name || { key: 0 },
+        lastName || { key: 1 },
+        status || { key: 2 },
+        notes || { key: 3 },
+      ],
+    })
+
+    const headerRows = [
+      {
+        key: 0,
+        cells: [
+          { key: 'fullname', colSpan: 2, content: 'Full Name' },
+          { key: 'status', rowSpan: 2, content: 'Status' },
+          { key: 'notes', rowSpan: 2, content: 'Notes' },
+        ],
+      },
+      { key: 1, cells: ['First Name', 'Last Name'] },
     ]
 
     const wrapperMount = (props) => {
@@ -133,6 +155,38 @@ describe('Table', () => {
         .first()
         .find('td')
         .should.have.lengthOf(3)
+
+      tfoot.should.have.lengthOf(1)
+      tfoot.find('tr').should.have.lengthOf(1)
+      tfoot
+        .find('tr')
+        .find('td')
+        .should.have.lengthOf(footerRow.length)
+    })
+
+    it('renders the table with 2 lines header', () => {
+      wrapperMount({ renderBodyRow: renderBodyRowWithSpan, footerRow, tableData, headerRows })
+
+      thead.should.have.lengthOf(1)
+      thead.find('tr').should.have.lengthOf(2)
+      thead
+        .find('tr')
+        .at(0)
+        .find('th')
+        .should.have.lengthOf(3)
+      thead
+        .find('tr')
+        .at(1)
+        .find('th')
+        .should.have.lengthOf(2)
+
+      tbody.should.have.lengthOf(1)
+      tbody.find('tr').should.have.lengthOf(tableData.length)
+      tbody
+        .find('tr')
+        .first()
+        .find('td')
+        .should.have.lengthOf(4)
 
       tfoot.should.have.lengthOf(1)
       tfoot.find('tr').should.have.lengthOf(1)

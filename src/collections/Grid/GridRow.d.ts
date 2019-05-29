@@ -5,13 +5,15 @@ import {
   SemanticTEXTALIGNMENTS,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 import { GridReversedProp } from './Grid'
 import { GridOnlyProp } from './GridColumn'
 
-export interface GridRowProps {
+export interface GridRowProps extends StrictGridRowProps {
   [key: string]: any
+}
 
+export interface StrictGridRowProps {
   /** An element type to render as (string or function). */
   as?: any
 

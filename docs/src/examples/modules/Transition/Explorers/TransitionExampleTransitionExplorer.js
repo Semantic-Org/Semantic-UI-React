@@ -9,8 +9,7 @@ export default class TransitionExampleTransitionExplorer extends Component {
   state = { animation: transitions[0], duration: 500, visible: true }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+  toggleVisibility = () => this.setState(prevState => ({ visible: !prevState.visible }))
 
   render() {
     const { animation, duration, visible } = this.state

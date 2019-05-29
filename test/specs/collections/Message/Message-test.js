@@ -17,18 +17,21 @@ describe('Message', () => {
     rendersContent: false,
   })
 
-  common.implementsIconProp(Message)
+  common.implementsIconProp(Message, { autoGenerateKey: false })
   common.implementsShorthandProp(Message, {
+    autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: 'p',
     mapValueToProps: val => ({ children: val }),
   })
   common.implementsShorthandProp(Message, {
+    autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: MessageHeader,
     mapValueToProps: val => ({ content: val }),
   })
   common.implementsShorthandProp(Message, {
+    autoGenerateKey: false,
     propKey: 'list',
     ShorthandComponent: MessageList,
     mapValueToProps: val => ({ items: val }),

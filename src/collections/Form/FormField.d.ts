@@ -4,11 +4,13 @@ import {
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 
-export interface FormFieldProps {
+export interface FormFieldProps extends StrictFormFieldProps {
   [key: string]: any
+}
 
+export interface StrictFormFieldProps {
   /** An element type to render as (string or function). */
   as?: any
 

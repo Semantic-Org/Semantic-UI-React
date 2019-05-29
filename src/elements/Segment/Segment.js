@@ -15,6 +15,7 @@ import {
   useValueAndKey,
 } from '../../lib'
 import SegmentGroup from './SegmentGroup'
+import SegmentInline from './SegmentInline'
 
 /**
  * A segment is used to create a grouping of related content.
@@ -34,6 +35,7 @@ function Segment(props) {
     floated,
     inverted,
     loading,
+    placeholder,
     padded,
     piled,
     raised,
@@ -56,6 +58,7 @@ function Segment(props) {
     useKeyOnly(disabled, 'disabled'),
     useKeyOnly(inverted, 'inverted'),
     useKeyOnly(loading, 'loading'),
+    useKeyOnly(placeholder, 'placeholder'),
     useKeyOnly(piled, 'piled'),
     useKeyOnly(raised, 'raised'),
     useKeyOnly(secondary, 'secondary'),
@@ -80,6 +83,7 @@ function Segment(props) {
 }
 
 Segment.Group = SegmentGroup
+Segment.Inline = SegmentInline
 
 Segment.propTypes = {
   /** An element type to render as (string or function). */
@@ -126,6 +130,9 @@ Segment.propTypes = {
 
   /** A segment can increase its padding. */
   padded: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
+
+  /** A segment can be used to reserve space for conditionally displayed content. */
+  placeholder: PropTypes.bool,
 
   /** Formatted to look like a pile of pages. */
   piled: PropTypes.bool,

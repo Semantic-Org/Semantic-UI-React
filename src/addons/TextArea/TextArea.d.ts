@@ -1,13 +1,12 @@
 import * as React from 'react'
 
-export interface TextAreaProps {
+export interface TextAreaProps extends StrictTextAreaProps {
   [key: string]: any
+}
 
+export interface StrictTextAreaProps {
   /** An element type to render as (string or function). */
   as?: any
-
-  /** Indicates whether height of the textarea fits the content or not. */
-  autoHeight?: boolean
 
   /**
    * Called on change.
@@ -27,9 +26,6 @@ export interface TextAreaProps {
 
   /** Indicates row count for a TextArea. */
   rows?: number | string
-
-  /** Custom TextArea style. */
-  style?: Object
 
   /** The value of the textarea. */
   value?: number | string

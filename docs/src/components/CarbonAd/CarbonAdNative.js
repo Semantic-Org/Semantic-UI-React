@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 import { Label } from 'semantic-ui-react'
@@ -6,7 +6,9 @@ import { makeDebugger } from '../../../../src/lib'
 
 const debug = makeDebugger('carbon-ad-native')
 
-class CarbonAdNative extends Component {
+const MAX_FAILED_ADS = 10
+
+class CarbonAdNative extends PureComponent {
   static propTypes = {
     inverted: PropTypes.bool,
   }
@@ -16,6 +18,7 @@ class CarbonAdNative extends Component {
   componentDidMount() {
     debug('componentDidMount', { mounted: this.mounted })
     this.mounted = true
+    this.failedAds = 0
 
     this.getAd()
   }
@@ -70,9 +73,14 @@ class CarbonAdNative extends Component {
       debug('handleNativeJSON sanitizedAd', sanitizedAd)
 
       if (!sanitizedAd) {
-        this.getAd()
+        this.failedAds += 1
+
+        if (this.failedAds < MAX_FAILED_ADS) {
+          this.getAd()
+        }
       } else if (this.mounted) {
         this.setState({ ad: sanitizedAd })
+        this.failedAds = 0
       }
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -161,7 +169,8 @@ class CarbonAdNative extends Component {
           #${id}:hover > img {
             opacity: 1;
           }
-        `}</style>
+        `}
+        </style>
       </a>
     )
   }

@@ -1,12 +1,14 @@
 import React from 'react'
-import { Segment, Button, Divider } from 'semantic-ui-react'
+import { Divider, Header, Image, Segment } from 'semantic-ui-react'
 
 const DividerExampleClearing = () => (
   <Segment>
-    <Button floated='right'>Floated Button</Button>
+    <Header as='h2' floated='right'>
+      Floated Content
+    </Header>
+
     <Divider clearing />
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-    labore...
+    <Image src='/images/wireframe/short-paragraph.png' />
   </Segment>
 )
 

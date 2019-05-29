@@ -2,13 +2,12 @@ import keyboardKey from 'keyboard-key'
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-static'
+import { Link } from 'react-static'
 import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
 import { docTypes, getComponentPathname, typeOrder, repoURL } from 'docs/src/utils'
-import shallowEqual from 'src/lib/shallowEqual'
 
 const selectedItemLabelStyle = {
   position: 'absolute',
@@ -47,10 +46,6 @@ class Sidebar extends Component {
     super(props)
 
     this.filteredMenu = props.componentMenu
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return !shallowEqual(this.state, nextState)
   }
 
   componentDidMount() {
@@ -120,7 +115,7 @@ class Sidebar extends Component {
   menuItemsByType = _.map((nextType) => {
     const items = _.flow(
       _.filter(({ type }) => type === nextType),
-      _.map(info => (
+      _.map((info) => (
         <Menu.Item
           key={info.displayName}
           name={info.displayName}
@@ -188,59 +183,63 @@ class Sidebar extends Component {
     const { query } = this.state
 
     return (
-      <div style={style}>
-        <Menu
-          fluid
-          inverted
-          vertical
-          borderless
-          compact
-          style={{ display: 'flex', flexDirection: 'column', flex: 1 }}
-        >
-          <Menu.Item>
-            <Logo spaced='right' size='mini' />
-            <strong>
-              Semantic UI React &nbsp;
-              <small>
-                <em>{version}</em>
-              </small>
-            </strong>
-          </Menu.Item>
-          <Menu.Item style={{ boxShadow: '0 0 1rem black' }}>
-            <Menu.Header>Getting Started</Menu.Header>
-            <Menu.Menu>
-              <Menu.Item as={Link} exact to='/' activeClassName='active'>
-                Introduction
-              </Menu.Item>
-              <Menu.Item as={Link} exact to='/usage' activeClassName='active'>
-                Usage
-              </Menu.Item>
-              <Menu.Item as={Link} exact to='/theming' activeClassName='active'>
-                Theming
-              </Menu.Item>
-              <Menu.Item as={Link} exact to='/layouts' activeClassName='active'>
-                Layouts
-              </Menu.Item>
-              <Menu.Item as='a' href={repoURL} target='_blank' rel='noopener noreferrer'>
-                <Icon name='github' /> GitHub
-              </Menu.Item>
-              <Menu.Item
-                as='a'
-                href={`${repoURL}/blob/master/CHANGELOG.md`}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <Icon name='file alternate outline' /> CHANGELOG
-              </Menu.Item>
-            </Menu.Menu>
-          </Menu.Item>
-          <div style={{ flex: 1, overflowY: 'scroll' }}>
+      <div style={{ ...style, display: 'flex', flexDirection: 'column', flex: 1 }}>
+        <div style={{ flex: 1, overflowY: 'scroll' }}>
+          <Menu fluid inverted vertical borderless compact>
+            <Menu.Item>
+              <Logo spaced='right' size='mini' />
+              <strong>
+                Semantic UI React &nbsp;
+                <small>
+                  <em>{version}</em>
+                </small>
+              </strong>
+              <Menu.Menu>
+                <Menu.Item as='a' href={repoURL} target='_blank' rel='noopener noreferrer'>
+                  <Icon name='github' /> GitHub
+                </Menu.Item>
+                <Menu.Item
+                  as='a'
+                  href={`${repoURL}/blob/master/CHANGELOG.md`}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <Icon name='file alternate outline' /> CHANGELOG
+                </Menu.Item>
+              </Menu.Menu>
+            </Menu.Item>
+            <Menu.Item>
+              <Menu.Header>Getting Started</Menu.Header>
+              <Menu.Menu>
+                <Menu.Item as={Link} exact to='/' activeClassName='active'>
+                  Introduction
+                </Menu.Item>
+                <Menu.Item as={Link} exact to='/usage' activeClassName='active'>
+                  Get Started
+                </Menu.Item>
+                <Menu.Item as={Link} exact to='/augmentation' activeClassName='active'>
+                  Augmentation
+                </Menu.Item>
+                <Menu.Item as={Link} exact to='/shorthand-props' activeClassName='active'>
+                  Shorthand Props
+                </Menu.Item>
+                <Menu.Item as={Link} exact to='/theming' activeClassName='active'>
+                  Theming
+                </Menu.Item>
+                <Menu.Item as={Link} exact to='/layouts' activeClassName='active'>
+                  Layout examples
+                </Menu.Item>
+                <Menu.Item as={Link} exact to='/prototypes' activeClassName='active'>
+                  Prototypes
+                </Menu.Item>
+              </Menu.Menu>
+            </Menu.Item>
             <Menu.Item fitted>
               <Ref innerRef={this.handleSearchRef}>
                 <Input
                   fluid
                   icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
-                  placeholder='Press &quot;/&quot; to find a component'
+                  placeholder='Press "/" to filter components'
                   value={query}
                   onChange={this.handleSearchChange}
                   onKeyDown={this.handleSearchKeyDown}
@@ -248,14 +247,14 @@ class Sidebar extends Component {
               </Ref>
             </Menu.Item>
             {query ? this.renderSearchItems() : this.menuItemsByType}
-          </div>
-          <div style={{ flex: '0 0 auto' }}>
-            <CarbonAd />
-          </div>
-        </Menu>
+          </Menu>
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <CarbonAd />
+        </div>
       </div>
     )
   }
 }
 
-export default withRouter(Sidebar)
+export default Sidebar

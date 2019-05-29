@@ -13,7 +13,8 @@ function ensureSlash(needlePath, needsSlash) {
   const hasSlash = needlePath.endsWith('/')
   if (hasSlash && !needsSlash) {
     return needlePath.substr(needlePath, needlePath.length - 1)
-  } else if (!hasSlash && needsSlash) {
+  }
+  if (!hasSlash && needsSlash) {
     return `${needlePath}/`
   }
   return needlePath

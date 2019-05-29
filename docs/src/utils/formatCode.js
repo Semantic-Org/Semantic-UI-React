@@ -1,21 +1,31 @@
 import prettier from 'prettier/standalone'
 import prettierConfig from '../../../.prettierrc.json'
+import isBrowser from '../../../src/lib/isBrowser'
+
+const { printWidth } = prettierConfig.overrides.find(
+  ({ files }) => files === 'docs/src/examples/**/*.js',
+).options
 
 delete prettierConfig.$schema
 delete prettierConfig.overrides
 
-const formatCode = (code) => {
-  if (!code) return ''
+// Heads up!
+// Please use this function directly and don't reexport it in utils.
+// https://github.com/prettier/prettier/issues/4959
 
-  const formatted = prettier.format(code, {
-    ...prettierConfig,
-    parser: 'babylon',
-    plugins: window.prettierPlugins,
-  })
+const formatCode = isBrowser()
+  ? (code, parser = 'babel') => {
+    if (!code) return ''
 
-  return formatted
-    .replace(/^;</, '<') // remove beginning comma in JSX/HTML
-    .replace(/="([\s\S]*?)?"/gm, "='$1'") // single quote JSX
-}
+    const formatted = prettier.format(code, {
+      ...prettierConfig,
+      printWidth,
+      parser,
+      plugins: window.prettierPlugins,
+    })
+
+    return formatted.replace(/^;</, '<') // remove beginning semi in JSX/HTML
+  }
+  : x => x
 
 export default formatCode

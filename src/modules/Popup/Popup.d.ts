@@ -1,13 +1,15 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
-import { PortalProps } from '../../addons/Portal'
+import { SemanticShorthandItem } from '../../generic'
+import { StrictPortalProps } from '../../addons/Portal'
 import { default as PopupContent, PopupContentProps } from './PopupContent'
 import { default as PopupHeader, PopupHeaderProps } from './PopupHeader'
 
-export interface PopupProps extends PortalProps {
+export interface PopupProps extends StrictPopupProps {
   [key: string]: any
+}
 
+export interface StrictPopupProps extends StrictPortalProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -24,7 +26,10 @@ export interface PopupProps extends PortalProps {
   content?: SemanticShorthandItem<PopupContentProps>
 
   /** Existing element the pop-up should be bound to. */
-  context?: object
+  context?: object | React.RefObject<HTMLElement>
+
+  /** A disabled popup only renders its trigger. */
+  disabled?: boolean
 
   /** A flowing Popup has no maximum width and continues to flow to fit its content. */
   flowing?: boolean
@@ -41,11 +46,14 @@ export interface PopupProps extends PortalProps {
   /** Invert the colors of the popup */
   inverted?: boolean
 
-  /** Horizontal offset in pixels to be applied to the popup. */
-  horizontalOffset?: number
-
-  /** Vertical offset in pixels to be applied to the popup. */
-  verticalOffset?: number
+  /** Offset value to apply to rendered popup. Accepts the following units:
+   * - px or unit-less, interpreted as pixels
+   * - %, percentage relative to the length of the trigger element
+   * - %p, percentage relative to the length of the popup element
+   * - vw, CSS viewport width unit
+   * - vh, CSS viewport height unit
+   */
+  offset?: number | string
 
   /** Events triggering the popup. */
   on?: 'hover' | 'click' | 'focus' | ('hover' | 'click' | 'focus')[]
@@ -104,9 +112,6 @@ export interface PopupProps extends PortalProps {
 
   /** Popup width. */
   wide?: boolean | 'very'
-
-  /** Element to be rendered within the confines of the viewport whenever possible. */
-  keepInViewPort?: boolean
 }
 
 interface PopupComponent extends React.ComponentClass<PopupProps> {

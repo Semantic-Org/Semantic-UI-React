@@ -6,7 +6,7 @@ import {
   SemanticShorthandContent,
   SemanticSIZES,
   SemanticVERTICALALIGNMENTS,
-} from '../..'
+} from '../../generic'
 import ListContent from './ListContent'
 import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'
@@ -14,9 +14,11 @@ import ListIcon from './ListIcon'
 import { default as ListItem, ListItemProps } from './ListItem'
 import ListList from './ListList'
 
-export interface ListProps {
+export interface ListProps extends StrictListProps {
   [key: string]: any
+}
 
+export interface StrictListProps {
   /** An element type to render as (string or function). */
   as?: any
 

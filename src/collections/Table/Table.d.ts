@@ -2,10 +2,11 @@ import * as React from 'react'
 
 import {
   SemanticCOLORS,
+  SemanticShorthandCollection,
   SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS,
-} from '../..'
+} from '../../generic'
 import TableBody from './TableBody'
 import TableCell from './TableCell'
 import TableFooter from './TableFooter'
@@ -13,9 +14,11 @@ import TableHeader from './TableHeader'
 import TableHeaderCell from './TableHeaderCell'
 import { default as TableRow, TableRowProps } from './TableRow'
 
-export interface TableProps {
+export interface TableProps extends StrictTableProps {
   [key: string]: any
+}
 
+export interface StrictTableProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -59,6 +62,9 @@ export interface TableProps {
 
   /** Shorthand for a TableRow to be placed within Table.Header. */
   headerRow?: SemanticShorthandItem<TableRowProps>
+
+  /** Shorthand for multiple TableRows to be placed within Table.Header. */
+  headerRows?: SemanticShorthandCollection<TableRowProps>
 
   /** A table's colors can be inverted. */
   inverted?: boolean

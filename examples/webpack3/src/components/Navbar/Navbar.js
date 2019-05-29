@@ -23,7 +23,7 @@ export default class NavBar extends Component {
     if (visible) this.setState({ visible: false })
   }
 
-  handleToggle = () => this.setState({ visible: !this.state.visible })
+  handleToggle = () => this.setState((prevState) => ({ visible: !prevState.visible }))
 
   render() {
     const { children, leftItems, rightItems } = this.props

@@ -33,15 +33,24 @@ describe('PaginationItem', () => {
 
   describe('disabled', () => {
     it('is "false" by default', () => {
-      shallow(<PaginationItem />).should.have.prop('disabled', false)
+      const wrapper = shallow(<PaginationItem />)
+
+      wrapper.should.have.prop('disabled', false)
+      wrapper.should.have.prop('aria-disabled', false)
     })
 
     it('is "true" when "type" is "ellipsisItem"', () => {
-      shallow(<PaginationItem type='ellipsisItem' />).should.have.prop('disabled', true)
+      const wrapper = shallow(<PaginationItem type='ellipsisItem' />)
+
+      wrapper.should.have.prop('disabled', true)
+      wrapper.should.have.prop('aria-disabled', true)
     })
 
     it('can be overridden', () => {
-      shallow(<PaginationItem disabled />).should.have.prop('disabled', true)
+      const wrapper = shallow(<PaginationItem disabled />)
+
+      wrapper.should.have.prop('disabled', true)
+      wrapper.should.have.prop('aria-disabled', true)
     })
   })
 
@@ -64,15 +73,6 @@ describe('PaginationItem', () => {
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(event, { onClick })
-    })
-
-    it('is omitted when "type" is "ellipsisItem"', () => {
-      const event = { target: null }
-      const onClick = sandbox.spy()
-
-      shallow(<PaginationItem onClick={onClick} type='ellipsisItem' />).simulate('click', event)
-
-      onClick.should.have.been.not.called()
     })
   })
 

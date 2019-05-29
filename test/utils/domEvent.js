@@ -35,6 +35,14 @@ export const click = (node, data) => fire(node, 'click', data)
 export const keyDown = (node, data) => fire(node, 'keydown', data)
 
 /**
+ * Dispatch a 'mousedown' event on a DOM node.
+ * @param {String|Object} node A querySelector string or DOM node.
+ * @param {Object} [data] Additional event data.
+ * @returns {Object} The event
+ */
+export const mouseDown = (node, data) => fire(node, 'mousedown', data)
+
+/**
  * Dispatch a 'mouseenter' event on a DOM node.
  * @param {String|Object} node A querySelector string or DOM node.
  * @param {Object} [data] Additional event data.
@@ -89,6 +97,7 @@ export default {
   mouseEnter,
   mouseLeave,
   mouseOver,
+  mouseDown,
   mouseUp,
   resize,
   scroll,

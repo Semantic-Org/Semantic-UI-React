@@ -32,7 +32,7 @@ const GridVariationsExamples = () => (
 
     <ComponentExample
       title='Stretched'
-      description='A row can automatically resize all elements to split the available width evenly.'
+      description='A row can automatically resize all elements to split the available height evenly.'
       examplePath='collections/Grid/Variations/GridExampleStretched'
     />
     <ComponentExample examplePath='collections/Grid/Variations/GridExampleStretchedEqual' />
@@ -81,9 +81,7 @@ const GridVariationsExamples = () => (
 
     <ComponentExample
       title='Vertical Alignment'
-      description={
-        'A grid, row, or column can specify its vertical alignment to have all its columns vertically centered.'
-      }
+      description='A grid, row, or column can specify its vertical alignment to have all its columns vertically centered.'
       examplePath='collections/Grid/Variations/GridExampleVerticalAlignment'
     />
     <ComponentExample examplePath='collections/Grid/Variations/GridExampleVerticalAlignmentRow' />

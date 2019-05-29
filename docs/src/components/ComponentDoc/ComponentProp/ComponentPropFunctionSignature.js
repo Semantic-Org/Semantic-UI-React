@@ -2,7 +2,6 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { neverUpdate } from 'docs/src/hoc'
 import ComponentPropExtra from './ComponentPropExtra'
 
 const descriptionStyle = {
@@ -20,7 +19,7 @@ const rowStyle = {
   flexDirection: 'row',
 }
 
-const getTagType = tag => (tag.type.type === 'AllLiteral' ? 'any' : tag.type.name)
+const getTagType = (tag) => (tag.type.type === 'AllLiteral' ? 'any' : tag.type.name)
 
 const ComponentPropFunctionSignature = ({ name, tags }) => {
   const params = _.filter(tags, { title: 'param' })
@@ -31,9 +30,9 @@ const ComponentPropFunctionSignature = ({ name, tags }) => {
   if (_.isEmpty(params) && !returns) return null
 
   const paramSignature = params
-    .map(param => `${param.name}: ${getTagType(param)}`)
+    .map((param) => `${param.name}: ${getTagType(param)}`)
     // prevent object properties from showing as individual params
-    .filter(p => !_.includes(p, '.'))
+    .filter((p) => !_.includes(p, '.'))
     .join(', ')
 
   const tagDescriptionRows = _.compact([...params, returns]).map((tag) => {
@@ -66,4 +65,6 @@ ComponentPropFunctionSignature.propTypes = {
   tags: PropTypes.array,
 }
 
-export default neverUpdate(ComponentPropFunctionSignature)
+const areEqual = () => true
+
+export default React.memo(ComponentPropFunctionSignature, areEqual)

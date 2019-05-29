@@ -1,5 +1,5 @@
 import Document from './docs/src/components/Document'
-import { getComponentMenu } from './docs/src/staticUtils'
+import { getComponentMenu } from './docs/static/utils'
 import config from './config'
 import pkg from './package'
 import getRoutes from './static.routes'
@@ -19,12 +19,20 @@ export default {
       anchor: require('anchor-js/package.json').version,
       babel: {
         standalone: require('@babel/standalone/package.json').version,
+        standaloneEnv: require('@babel/preset-env-standalone/package.json').version,
       },
       faker: require('faker/package.json').version,
       prettier: require('prettier/package.json').version,
       propTypes: require('prop-types/package.json').version,
       react: require('react/package.json').version,
-      sui: require('semantic-ui-css/package.json').version,
+      // Heads up!
+      // https://github.com/Semantic-Org/Semantic-UI/issues/6646
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/3345
+      // `semantic-ui-css` and `semantic-ui-less` packages are not properly released:
+      //  - prebuilt CSS of 2.4.1 points to 2.4.0
+      //  - 2.4.2 is missing on NPM
+      // sui: require('semantic-ui-css/package.json').version,
+      sui: '2.4.2',
       suir: require('./package.json').version,
     },
   }),

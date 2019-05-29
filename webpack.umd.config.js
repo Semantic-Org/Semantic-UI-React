@@ -1,8 +1,8 @@
+const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
 
 const config = require('./config')
 const pkg = require('./package.json')
-const webpackConfig = require('./webpack.config.babel')
 
 const { paths } = config
 
@@ -16,6 +16,7 @@ const webpackUMDConfig = {
     react: 'React',
     'react-dom': 'ReactDOM',
   },
+  mode: 'production',
   output: {
     filename: '[name].min.js',
     libraryTarget: 'umd',
@@ -28,18 +29,35 @@ const webpackUMDConfig = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        unused: true,
-        dead_code: true,
-        warnings: false,
-      },
-      output: { comments: false },
-    }),
   ],
   module: {
-    noParse: webpackConfig.module.noParse,
-    rules: webpackConfig.module.rules,
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        },
+      },
+    ],
+  },
+  performance: {
+    maxEntrypointSize: 750000,
+    maxAssetSize: 750000,
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+        },
+      }),
+    ],
   },
 }
 

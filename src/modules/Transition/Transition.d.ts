@@ -1,18 +1,23 @@
 import * as React from 'react'
 
-import { SemanticTRANSITIONS } from '../../'
+import { SemanticTRANSITIONS } from '../../generic'
 import TransitionGroup from './TransitionGroup'
 
 export type TRANSITION_STATUSES = 'ENTERED' | 'ENTERING' | 'EXITED' | 'EXITING' | 'UNMOUNTED'
 
-export interface TransitionProps {
+export interface TransitionProps extends StrictTransitionProps {
   [key: string]: any
+}
 
+export interface StrictTransitionProps {
   /** Named animation event to used. Must be defined in CSS. */
-  animation?: SemanticTRANSITIONS
+  animation?: SemanticTRANSITIONS | string
 
   /** Primary content. */
   children?: React.ReactNode
+
+  /** Whether it is directional animation event or not. Use it only for custom transitions. */
+  directional?: boolean
 
   /** Duration of the CSS transition animation in milliseconds. */
   duration?: number | string | TransitionPropDuration

@@ -4,27 +4,23 @@ import Sidebar from 'src/modules/Sidebar/Sidebar'
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
 
-const nestingLevel = 1
-
 describe('Sidebar', () => {
-  common.isConformant(Sidebar, { nestingLevel })
-  common.hasUIClassName(Sidebar, { nestingLevel })
-  common.rendersChildren(Sidebar, { nestingLevel })
+  common.isConformant(Sidebar)
+  common.hasUIClassName(Sidebar)
+  common.rendersChildren(Sidebar)
 
-  common.propKeyOnlyToClassName(Sidebar, 'visible', { nestingLevel })
+  common.propKeyOnlyToClassName(Sidebar, 'visible')
 
-  common.propValueOnlyToClassName(
-    Sidebar,
-    'animation',
-    ['overlay', 'push', 'scale down', 'uncover', 'slide out', 'slide along'],
-    { nestingLevel },
-  )
-  common.propValueOnlyToClassName(Sidebar, 'direction', ['top', 'right', 'bottom', 'left'], {
-    nestingLevel,
-  })
-  common.propValueOnlyToClassName(Sidebar, 'width', ['very thin', 'thin', 'wide', 'very wide'], {
-    nestingLevel,
-  })
+  common.propValueOnlyToClassName(Sidebar, 'animation', [
+    'overlay',
+    'push',
+    'scale down',
+    'uncover',
+    'slide out',
+    'slide along',
+  ])
+  common.propValueOnlyToClassName(Sidebar, 'direction', ['top', 'right', 'bottom', 'left'])
+  common.propValueOnlyToClassName(Sidebar, 'width', ['very thin', 'thin', 'wide', 'very wide'])
 
   describe('componentWillUnmount', () => {
     it('will call "clearTimeout"', () => {
@@ -88,15 +84,16 @@ describe('Sidebar', () => {
 
   describe('onHidden', () => {
     it('is called when the "visible" prop was changed to "false"', (done) => {
+      Sidebar.animationDuration = 0
       const onHidden = sandbox.spy()
-      const wrapper = mount(<Sidebar duration={0} onHidden={onHidden} visible />)
+      const wrapper = mount(<Sidebar onHidden={onHidden} visible />)
 
       onHidden.should.have.not.been.called()
       wrapper.setProps({ visible: false })
 
       setTimeout(() => {
         onHidden.should.have.been.calledOnce()
-        onHidden.should.have.been.calledWithMatch(null, { duration: 0, visible: false })
+        onHidden.should.have.been.calledWithMatch(null, { visible: false })
 
         done()
       }, 0)
@@ -105,15 +102,16 @@ describe('Sidebar', () => {
 
   describe('onShow', () => {
     it('is called when the "visible" prop was changed to "true"', (done) => {
+      Sidebar.animationDuration = 0
       const onShow = sandbox.spy()
-      const wrapper = mount(<Sidebar duration={0} onShow={onShow} />)
+      const wrapper = mount(<Sidebar onShow={onShow} />)
 
       onShow.should.have.not.been.called()
       wrapper.setProps({ visible: true })
 
       setTimeout(() => {
         onShow.should.have.been.calledOnce()
-        onShow.should.have.been.calledWithMatch(null, { duration: 0, visible: true })
+        onShow.should.have.been.calledWithMatch(null, { visible: true })
 
         done()
       }, 0)
@@ -129,6 +127,17 @@ describe('Sidebar', () => {
       wrapper.setProps({ visible: true })
       onVisible.should.have.been.calledOnce()
       onVisible.should.have.been.calledWithMatch(null, { visible: true })
+    })
+  })
+
+  describe('target', () => {
+    it('is passed to the EventStack component', () => {
+      const target = document.createElement('div')
+
+      const wrapper = shallow(<Sidebar target={target} visible />)
+      const stack = wrapper.find('EventStack')
+
+      stack.should.have.prop('target', target)
     })
   })
 })

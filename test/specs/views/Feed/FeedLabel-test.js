@@ -8,7 +8,7 @@ describe('FeedLabel', () => {
   common.isConformant(FeedLabel)
   common.rendersChildren(FeedLabel)
 
-  common.implementsIconProp(FeedLabel)
+  common.implementsIconProp(FeedLabel, { autoGenerateKey: false })
 
   describe('image prop', () => {
     it('renders <img> with string', () => {

@@ -119,7 +119,8 @@ export default class StickyLayout extends Component {
           html, body {
             background: #fff;
           }
-        `}</style>
+        `}
+        </style>
 
         <Container text style={{ marginTop: '2em' }}>
           <Header as='h1'>Sticky Example</Header>
@@ -139,7 +140,7 @@ export default class StickyLayout extends Component {
         >
           <Menu
             borderless
-            fixed={menuFixed && 'top'}
+            fixed={menuFixed ? 'top' : undefined}
             style={menuFixed ? fixedMenuStyle : menuStyle}
           >
             <Container text>
@@ -270,7 +271,7 @@ export default class StickyLayout extends Component {
             </Grid>
             <Divider inverted section />
             <Image src='/logo.png' centered size='mini' />
-            <List horizontal inverted divided link>
+            <List horizontal inverted divided link size='small'>
               <List.Item as='a' href='#'>
                 Site Map
               </List.Item>

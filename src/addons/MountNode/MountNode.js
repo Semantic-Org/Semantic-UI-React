@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { Component } from 'react'
 
 import { customPropTypes } from '../../lib'
-import getNodeFromProps from './lib/getNodeFromProps'
+import getNodeRefFromProps from './lib/getNodeRefFromProps'
 import handleClassNamesChange from './lib/handleClassNamesChange'
 import NodeRegistry from './lib/NodeRegistry'
 
@@ -17,7 +17,7 @@ export default class MountNode extends Component {
     className: PropTypes.string,
 
     /** The DOM node where we will apply class names. Defaults to document.body. */
-    node: customPropTypes.domNode,
+    node: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
   }
 
   shouldComponentUpdate({ className: nextClassName }) {
@@ -26,28 +26,22 @@ export default class MountNode extends Component {
     return nextClassName !== currentClassName
   }
 
-  componentWillMount() {
-    const node = getNodeFromProps(this.props)
+  componentDidMount() {
+    const nodeRef = getNodeRefFromProps(this.props)
 
-    if (node) {
-      nodeRegistry.add(node, this)
-      nodeRegistry.emit(node, handleClassNamesChange)
-    }
+    nodeRegistry.add(nodeRef, this)
+    nodeRegistry.emit(nodeRef, handleClassNamesChange)
   }
 
   componentDidUpdate() {
-    const node = getNodeFromProps(this.props)
-
-    if (node) nodeRegistry.emit(node, handleClassNamesChange)
+    nodeRegistry.emit(getNodeRefFromProps(this.props), handleClassNamesChange)
   }
 
   componentWillUnmount() {
-    const node = getNodeFromProps(this.props)
+    const nodeRef = getNodeRefFromProps(this.props)
 
-    if (node) {
-      nodeRegistry.del(node, this)
-      nodeRegistry.emit(node, handleClassNamesChange)
-    }
+    nodeRegistry.del(nodeRef, this)
+    nodeRegistry.emit(nodeRef, handleClassNamesChange)
   }
 
   render() {

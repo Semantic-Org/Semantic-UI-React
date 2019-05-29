@@ -10,6 +10,7 @@ import {
   getUnhandledProps,
   SUI,
   useKeyOnly,
+  useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
 import IconGroup from './IconGroup'
@@ -36,7 +37,10 @@ class Icon extends PureComponent {
     color: PropTypes.oneOf(SUI.COLORS),
 
     /** Icons can display a smaller corner icon. */
-    corner: PropTypes.bool,
+    corner: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(['top left', 'top right', 'bottom left', 'bottom right']),
+    ]),
 
     /** Show that the icon is inactive. */
     disabled: PropTypes.bool,
@@ -95,6 +99,17 @@ class Icon extends PureComponent {
     return ariaOptions
   }
 
+  handleClick = (e) => {
+    const { disabled } = this.props
+
+    if (disabled) {
+      e.preventDefault()
+      return
+    }
+
+    _.invoke(this.props, 'onClick', e, this.props)
+  }
+
   render() {
     const {
       bordered,
@@ -119,12 +134,12 @@ class Icon extends PureComponent {
       size,
       useKeyOnly(bordered, 'bordered'),
       useKeyOnly(circular, 'circular'),
-      useKeyOnly(corner, 'corner'),
       useKeyOnly(disabled, 'disabled'),
       useKeyOnly(fitted, 'fitted'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(link, 'link'),
       useKeyOnly(loading, 'loading'),
+      useKeyOrValueAndKey(corner, 'corner'),
       useValueAndKey(flipped, 'flipped'),
       useValueAndKey(rotated, 'rotated'),
       'icon',
@@ -134,7 +149,7 @@ class Icon extends PureComponent {
     const ElementType = getElementType(Icon, this.props)
     const ariaOptions = this.getIconAriaOptions()
 
-    return <ElementType {...rest} {...ariaOptions} className={classes} />
+    return <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick} />
   }
 }
 

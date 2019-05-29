@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { default as PortalInner } from './PortalInner'
 
-export interface PortalProps {
+export interface PortalProps extends StrictPortalProps {
   [key: string]: any
+}
 
+export interface StrictPortalProps {
   /** Primary content. */
   children?: React.ReactNode
 
@@ -91,12 +93,8 @@ export interface PortalProps {
   /** Element to be rendered in-place where the portal is defined. */
   trigger?: React.ReactNode
 
-  /**
-   * Called when componentDidMount.
-   *
-   * @param {HTMLElement} node - Referred node.
-   */
-  triggerRef?: (node: HTMLElement) => void
+  /** Called with a ref to the trigger node. */
+  triggerRef?: React.Ref<any>
 }
 
 declare class Portal extends React.Component<PortalProps, {}> {

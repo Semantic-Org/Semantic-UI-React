@@ -5,13 +5,15 @@ import {
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
-} from '../..'
+} from '../../generic'
 import { ListDescriptionProps } from './ListDescription'
 import { ListHeaderProps } from './ListHeader'
 
-export interface ListContentProps {
+export interface ListContentProps extends StrictListContentProps {
   [key: string]: any
+}
 
+export interface StrictListContentProps {
   /** An element type to render as (string or function). */
   as?: any
 

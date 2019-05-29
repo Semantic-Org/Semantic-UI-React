@@ -10,15 +10,13 @@ const getOptions = () =>
   })
 
 class DropdownExampleRemote extends Component {
-  componentWillMount() {
-    this.setState({
-      isFetching: false,
-      multiple: true,
-      search: true,
-      searchQuery: null,
-      value: [],
-      options: getOptions(),
-    })
+  state = {
+    isFetching: false,
+    multiple: true,
+    search: true,
+    searchQuery: null,
+    value: [],
+    options: getOptions(),
   }
 
   handleChange = (e, { value }) => this.setState({ value })
@@ -39,7 +37,7 @@ class DropdownExampleRemote extends Component {
     this.setState({ value: multiple ? [value] : value })
   }
 
-  toggleSearch = e => this.setState({ search: e.target.checked })
+  toggleSearch = (e) => this.setState({ search: e.target.checked })
 
   toggleMultiple = (e) => {
     const { value } = this.state
@@ -61,10 +59,20 @@ class DropdownExampleRemote extends Component {
               Random
             </Button>
             <label>
-              <input type='checkbox' checked={search} onChange={this.toggleSearch} /> Search
+              <input
+                type='checkbox'
+                checked={search}
+                onChange={this.toggleSearch}
+              />{' '}
+              Search
             </label>{' '}
             <label>
-              <input type='checkbox' checked={multiple} onChange={this.toggleMultiple} /> Multiple
+              <input
+                type='checkbox'
+                checked={multiple}
+                onChange={this.toggleMultiple}
+              />{' '}
+              Multiple
             </label>
           </p>
           <Dropdown

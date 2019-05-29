@@ -10,14 +10,14 @@ const PopupTypesExamples = () => (
       examplePath='modules/Popup/Types/PopupExample'
     />
     <ComponentExample
-      title='Titled'
-      description='An element can specify popup content with a title.'
-      examplePath='modules/Popup/Types/PopupExampleTitled'
+      title='Header'
+      description='An element can specify popup content with a header.'
+      examplePath='modules/Popup/Types/PopupExampleHeader'
     />
     <ComponentExample
-      title='HTML'
-      description='An element can specify HTML for a popup.'
-      examplePath='modules/Popup/Types/PopupExampleHtml'
+      title='Trigger'
+      description='A trigger can be complex element.'
+      examplePath='modules/Popup/Types/PopupExampleTrigger'
     />
   </ExampleSection>
 )

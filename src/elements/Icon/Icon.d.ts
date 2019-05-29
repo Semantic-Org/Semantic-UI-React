@@ -1,13 +1,16 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticICONS } from '../..'
+import { SemanticCOLORS, SemanticICONS } from '../../generic'
 import IconGroup from './IconGroup'
 
 export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
+export type IconCorner = 'bottom right' | 'top right' | 'top left' | 'bottom left'
 
-export interface IconProps {
+export interface IconProps extends StrictIconProps {
   [key: string]: any
+}
 
+export interface StrictIconProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -24,7 +27,7 @@ export interface IconProps {
   color?: SemanticCOLORS
 
   /** Icons can display a smaller corner icon. */
-  corner?: boolean
+  corner?: boolean | IconCorner
 
   /** Show that the icon is inactive. */
   disabled?: boolean

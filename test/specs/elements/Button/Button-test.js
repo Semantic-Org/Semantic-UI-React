@@ -17,8 +17,9 @@ describe('Button', () => {
   common.rendersChildren(Button)
 
   common.implementsCreateMethod(Button)
-  common.implementsIconProp(Button)
+  common.implementsIconProp(Button, { autoGenerateKey: false })
   common.implementsLabelProp(Button, {
+    autoGenerateKey: false,
     shorthandDefaultProps: {
       basic: true,
       pointing: 'left',
@@ -72,15 +73,15 @@ describe('Button', () => {
 
   describe('disabled', () => {
     it('is not set by default', () => {
-      shallow(<Button />).should.not.have.prop('disabled')
+      shallow(<Button />, { autoNesting: true }).should.not.have.prop('disabled')
     })
 
     it('applied when defined', () => {
-      shallow(<Button disabled />).should.have.prop('disabled', true)
+      shallow(<Button disabled />, { autoNesting: true }).should.have.prop('disabled', true)
     })
 
     it("don't apply when the element's type isn't button", () => {
-      shallow(<Button as='div' disabled />).should.not.have.prop('disabled')
+      shallow(<Button as='div' disabled />, { autoNesting: true }).should.not.have.prop('disabled')
     })
 
     it('is not set by default when has a label', () => {
@@ -112,27 +113,52 @@ describe('Button', () => {
     })
   })
 
+  describe('toggle', () => {
+    it('is not set by default', () => {
+      shallow(<Button />, { autoNesting: true }).should.not.have.prop('toggle')
+    })
+
+    it('should have aria-pressed', () => {
+      shallow(<Button toggle />, { autoNesting: true }).should.have.prop('aria-pressed')
+    })
+
+    it('aria-pressed should be true when active', () => {
+      shallow(<Button toggle active />, { autoNesting: true }).should.have.prop(
+        'aria-pressed',
+        true,
+      )
+    })
+
+    it('aria-pressed should be false when inactive', () => {
+      shallow(<Button toggle />, { autoNesting: true }).should.have.prop('aria-pressed', false)
+    })
+  })
+
   describe('icon', () => {
     it('adds className icon', () => {
-      shallow(<Button icon='user' />).should.have.className('icon')
+      shallow(<Button icon='user' />, { autoNesting: true }).should.have.className('icon')
     })
 
     it('adds className icon when true', () => {
-      shallow(<Button icon />).should.have.className('icon')
+      shallow(<Button icon />, { autoNesting: true }).should.have.className('icon')
     })
 
     it('does not add className icon when there is content', () => {
-      shallow(<Button icon='user' content={0} />).should.not.have.className('icon')
-      shallow(<Button icon='user' content='Yo' />).should.not.have.className('icon')
+      shallow(<Button icon='user' content={0} />, { autoNesting: true }).should.not.have.className(
+        'icon',
+      )
+      shallow(<Button icon='user' content='Yo' />, { autoNesting: true }).should.not.have.className(
+        'icon',
+      )
     })
 
     it('adds className icon given labelPosition and content', () => {
-      shallow(
-        <Button labelPosition='left' icon='user' content='My Account' />,
-      ).should.have.className('icon')
-      shallow(
-        <Button labelPosition='right' icon='user' content='My Account' />,
-      ).should.have.className('icon')
+      shallow(<Button labelPosition='left' icon='user' content='My Account' />, {
+        autoNesting: true,
+      }).should.have.className('icon')
+      shallow(<Button labelPosition='right' icon='user' content='My Account' />, {
+        autoNesting: true,
+      }).should.have.className('icon')
     })
   })
 
@@ -174,13 +200,12 @@ describe('Button', () => {
       wrapper.should.have.exactly(1).descendants('Label[pointing="right"]')
 
       wrapper
-        .children()
-        .at(0)
+        .childAt(0)
         .shallow()
         .should.match('.ui.label')
       wrapper
-        .children()
-        .at(1)
+        .childAt(1)
+        .childAt(0)
         .should.match('button')
     })
     it('is after the button and pointing="left" when labelPosition="right"', () => {
@@ -188,12 +213,11 @@ describe('Button', () => {
       wrapper.should.have.exactly(1).descendants('Label[pointing="left"]')
 
       wrapper
-        .children()
-        .at(0)
+        .childAt(0)
+        .childAt(0)
         .should.match('button')
       wrapper
-        .children()
-        .at(1)
+        .childAt(1)
         .shallow()
         .should.match('.ui.label')
     })
@@ -202,12 +226,11 @@ describe('Button', () => {
       wrapper.should.have.exactly(1).descendants('Label[pointing="left"]')
 
       wrapper
-        .children()
-        .at(0)
+        .childAt(0)
+        .childAt(0)
         .should.match('button')
       wrapper
-        .children()
-        .at(1)
+        .childAt(1)
         .shallow()
         .should.match('.ui.label')
     })
@@ -223,8 +246,9 @@ describe('Button', () => {
   describe('onClick', () => {
     it('is called with (e, data) when clicked', () => {
       const onClick = sandbox.spy()
+      const wrapper = shallow(<Button onClick={onClick} />, { autoNesting: true })
 
-      shallow(<Button onClick={onClick} />).simulate('click', syntheticEvent)
+      wrapper.simulate('click', syntheticEvent)
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithExactly(syntheticEvent, {
@@ -242,30 +266,36 @@ describe('Button', () => {
   })
 
   describe('role', () => {
-    it('defaults to a button', () => {
-      Button.defaultProps.role.should.equal('button')
-      shallow(<Button />).should.have.prop('role', 'button')
+    it('is not set by default', () => {
+      shallow(<Button />, { autoNesting: true }).should.not.have.prop('role')
+    })
+    it('defaults to "button" when rendered as not "button" element', () => {
+      shallow(<Button as='label' />, { autoNesting: true }).should.have.prop('role', 'button')
     })
     it('is configurable', () => {
-      shallow(<Button role='link' />).should.have.prop('role', 'link')
+      shallow(<Button role='link' />, { autoNesting: true }).should.have.prop('role', 'link')
+      shallow(<Button role='button' />, { autoNesting: true }).should.have.prop('role', 'button')
     })
   })
 
   describe('tabIndex', () => {
     it('is not set by default', () => {
-      shallow(<Button />).should.not.have.prop('tabIndex')
+      shallow(<Button />, { autoNesting: true }).should.not.have.prop('tabIndex')
     })
     it('defaults to 0 as div', () => {
-      shallow(<Button as='div' />).should.have.prop('tabIndex', 0)
+      shallow(<Button as='div' />, { autoNesting: true }).should.have.prop('tabIndex', 0)
     })
     it('defaults to -1 when disabled', () => {
-      shallow(<Button disabled />).should.have.prop('tabIndex', -1)
+      shallow(<Button disabled />, { autoNesting: true }).should.have.prop('tabIndex', -1)
     })
     it('can be set explicitly', () => {
-      shallow(<Button tabIndex={123} />).should.have.prop('tabIndex', 123)
+      shallow(<Button tabIndex={123} />, { autoNesting: true }).should.have.prop('tabIndex', 123)
     })
     it('can be set explicitly when disabled', () => {
-      shallow(<Button tabIndex={123} disabled />).should.have.prop('tabIndex', 123)
+      shallow(<Button tabIndex={123} disabled />, { autoNesting: true }).should.have.prop(
+        'tabIndex',
+        123,
+      )
     })
   })
 })

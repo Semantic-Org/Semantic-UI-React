@@ -48,7 +48,7 @@ const plugins = [
     'filter-imports',
     {
       imports: {
-        debug: ['default'],
+        './makeDebugger': ['default'],
         '../../lib': ['makeDebugger'],
       },
     },
@@ -61,7 +61,7 @@ module.exports = () => ({
     [
       '@babel/env',
       {
-        modules: isESBuild ? false : 'commonjs',
+        modules: isESBuild || isUMDBuild ? false : 'commonjs',
         targets: { browsers },
       },
     ],

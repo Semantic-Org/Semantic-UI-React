@@ -35,7 +35,8 @@ const InlineStyle = () => (
         left: 0em;
       }
     }
-  `}</style>
+  `}
+  </style>
 )
 
 const GridLayout = () => (
@@ -277,17 +278,17 @@ const GridLayout = () => (
       </p>
 
       <Grid>
-        <Grid.Column verticalAlign='right' width={8}>
+        <Grid.Column textAlign='right' width={8}>
           right aligned column
         </Grid.Column>
-        <Grid.Column verticalAlign='left' width={8}>
+        <Grid.Column textAlign='left' width={8}>
           left aligned column
         </Grid.Column>
-        <Grid.Row columns={2} verticalAlign='center'>
+        <Grid.Row columns={2} textAlign='center'>
           <Grid.Column>center aligned row</Grid.Column>
           <Grid.Column>center aligned row</Grid.Column>
         </Grid.Row>
-        <Grid.Column verticalAlign='right' width={16}>
+        <Grid.Column textAlign='right' width={16}>
           right aligned column
         </Grid.Column>
       </Grid>

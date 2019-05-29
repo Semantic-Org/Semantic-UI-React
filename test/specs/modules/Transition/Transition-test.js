@@ -59,6 +59,20 @@ describe('Transition', () => {
         wrapper.should.not.have.className('out')
       })
     })
+
+    it('supports custom animations', () => {
+      wrapperShallow(
+        <Transition animation='jump' transitionOnMount={false}>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.className('jump')
+
+      wrapper.setState({ status: Transition.EXITING })
+      wrapper.should.have.className('jump')
+    })
   })
 
   describe('className', () => {
@@ -120,6 +134,36 @@ describe('Transition', () => {
       wrapper.should.have.className('animating')
       wrapper.should.have.className('visible')
       wrapper.should.have.className('transition')
+    })
+  })
+
+  describe('directional', () => {
+    it('adds classes when is "true"', () => {
+      wrapperShallow(
+        <Transition directional transitionOnMount={false}>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.className('in')
+
+      wrapper.setState({ status: Transition.EXITING })
+      wrapper.should.have.className('out')
+    })
+
+    it('do not add classes when is "false"', () => {
+      wrapperShallow(
+        <Transition directional={false} transitionOnMount={false}>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.not.className('in')
+
+      wrapper.setState({ status: Transition.EXITING })
+      wrapper.should.have.not.className('out')
     })
   })
 

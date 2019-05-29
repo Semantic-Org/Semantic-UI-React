@@ -4,11 +4,13 @@ import {
   SemanticCOLORS,
   SemanticShorthandContent,
   SemanticShorthandItem,
-} from '../..'
+} from '../../generic'
 
-export interface ProgressProps {
+export interface ProgressProps extends StrictProgressProps {
   [key: string]: any
+}
 
+export interface StrictProgressProps {
   /** An element type to render as (string or function). */
   as?: any
 

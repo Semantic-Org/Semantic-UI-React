@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { HtmlImageProps, SemanticShorthandContent, SemanticShorthandItem } from '../..'
+import { HtmlImageProps, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
-export interface FeedLabelProps {
+export interface FeedLabelProps extends StrictFeedLabelProps {
   [key: string]: any
+}
 
+export interface StrictFeedLabelProps {
   /** An element type to render as (string or function). */
   as?: any
 

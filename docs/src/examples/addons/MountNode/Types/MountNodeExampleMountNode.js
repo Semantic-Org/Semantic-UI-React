@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { Form, Grid, MountNode, Segment } from 'semantic-ui-react'
 
 export default class MountNodeExampleMountNode extends Component {
   state = { className: '' }
+  nodeRef = createRef()
 
   handleChange = (e, { value }) => this.setState({ className: value })
 
-  handleRef = node => this.setState({ node })
-
   render() {
-    const { className, node } = this.state
+    const { className } = this.state
 
     return (
       <Grid columns={2}>
@@ -24,9 +23,9 @@ export default class MountNodeExampleMountNode extends Component {
         </Grid.Column>
         <Grid.Column>
           <Segment>
-            {node && <MountNode className={className} node={node} />}
-            <div ref={this.handleRef}>An example node</div>
+            <div ref={this.nodeRef}>An example node</div>
           </Segment>
+          <MountNode className={className} node={this.nodeRef} />
         </Grid.Column>
       </Grid>
     )

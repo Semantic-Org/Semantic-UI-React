@@ -1,3 +1,5 @@
+import makeDebugger from './makeDebugger'
+
 export AutoControlledComponent from './AutoControlledComponent'
 export { getChildMapping, mergeChildMappings } from './childMapping'
 export * as childrenUtils from './childrenUtils'
@@ -13,8 +15,6 @@ export {
 } from './classNameBuilders'
 
 export * as customPropTypes from './customPropTypes'
-
-export { debug, makeDebugger } from './debug'
 export eventStack from './eventStack'
 
 export * from './factories'
@@ -25,6 +25,7 @@ export {
   htmlInputAttrs,
   htmlInputEvents,
   htmlInputProps,
+  htmlImageProps,
   partitionHTMLProps,
 } from './htmlPropsUtils'
 
@@ -38,4 +39,7 @@ export { numberToWordMap, numberToWord } from './numberToWord'
 export normalizeOffset from './normalizeOffset'
 export normalizeTransitionDuration from './normalizeTransitionDuration'
 export objectDiff from './objectDiff'
-export shallowEqual from './shallowEqual'
+export { handleRef, isRefObject } from './refUtils'
+
+// Heads up! We import/export for this module to safely remove it with "babel-plugin-filter-imports"
+export { makeDebugger }

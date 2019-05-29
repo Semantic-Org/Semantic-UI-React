@@ -1,1 +1,1 @@
-export { default, SegmentProps } from './Segment'
+export { default, SegmentProps, StrictSegmentProps } from './Segment'

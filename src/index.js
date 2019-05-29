@@ -7,6 +7,8 @@ export Portal from './addons/Portal'
 export PortalInner from './addons/Portal/PortalInner'
 export Radio from './addons/Radio'
 export Ref from './addons/Ref'
+export RefFindNode from './addons/Ref/RefFindNode'
+export RefForward from './addons/Ref/RefForward'
 export Responsive from './addons/Responsive'
 export Select from './addons/Select'
 export TextArea from './addons/TextArea'
@@ -92,6 +94,12 @@ export ListList from './elements/List/ListList'
 
 export Loader from './elements/Loader'
 
+export Placeholder from './elements/Placeholder'
+export PlaceholderHeader from './elements/Placeholder/PlaceholderHeader'
+export PlaceholderImage from './elements/Placeholder/PlaceholderImage'
+export PlaceholderLine from './elements/Placeholder/PlaceholderLine'
+export PlaceholderParagraph from './elements/Placeholder/PlaceholderParagraph'
+
 export Rail from './elements/Rail'
 
 export Reveal from './elements/Reveal'
@@ -99,6 +107,7 @@ export RevealContent from './elements/Reveal/RevealContent'
 
 export Segment from './elements/Segment'
 export SegmentGroup from './elements/Segment/SegmentGroup'
+export SegmentInline from './elements/Segment/SegmentInline'
 
 export Step from './elements/Step'
 export StepContent from './elements/Step/StepContent'

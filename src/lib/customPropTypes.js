@@ -8,7 +8,9 @@ const typeOf = (...args) => Object.prototype.toString.call(...args)
  * Ensure a component can render as a give prop value.
  */
 export const as = (...args) =>
-  PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.symbol])(...args)
+  PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string, PropTypes.symbol])(
+    ...args,
+  )
 
 /**
  * Ensure a prop is a valid DOM node.
@@ -19,7 +21,7 @@ export const domNode = (props, propName) => {
   // skip if prop is valid
   if (props[propName] instanceof Element) return
 
-  throw new Error(`Invalid prop "${propName}" supplied, expected a DOM node.`)
+  return new Error(`Invalid prop "${propName}" supplied, expected a DOM node.`)
 }
 
 /**
@@ -245,8 +247,7 @@ export const givenProps = (propsShape, validator) => (props, propName, component
 
   if (error) {
     // poor mans shallow pretty print, prevents JSON circular reference errors
-    const prettyProps = `{ ${_
-      .keys(_.pick(_.keys(propsShape), props))
+    const prettyProps = `{ ${_.keys(_.pick(_.keys(propsShape), props))
       .map((key) => {
         const val = props[key]
         let renderedValue = val
@@ -340,6 +341,7 @@ export const itemShorthand = (...args) =>
   every([
     disallow(['children']),
     PropTypes.oneOfType([
+      PropTypes.func,
       PropTypes.node,
       PropTypes.object,
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.node, PropTypes.object])),
@@ -393,3 +395,11 @@ export const deprecate = (help, validator) => (props, propName, componentName, .
 
   return error
 }
+
+/** A checker that matches the React.RefObject type. */
+export const refObject = PropTypes.shape({
+  current: PropTypes.object,
+})
+
+/** A checker that matches the React.Ref type. */
+export const ref = PropTypes.oneOfType([PropTypes.func, refObject])

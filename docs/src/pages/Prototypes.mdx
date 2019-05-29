@@ -1,0 +1,83 @@
+import { Button, Card, Header, Image } from 'semantic-ui-react'
+
+export const meta = {
+  title: 'Prototypes',
+  prevPage: { title: 'Layout examples', href: '/layouts' },
+}
+
+<Header as='h2' content='Integrations' subheader='Examples of integrations with other libraries' />
+
+<Card.Group stackable itemsPerRow='2'>
+  <Card>
+    <Image src='/images/prototypes/pure-react-carousel.png' />
+    <Card.Content>
+      <Card.Header>pure-react-carousel</Card.Header>
+      <Card.Description>Carousel examples powered by pure-react-carousel.</Card.Description>
+    </Card.Content>
+    <Card.Content extra>
+      <Button.Group fluid size='small' vertical>
+        <Button
+          content='Try on CodeSandbox'
+          href='https://codesandbox.io/s/43pv7wm6n9'
+          icon='codepen'
+          target='_blank'
+        />
+        <Button
+          color='black'
+          content='Source on Github'
+          href='https://github.com/layershifter/semantic-ui-react-with-pure-react-carousel'
+          icon='github'
+          target='_blank'
+        />
+      </Button.Group>
+    </Card.Content>
+  </Card>
+  <Card>
+    <Image src='/images/prototypes/redux-form.png' />
+    <Card.Content>
+      <Card.Header>redux-form</Card.Header>
+      <Card.Description>An example of fully working form powered by redux-form.</Card.Description>
+    </Card.Content>
+    <Card.Content extra>
+      <Button.Group fluid size='small' vertical>
+        <Button
+          content='Try on CodeSandbox'
+          href='https://codesandbox.io/s/jn0w4mxm5'
+          icon='codepen'
+          target='_blank'
+        />
+        <Button
+          color='black'
+          content='Source on Github'
+          href='https://github.com/layershifter/semantic-ui-react-redux-form'
+          icon='github'
+          target='_blank'
+        />
+      </Button.Group>
+    </Card.Content>
+  </Card>
+  <Card>
+    <Image src='/images/prototypes/react-textarea-autosize.png' />
+    <Card.Content>
+      <Card.Header>react-textarea-autosize</Card.Header>
+      <Card.Description>Examples of auto sized textareas.</Card.Description>
+    </Card.Content>
+    <Card.Content extra>
+      <Button.Group fluid size='small' vertical>
+        <Button
+          content='Try on CodeSandbox'
+          href='https://codesandbox.io/s/1v67906ll4'
+          icon='codepen'
+          target='_blank'
+        />
+        <Button
+          color='black'
+          content='Source on Github'
+          href='https://github.com/layershifter/semantic-ui-react-with-textarea-autosize'
+          icon='github'
+          target='_blank'
+        />
+      </Button.Group>
+    </Card.Content>
+  </Card>
+</Card.Group>

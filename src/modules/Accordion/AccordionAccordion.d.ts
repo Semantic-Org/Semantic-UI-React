@@ -1,12 +1,14 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticShorthandItem } from '../../'
+import { SemanticShorthandCollection } from '../../generic'
 import { AccordionPanelProps } from './AccordionPanel'
 import { AccordionTitleProps } from './AccordionTitle'
 
-export interface AccordionAccordionProps {
+export interface AccordionAccordionProps extends StrictAccordionAccordionProps {
   [key: string]: any
+}
 
+export interface StrictAccordionAccordionProps {
   /** An element type to render as (string or function). */
   as?: any
 

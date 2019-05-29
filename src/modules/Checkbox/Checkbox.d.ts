@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { HtmlLabelProps, SemanticShorthandItem } from '../..'
+import { HtmlLabelProps, SemanticShorthandItem } from '../../generic'
 
-export interface CheckboxProps {
+export interface CheckboxProps extends StrictCheckboxProps {
   [key: string]: any
+}
 
+export interface StrictCheckboxProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -60,6 +62,14 @@ export interface CheckboxProps {
    * @param {object} data - All props and current checked/indeterminate state.
    */
   onMouseDown?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void
+
+  /**
+   * Called when the user releases the mouse.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and current checked/indeterminate state.
+   */
+  onMouseUp?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void
 
   /** Format as a radio element. This means it is an exclusive option. */
   radio?: boolean

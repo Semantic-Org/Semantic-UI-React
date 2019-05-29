@@ -6,8 +6,9 @@ import {
   getExampleSources,
   getInfoForSeeTags,
   getLayoutPaths,
+  getPagesPaths,
   getSidebarSections,
-} from './docs/src/staticUtils'
+} from './docs/static/utils'
 import { getComponentPathname } from './docs/src/utils'
 
 export default async () => {
@@ -16,36 +17,29 @@ export default async () => {
   return [
     {
       path: '/',
-      component: 'docs/src/views/Introduction',
+      component: 'docs/src/pages/Introduction',
       priority: 1,
     },
     {
-      path: '/introduction',
-      redirect: '/',
-    },
-    {
-      path: '/layouts',
-      component: 'docs/src/views/Layouts',
-      priority: 0.8,
-    },
-    {
-      path: '/theming',
-      component: 'docs/src/views/Theming',
-      priority: 0.8,
-    },
-    {
-      path: '/usage',
-      component: 'docs/src/views/Usage',
-      priority: 0.9,
-    },
-    {
-      component: 'docs/src/views/PageNotFound',
+      component: 'docs/src/pages/PageNotFound',
       is404: true,
     },
-    ..._.map(getComponentMenu(), baseInfo => ({
+
+    // Routes for pages, i.e /theming
+    ..._.map(getPagesPaths(), ({ pageName, routeName }) => ({
+      path: routeName,
+      component: 'docs/src/components/DocumentationPage',
+      priority: 0.9,
+      getData: async () => ({
+        pageName,
+      }),
+    })),
+
+    // Routes for components, i.e. /element/button
+    ..._.map(getComponentMenu(), (baseInfo) => ({
       path: getComponentPathname(baseInfo),
       component: 'docs/src/components/ComponentDoc',
-      priority: 0.7,
+      priority: 0.8,
       getData: async () => {
         const componentsInfo = getComponentGroupInfo(baseInfo.displayName)
         const sidebarSections = getSidebarSections(baseInfo.displayName)
@@ -55,15 +49,16 @@ export default async () => {
           exampleSources,
           sidebarSections,
           displayName: baseInfo.displayName,
-          exampleKeys: _.map(_.flatMap(sidebarSections, 'examples'), 'examplePath'),
           seeTags: getInfoForSeeTags(componentsInfo[baseInfo.displayName]),
         }
       },
     })),
+
+    // Routes for layouts, i.e. /layouts/theming
     ..._.map(await getLayoutPaths(), ({ routeName, componentFilename }) => ({
       path: `/layouts/${routeName}`,
       component: 'docs/src/components/LayoutsLayout',
-      priority: 0.6,
+      priority: 0.7,
       getData: async () => ({
         componentFilename,
       }),

@@ -3,7 +3,7 @@ import { types } from 'recast'
 import { utils } from 'react-docgen'
 
 const { namedTypes } = types
-const { getMemberValuePath, getPropertyName, resolveToValue } = utils
+const { getMemberValuePath, getPropertyName, getPropType, resolveToValue } = utils
 
 const getObjectName = path => `${_.get(path, 'object.name')}.${_.get(path, 'property.name')}`
 
@@ -12,6 +12,17 @@ const getArgumentValue = (path) => {
   if (namedTypes.MemberExpression.check(path)) return getObjectName(path)
 
   throw new Error('Unsupported value')
+}
+
+const isMeanableMember = (path) => {
+  if (namedTypes.CallExpression.check(path.node)) {
+    const callee = path.get('callee')
+    const typeName = getObjectName(callee.value)
+
+    return typeName.startsWith('PropTypes')
+  }
+
+  return !!namedTypes.MemberExpression.check(path.node)
 }
 
 const amendPropTypes = (documentation, path) => {
@@ -33,6 +44,26 @@ const amendPropTypes = (documentation, path) => {
       propDescriptor.type = {
         name: 'enum',
         value: getArgumentValue(argumentPath),
+      }
+
+      return
+    }
+
+    if (objectName === 'customPropTypes.every') {
+      const elements = valuePath.get('arguments', 0, 'elements')
+      const parsedTypes = []
+
+      for (let i = 0; i < elements.value.length; i += 1) {
+        const element = elements.get(i)
+
+        if (isMeanableMember(element)) {
+          parsedTypes.push(getPropType(element))
+        }
+      }
+
+      propDescriptor.type = {
+        name: 'union',
+        value: parsedTypes,
       }
     }
   })

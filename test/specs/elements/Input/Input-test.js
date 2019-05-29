@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Input from 'src/elements/Input/Input'
-import { htmlInputProps, SUI } from 'src/lib'
+import { htmlInputProps } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
@@ -56,16 +56,19 @@ describe('Input', () => {
   })
 
   common.implementsButtonProp(Input, {
+    autoGenerateKey: false,
     propKey: 'action',
   })
   common.implementsCreateMethod(Input)
-  common.implementsIconProp(Input)
+  common.implementsIconProp(Input, { autoGenerateKey: false })
   common.implementsLabelProp(Input, {
+    autoGenerateKey: false,
     shorthandDefaultProps: { className: 'label' },
   })
   common.implementsHTMLInputProp(Input, {
     alwaysPresent: true,
     assertExactMatch: false,
+    autoGenerateKey: false,
     shorthandDefaultProps: { type: 'text' },
   })
 
@@ -92,7 +95,14 @@ describe('Input', () => {
   common.propKeyOnlyToClassName(Input, 'transparent')
   common.propKeyOnlyToClassName(Input, 'icon')
 
-  common.propValueOnlyToClassName(Input, 'size', SUI.SIZES)
+  common.propValueOnlyToClassName(Input, 'size', [
+    'mini',
+    'small',
+    'large',
+    'big',
+    'huge',
+    'massive',
+  ])
 
   it('renders with conditional children', () => {
     shallow(
@@ -236,7 +246,7 @@ describe('Input', () => {
 
       ref.should.have.been.calledOnce()
       ref.should.have.been.calledWithMatch(input)
-      wrapper.instance().inputRef.should.equal(input)
+      wrapper.instance().inputRef.current.should.equal(input)
 
       wrapper.detach()
       document.body.removeChild(mountNode)

@@ -1,14 +1,14 @@
+import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
-  eventStack,
   getUnhandledProps,
   getElementType,
   useKeyOnly,
@@ -46,9 +46,6 @@ class Sidebar extends Component {
     /** Direction the sidebar should appear on. */
     direction: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
-    /** Duration of sidebar animation. */
-    duration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
     /**
      * Called before a sidebar begins to animate out.
      *
@@ -81,6 +78,9 @@ class Sidebar extends Component {
      */
     onVisible: PropTypes.func,
 
+    /** A sidebar can handle clicks on the passed element. */
+    target: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
+
     /** Controls whether or not the sidebar is visible on the page. */
     visible: PropTypes.bool,
 
@@ -90,60 +90,35 @@ class Sidebar extends Component {
 
   static defaultProps = {
     direction: 'left',
-    duration: 500,
   }
 
+  static animationDuration = 500
   static autoControlledProps = ['visible']
 
   static Pushable = SidebarPushable
   static Pusher = SidebarPusher
 
   state = {}
-
-  componentDidMount() {
-    const { visible } = this.props
-
-    if (visible) this.addListener()
-  }
-
-  componentWillUnmount() {
-    const { visible } = this.props
-
-    if (visible) this.removeListener()
-    clearTimeout(this.animationTimer)
-  }
+  ref = createRef()
 
   componentDidUpdate(prevProps) {
     const { visible: prevVisible } = prevProps
     const { visible: currentVisible } = this.props
 
-    if (prevVisible === currentVisible) return
-
-    this.handleAnimationStart()
-
-    if (currentVisible) {
-      this.addListener()
-      return
-    }
-
-    this.removeListener()
+    if (prevVisible !== currentVisible) this.handleAnimationStart()
   }
 
-  addListener() {
-    eventStack.sub('click', this.handleDocumentClick)
-  }
-
-  removeListener() {
-    eventStack.unsub('click', this.handleDocumentClick)
+  componentWillUnmount() {
+    clearTimeout(this.animationTimer)
   }
 
   handleAnimationStart = () => {
-    const { duration, visible } = this.props
+    const { visible } = this.props
     const callback = visible ? 'onVisible' : 'onHide'
 
     this.setState({ animating: true }, () => {
       clearTimeout(this.animationTimer)
-      this.animationTimer = setTimeout(this.handleAnimationEnd, duration)
+      this.animationTimer = setTimeout(this.handleAnimationEnd, Sidebar.animationDuration)
 
       if (this.skipNextCallback) {
         this.skipNextCallback = false
@@ -163,16 +138,23 @@ class Sidebar extends Component {
   }
 
   handleDocumentClick = (e) => {
-    if (!doesNodeContainClick(this.ref, e)) {
+    if (!doesNodeContainClick(this.ref.current, e)) {
       this.skipNextCallback = true
       _.invoke(this.props, 'onHide', e, { ...this.props, visible: false })
     }
   }
 
-  handleRef = c => (this.ref = c)
-
   render() {
-    const { animation, className, children, content, direction, visible, width } = this.props
+    const {
+      animation,
+      className,
+      children,
+      content,
+      direction,
+      target,
+      visible,
+      width,
+    } = this.props
     const { animating } = this.state
 
     const classes = cx(
@@ -189,9 +171,10 @@ class Sidebar extends Component {
     const ElementType = getElementType(Sidebar, this.props)
 
     return (
-      <Ref innerRef={this.handleRef}>
+      <Ref innerRef={this.ref}>
         <ElementType {...rest} className={classes}>
           {childrenUtils.isNil(children) ? content : children}
+          {visible && <EventStack name='click' on={this.handleDocumentClick} target={target} />}
         </ElementType>
       </Ref>
     )

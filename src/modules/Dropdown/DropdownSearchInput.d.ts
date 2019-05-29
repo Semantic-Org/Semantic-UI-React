@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-export interface DropdownSearchInputProps {
+export interface DropdownSearchInputProps extends StrictDropdownSearchInputProps {
   [key: string]: any
+}
 
+export interface StrictDropdownSearchInputProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -11,9 +13,6 @@ export interface DropdownSearchInputProps {
 
   /** Additional classes. */
   className?: string
-
-  /** A ref handler for input. */
-  inputRef?: (c: HTMLInputElement) => void
 
   /** An input can receive focus. */
   tabIndex?: number | string

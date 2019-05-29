@@ -21,10 +21,10 @@ export default class PortalExamplePortal extends Component {
   clearLog = () => this.setState({ log: [], logCount: 0 })
 
   writeLog = eventName =>
-    this.setState({
-      log: [`${new Date().toLocaleTimeString()}: ${eventName}`, ...this.state.log].slice(0, 20),
-      logCount: this.state.logCount + 1,
-    })
+    this.setState(prevState => ({
+      log: [`${new Date().toLocaleTimeString()}: ${eventName}`, ...prevState.log].slice(0, 20),
+      logCount: prevState.logCount + 1,
+    }))
 
   render() {
     const { log, logCount, open } = this.state

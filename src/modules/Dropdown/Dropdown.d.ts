@@ -7,9 +7,11 @@ import { default as DropdownItem, DropdownItemProps } from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
 
-export interface DropdownProps {
+export interface DropdownProps extends StrictDropdownProps {
   [key: string]: any
+}
 
+export interface StrictDropdownProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -36,6 +38,9 @@ export interface DropdownProps {
 
   /** Additional classes. */
   className?: string
+
+  /** Using the clearable setting will let users remove their selection from a dropdown. */
+  clearable?: boolean
 
   /** Whether or not the menu should close when the dropdown is blurred. */
   closeOnBlur?: boolean
@@ -111,7 +116,7 @@ export interface DropdownProps {
   multiple?: boolean
 
   /** Message to display when there are no results. */
-  noResultsMessage?: string
+  noResultsMessage?: React.ReactNode
 
   /**
    * Called when a user adds a new item. Use this to update the options list.

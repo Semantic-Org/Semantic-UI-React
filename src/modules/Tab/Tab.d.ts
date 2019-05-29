@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../..'
+import { SemanticShorthandItem } from '../../generic'
 import { default as TabPane, TabPaneProps } from './TabPane'
 
-export interface TabProps {
+export interface TabProps extends StrictTabProps {
   [key: string]: any
+}
 
+export interface StrictTabProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -47,7 +49,7 @@ export interface TabProps {
    * }
    */
   panes?: {
-    content?: SemanticShorthandItem<TabPaneProps>;
+    pane?: SemanticShorthandItem<TabPaneProps>;
     menuItem?: any;
     render?: () => React.ReactNode;
   }[]

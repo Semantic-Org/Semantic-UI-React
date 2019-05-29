@@ -30,7 +30,12 @@ const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Modal', () => {
   beforeEach(() => {
-    if (wrapper && wrapper.unmount) wrapper.unmount()
+    if (wrapper && wrapper.unmount) {
+      try {
+        wrapper.unmount()
+        // eslint-disable-next-line no-empty
+      } catch (e) {}
+    }
     wrapper = undefined
 
     const dimmer = document.querySelector('.ui.dimmer')
@@ -45,14 +50,16 @@ describe('Modal', () => {
   common.hasValidTypings(Modal)
 
   common.implementsShorthandProp(Modal, {
+    autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: ModalHeader,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
   common.implementsShorthandProp(Modal, {
+    autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: ModalContent,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
 
   // Heads up!
@@ -210,7 +217,7 @@ describe('Modal', () => {
   })
 
   describe('size', () => {
-    const sizes = ['fullscreen', 'large', 'mini', 'small', 'tiny']
+    const sizes = ['mini', 'tiny', 'small', 'large', 'fullscreen']
 
     sizes.forEach((size) => {
       it(`adds the "${size}" to the modal className`, () => {
@@ -321,6 +328,14 @@ describe('Modal', () => {
 
       domEvent.click(document.querySelector('.ui.modal').parentNode)
       spy.should.have.been.calledOnce()
+    })
+
+    it('is not called on mousedown inside and mouseup outside of the modal', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen />)
+
+      domEvent.mouseDown(document.querySelector('.ui.modal'))
+      domEvent.click(document.querySelector('.ui.modal').parentNode)
+      spy.should.not.have.been.called()
     })
 
     it('is not called on click inside of the modal', () => {

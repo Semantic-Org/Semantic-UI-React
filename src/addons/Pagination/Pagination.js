@@ -28,6 +28,9 @@ export default class Pagination extends Component {
     /** Number of always visible pages at the beginning and end. */
     boundaryRange: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
+    /** A pagination can be disabled. */
+    disabled: PropTypes.bool,
+
     /** A shorthand for PaginationItem. */
     ellipsisItem: customPropTypes.itemShorthand,
 
@@ -105,15 +108,28 @@ export default class Pagination extends Component {
     key: `${type}-${value}`,
     onClick: (e, itemProps) => {
       _.invoke(predefinedProps, 'onClick', e, itemProps)
-      this.handleItemClick(e, itemProps)
+      if (itemProps.type !== 'ellipsisItem') this.handleItemClick(e, itemProps)
     },
   })
 
   render() {
-    const { 'aria-label': ariaLabel, boundaryRange, siblingRange, totalPages } = this.props
+    const {
+      'aria-label': ariaLabel,
+      boundaryRange,
+      disabled,
+      ellipsisItem,
+      siblingRange,
+      totalPages,
+    } = this.props
     const { activePage } = this.state
 
-    const items = createPaginationItems({ activePage, boundaryRange, siblingRange, totalPages })
+    const items = createPaginationItems({
+      activePage,
+      boundaryRange,
+      hideEllipsis: _.isNil(ellipsisItem),
+      siblingRange,
+      totalPages,
+    })
     const rest = getUnhandledProps(Pagination, this.props)
 
     return (
@@ -122,6 +138,7 @@ export default class Pagination extends Component {
           PaginationItem.create(this.props[type], {
             defaultProps: {
               content: value,
+              disabled,
               value,
             },
             overrideProps: this.handleItemOverrides(active, type, value),
