@@ -9,6 +9,7 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
+import SearchCategoryLayout from './SearchCategoryLayout'
 
 function SearchCategory(props) {
   const { active, children, className, content, layoutRenderer, renderer } = props
@@ -26,18 +27,8 @@ function SearchCategory(props) {
   )
 }
 
-function DefaultLayoutRenderer({ categoryContent, resultsContent }) {
-  debugger
-  return (
-    <>
-      <div className='name'>{categoryContent}</div>
-      <div className='results'>{resultsContent}</div>
-    </>
-  )
-}
-
 SearchCategory.defaultProps = {
-  layoutRenderer: DefaultLayoutRenderer,
+  layoutRenderer: SearchCategoryLayout,
   renderer: ({ name }) => name,
 }
 
@@ -59,6 +50,14 @@ SearchCategory.propTypes = {
 
   /** Display name. */
   name: PropTypes.string,
+
+  /**
+   * Renders the category layout contents.
+   *
+   * @param {object} props - An object containing { categoryContent, resultsContent }..
+   * @returns {*} - Renderable category layout contents.
+   */
+  layoutRenderer: PropTypes.func,
 
   /**
    * Renders the category contents.
