@@ -11,20 +11,33 @@ import {
 } from '../../lib'
 
 function SearchCategory(props) {
-  const { active, children, className, content, renderer } = props
+  const { active, children, className, content, layoutRenderer, renderer } = props
   const classes = cx(useKeyOnly(active, 'active'), 'category', className)
   const rest = getUnhandledProps(SearchCategory, props)
   const ElementType = getElementType(SearchCategory, props)
 
+  const categoryContent = renderer(props)
+  const resultsContent = childrenUtils.isNil(children) ? content : children
+
   return (
     <ElementType {...rest} className={classes}>
-      <div className='name'>{renderer(props)}</div>
-      <div className='results'>{childrenUtils.isNil(children) ? content : children}</div>
+      {layoutRenderer({ categoryContent, resultsContent })}
     </ElementType>
   )
 }
 
+function DefaultLayoutRenderer({ categoryContent, resultsContent }) {
+  debugger
+  return (
+    <>
+      <div className='name'>{categoryContent}</div>
+      <div className='results'>{resultsContent}</div>
+    </>
+  )
+}
+
 SearchCategory.defaultProps = {
+  layoutRenderer: DefaultLayoutRenderer,
   renderer: ({ name }) => name,
 }
 
