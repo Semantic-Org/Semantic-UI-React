@@ -54,7 +54,7 @@ SearchCategory.propTypes = {
   /**
    * Renders the category layout contents.
    *
-   * @param {object} props - An object containing { categoryContent, resultsContent }..
+   * @param {object} props - The SearchCategoryLayout props object.
    * @returns {*} - Renderable category layout contents.
    */
   layoutRenderer: PropTypes.func,
