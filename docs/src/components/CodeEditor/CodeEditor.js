@@ -131,7 +131,7 @@ class CodeEditor extends React.Component {
 
   handleChange = _.debounce((value, e) => {
     _.invoke(this.props, 'onChange', value, e)
-  }, 200)
+  }, 300)
 
   setCursorVisibility = (visible) => {
     const cursor = this.editorRef.current.editor.renderer.$cursorLayer.element
