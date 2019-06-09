@@ -699,7 +699,7 @@ export default class Dropdown extends Component {
       this.handleChange(e, newValue)
     }
 
-    this.clearSearchQuery()
+    this.clearSearchQuery(value)
     this.closeOnChange(e)
 
     // Heads up! This event handler should be called after `onChange`
@@ -769,20 +769,23 @@ export default class Dropdown extends Component {
   // Getters
   // ----------------------------------------
 
-  getKeyAndValues = options =>
-    (options ? options.map(option => _.pick(option, ['key', 'value'])) : options)
+  getKeyAndValues = (options) =>
+    options ? options.map((option) => _.pick(option, ['key', 'value'])) : options
 
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
-  getMenuOptions = (value = this.state.value, options = this.props.options) => {
+  getMenuOptions = (
+    value = this.state.value,
+    options = this.props.options,
+    searchQuery = this.state.searchQuery,
+  ) => {
     const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
-    const { searchQuery } = this.state
 
     let filteredOptions = options
 
     // filter out active options
     if (multiple) {
-      filteredOptions = _.filter(filteredOptions, opt => !_.includes(value, opt.value))
+      filteredOptions = _.filter(filteredOptions, (opt) => !_.includes(value, opt.value))
     }
 
     // filter by search query
@@ -795,7 +798,7 @@ export default class Dropdown extends Component {
 
         const re = new RegExp(_.escapeRegExp(strippedQuery), 'i')
 
-        filteredOptions = _.filter(filteredOptions, opt =>
+        filteredOptions = _.filter(filteredOptions, (opt) =>
           re.test(deburr ? _.deburr(opt.text) : opt.text),
         )
       }
@@ -890,9 +893,14 @@ export default class Dropdown extends Component {
   // Setters
   // ----------------------------------------
 
-  clearSearchQuery = () => {
+  clearSearchQuery = (value) => {
     debug('clearSearchQuery()')
+
+    const { searchQuery } = this.state
+    if (searchQuery === undefined || searchQuery === '') return
+
     this.trySetState({ searchQuery: '' })
+    this.setSelectedIndex(value, undefined, '')
   }
 
   setValue = (value) => {
@@ -900,10 +908,14 @@ export default class Dropdown extends Component {
     this.trySetState({ value })
   }
 
-  setSelectedIndex = (value = this.state.value, optionsProps = this.props.options) => {
+  setSelectedIndex = (
+    value = this.state.value,
+    optionsProps = this.props.options,
+    searchQuery = this.state.searchQuery,
+  ) => {
     const { multiple } = this.props
     const { selectedIndex } = this.state
-    const options = this.getMenuOptions(value, optionsProps)
+    const options = this.getMenuOptions(value, optionsProps, searchQuery)
     const enabledIndicies = this.getEnabledIndices(options)
 
     let newSelectedIndex
@@ -1056,7 +1068,7 @@ export default class Dropdown extends Component {
     return _.isNil(tabIndex) ? 0 : tabIndex
   }
 
-  handleSearchInputOverrides = predefinedProps => ({
+  handleSearchInputOverrides = (predefinedProps) => ({
     onChange: (e, inputProps) => {
       _.invoke(predefinedProps, 'onChange', e, inputProps)
       this.handleSearchChange(e, inputProps)
@@ -1157,7 +1169,7 @@ export default class Dropdown extends Component {
     this.setState({ focus: hasFocus })
   }
 
-  toggle = e => (this.state.open ? this.close(e) : this.open(e))
+  toggle = (e) => (this.state.open ? this.close(e) : this.open(e))
 
   // ----------------------------------------
   // Render
@@ -1185,7 +1197,7 @@ export default class Dropdown extends Component {
     }
 
     return (
-      <div className={classes} role='alert' aria-live='polite'>
+      <div className={classes} role='alert' aria-live='polite' aria-atomic>
         {_text}
       </div>
     )
@@ -1257,8 +1269,8 @@ export default class Dropdown extends Component {
     }
 
     const isActive = multiple
-      ? optValue => _.includes(value, optValue)
-      : optValue => optValue === value
+      ? (optValue) => _.includes(value, optValue)
+      : (optValue) => optValue === value
 
     return _.map(options, (opt, i) =>
       DropdownItem.create({

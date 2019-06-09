@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { isRefObject } from '../../../lib/refUtils'
 
-class CreateReferenceProxy {
+class ReferenceProxy {
   constructor(refObject) {
     this.ref = refObject
   }
@@ -17,6 +17,10 @@ class CreateReferenceProxy {
   get clientHeight() {
     return this.getBoundingClientRect().height
   }
+
+  get parentNode() {
+    return this.ref.current ? this.ref.current.parentNode : undefined
+  }
 }
 
 /**
@@ -28,7 +32,7 @@ class CreateReferenceProxy {
  */
 const createReferenceProxy = _.memoize(
   (reference) =>
-    new CreateReferenceProxy(
+    new ReferenceProxy(
       // TODO: use toRefObject from Stardust
       // https://github.com/stardust-ui/react/issues/998
       isRefObject(reference) ? reference : { current: reference },
