@@ -102,7 +102,7 @@ const MenuItemLinkAugmentationHTML = `<div class="ui menu">
 </div>`
 
 const Comparison = ({ jsx, html }) => (
-  <Segment inverted className='code-example'>
+  <Segment inverted style={{ backgroundColor: '#2d2d2d' }}>
     <Grid columns='equal' centered textAlign='left'>
       <Grid.Column computer='8' largeScreen='7' widescreen='7'>
         <Label color='grey' size='tiny' attached='top left'>
@@ -112,7 +112,7 @@ const Comparison = ({ jsx, html }) => (
       </Grid.Column>
       <Grid.Column largeScreen='2' only='large screen' textAlign='center'>
         <Divider vertical>
-          <Icon name='right arrow circle' />
+          <Icon inverted name='right arrow circle' />
         </Divider>
       </Grid.Column>
       <Grid.Column computer='8' largeScreen='7' widescreen='7'>

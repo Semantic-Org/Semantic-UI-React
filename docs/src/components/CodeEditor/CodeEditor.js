@@ -3,13 +3,9 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Ace from 'react-ace'
 
-import 'brace'
 import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
-import 'brace/mode/json'
-import 'brace/mode/html'
-import 'brace/mode/sh'
-import 'brace/theme/tomorrow_night'
+import 'brace/theme/tomorrow_night_eighties'
 
 import { componentInfoContext } from 'docs/src/utils'
 
@@ -103,14 +99,12 @@ class CodeEditor extends React.Component {
 
   static propTypes = {
     active: PropTypes.bool,
-    mode: PropTypes.oneOf(['html', 'json', 'jsx', 'sh']),
     showCursor: PropTypes.bool,
     value: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
     active: true,
-    mode: 'jsx',
     showCursor: true,
   }
 
@@ -150,13 +144,14 @@ class CodeEditor extends React.Component {
         highlightGutterLine
         name={this.name}
         maxLines={Infinity}
+        mode='jsx'
         onChange={this.handleChange}
         readOnly={false}
         ref={this.editorRef}
         setOptions={{ fixedWidthGutter: true, showFoldWidgets: false }}
         showPrintMargin={false}
         tabSize={2}
-        theme='tomorrow_night'
+        theme='tomorrow_night_eighties'
         width='100%'
         {...this.props}
       />
