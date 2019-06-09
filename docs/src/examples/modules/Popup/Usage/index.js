@@ -9,7 +9,7 @@ const PopupUsageExamples = () => (
     <ComponentExample
       title='Offset'
       description='A popup position can be offset from its position.'
-      examplePath='modules/Popup/Variations/PopupExampleOffset'
+      examplePath='modules/Popup/Usage/PopupExampleOffset'
     >
       <Message info>
         <p>
@@ -71,7 +71,7 @@ const PopupUsageExamples = () => (
     <ComponentExample
       title='Hide on scroll'
       description='A popup can be hidden on a scroll event.'
-      examplePath='modules/Popup/Variations/PopupExampleHideOnScroll'
+      examplePath='modules/Popup/Usage/PopupExampleHideOnScroll'
     />
     <ComponentExample
       title='Default Open'

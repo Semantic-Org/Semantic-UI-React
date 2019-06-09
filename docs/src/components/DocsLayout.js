@@ -1,11 +1,10 @@
 import AnchorJS from 'anchor-js'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Head, withRouter, withSiteData } from 'react-static'
+import { Head, withRouter } from 'react-static'
 
-import Sidebar from 'docs/src/components/Sidebar/Sidebar'
 import style from 'docs/src/Style'
-import { docTypes, scrollToAnchor } from 'docs/src/utils'
+import { scrollToAnchor } from 'docs/src/utils'
 import { isBrowser } from 'src/lib'
 
 const anchors = new AnchorJS({
@@ -16,11 +15,9 @@ class DocsLayout extends Component {
   static propTypes = {
     additionalTitle: PropTypes.string,
     children: PropTypes.node,
-    componentMenu: docTypes.componentMenu.isRequired,
     location: PropTypes.object.isRequired,
     sidebar: PropTypes.bool,
     title: PropTypes.string.isRequired,
-    versions: docTypes.versions,
   }
 
   componentDidMount() {
@@ -53,22 +50,21 @@ class DocsLayout extends Component {
   }
 
   render() {
-    const { additionalTitle, children, componentMenu, sidebar, title, versions } = this.props
+    const { additionalTitle, children, sidebar, title } = this.props
     const mainStyle = sidebar ? style.sidebarMain : style.main
 
     return (
-      <div style={style.container}>
+      <React.Fragment>
         <Head>
           <title>
             {additionalTitle ? `${additionalTitle} - ` : ''}
             {title}
           </title>
         </Head>
-        <Sidebar componentMenu={componentMenu} style={style.menu} version={versions.suir} />
         <div style={mainStyle}>{children}</div>
-      </div>
+      </React.Fragment>
     )
   }
 }
 
-export default withSiteData(withRouter(DocsLayout))
+export default withRouter(DocsLayout)

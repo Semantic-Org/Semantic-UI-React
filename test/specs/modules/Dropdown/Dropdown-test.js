@@ -102,7 +102,7 @@ describe('Dropdown', () => {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: DropdownHeader,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
 
   common.propKeyOnlyToClassName(Dropdown, 'disabled')
@@ -292,6 +292,13 @@ describe('Dropdown', () => {
         .find('div')
         .at(0)
         .should.have.prop('role', 'listbox')
+    })
+    it('should render an aria-live region with aria-atomic', () => {
+      wrapperMount(<Dropdown />)
+      wrapper
+        .find('div')
+        .at(1)
+        .should.have.props({ 'aria-live': 'polite', 'aria-atomic': true, role: 'alert' })
     })
     it('should label search dropdown as a combobox', () => {
       wrapperMount(<Dropdown search />)
@@ -704,7 +711,7 @@ describe('Dropdown', () => {
         .should.have.prop('selected', true)
     })
     it('is null when all options disabled', () => {
-      const disabledOptions = options.map(o => ({ ...o, disabled: true }))
+      const disabledOptions = options.map((o) => ({ ...o, disabled: true }))
 
       wrapperRender(<Dropdown options={disabledOptions} selection />).should.not.have.descendants(
         '.selected',
@@ -1877,7 +1884,7 @@ describe('Dropdown', () => {
     it('adds the onClick handler to all items', () => {
       wrapperShallow(<Dropdown options={options} selection />)
         .find('DropdownItem')
-        .everyWhere(item => item.should.have.prop('onClick'))
+        .everyWhere((item) => item.should.have.prop('onClick'))
     })
     it('calls handleItemClick when an item is clicked', () => {
       wrapperMount(<Dropdown options={options} selection />)
@@ -1927,7 +1934,7 @@ describe('Dropdown', () => {
       ]
       wrapperShallow(<Dropdown options={customOptions} selection />)
         .find('DropdownItem')
-        .everyWhere(item => item.should.have.prop('data-foo', 'someValue'))
+        .everyWhere((item) => item.should.have.prop('data-foo', 'someValue'))
     })
 
     it('handles keys correctly', () => {

@@ -1197,7 +1197,7 @@ export default class Dropdown extends Component {
     }
 
     return (
-      <div className={classes} role='alert' aria-live='polite'>
+      <div className={classes} role='alert' aria-live='polite' aria-atomic>
         {_text}
       </div>
     )
