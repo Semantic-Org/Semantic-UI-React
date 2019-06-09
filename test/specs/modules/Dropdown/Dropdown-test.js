@@ -618,6 +618,26 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('selectedIndex', () => {
+    it('sets "selectedIndex" when an item was selected', () => {
+      const option = _.last(options)
+
+      wrapperMount(<Dropdown options={options} search selection />)
+      const input = wrapper.find('input.search')
+
+      // open, simulate search and select option
+      wrapper.simulate('click')
+      input.simulate('change', { target: { value: option.text } })
+      domEvent.keyDown(document, { key: 'Enter' })
+
+      wrapper.should.have.state('selectedIndex', 4)
+
+      // open again
+      wrapper.simulate('click')
+      wrapper.should.have.state('selectedIndex', 4)
+    })
+  })
+
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
       wrapperMount(<Dropdown />).simulate('mousedown')
