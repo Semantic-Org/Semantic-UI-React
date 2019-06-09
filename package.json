@@ -157,7 +157,7 @@
     "react-hot-loader": "^4.8.0",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-source-render": "2.0.0-beta.6",
+    "react-source-render": "^3.0.0-5",
     "react-static": "^5.9.7",
     "react-static-routes": "^1.0.0",
     "react-test-renderer": "^16.8.4",
