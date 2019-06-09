@@ -70,6 +70,25 @@ class ComponentExample extends Component {
       derivedState.showHTML = false
     }
 
+    if (process.env.NODE_ENV !== 'production') {
+      const wasCodeChanged = state.originalSourceCode !== state.sourceCode
+      const wasCodeUpdated = props.sourceCode !== state.originalSourceCode
+
+      if (wasCodeUpdated) {
+        if (wasCodeChanged) {
+          /* eslint-disable-next-line no-console */
+          console.warn(
+            `[HMR] the code of example (${
+              props.examplePath
+            }) was not reload because it was modified, please reset your changes.`,
+          )
+        } else {
+          derivedState.originalSourceCode = props.sourceCode
+          derivedState.sourceCode = props.sourceCode
+        }
+      }
+    }
+
     return derivedState
   }
 

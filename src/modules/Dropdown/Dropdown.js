@@ -706,7 +706,7 @@ export default class Dropdown extends Component {
       this.handleChange(e, newValue)
     }
 
-    this.clearSearchQuery()
+    this.clearSearchQuery(value)
     this.closeOnChange(e)
 
     // Heads up! This event handler should be called after `onChange`
@@ -781,9 +781,12 @@ export default class Dropdown extends Component {
 
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
-  getMenuOptions = (value = this.state.value, options = this.props.options) => {
+  getMenuOptions = (
+    value = this.state.value,
+    options = this.props.options,
+    searchQuery = this.state.searchQuery,
+  ) => {
     const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
-    const { searchQuery } = this.state
 
     let filteredOptions = options
 
@@ -897,9 +900,14 @@ export default class Dropdown extends Component {
   // Setters
   // ----------------------------------------
 
-  clearSearchQuery = () => {
+  clearSearchQuery = (value) => {
     debug('clearSearchQuery()')
+
+    const { searchQuery } = this.state
+    if (searchQuery === undefined || searchQuery === '') return
+
     this.trySetState({ searchQuery: '' })
+    this.setSelectedIndex(value, undefined, '')
   }
 
   setValue = (value) => {
@@ -907,10 +915,14 @@ export default class Dropdown extends Component {
     this.trySetState({ value })
   }
 
-  setSelectedIndex = (value = this.state.value, optionsProps = this.props.options) => {
+  setSelectedIndex = (
+    value = this.state.value,
+    optionsProps = this.props.options,
+    searchQuery = this.state.searchQuery,
+  ) => {
     const { multiple } = this.props
     const { selectedIndex } = this.state
-    const options = this.getMenuOptions(value, optionsProps)
+    const options = this.getMenuOptions(value, optionsProps, searchQuery)
     const enabledIndicies = this.getEnabledIndices(options)
 
     let newSelectedIndex
