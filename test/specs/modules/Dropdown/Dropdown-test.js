@@ -595,33 +595,30 @@ describe('Dropdown', () => {
   })
 
   describe('closeOnEscape', () => {
-    it('closes the dropdown when Escape is pressed by default', () => {
+    it('closes the dropdown when Escape key is pressed by default', () => {
       wrapperMount(<Dropdown defaultOpen />)
 
       dropdownMenuIsOpen()
 
       domEvent.keyDown(document, { key: 'Escape' })
-
       dropdownMenuIsClosed()
     })
 
-    it('closes the dropdown when true and Escape is pressed', () => {
+    it('closes the dropdown when is "true" and Escape key is pressed', () => {
       wrapperMount(<Dropdown defaultOpen closeOnEscape />)
 
       dropdownMenuIsOpen()
 
       domEvent.keyDown(document, { key: 'Escape' })
-
       dropdownMenuIsClosed()
     })
 
-    it('does not close the dropdown when false and Escape is pressed', () => {
+    it('does not close the dropdown when false and Escape key is pressed', () => {
       wrapperMount(<Dropdown defaultOpen closeOnEscape={false} />)
 
       dropdownMenuIsOpen()
 
       domEvent.keyDown(document, { key: 'Escape' })
-
       dropdownMenuIsOpen()
     })
   })
