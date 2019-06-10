@@ -143,6 +143,7 @@ export default class Popup extends Component {
     disabled: false,
     offset: 0,
     on: 'hover',
+    pinned: false,
     position: 'top left',
   }
 
