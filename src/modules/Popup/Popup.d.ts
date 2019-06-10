@@ -93,9 +93,6 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** Disables automatic repositioning of the component, it will always be placed according to the position value. */
   pinned?: boolean
 
-  /** An object containing custom settings for the Popper.js modifiers. */
-  popperModifiers?: object
-
   /** Position for the popover. */
   position?:
     | 'top left'
@@ -106,6 +103,9 @@ export interface StrictPopupProps extends StrictPortalProps {
     | 'left center'
     | 'top center'
     | 'bottom center'
+
+  /** An object containing custom settings for the Popper.js modifiers. */
+  popperModifiers?: object
 
   /** Popup size. */
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge'
