@@ -214,7 +214,10 @@ const Wrapper = (props) => {
       {...rest}
       /* eslint-disable-next-line react/prop-types */
       sourceCode={sourceCode}
-    />
+    >
+      {/* eslint-disable-next-line react/prop-types */}
+      {props.children}
+    </ComponentExample>
   )
 }
 

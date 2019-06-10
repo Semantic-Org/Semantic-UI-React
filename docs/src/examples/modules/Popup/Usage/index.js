@@ -45,6 +45,18 @@ const PopupUsageExamples = () => (
       />
     </ComponentExample>
     <ComponentExample
+      title='Popper Modifiers'
+      description='You can also deeply configure PopperJS with passing down modifiers.'
+      examplePath='modules/Popup/Usage/PopupExamplePopperModifiers'
+    >
+      <Button
+        content='Popper.JS: modifiers'
+        href='https://popper.js.org/popper-documentation.html#modifiers'
+        icon='book'
+        target='_blank'
+      />
+    </ComponentExample>
+    <ComponentExample
       title='Actions'
       description='A popup can be triggered on hover, click, focus or multiple actions.'
       examplePath='modules/Popup/Usage/PopupExampleActions'

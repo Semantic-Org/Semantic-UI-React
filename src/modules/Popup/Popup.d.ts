@@ -90,6 +90,12 @@ export interface StrictPopupProps extends StrictPortalProps {
    */
   onUnmount?: (nothing: null, data: PopupProps) => void
 
+  /** Disables automatic repositioning of the component, it will always be placed according to the position value. */
+  pinned?: boolean
+
+  /** An object containing custom settings for the Popper.js modifiers. */
+  popperModifiers?: object
+
   /** Position for the popover. */
   position?:
     | 'top left'
