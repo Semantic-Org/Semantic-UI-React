@@ -297,11 +297,17 @@ export default class Popup extends Component {
 
     if (closed || disabled) return trigger
 
-    const modifiers = _.merge(popperModifiers, {
-      arrow: { enabled: false },
-      flip: { enabled: !pinned },
-      offset: { offset },
-    })
+    const modifiers = _.merge(
+      {
+        arrow: { enabled: false },
+        flip: { enabled: !pinned },
+        // There are issues with `keepTogether` and `offset`
+        // https://github.com/FezVrasta/popper.js/issues/557
+        keepTogether: { enabled: !!offset },
+        offset: { offset },
+      },
+      popperModifiers,
+    )
     const referenceElement = createReferenceProxy(_.isNil(context) ? this.triggerRef : context)
 
     const mergedPortalProps = { ...this.getPortalProps(), ...portalRestProps }
