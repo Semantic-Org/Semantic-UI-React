@@ -107,6 +107,9 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** An object containing custom settings for the Popper.js modifiers. */
   popperModifiers?: object
 
+  /** A popup can have dependencies which update will schedule a position update. */
+  popperDependencies?: any[]
+
   /** Popup size. */
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge'
 

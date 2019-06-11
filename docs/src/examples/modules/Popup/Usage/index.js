@@ -79,6 +79,25 @@ const PopupUsageExamples = () => (
       examplePath='modules/Popup/Usage/PopupExampleDefaultOpen'
       renderHtml={false}
     />
+    <ComponentExample
+      title='Popper Dependencies'
+      description={
+        <span>
+          A popup can have dependencies which update will schedule a position
+          update. Should be used in cases when content is changing, behaves like{' '}
+          <a
+            href='https://reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            <code>dependencies</code>
+          </a>{' '}
+          in React Hooks.
+        </span>
+      }
+      examplePath='modules/Popup/Usage/PopupExamplePopperDependencies'
+      renderHtml={false}
+    />
   </ExampleSection>
 )
 

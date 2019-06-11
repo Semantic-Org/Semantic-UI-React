@@ -4,6 +4,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 import { Popper } from 'react-popper'
+import shallowEqual from 'shallowequal'
 
 import {
   eventStack,
@@ -126,6 +127,9 @@ export default class Popup extends Component {
     /** An object containing custom settings for the Popper.js modifiers. */
     popperModifiers: PropTypes.object,
 
+    /** A popup can have dependencies which update will schedule a position update. */
+    popperDependencies: PropTypes.array,
+
     /** Popup size. */
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big', 'massive')),
 
@@ -151,6 +155,8 @@ export default class Popup extends Component {
   static Header = PopupHeader
 
   state = {}
+
+  open = false
   triggerRef = createRef()
 
   static getDerivedStateFromProps(props, state) {
@@ -169,6 +175,12 @@ export default class Popup extends Component {
     const portalRestProps = _.pick(unhandledProps, Portal.handledProps)
 
     return { contentRestProps, portalRestProps }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.open && shallowEqual(this.props.popperDependencies, prevProps.popperDependencies)) {
+      this.positionUpdate()
+    }
   }
 
   componentWillUnmount() {
@@ -230,15 +242,24 @@ export default class Popup extends Component {
 
   handlePortalMount = (e) => {
     debug('handlePortalMount()')
+
+    this.open = true
     _.invoke(this.props, 'onMount', e, this.props)
   }
 
   handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
+
+    this.open = true
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
-  renderContent = ({ placement: popperPlacement, ref: popperRef, style: popperStyle }) => {
+  renderContent = ({
+    placement: popperPlacement,
+    ref: popperRef,
+    scheduleUpdate,
+    style: popperStyle,
+  }) => {
     const {
       basic,
       children,
@@ -253,6 +274,8 @@ export default class Popup extends Component {
       wide,
     } = this.props
     const { contentRestProps } = this.state
+
+    this.positionUpdate = scheduleUpdate
 
     const classes = cx(
       'ui',
