@@ -117,8 +117,14 @@ export default class Popup extends Component {
      */
     onUnmount: PropTypes.func,
 
+    /** Disables automatic repositioning of the component, it will always be placed according to the position value. */
+    pinned: PropTypes.bool,
+
     /** Position for the popover. */
     position: PropTypes.oneOf(positions),
+
+    /** An object containing custom settings for the Popper.js modifiers. */
+    popperModifiers: PropTypes.object,
 
     /** Popup size. */
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big', 'massive')),
@@ -137,6 +143,7 @@ export default class Popup extends Component {
     disabled: false,
     offset: 0,
     on: 'hover',
+    pinned: false,
     position: 'top left',
   }
 
@@ -285,15 +292,22 @@ export default class Popup extends Component {
   }
 
   render() {
-    const { context, disabled, offset, position, trigger } = this.props
+    const { context, disabled, offset, pinned, popperModifiers, position, trigger } = this.props
     const { closed, portalRestProps } = this.state
 
     if (closed || disabled) return trigger
 
-    const modifiers = {
-      arrow: { enabled: false },
-      offset: { offset },
-    }
+    const modifiers = _.merge(
+      {
+        arrow: { enabled: false },
+        flip: { enabled: !pinned },
+        // There are issues with `keepTogether` and `offset`
+        // https://github.com/FezVrasta/popper.js/issues/557
+        keepTogether: { enabled: !!offset },
+        offset: { offset },
+      },
+      popperModifiers,
+    )
     const referenceElement = createReferenceProxy(_.isNil(context) ? this.triggerRef : context)
 
     const mergedPortalProps = { ...this.getPortalProps(), ...portalRestProps }
