@@ -250,7 +250,7 @@ export default class Popup extends Component {
   handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
 
-    this.open = true
+    this.open = false
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
