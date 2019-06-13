@@ -6,13 +6,13 @@ export const meta = {
   nextPage: { title: 'Theming', href: '/theming' },
 }
 
-It is quite common for Semantic UI React component to have "shorthands" which accept shorthand values. For example, `Button` component has an `icon` shorthand which value defines the icon that will be rendered.
+Semantic UI React components can have "shorthands". For example, `Button` component has an `icon` shorthand which value defines the icon that will be rendered.
 
 ```jsx
 <Button icon='like' />
 ```
 
-There are several forms of shorthand values that can be provided, but all of them share one common thing - each is eventually evaluated to React Element. Thus, you can think of shorthand values as a recipe to customize rendered React Element at corresponding shorthand.
+There are several forms of shorthand values that can be provided, but all of them share one common thing - each is eventually evaluated to React Element. Thus, you can think of shorthand values as a recipe to customize rendered React Element.
 
 ## Object as value
 
@@ -27,8 +27,6 @@ Each component's shorthand has associated default element type. For example, by 
 
 There is even shorter way to define default element's props - by using a primitive value. In that case provided shorthand value will be taken as a value for "default prop" of this element.
 
-This could be much easier seen with an example. Here, again, we have a `Button` element with its icon being defined with shorthand - where provided `string` value will be used as icon's `name`:
-
 ```jsx
 <>
   <Button content='Like' icon='like' />
@@ -37,7 +35,7 @@ This could be much easier seen with an example. Here, again, we have a `Button` 
 </>
 ```
 
-This works because name is the default prop of shorthand's `<Icon />` element.
+This works because `name` is the default prop of shorthand's `<Icon />` element.
 
 ```jsx
 <>
@@ -51,7 +49,7 @@ This works because name is the default prop of shorthand's `<Icon />` element.
 
 ## Disable shorthand's rendering
 
-It is also possible to pass falsy values (`false`, `null` or `undefined`) to shorthand prop - in that case there will be nothing rendered for the component's shorthand.
+It is also possible to pass falsy values (`false`, `null` or `undefined`) - in that case there will be nothing rendered for the component's shorthand.
 
 ```jsx
 <Dropdown icon={null} />
