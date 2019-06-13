@@ -276,7 +276,7 @@ describe('Popup', () => {
   })
 
   describe('popperModifiers', () => {
-    it(`are passed to Popper`, () => {
+    it('are passed to Popper', () => {
       const modifiers = {
         keepTogether: { enabled: false },
         preventOverflow: { padding: 0 },
@@ -287,6 +287,24 @@ describe('Popup', () => {
         .find('Popper')
         .should.have.prop('modifiers')
         .deep.include(modifiers)
+    })
+  })
+
+  describe('popperDependencies', () => {
+    it('will call "scheduleUpdate" if dependencies changed', () => {
+      wrapperMount(<Popup popperDependencies={[1, 2, 3]} />)
+      const scheduleUpdate = sandbox.spy(wrapper.instance(), 'handleUpdate')
+
+      wrapper.setProps({ popperDependencies: [2, 3, 4] })
+      scheduleUpdate.should.have.been.calledOnce()
+    })
+
+    it('will skip "scheduleUpdate" if dependencies are same', () => {
+      wrapperMount(<Popup popperDependencies={[1, 2, 3]} />)
+      const scheduleUpdate = sandbox.spy(wrapper.instance(), 'handleUpdate')
+
+      wrapper.setProps({ popperDependencies: [1, 2, 3] })
+      scheduleUpdate.should.have.not.been.called()
     })
   })
 
