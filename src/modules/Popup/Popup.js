@@ -180,7 +180,7 @@ export default class Popup extends Component {
   componentDidUpdate(prevProps) {
     const depsEqual = shallowEqual(this.props.popperDependencies, prevProps.popperDependencies)
 
-    if (this.open && !depsEqual) {
+    if (!depsEqual) {
       this.handleUpdate()
     }
   }
@@ -244,15 +244,13 @@ export default class Popup extends Component {
 
   handlePortalMount = (e) => {
     debug('handlePortalMount()')
-
-    this.open = true
     _.invoke(this.props, 'onMount', e, this.props)
   }
 
   handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
 
-    this.open = false
+    this.positionUpdate = null
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
