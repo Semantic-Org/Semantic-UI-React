@@ -1,5 +1,7 @@
 import path from 'path'
+import uglifyPlugin from 'react-static/node_modules/uglifyjs-webpack-plugin'
 import webpack from 'react-static/node_modules/webpack'
+import TerserLegacyPlugin from 'terser-webpack-plugin-legacy'
 
 import config from './config'
 
@@ -20,6 +22,11 @@ export default (webpackConfig, { stage }) => ({
           '@babel/standalone': 'Babel',
           faker: 'faker',
           'prettier/standalone': 'prettier',
+          // These Prettier plugins doesn't have any exports
+          'prettier/parser-babylon': 'window',
+          'prettier/parser-html': 'window',
+          'prettier/parser-typescript': 'window',
+
           'prop-types': 'PropTypes',
           react: 'React',
           'react-dom': 'ReactDOM',
@@ -66,7 +73,16 @@ export default (webpackConfig, { stage }) => ({
     new webpack.DefinePlugin({
       __PATH_SEP__: JSON.stringify(path.sep),
     }),
-    ...webpackConfig.plugins,
+    // Disable outdated "uglifyjs-webpack-plugin", can be removed after migration to RS7
+    ...webpackConfig.plugins.filter((plugin) => plugin.constructor !== uglifyPlugin),
+    new TerserLegacyPlugin({
+      sourceMap: true,
+      terserOptions: {
+        output: {
+          comments: false,
+        },
+      },
+    }),
   ],
   resolve: {
     alias: {
