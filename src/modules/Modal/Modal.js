@@ -151,6 +151,8 @@ class Modal extends Component {
   static Description = ModalDescription
   static Actions = ModalActions
 
+  static paddingHeight = 100
+
   ref = createRef()
   dimmerRef = createRef()
   latestDocumentMouseDownEvent = null
@@ -273,12 +275,13 @@ class Modal extends Component {
 
     if (this.ref.current) {
       const { height } = this.ref.current.getBoundingClientRect()
+      const paddingHeight = this.props.centered ? 0 : Modal.paddingHeight
 
       // Leaving the old calculation here since we may need it as an older browser fallback
       // SEE: https://github.com/Semantic-Org/Semantic-UI/issues/6185#issuecomment-376725956
       // const marginTop = -Math.round(height / 2)
       const marginTop = null
-      const scrolling = height > window.innerHeight
+      const scrolling = height + paddingHeight > window.innerHeight
 
       if (this.state.marginTop !== marginTop) {
         newState.marginTop = marginTop
