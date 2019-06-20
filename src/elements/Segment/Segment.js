@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -144,7 +144,7 @@ Segment.propTypes = {
   secondary: PropTypes.bool,
 
   /** A segment can have different sizes. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
 
   /** Formatted to show it contains multiple pages. */
   stacked: PropTypes.bool,
@@ -153,7 +153,7 @@ Segment.propTypes = {
   tertiary: PropTypes.bool,
 
   /** Formats content to be aligned as part of a vertical group. */
-  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
+  textAlign: PropTypes.oneOf(without(SUI.TEXT_ALIGNMENTS, 'justified')),
 
   /** Formats content to be aligned vertically. */
   vertical: PropTypes.bool,

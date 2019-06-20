@@ -1,5 +1,7 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
+import isNil from 'lodash/isNil'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 
@@ -67,7 +69,7 @@ class Icon extends PureComponent {
     rotated: PropTypes.oneOf(['clockwise', 'counterclockwise']),
 
     /** Size of the icon. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+    size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
 
     /** Icon can have an aria label. */
     'aria-hidden': PropTypes.string,
@@ -86,13 +88,13 @@ class Icon extends PureComponent {
     const ariaOptions = {}
     const { 'aria-label': ariaLabel, 'aria-hidden': ariaHidden } = this.props
 
-    if (_.isNil(ariaLabel)) {
+    if (isNil(ariaLabel)) {
       ariaOptions['aria-hidden'] = 'true'
     } else {
       ariaOptions['aria-label'] = ariaLabel
     }
 
-    if (!_.isNil(ariaHidden)) {
+    if (!isNil(ariaHidden)) {
       ariaOptions['aria-hidden'] = ariaHidden
     }
 
@@ -107,7 +109,7 @@ class Icon extends PureComponent {
       return
     }
 
-    _.invoke(this.props, 'onClick', e, this.props)
+    invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {
@@ -153,6 +155,6 @@ class Icon extends PureComponent {
   }
 }
 
-Icon.create = createShorthandFactory(Icon, value => ({ name: value }))
+Icon.create = createShorthandFactory(Icon, (value) => ({ name: value }))
 
 export default Icon

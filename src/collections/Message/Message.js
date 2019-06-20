@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
+import isNil from 'lodash/isNil'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -83,7 +84,7 @@ export default class Message extends Component {
     positive: PropTypes.bool,
 
     /** A message can have different sizes. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+    size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
 
     /** A message may be formatted to display a positive message.  Same as `positive`. */
     success: PropTypes.bool,
@@ -167,7 +168,7 @@ export default class Message extends Component {
       <ElementType {...rest} className={classes}>
         {dismissIcon}
         {Icon.create(icon, { autoGenerateKey: false })}
-        {(!_.isNil(header) || !_.isNil(content) || !_.isNil(list)) && (
+        {(!isNil(header) || !isNil(content) || !isNil(list)) && (
           <MessageContent>
             {MessageHeader.create(header, { autoGenerateKey: false })}
             {MessageList.create(list, { autoGenerateKey: false })}

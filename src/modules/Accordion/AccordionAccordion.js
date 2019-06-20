@@ -1,5 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import isArray from 'lodash/isArray'
+import includes from 'lodash/includes'
+import without from 'lodash/without'
+import invoke from 'lodash/invoke'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -20,7 +24,7 @@ const warnIfPropsAreInvalid = (props, state) => {
   /* eslint-disable no-console */
   if (exclusive && typeof activeIndex !== 'number') {
     console.error('`activeIndex` must be a number if `exclusive` is true')
-  } else if (!exclusive && !_.isArray(activeIndex)) {
+  } else if (!exclusive && !isArray(activeIndex)) {
     console.error('`activeIndex` must be an array if `exclusive` is false')
   }
   /* eslint-enable no-console */
@@ -104,21 +108,21 @@ export default class AccordionAccordion extends Component {
     if (exclusive) return index === activeIndex ? -1 : index
 
     // check to see if index is in array, and remove it, if not then add it
-    return _.includes(activeIndex, index) ? _.without(activeIndex, index) : [...activeIndex, index]
+    return includes(activeIndex, index) ? without(activeIndex, index) : [...activeIndex, index]
   }
 
   handleTitleClick = (e, titleProps) => {
     const { index } = titleProps
 
     this.trySetState({ activeIndex: this.computeNewIndex(index) })
-    _.invoke(this.props, 'onTitleClick', e, titleProps)
+    invoke(this.props, 'onTitleClick', e, titleProps)
   }
 
   isIndexActive = (index) => {
     const { exclusive } = this.props
     const { activeIndex } = this.state
 
-    return exclusive ? activeIndex === index : _.includes(activeIndex, index)
+    return exclusive ? activeIndex === index : includes(activeIndex, index)
   }
 
   render() {
@@ -131,19 +135,19 @@ export default class AccordionAccordion extends Component {
     return (
       <ElementType {...rest} className={classes}>
         {childrenUtils.isNil(children)
-          ? _.map(panels, (panel, index) =>
-            AccordionPanel.create(panel, {
-              defaultProps: {
-                active: this.isIndexActive(index),
-                index,
-                onTitleClick: this.handleTitleClick,
-              },
-            }),
-          )
+          ? map(panels, (panel, index) =>
+              AccordionPanel.create(panel, {
+                defaultProps: {
+                  active: this.isIndexActive(index),
+                  index,
+                  onTitleClick: this.handleTitleClick,
+                },
+              }),
+            )
           : children}
       </ElementType>
     )
   }
 }
 
-AccordionAccordion.create = createShorthandFactory(AccordionAccordion, content => ({ content }))
+AccordionAccordion.create = createShorthandFactory(AccordionAccordion, (content) => ({ content }))

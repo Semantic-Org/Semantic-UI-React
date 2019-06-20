@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -103,8 +103,8 @@ export default class TransitionablePortal extends Component {
     const { portalOpen } = this.state
 
     this.setState({ transitionVisible: false })
-    _.invoke(this.props, 'onClose', null, { ...data, portalOpen: false, transitionVisible: false })
-    _.invoke(this.props, 'onHide', null, { ...data, portalOpen, transitionVisible: false })
+    invoke(this.props, 'onClose', null, { ...data, portalOpen: false, transitionVisible: false })
+    invoke(this.props, 'onHide', null, { ...data, portalOpen, transitionVisible: false })
   }
 
   handleTransitionStart = (nothing, data) => {
@@ -113,13 +113,13 @@ export default class TransitionablePortal extends Component {
     const { status } = data
     const transitionVisible = status === Transition.ENTERING
 
-    _.invoke(this.props, 'onStart', null, { ...data, portalOpen, transitionVisible })
+    invoke(this.props, 'onStart', null, { ...data, portalOpen, transitionVisible })
 
     // Heads up! TransitionablePortal fires onOpen callback on the start of transition animation
     if (!transitionVisible) return
 
     this.setState({ transitionVisible })
-    _.invoke(this.props, 'onOpen', null, { ...data, transitionVisible, portalOpen: true })
+    invoke(this.props, 'onOpen', null, { ...data, transitionVisible, portalOpen: true })
   }
 
   // ----------------------------------------

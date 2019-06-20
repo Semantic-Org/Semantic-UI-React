@@ -1,4 +1,19 @@
-import _ from 'lodash/fp'
+import flow from 'lodash/flow'
+import map from 'lodash/map'
+import sum from 'lodash/sum'
+import sortBy from 'lodash/sortBy'
+import take from 'lodash/take'
+import isNil from 'lodash/isNil'
+import isFunction from 'lodash/isFunction'
+import isObject from 'lodash/isObject'
+import compact from 'lodash/compact'
+import isPlainObject from 'lodash/isPlainObject'
+import keys from 'lodash/keys'
+import pick from 'lodash/pick'
+import trim from 'lodash/trim'
+import difference from 'lodash/difference'
+import memoize from 'lodash/memoize'
+import min from 'lodash/min'
 import PropTypes from 'prop-types'
 import leven from './leven'
 
@@ -36,29 +51,29 @@ export const suggest = (suggestions) => {
   }
 
   /* eslint-disable max-nested-callbacks */
-  const findBestSuggestions = _.memoize((str) => {
+  const findBestSuggestions = memoize((str) => {
     const propValueWords = str.split(' ')
 
-    return _.flow(
-      _.map((suggestion) => {
+    return flow(
+      map((suggestion) => {
         const suggestionWords = suggestion.split(' ')
 
-        const propValueScore = _.flow(
-          _.map(x => _.map(y => leven(x, y), suggestionWords)),
-          _.map(_.min),
-          _.sum,
+        const propValueScore = flow(
+          map((x) => map((y) => leven(x, y), suggestionWords)),
+          map(min),
+          sum,
         )(propValueWords)
 
-        const suggestionScore = _.flow(
-          _.map(x => _.map(y => leven(x, y), propValueWords)),
-          _.map(_.min),
-          _.sum,
+        const suggestionScore = flow(
+          map((x) => map((y) => leven(x, y), propValueWords)),
+          map(min),
+          sum,
         )(suggestionWords)
 
         return { suggestion, score: propValueScore + suggestionScore }
       }),
-      _.sortBy(['score', 'suggestion']),
-      _.take(3),
+      sortBy(['score', 'suggestion']),
+      take(3),
     )(suggestions)
   })
   /* eslint-enable max-nested-callbacks */
@@ -96,13 +111,13 @@ export const suggest = (suggestions) => {
     const bestMatches = findBestSuggestions(propValue)
 
     // skip if a match scored 0
-    if (bestMatches.some(x => x.score === 0)) return
+    if (bestMatches.some((x) => x.score === 0)) return
 
     return new Error(
       [
         `Invalid prop \`${propName}\` of value \`${propValue}\` supplied to \`${componentName}\`.`,
         `\n\nInstead of \`${propValue}\`, did you mean:`,
-        bestMatches.map(x => `\n  - ${x.suggestion}`).join(''),
+        bestMatches.map((x) => `\n  - ${x.suggestion}`).join(''),
         '\n',
       ].join(''),
     )
@@ -113,7 +128,7 @@ export const suggest = (suggestions) => {
  * Disallow other props from being defined with this prop.
  * @param {string[]} disallowedProps An array of props that cannot be used with this prop.
  */
-export const disallow = disallowedProps => (props, propName, componentName) => {
+export const disallow = (disallowedProps) => (props, propName, componentName) => {
   if (!Array.isArray(disallowedProps)) {
     throw new Error(
       [
@@ -124,11 +139,11 @@ export const disallow = disallowedProps => (props, propName, componentName) => {
   }
 
   // skip if prop is undefined
-  if (_.isNil(props[propName]) || props[propName] === false) return
+  if (isNil(props[propName]) || props[propName] === false) return
 
   // find disallowed props with values
   const disallowed = disallowedProps.reduce((acc, disallowedProp) => {
-    if (!_.isNil(props[disallowedProp]) && props[disallowedProp] !== false) {
+    if (!isNil(props[disallowedProp]) && props[disallowedProp] !== false) {
       return [...acc, disallowedProp]
     }
     return acc
@@ -150,7 +165,7 @@ export const disallow = disallowedProps => (props, propName, componentName) => {
  * Ensure a prop adherers to multiple prop type validators.
  * @param {function[]} validators An array of propType functions.
  */
-export const every = validators => (props, propName, componentName, ...rest) => {
+export const every = (validators) => (props, propName, componentName, ...rest) => {
   if (!Array.isArray(validators)) {
     throw new Error(
       [
@@ -160,8 +175,8 @@ export const every = validators => (props, propName, componentName, ...rest) => 
     )
   }
 
-  const errors = _.flow(
-    _.map((validator) => {
+  const errors = flow(
+    map((validator) => {
       if (typeof validator !== 'function') {
         throw new Error(
           `every() argument "validators" should contain functions, found: ${typeOf(validator)}.`,
@@ -169,7 +184,7 @@ export const every = validators => (props, propName, componentName, ...rest) => 
       }
       return validator(props, propName, componentName, ...rest)
     }),
-    _.compact,
+    compact,
   )(validators)
 
   // we can only return one error at a time
@@ -180,7 +195,7 @@ export const every = validators => (props, propName, componentName, ...rest) => 
  * Ensure a prop adherers to at least one of the given prop type validators.
  * @param {function[]} validators An array of propType functions.
  */
-export const some = validators => (props, propName, componentName, ...rest) => {
+export const some = (validators) => (props, propName, componentName, ...rest) => {
   if (!Array.isArray(validators)) {
     throw new Error(
       [
@@ -190,9 +205,9 @@ export const some = validators => (props, propName, componentName, ...rest) => {
     )
   }
 
-  const errors = _.compact(
-    _.map(validators, (validator) => {
-      if (!_.isFunction(validator)) {
+  const errors = compact(
+    map(validators, (validator) => {
+      if (!isFunction(validator)) {
         throw new Error(
           `some() argument "validators" should contain functions, found: ${typeOf(validator)}.`,
         )
@@ -204,7 +219,7 @@ export const some = validators => (props, propName, componentName, ...rest) => {
   // fail only if all validators failed
   if (errors.length === validators.length) {
     const error = new Error('One of these validators must pass:')
-    error.message += `\n${_.map(errors, (err, i) => `[${i + 1}]: ${err.message}`).join('\n')}`
+    error.message += `\n${map(errors, (err, i) => `[${i + 1}]: ${err.message}`).join('\n')}`
     return error
   }
 }
@@ -215,7 +230,7 @@ export const some = validators => (props, propName, componentName, ...rest) => {
  * @param {function} validator A propType function.
  */
 export const givenProps = (propsShape, validator) => (props, propName, componentName, ...rest) => {
-  if (!_.isPlainObject(propsShape)) {
+  if (!isPlainObject(propsShape)) {
     throw new Error(
       [
         'Invalid argument supplied to givenProps, expected an object.',
@@ -233,7 +248,7 @@ export const givenProps = (propsShape, validator) => (props, propName, component
     )
   }
 
-  const shouldValidate = _.keys(propsShape).every((key) => {
+  const shouldValidate = keys(propsShape).every((key) => {
     const val = propsShape[key]
     // require propShape validators to pass or prop values to match
     return typeof val === 'function'
@@ -247,13 +262,13 @@ export const givenProps = (propsShape, validator) => (props, propName, component
 
   if (error) {
     // poor mans shallow pretty print, prevents JSON circular reference errors
-    const prettyProps = `{ ${_.keys(_.pick(_.keys(propsShape), props))
+    const prettyProps = `{ ${keys(pick(keys(propsShape), props))
       .map((key) => {
         const val = props[key]
         let renderedValue = val
         if (typeof val === 'string') renderedValue = `"${val}"`
         else if (Array.isArray(val)) renderedValue = `[${val.join(', ')}]`
-        else if (_.isObject(val)) renderedValue = '{...}'
+        else if (isObject(val)) renderedValue = '{...}'
 
         return `${key}: ${renderedValue}`
       })
@@ -268,7 +283,7 @@ export const givenProps = (propsShape, validator) => (props, propName, component
  * Define prop dependencies by requiring other props.
  * @param {string[]} requiredProps An array of required prop names.
  */
-export const demand = requiredProps => (props, propName, componentName) => {
+export const demand = (requiredProps) => (props, propName, componentName) => {
   if (!Array.isArray(requiredProps)) {
     throw new Error(
       [
@@ -281,7 +296,7 @@ export const demand = requiredProps => (props, propName, componentName) => {
   // skip if prop is undefined
   if (props[propName] === undefined) return
 
-  const missingRequired = requiredProps.filter(requiredProp => props[requiredProp] === undefined)
+  const missingRequired = requiredProps.filter((requiredProp) => props[requiredProp] === undefined)
   if (missingRequired.length > 0) {
     return new Error(
       `\`${propName}\` prop in \`${componentName}\` requires props: \`${missingRequired.join(
@@ -295,7 +310,7 @@ export const demand = requiredProps => (props, propName, componentName) => {
  * Ensure an multiple prop contains a string with only possible values.
  * @param {string[]} possible An array of possible values to prop.
  */
-export const multipleProp = possible => (props, propName, componentName) => {
+export const multipleProp = (possible) => (props, propName, componentName) => {
   if (!Array.isArray(possible)) {
     throw new Error(
       [
@@ -308,14 +323,14 @@ export const multipleProp = possible => (props, propName, componentName) => {
   const propValue = props[propName]
 
   // skip if prop is undefined
-  if (_.isNil(propValue) || propValue === false) return
+  if (isNil(propValue) || propValue === false) return
 
   const values = propValue
     .replace('large screen', 'large-screen')
     .replace(/ vertically/g, '-vertically')
     .split(' ')
-    .map(val => _.trim(val).replace('-', ' '))
-  const invalid = _.difference(values, possible)
+    .map((val) => trim(val).replace('-', ' '))
+  const invalid = difference(values, possible)
 
   // fail only if there are invalid values
   if (invalid.length > 0) {

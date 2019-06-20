@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -46,7 +46,7 @@ function ItemGroup(props) {
     )
   }
 
-  const itemsJSX = _.map(items, (item) => {
+  const itemsJSX = map(items, (item) => {
     const { childKey, ...itemProps } = item
     const finalKey =
       childKey ||

@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import isNil from 'lodash/isNil'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -71,12 +71,7 @@ function Image(props) {
   const rest = getUnhandledProps(Image, props)
   const [imgTagProps, rootProps] = partitionHTMLProps(rest, { htmlProps: htmlImageProps })
   const ElementType = getElementType(Image, props, () => {
-    if (
-      !_.isNil(dimmer) ||
-      !_.isNil(label) ||
-      !_.isNil(wrapped) ||
-      !childrenUtils.isNil(children)
-    ) {
+    if (!isNil(dimmer) || !isNil(label) || !isNil(wrapped) || !childrenUtils.isNil(children)) {
       return 'div'
     }
   })
@@ -183,6 +178,6 @@ Image.defaultProps = {
   ui: true,
 }
 
-Image.create = createShorthandFactory(Image, value => ({ src: value }))
+Image.create = createShorthandFactory(Image, (value) => ({ src: value }))
 
 export default Image

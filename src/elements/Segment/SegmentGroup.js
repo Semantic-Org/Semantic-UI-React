@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -65,7 +65,7 @@ SegmentGroup.propTypes = {
   raised: PropTypes.bool,
 
   /** A segment group can have different sizes. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
 
   /** Formatted to show it contains multiple pages. */
   stacked: PropTypes.bool,

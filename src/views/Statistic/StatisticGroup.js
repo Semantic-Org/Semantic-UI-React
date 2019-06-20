@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import map from 'lodash/map'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -50,7 +51,7 @@ function StatisticGroup(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(items, item => Statistic.create(item))}
+      {map(items, (item) => Statistic.create(item))}
     </ElementType>
   )
 }
@@ -81,7 +82,7 @@ StatisticGroup.propTypes = {
   items: customPropTypes.collectionShorthand,
 
   /** A statistic group can vary in size. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'big', 'massive', 'medium')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'big', 'massive', 'medium')),
 
   /** A statistic group can have its items divided evenly. */
   widths: PropTypes.oneOf(SUI.WIDTHS),

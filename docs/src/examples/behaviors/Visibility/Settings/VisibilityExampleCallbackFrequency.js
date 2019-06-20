@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import React, { Component, createRef } from 'react'
 import {
   Button,
@@ -22,8 +22,8 @@ export default class VisibilityExampleCallbackFrequency extends Component {
   }
   contextRef = createRef()
 
-  updateLog = eventName => () =>
-    this.setState(prevState => ({
+  updateLog = (eventName) => () =>
+    this.setState((prevState) => ({
       log: [
         `${new Date().toLocaleTimeString()}: ${eventName}`,
         ...prevState.log,
@@ -33,9 +33,10 @@ export default class VisibilityExampleCallbackFrequency extends Component {
 
   clearLog = () => this.setState({ log: [], logCount: 0 })
 
-  toggleOnce = () => this.setState(prevState => ({ once: !prevState.once }))
+  toggleOnce = () => this.setState((prevState) => ({ once: !prevState.once }))
 
-  toggleContinuous = () => this.setState(prevState => ({ continuous: !prevState.continuous }))
+  toggleContinuous = () =>
+    this.setState((prevState) => ({ continuous: !prevState.continuous }))
 
   render() {
     const { continuous, log, logCount, once } = this.state
@@ -61,7 +62,7 @@ export default class VisibilityExampleCallbackFrequency extends Component {
               onOffScreen={this.updateLog('onOffScreen')}
             >
               <Segment>
-                {_.map(
+                {map(
                   [
                     '/images/wireframe/centered-paragraph.png',
                     '/images/wireframe/short-paragraph.png',

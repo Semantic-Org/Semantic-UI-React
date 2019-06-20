@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -61,7 +61,7 @@ export default class Responsive extends Component {
   }
 
   static getDerivedStateFromProps(props) {
-    const width = _.invoke(props, 'getWidth')
+    const width = invoke(props, 'getWidth')
     const visible = isVisible(width, props)
 
     return { visible }
@@ -94,11 +94,11 @@ export default class Responsive extends Component {
     this.ticking = false
 
     const { visible } = this.state
-    const width = _.invoke(this.props, 'getWidth')
+    const width = invoke(this.props, 'getWidth')
     const nextVisible = isVisible(width, this.props)
 
     if (visible !== nextVisible) this.setState({ visible: nextVisible })
-    _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
+    invoke(this.props, 'onUpdate', e, { ...this.props, width })
   }
 
   // ----------------------------------------

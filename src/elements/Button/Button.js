@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import isNil from 'lodash/isNil'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
@@ -161,25 +162,25 @@ class Button extends Component {
   computeButtonAriaRole(ElementType) {
     const { role } = this.props
 
-    if (!_.isNil(role)) return role
+    if (!isNil(role)) return role
     if (ElementType !== 'button') return 'button'
   }
 
   computeElementType = () => {
     const { attached, label } = this.props
 
-    if (!_.isNil(attached) || !_.isNil(label)) return 'div'
+    if (!isNil(attached) || !isNil(label)) return 'div'
   }
 
   computeTabIndex = (ElementType) => {
     const { disabled, tabIndex } = this.props
 
-    if (!_.isNil(tabIndex)) return tabIndex
+    if (!isNil(tabIndex)) return tabIndex
     if (disabled) return -1
     if (ElementType === 'div') return 0
   }
 
-  focus = () => _.invoke(this.ref.current, 'focus')
+  focus = () => invoke(this.ref.current, 'focus')
 
   handleClick = (e) => {
     const { disabled } = this.props
@@ -189,14 +190,14 @@ class Button extends Component {
       return
     }
 
-    _.invoke(this.props, 'onClick', e, this.props)
+    invoke(this.props, 'onClick', e, this.props)
   }
 
   hasIconClass = () => {
     const { labelPosition, children, content, icon } = this.props
 
     if (icon === true) return true
-    return icon && (labelPosition || (childrenUtils.isNil(children) && _.isNil(content)))
+    return icon && (labelPosition || (childrenUtils.isNil(children) && isNil(content)))
   }
 
   render() {
@@ -253,7 +254,7 @@ class Button extends Component {
     const ElementType = getElementType(Button, this.props, this.computeElementType)
     const tabIndex = this.computeTabIndex(ElementType)
 
-    if (!_.isNil(label)) {
+    if (!isNil(label)) {
       const buttonClasses = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
       const labelElement = Label.create(label, {
@@ -306,6 +307,6 @@ class Button extends Component {
   }
 }
 
-Button.create = createShorthandFactory(Button, value => ({ content: value }))
+Button.create = createShorthandFactory(Button, (value) => ({ content: value }))
 
 export default Button

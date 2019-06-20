@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import findKey from 'lodash/findKey'
+import join from 'lodash/join'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 import { withRouter, withRouteData } from 'react-static'
@@ -58,7 +59,7 @@ class ComponentDoc extends Component {
 
   render() {
     const { componentsInfo, displayName, seeTags, sidebarSections } = this.props
-    const activePath = _.findKey(this.state.exampleStates)
+    const activePath = findKey(this.state.exampleStates)
     const componentInfo = componentsInfo[displayName]
     const contextValue = { ...this.props, onVisibilityChange: this.handleExampleVisibility }
 
@@ -71,7 +72,7 @@ class ComponentDoc extends Component {
               <Header
                 as='h1'
                 content={displayName}
-                subheader={_.join(componentInfo.docblock.description, ' ')}
+                subheader={join(componentInfo.docblock.description, ' ')}
               />
               <ComponentDocSee seeTags={seeTags} />
               <ComponentDocLinks

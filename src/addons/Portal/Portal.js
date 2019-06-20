@@ -1,6 +1,6 @@
 import EventStack from '@semantic-ui-react/event-stack'
 import keyboardKey from 'keyboard-key'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { cloneElement, createRef, Fragment } from 'react'
 
@@ -205,12 +205,12 @@ class Portal extends Component {
     const { trigger, closeOnTriggerBlur } = this.props
 
     // Call original event handler
-    _.invoke(trigger, 'props.onBlur', e, ...rest)
+    invoke(trigger, 'props.onBlur', e, ...rest)
 
     // IE 11 doesn't work with relatedTarget in blur events
     const target = e.relatedTarget || document.activeElement
     // do not close if focus is given to the portal
-    const didFocusPortal = _.invoke(this.contentRef.current, 'contains', target)
+    const didFocusPortal = invoke(this.contentRef.current, 'contains', target)
 
     if (!closeOnTriggerBlur || didFocusPortal) return
 
@@ -223,7 +223,7 @@ class Portal extends Component {
     const { open } = this.state
 
     // Call original event handler
-    _.invoke(trigger, 'props.onClick', e, ...rest)
+    invoke(trigger, 'props.onClick', e, ...rest)
 
     if (open && closeOnTriggerClick) {
       debug('handleTriggerClick() - close')
@@ -240,7 +240,7 @@ class Portal extends Component {
     const { trigger, openOnTriggerFocus } = this.props
 
     // Call original event handler
-    _.invoke(trigger, 'props.onFocus', e, ...rest)
+    invoke(trigger, 'props.onFocus', e, ...rest)
 
     if (!openOnTriggerFocus) return
 
@@ -254,7 +254,7 @@ class Portal extends Component {
     const { trigger, closeOnTriggerMouseLeave, mouseLeaveDelay } = this.props
 
     // Call original event handler
-    _.invoke(trigger, 'props.onMouseLeave', e, ...rest)
+    invoke(trigger, 'props.onMouseLeave', e, ...rest)
 
     if (!closeOnTriggerMouseLeave) return
 
@@ -268,7 +268,7 @@ class Portal extends Component {
     const { trigger, mouseEnterDelay, openOnTriggerMouseEnter } = this.props
 
     // Call original event handler
-    _.invoke(trigger, 'props.onMouseEnter', e, ...rest)
+    invoke(trigger, 'props.onMouseEnter', e, ...rest)
 
     if (!openOnTriggerMouseEnter) return
 
@@ -318,12 +318,12 @@ class Portal extends Component {
 
   handleMount = () => {
     debug('handleMount()')
-    _.invoke(this.props, 'onMount', null, this.props)
+    invoke(this.props, 'onMount', null, this.props)
   }
 
   handleUnmount = () => {
     debug('handleUnmount()')
-    _.invoke(this.props, 'onUnmount', null, this.props)
+    invoke(this.props, 'onUnmount', null, this.props)
   }
 
   handleTriggerRef = (c) => {

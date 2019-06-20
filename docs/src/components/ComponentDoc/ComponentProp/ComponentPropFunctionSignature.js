@@ -1,4 +1,8 @@
-import _ from 'lodash'
+import filter from 'lodash/filter'
+import find from 'lodash/find'
+import isEmpty from 'lodash/isEmpty'
+import includes from 'lodash/includes'
+import compact from 'lodash/compact'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -22,20 +26,20 @@ const rowStyle = {
 const getTagType = (tag) => (tag.type.type === 'AllLiteral' ? 'any' : tag.type.name)
 
 const ComponentPropFunctionSignature = ({ name, tags }) => {
-  const params = _.filter(tags, { title: 'param' })
-  const returns = _.find(tags, { title: 'returns' })
+  const params = filter(tags, { title: 'param' })
+  const returns = find(tags, { title: 'returns' })
 
   // this doesn't look like a function propType docblock
   // don't try to render a signature
-  if (_.isEmpty(params) && !returns) return null
+  if (isEmpty(params) && !returns) return null
 
   const paramSignature = params
     .map((param) => `${param.name}: ${getTagType(param)}`)
     // prevent object properties from showing as individual params
-    .filter((p) => !_.includes(p, '.'))
+    .filter((p) => !includes(p, '.'))
     .join(', ')
 
-  const tagDescriptionRows = _.compact([...params, returns]).map((tag) => {
+  const tagDescriptionRows = compact([...params, returns]).map((tag) => {
     const title = tag.name || tag.title
     return (
       <div key={title} style={rowStyle}>

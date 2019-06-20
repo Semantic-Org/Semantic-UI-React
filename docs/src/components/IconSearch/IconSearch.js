@@ -1,5 +1,9 @@
 import copyToClipboard from 'copy-to-clipboard'
-import _ from 'lodash/fp'
+import flow from 'lodash/flow'
+import map from 'lodash/map'
+import min from 'lodash/min'
+import sum from 'lodash/sum'
+import debounce from 'lodash/debounce'
 import leven from 'leven'
 import React, { Component } from 'react'
 import { Form, Grid, Header, Icon, Message, Popup } from 'semantic-ui-react'
@@ -85,10 +89,10 @@ const similarityScore = (strA, strB) => {
   const aWords = strA.trim().split(' ')
   const bWords = strB.trim().split(' ')
 
-  return _.flow(
-    _.map(a => _.map(b => leven(a, b), bWords)),
-    _.map(_.min),
-    _.sum,
+  return flow(
+    map((a) => map((b) => leven(a, b), bWords)),
+    map(min),
+    sum,
   )(aWords)
 }
 export default class IconSearch extends Component {
@@ -99,11 +103,11 @@ export default class IconSearch extends Component {
     input.focus()
   }
 
-  handleChange = _.debounce(100, (e, { value }) => this.setState({ search: value }))
+  handleChange = debounce(100, (e, { value }) => this.setState({ search: value }))
 
   handleIncludeSimilarChange = (e, { checked }) => this.setState({ includeSimilar: checked })
 
-  copy = text => () => {
+  copy = (text) => () => {
     copyToClipboard(text)
     this.setState({ copied: true })
     setTimeout(() => this.setState({ copied: false }), 1000)
@@ -136,7 +140,7 @@ export default class IconSearch extends Component {
 
     // no search
     if (!query) {
-      return iconKeys.map(iconKey => (
+      return iconKeys.map((iconKey) => (
         <Grid key={iconKey} columns={5} doubling>
           <Grid.Column width={16}>
             <Header
@@ -147,7 +151,7 @@ export default class IconSearch extends Component {
               textAlign='left'
             />
           </Grid.Column>
-          {SUI[iconKey].map(name => this.renderIconColumn(name, iconKey))}
+          {SUI[iconKey].map((name) => this.renderIconColumn(name, iconKey))}
         </Grid>
       ))
     }
@@ -158,7 +162,7 @@ export default class IconSearch extends Component {
 
       // similar
       return includeSimilar && similarityScore(name, query) <= 2
-    }).map(name => this.renderIconColumn(name))
+    }).map((name) => this.renderIconColumn(name))
 
     // no results
     if (iconSearchMatches.length === 0) {

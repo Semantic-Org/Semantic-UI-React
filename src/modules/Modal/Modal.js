@@ -1,5 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import isEmpty from 'lodash/isEmpty'
+import includes from 'lodash/includes'
+import pick from 'lodash/pick'
+import reduce from 'lodash/reduce'
 import PropTypes from 'prop-types'
 import React, { createRef, Fragment, isValidElement } from 'react'
 
@@ -165,8 +169,8 @@ class Modal extends Component {
 
   handleActionsOverrides = (predefinedProps) => ({
     onActionClick: (e, actionProps) => {
-      _.invoke(predefinedProps, 'onActionClick', e, actionProps)
-      _.invoke(this.props, 'onActionClick', e, this.props)
+      invoke(predefinedProps, 'onActionClick', e, actionProps)
+      invoke(this.props, 'onActionClick', e, this.props)
 
       this.handleClose(e)
     },
@@ -175,7 +179,7 @@ class Modal extends Component {
   handleClose = (e) => {
     debug('close()')
 
-    _.invoke(this.props, 'onClose', e, this.props)
+    invoke(this.props, 'onClose', e, this.props)
     this.trySetState({ open: false })
   }
 
@@ -196,13 +200,13 @@ class Modal extends Component {
     )
       return
 
-    _.invoke(this.props, 'onClose', e, this.props)
+    invoke(this.props, 'onClose', e, this.props)
     this.trySetState({ open: false })
   }
 
   handleIconOverrides = (predefinedProps) => ({
     onClick: (e) => {
-      _.invoke(predefinedProps, 'onClick', e)
+      invoke(predefinedProps, 'onClick', e)
       this.handleClose(e)
     },
   })
@@ -210,7 +214,7 @@ class Modal extends Component {
   handleOpen = (e) => {
     debug('open()')
 
-    _.invoke(this.props, 'onOpen', e, this.props)
+    invoke(this.props, 'onOpen', e, this.props)
     this.trySetState({ open: true })
   }
 
@@ -229,7 +233,7 @@ class Modal extends Component {
       pool: eventPool,
       target: this.dimmerRef.current,
     })
-    _.invoke(this.props, 'onMount', e, this.props)
+    invoke(this.props, 'onMount', e, this.props)
   }
 
   handlePortalUnmount = (e) => {
@@ -245,7 +249,7 @@ class Modal extends Component {
       pool: eventPool,
       target: this.dimmerRef.current,
     })
-    _.invoke(this.props, 'onUnmount', e, this.props)
+    invoke(this.props, 'onUnmount', e, this.props)
   }
 
   setDimmerNodeStyle = () => {
@@ -292,7 +296,7 @@ class Modal extends Component {
     }
 
     if (this.state.mountClasses !== classes) newState.mountClasses = classes
-    if (!_.isEmpty(newState)) this.setState(newState)
+    if (!isEmpty(newState)) this.setState(newState)
 
     this.animationRequestId = requestAnimationFrame(this.setPositionAndClassNames)
 
@@ -360,16 +364,16 @@ class Modal extends Component {
     const unhandled = getUnhandledProps(Modal, this.props)
     const portalPropNames = Portal.handledProps
 
-    const rest = _.reduce(
+    const rest = reduce(
       unhandled,
       (acc, val, key) => {
-        if (!_.includes(portalPropNames, key)) acc[key] = val
+        if (!includes(portalPropNames, key)) acc[key] = val
 
         return acc
       },
       {},
     )
-    const portalProps = _.pick(unhandled, portalPropNames)
+    const portalProps = pick(unhandled, portalPropNames)
 
     // wrap dimmer modals
     const dimmerClasses = cx(

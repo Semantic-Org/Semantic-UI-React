@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Accordion, Icon, Menu } from 'semantic-ui-react'
@@ -33,7 +34,7 @@ export default class ComponentSidebarSection extends PureComponent {
   }
 
   handleItemClick = (examplePath) => (e) => {
-    _.invoke(this.props, 'onItemClick', e, { examplePath })
+    invoke(this.props, 'onItemClick', e, { examplePath })
   }
 
   handleTitleClick = () => {
@@ -53,7 +54,7 @@ export default class ComponentSidebarSection extends PureComponent {
           <Icon name='dropdown' />
         </Accordion.Title>
         <Accordion.Content as={Menu.Menu} active={active}>
-          {_.map(examples, ({ title, examplePath }) => (
+          {map(examples, ({ title, examplePath }) => (
             <Menu.Item
               key={examplePath}
               active={activePath === examplePath}

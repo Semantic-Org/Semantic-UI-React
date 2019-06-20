@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import startCase from 'lodash/startCase'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -75,7 +76,7 @@ export default class MenuItem extends Component {
   handleClick = (e) => {
     const { disabled } = this.props
 
-    if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
+    if (!disabled) invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {
@@ -123,10 +124,10 @@ export default class MenuItem extends Component {
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
         {Icon.create(icon, { autoGenerateKey: false })}
-        {childrenUtils.isNil(content) ? _.startCase(name) : content}
+        {childrenUtils.isNil(content) ? startCase(name) : content}
       </ElementType>
     )
   }
 }
 
-MenuItem.create = createShorthandFactory(MenuItem, val => ({ content: val, name: val }))
+MenuItem.create = createShorthandFactory(MenuItem, (val) => ({ content: val, name: val }))

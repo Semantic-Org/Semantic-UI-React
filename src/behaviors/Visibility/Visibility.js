@@ -1,4 +1,7 @@
-import _ from 'lodash'
+import includes from 'lodash/includes'
+import forEach from 'lodash/forEach'
+import invoke from 'lodash/invoke'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
@@ -255,7 +258,7 @@ export default class Visibility extends Component {
     if (!callback) return
 
     // Heads up! When `continuous` is true, callback will be fired always
-    if (!continuous && _.includes(this.firedCallbacks, name)) return
+    if (!continuous && includes(this.firedCallbacks, name)) return
 
     callback(null, { ...this.props, calculations: this.calculations })
     this.firedCallbacks.push(name)
@@ -273,14 +276,14 @@ export default class Visibility extends Component {
     if (matchesDirection && executionPossible) this.execute(callback, name)
 
     // Heads up! We should remove callback from the happened when it's not `once`
-    if (!once) this.firedCallbacks = _.without(this.firedCallbacks, name)
+    if (!once) this.firedCallbacks = without(this.firedCallbacks, name)
   }
 
   fireOnPassed() {
     const { percentagePassed, pixelsPassed } = this.calculations
     const { onPassed } = this.props
 
-    _.forEach(onPassed, (callback, passed) => {
+    forEach(onPassed, (callback, passed) => {
       const pixelsValue = Number(passed)
 
       if (pixelsValue && pixelsPassed >= pixelsValue) {
@@ -345,12 +348,12 @@ export default class Visibility extends Component {
       topVisible: { callback: onTopVisibleReverse, name: 'onTopVisibleReverse' },
     }
 
-    _.invoke(this.props, 'onUpdate', null, { ...this.props, calculations: this.calculations })
+    invoke(this.props, 'onUpdate', null, { ...this.props, calculations: this.calculations })
     this.fireOnPassed()
 
     // Heads up! Reverse callbacks should be fired first
-    _.forEach(reverse, (data, value) => this.fire(data, value, true))
-    _.forEach(forward, (data, value) => this.fire(data, value))
+    forEach(reverse, (data, value) => this.fire(data, value, true))
+    forEach(forward, (data, value) => this.fire(data, value))
 
     if (updateOn === 'repaint') this.handleUpdate()
   }

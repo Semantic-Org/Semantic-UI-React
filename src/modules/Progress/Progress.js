@@ -1,5 +1,8 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
+import isUndefined from 'lodash/isUndefined'
+import clamp from 'lodash/clamp'
+import round from 'lodash/round'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -71,7 +74,7 @@ class Progress extends Component {
     progress: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['percent', 'ratio', 'value'])]),
 
     /** A progress bar can vary in size. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'mini', 'huge', 'massive')),
+    size: PropTypes.oneOf(without(SUI.SIZES, 'mini', 'huge', 'massive')),
 
     /** A progress bar can show a success state. */
     success: PropTypes.bool,
@@ -96,8 +99,8 @@ class Progress extends Component {
   calculatePercent = () => {
     const { percent, total, value } = this.props
 
-    if (!_.isUndefined(percent)) return percent
-    if (!_.isUndefined(total) && !_.isUndefined(value)) return (value / total) * 100
+    if (!isUndefined(percent)) return percent
+    if (!isUndefined(total) && !isUndefined(value)) return (value / total) * 100
   }
 
   computeValueText = (percent) => {
@@ -110,14 +113,14 @@ class Progress extends Component {
 
   getPercent = () => {
     const { precision, progress, total, value } = this.props
-    const percent = _.clamp(this.calculatePercent(), 0, 100)
+    const percent = clamp(this.calculatePercent(), 0, 100)
 
-    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') {
+    if (!isUndefined(total) && !isUndefined(value) && progress === 'value') {
       return (value / total) * 100
     }
     if (progress === 'value') return value
-    if (_.isUndefined(precision)) return percent
-    return _.round(percent, precision)
+    if (isUndefined(precision)) return percent
+    return round(percent, precision)
   }
 
   isAutoSuccess = () => {
@@ -140,7 +143,7 @@ class Progress extends Component {
   renderProgress = (percent) => {
     const { precision, progress } = this.props
 
-    if (!progress && _.isUndefined(precision)) return
+    if (!progress && isUndefined(precision)) return
     return <div className='progress'>{this.computeValueText(percent)}</div>
   }
 

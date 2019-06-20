@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import has from 'lodash/has'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -55,20 +56,20 @@ class Confirm extends Component {
   }
 
   handleCancel = (e) => {
-    _.invoke(this.props, 'onCancel', e, this.props)
+    invoke(this.props, 'onCancel', e, this.props)
   }
 
-  handleCancelOverrides = predefinedProps => ({
+  handleCancelOverrides = (predefinedProps) => ({
     onClick: (e, buttonProps) => {
-      _.invoke(predefinedProps, 'onClick', e, buttonProps)
+      invoke(predefinedProps, 'onClick', e, buttonProps)
       this.handleCancel(e)
     },
   })
 
-  handleConfirmOverrides = predefinedProps => ({
+  handleConfirmOverrides = (predefinedProps) => ({
     onClick: (e, buttonProps) => {
-      _.invoke(predefinedProps, 'onClick', e, buttonProps)
-      _.invoke(this.props, 'onConfirm', e, this.props)
+      invoke(predefinedProps, 'onClick', e, buttonProps)
+      invoke(this.props, 'onConfirm', e, this.props)
     },
   })
 
@@ -80,7 +81,7 @@ class Confirm extends Component {
     // It cannot be present (even undefined) with `defaultOpen`
     // only apply it if the user provided an open prop
     const openProp = {}
-    if (_.has(this.props, 'open')) openProp.open = open
+    if (has(this.props, 'open')) openProp.open = open
 
     return (
       <Modal {...rest} {...openProp} size={size} onClose={this.handleCancel}>

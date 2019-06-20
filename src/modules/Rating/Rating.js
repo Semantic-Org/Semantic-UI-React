@@ -1,5 +1,7 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
+import invoke from 'lodash/invoke'
+import times from 'lodash/times'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -55,7 +57,7 @@ export default class Rating extends Component {
     rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
     /** A progress bar can vary in size. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
+    size: PropTypes.oneOf(without(SUI.SIZES, 'medium', 'big')),
   }
 
   static autoControlledProps = ['rating']
@@ -94,7 +96,7 @@ export default class Rating extends Component {
   }
 
   handleMouseLeave = (...args) => {
-    _.invoke(this.props, 'onMouseLeave', ...args)
+    invoke(this.props, 'onMouseLeave', ...args)
 
     if (this.props.disabled) return
 
@@ -125,7 +127,7 @@ export default class Rating extends Component {
         onMouseLeave={this.handleMouseLeave}
         tabIndex={disabled ? 0 : -1}
       >
-        {_.times(maxRating, i => (
+        {times(maxRating, (i) => (
           <RatingIcon
             tabIndex={disabled ? -1 : 0}
             active={rating >= i + 1}

@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import get from 'lodash/get'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
@@ -45,15 +46,15 @@ class TextArea extends Component {
   focus = () => this.ref.current.focus()
 
   handleChange = (e) => {
-    const value = _.get(e, 'target.value')
+    const value = get(e, 'target.value')
 
-    _.invoke(this.props, 'onChange', e, { ...this.props, value })
+    invoke(this.props, 'onChange', e, { ...this.props, value })
   }
 
   handleInput = (e) => {
-    const value = _.get(e, 'target.value')
+    const value = get(e, 'target.value')
 
-    _.invoke(this.props, 'onInput', e, { ...this.props, value })
+    invoke(this.props, 'onInput', e, { ...this.props, value })
   }
 
   render() {

@@ -1,4 +1,6 @@
-import _ from 'lodash'
+import includes from 'lodash/includes'
+import map from 'lodash/map'
+import slice from 'lodash/slice'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -7,17 +9,17 @@ import ComponentPropToggle from './ComponentPropEnumToggle'
 import ComponentPropValue from './ComponentPropEnumValue'
 
 const ComponentPropEnum = ({ limit, showAll, toggle, type, values }) => {
-  if (!_.includes(type, 'enum') || !values) return null
+  if (!includes(type, 'enum') || !values) return null
 
   const exceeds = values.length > limit
-  const sliced = showAll ? values : _.slice(values, 0, limit)
+  const sliced = showAll ? values : slice(values, 0, limit)
 
   return (
     <ComponentPropExtra inline title='Enums: '>
       {exceeds && <ComponentPropToggle toggle={toggle} total={values.length} showAll={showAll} />}
 
       <div>
-        {_.map(sliced, (value) => (
+        {map(sliced, (value) => (
           <ComponentPropValue key={value}>{value}</ComponentPropValue>
         ))}
         {exceeds && !showAll && '...'}

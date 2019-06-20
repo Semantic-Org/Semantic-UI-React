@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import isNil from 'lodash/isNil'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -48,7 +49,7 @@ export default class AccordionTitle extends Component {
     onClick: PropTypes.func,
   }
 
-  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
+  handleClick = (e) => invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const { active, children, className, content, icon } = this.props
@@ -56,7 +57,7 @@ export default class AccordionTitle extends Component {
     const classes = cx(useKeyOnly(active, 'active'), 'title', className)
     const rest = getUnhandledProps(AccordionTitle, this.props)
     const ElementType = getElementType(AccordionTitle, this.props)
-    const iconValue = _.isNil(icon) ? 'dropdown' : icon
+    const iconValue = isNil(icon) ? 'dropdown' : icon
 
     if (!childrenUtils.isNil(children)) {
       return (
@@ -75,4 +76,4 @@ export default class AccordionTitle extends Component {
   }
 }
 
-AccordionTitle.create = createShorthandFactory(AccordionTitle, content => ({ content }))
+AccordionTitle.create = createShorthandFactory(AccordionTitle, (content) => ({ content }))

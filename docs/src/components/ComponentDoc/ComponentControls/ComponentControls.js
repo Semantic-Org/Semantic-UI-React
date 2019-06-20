@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import kebabCase from 'lodash/kebabCase'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Icon, Menu, Placeholder } from 'semantic-ui-react'
@@ -8,7 +8,7 @@ import ComponentControlsCodeSandbox from './ComponentControlsCodeSandbox'
 
 const ComponentControls = (props) => {
   const { anchorName, exampleCode, examplePath, showCode, onCopyLink, onShowCode, visible } = props
-  const externalHref = `/maximize/${_.kebabCase(examplePath.split('/').slice(-1))}`
+  const externalHref = `/maximize/${kebabCase(examplePath.split('/').slice(-1))}`
 
   if (visible) {
     return (

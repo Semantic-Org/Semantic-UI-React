@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { createPortal } from 'react-dom'
@@ -41,12 +41,12 @@ class PortalInner extends Component {
 
   componentDidMount() {
     debug('componentDidMount()')
-    _.invoke(this.props, 'onMount', null, this.props)
+    invoke(this.props, 'onMount', null, this.props)
   }
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
-    _.invoke(this.props, 'onUnmount', null, this.props)
+    invoke(this.props, 'onUnmount', null, this.props)
   }
 
   handleRef = (c) => {

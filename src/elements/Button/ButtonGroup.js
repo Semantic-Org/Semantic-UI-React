@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import isNil from 'lodash/isNil'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -69,7 +70,7 @@ function ButtonGroup(props) {
   const rest = getUnhandledProps(ButtonGroup, props)
   const ElementType = getElementType(ButtonGroup, props)
 
-  if (_.isNil(buttons)) {
+  if (isNil(buttons)) {
     return (
       <ElementType {...rest} className={classes}>
         {childrenUtils.isNil(children) ? content : children}
@@ -79,7 +80,7 @@ function ButtonGroup(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(buttons, button => Button.create(button))}
+      {map(buttons, (button) => Button.create(button))}
     </ElementType>
   )
 }

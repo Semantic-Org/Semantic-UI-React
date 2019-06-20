@@ -1,4 +1,8 @@
-import _ from 'lodash'
+import pickBy from 'lodash/pickBy'
+import map from 'lodash/map'
+import without from 'lodash/without'
+import keys from 'lodash/keys'
+import values from 'lodash/values'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -17,7 +21,7 @@ import {
 } from '../../lib'
 import Step from './Step'
 
-const numberMap = _.pickBy(numberToWordMap, (val, key) => key <= 8)
+const numberMap = pickBy(numberToWordMap, (val, key) => key <= 8)
 
 /**
  * A set of steps.
@@ -70,7 +74,7 @@ function StepGroup(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(items, item => Step.create(item))}
+      {map(items, (item) => Step.create(item))}
     </ElementType>
   )
 }
@@ -101,7 +105,7 @@ StepGroup.propTypes = {
   ordered: PropTypes.bool,
 
   /** Steps can have different sizes. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
 
   /** A step can stack vertically only on smaller screens. */
   stackable: PropTypes.oneOf(['tablet']),
@@ -114,9 +118,9 @@ StepGroup.propTypes = {
 
   /** Steps can be divided evenly inside their parent. */
   widths: PropTypes.oneOf([
-    ..._.keys(numberMap),
-    ..._.keys(numberMap).map(Number),
-    ..._.values(numberMap),
+    ...keys(numberMap),
+    ...keys(numberMap).map(Number),
+    ...values(numberMap),
   ]),
 }
 

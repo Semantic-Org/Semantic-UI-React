@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Accordion, Menu, Sticky } from 'semantic-ui-react'
@@ -17,7 +17,7 @@ const sidebarStyle = {
 const ComponentSidebar = ({ activePath, examplesRef, onItemClick, sections }) => (
   <Sticky context={examplesRef} offset={14}>
     <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
-      {_.map(sections, ({ examples, sectionName }) => (
+      {map(sections, ({ examples, sectionName }) => (
         <ComponentSidebarSection
           activePath={activePath}
           examples={examples}

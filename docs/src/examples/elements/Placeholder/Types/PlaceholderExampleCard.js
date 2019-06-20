@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import React, { Component, Fragment } from 'react'
 import { Button, Card, Divider, Image, Placeholder } from 'semantic-ui-react'
 
@@ -45,7 +45,7 @@ export default class PlaceholderExampleCard extends Component {
         <Divider />
 
         <Card.Group doubling itemsPerRow={3} stackable>
-          {_.map(cards, card => (
+          {map(cards, (card) => (
             <Card key={card.header}>
               {loading ? (
                 <Placeholder>

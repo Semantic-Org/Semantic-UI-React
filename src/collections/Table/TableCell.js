@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import without from 'lodash/without'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -119,7 +119,7 @@ TableCell.propTypes = {
   singleLine: PropTypes.bool,
 
   /** A table cell can adjust its text alignment. */
-  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
+  textAlign: PropTypes.oneOf(without(SUI.TEXT_ALIGNMENTS, 'justified')),
 
   /** A table cell can adjust its text alignment. */
   verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
@@ -131,6 +131,6 @@ TableCell.propTypes = {
   width: PropTypes.oneOf(SUI.WIDTHS),
 }
 
-TableCell.create = createShorthandFactory(TableCell, content => ({ content }))
+TableCell.create = createShorthandFactory(TableCell, (content) => ({ content }))
 
 export default TableCell

@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -41,10 +42,10 @@ export default class ModalActions extends Component {
     onActionClick: customPropTypes.every([customPropTypes.disallow(['children']), PropTypes.func]),
   }
 
-  handleButtonOverrides = predefinedProps => ({
+  handleButtonOverrides = (predefinedProps) => ({
     onClick: (e, buttonProps) => {
-      _.invoke(predefinedProps, 'onClick', e, buttonProps)
-      _.invoke(this.props, 'onActionClick', e, buttonProps)
+      invoke(predefinedProps, 'onClick', e, buttonProps)
+      invoke(this.props, 'onActionClick', e, buttonProps)
     },
   })
 
@@ -71,7 +72,7 @@ export default class ModalActions extends Component {
 
     return (
       <ElementType {...rest} className={classes}>
-        {_.map(actions, action =>
+        {map(actions, (action) =>
           Button.create(action, { overrideProps: this.handleButtonOverrides }),
         )}
       </ElementType>
@@ -79,4 +80,4 @@ export default class ModalActions extends Component {
   }
 }
 
-ModalActions.create = createShorthandFactory(ModalActions, actions => ({ actions }))
+ModalActions.create = createShorthandFactory(ModalActions, (actions) => ({ actions }))

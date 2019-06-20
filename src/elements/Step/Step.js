@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -85,7 +85,7 @@ class Step extends Component {
   handleClick = (e) => {
     const { disabled } = this.props
 
-    if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
+    if (!disabled) invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {

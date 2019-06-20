@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -44,9 +44,9 @@ function CardContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(CardHeader, val => ({ content: val }), header, { autoGenerateKey: false })}
-      {createShorthand(CardMeta, val => ({ content: val }), meta, { autoGenerateKey: false })}
-      {createShorthand(CardDescription, val => ({ content: val }), description, {
+      {createShorthand(CardHeader, (val) => ({ content: val }), header, { autoGenerateKey: false })}
+      {createShorthand(CardMeta, (val) => ({ content: val }), meta, { autoGenerateKey: false })}
+      {createShorthand(CardDescription, (val) => ({ content: val }), description, {
         autoGenerateKey: false,
       })}
     </ElementType>
@@ -79,7 +79,7 @@ CardContent.propTypes = {
   meta: customPropTypes.itemShorthand,
 
   /** A card content can adjust its text alignment. */
-  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
+  textAlign: PropTypes.oneOf(without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
 export default CardContent

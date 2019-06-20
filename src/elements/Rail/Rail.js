@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -79,7 +79,7 @@ Rail.propTypes = {
   position: PropTypes.oneOf(SUI.FLOATS).isRequired,
 
   /** A rail can have different sizes. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
 }
 
 export default Rail

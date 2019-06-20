@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import sortBy from 'lodash/sortBy'
+import map from 'lodash/map'
 import React, { Component } from 'react'
 import { Table } from 'semantic-ui-react'
 
@@ -16,13 +17,13 @@ export default class TableExampleSortable extends Component {
     direction: null,
   }
 
-  handleSort = clickedColumn => () => {
+  handleSort = (clickedColumn) => () => {
     const { column, data, direction } = this.state
 
     if (column !== clickedColumn) {
       this.setState({
         column: clickedColumn,
-        data: _.sortBy(data, [clickedColumn]),
+        data: sortBy(data, [clickedColumn]),
         direction: 'ascending',
       })
 
@@ -63,7 +64,7 @@ export default class TableExampleSortable extends Component {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {_.map(data, ({ age, gender, name }) => (
+          {map(data, ({ age, gender, name }) => (
             <Table.Row key={name}>
               <Table.Cell>{name}</Table.Cell>
               <Table.Cell>{age}</Table.Cell>

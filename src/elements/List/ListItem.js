@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import isPlainObject from 'lodash/isPlainObject'
 import PropTypes from 'prop-types'
 import React, { Component, isValidElement } from 'react'
 
@@ -82,7 +83,7 @@ class ListItem extends Component {
   handleClick = (e) => {
     const { disabled } = this.props
 
-    if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
+    if (!disabled) invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {
@@ -127,7 +128,7 @@ class ListItem extends Component {
     const imageElement = Image.create(image, { autoGenerateKey: false })
 
     // See description of `content` prop for explanation about why this is necessary.
-    if (!isValidElement(content) && _.isPlainObject(content)) {
+    if (!isValidElement(content) && isPlainObject(content)) {
       return (
         <ElementType
           {...valueProp}

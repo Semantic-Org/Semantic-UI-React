@@ -1,5 +1,8 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import get from 'lodash/get'
+import isNil from 'lodash/isNil'
+import includes from 'lodash/includes'
 import PropTypes from 'prop-types'
 import { cloneElement, Component } from 'react'
 
@@ -154,7 +157,7 @@ export default class Transition extends Component {
       const durationType = TRANSITION_TYPE[status]
       const durationValue = normalizeTransitionDuration(duration, durationType)
 
-      _.invoke(this.props, 'onStart', null, { ...this.props, status })
+      invoke(this.props, 'onStart', null, { ...this.props, status })
       this.timeoutId = setTimeout(this.handleComplete, durationValue)
     })
   }
@@ -162,7 +165,7 @@ export default class Transition extends Component {
   handleComplete = () => {
     const { status: current } = this.state
 
-    _.invoke(this.props, 'onComplete', null, { ...this.props, status: current })
+    invoke(this.props, 'onComplete', null, { ...this.props, status: current })
 
     if (this.nextStatus) {
       this.handleStart()
@@ -173,7 +176,7 @@ export default class Transition extends Component {
     const callback = current === Transition.ENTERING ? 'onShow' : 'onHide'
 
     this.setState({ status, animating: false }, () => {
-      _.invoke(this.props, callback, null, { ...this.props, status })
+      invoke(this.props, callback, null, { ...this.props, status })
     })
   }
 
@@ -194,8 +197,10 @@ export default class Transition extends Component {
     const { animation, directional, children } = this.props
     const { animating, status } = this.state
 
-    const childClasses = _.get(children, 'props.className')
-    const isDirectional = _.isNil(directional) ? _.includes(SUI.DIRECTIONAL_TRANSITIONS, animation) : directional
+    const childClasses = get(children, 'props.className')
+    const isDirectional = isNil(directional)
+      ? includes(SUI.DIRECTIONAL_TRANSITIONS, animation)
+      : directional
 
     if (isDirectional) {
       return cx(
@@ -266,7 +271,7 @@ export default class Transition extends Component {
     const { children, duration } = this.props
     const { status } = this.state
 
-    const childStyle = _.get(children, 'props.style')
+    const childStyle = get(children, 'props.style')
     const type = TRANSITION_TYPE[status]
     const animationDuration = type && `${normalizeTransitionDuration(duration, type)}ms`
 

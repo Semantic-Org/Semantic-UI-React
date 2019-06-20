@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import keyboardKey from 'keyboard-key'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -56,24 +56,24 @@ export default class RatingIcon extends Component {
   }
 
   handleClick = (e) => {
-    _.invoke(this.props, 'onClick', e, this.props)
+    invoke(this.props, 'onClick', e, this.props)
   }
 
   handleKeyUp = (e) => {
-    _.invoke(this.props, 'onKeyUp', e, this.props)
+    invoke(this.props, 'onKeyUp', e, this.props)
 
     switch (keyboardKey.getCode(e)) {
       case keyboardKey.Enter:
       case keyboardKey.Spacebar:
         e.preventDefault()
-        _.invoke(this.props, 'onClick', e, this.props)
+        invoke(this.props, 'onClick', e, this.props)
         break
       default:
     }
   }
 
   handleMouseEnter = (e) => {
-    _.invoke(this.props, 'onMouseEnter', e, this.props)
+    invoke(this.props, 'onMouseEnter', e, this.props)
   }
 
   render() {

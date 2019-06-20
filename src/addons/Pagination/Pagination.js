@@ -1,4 +1,6 @@
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import map from 'lodash/map'
+import isNil from 'lodash/isNil'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -99,15 +101,15 @@ export default class Pagination extends Component {
     if (+prevActivePage === +nextActivePage) return
 
     this.trySetState({ activePage: nextActivePage })
-    _.invoke(this.props, 'onPageChange', e, { ...this.props, activePage: nextActivePage })
+    invoke(this.props, 'onPageChange', e, { ...this.props, activePage: nextActivePage })
   }
 
-  handleItemOverrides = (active, type, value) => predefinedProps => ({
+  handleItemOverrides = (active, type, value) => (predefinedProps) => ({
     active,
     type,
     key: `${type}-${value}`,
     onClick: (e, itemProps) => {
-      _.invoke(predefinedProps, 'onClick', e, itemProps)
+      invoke(predefinedProps, 'onClick', e, itemProps)
       if (itemProps.type !== 'ellipsisItem') this.handleItemClick(e, itemProps)
     },
   })
@@ -126,7 +128,7 @@ export default class Pagination extends Component {
     const items = createPaginationItems({
       activePage,
       boundaryRange,
-      hideEllipsis: _.isNil(ellipsisItem),
+      hideEllipsis: isNil(ellipsisItem),
       siblingRange,
       totalPages,
     })
@@ -134,7 +136,7 @@ export default class Pagination extends Component {
 
     return (
       <Menu {...rest} aria-label={ariaLabel} pagination role='navigation'>
-        {_.map(items, ({ active, type, value }) =>
+        {map(items, ({ active, type, value }) =>
           PaginationItem.create(this.props[type], {
             defaultProps: {
               content: value,

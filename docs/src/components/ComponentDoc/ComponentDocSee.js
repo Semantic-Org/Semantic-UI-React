@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import React from 'react'
 import { Link } from 'react-static'
 import { Header, List } from 'semantic-ui-react'
@@ -13,7 +13,7 @@ const ComponentDocSee = ({ seeTags }) => (
     <List.Item>
       <Header color='grey' content={seeTags.length > 0 ? 'See:' : ' '} size='tiny' />
     </List.Item>
-    {_.map(seeTags, ({ displayName, to }) => (
+    {map(seeTags, ({ displayName, to }) => (
       <List.Item as={Link} content={displayName} key={displayName} to={to} />
     ))}
   </List>

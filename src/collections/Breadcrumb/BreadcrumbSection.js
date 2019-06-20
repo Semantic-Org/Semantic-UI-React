@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -54,7 +54,7 @@ export default class BreadcrumbSection extends Component {
     if (link || onClick) return 'a'
   }
 
-  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
+  handleClick = (e) => invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const { active, children, className, content, href } = this.props
@@ -71,7 +71,7 @@ export default class BreadcrumbSection extends Component {
   }
 }
 
-BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, content => ({
+BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, (content) => ({
   content,
   link: true,
 }))

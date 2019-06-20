@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import each from 'lodash/each'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -27,7 +28,7 @@ function Breadcrumb(props) {
 
   const childElements = []
 
-  _.each(sections, (section, index) => {
+  each(sections, (section, index) => {
     // section
     const breadcrumbElement = BreadcrumbSection.create(section)
     childElements.push(breadcrumbElement)
@@ -73,7 +74,7 @@ Breadcrumb.propTypes = {
   sections: customPropTypes.collectionShorthand,
 
   /** Size of Breadcrumb. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
 }
 
 Breadcrumb.Divider = BreadcrumbDivider

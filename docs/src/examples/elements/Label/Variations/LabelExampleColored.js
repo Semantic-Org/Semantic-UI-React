@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import capitalize from 'lodash/capitalize'
 import React from 'react'
 import { Label } from 'semantic-ui-react'
 
@@ -20,9 +20,9 @@ const colors = [
 
 const LabelExampleColored = () => (
   <div>
-    {colors.map(color => (
+    {colors.map((color) => (
       <Label color={color} key={color}>
-        {_.capitalize(color)}
+        {capitalize(color)}
       </Label>
     ))}
   </div>

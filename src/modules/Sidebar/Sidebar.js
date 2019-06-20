@@ -1,6 +1,6 @@
 import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
@@ -125,7 +125,7 @@ class Sidebar extends Component {
         return
       }
 
-      _.invoke(this.props, callback, null, this.props)
+      invoke(this.props, callback, null, this.props)
     })
   }
 
@@ -134,13 +134,13 @@ class Sidebar extends Component {
     const callback = visible ? 'onShow' : 'onHidden'
 
     this.setState({ animating: false })
-    _.invoke(this.props, callback, null, this.props)
+    invoke(this.props, callback, null, this.props)
   }
 
   handleDocumentClick = (e) => {
     if (!doesNodeContainClick(this.ref.current, e)) {
       this.skipNextCallback = true
-      _.invoke(this.props, 'onHide', e, { ...this.props, visible: false })
+      invoke(this.props, 'onHide', e, { ...this.props, visible: false })
     }
   }
 

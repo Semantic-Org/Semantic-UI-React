@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 
@@ -32,10 +32,10 @@ class AccordionPanel extends Component {
     title: customPropTypes.itemShorthand,
   }
 
-  handleTitleOverrides = predefinedProps => ({
+  handleTitleOverrides = (predefinedProps) => ({
     onClick: (e, titleProps) => {
-      _.invoke(predefinedProps, 'onClick', e, titleProps)
-      _.invoke(this.props, 'onTitleClick', e, titleProps)
+      invoke(predefinedProps, 'onClick', e, titleProps)
+      invoke(this.props, 'onTitleClick', e, titleProps)
     },
   })
 

@@ -1,5 +1,12 @@
 import keyboardKey from 'keyboard-key'
-import _ from 'lodash/fp'
+import min from 'lodash/min'
+import max from 'lodash/max'
+import map from 'lodash/map'
+import flow from 'lodash/flow'
+import filter from 'lodash/filter'
+import capitalize from 'lodash/capitalize'
+import escapeRegExp from 'lodash/escapeRegExp'
+import each from 'lodash/each'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Link } from 'react-static'
@@ -95,14 +102,14 @@ class Sidebar extends Component {
 
     if (code === keyboardKey.ArrowDown) {
       e.preventDefault()
-      const next = _.min([selectedItemIndex + 1, this.filteredMenu.length - 1])
+      const next = min([selectedItemIndex + 1, this.filteredMenu.length - 1])
       this.selectedRoute = getComponentPathname(this.filteredMenu[next])
       this.setState({ selectedItemIndex: next })
     }
 
     if (code === keyboardKey.ArrowUp) {
       e.preventDefault()
-      const next = _.max([selectedItemIndex - 1, 0])
+      const next = max([selectedItemIndex - 1, 0])
       this.selectedRoute = getComponentPathname(this.filteredMenu[next])
       this.setState({ selectedItemIndex: next })
     }
@@ -112,10 +119,10 @@ class Sidebar extends Component {
     this._searchInput = c && c.querySelector('input')
   }
 
-  menuItemsByType = _.map((nextType) => {
-    const items = _.flow(
-      _.filter(({ type }) => type === nextType),
-      _.map((info) => (
+  menuItemsByType = map((nextType) => {
+    const items = flow(
+      filter(({ type }) => type === nextType),
+      map((info) => (
         <Menu.Item
           key={info.displayName}
           name={info.displayName}
@@ -129,7 +136,7 @@ class Sidebar extends Component {
 
     return (
       <Menu.Item key={nextType}>
-        <Menu.Header>{_.capitalize(nextType)}s</Menu.Header>
+        <Menu.Header>{capitalize(nextType)}s</Menu.Header>
         <Menu.Menu>{items}</Menu.Menu>
       </Menu.Item>
     )
@@ -142,9 +149,9 @@ class Sidebar extends Component {
     let itemIndex = -1
     const startsWithMatches = []
     const containsMatches = []
-    const escapedQuery = _.escapeRegExp(query)
+    const escapedQuery = escapeRegExp(query)
 
-    _.each((info) => {
+    each((info) => {
       if (new RegExp(`^${escapedQuery}`, 'i').test(info.displayName)) {
         startsWithMatches.push(info)
       } else if (new RegExp(escapedQuery, 'i').test(info.displayName)) {
@@ -154,7 +161,7 @@ class Sidebar extends Component {
 
     this.filteredMenu = [...startsWithMatches, ...containsMatches]
     const hasMultipleMatches = this.filteredMenu.length > 1
-    const menuItems = _.map((info) => {
+    const menuItems = map((info) => {
       itemIndex += 1
       const isSelected = itemIndex === selectedItemIndex
 

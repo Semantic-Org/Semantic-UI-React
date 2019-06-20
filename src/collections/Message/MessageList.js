@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -23,7 +23,7 @@ function MessageList(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {childrenUtils.isNil(children) ? _.map(items, MessageItem.create) : children}
+      {childrenUtils.isNil(children) ? map(items, MessageItem.create) : children}
     </ElementType>
   )
 }
@@ -46,6 +46,6 @@ MessageList.defaultProps = {
   as: 'ul',
 }
 
-MessageList.create = createShorthandFactory(MessageList, val => ({ items: val }))
+MessageList.create = createShorthandFactory(MessageList, (val) => ({ items: val }))
 
 export default MessageList

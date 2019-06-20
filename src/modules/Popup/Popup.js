@@ -1,6 +1,13 @@
 import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
+import reduce from 'lodash/reduce'
+import includes from 'lodash/includes'
+import pick from 'lodash/pick'
+import isArray from 'lodash/isArray'
+import invoke from 'lodash/invoke'
+import merge from 'lodash/merge'
+import isNil from 'lodash/isNil'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 import { Popper } from 'react-popper'
@@ -131,7 +138,7 @@ export default class Popup extends Component {
     popperDependencies: PropTypes.array,
 
     /** Popup size. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big', 'massive')),
+    size: PropTypes.oneOf(without(SUI.SIZES, 'medium', 'big', 'massive')),
 
     /** Custom Popup style. */
     style: PropTypes.object,
@@ -163,16 +170,16 @@ export default class Popup extends Component {
     if (state.closed || state.disabled) return {}
 
     const unhandledProps = getUnhandledProps(Popup, props)
-    const contentRestProps = _.reduce(
+    const contentRestProps = reduce(
       unhandledProps,
       (acc, val, key) => {
-        if (!_.includes(Portal.handledProps, key)) acc[key] = val
+        if (!includes(Portal.handledProps, key)) acc[key] = val
 
         return acc
       },
       {},
     )
-    const portalRestProps = _.pick(unhandledProps, Portal.handledProps)
+    const portalRestProps = pick(unhandledProps, Portal.handledProps)
 
     return { contentRestProps, portalRestProps }
   }
@@ -194,22 +201,22 @@ export default class Popup extends Component {
     const portalProps = {}
 
     const { on, hoverable } = this.props
-    const normalizedOn = _.isArray(on) ? on : [on]
+    const normalizedOn = isArray(on) ? on : [on]
 
     if (hoverable) {
       portalProps.closeOnPortalMouseLeave = true
       portalProps.mouseLeaveDelay = 300
     }
-    if (_.includes(normalizedOn, 'click')) {
+    if (includes(normalizedOn, 'click')) {
       portalProps.openOnTriggerClick = true
       portalProps.closeOnTriggerClick = true
       portalProps.closeOnDocumentClick = true
     }
-    if (_.includes(normalizedOn, 'focus')) {
+    if (includes(normalizedOn, 'focus')) {
       portalProps.openOnTriggerFocus = true
       portalProps.closeOnTriggerBlur = true
     }
-    if (_.includes(normalizedOn, 'hover')) {
+    if (includes(normalizedOn, 'hover')) {
       portalProps.openOnTriggerMouseEnter = true
       portalProps.closeOnTriggerMouseLeave = true
       // Taken from SUI: https://git.io/vPmCm
@@ -234,24 +241,24 @@ export default class Popup extends Component {
 
   handleClose = (e) => {
     debug('handleClose()')
-    _.invoke(this.props, 'onClose', e, this.props)
+    invoke(this.props, 'onClose', e, this.props)
   }
 
   handleOpen = (e) => {
     debug('handleOpen()')
-    _.invoke(this.props, 'onOpen', e, this.props)
+    invoke(this.props, 'onOpen', e, this.props)
   }
 
   handlePortalMount = (e) => {
     debug('handlePortalMount()')
-    _.invoke(this.props, 'onMount', e, this.props)
+    invoke(this.props, 'onMount', e, this.props)
   }
 
   handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
 
     this.positionUpdate = null
-    _.invoke(this.props, 'onUnmount', e, this.props)
+    invoke(this.props, 'onUnmount', e, this.props)
   }
 
   handleUpdate() {
@@ -324,7 +331,7 @@ export default class Popup extends Component {
 
     if (closed || disabled) return trigger
 
-    const modifiers = _.merge(
+    const modifiers = merge(
       {
         arrow: { enabled: false },
         flip: { enabled: !pinned },
@@ -335,7 +342,7 @@ export default class Popup extends Component {
       },
       popperModifiers,
     )
-    const referenceElement = createReferenceProxy(_.isNil(context) ? this.triggerRef : context)
+    const referenceElement = createReferenceProxy(isNil(context) ? this.triggerRef : context)
 
     const mergedPortalProps = { ...this.getPortalProps(), ...portalRestProps }
     debug('portal props:', mergedPortalProps)

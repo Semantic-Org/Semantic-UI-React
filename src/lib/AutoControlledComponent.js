@@ -23,10 +23,19 @@
  *    Some instance methods may be exposed to users via refs.  Again, these are lost with HOC unless
  *    hoisted and exposed by the HOC.
  */
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import each from 'lodash/each'
+import has from 'lodash/has'
+import intersection from 'lodash/intersection'
+import keys from 'lodash/keys'
+import isEmpty from 'lodash/isEmpty'
+import filter from 'lodash/filter'
+import startsWith from 'lodash/startsWith'
+import isUndefined from 'lodash/isUndefined'
+import difference from 'lodash/difference'
 import { Component } from 'react'
 
-const getDefaultPropName = prop => `default${prop[0].toUpperCase() + prop.slice(1)}`
+const getDefaultPropName = (prop) => `default${prop[0].toUpperCase() + prop.slice(1)}`
 
 /**
  * Return the auto controlled state value for a give prop. The initial value is chosen in this order:
@@ -72,7 +81,7 @@ export default class AutoControlledComponent extends Component {
     super(...args)
 
     const { autoControlledProps } = this.constructor
-    const state = _.invoke(this, 'getInitialAutoControlledState', this.props) || {}
+    const state = invoke(this, 'getInitialAutoControlledState', this.props) || {}
 
     if (process.env.NODE_ENV !== 'production') {
       const { defaultProps, name, propTypes } = this.constructor
@@ -82,16 +91,16 @@ export default class AutoControlledComponent extends Component {
       }
 
       // require propTypes
-      _.each(autoControlledProps, (prop) => {
+      each(autoControlledProps, (prop) => {
         const defaultProp = getDefaultPropName(prop)
         // regular prop
-        if (!_.has(propTypes, defaultProp)) {
+        if (!has(propTypes, defaultProp)) {
           console.error(
             `${name} is missing "${defaultProp}" propTypes validation for auto controlled prop "${prop}".`,
           )
         }
         // its default prop
-        if (!_.has(propTypes, prop)) {
+        if (!has(propTypes, prop)) {
           console.error(
             `${name} is missing propTypes validation for auto controlled prop "${prop}".`,
           )
@@ -108,8 +117,8 @@ export default class AutoControlledComponent extends Component {
       // To set defaults for an AutoControlled prop, you can set the initial state in the
       // constructor or by using an ES7 property initializer:
       // https://babeljs.io/blog/2015/06/07/react-on-es6-plus#property-initializers
-      const illegalDefaults = _.intersection(autoControlledProps, _.keys(defaultProps))
-      if (!_.isEmpty(illegalDefaults)) {
+      const illegalDefaults = intersection(autoControlledProps, keys(defaultProps))
+      if (!isEmpty(illegalDefaults)) {
         console.error(
           [
             'Do not set defaultProps for autoControlledProps. You can set defaults by',
@@ -124,10 +133,10 @@ export default class AutoControlledComponent extends Component {
       //
       // Default props are automatically handled.
       // Listing defaults in autoControlledProps would result in allowing defaultDefaultValue props.
-      const illegalAutoControlled = _.filter(autoControlledProps, prop =>
-        _.startsWith(prop, 'default'),
+      const illegalAutoControlled = filter(autoControlledProps, (prop) =>
+        startsWith(prop, 'default'),
       )
-      if (!_.isEmpty(illegalAutoControlled)) {
+      if (!isEmpty(illegalAutoControlled)) {
         console.error(
           [
             'Do not add default props to autoControlledProps.',
@@ -149,7 +158,7 @@ export default class AutoControlledComponent extends Component {
         const defaultPropName = getDefaultPropName(prop)
         const { name } = this.constructor
         // prevent defaultFoo={} along side foo={}
-        if (!_.isUndefined(this.props[defaultPropName]) && !_.isUndefined(this.props[prop])) {
+        if (!isUndefined(this.props[defaultPropName]) && !isUndefined(this.props[prop])) {
           console.error(
             `${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`,
           )
@@ -167,7 +176,7 @@ export default class AutoControlledComponent extends Component {
 
     // Solve the next state for autoControlledProps
     const newState = autoControlledProps.reduce((acc, prop) => {
-      const isNextDefined = !_.isUndefined(nextProps[prop])
+      const isNextDefined = !isUndefined(nextProps[prop])
 
       // if next is defined then use its value
       if (isNextDefined) acc[prop] = nextProps[prop]
@@ -189,8 +198,8 @@ export default class AutoControlledComponent extends Component {
     if (process.env.NODE_ENV !== 'production') {
       const { name } = this.constructor
       // warn about failed attempts to setState for keys not listed in autoControlledProps
-      const illegalKeys = _.difference(_.keys(maybeState), autoControlledProps)
-      if (!_.isEmpty(illegalKeys)) {
+      const illegalKeys = difference(keys(maybeState), autoControlledProps)
+      if (!isEmpty(illegalKeys)) {
         console.error(
           [
             `${name} called trySetState() with controlled props: "${illegalKeys}".`,

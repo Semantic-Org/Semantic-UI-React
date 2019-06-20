@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import capitalize from 'lodash/capitalize'
 import React from 'react'
 import { Grid } from 'semantic-ui-react'
 
@@ -20,9 +20,9 @@ const colors = [
 
 const GridExampleColoredColumn = () => (
   <Grid columns={5} padded>
-    {colors.map(color => (
+    {colors.map((color) => (
       <Grid.Column color={color} key={color}>
-        {_.capitalize(color)}
+        {capitalize(color)}
       </Grid.Column>
     ))}
   </Grid>

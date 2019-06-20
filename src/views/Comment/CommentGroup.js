@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -57,7 +57,7 @@ CommentGroup.propTypes = {
   minimal: PropTypes.bool,
 
   /** Comments can have different sizes. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
 
   /** A comment list can be threaded to showing the relationship between conversations. */
   threaded: PropTypes.bool,

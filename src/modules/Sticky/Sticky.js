@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
@@ -258,23 +258,23 @@ export default class Sticky extends Component {
 
   stick = (e, bound) => {
     this.setState({ bound, sticky: true })
-    _.invoke(this.props, 'onStick', e, this.props)
+    invoke(this.props, 'onStick', e, this.props)
   }
 
   unstick = (e, bound) => {
     this.setState({ bound, sticky: false })
-    _.invoke(this.props, 'onUnstick', e, this.props)
+    invoke(this.props, 'onUnstick', e, this.props)
   }
 
   stickToContextBottom = (e) => {
-    _.invoke(this.props, 'onBottom', e, this.props)
+    invoke(this.props, 'onBottom', e, this.props)
 
     this.stick(e, true)
     this.pushing(true)
   }
 
   stickToContextTop = (e) => {
-    _.invoke(this.props, 'onTop', e, this.props)
+    invoke(this.props, 'onTop', e, this.props)
 
     this.unstick(e, false)
     this.pushing(false)

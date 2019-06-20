@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import React, { Component, createRef } from 'react'
 import {
   Checkbox,
@@ -36,7 +36,7 @@ export default class VisibilityExampleUpdateOn extends Component {
           <Grid.Column>
             {showWireframe ? (
               <Segment>
-                {_.map(
+                {map(
                   [
                     '/images/wireframe/centered-paragraph.png',
                     '/images/wireframe/short-paragraph.png',

@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import memoize from 'lodash/memoize'
 import { isRefObject } from '../../../lib/refUtils'
 
 class ReferenceProxy {
@@ -7,7 +8,7 @@ class ReferenceProxy {
   }
 
   getBoundingClientRect() {
-    return _.invoke(this.ref.current, 'getBoundingClientRect', {})
+    return invoke(this.ref.current, 'getBoundingClientRect', {})
   }
 
   get clientWidth() {
@@ -30,7 +31,7 @@ class ReferenceProxy {
  *
  * @see https://popper.js.org/popper-documentation.html#referenceObject
  */
-const createReferenceProxy = _.memoize(
+const createReferenceProxy = memoize(
   (reference) =>
     new ReferenceProxy(
       // TODO: use toRefObject from Stardust

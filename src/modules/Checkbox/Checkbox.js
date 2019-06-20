@@ -1,5 +1,8 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import isNil from 'lodash/isNil'
+import get from 'lodash/get'
+import invoke from 'lodash/invoke'
+import set from 'lodash/set'
 import PropTypes from 'prop-types'
 import React, { createRef } from 'react'
 
@@ -139,22 +142,22 @@ export default class Checkbox extends Component {
   computeTabIndex = () => {
     const { disabled, tabIndex } = this.props
 
-    if (!_.isNil(tabIndex)) return tabIndex
+    if (!isNil(tabIndex)) return tabIndex
     return disabled ? -1 : 0
   }
 
   handleClick = (e) => {
-    debug('handleClick()', _.get(e, 'target.tagName'))
+    debug('handleClick()', get(e, 'target.tagName'))
     const { id } = this.props
     const { checked, indeterminate } = this.state
 
-    const hasId = !_.isNil(id)
+    const hasId = !isNil(id)
     const isLabelClick = e.target === this.labelRef.current
     const isLabelClickAndForwardedToInput = isLabelClick && hasId
 
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3351
     if (!isLabelClickAndForwardedToInput) {
-      _.invoke(this.props, 'onClick', e, {
+      invoke(this.props, 'onClick', e, {
         ...this.props,
         checked: !checked,
         indeterminate: !!indeterminate,
@@ -180,9 +183,9 @@ export default class Checkbox extends Component {
     const { checked } = this.state
 
     if (!this.canToggle()) return
-    debug('handleChange()', _.get(e, 'target.tagName'))
+    debug('handleChange()', get(e, 'target.tagName'))
 
-    _.invoke(this.props, 'onChange', e, {
+    invoke(this.props, 'onChange', e, {
       ...this.props,
       checked: !checked,
       indeterminate: false,
@@ -194,13 +197,13 @@ export default class Checkbox extends Component {
     debug('handleMouseDown()')
     const { checked, indeterminate } = this.state
 
-    _.invoke(this.props, 'onMouseDown', e, {
+    invoke(this.props, 'onMouseDown', e, {
       ...this.props,
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
 
-    _.invoke(this.inputRef.current, 'focus')
+    invoke(this.inputRef.current, 'focus')
     // Heads up!
     // We need to call "preventDefault" to keep element focused.
     e.preventDefault()
@@ -211,7 +214,7 @@ export default class Checkbox extends Component {
     const { checked, indeterminate } = this.state
 
     this.isClickFromMouse = true
-    _.invoke(this.props, 'onMouseUp', e, {
+    invoke(this.props, 'onMouseUp', e, {
       ...this.props,
       checked: !!checked,
       indeterminate: !!indeterminate,
@@ -224,7 +227,7 @@ export default class Checkbox extends Component {
   setIndeterminate = () => {
     const { indeterminate } = this.state
 
-    _.set(this.inputRef, 'current.indeterminate', !!indeterminate)
+    set(this.inputRef, 'current.indeterminate', !!indeterminate)
   }
 
   render() {
@@ -250,7 +253,7 @@ export default class Checkbox extends Component {
       useKeyOnly(indeterminate, 'indeterminate'),
       // auto apply fitted class to compact white space when there is no label
       // https://semantic-ui.com/modules/checkbox.html#fitted
-      useKeyOnly(_.isNil(label), 'fitted'),
+      useKeyOnly(isNil(label), 'fitted'),
       useKeyOnly(radio, 'radio'),
       useKeyOnly(readOnly, 'read-only'),
       useKeyOnly(slider, 'slider'),

@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Table } from 'semantic-ui-react'
@@ -13,7 +13,7 @@ const ComponentTable = ({ props }) => (
   <Table compact='very' basic='very'>
     <ComponentTableHeader />
     <Table.Body>
-      {_.map(props, (propDef) => (
+      {map(props, (propDef) => (
         <ComponentTableRow {...propDef} key={propDef.name} />
       ))}
     </Table.Body>

@@ -1,4 +1,6 @@
-import _ from 'lodash'
+import keys from 'lodash/keys'
+import get from 'lodash/get'
+import join from 'lodash/join'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Checkbox } from 'semantic-ui-react'
@@ -40,9 +42,9 @@ export default class ComponentProps extends Component {
     const { displayName, componentsInfo } = this.props
     const { activeDisplayName } = this.state
 
-    const displayNames = _.keys(componentsInfo)
+    const displayNames = keys(componentsInfo)
     const { docblock, props } = componentsInfo[activeDisplayName] || {}
-    const description = _.get(docblock, 'description', [])
+    const description = get(docblock, 'description', [])
 
     return (
       <React.Fragment>
@@ -56,7 +58,7 @@ export default class ComponentProps extends Component {
 
         {activeDisplayName && (
           <div style={propsContainerStyle}>
-            <ComponentPropsDescription description={_.join(description, ' ')} />
+            <ComponentPropsDescription description={join(description, ' ')} />
             <ComponentTable displayName={activeDisplayName} props={props} />
           </div>
         )}

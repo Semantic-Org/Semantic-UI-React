@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -35,7 +35,7 @@ IconGroup.propTypes = {
   content: customPropTypes.contentShorthand,
 
   /** Size of the icon group. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
 }
 
 IconGroup.defaultProps = {

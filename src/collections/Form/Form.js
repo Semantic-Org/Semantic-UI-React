@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -62,7 +63,7 @@ class Form extends Component {
     reply: PropTypes.bool,
 
     /** A form can vary in size. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+    size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
 
     /** Automatically show any success Message children. */
     success: PropTypes.bool,
@@ -96,8 +97,8 @@ class Form extends Component {
 
     // Heads up! Third party libs can pass own data as first argument, we need to check that it has preventDefault()
     // method.
-    if (typeof action !== 'string') _.invoke(e, 'preventDefault')
-    _.invoke(this.props, 'onSubmit', e, this.props, ...args)
+    if (typeof action !== 'string') invoke(e, 'preventDefault')
+    invoke(this.props, 'onSubmit', e, this.props, ...args)
   }
 
   render() {

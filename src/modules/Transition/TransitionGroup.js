@@ -1,4 +1,8 @@
-import _ from 'lodash'
+import mapValues from 'lodash/mapValues'
+import forEach from 'lodash/forEach'
+import has from 'lodash/has'
+import get from 'lodash/get'
+import values from 'lodash/values'
 import PropTypes from 'prop-types'
 import React, { cloneElement, Fragment } from 'react'
 
@@ -54,7 +58,7 @@ export default class TransitionGroup extends React.Component {
 
     const { children } = this.props
     this.state = {
-      children: _.mapValues(getChildMapping(children), child => this.wrapChild(child)),
+      children: mapValues(getChildMapping(children), (child) => this.wrapChild(child)),
     }
   }
 
@@ -65,11 +69,11 @@ export default class TransitionGroup extends React.Component {
     const nextMapping = getChildMapping(nextProps.children)
     const children = mergeChildMappings(prevMapping, nextMapping)
 
-    _.forEach(children, (child, key) => {
-      const hasPrev = _.has(prevMapping, key)
-      const hasNext = _.has(nextMapping, key)
+    forEach(children, (child, key) => {
+      const hasPrev = has(prevMapping, key)
+      const hasNext = has(nextMapping, key)
       const { [key]: prevChild } = prevMapping
-      const isLeaving = !_.get(prevChild, 'props.visible')
+      const isLeaving = !get(prevChild, 'props.visible')
 
       // Heads up!
       // An item is new (entering), it will be picked from `nextChildren`, so it should be wrapped
@@ -141,6 +145,6 @@ export default class TransitionGroup extends React.Component {
     const ElementType = getElementType(TransitionGroup, this.props)
     const rest = getUnhandledProps(TransitionGroup, this.props)
 
-    return <ElementType {...rest}>{_.values(children)}</ElementType>
+    return <ElementType {...rest}>{values(children)}</ElementType>
   }
 }

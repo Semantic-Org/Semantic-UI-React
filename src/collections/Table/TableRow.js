@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import map from 'lodash/map'
+import without from 'lodash/without'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -59,7 +60,7 @@ function TableRow(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(cells, cell => TableCell.create(cell, { defaultProps: { as: cellAs } }))}
+      {map(cells, (cell) => TableCell.create(cell, { defaultProps: { as: cellAs } }))}
     </ElementType>
   )
 }
@@ -101,7 +102,7 @@ TableRow.propTypes = {
   positive: PropTypes.bool,
 
   /** A table row can adjust its text alignment. */
-  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
+  textAlign: PropTypes.oneOf(without(SUI.TEXT_ALIGNMENTS, 'justified')),
 
   /** A table row can adjust its vertical alignment. */
   verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
@@ -110,6 +111,6 @@ TableRow.propTypes = {
   warning: PropTypes.bool,
 }
 
-TableRow.create = createShorthandFactory(TableRow, cells => ({ cells }))
+TableRow.create = createShorthandFactory(TableRow, (cells) => ({ cells }))
 
 export default TableRow

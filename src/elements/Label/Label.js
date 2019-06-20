@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import isUndefined from 'lodash/isUndefined'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -123,10 +124,10 @@ export default class Label extends Component {
     if (onClick) onClick(e, this.props)
   }
 
-  handleIconOverrides = predefinedProps => ({
+  handleIconOverrides = (predefinedProps) => ({
     onClick: (e) => {
-      _.invoke(predefinedProps, 'onClick', e)
-      _.invoke(this.props, 'onRemove', e, this.props)
+      invoke(predefinedProps, 'onClick', e)
+      invoke(this.props, 'onRemove', e, this.props)
     },
   })
 
@@ -190,7 +191,7 @@ export default class Label extends Component {
       )
     }
 
-    const removeIconShorthand = _.isUndefined(removeIcon) ? 'delete' : removeIcon
+    const removeIconShorthand = isUndefined(removeIcon) ? 'delete' : removeIcon
 
     return (
       <ElementType className={classes} onClick={this.handleClick} {...rest}>
@@ -208,4 +209,4 @@ export default class Label extends Component {
   }
 }
 
-Label.create = createShorthandFactory(Label, value => ({ content: value }))
+Label.create = createShorthandFactory(Label, (value) => ({ content: value }))

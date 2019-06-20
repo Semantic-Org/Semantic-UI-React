@@ -1,5 +1,7 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
+import invoke from 'lodash/invoke'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -89,7 +91,7 @@ class Menu extends Component {
     secondary: PropTypes.bool,
 
     /** A menu can vary in size. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
+    size: PropTypes.oneOf(without(SUI.SIZES, 'medium', 'big')),
 
     /** A menu can stack at mobile resolutions. */
     stackable: PropTypes.bool,
@@ -113,14 +115,14 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
-  handleItemOverrides = predefinedProps => ({
+  handleItemOverrides = (predefinedProps) => ({
     onClick: (e, itemProps) => {
       const { index } = itemProps
 
       this.trySetState({ activeIndex: index })
 
-      _.invoke(predefinedProps, 'onClick', e, itemProps)
-      _.invoke(this.props, 'onItemClick', e, itemProps)
+      invoke(predefinedProps, 'onClick', e, itemProps)
+      invoke(this.props, 'onItemClick', e, itemProps)
     },
   })
 
@@ -128,7 +130,7 @@ class Menu extends Component {
     const { items } = this.props
     const { activeIndex } = this.state
 
-    return _.map(items, (item, index) =>
+    return map(items, (item, index) =>
       MenuItem.create(item, {
         defaultProps: {
           active: parseInt(activeIndex, 10) === index,
@@ -196,6 +198,6 @@ class Menu extends Component {
   }
 }
 
-Menu.create = createShorthandFactory(Menu, items => ({ items }))
+Menu.create = createShorthandFactory(Menu, (items) => ({ items }))
 
 export default Menu

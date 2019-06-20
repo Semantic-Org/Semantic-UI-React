@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import isNil from 'lodash/isNil'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -106,7 +106,7 @@ class DropdownItem extends Component {
       className,
     )
     // add default dropdown icon if item contains another menu
-    const iconName = _.isNil(icon)
+    const iconName = isNil(icon)
       ? childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
       : icon
     const rest = getUnhandledProps(DropdownItem, this.props)
@@ -130,13 +130,13 @@ class DropdownItem extends Component {
     const iconElement = Icon.create(iconName, { autoGenerateKey: false })
     const imageElement = Image.create(image, { autoGenerateKey: false })
     const labelElement = Label.create(label, { autoGenerateKey: false })
-    const descriptionElement = createShorthand('span', val => ({ children: val }), description, {
+    const descriptionElement = createShorthand('span', (val) => ({ children: val }), description, {
       defaultProps: { className: 'description' },
       autoGenerateKey: false,
     })
     const textElement = createShorthand(
       'span',
-      val => ({ children: val }),
+      (val) => ({ children: val }),
       childrenUtils.isNil(content) ? text : content,
       { defaultProps: { className: 'text' }, autoGenerateKey: false },
     )
@@ -154,6 +154,6 @@ class DropdownItem extends Component {
   }
 }
 
-DropdownItem.create = createShorthandFactory(DropdownItem, opts => opts)
+DropdownItem.create = createShorthandFactory(DropdownItem, (opts) => opts)
 
 export default DropdownItem

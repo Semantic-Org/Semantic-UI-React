@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import memoize from 'lodash/memoize'
+import kebabCase from 'lodash/kebabCase'
 import PropTypes from 'prop-types'
 import React from 'react'
 import SourceRender from 'react-source-render'
@@ -25,7 +26,7 @@ const errorStyle = {
   whiteSpace: 'pre-wrap',
 }
 
-const getKebabExamplePath = _.memoize((examplePath) => _.kebabCase(examplePath))
+const getKebabExamplePath = memoize((examplePath) => kebabCase(examplePath))
 
 const ExampleEditor = (props) => {
   const {

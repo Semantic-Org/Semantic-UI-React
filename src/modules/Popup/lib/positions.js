@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import keys from 'lodash/keys'
+import invert from 'lodash/invert'
 
 export const positionsMapping = {
   'top center': 'top',
@@ -13,6 +14,6 @@ export const positionsMapping = {
   'left center': 'left',
 }
 
-export const positions = _.keys(positionsMapping)
+export const positions = keys(positionsMapping)
 
-export const placementMapping = _.invert(positionsMapping)
+export const placementMapping = invert(positionsMapping)

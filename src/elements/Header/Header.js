@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import without from 'lodash/without'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -144,7 +144,7 @@ Header.propTypes = {
   inverted: PropTypes.bool,
 
   /** Content headings are sized with em and are based on the font-size of their container. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'big', 'massive', 'mini')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'big', 'massive', 'mini')),
 
   /** Headers may be formatted to label smaller or de-emphasized content. */
   sub: PropTypes.bool,

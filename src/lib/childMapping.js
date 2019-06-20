@@ -1,4 +1,8 @@
-import _ from 'lodash'
+import keyBy from 'lodash/keyBy'
+import filter from 'lodash/filter'
+import forEach from 'lodash/forEach'
+import has from 'lodash/has'
+import keys from 'lodash/keys'
 import { Children, isValidElement } from 'react'
 
 /**
@@ -7,14 +11,15 @@ import { Children, isValidElement } from 'react'
  * @param {object} children Element's children
  * @return {object} Mapping of key to child
  */
-export const getChildMapping = children => _.keyBy(_.filter(Children.toArray(children), isValidElement), 'key')
+export const getChildMapping = (children) =>
+  keyBy(filter(Children.toArray(children), isValidElement), 'key')
 
 const getPendingKeys = (prev, next) => {
   const nextKeysPending = {}
   let pendingKeys = []
 
-  _.forEach(_.keys(prev), (prevKey) => {
-    if (!_.has(next, prevKey)) {
+  forEach(keys(prev), (prevKey) => {
+    if (!has(next, prevKey)) {
       pendingKeys.push(prevKey)
       return
     }
@@ -28,7 +33,7 @@ const getPendingKeys = (prev, next) => {
   return [nextKeysPending, pendingKeys]
 }
 
-const getValue = (key, prev, next) => (_.has(next, key) ? next[key] : prev[key])
+const getValue = (key, prev, next) => (has(next, key) ? next[key] : prev[key])
 
 /**
  * When you're adding or removing children some may be added or removed in the same render pass. We want to show *both*
@@ -43,9 +48,9 @@ export const mergeChildMappings = (prev = {}, next = {}) => {
   const childMapping = {}
   const [nextKeysPending, pendingKeys] = getPendingKeys(prev, next)
 
-  _.forEach(_.keys(next), (nextKey) => {
-    if (_.has(nextKeysPending, nextKey)) {
-      _.forEach(nextKeysPending[nextKey], (pendingKey) => {
+  forEach(keys(next), (nextKey) => {
+    if (has(nextKeysPending, nextKey)) {
+      forEach(nextKeysPending[nextKey], (pendingKey) => {
         childMapping[pendingKey] = getValue(pendingKey, prev, next)
       })
     }
@@ -53,7 +58,7 @@ export const mergeChildMappings = (prev = {}, next = {}) => {
     childMapping[nextKey] = getValue(nextKey, prev, next)
   })
 
-  _.forEach(pendingKeys, (pendingKey) => {
+  forEach(pendingKeys, (pendingKey) => {
     childMapping[pendingKey] = getValue(pendingKey, prev, next)
   })
 

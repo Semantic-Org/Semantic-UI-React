@@ -1,4 +1,6 @@
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
+import map from 'lodash/map'
+import get from 'lodash/get'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -83,7 +85,7 @@ class Tab extends Component {
   }
 
   handleItemClick = (e, { index }) => {
-    _.invoke(this.props, 'onTabChange', e, { ...this.props, activeIndex: index })
+    invoke(this.props, 'onTabChange', e, { ...this.props, activeIndex: index })
     this.trySetState({ activeIndex: index })
   }
 
@@ -91,8 +93,8 @@ class Tab extends Component {
     const { panes, renderActiveOnly } = this.props
     const { activeIndex } = this.state
 
-    if (renderActiveOnly) return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props)
-    return _.map(panes, ({ pane }, index) =>
+    if (renderActiveOnly) return invoke(get(panes, `[${activeIndex}]`), 'render', this.props)
+    return map(panes, ({ pane }, index) =>
       TabPane.create(pane, {
         overrideProps: {
           active: index === activeIndex,
@@ -112,7 +114,7 @@ class Tab extends Component {
     return Menu.create(menu, {
       autoGenerateKey: false,
       overrideProps: {
-        items: _.map(panes, 'menuItem'),
+        items: map(panes, 'menuItem'),
         onItemClick: this.handleItemClick,
         activeIndex,
       },

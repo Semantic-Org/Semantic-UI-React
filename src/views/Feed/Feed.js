@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import map from 'lodash/map'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -32,7 +33,7 @@ function Feed(props) {
     )
   }
 
-  const eventElements = _.map(events, (eventProps) => {
+  const eventElements = map(events, (eventProps) => {
     const { childKey, date, meta, summary, ...eventData } = eventProps
     const finalKey = childKey || [date, meta, summary].join('-')
 
@@ -60,7 +61,7 @@ Feed.propTypes = {
   events: customPropTypes.collectionShorthand,
 
   /** A feed can have different sizes. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')),
 }
 
 Feed.Content = FeedContent

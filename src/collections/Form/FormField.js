@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import isNil from 'lodash/isNil'
+import get from 'lodash/get'
 import PropTypes from 'prop-types'
 import React, { createElement } from 'react'
 
@@ -58,8 +59,8 @@ function FormField(props) {
   // No Control
   // ----------------------------------------
 
-  if (_.isNil(control)) {
-    if (_.isNil(label)) {
+  if (isNil(control)) {
+    if (isNil(label)) {
       return (
         <ElementType {...rest} className={classes}>
           {childrenUtils.isNil(children) ? content : children}
@@ -106,7 +107,7 @@ function FormField(props) {
   return (
     <ElementType className={classes}>
       {createHTMLLabel(label, {
-        defaultProps: { htmlFor: _.get(controlProps, 'id') },
+        defaultProps: { htmlFor: get(controlProps, 'id') },
         autoGenerateKey: false,
       })}
       {createElement(control, controlProps)}

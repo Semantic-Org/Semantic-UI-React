@@ -1,7 +1,8 @@
-import _ from 'lodash'
+import memoize from 'lodash/memoize'
+import isNil from 'lodash/isNil'
 import { isBrowser, isRefObject } from '../../../lib'
 
-const toRef = _.memoize(node => ({ current: node }))
+const toRef = memoize((node) => ({ current: node }))
 
 /**
  * Given `this.props`, return a `node` value or undefined.
@@ -14,7 +15,7 @@ const getNodeRefFromProps = (props) => {
 
   if (isBrowser()) {
     if (isRefObject(node)) return node
-    return _.isNil(node) ? toRef(document.body) : toRef(node)
+    return isNil(node) ? toRef(document.body) : toRef(node)
   }
 }
 

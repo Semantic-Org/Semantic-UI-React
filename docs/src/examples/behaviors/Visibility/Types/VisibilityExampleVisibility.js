@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import React, { Component, createRef } from 'react'
 import {
   Divider,
@@ -42,7 +42,7 @@ export default class VisibilityExampleVisibility extends Component {
           <Grid.Column>
             <Visibility onUpdate={this.handleUpdate}>
               <Segment>
-                {_.map(
+                {map(
                   [
                     '/images/wireframe/centered-paragraph.png',
                     '/images/wireframe/short-paragraph.png',

@@ -1,6 +1,13 @@
 import cx from 'classnames'
 import keyboardKey from 'keyboard-key'
-import _ from 'lodash'
+import without from 'lodash/without'
+import invoke from 'lodash/invoke'
+import reduce from 'lodash/reduce'
+import get from 'lodash/get'
+import map from 'lodash/map'
+import inRange from 'lodash/inRange'
+import partialRight from 'lodash/partialRight'
+import isEmpty from 'lodash/isEmpty'
 import PropTypes from 'prop-types'
 import React from 'react'
 import shallowEqual from 'shallowequal'
@@ -174,7 +181,7 @@ export default class Search extends Component {
     loading: PropTypes.bool,
 
     /** A search can have different sizes. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+    size: PropTypes.oneOf(without(SUI.SIZES, 'medium')),
   }
 
   static defaultProps = {
@@ -279,14 +286,14 @@ export default class Search extends Component {
     debug('handleResultSelect()')
     debug(result)
 
-    _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
+    invoke(this.props, 'onResultSelect', e, { ...this.props, result })
   }
 
   handleSelectionChange = (e) => {
     debug('handleSelectionChange()')
 
     const result = this.getSelectedResult()
-    _.invoke(this.props, 'onSelectionChange', e, { ...this.props, result })
+    invoke(this.props, 'onSelectionChange', e, { ...this.props, result })
   }
 
   closeOnEscape = (e) => {
@@ -344,7 +351,7 @@ export default class Search extends Component {
     debug('handleMouseDown()')
 
     this.isMouseDown = true
-    _.invoke(this.props, 'onMouseDown', e, this.props)
+    invoke(this.props, 'onMouseDown', e, this.props)
     eventStack.sub('mouseup', this.handleDocumentMouseUp)
   }
 
@@ -389,14 +396,14 @@ export default class Search extends Component {
   handleFocus = (e) => {
     debug('handleFocus()')
 
-    _.invoke(this.props, 'onFocus', e, this.props)
+    invoke(this.props, 'onFocus', e, this.props)
     this.setState({ focus: true })
   }
 
   handleBlur = (e) => {
     debug('handleBlur()')
 
-    _.invoke(this.props, 'onBlur', e, this.props)
+    invoke(this.props, 'onBlur', e, this.props)
     this.setState({ focus: false })
   }
 
@@ -409,7 +416,7 @@ export default class Search extends Component {
     const { open } = this.state
     const newQuery = e.target.value
 
-    _.invoke(this.props, 'onSearchChange', e, { ...this.props, value: newQuery })
+    invoke(this.props, 'onSearchChange', e, { ...this.props, value: newQuery })
 
     // open search dropdown on search query
     if (newQuery.length < minCharacters) {
@@ -430,12 +437,12 @@ export default class Search extends Component {
 
     return !category
       ? results
-      : _.reduce(results, (memo, categoryData) => memo.concat(categoryData.results), [])
+      : reduce(results, (memo, categoryData) => memo.concat(categoryData.results), [])
   }
 
   getSelectedResult = (index = this.state.selectedIndex) => {
     const results = this.getFlattenedResults()
-    return _.get(results, index)
+    return get(results, index)
   }
 
   // ----------------------------------------
@@ -571,7 +578,7 @@ export default class Search extends Component {
   renderResults = () => {
     const { results } = this.props
 
-    return _.map(results, this.renderResult)
+    return map(results, this.renderResult)
   }
 
   renderCategories = () => {
@@ -580,14 +587,14 @@ export default class Search extends Component {
 
     let count = 0
 
-    return _.map(categories, ({ childKey, ...category }) => {
+    return map(categories, ({ childKey, ...category }) => {
       const categoryProps = {
         key: childKey || category.name,
-        active: _.inRange(selectedIndex, count, count + category.results.length),
+        active: inRange(selectedIndex, count, count + category.results.length),
         renderer: categoryRenderer,
         ...category,
       }
-      const renderFn = _.partialRight(this.renderResult, count)
+      const renderFn = partialRight(this.renderResult, count)
 
       count += category.results.length
 
@@ -598,7 +605,7 @@ export default class Search extends Component {
   renderMenuContent = () => {
     const { category, showNoResults, results } = this.props
 
-    if (_.isEmpty(results)) {
+    if (isEmpty(results)) {
       return showNoResults ? this.renderNoResults() : null
     }
 

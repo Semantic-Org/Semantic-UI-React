@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -103,7 +103,7 @@ Statistic.propTypes = {
   label: customPropTypes.contentShorthand,
 
   /** A statistic can vary in size. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'big', 'massive', 'medium')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'big', 'massive', 'medium')),
 
   /** Format the StatisticValue with smaller font size to fit nicely beside number values. */
   text: PropTypes.bool,
@@ -116,6 +116,6 @@ Statistic.Group = StatisticGroup
 Statistic.Label = StatisticLabel
 Statistic.Value = StatisticValue
 
-Statistic.create = createShorthandFactory(Statistic, content => ({ content }))
+Statistic.create = createShorthandFactory(Statistic, (content) => ({ content }))
 
 export default Statistic

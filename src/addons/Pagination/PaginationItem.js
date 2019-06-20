@@ -1,5 +1,5 @@
 import keyboardKey from 'keyboard-key'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import { Component } from 'react'
 
@@ -45,12 +45,12 @@ class PaginationItem extends Component {
   }
 
   handleClick = (e) => {
-    _.invoke(this.props, 'onClick', e, this.props)
+    invoke(this.props, 'onClick', e, this.props)
   }
 
   handleKeyDown = (e) => {
-    _.invoke(this.props, 'onKeyDown', e, this.props)
-    if (keyboardKey.getCode(e) === keyboardKey.Enter) _.invoke(this.props, 'onClick', e, this.props)
+    invoke(this.props, 'onKeyDown', e, this.props)
+    if (keyboardKey.getCode(e) === keyboardKey.Enter) invoke(this.props, 'onClick', e, this.props)
   }
 
   handleOverrides = () => ({
@@ -77,6 +77,6 @@ class PaginationItem extends Component {
   }
 }
 
-PaginationItem.create = createShorthandFactory(PaginationItem, content => ({ content }))
+PaginationItem.create = createShorthandFactory(PaginationItem, (content) => ({ content }))
 
 export default PaginationItem

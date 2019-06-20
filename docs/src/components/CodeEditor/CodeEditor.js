@@ -1,4 +1,9 @@
-import _ from 'lodash'
+import forEach from 'lodash/forEach'
+import words from 'lodash/words'
+import uniq from 'lodash/uniq'
+import uniqueId from 'lodash/uniqueId'
+import debounce from 'lodash/debounce'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Ace from 'react-ace'
@@ -51,7 +56,7 @@ const semanticUIReactCompleter = {
     // if we're on a semantic-ui-react import line, return top level components
     //
     if (/'semantic-ui-react'/.test(currentRow)) {
-      _.forEach(componentInfoContext.byDisplayName, (info, displayName) => {
+      forEach(componentInfoContext.byDisplayName, (info, displayName) => {
         if (info.isParent) addComponentDisplayName(displayName, 100)
       })
 
@@ -72,7 +77,7 @@ const semanticUIReactCompleter = {
     // if we aren't sure where we are, return imported components, their props, and locals
     //
     const suirNamedImports = value.match(/import\s+\{([\s\S]+?)\}\s+from\s'semantic-ui-react'/)
-    const importedDisplayNames = _.words(suirNamedImports[1])
+    const importedDisplayNames = words(suirNamedImports[1])
 
     importedDisplayNames.forEach((displayName) => {
       addPropsFromDisplayName(displayName, 200)
@@ -80,7 +85,7 @@ const semanticUIReactCompleter = {
     })
 
     // local words
-    _.uniq(_.words(value)).forEach((word) => {
+    uniq(words(value)).forEach((word) => {
       completions.push({
         score: 0,
         caption: word,
@@ -95,7 +100,7 @@ const semanticUIReactCompleter = {
 
 class CodeEditor extends React.Component {
   editorRef = React.createRef()
-  name = `docs-editor-${_.uniqueId()}`
+  name = `docs-editor-${uniqueId()}`
 
   static propTypes = {
     active: PropTypes.bool,
@@ -123,8 +128,8 @@ class CodeEditor extends React.Component {
     }
   }
 
-  handleChange = _.debounce((value, e) => {
-    _.invoke(this.props, 'onChange', value, e)
+  handleChange = debounce((value, e) => {
+    invoke(this.props, 'onChange', value, e)
   }, 300)
 
   setCursorVisibility = (visible) => {

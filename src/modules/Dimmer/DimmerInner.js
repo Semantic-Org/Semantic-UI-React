@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
@@ -85,13 +85,13 @@ export default class DimmerInner extends Component {
   handleClick = (e) => {
     const contentRef = this.contentRef.current
 
-    _.invoke(this.props, 'onClick', e, this.props)
+    invoke(this.props, 'onClick', e, this.props)
 
     if (contentRef && (contentRef !== e.target && doesNodeContainClick(contentRef, e))) {
       return
     }
 
-    _.invoke(this.props, 'onClickOutside', e, this.props)
+    invoke(this.props, 'onClickOutside', e, this.props)
   }
 
   toggleStyles(active) {

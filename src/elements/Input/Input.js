@@ -1,5 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import isNil from 'lodash/isNil'
+import get from 'lodash/get'
+import invoke from 'lodash/invoke'
+import map from 'lodash/map'
+import includes from 'lodash/includes'
 import PropTypes from 'prop-types'
 import React, { Children, cloneElement, Component, createRef } from 'react'
 
@@ -106,14 +110,14 @@ class Input extends Component {
   computeIcon = () => {
     const { loading, icon } = this.props
 
-    if (!_.isNil(icon)) return icon
+    if (!isNil(icon)) return icon
     if (loading) return 'spinner'
   }
 
   computeTabIndex = () => {
     const { disabled, tabIndex } = this.props
 
-    if (!_.isNil(tabIndex)) return tabIndex
+    if (!isNil(tabIndex)) return tabIndex
     if (disabled) return -1
   }
 
@@ -122,9 +126,9 @@ class Input extends Component {
   select = () => this.inputRef.current.select()
 
   handleChange = (e) => {
-    const value = _.get(e, 'target.value')
+    const value = get(e, 'target.value')
 
-    _.invoke(this.props, 'onChange', e, { ...this.props, value })
+    invoke(this.props, 'onChange', e, { ...this.props, value })
   }
 
   handleChildOverrides = (child, defaultProps) => ({
@@ -201,7 +205,7 @@ class Input extends Component {
     // ----------------------------------------
     if (!childrenUtils.isNil(children)) {
       // add htmlInputProps to the `<input />` child
-      const childElements = _.map(Children.toArray(children), (child) => {
+      const childElements = map(Children.toArray(children), (child) => {
         if (child.type !== 'input') return child
         return cloneElement(child, this.handleChildOverrides(child, htmlInputProps))
       })
@@ -221,7 +225,7 @@ class Input extends Component {
         className: cx(
           'label',
           // add 'left|right corner'
-          _.includes(labelPosition, 'corner') && labelPosition,
+          includes(labelPosition, 'corner') && labelPosition,
         ),
       },
       autoGenerateKey: false,

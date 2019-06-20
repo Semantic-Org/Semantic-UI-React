@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Menu } from 'semantic-ui-react'
@@ -13,7 +13,7 @@ const ComponentPropsComponents = ({
 
   return (
     <Menu color='green' compact size='small' secondary>
-      {_.map(displayNames, (displayName) => (
+      {map(displayNames, (displayName) => (
         <Menu.Item
           key={displayName}
           active={activeDisplayName === displayName}

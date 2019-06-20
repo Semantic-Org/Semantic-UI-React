@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import forEach from 'lodash/forEach'
 
 import computeClassNames from './computeClassNames'
 import computeClassNamesDifference from './computeClassNamesDifference'
@@ -17,8 +17,8 @@ const handleClassNamesChange = (nodeRef, components) => {
   )
 
   if (nodeRef.current) {
-    _.forEach(forAdd, className => nodeRef.current.classList.add(className))
-    _.forEach(forRemoval, className => nodeRef.current.classList.remove(className))
+    forEach(forAdd, (className) => nodeRef.current.classList.add(className))
+    forEach(forRemoval, (className) => nodeRef.current.classList.remove(className))
   }
 
   prevClassNames.set(nodeRef, currentClassNames)

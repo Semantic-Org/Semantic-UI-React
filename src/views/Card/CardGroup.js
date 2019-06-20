@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import map from 'lodash/map'
+import without from 'lodash/without'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -59,7 +60,7 @@ function CardGroup(props) {
     )
   }
 
-  const itemsJSX = _.map(items, (item) => {
+  const itemsJSX = map(items, (item) => {
     const key = item.key || [item.header, item.description].join('-')
     return <Card key={key} {...item} />
   })
@@ -100,7 +101,7 @@ CardGroup.propTypes = {
   stackable: PropTypes.bool,
 
   /** A card group can adjust its text alignment. */
-  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
+  textAlign: PropTypes.oneOf(without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
 export default CardGroup

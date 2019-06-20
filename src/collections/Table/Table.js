@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import map from 'lodash/map'
+import without from 'lodash/without'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -99,7 +100,7 @@ function Table(props) {
   const headerElement = hasHeaderRows && (
     <TableHeader>
       {TableRow.create(headerRow, headerShorthandOptions)}
-      {_.map(headerRows, (data) => TableRow.create(data, headerShorthandOptions))}
+      {map(headerRows, (data) => TableRow.create(data, headerShorthandOptions))}
     </TableHeader>
   )
 
@@ -108,7 +109,7 @@ function Table(props) {
       {headerElement}
       <TableBody>
         {renderBodyRow &&
-          _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
+          map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
       </TableBody>
       {footerRow && <TableFooter>{TableRow.create(footerRow)}</TableFooter>}
     </ElementType>
@@ -199,7 +200,7 @@ Table.propTypes = {
   singleLine: PropTypes.bool,
 
   /** A table can also be small or large. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')),
+  size: PropTypes.oneOf(without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')),
 
   /** A table may allow a user to sort contents by clicking on a table header. */
   sortable: PropTypes.bool,
@@ -221,7 +222,7 @@ Table.propTypes = {
   ]),
 
   /** A table can adjust its text alignment. */
-  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
+  textAlign: PropTypes.oneOf(without(SUI.TEXT_ALIGNMENTS, 'justified')),
 
   /** A table can specify how it stacks table content responsively. */
   unstackable: PropTypes.bool,

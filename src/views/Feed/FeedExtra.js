@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -36,7 +36,7 @@ function FeedExtra(props) {
   }
 
   // TODO need a "collection factory" to handle creating multiple image elements and their keys
-  const imageElements = _.map(images, (image, index) => {
+  const imageElements = map(images, (image, index) => {
     const key = [index, image].join('-')
     return createHTMLImage(image, { key })
   })

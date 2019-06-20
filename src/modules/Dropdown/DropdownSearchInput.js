@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import get from 'lodash/get'
+import invoke from 'lodash/invoke'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -35,9 +36,9 @@ class DropdownSearchInput extends Component {
   }
 
   handleChange = (e) => {
-    const value = _.get(e, 'target.value')
+    const value = get(e, 'target.value')
 
-    _.invoke(this.props, 'onChange', e, { ...this.props, value })
+    invoke(this.props, 'onChange', e, { ...this.props, value })
   }
 
   render() {
@@ -60,6 +61,6 @@ class DropdownSearchInput extends Component {
   }
 }
 
-DropdownSearchInput.create = createShorthandFactory(DropdownSearchInput, type => ({ type }))
+DropdownSearchInput.create = createShorthandFactory(DropdownSearchInput, (type) => ({ type }))
 
 export default DropdownSearchInput

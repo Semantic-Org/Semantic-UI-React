@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash'
+import isNil from 'lodash/isNil'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -22,14 +22,14 @@ function BreadcrumbDivider(props) {
   const rest = getUnhandledProps(BreadcrumbDivider, props)
   const ElementType = getElementType(BreadcrumbDivider, props)
 
-  if (!_.isNil(icon)) {
+  if (!isNil(icon)) {
     return Icon.create(icon, {
       defaultProps: { ...rest, className: classes },
       autoGenerateKey: false,
     })
   }
 
-  if (!_.isNil(content)) {
+  if (!isNil(content)) {
     return (
       <ElementType {...rest} className={classes}>
         {content}
@@ -61,6 +61,6 @@ BreadcrumbDivider.propTypes = {
   icon: customPropTypes.itemShorthand,
 }
 
-BreadcrumbDivider.create = createShorthandFactory(BreadcrumbDivider, icon => ({ icon }))
+BreadcrumbDivider.create = createShorthandFactory(BreadcrumbDivider, (icon) => ({ icon }))
 
 export default BreadcrumbDivider

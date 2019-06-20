@@ -1,4 +1,6 @@
-import _ from 'lodash'
+import keys from 'lodash/keys'
+import values from 'lodash/values'
+import uniq from 'lodash/uniq'
 import { numberToWordMap } from './numberToWord'
 
 export const COLORS = [
@@ -24,9 +26,9 @@ export const VERTICAL_ALIGNMENTS = ['bottom', 'middle', 'top']
 export const VISIBILITY = ['mobile', 'tablet', 'computer', 'large screen', 'widescreen']
 
 export const WIDTHS = [
-  ..._.keys(numberToWordMap),
-  ..._.keys(numberToWordMap).map(Number),
-  ..._.values(numberToWordMap),
+  ...keys(numberToWordMap),
+  ...keys(numberToWordMap).map(Number),
+  ...values(numberToWordMap),
 ]
 
 export const DIRECTIONAL_TRANSITIONS = [
@@ -1779,7 +1781,7 @@ export const BRANDS = [
   'youtube square',
 ]
 
-export const ICONS = _.uniq([
+export const ICONS = uniq([
   ...ACCESSIBILITY,
   ...ARROWS,
   ...AUDIO_VIDEO,
@@ -2119,7 +2121,7 @@ export const ICON_ALIASES = [
   'youtube play',
 ]
 
-export const ICONS_AND_ALIASES = _.uniq([...ICONS, ...ICON_ALIASES])
+export const ICONS_AND_ALIASES = uniq([...ICONS, ...ICON_ALIASES])
 
 // Some icon names are not part of icons.css.
 // These are only valid as children of other components.
@@ -2128,7 +2130,7 @@ export const ICONS_AND_ALIASES = _.uniq([...ICONS, ...ICON_ALIASES])
 export const COMPONENT_CONTEXT_SPECIFIC_ICONS = [
   'left dropdown', // nested dropdown menu direction icon
 ]
-export const ALL_ICONS_IN_ALL_CONTEXTS = _.uniq([
+export const ALL_ICONS_IN_ALL_CONTEXTS = uniq([
   ...ICONS_AND_ALIASES,
   ...COMPONENT_CONTEXT_SPECIFIC_ICONS,
 ])

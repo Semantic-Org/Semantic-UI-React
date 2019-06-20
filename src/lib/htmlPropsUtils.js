@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import forEach from 'lodash/forEach'
+import includes from 'lodash/includes'
 
 export const htmlInputAttrs = [
   // REACT
@@ -95,9 +96,9 @@ export const partitionHTMLProps = (props, options = {}) => {
   const inputProps = {}
   const rest = {}
 
-  _.forEach(props, (val, prop) => {
+  forEach(props, (val, prop) => {
     const possibleAria = includeAria && (/^aria-.*$/.test(prop) || prop === 'role')
-    const target = _.includes(htmlProps, prop) || possibleAria ? inputProps : rest
+    const target = includes(htmlProps, prop) || possibleAria ? inputProps : rest
     target[prop] = val
   })
 

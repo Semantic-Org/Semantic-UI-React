@@ -1,4 +1,4 @@
-import * as _ from 'lodash'
+import mapValues from 'lodash/mapValues'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import CodeSandboxer from 'react-codesandboxer'
@@ -47,7 +47,7 @@ ReactDOM.render(
   document.getElementById("root")
 );
 `
-const dependencies = _.mapValues(externals, () => 'latest')
+const dependencies = mapValues(externals, () => 'latest')
 
 class ComponentControlsCodeSandbox extends React.Component {
   static propTypes = {

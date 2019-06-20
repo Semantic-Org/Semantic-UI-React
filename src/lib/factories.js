@@ -1,4 +1,11 @@
-import _ from 'lodash'
+import isNil from 'lodash/isNil'
+import isBoolean from 'lodash/isBoolean'
+import isString from 'lodash/isString'
+import isNumber from 'lodash/isNumber'
+import isFunction from 'lodash/isFunction'
+import isPlainObject from 'lodash/isPlainObject'
+import isArray from 'lodash/isArray'
+import uniq from 'lodash/uniq'
 import cx from 'classnames'
 import React, { cloneElement, isValidElement } from 'react'
 
@@ -23,14 +30,14 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
     throw new Error('createShorthand() Component must be a string or function.')
   }
   // short circuit noop values
-  if (_.isNil(val) || _.isBoolean(val)) return null
+  if (isNil(val) || isBoolean(val)) return null
 
-  const valIsString = _.isString(val)
-  const valIsNumber = _.isNumber(val)
-  const valIsFunction = _.isFunction(val)
+  const valIsString = isString(val)
+  const valIsNumber = isNumber(val)
+  const valIsFunction = isFunction(val)
   const valIsReactElement = isValidElement(val)
-  const valIsPropsObject = _.isPlainObject(val)
-  const valIsPrimitiveValue = valIsString || valIsNumber || _.isArray(val)
+  const valIsPropsObject = isPlainObject(val)
+  const valIsPrimitiveValue = valIsString || valIsNumber || isArray(val)
 
   // unhandled type return null
   /* eslint-disable no-console */
@@ -61,7 +68,7 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
 
   // Override props
   let { overrideProps = {} } = options
-  overrideProps = _.isFunction(overrideProps)
+  overrideProps = isFunction(overrideProps)
     ? overrideProps({ ...defaultProps, ...usersProps })
     : overrideProps
 
@@ -76,7 +83,7 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
       overrideProps.className,
       usersProps.className,
     )
-    props.className = _.uniq(mergedClassesNames.split(' ')).join(' ')
+    props.className = uniq(mergedClassesNames.split(' ')).join(' ')
   }
 
   // Merge style
@@ -89,11 +96,11 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   // ----------------------------------------
 
   // Use key, childKey, or generate key
-  if (_.isNil(props.key)) {
+  if (isNil(props.key)) {
     const { childKey } = props
     const { autoGenerateKey = true } = options
 
-    if (!_.isNil(childKey)) {
+    if (!isNil(childKey)) {
       // apply and consume the childKey
       props.key = typeof childKey === 'function' ? childKey(props) : childKey
       delete props.childKey
@@ -140,9 +147,9 @@ export function createShorthandFactory(Component, mapValueToProps) {
 // ============================================================
 // HTML Factories
 // ============================================================
-export const createHTMLDivision = createShorthandFactory('div', val => ({ children: val }))
-export const createHTMLIframe = createShorthandFactory('iframe', src => ({ src }))
-export const createHTMLImage = createShorthandFactory('img', val => ({ src: val }))
-export const createHTMLInput = createShorthandFactory('input', val => ({ type: val }))
-export const createHTMLLabel = createShorthandFactory('label', val => ({ children: val }))
-export const createHTMLParagraph = createShorthandFactory('p', val => ({ children: val }))
+export const createHTMLDivision = createShorthandFactory('div', (val) => ({ children: val }))
+export const createHTMLIframe = createShorthandFactory('iframe', (src) => ({ src }))
+export const createHTMLImage = createShorthandFactory('img', (val) => ({ src: val }))
+export const createHTMLInput = createShorthandFactory('input', (val) => ({ type: val }))
+export const createHTMLLabel = createShorthandFactory('label', (val) => ({ children: val }))
+export const createHTMLParagraph = createShorthandFactory('p', (val) => ({ children: val }))
