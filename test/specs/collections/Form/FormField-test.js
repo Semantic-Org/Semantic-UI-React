@@ -9,7 +9,7 @@ import Button from 'src/elements/Button/Button'
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 
-describe.only('FormField', () => {
+describe('FormField', () => {
   common.isConformant(FormField)
   common.rendersChildren(FormField)
 
