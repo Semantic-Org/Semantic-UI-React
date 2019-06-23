@@ -13,7 +13,4 @@ const CodeEditorSafe = (props) => (
   </NoSSR>
 )
 
-export const EDITOR_BACKGROUND_COLOR = '#1d1f21'
-export const EDITOR_GUTTER_COLOR = '#25282d'
-
 export default CodeEditorSafe

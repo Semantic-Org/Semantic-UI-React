@@ -68,19 +68,29 @@ The key point is that you don't want `eject`, but you want to customize styles �
 
 ### Remove existing styles
 
-First of all, please remove existing references for `semantic-ui-css` package or styles included from CDN to avoid styles duplication.
+First of all, please remove existing references for `semantic-ui` & `semantic-ui-css` package or styles included from CDN to avoid styles duplication.
 
-```sh
-yarn remove semantic-ui-css
+```bash
+npm uninstall semantic-ui semantic-ui-css
+```
+
+```bash
+yarn remove semantic-ui semantic-ui-css
 ```
 
 ### Install required dependencies
 
-Create React App does not support LESS out of the box, we and propose to use [`@craco/craco`](https://www.npmjs.com/package/@craco/craco) to add it and avoid `eject`. You have to install required packages, update your `package.json` and create `craco.config.js`.
+Create React App does not support LESS out of the box, we and propose to use [`@craco/craco`](https://www.npmjs.com/package/@craco/craco) to add it and avoid `eject`. You have to install required packages:
 
-```sh
-yarn add @craco/craco craco-less cpy-cli semantic-ui-less --dev
+```bash
+npm install @craco/craco craco-less semantic-ui-less --save-dev
 ```
+
+```bash
+yarn add @craco/craco craco-less semantic-ui-less --dev
+```
+
+And then update your `package.json` and create `craco.config.js`:
 
 ```json label=package.json
 {
@@ -139,12 +149,12 @@ module.exports = {
 
 Now we need to copy necessary files with the skeleton of your customization.
 
-```sh
-yarn cpy node_modules/semantic-ui-less/_site/**/* src/semantic-ui/site
+```bash
+npx cpy-cli **/* ../../../src/semantic-ui/site --cwd node_modules/semantic-ui-less/_site --parents
 ```
 
-```sh
-yarn cpy node_modules/semantic-ui-less/theme.config.example src/semantic-ui --rename=theme.config
+```bash
+npx cpy-cli node_modules/semantic-ui-less/theme.config.example src/semantic-ui --rename=theme.config
 ```
 
 ### `theme.config`
@@ -167,13 +177,13 @@ This file is mostly prepared but you have to change some details in the bottom o
 
 You have to import `semantic.less` file in your entry file.
 
-```jsx
+```jsx label=index.js
 import 'semantic-ui-less/semantic.less'
 ```
 
 ### It is working now!
 
-```sh
+```bash
 yarn start
 ```
 
@@ -184,4 +194,4 @@ You can now go e.g. to `src/semantic-ui/site/globals/site.variables` and add:
 @pageBackground: #eff0f1;
 ```
 
-which will change your primary color and background color of the `<body>` 🚀
+Which will change your primary color and background color of the `<body>` 🚀

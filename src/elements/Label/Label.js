@@ -101,6 +101,9 @@ export default class Label extends Component {
       PropTypes.oneOf(['above', 'below', 'left', 'right']),
     ]),
 
+    /** A label can prompt for an error in your forms. */
+    prompt: PropTypes.bool,
+
     /** Shorthand for Icon to appear as the last child and trigger onRemove. */
     removeIcon: customPropTypes.itemShorthand,
 
@@ -123,7 +126,7 @@ export default class Label extends Component {
     if (onClick) onClick(e, this.props)
   }
 
-  handleIconOverrides = predefinedProps => ({
+  handleIconOverrides = (predefinedProps) => ({
     onClick: (e) => {
       _.invoke(predefinedProps, 'onClick', e)
       _.invoke(this.props, 'onRemove', e, this.props)
@@ -149,6 +152,7 @@ export default class Label extends Component {
       image,
       onRemove,
       pointing,
+      prompt,
       removeIcon,
       ribbon,
       size,
@@ -172,6 +176,7 @@ export default class Label extends Component {
       useKeyOnly(floating, 'floating'),
       useKeyOnly(horizontal, 'horizontal'),
       useKeyOnly(image === true, 'image'),
+      useKeyOnly(prompt, 'prompt'),
       useKeyOnly(tag, 'tag'),
       useKeyOrValueAndKey(corner, 'corner'),
       useKeyOrValueAndKey(ribbon, 'ribbon'),
@@ -208,4 +213,4 @@ export default class Label extends Component {
   }
 }
 
-Label.create = createShorthandFactory(Label, value => ({ content: value }))
+Label.create = createShorthandFactory(Label, (value) => ({ content: value }))

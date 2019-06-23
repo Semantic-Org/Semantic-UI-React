@@ -3,8 +3,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import * as SUIR from 'semantic-ui-react'
 
+const isIE11 =
+  typeof window !== 'undefined' && !!window.MSInputMethodContext && !!document.documentMode
+
 export const babelConfig = {
-  presets: [['stage-1', { decoratorsLegacy: true }]],
+  plugins: [
+    'proposal-class-properties',
+    'proposal-object-rest-spread',
+    isIE11 && 'transform-classes',
+  ].filter(Boolean),
+  presets: [isIE11 ? ['es2015'] : ['stage-1', { decoratorsLegacy: true }]],
 }
 
 export const externals = {
