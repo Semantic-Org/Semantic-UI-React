@@ -29,6 +29,7 @@ const FormStatesExamples = () => (
       description='Individual fields may display an error state.'
       examplePath='collections/Form/States/FormExampleFieldError'
     />
+    <ComponentExample examplePath='collections/Form/States/FormExampleFieldErrorLabel' />
     <ComponentExample
       title='Disabled Field'
       description='Individual fields may be disabled.'

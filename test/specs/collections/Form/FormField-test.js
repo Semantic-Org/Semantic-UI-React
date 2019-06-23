@@ -2,13 +2,14 @@ import faker from 'faker'
 import React from 'react'
 
 import Radio from 'src/addons/Radio/Radio'
+import Label from 'src/elements/Label/Label'
 import FormField from 'src/collections/Form/FormField'
 import { SUI } from 'src/lib'
 import Button from 'src/elements/Button/Button'
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 
-describe('FormField', () => {
+describe.only('FormField', () => {
   common.isConformant(FormField)
   common.rendersChildren(FormField)
 
@@ -31,6 +32,53 @@ describe('FormField', () => {
 
       controls.forEach((control) => {
         shallow(<FormField control={control} />).should.have.descendants(control)
+      })
+    })
+  })
+
+  describe('error', () => {
+    common.implementsLabelProp(FormField, {
+      autoGenerateKey: false,
+      propKey: 'error',
+      requiredProps: { label: faker.lorem.word() },
+      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+    })
+    common.implementsLabelProp(FormField, {
+      autoGenerateKey: false,
+      propKey: 'error',
+      requiredProps: { control: 'radio' },
+      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+    })
+    common.implementsLabelProp(FormField, {
+      autoGenerateKey: false,
+      propKey: 'error',
+      requiredProps: { control: Checkbox },
+      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+    })
+    common.implementsLabelProp(FormField, {
+      autoGenerateKey: false,
+      propKey: 'error',
+      requiredProps: { control: 'input' },
+      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+    })
+
+    it('positioned in DOM according to passed "pointing" prop', () => {
+      ;[
+        { pointing: 'below', inDom: 'before' },
+        { pointing: 'right', inDom: 'before' },
+        { pointing: 'left', inDom: 'after' },
+        { pointing: 'above', inDom: 'after' },
+      ].forEach(({ pointing, inDom }) => {
+        const wrapper = shallow(
+          <FormField
+            control='input'
+            error={{ content: faker.lorem.word(), pointing }}
+            type='text'
+          />,
+        )
+
+        wrapper.childAt(inDom === 'before' ? 0 : 1).should.have.type(Label)
+        wrapper.childAt(inDom === 'before' ? 1 : 0).should.have.type('input')
       })
     })
   })
