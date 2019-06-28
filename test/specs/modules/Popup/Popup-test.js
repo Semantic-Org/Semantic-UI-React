@@ -110,6 +110,20 @@ describe('Popup', () => {
     })
   })
 
+  describe('eventsEnabled ', () => {
+    it(`is "true" by default`, () => {
+      wrapperMount(<Popup open />)
+
+      wrapper.should.have.prop('eventsEnabled', true)
+      wrapper.find('Popper').should.have.prop('eventsEnabled', true)
+    })
+
+    it(`can be set to "false"`, () => {
+      wrapperMount(<Popup eventsEnabled={false} />)
+      wrapper.find('Popper').should.have.prop('eventsEnabled', false)
+    })
+  })
+
   describe('flowing', () => {
     it('adds flowing to the popup className', () => {
       wrapperMount(<Popup flowing open />)
