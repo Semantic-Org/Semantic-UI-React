@@ -16,6 +16,9 @@ export interface StrictFormInputProps extends StrictFormFieldProps, StrictInputP
   /** A FormField control prop. */
   control?: any
 
+  /** Individual fields may display an error state along with a message. */
+  error?: any
+
   /** Shorthand for a Label. */
   label?: SemanticShorthandItem<LabelProps>
 }
