@@ -9,7 +9,7 @@ const requiredProps = {
 }
 
 describe('FormSelect', () => {
-  common.isConformant(FormSelect, { requiredProps })
+  common.isConformant(FormSelect, { requiredProps, ignoredTypingsProps: ['error'] })
   common.labelImplementsHtmlForProp(FormSelect, { requiredProps })
 
   it('renders a FormField with a Select control', () => {

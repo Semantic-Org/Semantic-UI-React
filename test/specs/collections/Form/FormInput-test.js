@@ -6,7 +6,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('FormInput', () => {
   common.isConformant(FormInput, {
-    ignoredTypingsProps: ['label'],
+    ignoredTypingsProps: ['label', 'error'],
   })
   common.labelImplementsHtmlForProp(FormInput)
 
