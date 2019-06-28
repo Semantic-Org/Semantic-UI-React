@@ -158,7 +158,7 @@ FormField.propTypes = {
   /** Individual fields may be disabled. */
   disabled: PropTypes.bool,
 
-  /** Individual fields may display an error state along with a message */
+  /** Individual fields may display an error state along with a message. */
   error: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
 
   /** A field can have its label next to instead of above it. */
