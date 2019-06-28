@@ -1,3 +1,4 @@
+import { handleRef } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -10,7 +11,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  handleRef,
   partitionHTMLProps,
   useKeyOnly,
   useValueAndKey,

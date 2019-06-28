@@ -1,3 +1,4 @@
+import { isRefObject } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -9,7 +10,6 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  isRefObject,
 } from '../../lib'
 
 /**
