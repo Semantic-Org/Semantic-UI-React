@@ -1,4 +1,5 @@
 import EventStack from '@semantic-ui-react/event-stack'
+import { handleRef, Ref } from '@stardust-ui/react-component-ref'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -8,10 +9,8 @@ import {
   AutoControlledComponent as Component,
   customPropTypes,
   doesNodeContainClick,
-  handleRef,
   makeDebugger,
 } from '../../lib'
-import Ref from '../Ref'
 import PortalInner from './PortalInner'
 
 const debug = makeDebugger('portal')

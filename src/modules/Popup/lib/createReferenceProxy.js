@@ -1,5 +1,5 @@
+import { isRefObject, toRefObject } from '@stardust-ui/react-component-ref'
 import _ from 'lodash'
-import { isRefObject } from '../../../lib/refUtils'
 
 class ReferenceProxy {
   constructor(refObject) {
@@ -31,12 +31,7 @@ class ReferenceProxy {
  * @see https://popper.js.org/popper-documentation.html#referenceObject
  */
 const createReferenceProxy = _.memoize(
-  (reference) =>
-    new ReferenceProxy(
-      // TODO: use toRefObject from Stardust
-      // https://github.com/stardust-ui/react/issues/998
-      isRefObject(reference) ? reference : { current: reference },
-    ),
+  (reference) => new ReferenceProxy(isRefObject(reference) ? reference : toRefObject(reference)),
 )
 
 export default createReferenceProxy

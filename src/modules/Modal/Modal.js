@@ -1,3 +1,4 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -23,7 +24,6 @@ import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
-import Ref from '../../addons/Ref'
 import { canFit, getLegacyStyles, isLegacy } from './utils'
 
 const debug = makeDebugger('modal')
