@@ -37,7 +37,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** Header displayed above the content in bold. */
   header?: SemanticShorthandItem<PopupHeaderProps>
 
-  /** The node where the popup should mount. */
+  /** Hide the Popup when scrolling the window. */
   hideOnScroll?: boolean
 
   /** Whether the popup should not close on hover. */
