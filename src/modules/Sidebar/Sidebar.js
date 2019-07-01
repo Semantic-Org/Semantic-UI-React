@@ -121,7 +121,7 @@ class Sidebar extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.animationTick > prevState.animationTick) {
-      this.handleAnimationStart(this.props)
+      this.handleAnimationStart()
     }
   }
 
@@ -129,8 +129,8 @@ class Sidebar extends Component {
     clearTimeout(this.animationTimer)
   }
 
-  handleAnimationStart = (props) => {
-    const { visible } = props
+  handleAnimationStart = () => {
+    const { visible } = this.props
     const callback = visible ? 'onVisible' : 'onHide'
 
     clearTimeout(this.animationTimer)
