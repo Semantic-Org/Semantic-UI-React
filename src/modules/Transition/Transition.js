@@ -195,7 +195,9 @@ export default class Transition extends Component {
     const { animating, status } = this.state
 
     const childClasses = _.get(children, 'props.className')
-    const isDirectional = _.isNil(directional) ? _.includes(SUI.DIRECTIONAL_TRANSITIONS, animation) : directional
+    const isDirectional = _.isNil(directional)
+      ? _.includes(SUI.DIRECTIONAL_TRANSITIONS, animation)
+      : directional
 
     if (isDirectional) {
       return cx(
@@ -247,13 +249,16 @@ export default class Transition extends Component {
 
   computeStatuses = (props) => {
     const { status } = this.state
-    const { visible } = props
+    const { visible, unmountOnHide } = props
 
     if (visible) {
       return {
         current: status === Transition.UNMOUNTED && Transition.EXITED,
         next:
-          status !== Transition.ENTERING && status !== Transition.ENTERED && Transition.ENTERING,
+          status !== Transition.ENTERING &&
+          status !== Transition.ENTERED &&
+          (status !== Transition.EXITED || !unmountOnHide) &&
+          Transition.ENTERING,
       }
     }
 

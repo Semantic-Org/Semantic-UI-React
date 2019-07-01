@@ -1,10 +1,11 @@
 import React from 'react'
 
 import { SUI } from 'src/lib'
+import Input from 'src/elements/Input'
 import Transition from 'src/modules/Transition/Transition'
 import TransitionGroup from 'src/modules/Transition/TransitionGroup'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
+import { domEvent, sandbox } from 'test/utils'
 
 let wrapper
 
@@ -563,6 +564,30 @@ describe('Transition', () => {
         </Transition>,
       )
       wrapper.setProps({ visible: false })
+    })
+
+    it('toggles state on "change" with "setState" as function', () => {
+      const getControlledTransition = () =>
+        class ControlledCheckbox extends React.Component {
+          state = { name: '', visible: false }
+          onChangeOfValue = (e, data) => {
+            this.setState({ name: data.value })
+          }
+
+          render() {
+            return (
+              <Transition visible={this.state.visible} duration={1000} unmountOnHide={false}>
+                <Input onChange={this.onChangeOfValue} />
+              </Transition>
+            )
+          }
+        }
+
+      const ControlledTransition = getControlledTransition()
+      wrapperShallow(<ControlledTransition />)
+      wrapper.setState({ visible: true })
+      domEvent.fire(document.querySelector('input'), 'keydown', { which: 70 })
+      wrapper.state().should.eql({ visible: true })
     })
   })
 })
