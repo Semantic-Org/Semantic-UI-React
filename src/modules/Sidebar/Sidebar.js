@@ -90,6 +90,7 @@ class Sidebar extends Component {
 
   static defaultProps = {
     direction: 'left',
+    visible: false,
   }
 
   static animationDuration = 500
@@ -98,42 +99,56 @@ class Sidebar extends Component {
   static Pushable = SidebarPushable
   static Pusher = SidebarPusher
 
-  state = {}
   ref = createRef()
 
-  componentDidUpdate(prevProps) {
-    const { visible: prevVisible } = prevProps
-    const { visible: currentVisible } = this.props
+  constructor(props) {
+    super(props)
 
-    if (prevVisible !== currentVisible) this.handleAnimationStart()
+    this.state = {
+      animationTick: 0,
+      prevVisible: !!props.visible,
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const tickIncrement = props.visible !== state.prevVisible ? 1 : 0
+
+    return {
+      animationTick: state.animationTick + tickIncrement,
+      prevVisible: !!props.visible,
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.animationTick > prevState.animationTick) {
+      this.handleAnimationStart(this.props)
+    }
   }
 
   componentWillUnmount() {
     clearTimeout(this.animationTimer)
   }
 
-  handleAnimationStart = () => {
-    const { visible } = this.props
+  handleAnimationStart = (props) => {
+    const { visible } = props
     const callback = visible ? 'onVisible' : 'onHide'
 
-    this.setState({ animating: true }, () => {
-      clearTimeout(this.animationTimer)
-      this.animationTimer = setTimeout(this.handleAnimationEnd, Sidebar.animationDuration)
+    clearTimeout(this.animationTimer)
+    this.animationTimer = setTimeout(this.handleAnimationEnd, Sidebar.animationDuration)
 
-      if (this.skipNextCallback) {
-        this.skipNextCallback = false
-        return
-      }
+    if (this.skipNextCallback) {
+      this.skipNextCallback = false
+      return
+    }
 
-      _.invoke(this.props, callback, null, this.props)
-    })
+    _.invoke(this.props, callback, null, this.props)
   }
 
   handleAnimationEnd = () => {
     const { visible } = this.props
     const callback = visible ? 'onShow' : 'onHidden'
 
-    this.setState({ animating: false })
+    this.setState({ animationTick: 0 })
     _.invoke(this.props, callback, null, this.props)
   }
 
@@ -155,14 +170,14 @@ class Sidebar extends Component {
       visible,
       width,
     } = this.props
-    const { animating } = this.state
+    const { animationTick } = this.state
 
     const classes = cx(
       'ui',
       animation,
       direction,
       width,
-      useKeyOnly(animating, 'animating'),
+      useKeyOnly(animationTick > 0, 'animating'),
       useKeyOnly(visible, 'visible'),
       'sidebar',
       className,
