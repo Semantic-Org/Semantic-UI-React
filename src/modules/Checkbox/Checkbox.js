@@ -148,8 +148,9 @@ export default class Checkbox extends Component {
     const { id } = this.props
     const { checked, indeterminate } = this.state
 
+    const isLabelClick = _.invoke(this.labelRef.current, 'contains', e.target)
+
     const hasId = !_.isNil(id)
-    const isLabelClick = e.target === this.labelRef.current
     const isLabelClickAndForwardedToInput = isLabelClick && hasId
 
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3351
