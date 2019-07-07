@@ -3,6 +3,8 @@ import * as React from 'react'
 import { StrictSelectProps } from '../../addons/Select'
 import { DropdownItemProps } from '../../modules/Dropdown/DropdownItem'
 import { StrictFormFieldProps } from './FormField'
+import { SemanticShorthandItem } from '../../generic'
+import { LabelProps } from '../../elements/Label'
 
 export interface FormSelectProps extends StrictFormSelectProps {
   [key: string]: any
@@ -14,6 +16,9 @@ export interface StrictFormSelectProps extends StrictFormFieldProps, StrictSelec
 
   /** A FormField control prop. */
   control?: any
+
+  /** Individual fields may display an error state along with a message. */
+  error?: any
 
   /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
   options: DropdownItemProps[]

@@ -1193,9 +1193,8 @@ export default class Dropdown extends Component {
       search && searchQuery && 'filtered',
     )
     let _text = placeholder
-    if (searchQuery) {
-      _text = null
-    } else if (text) {
+    
+    if (text) {
       _text = text
     } else if (open && !multiple) {
       _text = _.get(this.getSelectedItem(), 'text')
