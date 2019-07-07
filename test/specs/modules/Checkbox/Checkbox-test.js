@@ -249,6 +249,16 @@ describe('Checkbox', () => {
       wrapper.find('label').simulate('click')
       onChange.should.have.not.been.called()
     })
+
+    it('is called when click is done on nested element', () => {
+      const onChange = sandbox.spy()
+      wrapperMount(<Checkbox label={{ children: <span>Foo</span> }} onChange={onChange} />)
+
+      wrapper.find('span').simulate('mouseup')
+      wrapper.find('span').simulate('click')
+
+      onChange.should.have.been.calledOnce()
+    })
   })
 
   describe('onClick', () => {
