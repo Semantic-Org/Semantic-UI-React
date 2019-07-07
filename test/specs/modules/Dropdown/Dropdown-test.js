@@ -1154,6 +1154,13 @@ describe('Dropdown', () => {
   })
 
   describe('text', () => {
+    it('defaults to "placeholder"', () => {
+      const placeholder = faker.hacker.phrase()
+
+      wrapperMount(<Dropdown options={options} placeholder={placeholder} />)
+        .find('div.text')
+        .should.contain.text(placeholder)
+    })
     it('sets the display text', () => {
       const text = faker.hacker.phrase()
 
