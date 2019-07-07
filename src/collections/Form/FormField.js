@@ -13,6 +13,7 @@ import {
   useKeyOnly,
   useWidthProp,
 } from '../../lib'
+import Label from '../../elements/Label'
 import Checkbox from '../../modules/Checkbox'
 import Radio from '../../addons/Radio'
 
@@ -54,6 +55,15 @@ function FormField(props) {
   const rest = getUnhandledProps(FormField, props)
   const ElementType = getElementType(FormField, props)
 
+  const errorPointing = _.get(error, 'pointing', 'above')
+  const errorLabel = Label.create(error, {
+    autoGenerateKey: false,
+    defaultProps: { prompt: true, pointing: errorPointing },
+  })
+
+  const errorLabelBefore = (errorPointing === 'below' || errorPointing === 'right') && errorLabel
+  const errorLabelAfter = (errorPointing === 'above' || errorPointing === 'left') && errorLabel
+
   // ----------------------------------------
   // No Control
   // ----------------------------------------
@@ -69,7 +79,9 @@ function FormField(props) {
 
     return (
       <ElementType {...rest} className={classes}>
+        {errorLabelBefore}
         {createHTMLLabel(label, { autoGenerateKey: false })}
+        {errorLabelAfter}
       </ElementType>
     )
   }
@@ -84,7 +96,9 @@ function FormField(props) {
     return (
       <ElementType className={classes}>
         <label>
+          {errorLabelBefore}
           {createElement(control, controlProps)} {label}
+          {errorLabelAfter}
         </label>
       </ElementType>
     )
@@ -94,7 +108,9 @@ function FormField(props) {
   if (control === Checkbox || control === Radio) {
     return (
       <ElementType className={classes}>
+        {errorLabelBefore}
         {createElement(control, { ...controlProps, label })}
+        {errorLabelAfter}
       </ElementType>
     )
   }
@@ -109,7 +125,9 @@ function FormField(props) {
         defaultProps: { htmlFor: _.get(controlProps, 'id') },
         autoGenerateKey: false,
       })}
+      {errorLabelBefore}
       {createElement(control, controlProps)}
+      {errorLabelAfter}
     </ElementType>
   )
 }
@@ -140,8 +158,8 @@ FormField.propTypes = {
   /** Individual fields may be disabled. */
   disabled: PropTypes.bool,
 
-  /** Individual fields may display an error state. */
-  error: PropTypes.bool,
+  /** Individual fields may display an error state along with a message. */
+  error: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
 
   /** A field can have its label next to instead of above it. */
   inline: PropTypes.bool,

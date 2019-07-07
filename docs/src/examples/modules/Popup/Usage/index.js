@@ -9,7 +9,7 @@ const PopupUsageExamples = () => (
     <ComponentExample
       title='Offset'
       description='A popup position can be offset from its position.'
-      examplePath='modules/Popup/Variations/PopupExampleOffset'
+      examplePath='modules/Popup/Usage/PopupExampleOffset'
     >
       <Message info>
         <p>
@@ -71,12 +71,31 @@ const PopupUsageExamples = () => (
     <ComponentExample
       title='Hide on scroll'
       description='A popup can be hidden on a scroll event.'
-      examplePath='modules/Popup/Variations/PopupExampleHideOnScroll'
+      examplePath='modules/Popup/Usage/PopupExampleHideOnScroll'
     />
     <ComponentExample
       title='Default Open'
       description='A popup can appear open by default.'
       examplePath='modules/Popup/Usage/PopupExampleDefaultOpen'
+      renderHtml={false}
+    />
+    <ComponentExample
+      title='Popper Dependencies'
+      description={
+        <span>
+          A popup can have dependencies which update will schedule a position
+          update. Should be used in cases when content is changing, behaves like{' '}
+          <a
+            href='https://reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            <code>dependencies</code>
+          </a>{' '}
+          in React Hooks.
+        </span>
+      }
+      examplePath='modules/Popup/Usage/PopupExamplePopperDependencies'
       renderHtml={false}
     />
   </ExampleSection>

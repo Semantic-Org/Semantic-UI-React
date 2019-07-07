@@ -9,13 +9,13 @@ import PortalInner from 'src/addons/Portal/PortalInner'
 
 let wrapper
 
-const createHandlingComponent = eventName =>
+const createHandlingComponent = (eventName) =>
   class HandlingComponent extends Component {
     static propTypes = {
       handler: PropTypes.func,
     }
 
-    handleEvent = e => this.props.handler(e, this.props)
+    handleEvent = (e) => this.props.handler(e, this.props)
 
     render() {
       const buttonProps = { [eventName]: this.handleEvent }
@@ -597,6 +597,20 @@ describe('Portal', () => {
       wrapper.should.have.descendants(PortalInner)
 
       domEvent.click('#inner')
+      wrapper.update()
+      wrapper.should.have.descendants(PortalInner)
+    })
+
+    it('does not close on mousedown inside and mouseup outside', () => {
+      wrapperMount(
+        <Portal closeOnDocumentClick defaultOpen>
+          <p id='inner' />
+        </Portal>,
+      )
+      wrapper.should.have.descendants(PortalInner)
+
+      domEvent.mouseDown('#inner')
+      domEvent.click(document)
       wrapper.update()
       wrapper.should.have.descendants(PortalInner)
     })

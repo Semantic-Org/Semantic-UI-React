@@ -24,6 +24,7 @@ export default {
       faker: require('faker/package.json').version,
       prettier: require('prettier/package.json').version,
       propTypes: require('prop-types/package.json').version,
+      prismjs: require('prismjs/package.json').version,
       react: require('react/package.json').version,
       // Heads up!
       // https://github.com/Semantic-Org/Semantic-UI/issues/6646

@@ -40,6 +40,7 @@ function Table(props) {
     fixed,
     footerRow,
     headerRow,
+    headerRows,
     inverted,
     padded,
     renderBodyRow,
@@ -93,11 +94,18 @@ function Table(props) {
     )
   }
 
+  const hasHeaderRows = headerRow || headerRows
+  const headerShorthandOptions = { defaultProps: { cellAs: 'th' } }
+  const headerElement = hasHeaderRows && (
+    <TableHeader>
+      {TableRow.create(headerRow, headerShorthandOptions)}
+      {_.map(headerRows, (data) => TableRow.create(data, headerShorthandOptions))}
+    </TableHeader>
+  )
+
   return (
     <ElementType {...rest} className={classes}>
-      {headerRow && (
-        <TableHeader>{TableRow.create(headerRow, { defaultProps: { cellAs: 'th' } })}</TableHeader>
-      )}
+      {headerElement}
       <TableBody>
         {renderBodyRow &&
           _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
@@ -154,7 +162,16 @@ Table.propTypes = {
   footerRow: customPropTypes.itemShorthand,
 
   /** Shorthand for a TableRow to be placed within Table.Header. */
-  headerRow: customPropTypes.itemShorthand,
+  headerRow: customPropTypes.every([
+    customPropTypes.disallow(['headerRows']),
+    customPropTypes.itemShorthand,
+  ]),
+
+  /** Shorthand for multiple TableRows to be placed within Table.Header. */
+  headerRows: customPropTypes.every([
+    customPropTypes.disallow(['headerRow']),
+    customPropTypes.collectionShorthand,
+  ]),
 
   /** A table's colors can be inverted. */
   inverted: PropTypes.bool,

@@ -239,13 +239,72 @@ describe('Popup', () => {
     })
   })
 
+  describe('pinned', () => {
+    it(`is "false" by default`, () => {
+      wrapperMount(<Popup open />)
+
+      wrapper.should.have.prop('pinned', false)
+    })
+
+    it(`disables "flip" modifier in PopperJS when is "true"`, () => {
+      wrapperMount(<Popup open pinned />)
+
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include({ flip: { enabled: false } })
+    })
+
+    it(`enables "flip" modifier in PopperJS when is "false"`, () => {
+      wrapperMount(<Popup open pinned={false} />)
+
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include({ flip: { enabled: true } })
+    })
+  })
+
   describe('position', () => {
     _.forEach(positionsMapping, (placement, position) => {
       it(`passes the "${position}" as "${placement}" to Popper`, () => {
         wrapperMount(<Popup open position={position} />)
 
-        wrapper.find('Popper').prop('placement', placement)
+        wrapper.find('Popper').should.have.prop('placement', placement)
       })
+    })
+  })
+
+  describe('popperModifiers', () => {
+    it('are passed to Popper', () => {
+      const modifiers = {
+        keepTogether: { enabled: false },
+        preventOverflow: { padding: 0 },
+      }
+      wrapperMount(<Popup popperModifiers={modifiers} open />)
+
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include(modifiers)
+    })
+  })
+
+  describe('popperDependencies', () => {
+    it('will call "scheduleUpdate" if dependencies changed', () => {
+      wrapperMount(<Popup popperDependencies={[1, 2, 3]} />)
+      const scheduleUpdate = sandbox.spy(wrapper.instance(), 'handleUpdate')
+
+      wrapper.setProps({ popperDependencies: [2, 3, 4] })
+      scheduleUpdate.should.have.been.calledOnce()
+    })
+
+    it('will skip "scheduleUpdate" if dependencies are same', () => {
+      wrapperMount(<Popup popperDependencies={[1, 2, 3]} />)
+      const scheduleUpdate = sandbox.spy(wrapper.instance(), 'handleUpdate')
+
+      wrapper.setProps({ popperDependencies: [1, 2, 3] })
+      scheduleUpdate.should.have.not.been.called()
     })
   })
 

@@ -32,13 +32,13 @@ describe('Confirm', () => {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: Modal.Header,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
   common.implementsShorthandProp(Confirm, {
     autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: Modal.Content,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
 
   describe('children', () => {
