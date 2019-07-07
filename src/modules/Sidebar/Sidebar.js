@@ -106,16 +106,17 @@ class Sidebar extends Component {
 
     this.state = {
       animationTick: 0,
-      prevVisible: !!props.visible,
+      visible: props.visible,
     }
   }
 
   static getDerivedStateFromProps(props, state) {
-    const tickIncrement = props.visible !== state.prevVisible ? 1 : 0
+    // We use `animationTick` to understand when an animation should be scheduled
+    const tickIncrement = !!props.visible === !!state.visible ? 0 : 1
 
     return {
       animationTick: state.animationTick + tickIncrement,
-      prevVisible: !!props.visible,
+      visible: props.visible,
     }
   }
 
