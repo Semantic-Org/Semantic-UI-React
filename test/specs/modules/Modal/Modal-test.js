@@ -502,8 +502,10 @@ describe('Modal', () => {
     })
 
     it('does not add the scrolling class to the body when equal to the window height', (done) => {
+      /* 101 is `padding * 2 + 1, see Modal/utils */
+      const height = window.innerHeight - 101
       wrapperMount(
-        <Modal open style={{ height: window.innerHeight }}>
+        <Modal open style={{ height }}>
           foo
         </Modal>,
       )
