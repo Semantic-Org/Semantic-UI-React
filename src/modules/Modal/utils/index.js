@@ -25,11 +25,12 @@ export const canFit = (modalRect) => {
 
   // padding with edge of page
   const paddingHeight = PADDING
-  const startPosition = verticalCenter + topOffset
+  const startPosition = verticalCenter + topOffset // 0
 
-  return scrollHeight > height
-    ? startPosition + scrollHeight + paddingHeight < contextHeight
-    : height + paddingHeight * 2 < contextHeight
+  // original: scrollHeight > height
+  //     ? startPosition + scrollHeight + paddingHeight < contextHeight
+  //     : height + paddingHeight * 2 < contextHeight
+  return startPosition + scrollHeight + paddingHeight < contextHeight
 }
 
 /**
