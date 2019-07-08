@@ -416,9 +416,22 @@ describe('Checkbox', () => {
         id: 'foo',
       },
       {
-        description: 'key on input with "id: fires on space key',
+        description: 'key on input with "id": fires on space key',
         events: {
           input: ['click'],
+        },
+        id: 'foo',
+      },
+      {
+        description: 'click on root: fires on mouse click',
+        events: {
+          '': ['mouseup', 'click'],
+        },
+      },
+      {
+        description: 'click on root with "id": fires on mouse click',
+        events: {
+          '': ['mouseup', 'click'],
         },
         id: 'foo',
       },
