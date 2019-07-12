@@ -1058,6 +1058,26 @@ describe('Dropdown', () => {
         .at(1)
         .should.have.props({ selected: true, active: true })
     })
+    it('becomes active on spacebar when open', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+      wrapper.simulate('click')
+
+      // initial item props
+      wrapper
+        .find('DropdownItem')
+        .at(1)
+        .should.have.props({ selected: false, active: false })
+
+      // select and make active
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      domEvent.keyDown(document, { key: 'Spacebar' })
+      wrapper.update()
+
+      wrapper
+        .find('DropdownItem')
+        .at(1)
+        .should.have.props({ selected: true, active: true })
+    })
     it('closes the menu', () => {
       wrapperMount(<Dropdown options={options} selection />).simulate('click')
 

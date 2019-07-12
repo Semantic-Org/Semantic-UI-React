@@ -580,7 +580,11 @@ export default class Dropdown extends Component {
     debug('selectItemOnEnter()', keyboardKey.getKey(e))
     const { search } = this.props
 
-    if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
+    if (
+      keyboardKey.getCode(e) !== keyboardKey.Enter &&
+      keyboardKey.getCode(e) !== keyboardKey.Spacebar
+    )
+      return
     e.preventDefault()
 
     const optionSize = _.size(this.getMenuOptions())
@@ -1193,7 +1197,7 @@ export default class Dropdown extends Component {
       search && searchQuery && 'filtered',
     )
     let _text = placeholder
-    
+
     if (text) {
       _text = text
     } else if (open && !multiple) {
