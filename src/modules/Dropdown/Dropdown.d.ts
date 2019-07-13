@@ -273,7 +273,7 @@ export interface StrictDropdownProps {
   tabIndex?: number | string
 
   /** The text displayed in the dropdown, usually for the active item. */
-  text?: string
+  text?: string | React.ReactNode
 
   /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
   trigger?: React.ReactNode
