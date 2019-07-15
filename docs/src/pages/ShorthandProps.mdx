@@ -2,7 +2,7 @@ import { Icon, Message } from 'semantic-ui-react'
 
 export const meta = {
   title: 'Shorthand Props',
-  prevPage: { title: 'Augmentation', href: '/augmentation' },
+  prevPage: { title: 'Composition', href: '/augmentation' },
   nextPage: { title: 'Theming', href: '/theming' },
 }
 
@@ -30,7 +30,7 @@ There is even shorter way to define default element's props - by using a primiti
 ```jsx
 <>
   <Button content='Like' icon='like' />
-  // 💡 has identical effect to the previous one
+  {/* 💡 has identical effect to the previous one */}
   <Button content='Like' icon={{ name: 'like' }} />
 </>
 ```
@@ -40,9 +40,9 @@ This works because `name` is the default prop of shorthand's `<Icon />` element.
 ```jsx
 <>
   <Modal trigger={<Button>Show</Button>} content='Content' />
-  // 💡 has identical effect to the previous one
+  {/* 💡 has identical effect to the previous one */}
   <Modal trigger={<Button>Show</Button>} content={{ content: 'Content' }} />
-  // ⛔ example below has broken styling, see section about React Element
+  {/* ⛔ example below has broken styling, see section about React Element */}
   <Modal trigger={<Button>Show</Button>} content={<div>Content</div>} />
 </>
 ```
