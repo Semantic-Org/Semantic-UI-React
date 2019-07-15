@@ -22,7 +22,7 @@ Semantic UI React provides a way to compose React components through the `as` pr
 
 ## Unhandled props & DOM attributes
 
-Our components handle only props that are defined in their interfaces, all unhandled props are passed to the component you are rendering `as`. It means that all HTML props are supported on all components.
+Our components handle only props that are defined in their `propTypes`, all unhandled props are passed to the component you are rendering `as`. It means that all HTML props are supported on all components.
 
 ```jsx
 // `type` is an unhandled prop on `Button` and will be passed through ⬇️
