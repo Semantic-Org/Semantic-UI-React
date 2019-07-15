@@ -980,10 +980,10 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.1.tgz#8da5c6530915653f3a1f38fd5f101d8c3f8079c5"
   integrity sha512-+iTbntw2IZPb/anVDbypzfQa+ay64MW0Zo8aJ8gZPWMMK6/OubMVb6lUPMagqjOPnmtauXnFCACVl3O7ogjeqQ==
 
-"@stardust-ui/docs-components@^0.33.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/@stardust-ui/docs-components/-/docs-components-0.33.0.tgz#7b921a73e947c72a2523bf544577067b41477489"
-  integrity sha512-BJEw3qxuooBihdEiS/O+DjejPDvg2T49qnrLUl7DYbzOXDItrkbf37h0EoBYinWTuwNkGxLGexNT5FT876Dn4Q==
+"@stardust-ui/docs-components@^0.34.1":
+  version "0.34.1"
+  resolved "https://registry.yarnpkg.com/@stardust-ui/docs-components/-/docs-components-0.34.1.tgz#d7cf5f67f32beb3c29dbf3ce5f3c41d9592ee7fb"
+  integrity sha512-BdDILhG3G5+Uw9h6gf3EjmuZCI7BO8MYz3Wus8Ova/T5CrMCi1rkEXkFB6UzgKsncEU+2D3XRilihWul93DAxg==
   dependencies:
     "@babel/runtime" "^7.1.2"
     copy-to-clipboard "^3.2.0"

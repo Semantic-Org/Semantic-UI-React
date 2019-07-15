@@ -6,7 +6,7 @@ import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs
 
 export const meta = {
   title: 'Get Started',
-  nextPage: { title: 'Augmentation', href: '/augmentation' },
+  nextPage: { title: 'Composition', href: '/augmentation' },
 }
 
 ## Install
@@ -49,9 +49,7 @@ Choose a theme and delivery method that suits your needs:
             value={`
               <link
                 rel="stylesheet"
-                href="//cdn.jsdelivr.net/npm/semantic-ui@${
-                  props.versions.sui
-                }/dist/semantic.min.css"
+                href="//cdn.jsdelivr.net/npm/semantic-ui@${props.versions.sui}/dist/semantic.min.css"
               />
             `}
           />
