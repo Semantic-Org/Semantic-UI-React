@@ -14,78 +14,63 @@ export const meta = {
 Semantic UI React provides React components while Semantic UI provides themes as CSS stylesheets.
 Install the React components and choose a theme that suits your needs.
 
-### Components
+### Option 1: Package Manager
 
-React components can be installed via <code>yarn</code>:
+React components can be installed via <code>yarn</code> or <code>npm</code>:
 
-<CodeSnippet mode='bash' value={`yarn add ${props.pkg.name}`} fitted />
+<CodeSnippet mode='bash' value={`yarn add ${props.pkg.name}
+yarn add semantic-ui-css
+## For NPM:
+npm install ${props.pkg.name}
+npm install semantic-ui-css`} fitted />
+
+<p>After install, **import the minified CSS file in your app's entry file:**</p>
+<CodeSnippet fitted label='index.js' value="import 'semantic-ui-css/semantic.min.css'" />
 
 <Message info size='tiny' attached='bottom'>
   <Icon name='idea' />
   Themes from Semantic UI >=2.3.x require Semantic UI React >=0.81.0.
 </Message>
 
+<p>
+  The <a href={semanticUICSSRepoURL}>Semantic UI CSS package</a> is automatically synced
+  with the main Semantic UI repository to provide a lightweight CSS only version of
+  Semantic UI.
+</p>
+
 If you are using TypeScript, you don't need to install anything, typings are included with the package.
 
-### Theme
+### Option 2: CDN (no bundler)
 
-Choose a theme and delivery method that suits your needs:
 
-<Tab
-  menu={{ attached: 'top', secondary: true, pointing: true, color: 'teal' }}
-  panes={[
-    {
-      menuItem: 'Default theme (CDN)',
-      render: () => (
-        <Tab.Pane style={{ fontSize: 'inherit' }}>
-          <p>
-            This is the quickest way to get started, just add this link to the{' '}
-            <code>{'<head>'}</code> of your <code>index.html</code> file.
-          </p>
-          <CodeSnippet
-            fitted
-            label={false}
-            mode='html'
-            value={`
-              <link
-                rel="stylesheet"
-                href="//cdn.jsdelivr.net/npm/semantic-ui@${props.versions.sui}/dist/semantic.min.css"
-              />
-            `}
-          />
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: 'Default theme (NPM)',
-      render: () => (
-        <Tab.Pane style={{ fontSize: 'inherit' }}>
-          <p>
-            The <a href={semanticUICSSRepoURL}>Semantic UI CSS package</a> is automatically synced
-            with the main Semantic UI repository to provide a lightweight CSS only version of
-            Semantic UI.
-          </p>
-          <CodeSnippet mode='bash' value={'yarn add semantic-ui-css'} />
-          <p>After install, import the minified CSS file in your app's entry file:</p>
-          <CodeSnippet fitted label='index.js' value="import 'semantic-ui-css/semantic.min.css'" />
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: 'Custom theme (NPM)',
-      render: () => (
-        <Tab.Pane style={{ fontSize: 'inherit' }}>
-          Detailed documentation on Semantic UI theming is provided in our{' '}
-          <Link to='/theming'>Theming guide</Link>.
-        </Tab.Pane>
-      ),
-    },
-  ]}
+<p>
+  This is the quickest way to get started, just add this link and script tag to the{' '}
+  <code>{'<head>'}</code> of your <code>index.html</code> file.
+</p>
+<CodeSnippet
+  fitted
+  label={false}
+  mode='html'
+  value={`
+    <link
+      async
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/semantic-ui@${props.versions.sui}/dist/semantic.min.css"
+    />
+    <script async src="//cdn.jsdelivr.net/npm/semantic-ui@${props.versions.sui}/dist/semantic.min.js"></script>
+  `}
 />
+
+
+## Custom themes
+
+Detailed documentation on Semantic UI theming is provided in our{' '}
+<Link to='/theming'>Theming guide</Link>.
+
 
 <Divider hidden section />
 
-## Bundling
+## Supported Bundling Options
 
 Semantic UI React is fully supported by all modern JavaScript bundlers. We've made some
 example recipes with some of them. You can use these as a starting point for your project.
