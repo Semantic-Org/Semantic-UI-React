@@ -119,7 +119,7 @@ describe('Popup', () => {
     })
 
     it(`can be set to "false"`, () => {
-      wrapperMount(<Popup eventsEnabled={false} />)
+      wrapperMount(<Popup eventsEnabled={false} open />)
       wrapper.find('Popper').should.have.prop('eventsEnabled', false)
     })
   })
