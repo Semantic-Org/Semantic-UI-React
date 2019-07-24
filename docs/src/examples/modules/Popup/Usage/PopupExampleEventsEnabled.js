@@ -2,7 +2,7 @@ import { useBooleanKnob } from '@stardust-ui/docs-components'
 import React from 'react'
 import { Button, Popup } from 'semantic-ui-react'
 
-const PopupExampleDefaultOpen = () => {
+const PopupExampleEventsEnabled = () => {
   const [eventsEnabled] = useBooleanKnob({
     name: 'eventsEnabled',
     initialValue: true,
@@ -22,4 +22,4 @@ const PopupExampleDefaultOpen = () => {
   )
 }
 
-export default PopupExampleDefaultOpen
+export default PopupExampleEventsEnabled

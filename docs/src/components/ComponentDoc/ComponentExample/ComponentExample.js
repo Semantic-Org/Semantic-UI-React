@@ -28,7 +28,9 @@ const componentControlsStyle = {
 /* eslint-disable react/prop-types */
 const knobComponents = {
   KnobControl: (props) => (
-    <div style={{ display: 'flex', alignItems: 'center', flexGrow: 0.9 }}>{props.children}</div>
+    <div style={{ display: 'flex', alignItems: 'center', flexGrow: 1, marginLeft: 5 }}>
+      {props.children}
+    </div>
   ),
   KnobBoolean: (props) => (
     <Checkbox
@@ -38,7 +40,11 @@ const knobComponents = {
       value={props.value}
     />
   ),
-  KnobLabel: (props) => <Label style={{ fontFamily: 'monospace' }}>{props.name}</Label>,
+  KnobLabel: (props) => (
+    <Label size='small' style={{ fontFamily: 'monospace' }}>
+      {props.name}
+    </Label>
+  ),
 }
 /* eslint-enable react/prop-types */
 
