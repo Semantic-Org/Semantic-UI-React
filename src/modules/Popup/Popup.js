@@ -52,6 +52,9 @@ export default class Popup extends Component {
     /** A disabled popup only renders its trigger. */
     disabled: PropTypes.bool,
 
+    /** Enables the Popper.js event listeners. */
+    eventsEnabled: PropTypes.bool,
+
     /** A flowing Popup has no maximum width and continues to flow to fit its content. */
     flowing: PropTypes.bool,
 
@@ -145,6 +148,7 @@ export default class Popup extends Component {
 
   static defaultProps = {
     disabled: false,
+    eventsEnabled: true,
     offset: 0,
     on: 'hover',
     pinned: false,
@@ -319,7 +323,16 @@ export default class Popup extends Component {
   }
 
   render() {
-    const { context, disabled, offset, pinned, popperModifiers, position, trigger } = this.props
+    const {
+      context,
+      disabled,
+      eventsEnabled,
+      offset,
+      pinned,
+      popperModifiers,
+      position,
+      trigger,
+    } = this.props
     const { closed, portalRestProps } = this.state
 
     if (closed || disabled) return trigger
@@ -351,6 +364,7 @@ export default class Popup extends Component {
         triggerRef={this.triggerRef}
       >
         <Popper
+          eventsEnabled={eventsEnabled}
           modifiers={modifiers}
           placement={positionsMapping[position]}
           referenceElement={referenceElement}
