@@ -12,7 +12,9 @@ export interface SelectProps extends StrictSelectProps {
 
 export interface StrictSelectProps extends StrictDropdownProps {
   /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
-  options: DropdownItemProps[]
+  options: DropdownItemProps[] | any[]
+  labelField?: string
+  valueField?: string
 }
 
 interface SelectComponent extends React.StatelessComponent<SelectProps> {
