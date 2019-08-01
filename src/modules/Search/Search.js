@@ -167,7 +167,7 @@ export default class Search extends Component {
     /** A search can have its results take up the width of its container. */
     fluid: PropTypes.bool,
 
-    /** A search input can take up the width of its container. */
+    /** Shorthand for input element. */
     input: customPropTypes.itemShorthand,
 
     /** A search can show a loading indicator. */
