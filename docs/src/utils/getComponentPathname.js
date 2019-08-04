@@ -6,6 +6,6 @@ import _ from 'lodash'
  * @param {object} info - A Component's *.info.json
  * @returns {string}
  */
-const getComponentPathname = info => `/${info.type}s/${_.kebabCase(info.displayName)}/`
+const getComponentPathname = (info) => `/${info.type}s/${_.kebabCase(info.displayName)}/`
 
 export default getComponentPathname

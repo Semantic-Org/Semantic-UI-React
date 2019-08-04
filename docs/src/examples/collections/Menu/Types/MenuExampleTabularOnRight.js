@@ -13,14 +13,23 @@ export default class MenuExampleTabularOnRight extends Component {
       <Grid>
         <Grid.Column stretched width={12}>
           <Segment>
-            This is an stretched grid column. This segment will always match the tab height
+            This is an stretched grid column. This segment will always match the
+            tab height
           </Segment>
         </Grid.Column>
 
         <Grid.Column width={4}>
           <Menu fluid vertical tabular='right'>
-            <Menu.Item name='bio' active={activeItem === 'bio'} onClick={this.handleItemClick} />
-            <Menu.Item name='pics' active={activeItem === 'pics'} onClick={this.handleItemClick} />
+            <Menu.Item
+              name='bio'
+              active={activeItem === 'bio'}
+              onClick={this.handleItemClick}
+            />
+            <Menu.Item
+              name='pics'
+              active={activeItem === 'pics'}
+              onClick={this.handleItemClick}
+            />
             <Menu.Item
               name='companies'
               active={activeItem === 'companies'}

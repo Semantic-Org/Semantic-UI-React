@@ -79,7 +79,7 @@ function ButtonGroup(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(buttons, button => Button.create(button))}
+      {_.map(buttons, (button) => Button.create(button))}
     </ElementType>
   )
 }

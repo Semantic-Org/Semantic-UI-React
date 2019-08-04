@@ -208,7 +208,10 @@ export default class Checkbox extends Component {
       indeterminate: !!indeterminate,
     })
 
-    _.invoke(this.inputRef.current, 'focus')
+    if (!e.defaultPrevented) {
+      _.invoke(this.inputRef.current, 'focus')
+    }
+
     // Heads up!
     // We need to call "preventDefault" to keep element focused.
     e.preventDefault()

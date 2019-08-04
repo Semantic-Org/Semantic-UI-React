@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Button, Grid, Header, Image, Label, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import {
+  Button,
+  Grid,
+  Header,
+  Image,
+  Label,
+  Menu,
+  Segment,
+  Sidebar,
+} from 'semantic-ui-react'
 
 export default class VisibilityExampleCallbackFrequency extends Component {
   state = {
@@ -13,9 +22,12 @@ export default class VisibilityExampleCallbackFrequency extends Component {
   handleShowClick = () => this.setState({ visible: true })
   handleSidebarHide = () => this.setState({ visible: false })
 
-  updateLog = eventName => () =>
-    this.setState(prevState => ({
-      log: [`${new Date().toLocaleTimeString()}: ${eventName}`, ...prevState.log].slice(0, 20),
+  updateLog = (eventName) => () =>
+    this.setState((prevState) => ({
+      log: [
+        `${new Date().toLocaleTimeString()}: ${eventName}`,
+        ...prevState.log,
+      ].slice(0, 20),
       logCount: prevState.logCount + 1,
     }))
 
@@ -73,7 +85,12 @@ export default class VisibilityExampleCallbackFrequency extends Component {
           <Grid.Column>
             <Segment.Group>
               <Segment>
-                <Button compact size='small' floated='right' onClick={this.clearLog}>
+                <Button
+                  compact
+                  size='small'
+                  floated='right'
+                  onClick={this.clearLog}
+                >
                   Clear
                 </Button>
                 Event Log <Label circular>{logCount}</Label>

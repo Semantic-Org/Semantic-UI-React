@@ -53,6 +53,6 @@ ModalContent.propTypes = {
   scrolling: PropTypes.bool,
 }
 
-ModalContent.create = createShorthandFactory(ModalContent, content => ({ content }))
+ModalContent.create = createShorthandFactory(ModalContent, (content) => ({ content }))
 
 export default ModalContent

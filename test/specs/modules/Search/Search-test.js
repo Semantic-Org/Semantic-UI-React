@@ -33,7 +33,7 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // Options
 // ----------------------------------------
 const getOptions = (count = 5) =>
-  _.times(count, i => ({
+  _.times(count, (i) => ({
     title: [i, ..._.times(3, faker.hacker.noun)].join(' '),
     description: [i, ..._.times(3, faker.hacker.noun)].join(' '),
     image: '/images/wireframe/image.png',
@@ -663,7 +663,7 @@ describe('Search', () => {
     it('adds the onClick handler to all items', () => {
       wrapperShallow(<Search results={options} minCharacters={0} />)
         .find('SearchResult')
-        .everyWhere(item => item.should.have.prop('onClick'))
+        .everyWhere((item) => item.should.have.prop('onClick'))
     })
     it('calls handleItemClick when an item is clicked', () => {
       wrapperMount(<Search results={options} minCharacters={0} />)
@@ -713,7 +713,7 @@ describe('Search', () => {
       ]
       wrapperShallow(<Search results={customOptions} />)
         .find('SearchResult')
-        .everyWhere(item => item.should.have.prop('data-foo', 'someValue'))
+        .everyWhere((item) => item.should.have.prop('data-foo', 'someValue'))
     })
     it('ignores search value', () => {
       wrapperMount(<Search results={options} minCharacters={0} selectFirstResult />)

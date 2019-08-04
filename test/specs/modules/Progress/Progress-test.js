@@ -41,17 +41,11 @@ describe('Progress', () => {
     it('applies the success class when percent >= 100%', () => {
       const wrapper = shallow(<Progress autoSuccess />)
 
-      wrapper
-        .setProps({ percent: 100, autoSuccess: true })
-        .should.have.have.className('success')
+      wrapper.setProps({ percent: 100, autoSuccess: true }).should.have.have.className('success')
 
-      wrapper
-        .setProps({ percent: 99, autoSuccess: true })
-        .should.not.have.have.className('success')
+      wrapper.setProps({ percent: 99, autoSuccess: true }).should.not.have.have.className('success')
 
-      wrapper
-        .setProps({ percent: 101, autoSuccess: true })
-        .should.have.have.className('success')
+      wrapper.setProps({ percent: 101, autoSuccess: true }).should.have.have.className('success')
     })
     it('applies the success class when value >= total', () => {
       const wrapper = shallow(<Progress autoSuccess />)
@@ -95,30 +89,25 @@ describe('Progress', () => {
 
   describe('data-percent', () => {
     it('adds prop by default', () => {
-      shallow(<Progress />)
-        .should.have.data('percent')
+      shallow(<Progress />).should.have.data('percent')
     })
 
     it('passes value of percent prop', () => {
-      shallow(<Progress percent={10} />)
-        .should.have.data('percent', 10)
+      shallow(<Progress percent={10} />).should.have.data('percent', 10)
     })
 
     it('floors the value of percent prop', () => {
-      shallow(<Progress percent={8.28} />)
-        .should.have.data('percent', 8)
+      shallow(<Progress percent={8.28} />).should.have.data('percent', 8)
     })
 
     it('floors the results value and total props', () => {
-      shallow(<Progress value={828} total={10000} />)
-        .should.have.data('percent', 8)
+      shallow(<Progress value={828} total={10000} />).should.have.data('percent', 8)
     })
   })
 
   describe('indicating', () => {
     it('adds the "active" class', () => {
-      shallow(<Progress indicating />)
-        .should.have.className('active')
+      shallow(<Progress indicating />).should.have.className('active')
     })
   })
 

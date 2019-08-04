@@ -9,8 +9,9 @@ const options = [
 
 const DropdownExampleUpwardInline = () => (
   <div>
-    I'd like a size <Dropdown upward floating inline options={options} defaultValue='m' /> T-shirt,
-    please.
+    I'd like a size{' '}
+    <Dropdown upward floating inline options={options} defaultValue='m' />{' '}
+    T-shirt, please.
   </div>
 )
 

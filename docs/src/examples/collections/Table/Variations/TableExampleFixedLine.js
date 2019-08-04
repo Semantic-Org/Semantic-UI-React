@@ -21,8 +21,8 @@ const TableExampleFixedLine = () => (
             'et dolore magna aliqua.',
           ].join(' ')}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Table.Cell>
       </Table.Row>
       <Table.Row>

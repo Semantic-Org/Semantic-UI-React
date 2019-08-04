@@ -15,7 +15,7 @@ const { paths } = config
 const g = loadPlugins()
 const { log } = g.util
 
-const handleWatchChange = filename =>
+const handleWatchChange = (filename) =>
   log(`File ${path.basename(filename)} was changed, running tasks...`)
 
 /**

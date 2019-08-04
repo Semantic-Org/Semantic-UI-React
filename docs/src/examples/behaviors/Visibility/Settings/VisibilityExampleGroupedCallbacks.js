@@ -22,8 +22,8 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
   }
   contextRef = createRef()
 
-  updateLog = eventName => () =>
-    this.setState(prevState => ({
+  updateLog = (eventName) => () =>
+    this.setState((prevState) => ({
       log: [
         `${new Date().toLocaleTimeString()}: ${eventName}`,
         ...prevState.log,
@@ -33,9 +33,10 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
 
   clearLog = () => this.setState({ log: [], logCount: 0 })
 
-  toggleOnce = () => this.setState(prevState => ({ once: !prevState.once }))
+  toggleOnce = () => this.setState((prevState) => ({ once: !prevState.once }))
 
-  toggleContinuous = () => this.setState(prevState => ({ continuous: !prevState.continuous }))
+  toggleContinuous = () =>
+    this.setState((prevState) => ({ continuous: !prevState.continuous }))
 
   render() {
     const { continuous, log, logCount, once } = this.state

@@ -40,4 +40,4 @@ PopupContent.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-PopupContent.create = createShorthandFactory(PopupContent, children => ({ children }))
+PopupContent.create = createShorthandFactory(PopupContent, (children) => ({ children }))

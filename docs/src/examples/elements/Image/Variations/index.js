@@ -31,7 +31,9 @@ const ImageVariationsExamples = () => (
       description='An image may appear circular.'
       examplePath='elements/Image/Variations/ImageExampleCircular'
     >
-      <Message warning>Perfectly circular images require a perfectly square image file.</Message>
+      <Message warning>
+        Perfectly circular images require a perfectly square image file.
+      </Message>
     </ComponentExample>
     <ComponentExample
       title='Vertically Aligned'

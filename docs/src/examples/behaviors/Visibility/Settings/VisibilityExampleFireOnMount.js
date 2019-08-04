@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { Divider, Grid, Image, Table, Segment, Visibility } from 'semantic-ui-react'
+import {
+  Divider,
+  Grid,
+  Image,
+  Table,
+  Segment,
+  Visibility,
+} from 'semantic-ui-react'
 
 export default class VisibilityExampleFireOnMount extends Component {
   state = {
@@ -66,7 +73,9 @@ export default class VisibilityExampleFireOnMount extends Component {
               </Table.Row>
               <Table.Row>
                 <Table.Cell>percentagePassed</Table.Cell>
-                <Table.Cell>{(calculations.percentagePassed * 100).toFixed()}%</Table.Cell>
+                <Table.Cell>
+                  {(calculations.percentagePassed * 100).toFixed()}%
+                </Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>fits</Table.Cell>

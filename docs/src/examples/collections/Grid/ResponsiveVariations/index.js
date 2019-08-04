@@ -68,12 +68,14 @@ const GridResponsiveVariationsExamples = () => (
     >
       <Message info>
         <p>
-          It's recommended to use a responsive pattern like <code>doubling</code> or{' '}
-          <code>stackable</code> to reduce complexity when designing responsively, however in some
-          circumstances specifying exact widths for screen sizes may be necessary.
+          It's recommended to use a responsive pattern like{' '}
+          <code>doubling</code> or <code>stackable</code> to reduce complexity
+          when designing responsively, however in some circumstances specifying
+          exact widths for screen sizes may be necessary.
         </p>
         <p>
-          Responsive width props are not compatible with the <code>width</code> prop.
+          Responsive width props are not compatible with the <code>width</code>{' '}
+          prop.
         </p>
       </Message>
     </ComponentExample>

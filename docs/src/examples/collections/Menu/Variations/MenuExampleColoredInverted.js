@@ -16,7 +16,7 @@ export default class MenuExampleColoredInverted extends Component {
     return (
       <div>
         <Menu inverted>
-          {colorsA.map(c => (
+          {colorsA.map((c) => (
             <Menu.Item
               key={c}
               name={c}
@@ -28,7 +28,7 @@ export default class MenuExampleColoredInverted extends Component {
         </Menu>
 
         <Menu inverted>
-          {colorsB.map(c => (
+          {colorsB.map((c) => (
             <Menu.Item
               key={c}
               name={c}

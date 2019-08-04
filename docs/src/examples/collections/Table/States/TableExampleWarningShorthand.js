@@ -16,12 +16,19 @@ const renderBodyRow = ({ name, status, notes }, i) => ({
   cells: [
     name || 'No name specified',
     status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
-    notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
+    notes
+      ? { key: 'notes', icon: 'attention', content: notes, warning: true }
+      : 'None',
   ],
 })
 
 const TableExampleWarningShorthand = () => (
-  <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData} />
+  <Table
+    celled
+    headerRow={headerRow}
+    renderBodyRow={renderBodyRow}
+    tableData={tableData}
+  />
 )
 
 export default TableExampleWarningShorthand

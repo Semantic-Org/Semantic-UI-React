@@ -8,7 +8,11 @@ const panes = [
 ]
 
 const TabExampleMenuPositionRight = () => (
-  <Tab menu={{ fluid: true, vertical: true }} menuPosition='right' panes={panes} />
+  <Tab
+    menu={{ fluid: true, vertical: true }}
+    menuPosition='right'
+    panes={panes}
+  />
 )
 
 export default TabExampleMenuPositionRight

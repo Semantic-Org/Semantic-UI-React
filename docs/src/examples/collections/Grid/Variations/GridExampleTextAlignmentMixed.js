@@ -25,12 +25,14 @@ const GridExampleTextAlignmentJustified = () => (
     <Grid.Row textAlign='justified'>
       <Grid.Column>
         <p>
-          Justified content fits exactly inside the grid column, taking up the entire width from one
-          side to the other. Justified content fits exactly inside the grid column, taking up the
-          entire width from one side to the other. Justified content fits exactly inside the grid
-          column, taking up the entire width from one side to the other. Justified content fits
-          exactly inside the grid column, taking up the entire width from one side to the other.
-          Justified content fits exactly inside the grid column, taking up the entire width from one
+          Justified content fits exactly inside the grid column, taking up the
+          entire width from one side to the other. Justified content fits
+          exactly inside the grid column, taking up the entire width from one
+          side to the other. Justified content fits exactly inside the grid
+          column, taking up the entire width from one side to the other.
+          Justified content fits exactly inside the grid column, taking up the
+          entire width from one side to the other. Justified content fits
+          exactly inside the grid column, taking up the entire width from one
           side to the other.
         </p>
       </Grid.Column>

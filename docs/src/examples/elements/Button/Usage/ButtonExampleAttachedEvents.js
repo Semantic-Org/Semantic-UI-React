@@ -14,7 +14,8 @@ export default class ButtonExampleAttachedEvents extends Component {
     }
   }
 
-  updateLog = message => this.setState(prevState => ({ log: [message, ...prevState.log] }))
+  updateLog = (message) =>
+    this.setState((prevState) => ({ log: [message, ...prevState.log] }))
 
   render() {
     const { log } = this.state
@@ -23,7 +24,8 @@ export default class ButtonExampleAttachedEvents extends Component {
       <Grid>
         <Grid.Column width={8}>
           <Segment attached='top'>
-            The button below accepts clicks with mouse and key presses with Space Bar or Enter.
+            The button below accepts clicks with mouse and key presses with
+            Space Bar or Enter.
           </Segment>
           <Button
             attached='bottom'
@@ -35,7 +37,9 @@ export default class ButtonExampleAttachedEvents extends Component {
         <Grid.Column width={8}>
           <Segment>
             <pre style={{ height: 100, overflowY: 'scroll' }}>
-              {log.map((e, i) => <p key={i}>{e}</p>)}
+              {log.map((e, i) => (
+                <p key={i}>{e}</p>
+              ))}
             </pre>
           </Segment>
         </Grid.Column>

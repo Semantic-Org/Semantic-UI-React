@@ -17,7 +17,8 @@ export default class StickyExampleActive extends Component {
   state = { active: true }
   contextRef = createRef()
 
-  handleToggle = () => this.setState(prevState => ({ active: !prevState.active }))
+  handleToggle = () =>
+    this.setState((prevState) => ({ active: !prevState.active }))
 
   render() {
     const { active } = this.state
@@ -27,7 +28,7 @@ export default class StickyExampleActive extends Component {
         <Grid.Column>
           <Ref innerRef={this.contextRef}>
             <Segment>
-              {_.times(10, i => (
+              {_.times(10, (i) => (
                 <Placeholder key={i} />
               ))}
 

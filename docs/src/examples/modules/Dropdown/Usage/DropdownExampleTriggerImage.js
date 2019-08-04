@@ -15,7 +15,12 @@ const options = [
 ]
 
 const DropdownImageTriggerExample = () => (
-  <Dropdown trigger={trigger} options={options} pointing='top left' icon={null} />
+  <Dropdown
+    trigger={trigger}
+    options={options}
+    pointing='top left'
+    icon={null}
+  />
 )
 
 export default DropdownImageTriggerExample
