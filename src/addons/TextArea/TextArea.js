@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
-import Ref from '../../addons/Ref'
+import Ref from '../Ref'
 import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
 /**

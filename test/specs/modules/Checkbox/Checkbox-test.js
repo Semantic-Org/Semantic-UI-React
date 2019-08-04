@@ -53,7 +53,7 @@ describe('Checkbox', () => {
   })
 
   describe('aria', () => {
-    ['aria-label', 'role'].forEach((propName) => {
+    ;['aria-label', 'role'].forEach((propName) => {
       it(`passes "${propName}" to the <input>`, () => {
         shallow(<Checkbox {...{ [propName]: 'foo' }} />)
           .find('input')
@@ -249,6 +249,16 @@ describe('Checkbox', () => {
       wrapper.find('label').simulate('click')
       onChange.should.have.not.been.called()
     })
+
+    it('is called when click is done on nested element', () => {
+      const onChange = sandbox.spy()
+      wrapperMount(<Checkbox label={{ children: <span>Foo</span> }} onChange={onChange} />)
+
+      wrapper.find('span').simulate('mouseup')
+      wrapper.find('span').simulate('click')
+
+      onChange.should.have.been.calledOnce()
+    })
   })
 
   describe('onClick', () => {
@@ -377,44 +387,51 @@ describe('Checkbox', () => {
         description: 'click on label: fires on mouse click',
         events: {
           label: ['mouseup', 'click'],
-          input: ['click'],
         },
       },
       {
         description: 'click on input: fires on mouse click',
         events: {
-          label: ['mouseup', 'click'],
           input: ['click'],
         },
       },
       {
         description: 'key on input: fires on space key',
         events: {
-          label: ['mouseup', 'click'],
           input: ['click'],
         },
       },
-
       {
         description: 'click on label with "id": fires on mouse click',
         events: {
           label: ['mouseup', 'click'],
-          input: ['click'],
         },
         id: 'foo',
       },
       {
         description: 'click on input with "id": fires on mouse click',
         events: {
-          label: ['mouseup', 'click'],
           input: ['click'],
         },
         id: 'foo',
       },
       {
-        description: 'key on input with "id: fires on space key',
+        description: 'key on input with "id": fires on space key',
         events: {
           input: ['click'],
+        },
+        id: 'foo',
+      },
+      {
+        description: 'click on root: fires on mouse click',
+        events: {
+          '': ['mouseup', 'click'],
+        },
+      },
+      {
+        description: 'click on root with "id": fires on mouse click',
+        events: {
+          '': ['mouseup', 'click'],
         },
         id: 'foo',
       },
@@ -435,8 +452,10 @@ describe('Checkbox', () => {
           { attachTo },
         )
 
-        _.forEach(events, (event, target) => {
-          domEvent.fire(`[data-id=${dataId}] ${target}`, event)
+        _.forEach(events, (targetEvents, target) => {
+          _.forEach(targetEvents, (targetEvent) => {
+            domEvent.fire(`[data-id=${dataId}] ${target}`, targetEvent)
+          })
         })
 
         onClick.should.have.been.calledOnce()
@@ -449,10 +468,10 @@ describe('Checkbox', () => {
   })
 
   describe('Controlled component', () => {
-    const getControlledCheckbox = isOnClick =>
+    const getControlledCheckbox = (isOnClick) =>
       class ControlledCheckbox extends React.Component {
         state = { checked: false }
-        toggle = () => this.setState(prevState => ({ checked: !prevState.checked }))
+        toggle = () => this.setState((prevState) => ({ checked: !prevState.checked }))
 
         render() {
           const handler = isOnClick ? { onClick: this.toggle } : { onChange: this.toggle }

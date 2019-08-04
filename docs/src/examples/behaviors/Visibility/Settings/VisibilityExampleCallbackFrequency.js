@@ -22,20 +22,21 @@ export default class VisibilityExampleCallbackFrequency extends Component {
   }
   contextRef = createRef()
 
-  updateLog = eventName => () =>
-    this.setState({
+  updateLog = (eventName) => () =>
+    this.setState((prevState) => ({
       log: [
         `${new Date().toLocaleTimeString()}: ${eventName}`,
-        ...this.state.log,
+        ...prevState.log,
       ].slice(0, 20),
-      logCount: this.state.logCount + 1,
-    })
+      logCount: prevState.logCount + 1,
+    }))
 
   clearLog = () => this.setState({ log: [], logCount: 0 })
 
-  toggleOnce = () => this.setState({ once: !this.state.once })
+  toggleOnce = () => this.setState((prevState) => ({ once: !prevState.once }))
 
-  toggleContinuous = () => this.setState({ continuous: !this.state.continuous })
+  toggleContinuous = () =>
+    this.setState((prevState) => ({ continuous: !prevState.continuous }))
 
   render() {
     const { continuous, log, logCount, once } = this.state

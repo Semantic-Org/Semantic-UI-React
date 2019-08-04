@@ -4,7 +4,7 @@ import faker from 'faker'
 import React, { Component } from 'react'
 import { Search, Grid, Header, Segment, Label } from 'semantic-ui-react'
 
-const categoryRenderer = ({ name }) => <Label as={'span'} content={name} />
+const categoryRenderer = ({ name }) => <Label as='span' content={name} />
 
 categoryRenderer.propTypes = {
   name: PropTypes.string,
@@ -16,6 +16,8 @@ resultRenderer.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
 }
+
+const initialState = { isLoading: false, results: [], value: '' }
 
 const getResults = () =>
   _.times(5, () => ({
@@ -38,12 +40,7 @@ const source = _.range(0, 3).reduce((memo) => {
 }, {})
 
 export default class SearchExampleCategory extends Component {
-  componentWillMount() {
-    this.resetComponent()
-  }
-
-  resetComponent = () =>
-    this.setState({ isLoading: false, results: [], value: '' })
+  state = initialState
 
   handleResultSelect = (e, { result }) => this.setState({ value: result.title })
 
@@ -51,10 +48,10 @@ export default class SearchExampleCategory extends Component {
     this.setState({ isLoading: true, value })
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent()
+      if (this.state.value.length < 1) return this.setState(initialState)
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.title)
+      const isMatch = (result) => re.test(result.title)
 
       const filteredResults = _.reduce(
         source,

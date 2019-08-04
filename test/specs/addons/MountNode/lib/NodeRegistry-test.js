@@ -66,5 +66,16 @@ describe('NodeRegistry', () => {
       handler.should.have.been.calledOnce()
       handler.should.have.been.calledWithMatch('foo', undefined)
     })
+
+    it('passes when unexisting nodeRef is passed', () => {
+      const handler = sandbox.spy()
+      const registry = new NodeRegistry()
+
+      registry.del('foo', 'FooComponent')
+      registry.emit('foo', handler)
+
+      handler.should.have.been.calledOnce()
+      handler.should.have.been.calledWithMatch('foo', undefined)
+    })
   })
 })

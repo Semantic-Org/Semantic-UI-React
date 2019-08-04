@@ -14,18 +14,18 @@ delete prettierConfig.overrides
 // https://github.com/prettier/prettier/issues/4959
 
 const formatCode = isBrowser()
-  ? (code, parser = 'babylon') => {
-    if (!code) return ''
+  ? (code, parser = 'babel') => {
+      if (!code) return ''
 
-    const formatted = prettier.format(code, {
-      ...prettierConfig,
-      printWidth,
-      parser,
-      plugins: window.prettierPlugins,
-    })
+      const formatted = prettier.format(code, {
+        ...prettierConfig,
+        printWidth,
+        parser,
+        plugins: window.prettierPlugins,
+      })
 
-    return formatted.replace(/^;</, '<') // remove beginning semi in JSX/HTML
-  }
-  : x => x
+      return formatted.replace(/^;</, '<') // remove beginning semi in JSX/HTML
+    }
+  : (x) => x
 
 export default formatCode

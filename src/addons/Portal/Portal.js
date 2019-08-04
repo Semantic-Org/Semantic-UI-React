@@ -1,3 +1,4 @@
+import EventStack from '@semantic-ui-react/event-stack'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -7,7 +8,6 @@ import {
   AutoControlledComponent as Component,
   customPropTypes,
   doesNodeContainClick,
-  eventStack,
   handleRef,
   makeDebugger,
 } from '../../lib'
@@ -129,6 +129,7 @@ class Portal extends Component {
 
   contentRef = createRef()
   triggerRef = createRef()
+  latestDocumentMouseDownEvent = null
 
   componentWillUnmount() {
     // Clean up timers
@@ -140,12 +141,20 @@ class Portal extends Component {
   // Document Event Handlers
   // ----------------------------------------
 
+  handleDocumentMouseDown = (e) => {
+    this.latestDocumentMouseDownEvent = e
+  }
+
   handleDocumentClick = (e) => {
     const { closeOnDocumentClick } = this.props
+    const currentMouseDownEvent = this.latestDocumentMouseDownEvent
+    this.latestDocumentMouseDownEvent = null
 
     if (
       !this.contentRef.current || // no portal
       doesNodeContainClick(this.triggerRef.current, e) || // event happened in trigger (delegate to trigger handlers)
+      (currentMouseDownEvent &&
+        doesNodeContainClick(this.contentRef.current, currentMouseDownEvent)) || // event originated in the portal but was ended outside
       doesNodeContainClick(this.contentRef.current, e) // event happened in the portal
     ) {
       return
@@ -307,27 +316,13 @@ class Portal extends Component {
     return setTimeout(() => this.close(eventClone), delay || 0)
   }
 
-  handleMount = (e, { node: target }) => {
+  handleMount = () => {
     debug('handleMount()')
-    const { eventPool } = this.props
-
-    eventStack.sub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target })
-    eventStack.sub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target })
-    eventStack.sub('click', this.handleDocumentClick, { pool: eventPool })
-    eventStack.sub('keydown', this.handleEscape, { pool: eventPool })
-
     _.invoke(this.props, 'onMount', null, this.props)
   }
 
-  handleUnmount = (e, { node: target }) => {
+  handleUnmount = () => {
     debug('handleUnmount()')
-    const { eventPool } = this.props
-
-    eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { pool: eventPool, target })
-    eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { pool: eventPool, target })
-    eventStack.unsub('click', this.handleDocumentClick, { pool: eventPool })
-    eventStack.unsub('keydown', this.handleEscape, { pool: eventPool })
-
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
@@ -338,20 +333,38 @@ class Portal extends Component {
   }
 
   render() {
-    const { children, mountNode, trigger } = this.props
+    const { children, eventPool, mountNode, trigger } = this.props
     const { open } = this.state
 
     return (
       <Fragment>
         {open && (
-          <PortalInner
-            innerRef={this.contentRef}
-            mountNode={mountNode}
-            onMount={this.handleMount}
-            onUnmount={this.handleUnmount}
-          >
-            {children}
-          </PortalInner>
+          <Fragment>
+            <PortalInner
+              innerRef={this.contentRef}
+              mountNode={mountNode}
+              onMount={this.handleMount}
+              onUnmount={this.handleUnmount}
+            >
+              {children}
+            </PortalInner>
+
+            <EventStack
+              name='mouseleave'
+              on={this.handlePortalMouseLeave}
+              pool={eventPool}
+              target={this.contentRef}
+            />
+            <EventStack
+              name='mouseenter'
+              on={this.handlePortalMouseEnter}
+              pool={eventPool}
+              target={this.contentRef}
+            />
+            <EventStack name='mousedown' on={this.handleDocumentMouseDown} pool={eventPool} />
+            <EventStack name='click' on={this.handleDocumentClick} pool={eventPool} />
+            <EventStack name='keydown' on={this.handleEscape} pool={eventPool} />
+          </Fragment>
         )}
         {trigger && (
           <Ref innerRef={this.handleTriggerRef}>

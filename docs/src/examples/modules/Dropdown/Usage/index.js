@@ -20,6 +20,12 @@ const DropdownUsageExamples = () => (
     />
 
     <ComponentExample
+      title='Close On Escape'
+      description='A dropdown that closes when the user presses the escape key.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleCloseOnEscape'
+    />
+
+    <ComponentExample
       title='Close On Change'
       description='A multiple selection dropdown can close when the user changes its value.'
       examplePath='modules/Dropdown/Usage/DropdownExampleCloseOnChange'
@@ -79,7 +85,7 @@ const DropdownUsageExamples = () => (
     <ComponentExample examplePath='modules/Dropdown/Usage/DropdownExampleTriggerImage' />
     <ComponentExample
       title='Multiple Custom Label'
-      description='A &quot;multiple&quot; dropdown can render customized label for selected items.'
+      description='A "multiple" dropdown can render customized label for selected items.'
       examplePath='modules/Dropdown/Usage/DropdownExampleMultipleCustomLabel'
     />
     <ComponentExample
@@ -98,8 +104,8 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleSearchQuery'
     >
       <Message info>
-        This example also shows how to override default bevahiour of the search query and keep
-        entered value after selection.
+        This example also shows how to override default behaviour of the search
+        query and keep entered value after selection.
       </Message>
     </ComponentExample>
     <ComponentExample

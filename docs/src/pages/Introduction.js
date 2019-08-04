@@ -3,34 +3,29 @@ import React from 'react'
 import { Link, withSiteData } from 'react-static'
 import { Container, Divider, Grid, Header, Icon, Label, List, Segment } from 'semantic-ui-react'
 
+import CodeSnippet from 'docs/src/components/CodeSnippet'
 import DocsLayout from 'docs/src/components/DocsLayout'
-import Editor from 'docs/src/components/CodeEditor'
 import Logo from 'docs/src/components/Logo/Logo'
 import { semanticUIDocsURL, repoURL } from 'docs/src/utils'
 
-const AccordionJSX = `const panels = [{
-  title: 'What is a dog?',
-  content: '...',
-  }, {
-  title: 'What kinds are there?',
-  content: '...',
-}]
-
-<Accordion panels={panels} />`
+const AccordionJSX = `<Accordion panels={[
+  { title: 'What is a dog?', content: '...' },
+  { title: 'What kinds are there?', content: '...' },
+]} />`
 const AccordionHTML = `<div class="ui accordion">
   <div class="title">
-    <i class="dropdown icon"></i></i>
+    <i class="dropdown icon"></i>
     What is a dog?
   </div>
   <div class="content">
-    <p></p...>...</p>
+    <p>...</p>
   </div>
   <div class="title">
-    <i class="dropdown icon"></i></i>
+    <i class="dropdown icon"></i>
     What kinds are there?
   </div>
   <div class="content">
-    <p></p...>...</p>
+    <p>...</p>
   </div>
 </div>`
 
@@ -107,24 +102,24 @@ const MenuItemLinkAugmentationHTML = `<div class="ui menu">
 </div>`
 
 const Comparison = ({ jsx, html }) => (
-  <Segment inverted className='code-example'>
+  <Segment inverted style={{ backgroundColor: '#2d2d2d' }}>
     <Grid columns='equal' centered textAlign='left'>
       <Grid.Column computer='8' largeScreen='7' widescreen='7'>
         <Label color='grey' size='tiny' attached='top left'>
           JSX
         </Label>
-        <Editor value={jsx} readOnly />
+        <CodeSnippet fitted label={false} mode='jsx' value={jsx} />
       </Grid.Column>
       <Grid.Column largeScreen='2' only='large screen' textAlign='center'>
         <Divider vertical>
-          <Icon name='right arrow circle' />
+          <Icon inverted name='right arrow circle' />
         </Divider>
       </Grid.Column>
       <Grid.Column computer='8' largeScreen='7' widescreen='7'>
         <Label color='grey' size='tiny' attached='top right'>
           Rendered HTML
         </Label>
-        <Editor mode='html' value={html} readOnly />
+        <CodeSnippet fitted label={false} mode='html' value={html} />
       </Grid.Column>
     </Grid>
   </Segment>
@@ -135,8 +130,8 @@ Comparison.propTypes = {
   html: PropTypes.string,
 }
 
-const Introduction = ({ pkg }) => (
-  <DocsLayout additionalTitle='Introduction'>
+const Introduction = ({ pkg, title }) => (
+  <DocsLayout additionalTitle='Introduction' title={title}>
     <Container id='introduction-page'>
       <Segment basic textAlign='center'>
         <Logo centered size='small' />
@@ -328,6 +323,7 @@ Introduction.propTypes = {
     description: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default withSiteData(Introduction)

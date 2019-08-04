@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Accordion, Menu, Sticky } from 'semantic-ui-react'
 
-import { updateForKeys } from 'docs/src/hoc'
 import { docTypes } from 'docs/src/utils'
 import ComponentSidebarSection from './ComponentSidebarSection'
 
@@ -16,7 +15,7 @@ const sidebarStyle = {
 }
 
 const ComponentSidebar = ({ activePath, examplesRef, onItemClick, sections }) => (
-  <Sticky context={examplesRef} offset={15}>
+  <Sticky context={examplesRef} offset={14}>
     <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
       {_.map(sections, ({ examples, sectionName }) => (
         <ComponentSidebarSection
@@ -38,4 +37,6 @@ ComponentSidebar.propTypes = {
   sections: docTypes.sidebarSections.isRequired,
 }
 
-export default updateForKeys(['activePath'])(ComponentSidebar)
+const areEqual = (prevProps, nextProps) => prevProps.activePath === nextProps.activePath
+
+export default React.memo(ComponentSidebar, areEqual)

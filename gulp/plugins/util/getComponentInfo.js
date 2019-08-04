@@ -4,7 +4,10 @@ import { defaultHandlers, parse, resolver } from 'react-docgen'
 import fs from 'fs'
 
 import config from '../../../config'
-import { parseDefaultValue, parseDocblock, parserCustomHandler, parseType } from './'
+import parseDefaultValue from './parseDefaultValue'
+import parseDocblock from './parseDocblock'
+import parserCustomHandler from './parserCustomHandler'
+import parseType from './parseType'
 
 const getComponentInfo = (filepath) => {
   const absPath = path.resolve(process.cwd(), filepath)
@@ -61,9 +64,9 @@ const getComponentInfo = (filepath) => {
 
   info.subcomponents = info.isParent
     ? fs
-      .readdirSync(dir)
-      .filter(file => subcomponentRegExp.test(file))
-      .map(file => path.basename(file, path.extname(file)))
+        .readdirSync(dir)
+        .filter((file) => subcomponentRegExp.test(file))
+        .map((file) => path.basename(file, path.extname(file)))
     : null
 
   // where this component should be exported in the api

@@ -7,6 +7,7 @@ const ExampleButton = React.forwardRef((props, ref) => (
   </div>
 ))
 
+// eslint-disable-next-line react/no-multi-comp
 export default class RefForwardingExample extends Component {
   forwardedRef = React.createRef()
   state = { isMounted: false }

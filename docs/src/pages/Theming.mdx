@@ -1,19 +1,19 @@
-import { Button, Header } from 'semantic-ui-react'
+import { Button, Message } from 'semantic-ui-react'
 
 export const meta = {
   title: 'Theming',
+  prevPage: { title: 'Shorthand Props', href: '/shorthand-props' },
+  nextPage: { title: 'Layout examples', href: '/layouts' },
 }
 
-<Header as='h1' content='Theming' textAlign='center' />
-
 ## Preface
-       
+
 Semantic UI React does not have own styling system and fully relies on the theming of
 Semantic UI. It's really powerful, you don't need to know LESS or CSS you can simply
 update values of variables or use styles from predefined themes.
-       
+
 In fact, all you know about theming and styling of Semantic UI is fully applicable to Semantic UI React.
-        
+
 <Button
   content='Learn more about theming'
   labelPosition='right'
@@ -30,11 +30,10 @@ In fact, all you know about theming and styling of Semantic UI is fully applicab
 />
 
 ## Quick start
-       
-Semantic UI offers its own build system that uses Gulp and produces prepared CSS files. It makes sense to use it with Create React App as it does not support LESS loader.
-        
-In all other cases we recommend to use the LESS package and tune it into your build system
-with Webpack. The LESS package also does not depend on Gulp and other cruft things.
+
+Semantic UI offers its own build system that uses Gulp and produces prepared CSS files.
+
+In all cases we recommend to use the LESS package and tune it into your build system with Webpack. The LESS package also does not depend on Gulp and other cruft things.
 However, this package is not friendly for Webpack and requires additional configuration.
 
 <Button
@@ -45,26 +44,154 @@ However, this package is not friendly for Webpack and requires additional config
   target='_blank'
 />
 <Button
-  content='Configuring Webpack'
+  content='Configuring Webpack for theming'
   labelPosition='right'
-  href='https://medium.com/webmonkeys/webpack-2-semantic-ui-theming-a216ddf60daf'
+  href='https://medium.com/@marekurbanowicz/how-to-customize-fomantic-ui-with-less-and-webpack-applicable-to-semantic-ui-too-fbf98a74506c'
   icon='medium'
   target='_blank'
 />
 
-## Boilerplate
+## Theming with Create React App
 
-The boilerplate we prepared is powered by the latest Webpack and includes the all required
-things for quick start like preconfigured theming and hot module reload.
-        
-The boilerplate is optimized for usage with Semantic UI React and Semantic UI LESS, it
-also contains examples of theming usage and custom components.
-        
+The key point is that you don't want `eject`, but you want to customize styles 🤔
+
+> This is a one-way operation. Once you `eject`, you can't go back!
+
 <Button
-  content='Boilerplate'
+  content="Don't eject your Create React App"
   labelPosition='right'
-  href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3'
-  icon='github'
+  href='https://medium.com/curated-by-versett/dont-eject-your-create-react-app-b123c5247741'
+  icon='medium'
+  size='small'
   target='_blank'
 />
-     
+
+### Remove existing styles
+
+First of all, please remove existing references for `semantic-ui` & `semantic-ui-css` package or styles included from CDN to avoid styles duplication.
+
+```bash
+npm uninstall semantic-ui semantic-ui-css
+```
+
+```bash
+yarn remove semantic-ui semantic-ui-css
+```
+
+### Install required dependencies
+
+Create React App does not support LESS out of the box, we and propose to use [`@craco/craco`](https://www.npmjs.com/package/@craco/craco) to add it and avoid `eject`. You have to install required packages:
+
+```bash
+npm install @craco/craco craco-less semantic-ui-less --save-dev
+```
+
+```bash
+yarn add @craco/craco craco-less semantic-ui-less --dev
+```
+
+And then update your `package.json` and create `craco.config.js`:
+
+```json label=package.json
+{
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
+  }
+}
+```
+
+```jsx label=craco.config.js
+const { getLoader, loaderByName, throwUnexpectedConfigError } = require('@craco/craco')
+
+module.exports = {
+  webpack: {
+    alias: {
+      '../../theme.config$': require('path').join(__dirname, '/src/semantic-ui/theme.config'),
+    },
+  },
+  plugins: [
+    { plugin: require('craco-less') },
+    {
+      plugin: {
+        overrideWebpackConfig: ({ context, webpackConfig }) => {
+          const { isFound, match: fileLoaderMatch } = getLoader(
+            webpackConfig,
+            loaderByName('file-loader'),
+          )
+
+          if (!isFound) {
+            throwUnexpectedConfigError({
+              message: `Can't find file-loader in the ${context.env} webpack config!`,
+            })
+          }
+
+          fileLoaderMatch.loader.exclude.push(/theme.config$/)
+          fileLoaderMatch.loader.exclude.push(/\.variables$/)
+          fileLoaderMatch.loader.exclude.push(/\.overrides$/)
+
+          return webpackConfig
+        },
+      },
+    },
+  ],
+}
+```
+
+<Message size='mini' warning>
+  Make sure it installed <code>less</code> with version <code>>=3.0.0</code> as sometimes it will
+  install <code>2.*</code> by default which will get you in the troubles.
+</Message>
+
+### Scaffold custom styles
+
+Now we need to copy necessary files with the skeleton of your customization.
+
+```bash
+npx cpy-cli **/* ../../../src/semantic-ui/site --cwd node_modules/semantic-ui-less/_site --parents
+```
+
+```bash
+npx cpy-cli node_modules/semantic-ui-less/theme.config.example src/semantic-ui --rename=theme.config
+```
+
+### `theme.config`
+
+This file is mostly prepared but you have to change some details in the bottom of it:
+
+```json label=src/semantic-ui/theme.config
+/*******************************
+            Folders
+*******************************/
+
+@themesFolder : 'themes';
+@siteFolder  : '../../src/semantic-ui/site';
+
+@import (multiple) "~semantic-ui-less/theme.less";
+@fontPath : '../../../themes/@{theme}/assets/fonts';
+```
+
+### Last but not least: import main LESS file
+
+You have to import `semantic.less` file in your entry file.
+
+```jsx label=index.js
+import 'semantic-ui-less/semantic.less'
+```
+
+### It is working now!
+
+```bash
+yarn start
+```
+
+You can now go e.g. to `src/semantic-ui/site/globals/site.variables` and add:
+
+```json
+@primaryColor: #002f4e;
+@pageBackground: #eff0f1;
+```
+
+Which will change your primary color and background color of the `<body>` 🚀

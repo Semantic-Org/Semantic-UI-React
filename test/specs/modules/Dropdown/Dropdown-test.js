@@ -102,7 +102,7 @@ describe('Dropdown', () => {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: DropdownHeader,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
 
   common.propKeyOnlyToClassName(Dropdown, 'disabled')
@@ -292,6 +292,13 @@ describe('Dropdown', () => {
         .find('div')
         .at(0)
         .should.have.prop('role', 'listbox')
+    })
+    it('should render an aria-live region with aria-atomic', () => {
+      wrapperMount(<Dropdown />)
+      wrapper
+        .find('div')
+        .at(1)
+        .should.have.props({ 'aria-live': 'polite', 'aria-atomic': true, role: 'alert' })
     })
     it('should label search dropdown as a combobox', () => {
       wrapperMount(<Dropdown search />)
@@ -587,6 +594,35 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('closeOnEscape', () => {
+    it('closes the dropdown when Escape key is pressed by default', () => {
+      wrapperMount(<Dropdown defaultOpen />)
+
+      dropdownMenuIsOpen()
+
+      domEvent.keyDown(document, { key: 'Escape' })
+      dropdownMenuIsClosed()
+    })
+
+    it('closes the dropdown when is "true" and Escape key is pressed', () => {
+      wrapperMount(<Dropdown defaultOpen closeOnEscape />)
+
+      dropdownMenuIsOpen()
+
+      domEvent.keyDown(document, { key: 'Escape' })
+      dropdownMenuIsClosed()
+    })
+
+    it('does not close the dropdown when false and Escape key is pressed', () => {
+      wrapperMount(<Dropdown defaultOpen closeOnEscape={false} />)
+
+      dropdownMenuIsOpen()
+
+      domEvent.keyDown(document, { key: 'Escape' })
+      dropdownMenuIsOpen()
+    })
+  })
+
   describe('setSelectedIndex', () => {
     it('will call setSelectedIndex if options change', () => {
       wrapperMount(<Dropdown options={options} />)
@@ -608,6 +644,26 @@ describe('Dropdown', () => {
       wrapper.setProps({ options })
 
       instance.setSelectedIndex.should.not.have.been.calledOnce()
+    })
+  })
+
+  describe('selectedIndex', () => {
+    it('sets "selectedIndex" when an item was selected', () => {
+      const option = _.last(options)
+
+      wrapperMount(<Dropdown options={options} search selection />)
+      const input = wrapper.find('input.search')
+
+      // open, simulate search and select option
+      wrapper.simulate('click')
+      input.simulate('change', { target: { value: option.text } })
+      domEvent.keyDown(document, { key: 'Enter' })
+
+      wrapper.should.have.state('selectedIndex', 4)
+
+      // open again
+      wrapper.simulate('click')
+      wrapper.should.have.state('selectedIndex', 4)
     })
   })
 
@@ -704,7 +760,7 @@ describe('Dropdown', () => {
         .should.have.prop('selected', true)
     })
     it('is null when all options disabled', () => {
-      const disabledOptions = options.map(o => ({ ...o, disabled: true }))
+      const disabledOptions = options.map((o) => ({ ...o, disabled: true }))
 
       wrapperRender(<Dropdown options={disabledOptions} selection />).should.not.have.descendants(
         '.selected',
@@ -1098,6 +1154,13 @@ describe('Dropdown', () => {
   })
 
   describe('text', () => {
+    it('defaults to "placeholder"', () => {
+      const placeholder = faker.hacker.phrase()
+
+      wrapperMount(<Dropdown options={options} placeholder={placeholder} />)
+        .find('div.text')
+        .should.contain.text(placeholder)
+    })
     it('sets the display text', () => {
       const text = faker.hacker.phrase()
 
@@ -1878,7 +1941,7 @@ describe('Dropdown', () => {
     it('adds the onClick handler to all items', () => {
       wrapperShallow(<Dropdown options={options} selection />)
         .find('DropdownItem')
-        .everyWhere(item => item.should.have.prop('onClick'))
+        .everyWhere((item) => item.should.have.prop('onClick'))
     })
     it('calls handleItemClick when an item is clicked', () => {
       wrapperMount(<Dropdown options={options} selection />)
@@ -1928,7 +1991,7 @@ describe('Dropdown', () => {
       ]
       wrapperShallow(<Dropdown options={customOptions} selection />)
         .find('DropdownItem')
-        .everyWhere(item => item.should.have.prop('data-foo', 'someValue'))
+        .everyWhere((item) => item.should.have.prop('data-foo', 'someValue'))
     })
 
     it('handles keys correctly', () => {

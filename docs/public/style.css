@@ -11,6 +11,13 @@ body {
   opacity: 0;
 }
 
+blockquote {
+  border-left: 3px solid rgba(34, 36, 38, .15);
+  margin-left: 0;
+  padding-left: 10px;
+  font-style: italic;
+}
+
 h1:hover > .anchorjs-link:not(:hover),
 h2:hover > .anchorjs-link:not(:hover),
 h3:hover > .anchorjs-link:not(:hover),
@@ -36,7 +43,7 @@ pre {
   margin: 0;
 }
 
-code:not(.hljs) {
+code:not([class*="language-"]) {
   font-size: 87.5%;
   background-color: rgba(0, 0, 0, 0.04);
   border-radius: 3px;
@@ -44,14 +51,28 @@ code:not(.hljs) {
   display: inline-block;
 }
 
-code:not(.hljs)::before {
+code:not([class*="language-"])::before {
   letter-spacing: -0.2em;
   content: '\00a0';
 }
 
-code:not(.hljs)::after {
+code:not([class*="language-"])::after {
   letter-spacing: -0.2em;
   content: '\00a0';
+}
+
+.docs-example {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 2px #ccc;
+}
+
+.docs-example:hover {
+  box-shadow: 0 2px 8px #bbb;
+}
+
+.docs-example.active {
+  box-shadow: 0 8px 32px #aaa;
 }
 
 .docs-icon-set-column {
@@ -80,12 +101,16 @@ code:not(.hljs)::after {
   transform: scale(1.5);
 }
 
-#carbonads {
-  padding: 8px 8px;
-  line-height: 1.2;
+#docs-carbonads {
   background: #222;
   box-shadow: 0 0 2em black;
   border-top: 1px solid #444;
+  min-height: 150px;
+}
+
+#carbonads {
+  padding: 8px 8px;
+  line-height: 1.2;
 }
 
 #carbonads img {
@@ -97,6 +122,7 @@ code:not(.hljs)::after {
   font-size: 13px;
   color: #aaa;
 }
+
 .carbon-text:hover {
   color: #ddd;
 }
@@ -106,7 +132,9 @@ code:not(.hljs)::after {
   font-size: 10px;
   color: #fff;
   opacity: 0.5;
+  white-space: nowrap;
 }
+
 .carbon-poweredby:hover {
   color: #ddd;
 }

@@ -4,7 +4,7 @@ import { Dropdown } from 'semantic-ui-react'
 
 const caseSensitiveSearch = (options, query) => {
   const re = new RegExp(_.escapeRegExp(query))
-  return options.filter(opt => re.test(opt.text))
+  return options.filter((opt) => re.test(opt.text))
 }
 
 const options = [
@@ -16,7 +16,7 @@ const DropdownExampleCustomSearchFunction = () => (
   <Dropdown
     fluid
     options={options}
-    placeholder={'Try to search for case or CASE'}
+    placeholder='Try to search for case or CASE'
     search={caseSensitiveSearch}
     selection
   />

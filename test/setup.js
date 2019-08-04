@@ -50,7 +50,7 @@ let info
 let warn
 let error
 
-const throwOnConsole = method => (...args) => {
+const throwOnConsole = (method) => (...args) => {
   throw new Error(
     `console.${method} should never be called but was called with:\n${args.join(' ')}`,
   )

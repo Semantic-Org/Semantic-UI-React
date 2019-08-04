@@ -15,9 +15,9 @@ import {
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
-import Button from '../../elements/Button'
-import Icon from '../../elements/Icon'
-import Label from '../../elements/Label'
+import Button from '../Button'
+import Icon from '../Icon'
+import Label from '../Label'
 
 /**
  * An Input is a field used to elicit a response from a user.
@@ -240,6 +240,6 @@ class Input extends Component {
   }
 }
 
-Input.create = createShorthandFactory(Input, type => ({ type }))
+Input.create = createShorthandFactory(Input, (type) => ({ type }))
 
 export default Input

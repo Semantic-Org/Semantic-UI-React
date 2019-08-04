@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
 import {
-  eventStack,
   customPropTypes,
+  eventStack,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -316,10 +316,11 @@ export default class Sticky extends Component {
       sticky && !bound && (bottom === null ? 'top' : 'bottom'),
       'sticky',
     )
+    const triggerStyles = sticky && this.stickyRect ? { height: this.stickyRect.height } : {}
 
     return (
       <ElementType {...rest} className={containerClasses}>
-        <div ref={this.triggerRef} />
+        <div ref={this.triggerRef} style={triggerStyles} />
         <div className={elementClasses} ref={this.stickyRef} style={this.computeStyle()}>
           {children}
         </div>

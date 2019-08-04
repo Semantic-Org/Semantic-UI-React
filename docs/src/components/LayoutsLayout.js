@@ -4,6 +4,7 @@ import { Link, withRouteData } from 'react-static'
 import { Button } from 'semantic-ui-react'
 
 import { repoURL } from 'docs/src/utils'
+import { isBrowser } from 'src/lib'
 
 const docsButtonStyle = {
   position: 'fixed',
@@ -15,13 +16,15 @@ const docsButtonStyle = {
 }
 
 const style = (
-  <style>{`
+  <style>
+    {`
     @keyframes back-to-docs {
         0% { transform: translateY(0); }
         50% { transform: translateY(0.35em); }
         100% { transform: translateY(0); }
     }
-  `}</style>
+  `}
+  </style>
 )
 
 class LayoutsLayout extends PureComponent {
@@ -36,11 +39,11 @@ class LayoutsLayout extends PureComponent {
   }
 
   componentDidMount() {
-    scrollTo(0, 0)
+    if (isBrowser()) window.scrollTo(0, 0)
   }
 
   componentDidUpdate() {
-    scrollTo(0, 0)
+    if (isBrowser()) window.scrollTo(0, 0)
   }
 
   render() {

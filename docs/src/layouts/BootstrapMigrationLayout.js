@@ -41,19 +41,19 @@ const BootstrapMigrationLayout = () => (
     <Grid.Row>
       <Grid.Column>
         <Header as='h1'>Buttons</Header>
-        <Button as='a' tabindex='0'>
+        <Button as='a' tabIndex='0'>
           Default
         </Button>
-        <Button as='a' primary tabindex='0'>
+        <Button as='a' primary tabIndex='0'>
           Primary
         </Button>
-        <Button as='a' basic tabindex='0'>
+        <Button as='a' basic tabIndex='0'>
           Basic
         </Button>
-        <Button as='a' positive tabindex='0'>
+        <Button as='a' positive tabIndex='0'>
           Success
         </Button>
-        <Button as='a' negative tabindex='0'>
+        <Button as='a' negative tabIndex='0'>
           Error
         </Button>
       </Grid.Column>

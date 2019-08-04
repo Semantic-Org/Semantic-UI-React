@@ -2,9 +2,8 @@ import keyboardKey from 'keyboard-key'
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-static'
+import { Link } from 'react-static'
 import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
-import shallowEqual from 'shallowequal'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
@@ -47,10 +46,6 @@ class Sidebar extends Component {
     super(props)
 
     this.filteredMenu = props.componentMenu
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return !shallowEqual(this.state, nextState)
   }
 
   componentDidMount() {
@@ -120,7 +115,7 @@ class Sidebar extends Component {
   menuItemsByType = _.map((nextType) => {
     const items = _.flow(
       _.filter(({ type }) => type === nextType),
-      _.map(info => (
+      _.map((info) => (
         <Menu.Item
           key={info.displayName}
           name={info.displayName}
@@ -220,13 +215,19 @@ class Sidebar extends Component {
                   Introduction
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/usage' activeClassName='active'>
-                  Usage
+                  Get Started
+                </Menu.Item>
+                <Menu.Item as={Link} exact to='/augmentation' activeClassName='active'>
+                  Composition
+                </Menu.Item>
+                <Menu.Item as={Link} exact to='/shorthand-props' activeClassName='active'>
+                  Shorthand Props
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/theming' activeClassName='active'>
                   Theming
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/layouts' activeClassName='active'>
-                  Layouts
+                  Layout examples
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/prototypes' activeClassName='active'>
                   Prototypes
@@ -238,7 +239,7 @@ class Sidebar extends Component {
                 <Input
                   fluid
                   icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
-                  placeholder='Press &quot;/&quot; to filter components'
+                  placeholder='Press "/" to filter components'
                   value={query}
                   onChange={this.handleSearchChange}
                   onKeyDown={this.handleSearchKeyDown}
@@ -256,4 +257,4 @@ class Sidebar extends Component {
   }
 }
 
-export default withRouter(Sidebar)
+export default Sidebar
