@@ -150,7 +150,7 @@ export default class Popup extends Component {
     disabled: false,
     eventsEnabled: true,
     offset: 0,
-    on: 'hover',
+    on: ['click', 'hover'],
     pinned: false,
     position: 'top left',
   }
@@ -204,6 +204,15 @@ export default class Popup extends Component {
       portalProps.closeOnPortalMouseLeave = true
       portalProps.mouseLeaveDelay = 300
     }
+    if (_.includes(normalizedOn, 'hover')) {
+      portalProps.openOnTriggerClick = false
+      portalProps.closeOnTriggerClick = false
+      portalProps.openOnTriggerMouseEnter = true
+      portalProps.closeOnTriggerMouseLeave = true
+      // Taken from SUI: https://git.io/vPmCm
+      portalProps.mouseLeaveDelay = 70
+      portalProps.mouseEnterDelay = 50
+    }
     if (_.includes(normalizedOn, 'click')) {
       portalProps.openOnTriggerClick = true
       portalProps.closeOnTriggerClick = true
@@ -212,13 +221,6 @@ export default class Popup extends Component {
     if (_.includes(normalizedOn, 'focus')) {
       portalProps.openOnTriggerFocus = true
       portalProps.closeOnTriggerBlur = true
-    }
-    if (_.includes(normalizedOn, 'hover')) {
-      portalProps.openOnTriggerMouseEnter = true
-      portalProps.closeOnTriggerMouseLeave = true
-      // Taken from SUI: https://git.io/vPmCm
-      portalProps.mouseLeaveDelay = 70
-      portalProps.mouseEnterDelay = 50
     }
 
     return portalProps
