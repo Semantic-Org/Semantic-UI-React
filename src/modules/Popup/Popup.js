@@ -1,4 +1,5 @@
-import EventStack from '@semantic-ui-react/event-stack'
+import { EventListener, windowRef } from '@stardust-ui/react-component-event-listener'
+import { Unstable_NestingAuto as NestingAuto } from '@stardust-ui/react-component-nesting-registry'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -308,19 +309,31 @@ export default class Popup extends Component {
     }
 
     return (
-      <Ref innerRef={popperRef}>
-        <ElementType {...contentRestProps} className={classes} style={styles}>
-          {childrenUtils.isNil(children) ? (
-            <React.Fragment>
-              {PopupHeader.create(header, { autoGenerateKey: false })}
-              {PopupContent.create(content, { autoGenerateKey: false })}
-            </React.Fragment>
-          ) : (
-            children
-          )}
-          {hideOnScroll && <EventStack on={this.hideOnScroll} name='scroll' target='window' />}
-        </ElementType>
-      </Ref>
+      <NestingAuto>
+        {(getRefs, nestingRef) => (
+          <Ref
+            innerRef={(c) => {
+              // eslint-disable-next-line no-param-reassign
+              nestingRef.current = c
+              popperRef(c)
+            }}
+          >
+            <ElementType {...contentRestProps} className={classes} style={styles}>
+              {childrenUtils.isNil(children) ? (
+                <React.Fragment>
+                  {PopupHeader.create(header, { autoGenerateKey: false })}
+                  {PopupContent.create(content, { autoGenerateKey: false })}
+                </React.Fragment>
+              ) : (
+                children
+              )}
+              {hideOnScroll && (
+                <EventListener listener={this.hideOnScroll} targetRef={windowRef} type='scroll' />
+              )}
+            </ElementType>
+          </Ref>
+        )}
+      </NestingAuto>
     )
   }
 
