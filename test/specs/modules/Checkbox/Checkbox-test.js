@@ -304,6 +304,13 @@ describe('Checkbox', () => {
       domEvent.fire(input, 'mousedown')
       document.activeElement.should.equal(input)
     })
+
+    it('will not set focus to container, if default is prevented', () => {
+      wrapperMount(<Checkbox onMouseDown={(e) => e.preventDefault()} />)
+
+      domEvent.fire('.ui.checkbox input', 'mousedown')
+      document.activeElement.should.equal(document.body)
+    })
   })
 
   describe('onMouseUp', () => {
