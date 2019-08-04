@@ -1,3 +1,4 @@
+import { EventListener } from '@stardust-ui/react-component-event-listener'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -9,7 +10,6 @@ import {
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
-  eventStack,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -70,9 +70,6 @@ class Modal extends Component {
 
     /** A Modal can appear in a dimmer. */
     dimmer: PropTypes.oneOf([true, 'inverted', 'blurring']),
-
-    /** Event pool namespace that is used to handle component events */
-    eventPool: PropTypes.string,
 
     /** Modal displayed above the content in bold. */
     header: customPropTypes.itemShorthand,
@@ -143,7 +140,6 @@ class Modal extends Component {
     dimmer: true,
     closeOnDimmerClick: true,
     closeOnDocumentClick: false,
-    eventPool: 'Modal',
   }
 
   static autoControlledProps = ['open']
@@ -218,36 +214,18 @@ class Modal extends Component {
   }
 
   handlePortalMount = (e) => {
-    const { eventPool } = this.props
-    debug('handlePortalMount()', { eventPool })
+    debug('handlePortalMount()')
 
     this.setState({ scrolling: false })
     this.setPositionAndClassNames()
 
-    eventStack.sub('mousedown', this.handleDocumentMouseDown, {
-      pool: eventPool,
-      target: this.dimmerRef.current,
-    })
-    eventStack.sub('click', this.handleDocumentClick, {
-      pool: eventPool,
-      target: this.dimmerRef.current,
-    })
     _.invoke(this.props, 'onMount', e, this.props)
   }
 
   handlePortalUnmount = (e) => {
-    const { eventPool } = this.props
-    debug('handlePortalUnmount()', { eventPool })
+    debug('handlePortalUnmount()')
 
     cancelAnimationFrame(this.animationRequestId)
-    eventStack.unsub('mousedown', this.handleDocumentMouseDown, {
-      pool: eventPool,
-      target: this.dimmerRef.current,
-    })
-    eventStack.unsub('click', this.handleDocumentClick, {
-      pool: eventPool,
-      target: this.dimmerRef.current,
-    })
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
@@ -348,7 +326,7 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { centered, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
+    const { centered, closeOnDocumentClick, dimmer, trigger } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -390,22 +368,38 @@ class Modal extends Component {
     // We cannot them wrap the modalJSX in an actual <Dimmer /> instead, we apply the dimmer classes to the <Portal />.
 
     return (
-      <Portal
-        closeOnDocumentClick={closeOnDocumentClick}
-        {...portalProps}
-        trigger={trigger}
-        eventPool={eventPool}
-        mountNode={mountNode}
-        open={open}
-        onClose={this.handleClose}
-        onMount={this.handlePortalMount}
-        onOpen={this.handleOpen}
-        onUnmount={this.handlePortalUnmount}
-      >
-        <div className={dimmerClasses} ref={this.dimmerRef}>
-          {this.renderContent(rest)}
-        </div>
-      </Portal>
+      <React.Fragment>
+        <Portal
+          closeOnDocumentClick={closeOnDocumentClick}
+          {...portalProps}
+          trigger={trigger}
+          mountNode={mountNode}
+          open={open}
+          onClose={this.handleClose}
+          onMount={this.handlePortalMount}
+          onOpen={this.handleOpen}
+          onUnmount={this.handlePortalUnmount}
+        >
+          <div className={dimmerClasses} ref={this.dimmerRef}>
+            {this.renderContent(rest)}
+          </div>
+        </Portal>
+
+        {open && (
+          <EventListener
+            listener={this.handleDocumentMouseDown}
+            targetRef={this.dimmerRef}
+            type='mousedown'
+          />
+        )}
+        {open && (
+          <EventListener
+            listener={this.handleDocumentClick}
+            targetRef={this.dimmerRef}
+            type='click'
+          />
+        )}
+      </React.Fragment>
     )
   }
 }

@@ -79,6 +79,8 @@
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "@semantic-ui-react/event-stack": "^3.1.0",
+    "@stardust-ui/react-component-event-listener": "~0.35.0",
+    "@stardust-ui/react-component-nesting-registry": "~0.35.0",
     "classnames": "^2.2.6",
     "keyboard-key": "^1.0.4",
     "lodash": "^4.17.15",

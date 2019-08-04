@@ -991,6 +991,22 @@
     prismjs "^1.16.0"
     prop-types "^15.6.1"
 
+"@stardust-ui/react-component-event-listener@~0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@stardust-ui/react-component-event-listener/-/react-component-event-listener-0.35.0.tgz#29167d7c2f71d4840d671213fa2298219bef5448"
+  integrity sha512-QK/Krhx8ygvz++cKd0cB0dBe6fk/qrHPYuAQRc/H9YUxV5WVrNcZF/qEiKXTtP+1iOiTc8umpQV6WUrrYlptDw==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    prop-types "^15.6.1"
+
+"@stardust-ui/react-component-nesting-registry@~0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@stardust-ui/react-component-nesting-registry/-/react-component-nesting-registry-0.35.0.tgz#6c9e592127cea8b34e93b1e5c1b1ff70fbfcb081"
+  integrity sha512-ps8lrn2i+kkhZTWR+4oGEDhvRCjN9KUE5XwtRoTQy0+aiuiWIEPcqFBbv5s3Mj3vUB9OoND/VHyzLP25IX+RFw==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    prop-types "^15.6.1"
+
 "@textlint/ast-node-types@^4.0.3":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-4.2.1.tgz#978fa10e23468114462fc08ef29f96980c12a8ef"

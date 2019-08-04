@@ -1,65 +1,81 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 import { createPortal } from 'react-dom'
 
-import { customPropTypes, handleRef, isBrowser, makeDebugger } from '../../lib'
+import { documentRef } from '@stardust-ui/react-component-event-listener'
+import useEventListener from '@stardust-ui/react-component-event-listener/dist/es/hooks/useEventListener'
+import { customPropTypes } from '../../lib'
 import Ref from '../Ref'
-
-const debug = makeDebugger('portalInner')
 
 /**
  * An inner component that allows you to render children outside their parent.
  */
-class PortalInner extends Component {
-  static propTypes = {
-    /** Primary content. */
-    children: PropTypes.node.isRequired,
+function PortalInner(props) {
+  const { children, innerRef, mountNode = document.body } = props
 
-    /** Called with a ref to the inner node. */
-    innerRef: customPropTypes.ref,
+  React.useLayoutEffect(() => {
+    _.invoke(props, 'onMount', null, props)
 
-    /** The node where the portal should mount. */
-    mountNode: PropTypes.any,
+    return () => {
+      _.invoke(props, 'onUnmount', null, props)
+    }
+  }, [])
 
-    /**
-     * Called when the portal is mounted on the DOM
-     *
-     * @param {null}
-     * @param {object} data - All props.
-     */
-    onMount: PropTypes.func,
+  useEventListener({
+    listener: props.onPortalMouseLeave,
+    type: 'mouseleave',
+    targetRef: innerRef,
+  })
+  useEventListener({
+    listener: props.onPortalMouseEnter,
+    targetRef: innerRef,
+    type: 'mouseenter',
+  })
+  useEventListener({
+    listener: props.onDocumentMouseDown,
+    targetRef: documentRef,
+    type: 'mousedown',
+  })
+  useEventListener({
+    listener: props.onDocumentClick,
+    type: 'click',
+    targetRef: documentRef,
+  })
+  useEventListener({
+    listener: props.onEscape,
+    targetRef: documentRef,
+    type: 'keydown',
+  })
 
-    /**
-     * Called when the portal is unmounted from the DOM
-     *
-     * @param {null}
-     * @param {object} data - All props.
-     */
-    onUnmount: PropTypes.func,
-  }
+  return createPortal(<Ref innerRef={innerRef}>{children}</Ref>, mountNode)
+}
 
-  componentDidMount() {
-    debug('componentDidMount()')
-    _.invoke(this.props, 'onMount', null, this.props)
-  }
+PortalInner.propTypes = {
+  /** Primary content. */
+  children: PropTypes.node.isRequired,
 
-  componentWillUnmount() {
-    debug('componentWillUnmount()')
-    _.invoke(this.props, 'onUnmount', null, this.props)
-  }
+  /** Called with a ref to the inner node. */
+  innerRef: customPropTypes.ref,
 
-  handleRef = (c) => {
-    debug('handleRef', c)
-    handleRef(this.props.innerRef, c)
-  }
+  /** The node where the portal should mount. */
+  mountNode: PropTypes.any,
 
-  render() {
-    if (!isBrowser()) return null
-    const { children, mountNode = document.body } = this.props
+  /**
+   * Called when the portal is mounted on the DOM
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onMount: PropTypes.func,
 
-    return createPortal(<Ref innerRef={this.handleRef}>{children}</Ref>, mountNode)
-  }
+  /**
+   * Called when the portal is unmounted from the DOM
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onUnmount: PropTypes.func,
 }
 
 export default PortalInner
