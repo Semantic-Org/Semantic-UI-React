@@ -1,9 +1,9 @@
 import { doesNodeContainClick } from 'src/lib'
 import { sandbox } from '../../utils'
 
-const makeEvent = event => ({ clientX: 0, clientY: 0, ...event })
+const makeEvent = (event) => ({ clientX: 0, clientY: 0, ...event })
 
-const makeRect = rect => ({ top: 0, bottom: 1, left: 0, right: 1, ...rect })
+const makeRect = (rect) => ({ top: 0, bottom: 1, left: 0, right: 1, ...rect })
 
 const makeNode = (rect, node) => ({
   contains: sandbox.spy(),
@@ -102,9 +102,18 @@ describe('doesNodeContainClick', () => {
       const e = makeEvent()
 
       doesNodeContainClick(makeNode(null, { getClientRects: () => [] }), e).should.equal(false)
-      doesNodeContainClick(makeNode(null, { getClientRects: () => ({ length: 0 }) }), e).should.equal(false)
-      doesNodeContainClick(makeNode(null, { getClientRects: () => ({ length: null }) }), e).should.equal(false)
-      doesNodeContainClick(makeNode(null, { getClientRects: () => ({ length: undefined }) }), e).should.equal(false)
+      doesNodeContainClick(
+        makeNode(null, { getClientRects: () => ({ length: 0 }) }),
+        e,
+      ).should.equal(false)
+      doesNodeContainClick(
+        makeNode(null, { getClientRects: () => ({ length: null }) }),
+        e,
+      ).should.equal(false)
+      doesNodeContainClick(
+        makeNode(null, { getClientRects: () => ({ length: undefined }) }),
+        e,
+      ).should.equal(false)
     })
   })
 
@@ -159,25 +168,37 @@ describe('doesNodeContainClick', () => {
 
   describe('click inside of node rect', () => {
     it('returns true if clientY > node top && clientY < node bottom', () => {
-      doesNodeContainClick(makeNode({ top: 1, bottom: 3 }), makeEvent({ clientY: 2 })).should.equal(true)
+      doesNodeContainClick(makeNode({ top: 1, bottom: 3 }), makeEvent({ clientY: 2 })).should.equal(
+        true,
+      )
     })
     it('returns true if clientX > node left && clientX < node right', () => {
-      doesNodeContainClick(makeNode({ left: 1, right: 3 }), makeEvent({ clientX: 2 })).should.equal(true)
+      doesNodeContainClick(makeNode({ left: 1, right: 3 }), makeEvent({ clientX: 2 })).should.equal(
+        true,
+      )
     })
   })
 
   describe('click on node rect boundary', () => {
     it('returns true if clientY === node top', () => {
-      doesNodeContainClick(makeNode({ top: 1, bottom: 3 }), makeEvent({ clientY: 1 })).should.equal(true)
+      doesNodeContainClick(makeNode({ top: 1, bottom: 3 }), makeEvent({ clientY: 1 })).should.equal(
+        true,
+      )
     })
     it('returns true if clientY === node bottom', () => {
-      doesNodeContainClick(makeNode({ top: 1, bottom: 3 }), makeEvent({ clientY: 3 })).should.equal(true)
+      doesNodeContainClick(makeNode({ top: 1, bottom: 3 }), makeEvent({ clientY: 3 })).should.equal(
+        true,
+      )
     })
     it('returns true if clientX === node left', () => {
-      doesNodeContainClick(makeNode({ left: 1, right: 3 }), makeEvent({ clientX: 1 })).should.equal(true)
+      doesNodeContainClick(makeNode({ left: 1, right: 3 }), makeEvent({ clientX: 1 })).should.equal(
+        true,
+      )
     })
     it('returns true if clientX === node right', () => {
-      doesNodeContainClick(makeNode({ left: 1, right: 3 }), makeEvent({ clientX: 3 })).should.equal(true)
+      doesNodeContainClick(makeNode({ left: 1, right: 3 }), makeEvent({ clientX: 3 })).should.equal(
+        true,
+      )
     })
   })
 

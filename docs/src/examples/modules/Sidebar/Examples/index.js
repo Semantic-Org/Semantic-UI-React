@@ -103,8 +103,8 @@ const SidebarExamplesExamples = () => (
       title='Displaying Multiple'
       description={
         <span>
-          Multiple sidebars can be displayed at the same time only when using a supported animation
-          like
+          Multiple sidebars can be displayed at the same time only when using a
+          supported animation like
           <code>push</code> or <code>overlay</code>.
         </span>
       }

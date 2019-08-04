@@ -1,5 +1,13 @@
 import React from 'react'
-import { Button, Divider, Grid, Header, Icon, Search, Segment } from 'semantic-ui-react'
+import {
+  Button,
+  Divider,
+  Grid,
+  Header,
+  Icon,
+  Search,
+  Segment,
+} from 'semantic-ui-react'
 
 const SegmentExamplePlaceholderGrid = () => (
   <Segment placeholder>

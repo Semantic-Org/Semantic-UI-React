@@ -65,7 +65,7 @@ const DropdownExampleMultipleSearchInMenu = () => (
       <Dropdown.Divider />
       <Dropdown.Header icon='tags' content='Tag Label' />
       <Dropdown.Menu scrolling>
-        {tagOptions.map(option => (
+        {tagOptions.map((option) => (
           <Dropdown.Item key={option.value} {...option} />
         ))}
       </Dropdown.Menu>

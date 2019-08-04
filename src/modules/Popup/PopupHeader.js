@@ -40,4 +40,4 @@ PopupHeader.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-PopupHeader.create = createShorthandFactory(PopupHeader, children => ({ children }))
+PopupHeader.create = createShorthandFactory(PopupHeader, (children) => ({ children }))

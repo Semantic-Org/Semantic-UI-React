@@ -12,7 +12,12 @@ const DividerExampleHorizontal = () => (
 
     <Divider horizontal>Or</Divider>
 
-    <Button color='teal' content='Create New Order' icon='add' labelPosition='left' />
+    <Button
+      color='teal'
+      content='Create New Order'
+      icon='add'
+      labelPosition='left'
+    />
   </Segment>
 )
 

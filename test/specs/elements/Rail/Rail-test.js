@@ -22,7 +22,6 @@ describe('Rail', () => {
   common.propValueOnlyToClassName(Rail, 'size', _.without(SUI.SIZES, 'medium'), { requiredProps })
 
   it('renders an div element', () => {
-    shallow(<Rail {...requiredProps} />)
-      .should.have.tagName('div')
+    shallow(<Rail {...requiredProps} />).should.have.tagName('div')
   })
 })

@@ -37,7 +37,7 @@ if (process.env.NODE_ENV !== 'production') {
       for (i = 0; i < aLen; i++) {
         tmp2 = bCharCode === charCodeCache[i] ? tmp : tmp + 1
         tmp = arr[i]
-        ret = arr[i] = tmp > ret ? tmp2 > ret ? ret + 1 : tmp2 : tmp2 > tmp ? tmp + 1 : tmp2
+        ret = arr[i] = tmp > ret ? (tmp2 > ret ? ret + 1 : tmp2) : tmp2 > tmp ? tmp + 1 : tmp2
       }
     }
 

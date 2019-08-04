@@ -533,6 +533,6 @@ class Flag extends PureComponent {
   }
 }
 
-Flag.create = createShorthandFactory(Flag, value => ({ name: value }))
+Flag.create = createShorthandFactory(Flag, (value) => ({ name: value }))
 
 export default Flag

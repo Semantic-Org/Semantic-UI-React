@@ -9,7 +9,10 @@ const ListExampleIconShorthand = () => (
       icon='mail'
       content={<a href='mailto:jack@semantic-ui.com'>jack@semantic-ui.com</a>}
     />
-    <List.Item icon='linkify' content={<a href='http://www.semantic-ui.com'>semantic-ui.com</a>} />
+    <List.Item
+      icon='linkify'
+      content={<a href='http://www.semantic-ui.com'>semantic-ui.com</a>}
+    />
   </List>
 )
 

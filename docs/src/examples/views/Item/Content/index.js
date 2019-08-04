@@ -49,7 +49,7 @@ const Content = () => (
 
     <ComponentExample
       title='Rating'
-      description='An item can contain icons signifying a &quot;like&quot; or &quot;favorite&quot; action.'
+      description='An item can contain icons signifying a "like" or "favorite" action.'
       examplePath='views/Item/Content/ItemExampleRatings'
     />
   </ExampleSection>

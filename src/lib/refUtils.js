@@ -28,7 +28,7 @@ export const handleRef = (ref, node) => {
   }
 }
 
-export const isRefObject = ref =>
+export const isRefObject = (ref) =>
   // https://github.com/facebook/react/blob/v16.8.2/packages/react-reconciler/src/ReactFiberCommitWork.js#L665
   // eslint-disable-next-line
   ref !== null && typeof ref === 'object' && ref.hasOwnProperty('current')

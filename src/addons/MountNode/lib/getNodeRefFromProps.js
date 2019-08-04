@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { isBrowser, isRefObject } from '../../../lib'
 
-const toRef = _.memoize(node => ({ current: node }))
+const toRef = _.memoize((node) => ({ current: node }))
 
 /**
  * Given `this.props`, return a `node` value or undefined.

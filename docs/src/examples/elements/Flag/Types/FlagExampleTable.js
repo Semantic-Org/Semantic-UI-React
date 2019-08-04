@@ -248,7 +248,7 @@ const countries = [
   { name: 'Zimbabwe', countryCode: 'zw' },
 ]
 
-const flagRenderer = item => <Flag name={item.countryCode} />
+const flagRenderer = (item) => <Flag name={item.countryCode} />
 
 const FlagExampleTable = () => (
   <Table>
@@ -261,7 +261,7 @@ const FlagExampleTable = () => (
       </Table.Row>
     </Table.Header>
     <Table.Body>
-      {countries.map(country => (
+      {countries.map((country) => (
         <Table.Row key={country.countryCode}>
           <Table.Cell>{flagRenderer(country)}</Table.Cell>
           <Table.Cell>{country.name}</Table.Cell>

@@ -11,7 +11,11 @@ export default class MenuExampleCompact extends Component {
 
     return (
       <Menu compact icon='labeled'>
-        <Menu.Item name='gamepad' active={activeItem === 'gamepad'} onClick={this.handleItemClick}>
+        <Menu.Item
+          name='gamepad'
+          active={activeItem === 'gamepad'}
+          onClick={this.handleItemClick}
+        >
           <Icon name='gamepad' />
           Games
         </Menu.Item>

@@ -16,7 +16,12 @@ const CommentExampleReplyForm = () => (
         </Comment.Actions>
         <Form reply>
           <Form.TextArea />
-          <Button content='Add Reply' labelPosition='left' icon='edit' primary />
+          <Button
+            content='Add Reply'
+            labelPosition='left'
+            icon='edit'
+            primary
+          />
         </Form>
       </Comment.Content>
     </Comment>

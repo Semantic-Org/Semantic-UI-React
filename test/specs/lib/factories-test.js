@@ -332,7 +332,7 @@ describe('factories', () => {
         const defaultProps = { 'data-some': 'defaults' }
         const overrideProps = sandbox.spy(() => ({}))
         const value = 'foo'
-        const mapValueToProps = val => ({ 'data-mapped': val })
+        const mapValueToProps = (val) => ({ 'data-mapped': val })
 
         shallow(getShorthand({ defaultProps, mapValueToProps, overrideProps, value }))
         overrideProps.should.have.been.calledWith({ ...defaultProps, ...mapValueToProps(value) })

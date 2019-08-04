@@ -10,6 +10,6 @@ describe('FeedMeta', () => {
     autoGenerateKey: false,
     propKey: 'like',
     ShorthandComponent: FeedLike,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
 })

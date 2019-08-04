@@ -7,8 +7,7 @@ describe('ItemImage', () => {
   common.implementsCreateMethod(ItemImage)
 
   it('renders Image component', () => {
-    shallow(<ItemImage />)
-      .should.have.descendants('Image')
+    shallow(<ItemImage />).should.have.descendants('Image')
   })
 
   it('is wrapped without ui', () => {
@@ -19,7 +18,6 @@ describe('ItemImage', () => {
   })
 
   it('has ui with size prop', () => {
-    shallow(<ItemImage size='small' />)
-      .should.have.prop('ui', true)
+    shallow(<ItemImage size='small' />).should.have.prop('ui', true)
   })
 })

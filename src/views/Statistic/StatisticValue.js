@@ -45,6 +45,6 @@ StatisticValue.propTypes = {
   text: PropTypes.bool,
 }
 
-StatisticValue.create = createShorthandFactory(StatisticValue, content => ({ content }))
+StatisticValue.create = createShorthandFactory(StatisticValue, (content) => ({ content }))
 
 export default StatisticValue

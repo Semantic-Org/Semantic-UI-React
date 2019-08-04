@@ -71,7 +71,8 @@ const Types = () => (
       examplePath='collections/Menu/Types/MenuExamplePagination'
     >
       <Message info>
-        For fully featured pagination, see <Link to='/addons/pagination'>Pagination</Link> addon.
+        For fully featured pagination, see{' '}
+        <Link to='/addons/pagination'>Pagination</Link> addon.
       </Message>
     </ComponentExample>
   </ExampleSection>

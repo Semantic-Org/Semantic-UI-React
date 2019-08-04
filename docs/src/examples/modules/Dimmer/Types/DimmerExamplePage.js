@@ -12,7 +12,12 @@ export default class DimmerExamplePage extends Component {
 
     return (
       <div>
-        <Button content='Show' icon='plus' labelPosition='left' onClick={this.handleOpen} />
+        <Button
+          content='Show'
+          icon='plus'
+          labelPosition='left'
+          onClick={this.handleOpen}
+        />
 
         <Dimmer active={active} onClickOutside={this.handleClose} page>
           <Header as='h2' icon inverted>

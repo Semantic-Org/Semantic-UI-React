@@ -8,7 +8,10 @@ const ModalScrollingExample = () => (
       <Image wrapped size='medium' src='/images/wireframe/image.png' />
       <Modal.Description>
         <Header>Modal Header</Header>
-        <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
+        <p>
+          This is an example of expanded content that will cause the modal's
+          dimmer to scroll
+        </p>
         <Image src='/images/wireframe/paragraph.png' />
         <Image src='/images/wireframe/paragraph.png' />
         <Image src='/images/wireframe/paragraph.png' />

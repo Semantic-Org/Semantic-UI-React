@@ -6,7 +6,13 @@ const LabelExampleRibbonImage = () => (
     <Grid.Column>
       <Image
         fluid
-        label={{ as: 'a', color: 'black', content: 'Hotel', icon: 'hotel', ribbon: true }}
+        label={{
+          as: 'a',
+          color: 'black',
+          content: 'Hotel',
+          icon: 'hotel',
+          ribbon: true,
+        }}
         src='/images/wireframe/image.png'
       />
     </Grid.Column>
@@ -14,7 +20,13 @@ const LabelExampleRibbonImage = () => (
     <Grid.Column>
       <Image
         fluid
-        label={{ as: 'a', color: 'blue', content: 'Food', icon: 'spoon', ribbon: true }}
+        label={{
+          as: 'a',
+          color: 'blue',
+          content: 'Food',
+          icon: 'spoon',
+          ribbon: true,
+        }}
         src='/images/wireframe/image.png'
       />
     </Grid.Column>

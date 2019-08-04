@@ -44,6 +44,6 @@ AccordionContent.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-AccordionContent.create = createShorthandFactory(AccordionContent, content => ({ content }))
+AccordionContent.create = createShorthandFactory(AccordionContent, (content) => ({ content }))
 
 export default AccordionContent
