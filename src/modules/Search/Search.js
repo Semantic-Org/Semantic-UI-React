@@ -448,7 +448,7 @@ export default class Search extends Component {
 
     const { selectFirstResult } = this.props
 
-    this.trySetState({ value }, { selectedIndex: selectFirstResult ? 0 : -1 })
+    this.trySetState({ value, selectedIndex: selectFirstResult ? 0 : -1 })
   }
 
   moveSelectionBy = (e, offset) => {
