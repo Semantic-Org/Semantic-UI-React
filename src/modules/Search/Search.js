@@ -292,6 +292,7 @@ export default class Search extends Component {
   closeOnEscape = (e) => {
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
     e.preventDefault()
+    e.stopPropagation()
     this.close()
   }
 

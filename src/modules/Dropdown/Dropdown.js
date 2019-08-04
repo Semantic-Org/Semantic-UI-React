@@ -504,6 +504,7 @@ export default class Dropdown extends Component {
     if (!this.props.closeOnEscape) return
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
     e.preventDefault()
+    e.stopPropagation()
 
     debug('closeOnEscape()')
     this.close(e)
