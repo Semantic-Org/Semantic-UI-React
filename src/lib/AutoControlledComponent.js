@@ -181,15 +181,15 @@ export default class AutoControlledComponent extends Component {
   /**
    * Safely attempt to set state for props that might be controlled by the user.
    * Second argument is a state object that is always passed to setState.
-   * @param {object} maybeState State that corresponds to controlled props.
-   * @param {function} [callback] a setState callback
+   * @param {object} state State that corresponds to controlled props.
+   * @param {function} [callback] Callback which is called after setState applied.
    */
-  trySetState = (maybeState, callback = () => {}) => {
-    const newState = Object.keys(maybeState).reduce((acc, prop) => {
+  trySetState = (state, callback) => {
+    const newState = Object.keys(state).reduce((acc, prop) => {
       // ignore props defined by the parent
       if (this.props[prop] !== undefined) return acc
 
-      acc[prop] = maybeState[prop]
+      acc[prop] = state[prop]
       return acc
     }, {})
 
