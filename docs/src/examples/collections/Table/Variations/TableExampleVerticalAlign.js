@@ -16,7 +16,8 @@ const TableExampleVerticalAlign = () => (
         <Table.Cell>John</Table.Cell>
         <Table.Cell>Approved</Table.Cell>
         <Table.Cell verticalAlign='top'>
-          Notes<br />
+          Notes
+          <br />
           1<br />
           2<br />
         </Table.Cell>
@@ -25,7 +26,8 @@ const TableExampleVerticalAlign = () => (
         <Table.Cell>Jamie</Table.Cell>
         <Table.Cell verticalAlign='bottom'>Approved</Table.Cell>
         <Table.Cell>
-          Notes<br />
+          Notes
+          <br />
           1<br />
           2<br />
         </Table.Cell>

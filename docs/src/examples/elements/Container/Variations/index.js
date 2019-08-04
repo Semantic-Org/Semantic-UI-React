@@ -16,8 +16,8 @@ const ContainerVariationsExamples = () => (
       examplePath='elements/Container/Variations/ContainerExampleFluid'
     >
       <Message info>
-        Fluid containers are useful for setting text alignment, or other variations on unstyled
-        content.
+        Fluid containers are useful for setting text alignment, or other
+        variations on unstyled content.
       </Message>
     </ComponentExample>
   </ExampleSection>

@@ -11,8 +11,8 @@ const DividerExampleHorizontalTable = () => (
     </Divider>
 
     <p>
-      Doggie treats are good for all times of the year. Proven to be eaten by 99.9% of all dogs
-      worldwide.
+      Doggie treats are good for all times of the year. Proven to be eaten by
+      99.9% of all dogs worldwide.
     </p>
 
     <Divider horizontal>

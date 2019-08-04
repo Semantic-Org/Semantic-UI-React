@@ -18,7 +18,7 @@ describe('Pagination', () => {
       const wrapper = shallow(<Pagination activePage={1} disabled totalPages={3} />)
       const items = wrapper.find('PaginationItem')
 
-      items.everyWhere(item => item.prop('disabled', true)).should.to.equal(true)
+      items.everyWhere((item) => item.prop('disabled', true)).should.to.equal(true)
     })
   })
 

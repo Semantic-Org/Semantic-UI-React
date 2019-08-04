@@ -60,6 +60,6 @@ class DropdownSearchInput extends Component {
   }
 }
 
-DropdownSearchInput.create = createShorthandFactory(DropdownSearchInput, type => ({ type }))
+DropdownSearchInput.create = createShorthandFactory(DropdownSearchInput, (type) => ({ type }))
 
 export default DropdownSearchInput

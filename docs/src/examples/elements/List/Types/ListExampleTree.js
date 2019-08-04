@@ -45,7 +45,9 @@ const ListExampleTree = () => (
             <List.Icon name='file' />
             <List.Content>
               <List.Header>theme.config</List.Header>
-              <List.Description>Config file for setting packaged themes</List.Description>
+              <List.Description>
+                Config file for setting packaged themes
+              </List.Description>
             </List.Content>
           </List.Item>
         </List.List>
@@ -61,7 +63,9 @@ const ListExampleTree = () => (
             <List.Icon name='folder' />
             <List.Content>
               <List.Header>components</List.Header>
-              <List.Description>Individual component CSS and JS</List.Description>
+              <List.Description>
+                Individual component CSS and JS
+              </List.Description>
             </List.Content>
           </List.Item>
         </List.List>

@@ -8,7 +8,8 @@ const ListExampleIcon = () => (
       <List.Content>
         <List.Header>Floated Icon</List.Header>
         <List.Description>
-          This text will always have a left margin to make sure it sits alongside your icon
+          This text will always have a left margin to make sure it sits
+          alongside your icon
         </List.Description>
       </List.Content>
     </List.Item>
@@ -17,7 +18,8 @@ const ListExampleIcon = () => (
       <List.Content>
         <List.Header>Icon Alignment</List.Header>
         <List.Description>
-          Floated icons are by default top aligned. To have an icon top aligned try this example.
+          Floated icons are by default top aligned. To have an icon top aligned
+          try this example.
         </List.Description>
       </List.Content>
     </List.Item>

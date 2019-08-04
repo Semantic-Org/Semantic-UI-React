@@ -6,7 +6,7 @@ import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs
 
 export const meta = {
   title: 'Get Started',
-  nextPage: { title: 'Augmentation', href: '/augmentation' },
+  nextPage: { title: 'Composition', href: '/augmentation' },
 }
 
 ## Install
@@ -49,9 +49,7 @@ Choose a theme and delivery method that suits your needs:
             value={`
               <link
                 rel="stylesheet"
-                href="//cdn.jsdelivr.net/npm/semantic-ui@${
-                  props.versions.sui
-                }/dist/semantic.min.css"
+                href="//cdn.jsdelivr.net/npm/semantic-ui@${props.versions.sui}/dist/semantic.min.css"
               />
             `}
           />
@@ -100,7 +98,7 @@ example recipes with some of them. You can use these as a starting point for you
       render: () => (
         <Tab.Pane style={{ fontSize: 'inherit' }}>
           <p>
-            Semantic UI React is fully compatible with <code>create-app-react</code> and works out
+            Semantic UI React is fully compatible with <code>create-react-app</code> and works out
             the box. Setup of custom theme is covered in <Link to='/theming'>Theming guide</Link>.
           </p>
         </Tab.Pane>
@@ -119,88 +117,6 @@ example recipes with some of them. You can use these as a starting point for you
             React includes several optimizations in production mode, such as stripping{' '}
             <code>propTypes</code>
             from your build.
-          </p>
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: 'Webpack 2/3',
-      render: () => (
-        <Tab.Pane style={{ fontSize: 'inherit' }}>
-          <p>
-            Semantic UI React is fully supported by Webpack 2 and 3, including tree shaking as of{' '}
-            <code>semantic-ui-react@0.81.2</code>.
-          </p>
-          <p>
-            Please ensure that you build your app in production mode before release. Semantic UI
-            React includes several optimizations in production mode, such as stripping `propTypes`
-            from your build.
-          </p>
-          <Header as='h4'>Examples</Header>
-          <List>
-            <List.Item
-              icon='github'
-              content='Webpack 3 Example Project'
-              href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3'
-              rel='noopener noreferrer'
-              target='_blank'
-            />
-            <List.Item
-              icon='github'
-              content='Webpack 3 Example .babelrc'
-              href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack3/.babelrc'
-              rel='noopener noreferrer'
-              target='_blank'
-            />
-            <List.Item
-              icon='github'
-              content='babel-plugin-lodash'
-              href='https://github.com/lodash/babel-plugin-lodash'
-              rel='noopener noreferrer'
-              target='_blank'
-            />
-          </List>
-          <Divider horizontal section>
-            Known Issues
-          </Divider>
-          <p>
-            Webpack 2/3 tree shaking does not completely remove unused exports, there are numerous
-            issues that are long-standing bugs:
-          </p>
-          <List>
-            <List.Item
-              icon='github'
-              href='https://github.com/webpack/webpack/issues/1750'
-              rel='noopener noreferrer'
-              target='_blank'
-              content='webpack/webpack#1750'
-            />
-            <List.Item
-              icon='github'
-              href='https://github.com/webpack/webpack/issues/2867'
-              rel='noopener noreferrer'
-              target='_blank'
-              content='webpack/webpack#2867'
-            />
-            <List.Item
-              icon='github'
-              href='https://github.com/webpack/webpack/issues/2899'
-              rel='noopener noreferrer'
-              target='_blank'
-              content='webpack/webpack#2899'
-            />
-            <List.Item
-              icon='github'
-              href='https://github.com/webpack/webpack/issues/3092'
-              rel='noopener noreferrer'
-              target='_blank'
-              content='webpack/webpack#3092'
-            />
-          </List>
-          <p>
-            Semantic UI React imports will be not optimized, so we recommend to use
-            <code>babel-plugin-lodash</code> in your builds. You can find example configuration in
-            <code>examples/webpack3</code> directory.
           </p>
         </Tab.Pane>
       ),

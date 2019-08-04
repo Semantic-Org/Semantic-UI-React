@@ -70,7 +70,7 @@ function StepGroup(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(items, item => Step.create(item))}
+      {_.map(items, (item) => Step.create(item))}
     </ElementType>
   )
 }

@@ -19,7 +19,7 @@ const colors = [
 
 const LabelExampleCircular = () => (
   <div>
-    {colors.map(color => (
+    {colors.map((color) => (
       <Label circular color={color} key={color}>
         2
       </Label>

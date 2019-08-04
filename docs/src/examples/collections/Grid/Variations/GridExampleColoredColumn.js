@@ -20,7 +20,7 @@ const colors = [
 
 const GridExampleColoredColumn = () => (
   <Grid columns={5} padded>
-    {colors.map(color => (
+    {colors.map((color) => (
       <Grid.Column color={color} key={color}>
         {_.capitalize(color)}
       </Grid.Column>

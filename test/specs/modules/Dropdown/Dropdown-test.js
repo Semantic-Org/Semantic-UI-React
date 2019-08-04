@@ -1154,6 +1154,13 @@ describe('Dropdown', () => {
   })
 
   describe('text', () => {
+    it('defaults to "placeholder"', () => {
+      const placeholder = faker.hacker.phrase()
+
+      wrapperMount(<Dropdown options={options} placeholder={placeholder} />)
+        .find('div.text')
+        .should.contain.text(placeholder)
+    })
     it('sets the display text', () => {
       const text = faker.hacker.phrase()
 
@@ -1324,6 +1331,7 @@ describe('Dropdown', () => {
       dropdownMenuIsOpen()
 
       // select item
+      item.simulate('mousedown')
       item.simulate('click')
       dropdownMenuIsClosed()
     })
@@ -2203,21 +2211,43 @@ describe('Dropdown', () => {
     })
 
     it('sets focus to the search input after selection', () => {
-      wrapperMount(<Dropdown open options={options} selection search />)
-
       // random item, skip the first as it's selected by default
       const randomIndex = 1 + _.random(options.length - 2)
 
-      wrapper
+      wrapperMount(<Dropdown options={options} selection search />)
+        .simulate('click', nativeEvent)
         .find('DropdownItem')
         .at(randomIndex)
-        .simulate('click')
+        .simulate('click', nativeEvent)
+
+      dropdownMenuIsClosed()
 
       const activeElement = document.activeElement
       const searchIsFocused = activeElement === document.querySelector('input.search')
       searchIsFocused.should.be.true(
         `Expected "input.search" to be the active element but found ${activeElement} instead.`,
       )
+      wrapper.should.have.state('focus', true)
+    })
+
+    it('sets focus to the dropdown after selection', () => {
+      const randomIndex = _.random(options.length - 1)
+
+      wrapperMount(<Dropdown options={options} selection />)
+        .simulate('click', nativeEvent)
+        .find('DropdownItem')
+        .at(randomIndex)
+        .simulate('click', nativeEvent)
+
+      dropdownMenuIsClosed()
+
+      const activeElement = document.activeElement
+      const dropdownIsFocused = activeElement === document.querySelector('div.dropdown')
+      dropdownIsFocused.should.be.true(
+        `Expected Dropdown to be the active element but found ${activeElement} instead.`,
+      )
+
+      wrapper.should.have.state('focus', true)
     })
   })
 

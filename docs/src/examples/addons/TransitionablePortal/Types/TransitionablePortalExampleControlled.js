@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
-import { Button, Header, Segment, TransitionablePortal } from 'semantic-ui-react'
+import {
+  Button,
+  Header,
+  Segment,
+  TransitionablePortal,
+} from 'semantic-ui-react'
 
 export default class TransitionablePortalExampleControlled extends Component {
   state = { open: false }
 
-  handleClick = () => this.setState(prevState => ({ open: !prevState.open }))
+  handleClick = () => this.setState((prevState) => ({ open: !prevState.open }))
   handleClose = () => this.setState({ open: false })
 
   render() {
@@ -20,7 +25,9 @@ export default class TransitionablePortalExampleControlled extends Component {
         />
 
         <TransitionablePortal onClose={this.handleClose} open={open}>
-          <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
+          <Segment
+            style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}
+          >
             <Header>This is a controlled portal</Header>
             <p>Portals have tons of great callback functions to hook into.</p>
             <p>To close, simply click the close button or click away</p>

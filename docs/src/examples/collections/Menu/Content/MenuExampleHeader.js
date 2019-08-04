@@ -17,7 +17,11 @@ export default class MenuExampleHeader extends Component {
           active={activeItem === 'aboutUs'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item name='jobs' active={activeItem === 'jobs'} onClick={this.handleItemClick} />
+        <Menu.Item
+          name='jobs'
+          active={activeItem === 'jobs'}
+          onClick={this.handleItemClick}
+        />
         <Menu.Item
           name='locations'
           active={activeItem === 'locations'}

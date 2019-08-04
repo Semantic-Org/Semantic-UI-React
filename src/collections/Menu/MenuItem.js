@@ -129,4 +129,4 @@ export default class MenuItem extends Component {
   }
 }
 
-MenuItem.create = createShorthandFactory(MenuItem, val => ({ content: val, name: val }))
+MenuItem.create = createShorthandFactory(MenuItem, (val) => ({ content: val, name: val }))

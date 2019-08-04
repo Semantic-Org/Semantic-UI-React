@@ -32,8 +32,8 @@ function FeedEvent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedLabel, val => ({ icon: val }), icon, { autoGenerateKey: false })}
-      {createShorthand(FeedLabel, val => ({ image: val }), image, { autoGenerateKey: false })}
+      {createShorthand(FeedLabel, (val) => ({ icon: val }), icon, { autoGenerateKey: false })}
+      {createShorthand(FeedLabel, (val) => ({ image: val }), image, { autoGenerateKey: false })}
       {hasContentProp && <FeedContent {...contentProps} />}
       {children}
     </ElementType>

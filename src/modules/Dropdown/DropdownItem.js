@@ -130,13 +130,13 @@ class DropdownItem extends Component {
     const iconElement = Icon.create(iconName, { autoGenerateKey: false })
     const imageElement = Image.create(image, { autoGenerateKey: false })
     const labelElement = Label.create(label, { autoGenerateKey: false })
-    const descriptionElement = createShorthand('span', val => ({ children: val }), description, {
+    const descriptionElement = createShorthand('span', (val) => ({ children: val }), description, {
       defaultProps: { className: 'description' },
       autoGenerateKey: false,
     })
     const textElement = createShorthand(
       'span',
-      val => ({ children: val }),
+      (val) => ({ children: val }),
       childrenUtils.isNil(content) ? text : content,
       { defaultProps: { className: 'text' }, autoGenerateKey: false },
     )
@@ -154,6 +154,6 @@ class DropdownItem extends Component {
   }
 }
 
-DropdownItem.create = createShorthandFactory(DropdownItem, opts => opts)
+DropdownItem.create = createShorthandFactory(DropdownItem, (opts) => opts)
 
 export default DropdownItem

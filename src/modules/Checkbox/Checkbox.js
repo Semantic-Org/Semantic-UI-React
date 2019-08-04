@@ -148,8 +148,11 @@ export default class Checkbox extends Component {
     const { id } = this.props
     const { checked, indeterminate } = this.state
 
+    const isInputClick = _.invoke(this.inputRef.current, 'contains', e.target)
+    const isLabelClick = _.invoke(this.labelRef.current, 'contains', e.target)
+    const isRootClick = !isLabelClick && !isInputClick
+
     const hasId = !_.isNil(id)
-    const isLabelClick = e.target === this.labelRef.current
     const isLabelClickAndForwardedToInput = isLabelClick && hasId
 
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3351
@@ -168,7 +171,12 @@ export default class Checkbox extends Component {
         this.handleChange(e)
       }
 
-      if (hasId) {
+      // Changes should be triggered for the slider variation
+      if (isRootClick) {
+        this.handleChange(e)
+      }
+
+      if (isLabelClick && hasId) {
         // To prevent two clicks from being fired from the component we have to stop the propagation
         // from the "input" click: https://github.com/Semantic-Org/Semantic-UI-React/issues/3433
         e.stopPropagation()
@@ -200,7 +208,10 @@ export default class Checkbox extends Component {
       indeterminate: !!indeterminate,
     })
 
-    _.invoke(this.inputRef.current, 'focus')
+    if (!e.defaultPrevented) {
+      _.invoke(this.inputRef.current, 'focus')
+    }
+
     // Heads up!
     // We need to call "preventDefault" to keep element focused.
     e.preventDefault()

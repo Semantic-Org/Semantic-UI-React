@@ -4,7 +4,7 @@ import { Button, Modal } from 'semantic-ui-react'
 class ModalExampleSize extends Component {
   state = { open: false }
 
-  show = size => () => this.setState({ size, open: true })
+  show = (size) => () => this.setState({ size, open: true })
   close = () => this.setState({ open: false })
 
   render() {
@@ -25,7 +25,12 @@ class ModalExampleSize extends Component {
           </Modal.Content>
           <Modal.Actions>
             <Button negative>No</Button>
-            <Button positive icon='checkmark' labelPosition='right' content='Yes' />
+            <Button
+              positive
+              icon='checkmark'
+              labelPosition='right'
+              content='Yes'
+            />
           </Modal.Actions>
         </Modal>
       </div>

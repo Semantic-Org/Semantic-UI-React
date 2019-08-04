@@ -32,7 +32,7 @@ describe('TransitionGroup', () => {
         </TransitionGroup>,
       )
         .children()
-        .everyWhere(item => item.type().should.equal(Transition))
+        .everyWhere((item) => item.type().should.equal(Transition))
     })
 
     it('passes props to children', () => {

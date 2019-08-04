@@ -23,9 +23,9 @@ const TransitionExplorersExamples = () => (
       examplePath='modules/Transition/Explorers/TransitionExampleTransitionExplorer'
     >
       <Message info>
-        Trigger static animations just as you trigger directional animations, by toggling the{' '}
-        <code>visible</code> prop. The value is not significant since static animations are
-        unidirectional.
+        Trigger static animations just as you trigger directional animations, by
+        toggling the <code>visible</code> prop. The value is not significant
+        since static animations are unidirectional.
       </Message>
     </ComponentExample>
   </ExampleSection>

@@ -19,7 +19,7 @@ describe('Image', () => {
     autoGenerateKey: false,
     propKey: 'dimmer',
     ShorthandComponent: Dimmer,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
   common.implementsVerticalAlignProp(Image)
 

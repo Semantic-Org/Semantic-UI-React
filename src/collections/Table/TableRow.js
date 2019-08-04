@@ -59,7 +59,7 @@ function TableRow(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(cells, cell => TableCell.create(cell, { defaultProps: { as: cellAs } }))}
+      {_.map(cells, (cell) => TableCell.create(cell, { defaultProps: { as: cellAs } }))}
     </ElementType>
   )
 }
@@ -110,6 +110,6 @@ TableRow.propTypes = {
   warning: PropTypes.bool,
 }
 
-TableRow.create = createShorthandFactory(TableRow, cells => ({ cells }))
+TableRow.create = createShorthandFactory(TableRow, (cells) => ({ cells }))
 
 export default TableRow

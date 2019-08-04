@@ -23,14 +23,14 @@ export default class StickyExampleOversized extends Component {
         <Grid.Column>
           <Ref innerRef={this.contextRef}>
             <Segment>
-              {_.times(15, i => (
+              {_.times(15, (i) => (
                 <Placeholder key={i} />
               ))}
 
               <Rail position='left'>
                 <Sticky context={this.contextRef}>
                   <Item.Group divided>
-                    {_.times(12, i => (
+                    {_.times(12, (i) => (
                       <Item key={i}>
                         <Item.Image
                           size='tiny'

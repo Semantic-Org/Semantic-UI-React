@@ -13,7 +13,8 @@ const ButtonContentExamples = () => (
     />
     <ComponentExample examplePath='elements/Button/Content/ButtonExampleConditionalsCustom'>
       <Message info>
-        Or buttons can have their text localized, or adjusted by using the <code>text</code> prop.
+        Or buttons can have their text localized, or adjusted by using the{' '}
+        <code>text</code> prop.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Button/Content/ButtonExampleMultipleConditionals' />

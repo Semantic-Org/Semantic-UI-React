@@ -11,7 +11,11 @@ export default class MenuExampleLabeledIcons extends Component {
 
     return (
       <Menu icon='labeled'>
-        <Menu.Item name='gamepad' active={activeItem === 'gamepad'} onClick={this.handleItemClick}>
+        <Menu.Item
+          name='gamepad'
+          active={activeItem === 'gamepad'}
+          onClick={this.handleItemClick}
+        >
           <Icon name='gamepad' />
           Games
         </Menu.Item>

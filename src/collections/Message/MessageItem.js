@@ -44,6 +44,6 @@ MessageItem.defaultProps = {
   as: 'li',
 }
 
-MessageItem.create = createShorthandFactory(MessageItem, content => ({ content }))
+MessageItem.create = createShorthandFactory(MessageItem, (content) => ({ content }))
 
 export default MessageItem
