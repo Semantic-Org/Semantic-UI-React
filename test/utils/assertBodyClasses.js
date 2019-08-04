@@ -5,7 +5,10 @@
  * @param {boolean} [hasClasses=true] Indicating whether to assert "has" or "does not have" classes
  */
 const assertBodyClasses = (classes, hasClasses = true) => {
-  const classesArr = [].concat(classes).join(' ').split(' ')
+  const classesArr = []
+    .concat(classes)
+    .join(' ')
+    .split(' ')
 
   classesArr.forEach((className) => {
     const didFind = document.body.classList.contains(className)

@@ -10,13 +10,11 @@ describe('MessageList', () => {
   })
 
   it('renders an ul tag', () => {
-    shallow(<MessageList />)
-      .should.have.tagName('ul')
+    shallow(<MessageList />).should.have.tagName('ul')
   })
 
   it('has className list', () => {
-    shallow(<MessageList />)
-      .should.have.className('list')
+    shallow(<MessageList />).should.have.className('list')
   })
 
   describe('items', () => {

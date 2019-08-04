@@ -46,6 +46,6 @@ MessageList.defaultProps = {
   as: 'ul',
 }
 
-MessageList.create = createShorthandFactory(MessageList, val => ({ items: val }))
+MessageList.create = createShorthandFactory(MessageList, (val) => ({ items: val }))
 
 export default MessageList

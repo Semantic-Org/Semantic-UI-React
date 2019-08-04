@@ -12,12 +12,12 @@ const CommentExampleReplyFormOuter = () => (
         </Comment.Metadata>
         <Comment.Text>
           <p>
-            The hours, minutes and seconds stand as visible reminders that your effort put them all
-            there.
+            The hours, minutes and seconds stand as visible reminders that your
+            effort put them all there.
           </p>
           <p>
-            Preserve until your next run, when the watch lets you see how Impermanent your efforts
-            are.
+            Preserve until your next run, when the watch lets you see how
+            Impermanent your efforts are.
           </p>
         </Comment.Text>
         <Comment.Actions>

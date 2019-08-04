@@ -37,6 +37,6 @@ LabelDetail.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-LabelDetail.create = createShorthandFactory(LabelDetail, val => ({ content: val }))
+LabelDetail.create = createShorthandFactory(LabelDetail, (val) => ({ content: val }))
 
 export default LabelDetail

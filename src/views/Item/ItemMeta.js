@@ -40,6 +40,6 @@ ItemMeta.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ItemMeta.create = createShorthandFactory(ItemMeta, content => ({ content }))
+ItemMeta.create = createShorthandFactory(ItemMeta, (content) => ({ content }))
 
 export default ItemMeta

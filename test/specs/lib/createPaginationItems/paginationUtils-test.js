@@ -4,8 +4,7 @@ import { sandbox } from 'test/utils'
 describe('suffixFactories', () => {
   describe('createInnerPrefix', () => {
     it('returns ellipsisItem when is outside innerGroup', () => {
-      createInnerPrefix(5, 10, () => {})
-        .should.have.property('type', 'ellipsisItem')
+      createInnerPrefix(5, 10, () => {}).should.have.property('type', 'ellipsisItem')
     })
 
     it('calls pageFactory when position matches border of a group', () => {
@@ -18,8 +17,7 @@ describe('suffixFactories', () => {
 
   describe('createInnerSuffix', () => {
     it('returns ellipsisItem when is outside innerGroup', () => {
-      createInnerSuffix(5, 10, () => {})
-        .should.have.property('type', 'ellipsisItem')
+      createInnerSuffix(5, 10, () => {}).should.have.property('type', 'ellipsisItem')
     })
 
     it('calls pageFactory when position matches border of a group', () => {
@@ -30,4 +28,3 @@ describe('suffixFactories', () => {
     })
   })
 })
-

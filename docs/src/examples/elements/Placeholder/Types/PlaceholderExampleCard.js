@@ -45,7 +45,7 @@ export default class PlaceholderExampleCard extends Component {
         <Divider />
 
         <Card.Group doubling itemsPerRow={3} stackable>
-          {_.map(cards, card => (
+          {_.map(cards, (card) => (
             <Card key={card.header}>
               {loading ? (
                 <Placeholder>

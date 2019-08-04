@@ -26,7 +26,7 @@
 import _ from 'lodash'
 import { Component } from 'react'
 
-const getDefaultPropName = prop => `default${prop[0].toUpperCase() + prop.slice(1)}`
+const getDefaultPropName = (prop) => `default${prop[0].toUpperCase() + prop.slice(1)}`
 
 /**
  * Return the auto controlled state value for a give prop. The initial value is chosen in this order:
@@ -124,7 +124,7 @@ export default class AutoControlledComponent extends Component {
       //
       // Default props are automatically handled.
       // Listing defaults in autoControlledProps would result in allowing defaultDefaultValue props.
-      const illegalAutoControlled = _.filter(autoControlledProps, prop =>
+      const illegalAutoControlled = _.filter(autoControlledProps, (prop) =>
         _.startsWith(prop, 'default'),
       )
       if (!_.isEmpty(illegalAutoControlled)) {

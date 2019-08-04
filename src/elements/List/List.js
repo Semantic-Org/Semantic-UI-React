@@ -96,7 +96,7 @@ class List extends Component {
   static Item = ListItem
   static List = ListList
 
-  handleItemOverrides = predefinedProps => ({
+  handleItemOverrides = (predefinedProps) => ({
     onClick: (e, itemProps) => {
       _.invoke(predefinedProps, 'onClick', e, itemProps)
       _.invoke(this.props, 'onItemClick', e, itemProps)
@@ -163,7 +163,7 @@ class List extends Component {
 
     return (
       <ElementType role='list' className={classes} {...rest}>
-        {_.map(items, item => ListItem.create(item, { overrideProps: this.handleItemOverrides }))}
+        {_.map(items, (item) => ListItem.create(item, { overrideProps: this.handleItemOverrides }))}
       </ElementType>
     )
   }

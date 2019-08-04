@@ -113,7 +113,7 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
-  handleItemOverrides = predefinedProps => ({
+  handleItemOverrides = (predefinedProps) => ({
     onClick: (e, itemProps) => {
       const { index } = itemProps
 
@@ -196,6 +196,6 @@ class Menu extends Component {
   }
 }
 
-Menu.create = createShorthandFactory(Menu, items => ({ items }))
+Menu.create = createShorthandFactory(Menu, (items) => ({ items }))
 
 export default Menu

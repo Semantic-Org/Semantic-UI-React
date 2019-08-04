@@ -20,7 +20,7 @@ const createTestClass = (options = {}) =>
   }
 /* eslint-enable */
 
-const toDefaultName = prop => `default${prop.slice(0, 1).toUpperCase() + prop.slice(1)}`
+const toDefaultName = (prop) => `default${prop.slice(0, 1).toUpperCase() + prop.slice(1)}`
 
 const makeProps = () => ({
   computer: 'hardware',
@@ -28,7 +28,7 @@ const makeProps = () => ({
   ion: 'belt',
 })
 
-const makeDefaultProps = props =>
+const makeDefaultProps = (props) =>
   _.transform(props, (res, val, key) => {
     res[toDefaultName(key)] = val
   })

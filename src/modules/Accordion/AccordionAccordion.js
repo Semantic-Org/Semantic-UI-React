@@ -132,18 +132,18 @@ export default class AccordionAccordion extends Component {
       <ElementType {...rest} className={classes}>
         {childrenUtils.isNil(children)
           ? _.map(panels, (panel, index) =>
-            AccordionPanel.create(panel, {
-              defaultProps: {
-                active: this.isIndexActive(index),
-                index,
-                onTitleClick: this.handleTitleClick,
-              },
-            }),
-          )
+              AccordionPanel.create(panel, {
+                defaultProps: {
+                  active: this.isIndexActive(index),
+                  index,
+                  onTitleClick: this.handleTitleClick,
+                },
+              }),
+            )
           : children}
       </ElementType>
     )
   }
 }
 
-AccordionAccordion.create = createShorthandFactory(AccordionAccordion, content => ({ content }))
+AccordionAccordion.create = createShorthandFactory(AccordionAccordion, (content) => ({ content }))

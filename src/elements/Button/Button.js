@@ -306,6 +306,6 @@ class Button extends Component {
   }
 }
 
-Button.create = createShorthandFactory(Button, value => ({ content: value }))
+Button.create = createShorthandFactory(Button, (value) => ({ content: value }))
 
 export default Button

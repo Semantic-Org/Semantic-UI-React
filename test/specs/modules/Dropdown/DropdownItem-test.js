@@ -24,14 +24,14 @@ describe('DropdownItem', () => {
     autoGenerateKey: false,
     propKey: 'flag',
     ShorthandComponent: Flag,
-    mapValueToProps: name => ({ name }),
+    mapValueToProps: (name) => ({ name }),
   })
 
   common.implementsShorthandProp(DropdownItem, {
     autoGenerateKey: false,
     propKey: 'description',
     ShorthandComponent: 'span',
-    mapValueToProps: children => ({ children }),
+    mapValueToProps: (children) => ({ children }),
     shorthandDefaultProps: { className: 'description' },
   })
 
@@ -39,7 +39,7 @@ describe('DropdownItem', () => {
     autoGenerateKey: false,
     propKey: 'text',
     ShorthandComponent: 'span',
-    mapValueToProps: children => ({ children }),
+    mapValueToProps: (children) => ({ children }),
     shorthandDefaultProps: { className: 'text' },
   })
 

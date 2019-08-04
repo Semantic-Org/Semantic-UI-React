@@ -19,7 +19,11 @@ export default class MenuExampleBasic extends Component {
           Editorials
         </Menu.Item>
 
-        <Menu.Item name='reviews' active={activeItem === 'reviews'} onClick={this.handleItemClick}>
+        <Menu.Item
+          name='reviews'
+          active={activeItem === 'reviews'}
+          onClick={this.handleItemClick}
+        >
           Reviews
         </Menu.Item>
 

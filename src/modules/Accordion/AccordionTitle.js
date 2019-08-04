@@ -48,7 +48,7 @@ export default class AccordionTitle extends Component {
     onClick: PropTypes.func,
   }
 
-  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
+  handleClick = (e) => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const { active, children, className, content, icon } = this.props
@@ -75,4 +75,4 @@ export default class AccordionTitle extends Component {
   }
 }
 
-AccordionTitle.create = createShorthandFactory(AccordionTitle, content => ({ content }))
+AccordionTitle.create = createShorthandFactory(AccordionTitle, (content) => ({ content }))

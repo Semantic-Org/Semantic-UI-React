@@ -20,7 +20,8 @@ const SegmentTypesExamples = () => (
     />
     <ComponentExample examplePath='elements/Segment/Types/SegmentExamplePlaceholderInline'>
       <Message info>
-        To use inline-block content inside a placeholder, wrap the content in <code>inline</code>.
+        To use inline-block content inside a placeholder, wrap the content in{' '}
+        <code>inline</code>.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Segment/Types/SegmentExamplePlaceholderGrid' />

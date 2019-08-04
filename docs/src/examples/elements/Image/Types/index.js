@@ -12,8 +12,8 @@ const ImageTypesExamples = () => (
       examplePath='elements/Image/Types/ImageExampleImage'
     >
       <Message>
-        Unless a size is specified, images will use the original dimensions of the image up to the
-        size of its container.
+        Unless a size is specified, images will use the original dimensions of
+        the image up to the size of its container.
       </Message>
     </ComponentExample>
     <ComponentExample

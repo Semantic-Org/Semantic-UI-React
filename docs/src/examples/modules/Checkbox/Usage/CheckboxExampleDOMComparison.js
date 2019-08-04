@@ -14,13 +14,18 @@ export default class CheckboxExampleDOMComparison extends Component {
   log = (action, value) =>
     this.setState(({ log }) => ({
       log: [
-        `${new Date().toLocaleTimeString()}: ${_.padEnd(action, 10)} { checked: ${value} }`,
+        `${new Date().toLocaleTimeString()}: ${_.padEnd(
+          action,
+          10,
+        )} { checked: ${value} }`,
         ...log,
       ].slice(0, 15),
     }))
 
-  toggle = () => this.setState(({ suirChecked }) => ({ suirChecked: !suirChecked }))
-  toggleDOM = () => this.setState(({ domChecked }) => ({ domChecked: !domChecked }))
+  toggle = () =>
+    this.setState(({ suirChecked }) => ({ suirChecked: !suirChecked }))
+  toggleDOM = () =>
+    this.setState(({ domChecked }) => ({ domChecked: !domChecked }))
 
   handleMouseDown = (e, { checked }) => this.log('MouseDown', checked)
   handleMouseUp = (e, { checked }) => this.log('MouseUp', checked)
@@ -30,9 +35,9 @@ export default class CheckboxExampleDOMComparison extends Component {
     this.toggle()
   }
 
-  handleDOMMouseDown = e => this.log('DOM MouseDown', e.target.checked)
-  handleDOMMouseUp = e => this.log('DOM MouseUp', e.target.checked)
-  handleDOMClick = e => this.log('DOM Click', e.target.checked)
+  handleDOMMouseDown = (e) => this.log('DOM MouseDown', e.target.checked)
+  handleDOMMouseUp = (e) => this.log('DOM MouseUp', e.target.checked)
+  handleDOMClick = (e) => this.log('DOM Click', e.target.checked)
   handleDOMChange = (e) => {
     this.log('DOM Change', e.target.checked)
     this.toggleDOM()
@@ -120,13 +125,22 @@ export default class CheckboxExampleDOMComparison extends Component {
         <Grid.Column width={6}>
           <Segment.Group>
             <Segment>
-              <Button compact size='small' floated='right' onClick={this.clearLog}>
+              <Button
+                compact
+                size='small'
+                floated='right'
+                onClick={this.clearLog}
+              >
                 Clear
               </Button>
               Event Log
             </Segment>
             <Segment secondary>
-              <pre>{log.map((e, i) => <div key={i}>{e}</div>)}</pre>
+              <pre>
+                {log.map((e, i) => (
+                  <div key={i}>{e}</div>
+                ))}
+              </pre>
             </Segment>
           </Segment.Group>
         </Grid.Column>

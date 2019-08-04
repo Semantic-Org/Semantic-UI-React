@@ -20,7 +20,7 @@ const colors = [
 export default class StatisticExampleColoredGroup extends Component {
   state = { color: colors[0] }
 
-  handleColorChange = e => this.setState({ color: e.target.value })
+  handleColorChange = (e) => this.setState({ color: e.target.value })
 
   render() {
     const { color } = this.state
@@ -28,7 +28,7 @@ export default class StatisticExampleColoredGroup extends Component {
     return (
       <div>
         <select onChange={this.handleColorChange}>
-          {_.map(colors, c => (
+          {_.map(colors, (c) => (
             <option key={c} value={c}>
               {_.startCase(c)}
             </option>

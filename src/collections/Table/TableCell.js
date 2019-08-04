@@ -131,6 +131,6 @@ TableCell.propTypes = {
   width: PropTypes.oneOf(SUI.WIDTHS),
 }
 
-TableCell.create = createShorthandFactory(TableCell, content => ({ content }))
+TableCell.create = createShorthandFactory(TableCell, (content) => ({ content }))
 
 export default TableCell
