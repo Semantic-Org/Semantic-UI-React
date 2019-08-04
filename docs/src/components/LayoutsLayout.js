@@ -16,8 +16,7 @@ const docsButtonStyle = {
 }
 
 const style = (
-  <style>
-    {`
+  <style>{`
     @keyframes back-to-docs {
         0% { transform: translateY(0); }
         50% { transform: translateY(0.35em); }
