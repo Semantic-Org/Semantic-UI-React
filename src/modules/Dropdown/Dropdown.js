@@ -497,7 +497,7 @@ export default class Dropdown extends Component {
     const { closeOnChange, multiple } = this.props
     const shouldClose = _.isUndefined(closeOnChange) ? !multiple : closeOnChange
 
-    if (shouldClose) this.close(e, () => {})
+    if (shouldClose) this.close(e, _.noop)
   }
 
   closeOnEscape = (e) => {
