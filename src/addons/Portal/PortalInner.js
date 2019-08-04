@@ -4,7 +4,7 @@ import React from 'react'
 import { createPortal } from 'react-dom'
 
 import { documentRef } from '@stardust-ui/react-component-event-listener'
-import useEventListener from '@stardust-ui/react-component-event-listener/dist/es/hooks/useEventListener'
+import useEventListener from '@stardust-ui/react-component-event-listener/dist/commonjs/hooks/useEventListener'
 import { customPropTypes } from '../../lib'
 import Ref from '../Ref'
 
@@ -48,7 +48,11 @@ function PortalInner(props) {
     type: 'keydown',
   })
 
-  return createPortal(<Ref innerRef={innerRef}>{children}</Ref>, mountNode)
+  return (
+    <React.Fragment>
+      {createPortal(<Ref innerRef={innerRef}>{children}</Ref>, mountNode)}
+    </React.Fragment>
+  )
 }
 
 PortalInner.propTypes = {

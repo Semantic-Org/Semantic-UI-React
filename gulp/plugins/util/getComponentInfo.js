@@ -23,10 +23,12 @@ const getComponentInfo = (filepath) => {
   const componentType = path.basename(path.dirname(dir)).replace(/s$/, '')
 
   // start with react-docgen info
-  const components = parse(contents, resolver.findAllComponentDefinitions, [
-    ...defaultHandlers,
-    parserCustomHandler,
-  ])
+  const components = parse(
+    contents,
+    resolver.findAllComponentDefinitions,
+    [...defaultHandlers, parserCustomHandler],
+    { filename: filepath },
+  )
   if (!components.length) {
     throw new Error(`Could not find a component definition in "${filepath}".`)
   }
