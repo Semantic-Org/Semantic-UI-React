@@ -18,19 +18,21 @@ const ButtonUsageExamples = () => (
     >
       <Message warning>
         <p>
-          When <code>Button</code> is <code>attached</code> or rendered as non-<code>button</code>{' '}
-          element, it losses ability to handle keyboard events when it focused.
+          When <code>Button</code> is <code>attached</code> or rendered as non-
+          <code>button</code> element, it losses ability to handle keyboard
+          events when it focused.
         </p>
         <p>
-          However, <code>button</code> behaviour can be replicated with <code>onKeyPress</code>{' '}
-          handler. You can find out more details on{' '}
+          However, <code>button</code> behaviour can be replicated with{' '}
+          <code>onKeyPress</code> handler. You can find out more details on{' '}
           <a
             href='https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role'
             rel='noopener noreferrer'
             target='_blank'
           >
             MDN
-          </a>.
+          </a>
+          .
         </p>
       </Message>
     </ComponentExample>

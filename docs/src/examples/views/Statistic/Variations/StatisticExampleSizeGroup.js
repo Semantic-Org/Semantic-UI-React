@@ -7,7 +7,7 @@ const sizes = ['mini', 'tiny', 'small', 'large', 'huge']
 export default class StatisticExampleSizeGroup extends Component {
   state = { size: sizes[0] }
 
-  handleSizeChange = e => this.setState({ size: e.target.value })
+  handleSizeChange = (e) => this.setState({ size: e.target.value })
 
   render() {
     const { size } = this.state
@@ -15,7 +15,7 @@ export default class StatisticExampleSizeGroup extends Component {
     return (
       <div>
         <select onChange={this.handleSizeChange}>
-          {_.map(sizes, s => (
+          {_.map(sizes, (s) => (
             <option key={s} value={s}>
               {_.startCase(s)}
             </option>

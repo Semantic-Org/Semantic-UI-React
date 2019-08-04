@@ -102,7 +102,7 @@ export default class Pagination extends Component {
     _.invoke(this.props, 'onPageChange', e, { ...this.props, activePage: nextActivePage })
   }
 
-  handleItemOverrides = (active, type, value) => predefinedProps => ({
+  handleItemOverrides = (active, type, value) => (predefinedProps) => ({
     active,
     type,
     key: `${type}-${value}`,

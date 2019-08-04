@@ -37,6 +37,6 @@ StepDescription.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-StepDescription.create = createShorthandFactory(StepDescription, content => ({ content }))
+StepDescription.create = createShorthandFactory(StepDescription, (content) => ({ content }))
 
 export default StepDescription

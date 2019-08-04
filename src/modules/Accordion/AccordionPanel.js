@@ -32,7 +32,7 @@ class AccordionPanel extends Component {
     title: customPropTypes.itemShorthand,
   }
 
-  handleTitleOverrides = predefinedProps => ({
+  handleTitleOverrides = (predefinedProps) => ({
     onClick: (e, titleProps) => {
       _.invoke(predefinedProps, 'onClick', e, titleProps)
       _.invoke(this.props, 'onTitleClick', e, titleProps)

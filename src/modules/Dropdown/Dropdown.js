@@ -1193,7 +1193,7 @@ export default class Dropdown extends Component {
       search && searchQuery && 'filtered',
     )
     let _text = placeholder
-    
+
     if (text) {
       _text = text
     } else if (open && !multiple) {

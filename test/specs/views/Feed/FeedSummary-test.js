@@ -11,12 +11,12 @@ describe('FeedSummary', () => {
     autoGenerateKey: false,
     propKey: 'date',
     ShorthandComponent: FeedDate,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
   common.implementsShorthandProp(FeedSummary, {
     autoGenerateKey: false,
     propKey: 'user',
     ShorthandComponent: FeedUser,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
 })

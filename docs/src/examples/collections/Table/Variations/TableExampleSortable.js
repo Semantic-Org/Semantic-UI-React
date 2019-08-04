@@ -16,7 +16,7 @@ export default class TableExampleSortable extends Component {
     direction: null,
   }
 
-  handleSort = clickedColumn => () => {
+  handleSort = (clickedColumn) => () => {
     const { column, data, direction } = this.state
 
     if (column !== clickedColumn) {

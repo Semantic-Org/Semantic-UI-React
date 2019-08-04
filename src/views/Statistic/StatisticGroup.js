@@ -50,7 +50,7 @@ function StatisticGroup(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(items, item => Statistic.create(item))}
+      {_.map(items, (item) => Statistic.create(item))}
     </ElementType>
   )
 }

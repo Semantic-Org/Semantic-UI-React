@@ -12,8 +12,9 @@ const PlaceholderContentExamples = () => (
       examplePath='elements/Placeholder/Content/PlaceholderExampleLine'
     >
       <Message info>
-        By default, repeated lines will appear varied in width. However, it may be useful to specify
-        an exact length to make it match up with content more effectively.
+        By default, repeated lines will appear varied in width. However, it may
+        be useful to specify an exact length to make it match up with content
+        more effectively.
       </Message>
     </ComponentExample>
 
@@ -22,7 +23,9 @@ const PlaceholderContentExamples = () => (
       description='A placeholder can contain a header.'
       examplePath='elements/Placeholder/Content/PlaceholderExampleHeaderImage'
     >
-      <Message info>Header content will have a slightly larger block size from paragraph.</Message>
+      <Message info>
+        Header content will have a slightly larger block size from paragraph.
+      </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Placeholder/Content/PlaceholderExampleHeader' />
 
@@ -41,8 +44,9 @@ const PlaceholderContentExamples = () => (
     />
     <ComponentExample examplePath='elements/Placeholder/Content/PlaceholderExampleImageSquare'>
       <Message info>
-        Using <code>square</code> (1:1) or <code>rectangular</code> (4:3) will embed an aspect ratio
-        into the image loader so that they modify size correctly with responsive styles.
+        Using <code>square</code> (1:1) or <code>rectangular</code> (4:3) will
+        embed an aspect ratio into the image loader so that they modify size
+        correctly with responsive styles.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Placeholder/Content/PlaceholderExampleImageRectangular' />

@@ -54,6 +54,6 @@ DropdownHeader.propTypes = {
   icon: customPropTypes.itemShorthand,
 }
 
-DropdownHeader.create = createShorthandFactory(DropdownHeader, content => ({ content }))
+DropdownHeader.create = createShorthandFactory(DropdownHeader, (content) => ({ content }))
 
 export default DropdownHeader

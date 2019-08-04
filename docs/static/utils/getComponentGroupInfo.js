@@ -8,7 +8,7 @@ import requireInfo from './requireInfo'
  */
 const getComponentGroupInfo = (parentDisplayName) => {
   const componentInfo = requireInfo(parentDisplayName)
-  const subcomponentsInfo = _.map(componentInfo.subcomponents, subcomponent =>
+  const subcomponentsInfo = _.map(componentInfo.subcomponents, (subcomponent) =>
     requireInfo(subcomponent),
   )
 

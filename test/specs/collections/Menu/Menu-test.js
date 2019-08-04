@@ -106,7 +106,7 @@ describe('Menu', () => {
     })
 
     it('passes arbitrary props', () => {
-      children.everyWhere(item => item.should.have.prop('data-foo', 'something'))
+      children.everyWhere((item) => item.should.have.prop('data-foo', 'something'))
     })
   })
 

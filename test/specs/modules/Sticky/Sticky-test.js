@@ -95,7 +95,7 @@ describe('Sticky', () => {
       const children = shallow(<Sticky />).children()
 
       children.should.have.length(2)
-      children.everyWhere(child => child.should.have.tagName('div'))
+      children.everyWhere((child) => child.should.have.tagName('div'))
     })
   })
 
@@ -132,7 +132,7 @@ describe('Sticky', () => {
         <Sticky {...positions} context={contextEl} onStick={onStick} onUnstick={onUnStick} />,
       )
 
-      _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
+      _.forEach(['ui', 'sticky', 'fixed', 'top'], (className) =>
         wrapper
           .childAt(0)
           .childAt(1)
@@ -170,7 +170,7 @@ describe('Sticky', () => {
       // Scroll after trigger
       scrollAfterTrigger()
 
-      _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
+      _.forEach(['ui', 'sticky', 'fixed', 'top'], (className) =>
         wrapper
           .childAt(0)
           .childAt(1)
@@ -188,7 +188,7 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} />)
 
       scrollAfterContext()
-      _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
+      _.forEach(['ui', 'sticky', 'bound', 'bottom'], (className) =>
         wrapper
           .childAt(0)
           .childAt(1)
@@ -293,7 +293,7 @@ describe('Sticky', () => {
       wrapper.setProps({ context: mockContextEl({ bottom: 0 }) })
       domEvent.scroll(window)
 
-      _.forEach(['ui', 'sticky', 'bound', 'bottom'], className =>
+      _.forEach(['ui', 'sticky', 'bound', 'bottom'], (className) =>
         wrapper
           .childAt(0)
           .childAt(1)
@@ -311,7 +311,7 @@ describe('Sticky', () => {
         .childAt(0)
         .childAt(1)
         .should.have.style('bottom', '30px')
-      _.forEach(['ui', 'sticky', 'fixed', 'bottom'], className =>
+      _.forEach(['ui', 'sticky', 'fixed', 'bottom'], (className) =>
         wrapper
           .childAt(0)
           .childAt(1)
@@ -334,7 +334,7 @@ describe('Sticky', () => {
       scrollAfterTrigger()
 
       // Component should stick again to the top
-      _.forEach(['ui', 'sticky', 'fixed', 'top'], className =>
+      _.forEach(['ui', 'sticky', 'fixed', 'top'], (className) =>
         wrapper
           .childAt(0)
           .childAt(1)
@@ -468,8 +468,8 @@ describe('Sticky', () => {
 
     it('is not called after unmount', (done) => {
       window.requestAnimationFrame.restore()
-      sandbox.stub(window, 'requestAnimationFrame').callsFake(fn => setTimeout(fn, 0))
-      sandbox.stub(window, 'cancelAnimationFrame').callsFake(id => clearTimeout(id))
+      sandbox.stub(window, 'requestAnimationFrame').callsFake((fn) => setTimeout(fn, 0))
+      sandbox.stub(window, 'cancelAnimationFrame').callsFake((id) => clearTimeout(id))
 
       const instance = wrapperMount(<Sticky />).instance()
       const update = sandbox.spy(instance, 'update')

@@ -12,7 +12,8 @@ export default class PaginationExampleCustomization extends Component {
     totalPages: 50,
   }
 
-  handleCheckboxChange = (e, { checked, name }) => this.setState({ [name]: checked })
+  handleCheckboxChange = (e, { checked, name }) =>
+    this.setState({ [name]: checked })
 
   handleInputChange = (e, { name, value }) => this.setState({ [name]: value })
 

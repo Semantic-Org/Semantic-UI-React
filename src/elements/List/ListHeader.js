@@ -40,6 +40,6 @@ ListHeader.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ListHeader.create = createShorthandFactory(ListHeader, content => ({ content }))
+ListHeader.create = createShorthandFactory(ListHeader, (content) => ({ content }))
 
 export default ListHeader

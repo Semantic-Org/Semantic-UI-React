@@ -13,7 +13,7 @@ class DropdownExampleAdditionLabelComponent extends Component {
   state = { options }
 
   handleAddition = (e, { value }) => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       options: [{ text: value, value }, ...prevState.options],
     }))
   }

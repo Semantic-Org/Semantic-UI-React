@@ -40,6 +40,6 @@ MessageHeader.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-MessageHeader.create = createShorthandFactory(MessageHeader, val => ({ content: val }))
+MessageHeader.create = createShorthandFactory(MessageHeader, (val) => ({ content: val }))
 
 export default MessageHeader

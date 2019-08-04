@@ -3,7 +3,8 @@ import { Button } from 'semantic-ui-react'
 
 class ButtonExampleToggle extends Component {
   state = {}
-  handleClick = () => this.setState(prevState => ({ active: !prevState.active }))
+  handleClick = () =>
+    this.setState((prevState) => ({ active: !prevState.active }))
 
   render() {
     const { active } = this.state

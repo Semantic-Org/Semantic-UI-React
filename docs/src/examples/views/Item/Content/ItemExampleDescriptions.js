@@ -15,7 +15,10 @@ const ItemExampleDescriptions = () => (
         <Item.Header as='a'>Cute Dog</Item.Header>
         <Item.Description>
           <p>{description}</p>
-          <p>Many people also have their own barometers for what makes a cute dog.</p>
+          <p>
+            Many people also have their own barometers for what makes a cute
+            dog.
+          </p>
         </Item.Description>
       </Item.Content>
     </Item>
