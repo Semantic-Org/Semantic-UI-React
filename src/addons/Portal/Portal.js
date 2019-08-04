@@ -161,11 +161,11 @@ class Portal extends Component {
     }
   }
 
-  handleEscape = (e) => {
+  handleDocumentKeyDown = (e) => {
     if (!this.props.closeOnEscape) return
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
 
-    debug('handleEscape()')
+    debug('handleDocumentKeyDown()')
     e.stopPropagation()
     this.close(e)
   }
@@ -338,13 +338,13 @@ class Portal extends Component {
           <PortalInner
             innerRef={this.contentRef}
             mountNode={mountNode}
+            onDocumentClick={this.handleDocumentClick}
+            onDocumentMouseDown={this.handleDocumentMouseDown}
+            onDocumentKeyDown={this.handleDocumentKeyDown}
+            onMouseEnter={this.handlePortalMouseEnter}
+            onMouseLeave={this.handlePortalMouseLeave}
             onMount={this.handleMount}
             onUnmount={this.handleUnmount}
-            onPortalMouseLeave={this.handlePortalMouseLeave}
-            onPortalMouseEnter={this.handlePortalMouseEnter}
-            onDocumentMouseDown={this.handleDocumentMouseDown}
-            onDocumentClick={this.handleDocumentClick}
-            onEscape={this.handleEscape}
           >
             {children}
           </PortalInner>
