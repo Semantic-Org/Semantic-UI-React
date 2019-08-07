@@ -27,8 +27,8 @@ const DividerTypesExamples = () => (
       examplePath='elements/Divider/Types/DividerExampleVertical'
     >
       <Message>
-        Vertical dividers requires <code>position: relative</code> on the element that you would
-        like to contain the divider.
+        Vertical dividers requires <code>position: relative</code> on the
+        element that you would like to contain the divider.
       </Message>
       <Message warning>
         Due to a change in W3C implementation of{' '}
@@ -39,14 +39,15 @@ const DividerTypesExamples = () => (
         >
           absolutely positioned elements in flex containers
         </a>{' '}
-        vertical dividers now currently only support 50/50 splits automatically, and only if not
-        positioned <b>as direct children of flex containers</b> (like grid).
+        vertical dividers now currently only support 50/50 splits automatically,
+        and only if not positioned <b>as direct children of flex containers</b>{' '}
+        (like grid).
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Divider/Types/DividerExampleVerticalForm'>
       <Message info>
-        A vertical divider will automatically swap to a horizontal divider at mobile resolutions
-        when used inside a <code>stackable Grid</code>.
+        A vertical divider will automatically swap to a horizontal divider at
+        mobile resolutions when used inside a <code>stackable Grid</code>.
       </Message>
     </ComponentExample>
 
@@ -56,12 +57,12 @@ const DividerTypesExamples = () => (
       examplePath='elements/Divider/Types/DividerExampleHorizontal'
     >
       <Message>
-        Horizontal dividers can also be used in combination with headers and icons to create
-        different styles of dividers.
+        Horizontal dividers can also be used in combination with headers and
+        icons to create different styles of dividers.
       </Message>
       <Message info>
-        Dividers will automatically vary the size of their dividing rules to match the length of
-        your text.
+        Dividers will automatically vary the size of their dividing rules to
+        match the length of your text.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Divider/Types/DividerExampleHorizontalTable' />

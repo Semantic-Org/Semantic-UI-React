@@ -12,8 +12,7 @@ const ListExampleInverted = () => (
       </List.Item>
       <List.Item>
         <List.Content>
-          <List.Header>Poodle</List.Header>
-          A poodle, its pretty basic
+          <List.Header>Poodle</List.Header>A poodle, its pretty basic
         </List.Content>
       </List.Item>
       <List.Item>

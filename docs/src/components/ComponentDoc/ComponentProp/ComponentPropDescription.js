@@ -9,6 +9,6 @@ export default class ComponentPropDescription extends PureComponent {
 
   render() {
     const { description } = this.props
-    return <p>{_.map(description, line => [line, <br key={line} />])}</p>
+    return <p>{_.map(description, (line) => [line, <br key={line} />])}</p>
   }
 }

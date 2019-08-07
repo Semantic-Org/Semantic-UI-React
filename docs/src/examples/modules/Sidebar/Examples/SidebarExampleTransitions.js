@@ -13,7 +13,12 @@ import {
 } from 'semantic-ui-react'
 
 const HorizontalSidebar = ({ animation, direction, visible }) => (
-  <Sidebar as={Segment} animation={animation} direction={direction} visible={visible}>
+  <Sidebar
+    as={Segment}
+    animation={animation}
+    direction={direction}
+    visible={visible}
+  >
     <Grid textAlign='center'>
       <Grid.Row columns={1}>
         <Grid.Column>
@@ -81,12 +86,13 @@ export default class SidebarExampleTransitions extends Component {
     visible: false,
   }
 
-  handleAnimationChange = animation => () =>
-    this.setState(prevState => ({ animation, visible: !prevState.visible }))
+  handleAnimationChange = (animation) => () =>
+    this.setState((prevState) => ({ animation, visible: !prevState.visible }))
 
   handleDimmedChange = (e, { checked }) => this.setState({ dimmed: checked })
 
-  handleDirectionChange = direction => () => this.setState({ direction, visible: false })
+  handleDirectionChange = (direction) => () =>
+    this.setState({ direction, visible: false })
 
   render() {
     const { animation, dimmed, direction, visible } = this.state
@@ -94,20 +100,37 @@ export default class SidebarExampleTransitions extends Component {
 
     return (
       <div>
-        <Checkbox checked={dimmed} label='Dim Page' onChange={this.handleDimmedChange} toggle />
+        <Checkbox
+          checked={dimmed}
+          label='Dim Page'
+          onChange={this.handleDimmedChange}
+          toggle
+        />
 
         <Header as='h5'>Direction</Header>
         <Button.Group>
-          <Button active={direction === 'left'} onClick={this.handleDirectionChange('left')}>
+          <Button
+            active={direction === 'left'}
+            onClick={this.handleDirectionChange('left')}
+          >
             Left
           </Button>
-          <Button active={direction === 'right'} onClick={this.handleDirectionChange('right')}>
+          <Button
+            active={direction === 'right'}
+            onClick={this.handleDirectionChange('right')}
+          >
             Right
           </Button>
-          <Button active={direction === 'top'} onClick={this.handleDirectionChange('top')}>
+          <Button
+            active={direction === 'top'}
+            onClick={this.handleDirectionChange('top')}
+          >
             Top
           </Button>
-          <Button active={direction === 'bottom'} onClick={this.handleDirectionChange('bottom')}>
+          <Button
+            active={direction === 'bottom'}
+            onClick={this.handleDirectionChange('bottom')}
+          >
             Bottom
           </Button>
         </Button.Group>
@@ -115,25 +138,44 @@ export default class SidebarExampleTransitions extends Component {
         <Header as='h5'>All Direction Animations</Header>
         <Button onClick={this.handleAnimationChange('overlay')}>Overlay</Button>
         <Button onClick={this.handleAnimationChange('push')}>Push</Button>
-        <Button onClick={this.handleAnimationChange('scale down')}>Scale Down</Button>
+        <Button onClick={this.handleAnimationChange('scale down')}>
+          Scale Down
+        </Button>
 
         <Header as='h5'>Vertical-Only Animations</Header>
-        <Button disabled={vertical} onClick={this.handleAnimationChange('uncover')}>
+        <Button
+          disabled={vertical}
+          onClick={this.handleAnimationChange('uncover')}
+        >
           Uncover
         </Button>
-        <Button disabled={vertical} onClick={this.handleAnimationChange('slide along')}>
+        <Button
+          disabled={vertical}
+          onClick={this.handleAnimationChange('slide along')}
+        >
           Slide Along
         </Button>
-        <Button disabled={vertical} onClick={this.handleAnimationChange('slide out')}>
+        <Button
+          disabled={vertical}
+          onClick={this.handleAnimationChange('slide out')}
+        >
           Slide Out
         </Button>
 
         <Sidebar.Pushable as={Segment}>
           {vertical ? (
-            <HorizontalSidebar animation={animation} direction={direction} visible={visible} />
+            <HorizontalSidebar
+              animation={animation}
+              direction={direction}
+              visible={visible}
+            />
           ) : null}
           {vertical ? null : (
-            <VerticalSidebar animation={animation} direction={direction} visible={visible} />
+            <VerticalSidebar
+              animation={animation}
+              direction={direction}
+              visible={visible}
+            />
           )}
 
           <Sidebar.Pusher dimmed={dimmed && visible}>

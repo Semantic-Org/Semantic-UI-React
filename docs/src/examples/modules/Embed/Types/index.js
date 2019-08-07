@@ -22,8 +22,9 @@ const EmbedTypesExamples = () => (
       examplePath='modules/Embed/Types/EmbedExampleCustom'
     >
       <Message info>
-        Embeds use an intrinsic aspect ratios to embed content responsively. Content will preserve
-        their intrinsic aspect ratio for all browser sizes responsively
+        Embeds use an intrinsic aspect ratios to embed content responsively.
+        Content will preserve their intrinsic aspect ratio for all browser sizes
+        responsively
       </Message>
     </ComponentExample>
   </ExampleSection>

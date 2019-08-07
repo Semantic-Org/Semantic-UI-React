@@ -15,10 +15,12 @@ const TransitionTypesExamples = () => (
         <p>Do not unmount a Transition child or else it cannot be animated.</p>
         <Message.List>
           <Message.Item>
-            Use the <code>unmountOnHide</code> prop to unmount the child after the animation exits.
+            Use the <code>unmountOnHide</code> prop to unmount the child after
+            the animation exits.
           </Message.Item>
           <Message.Item>
-            Use a <code>Transition.Group</code> to animate children as they mount and unmount.
+            Use a <code>Transition.Group</code> to animate children as they
+            mount and unmount.
           </Message.Item>
         </Message.List>
       </Message>

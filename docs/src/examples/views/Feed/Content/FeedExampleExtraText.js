@@ -10,7 +10,9 @@ const FeedExampleExtraText = () => (
         <Feed.Summary>
           <a>Laura Faucet</a> created a post
         </Feed.Summary>
-        <Feed.Extra text>Have you seen what's going on in Israel? Can you believe it.</Feed.Extra>
+        <Feed.Extra text>
+          Have you seen what's going on in Israel? Can you believe it.
+        </Feed.Extra>
       </Feed.Content>
     </Feed.Event>
   </Feed>

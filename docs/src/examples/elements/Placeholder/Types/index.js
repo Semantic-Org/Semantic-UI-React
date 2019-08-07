@@ -13,9 +13,9 @@ const PlaceholderTypesExamples = () => (
       suiVersion='2.4.0'
     >
       <Message info>
-        Placeholders can include <code>PlaceholderParagraph</code>, <code>PlaceholderHeader</code>,
-        and <code>PlaceholderImage</code> to let you format the loaders to emulate the content being
-        loaded.
+        Placeholders can include <code>PlaceholderParagraph</code>,{' '}
+        <code>PlaceholderHeader</code>, and <code>PlaceholderImage</code> to let
+        you format the loaders to emulate the content being loaded.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Placeholder/Types/PlaceholderExampleGrid' />

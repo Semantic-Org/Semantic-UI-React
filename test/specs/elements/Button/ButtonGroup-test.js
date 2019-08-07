@@ -30,7 +30,12 @@ describe('ButtonGroup', () => {
   common.propKeyOnlyToClassName(ButtonGroup, 'toggle')
   common.propKeyOnlyToClassName(ButtonGroup, 'vertical')
 
-  common.propKeyOrValueAndKeyToClassName(ButtonGroup, 'attached', ['left', 'right', 'top', 'bottom'])
+  common.propKeyOrValueAndKeyToClassName(ButtonGroup, 'attached', [
+    'left',
+    'right',
+    'top',
+    'bottom',
+  ])
 
   common.propValueOnlyToClassName(ButtonGroup, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(ButtonGroup, 'size', SUI.SIZES)

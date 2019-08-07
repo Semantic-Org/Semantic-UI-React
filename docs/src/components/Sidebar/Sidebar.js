@@ -218,7 +218,7 @@ class Sidebar extends Component {
                   Get Started
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/augmentation' activeClassName='active'>
-                  Augmentation
+                  Composition
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/shorthand-props' activeClassName='active'>
                   Shorthand Props

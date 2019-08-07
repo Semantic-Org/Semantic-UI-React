@@ -21,7 +21,12 @@ export default class EmbedExampleActive extends Component {
 
         <Divider hidden />
 
-        <Button content='Activate' icon='bomb' labelPosition='left' onClick={this.handleClick} />
+        <Button
+          content='Activate'
+          icon='bomb'
+          labelPosition='left'
+          onClick={this.handleClick}
+        />
       </div>
     )
   }

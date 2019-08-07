@@ -12,14 +12,14 @@ describe('StepGroup', () => {
   common.hasUIClassName(StepGroup)
   common.rendersChildren(StepGroup)
 
-  common.implementsWidthProp(StepGroup, [
-    ..._.keys(numberMap),
-    ..._.keys(numberMap).map(Number),
-    ..._.values(numberMap),
-  ], {
-    canEqual: false,
-    propKey: 'widths',
-  })
+  common.implementsWidthProp(
+    StepGroup,
+    [..._.keys(numberMap), ..._.keys(numberMap).map(Number), ..._.values(numberMap)],
+    {
+      canEqual: false,
+      propKey: 'widths',
+    },
+  )
 
   common.propKeyAndValueToClassName(StepGroup, 'stackable', ['tablet'])
 

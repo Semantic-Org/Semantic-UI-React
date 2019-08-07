@@ -16,13 +16,13 @@ describe('FeedEvent', () => {
     autoGenerateKey: false,
     propKey: 'icon',
     ShorthandComponent: FeedLabel,
-    mapValueToProps: val => ({ icon: val }),
+    mapValueToProps: (val) => ({ icon: val }),
   })
   common.implementsShorthandProp(FeedEvent, {
     autoGenerateKey: false,
     propKey: 'image',
     ShorthandComponent: FeedLabel,
-    mapValueToProps: val => ({ image: val }),
+    mapValueToProps: (val) => ({ image: val }),
   })
 
   describe('content props', () => {

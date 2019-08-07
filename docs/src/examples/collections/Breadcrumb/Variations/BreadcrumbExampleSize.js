@@ -5,7 +5,7 @@ const sizes = ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
 
 const BreadcrumbExampleSize = () => (
   <React.Fragment>
-    {sizes.map(size => (
+    {sizes.map((size) => (
       <React.Fragment key={size}>
         <Breadcrumb size={size}>
           <Breadcrumb.Section link>Home</Breadcrumb.Section>

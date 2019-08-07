@@ -47,7 +47,13 @@ const TableExampleFullWidth = () => (
       <Table.Row>
         <Table.HeaderCell />
         <Table.HeaderCell colSpan='4'>
-          <Button floated='right' icon labelPosition='left' primary size='small'>
+          <Button
+            floated='right'
+            icon
+            labelPosition='left'
+            primary
+            size='small'
+          >
             <Icon name='user' /> Add User
           </Button>
           <Button size='small'>Approve</Button>

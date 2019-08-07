@@ -4,7 +4,8 @@ import { Rating } from 'semantic-ui-react'
 export default class RatingExampleOnRate extends Component {
   state = {}
 
-  handleRate = (e, { rating, maxRating }) => this.setState({ rating, maxRating })
+  handleRate = (e, { rating, maxRating }) =>
+    this.setState({ rating, maxRating })
 
   render() {
     return (

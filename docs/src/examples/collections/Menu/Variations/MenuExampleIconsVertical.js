@@ -11,7 +11,11 @@ export default class MenuExampleIconsVertical extends Component {
 
     return (
       <Menu icon vertical>
-        <Menu.Item name='gamepad' active={activeItem === 'gamepad'} onClick={this.handleItemClick}>
+        <Menu.Item
+          name='gamepad'
+          active={activeItem === 'gamepad'}
+          onClick={this.handleItemClick}
+        >
           <Icon name='gamepad' />
         </Menu.Item>
 

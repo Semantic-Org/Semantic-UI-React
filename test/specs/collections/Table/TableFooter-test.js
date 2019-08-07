@@ -7,7 +7,6 @@ describe('TableFooter', () => {
   common.isConformant(TableFooter)
 
   it('renders as a tfoot by default', () => {
-    shallow(<TableFooter />)
-      .should.have.tagName('tfoot')
+    shallow(<TableFooter />).should.have.tagName('tfoot')
   })
 })

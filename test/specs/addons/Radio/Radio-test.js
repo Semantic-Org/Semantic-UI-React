@@ -15,12 +15,10 @@ describe('Radio', () => {
   })
 
   it('is not a radio when slider', () => {
-    shallow(<Radio slider />)
-      .should.not.have.prop('radio')
+    shallow(<Radio slider />).should.not.have.prop('radio')
   })
 
   it('is not a radio when toggle', () => {
-    shallow(<Radio toggle />)
-      .should.not.have.prop('radio')
+    shallow(<Radio toggle />).should.not.have.prop('radio')
   })
 })

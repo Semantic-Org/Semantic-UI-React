@@ -334,11 +334,11 @@ describe('Rating', () => {
     it('sets icons tabIndex to -1 to prevent focus when element is disabled', () => {
       shallow(<Rating maxRating={3} />)
         .find('RatingIcon')
-        .forEach(node => node.should.have.prop('tabIndex', 0))
+        .forEach((node) => node.should.have.prop('tabIndex', 0))
 
       shallow(<Rating disabled maxRating={3} />)
         .find('RatingIcon')
-        .forEach(node => node.should.have.prop('tabIndex', -1))
+        .forEach((node) => node.should.have.prop('tabIndex', -1))
     })
 
     it('sets Rating element tabIndex to 0 to allow focusing the whole group when disabled', () => {

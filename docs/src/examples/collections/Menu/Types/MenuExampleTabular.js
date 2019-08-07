@@ -11,8 +11,16 @@ export default class MenuExampleTabular extends Component {
 
     return (
       <Menu tabular>
-        <Menu.Item name='bio' active={activeItem === 'bio'} onClick={this.handleItemClick} />
-        <Menu.Item name='photos' active={activeItem === 'photos'} onClick={this.handleItemClick} />
+        <Menu.Item
+          name='bio'
+          active={activeItem === 'bio'}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name='photos'
+          active={activeItem === 'photos'}
+          onClick={this.handleItemClick}
+        />
       </Menu>
     )
   }

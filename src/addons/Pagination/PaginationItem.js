@@ -77,6 +77,6 @@ class PaginationItem extends Component {
   }
 }
 
-PaginationItem.create = createShorthandFactory(PaginationItem, content => ({ content }))
+PaginationItem.create = createShorthandFactory(PaginationItem, (content) => ({ content }))
 
 export default PaginationItem
