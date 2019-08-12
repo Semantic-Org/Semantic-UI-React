@@ -167,7 +167,7 @@ export default class Checkbox extends Component {
     if (this.isClickFromMouse) {
       this.isClickFromMouse = false
 
-      if (isLabelClick && !hasId) {
+      if (isLabelClick) {
         this.handleChange(e)
       }
 

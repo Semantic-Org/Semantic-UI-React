@@ -426,7 +426,7 @@ function MyComponent(props) {
 }
 ```
 
-If you're component requires event handlers, it is a stateful class component. Want to know [why][15]?
+If your component requires event handlers, it is a stateful class component. Want to know [why][15]?
 
 ```js
 class MyComponent extends Component {
