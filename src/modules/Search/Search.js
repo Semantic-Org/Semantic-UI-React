@@ -191,7 +191,8 @@ export default class Search extends Component {
   static Result = SearchResult
   static Results = SearchResults
 
-  componentWillMount() {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillMount() {
     debug('componentWillMount()')
     const { open, value } = this.state
 
@@ -199,8 +200,9 @@ export default class Search extends Component {
     if (open) this.open()
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps)
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    super.UNSAFE_componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
     debug('changed props:', objectDiff(nextProps, this.props))
 

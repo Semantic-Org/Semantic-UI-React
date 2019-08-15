@@ -58,7 +58,8 @@ export default class TransitionGroup extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     debug('componentWillReceiveProps()')
 
     const { children: prevMapping } = this.state

@@ -120,7 +120,8 @@ export default class Transition extends Component {
     this.updateStatus()
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     debug('componentWillReceiveProps()')
 
     const { current: status, next } = this.computeStatuses(nextProps)

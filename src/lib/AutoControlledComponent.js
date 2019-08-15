@@ -162,7 +162,8 @@ export default class AutoControlledComponent extends Component {
     this.state = { ...state, ...initialAutoControlledState }
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { autoControlledProps } = this.constructor
 
     // Solve the next state for autoControlledProps
