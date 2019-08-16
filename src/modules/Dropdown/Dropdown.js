@@ -391,7 +391,8 @@ export default class Dropdown extends Component {
     return { focus: false, searchQuery: '' }
   }
 
-  componentWillMount() {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillMount() {
     debug('componentWillMount()')
     const { open, value } = this.state
 
@@ -403,8 +404,9 @@ export default class Dropdown extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps)
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    super.UNSAFE_componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
     debug('to props:', objectDiff(this.props, nextProps))
 

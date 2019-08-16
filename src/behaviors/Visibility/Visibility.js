@@ -188,7 +188,8 @@ export default class Visibility extends Component {
   // Lifecycle
   // ----------------------------------------
 
-  componentWillReceiveProps({ continuous, once, context, updateOn }) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps({ continuous, once, context, updateOn }) {
     const cleanHappened =
       continuous !== this.props.continuous ||
       once !== this.props.once ||

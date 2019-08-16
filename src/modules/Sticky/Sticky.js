@@ -104,7 +104,8 @@ export default class Sticky extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { active: current, scrollContext: currentScrollContext } = this.props
     const { active: next, scrollContext: nextScrollContext } = nextProps
 
