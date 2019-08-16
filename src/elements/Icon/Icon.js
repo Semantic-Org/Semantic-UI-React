@@ -48,7 +48,7 @@ class Icon extends PureComponent {
     /** Fitted, without space to left or right of Icon. */
     fitted: PropTypes.bool,
 
-    /** Icon can flipped. */
+    /** Icon can be flipped. */
     flipped: PropTypes.oneOf(['horizontally', 'vertically']),
 
     /** Formatted to have its colors inverted for contrast. */
