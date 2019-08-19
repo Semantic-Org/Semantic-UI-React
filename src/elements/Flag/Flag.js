@@ -510,7 +510,7 @@ export const names = [
 class Flag extends PureComponent {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Additional classes. */
     className: PropTypes.string,

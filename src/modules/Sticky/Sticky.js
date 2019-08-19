@@ -18,7 +18,7 @@ import {
 export default class Sticky extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A Sticky can be active. */
     active: PropTypes.bool,

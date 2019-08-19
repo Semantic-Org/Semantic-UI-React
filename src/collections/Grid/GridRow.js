@@ -57,7 +57,7 @@ function GridRow(props) {
 
 GridRow.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A row can have its columns centered. */
   centered: PropTypes.bool,

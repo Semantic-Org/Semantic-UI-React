@@ -87,7 +87,7 @@ Segment.Inline = SegmentInline
 
 Segment.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Attach segment to other content, like a header. */
   attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['top', 'bottom'])]),

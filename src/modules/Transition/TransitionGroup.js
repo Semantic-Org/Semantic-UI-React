@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { cloneElement, Fragment } from 'react'
 
 import {
-  customPropTypes,
   getChildMapping,
   getElementType,
   getUnhandledProps,
@@ -21,7 +20,7 @@ const debug = makeDebugger('transition_group')
 export default class TransitionGroup extends React.Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Named animation event to used. Must be defined in CSS. */
     animation: PropTypes.oneOfType([PropTypes.oneOf(SUI.TRANSITIONS), PropTypes.string]),

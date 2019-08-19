@@ -21,7 +21,7 @@ import TabPane from './TabPane'
 class Tab extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** The initial activeIndex. */
     defaultActiveIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

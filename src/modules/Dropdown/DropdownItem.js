@@ -23,7 +23,7 @@ import Label from '../../elements/Label'
 class DropdownItem extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Style as the currently chosen item. */
     active: PropTypes.bool,

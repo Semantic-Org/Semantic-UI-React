@@ -30,7 +30,7 @@ import ButtonOr from './ButtonOr'
 class Button extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A button can show it is currently the active user selection. */
     active: PropTypes.bool,

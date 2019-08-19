@@ -5,7 +5,6 @@ import React from 'react'
 
 import {
   AutoControlledComponent as Component,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   SUI,
@@ -19,7 +18,7 @@ import RatingIcon from './RatingIcon'
 export default class Rating extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Additional classes. */
     className: PropTypes.string,

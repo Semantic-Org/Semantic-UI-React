@@ -86,7 +86,7 @@ function ButtonGroup(props) {
 
 ButtonGroup.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Groups can be attached to other content. */
   attached: PropTypes.oneOfType([

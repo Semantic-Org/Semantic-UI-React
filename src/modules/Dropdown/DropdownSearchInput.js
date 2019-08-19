@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { createShorthandFactory, customPropTypes, getUnhandledProps } from '../../lib'
+import { createShorthandFactory, getUnhandledProps } from '../../lib'
 
 /**
  * A search item sub-component for Dropdown component.
@@ -11,7 +11,7 @@ import { createShorthandFactory, customPropTypes, getUnhandledProps } from '../.
 class DropdownSearchInput extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** An input can have the auto complete. */
     autoComplete: PropTypes.string,

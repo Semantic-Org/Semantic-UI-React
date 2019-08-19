@@ -4,7 +4,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { customPropTypes, getElementType, getUnhandledProps, useKeyOnly } from '../../lib'
+import { getElementType, getUnhandledProps, useKeyOnly } from '../../lib'
 
 /**
  * An internal icon sub-component for Rating component
@@ -12,7 +12,7 @@ import { customPropTypes, getElementType, getUnhandledProps, useKeyOnly } from '
 export default class RatingIcon extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Indicates activity of an icon. */
     active: PropTypes.bool,

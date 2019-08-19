@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
-import { customPropTypes, getUnhandledProps } from '../../lib'
+import { getUnhandledProps } from '../../lib'
 import TableHeader from './TableHeader'
 
 /**
@@ -15,7 +16,7 @@ function TableFooter(props) {
 
 TableFooter.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 }
 
 TableFooter.defaultProps = {

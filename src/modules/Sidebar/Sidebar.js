@@ -22,7 +22,7 @@ import SidebarPusher from './SidebarPusher'
 class Sidebar extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Animation style. */
     animation: PropTypes.oneOf([

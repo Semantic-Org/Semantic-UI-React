@@ -33,7 +33,7 @@ const debug = makeDebugger('search')
 export default class Search extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     // ------------------------------------
     // Behavior

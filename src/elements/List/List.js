@@ -27,7 +27,7 @@ import ListList from './ListList'
 class List extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A list can animate to set the current item apart from the list. */
     animated: PropTypes.bool,

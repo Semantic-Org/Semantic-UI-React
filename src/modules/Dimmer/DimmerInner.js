@@ -20,7 +20,7 @@ import {
 export default class DimmerInner extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** An active dimmer will dim its parent container. */
     active: PropTypes.bool,

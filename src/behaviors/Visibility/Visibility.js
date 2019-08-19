@@ -5,7 +5,6 @@ import React, { Component, createRef } from 'react'
 import Ref from '../../addons/Ref'
 import {
   eventStack,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   normalizeOffset,
@@ -18,7 +17,7 @@ import {
 export default class Visibility extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Primary content. */
     children: PropTypes.node,

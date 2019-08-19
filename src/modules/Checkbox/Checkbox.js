@@ -26,7 +26,7 @@ const debug = makeDebugger('checkbox')
 export default class Checkbox extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Whether or not checkbox is checked. */
     checked: PropTypes.bool,
