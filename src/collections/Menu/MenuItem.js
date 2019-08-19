@@ -21,7 +21,7 @@ import Icon from '../../elements/Icon'
 export default class MenuItem extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A menu item can be active. */
     active: PropTypes.bool,

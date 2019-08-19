@@ -28,7 +28,7 @@ export default function PopupContent(props) {
 
 PopupContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** The content of the Popup */
   children: PropTypes.node,

@@ -19,7 +19,7 @@ import Icon from '../../elements/Icon'
 export default class AccordionTitle extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Whether or not the title is in the open state. */
     active: PropTypes.bool,

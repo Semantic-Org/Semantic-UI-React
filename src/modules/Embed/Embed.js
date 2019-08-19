@@ -19,7 +19,7 @@ import Icon from '../../elements/Icon'
 export default class Embed extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** An embed can be active. */
     active: PropTypes.bool,

@@ -71,13 +71,13 @@ TableRow.defaultProps = {
 
 TableRow.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A row can be active or selected by a user. */
   active: PropTypes.bool,
 
   /** An element type to render as (string or function). */
-  cellAs: customPropTypes.as,
+  cellAs: PropTypes.elementType,
 
   /** Shorthand array of props for TableCell. */
   cells: customPropTypes.collectionShorthand,

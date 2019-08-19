@@ -77,7 +77,7 @@ function StepGroup(props) {
 
 StepGroup.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Steps can be attached to other elements. */
   attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['top', 'bottom'])]),

@@ -40,7 +40,7 @@ const getKeyOrValue = (key, value) => (_.isNil(key) ? value : key)
 export default class Dropdown extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Label prefixed to an option added by a user. */
     additionLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),

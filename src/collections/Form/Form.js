@@ -3,14 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import {
-  customPropTypes,
-  getElementType,
-  getUnhandledProps,
-  SUI,
-  useKeyOnly,
-  useWidthProp,
-} from '../../lib'
+import { getElementType, getUnhandledProps, SUI, useKeyOnly, useWidthProp } from '../../lib'
 import FormButton from './FormButton'
 import FormCheckbox from './FormCheckbox'
 import FormDropdown from './FormDropdown'
@@ -35,7 +28,7 @@ import FormTextArea from './FormTextArea'
 class Form extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** The HTML form action */
     action: PropTypes.string,

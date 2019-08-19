@@ -2,7 +2,7 @@ import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A placeholder can contain have lines of text.
@@ -18,7 +18,7 @@ function PlaceholderLine(props) {
 
 PlaceholderLine.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Additional classes. */
   className: PropTypes.string,

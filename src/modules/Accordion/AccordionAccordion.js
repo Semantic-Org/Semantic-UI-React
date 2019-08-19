@@ -32,7 +32,7 @@ const warnIfPropsAreInvalid = (props, state) => {
 export default class AccordionAccordion extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Index of the currently active panel. */
     activeIndex: customPropTypes.every([

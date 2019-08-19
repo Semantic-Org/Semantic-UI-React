@@ -2,13 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import {
-  customPropTypes,
-  eventStack,
-  getElementType,
-  getUnhandledProps,
-  isBrowser,
-} from '../../lib'
+import { eventStack, getElementType, getUnhandledProps, isBrowser } from '../../lib'
 import isVisible from './lib/isVisible'
 
 /**
@@ -17,7 +11,7 @@ import isVisible from './lib/isVisible'
 export default class Responsive extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Primary content. */
     children: PropTypes.node,

@@ -18,7 +18,7 @@ import {
 export default class BreadcrumbSection extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Style as the currently active section. */
     active: PropTypes.bool,

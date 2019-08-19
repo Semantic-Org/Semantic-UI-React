@@ -37,7 +37,7 @@ function Container(props) {
 
 Container.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,

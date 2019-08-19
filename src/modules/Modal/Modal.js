@@ -36,7 +36,7 @@ const debug = makeDebugger('modal')
 class Modal extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
     actions: customPropTypes.itemShorthand,
