@@ -4,8 +4,7 @@ import { List } from 'semantic-ui-react'
 const ListExampleHeader = () => (
   <List>
     <List.Item>
-      <List.Header>New York City</List.Header>
-      A lovely city
+      <List.Header>New York City</List.Header>A lovely city
     </List.Item>
     <List.Item>
       <List.Header>Chicago</List.Header>

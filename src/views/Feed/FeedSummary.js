@@ -32,9 +32,9 @@ function FeedSummary(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedUser, val => ({ content: val }), user, { autoGenerateKey: false })}
+      {createShorthand(FeedUser, (val) => ({ content: val }), user, { autoGenerateKey: false })}
       {content}
-      {createShorthand(FeedDate, val => ({ content: val }), date, { autoGenerateKey: false })}
+      {createShorthand(FeedDate, (val) => ({ content: val }), date, { autoGenerateKey: false })}
     </ElementType>
   )
 }

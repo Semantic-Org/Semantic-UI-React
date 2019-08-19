@@ -7,6 +7,8 @@ const options = [
   { key: 'edit', text: 'Edit', value: 'edit' },
 ]
 
-const DropdownExampleUpward = () => <Dropdown upward floating options={options} text='File' />
+const DropdownExampleUpward = () => (
+  <Dropdown upward floating options={options} text='File' />
+)
 
 export default DropdownExampleUpward

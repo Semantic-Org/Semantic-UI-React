@@ -17,8 +17,8 @@ const handleClassNamesChange = (nodeRef, components) => {
   )
 
   if (nodeRef.current) {
-    _.forEach(forAdd, className => nodeRef.current.classList.add(className))
-    _.forEach(forRemoval, className => nodeRef.current.classList.remove(className))
+    _.forEach(forAdd, (className) => nodeRef.current.classList.add(className))
+    _.forEach(forRemoval, (className) => nodeRef.current.classList.remove(className))
   }
 
   prevClassNames.set(nodeRef, currentClassNames)

@@ -10,7 +10,6 @@ describe('TableBody', () => {
   })
 
   it('renders as a tbody by default', () => {
-    shallow(<TableBody />)
-      .should.have.tagName('tbody')
+    shallow(<TableBody />).should.have.tagName('tbody')
   })
 })

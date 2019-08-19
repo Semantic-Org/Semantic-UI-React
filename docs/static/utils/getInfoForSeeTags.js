@@ -11,7 +11,7 @@ import requireInfo from './requireInfo'
  */
 const getInfoForSeeTags = _.flow(
   _.get('docblock.tags'),
-  _.filter(tag => tag.title === 'see'),
+  _.filter((tag) => tag.title === 'see'),
   _.map((tag) => {
     const displayName = tag.description
     const referenceInfo = requireInfo(displayName)

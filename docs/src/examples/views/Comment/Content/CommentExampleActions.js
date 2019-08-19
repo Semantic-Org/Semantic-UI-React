@@ -8,7 +8,8 @@ const CommentExampleActions = () => (
       <Comment.Content>
         <Comment.Author>Tom Lukic</Comment.Author>
         <Comment.Text>
-          This will be great for business reports. I will definitely download this.
+          This will be great for business reports. I will definitely download
+          this.
         </Comment.Text>
         <Comment.Actions>
           <Comment.Action>Reply</Comment.Action>

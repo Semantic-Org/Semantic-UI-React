@@ -40,6 +40,6 @@ ListDescription.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ListDescription.create = createShorthandFactory(ListDescription, content => ({ content }))
+ListDescription.create = createShorthandFactory(ListDescription, (content) => ({ content }))
 
 export default ListDescription

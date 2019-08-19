@@ -50,12 +50,15 @@ describe('partitionHTMLProps', () => {
     })
 
     it('split aria props by default to rest when disabled', () => {
-      const [htmlProps, rest] = partitionHTMLProps({
-        'aria-atomic': false,
-        'aria-busy': true,
-        className: 'foo',
-        role: 'bar',
-      }, { includeAria: false })
+      const [htmlProps, rest] = partitionHTMLProps(
+        {
+          'aria-atomic': false,
+          'aria-busy': true,
+          className: 'foo',
+          role: 'bar',
+        },
+        { includeAria: false },
+      )
 
       htmlProps.should.deep.equal({})
       rest.should.deep.equal({

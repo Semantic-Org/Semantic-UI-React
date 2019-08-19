@@ -19,7 +19,7 @@ const colors = [
 
 const TableExampleInvertedColors = () => (
   <div>
-    {colors.map(color => (
+    {colors.map((color) => (
       <Table color={color} key={color} inverted>
         <Table.Header>
           <Table.Row>

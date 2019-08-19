@@ -76,7 +76,8 @@ export default class TransitionablePortal extends Component {
   // Lifecycle
   // ----------------------------------------
 
-  componentWillReceiveProps({ open }) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps({ open }) {
     debug('componentWillReceiveProps()', { open })
 
     this.setState({ portalOpen: open })

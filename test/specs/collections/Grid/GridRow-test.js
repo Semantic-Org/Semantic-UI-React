@@ -10,7 +10,12 @@ describe('GridRow', () => {
 
   common.implementsMultipleProp(GridRow, 'only', SUI.VISIBILITY)
   common.implementsMultipleProp(GridRow, 'reversed', [
-    'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
+    'computer',
+    'computer vertically',
+    'mobile',
+    'mobile vertically',
+    'tablet',
+    'tablet vertically',
   ])
   common.implementsTextAlignProp(GridRow)
   common.implementsVerticalAlignProp(GridRow)

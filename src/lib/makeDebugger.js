@@ -31,6 +31,6 @@ if (isBrowser() && process.env.NODE_ENV !== 'production' && process.env.NODE_ENV
  * debug('Some message')
  * @returns {Function}
  */
-const makeDebugger = namespace => debug(`semanticUIReact:${namespace}`)
+const makeDebugger = (namespace) => debug(`semanticUIReact:${namespace}`)
 
 export default makeDebugger

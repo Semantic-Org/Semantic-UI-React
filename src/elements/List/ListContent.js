@@ -73,6 +73,6 @@ ListContent.propTypes = {
   verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 }
 
-ListContent.create = createShorthandFactory(ListContent, content => ({ content }))
+ListContent.create = createShorthandFactory(ListContent, (content) => ({ content }))
 
 export default ListContent

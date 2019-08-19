@@ -40,6 +40,6 @@ ModalHeader.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ModalHeader.create = createShorthandFactory(ModalHeader, content => ({ content }))
+ModalHeader.create = createShorthandFactory(ModalHeader, (content) => ({ content }))
 
 export default ModalHeader

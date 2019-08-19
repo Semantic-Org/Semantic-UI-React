@@ -14,7 +14,8 @@ const subcomponentComparison = {
 }
 
 const componentPropComparison = {
-  shorthand: "<Form.Field label='Date' control={CustomCalendar} start='1' end='7' />",
+  shorthand:
+    "<Form.Field label='Date' control={CustomCalendar} start='1' end='7' />",
   longhand: `<Form.Field>
   <label>Date</label>
   <CustomCalendar start='1' end='7' />
@@ -22,7 +23,8 @@ const componentPropComparison = {
 }
 
 const htmlComparison = {
-  shorthand: "<Form.Field label='Quantity' control='input' type='number' max={5} />",
+  shorthand:
+    "<Form.Field label='Quantity' control='input' type='number' max={5} />",
   longhand: `<Form.Field>
   <label>Quantity</label>
   <input type='number' max={5} />

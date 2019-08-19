@@ -7,7 +7,8 @@ import { Children, isValidElement } from 'react'
  * @param {object} children Element's children
  * @return {object} Mapping of key to child
  */
-export const getChildMapping = children => _.keyBy(_.filter(Children.toArray(children), isValidElement), 'key')
+export const getChildMapping = (children) =>
+  _.keyBy(_.filter(Children.toArray(children), isValidElement), 'key')
 
 const getPendingKeys = (prev, next) => {
   const nextKeysPending = {}

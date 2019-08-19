@@ -120,7 +120,8 @@ export default class Transition extends Component {
     this.updateStatus()
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     debug('componentWillReceiveProps()')
 
     const { current: status, next } = this.computeStatuses(nextProps)
@@ -195,7 +196,9 @@ export default class Transition extends Component {
     const { animating, status } = this.state
 
     const childClasses = _.get(children, 'props.className')
-    const isDirectional = _.isNil(directional) ? _.includes(SUI.DIRECTIONAL_TRANSITIONS, animation) : directional
+    const isDirectional = _.isNil(directional)
+      ? _.includes(SUI.DIRECTIONAL_TRANSITIONS, animation)
+      : directional
 
     if (isDirectional) {
       return cx(

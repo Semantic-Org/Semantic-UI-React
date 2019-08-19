@@ -6,7 +6,7 @@ const SegmentExampleSizes = () => {
 
   return (
     <div>
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <Segment key={size} size={size}>
           It's a {size} segment
         </Segment>

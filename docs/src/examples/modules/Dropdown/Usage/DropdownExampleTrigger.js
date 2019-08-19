@@ -26,6 +26,8 @@ const options = [
   { key: 'sign-out', text: 'Sign Out' },
 ]
 
-const DropdownTriggerExample = () => <Dropdown trigger={trigger} options={options} />
+const DropdownTriggerExample = () => (
+  <Dropdown trigger={trigger} options={options} />
+)
 
 export default DropdownTriggerExample

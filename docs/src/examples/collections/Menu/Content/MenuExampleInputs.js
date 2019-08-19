@@ -8,7 +8,10 @@ const MenuExampleInputs = () => (
     </Menu.Item>
 
     <Menu.Item position='right'>
-      <Input action={{ type: 'submit', content: 'Go' }} placeholder='Navigate to...' />
+      <Input
+        action={{ type: 'submit', content: 'Go' }}
+        placeholder='Navigate to...'
+      />
     </Menu.Item>
   </Menu>
 )

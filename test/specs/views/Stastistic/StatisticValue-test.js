@@ -8,4 +8,3 @@ describe('StatisticValue', () => {
 
   common.propKeyOnlyToClassName(StatisticValue, 'text')
 })
-

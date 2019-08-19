@@ -14,7 +14,6 @@ describe('Container', () => {
   common.implementsTextAlignProp(Container)
 
   it('renders a <div /> element', () => {
-    shallow(<Container />)
-      .should.have.tagName('div')
+    shallow(<Container />).should.have.tagName('div')
   })
 })

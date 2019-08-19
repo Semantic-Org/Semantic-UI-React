@@ -11,9 +11,21 @@ export default class MenuExampleEvenlyDivided extends Component {
 
     return (
       <Menu fluid widths={3}>
-        <Menu.Item name='buy' active={activeItem === 'buy'} onClick={this.handleItemClick} />
-        <Menu.Item name='sell' active={activeItem === 'sell'} onClick={this.handleItemClick} />
-        <Menu.Item name='rent' active={activeItem === 'rent'} onClick={this.handleItemClick} />
+        <Menu.Item
+          name='buy'
+          active={activeItem === 'buy'}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name='sell'
+          active={activeItem === 'sell'}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name='rent'
+          active={activeItem === 'rent'}
+          onClick={this.handleItemClick}
+        />
       </Menu>
     )
   }

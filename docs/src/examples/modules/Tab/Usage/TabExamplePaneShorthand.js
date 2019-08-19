@@ -2,10 +2,17 @@ import React from 'react'
 import { List, Label, Tab } from 'semantic-ui-react'
 
 const panes = [
-  { menuItem: 'Tab 1', pane: { key: 'tab1', content: 'This is massive tab', size: 'massive' } },
+  {
+    menuItem: 'Tab 1',
+    pane: { key: 'tab1', content: 'This is massive tab', size: 'massive' },
+  },
   {
     menuItem: 'Tab 2',
-    pane: { key: 'tab2', content: 'This tab has a center aligned text', textAlign: 'center' },
+    pane: {
+      key: 'tab2',
+      content: 'This tab has a center aligned text',
+      textAlign: 'center',
+    },
   },
   {
     menuItem: 'Tab 3',
@@ -34,6 +41,8 @@ const panes = [
   },
 ]
 
-const TabExampleContentShorthand = () => <Tab panes={panes} renderActiveOnly={false} />
+const TabExampleContentShorthand = () => (
+  <Tab panes={panes} renderActiveOnly={false} />
+)
 
 export default TabExampleContentShorthand

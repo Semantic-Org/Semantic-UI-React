@@ -2,7 +2,7 @@
  * @param {number} pageNumber
  * @return {Object}
  */
-export const createEllipsisItem = pageNumber => ({
+export const createEllipsisItem = (pageNumber) => ({
   active: false,
   type: 'ellipsisItem',
   value: pageNumber,
@@ -21,7 +21,7 @@ export const createFirstPage = () => ({
  * @param {number} activePage
  * @return {Object}
  */
-export const createPrevItem = activePage => ({
+export const createPrevItem = (activePage) => ({
   active: false,
   type: 'prevItem',
   value: Math.max(1, activePage - 1),
@@ -31,7 +31,7 @@ export const createPrevItem = activePage => ({
  * @param {number} activePage
  * @return {function}
  */
-export const createPageFactory = activePage => pageNumber => ({
+export const createPageFactory = (activePage) => (pageNumber) => ({
   active: activePage === pageNumber,
   type: 'pageItem',
   value: pageNumber,
@@ -52,7 +52,7 @@ export const createNextItem = (activePage, totalPages) => ({
  * @param {number} totalPages
  * @return {Object}
  */
-export const createLastItem = totalPages => ({
+export const createLastItem = (totalPages) => ({
   active: false,
   type: 'lastItem',
   value: totalPages,

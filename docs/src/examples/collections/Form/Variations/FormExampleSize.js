@@ -5,11 +5,19 @@ const sizes = ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
 
 const FormExampleSize = () => (
   <div>
-    {sizes.map(size => (
+    {sizes.map((size) => (
       <Form size={size} key={size}>
         <Form.Group widths='equal'>
-          <Form.Field label='First name' control='input' placeholder='First name' />
-          <Form.Field label='Last name' control='input' placeholder='Last name' />
+          <Form.Field
+            label='First name'
+            control='input'
+            placeholder='First name'
+          />
+          <Form.Field
+            label='Last name'
+            control='input'
+            placeholder='Last name'
+          />
         </Form.Group>
         <Button type='submit'>Submit</Button>
         <Divider hidden />

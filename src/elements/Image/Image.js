@@ -183,6 +183,6 @@ Image.defaultProps = {
   ui: true,
 }
 
-Image.create = createShorthandFactory(Image, value => ({ src: value }))
+Image.create = createShorthandFactory(Image, (value) => ({ src: value }))
 
 export default Image

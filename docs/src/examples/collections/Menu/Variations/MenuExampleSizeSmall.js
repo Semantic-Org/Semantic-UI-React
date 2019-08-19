@@ -11,7 +11,11 @@ export default class MenuExampleSizeSmall extends Component {
 
     return (
       <Menu size='small'>
-        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+        <Menu.Item
+          name='home'
+          active={activeItem === 'home'}
+          onClick={this.handleItemClick}
+        />
         <Menu.Item
           name='messages'
           active={activeItem === 'messages'}

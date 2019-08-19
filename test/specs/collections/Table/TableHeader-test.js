@@ -12,7 +12,6 @@ describe('TableHeader', () => {
   })
 
   it('renders as a thead by default', () => {
-    shallow(<TableHeader />)
-      .should.have.tagName('thead')
+    shallow(<TableHeader />).should.have.tagName('thead')
   })
 })

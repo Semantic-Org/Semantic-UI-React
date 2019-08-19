@@ -64,6 +64,6 @@ StepContent.propTypes = {
   title: customPropTypes.itemShorthand,
 }
 
-StepContent.create = createShorthandFactory(StepContent, content => ({ content }))
+StepContent.create = createShorthandFactory(StepContent, (content) => ({ content }))
 
 export default StepContent

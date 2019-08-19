@@ -32,7 +32,8 @@ const ListVariations = () => (
       examplePath='elements/List/Variations/ListExampleAnimated'
     >
       <Message info>
-        Be sure content can fit on one line, otherwise text content will reflow when hovered.
+        Be sure content can fit on one line, otherwise text content will reflow
+        when hovered.
       </Message>
     </ComponentExample>
 

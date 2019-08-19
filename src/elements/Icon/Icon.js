@@ -153,6 +153,6 @@ class Icon extends PureComponent {
   }
 }
 
-Icon.create = createShorthandFactory(Icon, value => ({ name: value }))
+Icon.create = createShorthandFactory(Icon, (value) => ({ name: value }))
 
 export default Icon

@@ -20,7 +20,7 @@ const createTestClass = (options = {}) =>
   }
 /* eslint-enable */
 
-const toDefaultName = prop => `default${prop.slice(0, 1).toUpperCase() + prop.slice(1)}`
+const toDefaultName = (prop) => `default${prop.slice(0, 1).toUpperCase() + prop.slice(1)}`
 
 const makeProps = () => ({
   computer: 'hardware',
@@ -28,7 +28,7 @@ const makeProps = () => ({
   ion: 'belt',
 })
 
-const makeDefaultProps = props =>
+const makeDefaultProps = (props) =>
   _.transform(props, (res, val, key) => {
     res[toDefaultName(key)] = val
   })
@@ -63,17 +63,6 @@ describe('extending AutoControlledComponent', () => {
       wrapper.instance().trySetState({ [randomProp]: randomValue })
 
       wrapper.should.have.state(randomProp, randomValue)
-    })
-
-    it('does not set state for non autoControlledProps', () => {
-      consoleUtil.disableOnce()
-
-      TestClass = createTestClass({ autoControlledProps: [], state: {} })
-      const wrapper = shallow(<TestClass />)
-
-      wrapper.instance().trySetState({ [faker.hacker.noun()]: faker.hacker.verb() })
-
-      wrapper.state().should.be.empty()
     })
 
     it('does not set state for props defined by the parent', () => {

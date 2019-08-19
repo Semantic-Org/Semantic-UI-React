@@ -16,8 +16,8 @@ const InputStatesExamples = () => (
       examplePath='elements/Input/States/InputExampleLoading'
     >
       <Message>
-        Loading inputs automatically modify the input's icon on loading state to show loading
-        indication.
+        Loading inputs automatically modify the input's icon on loading state to
+        show loading indication.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Input/States/InputExampleLeftLoading' />

@@ -15,8 +15,12 @@ class ModalExampleCloseConfig extends Component {
 
     return (
       <div>
-        <Button onClick={this.closeConfigShow(false, true)}>No Close on Escape</Button>
-        <Button onClick={this.closeConfigShow(true, false)}>No Close on Dimmer Click</Button>
+        <Button onClick={this.closeConfigShow(false, true)}>
+          No Close on Escape
+        </Button>
+        <Button onClick={this.closeConfigShow(true, false)}>
+          No Close on Dimmer Click
+        </Button>
 
         <Modal
           open={open}

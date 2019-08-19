@@ -15,10 +15,15 @@ import _ from 'lodash'
  * objectDiff(a, b)
  * //=> { foo: 'baz' }
  */
-export default (source, target) => _.transform(source, (res, val, key) => {
-  // deleted keys
-  if (!_.has(target, key)) res[key] = '[DELETED]'
-  // new keys / changed values
-  // Note, we tolerate isEqual here as this is a dev only utility and not included in production code
-  else if (!_.isEqual(val, target[key])) res[key] = target[key]
-}, {})
+export default (source, target) =>
+  _.transform(
+    source,
+    (res, val, key) => {
+      // deleted keys
+      if (!_.has(target, key)) res[key] = '[DELETED]'
+      // new keys / changed values
+      // Note, we tolerate isEqual here as this is a dev only utility and not included in production code
+      else if (!_.isEqual(val, target[key])) res[key] = target[key]
+    },
+    {},
+  )

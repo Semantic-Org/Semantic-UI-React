@@ -22,7 +22,7 @@ const createNodeRefMock = (add, remove) => {
 
 describe('handleClassNamesChange', () => {
   afterEach(() => {
-    nodes.forEach(node => handleClassNamesChange(node, new Set()))
+    nodes.forEach((node) => handleClassNamesChange(node, new Set()))
   })
 
   it('adds new classes to node', () => {

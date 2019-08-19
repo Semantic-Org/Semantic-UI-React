@@ -54,11 +54,12 @@ export default class TransitionGroup extends React.Component {
 
     const { children } = this.props
     this.state = {
-      children: _.mapValues(getChildMapping(children), child => this.wrapChild(child)),
+      children: _.mapValues(getChildMapping(children), (child) => this.wrapChild(child)),
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     debug('componentWillReceiveProps()')
 
     const { children: prevMapping } = this.state
