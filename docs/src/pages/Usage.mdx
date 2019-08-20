@@ -87,42 +87,17 @@ Choose a theme and delivery method that suits your needs:
 
 ## Bundling
 
-Semantic UI React is fully supported by all modern JavaScript bundlers. We've made some
-example recipes with some of them. You can use these as a starting point for your project.
+Semantic UI React is fully supported by all modern JavaScript bundlers.
 
-<Tab
-  menu={{ attached: 'top', secondary: true, pointing: true, color: 'teal' }}
-  panes={[
-    {
-      menuItem: 'Create React App',
-      render: () => (
-        <Tab.Pane style={{ fontSize: 'inherit' }}>
-          <p>
-            Semantic UI React is fully compatible with <code>create-react-app</code> and works out
-            the box. Setup of custom theme is covered in <Link to='/theming'>Theming guide</Link>.
-          </p>
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: 'Webpack 4',
-      render: () => (
-        <Tab.Pane style={{ fontSize: 'inherit' }}>
-          <p>
-            Semantic UI React is fully supported by Webpack 4, including tree shaking as of{' '}
-            <code>semantic-ui-react@0.81.2</code>.
-          </p>
-          <p>
-            Please ensure that you build your app in production mode before release. Semantic UI
-            React includes several optimizations in production mode, such as stripping{' '}
-            <code>propTypes</code>
-            from your build.
-          </p>
-        </Tab.Pane>
-      ),
-    },
-  ]}
-/>
+### Create React App
+
+Semantic UI React is fully compatible with `create-react-app` and works out the box. Setup of custom theme is covered in [Theming guide](/theming).
+
+### Webpack 4
+
+Semantic UI React is fully supported by Webpack 4, including tree shaking as of `semantic-ui-react@0.81.2`.
+
+Please ensure that you build your app in production mode before release. Semantic UI React includes several optimizations in production mode, such as stripping `propTypes` from your build.
 
 <Divider hidden section />
 
