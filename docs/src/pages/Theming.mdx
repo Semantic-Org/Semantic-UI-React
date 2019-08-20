@@ -1,4 +1,4 @@
-import { Button, Message } from 'semantic-ui-react'
+import { Accordion, Button, List, Message, Segment } from 'semantic-ui-react'
 
 export const meta = {
   title: 'Theming',
@@ -140,22 +140,37 @@ module.exports = {
 }
 ```
 
-<Message size='mini' warning>
-  Make sure it installed <code>less</code> with version <code>>=3.0.0</code> as sometimes it will
-  install <code>2.*</code> by default which will get you in the troubles.
-</Message>
-
 ### Scaffold custom styles
 
-Now we need to copy necessary files with the skeleton of your customization.
+We made a special CLI tool that will copy necessary files with the skeleton of your customization.
 
 ```bash
-npx cpy-cli **/* ../../../src/semantic-ui/site --cwd node_modules/semantic-ui-less/_site --parents
+npx @semantic-ui-react/bootstrap
 ```
 
-```bash
-npx cpy-cli node_modules/semantic-ui-less/theme.config.example src/semantic-ui --rename=theme.config
-```
+<Accordion
+  defaultActiveIndex={-1}
+  panels={[
+    {
+      title: { content: <i>I want copy files manually</i>, style: { fontSize: '0.9rem' } },
+      content: {
+        as: Segment,
+        content: (
+          <List bulleted>
+            <List.Item>
+              Copy the entire <code>node_modules/semantic-ui-less/_site</code> folder to{' '}
+              <code>src/semantic-ui/site</code>
+            </List.Item>
+            <List.Item>
+              Copy <code>node_modules/semantic-ui-less/theme.config.example</code> to{' '}
+              <code>src/semantic-ui/theme.config</code>
+            </List.Item>
+          </List>
+        ),
+      },
+    },
+  ]}
+/>
 
 ### `theme.config`
 
