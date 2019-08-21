@@ -140,7 +140,7 @@ export {
   StrictGridRowProps,
 } from './dist/commonjs/collections/Grid/GridRow'
 
-export { default as Menu, MenuProps } from './dist/commonjs/collections/Menu'
+export { default as Menu, MenuProps, StrictMenuProps } from './dist/commonjs/collections/Menu'
 export {
   default as MenuHeader,
   MenuHeaderProps,
