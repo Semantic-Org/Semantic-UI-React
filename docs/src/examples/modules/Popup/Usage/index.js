@@ -107,6 +107,11 @@ const PopupUsageExamples = () => (
       examplePath='modules/Popup/Usage/PopupExampleDefaultOpen'
       renderHtml={false}
     />
+    <ComponentExample
+      title='Delay'
+      description='A popup can have delay in showing and hiding. This avoids accidental popup visibility.'
+      examplePath='modules/Popup/Usage/PopupExampleDelay'
+    />
   </ExampleSection>
 )
 
