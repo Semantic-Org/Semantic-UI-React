@@ -1,5 +1,30 @@
 # Change Log
 
+## [v0.88.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.88.0) (2019-08-23)
+
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.87.3...v0.88.0)
+
+**Merged pull requests:**
+
+- docs\(CodeSandbox\): fix paths for images in exported examples [\#3758](https://github.com/Semantic-Org/Semantic-UI-React/pull/3758) ([layershifter](https://github.com/layershifter))
+- fix\(typings\): add missing `StrictMenuProps` type export [\#3755](https://github.com/Semantic-Org/Semantic-UI-React/pull/3755) ([b-smets](https://github.com/b-smets))
+- docs\(Popup\): add example for `delay` prop in Popup [\#3754](https://github.com/Semantic-Org/Semantic-UI-React/pull/3754) ([SandipNirmal](https://github.com/SandipNirmal))
+- docs\(Usage|Theming\): improve pages, introduce CLI util [\#3752](https://github.com/Semantic-Org/Semantic-UI-React/pull/3752) ([layershifter](https://github.com/layershifter))
+- chore\(lib\): remove `customPropTypes.as` [\#3751](https://github.com/Semantic-Org/Semantic-UI-React/pull/3751) ([layershifter](https://github.com/layershifter))
+- docs\(Icon\): fix a typo [\#3749](https://github.com/Semantic-Org/Semantic-UI-React/pull/3749) ([ablakey](https://github.com/ablakey))
+- chore\(mixed\): renamed unsafe lifecycle methods [\#3747](https://github.com/Semantic-Org/Semantic-UI-React/pull/3747) ([jmyrland](https://github.com/jmyrland))
+- BREAKING\(package\): require React 16.8 [\#3733](https://github.com/Semantic-Org/Semantic-UI-React/pull/3733) ([layershifter](https://github.com/layershifter))
+- fix\(Checkbox\): preventDefault\(\) in mouseDown should prevent focus [\#3732](https://github.com/Semantic-Org/Semantic-UI-React/pull/3732) ([layershifter](https://github.com/layershifter))
+- chore\(AutoControlledComponent\): align API of trySetState\(\) with React's [\#3731](https://github.com/Semantic-Org/Semantic-UI-React/pull/3731) ([layershifter](https://github.com/layershifter))
+- style\(package\): format with Prettier [\#3730](https://github.com/Semantic-Org/Semantic-UI-React/pull/3730) ([layershifter](https://github.com/layershifter))
+- docs\(examples\): remove outdated Webpack examples [\#3729](https://github.com/Semantic-Org/Semantic-UI-React/pull/3729) ([layershifter](https://github.com/layershifter))
+- docs\(Search\): fix wrong description for `input` shorthand [\#3727](https://github.com/Semantic-Org/Semantic-UI-React/pull/3727) ([ablakey](https://github.com/ablakey))
+- feat\(Popup\): add `eventsEnabled` prop [\#3715](https://github.com/Semantic-Org/Semantic-UI-React/pull/3715) ([layershifter](https://github.com/layershifter))
+- docs\(Composition|Shorthand\): improve pages [\#3707](https://github.com/Semantic-Org/Semantic-UI-React/pull/3707) ([layershifter](https://github.com/layershifter))
+- feat\(Dropdown\): allow selecting an item when pressing the spacebar [\#3702](https://github.com/Semantic-Org/Semantic-UI-React/pull/3702) ([nelsonleite](https://github.com/nelsonleite))
+- fix\(Popup\): ignore clicks when `on` prop is set to `hover` only [\#3667](https://github.com/Semantic-Org/Semantic-UI-React/pull/3667) ([ecnaidar](https://github.com/ecnaidar))
+- fix\(Dropdown\): retains focus after selection [\#3452](https://github.com/Semantic-Org/Semantic-UI-React/pull/3452) ([jongsue](https://github.com/jongsue))
+
 ## [v0.87.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.87.3) (2019-07-09)
 
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.87.2...v0.87.3)
@@ -286,24 +311,6 @@
 - chore\(package\): update dev deps [\#3035](https://github.com/Semantic-Org/Semantic-UI-React/pull/3035) ([layershifter](https://github.com/layershifter))
 - fix\(Modal\): prevent resize loop for full screen height [\#3024](https://github.com/Semantic-Org/Semantic-UI-React/pull/3024) ([marcdavi-es](https://github.com/marcdavi-es))
 - docs\(build\): use react-static for prerender [\#2925](https://github.com/Semantic-Org/Semantic-UI-React/pull/2925) ([layershifter](https://github.com/layershifter))
-
-## [v0.82.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.82.1) (2018-07-22)
-
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.82.0...v0.82.1)
-
-**Merged pull requests:**
-
-- fix\(Popup\): removing dead line of code [\#3025](https://github.com/Semantic-Org/Semantic-UI-React/pull/3025) ([fracmak](https://github.com/fracmak))
-- docs\(Layouts\): add new layout with Grid [\#3023](https://github.com/Semantic-Org/Semantic-UI-React/pull/3023) ([layershifter](https://github.com/layershifter))
-- fix\(Portal\): use portalNode to check focus [\#3015](https://github.com/Semantic-Org/Semantic-UI-React/pull/3015) ([layershifter](https://github.com/layershifter))
-- docs\(Layouts\): fix size variables in HomepageLayout [\#3014](https://github.com/Semantic-Org/Semantic-UI-React/pull/3014) ([layershifter](https://github.com/layershifter))
-- docs\(Button\): update ButtonExampleAnimated to match SemanticICONS type [\#3008](https://github.com/Semantic-Org/Semantic-UI-React/pull/3008) ([tuol](https://github.com/tuol))
-- fix\(Icon\): add 'file text outline' type [\#2993](https://github.com/Semantic-Org/Semantic-UI-React/pull/2993) ([paulkoegel-wessels](https://github.com/paulkoegel-wessels))
-- fix\(EventStack\): fix erroneous removal of non-empty EventPool [\#2992](https://github.com/Semantic-Org/Semantic-UI-React/pull/2992) ([mic4ael](https://github.com/mic4ael))
-- fix\(Modal\): use eventStack to handle clicks on dimmers [\#2989](https://github.com/Semantic-Org/Semantic-UI-React/pull/2989) ([layershifter](https://github.com/layershifter))
-- docs\(plugins\): add a plugin for collect sources of examples [\#2986](https://github.com/Semantic-Org/Semantic-UI-React/pull/2986) ([layershifter](https://github.com/layershifter))
-- docs\(views\): wrap each view with divs [\#2985](https://github.com/Semantic-Org/Semantic-UI-React/pull/2985) ([layershifter](https://github.com/layershifter))
-- fix\(Input\): add lang prop for input fields [\#2982](https://github.com/Semantic-Org/Semantic-UI-React/pull/2982) ([foysalit](https://github.com/foysalit))
 
 
 
