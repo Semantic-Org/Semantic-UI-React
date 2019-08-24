@@ -289,6 +289,20 @@ describe('Popup', () => {
     })
   })
 
+  describe('positionFixed', () => {
+    it(`is "false" by default`, () => {
+      wrapperMount(<Popup open />)
+
+      wrapper.should.have.prop('positionFixed', false)
+      wrapper.find('Popper').should.have.prop('positionFixed', false)
+    })
+
+    it(`can be set to "true"`, () => {
+      wrapperMount(<Popup positionFixed open />)
+      wrapper.find('Popper').should.have.prop('positionFixed', true)
+    })
+  })
+
   describe('popperModifiers', () => {
     it('are passed to Popper', () => {
       const modifiers = {

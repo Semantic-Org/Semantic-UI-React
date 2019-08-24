@@ -127,6 +127,9 @@ export default class Popup extends Component {
     /** Position for the popover. */
     position: PropTypes.oneOf(positions),
 
+    /** Enables the popper position 'fixed' mode */
+    positionFixed: PropTypes.bool,
+
     /** An object containing custom settings for the Popper.js modifiers. */
     popperModifiers: PropTypes.object,
 
@@ -153,6 +156,7 @@ export default class Popup extends Component {
     on: ['click', 'hover'],
     pinned: false,
     position: 'top left',
+    positionFixed: false,
   }
 
   static Content = PopupContent
@@ -333,6 +337,7 @@ export default class Popup extends Component {
       pinned,
       popperModifiers,
       position,
+      positionFixed,
       trigger,
     } = this.props
     const { closed, portalRestProps } = this.state
@@ -369,6 +374,7 @@ export default class Popup extends Component {
           eventsEnabled={eventsEnabled}
           modifiers={modifiers}
           placement={positionsMapping[position]}
+          positionFixed={positionFixed}
           referenceElement={referenceElement}
         >
           {this.renderContent}
