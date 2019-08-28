@@ -156,7 +156,6 @@ export default class Popup extends Component {
     on: ['click', 'hover'],
     pinned: false,
     position: 'top left',
-    positionFixed: false,
   }
 
   static Content = PopupContent
