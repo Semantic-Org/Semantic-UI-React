@@ -80,14 +80,14 @@ yarn remove semantic-ui semantic-ui-css
 
 ### Install required dependencies
 
-Create React App does not support LESS out of the box, we and propose to use [`@craco/craco`](https://www.npmjs.com/package/@craco/craco) to add it and avoid `eject`. You have to install required packages:
+Create React App does not support LESS out of the box, we and propose to use [`@craco/craco`](https://www.npmjs.com/package/@craco/craco) to add its support and avoid `eject`. You have to install required packages:
 
 ```bash
-npm install @craco/craco craco-less semantic-ui-less --save-dev
+npm install @craco/craco @semantic-ui-react/craco-less semantic-ui-less --save-dev
 ```
 
 ```bash
-yarn add @craco/craco craco-less semantic-ui-less --dev
+yarn add @craco/craco @semantic-ui-react/craco-less semantic-ui-less --dev
 ```
 
 And then update your `package.json` and create `craco.config.js`:
@@ -104,39 +104,8 @@ And then update your `package.json` and create `craco.config.js`:
 ```
 
 ```jsx label=craco.config.js
-const { getLoader, loaderByName, throwUnexpectedConfigError } = require('@craco/craco')
-
 module.exports = {
-  webpack: {
-    alias: {
-      '../../theme.config$': require('path').join(__dirname, '/src/semantic-ui/theme.config'),
-    },
-  },
-  plugins: [
-    { plugin: require('craco-less') },
-    {
-      plugin: {
-        overrideWebpackConfig: ({ context, webpackConfig }) => {
-          const { isFound, match: fileLoaderMatch } = getLoader(
-            webpackConfig,
-            loaderByName('file-loader'),
-          )
-
-          if (!isFound) {
-            throwUnexpectedConfigError({
-              message: `Can't find file-loader in the ${context.env} webpack config!`,
-            })
-          }
-
-          fileLoaderMatch.loader.exclude.push(/theme.config$/)
-          fileLoaderMatch.loader.exclude.push(/\.variables$/)
-          fileLoaderMatch.loader.exclude.push(/\.overrides$/)
-
-          return webpackConfig
-        },
-      },
-    },
-  ],
+  plugins: [{ plugin: require('@semantic-ui-react/craco-less') }],
 }
 ```
 
