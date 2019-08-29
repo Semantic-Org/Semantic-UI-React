@@ -127,7 +127,7 @@ export default class Popup extends Component {
     /** Position for the popover. */
     position: PropTypes.oneOf(positions),
 
-    /** Enables the popper position 'fixed' mode */
+    /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
     positionFixed: PropTypes.bool,
 
     /** An object containing custom settings for the Popper.js modifiers. */
