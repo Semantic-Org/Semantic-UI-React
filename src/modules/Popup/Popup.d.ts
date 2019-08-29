@@ -107,7 +107,7 @@ export interface StrictPopupProps extends StrictPortalProps {
     | 'top center'
     | 'bottom center'
 
-  /** Enables the popper position 'fixed' mode */
+  /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
   positionFixed?: boolean
 
   /** An object containing custom settings for the Popper.js modifiers. */
