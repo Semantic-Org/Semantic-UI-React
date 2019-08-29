@@ -583,7 +583,9 @@ export default class Dropdown extends Component {
 
     if (
       keyboardKey.getCode(e) !== keyboardKey.Enter &&
-      keyboardKey.getCode(e) !== keyboardKey.Spacebar
+      (keyboardKey.getCode(e) !== keyboardKey.Spacebar ||
+        // allow Spacebar in search Dropdown
+        search)
     )
       return
     e.preventDefault()
