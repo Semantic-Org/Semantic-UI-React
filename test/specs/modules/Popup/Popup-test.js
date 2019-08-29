@@ -1,15 +1,14 @@
-import * as common from 'test/specs/commonTests'
-
-import { domEvent, sandbox } from 'test/utils'
-
-import Popup from 'src/modules/Popup/Popup'
-import PopupContent from 'src/modules/Popup/PopupContent'
-import PopupHeader from 'src/modules/Popup/PopupHeader'
-import Portal from 'src/addons/Portal/Portal'
-import React from 'react'
-import { SUI } from 'src/lib'
 import _ from 'lodash'
-import { positionsMapping } from 'src/modules/Popup/lib/positions.js'
+import React from 'react'
+
+import Portal from 'src/addons/Portal/Portal'
+import { SUI } from 'src/lib'
+import Popup from 'src/modules/Popup/Popup'
+import { positionsMapping } from 'src/modules/Popup/lib/positions'
+import PopupHeader from 'src/modules/Popup/PopupHeader'
+import PopupContent from 'src/modules/Popup/PopupContent'
+import * as common from 'test/specs/commonTests'
+import { domEvent, sandbox } from 'test/utils'
 
 // ----------------------------------------
 // Wrapper
