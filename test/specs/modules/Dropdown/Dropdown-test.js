@@ -1078,7 +1078,7 @@ describe('Dropdown', () => {
         .at(1)
         .should.have.props({ selected: true, active: true })
     })
-    it('closes the menu', () => {
+    it('closes the menu on ENTER key', () => {
       wrapperMount(<Dropdown options={options} selection />).simulate('click')
 
       dropdownMenuIsOpen()
@@ -1086,6 +1086,33 @@ describe('Dropdown', () => {
       // choose an item closes
       domEvent.keyDown(document, { key: 'Enter' })
       dropdownMenuIsClosed()
+    })
+    it('closes the menu on SPACE key', () => {
+      wrapperMount(<Dropdown options={options} selection />).simulate('click')
+
+      dropdownMenuIsOpen()
+
+      // choose an item closes
+      domEvent.keyDown(document, { key: 'Spacebar' })
+      dropdownMenuIsClosed()
+    })
+    it('closes the Search menu on ENTER key', () => {
+      wrapperMount(<Dropdown options={options} selection search />).simulate('click')
+
+      dropdownMenuIsOpen()
+
+      // choose an item closes
+      domEvent.keyDown(document, { key: 'Enter' })
+      dropdownMenuIsClosed()
+    })
+    it('does not close the Search menu on SPACE key', () => {
+      wrapperMount(<Dropdown options={options} selection search />).simulate('click')
+
+      dropdownMenuIsOpen()
+
+      // choose an item closes
+      domEvent.keyDown(document, { key: 'Spacebar' })
+      dropdownMenuIsOpen()
     })
     it('keeps value of the searchQuery when selection is changed', () => {
       wrapperMount(<Dropdown options={options} selection search />)

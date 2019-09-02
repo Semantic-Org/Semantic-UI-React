@@ -581,11 +581,12 @@ export default class Dropdown extends Component {
     debug('selectItemOnEnter()', keyboardKey.getKey(e))
     const { search } = this.props
 
-    if (
-      keyboardKey.getCode(e) !== keyboardKey.Enter &&
-      keyboardKey.getCode(e) !== keyboardKey.Spacebar
-    )
-      return
+    const shouldSelect =
+      keyboardKey.getCode(e) === keyboardKey.Enter ||
+      // https://github.com/Semantic-Org/Semantic-UI-React/pull/3766
+      (!search && keyboardKey.getCode(e) === keyboardKey.Spacebar)
+
+    if (!shouldSelect) return
     e.preventDefault()
 
     const optionSize = _.size(this.getMenuOptions())
