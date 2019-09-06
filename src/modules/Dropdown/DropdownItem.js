@@ -77,9 +77,7 @@ class DropdownItem extends Component {
   }
 
   handleClick = (e) => {
-    const { onClick } = this.props
-
-    if (onClick) onClick(e, this.props)
+    _.invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {
