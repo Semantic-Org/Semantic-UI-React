@@ -1,7 +1,7 @@
+import { isRefObject, toRefObject } from '@stardust-ui/react-component-ref'
 import _ from 'lodash'
-import { isBrowser, isRefObject } from '../../../lib'
 
-const toRef = _.memoize((node) => ({ current: node }))
+import { isBrowser } from '../../../lib'
 
 /**
  * Given `this.props`, return a `node` value or undefined.
@@ -14,7 +14,7 @@ const getNodeRefFromProps = (props) => {
 
   if (isBrowser()) {
     if (isRefObject(node)) return node
-    return _.isNil(node) ? toRef(document.body) : toRef(node)
+    return _.isNil(node) ? toRefObject(document.body) : toRefObject(node)
   }
 }
 

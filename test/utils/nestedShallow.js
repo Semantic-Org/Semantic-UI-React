@@ -1,7 +1,6 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import enzyme from 'enzyme'
 import _ from 'lodash'
-
-import Ref from 'src/addons/Ref'
 
 const diveToLevel = (wrapper, autoNesting, nestingLevel) => {
   let nestedWrapper = wrapper

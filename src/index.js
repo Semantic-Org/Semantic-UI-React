@@ -1,3 +1,6 @@
+// Third party
+export { Ref } from '@stardust-ui/react-component-ref'
+
 // Addons
 export Confirm from './addons/Confirm'
 export MountNode from './addons/MountNode'
@@ -6,9 +9,6 @@ export PaginationItem from './addons/Pagination/PaginationItem'
 export Portal from './addons/Portal'
 export PortalInner from './addons/Portal/PortalInner'
 export Radio from './addons/Radio'
-export Ref from './addons/Ref'
-export RefFindNode from './addons/Ref/RefFindNode'
-export RefForward from './addons/Ref/RefForward'
 export Responsive from './addons/Responsive'
 export Select from './addons/Select'
 export TextArea from './addons/TextArea'

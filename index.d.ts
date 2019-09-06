@@ -1,3 +1,7 @@
+// Third party
+
+export { Ref, RefProps } from '@stardust-ui/react-component-ref'
+
 // Addons
 
 export {
@@ -27,17 +31,6 @@ export {
   StrictPortalInnerProps,
 } from './dist/commonjs/addons/Portal/PortalInner'
 export { default as Radio, RadioProps, StrictRadioProps } from './dist/commonjs/addons/Radio'
-export { default as Ref, RefProps, StrictRefProps } from './dist/commonjs/addons/Ref'
-export {
-  default as RefFindNode,
-  RefFindNodeProps,
-  StrictRefFindNodeProps,
-} from './dist/commonjs/addons/Ref/RefFindNode'
-export {
-  default as RefForward,
-  RefForwardProps,
-  StrictRefForwardProps,
-} from './dist/commonjs/addons/Ref/RefForward'
 export {
   default as Responsive,
   ResponsiveProps,

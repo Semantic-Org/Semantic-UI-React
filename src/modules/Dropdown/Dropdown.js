@@ -1,4 +1,5 @@
 import EventStack from '@semantic-ui-react/event-stack'
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
@@ -18,7 +19,6 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import Ref from '../../addons/Ref'
 import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
 import DropdownDivider from './DropdownDivider'

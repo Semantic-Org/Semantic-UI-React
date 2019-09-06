@@ -1,4 +1,5 @@
 import EventStack from '@semantic-ui-react/event-stack'
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -18,7 +19,6 @@ import {
   useKeyOrValueAndKey,
 } from '../../lib'
 import Portal from '../../addons/Portal'
-import Ref from '../../addons/Ref'
 import { placementMapping, positions, positionsMapping } from './lib/positions'
 import createReferenceProxy from './lib/createReferenceProxy'
 import PopupContent from './PopupContent'

@@ -1,9 +1,9 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
-import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
