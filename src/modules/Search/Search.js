@@ -27,6 +27,10 @@ import SearchResults from './SearchResults'
 
 const debug = makeDebugger('search')
 
+const overrideSearchInputProps = (inputProps) => ({
+  input: { className: 'prompt', tabIndex: '0', autoComplete: 'off', ...inputProps.input },
+})
+
 /**
  * A search module allows a user to query for results from a selection of data
  */
@@ -528,11 +532,12 @@ export default class Search extends Component {
       defaultProps: {
         ...rest,
         icon,
-        input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
         onChange: this.handleSearchChange,
         onClick: this.handleInputClick,
         value,
       },
+      // Nested shorthand props need special treatment to survive the shallow merge
+      overrideProps: overrideSearchInputProps,
     })
   }
 
