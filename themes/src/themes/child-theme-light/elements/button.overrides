@@ -1,1 +1,108 @@
 @import '../../parent-theme/elements/button.overrides';
+
+@hoverTranslate: translateY(-2px);
+@shadow: 0 5px 10px -5px;
+@hoverShadow: 0 5px 12px -3px;
+
+.ui.button {
+  border-radius: 8px;
+
+  &.primary {
+    box-shadow: @shadow @primaryColor;
+    &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @primaryColor;
+    }
+  }
+  &.secondary {
+    box-shadow: @shadow @secondaryColor;
+    &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @secondaryColor;
+    }
+  }
+  &.yellow {
+    box-shadow: @shadow @yellow;
+    &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @yellow;
+    }
+  }
+  &.orange {
+    box-shadow: @shadow @orange;
+    &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @orange;
+    }
+  }
+  &.green {
+    box-shadow: @shadow @green;
+    &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @green;
+    }
+  }
+  &.teal {
+    box-shadow: @shadow @teal;
+    &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @teal;
+    }
+  }
+  &.blue {
+    box-shadow: @shadow @blue;
+    &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @blue;
+    }
+  }
+  &.purple {
+    box-shadow: @shadow @purple;
+    &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @purple;
+    }
+  }
+  &.pink {
+    box-shadow: @shadow @pink;
+    &:hover {
+      box-shadow: @hoverShadow @pink;
+    }
+  }
+  &.red {
+    box-shadow: @shadow @red;
+    &:hover {
+      box-shadow: @hoverShadow @red;
+    }
+  }
+  &.black {
+    box-shadow: @shadow @black;
+    &:hover {
+      box-shadow: @hoverShadow @black;
+    }
+  }
+
+  &:visited, &:focus, &:hover {
+    transform: @hoverTranslate;
+    transition: @transition;
+  }
+
+  &:active {
+    transform: @hoverTranslate;
+  }
+}
+
+
+.ui.buttons,
+.ui.labeled.button,
+.ui.dropdown.button,
+.ui.dropdown.search.button,
+.ui.attached.buttons,
+.ui.attached.buttons, .ui.action.input {
+  .ui.button {
+    box-shadow: none;
+    &:hover, &:visited, &:focus, &:active {
+      transform: translateY(0);
+    }
+  }
+}
