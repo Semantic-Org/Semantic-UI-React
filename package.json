@@ -10,7 +10,7 @@
     "all:eslint:fix": "eslint --fix --ext .js ./docs ./themes .src/externals",
     "docs:start:light": "THEME=child-theme-light cross-env NODE_ENV=development gulp --series start:docs",
     "docs:start:dark": "THEME=child-theme-dark cross-env NODE_ENV=development gulp --series start:docs",
-    "docs:build": "rm -rf docs/dist && cross-env NODE_ENV=production gulp build:docs",
+    "docs:build": "rm -rf docs/dist && cross-env NODE_ENV=production THEME=child-theme-light gulp build:docs",
     "docs:serve": "serve docs/dist",
     "docs:deploy:docs": "gulp deploy:docs",
     "themes:build": "rm -rf themes/dist && node themes/config/build.js"
