@@ -4,6 +4,8 @@ import React from 'react'
 import siteData from '../utils/docTypes/siteData'
 import { getThemes } from '../../../themes/config/helpers'
 
+const getTheme = () => process.env.THEME || getThemes()[0]
+
 const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) => (
   <Html lang='en-US'>
     <Head>
@@ -17,10 +19,10 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       {!dev && (
         <link
           id='theme-style'
-          themename={getThemes()[0]}
+          themename={getTheme()}
           rel='stylesheet'
           type='text/css'
-          href={`/css/sui-${getThemes()[0]}.css`}
+          href={`/css/sui-${getTheme()}.css`}
         />
       )}
 
