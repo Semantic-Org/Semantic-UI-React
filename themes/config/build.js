@@ -87,9 +87,6 @@ measureFileSizesBeforeBuild(paths.themesDist)
       fs.removeSync(`${paths.themesDist}/static`)
       fs.removeSync(`${paths.themesDist}/main.js`)
       fs.removeSync(path.resolve(paths.themesDist, '../webfonts'))
-      shellJs.sed('-i', '@', '$', `${paths.themesDist}/palette.scss`)
-      shellJs.sed('-i', '@', '@value ', `${paths.themesDist}/palette.css`)
-      shellJs.sed('-i', ': @', ': ', `${paths.themesDist}/palette.css`)
     },
     (err) => {
       console.log(chalk.red('Failed to compile.\n')) // eslint-disable-line no-console

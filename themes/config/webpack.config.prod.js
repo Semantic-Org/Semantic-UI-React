@@ -104,11 +104,6 @@ module.exports = theme => ({
     //   // both options are optional
     //   filename: `sui-${theme}.css`,
     // }),
-    new CopyWebpackPlugin([
-      { from: `${paths.themesSrc}/palette.less`, to: 'palette.less' },
-      { from: `${paths.themesSrc}/palette.less`, to: 'palette.scss' },
-      { from: `${paths.themesSrc}/palette.less`, to: 'palette.css' },
-    ]),
   ],
   // Turn off performance processing because we utilize
   // our own hints via the FileSizeReporter
