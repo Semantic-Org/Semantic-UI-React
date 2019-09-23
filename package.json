@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "description": "A theme builder for Semantic UI components",
   "scripts": {
+    "start": "node index.js",
+    "build": "yarn themes:build && yarn docs:build",
     "all:reset": "rm -rf node_modules/ && rm -rf yarn.lock && yarn install",
     "all:eslint": "eslint --ext .js ./docs ./themes .src/externals",
     "all:eslint:fix": "eslint --fix --ext .js ./docs ./themes .src/externals",
@@ -94,5 +96,8 @@
     "vinyl": "^2.2.0",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
