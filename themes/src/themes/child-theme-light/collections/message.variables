@@ -1,1 +1,6 @@
 @import '../../parent-theme/collections/message.variables';
+
+@borderRadius: @defaultBorderRadius;
+@borderShadow: 0px;
+@background: @purpleBackground;
+@textColor: @black;
