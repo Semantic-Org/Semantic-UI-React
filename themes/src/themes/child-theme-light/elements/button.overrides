@@ -6,89 +6,89 @@
 
 .ui.button {
   border-radius: 8px;
-
-  &.primary {
-    box-shadow: @shadow @primaryColor;
-    &:hover {
-      transition: @transition;
-      box-shadow: @hoverShadow @primaryColor;
-    }
-  }
+  background: @primaryColor;
+  box-shadow: @shadow @lightPurple;
+  color: @white;
   &.secondary {
     box-shadow: @shadow @secondaryColor;
-    &:hover {
+    &:visited, &:focus, &:hover {
       transition: @transition;
       box-shadow: @hoverShadow @secondaryColor;
     }
   }
   &.yellow {
     box-shadow: @shadow @yellow;
-    &:hover {
+    &:visited, &:focus, &:hover {
       transition: @transition;
       box-shadow: @hoverShadow @yellow;
     }
   }
   &.orange {
     box-shadow: @shadow @orange;
-    &:hover {
+    &:visited, &:focus, &:hover {
       transition: @transition;
       box-shadow: @hoverShadow @orange;
     }
   }
   &.green {
     box-shadow: @shadow @green;
-    &:hover {
+    &:visited, &:focus, &:hover {
       transition: @transition;
       box-shadow: @hoverShadow @green;
     }
   }
   &.teal {
     box-shadow: @shadow @teal;
-    &:hover {
+    &:visited, &:focus, &:hover {
       transition: @transition;
       box-shadow: @hoverShadow @teal;
     }
   }
   &.blue {
     box-shadow: @shadow @blue;
-    &:hover {
+    &:visited, &:focus, &:hover {
       transition: @transition;
       box-shadow: @hoverShadow @blue;
     }
   }
   &.purple {
     box-shadow: @shadow @purple;
-    &:hover {
+    &:visited, &:focus, &:hover {
       transition: @transition;
       box-shadow: @hoverShadow @purple;
     }
   }
   &.pink {
     box-shadow: @shadow @pink;
-    &:hover {
+    &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @pink;
     }
   }
   &.red {
     box-shadow: @shadow @red;
-    &:hover {
+    &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @red;
     }
   }
   &.black {
     box-shadow: @shadow @black;
-    &:hover {
+    &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @black;
     }
   }
 
-  &:visited, &:focus, &:hover {
+  &:visited, &:hover {
+    background: @primaryColorHover;
+    color: @white;
     transform: @hoverTranslate;
     transition: @transition;
+    box-shadow: @hoverShadow @lightPurple;
   }
 
-  &:active {
-    transform: @hoverTranslate;
+  &:active, &:focus {
+    background: @primaryColor;
+    color: @white;
+    transform: translateY(0);
   }
 }
 
@@ -98,8 +98,10 @@
 .ui.dropdown.button,
 .ui.dropdown.search.button,
 .ui.attached.buttons,
-.ui.attached.buttons, .ui.action.input {
-  .ui.button {
+.ui.right.labeled.button
+.ui.attached.buttons,
+.ui.action.input {
+  .ui.button, .ui.labeled.button {
     box-shadow: none;
     &:hover, &:visited, &:focus, &:active {
       transform: translateY(0);
