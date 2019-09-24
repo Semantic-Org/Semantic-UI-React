@@ -1,3 +1,148 @@
+/*******************************
+         Theme Overrides
+*******************************/
+
+@hoverTranslate: translateY(-2px);
+@shadow: 0 5px 10px -5px;
+@hoverShadow: 0 5px 12px -3px;
+
 .ui.button {
-  padding: 20px;
+  border-radius: 8px;
+  background: @primaryColor;
+  box-shadow: @shadow @lightPurple;
+  color: @white;
+
+  &.primary {
+    box-shadow: @shadow @lightPurple;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @lightPurple;
+    }
+  }
+  &.secondary {
+    box-shadow: @shadow @secondaryColor;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @darkWhite;
+    }
+  }
+  &.yellow {
+    box-shadow: @shadow @yellow;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @lightYellow;
+    }
+  }
+  &.olive {
+    box-shadow: @shadow @olive;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @lightOlive;
+    }
+  }
+  &.brown {
+    box-shadow: @shadow @brown;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @lightBrown;
+    }
+  }
+  &.violet {
+    box-shadow: @shadow @violet;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @lightViolet;
+    }
+  }
+  &.grey {
+    box-shadow: @shadow @grey;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @offWhite;
+    }
+  }
+  &.orange {
+    box-shadow: @shadow @orange;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @lightOrange;
+    }
+  }
+  &.green {
+    box-shadow: @shadow @green;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @lightGreen;
+    }
+  }
+  &.teal {
+    box-shadow: @shadow @teal;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @lightTeal;
+    }
+  }
+  &.blue {
+    box-shadow: @shadow @blue;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @lightBlue;
+    }
+  }
+  &.purple {
+    box-shadow: @shadow @purple;
+    &:visited, &:focus, &:hover {
+      transition: @transition;
+      box-shadow: @hoverShadow @lightPurple;
+    }
+  }
+  &.pink {
+    box-shadow: @shadow @pink;
+    &:visited, &:focus, &:hover {
+      box-shadow: @hoverShadow @lightPink;
+    }
+  }
+  &.red {
+    box-shadow: @shadow @red;
+    &:visited, &:focus, &:hover {
+      box-shadow: @hoverShadow @lightRed;
+    }
+  }
+  &.black {
+    box-shadow: @shadow @black;
+    &:visited, &:focus, &:hover {
+      box-shadow: @hoverShadow @offWhite;
+    }
+  }
+
+  &:visited, &:hover {
+    background: @primaryColorHover;
+    color: @white;
+    transform: @hoverTranslate;
+    transition: @transition;
+    box-shadow: @hoverShadow @lightPurple;
+  }
+
+  &:active, &:focus {
+    background: @primaryColor;
+    color: @white;
+    transform: translateY(0);
+  }
+}
+
+
+.ui.buttons,
+.ui.labeled.button,
+.ui.dropdown.button,
+.ui.dropdown.search.button,
+.ui.attached.buttons,
+.ui.right.labeled.button
+.ui.attached.buttons,
+.ui.action.input {
+  .ui.button, .ui.labeled.button {
+    box-shadow: none;
+    &:hover, &:visited, &:focus, &:active {
+      transform: translateY(0);
+    }
+  }
 }
