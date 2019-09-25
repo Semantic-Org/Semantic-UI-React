@@ -9,7 +9,7 @@
 .ui.button {
   border-radius: 8px;
   background: @primaryColor;
-  box-shadow: @shadow @primaryColor;
+  box-shadow: @shadow @lightPrimaryColor;
   color: @white;
 
   &.primary {
