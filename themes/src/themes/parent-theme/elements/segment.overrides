@@ -1,3 +1,18 @@
 /*******************************
          Theme Overrides
 *******************************/
+
+.ui.segment {
+
+  .ui.bottom.attached.progress {
+
+    top: 0;
+
+    .bar{
+      height: 100%;
+      background: @lightPurple;
+      border-radius: @borderRadius 0 0 @borderRadius;
+    }
+  }
+
+}

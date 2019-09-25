@@ -252,7 +252,7 @@
 --------------------*/
 
 /* Maximum Glyph Width of Icon */
-@iconWidth : 1.18em;
+@iconWidth : 1em;
 
 /*-------------------
      Neutral Text

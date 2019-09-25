@@ -55,3 +55,51 @@
 .ui.success.progress > .label, .ui.error.progress > .label, .ui.warning.progress > .label {
   color: @white;
 }
+
+.ui.segment > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ui.segment {
+
+  .ui.bottom.attached.progress {
+
+    top: 0;
+    height: 100%;
+    z-index: 0;
+
+
+
+    .bar {
+      height: 100%;
+      background: @purpleBackground;
+      border-radius: @borderRadius;
+    }
+  }
+
+}
+
+// upload large
+// <div class="ui middle center aligned padded segment">
+//   <div>
+//     <div>
+//       <i class="refresh loading purple large icon"></i>
+//     </div>
+//     <h4 class="ui purple header">Uploading...</h4>
+//   </div>
+//   <div class="ui bottom attached progress" data-percent="50">
+//     <div class="bar" style="width: 50%;"></div>
+//   </div>
+// </div>
+
+// upload compact
+// <div class="ui padded segment">
+//   <div>
+//     <h4 class="ui purple header">Uploading...</h4>
+//   </div>
+//
+//   <div class="ui bottom attached progress" data-percent="50">
+//     <div class="bar" style="width: 50%;"></div>
+//   </div>
+// </div>

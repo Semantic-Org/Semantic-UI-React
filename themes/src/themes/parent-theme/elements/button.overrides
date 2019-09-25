@@ -12,6 +12,17 @@
   box-shadow: @shadow @lightPrimaryColor;
   color: @white;
 
+  &.active {
+    background: @primaryColor;
+    box-shadow: @shadow @lightPrimaryColor;
+    color: @white;
+    &:hover {
+      background: @primaryColor;
+      box-shadow: @shadow @lightPrimaryColor;
+      color: @white;
+    }
+  }
+
   &.primary {
     box-shadow: @shadow @lightPrimaryColor;
     &:visited, &:focus, &:hover {

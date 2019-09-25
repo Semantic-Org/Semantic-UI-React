@@ -16,7 +16,7 @@
 
 /* Button defaults to using same height as input globally */
 @verticalPadding: @inputVerticalPadding;
-@horizontalPadding: 1.5em;
+@horizontalPadding: 1em;
 
 /* Text */
 @textTransform: none;
