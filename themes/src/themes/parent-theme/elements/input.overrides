@@ -1,3 +1,54 @@
 /*******************************
          Theme Overrides
 *******************************/
+
+@errorBackground: @white;
+@errorColor: @negativeTextColor;
+@borderFocus: 0 0 0 2px;
+
+.ui.input {
+
+  &.focus {
+    input {
+      box-shadow: @borderFocus @primaryColor;
+    }
+  }
+
+  input {
+    font-weight: @normal !important;
+    &:focus{
+
+      box-shadow: @borderFocus @primaryColor;
+    }
+  }
+
+}
+
+.ui.error.input {
+  input {
+    box-shadow: @borderFocus @negativeBorderColor;
+    background-color: @errorBackground;
+    font-weight: @normal !important;
+  }
+  .icon {
+    i { opacity: 1; }
+  }
+}
+
+.ui.warning.input {
+  input {
+    box-shadow: @borderFocus @yellow;
+  }
+  .icon {
+    i { opacity: 1; }
+  }
+}
+
+.ui.success.input {
+  input {
+    box-shadow: @borderFocus @green;
+  }
+  .icon {
+    i { opacity: 1; }
+  }
+}
