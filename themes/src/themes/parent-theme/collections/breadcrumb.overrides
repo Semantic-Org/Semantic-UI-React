@@ -1,0 +1,42 @@
+.ui.breadcrumb.buttons {
+
+  .ui.buttons {
+    &:first-child {
+      border-radius: 8px 0 0 8px;
+    }
+    &:first-child {
+      border-radius: 0 8px 8px 0;
+    }
+  }
+
+  .ui.breadcrumb.buttons > .ui.button {
+    background: @purpleBackground;
+    color: @black;
+    &:hover {
+      background: darken(@purpleBackground, 5%);
+    }
+  }
+
+  .ui.breadcrumb.buttons > .ui.button > .home.icon {
+    margin-right: 8px!important;
+  }
+
+  .ui.breadcrumb.buttons > .ui.disabled.button {
+    background: @purpleBackground;
+    opacity: 1!important;
+    &:hover {
+      background: @purpleBackground;
+    }
+  }
+
+}
+
+// example
+
+// <div class="ui breadcrumb buttons">
+//   <button class="ui icon button" role="button"><i aria-hidden="true" class="home icon"></i>Home</button>
+//   <button class="ui disabled icon button" role="button" tabindex="-1"><i aria-hidden="true" class="right chevron icon"></i></button>
+//   <button class="ui button" role="button">Label</button>
+//   <button class="ui disabled icon button" role="button"><i aria-hidden="true" class="right chevron icon"></i></button>
+//   <button class="ui disabled button" role="button">Label</button>
+// </div>

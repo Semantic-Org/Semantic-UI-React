@@ -1,0 +1,12 @@
+.ui.card, .ui.cards > .ui.card {
+  box-shadow: 0 20px 40px -20px rgba(29, 38, 48, 0.25);
+}
+
+.ui.link.card, a.ui.card {
+  transition: translate .2s ease;
+  text-decoration: none;
+  &:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -20px rgba(29, 38, 48, 0.25);
+  }
+}

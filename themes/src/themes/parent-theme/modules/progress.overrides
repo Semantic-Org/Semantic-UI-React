@@ -1,0 +1,57 @@
+
+.ui.progress{
+
+  border-radius: 100px;
+  background: @offWhite;
+
+  .bar {
+    background: @yellow;
+    border-radius: 100px;
+  }
+
+
+
+  // Copied from ui pointing label
+  .label {
+    background: @black;
+    color: @white;
+    font-weight: @normal;
+    width: auto;
+    margin-top: @emSize / 2 !important;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: baseline;
+    padding: .5833em .833em;
+    text-transform: none;
+    border: 0 solid transparent;
+    border-radius: @emSize / 2;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &::before{
+      border-width: 1px 0 0 1px;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      top: 0;
+      left: 50%;
+      background-color: inherit;
+      background-image: inherit;
+      border-width: none;
+      border-style: solid;
+      border-color: inherit;
+      position: absolute;
+      content: "";
+      background-image: none;
+      z-index: 2;
+      width: .6666em;
+      height: .6666em;
+      transition: background .1s ease;
+    }
+
+  }
+
+}
+
+.ui.success.progress > .label, .ui.error.progress > .label, .ui.warning.progress > .label {
+  color: @white;
+}

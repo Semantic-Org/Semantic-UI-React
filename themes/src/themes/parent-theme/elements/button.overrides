@@ -9,14 +9,14 @@
 .ui.button {
   border-radius: 8px;
   background: @primaryColor;
-  box-shadow: @shadow @lightPurple;
+  box-shadow: @shadow @primaryColor;
   color: @white;
 
   &.primary {
-    box-shadow: @shadow @lightPurple;
+    box-shadow: @shadow @lightPrimaryColor;
     &:visited, &:focus, &:hover {
       transition: @transition;
-      box-shadow: @hoverShadow @lightPurple;
+      box-shadow: @hoverShadow @lightPrimaryColor;
     }
   }
   &.secondary {
