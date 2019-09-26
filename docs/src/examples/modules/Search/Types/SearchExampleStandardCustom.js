@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import faker from 'faker'
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Search, Grid, Header, Segment, Label } from 'semantic-ui-react'
 
 const source = _.times(5, () => ({
@@ -18,52 +18,49 @@ resultRenderer.propTypes = {
   description: PropTypes.string,
 }
 
-const initialState = { isLoading: false, results: [], value: '' }
 
-export default class SearchExampleStandard extends Component {
-  state = initialState
+function SearchExampleStandard (props) {
+  const [state, setState] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [results, setResults] = useState([]);
+  const [value, setValue] = useState("");
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
+  const handleResultSelect = (e, { result }) => setState(result.title)
 
-  handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value })
+  const handleSearchChange = (e, { value }) => {
+    setIsLoading(true)
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.setState(initialState)
+      if (value.length < 1) return setValue(value)
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+      const re = new RegExp(_.escapeRegExp(value), 'i')
       const isMatch = (result) => re.test(result.title)
 
-      this.setState({
-        isLoading: false,
-        results: _.filter(source, isMatch),
-      })
+      setIsLoading(false);
+      setResults(_.filter(source, isMatch));
     }, 300)
   }
-
-  render() {
-    const { isLoading, value, results } = this.state
 
     return (
       <Grid>
         <Grid.Column width={6}>
           <Search
             loading={isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, {
+            onResultSelect={handleResultSelect}
+            onSearchChange={_.debounce(handleSearchChange, 500, {
               leading: true,
             })}
             results={results}
             value={value}
             resultRenderer={resultRenderer}
-            {...this.props}
+            {...props}
           />
         </Grid.Column>
         <Grid.Column width={10}>
           <Segment>
             <Header>State</Header>
             <pre style={{ overflowX: 'auto' }}>
-              {JSON.stringify(this.state, null, 2)}
+              {JSON.stringify(state, null, 2)}
             </pre>
             <Header>Options</Header>
             <pre style={{ overflowX: 'auto' }}>
@@ -72,6 +69,7 @@ export default class SearchExampleStandard extends Component {
           </Segment>
         </Grid.Column>
       </Grid>
-    )
-  }
+    ) 
 }
+
+export default SearchExampleStandard;
