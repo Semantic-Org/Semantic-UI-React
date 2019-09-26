@@ -126,7 +126,8 @@
     }
   }
 
-  &:visited, &:hover {
+  &:visited,
+  &:hover {
     background: @primaryColorHover;
     color: @white;
     transform: @hoverTranslate;

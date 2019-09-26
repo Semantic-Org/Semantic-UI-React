@@ -13,7 +13,9 @@
     "docs:build": "rm -rf docs/dist && cross-env NODE_ENV=production THEME=florence gulp build:docs",
     "docs:serve": "serve docs/dist",
     "docs:deploy:docs": "gulp deploy:docs",
-    "themes:build": "rm -rf themes/dist && node themes/config/build.js"
+    "themes:build": "rm -rf themes/dist && node themes/config/build.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -33,6 +35,13 @@
     "@fortawesome/fontawesome-free": "^5.5.0",
     "@mdx-js/loader": "^0.15.5",
     "@semantic-ui-react/event-stack": "^3.0.0",
+    "@storybook/addon-a11y": "^5.2.1",
+    "@storybook/addon-actions": "^5.2.1",
+    "@storybook/addon-info": "^5.2.1",
+    "@storybook/addon-links": "^5.2.1",
+    "@storybook/addon-storysource": "^5.2.1",
+    "@storybook/addons": "^5.2.1",
+    "@storybook/react": "^5.2.1",
     "@types/react": "^16.4.14",
     "anchor-js": "^4.1.1",
     "babel-eslint": "^10.0.1",

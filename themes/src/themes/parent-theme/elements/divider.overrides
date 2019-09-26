@@ -3,7 +3,7 @@
 *******************************/
 
 .ui.divider {
-  text-transform: capitalize;
+  text-transform: none;
   font-weight: @normal;
   color: @grey;
 }
