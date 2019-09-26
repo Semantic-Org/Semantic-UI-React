@@ -1,4 +1,0 @@
-@import '../../parent-theme/elements/button.variables';
-
-@button__background-color: @blue;
-@button__color: @orange;

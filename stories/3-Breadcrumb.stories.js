@@ -12,13 +12,15 @@ export default {
 export const breadcrumb = () =>  (
   <Grid verticalAlign='middle' columns={1} style={{height: '100vh'}}>
     <Grid.Column textAlign="center">
+
       <Button.Group className="breadcrumb">
-        <Button icon='left chevron' content='Home'/>
+        <Button href="#" icon='left chevron' content='Home'/>
         <Button disabled icon='right chevron'/>
-        <Button content='Category'/>
+        <Button href="#" content='Category'/>
         <Button disabled icon='right chevron'/>
         <Button disabled content='Page'/>
       </Button.Group>
+
     </Grid.Column>
   </Grid>
 );

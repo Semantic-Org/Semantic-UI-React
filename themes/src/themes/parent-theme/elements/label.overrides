@@ -1,3 +1,7 @@
 /*******************************
          Theme Overrides
 *******************************/
+
+.ui.icon.label > .icon {
+  margin: 0 0 0 0 !important;
+}

@@ -12,66 +12,71 @@ export default {
 export const all = () =>  (
   <Container>
     <Grid relaxed='very' centered verticalAlign='middle' style={{height: '100vh'}}>
-      <Grid.Column mobile={6} tablet={4} computer={2} centered>
-        <Grid>
-          <Grid.Column width={12} color="yellow" style={{height: '100px'}} />
-          <Grid.Row>
-            <Grid.Column width={4} color="yellow" tertiary />
-            <Grid.Column width={4} color="yellow" secondary  />
-            <Grid.Column width={4} color="yellow" quaternary />
-          </Grid.Row>
-        </Grid>
+      <Grid.Column computer={4} tablet={3} mobile={6}>
+        <Segment.Group>
+          <Segment inverted color="yellow" className="secondary" style={{height: "100px"}}></Segment>
+          <Segment.Group horizontal>
+            <Segment inverted color="yellow" className="tertiary"></Segment>
+            <Segment inverted color="yellow" ></Segment>
+            <Segment inverted color="yellow" className="quaternary"></Segment>
+          </Segment.Group>
+        </Segment.Group>
       </Grid.Column>
-      <Grid.Column mobile={6} tablet={4} computer={2} centered>
-        <Grid>
-          <Grid.Column width={12} color="green" style={{height: '100px'}} />
-          <Grid.Row>
-            <Grid.Column width={4} color="green" tertiary />
-            <Grid.Column width={4} color="green" secondary  />
-            <Grid.Column width={4} color="green" quaternary />
-          </Grid.Row>
-        </Grid>
+      <Grid.Column computer={4} tablet={3} mobile={6}>
+        <Segment.Group>
+          <Segment inverted color="green" className="secondary" style={{height: "100px"}}></Segment>
+          <Segment.Group horizontal>
+            <Segment inverted color="green" className="tertiary"></Segment>
+            <Segment inverted color="green" ></Segment>
+            <Segment inverted color="green" className="quaternary"></Segment>
+          </Segment.Group>
+        </Segment.Group>
       </Grid.Column>
-      <Grid.Column mobile={6} tablet={4} computer={2} centered>
-        <Grid>
-          <Grid.Column width={12} color="purple" style={{height: '100px'}} />
-          <Grid.Row>
-            <Grid.Column width={4} color="purple" tertiary />
-            <Grid.Column width={4} color="purple" secondary  />
-            <Grid.Column width={4} color="purple" quaternary />
-          </Grid.Row>
-        </Grid>
+
+      <Grid.Column computer={4} tablet={3} mobile={6}>
+        <Segment.Group>
+          <Segment inverted color="purple" className="secondary" style={{height: "100px"}}></Segment>
+          <Segment.Group horizontal>
+            <Segment inverted color="purple" className="tertiary"></Segment>
+            <Segment inverted color="purple" ></Segment>
+            <Segment inverted color="purple" className="quaternary"></Segment>
+          </Segment.Group>
+        </Segment.Group>
       </Grid.Column>
-      <Grid.Column mobile={6} tablet={4} computer={2} centered>
-        <Grid>
-          <Grid.Column width={12} color="pink" style={{height: '100px'}} />
-          <Grid.Row>
-            <Grid.Column width={4} color="pink" tertiary />
-            <Grid.Column width={4} color="pink" secondary  />
-            <Grid.Column width={4} color="pink" quaternary />
-          </Grid.Row>
-        </Grid>
+
+      <Grid.Column computer={4} tablet={3} mobile={6}>
+        <Segment.Group>
+          <Segment inverted color="pink" className="secondary" style={{height: "100px"}}></Segment>
+          <Segment.Group horizontal>
+            <Segment inverted color="pink" className="tertiary"></Segment>
+            <Segment inverted color="pink" ></Segment>
+            <Segment inverted color="pink" className="quaternary"></Segment>
+          </Segment.Group>
+        </Segment.Group>
       </Grid.Column>
-      <Grid.Column mobile={6} tablet={4} computer={2} centered>
-        <Grid>
-          <Grid.Column width={12} color="blue" style={{height: '100px'}} />
-          <Grid.Row>
-            <Grid.Column width={4} color="blue" tertiary />
-            <Grid.Column width={4} color="blue" secondary  />
-            <Grid.Column width={4} color="blue" quaternary />
-          </Grid.Row>
-        </Grid>
+
+      <Grid.Column computer={4} tablet={3} mobile={6}>
+        <Segment.Group>
+          <Segment inverted color="blue" className="secondary" style={{height: "100px"}}></Segment>
+          <Segment.Group horizontal>
+            <Segment inverted color="blue" className="tertiary"></Segment>
+            <Segment inverted color="blue" ></Segment>
+            <Segment inverted color="blue" className="quaternary"></Segment>
+          </Segment.Group>
+        </Segment.Group>
       </Grid.Column>
-      <Grid.Column mobile={6} tablet={4} computer={2} centered>
-        <Grid>
-          <Grid.Column color="black" width={12} style={{height: '100px'}}/>
-          <Grid.Row>
-            <Grid.Column width={4} color="black" tertiary />
-            <Grid.Column width={4} color="black" secondary  />
-            <Grid.Column width={4} color="black" quaternary />
-          </Grid.Row>
-        </Grid>
+
+      <Grid.Column computer={4} tablet={3} mobile={6}>
+        <Segment.Group>
+          <Segment inverted color="black" className="secondary" style={{height: "100px"}}></Segment>
+          <Segment.Group horizontal>
+            <Segment inverted color="black" className="tertiary"></Segment>
+            <Segment inverted color="black" ></Segment>
+            <Segment inverted color="black" className="quaternary"></Segment>
+          </Segment.Group>
+        </Segment.Group>
       </Grid.Column>
+
     </Grid>
   </Container>
 );

@@ -20,7 +20,8 @@ export const all = () =>  (
       <h4>Heading Four</h4>
       <h5>Heading Five</h5>
       <p>Paragraph</p>
-      <p><a>Link</a></p>
+      <p><a href="#">Link</a></p>
+
     </Grid.Column>
     <Grid.Column width={4} centered>
       <h5>Mobile</h5>
@@ -31,7 +32,8 @@ export const all = () =>  (
       <h4>Heading Four</h4>
       <h5>Heading Five</h5>
       <p>Paragraph</p>
-      <p><a>Link</a></p>
+      <p><a href="#">Link</a></p>
+
     </Grid.Column>
   </Grid>
 );

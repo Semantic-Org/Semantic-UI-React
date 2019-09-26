@@ -51,11 +51,11 @@
 @headerFontWeight : @bold;
 @headerLineHeight : unit((18 / 14), em);
 
-@h1 : unit((28 / 14), rem);
-@h2 : unit((24 / 14), rem);
-@h3 : unit((18 / 14), rem);
-@h4 : unit((15 / 14), rem);
-@h5 : unit((14 / 14), rem);
+@h1 : @emSize * 3.5;
+@h2 : @emSize * 2.25;
+@h3 : @emSize * 1.5;
+@h4 : @emSize * 1.25;
+@h5 : @emSize * 0.625;
 
 /*--------------
    Form Input
@@ -94,14 +94,14 @@
   This ensures these "ratios" remain constant despite changes in EM
 */
 
-@miniSize        : (11 / 14);
-@tinySize        : (12 / 14);
-@smallSize       : (13 / 14);
-@mediumSize      : (14 / 14);
-@largeSize       : (16 / 14);
-@bigSize         : (18 / 14);
-@hugeSize        : (20 / 14);
-@massiveSize     : (24 / 14);
+@miniSize        : (11 / 16);
+@tinySize        : (12 / 16);
+@smallSize       : (13 / 16);
+@mediumSize      : (14 / 16);
+@largeSize       : (16 / 16);
+@bigSize         : (18 / 16);
+@hugeSize        : (20 / 16);
+@massiveSize     : (24 / 16);
 
 
 /*-------------------
@@ -111,8 +111,8 @@
 @pageBackground      : #FFFFFF;
 @pageOverflowX       : hidden;
 
-@lineHeight          : 1.4285em;
-@textColor           : hsl(212, 25%, 15%);
+@lineHeight          : 24px;
+@textColor           : @black;
 
 /*-------------------
       Paragraph

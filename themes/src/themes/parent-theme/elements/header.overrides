@@ -2,3 +2,8 @@
          Theme Overrides
 *******************************/
 
+@hugeFontSize   : @h1;
+@largeFontSize  : @h2;
+@mediumFontSize : @h3;
+@smallFontSize  : @h4;
+@tinyFontSize   : @h5;

@@ -69,11 +69,11 @@
 --------------------*/
 
 /* Sizing */
-@hugeFontSize   : unit(@h1, em);
-@largeFontSize  : unit(@h2, em);
-@mediumFontSize : unit(@h3, em);
-@smallFontSize  : unit(@h4, em);
-@tinyFontSize   : unit(@h5, em);
+@hugeFontSize   : @h1;
+@largeFontSize  : @h2;
+@mediumFontSize : @h3;
+@smallFontSize  : @h4;
+@tinyFontSize   : @h5;
 
 /* Sub Header */
 @h1SubHeaderFontSize: @large;

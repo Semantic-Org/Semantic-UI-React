@@ -29,7 +29,9 @@ export const label = () =>  (
         Black
       </Label>
 
-      <Label icon="file" color='yellow'/>
+      <Label color="yellow">
+        <Icon fitted name="file"/>
+      </Label>
 
       <Label>
         Icon

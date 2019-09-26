@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import React from 'react';
-import { Card, Grid } from 'semantic-ui-react'
+import {  Container, Card, Grid } from 'semantic-ui-react'
 import '!style-loader!css-loader!../themes/dist/sui-florence.css';
 
 export default {
@@ -10,10 +10,11 @@ export default {
 };
 
 export const card = () =>  (
+  <Container>
     <Grid centered verticalAlign='middle' style={{height: '100vh'}}>
       <Grid.Column width={6}>
 
-        <Card centered>
+        <Card fluid centered>
           <Card.Content>
             <Card.Header>A card</Card.Header>
             <Card.Meta>With meta data</Card.Meta>
@@ -26,7 +27,7 @@ export const card = () =>  (
       </Grid.Column>
       <Grid.Column width={6}>
 
-        <Card color="purple" centered>
+        <Card fluid color="purple" centered>
           <Card.Content>
             <Card.Header>A card with an outline</Card.Header>
             <Card.Meta>With meta data</Card.Meta>
@@ -38,4 +39,6 @@ export const card = () =>  (
 
       </Grid.Column>
     </Grid>
+  </Container>
+
 );

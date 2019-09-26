@@ -16,3 +16,60 @@
   }
 
 }
+
+
+.ui.segment {
+
+  &.inverted.secondary {
+
+    &.purple { background-color: @lightPurple !important; }
+    &.pink {   background-color: @lightPink !important; }
+    &.green {  background-color: @lightGreen !important; }
+    &.yellow { background-color: @lightYellow !important; }
+    &.blue {   background-color: @lightBlue !important; }
+    &.black {  background-color: @lightBlack !important; }
+
+  }
+
+  &.inverted.tertiary {
+
+    &.purple { background-color: @lighterPurple !important; }
+    &.pink {   background-color: @lighterPink !important; }
+    &.green {  background-color: @lighterGreen !important; }
+    &.yellow { background-color: @lighterYellow !important; }
+    &.blue {   background-color: @lighterBlue !important; }
+    &.black {  background-color: @lighterBlack !important; }
+
+  }
+
+  &.inverted.quaternary {
+
+    &.purple { background-color: @purpleBackground !important; }
+    &.pink {   background-color: @pinkBackground !important; }
+    &.green {  background-color: @greenBackground !important; }
+    &.yellow { background-color: @yellowBackground !important; }
+    &.blue {   background-color: @blueBackground !important; }
+    &.black {  background-color: @blackBackground !important; }
+
+  }
+
+}
+//
+// <Segment color="purple" className="secondary" inverted />
+// <Segment color="pink" className="secondary" inverted />
+// <Segment color="green" className="secondary" inverted />
+// <Segment color="yellow" className="secondary" inverted />
+// <Segment color="blue" className="secondary" inverted />
+// <Segment color="black" className="secondary" inverted />
+// <Segment color="purple" className="tertiary" inverted />
+// <Segment color="pink" className="tertiary" inverted />
+// <Segment color="green" className="tertiary" inverted />
+// <Segment color="yellow" className="tertiary" inverted />
+// <Segment color="blue" className="tertiary" inverted />
+// <Segment color="black" className="tertiary" inverted />
+// <Segment color="purple" className="quaternary" inverted />
+// <Segment color="pink" className="quaternary" inverted />
+// <Segment color="green" className="quaternary" inverted />
+// <Segment color="yellow" className="quaternary" inverted />
+// <Segment color="blue" className="quaternary" inverted />
+// <Segment color="black" className="quaternary" inverted />

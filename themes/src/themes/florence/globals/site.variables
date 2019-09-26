@@ -35,10 +35,10 @@
 
 /*---  Colors  ---*/
 @yellow           : hsl(42, 100%, 58%);
-@green            : hsl(154, 64%, 52%);
+@green            : hsl(154, 64%, 48%);
 @blue             : hsl(220, 100%, 57%);
 @purple           : hsl(257, 98%, 65%);
-@pink             : hsl(340, 80%, 67%);
+@pink             : hsl(340, 80%, 66%);
 @black            : hsl(212, 25%, 15%);
 @grey             : #5F6F81;
 @olive            : @purple;
@@ -49,11 +49,12 @@
 @brown            : @purple;
 
 /*---  Light Colors  ---*/
-@lightPurple      : hsl(257, 82%, 87%);
-@lightPink        : hsl(340, 71%, 96%);
-@lightYellow      : hsl(42, 92%, 95%);
-@lightGreen       : hsl(155, 64%, 86%);
-@lightBlue        : hsl(220, 90%, 86%);
+@lightPurple      : hsl(257, 78%, 70%);
+@lightPink        : hsl(340, 100%, 79%);
+@lightYellow      : hsl(42, 100%, 73%);
+@lightGreen       : hsl(154, 64%, 72%);
+@lightBlue        : hsl(220, 90%, 70%);
+@lightBlack       : hsl(212, 25%, 32%);
 @lightGrey        : @lightPurple;
 @lightRed         : @lightPurple;
 @lightOrange      : @lightPurple;
@@ -61,7 +62,14 @@
 @lightTeal        : @lightPurple;
 @lightViolet      : @lightPurple;
 @lightBrown       : @lightPurple;
-@lightBlack       : @lightPurple;
+
+/*---  Lighter Colors  ---*/
+@lighterPurple      : hsl(257, 83%, 87%);
+@lighterPink        : hsl(340, 85%, 87%);
+@lighterYellow      : hsl(42, 100%, 83%);
+@lighterGreen       : hsl(154, 64%, 86%);
+@lighterBlue        : hsl(220, 100%, 79%);
+
 
 /*---   Neutrals  ---*/
 @fullBlack        : #000000;
@@ -69,19 +77,21 @@
 @darkWhite        : #F3F4F5;
 @midWhite         : #F6F7F9;
 @white            : #FFFFFF;
+@lighterBlack     : hsl(212, 15%, 44%);
 
 /*--- Colored Backgrounds ---*/
-@yellowBackground : #FEF7E6;
-@purpleBackground : #F5F2FD;
-@pinkBackground   : #FCEDF2;
-@blueBackground   : #F0F5FF;
-@greenBackground  : #EFFBF6;
+@yellowBackground : hsl(42, 95%, 95%);
+@purpleBackground : hsl(257, 73%, 97%);
+@pinkBackground   : hsl(339, 74%, 96%);
+@blueBackground   : hsl(220, 100%, 97%);
+@greenBackground  : hsl(155, 59%, 96%);
 @redBackground    : #F5F2FD;
 @orangeBackground : #F5F2FD;
 @oliveBackground  : #F5F2FD;
 @tealBackground   : #F5F2FD;
 @violetBackground : #F5F2FD;
 @brownBackground  : #F5F2FD;
+@blackBackground  : hsl(212, 20%, 97%);
 
 /*--- Colored Headers ---*/
 @redHeaderColor    : darken(@redTextColor, 5);
