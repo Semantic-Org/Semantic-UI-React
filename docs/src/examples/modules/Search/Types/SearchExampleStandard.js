@@ -3,6 +3,13 @@ import faker from 'faker'
 import React, { useState } from 'react'
 import { Search, Grid, Header, Segment } from 'semantic-ui-react'
 
+const source = _.times(5, () => ({
+      title: faker.company.companyName(),
+      description: faker.company.catchPhrase(),
+      image: faker.internet.avatar(),
+      price: faker.finance.amount(0, 100, 2, '$'),
+    }));
+
 const  SearchExampleStandard = props => {
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,13 +32,6 @@ const  SearchExampleStandard = props => {
       setResults(_.filter(source, isMatch)); 
     }, 300);
   };
-  
-     const source = _.times(5, () => ({
-      title: faker.company.companyName(),
-      description: faker.company.catchPhrase(),
-      image: faker.internet.avatar(),
-      price: faker.finance.amount(0, 100, 2, '$'),
-    }));
     
     return (
       <Grid>
