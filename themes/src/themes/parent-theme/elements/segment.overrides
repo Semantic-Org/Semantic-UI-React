@@ -4,6 +4,11 @@
 
 .ui.segment {
 
+  .attached& {
+    width: calc(100% + 2px);
+    max-width: calc(100% + 2px);
+  }
+
   .ui.bottom.attached.progress {
 
     top: 0;
@@ -41,7 +46,6 @@
     &.black {  background-color: @lighterBlack !important; }
 
   }
-
   &.inverted.quaternary {
 
     &.purple { background-color: @purpleBackground !important; }
@@ -54,22 +58,3 @@
   }
 
 }
-//
-// <Segment color="purple" className="secondary" inverted />
-// <Segment color="pink" className="secondary" inverted />
-// <Segment color="green" className="secondary" inverted />
-// <Segment color="yellow" className="secondary" inverted />
-// <Segment color="blue" className="secondary" inverted />
-// <Segment color="black" className="secondary" inverted />
-// <Segment color="purple" className="tertiary" inverted />
-// <Segment color="pink" className="tertiary" inverted />
-// <Segment color="green" className="tertiary" inverted />
-// <Segment color="yellow" className="tertiary" inverted />
-// <Segment color="blue" className="tertiary" inverted />
-// <Segment color="black" className="tertiary" inverted />
-// <Segment color="purple" className="quaternary" inverted />
-// <Segment color="pink" className="quaternary" inverted />
-// <Segment color="green" className="quaternary" inverted />
-// <Segment color="yellow" className="quaternary" inverted />
-// <Segment color="blue" className="quaternary" inverted />
-// <Segment color="black" className="quaternary" inverted />

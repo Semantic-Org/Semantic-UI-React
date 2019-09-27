@@ -27,13 +27,14 @@ storiesOf('Message', module).add('States', () => (
       <Grid.Column width={6}>
 
         <Message success>
+
           <Message.Header>A success message</Message.Header>
         </Message>
 
         <Divider hidden/>
 
         <Message error>
-          <Message.Header>An error message</Message.Header>
+          <Message.Header floated="left">An error message</Message.Header>
         </Message>
         <Divider hidden/>
 

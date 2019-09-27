@@ -22,12 +22,15 @@
     Brand Colors
 --------------------*/
 
-@primaryColor        : @purple;
-@secondaryColor      : @black;
+@primaryColor          : @purple;
+@secondaryColor        : @black;
 
-@lightPrimaryColor   : @lightPurple;
-@lightSecondaryColor : @lightBlack;
+@lightPrimaryColor     : @lightPurple;
+@lightSecondaryColor   : @lightBlack;
 
+@lighterPrimaryColor   : @lighterPurple;
+@lighterSecondaryColor : @lighterBlack;
+@primaryBackground     : @purpleBackground;
 
 /*-------------------
       Site Colors

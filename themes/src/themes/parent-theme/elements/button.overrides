@@ -129,10 +129,10 @@
   }
 
   &:hover {
-    background: @primaryColorHover;
+    background: @primaryColor;
     color: @white;
     transform: @hoverTranslate;
-    box-shadow: @hoverShadow @lightPurple;
+    box-shadow: @hoverShadow @lightPrimaryColor;
   }
 
   &:active{
@@ -173,14 +173,14 @@
 
 
  .ui.breadcrumb.buttons > .ui.button {
-    background: @purpleBackground;
+    background: @primaryBackground;
     color: @black;
     &:hover {
       color: @black;
-      background: darken(@purpleBackground, 5%);
+      background: darken(@primaryBackground, 5%);
     }
     &:active {
-      background: @purpleBackground;
+      background: @primaryBackground;
       color: @black;
     }
   }
@@ -190,9 +190,9 @@
   }
 
   .ui.breadcrumb.buttons > .ui.disabled.button {
-    background: @purpleBackground;
+    background: @primaryBackground;
     opacity: 1!important;
     &:hover {
-      background: @purpleBackground;
+      background: @primaryBackground;
     }
   }
