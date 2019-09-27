@@ -7,3 +7,18 @@
 @mediumFontSize : @h3;
 @smallFontSize  : @h4;
 @tinyFontSize   : @h5;
+
+
+.ui.header {
+
+  h2&, h3&, h4&, h5&, h6&, .small&, .large&, .medium&, .huge&, .tiny& {
+    color: @lightBlack;
+  }
+
+  h5& {
+    letter-spacing: @emSize / 4;
+    font-weight: @normal;
+    text-transform: uppercase;
+  }
+
+}

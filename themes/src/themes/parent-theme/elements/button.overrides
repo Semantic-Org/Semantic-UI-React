@@ -5,12 +5,14 @@
 @hoverTranslate: translateY(-2px);
 @shadow: 0 5px 10px -5px;
 @hoverShadow: 0 5px 12px -3px;
+@transition: transform .2s ease;
 
 .ui.button {
   border-radius: 8px;
   background: @primaryColor;
   box-shadow: @shadow @lightPrimaryColor;
   color: @white;
+  transition: @transition !important;
 
   &.active {
     background: @primaryColor;
@@ -26,84 +28,72 @@
   &.primary {
     box-shadow: @shadow @lightPrimaryColor;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @lightPrimaryColor;
     }
   }
   &.secondary {
     box-shadow: @shadow @secondaryColor;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @darkWhite;
     }
   }
   &.yellow {
     box-shadow: @shadow @yellow;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @lightYellow;
     }
   }
   &.olive {
     box-shadow: @shadow @olive;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @lightOlive;
     }
   }
   &.brown {
     box-shadow: @shadow @brown;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @lightBrown;
     }
   }
   &.violet {
     box-shadow: @shadow @violet;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @lightViolet;
     }
   }
   &.grey {
     box-shadow: @shadow @grey;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @offWhite;
     }
   }
   &.orange {
     box-shadow: @shadow @orange;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @lightOrange;
     }
   }
   &.green {
     box-shadow: @shadow @green;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @lightGreen;
     }
   }
   &.teal {
     box-shadow: @shadow @teal;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @lightTeal;
     }
   }
   &.blue {
     box-shadow: @shadow @blue;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @lightBlue;
     }
   }
   &.purple {
     box-shadow: @shadow @purple;
     &:visited, &:focus, &:hover {
-      transition: @transition;
       box-shadow: @hoverShadow @lightPurple;
     }
   }
@@ -125,20 +115,34 @@
       box-shadow: @hoverShadow @offWhite;
     }
   }
+  &.positive {
+    box-shadow: @shadow @positiveColor;
+    &:visited, &:focus, &:hover {
+      box-shadow: @hoverShadow @positiveColor;
+    }
+  }
+  &.negative {
+    box-shadow: @shadow @negativeColor;
+    &:visited, &:focus, &:hover {
+      box-shadow: @hoverShadow @negativeColor;
+    }
+  }
 
-  &:visited,
   &:hover {
     background: @primaryColorHover;
     color: @white;
     transform: @hoverTranslate;
-    transition: @transition;
     box-shadow: @hoverShadow @lightPurple;
   }
 
-  &:active, &:focus {
+  &:active{
     background: @primaryColor;
     color: @white;
     transform: translateY(0);
+  }
+  &:visited, &:focus{
+    color: @white;
+    background: @primaryColor;
   }
 }
 
@@ -153,8 +157,42 @@
 .ui.action.input {
   .ui.button, .ui.labeled.button {
     box-shadow: none;
-    &:hover, &:visited, &:focus, &:active {
+    &:hover, &:visited, &:active {
       transform: translateY(0);
     }
   }
 }
+
+.ui.attached.left.button,
+.ui.attached.right.button {
+  box-shadow: none;
+  &:hover, &:visited, &:active {
+    transform: translateY(0);
+  }
+}
+
+
+ .ui.breadcrumb.buttons > .ui.button {
+    background: @purpleBackground;
+    color: @black;
+    &:hover {
+      color: @black;
+      background: darken(@purpleBackground, 5%);
+    }
+    &:active {
+      background: @purpleBackground;
+      color: @black;
+    }
+  }
+
+  .ui.breadcrumb.buttons > .ui.button > .home.icon {
+    margin-right: 8px !important;
+  }
+
+  .ui.breadcrumb.buttons > .ui.disabled.button {
+    background: @purpleBackground;
+    opacity: 1!important;
+    &:hover {
+      background: @purpleBackground;
+    }
+  }

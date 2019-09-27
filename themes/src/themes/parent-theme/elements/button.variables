@@ -62,7 +62,7 @@
   background-color @defaultDuration @defaultEasing,
   color @defaultDuration @defaultEasing,
   box-shadow @defaultDuration @defaultEasing,
-  translate (@defaultDuration * 2) @defaultEasing,
+  translate 0.2 ease,
   background @defaultDuration @defaultEasing;
 
 /*
@@ -85,7 +85,7 @@
 --------------------*/
 
 /* Hovered */
-@hoverBackgroundColor: #CACBCD;
+@hoverBackgroundColor: @purple;
 @hoverBackgroundImage: @backgroundImage;
 @hoverBoxShadow: @boxShadow;
 @hoverColor: @hoveredTextColor;

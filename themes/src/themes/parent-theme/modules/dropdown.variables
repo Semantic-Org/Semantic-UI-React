@@ -26,13 +26,13 @@
 @textTransition: none;
 
 /* Menu */
-@menuBackground: #FFFFFF;
+@menuBackground: @blackBackground;
 @menuMargin: 0em;
 @menuPadding: 0em 0em;
 @menuTop: 100%;
 @menuTextAlign: left;
 
-@menuBorderWidth: 1px;
+@menuBorderWidth: 2px;
 @menuBorderColor: @borderColor;
 @menuBorder: @menuBorderWidth solid @menuBorderColor;
 @menuBoxShadow: @raisedShadow;

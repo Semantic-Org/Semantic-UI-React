@@ -16,8 +16,8 @@
 @fontWeight: @normal;
 @borderWidth: 1px;
 @border: @borderWidth solid @borderColor;
-@boxShadow: @subtleShadow;
-@borderRadius: 0px;
+@boxShadow: 0 5px 10px -5px rgba(61,80,102,0.25);
+@borderRadius: 0;
 @minHeight: (@itemVerticalPadding * 2) + 1em;
 
 /* Menu Item */
@@ -39,7 +39,7 @@
 /* Sub Menu */
 @subMenuDistance: 0.5em;
 @subMenuMargin: @subMenuDistance -@itemHorizontalPadding 0em;
-@subMenuFontSize: @relativeTiny;
+@subMenuFontSize: @emSize;
 @subMenuTextColor: rgba(0, 0, 0, 0.5);
 
 @subMenuIndent: 0em;
@@ -73,8 +73,8 @@
 
 /* Vertical Header */
 @verticalHeaderMargin: 0em 0em 0.5em;
-@verticalHeaderFontSize: @relativeMedium;
-@verticalHeaderFontWeight: @bold;
+@verticalHeaderFontSize: @emSize;
+@verticalHeaderFontWeight: @normal;
 
 /* Pointing Arrow */
 @arrowSize: @relative8px;
@@ -102,7 +102,7 @@
 @buttonVerticalPadding: @relativeMini;
 
 /* Input */
-@inputSize: @relativeMedium;
+@inputSize: @emSize;
 @inputVerticalMargin: -0.5em;
 @inputOffset: 0em;
 @inputVerticalPadding: @relative8px;
@@ -125,13 +125,13 @@
 @labelAndIconMargin: 0em 0.5em 0em 0em;
 
 /* Dropdown in Menu */
-@dropdownMenuBoxShadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+@dropdownMenuBoxShadow: @boxShadow;
 
-@dropdownBackground: #FFFFFF;
+@dropdownBackground: @blackBackground;
 @dropdownMenuDistance: 0em;
-@dropdownMenuBorderRadius: @borderRadius;
+@dropdownMenuBorderRadius: @emSize;
 
-@dropdownItemFontSize: @relativeMedium;
+@dropdownItemFontSize: @emSize;
 @dropdownItemPadding: @relativeMini @relativeLarge;
 @dropdownItemBackground: transparent;
 @dropdownItemColor: @textColor;
@@ -141,7 +141,7 @@
 @dropdownItemTransition: none;
 
 @dropdownItemIconFloat: none;
-@dropdownItemIconFontSize: @relativeMedium;
+@dropdownItemIconFontSize: @emSize;
 @dropdownItemIconMargin: 0em 0.75em 0em 0em;
 
 @dropdownHoveredItemBackground: @transparentBlack;
@@ -331,9 +331,9 @@
 
 
 /* Pagination */
-@paginationMinWidth: 3em;
-@paginationActiveBackground: @transparentBlack;
-@paginationActiveTextColor: @selectedTextColor;
+@paginationMinWidth: 2em;
+@paginationActiveBackground: @white;
+@paginationActiveTextColor: @purple;
 
 /* Labeled Icon */
 @labeledIconItemHorizontalPadding: @relativeMassive;

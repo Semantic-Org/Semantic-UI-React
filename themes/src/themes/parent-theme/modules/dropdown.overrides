@@ -1,0 +1,3 @@
+.ui.dropdown.active {
+    border: 2px solid @primaryColor;
+}

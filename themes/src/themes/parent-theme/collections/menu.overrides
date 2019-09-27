@@ -1,0 +1,49 @@
+
+.ui.pagination.menu {
+
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  border: 0px;
+
+  a.item, a.active.item {
+    outline: none;
+    font-weight: @bold;
+    justify-content: center;
+    &:before {
+      background: none;
+      width: 0;
+    }
+  }
+
+  .active {
+    &:before {
+      justify-content: center;
+      content: "\2022";
+      width: 100%;
+      position: relative;
+      top: calc(100% - 20px);
+      text-align: center;
+      font-size: 20px;
+    }
+  }
+
+  a.item[type=nextItem] {
+    color: @white;
+    background-color: @purple;
+    border-radius: @emSize / 2;
+    &:hover{
+      color: @white;
+      background-color: @purple;
+    }
+  }
+  a.item[type=prevItem] {
+    color: @purple;
+    background-color: @purpleBackground;
+    border-radius: @emSize / 2;
+    &:hover{
+      color: @purple;
+      background-color: @purpleBackground;
+    }
+  }
+
+}

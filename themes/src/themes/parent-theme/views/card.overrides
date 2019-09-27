@@ -10,3 +10,42 @@
     box-shadow: 0 20px 40px -20px rgba(29, 38, 48, 0.25);
   }
 }
+
+
+.ui.red.card,
+.ui.orange.card,
+.ui.yellow.card,
+.ui.olive.card,
+.ui.green.card,
+.ui.teal.card,
+.ui.blue.card,
+.ui.violet.card,
+.ui.purple.card,
+.ui.pink.card,
+.ui.brown.card,
+.ui.grey.card {
+  border-width: 2px;
+  border-style: solid;
+  box-shadow: none !important;
+  &:hover{
+    box-shadow: none !important;
+  }
+}
+
+.ui.yellow.card { border-color: @lighterYellow; }
+.ui.green.card { border-color: @lighterGreen; }
+.ui.blue.card { border-color: @lighterBlue; }
+.ui.pink.card { border-color: @lighterPink; }
+.ui.grey.card { border-color: @lighterBlack; }
+
+.ui.purple.card,
+.ui.red.card,
+.ui.orange.card,
+.ui.olive.card,
+.ui.teal.card,
+.ui.violet.card,
+.ui.brown.card {
+
+  border-color: @lighterPurple;
+
+}
