@@ -10,25 +10,3 @@
 * {
   font-weight: 300;
 }
-
-.ui.pagination.menu {
-
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  border: 0px;
-  font-weight: @bold;
-
-  a.item, a.active.item {
-    justify-content: center;
-    &:before {
-      background: none;
-      width: 0;
-    }
-  }
-
-  .active {
-    background: @white;
-    color: @purple;
-  }
-
-}
