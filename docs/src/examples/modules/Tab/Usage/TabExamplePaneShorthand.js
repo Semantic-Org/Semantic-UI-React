@@ -4,13 +4,13 @@ import { List, Label, Tab } from 'semantic-ui-react'
 const panes = [
   {
     menuItem: 'Tab 1',
-    pane: { key: 'tab1', content: 'This is massive tab', size: 'massive' },
+    pane: { key: 'tab1', content: 'This is a massive tab', size: 'massive' },
   },
   {
     menuItem: 'Tab 2',
     pane: {
       key: 'tab2',
-      content: 'This tab has a center aligned text',
+      content: 'This tab has center-aligned text',
       textAlign: 'center',
     },
   },
@@ -20,7 +20,7 @@ const panes = [
       key: 'tab3',
       content: (
         <div>
-          This tab contains an <Label>JSX</Label> element
+          This tab contains a <Label>JSX</Label> element
         </div>
       ),
     },
@@ -29,7 +29,7 @@ const panes = [
     menuItem: 'Tab 4',
     pane: (
       <Tab.Pane key='tab4'>
-        <p>This tab has a complex content</p>
+        <p>This tab has complex content</p>
 
         <List>
           <List.Item>Apples</List.Item>
