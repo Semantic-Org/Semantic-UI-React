@@ -63,7 +63,7 @@
 
 /* This adjusts the default form input across all elements */
 @inputBackground        : @white;
-@inputVerticalPadding   : @relative11px;
+@inputVerticalPadding   : @relative10px;
 @inputHorizontalPadding : @relative14px;
 @inputPadding           : @inputVerticalPadding @inputHorizontalPadding;
 
@@ -548,7 +548,7 @@
       Disabled
 --------------------*/
 
-@disabledOpacity: 0.45;
+@disabledOpacity: 1;
 @disabledTextColor: rgba(40, 40, 40, 0.3);
 @invertedDisabledTextColor: rgba(225, 225, 225, 0.3);
 

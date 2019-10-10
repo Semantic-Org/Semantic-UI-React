@@ -3,21 +3,24 @@
 *******************************/
 
 @hoverTranslate: translateY(-2px);
-@shadow: 0 5px 10px -5px;
-@hoverShadow: 0 5px 12px -3px;
+@shadow: 0 @relative5px @relative10px -5px;
+@hoverShadow: 0 @relative5px @relative12px -3px;
 @transition: transform .2s ease;
 
 .ui.button {
-  border-radius: 8px;
+  border-radius: @borderRadius;
   background: @primaryColor;
   box-shadow: @shadow @lightPrimaryColor;
   color: @white;
   transition: @transition !important;
+  line-height: @lineHeight;
+  padding: @10px @20px;
 
   &.active {
     background: @primaryColor;
     box-shadow: @shadow @lightPrimaryColor;
     color: @white;
+
     &:hover {
       background: @primaryColor;
       box-shadow: @shadow @lightPrimaryColor;
@@ -25,104 +28,152 @@
     }
   }
 
+  &.disabled {
+    background: @lightGrey;
+    color: @grey;
+  }
+
   &.primary {
     box-shadow: @shadow @lightPrimaryColor;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightPrimaryColor;
     }
   }
+
   &.secondary {
+    padding: @8px @20px;
     box-shadow: @shadow @secondaryColor;
+    border: @invertedBorderSize solid @primaryColor;
+    color: @darkGrey;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @darkWhite;
+      color: @darkGrey;
+    }
+
+    &.disabled {
+      background: @white;
+      padding: @8px @16px;
+      border: @2px solid @lightGrey;
+      color: @grey;
     }
   }
+
   &.yellow {
     box-shadow: @shadow @yellow;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightYellow;
     }
   }
+  
   &.olive {
     box-shadow: @shadow @olive;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightOlive;
     }
   }
+
   &.brown {
     box-shadow: @shadow @brown;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightBrown;
     }
   }
+
   &.violet {
     box-shadow: @shadow @violet;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightViolet;
     }
   }
+
   &.grey {
     box-shadow: @shadow @grey;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @offWhite;
     }
   }
+
   &.orange {
     box-shadow: @shadow @orange;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightOrange;
     }
   }
+
   &.green {
     box-shadow: @shadow @green;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightGreen;
     }
   }
+
   &.teal {
     box-shadow: @shadow @teal;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightTeal;
     }
   }
+
   &.blue {
     box-shadow: @shadow @blue;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightBlue;
     }
   }
+
   &.purple {
     box-shadow: @shadow @purple;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightPurple;
     }
   }
+
   &.pink {
     box-shadow: @shadow @pink;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightPink;
     }
   }
+
   &.red {
     box-shadow: @shadow @red;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightRed;
     }
   }
+
   &.black {
     box-shadow: @shadow @black;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @offWhite;
     }
   }
+
   &.positive {
     box-shadow: @shadow @positiveColor;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @positiveColor;
     }
   }
+
   &.negative {
     box-shadow: @shadow @negativeColor;
+
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @negativeColor;
     }
@@ -135,17 +186,32 @@
     box-shadow: @hoverShadow @lightPrimaryColor;
   }
 
-  &:active{
+  &:active {
     background: @primaryColor;
     color: @white;
     transform: translateY(0);
   }
-  &:visited, &:focus{
+
+  &:visited, &:focus {
     color: @white;
     background: @primaryColor;
   }
-}
 
+  &.icon,
+  &.icon.labeled {
+    > .icon {
+      background: @basicBackground;
+    }
+  }
+
+  &.icon.labeled {
+    padding: @10px;
+  }
+
+  &.secondary.icon.labeled {
+    padding: @8px; 
+  }
+}
 
 .ui.buttons,
 .ui.labeled.button,
@@ -157,6 +223,7 @@
 .ui.action.input {
   .ui.button, .ui.labeled.button {
     box-shadow: none;
+
     &:hover, &:visited, &:active {
       transform: translateY(0);
     }
@@ -166,33 +233,37 @@
 .ui.attached.left.button,
 .ui.attached.right.button {
   box-shadow: none;
+
   &:hover, &:visited, &:active {
     transform: translateY(0);
   }
 }
 
+.ui.breadcrumb.buttons > .ui.button {
+  background: @primaryBackground;
+  color: @black;
 
- .ui.breadcrumb.buttons > .ui.button {
+  &:hover {
+    color: @black;
+    background: darken(@primaryBackground, 5%);
+  }
+
+  &:active {
     background: @primaryBackground;
     color: @black;
-    &:hover {
-      color: @black;
-      background: darken(@primaryBackground, 5%);
-    }
-    &:active {
-      background: @primaryBackground;
-      color: @black;
-    }
   }
+}
 
-  .ui.breadcrumb.buttons > .ui.button > .home.icon {
-    margin-right: 8px !important;
-  }
+.ui.breadcrumb.buttons > .ui.button > .home.icon {
+  margin-right: @8px !important;
+}
 
-  .ui.breadcrumb.buttons > .ui.disabled.button {
+.ui.breadcrumb.buttons > .ui.disabled.button {
+  background: @primaryBackground;
+  opacity: 1!important;
+
+  &:hover {
     background: @primaryBackground;
-    opacity: 1!important;
-    &:hover {
-      background: @primaryBackground;
-    }
   }
+}
+

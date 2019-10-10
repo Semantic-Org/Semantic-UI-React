@@ -124,7 +124,6 @@
 @activeHoverBackground: @lightGrey;
 @activeHoverColor: @textColor;
 
-
 /* Disabled */
 @disabledBackground: @background;
 @disabledColor: @disabledTextColor;
