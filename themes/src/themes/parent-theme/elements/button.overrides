@@ -56,6 +56,7 @@
       background: @white;
       padding: @8px @16px;
       border: @2px solid @lightGrey;
+      color: @grey;
     }
   }
 
@@ -206,6 +207,10 @@
   &.icon.labeled {
     padding: @10px;
   }
+
+  &.secondary.icon.labeled {
+    padding: @8px; 
+  }
 }
 
 .ui.buttons,
@@ -250,7 +255,7 @@
 }
 
 .ui.breadcrumb.buttons > .ui.button > .home.icon {
-  margin-right: 8px !important;
+  margin-right: @8px !important;
 }
 
 .ui.breadcrumb.buttons > .ui.disabled.button {
