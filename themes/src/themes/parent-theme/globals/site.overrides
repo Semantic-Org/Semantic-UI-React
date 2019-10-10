@@ -2,6 +2,40 @@
 @import '../external/font-awesome.overrides';
 @import '../external/react-datepicker.overrides';
 
+@font-face {
+  font-family: 'Euclid Square';
+  font-weight: 300;
+  font-display: swap;
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.eot');
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.eot?#iefix') format('embedded-opentype'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.woff2') format('woff2'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.woff') format('woff'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Euclid Square';
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.eot');
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.eot?#iefix') format('embedded-opentype'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.woff2') format('woff2'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.woff') format('woff'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Euclid Square';
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.eot');
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.eot?#iefix') format('embedded-opentype'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.woff2') format('woff2'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.woff') format('woff'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Euclid Square';
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.eot');
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.eot?#iefix') format('embedded-opentype'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.woff2') format('woff2'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.woff') format('woff'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.ttf') format('truetype');
+}
+
 .offset {
   margin-top: -10px;
   margin-left: 20px;
