@@ -10,7 +10,7 @@
     "all:eslint:fix": "eslint --fix --ext .js ./docs ./themes .src/externals",
     "docs:start:florence": "THEME=florence cross-env NODE_ENV=development gulp --series start:docs",
     "docs:start:flexibank": "THEME=flexibank cross-env NODE_ENV=development gulp --series start:docs",
-    "docs:build": "rm -rf docs/dist && cross-env NODE_ENV=production THEME=florence gulp build:docs",
+    "docs:build": "rm -rf docs/dist && cross-env NODE_ENV=development THEME=florence gulp build:docs",
     "docs:serve": "serve docs/dist",
     "docs:deploy:docs": "gulp deploy:docs",
     "themes:build": "rm -rf themes/dist && node themes/config/build.js",

@@ -17,13 +17,12 @@
 @bold              : 500;
 @normal            : 300;
 
-
 /*-------------------
     Brand Colors
 --------------------*/
 
 @primaryColor          : @purple;
-@secondaryColor        : @black;
+@secondaryColor        : @white;
 
 @lightPrimaryColor     : @lightPurple;
 @lightSecondaryColor   : @lightBlack;
@@ -58,7 +57,7 @@
 @lightGreen       : hsl(154, 64%, 72%);
 @lightBlue        : hsl(220, 90%, 70%);
 @lightBlack       : hsl(212, 25%, 32%);
-@lightGrey        : @lightPurple;
+@lightGrey        : #D0D6DC;
 @lightRed         : @lightPurple;
 @lightOrange      : @lightPurple;
 @lightOlive       : @lightPurple;
@@ -73,6 +72,8 @@
 @lighterGreen       : hsl(154, 64%, 86%);
 @lighterBlue        : hsl(220, 100%, 79%);
 
+/*-- Darker Colors --*/
+@darkGrey         : #3D5066;
 
 /*---   Neutrals  ---*/
 @fullBlack        : #000000;

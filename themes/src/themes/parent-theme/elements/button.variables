@@ -12,11 +12,11 @@
 @backgroundColor: #E0E1E2;
 @backgroundImage: none;
 @background: @backgroundColor @backgroundImage;
-@lineHeight: 1em;
+@lineHeight: 30px;
 
 /* Button defaults to using same height as input globally */
 @verticalPadding: @inputVerticalPadding;
-@horizontalPadding: 1em;
+@horizontalPadding: @relative20px;
 
 /* Text */
 @textTransform: none;
@@ -99,6 +99,7 @@
 @iconFocusOpacity: 0.85;
 
 /* Disabled */
+@disabledOpacity: 1;
 @disabledBackgroundImage: none;
 @disabledBoxShadow: none;
 
@@ -175,12 +176,11 @@
 @labeledIconMargin: 0em;
 
 /* Labeled Icon */
-@labeledIconWidth: 1em + (@verticalPadding * 2);
-@labeledIconBackgroundColor: rgba(0, 0, 0, 0.05);
-@labeledIconPadding: (@horizontalPadding + @labeledIconWidth);
+@labeledIconWidth: @40px;
+@labeledIconPadding: @40px;
 @labeledIconBorder: transparent;
 @labeledIconColor: '';
-
+@labeledIconBackgroundColor: rgba(0, 0, 0, 0.05);
 @labeledIconLeftShadow: -1px 0px 0px 0px @labeledIconBorder inset;
 @labeledIconRightShadow: 1px 0px 0px 0px @labeledIconBorder inset;
 
