@@ -188,9 +188,9 @@
 @negativeTextColor       : @black;
 
 /* Info */
-@infoColor              : @blue
+@infoColor              : @blue;
 @infoBackgroundColor    : @blueBackground;
-@infoBorderColor        : @blue
+@infoBorderColor        : @blue;
 @infoHeaderColor        : @black;
 @infoTextColor          : @black;
 

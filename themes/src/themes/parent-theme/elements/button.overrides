@@ -31,96 +31,116 @@
       box-shadow: @hoverShadow @lightPrimaryColor;
     }
   }
+
   &.secondary {
     box-shadow: @shadow @secondaryColor;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @darkWhite;
     }
   }
+
+  &.disabled {
+    
+  }
+
   &.yellow {
     box-shadow: @shadow @yellow;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightYellow;
     }
   }
+  
   &.olive {
     box-shadow: @shadow @olive;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightOlive;
     }
   }
+
   &.brown {
     box-shadow: @shadow @brown;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightBrown;
     }
   }
+
   &.violet {
     box-shadow: @shadow @violet;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightViolet;
     }
   }
+
   &.grey {
     box-shadow: @shadow @grey;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @offWhite;
     }
   }
+
   &.orange {
     box-shadow: @shadow @orange;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightOrange;
     }
   }
+
   &.green {
     box-shadow: @shadow @green;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightGreen;
     }
   }
+
   &.teal {
     box-shadow: @shadow @teal;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightTeal;
     }
   }
+
   &.blue {
     box-shadow: @shadow @blue;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightBlue;
     }
   }
+
   &.purple {
     box-shadow: @shadow @purple;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightPurple;
     }
   }
+
   &.pink {
     box-shadow: @shadow @pink;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightPink;
     }
   }
+
   &.red {
     box-shadow: @shadow @red;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @lightRed;
     }
   }
+
   &.black {
     box-shadow: @shadow @black;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @offWhite;
     }
   }
+
   &.positive {
     box-shadow: @shadow @positiveColor;
     &:visited, &:focus, &:hover {
       box-shadow: @hoverShadow @positiveColor;
     }
   }
+
   &.negative {
     box-shadow: @shadow @negativeColor;
     &:visited, &:focus, &:hover {
@@ -146,7 +166,6 @@
   }
 }
 
-
 .ui.buttons,
 .ui.labeled.button,
 .ui.dropdown.button,
@@ -171,28 +190,27 @@
   }
 }
 
-
- .ui.breadcrumb.buttons > .ui.button {
+.ui.breadcrumb.buttons > .ui.button {
+  background: @primaryBackground;
+  color: @black;
+  &:hover {
+    color: @black;
+    background: darken(@primaryBackground, 5%);
+  }
+  &:active {
     background: @primaryBackground;
     color: @black;
-    &:hover {
-      color: @black;
-      background: darken(@primaryBackground, 5%);
-    }
-    &:active {
-      background: @primaryBackground;
-      color: @black;
-    }
   }
+}
 
-  .ui.breadcrumb.buttons > .ui.button > .home.icon {
-    margin-right: 8px !important;
-  }
+.ui.breadcrumb.buttons > .ui.button > .home.icon {
+  margin-right: 8px !important;
+}
 
-  .ui.breadcrumb.buttons > .ui.disabled.button {
+.ui.breadcrumb.buttons > .ui.disabled.button {
+  background: @primaryBackground;
+  opacity: 1!important;
+  &:hover {
     background: @primaryBackground;
-    opacity: 1!important;
-    &:hover {
-      background: @primaryBackground;
-    }
   }
+}
