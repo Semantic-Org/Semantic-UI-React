@@ -40,25 +40,25 @@
 @green            : hsl(154, 64%, 48%);
 @blue             : hsl(220, 100%, 57%);
 @purple           : hsl(257, 98%, 65%);
-@pink             : hsl(340, 80%, 66%);
+@pink             : #EE6392;
 @black            : hsl(212, 25%, 15%);
 @grey             : #5F6F81;
 @olive            : @purple;
 @teal             : @purple;
 @violet           : @purple;
-@red              : @purple;
+@red              : @pink;
 @orange           : @purple;
 @brown            : @purple;
 
 /*---  Light Colors  ---*/
 @lightPurple      : hsl(257, 78%, 70%);
-@lightPink        : hsl(340, 100%, 79%);
+@lightPink        : #FF94B8;
 @lightYellow      : hsl(42, 100%, 73%);
 @lightGreen       : hsl(154, 64%, 72%);
 @lightBlue        : hsl(220, 90%, 70%);
 @lightBlack       : hsl(212, 25%, 32%);
 @lightGrey        : #D0D6DC;
-@lightRed         : @lightPurple;
+@lightRed         : @lightPink;
 @lightOrange      : @lightPurple;
 @lightOlive       : @lightPurple;
 @lightTeal        : @lightPurple;
@@ -67,7 +67,7 @@
 
 /*---  Lighter Colors  ---*/
 @lighterPurple      : hsl(257, 83%, 87%);
-@lighterPink        : hsl(340, 85%, 87%);
+@lighterPink:         #FAC2D5;
 @lighterYellow      : hsl(42, 100%, 83%);
 @lighterGreen       : hsl(154, 64%, 86%);
 @lighterBlue        : hsl(220, 100%, 79%);
@@ -86,7 +86,7 @@
 /*--- Colored Backgrounds ---*/
 @yellowBackground : hsl(42, 95%, 95%);
 @purpleBackground : hsl(257, 73%, 97%);
-@pinkBackground   : hsl(339, 74%, 96%);
+@pinkBackground:    #FCEDF2;
 @blueBackground   : hsl(220, 100%, 97%);
 @greenBackground  : hsl(155, 59%, 96%);
 @redBackground    : #F5F2FD;
