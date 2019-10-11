@@ -1,0 +1,21 @@
+i.icon,
+i.icon.outline {
+  font-family: 'fontello';
+}
+
+i.icon.tag:before { content: '\e800'; }
+i.icon.chevron.up:before { content: '\e80f'; }
+i.icon.chevron.down:before { content: '\e804'; }
+i.icon.chevron.left:before { content: '\e80e'; }
+i.icon.chevron.right:before { content: '\e801'; }
+i.icon.time:before { content: '\e802'; }
+i.icon.spinner:before { content: '\e803'; }
+i.icon.remove.circle:before { content: '\e805'; }
+i.icon.plus:before { content: '\e806'; }
+i.icon.info:before { content: '\e807'; }
+i.icon.tick:before { content: '\e808'; }
+i.icon.warning-sign:before { content: '\e809'; }
+i.icon.search:before { content: '\e80a'; }
+i.icon.home:before { content: '\e80b'; }
+i.icon.file:before { content: '\e80c'; }
+i.icon.close:before { content: '\e80d'; }
