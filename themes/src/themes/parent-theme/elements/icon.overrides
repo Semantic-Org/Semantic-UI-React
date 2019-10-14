@@ -14,7 +14,7 @@ i.icon.remove.circle:before { content: '\e805'; }
 i.icon.plus:before { content: '\e806'; }
 i.icon.info:before { content: '\e807'; }
 i.icon.tick:before { content: '\e808'; }
-i.icon.warning-sign:before { content: '\e809'; }
+i.icon.exclamation.triangle:before { content: '\e809'; }
 i.icon.search:before { content: '\e80a'; }
 i.icon.home:before { content: '\e80b'; }
 i.icon.file:before { content: '\e80c'; }
