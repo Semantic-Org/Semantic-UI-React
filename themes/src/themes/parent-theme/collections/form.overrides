@@ -7,6 +7,16 @@
   font-family: @pageFont;
 }
 
+.ui.form {
+  .required.field {
+    label {
+      &:after {
+        content: '';
+      }
+    }
+  }
+}
+
 .ui.input {
 
   &.focus {

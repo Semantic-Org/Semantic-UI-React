@@ -7,7 +7,6 @@
 @borderFocus: inset 0 0 0 2px;
 
 .ui.input {
-
   &.focus {
     input {
       box-shadow: @borderFocus @primaryColor;
