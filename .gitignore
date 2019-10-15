@@ -14,6 +14,7 @@ docs/src/exampleMenus
 docs/dist/
 dll/
 node_modules/
+storybook-static/
 tmp/
 
 themes/dist/
