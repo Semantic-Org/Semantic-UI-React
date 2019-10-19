@@ -938,15 +938,17 @@ export default class Dropdown extends Component {
 
     let newSelectedIndex
 
-    // update the selected index
-    if (!selectedIndex || selectedIndex < 0) {
-      const firstIndex = enabledIndicies[0]
+    if (selectedIndex === undefined) {
+      newSelectedIndex = -1
+    } else if (!selectedIndex || selectedIndex < 0) {
+      // update the selected index
+      // const firstIndex = enabledIndicies[0]
 
       // Select the currently active item, if none, use the first item.
       // Multiple selects remove active items from the list,
       // their initial selected index should be 0.
       newSelectedIndex = multiple
-        ? firstIndex
+        ? -1
         : this.getMenuItemIndexByValue(value, options) || enabledIndicies[0]
     } else if (multiple) {
       // multiple selects remove options from the menu as they are made active
@@ -960,10 +962,6 @@ export default class Dropdown extends Component {
       // regular selects can only have one active item
       // set the selected index to the currently active item
       newSelectedIndex = _.includes(enabledIndicies, activeIndex) ? activeIndex : undefined
-    }
-
-    if (!newSelectedIndex || newSelectedIndex < 0) {
-      newSelectedIndex = enabledIndicies[0]
     }
 
     this.setState({ selectedIndex: newSelectedIndex })
