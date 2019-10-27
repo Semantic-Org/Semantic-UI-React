@@ -8,7 +8,7 @@ export const meta = {
 
 ## Preface
 
-Semantic UI React does not have own styling system and fully relies on the theming of
+Semantic UI React does not have its own styling system and fully relies on the theming of
 Semantic UI. It's really powerful, you don't need to know LESS or CSS you can simply
 update values of variables or use styles from predefined themes.
 
@@ -33,7 +33,7 @@ In fact, all you know about theming and styling of Semantic UI is fully applicab
 
 Semantic UI offers its own build system that uses Gulp and produces prepared CSS files.
 
-In all cases we recommend to use the LESS package and tune it into your build system with Webpack. The LESS package also does not depend on Gulp and other cruft things.
+In all cases, we recommend to use the LESS package and tune it into your build system with Webpack. The LESS package also does not depend on Gulp and other cruft things.
 However, this package is not friendly for Webpack and requires additional configuration.
 
 <Button
@@ -80,7 +80,7 @@ yarn remove semantic-ui semantic-ui-css
 
 ### Install required dependencies
 
-Create React App does not support LESS out of the box, we and propose to use [`@craco/craco`](https://www.npmjs.com/package/@craco/craco) to add its support and avoid `eject`. You have to install required packages:
+Create React App does not support LESS out of the box; we propose to use [`@craco/craco`](https://www.npmjs.com/package/@craco/craco) to add its support and avoid `eject`. You have to install required packages:
 
 ```bash
 npm install @craco/craco @semantic-ui-react/craco-less semantic-ui-less --save-dev
@@ -143,7 +143,7 @@ npx @semantic-ui-react/bootstrap
 
 ### `theme.config`
 
-This file is mostly prepared but you have to change some details in the bottom of it:
+This file is mostly prepared, but you have to change some details in the bottom of it:
 
 ```json label=src/semantic-ui/theme.config
 /*******************************
