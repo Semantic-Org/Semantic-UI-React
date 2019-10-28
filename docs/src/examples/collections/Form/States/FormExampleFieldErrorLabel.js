@@ -8,6 +8,7 @@ const FormExampleFieldErrorLabel = () => (
       fluid
       label='First name'
       placeholder='First name'
+      id='form-input-first-name'
     />
     <Form.Input
       error='Please enter your last name'
