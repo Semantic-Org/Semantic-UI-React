@@ -23,6 +23,12 @@
     font-size: 16px;
     padding-top: 20px;
     padding-bottom: 20px;
+
+    &.active {
+      box-shadow: none;
+      background: none !important;
+      font-weight: 500;
+    }
   }
 
   &.striped {
