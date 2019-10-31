@@ -1,13 +1,13 @@
 .ui.table {
   thead {
     background: #1d2630;
-    color: #ffffff;
+    color: @white;
 
     th {
       background: #1d2630;
       font-size: 16px;
       font-weight: 300;
-      color: #ffffff;
+      color: @white;
     }
   }
 
@@ -17,6 +17,12 @@
         background: #f5f2fd;
       }
     }
+  }
+
+  td {
+    font-size: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   &.striped {
@@ -38,17 +44,17 @@
 .ui.sortable.table {
   thead {
     th {
-      color: #ffffff;
+      color: @white;
 
       &:hover {
-        color: #ffffff;
+        color: @white;
       }
 
       &.sorted {
-        color: #ffffff;
+        color: @white;
 
         &:hover {
-          color: #ffffff;
+          color: @white;
         }
       }
 
