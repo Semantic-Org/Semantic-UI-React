@@ -1,0 +1,66 @@
+.ui.table {
+  thead {
+    background: #1d2630;
+    color: #ffffff;
+
+    th {
+      background: #1d2630;
+      font-size: 16px;
+      font-weight: 300;
+      color: #ffffff;
+    }
+  }
+
+  tbody {
+    tr {
+      td.selectable:hover {
+        background: #f5f2fd;
+      }
+    }
+  }
+
+  &.striped {
+    > tr:nth-child(2n),
+    tbody tr:nth-child(2n) {
+      background-color: #f6f7f9;
+    }
+  }
+}
+
+.ui.selectable.table {
+  tbody {
+    tr:hover {
+      background: #f5f2fd !important;
+    }
+  }
+}
+
+.ui.sortable.table {
+  thead {
+    th {
+      color: #ffffff;
+
+      &:hover {
+        color: #ffffff;
+      }
+
+      &.sorted {
+        color: #ffffff;
+
+        &:hover {
+          color: #ffffff;
+        }
+      }
+
+      &.ascending:after {
+        font-family: 'fontello';
+        content: '\e804';
+      }
+
+      &.descending:after {
+        font-family: 'fontello';
+        content: '\e801';
+      }
+    }
+  }
+}
