@@ -3,24 +3,66 @@ i.icon.outline {
   font-family: 'fontello';
 }
 
-i.icon.check:before { content: '\e800'; }
-i.icon.chevron.down:before { content: '\e801'; }
-i.icon.chevron.left:before { content: '\e802'; }
-i.icon.chevron.right:before { content: '\e803'; }
-i.icon.chevron.up:before { content: '\e804'; }
-i.icon.clock.outline:before { content: '\e805'; }
-i.icon.close:before { content: '\e806'; }
-i.icon.envelope.outline:before { content: '\e807'; }
-i.icon.exclamation.triangle:before { content: '\e808'; }
-i.icon.file:before { content: '\e809'; }
-i.icon.home:before { content: '\e80a'; }
-i.icon.info:before { content: '\e80b'; }
-i.icon.phone:before { content: '\e80c'; }
-i.icon.plus:before { content: '\e80d'; }
-i.icon.remove.circle:before { content: '\e80e'; }
-i.icon.search:before { content: '\e80f'; }
-i.icon.sms:before { content: '\e810'; }
-i.icon.spinner:before { content: '\e811'; }
-i.icon.tag:before { content: '\e812'; }
-i.icon.user.outline:before { content: '\e813'; }
-i.icon.whatsapp:before { content: '\e814'; }
+i.icon.check:before {
+  content: '\e800';
+}
+i.icon.chevron.down:before {
+  content: '\e801';
+}
+i.icon.chevron.left:before {
+  content: '\e802';
+}
+i.icon.chevron.right:before {
+  content: '\e803';
+}
+i.icon.chevron.up:before {
+  content: '\e804';
+}
+i.icon.clock.outline:before {
+  content: '\e805';
+}
+i.icon.close:before {
+  content: '\e806';
+}
+i.icon.envelope.outline:before {
+  content: '\e807';
+}
+i.icon.exclamation.triangle:before {
+  content: '\e808';
+}
+i.icon.file:before {
+  content: '\e809';
+}
+i.icon.home:before {
+  content: '\e80a';
+}
+i.icon.info:before {
+  content: '\e80b';
+}
+i.icon.phone:before {
+  content: '\e80c';
+}
+i.icon.plus:before {
+  content: '\e80d';
+}
+i.icon.remove.circle:before {
+  content: '\e80e';
+}
+i.icon.search:before {
+  content: '\e80f';
+}
+i.icon.sms:before {
+  content: '\e810';
+}
+i.icon.spinner:before {
+  content: '\e811';
+}
+i.icon.tag:before {
+  content: '\e812';
+}
+i.icon.user.outline:before {
+  content: '\e813';
+}
+i.icon.whatsapp:before {
+  content: '\e814';
+}

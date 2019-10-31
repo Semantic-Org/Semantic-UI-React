@@ -1,4 +1,6 @@
 .ui.table {
+  border: 1px solid #f6f7f9;
+
   thead {
     background: #1d2630;
     color: @white;
