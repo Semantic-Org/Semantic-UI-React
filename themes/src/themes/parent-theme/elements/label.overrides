@@ -49,3 +49,14 @@ a.ui.labels {
     color: #1c252f;
   }
 }
+
+.ui.purple.label,
+.ui.purple.labels {
+  background: @purpleHover !important;
+  border-color: @purpleHover !important;
+
+  label {
+    background: @purpleHover !important;
+    border-color: @purpleHover !important;
+  }
+}
