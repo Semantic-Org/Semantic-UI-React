@@ -23,11 +23,29 @@
   font-size: 16px;
   padding: 8px;
   font-weight: 600;
+  color: #1c252f;
 
   > .close.icon,
   > .delete.icon {
     font-size: 16px;
     opacity: 1;
-    margin: auto;
+  }
+}
+
+.ui.label,
+.ui.labels {
+  .label {
+    font-size: 16px;
+  }
+}
+
+a.ui.label:hover,
+a.ui.labels {
+  background: #f5f2fd;
+  color: #1c252f;
+
+  .label:hover {
+    background: #f5f2fd;
+    color: #1c252f;
   }
 }
