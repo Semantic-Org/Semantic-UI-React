@@ -2,6 +2,32 @@
          Theme Overrides
 *******************************/
 
-.ui.icon.label > .icon {
-  margin: 0 0 0 0 !important;
+.ui.label > .left.icon {
+  margin: 0 8px 0 0;
+}
+
+.ui.label > .right.icon {
+  margin: 0 0 0 8px;
+}
+
+.ui.labels {
+  > .label {
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.ui.label {
+  background: #f5f2fd;
+  font-size: 16px;
+  padding: 8px;
+  font-weight: 600;
+
+  > .close.icon,
+  > .delete.icon {
+    font-size: 16px;
+    opacity: 1;
+    margin: auto;
+  }
 }
