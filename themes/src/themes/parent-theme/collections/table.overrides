@@ -43,6 +43,12 @@
   tbody {
     tr:hover {
       background: #f5f2fd !important;
+
+      td {
+        &.active {
+          background: none !important;
+        }
+      }
     }
   }
 }
