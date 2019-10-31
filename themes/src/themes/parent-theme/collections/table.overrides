@@ -37,7 +37,7 @@
       box-shadow: none;
       background: none !important;
       font-weight: 500;
-      color: #3d5066;
+      color: #3d5066 !important;
     }
   }
 
