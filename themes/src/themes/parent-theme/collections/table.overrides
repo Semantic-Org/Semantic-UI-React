@@ -31,11 +31,13 @@
     font-size: 16px;
     padding-top: 20px;
     padding-bottom: 20px;
+    color: #3d5066;
 
     &.active {
       box-shadow: none;
       background: none !important;
       font-weight: 500;
+      color: #3d5066;
     }
   }
 
