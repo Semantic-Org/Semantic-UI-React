@@ -31,8 +31,8 @@
 
   td {
     font-size: 16px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     color: #3d5066;
 
     &.active {
