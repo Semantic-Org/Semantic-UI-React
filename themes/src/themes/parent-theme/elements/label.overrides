@@ -60,3 +60,8 @@ a.ui.labels {
     border-color: @purpleHover !important;
   }
 }
+
+.ui.yellow.label,
+.ui.yellow.labels {
+  color: #1c252f !important;
+}
