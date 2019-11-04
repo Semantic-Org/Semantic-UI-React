@@ -91,6 +91,13 @@
         font-family: 'fontello';
         content: '\e801';
       }
+
+      &:after {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 16px;
+      }
     }
   }
 }
