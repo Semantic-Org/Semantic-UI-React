@@ -23,7 +23,7 @@
   font-size: 16px;
   padding: 8px;
   font-weight: 600;
-  color: #1c252f;
+  color: @offBlack;
 
   > .close.icon,
   > .delete.icon {
@@ -42,26 +42,33 @@
 a.ui.label:hover,
 a.ui.labels {
   background: #f5f2fd;
-  color: #1c252f;
+  color: @offBlack;
 
   .label:hover {
     background: #f5f2fd;
-    color: #1c252f;
+    color: @offBlack;
   }
 }
 
 .ui.purple.label,
 .ui.purple.labels {
-  background: @purpleHover !important;
-  border-color: @purpleHover !important;
+  max-height: 32px;
+  background: @purple !important;
+  border-color: @purple !important;
 
   label {
-    background: @purpleHover !important;
-    border-color: @purpleHover !important;
+    background: @purple !important;
+    border-color: @purple !important;
+  }
+}
+a.ui.purple.label,
+a.ui.purple.labels {
+  &:hover, &:active, &:visited {
+    background: @purple !important;
   }
 }
 
 .ui.yellow.label,
 .ui.yellow.labels {
-  color: #1c252f !important;
+  color: @offBlack !important;
 }

@@ -148,7 +148,7 @@ task(
 
 task('build:docs', series('clean:docs', 'build:docs:json', 'build:docs:static:build'))
 
-task('build:css', () => run('node themes/config/build.js').exec())
+task('build:css', () => run('yarn themes:build').exec())
 
 // ----------------------------------------
 // Deploy
@@ -181,16 +181,11 @@ task('watch:docs', () => {
     'change',
     handleWatchChange,
   )
-})
 
-task('watch:themes', () => {
   watch(['themes/src/themes/**'], series('build:css')).on('change', handleWatchChange)
 })
 
 // ----------------------------------------
 // Start
 // ----------------------------------------
-task(
-  'start:docs',
-  series('clean:docs', 'build:docs:json', 'build:docs:static:start', 'watch:themes', 'watch:docs'),
-)
+task('start:docs', series('clean:docs', 'build:docs:json', 'build:docs:static:start', 'watch:docs'))
