@@ -53,6 +53,7 @@ a.ui.labels {
 .ui.purple.label,
 .ui.purple.labels {
   max-height: 32px;
+  padding: 8px 12px;
   background: @purple !important;
   border-color: @purple !important;
 
