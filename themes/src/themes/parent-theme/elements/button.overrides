@@ -44,16 +44,18 @@
   }
 
   &.secondary {
+    background: @lighterGrey;
     padding: @8px @20px;
-    box-shadow: @shadow @secondaryColor;
-    border: @invertedBorderSize solid @primaryColor;
-    color: @darkGrey;
+    box-shadow: none;
+    border: 2px solid @lighterGrey;
+    color: @offBlack;
 
     &:visited,
     &:focus,
     &:hover {
-      box-shadow: @hoverShadow @darkWhite;
-      color: @darkGrey;
+      background: @lighterGrey;
+      box-shadow: none;
+      color: @offBlack;
     }
 
     &.disabled {
