@@ -16,7 +16,8 @@
     "themes:build": "rm -rf themes/dist && node themes/config/build.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "start:all": "npm-run-all --parallel themes:build docs:start:florence start"
+    "start:florence": "npm-run-all --parallel themes:build docs:start:florence start",
+    "start:flexibank": "npm-run-all --parallel themes:build docs:start:flexibank start"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
