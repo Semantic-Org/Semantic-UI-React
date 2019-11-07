@@ -75,9 +75,11 @@
       }
 
       &.sorted {
+        background: @darkGrey;
         color: @white;
 
         &:hover {
+          background: @darkGrey;
           color: @white;
         }
       }
