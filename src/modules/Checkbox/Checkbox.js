@@ -293,7 +293,6 @@ export default class Checkbox extends Component {
           <input
             {...htmlInputProps}
             checked={checked}
-            className='hidden'
             disabled={disabled}
             id={id}
             name={name}
