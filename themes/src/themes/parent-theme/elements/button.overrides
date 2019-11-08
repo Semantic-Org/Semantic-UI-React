@@ -15,6 +15,7 @@
   transition: @transition !important;
   line-height: @lineHeight;
   padding: @10px @20px;
+  font-size: 16px;
 
   &.active {
     background: @primaryColor;
@@ -49,10 +50,12 @@
     box-shadow: none;
     border: 2px solid @lighterGrey;
     color: @offBlack;
+    transition: none;
 
     &:visited,
     &:focus,
     &:hover {
+      transform: none;
       background: @lighterGrey;
       box-shadow: none;
       color: @offBlack;
