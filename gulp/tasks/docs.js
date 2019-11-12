@@ -3,6 +3,7 @@ import loadPlugins from 'gulp-load-plugins'
 import path from 'path'
 import { build, reloadRoutes, start } from 'react-static/node'
 import rimraf from 'rimraf'
+import run from 'gulp-run'
 
 import sh from '../sh'
 import config from '../../config'
@@ -40,23 +41,23 @@ const toUniversalGlob = (directory, glob) => {
 // Clean
 // ----------------------------------------
 
-task('clean:docs:component-info', (cb) => {
+task('clean:docs:component-info', cb => {
   rimraf(paths.docsSrc('componentInfo'), cb)
 })
 
-task('clean:docs:component-menu', (cb) => {
+task('clean:docs:component-menu', cb => {
   rimraf(paths.docsSrc('componentMenu.json'), cb)
 })
 
-task('clean:docs:dist', (cb) => {
+task('clean:docs:dist', cb => {
   rimraf(paths.docsDist(), cb)
 })
 
-task('clean:docs:example-menus', (cb) => {
+task('clean:docs:example-menus', cb => {
   rimraf(paths.docsSrc('exampleMenus'), cb)
 })
 
-task('clean:docs:example-sources', (cb) => {
+task('clean:docs:example-sources', cb => {
   rimraf(paths.docsSrc('exampleSources.json'), cb)
 })
 
@@ -75,16 +76,16 @@ task(
 // Build docs with React Static
 // ----------------------------------------
 
-task('build:docs:static:build', (cb) => {
+task('build:docs:static:build', cb => {
   build({ staging: !!process.env.STAGING }).then(cb)
 })
 
-task('build:docs:static:reload', (cb) => {
+task('build:docs:static:reload', cb => {
   reloadRoutes()
   cb()
 })
 
-task('build:docs:static:start', (cb) => {
+task('build:docs:static:start', cb => {
   start()
   cb()
 })
@@ -107,7 +108,7 @@ const componentsSrc = [
 const examplesSectionsSrc = toUniversalGlob(paths.docsSrc(), 'examples/*/*/*/index.js')
 const examplesSrc = toUniversalGlob(paths.docsSrc(), 'examples/*/*/*/!(*index).js')
 
-task('build:docs:cname', (cb) => {
+task('build:docs:cname', cb => {
   sh(`echo react.semantic-ui.com > ${paths.docsDist('CNAME')}`, cb)
 })
 
@@ -145,16 +146,15 @@ task(
   ),
 )
 
-task(
-  'build:docs',
-  series('clean:docs', 'build:docs:json', 'build:docs:static:build'),
-)
+task('build:docs', series('clean:docs', 'build:docs:json', 'build:docs:static:build'))
+
+task('build:css', () => run('node themes/config/build.js').exec())
 
 // ----------------------------------------
 // Deploy
 // ----------------------------------------
 
-task('deploy:docs', (cb) => {
+task('deploy:docs', cb => {
   const relativePath = path.relative(process.cwd(), paths.docsDist())
   sh(`gh-pages -d ${relativePath} -m "deploy docs"`, cb)
 })
@@ -183,8 +183,14 @@ task('watch:docs', () => {
   )
 })
 
+task('watch:themes', () => {
+  watch(['themes/src/themes/**'], series('build:css')).on('change', handleWatchChange)
+})
+
 // ----------------------------------------
 // Start
 // ----------------------------------------
-
-task('start:docs', series('clean:docs', 'build:docs:json', 'build:docs:static:start', 'watch:docs'))
+task(
+  'start:docs',
+  series('clean:docs', 'build:docs:json', 'build:docs:static:start', 'watch:themes', 'watch:docs'),
+)
