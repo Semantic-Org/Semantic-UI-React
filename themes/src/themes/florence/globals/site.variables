@@ -67,10 +67,11 @@
 
 /*---  Lighter Colors  ---*/
 @lighterPurple      : hsl(257, 83%, 87%);
-@lighterPink:         #FAC2D5;
+@lighterPink        : #FAC2D5;
 @lighterYellow      : hsl(42, 100%, 83%);
 @lighterGreen       : hsl(154, 64%, 86%);
 @lighterBlue        : hsl(220, 100%, 79%);
+@lighterGrey        : #F5F2FD;
 
 /*-- Darker Colors --*/
 @darkGrey         : #3D5066;
@@ -82,6 +83,7 @@
 @midWhite         : #F6F7F9;
 @white            : #FFFFFF;
 @lighterBlack     : hsl(212, 15%, 44%);
+@offBlack         : #1C252F;
 
 /*--- Colored Backgrounds ---*/
 @yellowBackground : hsl(42, 95%, 95%);

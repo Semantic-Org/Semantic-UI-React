@@ -15,6 +15,7 @@
   transition: @transition !important;
   line-height: @lineHeight;
   padding: @10px @20px;
+  font-size: 16px;
 
   &.active {
     background: @primaryColor;
@@ -44,16 +45,20 @@
   }
 
   &.secondary {
+    background: @lighterGrey;
     padding: @8px @20px;
-    box-shadow: @shadow @secondaryColor;
-    border: @invertedBorderSize solid @primaryColor;
-    color: @darkGrey;
+    box-shadow: none;
+    border: 2px solid @lighterGrey;
+    color: @offBlack;
+    transition: none;
 
     &:visited,
     &:focus,
     &:hover {
-      box-shadow: @hoverShadow @darkWhite;
-      color: @darkGrey;
+      transform: none;
+      background: @lighterGrey;
+      box-shadow: none;
+      color: @offBlack;
     }
 
     &.disabled {
