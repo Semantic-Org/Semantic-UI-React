@@ -49,7 +49,7 @@ const FeedExampleBasic = () => (
         <Feed.Summary
           date='2 Days Ago'
           user='Jenny Hess'
-          content='add you as a friend'
+          content=' add you as a friend'
         />
         <Feed.Meta>
           <Feed.Like>
