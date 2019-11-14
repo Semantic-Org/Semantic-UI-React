@@ -1,0 +1,3 @@
+.ui.dimmer {
+  background-color: fade(@offBlack, 70%);
+}
