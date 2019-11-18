@@ -1,7 +1,11 @@
-
 @errorBackground: @white;
 @errorColor: @negativeTextColor;
 @borderFocus: inset 0 0 0 2px;
+
+input::placeholder,
+textarea::placeholder {
+  color: @grey;
+}
 
 .textarea {
   font-family: @pageFont;
@@ -15,13 +19,40 @@
       }
     }
   }
+
+  .field {
+    margin: 0 0 16px 0;
+
+    > label {
+      margin: 0 0 8px 0;
+      color: @grey;
+      line-height: 19px;
+      font-weight: 600;
+    }
+
+    &.error {
+      border-left: 2px solid @pink;
+      padding-left: 16px;
+
+      label {
+        &.error {
+          color: @pink;
+        }
+      }
+    }
+  }
+
+  textarea:not([rows]) {
+    height: 8em;
+    min-height: 6em;
+  }
 }
 
 .ui.input {
-
   &.focus {
     input {
       box-shadow: @borderFocus @primaryColor;
+
       .icon {
         i.icon {
           opacity: 1;
@@ -33,12 +64,15 @@
 
   input {
     font-weight: @normal !important;
+
     &:focus {
       box-shadow: @borderFocus @primaryColor;
+
       ~ i.icon {
           color: @primaryColor !important;
           opacity: 1;
       }
+
       ~ i.inverted.link.icon,  ~ i.inverted.icon {
         background-color: @primaryColor !important;
         color: @white !important;
@@ -54,6 +88,7 @@
     background-color: @errorBackground;
     font-weight: @normal !important;
   }
+
   .icon {
     i.icon {
       opacity: 1;
@@ -66,6 +101,7 @@
   input {
     box-shadow: @borderFocus @yellow;
   }
+
   .icon {
     i.icon {
       opacity: 1;
@@ -78,6 +114,7 @@
   input {
     box-shadow: @borderFocus @green;
   }
+
   .icon {
     i.icon {
       opacity: 1;
@@ -90,9 +127,11 @@
   .ui.corner.label {
     top: 0;
   }
+
   .left {
     left: 0px;
   }
+
   .right {
     right: 0px;
   }
