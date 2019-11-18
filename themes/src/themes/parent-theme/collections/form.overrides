@@ -35,10 +35,19 @@ textarea::placeholder {
       padding-left: 16px;
 
       label {
+        color: @grey;
+
         &.error {
           color: @pink;
         }
       }
+    }
+
+    input,
+    textarea,
+    select,
+    option {
+      font-weight: 300;
     }
   }
 
@@ -49,21 +58,10 @@ textarea::placeholder {
 }
 
 .ui.input {
-  &.focus {
-    input {
-      box-shadow: @borderFocus @primaryColor;
-
-      .icon {
-        i.icon {
-          opacity: 1;
-          color: @primaryColor !important;
-        }
-      }
-    }
-  }
+  font-weight: 300;
 
   input {
-    font-weight: @normal !important;
+    font-weight: 300;
 
     &:focus {
       box-shadow: @borderFocus @primaryColor;
@@ -80,13 +78,24 @@ textarea::placeholder {
     }
   }
 
+  &.focus {
+    input {
+      box-shadow: @borderFocus @primaryColor;
+
+      .icon {
+        i.icon {
+          opacity: 1;
+          color: @primaryColor !important;
+        }
+      }
+    }
+  }
 }
 
 .ui.error.input {
   input {
     box-shadow: @borderFocus @negativeBorderColor;
     background-color: @errorBackground;
-    font-weight: @normal !important;
   }
 
   .icon {

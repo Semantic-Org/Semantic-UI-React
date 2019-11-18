@@ -1,3 +1,35 @@
+.ui.dropdown {
+  > .dropdown.icon:before {
+    content: '\E801';
+    font-family: 'fontello';
+    font-size: 16px;
+  }
+}
+
 .ui.dropdown.active {
-    border: 2px solid @primaryColor;
+  border: 2px solid @primaryColor;
+}
+
+.ui.selection.dropdown {
+  .menu {
+    margin-top: 8px;
+    border: 0 none;
+  }
+
+  .dropdown.icon {
+    top: 10px;
+    color: @grey;
+  }
+
+  &.active,
+  &.visible {
+    .dropdown.icon {
+      color: @purple;
+    }
+  }
+
+  &.active {
+    border-bottom-left-radius: @borderRadius !important;
+    border-bottom-right-radius: @borderRadius !important;
+  }
 }

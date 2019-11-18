@@ -63,14 +63,14 @@
 
 /* This adjusts the default form input across all elements */
 @inputBackground        : @white;
-@inputVerticalPadding   : @relative10px;
-@inputHorizontalPadding : @relative14px;
+@inputVerticalPadding   : @relative13px;
+@inputHorizontalPadding : @relative13px;
 @inputPadding           : @inputVerticalPadding @inputHorizontalPadding;
 
 /* Input Text Color */
-@inputColor: @textColor;
-@inputPlaceholderColor: lighten(@inputColor, 75);
-@inputPlaceholderFocusColor: lighten(@inputColor, 45);
+@inputColor: @grey;
+@inputPlaceholderColor: @grey;
+@inputPlaceholderFocusColor: @grey;
 
 /* Line Height Default For Inputs in Browser (Descenders are 17px at 14px base em) */
 @inputLineHeight: unit((17 / 14), em);
@@ -294,7 +294,7 @@
       Borders
 --------------------*/
 
-@circularRadius                : 500rem;
+@circularRadius            : 500rem;
 
 @borderColor               : rgba(34, 36, 38, 0.15);
 @strongBorderColor         : rgba(34, 36, 38, 0.22);

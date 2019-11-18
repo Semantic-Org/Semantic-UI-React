@@ -31,10 +31,11 @@
 @inputFont: @pageFont;
 @inputWidth: 100%;
 @inputFontSize: @emSize;
+@inputFontWeight: 300;
 @inputPadding: @13px;
 @inputBorder: 1px solid @borderColor;
 @inputBorderRadius: @absoluteBorderRadius;
-@inputColor: @textColor;
+@inputColor: @grey;
 @inputTransition:
   color @defaultDuration @defaultEasing,
   border-color @defaultDuration @defaultEasing
@@ -85,7 +86,7 @@
 /* Input Focus */
 @inputFocusBackground: @white;
 @inputFocusBorderColor: @focusedFormBorderColor;
-@inputFocusColor: @selectedTextColor;
+@inputFocusColor: @grey;
 @inputFocusBoxShadow: @inputFocusPointerSize 0em 0em 2px @primaryColor inset;
 @inputFocusBorderRadius: @inputBorderRadius;
 
