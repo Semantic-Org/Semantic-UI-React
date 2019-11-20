@@ -4,6 +4,11 @@
     font-family: 'fontello';
     font-size: 16px;
   }
+
+  > .text {
+    font-size: 16px;
+    color: @grey;
+  }
 }
 
 .ui.dropdown.active {
@@ -11,6 +16,10 @@
 }
 
 .ui.selection.dropdown {
+  &:hover {
+    border-color: #D0D6DC;
+  }
+
   .menu {
     margin-top: 8px;
     border: 0 none;
