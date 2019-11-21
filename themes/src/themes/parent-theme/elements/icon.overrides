@@ -4,6 +4,10 @@ i.icon.whatsapp {
   font-family: 'FlorenceIcons';
 }
 
+i.grey.icon {
+  color: #ccc !important;
+}
+
 i.icon.check:before {
   content: '\e800';
 }
