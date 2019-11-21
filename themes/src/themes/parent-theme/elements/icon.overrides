@@ -1,6 +1,7 @@
 i.icon,
-i.icon.outline {
-  font-family: 'fontello';
+i.icon.outline,
+i.icon.whatsapp {
+  font-family: 'FlorenceIcons';
 }
 
 i.icon.check:before {
@@ -33,36 +34,48 @@ i.icon.exclamation.triangle:before {
 i.icon.file:before {
   content: '\e809';
 }
-i.icon.home:before {
+i.icon.filter:before {
   content: '\e80a';
 }
-i.icon.info:before {
+i.icon.flag:before {
   content: '\e80b';
 }
-i.icon.phone:before {
+i.icon.home:before {
   content: '\e80c';
 }
-i.icon.plus:before {
+i.icon.info:before {
   content: '\e80d';
 }
-i.icon.remove.circle:before {
+i.icon.phone:before {
   content: '\e80e';
 }
-i.icon.search:before {
+i.icon.plus:before {
   content: '\e80f';
 }
-i.icon.sms:before {
+i.icon.remove.circle:before {
   content: '\e810';
 }
-i.icon.spinner:before {
+i.icon.search:before {
   content: '\e811';
 }
-i.icon.tag:before {
+i.icon.sms:before {
   content: '\e812';
 }
-i.icon.user.outline:before {
+i.icon.spinner:before {
   content: '\e813';
 }
-i.icon.whatsapp:before {
+i.icon.star.outline:before {
   content: '\e814';
+}
+i.icon.tag:before {
+  content: '\e815';
+}
+i.icon.user.outline:before {
+  content: '\e816';
+}
+i.icon.warning:before {
+  content: '\e817';
+}
+i.icon.whatsapp:before {
+  content: '\e818';
 }

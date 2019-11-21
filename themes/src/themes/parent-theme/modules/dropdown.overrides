@@ -1,7 +1,7 @@
 .ui.dropdown {
   > .dropdown.icon:before {
     content: '\E801';
-    font-family: 'fontello';
+    font-family: 'FlorenceIcons';
     font-size: 16px;
   }
 
