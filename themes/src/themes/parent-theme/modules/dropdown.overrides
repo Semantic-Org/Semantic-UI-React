@@ -16,13 +16,18 @@
 }
 
 .ui.selection.dropdown {
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: #D0D6DC;
   }
 
   .menu {
     margin-top: 8px;
     border: 0 none;
+
+    .item {
+      color: @grey;
+    }
   }
 
   .dropdown.icon {
