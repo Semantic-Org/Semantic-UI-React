@@ -1,11 +1,15 @@
 .ui.dimmer {
   background-color: fade(@offBlack, 70%);
 
-  // https://github.com/Semantic-Org/Semantic-UI-React/issues/3133
-  .ui.withModal.loader:before {
-    border-color: rgba(#000, 0.1);
-  }
-  .ui.withModal.loader:after {
-    border-color: #767676 transparent transparent;
+  .ui.withModal {
+    margin-top: 16px;
+
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/3133
+    &.loader:before {
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    &.loader:after {
+      border-color: #767676 transparent transparent;
+    }
   }
 }
