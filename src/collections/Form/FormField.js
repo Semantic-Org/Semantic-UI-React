@@ -63,6 +63,8 @@ function FormField(props) {
       prompt: true,
       pointing: errorPointing,
       id: id ? `${id}-error-message` : undefined,
+      role: 'alert',
+      'aria-atomic': true,
     },
   })
 

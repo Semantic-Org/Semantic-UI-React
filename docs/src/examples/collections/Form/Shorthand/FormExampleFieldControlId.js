@@ -38,6 +38,16 @@ const FormExampleFieldControlId = () => (
       placeholder='Opinion'
     />
     <Form.Field
+      id='form-input-control-error-email'
+      control={Input}
+      label='Email'
+      placeholder='joe@schmoe.com'
+      error={{
+        content: 'Please enter a valid email address',
+        pointing: 'below',
+      }}
+    />
+    <Form.Field
       id='form-button-control-public'
       control={Button}
       content='Confirm'
