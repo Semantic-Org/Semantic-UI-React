@@ -3,12 +3,13 @@
     max-width: 100%;
   }
 
+  margin-top: -100px;
   max-width: 600px;
 
   .header + .content {
     padding-top: 0;
   }
-  
+
   > .content {
     padding: 32px;
   }
@@ -19,8 +20,8 @@
   }
 }
 
-.modals.dimmer[class*="top aligned"] {
+.modals.dimmer[class*='top aligned'] {
   .modal {
-    margin: 0 auto;
+    margin-top: -100px;
   }
 }
