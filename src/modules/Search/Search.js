@@ -559,7 +559,7 @@ export default class Search extends Component {
 
     return (
       <SearchResult
-        key={childKey || result.key || result.id || result.title}
+        key={childKey || result.id || result.title}
         active={selectedIndex === offsetIndex}
         onClick={this.handleItemClick}
         onMouseDown={this.handleItemMouseDown}
