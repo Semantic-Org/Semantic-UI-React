@@ -1,3 +1,49 @@
+.ui.dropdown {
+  > .dropdown.icon:before {
+    content: '\E801';
+    font-family: 'FlorenceIcons';
+    font-size: 16px;
+  }
+
+  > .text {
+    font-size: 16px;
+    color: @grey;
+  }
+}
+
 .ui.dropdown.active {
-    border: 2px solid @primaryColor;
+  border: 2px solid @primaryColor;
+}
+
+.ui.selection.dropdown {
+  &:hover,
+  &:focus {
+    border-color: #D0D6DC;
+  }
+
+  .menu {
+    margin-top: 8px;
+    border: 0 none;
+
+    .item {
+      color: @grey;
+    }
+  }
+
+  .dropdown.icon {
+    top: 10px;
+    color: @grey;
+  }
+
+  &.active,
+  &.visible {
+    .dropdown.icon {
+      color: @purple;
+    }
+  }
+
+  &.active {
+    border-bottom-left-radius: @borderRadius !important;
+    border-bottom-right-radius: @borderRadius !important;
+  }
 }

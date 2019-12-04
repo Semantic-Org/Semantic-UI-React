@@ -1,5 +1,27 @@
 .ui.modal {
+  @media only screen and (max-width: 768px) {
+    max-width: 100%;
+  }
+
+  margin-top: -100px;
+  max-width: 600px;
+
+  .header + .content {
+    padding-top: 0;
+  }
+
   > .content {
     padding: 32px;
+  }
+
+  > .header {
+    padding: 32px 32px 16px 32px;
+    border: 0 none;
+  }
+}
+
+.modals.dimmer[class*='top aligned'] {
+  .modal {
+    margin-top: -100px;
   }
 }

@@ -85,12 +85,12 @@
       }
 
       &.ascending:after {
-        font-family: 'fontello';
+        font-family: 'FlorenceIcons';
         content: '\e804';
       }
 
       &.descending:after {
-        font-family: 'fontello';
+        font-family: 'FlorenceIcons';
         content: '\e801';
       }
 

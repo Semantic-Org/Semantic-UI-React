@@ -47,7 +47,7 @@
 @textCursorSpacing: 1px;
 
 /* Menu Item */
-@itemFontSize: @medium;
+@itemFontSize: 16px;
 @itemTextAlign: left;
 @itemBorder: none;
 @itemHeight: auto;
@@ -73,7 +73,7 @@
 
 /* Menu Header */
 @menuHeaderColor: @darkTextColor;
-@menuHeaderFontSize: @relative11px;
+@menuHeaderFontSize: 16px;
 @menuHeaderFontWeight: @bold;
 @menuHeaderTextTransform: uppercase;
 @menuHeaderMargin: 1rem 0rem 0.75rem;
@@ -134,7 +134,7 @@
 @selectionBackground: @inputBackground;
 @selectionDisplay: inline-block;
 @selectionIconDistance: @inputHorizontalPadding + @glyphWidth;
-@selectionPadding: @selectionVerticalPadding @selectionIconDistance @selectionVerticalPadding @selectionHorizontalPadding;
+@selectionPadding: 13px @selectionIconDistance 13px 13px;
 @selectionZIndex: 10;
 
 @selectionItemDivider: 1px solid @solidInternalBorderColor;
@@ -163,7 +163,7 @@
 @selectionIconPadding: @selectionIconHitbox / @dropdownIconSize;
 @selectionIconTransition: opacity @defaultDuration @defaultEasing;
 
-@selectionMenuBorderRadius: 0em 0em @borderRadius @borderRadius;
+@selectionMenuBorderRadius: @borderRadius @borderRadius @borderRadius @borderRadius;
 @selectionMenuBoxShadow: @raisedShadow;
 @selectionMenuItemBoxShadow: none;
 
@@ -263,7 +263,7 @@
 @multipleSelectionSearchAfterLabelDistance: @relative2px;
 
 /* Selection Label */
-@labelSize: @relativeMedium;
+@labelSize: 16px;
 @labelHorizontalMargin: @4px;
 @labelVerticalMargin: @2px;
 @labelMargin: @labelVerticalMargin @labelHorizontalMargin @labelVerticalMargin 0em;
