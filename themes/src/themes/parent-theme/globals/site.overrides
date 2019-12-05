@@ -7,7 +7,14 @@
   font-weight: 300;
   font-display: swap;
   src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.eot');
-  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.eot?#iefix') format('embedded-opentype'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.woff2') format('woff2'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.woff') format('woff'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.ttf') format('truetype');
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.woff2')
+      format('woff2'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.woff')
+      format('woff'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Light-WebM.ttf')
+      format('truetype');
 }
 
 @font-face {
@@ -15,7 +22,14 @@
   font-weight: 500;
   font-display: swap;
   src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.eot');
-  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.eot?#iefix') format('embedded-opentype'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.woff2') format('woff2'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.woff') format('woff'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.ttf') format('truetype');
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.woff2')
+      format('woff2'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.woff')
+      format('woff'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-Medium-WebM.ttf')
+      format('truetype');
 }
 
 @font-face {
@@ -24,7 +38,14 @@
   font-display: swap;
   font-style: italic;
   src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.eot');
-  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.eot?#iefix') format('embedded-opentype'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.woff2') format('woff2'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.woff') format('woff'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.ttf') format('truetype');
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.woff2')
+      format('woff2'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.woff')
+      format('woff'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-LightItalic-WebM.ttf')
+      format('truetype');
 }
 
 @font-face {
@@ -33,17 +54,26 @@
   font-display: swap;
   font-style: italic;
   src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.eot');
-  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.eot?#iefix') format('embedded-opentype'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.woff2') format('woff2'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.woff') format('woff'), url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.ttf') format('truetype');
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.woff2')
+      format('woff2'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.woff')
+      format('woff'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/EuclidSquare-MediumItalic-WebM.ttf')
+      format('truetype');
 }
 
 @font-face {
   font-family: 'FlorenceIcons';
   src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.eot?');
-  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.eot?#iefix') format('embedded-opentype'),
-       url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.woff2?') format('woff2'),
-       url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.woff?') format('woff'),
-       url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.ttf?') format('truetype'),
-       url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.svg?#FlorenceIcons') format('svg');
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.woff2?') format('woff2'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.woff?') format('woff'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.ttf?') format('truetype'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.svg?#FlorenceIcons')
+      format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -55,4 +85,34 @@
 
 * {
   font-weight: 300;
+}
+
+@media only screen and (max-width: @tabletBreakpoint) {
+  .not.mobile {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: @largestMobileScreen) and (max-width: @largestTabletScreen) {
+  .not.tablet {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: @computerBreakpoint) and (max-width: @largestSmallMonitor) {
+  .not.computer {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: @largeMonitorBreakpoint) and (max-width: @largestLargeMonitor) {
+  .not.large.monitor {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: @widescreenMonitorBreakpoint) {
+  .not.widescreen {
+    display: none !important;
+  }
 }
