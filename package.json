@@ -28,7 +28,6 @@
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --list-different \"**/*.{js,jsx,ts,tsx}\"",
     "prettier:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
-    "postcommit": "git update-index --again",
     "prerelease": "yarn lint && yarn tsd:lint && yarn tsd:test && yarn test && cross-env NODE_ENV=production yarn build",
     "postrelease": "yarn deploy:docs",
     "release:major": "yarn prerelease && ta-script npm/release major && yarn postrelease",
@@ -47,7 +46,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "post-commit": "git update-index --again"
     }
   },
   "lint-staged": {
