@@ -32,16 +32,22 @@ function FeedSummary(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedUser, val => ({ content: val }), user, { autoGenerateKey: false })}
+      {createShorthand(FeedUser, (val) => ({ content: val }), user, { autoGenerateKey: false })}
+      {/*
+        Content styles require wrapping whitespace
+        https://github.com/Semantic-Org/Semantic-UI-React/pull/3836
+      */}
+      {content && ' '}
       {content}
-      {createShorthand(FeedDate, val => ({ content: val }), date, { autoGenerateKey: false })}
+      {content && ' '}
+      {createShorthand(FeedDate, (val) => ({ content: val }), date, { autoGenerateKey: false })}
     </ElementType>
   )
 }
 
 FeedSummary.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,

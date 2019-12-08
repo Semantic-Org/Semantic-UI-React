@@ -1,9 +1,9 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
-import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
@@ -30,7 +30,7 @@ import ButtonOr from './ButtonOr'
 class Button extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A button can show it is currently the active user selection. */
     active: PropTypes.bool,
@@ -306,6 +306,6 @@ class Button extends Component {
   }
 }
 
-Button.create = createShorthandFactory(Button, value => ({ content: value }))
+Button.create = createShorthandFactory(Button, (value) => ({ content: value }))
 
 export default Button

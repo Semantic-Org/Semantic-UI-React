@@ -11,7 +11,8 @@ const MenuExampleFixed = () => (
     >
       {' '}
       official documentation
-    </a>.
+    </a>
+    .
   </Message>
 )
 

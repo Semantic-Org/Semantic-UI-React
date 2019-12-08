@@ -64,9 +64,9 @@ const getComponentInfo = (filepath) => {
 
   info.subcomponents = info.isParent
     ? fs
-      .readdirSync(dir)
-      .filter(file => subcomponentRegExp.test(file))
-      .map(file => path.basename(file, path.extname(file)))
+        .readdirSync(dir)
+        .filter((file) => subcomponentRegExp.test(file))
+        .map((file) => path.basename(file, path.extname(file)))
     : null
 
   // where this component should be exported in the api

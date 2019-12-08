@@ -26,7 +26,7 @@ import MessageItem from './MessageItem'
 export default class Message extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A message can be formatted to attach itself to other content. */
     attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['bottom', 'top'])]),

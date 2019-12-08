@@ -1,10 +1,10 @@
-import * as _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import CodeSandboxer from 'react-codesandboxer'
 import { Menu } from 'semantic-ui-react'
 
-import { externals } from 'docs/src/components/ComponentDoc/ExampleEditor/renderConfig'
+import createPackageJson from './createPackageJson'
+import enhanceExampleCode from './enhanceExampleCode'
 
 const appTemplate = `import React from "react";
 import ReactDOM from "react-dom";
@@ -47,7 +47,6 @@ ReactDOM.render(
   document.getElementById("root")
 );
 `
-const dependencies = _.mapValues(externals, () => 'latest')
 
 class ComponentControlsCodeSandbox extends React.Component {
   static propTypes = {
@@ -94,11 +93,10 @@ class ComponentControlsCodeSandbox extends React.Component {
       <CodeSandboxer
         afterDeploy={this.handleDeploy}
         examplePath='/'
-        example={exampleCode}
-        dependencies={dependencies}
-        name='semantic-ui-react-example'
+        example={enhanceExampleCode(exampleCode)}
         providedFiles={{
           'index.js': { content: appTemplate },
+          'package.json': createPackageJson(),
         }}
         skipRedirect
         template='create-react-app'

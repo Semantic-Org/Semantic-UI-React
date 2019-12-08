@@ -112,7 +112,7 @@ Image.Group = ImageGroup
 
 Image.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** An image may be formatted to appear inline with text as an avatar. */
   avatar: PropTypes.bool,
@@ -183,6 +183,6 @@ Image.defaultProps = {
   ui: true,
 }
 
-Image.create = createShorthandFactory(Image, value => ({ src: value }))
+Image.create = createShorthandFactory(Image, (value) => ({ src: value }))
 
 export default Image

@@ -4,7 +4,7 @@ import { customPropTypes } from 'src/lib'
 import { componentInfoContext } from 'docs/src/utils'
 import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
 
-const isShorthand = propType =>
+const isShorthand = (propType) =>
   _.includes(
     [
       customPropTypes.collectionShorthand,

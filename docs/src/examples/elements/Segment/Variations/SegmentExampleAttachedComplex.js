@@ -16,7 +16,9 @@ const SegmentExampleAttachedComplex = () => (
     <Header as='h5' attached>
       Lions
     </Header>
-    <Segment attached>Humans don't think of lions as being like cats, but they are.</Segment>
+    <Segment attached>
+      Humans don't think of lions as being like cats, but they are.
+    </Segment>
     <Message warning attached='bottom'>
       <Icon name='warning' />
       You've reached the end of this content segment!

@@ -28,7 +28,7 @@ function ModalHeader(props) {
 
 ModalHeader.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -40,6 +40,6 @@ ModalHeader.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ModalHeader.create = createShorthandFactory(ModalHeader, content => ({ content }))
+ModalHeader.create = createShorthandFactory(ModalHeader, (content) => ({ content }))
 
 export default ModalHeader

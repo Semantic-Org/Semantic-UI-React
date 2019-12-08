@@ -4,7 +4,7 @@ import { Dropdown } from 'semantic-ui-react'
 
 const caseSensitiveSearch = (options, query) => {
   const re = new RegExp(_.escapeRegExp(query))
-  return options.filter(opt => re.test(opt.text))
+  return options.filter((opt) => re.test(opt.text))
 }
 
 const options = [

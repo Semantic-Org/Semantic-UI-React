@@ -16,15 +16,27 @@ export default class MenuExampleTabularOnBottom extends Component {
         </Segment>
 
         <Menu attached='bottom' tabular>
-          <Menu.Item name='active' active={activeItem === 'active'} onClick={this.handleItemClick}>
+          <Menu.Item
+            name='active'
+            active={activeItem === 'active'}
+            onClick={this.handleItemClick}
+          >
             Active Project
           </Menu.Item>
 
-          <Menu.Item name='2' active={activeItem === '2'} onClick={this.handleItemClick}>
+          <Menu.Item
+            name='2'
+            active={activeItem === '2'}
+            onClick={this.handleItemClick}
+          >
             Project #2
           </Menu.Item>
 
-          <Menu.Item name='3' active={activeItem === '3'} onClick={this.handleItemClick}>
+          <Menu.Item
+            name='3'
+            active={activeItem === '3'}
+            onClick={this.handleItemClick}
+          >
             Project #3
           </Menu.Item>
 

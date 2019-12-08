@@ -1,11 +1,10 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
-import Ref from '../../addons/Ref'
 import {
   eventStack,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   normalizeOffset,
@@ -18,7 +17,7 @@ import {
 export default class Visibility extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Primary content. */
     children: PropTypes.node,
@@ -188,7 +187,8 @@ export default class Visibility extends Component {
   // Lifecycle
   // ----------------------------------------
 
-  componentWillReceiveProps({ continuous, once, context, updateOn }) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps({ continuous, once, context, updateOn }) {
     const cleanHappened =
       continuous !== this.props.continuous ||
       once !== this.props.once ||

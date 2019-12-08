@@ -4,7 +4,7 @@ import React from 'react'
 import Portal from 'src/addons/Portal/Portal'
 import { SUI } from 'src/lib'
 import Popup from 'src/modules/Popup/Popup'
-import { positionsMapping } from 'src/modules/Popup/lib/positions.js'
+import { positionsMapping } from 'src/modules/Popup/lib/positions'
 import PopupHeader from 'src/modules/Popup/PopupHeader'
 import PopupContent from 'src/modules/Popup/PopupContent'
 import * as common from 'test/specs/commonTests'
@@ -107,6 +107,20 @@ describe('Popup', () => {
       shallow(<Popup open disabled />)
         .find('Portal')
         .should.not.exist()
+    })
+  })
+
+  describe('eventsEnabled ', () => {
+    it(`is "true" by default`, () => {
+      wrapperMount(<Popup open />)
+
+      wrapper.should.have.prop('eventsEnabled', true)
+      wrapper.find('Popper').should.have.prop('eventsEnabled', true)
+    })
+
+    it(`can be set to "false"`, () => {
+      wrapperMount(<Popup eventsEnabled={false} open />)
+      wrapper.find('Popper').should.have.prop('eventsEnabled', false)
     })
   })
 
@@ -239,13 +253,86 @@ describe('Popup', () => {
     })
   })
 
+  describe('pinned', () => {
+    it(`is "false" by default`, () => {
+      wrapperMount(<Popup open />)
+
+      wrapper.should.have.prop('pinned', false)
+    })
+
+    it(`disables "flip" modifier in PopperJS when is "true"`, () => {
+      wrapperMount(<Popup open pinned />)
+
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include({ flip: { enabled: false } })
+    })
+
+    it(`enables "flip" modifier in PopperJS when is "false"`, () => {
+      wrapperMount(<Popup open pinned={false} />)
+
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include({ flip: { enabled: true } })
+    })
+  })
+
   describe('position', () => {
     _.forEach(positionsMapping, (placement, position) => {
       it(`passes the "${position}" as "${placement}" to Popper`, () => {
         wrapperMount(<Popup open position={position} />)
 
-        wrapper.find('Popper').prop('placement', placement)
+        wrapper.find('Popper').should.have.prop('placement', placement)
       })
+    })
+  })
+
+  describe('positionFixed', () => {
+    it(`is not defiend by default`, () => {
+      wrapperMount(<Popup open />)
+
+      wrapper.should.not.have.prop('positionFixed')
+      wrapper.find('Popper').should.not.have.prop('positionFixed')
+    })
+
+    it(`can be set to "true"`, () => {
+      wrapperMount(<Popup positionFixed open />)
+      wrapper.find('Popper').should.have.prop('positionFixed', true)
+    })
+  })
+
+  describe('popperModifiers', () => {
+    it('are passed to Popper', () => {
+      const modifiers = {
+        keepTogether: { enabled: false },
+        preventOverflow: { padding: 0 },
+      }
+      wrapperMount(<Popup popperModifiers={modifiers} open />)
+
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include(modifiers)
+    })
+  })
+
+  describe('popperDependencies', () => {
+    it('will call "scheduleUpdate" if dependencies changed', () => {
+      wrapperMount(<Popup popperDependencies={[1, 2, 3]} />)
+      const scheduleUpdate = sandbox.spy(wrapper.instance(), 'handleUpdate')
+
+      wrapper.setProps({ popperDependencies: [2, 3, 4] })
+      scheduleUpdate.should.have.been.calledOnce()
+    })
+
+    it('will skip "scheduleUpdate" if dependencies are same', () => {
+      wrapperMount(<Popup popperDependencies={[1, 2, 3]} />)
+      const scheduleUpdate = sandbox.spy(wrapper.instance(), 'handleUpdate')
+
+      wrapper.setProps({ popperDependencies: [1, 2, 3] })
+      scheduleUpdate.should.have.not.been.called()
     })
   })
 

@@ -11,21 +11,18 @@ describe('BreadcrumbSection', () => {
   common.propKeyOnlyToClassName(BreadcrumbSection, 'active')
 
   it('renders as a div by default', () => {
-    shallow(<BreadcrumbSection />)
-      .should.have.tagName('div')
+    shallow(<BreadcrumbSection />).should.have.tagName('div')
   })
 
   describe('link', () => {
     it('is should be `a` when has prop link', () => {
-      shallow(<BreadcrumbSection link />)
-        .should.have.tagName('a')
+      shallow(<BreadcrumbSection link />).should.have.tagName('a')
     })
   })
 
   describe('href', () => {
     it('is not present by default', () => {
-      shallow(<BreadcrumbSection />)
-        .should.not.have.attr('href')
+      shallow(<BreadcrumbSection />).should.not.have.attr('href')
     })
 
     it('should have attr `href` when has prop', () => {
@@ -42,8 +39,7 @@ describe('BreadcrumbSection', () => {
       const event = { target: null }
       const props = { active: true, content: 'home' }
 
-      shallow(<BreadcrumbSection onClick={onClick} {...props} />)
-        .simulate('click', event)
+      shallow(<BreadcrumbSection onClick={onClick} {...props} />).simulate('click', event)
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(event, props)

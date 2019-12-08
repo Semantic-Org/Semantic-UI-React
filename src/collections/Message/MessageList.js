@@ -30,7 +30,7 @@ function MessageList(props) {
 
 MessageList.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -46,6 +46,6 @@ MessageList.defaultProps = {
   as: 'ul',
 }
 
-MessageList.create = createShorthandFactory(MessageList, val => ({ items: val }))
+MessageList.create = createShorthandFactory(MessageList, (val) => ({ items: val }))
 
 export default MessageList

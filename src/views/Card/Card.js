@@ -23,7 +23,7 @@ import CardMeta from './CardMeta'
 export default class Card extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A Card can center itself inside its container. */
     centered: PropTypes.bool,

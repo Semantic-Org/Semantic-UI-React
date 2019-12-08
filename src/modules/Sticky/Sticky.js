@@ -1,3 +1,4 @@
+import { isRefObject } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -9,7 +10,6 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
-  isRefObject,
 } from '../../lib'
 
 /**
@@ -18,7 +18,7 @@ import {
 export default class Sticky extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A Sticky can be active. */
     active: PropTypes.bool,
@@ -104,7 +104,8 @@ export default class Sticky extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { active: current, scrollContext: currentScrollContext } = this.props
     const { active: next, scrollContext: nextScrollContext } = nextProps
 

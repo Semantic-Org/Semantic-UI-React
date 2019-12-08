@@ -31,13 +31,16 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** A disabled popup only renders its trigger. */
   disabled?: boolean
 
+  /** Enables the Popper.js event listeners. */
+  eventsEnabled?: boolean
+
   /** A flowing Popup has no maximum width and continues to flow to fit its content. */
   flowing?: boolean
 
   /** Header displayed above the content in bold. */
   header?: SemanticShorthandItem<PopupHeaderProps>
 
-  /** The node where the popup should mount. */
+  /** Hide the Popup when scrolling the window. */
   hideOnScroll?: boolean
 
   /** Whether the popup should not close on hover. */
@@ -90,6 +93,9 @@ export interface StrictPopupProps extends StrictPortalProps {
    */
   onUnmount?: (nothing: null, data: PopupProps) => void
 
+  /** Disables automatic repositioning of the component, it will always be placed according to the position value. */
+  pinned?: boolean
+
   /** Position for the popover. */
   position?:
     | 'top left'
@@ -100,6 +106,15 @@ export interface StrictPopupProps extends StrictPortalProps {
     | 'left center'
     | 'top center'
     | 'bottom center'
+
+  /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
+  positionFixed?: boolean
+
+  /** An object containing custom settings for the Popper.js modifiers. */
+  popperModifiers?: object
+
+  /** A popup can have dependencies which update will schedule a position update. */
+  popperDependencies?: any[]
 
   /** Popup size. */
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge'

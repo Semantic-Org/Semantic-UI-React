@@ -25,22 +25,6 @@ const countryOptions = [
   { key: 'be', value: 'be', flag: 'be', text: 'Belgium' },
   { key: 'bz', value: 'bz', flag: 'bz', text: 'Belize' },
   { key: 'bj', value: 'bj', flag: 'bj', text: 'Benin' },
-  { key: 'bm', value: 'bm', flag: 'bm', text: 'Bermuda' },
-  { key: 'bt', value: 'bt', flag: 'bt', text: 'Bhutan' },
-  { key: 'bo', value: 'bo', flag: 'bo', text: 'Bolivia' },
-  { key: 'ba', value: 'ba', flag: 'ba', text: 'Bosnia' },
-  { key: 'bw', value: 'bw', flag: 'bw', text: 'Botswana' },
-  { key: 'bv', value: 'bv', flag: 'bv', text: 'Bouvet Island' },
-  { key: 'br', value: 'br', flag: 'br', text: 'Brazil' },
-  { key: 'vg', value: 'vg', flag: 'vg', text: 'British Virgin Islands' },
-  { key: 'bn', value: 'bn', flag: 'bn', text: 'Brunei' },
-  { key: 'bg', value: 'bg', flag: 'bg', text: 'Bulgaria' },
-  { key: 'bf', value: 'bf', flag: 'bf', text: 'Burkina Faso' },
-  { key: 'bi', value: 'bi', flag: 'bi', text: 'Burundi' },
-  { key: 'tc', value: 'tc', flag: 'tc', text: 'Caicos Islands' },
-  { key: 'kh', value: 'kh', flag: 'kh', text: 'Cambodia' },
-  { key: 'cm', value: 'cm', flag: 'cm', text: 'Cameroon' },
-  { key: 'ca', value: 'ca', flag: 'ca', text: 'Canada' },
 ]
 
 const DropdownExampleSearchSelection = () => (

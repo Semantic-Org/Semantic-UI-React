@@ -30,9 +30,9 @@ const CommentTypes = () => (
       examplePath='views/Comment/Content/CommentExampleReplyForm'
     >
       <Message info>
-        If a comment form is located inside a comment it will be formatted as a nested reply form.
-        If the comment form is included after all comments, it will be formatted as a normal reply
-        form.
+        If a comment form is located inside a comment it will be formatted as a
+        nested reply form. If the comment form is included after all comments,
+        it will be formatted as a normal reply form.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='views/Comment/Content/CommentExampleReplyFormOuter' />

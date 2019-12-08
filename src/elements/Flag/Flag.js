@@ -510,7 +510,7 @@ export const names = [
 class Flag extends PureComponent {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Additional classes. */
     className: PropTypes.string,
@@ -533,6 +533,6 @@ class Flag extends PureComponent {
   }
 }
 
-Flag.create = createShorthandFactory(Flag, value => ({ name: value }))
+Flag.create = createShorthandFactory(Flag, (value) => ({ name: value }))
 
 export default Flag

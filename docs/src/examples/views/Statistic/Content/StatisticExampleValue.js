@@ -10,7 +10,8 @@ const StatisticExampleValue = () => (
 
     <Statistic>
       <Statistic.Value text>
-        Three<br />
+        Three
+        <br />
         Thousand
       </Statistic.Value>
       <Statistic.Label>Signups</Statistic.Label>
@@ -18,8 +19,7 @@ const StatisticExampleValue = () => (
 
     <Statistic>
       <Statistic.Value>
-        <Icon name='plane' />
-        5
+        <Icon name='plane' />5
       </Statistic.Value>
       <Statistic.Label>Flights</Statistic.Label>
     </Statistic>

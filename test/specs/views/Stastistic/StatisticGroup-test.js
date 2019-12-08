@@ -19,7 +19,11 @@ describe('StatisticGroup', () => {
   common.propKeyOnlyToClassName(StatisticGroup, 'inverted')
 
   common.propValueOnlyToClassName(StatisticGroup, 'color', SUI.COLORS)
-  common.propValueOnlyToClassName(StatisticGroup, 'size', _.without(SUI.SIZES, 'big', 'massive', 'medium'))
+  common.propValueOnlyToClassName(
+    StatisticGroup,
+    'size',
+    _.without(SUI.SIZES, 'big', 'massive', 'medium'),
+  )
 
   describe('items', () => {
     it('renders children', () => {

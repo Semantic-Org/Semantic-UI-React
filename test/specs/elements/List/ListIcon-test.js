@@ -9,7 +9,6 @@ describe('ListIcon', () => {
   common.implementsVerticalAlignProp(ListIcon)
 
   it('returns Icon component', () => {
-    shallow(<ListIcon />)
-      .should.have.descendants(Icon)
+    shallow(<ListIcon />).should.have.descendants(Icon)
   })
 })

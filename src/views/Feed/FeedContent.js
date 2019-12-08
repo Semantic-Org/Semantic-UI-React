@@ -31,23 +31,25 @@ function FeedContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedDate, val => ({ content: val }), date, { autoGenerateKey: false })}
-      {createShorthand(FeedSummary, val => ({ content: val }), summary, { autoGenerateKey: false })}
+      {createShorthand(FeedDate, (val) => ({ content: val }), date, { autoGenerateKey: false })}
+      {createShorthand(FeedSummary, (val) => ({ content: val }), summary, {
+        autoGenerateKey: false,
+      })}
       {content}
-      {createShorthand(FeedExtra, val => ({ text: true, content: val }), extraText, {
+      {createShorthand(FeedExtra, (val) => ({ text: true, content: val }), extraText, {
         autoGenerateKey: false,
       })}
-      {createShorthand(FeedExtra, val => ({ images: val }), extraImages, {
+      {createShorthand(FeedExtra, (val) => ({ images: val }), extraImages, {
         autoGenerateKey: false,
       })}
-      {createShorthand(FeedMeta, val => ({ content: val }), meta, { autoGenerateKey: false })}
+      {createShorthand(FeedMeta, (val) => ({ content: val }), meta, { autoGenerateKey: false })}
     </ElementType>
   )
 }
 
 FeedContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,

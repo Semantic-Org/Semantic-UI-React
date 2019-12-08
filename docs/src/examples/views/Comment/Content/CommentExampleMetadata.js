@@ -10,12 +10,12 @@ const CommentExampleMetadata = () => (
         <Comment.Metadata>
           <div>2 days ago</div>
           <div>
-            <Icon name='star' />
-            5 Faves
+            <Icon name='star' />5 Faves
           </div>
         </Comment.Metadata>
         <Comment.Text>
-          Hey guys, I hope this example comment is helping you read this documentation.
+          Hey guys, I hope this example comment is helping you read this
+          documentation.
         </Comment.Text>
       </Comment.Content>
     </Comment>

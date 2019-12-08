@@ -20,7 +20,7 @@ const colors = [
 
 const LabelExampleColored = () => (
   <div>
-    {colors.map(color => (
+    {colors.map((color) => (
       <Label color={color} key={color}>
         {_.capitalize(color)}
       </Label>

@@ -22,7 +22,7 @@ import IconGroup from './IconGroup'
 class Icon extends PureComponent {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Formatted to appear bordered. */
     bordered: PropTypes.bool,
@@ -48,7 +48,7 @@ class Icon extends PureComponent {
     /** Fitted, without space to left or right of Icon. */
     fitted: PropTypes.bool,
 
-    /** Icon can flipped. */
+    /** Icon can be flipped. */
     flipped: PropTypes.oneOf(['horizontally', 'vertically']),
 
     /** Formatted to have its colors inverted for contrast. */
@@ -153,6 +153,6 @@ class Icon extends PureComponent {
   }
 }
 
-Icon.create = createShorthandFactory(Icon, value => ({ name: value }))
+Icon.create = createShorthandFactory(Icon, (value) => ({ name: value }))
 
 export default Icon

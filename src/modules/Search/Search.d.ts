@@ -151,7 +151,7 @@ export interface StrictSearchProps {
   /** A search can have its results take up the width of its container. */
   fluid?: boolean
 
-  /** A search input can take up the width of its container. */
+  /** Shorthand for input element. */
   input?: SemanticShorthandItem<InputProps>
 
   /** A search can show a loading indicator. */

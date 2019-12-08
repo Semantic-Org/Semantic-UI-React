@@ -1,6 +1,7 @@
 import makeDebugger from './makeDebugger'
 
 export AutoControlledComponent from './AutoControlledComponent'
+export ModernAutoControlledComponent from './ModernAutoControlledComponent'
 export { getChildMapping, mergeChildMappings } from './childMapping'
 export * as childrenUtils from './childrenUtils'
 
@@ -39,7 +40,6 @@ export { numberToWordMap, numberToWord } from './numberToWord'
 export normalizeOffset from './normalizeOffset'
 export normalizeTransitionDuration from './normalizeTransitionDuration'
 export objectDiff from './objectDiff'
-export { handleRef, isRefObject } from './refUtils'
 
 // Heads up! We import/export for this module to safely remove it with "babel-plugin-filter-imports"
 export { makeDebugger }

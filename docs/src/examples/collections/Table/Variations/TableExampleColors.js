@@ -19,7 +19,7 @@ const colors = [
 
 const TableExampleColors = () => (
   <div>
-    {colors.map(color => (
+    {colors.map((color) => (
       <Table color={color} key={color}>
         <Table.Header>
           <Table.Row>

@@ -1,17 +1,29 @@
+import * as docsComponents from '@stardust-ui/docs-components'
 import faker from 'faker'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import * as SUIR from 'semantic-ui-react'
 
+const isIE11 =
+  typeof window !== 'undefined' && !!window.MSInputMethodContext && !!document.documentMode
+
 export const babelConfig = {
-  presets: [['stage-1', { decoratorsLegacy: true }]],
+  plugins: [
+    'proposal-class-properties',
+    'proposal-object-rest-spread',
+    isIE11 && 'transform-classes',
+  ].filter(Boolean),
+  presets: [isIE11 ? ['es2015'] : ['stage-1', { decoratorsLegacy: true }]],
 }
 
 export const externals = {
+  '@stardust-ui/docs-components': docsComponents,
   faker,
   lodash: require('lodash'),
-  react: React,
   'prop-types': PropTypes,
+  react: React,
+  'react-dom': ReactDOM,
   'semantic-ui-react': SUIR,
 }
 

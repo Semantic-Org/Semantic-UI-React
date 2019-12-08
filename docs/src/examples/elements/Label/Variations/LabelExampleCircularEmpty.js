@@ -18,7 +18,11 @@ const colors = [
 ]
 
 const LabelExampleCircularEmpty = () => (
-  <div>{colors.map(color => <Label circular color={color} empty key={color} />)}</div>
+  <div>
+    {colors.map((color) => (
+      <Label circular color={color} empty key={color} />
+    ))}
+  </div>
 )
 
 export default LabelExampleCircularEmpty

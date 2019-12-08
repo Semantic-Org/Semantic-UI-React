@@ -1,94 +1,97 @@
-import React, { Component } from 'react'
-import { Button, Grid, Header, Image, Label, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import { useBooleanKnob } from '@stardust-ui/docs-components'
+import React from 'react'
+import {
+  Button,
+  Grid,
+  Header,
+  Image,
+  Label,
+  Menu,
+  Segment,
+  Sidebar,
+} from 'semantic-ui-react'
 
-export default class VisibilityExampleCallbackFrequency extends Component {
-  state = {
-    log: [],
-    logCount: 0,
-  }
+const initialState = { items: [], count: 0 }
 
-  clearLog = () => this.setState({ log: [], logCount: 0 })
-
-  handleHideClick = () => this.setState({ visible: false })
-  handleShowClick = () => this.setState({ visible: true })
-  handleSidebarHide = () => this.setState({ visible: false })
-
-  updateLog = eventName => () =>
-    this.setState(prevState => ({
-      log: [`${new Date().toLocaleTimeString()}: ${eventName}`, ...prevState.log].slice(0, 20),
-      logCount: prevState.logCount + 1,
-    }))
-
-  render() {
-    const { log, logCount, visible } = this.state
-
-    return (
-      <Grid columns={2}>
-        <Grid.Row>
-          <Grid.Column>
-            <Button.Group>
-              <Button disabled={visible} onClick={this.handleShowClick}>
-                Show sidebar
-              </Button>
-              <Button disabled={!visible} onClick={this.handleHideClick}>
-                Hide sidebar
-              </Button>
-            </Button.Group>
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row>
-          <Grid.Column>
-            <Sidebar.Pushable as={Segment}>
-              <Sidebar
-                as={Menu}
-                animation='overlay'
-                icon='labeled'
-                inverted
-                onHidden={this.updateLog('onHidden')}
-                onHide={() => {
-                  this.handleSidebarHide()
-                  this.updateLog('onHide')()
-                }}
-                onShow={this.updateLog('onShow')}
-                onVisible={this.updateLog('onVisible')}
-                vertical
-                visible={visible}
-                width='thin'
-              >
-                <Menu.Item as='a'>Home</Menu.Item>
-                <Menu.Item as='a'>Games</Menu.Item>
-                <Menu.Item as='a'>Channels</Menu.Item>
-              </Sidebar>
-
-              <Sidebar.Pusher>
-                <Segment basic>
-                  <Header as='h3'>Application Content</Header>
-                  <Image src='/images/wireframe/paragraph.png' />
-                </Segment>
-              </Sidebar.Pusher>
-            </Sidebar.Pushable>
-          </Grid.Column>
-
-          <Grid.Column>
-            <Segment.Group>
-              <Segment>
-                <Button compact size='small' floated='right' onClick={this.clearLog}>
-                  Clear
-                </Button>
-                Event Log <Label circular>{logCount}</Label>
-              </Segment>
-              <Segment secondary>
-                <pre>
-                  {log.map((e, i) => (
-                    <div key={i}>{e}</div>
-                  ))}
-                </pre>
-              </Segment>
-            </Segment.Group>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    )
+const logReducer = (state, action) => {
+  switch (action.type) {
+    case 'clearLog':
+      return initialState
+    case 'updateLog':
+      return {
+        items: [
+          `${new Date().toLocaleTimeString()}: ${action.name}`,
+          ...state.items,
+        ].slice(0, 20),
+        count: state.count + 1,
+      }
+    default:
+      return state
   }
 }
+
+const SidebarExampleCallback = () => {
+  const [logs, dispatch] = React.useReducer(logReducer, initialState)
+  const [visible, setVisible] = useBooleanKnob({ name: 'visible' })
+
+  return (
+    <Grid columns={2}>
+      <Grid.Column>
+        <Sidebar.Pushable as={Segment}>
+          <Sidebar
+            as={Menu}
+            animation='overlay'
+            icon='labeled'
+            inverted
+            onHidden={() => dispatch({ name: 'onHidden', type: 'updateLog' })}
+            onHide={() => {
+              setVisible(false)
+              dispatch({ name: 'onHide', type: 'updateLog' })
+            }}
+            onShow={() => dispatch({ name: 'onShow', type: 'updateLog' })}
+            onVisible={() => dispatch({ name: 'onVisible', type: 'updateLog' })}
+            vertical
+            visible={visible}
+            width='thin'
+          >
+            <Menu.Item as='a'>Home</Menu.Item>
+            <Menu.Item as='a'>Games</Menu.Item>
+            <Menu.Item as='a'>Channels</Menu.Item>
+          </Sidebar>
+
+          <Sidebar.Pusher>
+            <Segment basic>
+              <Header as='h3'>Application Content</Header>
+              <Image src='/images/wireframe/paragraph.png' />
+            </Segment>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
+      </Grid.Column>
+
+      <Grid.Column>
+        <Segment.Group>
+          <Segment>
+            <Button
+              compact
+              size='small'
+              floated='right'
+              onClick={() => dispatch({ type: 'clearLog' })}
+            >
+              Clear
+            </Button>
+            Event Log <Label circular>{logs.count}</Label>
+          </Segment>
+          <Segment secondary>
+            <pre>
+              {logs.items.map((e, i) => (
+                <div key={i}>{e}</div>
+              ))}
+            </pre>
+          </Segment>
+        </Segment.Group>
+      </Grid.Column>
+    </Grid>
+  )
+}
+
+export default SidebarExampleCallback

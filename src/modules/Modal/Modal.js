@@ -1,7 +1,9 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { createRef, Fragment, isValidElement } from 'react'
+import shallowEqual from 'shallowequal'
 
 import {
   AutoControlledComponent as Component,
@@ -22,7 +24,7 @@ import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
-import Ref from '../../addons/Ref'
+import { canFit, getLegacyStyles, isLegacy } from './utils'
 
 const debug = makeDebugger('modal')
 
@@ -34,7 +36,7 @@ const debug = makeDebugger('modal')
 class Modal extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
     actions: customPropTypes.itemShorthand,
@@ -151,6 +153,7 @@ class Modal extends Component {
   static Description = ModalDescription
   static Actions = ModalActions
 
+  legacy = isBrowser() && isLegacy()
   ref = createRef()
   dimmerRef = createRef()
   latestDocumentMouseDownEvent = null
@@ -258,38 +261,33 @@ class Modal extends Component {
   }
 
   setPositionAndClassNames = () => {
-    const { dimmer } = this.props
-    let classes
+    const { centered, dimmer } = this.props
 
-    if (dimmer) {
-      classes = 'dimmable dimmed'
-
-      if (dimmer === 'blurring') {
-        classes += ' blurring'
-      }
-    }
-
+    let scrolling
     const newState = {}
 
     if (this.ref.current) {
-      const { height } = this.ref.current.getBoundingClientRect()
+      const rect = this.ref.current.getBoundingClientRect()
+      const isFitted = canFit(rect)
 
-      // Leaving the old calculation here since we may need it as an older browser fallback
-      // SEE: https://github.com/Semantic-Org/Semantic-UI/issues/6185#issuecomment-376725956
-      // const marginTop = -Math.round(height / 2)
-      const marginTop = null
-      const scrolling = height > window.innerHeight
+      scrolling = !isFitted
+      // Styles should be computed for IE11
+      const legacyStyles = this.legacy ? getLegacyStyles(isFitted, centered, rect) : {}
 
-      if (this.state.marginTop !== marginTop) {
-        newState.marginTop = marginTop
+      if (!shallowEqual(this.state.legacyStyles, legacyStyles)) {
+        newState.legacyStyles = legacyStyles
       }
 
       if (this.state.scrolling !== scrolling) {
         newState.scrolling = scrolling
       }
-
-      if (scrolling) classes += ' scrolling'
     }
+
+    const classes = cx(
+      useKeyOnly(dimmer, 'dimmable dimmed'),
+      useKeyOnly(dimmer === 'blurring', ' blurring'),
+      useKeyOnly(scrolling, ' scrolling'),
+    )
 
     if (this.state.mountClasses !== classes) newState.mountClasses = classes
     if (!_.isEmpty(newState)) this.setState(newState)
@@ -312,12 +310,13 @@ class Modal extends Component {
       size,
       style,
     } = this.props
-    const { marginTop, mountClasses, scrolling } = this.state
+    const { legacyStyles, mountClasses, scrolling } = this.state
 
     const classes = cx(
       'ui',
       size,
       useKeyOnly(basic, 'basic'),
+      useKeyOnly(this.legacy, 'legacy'),
       useKeyOnly(scrolling, 'scrolling'),
       'modal transition visible active',
       className,
@@ -329,7 +328,7 @@ class Modal extends Component {
 
     return (
       <Ref innerRef={this.ref}>
-        <ElementType {...rest} className={classes} style={{ marginTop, ...style }}>
+        <ElementType {...rest} className={classes} style={{ ...legacyStyles, ...style }}>
           <MountNode className={mountClasses} node={mountNode} />
 
           {closeIconJSX}

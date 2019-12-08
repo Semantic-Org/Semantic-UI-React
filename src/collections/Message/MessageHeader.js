@@ -28,7 +28,7 @@ function MessageHeader(props) {
 
 MessageHeader.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -40,6 +40,6 @@ MessageHeader.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-MessageHeader.create = createShorthandFactory(MessageHeader, val => ({ content: val }))
+MessageHeader.create = createShorthandFactory(MessageHeader, (val) => ({ content: val }))
 
 export default MessageHeader

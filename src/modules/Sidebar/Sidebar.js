@@ -1,10 +1,10 @@
-import EventStack from '@semantic-ui-react/event-stack'
+import { EventListener, documentRef } from '@stardust-ui/react-component-event-listener'
+import { isRefObject, toRefObject, Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
-import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
@@ -22,7 +22,7 @@ import SidebarPusher from './SidebarPusher'
 class Sidebar extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Animation style. */
     animation: PropTypes.oneOf([
@@ -90,6 +90,8 @@ class Sidebar extends Component {
 
   static defaultProps = {
     direction: 'left',
+    target: documentRef,
+    visible: false,
   }
 
   static animationDuration = 500
@@ -98,14 +100,31 @@ class Sidebar extends Component {
   static Pushable = SidebarPushable
   static Pusher = SidebarPusher
 
-  state = {}
   ref = createRef()
 
-  componentDidUpdate(prevProps) {
-    const { visible: prevVisible } = prevProps
-    const { visible: currentVisible } = this.props
+  constructor(props) {
+    super(props)
 
-    if (prevVisible !== currentVisible) this.handleAnimationStart()
+    this.state = {
+      animationTick: 0,
+      visible: props.visible,
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    // We use `animationTick` to understand when an animation should be scheduled
+    const tickIncrement = !!props.visible === !!state.visible ? 0 : 1
+
+    return {
+      animationTick: state.animationTick + tickIncrement,
+      visible: props.visible,
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.animationTick > prevState.animationTick) {
+      this.handleAnimationStart()
+    }
   }
 
   componentWillUnmount() {
@@ -116,24 +135,22 @@ class Sidebar extends Component {
     const { visible } = this.props
     const callback = visible ? 'onVisible' : 'onHide'
 
-    this.setState({ animating: true }, () => {
-      clearTimeout(this.animationTimer)
-      this.animationTimer = setTimeout(this.handleAnimationEnd, Sidebar.animationDuration)
+    clearTimeout(this.animationTimer)
+    this.animationTimer = setTimeout(this.handleAnimationEnd, Sidebar.animationDuration)
 
-      if (this.skipNextCallback) {
-        this.skipNextCallback = false
-        return
-      }
+    if (this.skipNextCallback) {
+      this.skipNextCallback = false
+      return
+    }
 
-      _.invoke(this.props, callback, null, this.props)
-    })
+    _.invoke(this.props, callback, null, this.props)
   }
 
   handleAnimationEnd = () => {
     const { visible } = this.props
     const callback = visible ? 'onShow' : 'onHidden'
 
-    this.setState({ animating: false })
+    this.setState({ animationTick: 0 })
     _.invoke(this.props, callback, null, this.props)
   }
 
@@ -155,26 +172,29 @@ class Sidebar extends Component {
       visible,
       width,
     } = this.props
-    const { animating } = this.state
+    const { animationTick } = this.state
 
     const classes = cx(
       'ui',
       animation,
       direction,
       width,
-      useKeyOnly(animating, 'animating'),
+      useKeyOnly(animationTick > 0, 'animating'),
       useKeyOnly(visible, 'visible'),
       'sidebar',
       className,
     )
     const rest = getUnhandledProps(Sidebar, this.props)
     const ElementType = getElementType(Sidebar, this.props)
+    const targetRef = isRefObject(target) ? target : toRefObject(target)
 
     return (
       <Ref innerRef={this.ref}>
         <ElementType {...rest} className={classes}>
           {childrenUtils.isNil(children) ? content : children}
-          {visible && <EventStack name='click' on={this.handleDocumentClick} target={target} />}
+          {visible && (
+            <EventListener listener={this.handleDocumentClick} targetRef={targetRef} type='click' />
+          )}
         </ElementType>
       </Ref>
     )

@@ -29,8 +29,9 @@ const TableExamplePadded = () => (
           <a href='#'>18 studies</a>
         </Table.Cell>
         <Table.Cell>
-          Creatine supplementation is the reference compound for increasing muscular creatine
-          levels; there is variability in this increase, however, with some nonresponders.
+          Creatine supplementation is the reference compound for increasing
+          muscular creatine levels; there is variability in this increase,
+          however, with some nonresponders.
         </Table.Cell>
       </Table.Row>
       <Table.Row>
@@ -48,8 +49,8 @@ const TableExamplePadded = () => (
           <a href='#'>65 studies</a>
         </Table.Cell>
         <Table.Cell>
-          Creatine is the reference compound for power improvement, with numbers from one
-          meta-analysis to assess potency
+          Creatine is the reference compound for power improvement, with numbers
+          from one meta-analysis to assess potency
         </Table.Cell>
       </Table.Row>
     </Table.Body>

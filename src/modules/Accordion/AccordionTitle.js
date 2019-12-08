@@ -19,7 +19,7 @@ import Icon from '../../elements/Icon'
 export default class AccordionTitle extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Whether or not the title is in the open state. */
     active: PropTypes.bool,
@@ -48,7 +48,7 @@ export default class AccordionTitle extends Component {
     onClick: PropTypes.func,
   }
 
-  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
+  handleClick = (e) => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const { active, children, className, content, icon } = this.props
@@ -75,4 +75,4 @@ export default class AccordionTitle extends Component {
   }
 }
 
-AccordionTitle.create = createShorthandFactory(AccordionTitle, content => ({ content }))
+AccordionTitle.create = createShorthandFactory(AccordionTitle, (content) => ({ content }))

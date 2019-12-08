@@ -45,7 +45,8 @@ const ListTypes = () => (
     />
     <ComponentExample examplePath='elements/List/Types/ListExampleOrderedValue'>
       <Message info>
-        You can also manually specify a value for an ordered list using <code>value</code>.
+        You can also manually specify a value for an ordered list using{' '}
+        <code>value</code>.
       </Message>
     </ComponentExample>
 

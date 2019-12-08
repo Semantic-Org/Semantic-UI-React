@@ -35,7 +35,7 @@ function ModalContent(props) {
 
 ModalContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -53,6 +53,6 @@ ModalContent.propTypes = {
   scrolling: PropTypes.bool,
 }
 
-ModalContent.create = createShorthandFactory(ModalContent, content => ({ content }))
+ModalContent.create = createShorthandFactory(ModalContent, (content) => ({ content }))
 
 export default ModalContent

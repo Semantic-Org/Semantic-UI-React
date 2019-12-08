@@ -31,7 +31,11 @@ export default class MenuExampleStackable extends Component {
           Testimonials
         </Menu.Item>
 
-        <Menu.Item name='sign-in' active={activeItem === 'sign-in'} onClick={this.handleItemClick}>
+        <Menu.Item
+          name='sign-in'
+          active={activeItem === 'sign-in'}
+          onClick={this.handleItemClick}
+        >
           Sign-in
         </Menu.Item>
       </Menu>

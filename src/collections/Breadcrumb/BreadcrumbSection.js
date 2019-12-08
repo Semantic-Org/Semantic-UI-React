@@ -18,7 +18,7 @@ import {
 export default class BreadcrumbSection extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Style as the currently active section. */
     active: PropTypes.bool,
@@ -54,7 +54,7 @@ export default class BreadcrumbSection extends Component {
     if (link || onClick) return 'a'
   }
 
-  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
+  handleClick = (e) => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const { active, children, className, content, href } = this.props
@@ -71,7 +71,7 @@ export default class BreadcrumbSection extends Component {
   }
 }
 
-BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, content => ({
+BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, (content) => ({
   content,
   link: true,
 }))

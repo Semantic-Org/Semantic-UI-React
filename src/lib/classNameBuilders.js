@@ -70,7 +70,7 @@ export const useMultipleProp = (val, key) => {
     .replace('large screen', 'large-screen')
     .replace(/ vertically/g, '-vertically')
     .split(' ')
-    .map(prop => `${prop.replace('-', ' ')} ${key}`)
+    .map((prop) => `${prop.replace('-', ' ')} ${key}`)
     .join(' ')
 }
 
@@ -87,7 +87,8 @@ export const useMultipleProp = (val, key) => {
  * <Container textAlign='left' />
  * <div class="ui left aligned container"></div>
  */
-export const useTextAlignProp = val => (val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned'))
+export const useTextAlignProp = (val) =>
+  val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned')
 
 /**
  * The "verticalAlign" prop follows the useValueAndKey.
@@ -98,7 +99,7 @@ export const useTextAlignProp = val => (val === 'justified' ? 'justified' : useV
  * <Grid verticalAlign='middle' />
  * <div class="ui middle aligned grid"></div>
  */
-export const useVerticalAlignProp = val => useValueAndKey(val, 'aligned')
+export const useVerticalAlignProp = (val) => useValueAndKey(val, 'aligned')
 
 /**
  * Create "X", "X wide" and "equal width" classNames.

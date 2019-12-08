@@ -5,7 +5,7 @@ class PopupExampleContextControlled extends React.Component {
   state = {}
   contextRef = createRef()
 
-  toggle = () => this.setState(prevState => ({ open: !prevState.open }))
+  toggle = () => this.setState((prevState) => ({ open: !prevState.open }))
 
   render() {
     return (

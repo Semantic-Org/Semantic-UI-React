@@ -1,4 +1,5 @@
 import EventStack from '@semantic-ui-react/event-stack'
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
@@ -18,7 +19,6 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import Ref from '../../addons/Ref'
 import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
 import DropdownDivider from './DropdownDivider'
@@ -40,7 +40,7 @@ const getKeyOrValue = (key, value) => (_.isNil(key) ? value : key)
 export default class Dropdown extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Label prefixed to an option added by a user. */
     additionLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
@@ -80,6 +80,9 @@ export default class Dropdown extends Component {
 
     /** Whether or not the menu should close when the dropdown is blurred. */
     closeOnBlur: PropTypes.bool,
+
+    /** Whether or not the dropdown should close when the escape key is pressed. */
+    closeOnEscape: PropTypes.bool,
 
     /**
      * Whether or not the menu should close when a value is selected from the dropdown.
@@ -359,6 +362,7 @@ export default class Dropdown extends Component {
     additionLabel: 'Add ',
     additionPosition: 'top',
     closeOnBlur: true,
+    closeOnEscape: true,
     deburr: false,
     icon: 'dropdown',
     minCharacters: 1,
@@ -387,7 +391,8 @@ export default class Dropdown extends Component {
     return { focus: false, searchQuery: '' }
   }
 
-  componentWillMount() {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillMount() {
     debug('componentWillMount()')
     const { open, value } = this.state
 
@@ -399,8 +404,9 @@ export default class Dropdown extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps)
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    super.UNSAFE_componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
     debug('to props:', objectDiff(this.props, nextProps))
 
@@ -475,7 +481,6 @@ export default class Dropdown extends Component {
       this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
-      this.handleClose()
     }
   }
 
@@ -494,13 +499,16 @@ export default class Dropdown extends Component {
     const { closeOnChange, multiple } = this.props
     const shouldClose = _.isUndefined(closeOnChange) ? !multiple : closeOnChange
 
-    if (shouldClose) this.close(e)
+    if (shouldClose) this.close(e, _.noop)
   }
 
   closeOnEscape = (e) => {
+    if (!this.props.closeOnEscape) return
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
     e.preventDefault()
-    this.close()
+
+    debug('closeOnEscape()')
+    this.close(e)
   }
 
   moveSelectionOnKeyDown = (e) => {
@@ -573,7 +581,12 @@ export default class Dropdown extends Component {
     debug('selectItemOnEnter()', keyboardKey.getKey(e))
     const { search } = this.props
 
-    if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
+    const shouldSelect =
+      keyboardKey.getCode(e) === keyboardKey.Enter ||
+      // https://github.com/Semantic-Org/Semantic-UI-React/pull/3766
+      (!search && keyboardKey.getCode(e) === keyboardKey.Spacebar)
+
+    if (!shouldSelect) return
     e.preventDefault()
 
     const optionSize = _.size(this.getMenuOptions())
@@ -699,14 +712,19 @@ export default class Dropdown extends Component {
       this.handleChange(e, newValue)
     }
 
-    this.clearSearchQuery()
+    this.clearSearchQuery(value)
+
+    if (search) {
+      _.invoke(this.searchRef.current, 'focus')
+    } else {
+      _.invoke(this.ref.current, 'focus')
+    }
+
     this.closeOnChange(e)
 
     // Heads up! This event handler should be called after `onChange`
     // Notify the onAddItem prop if this is a new value
     if (isAdditionItem) _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
-
-    if (search) _.invoke(this.searchRef.current, 'focus')
   }
 
   handleFocus = (e) => {
@@ -754,7 +772,7 @@ export default class Dropdown extends Component {
     const newQuery = value
 
     _.invoke(this.props, 'onSearchChange', e, { ...this.props, searchQuery: newQuery })
-    this.trySetState({ searchQuery: newQuery }, { selectedIndex: 0 })
+    this.trySetState({ searchQuery: newQuery, selectedIndex: 0 })
 
     // open search dropdown on search query
     if (!open && newQuery.length >= minCharacters) {
@@ -774,9 +792,12 @@ export default class Dropdown extends Component {
 
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
-  getMenuOptions = (value = this.state.value, options = this.props.options) => {
+  getMenuOptions = (
+    value = this.state.value,
+    options = this.props.options,
+    searchQuery = this.state.searchQuery,
+  ) => {
     const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
-    const { searchQuery } = this.state
 
     let filteredOptions = options
 
@@ -890,9 +911,14 @@ export default class Dropdown extends Component {
   // Setters
   // ----------------------------------------
 
-  clearSearchQuery = () => {
+  clearSearchQuery = (value) => {
     debug('clearSearchQuery()')
+
+    const { searchQuery } = this.state
+    if (searchQuery === undefined || searchQuery === '') return
+
     this.trySetState({ searchQuery: '' })
+    this.setSelectedIndex(value, undefined, '')
   }
 
   setValue = (value) => {
@@ -900,10 +926,14 @@ export default class Dropdown extends Component {
     this.trySetState({ value })
   }
 
-  setSelectedIndex = (value = this.state.value, optionsProps = this.props.options) => {
+  setSelectedIndex = (
+    value = this.state.value,
+    optionsProps = this.props.options,
+    searchQuery = this.state.searchQuery,
+  ) => {
     const { multiple } = this.props
     const { selectedIndex } = this.state
-    const options = this.getMenuOptions(value, optionsProps)
+    const options = this.getMenuOptions(value, optionsProps, searchQuery)
     const enabledIndicies = this.getEnabledIndices(options)
 
     let newSelectedIndex
@@ -1128,13 +1158,13 @@ export default class Dropdown extends Component {
     this.scrollSelectedItemIntoView()
   }
 
-  close = (e) => {
+  close = (e, callback = this.handleClose) => {
     const { open } = this.state
     debug('close()', { open })
 
     if (open) {
       _.invoke(this.props, 'onClose', e, this.props)
-      this.trySetState({ open: false })
+      this.trySetState({ open: false }, callback)
     }
   }
 
@@ -1145,7 +1175,7 @@ export default class Dropdown extends Component {
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
-    if (!hasSearchFocus) {
+    if (!hasSearchFocus && this.ref.current) {
       this.ref.current.blur()
     }
 
@@ -1174,9 +1204,8 @@ export default class Dropdown extends Component {
       search && searchQuery && 'filtered',
     )
     let _text = placeholder
-    if (searchQuery) {
-      _text = null
-    } else if (text) {
+
+    if (text) {
       _text = text
     } else if (open && !multiple) {
       _text = _.get(this.getSelectedItem(), 'text')
