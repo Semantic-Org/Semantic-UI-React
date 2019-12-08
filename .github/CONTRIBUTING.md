@@ -60,7 +60,7 @@ cd Semantic-UI-React
 yarn
 ```
 
->Note, we use `yarn` because `npm` has unfortunately become unreliable.  Get it [here][16].
+>Note: we use `yarn` and advise you do too while contributing. Get it [here](https://yarnpkg.com/). You can use `npm install / npm ci` but we don't include a `package-lock.json` in the repository, so you may end up with slightly out of sync dependencies.
 
 Add our repo as a git remote so you can pull/rebase your fork with our latest updates:
 
