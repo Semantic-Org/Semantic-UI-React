@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { createShorthandFactory, customPropTypes, getUnhandledProps, handleRef } from '../../lib'
+import { createShorthandFactory, getUnhandledProps } from '../../lib'
 
 /**
  * A search item sub-component for Dropdown component.
@@ -11,16 +11,13 @@ import { createShorthandFactory, customPropTypes, getUnhandledProps, handleRef }
 class DropdownSearchInput extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** An input can have the auto complete. */
     autoComplete: PropTypes.string,
 
     /** Additional classes. */
     className: PropTypes.string,
-
-    /** A ref handler for input. */
-    inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 
     /** An input can receive focus. */
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -43,10 +40,6 @@ class DropdownSearchInput extends Component {
     _.invoke(this.props, 'onChange', e, { ...this.props, value })
   }
 
-  handleRef = (c) => {
-    handleRef(this.props.inputRef, c)
-  }
-
   render() {
     const { autoComplete, className, tabIndex, type, value } = this.props
     const classes = cx('search', className)
@@ -59,7 +52,6 @@ class DropdownSearchInput extends Component {
         autoComplete={autoComplete}
         className={classes}
         onChange={this.handleChange}
-        ref={this.handleRef}
         tabIndex={tabIndex}
         type={type}
         value={value}
@@ -68,6 +60,6 @@ class DropdownSearchInput extends Component {
   }
 }
 
-DropdownSearchInput.create = createShorthandFactory(DropdownSearchInput, type => ({ type }))
+DropdownSearchInput.create = createShorthandFactory(DropdownSearchInput, (type) => ({ type }))
 
 export default DropdownSearchInput

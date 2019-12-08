@@ -23,7 +23,7 @@ import CardMeta from './CardMeta'
 export default class Card extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A Card can center itself inside its container. */
     centered: PropTypes.bool,
@@ -140,7 +140,13 @@ export default class Card extends Component {
 
     return (
       <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-        {Image.create(image, { autoGenerateKey: false })}
+        {Image.create(image, {
+          autoGenerateKey: false,
+          defaultProps: {
+            ui: false,
+            wrapped: true,
+          },
+        })}
         {(description || header || meta) && (
           <CardContent description={description} header={header} meta={meta} />
         )}

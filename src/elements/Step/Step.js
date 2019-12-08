@@ -11,8 +11,7 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
-import Icon from '../../elements/Icon'
-
+import Icon from '../Icon'
 import StepContent from './StepContent'
 import StepDescription from './StepDescription'
 import StepGroup from './StepGroup'
@@ -24,7 +23,7 @@ import StepTitle from './StepTitle'
 class Step extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A step can be highlighted as active. */
     active: PropTypes.bool,
@@ -140,6 +139,6 @@ class Step extends Component {
   }
 }
 
-Step.create = createShorthandFactory(Step, content => ({ content }))
+Step.create = createShorthandFactory(Step, (content) => ({ content }))
 
 export default Step

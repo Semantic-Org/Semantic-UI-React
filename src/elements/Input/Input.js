@@ -1,7 +1,8 @@
+import { handleRef } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Children, cloneElement, Component } from 'react'
+import React, { Children, cloneElement, Component, createRef } from 'react'
 
 import {
   childrenUtils,
@@ -10,15 +11,13 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  handleRef,
   partitionHTMLProps,
-  SUI,
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
-import Button from '../../elements/Button'
-import Icon from '../../elements/Icon'
-import Label from '../../elements/Label'
+import Button from '../Button'
+import Icon from '../Icon'
+import Label from '../Label'
 
 /**
  * An Input is a field used to elicit a response from a user.
@@ -30,7 +29,7 @@ import Label from '../../elements/Label'
 class Input extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** An Input can be formatted to alert the user to an action they may perform. */
     action: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
@@ -86,7 +85,7 @@ class Input extends Component {
     onChange: PropTypes.func,
 
     /** An Input can vary in size. */
-    size: PropTypes.oneOf(SUI.SIZES),
+    size: PropTypes.oneOf(['mini', 'small', 'large', 'big', 'huge', 'massive']),
 
     /** An Input can receive focus. */
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -102,6 +101,8 @@ class Input extends Component {
     type: 'text',
   }
 
+  inputRef = createRef()
+
   computeIcon = () => {
     const { loading, icon } = this.props
 
@@ -116,9 +117,9 @@ class Input extends Component {
     if (disabled) return -1
   }
 
-  focus = () => this.inputRef.focus()
+  focus = () => this.inputRef.current.focus()
 
-  select = () => this.inputRef.select()
+  select = () => this.inputRef.current.select()
 
   handleChange = (e) => {
     const value = _.get(e, 'target.value')
@@ -131,11 +132,9 @@ class Input extends Component {
     ...child.props,
     ref: (c) => {
       handleRef(child.ref, c)
-      this.handleInputRef(c)
+      this.inputRef.current = c
     },
   })
-
-  handleInputRef = c => (this.inputRef = c)
 
   partitionProps = () => {
     const { disabled, type } = this.props
@@ -151,7 +150,7 @@ class Input extends Component {
         type,
         tabIndex,
         onChange: this.handleChange,
-        ref: this.handleInputRef,
+        ref: this.inputRef,
       },
       rest,
     ]
@@ -241,6 +240,6 @@ class Input extends Component {
   }
 }
 
-Input.create = createShorthandFactory(Input, type => ({ type }))
+Input.create = createShorthandFactory(Input, (type) => ({ type }))
 
 export default Input

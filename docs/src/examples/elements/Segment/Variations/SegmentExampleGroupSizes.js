@@ -6,7 +6,7 @@ const SegmentGroupSizesExample = () => {
 
   return (
     <div>
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <Segment.Group key={size} size={size}>
           <Segment>It's a {size} segment</Segment>
           <Segment>And it's a {size} segment, too</Segment>

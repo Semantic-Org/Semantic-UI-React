@@ -50,14 +50,14 @@ function StatisticGroup(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(items, item => Statistic.create(item))}
+      {_.map(items, (item) => Statistic.create(item))}
     </ElementType>
   )
 }
 
 StatisticGroup.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,

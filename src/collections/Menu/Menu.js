@@ -27,7 +27,7 @@ import MenuMenu from './MenuMenu'
 class Menu extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Index of the currently active item. */
     activeIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -113,7 +113,7 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
-  handleItemOverrides = predefinedProps => ({
+  handleItemOverrides = (predefinedProps) => ({
     onClick: (e, itemProps) => {
       const { index } = itemProps
 
@@ -196,6 +196,6 @@ class Menu extends Component {
   }
 }
 
-Menu.create = createShorthandFactory(Menu, items => ({ items }))
+Menu.create = createShorthandFactory(Menu, (items) => ({ items }))
 
 export default Menu

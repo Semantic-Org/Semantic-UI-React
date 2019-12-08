@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { getElementType, getUnhandledProps } from '../../lib'
 import Select from '../../addons/Select'
 import Dropdown from '../../modules/Dropdown'
 import FormField from './FormField'
@@ -21,7 +21,7 @@ function FormSelect(props) {
 
 FormSelect.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A FormField control prop. */
   control: FormField.propTypes.control,

@@ -16,4 +16,4 @@ module.exports = () => {
   // `config` arg is the resolved Cypress config
 }
 
-require('@applitools/eyes.cypress')(module)
+require('@applitools/eyes-cypress')(module)

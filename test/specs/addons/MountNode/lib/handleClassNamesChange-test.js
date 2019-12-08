@@ -5,31 +5,33 @@ const FooComponent = { props: { className: 'foo' } }
 const BarComponent = { props: { className: 'bar' } }
 
 const nodes = new Set()
-const createNodeMock = (add, remove) => {
-  const node = {
-    classList: { add, remove },
+const createNodeRefMock = (add, remove) => {
+  const nodeRef = {
+    current: {
+      classList: { add, remove },
+    },
     reset: () => {
       add.resetHistory()
       remove.resetHistory()
     },
   }
-  nodes.add(node)
+  nodes.add(nodeRef)
 
-  return node
+  return nodeRef
 }
 
 describe('handleClassNamesChange', () => {
   afterEach(() => {
-    nodes.forEach(node => handleClassNamesChange(node, new Set()))
+    nodes.forEach((node) => handleClassNamesChange(node, new Set()))
   })
 
   it('adds new classes to node', () => {
     const add = sandbox.spy()
     const remove = sandbox.spy()
     const components = new Set([FooComponent, BarComponent])
-    const node = createNodeMock(add, remove)
+    const nodeRef = createNodeRefMock(add, remove)
 
-    handleClassNamesChange(node, components)
+    handleClassNamesChange(nodeRef, components)
     add.should.have.been.calledTwice()
     add.should.have.been.calledWith('foo')
     add.should.have.been.calledWith('bar')
@@ -40,17 +42,17 @@ describe('handleClassNamesChange', () => {
     const add = sandbox.spy()
     const remove = sandbox.spy()
     const components = new Set([FooComponent, BarComponent])
-    const node = createNodeMock(add, remove)
+    const nodeRef = createNodeRefMock(add, remove)
 
-    handleClassNamesChange(node, components)
+    handleClassNamesChange(nodeRef, components)
     add.should.have.been.calledTwice()
     add.should.have.been.calledWith('foo')
     add.should.have.been.calledWith('bar')
     remove.should.have.not.been.called()
-    node.reset()
+    nodeRef.reset()
 
     components.delete(BarComponent)
-    handleClassNamesChange(node, components)
+    handleClassNamesChange(nodeRef, components)
     add.should.have.not.been.called()
     remove.should.have.been.calledOnce()
     remove.should.have.been.calledWith('bar')
@@ -60,19 +62,19 @@ describe('handleClassNamesChange', () => {
     const fooAdd = sandbox.spy()
     const fooRemove = sandbox.spy()
     const fooComponents = new Set([FooComponent])
-    const fooNode = createNodeMock(fooAdd, fooRemove)
+    const fooNodeRef = createNodeRefMock(fooAdd, fooRemove)
 
     const barAdd = sandbox.spy()
     const barRemove = sandbox.spy()
     const barComponents = new Set([BarComponent])
-    const barNode = createNodeMock(barAdd, barRemove)
+    const barNodeRef = createNodeRefMock(barAdd, barRemove)
 
-    handleClassNamesChange(fooNode, fooComponents)
+    handleClassNamesChange(fooNodeRef, fooComponents)
     barAdd.should.have.not.been.called()
     barRemove.should.have.not.been.called()
-    fooNode.reset()
+    fooNodeRef.reset()
 
-    handleClassNamesChange(barNode, barComponents)
+    handleClassNamesChange(barNodeRef, barComponents)
     fooAdd.should.have.not.been.called()
     fooRemove.should.have.not.been.called()
   })

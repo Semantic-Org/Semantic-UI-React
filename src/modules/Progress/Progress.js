@@ -20,7 +20,7 @@ import {
 class Progress extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A progress bar can show activity. */
     active: PropTypes.bool,

@@ -45,6 +45,9 @@ export interface StrictDropdownProps {
   /** Whether or not the menu should close when the dropdown is blurred. */
   closeOnBlur?: boolean
 
+  /** Whether or not the dropdown should close when the escape key is pressed. */
+  closeOnEscape?: boolean
+
   /**
    * Whether or not the menu should close when a value is selected from the dropdown.
    * By default, multiple selection dropdowns will remain open on change, while single

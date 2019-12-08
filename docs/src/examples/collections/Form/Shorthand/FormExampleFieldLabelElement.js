@@ -3,7 +3,10 @@ import { Checkbox, Form } from 'semantic-ui-react'
 
 const FormExampleFieldLabelElement = () => (
   <Form>
-    <Form.Field control={Checkbox} label={<label>I agree to the Terms and Conditions</label>} />
+    <Form.Field
+      control={Checkbox}
+      label={<label>I agree to the Terms and Conditions</label>}
+    />
   </Form>
 )
 

@@ -11,7 +11,7 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
-import Image from '../../elements/Image'
+import Image from '../Image'
 import ListContent from './ListContent'
 import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'
@@ -23,7 +23,7 @@ import ListIcon from './ListIcon'
 class ListItem extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A list item can active. */
     active: PropTypes.bool,
@@ -184,6 +184,6 @@ class ListItem extends Component {
   }
 }
 
-ListItem.create = createShorthandFactory(ListItem, content => ({ content }))
+ListItem.create = createShorthandFactory(ListItem, (content) => ({ content }))
 
 export default ListItem

@@ -1,5 +1,4 @@
 coverage/*
 dist/*
 docs/dist/*
-examples/webpack3/scripts/*
 tmp/*

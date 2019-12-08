@@ -1,10 +1,10 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 import {
   eventStack,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   normalizeOffset,
@@ -17,7 +17,7 @@ import {
 export default class Visibility extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Primary content. */
     children: PropTypes.node,
@@ -180,14 +180,15 @@ export default class Visibility extends Component {
     topPassed: false,
     topVisible: false,
   }
-
   firedCallbacks = []
+  ref = createRef()
 
   // ----------------------------------------
   // Lifecycle
   // ----------------------------------------
 
-  componentWillReceiveProps({ continuous, once, context, updateOn }) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps({ continuous, once, context, updateOn }) {
     const cleanHappened =
       continuous !== this.props.continuous ||
       once !== this.props.once ||
@@ -208,7 +209,7 @@ export default class Visibility extends Component {
     if (!isBrowser()) return
     const { context, fireOnMount, updateOn } = this.props
 
-    this.pageYOffset = window.pageYOffset
+    this.pageYOffset = this.getPageYOffset()
     this.attachHandlers(context, updateOn)
 
     if (fireOnMount) this.update()
@@ -309,7 +310,7 @@ export default class Visibility extends Component {
 
     this.oldCalculations = this.calculations
     this.calculations = this.computeCalculations()
-    this.pageYOffset = window.pageYOffset
+    this.pageYOffset = this.getPageYOffset()
 
     const {
       onBottomPassed,
@@ -360,10 +361,11 @@ export default class Visibility extends Component {
 
   computeCalculations() {
     const { offset } = this.props
-    const { bottom, height, top, width } = this.ref.getBoundingClientRect()
+    const { bottom, height, top, width } = this.ref.current.getBoundingClientRect()
     const [topOffset, bottomOffset] = normalizeOffset(offset)
 
-    const direction = window.pageYOffset > this.pageYOffset ? 'down' : 'up'
+    const newOffset = this.getPageYOffset()
+    const direction = newOffset > this.pageYOffset ? 'down' : 'up'
     const topPassed = top < topOffset
     const bottomPassed = bottom < bottomOffset
 
@@ -396,11 +398,16 @@ export default class Visibility extends Component {
     }
   }
 
-  // ----------------------------------------
-  // Refs
-  // ----------------------------------------
+  getPageYOffset() {
+    const { context } = this.props
 
-  handleRef = c => (this.ref = c)
+    if (context) {
+      // Heads up! `window` doesn't have `pageYOffset` property
+      return context === window ? window.pageYOffset : context.scrollTop
+    }
+
+    return 0
+  }
 
   // ----------------------------------------
   // Render
@@ -412,9 +419,9 @@ export default class Visibility extends Component {
     const rest = getUnhandledProps(Visibility, this.props)
 
     return (
-      <ElementType {...rest} ref={this.handleRef}>
-        {children}
-      </ElementType>
+      <Ref innerRef={this.ref}>
+        <ElementType {...rest}>{children}</ElementType>
+      </Ref>
     )
   }
 }

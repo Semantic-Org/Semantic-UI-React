@@ -80,7 +80,7 @@ TableCell.defaultProps = {
 
 TableCell.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A cell can be active or selected by a user. */
   active: PropTypes.bool,
@@ -131,6 +131,6 @@ TableCell.propTypes = {
   width: PropTypes.oneOf(SUI.WIDTHS),
 }
 
-TableCell.create = createShorthandFactory(TableCell, content => ({ content }))
+TableCell.create = createShorthandFactory(TableCell, (content) => ({ content }))
 
 export default TableCell

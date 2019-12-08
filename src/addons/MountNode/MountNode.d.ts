@@ -9,7 +9,7 @@ export interface StrictMountNodeProps {
   className?: string
 
   /** The DOM node where we will apply class names. Defaults to document.body. */
-  node?: HTMLElement
+  node?: HTMLElement | React.Ref<any>
 }
 
 declare class MountNode extends React.Component<MountNodeProps, {}> {}

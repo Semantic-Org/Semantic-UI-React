@@ -15,36 +15,30 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
         rel='stylesheet'
         href={`https://cdn.jsdelivr.net/npm/semantic-ui@${versions.sui}/dist/semantic.min.css`}
       />
-
-      <script
-        src='https://cdn.jsdelivr.net/npm/@babel/polyfill@7.0.0/dist/polyfill.min.js'
+      <link
+        rel='stylesheet'
+        href={`https://cdn.jsdelivr.net/npm/prismjs@${versions.prismjs}/themes/prism-tomorrow.min.css`}
       />
+
+      <script src='https://cdn.jsdelivr.net/npm/core-js-bundle/minified.js' />
       <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`}
       />
       <script
-        src={`https://cdn.jsdelivr.net/npm/@babel/standalone@${
-          versions.babel.standalone
-        }/babel.min.js`}
+        src={`https://cdn.jsdelivr.net/npm/@babel/standalone@${versions.babel.standalone}/babel.min.js`}
       />
       <script
-        src={`https://cdn.jsdelivr.net/npm/@babel/preset-env-standalone@${
-          versions.babel.standaloneEnv
-        }/babel-preset-env.min.js`}
+        src={`https://cdn.jsdelivr.net/npm/@babel/preset-env-standalone@${versions.babel.standaloneEnv}/babel-preset-env.min.js`}
       />
       <script src={`https://cdn.jsdelivr.net/faker.js/${versions.faker}/faker.min.js`} />
 
       <script
         crossOrigin='true'
-        src={`https://unpkg.com/prettier@${versions.prettier}/standalone.js`}
+        src={`https://cdn.jsdelivr.net/npm/prettier@${versions.prettier}/standalone.min.js`}
       />
       <script
         crossOrigin='true'
-        src={`https://unpkg.com/prettier@${versions.prettier}/parser-babylon.js`}
-      />
-      <script
-        crossOrigin='true'
-        src={`https://unpkg.com/prettier@${versions.prettier}/parser-html.js`}
+        src={`https://cdn.jsdelivr.net/combine/npm/prettier@${versions.prettier}/parser-babylon.min.js,npm/prettier@${versions.prettier}/parser-html.min.js`}
       />
       <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/prop-types/${versions.propTypes}/prop-types${
@@ -57,9 +51,11 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
         }.js`}
       />
       <script
-        src={`https://cdn.jsdelivr.net/npm/react-dom@${versions.react}/umd/react-dom${
-          dev ? '.development' : '.production.min'
-        }.js`}
+        src={
+          dev
+            ? ` https://cdn.jsdelivr.net/npm/@hot-loader/react-dom@${versions.react}/umd/react-dom.development.js`
+            : `https://cdn.jsdelivr.net/npm/react-dom@${versions.react}/umd/react-dom.production.min.js`
+        }
       />
       <script
         src={`https://cdn.jsdelivr.net/npm/react-dom@${

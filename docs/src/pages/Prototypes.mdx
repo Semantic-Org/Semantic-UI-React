@@ -2,9 +2,8 @@ import { Button, Card, Header, Image } from 'semantic-ui-react'
 
 export const meta = {
   title: 'Prototypes',
+  prevPage: { title: 'Layout examples', href: '/layouts' },
 }
-
-<Header as='h1' content='Prototypes' textAlign='center' />
 
 <Header as='h2' content='Integrations' subheader='Examples of integrations with other libraries' />
 
@@ -51,6 +50,30 @@ export const meta = {
           color='black'
           content='Source on Github'
           href='https://github.com/layershifter/semantic-ui-react-redux-form'
+          icon='github'
+          target='_blank'
+        />
+      </Button.Group>
+    </Card.Content>
+  </Card>
+  <Card>
+    <Image src='/images/prototypes/react-textarea-autosize.png' />
+    <Card.Content>
+      <Card.Header>react-textarea-autosize</Card.Header>
+      <Card.Description>Examples of auto sized textareas.</Card.Description>
+    </Card.Content>
+    <Card.Content extra>
+      <Button.Group fluid size='small' vertical>
+        <Button
+          content='Try on CodeSandbox'
+          href='https://codesandbox.io/s/1v67906ll4'
+          icon='codepen'
+          target='_blank'
+        />
+        <Button
+          color='black'
+          content='Source on Github'
+          href='https://github.com/layershifter/semantic-ui-react-with-textarea-autosize'
           icon='github'
           target='_blank'
         />

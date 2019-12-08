@@ -1,17 +1,18 @@
+import { KnobProvider } from '@stardust-ui/docs-components'
+import cx from 'classnames'
 import copyToClipboard from 'copy-to-clipboard'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
-import { withRouteData, withRouter } from 'react-static'
-import { Grid, Visibility } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import VisibilitySensor from 'react-visibility-sensor'
+import { Checkbox, Grid, Label } from 'semantic-ui-react'
 
-import { examplePathToHash, getFormattedHash, repoURL, scrollToAnchor } from 'docs/src/utils'
+import { examplePathToHash, scrollToAnchor } from 'docs/src/utils'
 import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
-
+import formatCode from 'docs/src/utils/formatCode'
 import ComponentControls from '../ComponentControls'
-import ComponentExampleRenderEditor from './ComponentExampleRenderEditor'
-import ComponentExampleRenderHtml from './ComponentExampleRenderHtml'
-import ComponentExampleRenderSource from './ComponentExampleRenderSource'
+import ExampleEditor from '../ExampleEditor'
+import ComponentDocContext from '../ComponentDocContext'
+import ComponentExampleKnobs from './ComponentExampleKnobs'
 import ComponentExampleTitle from './ComponentExampleTitle'
 
 const childrenStyle = {
@@ -19,42 +20,48 @@ const childrenStyle = {
   paddingTop: 0,
   maxWidth: '50rem',
 }
-
-const renderedExampleStyle = {
-  padding: '2rem',
-}
-
-const editorStyle = {
-  padding: 0,
-}
-
 const componentControlsStyle = {
   flex: '0 0 auto',
   width: 'auto',
 }
 
+/* eslint-disable react/prop-types */
+const knobComponents = {
+  KnobControl: (props) => (
+    <div style={{ display: 'flex', alignItems: 'center', flexGrow: 1, marginLeft: 5 }}>
+      {props.children}
+    </div>
+  ),
+  KnobBoolean: (props) => (
+    <Checkbox
+      checked={props.value}
+      onChange={(e, data) => props.setValue(data.checked)}
+      type='checkbox'
+      value={props.value}
+    />
+  ),
+  KnobLabel: (props) => (
+    <Label size='small' style={{ fontFamily: 'monospace' }}>
+      {props.name}
+    </Label>
+  ),
+}
+/* eslint-enable react/prop-types */
+
 /**
  * Renders a `component` and the raw `code` that produced it.
- * Allows toggling the the raw `code` code block.
+ * Allows toggling the raw `code` code block.
  */
-class ComponentExample extends PureComponent {
-  state = {}
-
-  static contextTypes = {
-    onPassed: PropTypes.func,
-  }
-
+class ComponentExample extends Component {
   static propTypes = {
     children: PropTypes.node,
     description: PropTypes.node,
-    displayName: PropTypes.string.isRequired,
-    exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
-    exampleSources: PropTypes.objectOf(PropTypes.string).isRequired,
     examplePath: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
+    onVisibilityChange: PropTypes.func.isRequired,
     renderHtml: PropTypes.bool,
+    sourceCode: PropTypes.string.isRequired,
     suiVersion: PropTypes.string,
     title: PropTypes.node,
   }
@@ -63,192 +70,111 @@ class ComponentExample extends PureComponent {
     renderHtml: true,
   }
 
-  componentWillMount() {
-    const { examplePath } = this.props
-    this.anchorName = examplePathToHash(examplePath)
+  constructor(props) {
+    super(props)
 
-    this.setState({
-      handleMouseLeave: this.handleMouseLeave,
-      handleMouseMove: this.handleMouseMove,
-      showCode: this.isActiveHash(),
-      sourceCode: this.getOriginalSourceCode(),
-    })
+    const anchorName = examplePathToHash(props.examplePath)
+    const hashName = `#${anchorName}`
+
+    this.state = {
+      anchorName,
+      hashName,
+      originalSourceCode: props.sourceCode,
+      showCode: hashName === props.location.hash,
+      sourceCode: props.sourceCode,
+    }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { examplePath, exampleSources, location } = nextProps
-    const nextSourceCode = exampleSources[examplePath]
+  static getDerivedStateFromProps(props, state) {
+    const willBeActiveHash = state.hashName === props.location.hash
+    const derivedState = { isActiveHash: willBeActiveHash }
 
     // deactivate examples when switching from one to the next
-    if (this.isActiveHash() && this.isActiveState() && this.props.location.hash !== location.hash) {
-      this.clearActiveState()
+    if (state.isActiveHash && !willBeActiveHash) {
+      derivedState.showCode = false
+      derivedState.showHTML = false
     }
 
-    // for local environment
-    if (process.env.NODE_ENV !== 'production' && this.getOriginalSourceCode() !== nextSourceCode) {
-      this.setState({ sourceCode: nextSourceCode })
+    if (process.env.NODE_ENV !== 'production') {
+      const wasCodeChanged = state.originalSourceCode !== state.sourceCode
+      const wasCodeUpdated = props.sourceCode !== state.originalSourceCode
+
+      if (wasCodeUpdated) {
+        if (wasCodeChanged) {
+          /* eslint-disable-next-line no-console */
+          console.warn(
+            `[HMR] the code of example (${props.examplePath}) was not reload because it was modified, please reset your changes.`,
+          )
+        } else {
+          derivedState.originalSourceCode = props.sourceCode
+          derivedState.sourceCode = props.sourceCode
+        }
+      }
     }
-  }
 
-  clearActiveState = () => {
-    this.setState({
-      showCode: false,
-      showHTML: false,
-    })
-  }
-
-  isActiveState = () => {
-    const { showCode, showHTML } = this.state
-
-    return showCode || showHTML
-  }
-
-  isActiveHash = () => {
-    const { exampleKeys, location } = this.props
-    return this.anchorName === getFormattedHash(exampleKeys, location.hash)
-  }
-
-  updateHash = () => {
-    if (this.isActiveState()) this.setHashAndScroll()
+    return derivedState
   }
 
   setHashAndScroll = () => {
     const { history, location } = this.props
+    const { anchorName } = this.state
 
-    history.replace(`${location.pathname}#${this.anchorName}`)
+    history.replace(`${location.pathname}#${anchorName}`)
     scrollToAnchor()
   }
+
+  handleCodeChange = (sourceCode) => this.setState({ sourceCode })
+
+  handleCodeFormat = () =>
+    this.setState((prevState) => ({ sourceCode: formatCode(prevState.sourceCode) }))
+
+  handleCodeReset = () =>
+    this.setState((prevState) => ({ sourceCode: prevState.originalSourceCode }))
 
   handleDirectLinkClick = () => {
     this.setHashAndScroll()
     copyToClipboard(window && window.location.href)
   }
 
-  handleMouseLeave = () => {
-    this.setState({
-      isHovering: false,
-      handleMouseLeave: null,
-      handleMouseMove: this.handleMouseMove,
-    })
-  }
-
-  handleMouseMove = () => {
-    this.setState({
-      isHovering: true,
-      handleMouseLeave: this.handleMouseLeave,
-      handleMouseMove: null,
-    })
-  }
-
   handleShowCodeClick = (e) => {
-    e.preventDefault()
-
     const { showCode } = this.state
 
-    this.setState({ showCode: !showCode }, this.updateHash)
-  }
-
-  handleShowHTMLClick = (e) => {
     e.preventDefault()
+    const nextShowCode = !showCode
 
-    const { showHTML } = this.state
-
-    this.setState({ showHTML: !showHTML }, this.updateHash)
+    if (nextShowCode) this.setHashAndScroll()
+    this.setState({ showCode: nextShowCode })
   }
 
-  handlePass = () => {
-    const { title } = this.props
+  handleVisibility = (willVisible) => {
+    const { examplePath, onVisibilityChange, title } = this.props
+    const { wasEverVisible } = this.state
 
-    if (title) _.invoke(this.context, 'onPassed', null, this.props)
-  }
-
-  getGithubEditHref = () => {
-    const { examplePath } = this.props
-
-    // get component name from file path:
-    // elements/Button/Types/ButtonButtonExample
-    const pathParts = examplePath.split(__PATH_SEP__)
-    const filename = pathParts[pathParts.length - 1]
-
-    return [
-      `${repoURL}/edit/master/docs/src/examples/${examplePath}.js`,
-      `?message=docs(${filename}): your description`,
-    ].join('')
-  }
-
-  getKebabExamplePath = () => {
-    if (!this.kebabExamplePath) {
-      this.kebabExamplePath = _.kebabCase(this.props.examplePath)
+    if (willVisible && !wasEverVisible) {
+      this.setState({ wasEverVisible: true })
     }
-
-    return this.kebabExamplePath
+    if (title) onVisibilityChange(examplePath, willVisible)
   }
-
-  getOriginalSourceCode = () => {
-    const { examplePath, exampleSources } = this.props
-    return exampleSources[examplePath]
-  }
-
-  handleChangeCode = _.debounce((sourceCode) => {
-    this.setState({ sourceCode })
-  }, 30)
-
-  handleRenderError = error => this.setState({ error: error.toString() })
-
-  handleRenderSuccess = (error, { markup }) => this.setState({ error, htmlMarkup: markup })
 
   render() {
+    const { children, description, examplePath, renderHtml, suiVersion, title } = this.props
     const {
-      children,
-      description,
-      displayName,
-      examplePath,
-      renderHtml,
-      suiVersion,
-      title,
-    } = this.props
-    const {
-      error,
-      handleMouseLeave,
-      handleMouseMove,
-      htmlMarkup,
-      isHovering,
+      anchorName,
+      isActiveHash,
       showCode,
-      showHTML,
+      originalSourceCode,
       sourceCode,
+      wasEverVisible,
     } = this.state
 
-    const isActive = this.isActiveHash() || this.isActiveState()
-
-    const exampleStyle = {
-      position: 'relative',
-      background: '#fff',
-      boxShadow: '0 1px 2px #ccc',
-      ...(isActive
-        ? {
-          boxShadow: '0 8px 32px #aaa',
-        }
-        : isHovering && {
-          boxShadow: '0 2px 8px #bbb',
-        }),
-    }
-
     return (
-      <Visibility
-        once={false}
-        onTopPassed={this.handlePass}
-        onTopPassedReverse={this.handlePass}
-        style={{ margin: '2rem 0' }}
+      <VisibilitySensor
+        delayedCall={!wasEverVisible}
+        partialVisibility
+        onChange={this.handleVisibility}
       >
-        {/* Ensure anchor links don't occlude card shadow effect */}
-        <div id={this.anchorName} style={{ paddingTop: '1rem' }}>
-          <Grid
-            className='docs-example'
-            padded='vertically'
-            onMouseLeave={handleMouseLeave}
-            onMouseMove={handleMouseMove}
-            style={exampleStyle}
-          >
+        <div id={anchorName} style={{ marginTop: '1rem' }}>
+          <Grid className={cx('docs-example', showCode && 'active')} padded='vertically'>
             <Grid.Row columns='equal'>
               <Grid.Column>
                 <ComponentExampleTitle
@@ -259,58 +185,67 @@ class ComponentExample extends PureComponent {
               </Grid.Column>
               <Grid.Column textAlign='right' style={componentControlsStyle}>
                 <ComponentControls
-                  anchorName={this.anchorName}
+                  anchorName={anchorName}
                   disableHtml={!renderHtml}
                   exampleCode={sourceCode}
                   examplePath={examplePath}
                   onCopyLink={this.handleDirectLinkClick}
                   onShowCode={this.handleShowCodeClick}
-                  onShowHTML={this.handleShowHTMLClick}
                   showCode={showCode}
-                  showHTML={showHTML}
+                  visible={wasEverVisible}
                 />
               </Grid.Column>
             </Grid.Row>
+            <KnobProvider components={knobComponents}>
+              <ComponentExampleKnobs />
 
-            {children && (
-              <Grid.Row columns={1} style={childrenStyle}>
-                <Grid.Column>{children}</Grid.Column>
+              {children && (
+                <Grid.Row columns={1} style={childrenStyle}>
+                  <Grid.Column>{children}</Grid.Column>
+                </Grid.Row>
+              )}
+
+              <Grid.Row style={{ paddingBottom: wasEverVisible && 0 }}>
+                <ExampleEditor
+                  examplePath={examplePath}
+                  hasCodeChanged={originalSourceCode !== sourceCode}
+                  onCodeChange={this.handleCodeChange}
+                  onCodeFormat={this.handleCodeFormat}
+                  onCodeReset={this.handleCodeReset}
+                  renderHtml={renderHtml}
+                  showCode={showCode}
+                  sourceCode={sourceCode}
+                  title={title}
+                  visible={wasEverVisible}
+                />
               </Grid.Row>
-            )}
+            </KnobProvider>
 
-            <Grid.Column
-              width={16}
-              className={`rendered-example ${this.getKebabExamplePath()}`}
-              style={renderedExampleStyle}
-            >
-              <ComponentExampleRenderSource
-                displayName={displayName}
-                onError={this.handleRenderError}
-                onSuccess={this.handleRenderSuccess}
-                renderHtml={renderHtml}
-                sourceCode={sourceCode}
-              />
-            </Grid.Column>
-            {(showCode || showHTML) && (
-              <Grid.Column width={16} style={editorStyle}>
-                {showCode && (
-                  <ComponentExampleRenderEditor
-                    githubEditHref={this.getGithubEditHref()}
-                    originalValue={this.getOriginalSourceCode()}
-                    value={sourceCode}
-                    error={error}
-                    onChange={this.handleChangeCode}
-                  />
-                )}
-                {showHTML && <ComponentExampleRenderHtml value={htmlMarkup} />}
-              </Grid.Column>
-            )}
-            {isActive && !error && <CarbonAdNative inverted={this.isActiveState()} />}
+            {isActiveHash && <CarbonAdNative inverted={showCode} />}
           </Grid>
         </div>
-      </Visibility>
+      </VisibilitySensor>
     )
   }
 }
 
-export default withRouteData(withRouter(ComponentExample))
+/* TODO: Replace this temporary component with hooks */
+const Wrapper = (props) => {
+  const { exampleSources, ...rest } = React.useContext(ComponentDocContext)
+  /* eslint-disable-next-line react/prop-types */
+  const sourceCode = exampleSources[props.examplePath]
+
+  return (
+    <ComponentExample
+      {...props}
+      {...rest}
+      /* eslint-disable-next-line react/prop-types */
+      sourceCode={sourceCode}
+    >
+      {/* eslint-disable-next-line react/prop-types */}
+      {props.children}
+    </ComponentExample>
+  )
+}
+
+export default Wrapper

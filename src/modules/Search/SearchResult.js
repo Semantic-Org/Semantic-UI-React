@@ -33,7 +33,7 @@ const defaultRenderer = ({ image, price, title, description }) => [
 export default class SearchResult extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** The item currently selected by keyboard shortcut. */
     active: PropTypes.bool,

@@ -1,3 +1,4 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -19,7 +20,7 @@ import {
 export default class DimmerInner extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** An active dimmer will dim its parent container. */
     active: PropTypes.bool,
@@ -96,8 +97,7 @@ export default class DimmerInner extends Component {
   toggleStyles(active) {
     const containerRef = this.containerRef.current
 
-    if (!containerRef) return
-
+    if (!containerRef || !containerRef.style) return
     if (active) {
       containerRef.style.setProperty('display', 'flex', 'important')
     } else {
@@ -135,13 +135,15 @@ export default class DimmerInner extends Component {
     const childrenContent = childrenUtils.isNil(children) ? content : children
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick} ref={this.containerRef}>
-        {childrenContent && (
-          <div className='content' ref={this.contentRef}>
-            {childrenContent}
-          </div>
-        )}
-      </ElementType>
+      <Ref innerRef={this.containerRef}>
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+          {childrenContent && (
+            <div className='content' ref={this.contentRef}>
+              {childrenContent}
+            </div>
+          )}
+        </ElementType>
+      </Ref>
     )
   }
 }

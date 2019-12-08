@@ -12,8 +12,8 @@ const Types = () => (
       examplePath='views/Advertisement/Types/AdvertisementExampleAdvertisement'
     >
       <Message info>
-        For real life examples please take a look on the example on CodeSandbox, it will show how to
-        integrate this component with GoogleAds.
+        For real life examples please take a look on the example on CodeSandbox,
+        it will show how to integrate this component with GoogleAds.
       </Message>
 
       <Button
@@ -32,9 +32,14 @@ const Types = () => (
     >
       <Message info>
         These additional examples use the <code>test</code>
-        variation to appear on the page. The Ad component is best used as a wrapper for third party
-        ad network content like <a href='http://www.google.com/adsense/start/'>AdSense</a>
-        or <a href='http://www.google.com/doubleclick/publishers/welcome/'>DoubleClick</a>.
+        variation to appear on the page. The Ad component is best used as a
+        wrapper for third party ad network content like{' '}
+        <a href='http://www.google.com/adsense/start/'>AdSense</a>
+        or{' '}
+        <a href='http://www.google.com/doubleclick/publishers/welcome/'>
+          DoubleClick
+        </a>
+        .
       </Message>
     </ComponentExample>
     <ComponentExample
@@ -42,7 +47,9 @@ const Types = () => (
       description='An ad can use mobile ad unit size.'
       examplePath='views/Advertisement/Types/AdvertisementExampleMobile'
     >
-      <Message info>Mobile ads will automatically only appear on mobile browser viewports.</Message>
+      <Message info>
+        Mobile ads will automatically only appear on mobile browser viewports.
+      </Message>
     </ComponentExample>
     <ComponentExample
       title='Rectangle'

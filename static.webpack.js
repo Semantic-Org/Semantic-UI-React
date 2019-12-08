@@ -1,5 +1,7 @@
 import path from 'path'
+import uglifyPlugin from 'react-static/node_modules/uglifyjs-webpack-plugin'
 import webpack from 'react-static/node_modules/webpack'
+import TerserLegacyPlugin from 'terser-webpack-plugin-legacy'
 
 import config from './config'
 
@@ -9,22 +11,27 @@ export default (webpackConfig, { stage }) => ({
   entry:
     stage === 'prod'
       ? {
-        main: [config.paths.docsSrc('index.js'), config.paths.src('index.js')],
-      }
+          main: [config.paths.docsSrc('index.js'), config.paths.src('index.js')],
+        }
       : webpackConfig.entry,
   externals:
     stage === 'node'
       ? webpackConfig.externals
       : {
-        'anchor-js': 'AnchorJS',
-        '@babel/standalone': 'Babel',
-        faker: 'faker',
-        'prettier/standalone': 'prettier',
-        'prop-types': 'PropTypes',
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'react-dom/server': 'ReactDOMServer',
-      },
+          'anchor-js': 'AnchorJS',
+          '@babel/standalone': 'Babel',
+          faker: 'faker',
+          'prettier/standalone': 'prettier',
+          // These Prettier plugins doesn't have any exports
+          'prettier/parser-babylon': 'window',
+          'prettier/parser-html': 'window',
+          'prettier/parser-typescript': 'window',
+
+          'prop-types': 'PropTypes',
+          react: 'React',
+          'react-dom': 'ReactDOM',
+          'react-dom/server': 'ReactDOMServer',
+        },
   module: {
     ...webpackConfig.module,
     rules: [
@@ -32,9 +39,11 @@ export default (webpackConfig, { stage }) => ({
         test: /\.js$/,
         include: [
           // Heads up!
-          // There modules should be manually transipiled because they are not compatible with IE11
+          // There modules should be manually transpiled because they are not compatible with IE11
           path.resolve(__dirname, 'node_modules/ansi-styles'),
+          path.resolve(__dirname, 'node_modules/chalk'),
           path.resolve(__dirname, 'node_modules/debug'),
+          path.resolve(__dirname, 'node_modules/leven'),
 
           path.resolve(__dirname, 'docs'),
           path.resolve(__dirname, 'src'),
@@ -66,8 +75,18 @@ export default (webpackConfig, { stage }) => ({
     new webpack.DefinePlugin({
       __PATH_SEP__: JSON.stringify(path.sep),
     }),
-    ...webpackConfig.plugins,
-  ],
+    // Disable outdated "uglifyjs-webpack-plugin", can be removed after migration to RS7
+    ...webpackConfig.plugins.filter((plugin) => plugin.constructor !== uglifyPlugin),
+    stage === 'prod' &&
+      new TerserLegacyPlugin({
+        sourceMap: true,
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+        },
+      }),
+  ].filter(Boolean),
   resolve: {
     alias: {
       'semantic-ui-react': config.paths.src('index.js'),

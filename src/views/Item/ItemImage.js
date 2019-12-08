@@ -18,6 +18,6 @@ ItemImage.propTypes = {
   size: Image.propTypes.size,
 }
 
-ItemImage.create = createShorthandFactory(ItemImage, src => ({ src }))
+ItemImage.create = createShorthandFactory(ItemImage, (src) => ({ src }))
 
 export default ItemImage

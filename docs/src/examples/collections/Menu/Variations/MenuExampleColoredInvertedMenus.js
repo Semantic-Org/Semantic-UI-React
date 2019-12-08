@@ -33,7 +33,11 @@ class ExampleMenu extends Component {
 
     return (
       <Menu color={color} inverted widths={3}>
-        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+        <Menu.Item
+          name='home'
+          active={activeItem === 'home'}
+          onClick={this.handleItemClick}
+        />
         <Menu.Item
           name='messages'
           active={activeItem === 'messages'}
@@ -50,7 +54,7 @@ class ExampleMenu extends Component {
 }
 
 const MenuExampleColoredInvertedMenus = () => {
-  const menus = colors.map(color => <ExampleMenu color={color} key={color} />)
+  const menus = colors.map((color) => <ExampleMenu color={color} key={color} />)
 
   return <div>{menus}</div>
 }

@@ -1,17 +1,17 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import { withRouteData } from 'react-static'
+import React, { Component, createRef } from 'react'
+import { withRouter, withRouteData } from 'react-static'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
-import { docTypes, examplePathToHash, getFormattedHash, scrollToAnchor } from 'docs/src/utils'
-import { isBrowser } from 'src/lib'
+import { docTypes, examplePathToHash } from 'docs/src/utils'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 import ComponentSidebar from './ComponentSidebar'
+import ComponentDocContext from './ComponentDocContext'
 
 const exampleEndStyle = {
   textAlign: 'center',
@@ -20,65 +20,51 @@ const exampleEndStyle = {
 }
 
 class ComponentDoc extends Component {
-  static childContextTypes = {
-    onPassed: PropTypes.func,
-  }
-
   static propTypes = {
     componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
     displayName: PropTypes.string.isRequired,
-    exampleKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
     seeTags: docTypes.seeTags.isRequired,
     sidebarSections: docTypes.sidebarSections.isRequired,
+    title: PropTypes.string.isRequired,
   }
 
   state = {}
+  examplesRef = createRef()
 
-  componentWillMount() {
-    const { exampleKeys, history } = this.props
+  static getDerivedStateFromProps(props, state) {
+    const resetOccurred = props.displayName !== state.displayName
 
-    if (isBrowser() && window.location.hash) {
-      const activePath = getFormattedHash(exampleKeys, window.location.hash)
-      history.replace(`${window.location.pathname}#${activePath}`)
-      this.setState({ activePath })
-    }
-  }
-
-  getChildContext() {
     return {
-      onPassed: this.handleExamplePassed,
+      displayName: props.displayName,
+      exampleStates: resetOccurred ? {} : state.exampleStates,
     }
   }
 
-  componentWillReceiveProps({ displayName }) {
-    if (displayName !== this.props.displayName) {
-      this.setState({ activePath: undefined })
-    }
-  }
-
-  handleExamplePassed = (e, { examplePath }) => {
-    this.setState({ activePath: examplePathToHash(examplePath) })
-  }
-
-  handleExamplesRef = examplesRef => this.setState({ examplesRef })
+  handleExampleVisibility = (examplePath, visible) =>
+    this.setState((prevState) => ({
+      exampleStates: {
+        ...prevState.exampleStates,
+        [examplePath]: visible,
+      },
+    }))
 
   handleSidebarItemClick = (e, { examplePath }) => {
-    const { history } = this.props
-    const activePath = examplePathToHash(examplePath)
+    const { history, location } = this.props
 
-    history.replace(`${location.pathname}#${activePath}`)
-    // set active hash path
-    this.setState({ activePath }, scrollToAnchor)
+    history.replace(`${location.pathname}#${examplePathToHash(examplePath)}`)
   }
 
   render() {
     const { componentsInfo, displayName, seeTags, sidebarSections } = this.props
-    const { activePath, examplesRef } = this.state
+    const activePath = _.findKey(this.state.exampleStates)
     const componentInfo = componentsInfo[displayName]
+    const contextValue = { ...this.props, onVisibilityChange: this.handleExampleVisibility }
 
     return (
-      <DocsLayout additionalTitle={displayName} sidebar>
+      /* TODO: use `title` from context */
+      <DocsLayout additionalTitle={displayName} sidebar title='Semantic UI React'>
         <Grid padded>
           <Grid.Row>
             <Grid.Column>
@@ -100,12 +86,14 @@ class ComponentDoc extends Component {
 
           <Grid.Row columns='equal'>
             <Grid.Column>
-              <div ref={this.handleExamplesRef}>
-                <ComponentExamples
-                  displayName={displayName}
-                  examplesExist={componentInfo.examplesExist}
-                  type={componentInfo.type}
-                />
+              <div ref={this.examplesRef}>
+                <ComponentDocContext.Provider value={contextValue}>
+                  <ComponentExamples
+                    displayName={displayName}
+                    examplesExist={componentInfo.examplesExist}
+                    type={componentInfo.type}
+                  />
+                </ComponentDocContext.Provider>
               </div>
               <div style={exampleEndStyle}>
                 This is the bottom <Icon name='pointing down' />
@@ -114,7 +102,7 @@ class ComponentDoc extends Component {
             <Grid.Column computer={5} largeScreen={4} widescreen={4}>
               <ComponentSidebar
                 activePath={activePath}
-                examplesRef={examplesRef}
+                examplesRef={this.examplesRef}
                 onItemClick={this.handleSidebarItemClick}
                 sections={sidebarSections}
               />
@@ -126,4 +114,4 @@ class ComponentDoc extends Component {
   }
 }
 
-export default withRouteData(ComponentDoc)
+export default withRouteData(withRouter(ComponentDoc))

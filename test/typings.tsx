@@ -9,9 +9,9 @@ const ShorthandItemElementAssert = () => (
 
 const ShorthandItemFuncAssert = () => (
   <Button
-    content="Foo"
+    content='Foo'
     icon={(Component, props) => (
-      <div className="bar">
+      <div className='bar'>
         <Component name={props.name} />
       </div>
     )}
@@ -20,15 +20,15 @@ const ShorthandItemFuncAssert = () => (
 
 const ShorthandItemFuncChildren = () => (
   <Button
-    content="Foo"
+    content='Foo'
     label={(Component, props, children) => (
-      <div className="bar">
+      <div className='bar'>
         <Component active={props.active}>{children}</Component>
       </div>
     )}
   />
 )
 
-const ShorthandItemFuncNullAssert = () => <Button content="Foo" icon={() => null} />
+const ShorthandItemFuncNullAssert = () => <Button content='Foo' icon={() => null} />
 
 export default BasicAssert

@@ -33,7 +33,7 @@ CommentAction.defaultProps = {
 
 CommentAction.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Style as the currently active action. */
   active: PropTypes.bool,

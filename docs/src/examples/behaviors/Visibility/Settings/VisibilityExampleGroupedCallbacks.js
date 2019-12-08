@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
+import _ from 'lodash'
+import React, { Component, createRef } from 'react'
 import {
   Button,
   Checkbox,
   Divider,
   Grid,
+  Image,
   Label,
+  Ref,
   Segment,
   Sticky,
   Visibility,
 } from 'semantic-ui-react'
-
-import Wireframe from '../Wireframe'
 
 export default class VisibilityExampleGroupedCallbacks extends Component {
   state = {
@@ -19,26 +20,29 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
     logCount: 0,
     once: true,
   }
+  contextRef = createRef()
 
-  handleContextRef = contextRef => this.setState({ contextRef })
-
-  updateLog = eventName => () =>
-    this.setState({
-      log: [`${new Date().toLocaleTimeString()}: ${eventName}`, ...this.state.log].slice(0, 20),
-      logCount: this.state.logCount + 1,
-    })
+  updateLog = (eventName) => () =>
+    this.setState((prevState) => ({
+      log: [
+        `${new Date().toLocaleTimeString()}: ${eventName}`,
+        ...prevState.log,
+      ].slice(0, 20),
+      logCount: prevState.logCount + 1,
+    }))
 
   clearLog = () => this.setState({ log: [], logCount: 0 })
 
-  toggleOnce = () => this.setState({ once: !this.state.once })
+  toggleOnce = () => this.setState((prevState) => ({ once: !prevState.once }))
 
-  toggleContinuous = () => this.setState({ continuous: !this.state.continuous })
+  toggleContinuous = () =>
+    this.setState((prevState) => ({ continuous: !prevState.continuous }))
 
   render() {
-    const { continuous, contextRef, log, logCount, once } = this.state
+    const { continuous, log, logCount, once } = this.state
 
     return (
-      <div ref={this.handleContextRef}>
+      <Ref innerRef={this.contextRef}>
         <Grid columns={2}>
           <Grid.Column>
             <Visibility
@@ -53,15 +57,43 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
                 '80%': this.updateLog('80%'),
               }}
             >
-              <Wireframe />
+              <Segment>
+                {_.map(
+                  [
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                    '/images/wireframe/centered-paragraph.png',
+                    '/images/wireframe/short-paragraph.png',
+                    '/images/wireframe/media-paragraph.png',
+                    '/images/wireframe/paragraph.png',
+                  ],
+                  (src, index, images) => (
+                    <React.Fragment key={index}>
+                      <Image src={src} />
+                      {index !== images.length - 1 && <Divider />}
+                    </React.Fragment>
+                  ),
+                )}
+              </Segment>
             </Visibility>
           </Grid.Column>
 
           <Grid.Column>
-            <Sticky context={contextRef}>
+            <Sticky context={this.contextRef}>
               <Segment.Group>
                 <Segment>
-                  <Checkbox checked={once} label='Once' onChange={this.toggleOnce} toggle />
+                  <Checkbox
+                    checked={once}
+                    label='Once'
+                    onChange={this.toggleOnce}
+                    toggle
+                  />
                   <Divider />
                   <Checkbox
                     checked={continuous}
@@ -71,19 +103,28 @@ export default class VisibilityExampleGroupedCallbacks extends Component {
                   />
                 </Segment>
                 <Segment>
-                  <Button compact size='small' floated='right' onClick={this.clearLog}>
+                  <Button
+                    compact
+                    size='small'
+                    floated='right'
+                    onClick={this.clearLog}
+                  >
                     Clear
                   </Button>
                   Event Log <Label circular>{logCount}</Label>
                 </Segment>
                 <Segment secondary>
-                  <pre>{log.map((e, i) => <div key={i}>{e}</div>)}</pre>
+                  <pre>
+                    {log.map((e, i) => (
+                      <div key={i}>{e}</div>
+                    ))}
+                  </pre>
                 </Segment>
               </Segment.Group>
             </Sticky>
           </Grid.Column>
         </Grid>
-      </div>
+      </Ref>
     )
   }
 }

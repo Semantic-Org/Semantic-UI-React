@@ -16,14 +16,16 @@ const TableExamplePadded = () => (
         <Table.Cell>John</Table.Cell>
         <Table.Cell>Approved</Table.Cell>
         <Table.Cell>
-          He is a very nice guy and I enjoyed talking to him on the telephone. I hope we get to talk
-          again.
+          He is a very nice guy and I enjoyed talking to him on the telephone. I
+          hope we get to talk again.
         </Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell>Jamie</Table.Cell>
         <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>Jamie was not interested in purchasing our product.</Table.Cell>
+        <Table.Cell>
+          Jamie was not interested in purchasing our product.
+        </Table.Cell>
       </Table.Row>
     </Table.Body>
   </Table>

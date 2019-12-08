@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { cloneElement, Fragment } from 'react'
 
 import {
-  customPropTypes,
   getChildMapping,
   getElementType,
   getUnhandledProps,
@@ -21,13 +20,16 @@ const debug = makeDebugger('transition_group')
 export default class TransitionGroup extends React.Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Named animation event to used. Must be defined in CSS. */
-    animation: PropTypes.oneOf(SUI.TRANSITIONS),
+    animation: PropTypes.oneOfType([PropTypes.oneOf(SUI.TRANSITIONS), PropTypes.string]),
 
     /** Primary content. */
     children: PropTypes.node,
+
+    /** Whether it is directional animation event or not. Use it only for custom transitions. */
+    directional: PropTypes.bool,
 
     /** Duration of the CSS transition animation in milliseconds. */
     duration: PropTypes.oneOfType([
@@ -51,11 +53,12 @@ export default class TransitionGroup extends React.Component {
 
     const { children } = this.props
     this.state = {
-      children: _.mapValues(getChildMapping(children), child => this.wrapChild(child)),
+      children: _.mapValues(getChildMapping(children), (child) => this.wrapChild(child)),
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     debug('componentWillReceiveProps()')
 
     const { children: prevMapping } = this.state
@@ -109,13 +112,14 @@ export default class TransitionGroup extends React.Component {
   }
 
   wrapChild = (child, options = {}) => {
-    const { animation, duration } = this.props
+    const { animation, directional, duration } = this.props
     const { key } = child
     const { visible = true, transitionOnMount = false } = options
 
     return (
       <Transition
         animation={animation}
+        directional={directional}
         duration={duration}
         key={key}
         onHide={this.handleOnHide}

@@ -5,7 +5,7 @@ import { Table } from 'semantic-ui-react'
 const tableData = [
   { name: 'John', age: 15, gender: 'Male' },
   { name: 'Amber', age: 40, gender: 'Female' },
-  { name: 'Leslie', age: 25, gender: 'Female' },
+  { name: 'Leslie', age: 25, gender: 'Other' },
   { name: 'Ben', age: 70, gender: 'Male' },
 ]
 
@@ -16,7 +16,7 @@ export default class TableExampleSortable extends Component {
     direction: null,
   }
 
-  handleSort = clickedColumn => () => {
+  handleSort = (clickedColumn) => () => {
     const { column, data, direction } = this.state
 
     if (column !== clickedColumn) {

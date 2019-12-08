@@ -1,7 +1,8 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { createRef } from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -25,7 +26,7 @@ const debug = makeDebugger('checkbox')
 export default class Checkbox extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Whether or not checkbox is checked. */
     checked: PropTypes.bool,
@@ -117,6 +118,9 @@ export default class Checkbox extends Component {
 
   static autoControlledProps = ['checked', 'indeterminate']
 
+  inputRef = createRef()
+  labelRef = createRef()
+
   componentDidMount() {
     this.setIndeterminate()
   }
@@ -139,29 +143,58 @@ export default class Checkbox extends Component {
     return disabled ? -1 : 0
   }
 
-  handleInputRef = c => (this.inputRef = c)
-
-  handleChange = (e, fromMouseUp) => {
-    debug('handleChange()')
+  handleClick = (e) => {
+    debug('handleClick()', _.get(e, 'target.tagName'))
     const { id } = this.props
     const { checked, indeterminate } = this.state
 
-    if (!this.canToggle()) return
-    if (fromMouseUp && !_.isNil(id)) return
+    const isInputClick = _.invoke(this.inputRef.current, 'contains', e.target)
+    const isLabelClick = _.invoke(this.labelRef.current, 'contains', e.target)
+    const isRootClick = !isLabelClick && !isInputClick
 
-    // We don't have a separate click handler as it's already called in here,
-    // and also to avoid duplicate calls, matching all DOM Checkbox comparisons.
-    _.invoke(this.props, 'onClick', e, {
-      ...this.props,
-      checked: !checked,
-      indeterminate: !!indeterminate,
-    })
+    const hasId = !_.isNil(id)
+    const isLabelClickAndForwardedToInput = isLabelClick && hasId
+
+    // https://github.com/Semantic-Org/Semantic-UI-React/pull/3351
+    if (!isLabelClickAndForwardedToInput) {
+      _.invoke(this.props, 'onClick', e, {
+        ...this.props,
+        checked: !checked,
+        indeterminate: !!indeterminate,
+      })
+    }
+
+    if (this.isClickFromMouse) {
+      this.isClickFromMouse = false
+
+      if (isLabelClick && !hasId) {
+        this.handleChange(e)
+      }
+
+      // Changes should be triggered for the slider variation
+      if (isRootClick) {
+        this.handleChange(e)
+      }
+
+      if (isLabelClick && hasId) {
+        // To prevent two clicks from being fired from the component we have to stop the propagation
+        // from the "input" click: https://github.com/Semantic-Org/Semantic-UI-React/issues/3433
+        e.stopPropagation()
+      }
+    }
+  }
+
+  handleChange = (e) => {
+    const { checked } = this.state
+
+    if (!this.canToggle()) return
+    debug('handleChange()', _.get(e, 'target.tagName'))
+
     _.invoke(this.props, 'onChange', e, {
       ...this.props,
       checked: !checked,
       indeterminate: false,
     })
-
     this.trySetState({ checked: !checked, indeterminate: false })
   }
 
@@ -174,8 +207,13 @@ export default class Checkbox extends Component {
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
-    _.invoke(this.inputRef, 'focus')
 
+    if (!e.defaultPrevented) {
+      _.invoke(this.inputRef.current, 'focus')
+    }
+
+    // Heads up!
+    // We need to call "preventDefault" to keep element focused.
     e.preventDefault()
   }
 
@@ -183,12 +221,12 @@ export default class Checkbox extends Component {
     debug('handleMouseUp()')
     const { checked, indeterminate } = this.state
 
+    this.isClickFromMouse = true
     _.invoke(this.props, 'onMouseUp', e, {
       ...this.props,
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
-    this.handleChange(e, true)
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we
@@ -197,7 +235,7 @@ export default class Checkbox extends Component {
   setIndeterminate = () => {
     const { indeterminate } = this.state
 
-    if (this.inputRef) this.inputRef.indeterminate = !!indeterminate
+    _.set(this.inputRef, 'current.indeterminate', !!indeterminate)
   }
 
   render() {
@@ -235,34 +273,37 @@ export default class Checkbox extends Component {
     const ElementType = getElementType(Checkbox, this.props)
     const [htmlInputProps, rest] = partitionHTMLProps(unhandled, { htmlProps: htmlInputAttrs })
 
+    // Heads Up!
+    // Do not remove empty labels, they are required by SUI CSS
+    const labelElement = createHTMLLabel(label, {
+      defaultProps: { htmlFor: id },
+      autoGenerateKey: false,
+    }) || <label htmlFor={id} />
+
     return (
       <ElementType
         {...rest}
         className={classes}
+        onClick={this.handleClick}
         onChange={this.handleChange}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
       >
-        <input
-          {...htmlInputProps}
-          checked={checked}
-          className='hidden'
-          disabled={disabled}
-          id={id}
-          name={name}
-          readOnly
-          ref={this.handleInputRef}
-          tabIndex={this.computeTabIndex()}
-          type={type}
-          value={value}
-        />
-        {/*
-         Heads Up!
-         Do not remove empty labels, they are required by SUI CSS
-         */}
-        {createHTMLLabel(label, { defaultProps: { htmlFor: id }, autoGenerateKey: false }) || (
-          <label htmlFor={id} />
-        )}
+        <Ref innerRef={this.inputRef}>
+          <input
+            {...htmlInputProps}
+            checked={checked}
+            className='hidden'
+            disabled={disabled}
+            id={id}
+            name={name}
+            readOnly
+            tabIndex={this.computeTabIndex()}
+            type={type}
+            value={value}
+          />
+        </Ref>
+        <Ref innerRef={this.labelRef}>{labelElement}</Ref>
       </ElementType>
     )
   }

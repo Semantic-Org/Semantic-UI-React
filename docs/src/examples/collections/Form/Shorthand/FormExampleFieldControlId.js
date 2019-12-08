@@ -4,6 +4,7 @@ import { Form, Input, TextArea, Button, Select } from 'semantic-ui-react'
 const genderOptions = [
   { key: 'm', text: 'Male', value: 'male' },
   { key: 'f', text: 'Female', value: 'female' },
+  { key: 'o', text: 'Other', value: 'other' },
 ]
 
 const FormExampleFieldControlId = () => (
@@ -35,6 +36,16 @@ const FormExampleFieldControlId = () => (
       control={TextArea}
       label='Opinion'
       placeholder='Opinion'
+    />
+    <Form.Field
+      id='form-input-control-error-email'
+      control={Input}
+      label='Email'
+      placeholder='joe@schmoe.com'
+      error={{
+        content: 'Please enter a valid email address',
+        pointing: 'below',
+      }}
     />
     <Form.Field
       id='form-button-control-public'

@@ -11,15 +11,15 @@ const StatisticExampleEvenlyDivided = () => (
     <Statistic>
       <Statistic.Value text>
         Three
-        <br />Thousand
+        <br />
+        Thousand
       </Statistic.Value>
       <Statistic.Label>Signups</Statistic.Label>
     </Statistic>
 
     <Statistic>
       <Statistic.Value>
-        <Icon name='plane' />
-        5
+        <Icon name='plane' />5
       </Statistic.Value>
       <Statistic.Label>Flights</Statistic.Label>
     </Statistic>

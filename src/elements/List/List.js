@@ -27,7 +27,7 @@ import ListList from './ListList'
 class List extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A list can animate to set the current item apart from the list. */
     animated: PropTypes.bool,
@@ -96,7 +96,7 @@ class List extends Component {
   static Item = ListItem
   static List = ListList
 
-  handleItemOverrides = predefinedProps => ({
+  handleItemOverrides = (predefinedProps) => ({
     onClick: (e, itemProps) => {
       _.invoke(predefinedProps, 'onClick', e, itemProps)
       _.invoke(this.props, 'onItemClick', e, itemProps)
@@ -163,7 +163,7 @@ class List extends Component {
 
     return (
       <ElementType role='list' className={classes} {...rest}>
-        {_.map(items, item => ListItem.create(item, { overrideProps: this.handleItemOverrides }))}
+        {_.map(items, (item) => ListItem.create(item, { overrideProps: this.handleItemOverrides }))}
       </ElementType>
     )
   }

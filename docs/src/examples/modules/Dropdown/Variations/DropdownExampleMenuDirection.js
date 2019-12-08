@@ -9,9 +9,21 @@ const options = [
 
 const DropdownExampleMenuDirection = () => (
   <Menu>
-    <Dropdown item simple text='Left menu' direction='right' options={options} />
+    <Dropdown
+      item
+      simple
+      text='Left menu'
+      direction='right'
+      options={options}
+    />
     <Menu.Menu position='right'>
-      <Dropdown item simple text='Right menu' direction='right' options={options} />
+      <Dropdown
+        item
+        simple
+        text='Right menu'
+        direction='right'
+        options={options}
+      />
     </Menu.Menu>
   </Menu>
 )

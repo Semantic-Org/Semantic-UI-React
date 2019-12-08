@@ -32,13 +32,13 @@ describe('Confirm', () => {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: Modal.Header,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
   common.implementsShorthandProp(Confirm, {
     autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: Modal.Content,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
 
   describe('children', () => {
@@ -70,6 +70,7 @@ describe('Confirm', () => {
         .find('Button')
         .first()
         .shallow()
+        .childAt(0)
         .should.have.text('foo')
     })
   })
@@ -82,6 +83,7 @@ describe('Confirm', () => {
       shallow(<Confirm confirmButton='foo' />)
         .find('Button[primary]')
         .shallow()
+        .childAt(0)
         .should.have.text('foo')
     })
   })

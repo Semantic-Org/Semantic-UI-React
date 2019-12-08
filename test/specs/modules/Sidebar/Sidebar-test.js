@@ -4,27 +4,23 @@ import Sidebar from 'src/modules/Sidebar/Sidebar'
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
 
-const nestingLevel = 1
-
 describe('Sidebar', () => {
-  common.isConformant(Sidebar, { nestingLevel })
-  common.hasUIClassName(Sidebar, { nestingLevel })
-  common.rendersChildren(Sidebar, { nestingLevel })
+  common.isConformant(Sidebar)
+  common.hasUIClassName(Sidebar)
+  common.rendersChildren(Sidebar)
 
-  common.propKeyOnlyToClassName(Sidebar, 'visible', { nestingLevel })
+  common.propKeyOnlyToClassName(Sidebar, 'visible')
 
-  common.propValueOnlyToClassName(
-    Sidebar,
-    'animation',
-    ['overlay', 'push', 'scale down', 'uncover', 'slide out', 'slide along'],
-    { nestingLevel },
-  )
-  common.propValueOnlyToClassName(Sidebar, 'direction', ['top', 'right', 'bottom', 'left'], {
-    nestingLevel,
-  })
-  common.propValueOnlyToClassName(Sidebar, 'width', ['very thin', 'thin', 'wide', 'very wide'], {
-    nestingLevel,
-  })
+  common.propValueOnlyToClassName(Sidebar, 'animation', [
+    'overlay',
+    'push',
+    'scale down',
+    'uncover',
+    'slide out',
+    'slide along',
+  ])
+  common.propValueOnlyToClassName(Sidebar, 'direction', ['top', 'right', 'bottom', 'left'])
+  common.propValueOnlyToClassName(Sidebar, 'width', ['very thin', 'thin', 'wide', 'very wide'])
 
   describe('componentWillUnmount', () => {
     it('will call "clearTimeout"', () => {
@@ -135,13 +131,13 @@ describe('Sidebar', () => {
   })
 
   describe('target', () => {
-    it('is passed to the EventStack component', () => {
+    it('is passed to the EventListener component', () => {
       const target = document.createElement('div')
 
       const wrapper = shallow(<Sidebar target={target} visible />)
-      const stack = wrapper.find('EventStack')
+      const listener = wrapper.find('EventListener')
 
-      stack.should.have.prop('target', target)
+      listener.should.have.prop('targetRef').that.eql({ current: target })
     })
   })
 })

@@ -1,19 +1,16 @@
-import * as _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import CodeSandboxer from 'react-codesandboxer'
 import { Menu } from 'semantic-ui-react'
 
-import { externals } from 'docs/src/components/ComponentDoc/ComponentExample/renderConfig'
-import { updateForKeys } from 'docs/src/hoc'
+import createPackageJson from './createPackageJson'
+import enhanceExampleCode from './enhanceExampleCode'
 
 const appTemplate = `import React from "react";
 import ReactDOM from "react-dom";
 import { Container, Header, List } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
 
 import Example from "./example";
-import pkg from "./package.json";
 
 const App = ({ children }) => (
   <Container style={{ margin: 20 }}>
@@ -37,6 +34,12 @@ const App = ({ children }) => (
   </Container>
 );
 
+// TODO: Switch to https://github.com/palmerhq/the-platform#stylesheet when it will be stable
+const styleLink = document.createElement("link");
+styleLink.rel = "stylesheet";
+styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
+document.head.appendChild(styleLink);
+
 ReactDOM.render(
   <App>
     <Example />
@@ -44,14 +47,11 @@ ReactDOM.render(
   document.getElementById("root")
 );
 `
-const dependencies = {
-  ..._.mapValues(externals, () => 'latest'),
-  'semantic-ui-css': 'latest',
-}
 
-class ComponentControlsShowCode extends React.Component {
+class ComponentControlsCodeSandbox extends React.Component {
   static propTypes = {
     exampleCode: PropTypes.string.isRequired,
+    visible: PropTypes.bool.isRequired,
   }
 
   state = {
@@ -73,7 +73,7 @@ class ComponentControlsShowCode extends React.Component {
   }
 
   render() {
-    const { exampleCode } = this.props
+    const { exampleCode, visible } = this.props
     const { sandboxUrl } = this.state
 
     if (sandboxUrl) {
@@ -89,17 +89,14 @@ class ComponentControlsShowCode extends React.Component {
       )
     }
 
-    return (
+    return visible ? (
       <CodeSandboxer
         afterDeploy={this.handleDeploy}
         examplePath='/'
-        example={exampleCode}
-        dependencies={dependencies}
-        /* Magic trick to reload sources on passed code update */
-        key={exampleCode}
-        name='semantic-ui-react-example'
+        example={enhanceExampleCode(exampleCode)}
         providedFiles={{
           'index.js': { content: appTemplate },
+          'package.json': createPackageJson(),
         }}
         skipRedirect
         template='create-react-app'
@@ -120,8 +117,10 @@ class ComponentControlsShowCode extends React.Component {
           )
         }}
       </CodeSandboxer>
+    ) : (
+      <Menu.Item as='a' content='CodeSandbox' icon={{ loading: true, name: 'spinner' }} />
     )
   }
 }
 
-export default updateForKeys(['exampleCode'])(ComponentControlsShowCode)
+export default ComponentControlsCodeSandbox

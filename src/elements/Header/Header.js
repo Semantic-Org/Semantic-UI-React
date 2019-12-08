@@ -14,8 +14,8 @@ import {
   useKeyOrValueAndKey,
   useKeyOnly,
 } from '../../lib'
-import Icon from '../../elements/Icon'
-import Image from '../../elements/Image'
+import Icon from '../Icon'
+import Image from '../Image'
 
 import HeaderSubheader from './HeaderSubheader'
 import HeaderContent from './HeaderContent'
@@ -99,7 +99,7 @@ function Header(props) {
 
 Header.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Attach header  to other content, like a segment. */
   attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['top', 'bottom'])]),

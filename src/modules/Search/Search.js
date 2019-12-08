@@ -33,7 +33,7 @@ const debug = makeDebugger('search')
 export default class Search extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     // ------------------------------------
     // Behavior
@@ -167,7 +167,7 @@ export default class Search extends Component {
     /** A search can have its results take up the width of its container. */
     fluid: PropTypes.bool,
 
-    /** A search input can take up the width of its container. */
+    /** Shorthand for input element. */
     input: customPropTypes.itemShorthand,
 
     /** A search can show a loading indicator. */
@@ -191,7 +191,8 @@ export default class Search extends Component {
   static Result = SearchResult
   static Results = SearchResults
 
-  componentWillMount() {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillMount() {
     debug('componentWillMount()')
     const { open, value } = this.state
 
@@ -199,8 +200,9 @@ export default class Search extends Component {
     if (open) this.open()
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps)
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    super.UNSAFE_componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
     debug('changed props:', objectDiff(nextProps, this.props))
 
@@ -378,17 +380,25 @@ export default class Search extends Component {
     this.close()
   }
 
+  handleItemMouseDown = (e) => {
+    debug('handleItemMouseDown()')
+
+    // Heads up! We should prevent default to prevent blur events.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/3298
+    e.preventDefault()
+  }
+
   handleFocus = (e) => {
     debug('handleFocus()')
-    const { onFocus } = this.props
-    if (onFocus) onFocus(e, this.props)
+
+    _.invoke(this.props, 'onFocus', e, this.props)
     this.setState({ focus: true })
   }
 
   handleBlur = (e) => {
     debug('handleBlur()')
-    const { onBlur } = this.props
-    if (onBlur) onBlur(e, this.props)
+
+    _.invoke(this.props, 'onBlur', e, this.props)
     this.setState({ focus: false })
   }
 
@@ -440,7 +450,7 @@ export default class Search extends Component {
 
     const { selectFirstResult } = this.props
 
-    this.trySetState({ value }, { selectedIndex: selectFirstResult ? 0 : -1 })
+    this.trySetState({ value, selectedIndex: selectFirstResult ? 0 : -1 })
   }
 
   moveSelectionBy = (e, offset) => {
@@ -549,9 +559,10 @@ export default class Search extends Component {
 
     return (
       <SearchResult
-        key={childKey || result.title}
+        key={childKey || result.id || result.title}
         active={selectedIndex === offsetIndex}
         onClick={this.handleItemClick}
+        onMouseDown={this.handleItemMouseDown}
         renderer={resultRenderer}
         {...result}
         id={offsetIndex} // Used to lookup the result on item click

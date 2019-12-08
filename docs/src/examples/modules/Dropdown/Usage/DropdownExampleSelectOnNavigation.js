@@ -1,7 +1,13 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import { Grid, Dropdown, Form } from 'semantic-ui-react'
 
-import { getOptions } from '../common'
+const getOptions = (number, prefix = 'Choice ') =>
+  _.times(number, (index) => ({
+    key: index,
+    text: `${prefix}${index}`,
+    value: index,
+  }))
 
 export default class DropdownExampleSelectOnNavigation extends Component {
   state = {

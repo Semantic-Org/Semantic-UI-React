@@ -1,7 +1,9 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { isValidElement } from 'react'
+import React, { createRef, Fragment, isValidElement } from 'react'
+import shallowEqual from 'shallowequal'
 
 import {
   AutoControlledComponent as Component,
@@ -22,7 +24,7 @@ import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
-import Ref from '../../addons/Ref'
+import { canFit, getLegacyStyles, isLegacy } from './utils'
 
 const debug = makeDebugger('modal')
 
@@ -34,7 +36,7 @@ const debug = makeDebugger('modal')
 class Modal extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
     actions: customPropTypes.itemShorthand,
@@ -151,6 +153,11 @@ class Modal extends Component {
   static Description = ModalDescription
   static Actions = ModalActions
 
+  legacy = isBrowser() && isLegacy()
+  ref = createRef()
+  dimmerRef = createRef()
+  latestDocumentMouseDownEvent = null
+
   componentWillUnmount() {
     debug('componentWillUnmount()')
     this.handlePortalUnmount()
@@ -159,7 +166,7 @@ class Modal extends Component {
   // Do not access document when server side rendering
   getMountNode = () => (isBrowser() ? this.props.mountNode || document.body : null)
 
-  handleActionsOverrides = predefinedProps => ({
+  handleActionsOverrides = (predefinedProps) => ({
     onActionClick: (e, actionProps) => {
       _.invoke(predefinedProps, 'onActionClick', e, actionProps)
       _.invoke(this.props, 'onActionClick', e, this.props)
@@ -175,17 +182,28 @@ class Modal extends Component {
     this.trySetState({ open: false })
   }
 
+  handleDocumentMouseDown = (e) => {
+    this.latestDocumentMouseDownEvent = e
+  }
+
   handleDocumentClick = (e) => {
     debug('handleDocumentClick()')
     const { closeOnDimmerClick } = this.props
+    const currentDocumentMouseDownEvent = this.latestDocumentMouseDownEvent
+    this.latestDocumentMouseDownEvent = null
 
-    if (!closeOnDimmerClick || doesNodeContainClick(this.ref, e)) return
+    if (
+      !closeOnDimmerClick ||
+      doesNodeContainClick(this.ref.current, currentDocumentMouseDownEvent) ||
+      doesNodeContainClick(this.ref.current, e)
+    )
+      return
 
     _.invoke(this.props, 'onClose', e, this.props)
     this.trySetState({ open: false })
   }
 
-  handleIconOverrides = predefinedProps => ({
+  handleIconOverrides = (predefinedProps) => ({
     onClick: (e) => {
       _.invoke(predefinedProps, 'onClick', e)
       this.handleClose(e)
@@ -206,7 +224,14 @@ class Modal extends Component {
     this.setState({ scrolling: false })
     this.setPositionAndClassNames()
 
-    eventStack.sub('click', this.handleDocumentClick, { pool: eventPool, target: this.dimmerRef })
+    eventStack.sub('mousedown', this.handleDocumentMouseDown, {
+      pool: eventPool,
+      target: this.dimmerRef.current,
+    })
+    eventStack.sub('click', this.handleDocumentClick, {
+      pool: eventPool,
+      target: this.dimmerRef.current,
+    })
     _.invoke(this.props, 'onMount', e, this.props)
   }
 
@@ -215,55 +240,54 @@ class Modal extends Component {
     debug('handlePortalUnmount()', { eventPool })
 
     cancelAnimationFrame(this.animationRequestId)
-    eventStack.unsub('click', this.handleDocumentClick, { pool: eventPool, target: this.dimmerRef })
+    eventStack.unsub('mousedown', this.handleDocumentMouseDown, {
+      pool: eventPool,
+      target: this.dimmerRef.current,
+    })
+    eventStack.unsub('click', this.handleDocumentClick, {
+      pool: eventPool,
+      target: this.dimmerRef.current,
+    })
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
-  handleRef = c => (this.ref = c)
-
-  handleDimmerRef = c => (this.dimmerRef = c)
-
   setDimmerNodeStyle = () => {
     debug('setDimmerNodeStyle()')
+    const { current } = this.dimmerRef
 
-    if (this.dimmerRef) {
-      this.dimmerRef.style.setProperty('display', 'flex', 'important')
+    if (current && current.style && current.style.display !== 'flex') {
+      current.style.setProperty('display', 'flex', 'important')
     }
   }
 
   setPositionAndClassNames = () => {
-    const { dimmer } = this.props
-    let classes
+    const { centered, dimmer } = this.props
 
-    if (dimmer) {
-      classes = 'dimmable dimmed'
-
-      if (dimmer === 'blurring') {
-        classes += ' blurring'
-      }
-    }
-
+    let scrolling
     const newState = {}
 
-    if (this.ref) {
-      const { height } = this.ref.getBoundingClientRect()
+    if (this.ref.current) {
+      const rect = this.ref.current.getBoundingClientRect()
+      const isFitted = canFit(rect)
 
-      // Leaving the old calculation here since we may need it as an older browser fallback
-      // SEE: https://github.com/Semantic-Org/Semantic-UI/issues/6185#issuecomment-376725956
-      // const marginTop = -Math.round(height / 2)
-      const marginTop = null
-      const scrolling = height > window.innerHeight
+      scrolling = !isFitted
+      // Styles should be computed for IE11
+      const legacyStyles = this.legacy ? getLegacyStyles(isFitted, centered, rect) : {}
 
-      if (this.state.marginTop !== marginTop) {
-        newState.marginTop = marginTop
+      if (!shallowEqual(this.state.legacyStyles, legacyStyles)) {
+        newState.legacyStyles = legacyStyles
       }
 
       if (this.state.scrolling !== scrolling) {
         newState.scrolling = scrolling
       }
-
-      if (scrolling) classes += ' scrolling'
     }
+
+    const classes = cx(
+      useKeyOnly(dimmer, 'dimmable dimmed'),
+      useKeyOnly(dimmer === 'blurring', ' blurring'),
+      useKeyOnly(scrolling, ' scrolling'),
+    )
 
     if (this.state.mountClasses !== classes) newState.mountClasses = classes
     if (!_.isEmpty(newState)) this.setState(newState)
@@ -286,12 +310,13 @@ class Modal extends Component {
       size,
       style,
     } = this.props
-    const { marginTop, mountClasses, scrolling } = this.state
+    const { legacyStyles, mountClasses, scrolling } = this.state
 
     const classes = cx(
       'ui',
       size,
       useKeyOnly(basic, 'basic'),
+      useKeyOnly(this.legacy, 'legacy'),
       useKeyOnly(scrolling, 'scrolling'),
       'modal transition visible active',
       className,
@@ -301,30 +326,21 @@ class Modal extends Component {
     const closeIconName = closeIcon === true ? 'close' : closeIcon
     const closeIconJSX = Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })
 
-    if (!childrenUtils.isNil(children)) {
-      // TODO: remove when ref with "as" is resolved: PR #2306
-      return (
-        <Ref innerRef={this.handleRef}>
-          <ElementType {...rest} className={classes} style={{ marginTop, ...style }}>
-            <MountNode className={mountClasses} node={mountNode} />
-
-            {closeIconJSX}
-            {children}
-          </ElementType>
-        </Ref>
-      )
-    }
-
-    // TODO: remove when ref with "as" is resolved: PR #2306
     return (
-      <Ref innerRef={this.handleRef}>
-        <ElementType {...rest} className={classes} style={{ marginTop, ...style }}>
+      <Ref innerRef={this.ref}>
+        <ElementType {...rest} className={classes} style={{ ...legacyStyles, ...style }}>
           <MountNode className={mountClasses} node={mountNode} />
 
           {closeIconJSX}
-          {ModalHeader.create(header, { autoGenerateKey: false })}
-          {ModalContent.create(content, { autoGenerateKey: false })}
-          {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
+          {childrenUtils.isNil(children) ? (
+            <Fragment>
+              {ModalHeader.create(header, { autoGenerateKey: false })}
+              {ModalContent.create(content, { autoGenerateKey: false })}
+              {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
+            </Fragment>
+          ) : (
+            children
+          )}
         </ElementType>
       </Ref>
     )
@@ -386,7 +402,7 @@ class Modal extends Component {
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
       >
-        <div className={dimmerClasses} ref={this.handleDimmerRef}>
+        <div className={dimmerClasses} ref={this.dimmerRef}>
           {this.renderContent(rest)}
         </div>
       </Portal>

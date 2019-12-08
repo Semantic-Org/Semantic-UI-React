@@ -3,7 +3,8 @@ import React from 'react'
 
 import Portal from 'src/addons/Portal/Portal'
 import { SUI } from 'src/lib'
-import Popup, { POSITIONS } from 'src/modules/Popup/Popup'
+import Popup from 'src/modules/Popup/Popup'
+import { positionsMapping } from 'src/modules/Popup/lib/positions'
 import PopupHeader from 'src/modules/Popup/PopupHeader'
 import PopupContent from 'src/modules/Popup/PopupContent'
 import * as common from 'test/specs/commonTests'
@@ -37,9 +38,8 @@ describe('Popup', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
-  common.isConformant(Popup, { rendersPortal: true })
+  common.isConformant(Popup, { rendersChildren: false, rendersPortal: true })
   common.hasSubcomponents(Popup, [PopupHeader, PopupContent])
-  common.hasValidTypings(Popup)
 
   // Heads up!
   //
@@ -47,424 +47,46 @@ describe('Popup', () => {
   // Nor do they handle components rendered to the body with Portal.
   // The Popup is wrapped in a Portal, so we manually test a few things here.
 
-  it('renders a Portal', () => {
-    wrapperShallow(<Popup />)
-      .type()
-      .should.equal(Portal)
-  })
-
-  it('renders to the document body', () => {
-    wrapperMount(<Popup open />)
-    assertInBody('.ui.popup.visible')
-  })
-
-  it('renders child text', () => {
-    wrapperMount(<Popup open>child text</Popup>)
-
-    document.querySelector('.ui.popup.visible').innerText.should.equal('child text')
-  })
-
-  it('renders child components', () => {
-    const child = <div data-child />
-    wrapperMount(<Popup open>{child}</Popup>)
-
-    document
-      .querySelector('.ui.popup.visible')
-      .querySelector('[data-child]')
-      .should.not.equal(null, 'Popup did not render the child component.')
-  })
-
-  it('should add className to the Popup wrapping node', () => {
-    wrapperMount(<Popup className='some-class' open />)
-    assertInBody('.ui.popup.visible.some-class')
-  })
-
-  describe('offset', () => {
-    it('accepts an offset to the left', () => {
-      wrapperMount(
-        <Popup
-          horizontalOffset={50}
-          position='bottom right'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
-
-      wrapper.find('button').simulate('click')
-      assertInBody('.ui.popup.visible')
-    })
-    it('accepts an offset to the right', () => {
-      wrapperMount(
-        <Popup
-          horizontalOffset={50}
-          position='bottom left'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
-
-      wrapper.find('button').simulate('click')
-      assertInBody('.ui.popup.visible')
-    })
-    it('causes the style to be updated', () => {
-      wrapperMount(
-        <Popup
-          horizontalOffset={50}
-          position='bottom left'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
-
-      wrapper.find('button').simulate('click')
-      const element = document.querySelector('.popup.ui')
-      element.style.should.have.property('left', '-50px')
-      wrapper.setProps({ horizontalOffset: 60 })
-      element.style.should.have.property('left', '-60px')
-    })
-  })
-
-  describe('verticalOffset', () => {
-    it('accepts a vertical offset to the top', () => {
-      wrapperMount(
-        <Popup
-          verticalOffset={50}
-          position='bottom right'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
-
-      wrapper.find('button').simulate('click')
-      assertInBody('.ui.popup.visible')
-    })
-    it('accepts a vertical offset to the bottom', () => {
-      wrapperMount(
-        <Popup
-          verticalOffset={50}
-          position='top left'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
-
-      wrapper.find('button').simulate('click')
-      assertInBody('.ui.popup.visible')
-    })
-    it('causes the style to be updated', () => {
-      wrapperMount(
-        <Popup
-          verticalOffset={50}
-          position='bottom right'
-          content='foo'
-          trigger={<button>foo</button>}
-        />,
-      )
-
-      wrapper.find('button').simulate('click')
-      const element = document.querySelector('.popup.ui')
-      element.style.should.have.property('top', '50px')
-      wrapper.setProps({ verticalOffset: 60 })
-      element.style.should.have.property('top', '60px')
-    })
-  })
-
-  describe('position', () => {
-    POSITIONS.forEach((position) => {
-      it(`"${position}" is always within the viewport when the trigger is clicked`, () => {
-        wrapperMount(
-          <Popup content='_' position={position} trigger={<button>foo</button>} on='click' />,
-        )
-        wrapper.find('button').simulate('click')
-
-        const rect = document.querySelector('.popup.ui').getBoundingClientRect()
-        const { top, right, bottom, left } = rect
-        expect(top).to.be.at.least(0)
-        expect(left).to.be.at.least(0)
-        expect(bottom).to.be.at.most(document.documentElement.clientHeight)
-        expect(right).to.be.at.most(document.documentElement.clientWidth)
-      })
-      it(`"${position}" is positioned properly when open property is set`, (done) => {
-        wrapperMount(<Popup content='_' position={position} open trigger={<button>foo</button>} />)
-        setTimeout(() => {
-          const element = document.querySelector('.popup.ui')
-          const { top, left, bottom, right } = element.style
-          expect(element.style.position).to.equal('absolute')
-          expect(top).to.not.equal('')
-          expect(left).to.not.equal('')
-          expect(bottom).to.not.equal('')
-          expect(right).to.not.equal('')
-          done()
-        }, 1)
-      })
-      it(`"${position}" is the original if no horizontal position fits within the viewport`, () => {
-        wrapperMount(
-          <Popup
-            content='_'
-            position={position}
-            trigger={<button>foo</button>}
-            on='click'
-            horizontalOffset={999}
-          />,
-        )
-        wrapper.find('button').simulate('click')
-        const selectedPosition = wrapper.state('position')
-
-        expect(selectedPosition).to.equal(position)
-      })
-
-      it(`"${position}" is the original if no vertical position fits within the viewport`, () => {
-        wrapperMount(
-          <Popup
-            content='_'
-            position={position}
-            trigger={<button>foo</button>}
-            on='click'
-            verticalOffset={3000}
-          />,
-        )
-        wrapper.find('button').simulate('click')
-        const selectedPosition = wrapper.state('position')
-
-        expect(selectedPosition).to.equal(position)
-      })
-    })
-  })
-
-  describe('keepInViewPort', () => {
-    it('will not alter the position and render outside the viewport if set to false', () => {
-      wrapperMount(
-        <Popup
-          content='_'
-          position='top center'
-          trigger={<button>foo</button>}
-          on='click'
-          keepInViewPort={false}
-        />,
-      )
-      wrapper.find('button').simulate('click')
-
-      const rect = document.querySelector('.popup.ui').getBoundingClientRect()
-      const { top } = rect
-
-      const selectedPosition = wrapper.state('position')
-
-      expect(selectedPosition).to.equal('top center')
-      expect(top).to.be.below(0)
+  describe('children', () => {
+    it('renders a Portal', () => {
+      wrapperShallow(<Popup />)
+        .type()
+        .should.equal(Portal)
     })
 
-    it('is enabled by default', () => {
-      expect(Popup.defaultProps.keepInViewPort).to.equal(true)
-    })
-
-    it('alters the position when true and renders within the viewport', () => {
-      wrapperMount(
-        <Popup
-          content='_'
-          position='top center'
-          trigger={<button>foo</button>}
-          on='click'
-          keepInViewPort
-        />,
-      )
-      wrapper.find('button').simulate('click')
-
-      const rect = document.querySelector('.popup.ui').getBoundingClientRect()
-      const { top } = rect
-
-      const selectedPosition = wrapper.state('position')
-
-      expect(selectedPosition).to.not.equal('top center')
-      expect(top).to.be.at.least(0)
-    })
-  })
-
-  describe('hoverable', () => {
-    it('can be set to stay visible while hovering the popup', () => {
-      shallow(<Popup hoverable open />)
-        .find('Portal')
-        .should.have.prop('closeOnPortalMouseLeave', true)
-    })
-  })
-
-  describe('hide on scroll', () => {
-    it('hides on window scroll', () => {
-      const trigger = <button>foo</button>
-      wrapperMount(<Popup hideOnScroll content='foo' trigger={trigger} />)
-
-      wrapper.find('button').simulate('click')
-      assertInBody('.ui.popup.visible')
-
-      domEvent.scroll(window)
-      assertInBody('.ui.popup.visible', false)
-    })
-
-    it('is called with (e, props) when scroll', () => {
-      const onClose = sandbox.spy()
-      const trigger = <button>foo</button>
-
-      wrapperMount(<Popup content='foo' hideOnScroll onClose={onClose} trigger={trigger} />)
-        .find('button')
-        .simulate('click')
-
-      domEvent.scroll(window)
-      onClose.should.have.been.calledOnce()
-      onClose.should.have.been.calledWithMatch({}, { content: 'foo', onClose, trigger })
-    })
-  })
-
-  describe('trigger', () => {
-    it('it appears on click', () => {
-      const trigger = <button>foo</button>
-      wrapperMount(<Popup on='click' content='foo' header='bar' trigger={trigger} />)
-
-      wrapper.find('button').simulate('click')
-      assertInBody('.ui.popup.visible')
-    })
-
-    it('it appears on hover', (done) => {
-      const trigger = <button>foo</button>
-      wrapperMount(<Popup content='foo' trigger={trigger} mouseEnterDelay={0} />)
-
-      wrapper.find('button').simulate('mouseenter')
-      setTimeout(() => {
-        assertInBody('.ui.popup.visible')
-        done()
-      }, 1)
-    })
-
-    it('it appears on focus', () => {
-      const trigger = <input type='text' />
-      wrapperMount(<Popup on='focus' content='foo' trigger={trigger} />)
-
-      wrapper.find('input').simulate('focus')
-      assertInBody('.ui.popup.visible')
-    })
-
-    it('it appears on multiple', (done) => {
-      const trigger = <button>foo</button>
-      const button = wrapperMount(
-        <Popup on={['click', 'hover']} content='foo' header='bar' trigger={trigger} />,
-      ).find('button')
-
-      button.simulate('click')
-      assertInBody('.ui.popup.visible')
-
-      domEvent.click('body')
-
-      button.simulate('mouseenter')
-      setTimeout(() => {
-        assertInBody('.ui.popup.visible')
-        done()
-      }, 51)
-    })
-  })
-
-  describe('context', () => {
-    // We're expecting to see this:
-    //
-    // |- context -----------------------------|
-    // |             99px x 10px               |
-    // |---------------------------------------|
-    //                  ---^---
-    //                 | popup |
-    //                  -------
-
-    it('aligns the popup to the context node', () => {
-      const context = document.createElement('div')
-      context.innerText = '.'
-      context.style.marginTop = '400px'
-      context.style.marginLeft = '400px'
-      context.style.width = '99px'
-      context.style.height = '10px'
-
-      document.body.appendChild(context)
-      const contextRect = context.getBoundingClientRect()
-
-      wrapperMount(
-        <Popup id='context-popup' context={context} content='.' position='bottom center' open />,
-      )
-
-      const popupRect = document.querySelector('#context-popup').getBoundingClientRect()
-
-      document.body.removeChild(context)
-
-      popupRect.top.should.equal(
-        contextRect.bottom,
-        "The popup's top should have been equal to the context's bottom.",
-      )
-    })
-
-    it('aligns the popup to the context node even when there is a trigger', () => {
-      const context = document.createElement('div')
-      context.innerText = '.'
-      context.style.marginTop = '400px'
-      context.style.marginLeft = '400px'
-      context.style.width = '99px'
-      context.style.height = '10px'
-
-      document.body.appendChild(context)
-      const contextRect = context.getBoundingClientRect()
-
-      wrapperMount(
-        <Popup
-          id='context-popup'
-          trigger={<button />}
-          context={context}
-          content='.'
-          position='bottom center'
-          open
-        />,
-      )
-
-      const popupRect = document.querySelector('#context-popup').getBoundingClientRect()
-
-      document.body.removeChild(context)
-
-      popupRect.top.should.equal(
-        contextRect.bottom,
-        "The popup's top should have been equal to the context's bottom.",
-      )
-    })
-  })
-
-  describe('open', () => {
-    it('is not open by default', () => {
-      wrapperMount(<Popup />)
-      assertInBody('.ui.popup.visible', false)
-    })
-
-    it('is passed to Portal open', () => {
-      shallow(<Popup open />)
-        .find('Portal')
-        .should.have.prop('open', true)
-
-      shallow(<Popup open={false} />)
-        .find('Portal')
-        .should.have.prop('open', false)
-    })
-
-    it('does not show the popup when false', () => {
-      wrapperMount(<Popup open={false} />)
-      assertInBody('.ui.popup.visible', false)
-    })
-
-    it('shows the popup on changing from false to true', () => {
-      wrapperMount(<Popup open={false} />)
-      assertInBody('.ui.popup.visible', false)
-
-      wrapper.setProps({ open: true })
-
-      assertInBody('.ui.popup.visible')
-    })
-
-    it('hides the popup on changing from true to false', () => {
+    it('renders to the document body', () => {
       wrapperMount(<Popup open />)
       assertInBody('.ui.popup.visible')
+    })
 
-      wrapper.setProps({ open: false })
+    it('renders child text', () => {
+      wrapperMount(<Popup open>child text</Popup>)
 
-      assertInBody('.ui.popup.visible', false)
+      document.querySelector('.ui.popup.visible').innerText.should.equal('child text')
+    })
+
+    it('renders child components', () => {
+      const child = <div data-child />
+      wrapperMount(<Popup open>{child}</Popup>)
+
+      document
+        .querySelector('.ui.popup.visible')
+        .querySelector('[data-child]')
+        .should.not.equal(null, 'Popup did not render the child component.')
+    })
+  })
+
+  describe('className', () => {
+    it('should add className to the wrapping node', () => {
+      wrapperMount(<Popup className='some-class' open />)
+      assertInBody('.ui.popup.visible.some-class')
+    })
+  })
+
+  describe('basic', () => {
+    it('adds basic to the popup className', () => {
+      wrapperMount(<Popup basic open />)
+      assertInBody('.ui.basic.popup.visible')
     })
   })
 
@@ -488,10 +110,17 @@ describe('Popup', () => {
     })
   })
 
-  describe('basic', () => {
-    it('adds basic to the popup className', () => {
-      wrapperMount(<Popup basic open />)
-      assertInBody('.ui.basic.popup.visible')
+  describe('eventsEnabled ', () => {
+    it(`is "true" by default`, () => {
+      wrapperMount(<Popup open />)
+
+      wrapper.should.have.prop('eventsEnabled', true)
+      wrapper.find('Popper').should.have.prop('eventsEnabled', true)
+    })
+
+    it(`can be set to "false"`, () => {
+      wrapperMount(<Popup eventsEnabled={false} open />)
+      wrapper.find('Popper').should.have.prop('eventsEnabled', false)
     })
   })
 
@@ -502,6 +131,40 @@ describe('Popup', () => {
     })
   })
 
+  describe('hideOnScroll', () => {
+    const trigger = <button>foo</button>
+
+    it('hides on window scroll', () => {
+      wrapperMount(<Popup content='foo' hideOnScroll trigger={<button>foo</button>} />)
+
+      wrapper.find('button').simulate('click')
+      assertInBody('.ui.popup.visible')
+
+      domEvent.scroll(window)
+      assertInBody('.ui.popup.visible', false)
+    })
+
+    it('is called with (e, props) when scroll', () => {
+      const onClose = sandbox.spy()
+
+      wrapperMount(<Popup content='foo' hideOnScroll onClose={onClose} trigger={trigger} />)
+
+      wrapper.find('button').simulate('click')
+      domEvent.scroll(window)
+
+      onClose.should.have.been.calledOnce()
+      onClose.should.have.been.calledWithMatch({}, { content: 'foo', onClose, trigger })
+    })
+  })
+
+  describe('hoverable', () => {
+    it('can be set to stay visible while hovering the popup', () => {
+      shallow(<Popup hoverable open />)
+        .find('Portal')
+        .should.have.prop('closeOnPortalMouseLeave', true)
+    })
+  })
+
   describe('inverted', () => {
     it('adds inverted to the popup className', () => {
       wrapperMount(<Popup inverted open />)
@@ -509,17 +172,167 @@ describe('Popup', () => {
     })
   })
 
-  describe('wide', () => {
-    it('adds wide to the popup className', () => {
-      wrapperMount(<Popup wide open />)
-      assertInBody('.ui.wide.popup.visible')
+  describe('offset', () => {
+    it('passes values to Popper', () => {
+      wrapperMount(<Popup content='foo' open offset='50, 100' position='bottom right' />)
+
+      const modifiers = wrapper.find('Popper').prop('modifiers')
+      const offset = modifiers.offset
+
+      offset.should.have.property('offset', '50, 100')
     })
   })
 
-  describe('very wide', () => {
-    it('adds very wide to the popup className', () => {
-      wrapperMount(<Popup wide='very' open />)
-      assertInBody('.ui.very.wide.popup.visible')
+  describe('onClose', () => {
+    it('is not called on click inside of the popup', () => {
+      const onClose = sandbox.spy()
+      wrapperMount(<Popup defaultOpen onClose={onClose} />)
+
+      domEvent.click('.ui.popup')
+      onClose.should.not.have.been.calledOnce()
+    })
+
+    it('is called on body click', () => {
+      const onClose = sandbox.spy()
+      wrapperMount(<Popup defaultOpen onClose={onClose} />)
+
+      domEvent.click('body')
+      onClose.should.have.been.calledOnce()
+    })
+
+    it('is called when pressing escape', () => {
+      const onClose = sandbox.spy()
+      wrapperMount(<Popup defaultOpen onClose={onClose} />)
+
+      domEvent.keyDown(document, { key: 'Escape' })
+      onClose.should.have.been.calledOnce()
+    })
+
+    it('is not called when the open prop changes to false', () => {
+      const onClose = sandbox.spy()
+      wrapperMount(<Popup defaultOpen onClose={onClose} />)
+
+      wrapper.setProps({ open: false })
+      onClose.should.not.have.been.called()
+    })
+  })
+
+  describe('open', () => {
+    it('is not open by default', () => {
+      wrapperMount(<Popup />)
+      assertInBody('.ui.popup.visible', false)
+    })
+
+    it('is passed to Portal open', () => {
+      wrapperShallow(<Popup open />)
+      wrapper.find('Portal').should.have.prop('open', true)
+
+      wrapperShallow(<Popup open={false} />)
+      wrapper.find('Portal').should.have.prop('open', false)
+    })
+
+    it('does not show the popup when false', () => {
+      wrapperMount(<Popup open={false} />)
+      assertInBody('.ui.popup.visible', false)
+    })
+
+    it('shows the popup on changing from false to true', () => {
+      wrapperMount(<Popup open={false} />)
+      assertInBody('.ui.popup.visible', false)
+
+      wrapper.setProps({ open: true })
+      assertInBody('.ui.popup.visible')
+    })
+
+    it('hides the popup on changing from true to false', () => {
+      wrapperMount(<Popup open />)
+      assertInBody('.ui.popup.visible')
+
+      wrapper.setProps({ open: false })
+      assertInBody('.ui.popup.visible', false)
+    })
+  })
+
+  describe('pinned', () => {
+    it(`is "false" by default`, () => {
+      wrapperMount(<Popup open />)
+
+      wrapper.should.have.prop('pinned', false)
+    })
+
+    it(`disables "flip" modifier in PopperJS when is "true"`, () => {
+      wrapperMount(<Popup open pinned />)
+
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include({ flip: { enabled: false } })
+    })
+
+    it(`enables "flip" modifier in PopperJS when is "false"`, () => {
+      wrapperMount(<Popup open pinned={false} />)
+
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include({ flip: { enabled: true } })
+    })
+  })
+
+  describe('position', () => {
+    _.forEach(positionsMapping, (placement, position) => {
+      it(`passes the "${position}" as "${placement}" to Popper`, () => {
+        wrapperMount(<Popup open position={position} />)
+
+        wrapper.find('Popper').should.have.prop('placement', placement)
+      })
+    })
+  })
+
+  describe('positionFixed', () => {
+    it(`is not defiend by default`, () => {
+      wrapperMount(<Popup open />)
+
+      wrapper.should.not.have.prop('positionFixed')
+      wrapper.find('Popper').should.not.have.prop('positionFixed')
+    })
+
+    it(`can be set to "true"`, () => {
+      wrapperMount(<Popup positionFixed open />)
+      wrapper.find('Popper').should.have.prop('positionFixed', true)
+    })
+  })
+
+  describe('popperModifiers', () => {
+    it('are passed to Popper', () => {
+      const modifiers = {
+        keepTogether: { enabled: false },
+        preventOverflow: { padding: 0 },
+      }
+      wrapperMount(<Popup popperModifiers={modifiers} open />)
+
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include(modifiers)
+    })
+  })
+
+  describe('popperDependencies', () => {
+    it('will call "scheduleUpdate" if dependencies changed', () => {
+      wrapperMount(<Popup popperDependencies={[1, 2, 3]} />)
+      const scheduleUpdate = sandbox.spy(wrapper.instance(), 'handleUpdate')
+
+      wrapper.setProps({ popperDependencies: [2, 3, 4] })
+      scheduleUpdate.should.have.been.calledOnce()
+    })
+
+    it('will skip "scheduleUpdate" if dependencies are same', () => {
+      wrapperMount(<Popup popperDependencies={[1, 2, 3]} />)
+      const scheduleUpdate = sandbox.spy(wrapper.instance(), 'handleUpdate')
+
+      wrapper.setProps({ popperDependencies: [1, 2, 3] })
+      scheduleUpdate.should.have.not.been.called()
     })
   })
 
@@ -534,32 +347,57 @@ describe('Popup', () => {
     })
   })
 
-  describe('onClose', () => {
-    let spy
+  describe('trigger', () => {
+    it('opens Popup on click', () => {
+      wrapperMount(<Popup on='click' content='foo' trigger={<button />} />)
 
-    beforeEach(() => {
-      spy = sandbox.spy()
-      wrapperMount(<Popup onClose={spy} defaultOpen />)
+      wrapper.find('button').simulate('click')
+      assertInBody('.ui.popup.visible')
     })
 
-    it('is not called on click inside of the popup', () => {
-      domEvent.click(document.querySelector('.ui.popup'))
-      spy.should.not.have.been.calledOnce()
+    it('opens Popup on hover', (done) => {
+      wrapperMount(<Popup content='foo' mouseEnterDelay={0} trigger={<button />} />)
+
+      wrapper.find('button').simulate('mouseenter')
+      setTimeout(() => {
+        assertInBody('.ui.popup.visible')
+        done()
+      }, 1)
     })
 
-    it('is called on body click', () => {
+    it('opens Popup on focus', () => {
+      wrapperMount(<Popup on='focus' content='foo' trigger={<input />} />)
+
+      wrapper.find('input').simulate('focus')
+      assertInBody('.ui.popup.visible')
+    })
+
+    it('opens Popup on multiple', (done) => {
+      wrapperMount(<Popup on={['click', 'hover']} content='foo' trigger={<button />} />)
+      const button = wrapper.find('button')
+
+      button.simulate('click')
+      assertInBody('.ui.popup.visible')
+
       domEvent.click('body')
-      spy.should.have.been.calledOnce()
+
+      button.simulate('mouseenter')
+      setTimeout(() => {
+        assertInBody('.ui.popup.visible')
+        done()
+      }, 51)
+    })
+  })
+
+  describe('wide', () => {
+    it('adds to the popup className', () => {
+      wrapperMount(<Popup wide open />)
+      assertInBody('.ui.wide.popup.visible')
     })
 
-    it('is called when pressing escape', () => {
-      domEvent.keyDown(document, { key: 'Escape' })
-      spy.should.have.been.calledOnce()
-    })
-
-    it('is not called when the open prop changes to false', () => {
-      wrapper.setProps({ open: false })
-      spy.should.not.have.been.called()
+    it('adds "very" to the popup className', () => {
+      wrapperMount(<Popup wide='very' open />)
+      assertInBody('.ui.very.wide.popup.visible')
     })
   })
 })

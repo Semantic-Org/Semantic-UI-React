@@ -33,17 +33,17 @@ const VisibilitySettingsExamples = () => (
       title='Update on'
       description={
         <span>
-          You can specify <code>updateOn='repaint'</code>, it will allow to update and fire
-          callbacks on browser repaint (animation frames).
+          You can specify <code>updateOn='repaint'</code>, it will allow to
+          update and fire callbacks on browser repaint (animation frames).
         </span>
       }
       examplePath='behaviors/Visibility/Settings/VisibilityExampleUpdateOn'
     >
       <Message warning>
-        By default <code>Visibility</code> handles events only on browser events. It means that if
-        you will hide a large block an event will not be triggered and <code>Visibility</code> will
-        not perform calculations. This problem can be easily solved with{' '}
-        <code>updateOn='repaint'</code>.
+        By default <code>Visibility</code> handles events only on browser
+        events. It means that if you will hide a large block an event will not
+        be triggered and <code>Visibility</code> will not perform calculations.
+        This problem can be easily solved with <code>updateOn='repaint'</code>.
       </Message>
     </ComponentExample>
   </ExampleSection>

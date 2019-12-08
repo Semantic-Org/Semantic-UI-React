@@ -53,13 +53,13 @@ describe('Modal', () => {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: ModalHeader,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
   common.implementsShorthandProp(Modal, {
     autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: ModalContent,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
 
   // Heads up!
@@ -330,6 +330,14 @@ describe('Modal', () => {
       spy.should.have.been.calledOnce()
     })
 
+    it('is not called on mousedown inside and mouseup outside of the modal', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen />)
+
+      domEvent.mouseDown(document.querySelector('.ui.modal'))
+      domEvent.click(document.querySelector('.ui.modal').parentNode)
+      spy.should.not.have.been.called()
+    })
+
     it('is not called on click inside of the modal', () => {
       wrapperMount(<Modal onClose={spy} defaultOpen />)
 
@@ -494,8 +502,10 @@ describe('Modal', () => {
     })
 
     it('does not add the scrolling class to the body when equal to the window height', (done) => {
+      /* 101 is `padding * 2 + 1, see Modal/utils */
+      const height = window.innerHeight - 101
       wrapperMount(
-        <Modal open style={{ height: window.innerHeight }}>
+        <Modal open style={{ height }}>
           foo
         </Modal>,
       )

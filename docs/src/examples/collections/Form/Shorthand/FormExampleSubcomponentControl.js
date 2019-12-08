@@ -4,6 +4,7 @@ import { Form } from 'semantic-ui-react'
 const options = [
   { key: 'm', text: 'Male', value: 'male' },
   { key: 'f', text: 'Female', value: 'female' },
+  { key: 'o', text: 'Other', value: 'other' },
 ]
 
 class FormExampleSubcomponentControl extends Component {
@@ -18,7 +19,12 @@ class FormExampleSubcomponentControl extends Component {
         <Form.Group widths='equal'>
           <Form.Input fluid label='First name' placeholder='First name' />
           <Form.Input fluid label='Last name' placeholder='Last name' />
-          <Form.Select fluid label='Gender' options={options} placeholder='Gender' />
+          <Form.Select
+            fluid
+            label='Gender'
+            options={options}
+            placeholder='Gender'
+          />
         </Form.Group>
         <Form.Group inline>
           <label>Size</label>

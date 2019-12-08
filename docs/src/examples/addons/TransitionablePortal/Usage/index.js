@@ -13,7 +13,8 @@ const TransitionablePortalUsageExamples = () => (
       examplePath='addons/TransitionablePortal/Usage/TransitionablePortalExampleTransition'
     >
       <Message info>
-        See <Link to='/modules/transition'>Transition</Link> for more examples of usage.
+        See <Link to='/modules/transition'>Transition</Link> for more examples
+        of usage.
       </Message>
     </ComponentExample>
   </ExampleSection>

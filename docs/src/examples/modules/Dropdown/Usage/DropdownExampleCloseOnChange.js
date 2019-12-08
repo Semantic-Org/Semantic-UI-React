@@ -1,10 +1,16 @@
+import _ from 'lodash'
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-import { getOptions } from '../common'
+const getOptions = (number, prefix = 'Choice ') =>
+  _.times(number, (index) => ({
+    key: index,
+    text: `${prefix}${index}`,
+    value: index,
+  }))
 
 const DropdownExampleCloseOnChange = () => (
-  <div>
+  <React.Fragment>
     <Dropdown
       multiple
       search
@@ -20,7 +26,7 @@ const DropdownExampleCloseOnChange = () => (
       options={getOptions(5)}
       placeholder='I stay open on change'
     />
-  </div>
+  </React.Fragment>
 )
 
 export default DropdownExampleCloseOnChange

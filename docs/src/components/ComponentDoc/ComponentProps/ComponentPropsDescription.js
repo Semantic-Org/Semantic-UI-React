@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { Divider } from 'semantic-ui-react'
 
 const descriptionStyle = {
@@ -7,19 +7,19 @@ const descriptionStyle = {
   fontSize: '1.08em',
 }
 
-export default class ComponentPropsDescription extends PureComponent {
-  static propTypes = {
-    description: PropTypes.string,
-  }
+const ComponentPropsDescription = (props) => {
+  const { description } = props
 
-  render() {
-    const { description } = this.props
-
-    return (
-      <div style={descriptionStyle}>
-        {description}
-        <Divider />
-      </div>
-    )
-  }
+  return (
+    <div style={descriptionStyle}>
+      {description}
+      <Divider />
+    </div>
+  )
 }
+
+ComponentPropsDescription.propTypes = {
+  description: PropTypes.string,
+}
+
+export default React.memo(ComponentPropsDescription)

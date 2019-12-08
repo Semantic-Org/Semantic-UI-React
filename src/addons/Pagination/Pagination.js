@@ -102,13 +102,13 @@ export default class Pagination extends Component {
     _.invoke(this.props, 'onPageChange', e, { ...this.props, activePage: nextActivePage })
   }
 
-  handleItemOverrides = (active, type, value) => predefinedProps => ({
+  handleItemOverrides = (active, type, value) => (predefinedProps) => ({
     active,
     type,
     key: `${type}-${value}`,
     onClick: (e, itemProps) => {
       _.invoke(predefinedProps, 'onClick', e, itemProps)
-      this.handleItemClick(e, itemProps)
+      if (itemProps.type !== 'ellipsisItem') this.handleItemClick(e, itemProps)
     },
   })
 

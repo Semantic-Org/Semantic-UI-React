@@ -39,7 +39,7 @@ function DropdownHeader(props) {
 
 DropdownHeader.propTypes = {
   /** An element type to render as (string or function) */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -54,6 +54,6 @@ DropdownHeader.propTypes = {
   icon: customPropTypes.itemShorthand,
 }
 
-DropdownHeader.create = createShorthandFactory(DropdownHeader, content => ({ content }))
+DropdownHeader.create = createShorthandFactory(DropdownHeader, (content) => ({ content }))
 
 export default DropdownHeader
