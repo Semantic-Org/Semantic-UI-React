@@ -1,3 +1,4 @@
+import React from 'react'
 import FeedSummary from 'src/views/Feed/FeedSummary'
 import FeedDate from 'src/views/Feed/FeedDate'
 import FeedUser from 'src/views/Feed/FeedUser'
@@ -18,5 +19,11 @@ describe('FeedSummary', () => {
     propKey: 'user',
     ShorthandComponent: FeedUser,
     mapValueToProps: (val) => ({ content: val }),
+  })
+
+  describe('content', () => {
+    it('inserts whitespace on both sides of the content', () => {
+      shallow(<FeedSummary content='test' />).should.contain.text(' test ')
+    })
   })
 })
