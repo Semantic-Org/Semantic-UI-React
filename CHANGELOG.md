@@ -1,5 +1,23 @@
 # Change Log
 
+## [v0.88.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.88.2) (2019-12-08)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.88.1...v0.88.2)
+
+**Merged pull requests:**
+
+- chore: update husky hooks [\#3859](https://github.com/Semantic-Org/Semantic-UI-React/pull/3859) ([levithomason](https://github.com/levithomason))
+- chore: remove stale bot [\#3858](https://github.com/Semantic-Org/Semantic-UI-React/pull/3858) ([levithomason](https://github.com/levithomason))
+- fix\(Search\): use result.id for SearchResult key [\#3848](https://github.com/Semantic-Org/Semantic-UI-React/pull/3848) ([unbug](https://github.com/unbug))
+- docs\(misc\): fix typos [\#3837](https://github.com/Semantic-Org/Semantic-UI-React/pull/3837) ([yuuyu00](https://github.com/yuuyu00))
+- fix\(FeedSummary\): add missing space around content [\#3836](https://github.com/Semantic-Org/Semantic-UI-React/pull/3836) ([ridvankaradag](https://github.com/ridvankaradag))
+- feat\(FormField\): make form field error accessible [\#3822](https://github.com/Semantic-Org/Semantic-UI-React/pull/3822) ([aoelen](https://github.com/aoelen))
+- docs: fix minor grammar and punctuation errors [\#3818](https://github.com/Semantic-Org/Semantic-UI-React/pull/3818) ([anupamasok](https://github.com/anupamasok))
+- docs: update warning about using yarn [\#3816](https://github.com/Semantic-Org/Semantic-UI-React/pull/3816) ([chrisbrainerd](https://github.com/chrisbrainerd))
+- docs: update grammar/wording for tab pane shorthand [\#3801](https://github.com/Semantic-Org/Semantic-UI-React/pull/3801) ([spencerbyw](https://github.com/spencerbyw))
+- docs\(MenuExampleHeaderVertical\): fix onClick handler [\#3799](https://github.com/Semantic-Org/Semantic-UI-React/pull/3799) ([Suzi004](https://github.com/Suzi004))
+- chore\(lib\): add ModernAutoControlledComponent [\#3776](https://github.com/Semantic-Org/Semantic-UI-React/pull/3776) ([layershifter](https://github.com/layershifter))
+- feat\(Search\): custom category layout renderer [\#3672](https://github.com/Semantic-Org/Semantic-UI-React/pull/3672) ([PrincessMadMath](https://github.com/PrincessMadMath))
+
 ## [v0.88.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.88.1) (2019-09-09)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.88.0...v0.88.1)
 
@@ -16,6 +34,7 @@
 
 **Merged pull requests:**
 
+- feat\(TextArea\): export StrictTextAreaProps typing [\#3846](https://github.com/Semantic-Org/Semantic-UI-React/pull/3846) ([chrisbull](https://github.com/chrisbull))
 - docs\(CodeSandbox\): fix paths for images in exported examples [\#3758](https://github.com/Semantic-Org/Semantic-UI-React/pull/3758) ([layershifter](https://github.com/layershifter))
 - fix\(typings\): add missing `StrictMenuProps` type export [\#3755](https://github.com/Semantic-Org/Semantic-UI-React/pull/3755) ([b-smets](https://github.com/b-smets))
 - docs\(Popup\): add example for `delay` prop in Popup [\#3754](https://github.com/Semantic-Org/Semantic-UI-React/pull/3754) ([SandipNirmal](https://github.com/SandipNirmal))
@@ -149,7 +168,7 @@
 - fix\(Dropdown\): retain focus on the input if the Dropdown receives a click [\#3422](https://github.com/Semantic-Org/Semantic-UI-React/pull/3422) ([jongsue](https://github.com/jongsue))
 - docs\(Portal\): fix controlled Portal usage [\#3420](https://github.com/Semantic-Org/Semantic-UI-React/pull/3420) ([Fabianopb](https://github.com/Fabianopb))
 - feat\(Accordion\): add `icon` shorthand for AccordionTitle [\#3417](https://github.com/Semantic-Org/Semantic-UI-React/pull/3417) ([sako9](https://github.com/sako9))
-- fix\(Icon\): update typings for `corner` prop [\#3393](https://github.com/Semantic-Org/Semantic-UI-React/pull/3393) ([areading314](https://github.com/areading314))
+- feat\(Flag\): export names in typings [\#2957](https://github.com/Semantic-Org/Semantic-UI-React/pull/2957) ([layershifter](https://github.com/layershifter))
 - docs\(Sticky\): add warning about erratic behavior inside `Sidebar.Pushable` [\#2936](https://github.com/Semantic-Org/Semantic-UI-React/pull/2936) ([brambow](https://github.com/brambow))
 
 ## [v0.85.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.85.0) (2019-02-04)
@@ -162,6 +181,7 @@
 - docs\(ComponentExample\): allow to disable HTML preview [\#3404](https://github.com/Semantic-Org/Semantic-UI-React/pull/3404) ([layershifter](https://github.com/layershifter))
 - docs\(Examples\): add ability to export examples to CodeSandbox [\#3399](https://github.com/Semantic-Org/Semantic-UI-React/pull/3399) ([layershifter](https://github.com/layershifter))
 - fix\(docs\): fix a polyfill loading for IE11 [\#3395](https://github.com/Semantic-Org/Semantic-UI-React/pull/3395) ([oolleegg55](https://github.com/oolleegg55))
+- fix\(Icon\): update typings for `corner` prop [\#3393](https://github.com/Semantic-Org/Semantic-UI-React/pull/3393) ([areading314](https://github.com/areading314))
 - fix\(Dropdown\): prevent calling onChange unless value changed [\#3391](https://github.com/Semantic-Org/Semantic-UI-React/pull/3391) ([zarend](https://github.com/zarend))
 - chore\(package\): upgrade keyboard-key [\#3390](https://github.com/Semantic-Org/Semantic-UI-React/pull/3390) ([levithomason](https://github.com/levithomason))
 - chore\(package\): update karma and webpack [\#3383](https://github.com/Semantic-Org/Semantic-UI-React/pull/3383) ([layershifter](https://github.com/layershifter))
@@ -275,21 +295,6 @@
 - fix\(Popup\): missing CSS style update [\#3109](https://github.com/Semantic-Org/Semantic-UI-React/pull/3109) ([pferreir](https://github.com/pferreir))
 - fix\(Dropdown\): fix deepEqual bug [\#3104](https://github.com/Semantic-Org/Semantic-UI-React/pull/3104) ([pedromtorres](https://github.com/pedromtorres))
 - fix\(docs\): fix issues with local builds [\#3098](https://github.com/Semantic-Org/Semantic-UI-React/pull/3098) ([layershifter](https://github.com/layershifter))
-
-## [v0.82.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.82.3) (2018-08-22)
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.82.2...v0.82.3)
-
-**Merged pull requests:**
-
-- fix\(Icon\): update icon names [\#3092](https://github.com/Semantic-Org/Semantic-UI-React/pull/3092) ([levithomason](https://github.com/levithomason))
-- chore\(package\): update Babel to RC1 [\#3086](https://github.com/Semantic-Org/Semantic-UI-React/pull/3086) ([layershifter](https://github.com/layershifter))
-- chore\(build\): fixes for UMD build [\#3085](https://github.com/Semantic-Org/Semantic-UI-React/pull/3085) ([layershifter](https://github.com/layershifter))
-- chore\(package\): bump react-sandbox-render [\#3084](https://github.com/Semantic-Org/Semantic-UI-React/pull/3084) ([layershifter](https://github.com/layershifter))
-- fix\(Message\): export size prop in typings [\#3083](https://github.com/Semantic-Org/Semantic-UI-React/pull/3083) ([layershifter](https://github.com/layershifter))
-- docs\(Item\): cleanup examples [\#3082](https://github.com/Semantic-Org/Semantic-UI-React/pull/3082) ([ChenjieZhou](https://github.com/ChenjieZhou))
-- chore\(config\): remove unused options [\#3080](https://github.com/Semantic-Org/Semantic-UI-React/pull/3080) ([layershifter](https://github.com/layershifter))
--  docs\(build\): fix reloading of examples sources [\#3075](https://github.com/Semantic-Org/Semantic-UI-React/pull/3075) ([layershifter](https://github.com/layershifter))
-- docs\(ComponentExample\): fix display of children [\#3070](https://github.com/Semantic-Org/Semantic-UI-React/pull/3070) ([layershifter](https://github.com/layershifter))
 
 
 
