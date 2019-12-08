@@ -41,6 +41,7 @@ function FormField(props) {
     required,
     type,
     width,
+    id,
   } = props
 
   const classes = cx(
@@ -58,7 +59,13 @@ function FormField(props) {
   const errorPointing = _.get(error, 'pointing', 'above')
   const errorLabel = Label.create(error, {
     autoGenerateKey: false,
-    defaultProps: { prompt: true, pointing: errorPointing },
+    defaultProps: {
+      prompt: true,
+      pointing: errorPointing,
+      id: id ? `${id}-error-message` : undefined,
+      role: 'alert',
+      'aria-atomic': true,
+    },
   })
 
   const errorLabelBefore = (errorPointing === 'below' || errorPointing === 'right') && errorLabel
@@ -89,7 +96,13 @@ function FormField(props) {
   // ----------------------------------------
   // Checkbox/Radio Control
   // ----------------------------------------
-  const controlProps = { ...rest, content, children, disabled, required, type }
+
+  const ariaDescribedBy = id && error ? `${id}-error-message` : null
+  const ariaAttrs = {
+    'aria-describedby': ariaDescribedBy,
+    'aria-invalid': error !== undefined ? true : undefined,
+  }
+  const controlProps = { ...rest, content, children, disabled, required, type, id }
 
   // wrap HTML checkboxes/radios in the label
   if (control === 'input' && (type === 'checkbox' || type === 'radio')) {
@@ -97,7 +110,7 @@ function FormField(props) {
       <ElementType className={classes}>
         <label>
           {errorLabelBefore}
-          {createElement(control, controlProps)} {label}
+          {createElement(control, { ...ariaAttrs, ...controlProps })} {label}
           {errorLabelAfter}
         </label>
       </ElementType>
@@ -109,7 +122,7 @@ function FormField(props) {
     return (
       <ElementType className={classes}>
         {errorLabelBefore}
-        {createElement(control, { ...controlProps, label })}
+        {createElement(control, { ...ariaAttrs, ...controlProps, label })}
         {errorLabelAfter}
       </ElementType>
     )
@@ -122,11 +135,11 @@ function FormField(props) {
   return (
     <ElementType className={classes}>
       {createHTMLLabel(label, {
-        defaultProps: { htmlFor: _.get(controlProps, 'id') },
+        defaultProps: { htmlFor: id },
         autoGenerateKey: false,
       })}
       {errorLabelBefore}
-      {createElement(control, controlProps)}
+      {createElement(control, { ...ariaAttrs, ...controlProps })}
       {errorLabelAfter}
     </ElementType>
   )
@@ -160,6 +173,9 @@ FormField.propTypes = {
 
   /** Individual fields may display an error state along with a message. */
   error: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
+
+  /** The id of the control */
+  id: PropTypes.string,
 
   /** A field can have its label next to instead of above it. */
   inline: PropTypes.bool,

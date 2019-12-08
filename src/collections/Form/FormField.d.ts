@@ -38,6 +38,9 @@ export interface StrictFormFieldProps {
   /** Individual fields may display an error state along with a message. */
   error?: boolean | SemanticShorthandItem<LabelProps>
 
+  /** The id of the control */
+  id?: number | string
+
   /** A field can have its label next to instead of above it. */
   inline?: boolean
 
