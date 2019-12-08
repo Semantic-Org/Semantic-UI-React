@@ -516,7 +516,7 @@ Label.propTypes = {
 
 ### Examples
 
->This section is lacking in instruction as the the docs are set to be overhauled (PRs welcome!).
+>This section is lacking in instruction as the docs are set to be overhauled (PRs welcome!).
 
 Usage examples for a component live in `docs/src/examples`.  The examples follow the SUI doc site examples.
 

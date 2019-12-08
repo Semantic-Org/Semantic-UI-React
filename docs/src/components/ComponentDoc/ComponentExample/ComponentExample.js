@@ -50,7 +50,7 @@ const knobComponents = {
 
 /**
  * Renders a `component` and the raw `code` that produced it.
- * Allows toggling the the raw `code` code block.
+ * Allows toggling the raw `code` code block.
  */
 class ComponentExample extends Component {
   static propTypes = {

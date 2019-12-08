@@ -8,7 +8,7 @@ const TransitionTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Transition'
-      description='A Transition animates a single child by toggling the the visible prop.'
+      description='A Transition animates a single child by toggling the visible prop.'
       examplePath='modules/Transition/Types/TransitionExampleTransition'
     >
       <Message warning>
