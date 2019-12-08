@@ -21,7 +21,7 @@ const SearchTypesExamples = () => (
       examplePath='modules/Search/Types/SearchExampleCategory'
     />
     <ComponentExample
-      title='Category (Custom Render) v2'
+      title='Category (Custom Render)'
       description='A category search can have a custom rendering.'
       examplePath='modules/Search/Types/SearchExampleCategoryCustom'
     />
