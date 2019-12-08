@@ -4,6 +4,20 @@ import faker from 'faker'
 import React, { Component } from 'react'
 import { Search, Grid, Header, Segment, Label } from 'semantic-ui-react'
 
+const categoryLayoutRenderer = ({ categoryContent, resultsContent }) => (
+  <div>
+    <h3 className='name'>{categoryContent}</h3>
+    <div style={{ background: 'red' }} className='results'>
+      {resultsContent}
+    </div>
+  </div>
+)
+
+categoryLayoutRenderer.propTypes = {
+  categoryContent: PropTypes.node,
+  resultsContent: PropTypes.node,
+}
+
 const categoryRenderer = ({ name }) => <Label as='span' content={name} />
 
 categoryRenderer.propTypes = {
@@ -79,6 +93,7 @@ export default class SearchExampleCategory extends Component {
         <Grid.Column width={8}>
           <Search
             category
+            categoryLayoutRenderer={categoryLayoutRenderer}
             categoryRenderer={categoryRenderer}
             loading={isLoading}
             onResultSelect={this.handleResultSelect}

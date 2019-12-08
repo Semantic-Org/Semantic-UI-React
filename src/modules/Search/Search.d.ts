@@ -58,6 +58,14 @@ export interface StrictSearchProps {
   // ------------------------------------
   // Rendering
   // ------------------------------------
+  /**
+   * Renders the SearchCategory layout.
+   *
+   * @param {object} categoryContent - The Renderable SearchCategory contents.
+   * @param {object} resultsContent - The Renderable SearchResult contents.
+   * @returns {*} - Renderable SearchCategory layout.
+   */
+  categoryLayoutRenderer?: (props: SearchCategoryProps) => React.ReactElement<any>
 
   /**
    * Renders the SearchCategory contents.

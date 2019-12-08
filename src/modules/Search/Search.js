@@ -84,6 +84,15 @@ export default class Search extends Component {
     // ------------------------------------
 
     /**
+     * Renders the SearchCategory layout.
+     *
+     * @param {object} categoryContent - The Renderable SearchCategory contents.
+     * @param {object} resultsContent - The Renderable SearchResult contents.
+     * @returns {*} - Renderable SearchCategory layout.
+     */
+    categoryLayoutRenderer: PropTypes.func,
+
+    /**
      * Renders the SearchCategory contents.
      *
      * @param {object} props - The SearchCategory props object.
@@ -577,7 +586,7 @@ export default class Search extends Component {
   }
 
   renderCategories = () => {
-    const { categoryRenderer, results: categories } = this.props
+    const { categoryLayoutRenderer, categoryRenderer, results: categories } = this.props
     const { selectedIndex } = this.state
 
     let count = 0
@@ -586,6 +595,7 @@ export default class Search extends Component {
       const categoryProps = {
         key: childKey || category.name,
         active: _.inRange(selectedIndex, count, count + category.results.length),
+        layoutRenderer: categoryLayoutRenderer,
         renderer: categoryRenderer,
         ...category,
       }
