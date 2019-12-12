@@ -1,1 +1,4 @@
-@import (less) '../../../../../node_modules/react-datepicker/dist/react-datepicker.css';
+// Importing the CSS file for this React Component from within the design system like this
+// does not work. Please see: app/javascript/components/references/form/stepTwo for an example
+// of how to import it correctly.
+// @import (less) '../../../../../node_modules/react-datepicker/dist/react-datepicker.css';
