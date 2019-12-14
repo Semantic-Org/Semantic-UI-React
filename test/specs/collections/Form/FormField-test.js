@@ -41,25 +41,45 @@ describe('FormField', () => {
       autoGenerateKey: false,
       propKey: 'error',
       requiredProps: { label: faker.lorem.word() },
-      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+      shorthandDefaultProps: {
+        prompt: true,
+        pointing: 'above',
+        role: 'alert',
+        'aria-atomic': true,
+      },
     })
     common.implementsLabelProp(FormField, {
       autoGenerateKey: false,
       propKey: 'error',
       requiredProps: { control: 'radio' },
-      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+      shorthandDefaultProps: {
+        prompt: true,
+        pointing: 'above',
+        role: 'alert',
+        'aria-atomic': true,
+      },
     })
     common.implementsLabelProp(FormField, {
       autoGenerateKey: false,
       propKey: 'error',
       requiredProps: { control: Checkbox },
-      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+      shorthandDefaultProps: {
+        prompt: true,
+        pointing: 'above',
+        role: 'alert',
+        'aria-atomic': true,
+      },
     })
     common.implementsLabelProp(FormField, {
       autoGenerateKey: false,
       propKey: 'error',
       requiredProps: { control: 'input' },
-      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+      shorthandDefaultProps: {
+        prompt: true,
+        pointing: 'above',
+        role: 'alert',
+        'aria-atomic': true,
+      },
     })
 
     it('positioned in DOM according to passed "pointing" prop', () => {

@@ -28,7 +28,9 @@ export default class StickyExampleAboveContent extends Component {
           </Menu>
         </Sticky>
         <Segment attached='bottom'>
-          {_.times(5, i => <Image key={i} src='/images/wireframe/paragraph.png' />)}
+          {_.times(5, (i) => (
+            <Image key={i} src='/images/wireframe/paragraph.png' />
+          ))}
         </Segment>
       </div>
     )

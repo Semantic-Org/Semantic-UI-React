@@ -8,7 +8,7 @@ const getLayoutPaths = () =>
   new Promise((resolve) => {
     fs.readdir(layoutsDir, (err, files) => {
       resolve(
-        files.map(file => ({
+        files.map((file) => ({
           routeName: _.kebabCase(file.replace('Layout.js', '')),
           componentFilename: file,
         })),

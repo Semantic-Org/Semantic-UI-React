@@ -45,6 +45,34 @@ const PopupUsageExamples = () => (
       />
     </ComponentExample>
     <ComponentExample
+      title={<code>eventsEnabled</code>}
+      description={
+        <span>
+          Enables the <code>Popper.js</code> event listeners.
+        </span>
+      }
+      examplePath='modules/Popup/Usage/PopupExampleEventsEnabled'
+    />
+    <ComponentExample
+      title='Popper Dependencies'
+      description={
+        <span>
+          A popup can have dependencies which update will schedule a position
+          update. Should be used in cases when content is changing, behaves like{' '}
+          <a
+            href='https://reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            <code>dependencies</code>
+          </a>{' '}
+          in React Hooks.
+        </span>
+      }
+      examplePath='modules/Popup/Usage/PopupExamplePopperDependencies'
+      renderHtml={false}
+    />
+    <ComponentExample
       title='Actions'
       description='A popup can be triggered on hover, click, focus or multiple actions.'
       examplePath='modules/Popup/Usage/PopupExampleActions'
@@ -80,23 +108,9 @@ const PopupUsageExamples = () => (
       renderHtml={false}
     />
     <ComponentExample
-      title='Popper Dependencies'
-      description={
-        <span>
-          A popup can have dependencies which update will schedule a position
-          update. Should be used in cases when content is changing, behaves like{' '}
-          <a
-            href='https://reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect'
-            rel='noopener noreferrer'
-            target='_blank'
-          >
-            <code>dependencies</code>
-          </a>{' '}
-          in React Hooks.
-        </span>
-      }
-      examplePath='modules/Popup/Usage/PopupExamplePopperDependencies'
-      renderHtml={false}
+      title='Delay'
+      description='A popup can have delay in showing and hiding. This avoids accidental popup visibility.'
+      examplePath='modules/Popup/Usage/PopupExampleDelay'
     />
   </ExampleSection>
 )

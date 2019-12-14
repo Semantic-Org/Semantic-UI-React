@@ -11,8 +11,8 @@ const HeaderTypesExamples = () => (
       examplePath='elements/Header/Types/HeaderExamplePage'
     >
       <Message info>
-        Page headings are sized using <code>rem</code> and are not affected by surrounding content
-        size.
+        Page headings are sized using <code>rem</code> and are not affected by
+        surrounding content size.
       </Message>
     </ComponentExample>
     <ComponentExample
@@ -21,8 +21,8 @@ const HeaderTypesExamples = () => (
       examplePath='elements/Header/Types/HeaderExampleContent'
     >
       <Message info>
-        Content headings are sized with <code>em</code> and are based on the font-size of their
-        container.
+        Content headings are sized with <code>em</code> and are based on the
+        font-size of their container.
       </Message>
     </ComponentExample>
     <ComponentExample

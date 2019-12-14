@@ -1,9 +1,9 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
-import Ref from '../../addons/Ref'
 import {
   childrenUtils,
   customPropTypes,
@@ -20,7 +20,7 @@ import {
 export default class DimmerInner extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** An active dimmer will dim its parent container. */
     active: PropTypes.bool,

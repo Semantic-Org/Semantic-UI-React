@@ -25,7 +25,7 @@ export const implementsButtonProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'button',
     ShorthandComponent: Button,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
     ...options,
   })
 }
@@ -46,7 +46,7 @@ export const implementsHTMLIFrameProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'iframe',
     ShorthandComponent: 'iframe',
-    mapValueToProps: src => ({ src }),
+    mapValueToProps: (src) => ({ src }),
     ...options,
   })
 }
@@ -67,7 +67,7 @@ export const implementsHTMLInputProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'input',
     ShorthandComponent: 'input',
-    mapValueToProps: val => ({ type: val }),
+    mapValueToProps: (val) => ({ type: val }),
     ...options,
   })
 }
@@ -88,7 +88,7 @@ export const implementsHTMLLabelProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'label',
     ShorthandComponent: 'label',
-    mapValueToProps: val => ({ children: val }),
+    mapValueToProps: (val) => ({ children: val }),
     ...options,
   })
 }
@@ -112,7 +112,7 @@ export const implementsIconProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'icon',
     ShorthandComponent: Icon,
-    mapValueToProps: val => ({ name: val }),
+    mapValueToProps: (val) => ({ name: val }),
     ...options,
   })
 }
@@ -135,7 +135,7 @@ export const implementsImageProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'image',
     ShorthandComponent: Image,
-    mapValueToProps: val => ({ src: val }),
+    mapValueToProps: (val) => ({ src: val }),
     ...options,
   })
 }
@@ -158,7 +158,7 @@ export const implementsLabelProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'label',
     ShorthandComponent: Label,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
     ...options,
   })
 }
@@ -186,7 +186,7 @@ export const implementsMultipleProp = (Component, propKey, propValues) => {
     })
 
     it('adds all possible values to className', () => {
-      const className = propValues.map(prop => `${prop} ${propKey}`).join(' ')
+      const className = propValues.map((prop) => `${prop} ${propKey}`).join(' ')
       const propValue = propValues.join(' ')
 
       shallow(createElement(Component, { [propKey]: propValue })).should.have.className(className)

@@ -5,14 +5,6 @@ import leven from './leven'
 const typeOf = (...args) => Object.prototype.toString.call(...args)
 
 /**
- * Ensure a component can render as a give prop value.
- */
-export const as = (...args) =>
-  PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string, PropTypes.symbol])(
-    ...args,
-  )
-
-/**
  * Ensure a prop is a valid DOM node.
  */
 export const domNode = (props, propName) => {
@@ -44,13 +36,13 @@ export const suggest = (suggestions) => {
         const suggestionWords = suggestion.split(' ')
 
         const propValueScore = _.flow(
-          _.map(x => _.map(y => leven(x, y), suggestionWords)),
+          _.map((x) => _.map((y) => leven(x, y), suggestionWords)),
           _.map(_.min),
           _.sum,
         )(propValueWords)
 
         const suggestionScore = _.flow(
-          _.map(x => _.map(y => leven(x, y), propValueWords)),
+          _.map((x) => _.map((y) => leven(x, y), propValueWords)),
           _.map(_.min),
           _.sum,
         )(suggestionWords)
@@ -96,13 +88,13 @@ export const suggest = (suggestions) => {
     const bestMatches = findBestSuggestions(propValue)
 
     // skip if a match scored 0
-    if (bestMatches.some(x => x.score === 0)) return
+    if (bestMatches.some((x) => x.score === 0)) return
 
     return new Error(
       [
         `Invalid prop \`${propName}\` of value \`${propValue}\` supplied to \`${componentName}\`.`,
         `\n\nInstead of \`${propValue}\`, did you mean:`,
-        bestMatches.map(x => `\n  - ${x.suggestion}`).join(''),
+        bestMatches.map((x) => `\n  - ${x.suggestion}`).join(''),
         '\n',
       ].join(''),
     )
@@ -113,7 +105,7 @@ export const suggest = (suggestions) => {
  * Disallow other props from being defined with this prop.
  * @param {string[]} disallowedProps An array of props that cannot be used with this prop.
  */
-export const disallow = disallowedProps => (props, propName, componentName) => {
+export const disallow = (disallowedProps) => (props, propName, componentName) => {
   if (!Array.isArray(disallowedProps)) {
     throw new Error(
       [
@@ -150,7 +142,7 @@ export const disallow = disallowedProps => (props, propName, componentName) => {
  * Ensure a prop adherers to multiple prop type validators.
  * @param {function[]} validators An array of propType functions.
  */
-export const every = validators => (props, propName, componentName, ...rest) => {
+export const every = (validators) => (props, propName, componentName, ...rest) => {
   if (!Array.isArray(validators)) {
     throw new Error(
       [
@@ -180,7 +172,7 @@ export const every = validators => (props, propName, componentName, ...rest) => 
  * Ensure a prop adherers to at least one of the given prop type validators.
  * @param {function[]} validators An array of propType functions.
  */
-export const some = validators => (props, propName, componentName, ...rest) => {
+export const some = (validators) => (props, propName, componentName, ...rest) => {
   if (!Array.isArray(validators)) {
     throw new Error(
       [
@@ -268,7 +260,7 @@ export const givenProps = (propsShape, validator) => (props, propName, component
  * Define prop dependencies by requiring other props.
  * @param {string[]} requiredProps An array of required prop names.
  */
-export const demand = requiredProps => (props, propName, componentName) => {
+export const demand = (requiredProps) => (props, propName, componentName) => {
   if (!Array.isArray(requiredProps)) {
     throw new Error(
       [
@@ -281,7 +273,7 @@ export const demand = requiredProps => (props, propName, componentName) => {
   // skip if prop is undefined
   if (props[propName] === undefined) return
 
-  const missingRequired = requiredProps.filter(requiredProp => props[requiredProp] === undefined)
+  const missingRequired = requiredProps.filter((requiredProp) => props[requiredProp] === undefined)
   if (missingRequired.length > 0) {
     return new Error(
       `\`${propName}\` prop in \`${componentName}\` requires props: \`${missingRequired.join(
@@ -295,7 +287,7 @@ export const demand = requiredProps => (props, propName, componentName) => {
  * Ensure an multiple prop contains a string with only possible values.
  * @param {string[]} possible An array of possible values to prop.
  */
-export const multipleProp = possible => (props, propName, componentName) => {
+export const multipleProp = (possible) => (props, propName, componentName) => {
   if (!Array.isArray(possible)) {
     throw new Error(
       [
@@ -314,7 +306,7 @@ export const multipleProp = possible => (props, propName, componentName) => {
     .replace('large screen', 'large-screen')
     .replace(/ vertically/g, '-vertically')
     .split(' ')
-    .map(val => _.trim(val).replace('-', ' '))
+    .map((val) => _.trim(val).replace('-', ' '))
   const invalid = _.difference(values, possible)
 
   // fail only if there are invalid values

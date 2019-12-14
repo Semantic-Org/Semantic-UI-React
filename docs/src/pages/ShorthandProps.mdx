@@ -16,7 +16,7 @@ There are several forms of shorthand values that can be provided, but all of the
 
 ## Object as value
 
-Each component's shorthand has associated default element type. For example, by default there is `<Icon />` element rendered for `Button`'s icon shorthand. It is possible to customize props of this default element by providing props object as shorthand value:
+Each component's shorthand has an associated default element type. For example, by default, there is `<Icon />` element rendered for `Button`'s icon shorthand. It is possible to customize props of this default element by providing props object as shorthand value:
 
 ```jsx
 // 💡 'color' and 'name' will be used as <Icon /> element's props
@@ -57,7 +57,7 @@ It is also possible to pass falsy values (`false`, `null` or `undefined`) - in t
 
 ## React Element as value
 
-There are cases where it might be necessary to customize element tree that will be rendered as a shorthand's value. Returning to `Button` example, we might want to render `<i />` instead of default `<Icon />` element. In that case necessary element might be directly provided as shorthand value:
+There are cases where it might be necessary to customize the element tree that will be rendered as a shorthand's value. Returning to `Button` example, we might want to render `<i />` instead of default `<Icon />` element. In that case, the necessary element might be directly provided as shorthand value:
 
 ```jsx
 <Button icon={<i className='my-icon' />} />
@@ -68,25 +68,25 @@ There are cases where it might be necessary to customize element tree that will 
   <Message.Content>
     There is a very important caveat here, though: whenever React Element is directly used as a
     shorthand value, all props that Semantic UI React has created for the shorthand's Component will
-    be spread on the passed element. This means that provided element should be able to handle props
+    be spread on the passed element. This means that the provided element should be able to handle props
     - while this requirement is satisfied for all SUIR components, you should be aware of that when
     either HTML or any third-party elements are provided.
   </Message.Content>
 </Message>
 
-Due to this limitation, you should strive to use other options for shorthand values whenever is possible - for instance, this is how previous example can be rewritten:
+Due to this limitation, you should strive to use other options for shorthand values whenever is possible - for instance, this is how the previous example can be rewritten:
 
 ```jsx
 <Button icon={{ as: 'i', className: 'my-icon' }} />
 ```
 
-However, there still might be cases where it would be impossible to use object form of the shorthand value - for example, you might want to render some custom elements tree for the shorthand. In that case function value should be used.
+However, there still might be cases where it would be impossible to use the object form of the shorthand value - for example, you might want to render some custom elements tree for the shorthand. In that case, function value should be used.
 
 ## Function as value
 
 Providing function as a shorthand value is the most involving but, at the same time, the most powerful option for customizing component's shorthand. The only requirements for this function are:
 
-- it should finish syncronously
+- it should finish synchronously
 - it should return React Element as a result
 
 Thus, in its simplest form, it could be used the following way:
@@ -100,7 +100,7 @@ Thus, in its simplest form, it could be used the following way:
 
 ## Customizing rendered shorthand
 
-There is another use case when render function is very useful for - this is the case where custom element's tree should be rendered for the shorthand. As you might recall, there is a problem that might happen when React Element is provided directly as shorthand value - in that case props are not propagated to rendered. In order to avoid that the following strategy should be considered:
+There is another use case when render function is very useful for - this is the case where custom element's tree should be rendered for the shorthand. As you might recall, there is a problem that might happen when React Element is provided directly as shorthand value - in that case, props are not propagated to rendered. In order to avoid that the following strategy should be considered:
 
 ```jsx
 <Button content='Like' icon={(Component, componentProps) => <Label basic>+1</Label>} />

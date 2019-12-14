@@ -12,7 +12,7 @@ const StickyTypesExamples = () => (
     />
     <ComponentExample
       title='Pushing'
-      description='It will have the viewport &quot;push&quot; the sticky content depending on the scroll direction.'
+      description='It will have the viewport "push" the sticky content depending on the scroll direction.'
       examplePath='modules/Sticky/Types/StickyExamplePushing'
     />
   </ExampleSection>

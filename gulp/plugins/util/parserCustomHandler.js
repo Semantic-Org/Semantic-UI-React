@@ -5,7 +5,7 @@ import { utils } from 'react-docgen'
 const { namedTypes } = types
 const { getMemberValuePath, getPropertyName, getPropType, resolveToValue } = utils
 
-const getObjectName = path => `${_.get(path, 'object.name')}.${_.get(path, 'property.name')}`
+const getObjectName = (path) => `${_.get(path, 'object.name')}.${_.get(path, 'property.name')}`
 
 const getArgumentValue = (path) => {
   if (namedTypes.Identifier.check(path)) return path.name

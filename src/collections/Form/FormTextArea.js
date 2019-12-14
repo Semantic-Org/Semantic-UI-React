@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
-import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { getElementType, getUnhandledProps } from '../../lib'
 import TextArea from '../../addons/TextArea'
 import FormField from './FormField'
 
@@ -19,7 +20,7 @@ function FormTextArea(props) {
 
 FormTextArea.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A FormField control prop. */
   control: FormField.propTypes.control,

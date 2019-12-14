@@ -1,9 +1,9 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 
-import Ref from '../Ref'
-import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A TextArea can be used to allow for extended user input.
@@ -12,7 +12,7 @@ import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 class TextArea extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /**
      * Called on change.

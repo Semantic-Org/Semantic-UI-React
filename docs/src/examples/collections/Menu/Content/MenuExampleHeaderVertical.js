@@ -3,7 +3,7 @@ import { Menu } from 'semantic-ui-react'
 
 export default class MenuExampleHeaderVertical extends Component {
   state = {}
-  handleItemClick = name => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
     const { activeItem } = this.state
@@ -41,7 +41,11 @@ export default class MenuExampleHeaderVertical extends Component {
               active={activeItem === 'python'}
               onClick={this.handleItemClick}
             />
-            <Menu.Item name='php' active={activeItem === 'php'} onClick={this.handleItemClick} />
+            <Menu.Item
+              name='php'
+              active={activeItem === 'php'}
+              onClick={this.handleItemClick}
+            />
           </Menu.Menu>
         </Menu.Item>
 
@@ -66,11 +70,19 @@ export default class MenuExampleHeaderVertical extends Component {
           <Menu.Header>Support</Menu.Header>
 
           <Menu.Menu>
-            <Menu.Item name='email' active={activeItem === 'email'} onClick={this.handleItemClick}>
+            <Menu.Item
+              name='email'
+              active={activeItem === 'email'}
+              onClick={this.handleItemClick}
+            >
               E-mail Support
             </Menu.Item>
 
-            <Menu.Item name='faq' active={activeItem === 'faq'} onClick={this.handleItemClick}>
+            <Menu.Item
+              name='faq'
+              active={activeItem === 'faq'}
+              onClick={this.handleItemClick}
+            >
               FAQs
             </Menu.Item>
           </Menu.Menu>

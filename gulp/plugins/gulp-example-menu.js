@@ -16,7 +16,7 @@ const SECTION_ORDER = {
   Usage: 9,
 }
 
-const getSectionOrder = sectionName =>
+const getSectionOrder = (sectionName) =>
   _.find(SECTION_ORDER, (val, key) => _.includes(sectionName, key)) || SECTION_ORDER.DEFAULT_ORDER
 
 const pluginName = 'gulp-example-menu'
@@ -62,9 +62,9 @@ export default () => {
 
   function endStream(cb) {
     _.forEach(exampleFilesByDisplayName, (contents, displayName) => {
-      const sortedContents = _
-        .sortBy(contents, ['order', 'sectionName'])
-        .map(({ sectionName, examples }) => ({ sectionName, examples }))
+      const sortedContents = _.sortBy(contents, ['order', 'sectionName']).map(
+        ({ sectionName, examples }) => ({ sectionName, examples }),
+      )
 
       const file = new Vinyl({
         path: `./${displayName}.examples.json`,

@@ -28,7 +28,7 @@ function StatisticLabel(props) {
 
 StatisticLabel.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -40,6 +40,6 @@ StatisticLabel.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-StatisticLabel.create = createShorthandFactory(StatisticLabel, content => ({ content }))
+StatisticLabel.create = createShorthandFactory(StatisticLabel, (content) => ({ content }))
 
 export default StatisticLabel

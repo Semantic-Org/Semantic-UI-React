@@ -24,16 +24,17 @@ describe('ModalActions', () => {
     })
 
     it('passes arbitrary props', () => {
-      buttons.everyWhere(action => action.should.have.prop('data-foo', 'something'))
+      buttons.everyWhere((action) => action.should.have.prop('data-foo', 'something'))
     })
   })
 
   describe('onActionClick', () => {
     it('can be omitted', () => {
-      const click = () => mount(<ModalActions actions={actions} />)
-        .find('Button')
-        .first()
-        .simulate('click')
+      const click = () =>
+        mount(<ModalActions actions={actions} />)
+          .find('Button')
+          .first()
+          .simulate('click')
 
       expect(click).to.not.throw()
     })

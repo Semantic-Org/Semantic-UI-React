@@ -74,7 +74,7 @@ Grid.Row = GridRow
 
 Grid.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A grid can have rows divided into cells. */
   celled: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['internally'])]),

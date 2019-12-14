@@ -219,7 +219,7 @@ describe('AccordionAccordion', () => {
     it('passes arbitrary props', () => {
       children
         .find(AccordionContent)
-        .everyWhere(item => item.should.have.prop('data-foo', 'something'))
+        .everyWhere((item) => item.should.have.prop('data-foo', 'something'))
     })
   })
 })

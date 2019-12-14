@@ -28,8 +28,8 @@ const Variations = () => (
     />
     <ComponentExample examplePath='collections/Table/Variations/TableExampleFixedLine'>
       <Message info>
-        Fixed <code>single line</code> tables will automatically ensure content that does not fit in
-        a single line will receive "..." ellipsis.
+        Fixed <code>single line</code> tables will automatically ensure content
+        that does not fit in a single line will receive "..." ellipsis.
       </Message>
     </ComponentExample>
 
@@ -53,8 +53,9 @@ const Variations = () => (
       examplePath='collections/Table/Variations/TableExampleSelectableCell'
     >
       <Message info>
-        Using an <code>a</code> link inside a selectable cell will automatically make the hit box
-        the entire cell area. By default links will inherit their cell color.
+        Using an <code>a</code> link inside a selectable cell will automatically
+        make the hit box the entire cell area. By default links will inherit
+        their cell color.
       </Message>
     </ComponentExample>
 

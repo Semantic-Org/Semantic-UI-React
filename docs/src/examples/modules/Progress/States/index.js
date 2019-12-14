@@ -6,8 +6,8 @@ import { Message } from 'semantic-ui-react'
 const ProgressStatesExamples = () => (
   <ExampleSection title='States'>
     <Message info>
-      Semantic UI states <code>success</code>, <code>warning</code>, and <code>error</code> are only
-      retained at 100% completion.
+      Semantic UI states <code>success</code>, <code>warning</code>, and{' '}
+      <code>error</code> are only retained at 100% completion.
     </Message>
     <ComponentExample
       title='Active'

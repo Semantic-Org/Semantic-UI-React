@@ -49,7 +49,7 @@ function ListContent(props) {
 
 ListContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -73,6 +73,6 @@ ListContent.propTypes = {
   verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 }
 
-ListContent.create = createShorthandFactory(ListContent, content => ({ content }))
+ListContent.create = createShorthandFactory(ListContent, (content) => ({ content }))
 
 export default ListContent

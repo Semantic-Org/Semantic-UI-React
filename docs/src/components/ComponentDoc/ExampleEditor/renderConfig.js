@@ -1,5 +1,7 @@
+import * as docsComponents from '@stardust-ui/docs-components'
 import faker from 'faker'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import * as SUIR from 'semantic-ui-react'
 
@@ -16,10 +18,12 @@ export const babelConfig = {
 }
 
 export const externals = {
+  '@stardust-ui/docs-components': docsComponents,
   faker,
   lodash: require('lodash'),
-  react: React,
   'prop-types': PropTypes,
+  react: React,
+  'react-dom': ReactDOM,
   'semantic-ui-react': SUIR,
 }
 

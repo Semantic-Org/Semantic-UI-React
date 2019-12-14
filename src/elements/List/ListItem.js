@@ -23,7 +23,7 @@ import ListIcon from './ListIcon'
 class ListItem extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A list item can active. */
     active: PropTypes.bool,

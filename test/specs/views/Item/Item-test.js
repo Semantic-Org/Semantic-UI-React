@@ -30,7 +30,7 @@ describe('Item', () => {
     autoGenerateKey: false,
     propKey: 'image',
     ShorthandComponent: ItemImage,
-    mapValueToProps: val => ({ src: val }),
+    mapValueToProps: (val) => ({ src: val }),
   })
 
   describe('content prop', () => {

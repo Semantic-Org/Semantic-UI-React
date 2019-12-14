@@ -31,6 +31,9 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** A disabled popup only renders its trigger. */
   disabled?: boolean
 
+  /** Enables the Popper.js event listeners. */
+  eventsEnabled?: boolean
+
   /** A flowing Popup has no maximum width and continues to flow to fit its content. */
   flowing?: boolean
 
@@ -103,6 +106,9 @@ export interface StrictPopupProps extends StrictPortalProps {
     | 'left center'
     | 'top center'
     | 'bottom center'
+
+  /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
+  positionFixed?: boolean
 
   /** An object containing custom settings for the Popper.js modifiers. */
   popperModifiers?: object

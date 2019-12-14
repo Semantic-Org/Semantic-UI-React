@@ -46,7 +46,7 @@ function BreadcrumbDivider(props) {
 
 BreadcrumbDivider.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -61,6 +61,6 @@ BreadcrumbDivider.propTypes = {
   icon: customPropTypes.itemShorthand,
 }
 
-BreadcrumbDivider.create = createShorthandFactory(BreadcrumbDivider, icon => ({ icon }))
+BreadcrumbDivider.create = createShorthandFactory(BreadcrumbDivider, (icon) => ({ icon }))
 
 export default BreadcrumbDivider

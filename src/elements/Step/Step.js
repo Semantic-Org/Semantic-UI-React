@@ -23,7 +23,7 @@ import StepTitle from './StepTitle'
 class Step extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A step can be highlighted as active. */
     active: PropTypes.bool,

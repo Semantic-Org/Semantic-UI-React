@@ -23,8 +23,7 @@ export default () => {
     }
 
     try {
-      const sourceName = _
-        .split(file.path, path.sep)
+      const sourceName = _.split(file.path, path.sep)
         .slice(-4)
         .join('/')
         .slice(0, -3)

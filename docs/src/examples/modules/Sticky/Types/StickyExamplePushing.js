@@ -21,7 +21,7 @@ export default class StickyExamplePushing extends Component {
         <Grid.Column>
           <Ref innerRef={this.contextRef}>
             <Segment>
-              {_.times(10, i => (
+              {_.times(10, (i) => (
                 <Placeholder key={i} />
               ))}
 
@@ -33,7 +33,7 @@ export default class StickyExamplePushing extends Component {
               </Rail>
 
               <Rail position='right'>
-                {_.times(3, i => (
+                {_.times(3, (i) => (
                   <Placeholder key={i} />
                 ))}
 

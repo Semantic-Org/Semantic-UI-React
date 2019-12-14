@@ -15,19 +15,19 @@ describe('CardContent', () => {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: CardHeader,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
   common.implementsShorthandProp(CardContent, {
     autoGenerateKey: false,
     propKey: 'meta',
     ShorthandComponent: CardMeta,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
   common.implementsShorthandProp(CardContent, {
     autoGenerateKey: false,
     propKey: 'description',
     ShorthandComponent: CardDescription,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
 
   common.implementsTextAlignProp(CardContent, _.without(SUI.TEXT_ALIGNMENTS, 'justified'))

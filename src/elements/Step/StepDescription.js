@@ -25,7 +25,7 @@ function StepDescription(props) {
 
 StepDescription.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -37,6 +37,6 @@ StepDescription.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-StepDescription.create = createShorthandFactory(StepDescription, content => ({ content }))
+StepDescription.create = createShorthandFactory(StepDescription, (content) => ({ content }))
 
 export default StepDescription

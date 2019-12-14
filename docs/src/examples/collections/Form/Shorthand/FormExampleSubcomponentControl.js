@@ -19,7 +19,12 @@ class FormExampleSubcomponentControl extends Component {
         <Form.Group widths='equal'>
           <Form.Input fluid label='First name' placeholder='First name' />
           <Form.Input fluid label='Last name' placeholder='Last name' />
-          <Form.Select fluid label='Gender' options={options} placeholder='Gender' />
+          <Form.Select
+            fluid
+            label='Gender'
+            options={options}
+            placeholder='Gender'
+          />
         </Form.Group>
         <Form.Group inline>
           <label>Size</label>

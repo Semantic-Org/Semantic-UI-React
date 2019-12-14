@@ -14,7 +14,13 @@ const ButtonExampleLabeledBasicShorthand = () => (
       color='blue'
       content='Fork'
       icon='fork'
-      label={{ as: 'a', basic: true, color: 'blue', pointing: 'left', content: '2,048' }}
+      label={{
+        as: 'a',
+        basic: true,
+        color: 'blue',
+        pointing: 'left',
+        content: '2,048',
+      }}
     />
   </div>
 )

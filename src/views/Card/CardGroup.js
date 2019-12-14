@@ -73,7 +73,7 @@ function CardGroup(props) {
 
 CardGroup.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A group of cards can center itself inside its container. */
   centered: PropTypes.bool,

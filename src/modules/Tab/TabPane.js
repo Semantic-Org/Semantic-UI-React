@@ -41,7 +41,7 @@ TabPane.defaultProps = {
 
 TabPane.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A tab pane can be active. */
   active: PropTypes.bool,
@@ -59,6 +59,6 @@ TabPane.propTypes = {
   loading: PropTypes.bool,
 }
 
-TabPane.create = createShorthandFactory(TabPane, content => ({ content }))
+TabPane.create = createShorthandFactory(TabPane, (content) => ({ content }))
 
 export default TabPane

@@ -1,4 +1,4 @@
-import { Button, Message } from 'semantic-ui-react'
+import { Accordion, Button, List, Message, Segment } from 'semantic-ui-react'
 
 export const meta = {
   title: 'Theming',
@@ -8,7 +8,7 @@ export const meta = {
 
 ## Preface
 
-Semantic UI React does not have own styling system and fully relies on the theming of
+Semantic UI React does not have its own styling system and fully relies on the theming of
 Semantic UI. It's really powerful, you don't need to know LESS or CSS you can simply
 update values of variables or use styles from predefined themes.
 
@@ -33,7 +33,7 @@ In fact, all you know about theming and styling of Semantic UI is fully applicab
 
 Semantic UI offers its own build system that uses Gulp and produces prepared CSS files.
 
-In all cases we recommend to use the LESS package and tune it into your build system with Webpack. The LESS package also does not depend on Gulp and other cruft things.
+In all cases, we recommend to use the LESS package and tune it into your build system with Webpack. The LESS package also does not depend on Gulp and other cruft things.
 However, this package is not friendly for Webpack and requires additional configuration.
 
 <Button
@@ -80,14 +80,14 @@ yarn remove semantic-ui semantic-ui-css
 
 ### Install required dependencies
 
-Create React App does not support LESS out of the box, we and propose to use [`@craco/craco`](https://www.npmjs.com/package/@craco/craco) to add it and avoid `eject`. You have to install required packages:
+Create React App does not support LESS out of the box; we propose to use [`@craco/craco`](https://www.npmjs.com/package/@craco/craco) to add its support and avoid `eject`. You have to install required packages:
 
 ```bash
-npm install @craco/craco craco-less semantic-ui-less --save-dev
+npm install @craco/craco @semantic-ui-react/craco-less semantic-ui-less --save-dev
 ```
 
 ```bash
-yarn add @craco/craco craco-less semantic-ui-less --dev
+yarn add @craco/craco @semantic-ui-react/craco-less semantic-ui-less --dev
 ```
 
 And then update your `package.json` and create `craco.config.js`:
@@ -104,62 +104,46 @@ And then update your `package.json` and create `craco.config.js`:
 ```
 
 ```jsx label=craco.config.js
-const { getLoader, loaderByName, throwUnexpectedConfigError } = require('@craco/craco')
-
 module.exports = {
-  webpack: {
-    alias: {
-      '../../theme.config$': require('path').join(__dirname, '/src/semantic-ui/theme.config'),
-    },
-  },
-  plugins: [
-    { plugin: require('craco-less') },
-    {
-      plugin: {
-        overrideWebpackConfig: ({ context, webpackConfig }) => {
-          const { isFound, match: fileLoaderMatch } = getLoader(
-            webpackConfig,
-            loaderByName('file-loader'),
-          )
-
-          if (!isFound) {
-            throwUnexpectedConfigError({
-              message: `Can't find file-loader in the ${context.env} webpack config!`,
-            })
-          }
-
-          fileLoaderMatch.loader.exclude.push(/theme.config$/)
-          fileLoaderMatch.loader.exclude.push(/\.variables$/)
-          fileLoaderMatch.loader.exclude.push(/\.overrides$/)
-
-          return webpackConfig
-        },
-      },
-    },
-  ],
+  plugins: [{ plugin: require('@semantic-ui-react/craco-less') }],
 }
 ```
 
-<Message size='mini' warning>
-  Make sure it installed <code>less</code> with version <code>>=3.0.0</code> as sometimes it will
-  install <code>2.*</code> by default which will get you in the troubles.
-</Message>
-
 ### Scaffold custom styles
 
-Now we need to copy necessary files with the skeleton of your customization.
+We made a special CLI tool that will copy necessary files with the skeleton of your customization.
 
 ```bash
-npx cpy-cli **/* ../../../src/semantic-ui/site --cwd node_modules/semantic-ui-less/_site --parents
+npx @semantic-ui-react/bootstrap
 ```
 
-```bash
-npx cpy-cli node_modules/semantic-ui-less/theme.config.example src/semantic-ui --rename=theme.config
-```
+<Accordion
+  defaultActiveIndex={-1}
+  panels={[
+    {
+      title: { content: <i>I want copy files manually</i>, style: { fontSize: '0.9rem' } },
+      content: {
+        as: Segment,
+        content: (
+          <List bulleted>
+            <List.Item>
+              Copy the entire <code>node_modules/semantic-ui-less/_site</code> folder to{' '}
+              <code>src/semantic-ui/site</code>
+            </List.Item>
+            <List.Item>
+              Copy <code>node_modules/semantic-ui-less/theme.config.example</code> to{' '}
+              <code>src/semantic-ui/theme.config</code>
+            </List.Item>
+          </List>
+        ),
+      },
+    },
+  ]}
+/>
 
 ### `theme.config`
 
-This file is mostly prepared but you have to change some details in the bottom of it:
+This file is mostly prepared, but you have to change some details in the bottom of it:
 
 ```json label=src/semantic-ui/theme.config
 /*******************************

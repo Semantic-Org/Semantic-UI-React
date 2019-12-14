@@ -28,7 +28,7 @@ function ItemMeta(props) {
 
 ItemMeta.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -40,6 +40,6 @@ ItemMeta.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ItemMeta.create = createShorthandFactory(ItemMeta, content => ({ content }))
+ItemMeta.create = createShorthandFactory(ItemMeta, (content) => ({ content }))
 
 export default ItemMeta

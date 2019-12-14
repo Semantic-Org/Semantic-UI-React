@@ -8,7 +8,13 @@ const options = [
 ]
 
 const DropdownExampleUpwardSelection = () => (
-  <Dropdown upward search selection options={options} placeholder='Choose an option' />
+  <Dropdown
+    upward
+    search
+    selection
+    options={options}
+    placeholder='Choose an option'
+  />
 )
 
 export default DropdownExampleUpwardSelection

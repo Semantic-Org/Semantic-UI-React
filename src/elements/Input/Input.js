@@ -1,3 +1,4 @@
+import { handleRef } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -10,7 +11,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  handleRef,
   partitionHTMLProps,
   useKeyOnly,
   useValueAndKey,
@@ -29,7 +29,7 @@ import Label from '../Label'
 class Input extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** An Input can be formatted to alert the user to an action they may perform. */
     action: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),

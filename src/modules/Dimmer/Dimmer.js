@@ -60,4 +60,4 @@ export default class Dimmer extends Component {
   }
 }
 
-Dimmer.create = createShorthandFactory(Dimmer, value => ({ content: value }))
+Dimmer.create = createShorthandFactory(Dimmer, (value) => ({ content: value }))

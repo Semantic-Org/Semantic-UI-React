@@ -22,19 +22,19 @@ describe('Message', () => {
     autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: 'p',
-    mapValueToProps: val => ({ children: val }),
+    mapValueToProps: (val) => ({ children: val }),
   })
   common.implementsShorthandProp(Message, {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: MessageHeader,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
   common.implementsShorthandProp(Message, {
     autoGenerateKey: false,
     propKey: 'list',
     ShorthandComponent: MessageList,
-    mapValueToProps: val => ({ items: val }),
+    mapValueToProps: (val) => ({ items: val }),
   })
 
   common.propKeyOnlyToClassName(Message, 'compact')

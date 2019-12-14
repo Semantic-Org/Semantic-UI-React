@@ -31,7 +31,7 @@ function FeedMeta(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedLike, val => ({ content: val }), like, { autoGenerateKey: false })}
+      {createShorthand(FeedLike, (val) => ({ content: val }), like, { autoGenerateKey: false })}
       {content}
     </ElementType>
   )
@@ -39,7 +39,7 @@ function FeedMeta(props) {
 
 FeedMeta.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,

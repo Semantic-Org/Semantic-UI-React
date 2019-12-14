@@ -58,6 +58,14 @@ export interface StrictSearchProps {
   // ------------------------------------
   // Rendering
   // ------------------------------------
+  /**
+   * Renders the SearchCategory layout.
+   *
+   * @param {object} categoryContent - The Renderable SearchCategory contents.
+   * @param {object} resultsContent - The Renderable SearchResult contents.
+   * @returns {*} - Renderable SearchCategory layout.
+   */
+  categoryLayoutRenderer?: (props: SearchCategoryProps) => React.ReactElement<any>
 
   /**
    * Renders the SearchCategory contents.
@@ -143,7 +151,7 @@ export interface StrictSearchProps {
   /** A search can have its results take up the width of its container. */
   fluid?: boolean
 
-  /** A search input can take up the width of its container. */
+  /** Shorthand for input element. */
   input?: SemanticShorthandItem<InputProps>
 
   /** A search can show a loading indicator. */

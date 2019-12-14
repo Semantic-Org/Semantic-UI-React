@@ -17,12 +17,10 @@ describe('Divider', () => {
   common.propKeyOnlyToClassName(Divider, 'clearing')
 
   it('renders a <div /> element', () => {
-    shallow(<Divider />)
-      .should.have.tagName('div')
+    shallow(<Divider />).should.have.tagName('div')
   })
 
   it('adds the "divider" class', () => {
-    shallow(<Divider />)
-      .should.have.className('divider')
+    shallow(<Divider />).should.have.className('divider')
   })
 })

@@ -9,28 +9,32 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
+import SearchCategoryLayout from './SearchCategoryLayout'
 
 function SearchCategory(props) {
-  const { active, children, className, content, renderer } = props
+  const { active, children, className, content, layoutRenderer, renderer } = props
   const classes = cx(useKeyOnly(active, 'active'), 'category', className)
   const rest = getUnhandledProps(SearchCategory, props)
   const ElementType = getElementType(SearchCategory, props)
 
+  const categoryContent = renderer(props)
+  const resultsContent = childrenUtils.isNil(children) ? content : children
+
   return (
     <ElementType {...rest} className={classes}>
-      <div className='name'>{renderer(props)}</div>
-      <div className='results'>{childrenUtils.isNil(children) ? content : children}</div>
+      {layoutRenderer({ categoryContent, resultsContent })}
     </ElementType>
   )
 }
 
 SearchCategory.defaultProps = {
+  layoutRenderer: SearchCategoryLayout,
   renderer: ({ name }) => name,
 }
 
 SearchCategory.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** The item currently selected by keyboard shortcut. */
   active: PropTypes.bool,
@@ -46,6 +50,14 @@ SearchCategory.propTypes = {
 
   /** Display name. */
   name: PropTypes.string,
+
+  /**
+   * Renders the category layout contents.
+   *
+   * @param {object} props - The SearchCategoryLayout props object.
+   * @returns {*} - Renderable category layout contents.
+   */
+  layoutRenderer: PropTypes.func,
 
   /**
    * Renders the category contents.

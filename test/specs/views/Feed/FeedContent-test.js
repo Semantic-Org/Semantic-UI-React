@@ -13,30 +13,30 @@ describe('FeedContent', () => {
     autoGenerateKey: false,
     propKey: 'date',
     ShorthandComponent: FeedDate,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
   common.implementsShorthandProp(FeedContent, {
     autoGenerateKey: false,
     propKey: 'summary',
     ShorthandComponent: FeedSummary,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
   common.implementsShorthandProp(FeedContent, {
     autoGenerateKey: false,
     propKey: 'extraImages',
     ShorthandComponent: FeedExtra,
-    mapValueToProps: val => ({ images: val }),
+    mapValueToProps: (val) => ({ images: val }),
   })
   common.implementsShorthandProp(FeedContent, {
     autoGenerateKey: false,
     propKey: 'extraText',
     ShorthandComponent: FeedExtra,
-    mapValueToProps: val => ({ text: true, content: val }),
+    mapValueToProps: (val) => ({ text: true, content: val }),
   })
   common.implementsShorthandProp(FeedContent, {
     autoGenerateKey: false,
     propKey: 'meta',
     ShorthandComponent: FeedMeta,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
 })

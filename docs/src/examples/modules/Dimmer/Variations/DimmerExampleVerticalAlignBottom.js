@@ -20,7 +20,11 @@ export default class DimmerExampleVerticalAlignBottom extends Component {
             <Image src='/images/wireframe/short-paragraph.png' />
           </p>
 
-          <Dimmer active={active} onClickOutside={this.handleHide} verticalAlign='bottom'>
+          <Dimmer
+            active={active}
+            onClickOutside={this.handleHide}
+            verticalAlign='bottom'
+          >
             <Header as='h2' inverted>
               Title
             </Header>

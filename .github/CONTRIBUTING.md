@@ -60,7 +60,7 @@ cd Semantic-UI-React
 yarn
 ```
 
->Note, we use `yarn` because `npm` has unfortunately become unreliable.  Get it [here][16].
+>Note: we use `yarn` and advise you do too while contributing. Get it [here](https://yarnpkg.com/). You can use `npm install / npm ci` but we don't include a `package-lock.json` in the repository, so you may end up with slightly out of sync dependencies.
 
 Add our repo as a git remote so you can pull/rebase your fork with our latest updates:
 
@@ -486,7 +486,7 @@ A docblock should appear above each prop in `propTypes` to describe them:
 ```js
 Label.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A label can reduce its complexity. */
   basic: PropTypes.bool,
@@ -516,7 +516,7 @@ Label.propTypes = {
 
 ### Examples
 
->This section is lacking in instruction as the the docs are set to be overhauled (PRs welcome!).
+>This section is lacking in instruction as the docs are set to be overhauled (PRs welcome!).
 
 Usage examples for a component live in `docs/src/examples`.  The examples follow the SUI doc site examples.
 

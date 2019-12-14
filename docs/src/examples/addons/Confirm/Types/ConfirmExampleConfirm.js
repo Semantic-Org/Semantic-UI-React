@@ -11,7 +11,11 @@ class ConfirmExampleConfirm extends Component {
     return (
       <div>
         <Button onClick={this.open}>Show</Button>
-        <Confirm open={this.state.open} onCancel={this.close} onConfirm={this.close} />
+        <Confirm
+          open={this.state.open}
+          onCancel={this.close}
+          onConfirm={this.close}
+        />
       </div>
     )
   }

@@ -1,9 +1,9 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { createRef } from 'react'
 
-import Ref from '../../addons/Ref'
 import {
   AutoControlledComponent as Component,
   createHTMLLabel,
@@ -26,7 +26,7 @@ const debug = makeDebugger('checkbox')
 export default class Checkbox extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Whether or not checkbox is checked. */
     checked: PropTypes.bool,
@@ -208,7 +208,10 @@ export default class Checkbox extends Component {
       indeterminate: !!indeterminate,
     })
 
-    _.invoke(this.inputRef.current, 'focus')
+    if (!e.defaultPrevented) {
+      _.invoke(this.inputRef.current, 'focus')
+    }
+
     // Heads up!
     // We need to call "preventDefault" to keep element focused.
     e.preventDefault()

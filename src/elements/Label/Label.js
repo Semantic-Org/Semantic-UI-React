@@ -25,7 +25,7 @@ import LabelGroup from './LabelGroup'
 export default class Label extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** A label can be active. */
     active: PropTypes.bool,

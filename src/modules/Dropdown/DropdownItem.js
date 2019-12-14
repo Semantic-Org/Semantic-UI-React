@@ -23,7 +23,7 @@ import Label from '../../elements/Label'
 class DropdownItem extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Style as the currently chosen item. */
     active: PropTypes.bool,
@@ -77,9 +77,7 @@ class DropdownItem extends Component {
   }
 
   handleClick = (e) => {
-    const { onClick } = this.props
-
-    if (onClick) onClick(e, this.props)
+    _.invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {
@@ -130,13 +128,13 @@ class DropdownItem extends Component {
     const iconElement = Icon.create(iconName, { autoGenerateKey: false })
     const imageElement = Image.create(image, { autoGenerateKey: false })
     const labelElement = Label.create(label, { autoGenerateKey: false })
-    const descriptionElement = createShorthand('span', val => ({ children: val }), description, {
+    const descriptionElement = createShorthand('span', (val) => ({ children: val }), description, {
       defaultProps: { className: 'description' },
       autoGenerateKey: false,
     })
     const textElement = createShorthand(
       'span',
-      val => ({ children: val }),
+      (val) => ({ children: val }),
       childrenUtils.isNil(content) ? text : content,
       { defaultProps: { className: 'text' }, autoGenerateKey: false },
     )
@@ -154,6 +152,6 @@ class DropdownItem extends Component {
   }
 }
 
-DropdownItem.create = createShorthandFactory(DropdownItem, opts => opts)
+DropdownItem.create = createShorthandFactory(DropdownItem, (opts) => opts)
 
 export default DropdownItem

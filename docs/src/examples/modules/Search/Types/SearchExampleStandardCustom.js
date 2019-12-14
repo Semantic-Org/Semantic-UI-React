@@ -32,7 +32,7 @@ export default class SearchExampleStandard extends Component {
       if (this.state.value.length < 1) return this.setState(initialState)
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.title)
+      const isMatch = (result) => re.test(result.title)
 
       this.setState({
         isLoading: false,

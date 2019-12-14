@@ -12,8 +12,7 @@ const FeedExampleSizeLarge = () => (
         </Feed.Summary>
         <Feed.Meta>
           <Feed.Like>
-            <Icon name='like' />
-            4 Likes
+            <Icon name='like' />4 Likes
           </Feed.Like>
         </Feed.Meta>
       </Feed.Content>
@@ -26,7 +25,9 @@ const FeedExampleSizeLarge = () => (
           You submitted a new post to the page
           <Feed.Date>3 days ago</Feed.Date>
         </Feed.Summary>
-        <Feed.Extra text>I'm having a BBQ this weekend. Come by around 4pm if you can.</Feed.Extra>
+        <Feed.Extra text>
+          I'm having a BBQ this weekend. Come by around 4pm if you can.
+        </Feed.Extra>
         <Feed.Meta>
           <Feed.Like>11 Likes</Feed.Like>
         </Feed.Meta>

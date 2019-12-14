@@ -1,3 +1,4 @@
+import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -23,7 +24,6 @@ import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
-import Ref from '../../addons/Ref'
 import { canFit, getLegacyStyles, isLegacy } from './utils'
 
 const debug = makeDebugger('modal')
@@ -36,7 +36,7 @@ const debug = makeDebugger('modal')
 class Modal extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    as: PropTypes.elementType,
 
     /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
     actions: customPropTypes.itemShorthand,

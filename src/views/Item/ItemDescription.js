@@ -28,7 +28,7 @@ function ItemDescription(props) {
 
 ItemDescription.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -40,6 +40,6 @@ ItemDescription.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ItemDescription.create = createShorthandFactory(ItemDescription, content => ({ content }))
+ItemDescription.create = createShorthandFactory(ItemDescription, (content) => ({ content }))
 
 export default ItemDescription
