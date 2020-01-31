@@ -8,9 +8,9 @@ export interface HeaderProps extends StrictHeaderProps {
   [key: string]: any
 }
 
-export interface StrictHeaderProps {
+export interface StrictHeaderProps<T = any> {
   /** An element type to render as (string or function). */
-  as?: any
+  as?: T;
 
   /** Attach header  to other content, like a segment. */
   attached?: boolean | 'top' | 'bottom'
@@ -61,11 +61,11 @@ export interface StrictHeaderProps {
   textAlign?: SemanticTEXTALIGNMENTS
 }
 
-interface HeaderComponent extends React.StatelessComponent<HeaderProps> {
+interface HeaderComponent<T = any> extends React.RefForwardingComponent<T, StrictHeaderProps<T>> {
   Content: typeof HeaderContent
   Subheader: typeof HeaderSubHeader
 }
 
-declare const Header: HeaderComponent
+declare const Header: HeaderComponent;
 
 export default Header

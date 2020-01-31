@@ -23,7 +23,7 @@ import HeaderContent from './HeaderContent'
 /**
  * A header provides a short summary of content
  */
-function Header(props) {
+function Header(props, ref) {
   const {
     attached,
     block,
@@ -65,7 +65,7 @@ function Header(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} ref={ref} className={classes}>
         {children}
       </ElementType>
     )
@@ -143,6 +143,14 @@ Header.propTypes = {
   /** Inverts the color of the header for dark backgrounds. */
   inverted: PropTypes.bool,
 
+  /** Ref of the target element. */
+  ref: PropTypes.oneOfType([
+    // Either a function
+    PropTypes.func,
+    // Or the instance of a DOM native element (see the note about SSR)
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+  ]),
+
   /** Content headings are sized with em and are based on the font-size of their container. */
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'big', 'massive', 'mini')),
 
@@ -159,4 +167,4 @@ Header.propTypes = {
 Header.Content = HeaderContent
 Header.Subheader = HeaderSubheader
 
-export default Header
+export default React.forwardRef(Header)
