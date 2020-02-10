@@ -193,7 +193,7 @@ Made possible only by [@jlukic][32] authoring [Semantic UI][5].
 [25]: http://learnsemantic.com/themes/creating.html
 [26]: https://github.com/levithomason
 [27]: https://github.com/layershifter
-[28]: https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples
+[28]: https://github.com/webpack/webpack/tree/master/examples
 [30]: https://github.com/Semantic-Org/Semantic-UI-Meteor
 [31]: https://github.com/Netflix/flamescope
 [32]: https://github.com/jlukic
