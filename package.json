@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A theme builder for Semantic UI components",
   "scripts": {
-    "start": "node index.js",
+    "start": "PORT=5000 node index.js",
     "build": "yarn themes:build && yarn docs:build",
     "all:reset": "rm -rf node_modules/ && rm -rf yarn.lock && yarn install",
     "all:eslint": "eslint --ext .js ./docs ./themes .src/externals",
@@ -14,10 +14,11 @@
     "docs:serve": "serve docs/dist",
     "docs:deploy:docs": "gulp deploy:docs",
     "themes:build": "rm -rf themes/dist && node themes/config/build.js",
+    "themes:build:silent": "rm -rf themes/dist && node themes/config/build.js > /dev/null",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "start:florence": "npm-run-all --parallel themes:build docs:start:florence start",
-    "start:flexibank": "npm-run-all --parallel themes:build docs:start:flexibank start"
+    "start:florence": "npm-run-all --parallel themes:build:silent start",
+    "start:flexibank": "npm-run-all --parallel themes:build:silent start"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
