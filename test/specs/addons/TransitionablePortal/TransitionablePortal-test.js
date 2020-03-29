@@ -43,7 +43,7 @@ describe('TransitionablePortal', () => {
     })
   })
 
-  describe('componentWillReceiveProps', () => {
+  describe('componentDidUpdate', () => {
     it('passes `open` prop to `portalOpen` when defined', () => {
       wrapperMount(<TransitionablePortal {...requiredProps} />)
 
