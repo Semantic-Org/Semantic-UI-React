@@ -82,6 +82,7 @@ See the [**Documentation**][2] for an introduction, usage information, and examp
     <li><a href="https://www.hurriyetoto.com">https://www.hurriyetoto.com</a></li>
     <li><a href="https://173app.com">https://173app.com</a></li>
     <li><a href="https://disten.se">https://disten.se</a></li>
+    <li><a href="https://code.devtools.tech">https://code.devtools.tech</a></li>
     <li><a href="https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md">add your site here</a></li>
   </ul>
 </details>
