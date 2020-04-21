@@ -88,6 +88,7 @@ function FormField(props) {
       <ElementType {...rest} className={classes}>
         {errorLabelBefore}
         {createHTMLLabel(label, { autoGenerateKey: false })}
+        {childrenUtils.isNil(children) ? content : children}
         {errorLabelAfter}
       </ElementType>
     )
