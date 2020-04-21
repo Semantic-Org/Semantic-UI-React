@@ -20,6 +20,10 @@
   }
 }
 
+.ui.legacy.modal {
+  margin-top: -100px !important;
+}
+
 .modals.dimmer[class*='top aligned'] {
   .modal {
     margin-top: -100px;
