@@ -490,6 +490,8 @@ export default class Search extends Component {
     // Do not access document when server side rendering
     if (!isBrowser()) return
     const menu = document.querySelector('.ui.search.active.visible .results.visible')
+    if (!menu) return
+    debug(`menu (results): ${menu}`)
     const item = menu.querySelector('.result.active')
     if (!item) return
     debug(`menu (results): ${menu}`)
