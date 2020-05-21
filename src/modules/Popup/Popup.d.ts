@@ -31,9 +31,6 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** A disabled popup only renders its trigger. */
   disabled?: boolean
 
-  /** Enables the Popper.js event listeners. */
-  eventsEnabled?: boolean
-
   /** A flowing Popup has no maximum width and continues to flow to fit its content. */
   flowing?: boolean
 
@@ -49,14 +46,16 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** Invert the colors of the popup */
   inverted?: boolean
 
-  /** Offset value to apply to rendered popup. Accepts the following units:
-   * - px or unit-less, interpreted as pixels
-   * - %, percentage relative to the length of the trigger element
-   * - %p, percentage relative to the length of the popup element
-   * - vw, CSS viewport width unit
-   * - vh, CSS viewport height unit
+  /** Offset values in px unit to apply to rendered popup. The basic offset accepts an
+   * array with two numbers in the form [skidding, distance].
+   *
+   * The first number, skidding, displaces the popper along the reference element.
+   *
+   * The second number, distance, displaces the popper away from, or toward, the
+   * reference element in the direction of its placement. A positive number displaces
+   * it further away, while a negative number lets it overlap the reference.
    */
-  offset?: number | string
+  offset?: number[]
 
   /** Events triggering the popup. */
   on?: 'hover' | 'click' | 'focus' | ('hover' | 'click' | 'focus')[]
@@ -110,8 +109,8 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
   positionFixed?: boolean
 
-  /** An object containing custom settings for the Popper.js modifiers. */
-  popperModifiers?: Record<string, any>
+  /** An array containing custom settings for the Popper.js modifiers. */
+  popperModifiers?: any[]
 
   /** A popup can have dependencies which update will schedule a position update. */
   popperDependencies?: any[]

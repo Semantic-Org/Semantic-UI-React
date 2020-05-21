@@ -14,45 +14,30 @@ const PopupUsageExamples = () => (
       <Message info>
         <p>
           We are using Popper.js for positioning, so you can use the{' '}
-          <code>offset</code> prop as it described in their docs. Accepts the
-          following units:
+          <code>offset</code> prop as it described in their docs.
         </p>
-        <Message.List>
-          <Message.Item>
-            <code>px</code> or unit-less, interpreted as pixels
-          </Message.Item>
-          <Message.Item>
-            <code>%</code>, percentage relative to the length of the trigger
-            element
-          </Message.Item>
-          <Message.Item>
-            <code>%p</code>, percentage relative to the length of the popup
-            element
-          </Message.Item>
-          <Message.Item>
-            <code>vw</code>, CSS viewport width unit
-          </Message.Item>
-          <Message.Item>
-            <code>vh</code>, CSS viewport height unit
-          </Message.Item>
-        </Message.List>
+        <p>
+          The basic offset accepts an array with two numbers in the form{' '}
+          <code>[skidding, distance].</code>
+        </p>
+        <p>
+          The first number, <code>skidding</code>, displaces the popper along
+          the reference element.
+        </p>
+        <p>
+          The second number, <code>distance</code>, displaces the popper away
+          from, or toward, the reference element in the direction of its
+          placement. A positive number displaces it further away, while a
+          negative number lets it overlap the reference.
+        </p>
       </Message>
       <Button
         content='Popper.JS: offset'
-        href='https://popper.js.org/popper-documentation.html#modifiers..offset'
+        href='https://popper.js.org/docs/v2/modifiers/offset/'
         icon='book'
         target='_blank'
       />
     </ComponentExample>
-    <ComponentExample
-      title={<code>eventsEnabled</code>}
-      description={
-        <span>
-          Enables the <code>Popper.js</code> event listeners.
-        </span>
-      }
-      examplePath='modules/Popup/Usage/PopupExampleEventsEnabled'
-    />
     <ComponentExample
       title='Popper Dependencies'
       description={

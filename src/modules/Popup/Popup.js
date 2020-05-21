@@ -200,7 +200,6 @@ export default class Popup extends Component {
     const {
       context,
       disabled,
-      eventsEnabled,
       offset,
       pinned,
       popperModifiers,
@@ -214,17 +213,17 @@ export default class Popup extends Component {
       return trigger
     }
 
-    const modifiers = _.merge(
-      {
-        arrow: { enabled: false },
-        flip: { enabled: !pinned },
-        // There are issues with `keepTogether` and `offset`
-        // https://github.com/FezVrasta/popper.js/issues/557
-        keepTogether: { enabled: !!offset },
-        offset: { offset },
-      },
-      popperModifiers,
-    )
+    const defaultModifiers = [
+      { name: 'arrow', enabled: false },
+      { name: 'flip', enabled: !pinned },
+      { name: 'preventOverflow', enabled: !!offset },
+      { name: 'offset', options: { offset } },
+    ]
+    const modifiers = popperModifiers
+      ? _.unionBy(popperModifiers, defaultModifiers, 'name')
+      : defaultModifiers
+    debug('popper modifiers:', modifiers)
+
     const referenceElement = createReferenceProxy(_.isNil(context) ? this.triggerRef : context)
 
     const mergedPortalProps = { ...this.getPortalProps(), ...portalRestProps }
@@ -241,10 +240,9 @@ export default class Popup extends Component {
         triggerRef={this.triggerRef}
       >
         <Popper
-          eventsEnabled={eventsEnabled}
           modifiers={modifiers}
           placement={positionsMapping[position]}
-          positionFixed={positionFixed}
+          strategy={positionFixed ? 'fixed' : null}
           referenceElement={referenceElement}
         >
           {this.renderContent}
@@ -276,9 +274,6 @@ Popup.propTypes = {
   /** A disabled popup only renders its trigger. */
   disabled: PropTypes.bool,
 
-  /** Enables the Popper.js event listeners. */
-  eventsEnabled: PropTypes.bool,
-
   /** A flowing Popup has no maximum width and continues to flow to fit its content. */
   flowing: PropTypes.bool,
 
@@ -298,14 +293,16 @@ Popup.propTypes = {
   /** Invert the colors of the Popup. */
   inverted: PropTypes.bool,
 
-  /** Offset value to apply to rendered popup. Accepts the following units:
-   * - px or unit-less, interpreted as pixels
-   * - %, percentage relative to the length of the trigger element
-   * - %p, percentage relative to the length of the popup element
-   * - vw, CSS viewport width unit
-   * - vh, CSS viewport height unit
+  /** Offset values in px unit to apply to rendered popup. The basic offset accepts an
+   * array with two numbers in the form [skidding, distance].
+   *
+   * The first number, skidding, displaces the popper along the reference element.
+   *
+   * The second number, distance, displaces the popper away from, or toward, the
+   * reference element in the direction of its placement. A positive number displaces
+   * it further away, while a negative number lets it overlap the reference.
    */
-  offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  offset: PropTypes.arrayOf(PropTypes.number),
 
   /** Events triggering the popup. */
   on: PropTypes.oneOfType([
@@ -354,8 +351,8 @@ Popup.propTypes = {
   /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
   positionFixed: PropTypes.bool,
 
-  /** An object containing custom settings for the Popper.js modifiers. */
-  popperModifiers: PropTypes.object,
+  /** An array containing custom settings for the Popper.js modifiers. */
+  popperModifiers: PropTypes.array,
 
   /** A popup can have dependencies which update will schedule a position update. */
   popperDependencies: PropTypes.array,
@@ -375,8 +372,7 @@ Popup.propTypes = {
 
 Popup.defaultProps = {
   disabled: false,
-  eventsEnabled: true,
-  offset: 0,
+  offset: [0, 0],
   on: ['click', 'hover'],
   pinned: false,
   position: 'top left',

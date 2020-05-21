@@ -70,13 +70,14 @@
     "@babel/runtime": "^7.10.5",
     "@fluentui/react-component-event-listener": "~0.51.0",
     "@fluentui/react-component-ref": "~0.51.0",
+    "@popperjs/core": "^2.4.4",
     "@semantic-ui-react/event-stack": "^3.1.0",
     "clsx": "^1.1.1",
     "keyboard-key": "^1.1.0",
     "lodash": "^4.17.19",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.6",
-    "react-popper": "^1.3.7",
+    "react-popper": "^2.2.3",
     "shallowequal": "^1.1.0"
   },
   "devDependencies": {

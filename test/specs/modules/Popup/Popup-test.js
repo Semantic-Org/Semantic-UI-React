@@ -110,20 +110,6 @@ describe('Popup', () => {
     })
   })
 
-  describe('eventsEnabled ', () => {
-    it(`is "true" by default`, () => {
-      wrapperMount(<Popup open />)
-
-      wrapper.should.have.prop('eventsEnabled', true)
-      wrapper.find('Popper').should.have.prop('eventsEnabled', true)
-    })
-
-    it(`can be set to "false"`, () => {
-      wrapperMount(<Popup eventsEnabled={false} open />)
-      wrapper.find('Popper').should.have.prop('eventsEnabled', false)
-    })
-  })
-
   describe('flowing', () => {
     it('adds flowing to the popup className', () => {
       wrapperMount(<Popup flowing open />)
@@ -174,12 +160,12 @@ describe('Popup', () => {
 
   describe('offset', () => {
     it('passes values to Popper', () => {
-      wrapperMount(<Popup content='foo' open offset='50, 100' position='bottom right' />)
+      wrapperMount(<Popup content='foo' open offset={[50, 100]} position='bottom right' />)
 
       const modifiers = wrapper.find('Popper').prop('modifiers')
-      const offset = modifiers.offset
+      const offset = _.find(modifiers, (m) => m.name === 'offset')
 
-      offset.should.have.property('offset', '50, 100')
+      offset.should.have.property('options').deep.include({ offset: [50, 100] })
     })
   })
 
@@ -284,10 +270,13 @@ describe('Popup', () => {
   })
 
   describe('pinned', () => {
-    it(`is "false" by default`, () => {
+    it(`is "true" by default`, () => {
       wrapperMount(<Popup open />)
 
-      wrapper.should.have.prop('pinned', false)
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include({ name: 'flip', enabled: true })
     })
 
     it(`disables "flip" modifier in PopperJS when is "true"`, () => {
@@ -296,7 +285,7 @@ describe('Popup', () => {
       wrapper
         .find('Popper')
         .should.have.prop('modifiers')
-        .deep.include({ flip: { enabled: false } })
+        .deep.include({ name: 'flip', enabled: false })
     })
 
     it(`enables "flip" modifier in PopperJS when is "false"`, () => {
@@ -305,7 +294,7 @@ describe('Popup', () => {
       wrapper
         .find('Popper')
         .should.have.prop('modifiers')
-        .deep.include({ flip: { enabled: true } })
+        .deep.include({ name: 'flip', enabled: true })
     })
   })
 
@@ -329,19 +318,21 @@ describe('Popup', () => {
 
     it(`can be set to "true"`, () => {
       wrapperMount(<Popup positionFixed open />)
-      wrapper.find('Popper').should.have.prop('positionFixed', true)
+      wrapper.find('Popper').should.have.prop('strategy', 'fixed')
     })
   })
 
   describe('popperModifiers', () => {
     it('are passed to Popper', () => {
-      const modifiers = {
-        keepTogether: { enabled: false },
-        preventOverflow: { padding: 0 },
-      }
-      wrapperMount(<Popup popperModifiers={modifiers} open />)
+      const modifierOffset = { name: 'offset', options: { offset: [0, 10] } }
+      const modifierPreventOverflow = { name: 'preventOverflow', options: { padding: 0 } }
+      wrapperMount(<Popup popperModifiers={[modifierOffset, modifierPreventOverflow]} open />)
 
-      wrapper.find('Popper').should.have.prop('modifiers').deep.include(modifiers)
+      wrapper
+        .find('Popper')
+        .should.have.prop('modifiers')
+        .deep.include(modifierOffset)
+        .deep.include(modifierPreventOverflow)
     })
   })
 
