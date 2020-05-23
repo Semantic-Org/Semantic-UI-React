@@ -30,6 +30,12 @@ textarea::placeholder {
       font-weight: 600;
     }
 
+    > span {
+      &.error {
+        color: @white;
+      }
+    }
+
     &.error {
       border-left: 2px solid @pink;
       padding-left: 16px;

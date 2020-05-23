@@ -15,3 +15,7 @@
 .ui.horizontal.divider:after {
   width: 90%;
 }
+
+.ui.hidden.divider {
+  display: block !important;
+}
