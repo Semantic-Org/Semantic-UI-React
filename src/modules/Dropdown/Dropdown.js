@@ -8,7 +8,7 @@ import React, { Children, cloneElement, createRef } from 'react'
 import shallowEqual from 'shallowequal'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
@@ -26,6 +26,8 @@ import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
+import getMenuOptions from './utils/getMenuOptions'
+import getSelectedIndex from './utils/getSelectedIndex'
 
 const debug = makeDebugger('dropdown')
 
@@ -391,16 +393,23 @@ export default class Dropdown extends Component {
     return { focus: false, searchQuery: '' }
   }
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillMount() {
-    debug('componentWillMount()')
-    const { open, value } = this.state
+  static getAutoControlledStateFromProps(props, state) {
+    const selectedIndex = getSelectedIndex({
+      additionLabel: props.additionLabel,
+      additionPosition: props.additionPosition,
+      allowAdditions: props.allowAdditions,
+      deburr: props.deburr,
+      multiple: props.multiple,
+      search: props.search,
 
-    this.setValue(value)
-    this.setSelectedIndex(value)
+      options: props.options,
+      searchQuery: state.searchQuery,
+      selectedIndex: state.selectedIndex,
+      value: state.value,
+    })
 
-    if (open) {
-      this.open()
+    return {
+      selectedIndex,
     }
   }
 
@@ -432,7 +441,7 @@ export default class Dropdown extends Component {
 
     if (!shallowEqual(nextProps.value, this.props.value)) {
       debug('value changed, setting', nextProps.value)
-      this.setValue(nextProps.value)
+      this.setState({ value: nextProps.value })
       this.setSelectedIndex(nextProps.value)
     }
 
@@ -482,6 +491,15 @@ export default class Dropdown extends Component {
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
     }
+
+    // TODO: fix me to use
+    const { disabled, open } = this.props
+    debug('open()', { disabled, open, search })
+
+    if (disabled) return
+
+    if (search) _.invoke(this.searchRef.current, 'focus')
+    this.scrollSelectedItemIntoView()
   }
 
   // ----------------------------------------
@@ -565,7 +583,7 @@ export default class Dropdown extends Component {
 
     if (valueHasChanged) {
       // notify the onChange prop that the user is trying to change value
-      this.setValue(newValue)
+      this.setState({ value: newValue })
       this.setSelectedIndex(newValue)
       this.handleChange(e, newValue)
 
@@ -589,7 +607,19 @@ export default class Dropdown extends Component {
     if (!shouldSelect) return
     e.preventDefault()
 
-    const optionSize = _.size(this.getMenuOptions())
+    const optionSize = _.size(
+      getMenuOptions({
+        additionLabel: this.props.additionLabel,
+        additionPosition: this.props.additionPosition,
+        allowAdditions: this.props.allowAdditions,
+        deburr: this.props.deburr,
+        multiple: this.props.multiple,
+        options: this.props.options,
+        search: this.props.search,
+        searchQuery: this.state.searchQuery,
+        value: this.state.value,
+      }),
+    )
     if (search && optionSize === 0) return
 
     this.makeSelectedItemActive(e)
@@ -611,7 +641,7 @@ export default class Dropdown extends Component {
     // remove most recent value
     const newValue = _.dropRight(value)
 
-    this.setValue(newValue)
+    this.setState({ value: newValue })
     this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
@@ -706,7 +736,7 @@ export default class Dropdown extends Component {
 
     // notify the onChange prop that the user is trying to change value
     if (valueHasChanged) {
-      this.setValue(newValue)
+      this.setState({ value: newValue })
       this.setSelectedIndex(value)
 
       this.handleChange(e, newValue)
@@ -772,7 +802,7 @@ export default class Dropdown extends Component {
     const newQuery = value
 
     _.invoke(this.props, 'onSearchChange', e, { ...this.props, searchQuery: newQuery })
-    this.trySetState({ searchQuery: newQuery, selectedIndex: 0 })
+    this.setState({ searchQuery: newQuery, selectedIndex: 0 })
 
     // open search dropdown on search query
     if (!open && newQuery.length >= minCharacters) {
@@ -842,8 +872,12 @@ export default class Dropdown extends Component {
         className: 'addition',
         'data-additional': true,
       }
-      if (additionPosition === 'top') filteredOptions.unshift(addItem)
-      else filteredOptions.push(addItem)
+
+      if (additionPosition === 'top') {
+        filteredOptions.unshift(addItem)
+      } else {
+        filteredOptions.push(addItem)
+      }
     }
 
     return filteredOptions
@@ -851,34 +885,25 @@ export default class Dropdown extends Component {
 
   getSelectedItem = () => {
     const { selectedIndex } = this.state
-    const options = this.getMenuOptions()
+    const options = getMenuOptions({
+      additionLabel: this.props.additionLabel,
+      additionPosition: this.props.additionPosition,
+      allowAdditions: this.props.allowAdditions,
+      deburr: this.props.deburr,
+      multiple: this.props.multiple,
+      options: this.props.options,
+      search: this.props.search,
+      searchQuery: this.state.searchQuery,
+      value: this.state.value,
+    })
 
     return _.get(options, `[${selectedIndex}]`)
-  }
-
-  getEnabledIndices = (givenOptions) => {
-    const options = givenOptions || this.getMenuOptions()
-
-    return _.reduce(
-      options,
-      (memo, item, index) => {
-        if (!item.disabled) memo.push(index)
-        return memo
-      },
-      [],
-    )
   }
 
   getItemByValue = (value) => {
     const { options } = this.props
 
     return _.find(options, { value })
-  }
-
-  getMenuItemIndexByValue = (value, givenOptions) => {
-    const options = givenOptions || this.getMenuOptions()
-
-    return _.findIndex(options, ['value', value])
   }
 
   getDropdownAriaOptions = () => {
@@ -917,54 +942,29 @@ export default class Dropdown extends Component {
     const { searchQuery } = this.state
     if (searchQuery === undefined || searchQuery === '') return
 
-    this.trySetState({ searchQuery: '' })
+    this.setState({ searchQuery: '' })
     this.setSelectedIndex(value, undefined, '')
-  }
-
-  setValue = (value) => {
-    debug('setValue()', value)
-    this.trySetState({ value })
   }
 
   setSelectedIndex = (
     value = this.state.value,
-    optionsProps = this.props.options,
+    options = this.props.options,
     searchQuery = this.state.searchQuery,
+    selectedIndex = this.state.selectedIndex,
   ) => {
-    const { multiple } = this.props
-    const { selectedIndex } = this.state
-    const options = this.getMenuOptions(value, optionsProps, searchQuery)
-    const enabledIndicies = this.getEnabledIndices(options)
+    const newSelectedIndex = getSelectedIndex({
+      additionLabel: this.props.additionLabel,
+      additionPosition: this.props.additionPosition,
+      allowAdditions: this.props.allowAdditions,
+      deburr: this.props.deburr,
+      multiple: this.props.multiple,
+      search: this.props.search,
 
-    let newSelectedIndex
-
-    // update the selected index
-    if (!selectedIndex || selectedIndex < 0) {
-      const firstIndex = enabledIndicies[0]
-
-      // Select the currently active item, if none, use the first item.
-      // Multiple selects remove active items from the list,
-      // their initial selected index should be 0.
-      newSelectedIndex = multiple
-        ? firstIndex
-        : this.getMenuItemIndexByValue(value, options) || enabledIndicies[0]
-    } else if (multiple) {
-      // multiple selects remove options from the menu as they are made active
-      // keep the selected index within range of the remaining items
-      if (selectedIndex >= options.length - 1) {
-        newSelectedIndex = enabledIndicies[enabledIndicies.length - 1]
-      }
-    } else {
-      const activeIndex = this.getMenuItemIndexByValue(value, options)
-
-      // regular selects can only have one active item
-      // set the selected index to the currently active item
-      newSelectedIndex = _.includes(enabledIndicies, activeIndex) ? activeIndex : undefined
-    }
-
-    if (!newSelectedIndex || newSelectedIndex < 0) {
-      newSelectedIndex = enabledIndicies[0]
-    }
+      options,
+      searchQuery,
+      selectedIndex,
+      value,
+    })
 
     this.setState({ selectedIndex: newSelectedIndex })
   }
@@ -989,7 +989,7 @@ export default class Dropdown extends Component {
     debug('remove value:', labelProps.value)
     debug('new value:', newValue)
 
-    this.setValue(newValue)
+    this.setState({ value: newValue })
     this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
@@ -998,7 +998,17 @@ export default class Dropdown extends Component {
     debug('moveSelectionBy()')
     debug(`offset: ${offset}`)
 
-    const options = this.getMenuOptions()
+    const options = getMenuOptions({
+      additionLabel: this.props.additionLabel,
+      additionPosition: this.props.additionPosition,
+      allowAdditions: this.props.allowAdditions,
+      deburr: this.props.deburr,
+      multiple: this.props.multiple,
+      options: this.props.options,
+      search: this.props.search,
+      searchQuery: this.state.searchQuery,
+      value: this.state.value,
+    })
 
     // Prevent infinite loop
     // TODO: remove left part of condition after children API will be removed
@@ -1050,7 +1060,7 @@ export default class Dropdown extends Component {
     const { multiple } = this.props
     const newValue = multiple ? [] : ''
 
-    this.setValue(newValue)
+    this.setState({ value: newValue })
     this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
@@ -1141,12 +1151,13 @@ export default class Dropdown extends Component {
 
     // set state only if there's a relevant difference
     if (!upward !== !this.state.upward) {
-      this.trySetState({ upward })
+      this.setState({ upward })
     }
   }
 
   open = (e) => {
-    const { disabled, open, search } = this.props
+    const { disabled, search } = this.props
+    const { open } = this.state
     debug('open()', { disabled, open, search })
 
     if (disabled) return
@@ -1154,7 +1165,7 @@ export default class Dropdown extends Component {
 
     _.invoke(this.props, 'onOpen', e, this.props)
 
-    this.trySetState({ open: true })
+    this.setState({ open: true })
     this.scrollSelectedItemIntoView()
   }
 
@@ -1164,7 +1175,7 @@ export default class Dropdown extends Component {
 
     if (open) {
       _.invoke(this.props, 'onClose', e, this.props)
-      this.trySetState({ open: false }, callback)
+      this.setState({ open: false }, callback)
     }
   }
 
@@ -1279,7 +1290,17 @@ export default class Dropdown extends Component {
     // lazy load, only render options when open
     if (lazyLoad && !open) return null
 
-    const options = this.getMenuOptions()
+    const options = getMenuOptions({
+      additionLabel: this.props.additionLabel,
+      additionPosition: this.props.additionPosition,
+      allowAdditions: this.props.allowAdditions,
+      deburr: this.props.deburr,
+      multiple: this.props.multiple,
+      options: this.props.options,
+      search: this.props.search,
+      searchQuery: this.state.searchQuery,
+      value: this.state.value,
+    })
 
     if (noResultsMessage !== null && search && _.isEmpty(options)) {
       return <div className='message'>{noResultsMessage}</div>

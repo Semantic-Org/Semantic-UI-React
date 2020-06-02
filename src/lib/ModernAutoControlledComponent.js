@@ -25,7 +25,47 @@
  */
 import _ from 'lodash'
 import { Component } from 'react'
-import { getAutoControlledStateValue, getDefaultPropName } from './AutoControlledComponent'
+
+export const getDefaultPropName = (prop) => `default${prop[0].toUpperCase() + prop.slice(1)}`
+
+/**
+ * Return the auto controlled state value for a give prop. The initial value is chosen in this order:
+ *  - regular props
+ *  - then, default props
+ *  - then, initial state
+ *  - then, `checked` defaults to false
+ *  - then, `value` defaults to '' or [] if props.multiple
+ *  - else, undefined
+ *
+ *  @param {string} propName A prop name
+ *  @param {object} [props] A props object
+ *  @param {object} [state] A state object
+ *  @param {boolean} [includeDefaults=false] Whether or not to heed the default props or initial state
+ */
+export const getAutoControlledStateValue = (propName, props, state, includeDefaults = false) => {
+  // regular props
+  const propValue = props[propName]
+  if (propValue !== undefined) return propValue
+
+  if (includeDefaults) {
+    // defaultProps
+    const defaultProp = props[getDefaultPropName(propName)]
+    if (defaultProp !== undefined) return defaultProp
+
+    // initial state - state may be null or undefined
+    if (state) {
+      const initialState = state[propName]
+      if (initialState !== undefined) return initialState
+    }
+  }
+
+  // React doesn't allow changing from uncontrolled to controlled components,
+  // default checked/value if they were not present.
+  if (propName === 'checked') return false
+  if (propName === 'value') return props.multiple ? [] : ''
+
+  // otherwise, undefined
+}
 
 export default class ModernAutoControlledComponent extends Component {
   constructor(...args) {
