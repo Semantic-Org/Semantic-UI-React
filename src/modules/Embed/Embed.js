@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   childrenUtils,
   createHTMLIframe,
   customPropTypes,
@@ -130,7 +130,7 @@ export default class Embed extends Component {
     const { active } = this.state
 
     if (onClick) onClick(e, { ...this.props, active: true })
-    if (!active) this.trySetState({ active: true })
+    if (!active) this.setState({ active: true })
   }
 
   render() {

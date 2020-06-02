@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import React, { cloneElement, createRef, Fragment } from 'react'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   customPropTypes,
   doesNodeContainClick,
   makeDebugger,
@@ -285,7 +285,7 @@ class Portal extends Component {
     const { onOpen } = this.props
     if (onOpen) onOpen(e, this.props)
 
-    this.trySetState({ open: true })
+    this.setState({ open: true })
   }
 
   openWithTimeout = (e, delay) => {
@@ -303,7 +303,7 @@ class Portal extends Component {
     const { onClose } = this.props
     if (onClose) onClose(e, this.props)
 
-    this.trySetState({ open: false })
+    this.setState({ open: false })
   }
 
   closeWithTimeout = (e, delay) => {
