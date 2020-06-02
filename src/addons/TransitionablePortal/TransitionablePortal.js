@@ -64,23 +64,14 @@ export default class TransitionablePortal extends Component {
     },
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      portalOpen: props.open,
-    }
-  }
+  state = {}
 
   // ----------------------------------------
   // Lifecycle
   // ----------------------------------------
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps({ open }) {
-    debug('componentWillReceiveProps()', { open })
-
-    this.setState({ portalOpen: open })
+  static getDerivedStateFromProps(props) {
+    return { portalOpen: props.open }
   }
 
   // ----------------------------------------
