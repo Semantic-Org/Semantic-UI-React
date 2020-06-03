@@ -107,7 +107,7 @@ This is a listing of example projects and guides that will help you integrate Se
 
 <details>
   <summary><b>Can I use custom Icons?</b></summary>
-  Yes.  Just use <code>&lt;Icon className='my-icon' /&gt;</code> instead of `&lt;Icon name='my-icon' /&gt;`.  See https://github.com/Semantic-Org/Semantic-UI-React/issues/931#issuecomment-263643210 for detailed info and examples.
+  Yes.  Just use <code>&lt;Icon className='my-icon' /&gt;</code> instead of <code>&lt;Icon name='my-icon' /&gt;</code>.  See https://github.com/Semantic-Org/Semantic-UI-React/issues/931#issuecomment-263643210 for detailed info and examples.
 </details>
 
 <details>
