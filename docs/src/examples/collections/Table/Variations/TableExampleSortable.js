@@ -1,62 +1,51 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
-import { Table } from 'semantic-ui-react'
+import React, { useState } from "react";
+import { Header, Table } from "semantic-ui-react";
 
 const tableData = [
-  { name: 'John', age: 15, gender: 'Male' },
-  { name: 'Amber', age: 40, gender: 'Female' },
-  { name: 'Leslie', age: 25, gender: 'Other' },
-  { name: 'Ben', age: 70, gender: 'Male' },
-]
+  { name: "John", age: 15, gender: "Male" },
+  { name: "Amber", age: 40, gender: "Female" },
+  { name: "Leslie", age: 25, gender: "Other" },
+  { name: "Ben", age: 70, gender: "Male" },
+];
 
-export default class TableExampleSortable extends Component {
-  state = {
-    column: null,
-    data: tableData,
-    direction: null,
-  }
+function Table() {
+  const [column, updateColumn] = useState(null);
+  const [data, updateData] = useState(tableData);
+  const [direction, updateDirection] = useState(null);
 
-  handleSort = (clickedColumn) => () => {
-    const { column, data, direction } = this.state
-
+  const handleSort = (clickedColumn) => {
     if (column !== clickedColumn) {
-      this.setState({
-        column: clickedColumn,
-        data: _.sortBy(data, [clickedColumn]),
-        direction: 'ascending',
-      })
-
+      updateColumn(clickedColumn);
+      updateData(_.sortBy(data, [clickedColumn]));
+      updateDirection("ascending");
       return
     }
+    updateData(data.reverse())
+    updateDirection( direction === 'ascending' ? 'descending' : 'ascending')
+  };
 
-    this.setState({
-      data: data.reverse(),
-      direction: direction === 'ascending' ? 'descending' : 'ascending',
-    })
-  }
-
-  render() {
-    const { column, data, direction } = this.state
-
-    return (
+  return (
+    <div>
+      <Header as="h2">Recent files from file table</Header>
       <Table sortable celled fixed>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
-              sorted={column === 'name' ? direction : null}
-              onClick={this.handleSort('name')}
+              sorted={column === "name" ? direction : null}
+              onClick={ () => handleSort("name")}
             >
               Name
             </Table.HeaderCell>
             <Table.HeaderCell
-              sorted={column === 'age' ? direction : null}
-              onClick={this.handleSort('age')}
+              sorted={column === "age" ? direction : null}
+              onClick={() => handleSort("age")}
             >
               Age
             </Table.HeaderCell>
             <Table.HeaderCell
-              sorted={column === 'gender' ? direction : null}
-              onClick={this.handleSort('gender')}
+              sorted={column === "gender" ? direction : null}
+              onClick={() => handleSort("gender")}
             >
               Gender
             </Table.HeaderCell>
@@ -72,6 +61,8 @@ export default class TableExampleSortable extends Component {
           ))}
         </Table.Body>
       </Table>
-    )
-  }
+    </div>
+  );
 }
+
+export default Table;
