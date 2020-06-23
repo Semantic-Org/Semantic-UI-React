@@ -70,7 +70,17 @@ export default class TransitionablePortal extends Component {
   // Lifecycle
   // ----------------------------------------
 
-  static getDerivedStateFromProps(props) {
+  static getDerivedStateFromProps(props, state) {
+    // This is definitely a hack :(
+    //
+    // It's coupled with handlePortalClose() for force set the state of `portalOpen` omitting
+    // props.open. It's related to implementation of the component itself as `onClose()` will be
+    // called after a transition will end.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/2382
+    if (state.portalOpen === -1) {
+      return { portalOpen: false }
+    }
+
     if (_.isUndefined(props.open)) {
       return null
     }
@@ -85,7 +95,7 @@ export default class TransitionablePortal extends Component {
   handlePortalClose = () => {
     debug('handlePortalClose()')
 
-    this.setState({ portalOpen: false })
+    this.setState({ portalOpen: -1 })
   }
 
   handlePortalOpen = () => {
@@ -124,7 +134,7 @@ export default class TransitionablePortal extends Component {
 
   render() {
     debug('render()', this.state)
-
+    // console.log('render', this.state)
     const { children, transition } = this.props
     const { portalOpen, transitionVisible } = this.state
 
