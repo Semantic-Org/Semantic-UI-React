@@ -71,6 +71,10 @@ export default class TransitionablePortal extends Component {
   // ----------------------------------------
 
   static getDerivedStateFromProps(props) {
+    if (_.isUndefined(props.open)) {
+      return null
+    }
+
     return { portalOpen: props.open }
   }
 
