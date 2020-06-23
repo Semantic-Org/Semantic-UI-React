@@ -77,7 +77,7 @@ export default class VisibilityExampleUpdateOn extends Component {
               <Segment>
                 <Checkbox
                   checked={showWireframe}
-                  label='Show Wifeframe'
+                  label='Show Wireframe'
                   onChange={this.handleWireframe}
                   toggle
                 />
