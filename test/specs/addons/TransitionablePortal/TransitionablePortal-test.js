@@ -19,7 +19,7 @@ const requiredProps = {
   children: <div />,
 }
 
-describe.only('TransitionablePortal', () => {
+describe('TransitionablePortal', () => {
   beforeEach(() => {
     wrapper = undefined
     document.body.innerHTML = ''
