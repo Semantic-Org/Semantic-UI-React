@@ -203,6 +203,8 @@ export default class Search extends Component {
   static getAutoControlledStateFromProps(props, state) {
     debug('getAutoControlledStateFromProps()')
 
+    // We need to store a `prevValue` to compare as in `getDerivedStateFromProps` we don't have
+    // prevState
     if (typeof state.prevValue !== 'undefined' && shallowEqual(state.prevValue, state.value)) {
       return { prevValue: state.value }
     }
