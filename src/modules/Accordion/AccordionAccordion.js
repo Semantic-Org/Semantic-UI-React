@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
@@ -110,7 +110,7 @@ export default class AccordionAccordion extends Component {
   handleTitleClick = (e, titleProps) => {
     const { index } = titleProps
 
-    this.trySetState({ activeIndex: this.computeNewIndex(index) })
+    this.setState({ activeIndex: this.computeNewIndex(index) })
     _.invoke(this.props, 'onTitleClick', e, titleProps)
   }
 
