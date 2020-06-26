@@ -1,5 +1,5 @@
 import React from 'react'
-import { getChildMapping, mergeChildMappings } from 'src/lib'
+import { getChildMapping, mergeChildMappings } from 'src/modules/Transition/utils/childMapping'
 
 describe('childMapping', () => {
   describe('childMapping', () => {
