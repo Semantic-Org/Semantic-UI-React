@@ -187,22 +187,6 @@ export default class Visibility extends Component {
   // Lifecycle
   // ----------------------------------------
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps({ continuous, once, context, updateOn }) {
-    const cleanHappened =
-      continuous !== this.props.continuous ||
-      once !== this.props.once ||
-      updateOn !== this.props.updateOn
-
-    // Heads up! We should clean up array of happened callbacks, if values of these props are changed
-    if (cleanHappened) this.firedCallbacks = []
-
-    if (context !== this.props.context || updateOn !== this.props.updateOn) {
-      this.unattachHandlers(this.props.context)
-      this.attachHandlers(context, updateOn)
-    }
-  }
-
   componentDidMount() {
     this.mounted = true
 
@@ -213,6 +197,21 @@ export default class Visibility extends Component {
     this.attachHandlers(context, updateOn)
 
     if (fireOnMount) this.update()
+  }
+
+  componentDidUpdate(prevProps) {
+    const cleanHappened =
+      prevProps.continuous !== this.props.continuous ||
+      prevProps.once !== this.props.once ||
+      prevProps.updateOn !== this.props.updateOn
+
+    // Heads up! We should clean up array of happened callbacks, if values of these props are changed
+    if (cleanHappened) this.firedCallbacks = []
+
+    if (prevProps.context !== this.props.context || prevProps.updateOn !== this.props.updateOn) {
+      this.unattachHandlers(prevProps.context)
+      this.attachHandlers(this.props.context, this.props.updateOn)
+    }
   }
 
   componentWillUnmount() {
