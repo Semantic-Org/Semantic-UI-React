@@ -93,7 +93,7 @@ This is a listing of example projects and guides that will help you integrate Se
 <details>
   <summary>Show projects</summary>
 
-  ### [webpack][28]
+  ### [[Webpack](https://github.com/webpack/webpack)][28]
   See our webpack 3 example project [here][28] (includes theming).
    
   ### [SUIcrux][102]
