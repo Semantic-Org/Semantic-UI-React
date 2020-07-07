@@ -1213,8 +1213,13 @@ export default class Dropdown extends Component {
       _text = _.get(this.getItemByValue(value), 'text')
     }
 
+    const flag = _.get(this.getSelectedItem(), 'flag')
+    const img = _.get(this.getSelectedItem(), 'image')
+
     return (
       <div className={classes} role='alert' aria-live='polite' aria-atomic>
+        {img !== undefined && <img className='ui avatar image' src={img.src} />}
+        {flag !== undefined && <i className={`${flag } flag`} />}
         {_text}
       </div>
     )
