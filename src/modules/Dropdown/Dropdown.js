@@ -21,6 +21,8 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
+import Flag from '../../elements/Flag'
+import Image from '../../elements/Image'
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'
@@ -1198,6 +1200,10 @@ export default class Dropdown extends Component {
     const { searchQuery, value, open } = this.state
     const hasValue = this.hasValue()
 
+    const flag = _.get(this.getSelectedItem(), 'flag')
+    const img = _.get(this.getSelectedItem(), 'image')
+    const icon = _.get(this.getSelectedItem(), ['content', 'props', 'icon'])
+
     const classes = cx(
       placeholder && !hasValue && 'default',
       'text',
@@ -1213,13 +1219,12 @@ export default class Dropdown extends Component {
       _text = _.get(this.getItemByValue(value), 'text')
     }
 
-    const flag = _.get(this.getSelectedItem(), 'flag')
-    const img = _.get(this.getSelectedItem(), 'image')
-
     return (
       <div className={classes} role='alert' aria-live='polite' aria-atomic>
-        {img !== undefined && <img className='ui avatar image' src={img.src} />}
-        {flag !== undefined && <i className={`${flag } flag`} />}
+        {img !== undefined && hasValue && Image.create(img, { autoGenerateKey: false })}
+        {flag !== undefined && hasValue && Flag.create(flag, { autoGenerateKey: false })}
+        {icon !== undefined && hasValue && Icon.create(icon, { autoGenerateKey: false })}
+
         {_text}
       </div>
     )
