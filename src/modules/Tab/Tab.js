@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -84,7 +84,7 @@ class Tab extends Component {
 
   handleItemClick = (e, { index }) => {
     _.invoke(this.props, 'onTabChange', e, { ...this.props, activeIndex: index })
-    this.trySetState({ activeIndex: index })
+    this.setState({ activeIndex: index })
   }
 
   renderItems() {
