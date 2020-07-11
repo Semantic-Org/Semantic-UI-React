@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 
 import Portal from '../Portal'
 import Transition from '../../modules/Transition'
+import { TRANSITION_STATUS_ENTERING } from '../../modules/Transition/utils/computeStatuses'
 import { getUnhandledProps, makeDebugger } from '../../lib'
 
 const debug = makeDebugger('transitionable_portal')
@@ -117,7 +118,7 @@ export default class TransitionablePortal extends Component {
     debug('handleTransitionStart()')
     const { portalOpen } = this.state
     const { status } = data
-    const transitionVisible = status === Transition.ENTERING
+    const transitionVisible = status === TRANSITION_STATUS_ENTERING
 
     _.invoke(this.props, 'onStart', null, { ...data, portalOpen, transitionVisible })
 
@@ -134,7 +135,7 @@ export default class TransitionablePortal extends Component {
 
   render() {
     debug('render()', this.state)
-    // console.log('render', this.state)
+
     const { children, transition } = this.props
     const { portalOpen, transitionVisible } = this.state
 
