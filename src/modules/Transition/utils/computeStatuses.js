@@ -50,13 +50,10 @@ export function computeStatuses(options) {
     }
 
     if (status === TRANSITION_STATUS_ENTERING) {
-      return {
-        animating: false,
-        status: TRANSITION_STATUS_ENTERED,
-        nextStatus: undefined,
-      }
+      return {}
     }
 
+    /* istanbul ignore else */
     if (status === TRANSITION_STATUS_ENTERED) {
       return {
         animating: false,
@@ -64,8 +61,6 @@ export function computeStatuses(options) {
         nextStatus: undefined,
       }
     }
-
-    return {}
   }
 
   if (status === TRANSITION_STATUS_INITIAL) {
@@ -93,11 +88,7 @@ export function computeStatuses(options) {
   }
 
   if (status === TRANSITION_STATUS_EXITING) {
-    return {
-      animating: false,
-      status: unmountOnHide ? TRANSITION_STATUS_UNMOUNTED : TRANSITION_STATUS_EXITED,
-      nextStatus: undefined,
-    }
+    return {}
   }
 
   if (status === TRANSITION_STATUS_EXITED) {
@@ -108,6 +99,7 @@ export function computeStatuses(options) {
     }
   }
 
+  /* istanbul ignore else */
   if (status === TRANSITION_STATUS_UNMOUNTED) {
     return {
       animating: false,
@@ -116,6 +108,7 @@ export function computeStatuses(options) {
     }
   }
 
+  /* istanbul ignore next */
   throw new Error(
     `Transition:computeStatuses(): an unexpected status transition: { visible: ${visible}, status: ${status} }`,
   )

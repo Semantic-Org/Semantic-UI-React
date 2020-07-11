@@ -465,6 +465,29 @@ describe('Transition', () => {
         done()
       }, 200)
     })
+
+    it('will be called once even during rerender', (done) => {
+      const onStart = sandbox.spy()
+
+      wrapperMount(
+        <Transition duration={200} onStart={onStart}>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setProps({ visible: false })
+
+      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
+
+      wrapper.setProps({})
+
+      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
+
+      onStart.should.have.been.calledOnce()
+      done()
+    })
   })
 
   describe('onShow', () => {
@@ -530,6 +553,27 @@ describe('Transition', () => {
           <p />
         </Transition>,
       )
+    })
+
+    it('will be called once even during rerender', (done) => {
+      const onStart = sandbox.spy()
+
+      wrapperMount(
+        <Transition duration={200} onStart={onStart} transitionOnMount>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
+
+      wrapper.setProps({})
+
+      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
+
+      onStart.should.have.been.calledOnce()
+      done()
     })
   })
 
