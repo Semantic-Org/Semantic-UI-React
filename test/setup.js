@@ -66,7 +66,7 @@ beforeEach(() => {
   console.log = throwOnConsole('log')
   console.info = throwOnConsole('info')
   console.warn = throwOnConsole('warn')
-  console.error = throwOnConsole('error')
+  // console.error = throwOnConsole('error')
 })
 afterEach(() => {
   console.log = log
