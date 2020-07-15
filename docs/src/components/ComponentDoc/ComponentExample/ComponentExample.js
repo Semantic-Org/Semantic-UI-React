@@ -169,7 +169,7 @@ class ComponentExample extends Component {
     } = this.state
 
     return (
-      <InView onChange={(inView) => this.handleVisibility(inView)}>
+      <InView onChange={this.handleVisibility}>
         <div id={anchorName} style={{ marginTop: '1rem' }}>
           <Grid className={cx('docs-example', showCode && 'active')} padded='vertically'>
             <Grid.Row columns='equal'>
