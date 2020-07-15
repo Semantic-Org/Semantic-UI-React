@@ -165,7 +165,6 @@
     "react-static-routes": "^1.0.0",
     "react-test-renderer": "^16.9.0",
     "react-universal-component": "^3.0.3",
-    "react-visibility-sensor": "^5.0.2",
     "rimraf": "^2.6.3",
     "satisfied": "^1.1.2",
     "semantic-ui-css": "^2.4.1",
