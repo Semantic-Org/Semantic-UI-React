@@ -10,6 +10,8 @@ const typeOf = (...args) => Object.prototype.toString.call(...args)
 export const domNode = (props, propName) => {
   // skip if prop is undefined
   if (props[propName] === undefined) return
+  // short circle for SSR env
+  if (typeof Element === 'undefined') return
   // skip if prop is valid
   if (props[propName] instanceof Element) return
 

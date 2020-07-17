@@ -3,7 +3,8 @@ import cx from 'classnames'
 import copyToClipboard from 'copy-to-clipboard'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import VisibilitySensor from 'react-visibility-sensor'
+import { InView } from 'react-intersection-observer'
+
 import { Checkbox, Grid, Label } from 'semantic-ui-react'
 
 import { examplePathToHash, scrollToAnchor } from 'docs/src/utils'
@@ -168,11 +169,7 @@ class ComponentExample extends Component {
     } = this.state
 
     return (
-      <VisibilitySensor
-        delayedCall={!wasEverVisible}
-        partialVisibility
-        onChange={this.handleVisibility}
-      >
+      <InView onChange={this.handleVisibility}>
         <div id={anchorName} style={{ marginTop: '1rem' }}>
           <Grid className={cx('docs-example', showCode && 'active')} padded='vertically'>
             <Grid.Row columns='equal'>
@@ -224,7 +221,7 @@ class ComponentExample extends Component {
             {isActiveHash && <CarbonAdNative inverted={showCode} />}
           </Grid>
         </div>
-      </VisibilitySensor>
+      </InView>
     )
   }
 }

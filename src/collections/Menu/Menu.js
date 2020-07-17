@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
   createShorthandFactory,
@@ -117,7 +117,7 @@ class Menu extends Component {
     onClick: (e, itemProps) => {
       const { index } = itemProps
 
-      this.trySetState({ activeIndex: index })
+      this.setState({ activeIndex: index })
 
       _.invoke(predefinedProps, 'onClick', e, itemProps)
       _.invoke(this.props, 'onItemClick', e, itemProps)
