@@ -32,7 +32,11 @@ textarea::placeholder {
 
     > span {
       &.error {
-        color: @white;
+        color: @pink;
+        margin-bottom: @emSize / 2;
+        font-size: @emSize;
+        font-weight: @bold;
+        display: block;
       }
     }
 
@@ -150,12 +154,4 @@ textarea::placeholder {
   .right {
     right: 0px;
   }
-}
-
-.field > span.error {
-  color: @pink;
-  margin-bottom: @emSize / 2;
-  font-size: @emSize;
-  font-weight: @bold;
-  display: block;
 }
