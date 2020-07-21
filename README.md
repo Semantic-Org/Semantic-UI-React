@@ -29,13 +29,6 @@
   </a>
 </p>
 
->Hey, we're in development. Prior to reaching [v1.0.0][6]:
->
->1. **MINOR** versions represent **breaking changes**
->1. **PATCH** versions represent **fixes _and_ features**
->1. There are **no deprecation warnings** between releases
->1. You should consult the [**CHANGELOG**][18] and related issues/PRs for more information
-
 ## Installation & Usage
 
 See the [**Documentation**][2] for an introduction, usage information, and examples.
