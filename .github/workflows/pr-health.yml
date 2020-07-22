@@ -1,0 +1,14 @@
+name: PR Health
+on:
+  pull_request:
+    types: [opened, labeled, unlabeled, synchronize]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mheap/github-action-required-labels@v1
+        with:
+          mode: exactly
+          count: 1
+          labels: "PR: Breaking Change :boom:, PR: New Feature :rocket:, PR: Bug Fix :bug:, PR: Docs :memo:, PR: Internal :house:"
