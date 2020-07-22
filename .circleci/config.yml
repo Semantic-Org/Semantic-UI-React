@@ -5,9 +5,6 @@ general:
     ignore:
       - gh-pages
 
-orbs:
-  codecov: codecov/codecov@1.1.1
-
 docker_defaults: &docker_defaults
   docker:
     - image: circleci/node:12-browsers
@@ -57,8 +54,9 @@ jobs:
       - run:
           name: Test JavaScript
           command: yarn test
-      - codecov/upload:
-          file:
+      - run:
+          name: Report coverage
+          command: bash <(curl -s https://codecov.io/bash)
       - run:
           name: Test TypeScript
           command: yarn tsd:test
