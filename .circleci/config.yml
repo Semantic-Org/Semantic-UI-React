@@ -76,3 +76,15 @@ jobs:
       - run:
           name: Lint JavaScript
           command: yarn lint
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - bootstrap
+      - test:
+          requires:
+            - bootstrap
+      - lint:
+          requires:
+            - bootstrap
