@@ -43,7 +43,7 @@ jobs:
       - persist_to_workspace:
           root: ~/project
           paths:
-            - yarn
+            - semantic-ui-react
 
   test:
     <<: *docker_defaults
