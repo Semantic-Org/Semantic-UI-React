@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 
 import Portal from '../Portal'
 import Transition from '../../modules/Transition'
+import { TRANSITION_STATUS_ENTERING } from '../../modules/Transition/utils/computeStatuses'
 import { getUnhandledProps, makeDebugger } from '../../lib'
 
 const debug = makeDebugger('transitionable_portal')
@@ -64,23 +65,28 @@ export default class TransitionablePortal extends Component {
     },
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      portalOpen: props.open,
-    }
-  }
+  state = {}
 
   // ----------------------------------------
   // Lifecycle
   // ----------------------------------------
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps({ open }) {
-    debug('componentWillReceiveProps()', { open })
+  static getDerivedStateFromProps(props, state) {
+    // This is definitely a hack :(
+    //
+    // It's coupled with handlePortalClose() for force set the state of `portalOpen` omitting
+    // props.open. It's related to implementation of the component itself as `onClose()` will be
+    // called after a transition will end.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/2382
+    if (state.portalOpen === -1) {
+      return { portalOpen: false }
+    }
 
-    this.setState({ portalOpen: open })
+    if (_.isUndefined(props.open)) {
+      return null
+    }
+
+    return { portalOpen: props.open }
   }
 
   // ----------------------------------------
@@ -90,7 +96,7 @@ export default class TransitionablePortal extends Component {
   handlePortalClose = () => {
     debug('handlePortalClose()')
 
-    this.setState({ portalOpen: false })
+    this.setState({ portalOpen: -1 })
   }
 
   handlePortalOpen = () => {
@@ -112,7 +118,7 @@ export default class TransitionablePortal extends Component {
     debug('handleTransitionStart()')
     const { portalOpen } = this.state
     const { status } = data
-    const transitionVisible = status === Transition.ENTERING
+    const transitionVisible = status === TRANSITION_STATUS_ENTERING
 
     _.invoke(this.props, 'onStart', null, { ...data, portalOpen, transitionVisible })
 

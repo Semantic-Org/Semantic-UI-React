@@ -627,23 +627,23 @@ describe('Dropdown', () => {
     it('will call setSelectedIndex if options change', () => {
       wrapperMount(<Dropdown options={options} />)
 
-      const instance = wrapper.instance()
-      sandbox.spy(instance, 'setSelectedIndex')
+      wrapper.simulate('click')
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      wrapper.should.have.state('selectedIndex', 1)
 
       wrapper.setProps({ options: [] })
-
-      instance.setSelectedIndex.should.have.been.calledOnce()
+      wrapper.should.have.not.state('selectedIndex')
     })
 
     it('will not call setSelectedIndex if options have not changed', () => {
       wrapperMount(<Dropdown options={options} />)
 
-      const instance = wrapper.instance()
-      sandbox.spy(instance, 'setSelectedIndex')
+      wrapper.simulate('click')
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      wrapper.should.have.state('selectedIndex', 1)
 
       wrapper.setProps({ options })
-
-      instance.setSelectedIndex.should.not.have.been.calledOnce()
+      wrapper.should.have.state('selectedIndex', 1)
     })
   })
 
@@ -750,7 +750,7 @@ describe('Dropdown', () => {
       const randomIndex = 1 + _.random(options.length - 2)
       const value = options[randomIndex].value
 
-      wrapperShallow(<Dropdown options={[]} selection value={value} />)
+      wrapperMount(<Dropdown options={[]} selection value={value} />)
 
       wrapper.setProps({ options, value })
 
