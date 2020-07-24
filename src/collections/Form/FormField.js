@@ -75,7 +75,6 @@ function FormField(props) {
   // No Control
   // ----------------------------------------
 
-  const noControlProps = { ...rest, id }
   if (_.isNil(control)) {
     if (_.isNil(label)) {
       return (
