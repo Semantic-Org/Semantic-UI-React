@@ -85,7 +85,7 @@ function FormField(props) {
     }
 
     return (
-      <ElementType {...noControlProps} className={classes}>
+      <ElementType {...rest} className={classes} id={id}>
         {errorLabelBefore}
         {createHTMLLabel(label, { autoGenerateKey: false })}
         {errorLabelAfter}
