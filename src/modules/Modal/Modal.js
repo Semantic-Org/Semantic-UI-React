@@ -6,7 +6,7 @@ import React, { createRef, Fragment, isValidElement } from 'react'
 import shallowEqual from 'shallowequal'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
@@ -179,7 +179,7 @@ class Modal extends Component {
     debug('close()')
 
     _.invoke(this.props, 'onClose', e, this.props)
-    this.trySetState({ open: false })
+    this.setState({ open: false })
   }
 
   handleDocumentMouseDown = (e) => {
@@ -200,7 +200,7 @@ class Modal extends Component {
       return
 
     _.invoke(this.props, 'onClose', e, this.props)
-    this.trySetState({ open: false })
+    this.setState({ open: false })
   }
 
   handleIconOverrides = (predefinedProps) => ({
@@ -214,7 +214,7 @@ class Modal extends Component {
     debug('open()')
 
     _.invoke(this.props, 'onOpen', e, this.props)
-    this.trySetState({ open: true })
+    this.setState({ open: true })
   }
 
   handlePortalMount = (e) => {
