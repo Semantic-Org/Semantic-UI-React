@@ -6,7 +6,7 @@ import React from 'react'
 import shallowEqual from 'shallowequal'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   customPropTypes,
   eventStack,
   getElementType,
@@ -86,6 +86,15 @@ export default class Search extends Component {
     // ------------------------------------
     // Rendering
     // ------------------------------------
+
+    /**
+     * Renders the SearchCategory layout.
+     *
+     * @param {object} categoryContent - The Renderable SearchCategory contents.
+     * @param {object} resultsContent - The Renderable SearchResult contents.
+     * @returns {*} - Renderable SearchCategory layout.
+     */
+    categoryLayoutRenderer: PropTypes.func,
 
     /**
      * Renders the SearchCategory contents.
@@ -195,25 +204,19 @@ export default class Search extends Component {
   static Result = SearchResult
   static Results = SearchResults
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillMount() {
-    debug('componentWillMount()')
-    const { open, value } = this.state
+  static getAutoControlledStateFromProps(props, state) {
+    debug('getAutoControlledStateFromProps()')
 
-    this.setValue(value)
-    if (open) this.open()
-  }
-
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    super.UNSAFE_componentWillReceiveProps(nextProps)
-    debug('componentWillReceiveProps()')
-    debug('changed props:', objectDiff(nextProps, this.props))
-
-    if (!shallowEqual(nextProps.value, this.props.value)) {
-      debug('value changed, setting', nextProps.value)
-      this.setValue(nextProps.value)
+    // We need to store a `prevValue` to compare as in `getDerivedStateFromProps` we don't have
+    // prevState
+    if (typeof state.prevValue !== 'undefined' && shallowEqual(state.prevValue, state.value)) {
+      return { prevValue: state.value }
     }
+
+    const selectedIndex = props.selectFirstResult ? 0 : -1
+    debug('value changed, setting selectedIndex', selectedIndex)
+
+    return { prevValue: state.value, selectedIndex }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -454,7 +457,7 @@ export default class Search extends Component {
 
     const { selectFirstResult } = this.props
 
-    this.trySetState({ value, selectedIndex: selectFirstResult ? 0 : -1 })
+    this.setState({ value, selectedIndex: selectFirstResult ? 0 : -1 })
   }
 
   moveSelectionBy = (e, offset) => {
@@ -511,12 +514,12 @@ export default class Search extends Component {
 
   open = () => {
     debug('open()')
-    this.trySetState({ open: true })
+    this.setState({ open: true })
   }
 
   close = () => {
     debug('close()')
-    this.trySetState({ open: false })
+    this.setState({ open: false })
   }
 
   // ----------------------------------------
@@ -564,7 +567,7 @@ export default class Search extends Component {
 
     return (
       <SearchResult
-        key={childKey || result.title}
+        key={childKey || result.id || result.title}
         active={selectedIndex === offsetIndex}
         onClick={this.handleItemClick}
         onMouseDown={this.handleItemMouseDown}
@@ -582,7 +585,7 @@ export default class Search extends Component {
   }
 
   renderCategories = () => {
-    const { categoryRenderer, results: categories } = this.props
+    const { categoryLayoutRenderer, categoryRenderer, results: categories } = this.props
     const { selectedIndex } = this.state
 
     let count = 0
@@ -591,6 +594,7 @@ export default class Search extends Component {
       const categoryProps = {
         key: childKey || category.name,
         active: _.inRange(selectedIndex, count, count + category.results.length),
+        layoutRenderer: categoryLayoutRenderer,
         renderer: categoryRenderer,
         ...category,
       }

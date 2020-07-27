@@ -30,7 +30,7 @@ const TabUsageExamples = () => (
       title='Pane Shorthands'
       description={
         <span>
-          You can use an item shorthands when you're using{' '}
+          You can use item shorthands when you're using{' '}
           <code>renderActiveOnly={'{false}'}</code>.
         </span>
       }

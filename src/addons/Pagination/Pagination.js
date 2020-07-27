@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   createPaginationItems,
   customPropTypes,
   getUnhandledProps,
@@ -98,7 +98,7 @@ export default class Pagination extends Component {
     // Heads up! We need the cast to the "number" type there, as `activePage` can be a string
     if (+prevActivePage === +nextActivePage) return
 
-    this.trySetState({ activePage: nextActivePage })
+    this.setState({ activePage: nextActivePage })
     _.invoke(this.props, 'onPageChange', e, { ...this.props, activePage: nextActivePage })
   }
 

@@ -88,6 +88,7 @@ export default class Sticky extends Component {
   }
 
   state = {
+    active: true,
     sticky: false,
   }
 
@@ -96,43 +97,47 @@ export default class Sticky extends Component {
 
   componentDidMount() {
     if (!isBrowser()) return
-    const { active } = this.props
+    const { active } = this.state
 
     if (active) {
       this.handleUpdate()
-      this.addListeners(this.props)
+      this.addListeners(this.props.scrollContext)
     }
   }
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const { active: current, scrollContext: currentScrollContext } = this.props
-    const { active: next, scrollContext: nextScrollContext } = nextProps
+  static getDerivedStateFromProps(props, state) {
+    if (state.active !== props.active && !props.active) {
+      return { active: props.active, sticky: false }
+    }
 
-    if (current === next) {
-      if (currentScrollContext !== nextScrollContext) {
-        this.removeListeners()
-        this.addListeners(nextProps)
+    return { active: props.active }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.active === this.state.active) {
+      if (prevProps.scrollContext !== this.props.scrollContext) {
+        this.removeListeners(prevProps.scrollContext)
+        this.addListeners(this.props.scrollContext)
       }
+
       return
     }
 
-    if (next) {
+    if (this.state.active) {
       this.handleUpdate()
-      this.addListeners(nextProps)
+      this.addListeners(this.props.scrollContext)
       return
     }
 
-    this.removeListeners()
-    this.setState({ sticky: false })
+    this.removeListeners(prevProps.scrollContext)
   }
 
   componentWillUnmount() {
     if (!isBrowser()) return
-    const { active } = this.props
+    const { active } = this.state
 
     if (active) {
-      this.removeListeners()
+      this.removeListeners(this.props.scrollContext)
       cancelAnimationFrame(this.frameId)
     }
   }
@@ -141,8 +146,7 @@ export default class Sticky extends Component {
   // Events
   // ----------------------------------------
 
-  addListeners = (props) => {
-    const { scrollContext } = props
+  addListeners = (scrollContext) => {
     const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
 
     if (scrollContextNode) {
@@ -151,8 +155,7 @@ export default class Sticky extends Component {
     }
   }
 
-  removeListeners = () => {
-    const { scrollContext } = this.props
+  removeListeners = (scrollContext) => {
     const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
 
     if (scrollContextNode) {

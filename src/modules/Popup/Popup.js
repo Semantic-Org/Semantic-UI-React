@@ -341,7 +341,9 @@ export default class Popup extends Component {
     } = this.props
     const { closed, portalRestProps } = this.state
 
-    if (closed || disabled) return trigger
+    if (closed || disabled) {
+      return trigger
+    }
 
     const modifiers = _.merge(
       {

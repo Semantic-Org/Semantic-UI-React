@@ -38,7 +38,7 @@ export {
   StrictResponsiveProps,
 } from './dist/commonjs/addons/Responsive'
 export { default as Select, SelectProps } from './dist/commonjs/addons/Select'
-export { default as TextArea, TextAreaProps } from './dist/commonjs/addons/TextArea'
+export { default as TextArea, TextAreaProps, StrictTextAreaProps } from './dist/commonjs/addons/TextArea'
 export {
   default as TransitionablePortal,
   TransitionablePortalProps,

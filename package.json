@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "0.88.1",
+  "version": "1.0.0",
   "description": "The official Semantic-UI-React integration.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
@@ -28,7 +28,6 @@
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --list-different \"**/*.{js,jsx,ts,tsx}\"",
     "prettier:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
-    "postcommit": "git update-index --again",
     "prerelease": "yarn lint && yarn tsd:lint && yarn tsd:test && yarn test && cross-env NODE_ENV=production yarn build",
     "postrelease": "yarn deploy:docs",
     "release:major": "yarn prerelease && ta-script npm/release major && yarn postrelease",
@@ -47,7 +46,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "post-commit": "git update-index --again"
     }
   },
   "lint-staged": {
@@ -157,6 +157,7 @@
     "react-docgen": "^4.1.0",
     "react-dom": "^16.9.0",
     "react-hot-loader": "^4.12.11",
+    "react-intersection-observer": "^8.26.2",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-source-render": "^3.0.0-5",
@@ -164,7 +165,6 @@
     "react-static-routes": "^1.0.0",
     "react-test-renderer": "^16.9.0",
     "react-universal-component": "^3.0.3",
-    "react-visibility-sensor": "^5.0.2",
     "rimraf": "^2.6.3",
     "satisfied": "^1.1.2",
     "semantic-ui-css": "^2.4.1",

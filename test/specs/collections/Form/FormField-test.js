@@ -41,25 +41,45 @@ describe('FormField', () => {
       autoGenerateKey: false,
       propKey: 'error',
       requiredProps: { label: faker.lorem.word() },
-      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+      shorthandDefaultProps: {
+        prompt: true,
+        pointing: 'above',
+        role: 'alert',
+        'aria-atomic': true,
+      },
     })
     common.implementsLabelProp(FormField, {
       autoGenerateKey: false,
       propKey: 'error',
       requiredProps: { control: 'radio' },
-      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+      shorthandDefaultProps: {
+        prompt: true,
+        pointing: 'above',
+        role: 'alert',
+        'aria-atomic': true,
+      },
     })
     common.implementsLabelProp(FormField, {
       autoGenerateKey: false,
       propKey: 'error',
       requiredProps: { control: Checkbox },
-      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+      shorthandDefaultProps: {
+        prompt: true,
+        pointing: 'above',
+        role: 'alert',
+        'aria-atomic': true,
+      },
     })
     common.implementsLabelProp(FormField, {
       autoGenerateKey: false,
       propKey: 'error',
       requiredProps: { control: 'input' },
-      shorthandDefaultProps: { prompt: true, pointing: 'above' },
+      shorthandDefaultProps: {
+        prompt: true,
+        pointing: 'above',
+        role: 'alert',
+        'aria-atomic': true,
+      },
     })
 
     it('positioned in DOM according to passed "pointing" prop', () => {
@@ -176,6 +196,23 @@ describe('FormField', () => {
 
       wrapper.should.have.exactly(1).descendants('Button')
       button.should.have.prop('content', 'Click Me')
+    })
+  })
+
+  describe('id', () => {
+    it('is set when content is provided', () => {
+      const wrapper = mount(<FormField content='content' id='testId' />)
+      const fieldId = wrapper.getDOMNode().getAttribute('id')
+      expect(fieldId).to.equal('testId')
+    })
+    it('is set when have child elements', () => {
+      const wrapper = mount(
+        <FormField id='testId'>
+          <input />
+        </FormField>,
+      )
+      const fieldId = wrapper.getDOMNode().getAttribute('id')
+      expect(fieldId).to.equal('testId')
     })
   })
 })

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import React, { createRef } from 'react'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   createHTMLLabel,
   customPropTypes,
   getElementType,
@@ -195,7 +195,7 @@ export default class Checkbox extends Component {
       checked: !checked,
       indeterminate: false,
     })
-    this.trySetState({ checked: !checked, indeterminate: false })
+    this.setState({ checked: !checked, indeterminate: false })
   }
 
   handleMouseDown = (e) => {
