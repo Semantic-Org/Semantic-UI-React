@@ -27,7 +27,7 @@ import SearchResults from './SearchResults'
 
 const debug = makeDebugger('search')
 
-const overrideSearchInputProps = (predefinedProps) => ({
+const overrideSearchInputProps = (predefinedProps) => {
   const { input } = predefinedProps
 
   if (_.isUndefined(input)) {
