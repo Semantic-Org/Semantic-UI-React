@@ -132,6 +132,8 @@ export const names = [
   'algeria',
   'ec',
   'ecuador',
+  'england',
+  'gb eng',
   'ee',
   'estonia',
   'eg',
