@@ -37,7 +37,7 @@ const overrideSearchInputProps = (predefinedProps) => {
     return { ...predefinedProps, input: { ...input, className: cx(input.className, 'prompt') } }
   }
 
-  return input
+  return predefinedProps
 }
 
 /**
