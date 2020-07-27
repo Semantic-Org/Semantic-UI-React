@@ -3,7 +3,7 @@ import { handleRef, Ref } from '@stardust-ui/react-component-ref'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { cloneElement, createRef, Fragment } from 'react'
+import React from 'react'
 
 import {
   ModernAutoControlledComponent as Component,
@@ -11,6 +11,7 @@ import {
   doesNodeContainClick,
   makeDebugger,
 } from '../../lib'
+import validateTrigger from './utils/validateTrigger'
 import PortalInner from './PortalInner'
 
 const debug = makeDebugger('portal')
@@ -126,8 +127,8 @@ class Portal extends Component {
 
   static Inner = PortalInner
 
-  contentRef = createRef()
-  triggerRef = createRef()
+  contentRef = React.createRef()
+  triggerRef = React.createRef()
   latestDocumentMouseDownEvent = null
 
   componentWillUnmount() {
@@ -335,10 +336,15 @@ class Portal extends Component {
     const { children, eventPool, mountNode, trigger } = this.props
     const { open } = this.state
 
+    /* istanbul ignore else */
+    if (process.env.NODE_ENV !== 'production') {
+      validateTrigger(trigger)
+    }
+
     return (
-      <Fragment>
+      <>
         {open && (
-          <Fragment>
+          <>
             <PortalInner
               innerRef={this.contentRef}
               mountNode={mountNode}
@@ -363,11 +369,11 @@ class Portal extends Component {
             <EventStack name='mousedown' on={this.handleDocumentMouseDown} pool={eventPool} />
             <EventStack name='click' on={this.handleDocumentClick} pool={eventPool} />
             <EventStack name='keydown' on={this.handleEscape} pool={eventPool} />
-          </Fragment>
+          </>
         )}
         {trigger && (
           <Ref innerRef={this.handleTriggerRef}>
-            {cloneElement(trigger, {
+            {React.cloneElement(trigger, {
               onBlur: this.handleTriggerBlur,
               onClick: this.handleTriggerClick,
               onFocus: this.handleTriggerFocus,
@@ -376,7 +382,7 @@ class Portal extends Component {
             })}
           </Ref>
         )}
-      </Fragment>
+      </>
     )
   }
 }
