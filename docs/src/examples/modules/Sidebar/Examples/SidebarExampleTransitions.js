@@ -208,7 +208,7 @@ function SidebarExampleTransitions() {
           </Segment>
         </Sidebar.Pusher>
       </Sidebar.Pushable>
-    </>
+    </div>
   )
 }
 
