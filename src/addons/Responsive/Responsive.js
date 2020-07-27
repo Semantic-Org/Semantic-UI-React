@@ -105,7 +105,7 @@ Responsive.defaultProps = {
   getWidth: () => (isBrowser() ? window.innerWidth : 0),
 }
 
-Responsive.nlyMobile = { minWidth: 320, maxWidth: 767 }
+Responsive.onlyMobile = { minWidth: 320, maxWidth: 767 }
 Responsive.onlyTablet = { minWidth: 768, maxWidth: 991 }
 Responsive.onlyComputer = { minWidth: 992 }
 Responsive.onlyLargeScreen = { minWidth: 1200, maxWidth: 1919 }
