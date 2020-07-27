@@ -543,6 +543,7 @@ export default class Search extends Component {
       autoGenerateKey: false,
       defaultProps: {
         ...rest,
+        autoComplete: 'off'
         icon,
         onChange: this.handleSearchChange,
         onClick: this.handleInputClick,
