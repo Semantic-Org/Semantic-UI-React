@@ -85,13 +85,7 @@ This is a listing of example projects and guides that will help you integrate Se
 
 <details>
   <summary>Show projects</summary>
-
-  ### [webpack][28]
-  See our webpack 3 example project [here][28] (includes theming).
-   
-  ### [SUIcrux][102]
-  Advanced universal starter with Semantic-UI-React. React/Redux/Lazy-loading/SSR/PWA.
-  
+ 
   ### [semantic-ui-react-todos][100]
   Semantic UI React implementation of [react-redux Todo List][101].
 </details>
@@ -106,7 +100,8 @@ This is a listing of example projects and guides that will help you integrate Se
 <details>
   <summary><b>How do I setup CSS?</b></summary>
 
-  There are several options.  Refer to our doc on [CSS Usage][23].
+There are several options. Refer to our doc on [CSS Usage][23].
+
 </details>
 
 <details>
@@ -126,7 +121,7 @@ Here are some helpful links:
 
 ### [Voice Your Opinion][19]
 
-Help shape this library by weighing in on our [RFC (request for comments)][19] issues. 
+Help shape this library by weighing in on our [RFC (request for comments)][19] issues.
 
 ### [Contribute][1]
 
@@ -134,11 +129,11 @@ Our [CONTRIBUTING.md][1] is a step-by-step setup and development guide.
 
 ### [Good First Issue][21]
 
-Issues labeled [`good first issue`][21] are a great way to ease into development on this project. 
+Issues labeled [`good first issue`][21] are a great way to ease into development on this project.
 
 ### [Missing Components][17]
 
-We're seeking component parity with Semantic UI, plus some addons.  There is an issue for every missing component, labeled [`new component`][17].  Just comment on the issue you'd like to take.
+We're seeking component parity with Semantic UI, plus some addons. There is an issue for every missing component, labeled [`new component`][17]. Just comment on the issue you'd like to take.
 
 ### [Help Wanted Label][4]
 
@@ -186,12 +181,11 @@ Made possible only by [@jlukic][32] authoring [Semantic UI][5].
 [25]: http://learnsemantic.com/themes/creating.html
 [26]: https://github.com/levithomason
 [27]: https://github.com/layershifter
-[28]: https://github.com/webpack/webpack/tree/master/examples
 [30]: https://github.com/Semantic-Org/Semantic-UI-Meteor
 [31]: https://github.com/Netflix/flamescope
 [32]: https://github.com/jlukic
 
 <!-- Examples -->
+
 [100]: https://github.com/wyc/semantic-ui-react-todos
 [101]: https://github.com/reactjs/redux/tree/master/examples/todos
-[102]: https://github.com/Metnew/react-semantic.ui-starter
