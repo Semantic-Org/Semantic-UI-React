@@ -31,7 +31,7 @@ const overrideSearchInputProps = (predefinedProps) => {
   const { input } = predefinedProps
 
   if (_.isUndefined(input)) {
-    return { className: 'prompt' }
+    return { predefinedProps: input: { className: 'prompt' } }
   }
   if (_.isPlainObject(input)) {
     return { ...input, className: cx(input.className, 'prompt') }
