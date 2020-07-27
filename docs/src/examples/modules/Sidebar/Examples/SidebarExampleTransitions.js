@@ -90,7 +90,7 @@ function SidebarExampleTransitions() {
   const vertical = direction === 'bottom' || direction === 'top'
 
   return (
-    <>
+    <div>
       <Checkbox
         checked={dimmed}
         label='Dim Page'
