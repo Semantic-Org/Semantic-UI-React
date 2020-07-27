@@ -776,11 +776,12 @@ describe('Search', () => {
 
   describe('input', () => {
     it(`merges nested shorthand props for the <input>`, () => {
-      wrapperMount(<Search input={{ input: { tabIndex: '-1' } }} />)
-      const inputElement = wrapper.find('input')
+      wrapperMount(<Search input={{ input: { className: 'foo', tabIndex: '-1' } }} />)
+      const input = wrapper.find('input')
 
-      inputElement.should.have.prop('tabIndex', '-1')
-      inputElement.should.have.className('prompt')
+      input.should.have.prop('tabIndex', '-1')
+      input.should.have.className('foo')
+      input.should.have.className('prompt')
     })
   })
 
