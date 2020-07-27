@@ -27,6 +27,19 @@ import SearchResults from './SearchResults'
 
 const debug = makeDebugger('search')
 
+const overrideSearchInputProps = (predefinedProps) => {
+  const { input } = predefinedProps
+
+  if (_.isUndefined(input)) {
+    return { ...predefinedProps, input: { className: 'prompt' } }
+  }
+  if (_.isPlainObject(input)) {
+    return { ...predefinedProps, input: { ...input, className: cx(input.className, 'prompt') } }
+  }
+
+  return predefinedProps
+}
+
 /**
  * A search module allows a user to query for results from a selection of data
  */
@@ -530,12 +543,15 @@ export default class Search extends Component {
       autoGenerateKey: false,
       defaultProps: {
         ...rest,
+        autoComplete: 'off',
         icon,
-        input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
         onChange: this.handleSearchChange,
         onClick: this.handleInputClick,
+        tabIndex: '0',
         value,
       },
+      // Nested shorthand props need special treatment to survive the shallow merge
+      overrideProps: overrideSearchInputProps,
     })
   }
 

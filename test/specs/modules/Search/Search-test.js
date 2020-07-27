@@ -774,6 +774,25 @@ describe('Search', () => {
     })
   })
 
+  describe('input', () => {
+    it(`merges nested shorthand props for the <input>`, () => {
+      wrapperMount(<Search input={{ input: { className: 'foo', tabIndex: '-1' } }} />)
+      const input = wrapper.find('input')
+
+      input.should.have.prop('tabIndex', '-1')
+      input.should.have.className('foo')
+      input.should.have.className('prompt')
+    })
+
+    it(`will not merge for a function`, () => {
+      wrapperMount(<Search input={{ input: (Component, props) => <Component {...props} /> }} />)
+      const input = wrapper.find('input')
+
+      input.should.have.prop('autoComplete', 'off')
+      input.should.have.not.className('prompt')
+    })
+  })
+
   describe('input props', () => {
     // Search handles some of html props
     const props = _.without(htmlInputAttrs, 'defaultValue', 'type')
