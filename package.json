@@ -21,7 +21,7 @@
     "build:dist": "gulp build:dist",
     "prebuild:size": "gulp build:dist:es",
     "build:size": "node bundle-size/bundle.js",
-    "ci": "yarn tsd:lint && yarn tsd:test && yarn lint && yarn test",
+    "ci": "yarn tsd:test && yarn lint && yarn test",
     "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs && gulp build:docs:cname",
     "deploy:changelog": "git add CHANGELOG.md && git commit -m \"docs(changelog): update changelog [ci skip]\" && git push",
     "deploy:docs": "gulp deploy:docs",
