@@ -7,6 +7,8 @@ on:
 jobs:
   size:
     runs-on: ubuntu-latest
+    env:
+      CI_JOB_NUMBER: 1
     steps:
       - uses: actions/checkout@v2
 

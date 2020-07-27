@@ -68,6 +68,11 @@
       "git add"
     ]
   },
+  "size-limit": [
+    {
+      "path": "bundle-size/dist/*.js"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://github.com/Semantic-Org/Semantic-UI-React.git"
@@ -105,6 +110,7 @@
     "@babel/register": "^7.4.4",
     "@babel/standalone": "^7.4.5",
     "@mdx-js/loader": "^0.20.3",
+    "@size-limit/file": "^4.5.5",
     "@stardust-ui/docs-components": "^0.34.1",
     "@types/react": "^16.8.25",
     "anchor-js": "^4.2.0",
