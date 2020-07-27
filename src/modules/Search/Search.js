@@ -547,6 +547,7 @@ export default class Search extends Component {
         icon,
         onChange: this.handleSearchChange,
         onClick: this.handleInputClick,
+        tabIndex: '0',
         value,
       },
       // Nested shorthand props need special treatment to survive the shallow merge
