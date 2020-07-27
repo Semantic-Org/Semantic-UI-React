@@ -27,9 +27,18 @@ import SearchResults from './SearchResults'
 
 const debug = makeDebugger('search')
 
-const overrideSearchInputProps = (inputProps) => ({
-  input: { className: 'prompt', tabIndex: '0', autoComplete: 'off', ...inputProps.input },
-})
+const overrideSearchInputProps = (predefinedProps) => ({
+  const { input } = predefinedProps
+
+  if (_.isUndefined(input)) {
+    return { className: 'prompt' }
+  }
+  if (_.isPlainObject(input)) {
+    return { ...input, className: cx(input.className, 'prompt') }
+  }
+
+  return input
+}
 
 /**
  * A search module allows a user to query for results from a selection of data
