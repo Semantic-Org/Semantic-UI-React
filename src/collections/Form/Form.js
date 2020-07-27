@@ -26,64 +26,6 @@ import FormTextArea from './FormTextArea'
  * @see Visibility
  */
 class Form extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** The HTML form action */
-    action: PropTypes.string,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Automatically show any error Message children. */
-    error: PropTypes.bool,
-
-    /** A form can have its color inverted for contrast. */
-    inverted: PropTypes.bool,
-
-    /** Automatically show a loading indicator. */
-    loading: PropTypes.bool,
-
-    /** The HTML form submit handler. */
-    onSubmit: PropTypes.func,
-
-    /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
-    reply: PropTypes.bool,
-
-    /** A form can vary in size. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
-
-    /** Automatically show any success Message children. */
-    success: PropTypes.bool,
-
-    /** A form can prevent itself from stacking on mobile. */
-    unstackable: PropTypes.bool,
-
-    /** Automatically show any warning Message children. */
-    warning: PropTypes.bool,
-
-    /** Forms can automatically divide fields to be equal width. */
-    widths: PropTypes.oneOf(['equal']),
-  }
-
-  static defaultProps = {
-    as: 'form',
-  }
-
-  static Field = FormField
-  static Button = FormButton
-  static Checkbox = FormCheckbox
-  static Dropdown = FormDropdown
-  static Group = FormGroup
-  static Input = FormInput
-  static Radio = FormRadio
-  static Select = FormSelect
-  static TextArea = FormTextArea
-
   handleSubmit = (e, ...args) => {
     const { action } = this.props
 
@@ -133,5 +75,63 @@ class Form extends Component {
     )
   }
 }
+
+Form.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** The HTML form action */
+  action: PropTypes.string,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Automatically show any error Message children. */
+  error: PropTypes.bool,
+
+  /** A form can have its color inverted for contrast. */
+  inverted: PropTypes.bool,
+
+  /** Automatically show a loading indicator. */
+  loading: PropTypes.bool,
+
+  /** The HTML form submit handler. */
+  onSubmit: PropTypes.func,
+
+  /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
+  reply: PropTypes.bool,
+
+  /** A form can vary in size. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+
+  /** Automatically show any success Message children. */
+  success: PropTypes.bool,
+
+  /** A form can prevent itself from stacking on mobile. */
+  unstackable: PropTypes.bool,
+
+  /** Automatically show any warning Message children. */
+  warning: PropTypes.bool,
+
+  /** Forms can automatically divide fields to be equal width. */
+  widths: PropTypes.oneOf(['equal']),
+}
+
+Form.defaultProps = {
+  as: 'form',
+}
+
+Form.Field = FormField
+Form.Button = FormButton
+Form.Checkbox = FormCheckbox
+Form.Dropdown = FormDropdown
+Form.Group = FormGroup
+Form.Input = FormInput
+Form.Radio = FormRadio
+Form.Select = FormSelect
+Form.TextArea = FormTextArea
 
 export default Form

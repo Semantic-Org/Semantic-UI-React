@@ -2,7 +2,7 @@ import { Ref } from '@stardust-ui/react-component-ref'
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { createRef, Fragment, isValidElement } from 'react'
+import React, { createRef, isValidElement } from 'react'
 import shallowEqual from 'shallowequal'
 
 import {
@@ -34,125 +34,6 @@ const debug = makeDebugger('modal')
  * @see Portal
  */
 class Modal extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
-    actions: customPropTypes.itemShorthand,
-
-    /** A modal can reduce its complexity */
-    basic: PropTypes.bool,
-
-    /** A modal can be vertically centered in the viewport */
-    centered: PropTypes.bool,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Shorthand for the close icon. Closes the modal on click. */
-    closeIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.object, PropTypes.bool]),
-
-    /** Whether or not the Modal should close when the dimmer is clicked. */
-    closeOnDimmerClick: PropTypes.bool,
-
-    /** Whether or not the Modal should close when the document is clicked. */
-    closeOnDocumentClick: PropTypes.bool,
-
-    /** Simple text content for the Modal. */
-    content: customPropTypes.itemShorthand,
-
-    /** Initial value of open. */
-    defaultOpen: PropTypes.bool,
-
-    /** A Modal can appear in a dimmer. */
-    dimmer: PropTypes.oneOf([true, 'inverted', 'blurring']),
-
-    /** Event pool namespace that is used to handle component events */
-    eventPool: PropTypes.string,
-
-    /** Modal displayed above the content in bold. */
-    header: customPropTypes.itemShorthand,
-
-    /** The node where the modal should mount. Defaults to document.body. */
-    mountNode: PropTypes.any,
-
-    /**
-     * Action onClick handler when using shorthand `actions`.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onActionClick: PropTypes.func,
-
-    /**
-     * Called when a close event happens.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClose: PropTypes.func,
-
-    /**
-     * Called when the portal is mounted on the DOM.
-     *
-     * @param {null}
-     * @param {object} data - All props.
-     */
-    onMount: PropTypes.func,
-
-    /**
-     * Called when an open event happens.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onOpen: PropTypes.func,
-
-    /**
-     * Called when the portal is unmounted from the DOM.
-     *
-     * @param {null}
-     * @param {object} data - All props.
-     */
-    onUnmount: PropTypes.func,
-
-    /** Controls whether or not the Modal is displayed. */
-    open: PropTypes.bool,
-
-    /** A modal can vary in size */
-    size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'fullscreen']),
-
-    /** Custom styles. */
-    style: PropTypes.object,
-
-    /** Element to be rendered in-place where the portal is defined. */
-    trigger: PropTypes.node,
-
-    /**
-     * NOTE: Any unhandled props that are defined in Portal are passed-through
-     * to the wrapping Portal.
-     */
-  }
-
-  static defaultProps = {
-    centered: true,
-    dimmer: true,
-    closeOnDimmerClick: true,
-    closeOnDocumentClick: false,
-    eventPool: 'Modal',
-  }
-
-  static autoControlledProps = ['open']
-
-  static Header = ModalHeader
-  static Content = ModalContent
-  static Description = ModalDescription
-  static Actions = ModalActions
-
   legacy = isBrowser() && isLegacy()
   ref = createRef()
   dimmerRef = createRef()
@@ -333,11 +214,11 @@ class Modal extends Component {
 
           {closeIconJSX}
           {childrenUtils.isNil(children) ? (
-            <Fragment>
+            <>
               {ModalHeader.create(header, { autoGenerateKey: false })}
               {ModalContent.create(content, { autoGenerateKey: false })}
               {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
-            </Fragment>
+            </>
           ) : (
             children
           )}
@@ -409,5 +290,124 @@ class Modal extends Component {
     )
   }
 }
+
+Modal.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
+  actions: customPropTypes.itemShorthand,
+
+  /** A modal can reduce its complexity */
+  basic: PropTypes.bool,
+
+  /** A modal can be vertically centered in the viewport */
+  centered: PropTypes.bool,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Shorthand for the close icon. Closes the modal on click. */
+  closeIcon: PropTypes.oneOfType([PropTypes.node, PropTypes.object, PropTypes.bool]),
+
+  /** Whether or not the Modal should close when the dimmer is clicked. */
+  closeOnDimmerClick: PropTypes.bool,
+
+  /** Whether or not the Modal should close when the document is clicked. */
+  closeOnDocumentClick: PropTypes.bool,
+
+  /** Simple text content for the Modal. */
+  content: customPropTypes.itemShorthand,
+
+  /** Initial value of open. */
+  defaultOpen: PropTypes.bool,
+
+  /** A Modal can appear in a dimmer. */
+  dimmer: PropTypes.oneOf([true, 'inverted', 'blurring']),
+
+  /** Event pool namespace that is used to handle component events */
+  eventPool: PropTypes.string,
+
+  /** Modal displayed above the content in bold. */
+  header: customPropTypes.itemShorthand,
+
+  /** The node where the modal should mount. Defaults to document.body. */
+  mountNode: PropTypes.any,
+
+  /**
+   * Action onClick handler when using shorthand `actions`.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onActionClick: PropTypes.func,
+
+  /**
+   * Called when a close event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClose: PropTypes.func,
+
+  /**
+   * Called when the portal is mounted on the DOM.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onMount: PropTypes.func,
+
+  /**
+   * Called when an open event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onOpen: PropTypes.func,
+
+  /**
+   * Called when the portal is unmounted from the DOM.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onUnmount: PropTypes.func,
+
+  /** Controls whether or not the Modal is displayed. */
+  open: PropTypes.bool,
+
+  /** A modal can vary in size */
+  size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'fullscreen']),
+
+  /** Custom styles. */
+  style: PropTypes.object,
+
+  /** Element to be rendered in-place where the portal is defined. */
+  trigger: PropTypes.node,
+
+  /**
+   * NOTE: Any unhandled props that are defined in Portal are passed-through
+   * to the wrapping Portal.
+   */
+}
+
+Modal.defaultProps = {
+  centered: true,
+  dimmer: true,
+  closeOnDimmerClick: true,
+  closeOnDocumentClick: false,
+  eventPool: 'Modal',
+}
+
+Modal.autoControlledProps = ['open']
+
+Modal.Header = ModalHeader
+Modal.Content = ModalContent
+Modal.Description = ModalDescription
+Modal.Actions = ModalActions
 
 export default Modal

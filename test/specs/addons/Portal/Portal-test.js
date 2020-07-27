@@ -11,10 +11,6 @@ let wrapper
 
 const createHandlingComponent = (eventName) =>
   class HandlingComponent extends React.Component {
-    static propTypes = {
-      handler: PropTypes.func,
-    }
-
     handleEvent = (e) => this.props.handler(e, this.props)
 
     render() {
