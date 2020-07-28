@@ -1,41 +1,30 @@
+import copyToClipboard from 'copy-to-clipboard'
 import PropTypes from 'prop-types'
 import React from 'react'
-import copyToClipboard from 'copy-to-clipboard'
 
-class CopyToClipboard extends React.Component {
-  state = {
-    active: false,
-  }
+export const useCopyToClipboard = (value, timeout = 3000) => {
+  const [active, setActive] = React.useState(false)
+  const onCopy = React.useCallback(() => {
+    copyToClipboard(typeof value === 'function' ? value() : value)
+    setActive(true)
 
-  timeoutId
+    const timeoutId = setTimeout(() => setActive(false), timeout)
 
-  componentWillUnmount() {
-    clearTimeout(this.timeoutId)
-  }
+    return () => clearTimeout(timeoutId)
+  }, [timeout, value])
 
-  handleClick = () => {
-    const { timeout, value } = this.props
+  return [active, onCopy]
+}
 
-    clearTimeout(this.timeoutId)
+export const CopyToClipboard = (props) => {
+  const { children, timeout, value } = props
+  const [active, onCopy] = useCopyToClipboard(value, timeout)
 
-    this.setState({ active: true })
-    this.timeoutId = setTimeout(() => {
-      this.setState({ active: false })
-    }, timeout)
-
-    copyToClipboard(value)
-  }
-
-  render() {
-    const { render } = this.props
-    const { active } = this.state
-
-    return render(active, this.handleClick)
-  }
+  return children(active, onCopy)
 }
 
 CopyToClipboard.propTypes = {
-  render: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
   timeout: PropTypes.number,
   value: PropTypes.string.isRequired,
 }
