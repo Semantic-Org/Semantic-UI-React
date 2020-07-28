@@ -1,10 +1,10 @@
 import fs from 'fs'
-import { executablePath } from 'puppeteer'
+import puppeteer from 'puppeteer'
 
 import config from './config'
 import webpackConfig from './webpack.karma.config'
 
-process.env.CHROME_BIN = executablePath()
+process.env.CHROME_BIN = puppeteer.executablePath()
 
 const { paths } = config
 
@@ -69,9 +69,6 @@ export default (karmaConfig) => {
     ],
     formatError,
     frameworks: ['mocha'],
-    mochaReporter: {
-      output: 'minimal',
-    },
     // make karma serve all files that the web server does: /* => /docs/app/*
     proxies: fs.readdirSync(paths.docsPublic()).reduce((acc, file) => {
       const isDir = fs.statSync(paths.docsPublic(file)).isDirectory()

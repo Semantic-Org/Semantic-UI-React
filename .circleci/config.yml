@@ -1,54 +1,87 @@
-version: 2
+version: 2.1
+
 general:
   branches:
     ignore:
       - gh-pages
+
+docker_defaults: &docker_defaults
+  docker:
+    - image: circleci/node:12-browsers
+  working_directory: ~/project/semantic-ui-react
+
+restore_node_modules: &restore_node_modules
+  restore_cache:
+    name: Restore node_modules cache
+    keys:
+      - v3-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - v3-node-{{ .Branch }}-
+      - v3-node-
+
 jobs:
-  build:
-    docker:
-      - image: circleci/node:8-browsers
-    environment:
-      TZ: "/usr/share/zoneinfo/America/Los_Angeles"
+  bootstrap:
+    <<: *docker_defaults
     steps:
-      - run:
-          name: Update yarn
-          command: |
-            # remove default yarn
-            sudo rm -rf $(dirname $(which yarn))/yarn*
-            # download latest
-            rm -rf ~/.yarn
-            curl -o- -L https://yarnpkg.com/install.sh | bash
-            echo 'export PATH="${PATH}:${HOME}/.yarn/bin"' >> $BASH_ENV
       - checkout
-      # because we don't invoke npm (we use yarn) we need to add npm bin to PATH manually
-      - run:
-          name: Add npm bin to PATH
-          command: echo 'export PATH="${PATH}:$(npm bin)"' >> $BASH_ENV
-      - restore_cache:
-          keys:
-            - v2-dependencies-{{ checksum "yarn.lock" }}
+      - *restore_node_modules
       - run:
           name: Install Dependencies
-          command: yarn
+          command: yarn install --frozen-lockfile
       - save_cache:
-          key: v2-dependencies-{{ checksum "yarn.lock" }}
+          name: Save yarn cache
+          key: v3-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
+            - .cache/yarn
+      - save_cache:
+          name: Save node_modules cache
+          key: v3-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules/
       - run:
-          name: Lint TypeScript
-          command: yarn tsd:lint
-      - run:
-          name: Test TypeScript
-          command: yarn tsd:test
-      - run:
-          name: Lint JavaScript
-          command: yarn lint
+          name: Remove node_modules to cleanup workspace
+          command: rm -r node_modules/
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - semantic-ui-react
+
+  test:
+    <<: *docker_defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - *restore_node_modules
       - run:
           name: Test JavaScript
           command: yarn test
       - run:
-          name: Test UMD bundle
-          command: yarn test:umd
-      - run:
           name: Report coverage
           command: bash <(curl -s https://codecov.io/bash)
+      - run:
+          name: Test TypeScript
+          command: yarn tsd:test
+      - run:
+          name: Test UMD bundle
+          command: yarn test:umd
+
+  lint:
+    <<: *docker_defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - *restore_node_modules
+      - run:
+          name: Lint
+          command: yarn lint
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - bootstrap
+      - test:
+          requires:
+            - bootstrap
+      - lint:
+          requires:
+            - bootstrap

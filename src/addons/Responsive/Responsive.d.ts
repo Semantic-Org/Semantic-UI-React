@@ -44,7 +44,7 @@ export interface ResponsiveWidthShorthand {
   maxWidth?: number | string
 }
 
-declare class Responsive extends React.Component<ResponsiveProps, {}> {
+declare class Responsive extends React.Component<ResponsiveProps> {
   static onlyMobile: ResponsiveWidthShorthand
   static onlyTablet: ResponsiveWidthShorthand
   static onlyComputer: ResponsiveWidthShorthand

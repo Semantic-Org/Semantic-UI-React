@@ -2,10 +2,10 @@ import * as React from 'react'
 
 import { SemanticShorthandItem } from '../../generic'
 import { StrictPortalProps } from '../../addons/Portal'
-import { default as ModalActions, ModalActionsProps } from './ModalActions'
-import { default as ModalContent, ModalContentProps } from './ModalContent'
+import ModalActions, { ModalActionsProps } from './ModalActions'
+import ModalContent, { ModalContentProps } from './ModalContent'
 import ModalDescription from './ModalDescription'
-import { default as ModalHeader, ModalHeaderProps } from './ModalHeader'
+import ModalHeader, { ModalHeaderProps } from './ModalHeader'
 
 export interface ModalProps extends StrictModalProps {
   [key: string]: any

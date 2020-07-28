@@ -25,14 +25,8 @@ describe('ItemGroup', () => {
       const itemWrappers = wrapper.find('Item')
 
       wrapper.should.have.exactly(2).descendants('Item')
-      itemWrappers
-        .first()
-        .find('ItemContent')
-        .should.contain.text(firstText)
-      itemWrappers
-        .last()
-        .find('ItemContent')
-        .should.contain.text(secondText)
+      itemWrappers.first().find('ItemContent').should.contain.text(firstText)
+      itemWrappers.last().find('ItemContent').should.contain.text(secondText)
     })
   })
 })

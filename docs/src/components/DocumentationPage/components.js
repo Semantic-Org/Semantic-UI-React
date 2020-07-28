@@ -10,9 +10,10 @@ import CodeSnippet from 'docs/src/components/CodeSnippet'
 
 export const a = ({ children, href }) => <Link to={href}>{children}</Link>
 
-export const code = ({ className, children, fitted, label }) => (
+export const code = ({ className, children, fitted, formattable, label }) => (
   <CodeSnippet
     fitted={fitted}
+    formattable={formattable !== 'false'}
     mode={className.replace('language-', '')}
     label={label}
     value={children}

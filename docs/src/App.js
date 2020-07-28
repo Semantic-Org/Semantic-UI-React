@@ -11,7 +11,7 @@ import { docTypes } from './utils'
 const App = ({ componentMenu, versions }) => (
   <div style={style.container}>
     <Router>
-      <React.Fragment>
+      <>
         <Switch>
           {/*
            * We can't place <Sidebar /> inside of <Routes /> because it will be remounted on page
@@ -33,7 +33,7 @@ const App = ({ componentMenu, versions }) => (
         </Switch>
 
         <Routes />
-      </React.Fragment>
+      </>
     </Router>
   </div>
 )

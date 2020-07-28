@@ -19,7 +19,6 @@ export default {
       anchor: require('anchor-js/package.json').version,
       babel: {
         standalone: require('@babel/standalone/package.json').version,
-        standaloneEnv: require('@babel/preset-env-standalone/package.json').version,
       },
       faker: require('faker/package.json').version,
       prettier: require('prettier/package.json').version,
@@ -43,6 +42,8 @@ export default {
     src: config.paths.docsSrc(),
     public: config.paths.docsPublic(),
   },
-  siteRoot: 'https://react.semantic-ui.com',
+  siteRoot: process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://react.semantic-ui.com',
   webpack,
 }

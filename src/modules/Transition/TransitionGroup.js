@@ -12,36 +12,6 @@ const debug = makeDebugger('transition_group')
  * A Transition.Group animates children as they mount and unmount.
  */
 export default class TransitionGroup extends React.Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** Named animation event to used. Must be defined in CSS. */
-    animation: PropTypes.oneOfType([PropTypes.oneOf(SUI.TRANSITIONS), PropTypes.string]),
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Whether it is directional animation event or not. Use it only for custom transitions. */
-    directional: PropTypes.bool,
-
-    /** Duration of the CSS transition animation in milliseconds. */
-    duration: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.shape({
-        hide: PropTypes.number.isRequired,
-        show: PropTypes.number.isRequired,
-      }),
-      PropTypes.string,
-    ]),
-  }
-
-  static defaultProps = {
-    as: React.Fragment,
-    animation: 'fade',
-    duration: 500,
-  }
-
   state = {
     // Keeping a callback under the state is a hack to make it accessible under getDerivedStateFromProps()
     handleOnHide: (nothing, childProps) => {
@@ -136,4 +106,34 @@ export default class TransitionGroup extends React.Component {
 
     return <ElementType {...rest}>{_.values(children)}</ElementType>
   }
+}
+
+TransitionGroup.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Named animation event to used. Must be defined in CSS. */
+  animation: PropTypes.oneOfType([PropTypes.oneOf(SUI.TRANSITIONS), PropTypes.string]),
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Whether it is directional animation event or not. Use it only for custom transitions. */
+  directional: PropTypes.bool,
+
+  /** Duration of the CSS transition animation in milliseconds. */
+  duration: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({
+      hide: PropTypes.number.isRequired,
+      show: PropTypes.number.isRequired,
+    }),
+    PropTypes.string,
+  ]),
+}
+
+TransitionGroup.defaultProps = {
+  as: React.Fragment,
+  animation: 'fade',
+  duration: 500,
 }

@@ -123,6 +123,8 @@ export type FlagNameValues =
   | 'algeria'
   | 'ec'
   | 'ecuador'
+  | 'england'
+  | 'gb eng'
   | 'ee'
   | 'estonia'
   | 'eg'
@@ -509,6 +511,6 @@ export interface StrictFlagProps {
   name: FlagNameValues
 }
 
-declare class Flag extends React.PureComponent<FlagProps, {}> {}
+declare class Flag extends React.PureComponent<FlagProps> {}
 
 export default Flag

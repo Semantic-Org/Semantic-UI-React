@@ -10,40 +10,6 @@ import MenuItem from '../../collections/Menu/MenuItem'
  * An item of a pagination.
  */
 class PaginationItem extends Component {
-  static propTypes = {
-    /** A pagination item can be active. */
-    active: PropTypes.bool,
-
-    /** A pagination item can be disabled. */
-    disabled: PropTypes.bool,
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * Called on key down.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onKeyDown: PropTypes.func,
-
-    /** A pagination should have a type. */
-    type: PropTypes.oneOf([
-      'ellipsisItem',
-      'firstItem',
-      'prevItem',
-      'pageItem',
-      'nextItem',
-      'lastItem',
-    ]),
-  }
-
   handleClick = (e) => {
     _.invoke(this.props, 'onClick', e, this.props)
   }
@@ -75,6 +41,40 @@ class PaginationItem extends Component {
       overrideProps: this.handleOverrides,
     })
   }
+}
+
+PaginationItem.propTypes = {
+  /** A pagination item can be active. */
+  active: PropTypes.bool,
+
+  /** A pagination item can be disabled. */
+  disabled: PropTypes.bool,
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
+
+  /**
+   * Called on key down.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onKeyDown: PropTypes.func,
+
+  /** A pagination should have a type. */
+  type: PropTypes.oneOf([
+    'ellipsisItem',
+    'firstItem',
+    'prevItem',
+    'pageItem',
+    'nextItem',
+    'lastItem',
+  ]),
 }
 
 PaginationItem.create = createShorthandFactory(PaginationItem, (content) => ({ content }))

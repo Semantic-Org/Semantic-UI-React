@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
@@ -10,11 +10,7 @@ import PortalInner from 'src/addons/Portal/PortalInner'
 let wrapper
 
 const createHandlingComponent = (eventName) =>
-  class HandlingComponent extends Component {
-    static propTypes = {
-      handler: PropTypes.func,
-    }
-
+  class HandlingComponent extends React.Component {
     handleEvent = (e) => this.props.handler(e, this.props)
 
     render() {

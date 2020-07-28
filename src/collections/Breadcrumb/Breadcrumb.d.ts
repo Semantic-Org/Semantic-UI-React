@@ -7,7 +7,7 @@ import {
 } from '../../generic'
 import { IconProps } from '../../elements/Icon'
 import BreadcrumbDivider from './BreadcrumbDivider'
-import { default as BreadcrumbSection, BreadcrumbSectionProps } from './BreadcrumbSection'
+import BreadcrumbSection, { BreadcrumbSectionProps } from './BreadcrumbSection'
 
 export interface BreadcrumbProps extends StrictBreadcrumbProps {
   [key: string]: any

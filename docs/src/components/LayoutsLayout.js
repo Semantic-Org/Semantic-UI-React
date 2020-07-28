@@ -28,10 +28,6 @@ const style = (
 )
 
 class LayoutsLayout extends PureComponent {
-  static propTypes = {
-    componentFilename: PropTypes.string.isRequired,
-  }
-
   constructor(props) {
     super(props)
 
@@ -69,6 +65,10 @@ class LayoutsLayout extends PureComponent {
       </div>
     )
   }
+}
+
+LayoutsLayout.propTypes = {
+  componentFilename: PropTypes.string.isRequired,
 }
 
 export default withRouteData(LayoutsLayout)
