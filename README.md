@@ -38,46 +38,11 @@ See the [**Documentation**][2] for an introduction, usage information, and examp
 <img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/amazon-logo.png" />
 <img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/netflix-logo.png" />
 <img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/microsoft-logo.png" />
-<a href="https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md">
-  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/add-yours.png" />
-</a>
 
 - Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
 - Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
 - Netflix's [flamescope][31]
 - Microsoft's [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
-
-<details>
-  <summary>And many more...</summary>
-  <ul>
-    <li><a href="https://gitconnected.com">https://gitconnected.com</a></li>
-    <li><a href="http://stoplight.io">http://stoplight.io</a></li>
-    <li><a href="https://roadmap.space">https://roadmap.space</a></li>
-    <li><a href="https://edabit.com">https://edabit.com</a></li>
-    <li><a href="https://blackship.com">https://blackship.com</a></li>
-    <li><a href="http://www.brewhousesolutions.com">http://www.brewhousesolutions.com</a></li>
-    <li><a href="https://www.seeuletter.com">https://www.seeuletter.com</a></li>
-    <li><a href="https://www.stackforge.co">https://www.stackforge.co</a></li>
-    <li><a href="https://sublimefund.org">https://sublimefund.org</a></li>
-    <li><a href="https://thefaithcircle.com">https://thefaithcircle.com</a></li>
-    <li><a href="https://appfollow.io">https://appfollow.io</a></li>
-    <li><a href="http://according.to.localsourc.es">http://according.to.localsourc.es</a></li>
-    <li><a href="http://www.aircip.ir">http://www.aircip.ir</a></li>
-    <li><a href="https://www.bailfacile.fr">https://www.bailfacile.fr</a></li>
-    <li><a href="http://platform.nazarbazaar.ir">http://platform.nazarbazaar.ir</a></li>
-    <li><a href="https://build.games">https://build.games</a></li>
-    <li><a href="https://platform.forecastcycles.com">https://platform.forecastcycles.com</a></li>
-    <li><a href="https://www.findlectures.com">https://www.findlectures.com</a></li>
-    <li><a href="https://github.com/ayastreb/bandwidth-hero">https://github.com/ayastreb/bandwidth-hero</a></li>
-    <li><a href="https://re.yomeshgupta.com">https://re.yomeshgupta.com</a></li>
-    <li><a href="https://moneytracker.cc">https://moneytracker.cc</a></li>
-    <li><a href="https://tax.cryptact.com">https://tax.cryptact.com</a></li>
-    <li><a href="https://www.hurriyetoto.com">https://www.hurriyetoto.com</a></li>
-    <li><a href="https://173app.com">https://173app.com</a></li>
-    <li><a href="https://disten.se">https://disten.se</a></li>
-    <li><a href="https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md">add your site here</a></li>
-  </ul>
-</details>
 
 ## Example Projects
 
