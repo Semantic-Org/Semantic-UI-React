@@ -21,68 +21,6 @@ import CardMeta from './CardMeta'
  * A card displays site content in a manner similar to a playing card.
  */
 export default class Card extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** A Card can center itself inside its container. */
-    centered: PropTypes.bool,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** A Card can be formatted to display different colors. */
-    color: PropTypes.oneOf(SUI.COLORS),
-
-    /** Shorthand for primary content. */
-    content: customPropTypes.contentShorthand,
-
-    /** Shorthand for CardDescription. */
-    description: customPropTypes.itemShorthand,
-
-    /** Shorthand for primary content of CardContent. */
-    extra: customPropTypes.contentShorthand,
-
-    /** A Card can be formatted to take up the width of its container. */
-    fluid: PropTypes.bool,
-
-    /** Shorthand for CardHeader. */
-    header: customPropTypes.itemShorthand,
-
-    /** Render as an `a` tag instead of a `div` and adds the href attribute. */
-    href: PropTypes.string,
-
-    /** A card can contain an Image component. */
-    image: customPropTypes.itemShorthand,
-
-    /** A card can be formatted to link to other content. */
-    link: PropTypes.bool,
-
-    /** Shorthand for CardMeta. */
-    meta: customPropTypes.itemShorthand,
-
-    /**
-     * Called on click. When passed, the component renders as an `a`
-     * tag by default instead of a `div`.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-
-    /** A Card can be formatted to raise above the page. */
-    raised: PropTypes.bool,
-  }
-
-  static Content = CardContent
-  static Description = CardDescription
-  static Group = CardGroup
-  static Header = CardHeader
-  static Meta = CardMeta
-
   handleClick = (e) => {
     const { onClick } = this.props
 
@@ -155,3 +93,65 @@ export default class Card extends Component {
     )
   }
 }
+
+Card.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** A Card can center itself inside its container. */
+  centered: PropTypes.bool,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** A Card can be formatted to display different colors. */
+  color: PropTypes.oneOf(SUI.COLORS),
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
+  /** Shorthand for CardDescription. */
+  description: customPropTypes.itemShorthand,
+
+  /** Shorthand for primary content of CardContent. */
+  extra: customPropTypes.contentShorthand,
+
+  /** A Card can be formatted to take up the width of its container. */
+  fluid: PropTypes.bool,
+
+  /** Shorthand for CardHeader. */
+  header: customPropTypes.itemShorthand,
+
+  /** Render as an `a` tag instead of a `div` and adds the href attribute. */
+  href: PropTypes.string,
+
+  /** A card can contain an Image component. */
+  image: customPropTypes.itemShorthand,
+
+  /** A card can be formatted to link to other content. */
+  link: PropTypes.bool,
+
+  /** Shorthand for CardMeta. */
+  meta: customPropTypes.itemShorthand,
+
+  /**
+   * Called on click. When passed, the component renders as an `a`
+   * tag by default instead of a `div`.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
+
+  /** A Card can be formatted to raise above the page. */
+  raised: PropTypes.bool,
+}
+
+Card.Content = CardContent
+Card.Description = CardDescription
+Card.Group = CardGroup
+Card.Header = CardHeader
+Card.Meta = CardMeta

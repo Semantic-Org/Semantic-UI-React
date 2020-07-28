@@ -1,6 +1,5 @@
 import makeDebugger from './makeDebugger'
 
-export AutoControlledComponent from './AutoControlledComponent'
 export ModernAutoControlledComponent from './ModernAutoControlledComponent'
 export * as childrenUtils from './childrenUtils'
 

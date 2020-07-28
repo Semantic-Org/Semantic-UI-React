@@ -8,7 +8,7 @@ import React, { Children, cloneElement, createRef } from 'react'
 import shallowEqual from 'shallowequal'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
@@ -28,10 +28,14 @@ import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
+import getMenuOptions from './utils/getMenuOptions'
+import getSelectedIndex from './utils/getSelectedIndex'
 
 const debug = makeDebugger('dropdown')
 
 const getKeyOrValue = (key, value) => (_.isNil(key) ? value : key)
+const getKeyAndValues = (options) =>
+  options ? options.map((option) => _.pick(option, ['key', 'value'])) : options
 
 /**
  * A dropdown allows a user to select a value from a series of options.
@@ -40,351 +44,6 @@ const getKeyOrValue = (key, value) => (_.isNil(key) ? value : key)
  * @see Menu
  */
 export default class Dropdown extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** Label prefixed to an option added by a user. */
-    additionLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-
-    /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
-    additionPosition: PropTypes.oneOf(['top', 'bottom']),
-
-    /**
-     * Allow user additions to the list of options (boolean).
-     * Requires the use of `selection`, `options` and `search`.
-     */
-    allowAdditions: customPropTypes.every([
-      customPropTypes.demand(['options', 'selection', 'search']),
-      PropTypes.bool,
-    ]),
-
-    /** A Dropdown can reduce its complexity. */
-    basic: PropTypes.bool,
-
-    /** Format the Dropdown to appear as a button. */
-    button: PropTypes.bool,
-
-    /** Primary content. */
-    children: customPropTypes.every([
-      customPropTypes.disallow(['options', 'selection']),
-      customPropTypes.givenProps(
-        { children: PropTypes.any.isRequired },
-        PropTypes.element.isRequired,
-      ),
-    ]),
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Using the clearable setting will let users remove their selection from a dropdown. */
-    clearable: PropTypes.bool,
-
-    /** Whether or not the menu should close when the dropdown is blurred. */
-    closeOnBlur: PropTypes.bool,
-
-    /** Whether or not the dropdown should close when the escape key is pressed. */
-    closeOnEscape: PropTypes.bool,
-
-    /**
-     * Whether or not the menu should close when a value is selected from the dropdown.
-     * By default, multiple selection dropdowns will remain open on change, while single
-     * selection dropdowns will close on change.
-     */
-    closeOnChange: PropTypes.bool,
-
-    /** A compact dropdown has no minimum width. */
-    compact: PropTypes.bool,
-
-    /** Whether or not the dropdown should strip diacritics in options and input search */
-    deburr: PropTypes.bool,
-
-    /** Initial value of open. */
-    defaultOpen: PropTypes.bool,
-
-    /** Initial value of searchQuery. */
-    defaultSearchQuery: PropTypes.string,
-
-    /** Currently selected label in multi-select. */
-    defaultSelectedLabel: customPropTypes.every([
-      customPropTypes.demand(['multiple']),
-      PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    ]),
-
-    /** Initial value of upward. */
-    defaultUpward: PropTypes.bool,
-
-    /** Initial value or value array if multiple. */
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-      PropTypes.bool,
-      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
-    ]),
-
-    /** A dropdown menu can open to the left or to the right. */
-    direction: PropTypes.oneOf(['left', 'right']),
-
-    /** A disabled dropdown menu or item does not allow user interaction. */
-    disabled: PropTypes.bool,
-
-    /** An errored dropdown can alert a user to a problem. */
-    error: PropTypes.bool,
-
-    /** A dropdown menu can contain floated content. */
-    floating: PropTypes.bool,
-
-    /** A dropdown can take the full width of its parent */
-    fluid: PropTypes.bool,
-
-    /** A dropdown menu can contain a header. */
-    header: PropTypes.node,
-
-    /** Shorthand for Icon. */
-    icon: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
-
-    /** A dropdown can be formatted to appear inline in other content. */
-    inline: PropTypes.bool,
-
-    /** A dropdown can be formatted as a Menu item. */
-    item: PropTypes.bool,
-
-    /** A dropdown can be labeled. */
-    labeled: PropTypes.bool,
-
-    /** A dropdown can defer rendering its options until it is open. */
-    lazyLoad: PropTypes.bool,
-
-    /** A dropdown can show that it is currently loading data. */
-    loading: PropTypes.bool,
-
-    /** The minimum characters for a search to begin showing results. */
-    minCharacters: PropTypes.number,
-
-    /** A selection dropdown can allow multiple selections. */
-    multiple: PropTypes.bool,
-
-    /** Message to display when there are no results. */
-    noResultsMessage: PropTypes.node,
-
-    /**
-     * Called when a user adds a new item. Use this to update the options list.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props and the new item's value.
-     */
-    onAddItem: PropTypes.func,
-
-    /**
-     * Called on blur.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onBlur: PropTypes.func,
-
-    /**
-     * Called when the user attempts to change the value.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props and proposed value.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * Called when a close event happens.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClose: PropTypes.func,
-
-    /**
-     * Called on focus.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onFocus: PropTypes.func,
-
-    /**
-     * Called when a multi-select label is clicked.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All label props.
-     */
-    onLabelClick: PropTypes.func,
-
-    /**
-     * Called on mousedown.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onMouseDown: PropTypes.func,
-
-    /**
-     * Called when an open event happens.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onOpen: PropTypes.func,
-
-    /**
-     * Called on search input change.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props, includes current value of searchQuery.
-     */
-    onSearchChange: PropTypes.func,
-
-    /** Controls whether or not the dropdown menu is displayed. */
-    open: PropTypes.bool,
-
-    /** Whether or not the menu should open when the dropdown is focused. */
-    openOnFocus: PropTypes.bool,
-
-    /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
-    options: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.arrayOf(PropTypes.shape(DropdownItem.propTypes)),
-    ]),
-
-    /** Placeholder text. */
-    placeholder: PropTypes.string,
-
-    /** A dropdown can be formatted so that its menu is pointing. */
-    pointing: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf([
-        'left',
-        'right',
-        'top',
-        'top left',
-        'top right',
-        'bottom',
-        'bottom left',
-        'bottom right',
-      ]),
-    ]),
-
-    /**
-     * Mapped over the active items and returns shorthand for the active item Labels.
-     * Only applies to `multiple` Dropdowns.
-     *
-     * @param {object} item - A currently active dropdown item.
-     * @param {number} index - The current index.
-     * @param {object} defaultLabelProps - The default props for an active item Label.
-     * @returns {*} Shorthand for a Label.
-     */
-    renderLabel: PropTypes.func,
-
-    /** A dropdown can have its menu scroll. */
-    scrolling: PropTypes.bool,
-
-    /**
-     * A selection dropdown can allow a user to search through a large list of choices.
-     * Pass a function here to replace the default search.
-     */
-    search: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-
-    /** A shorthand for a search input. */
-    searchInput: PropTypes.oneOfType([PropTypes.array, PropTypes.node, PropTypes.object]),
-
-    /** Current value of searchQuery. Creates a controlled component. */
-    searchQuery: PropTypes.string,
-
-    // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
-
-    /** Define whether the highlighted item should be selected on blur. */
-    selectOnBlur: PropTypes.bool,
-
-    /**
-     * Whether or not to change the value when navigating the menu using arrow keys.
-     * Setting to false will require enter or left click to confirm a choice.
-     */
-    selectOnNavigation: PropTypes.bool,
-
-    /** Currently selected label in multi-select. */
-    selectedLabel: customPropTypes.every([
-      customPropTypes.demand(['multiple']),
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    ]),
-
-    /** A dropdown can be used to select between choices in a form. */
-    selection: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      customPropTypes.demand(['options']),
-      PropTypes.bool,
-    ]),
-
-    /** A simple dropdown can open without Javascript. */
-    simple: PropTypes.bool,
-
-    /** A dropdown can receive focus. */
-    tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /** The text displayed in the dropdown, usually for the active item. */
-    text: PropTypes.string,
-
-    /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
-    trigger: customPropTypes.every([
-      customPropTypes.disallow(['selection', 'text']),
-      PropTypes.node,
-    ]),
-
-    /** Current value or value array if multiple. Creates a controlled component. */
-    value: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number])),
-    ]),
-
-    /** Controls whether the dropdown will open upward. */
-    upward: PropTypes.bool,
-
-    /**
-     * A dropdown will go to the last element when ArrowUp is pressed on the first,
-     * or go to the first when ArrowDown is pressed on the last( aka infinite selection )
-     */
-    wrapSelection: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    additionLabel: 'Add ',
-    additionPosition: 'top',
-    closeOnBlur: true,
-    closeOnEscape: true,
-    deburr: false,
-    icon: 'dropdown',
-    minCharacters: 1,
-    noResultsMessage: 'No results found.',
-    openOnFocus: true,
-    renderLabel: ({ text }) => text,
-    searchInput: 'text',
-    selectOnBlur: true,
-    selectOnNavigation: true,
-    wrapSelection: true,
-  }
-
-  static autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
-
-  static Divider = DropdownDivider
-  static Header = DropdownHeader
-  static Item = DropdownItem
-  static Menu = DropdownMenu
-  static SearchInput = DropdownSearchInput
-
   searchRef = createRef()
   sizerRef = createRef()
   ref = createRef()
@@ -393,58 +52,56 @@ export default class Dropdown extends Component {
     return { focus: false, searchQuery: '' }
   }
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillMount() {
-    debug('componentWillMount()')
-    const { open, value } = this.state
+  static getAutoControlledStateFromProps(nextProps, computedState, prevState) {
+    // These values are stored only for a comparison on next getAutoControlledStateFromProps()
+    const derivedState = { __value: nextProps.value, __options: nextProps.options }
 
-    this.setValue(value)
-    this.setSelectedIndex(value)
+    if (!shallowEqual(nextProps.value, prevState.__value)) {
+      derivedState.selectedIndex = getSelectedIndex({
+        additionLabel: nextProps.additionLabel,
+        additionPosition: nextProps.additionPosition,
+        allowAdditions: nextProps.allowAdditions,
+        deburr: nextProps.deburr,
+        multiple: nextProps.multiple,
+        search: nextProps.search,
+        selectedIndex: computedState.selectedIndex,
 
-    if (open) {
-      this.open()
-    }
-  }
-
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    super.UNSAFE_componentWillReceiveProps(nextProps)
-    debug('componentWillReceiveProps()')
-    debug('to props:', objectDiff(this.props, nextProps))
-
-    /* eslint-disable no-console */
-    if (process.env.NODE_ENV !== 'production') {
-      // in development, validate value type matches dropdown type
-      const isNextValueArray = Array.isArray(nextProps.value)
-      const hasValue = _.has(nextProps, 'value')
-
-      if (hasValue && nextProps.multiple && !isNextValueArray) {
-        console.error(
-          'Dropdown `value` must be an array when `multiple` is set.' +
-            ` Received type: \`${Object.prototype.toString.call(nextProps.value)}\`.`,
-        )
-      } else if (hasValue && !nextProps.multiple && isNextValueArray) {
-        console.error(
-          'Dropdown `value` must not be an array when `multiple` is not set.' +
-            ' Either set `multiple={true}` or use a string or number value.',
-        )
-      }
-    }
-    /* eslint-enable no-console */
-
-    if (!shallowEqual(nextProps.value, this.props.value)) {
-      debug('value changed, setting', nextProps.value)
-      this.setValue(nextProps.value)
-      this.setSelectedIndex(nextProps.value)
+        value: computedState.value,
+        options: nextProps.options,
+        searchQuery: computedState.searchQuery,
+      })
     }
 
     // The selected index is only dependent on option keys/values.
     // We only check those properties to avoid recursive performance impacts.
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/3000
-    if (
-      !_.isEqual(this.getKeyAndValues(nextProps.options), this.getKeyAndValues(this.props.options))
-    ) {
-      this.setSelectedIndex(undefined, nextProps.options)
+    if (!_.isEqual(getKeyAndValues(nextProps.options), getKeyAndValues(prevState.__options))) {
+      derivedState.selectedIndex = getSelectedIndex({
+        additionLabel: nextProps.additionLabel,
+        additionPosition: nextProps.additionPosition,
+        allowAdditions: nextProps.allowAdditions,
+        deburr: nextProps.deburr,
+        multiple: nextProps.multiple,
+        search: nextProps.search,
+        selectedIndex: computedState.selectedIndex,
+
+        value: computedState.value,
+        options: nextProps.options,
+        searchQuery: computedState.searchQuery,
+      })
+    }
+
+    return derivedState
+  }
+
+  componentDidMount() {
+    debug('componentDidMount()')
+    const { open, value } = this.state
+
+    this.setSelectedIndex(value)
+
+    if (open) {
+      this.open(null, false)
     }
   }
 
@@ -456,7 +113,28 @@ export default class Dropdown extends Component {
     // eslint-disable-line complexity
     debug('componentDidUpdate()')
     debug('to state:', objectDiff(prevState, this.state))
+
     const { closeOnBlur, minCharacters, openOnFocus, search } = this.props
+
+    /* eslint-disable no-console */
+    if (process.env.NODE_ENV !== 'production') {
+      // in development, validate value type matches dropdown type
+      const isNextValueArray = Array.isArray(this.props.value)
+      const hasValue = _.has(this.props, 'value')
+
+      if (hasValue && this.props.multiple && !isNextValueArray) {
+        console.error(
+          'Dropdown `value` must be an array when `multiple` is set.' +
+            ` Received type: \`${Object.prototype.toString.call(this.props.value)}\`.`,
+        )
+      } else if (hasValue && !this.props.multiple && isNextValueArray) {
+        console.error(
+          'Dropdown `value` must not be an array when `multiple` is not set.' +
+            ' Either set `multiple={true}` or use a string or number value.',
+        )
+      }
+    }
+    /* eslint-enable no-console */
 
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
@@ -567,7 +245,7 @@ export default class Dropdown extends Component {
 
     if (valueHasChanged) {
       // notify the onChange prop that the user is trying to change value
-      this.setValue(newValue)
+      this.setState({ value: newValue })
       this.setSelectedIndex(newValue)
       this.handleChange(e, newValue)
 
@@ -591,7 +269,20 @@ export default class Dropdown extends Component {
     if (!shouldSelect) return
     e.preventDefault()
 
-    const optionSize = _.size(this.getMenuOptions())
+    const optionSize = _.size(
+      getMenuOptions({
+        value: this.state.value,
+        options: this.props.options,
+        searchQuery: this.state.searchQuery,
+
+        additionLabel: this.props.additionLabel,
+        additionPosition: this.props.additionPosition,
+        allowAdditions: this.props.allowAdditions,
+        deburr: this.props.deburr,
+        multiple: this.props.multiple,
+        search: this.props.search,
+      }),
+    )
     if (search && optionSize === 0) return
 
     this.makeSelectedItemActive(e)
@@ -613,7 +304,7 @@ export default class Dropdown extends Component {
     // remove most recent value
     const newValue = _.dropRight(value)
 
-    this.setValue(newValue)
+    this.setState({ value: newValue })
     this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
@@ -708,7 +399,7 @@ export default class Dropdown extends Component {
 
     // notify the onChange prop that the user is trying to change value
     if (valueHasChanged) {
-      this.setValue(newValue)
+      this.setState({ value: newValue })
       this.setSelectedIndex(value)
 
       this.handleChange(e, newValue)
@@ -774,7 +465,7 @@ export default class Dropdown extends Component {
     const newQuery = value
 
     _.invoke(this.props, 'onSearchChange', e, { ...this.props, searchQuery: newQuery })
-    this.trySetState({ searchQuery: newQuery, selectedIndex: 0 })
+    this.setState({ searchQuery: newQuery, selectedIndex: 0 })
 
     // open search dropdown on search query
     if (!open && newQuery.length >= minCharacters) {
@@ -789,98 +480,28 @@ export default class Dropdown extends Component {
   // Getters
   // ----------------------------------------
 
-  getKeyAndValues = (options) =>
-    options ? options.map((option) => _.pick(option, ['key', 'value'])) : options
-
-  // There are times when we need to calculate the options based on a value
-  // that hasn't yet been persisted to state.
-  getMenuOptions = (
-    value = this.state.value,
-    options = this.props.options,
-    searchQuery = this.state.searchQuery,
-  ) => {
-    const { additionLabel, additionPosition, allowAdditions, deburr, multiple, search } = this.props
-
-    let filteredOptions = options
-
-    // filter out active options
-    if (multiple) {
-      filteredOptions = _.filter(filteredOptions, (opt) => !_.includes(value, opt.value))
-    }
-
-    // filter by search query
-    if (search && searchQuery) {
-      if (_.isFunction(search)) {
-        filteredOptions = search(filteredOptions, searchQuery)
-      } else {
-        // remove diacritics on search input and options, if deburr prop is set
-        const strippedQuery = deburr ? _.deburr(searchQuery) : searchQuery
-
-        const re = new RegExp(_.escapeRegExp(strippedQuery), 'i')
-
-        filteredOptions = _.filter(filteredOptions, (opt) =>
-          re.test(deburr ? _.deburr(opt.text) : opt.text),
-        )
-      }
-    }
-
-    // insert the "add" item
-    if (
-      allowAdditions &&
-      search &&
-      searchQuery &&
-      !_.some(filteredOptions, { text: searchQuery })
-    ) {
-      const additionLabelElement = React.isValidElement(additionLabel)
-        ? React.cloneElement(additionLabel, { key: 'addition-label' })
-        : additionLabel || ''
-
-      const addItem = {
-        key: 'addition',
-        // by using an array, we can pass multiple elements, but when doing so
-        // we must specify a `key` for React to know which one is which
-        text: [additionLabelElement, <b key='addition-query'>{searchQuery}</b>],
-        value: searchQuery,
-        className: 'addition',
-        'data-additional': true,
-      }
-      if (additionPosition === 'top') filteredOptions.unshift(addItem)
-      else filteredOptions.push(addItem)
-    }
-
-    return filteredOptions
-  }
-
   getSelectedItem = () => {
     const { selectedIndex } = this.state
-    const options = this.getMenuOptions()
+    const options = getMenuOptions({
+      value: this.state.value,
+      options: this.props.options,
+      searchQuery: this.state.searchQuery,
+
+      additionLabel: this.props.additionLabel,
+      additionPosition: this.props.additionPosition,
+      allowAdditions: this.props.allowAdditions,
+      deburr: this.props.deburr,
+      multiple: this.props.multiple,
+      search: this.props.search,
+    })
 
     return _.get(options, `[${selectedIndex}]`)
-  }
-
-  getEnabledIndices = (givenOptions) => {
-    const options = givenOptions || this.getMenuOptions()
-
-    return _.reduce(
-      options,
-      (memo, item, index) => {
-        if (!item.disabled) memo.push(index)
-        return memo
-      },
-      [],
-    )
   }
 
   getItemByValue = (value) => {
     const { options } = this.props
 
     return _.find(options, { value })
-  }
-
-  getMenuItemIndexByValue = (value, givenOptions) => {
-    const options = givenOptions || this.getMenuOptions()
-
-    return _.findIndex(options, ['value', value])
   }
 
   getDropdownAriaOptions = () => {
@@ -919,13 +540,8 @@ export default class Dropdown extends Component {
     const { searchQuery } = this.state
     if (searchQuery === undefined || searchQuery === '') return
 
-    this.trySetState({ searchQuery: '' })
+    this.setState({ searchQuery: '' })
     this.setSelectedIndex(value, undefined, '')
-  }
-
-  setValue = (value) => {
-    debug('setValue()', value)
-    this.trySetState({ value })
   }
 
   setSelectedIndex = (
@@ -933,40 +549,20 @@ export default class Dropdown extends Component {
     optionsProps = this.props.options,
     searchQuery = this.state.searchQuery,
   ) => {
-    const { multiple } = this.props
-    const { selectedIndex } = this.state
-    const options = this.getMenuOptions(value, optionsProps, searchQuery)
-    const enabledIndicies = this.getEnabledIndices(options)
+    const newSelectedIndex = getSelectedIndex({
+      additionLabel: this.props.additionLabel,
+      additionPosition: this.props.additionPosition,
+      allowAdditions: this.props.allowAdditions,
+      deburr: this.props.deburr,
+      multiple: this.props.multiple,
+      search: this.props.search,
+      // eslint-disable-next-line react/no-access-state-in-setstate
+      selectedIndex: this.state.selectedIndex,
 
-    let newSelectedIndex
-
-    // update the selected index
-    if (!selectedIndex || selectedIndex < 0) {
-      const firstIndex = enabledIndicies[0]
-
-      // Select the currently active item, if none, use the first item.
-      // Multiple selects remove active items from the list,
-      // their initial selected index should be 0.
-      newSelectedIndex = multiple
-        ? firstIndex
-        : this.getMenuItemIndexByValue(value, options) || enabledIndicies[0]
-    } else if (multiple) {
-      // multiple selects remove options from the menu as they are made active
-      // keep the selected index within range of the remaining items
-      if (selectedIndex >= options.length - 1) {
-        newSelectedIndex = enabledIndicies[enabledIndicies.length - 1]
-      }
-    } else {
-      const activeIndex = this.getMenuItemIndexByValue(value, options)
-
-      // regular selects can only have one active item
-      // set the selected index to the currently active item
-      newSelectedIndex = _.includes(enabledIndicies, activeIndex) ? activeIndex : undefined
-    }
-
-    if (!newSelectedIndex || newSelectedIndex < 0) {
-      newSelectedIndex = enabledIndicies[0]
-    }
+      value,
+      options: optionsProps,
+      searchQuery,
+    })
 
     this.setState({ selectedIndex: newSelectedIndex })
   }
@@ -991,7 +587,7 @@ export default class Dropdown extends Component {
     debug('remove value:', labelProps.value)
     debug('new value:', newValue)
 
-    this.setValue(newValue)
+    this.setState({ value: newValue })
     this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
@@ -1000,7 +596,18 @@ export default class Dropdown extends Component {
     debug('moveSelectionBy()')
     debug(`offset: ${offset}`)
 
-    const options = this.getMenuOptions()
+    const options = getMenuOptions({
+      value: this.state.value,
+      options: this.props.options,
+      searchQuery: this.state.searchQuery,
+
+      additionLabel: this.props.additionLabel,
+      additionPosition: this.props.additionPosition,
+      allowAdditions: this.props.allowAdditions,
+      deburr: this.props.deburr,
+      multiple: this.props.multiple,
+      search: this.props.search,
+    })
 
     // Prevent infinite loop
     // TODO: remove left part of condition after children API will be removed
@@ -1015,8 +622,11 @@ export default class Dropdown extends Component {
     // if 'wrapSelection' is set to false and selection is after last or before first, it just does not change
     if (!wrapSelection && (nextIndex > lastIndex || nextIndex < 0)) {
       nextIndex = startIndex
-    } else if (nextIndex > lastIndex) nextIndex = 0
-    else if (nextIndex < 0) nextIndex = lastIndex
+    } else if (nextIndex > lastIndex) {
+      nextIndex = 0
+    } else if (nextIndex < 0) {
+      nextIndex = lastIndex
+    }
 
     if (options[nextIndex].disabled) {
       this.moveSelectionBy(offset, nextIndex)
@@ -1052,7 +662,7 @@ export default class Dropdown extends Component {
     const { multiple } = this.props
     const newValue = multiple ? [] : ''
 
-    this.setValue(newValue)
+    this.setState({ value: newValue })
     this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
@@ -1143,30 +753,31 @@ export default class Dropdown extends Component {
 
     // set state only if there's a relevant difference
     if (!upward !== !this.state.upward) {
-      this.trySetState({ upward })
+      this.setState({ upward })
     }
   }
 
-  open = (e) => {
-    const { disabled, open, search } = this.props
-    debug('open()', { disabled, open, search })
+  open = (e = null, triggerSetState = true) => {
+    const { disabled, search } = this.props
+    debug('open()', { disabled, search, open: this.state.open })
 
     if (disabled) return
     if (search) _.invoke(this.searchRef.current, 'focus')
 
     _.invoke(this.props, 'onOpen', e, this.props)
 
-    this.trySetState({ open: true })
+    if (triggerSetState) {
+      this.setState({ open: true })
+    }
     this.scrollSelectedItemIntoView()
   }
 
   close = (e, callback = this.handleClose) => {
-    const { open } = this.state
-    debug('close()', { open })
+    debug('close()', { open: this.state.open })
 
-    if (open) {
+    if (this.state.open) {
       _.invoke(this.props, 'onClose', e, this.props)
-      this.trySetState({ open: false }, callback)
+      this.setState({ open: false }, callback)
     }
   }
 
@@ -1289,7 +900,18 @@ export default class Dropdown extends Component {
     // lazy load, only render options when open
     if (lazyLoad && !open) return null
 
-    const options = this.getMenuOptions()
+    const options = getMenuOptions({
+      value: this.state.value,
+      options: this.props.options,
+      searchQuery: this.state.searchQuery,
+
+      additionLabel: this.props.additionLabel,
+      additionPosition: this.props.additionPosition,
+      allowAdditions: this.props.allowAdditions,
+      deburr: this.props.deburr,
+      multiple: this.props.multiple,
+      search: this.props.search,
+    })
 
     if (noResultsMessage !== null && search && _.isEmpty(options)) {
       return <div className='message'>{noResultsMessage}</div>
@@ -1433,3 +1055,345 @@ export default class Dropdown extends Component {
     )
   }
 }
+
+Dropdown.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Label prefixed to an option added by a user. */
+  additionLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+
+  /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
+  additionPosition: PropTypes.oneOf(['top', 'bottom']),
+
+  /**
+   * Allow user additions to the list of options (boolean).
+   * Requires the use of `selection`, `options` and `search`.
+   */
+  allowAdditions: customPropTypes.every([
+    customPropTypes.demand(['options', 'selection', 'search']),
+    PropTypes.bool,
+  ]),
+
+  /** A Dropdown can reduce its complexity. */
+  basic: PropTypes.bool,
+
+  /** Format the Dropdown to appear as a button. */
+  button: PropTypes.bool,
+
+  /** Primary content. */
+  children: customPropTypes.every([
+    customPropTypes.disallow(['options', 'selection']),
+    customPropTypes.givenProps(
+      { children: PropTypes.any.isRequired },
+      PropTypes.element.isRequired,
+    ),
+  ]),
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Using the clearable setting will let users remove their selection from a dropdown. */
+  clearable: PropTypes.bool,
+
+  /** Whether or not the menu should close when the dropdown is blurred. */
+  closeOnBlur: PropTypes.bool,
+
+  /** Whether or not the dropdown should close when the escape key is pressed. */
+  closeOnEscape: PropTypes.bool,
+
+  /**
+   * Whether or not the menu should close when a value is selected from the dropdown.
+   * By default, multiple selection dropdowns will remain open on change, while single
+   * selection dropdowns will close on change.
+   */
+  closeOnChange: PropTypes.bool,
+
+  /** A compact dropdown has no minimum width. */
+  compact: PropTypes.bool,
+
+  /** Whether or not the dropdown should strip diacritics in options and input search */
+  deburr: PropTypes.bool,
+
+  /** Initial value of open. */
+  defaultOpen: PropTypes.bool,
+
+  /** Initial value of searchQuery. */
+  defaultSearchQuery: PropTypes.string,
+
+  /** Currently selected label in multi-select. */
+  defaultSelectedLabel: customPropTypes.every([
+    customPropTypes.demand(['multiple']),
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  ]),
+
+  /** Initial value of upward. */
+  defaultUpward: PropTypes.bool,
+
+  /** Initial value or value array if multiple. */
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+  ]),
+
+  /** A dropdown menu can open to the left or to the right. */
+  direction: PropTypes.oneOf(['left', 'right']),
+
+  /** A disabled dropdown menu or item does not allow user interaction. */
+  disabled: PropTypes.bool,
+
+  /** An errored dropdown can alert a user to a problem. */
+  error: PropTypes.bool,
+
+  /** A dropdown menu can contain floated content. */
+  floating: PropTypes.bool,
+
+  /** A dropdown can take the full width of its parent */
+  fluid: PropTypes.bool,
+
+  /** A dropdown menu can contain a header. */
+  header: PropTypes.node,
+
+  /** Shorthand for Icon. */
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
+
+  /** A dropdown can be formatted to appear inline in other content. */
+  inline: PropTypes.bool,
+
+  /** A dropdown can be formatted as a Menu item. */
+  item: PropTypes.bool,
+
+  /** A dropdown can be labeled. */
+  labeled: PropTypes.bool,
+
+  /** A dropdown can defer rendering its options until it is open. */
+  lazyLoad: PropTypes.bool,
+
+  /** A dropdown can show that it is currently loading data. */
+  loading: PropTypes.bool,
+
+  /** The minimum characters for a search to begin showing results. */
+  minCharacters: PropTypes.number,
+
+  /** A selection dropdown can allow multiple selections. */
+  multiple: PropTypes.bool,
+
+  /** Message to display when there are no results. */
+  noResultsMessage: PropTypes.node,
+
+  /**
+   * Called when a user adds a new item. Use this to update the options list.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and the new item's value.
+   */
+  onAddItem: PropTypes.func,
+
+  /**
+   * Called on blur.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onBlur: PropTypes.func,
+
+  /**
+   * Called when the user attempts to change the value.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and proposed value.
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
+
+  /**
+   * Called when a close event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClose: PropTypes.func,
+
+  /**
+   * Called on focus.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onFocus: PropTypes.func,
+
+  /**
+   * Called when a multi-select label is clicked.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All label props.
+   */
+  onLabelClick: PropTypes.func,
+
+  /**
+   * Called on mousedown.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onMouseDown: PropTypes.func,
+
+  /**
+   * Called when an open event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onOpen: PropTypes.func,
+
+  /**
+   * Called on search input change.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props, includes current value of searchQuery.
+   */
+  onSearchChange: PropTypes.func,
+
+  /** Controls whether or not the dropdown menu is displayed. */
+  open: PropTypes.bool,
+
+  /** Whether or not the menu should open when the dropdown is focused. */
+  openOnFocus: PropTypes.bool,
+
+  /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
+  options: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.arrayOf(PropTypes.shape(DropdownItem.propTypes)),
+  ]),
+
+  /** Placeholder text. */
+  placeholder: PropTypes.string,
+
+  /** A dropdown can be formatted so that its menu is pointing. */
+  pointing: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf([
+      'left',
+      'right',
+      'top',
+      'top left',
+      'top right',
+      'bottom',
+      'bottom left',
+      'bottom right',
+    ]),
+  ]),
+
+  /**
+   * Mapped over the active items and returns shorthand for the active item Labels.
+   * Only applies to `multiple` Dropdowns.
+   *
+   * @param {object} item - A currently active dropdown item.
+   * @param {number} index - The current index.
+   * @param {object} defaultLabelProps - The default props for an active item Label.
+   * @returns {*} Shorthand for a Label.
+   */
+  renderLabel: PropTypes.func,
+
+  /** A dropdown can have its menu scroll. */
+  scrolling: PropTypes.bool,
+
+  /**
+   * A selection dropdown can allow a user to search through a large list of choices.
+   * Pass a function here to replace the default search.
+   */
+  search: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+
+  /** A shorthand for a search input. */
+  searchInput: PropTypes.oneOfType([PropTypes.array, PropTypes.node, PropTypes.object]),
+
+  /** Current value of searchQuery. Creates a controlled component. */
+  searchQuery: PropTypes.string,
+
+  // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
+
+  /** Define whether the highlighted item should be selected on blur. */
+  selectOnBlur: PropTypes.bool,
+
+  /**
+   * Whether or not to change the value when navigating the menu using arrow keys.
+   * Setting to false will require enter or left click to confirm a choice.
+   */
+  selectOnNavigation: PropTypes.bool,
+
+  /** Currently selected label in multi-select. */
+  selectedLabel: customPropTypes.every([
+    customPropTypes.demand(['multiple']),
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  ]),
+
+  /** A dropdown can be used to select between choices in a form. */
+  selection: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    customPropTypes.demand(['options']),
+    PropTypes.bool,
+  ]),
+
+  /** A simple dropdown can open without Javascript. */
+  simple: PropTypes.bool,
+
+  /** A dropdown can receive focus. */
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /** The text displayed in the dropdown, usually for the active item. */
+  text: PropTypes.string,
+
+  /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
+  trigger: customPropTypes.every([customPropTypes.disallow(['selection', 'text']), PropTypes.node]),
+
+  /** Current value or value array if multiple. Creates a controlled component. */
+  value: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number])),
+  ]),
+
+  /** Controls whether the dropdown will open upward. */
+  upward: PropTypes.bool,
+
+  /**
+   * A dropdown will go to the last element when ArrowUp is pressed on the first,
+   * or go to the first when ArrowDown is pressed on the last( aka infinite selection )
+   */
+  wrapSelection: PropTypes.bool,
+}
+
+Dropdown.defaultProps = {
+  additionLabel: 'Add ',
+  additionPosition: 'top',
+  closeOnBlur: true,
+  closeOnEscape: true,
+  deburr: false,
+  icon: 'dropdown',
+  minCharacters: 1,
+  noResultsMessage: 'No results found.',
+  openOnFocus: true,
+  renderLabel: ({ text }) => text,
+  searchInput: 'text',
+  selectOnBlur: true,
+  selectOnNavigation: true,
+  wrapSelection: true,
+}
+
+Dropdown.autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
+
+Dropdown.Divider = DropdownDivider
+Dropdown.Header = DropdownHeader
+Dropdown.Item = DropdownItem
+Dropdown.Menu = DropdownMenu
+Dropdown.SearchInput = DropdownSearchInput

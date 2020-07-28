@@ -20,68 +20,6 @@ import IconGroup from './IconGroup'
  * @see Image
  */
 class Icon extends PureComponent {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** Formatted to appear bordered. */
-    bordered: PropTypes.bool,
-
-    /** Icon can formatted to appear circular. */
-    circular: PropTypes.bool,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Color of the icon. */
-    color: PropTypes.oneOf(SUI.COLORS),
-
-    /** Icons can display a smaller corner icon. */
-    corner: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(['top left', 'top right', 'bottom left', 'bottom right']),
-    ]),
-
-    /** Show that the icon is inactive. */
-    disabled: PropTypes.bool,
-
-    /** Fitted, without space to left or right of Icon. */
-    fitted: PropTypes.bool,
-
-    /** Icon can be flipped. */
-    flipped: PropTypes.oneOf(['horizontally', 'vertically']),
-
-    /** Formatted to have its colors inverted for contrast. */
-    inverted: PropTypes.bool,
-
-    /** Icon can be formatted as a link. */
-    link: PropTypes.bool,
-
-    /** Icon can be used as a simple loader. */
-    loading: PropTypes.bool,
-
-    /** Name of the icon. */
-    name: customPropTypes.suggest(SUI.ALL_ICONS_IN_ALL_CONTEXTS),
-
-    /** Icon can rotated. */
-    rotated: PropTypes.oneOf(['clockwise', 'counterclockwise']),
-
-    /** Size of the icon. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
-
-    /** Icon can have an aria label. */
-    'aria-hidden': PropTypes.string,
-
-    /** Icon can have an aria label. */
-    'aria-label': PropTypes.string,
-  }
-
-  static defaultProps = {
-    as: 'i',
-  }
-
-  static Group = IconGroup
-
   getIconAriaOptions() {
     const ariaOptions = {}
     const { 'aria-label': ariaLabel, 'aria-hidden': ariaHidden } = this.props
@@ -152,6 +90,68 @@ class Icon extends PureComponent {
     return <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick} />
   }
 }
+
+Icon.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Formatted to appear bordered. */
+  bordered: PropTypes.bool,
+
+  /** Icon can formatted to appear circular. */
+  circular: PropTypes.bool,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Color of the icon. */
+  color: PropTypes.oneOf(SUI.COLORS),
+
+  /** Icons can display a smaller corner icon. */
+  corner: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(['top left', 'top right', 'bottom left', 'bottom right']),
+  ]),
+
+  /** Show that the icon is inactive. */
+  disabled: PropTypes.bool,
+
+  /** Fitted, without space to left or right of Icon. */
+  fitted: PropTypes.bool,
+
+  /** Icon can be flipped. */
+  flipped: PropTypes.oneOf(['horizontally', 'vertically']),
+
+  /** Formatted to have its colors inverted for contrast. */
+  inverted: PropTypes.bool,
+
+  /** Icon can be formatted as a link. */
+  link: PropTypes.bool,
+
+  /** Icon can be used as a simple loader. */
+  loading: PropTypes.bool,
+
+  /** Name of the icon. */
+  name: customPropTypes.suggest(SUI.ALL_ICONS_IN_ALL_CONTEXTS),
+
+  /** Icon can rotated. */
+  rotated: PropTypes.oneOf(['clockwise', 'counterclockwise']),
+
+  /** Size of the icon. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+
+  /** Icon can have an aria label. */
+  'aria-hidden': PropTypes.string,
+
+  /** Icon can have an aria label. */
+  'aria-label': PropTypes.string,
+}
+
+Icon.defaultProps = {
+  as: 'i',
+}
+
+Icon.Group = IconGroup
 
 Icon.create = createShorthandFactory(Icon, (value) => ({ name: value }))
 

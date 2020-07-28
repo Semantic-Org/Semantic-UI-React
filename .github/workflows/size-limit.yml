@@ -1,0 +1,35 @@
+name: Bundle Size
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  size:
+    runs-on: ubuntu-latest
+    env:
+      CI_JOB_NUMBER: 1
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        id: yarn-cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-cache-node-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-cache-node-modules-
+
+      - name: Yarn install
+        if: steps.yarn-cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
+      - uses: andresz1/size-limit-action@v1.4.0
+        with:
+          build_script: build:size
+          github_token: ${{ secrets.GITHUB_TOKEN }}

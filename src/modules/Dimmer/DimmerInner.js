@@ -18,54 +18,6 @@ import {
  * An inner element for a Dimmer.
  */
 export default class DimmerInner extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** An active dimmer will dim its parent container. */
-    active: PropTypes.bool,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Shorthand for primary content. */
-    content: customPropTypes.contentShorthand,
-
-    /** A disabled dimmer cannot be activated */
-    disabled: PropTypes.bool,
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * Handles click outside Dimmer's content, but inside Dimmer area.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClickOutside: PropTypes.func,
-
-    /** A dimmer can be formatted to have its colors inverted. */
-    inverted: PropTypes.bool,
-
-    /** A dimmer can be formatted to be fixed to the page. */
-    page: PropTypes.bool,
-
-    /** A dimmer can be controlled with simple prop. */
-    simple: PropTypes.bool,
-
-    /** A dimmer can have its content top or bottom aligned. */
-    verticalAlign: PropTypes.oneOf(['bottom', 'top']),
-  }
-
   containerRef = createRef()
   contentRef = createRef()
 
@@ -87,7 +39,7 @@ export default class DimmerInner extends Component {
 
     _.invoke(this.props, 'onClick', e, this.props)
 
-    if (contentRef && (contentRef !== e.target && doesNodeContainClick(contentRef, e))) {
+    if (contentRef && contentRef !== e.target && doesNodeContainClick(contentRef, e)) {
       return
     }
 
@@ -146,4 +98,52 @@ export default class DimmerInner extends Component {
       </Ref>
     )
   }
+}
+
+DimmerInner.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** An active dimmer will dim its parent container. */
+  active: PropTypes.bool,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
+  /** A disabled dimmer cannot be activated */
+  disabled: PropTypes.bool,
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
+
+  /**
+   * Handles click outside Dimmer's content, but inside Dimmer area.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClickOutside: PropTypes.func,
+
+  /** A dimmer can be formatted to have its colors inverted. */
+  inverted: PropTypes.bool,
+
+  /** A dimmer can be formatted to be fixed to the page. */
+  page: PropTypes.bool,
+
+  /** A dimmer can be controlled with simple prop. */
+  simple: PropTypes.bool,
+
+  /** A dimmer can have its content top or bottom aligned. */
+  verticalAlign: PropTypes.oneOf(['bottom', 'top']),
 }

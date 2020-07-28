@@ -31,6 +31,6 @@ export interface StrictPaginationItemProps {
   type?: 'ellipsisItem' | 'firstItem' | 'prevItem' | 'pageItem' | 'nextItem' | 'lastItem'
 }
 
-declare class PaginationItem extends React.Component<PaginationItemProps, {}> {}
+declare class PaginationItem extends React.Component<PaginationItemProps> {}
 
 export default PaginationItem

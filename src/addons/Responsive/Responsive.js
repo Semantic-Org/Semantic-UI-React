@@ -9,47 +9,6 @@ import isVisible from './lib/isVisible'
  * Responsive can control visibility of content.
  */
 export default class Responsive extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Fires callbacks immediately after mount. */
-    fireOnMount: PropTypes.bool,
-
-    /**
-     * Called to get width of screen. Defaults to using `window.innerWidth` when in a browser;
-     * otherwise, assumes a width of 0.
-     */
-    getWidth: PropTypes.func,
-
-    /** The maximum width at which content will be displayed. */
-    maxWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /** The minimum width at which content will be displayed. */
-    minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /**
-     * Called on update.
-     *
-     * @param {SyntheticEvent} event - The React SyntheticEvent object
-     * @param {object} data - All props and the event value.
-     */
-    onUpdate: PropTypes.func,
-  }
-
-  static defaultProps = {
-    getWidth: () => (isBrowser() ? window.innerWidth : 0),
-  }
-
-  static onlyMobile = { minWidth: 320, maxWidth: 767 }
-  static onlyTablet = { minWidth: 768, maxWidth: 991 }
-  static onlyComputer = { minWidth: 992 }
-  static onlyLargeScreen = { minWidth: 1200, maxWidth: 1919 }
-  static onlyWidescreen = { minWidth: 1920 }
-
   state = {
     visible: true,
   }
@@ -110,3 +69,44 @@ export default class Responsive extends Component {
     return null
   }
 }
+
+Responsive.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Fires callbacks immediately after mount. */
+  fireOnMount: PropTypes.bool,
+
+  /**
+   * Called to get width of screen. Defaults to using `window.innerWidth` when in a browser;
+   * otherwise, assumes a width of 0.
+   */
+  getWidth: PropTypes.func,
+
+  /** The maximum width at which content will be displayed. */
+  maxWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /** The minimum width at which content will be displayed. */
+  minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /**
+   * Called on update.
+   *
+   * @param {SyntheticEvent} event - The React SyntheticEvent object
+   * @param {object} data - All props and the event value.
+   */
+  onUpdate: PropTypes.func,
+}
+
+Responsive.defaultProps = {
+  getWidth: () => (isBrowser() ? window.innerWidth : 0),
+}
+
+Responsive.onlyMobile = { minWidth: 320, maxWidth: 767 }
+Responsive.onlyTablet = { minWidth: 768, maxWidth: 991 }
+Responsive.onlyComputer = { minWidth: 992 }
+Responsive.onlyLargeScreen = { minWidth: 1200, maxWidth: 1919 }
+Responsive.onlyWidescreen = { minWidth: 1920 }

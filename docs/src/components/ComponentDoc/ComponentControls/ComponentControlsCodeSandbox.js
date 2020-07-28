@@ -49,11 +49,6 @@ ReactDOM.render(
 `
 
 class ComponentControlsCodeSandbox extends React.Component {
-  static propTypes = {
-    exampleCode: PropTypes.string.isRequired,
-    visible: PropTypes.bool.isRequired,
-  }
-
   state = {
     exampleCode: '',
     sandboxUrl: '',
@@ -121,6 +116,11 @@ class ComponentControlsCodeSandbox extends React.Component {
       <Menu.Item as='a' content='CodeSandbox' icon={{ loading: true, name: 'spinner' }} />
     )
   }
+}
+
+ComponentControlsCodeSandbox.propTypes = {
+  exampleCode: PropTypes.string.isRequired,
+  visible: PropTypes.bool.isRequired,
 }
 
 export default ComponentControlsCodeSandbox

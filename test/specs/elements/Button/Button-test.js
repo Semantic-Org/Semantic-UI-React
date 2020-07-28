@@ -199,40 +199,22 @@ describe('Button', () => {
       const wrapper = shallow(<Button labelPosition='left' label='foo' />)
       wrapper.should.have.exactly(1).descendants('Label[pointing="right"]')
 
-      wrapper
-        .childAt(0)
-        .shallow()
-        .should.match('.ui.label')
-      wrapper
-        .childAt(1)
-        .childAt(0)
-        .should.match('button')
+      wrapper.childAt(0).shallow().should.match('.ui.label')
+      wrapper.childAt(1).childAt(0).should.match('button')
     })
     it('is after the button and pointing="left" when labelPosition="right"', () => {
       const wrapper = shallow(<Button labelPosition='right' label='foo' />)
       wrapper.should.have.exactly(1).descendants('Label[pointing="left"]')
 
-      wrapper
-        .childAt(0)
-        .childAt(0)
-        .should.match('button')
-      wrapper
-        .childAt(1)
-        .shallow()
-        .should.match('.ui.label')
+      wrapper.childAt(0).childAt(0).should.match('button')
+      wrapper.childAt(1).shallow().should.match('.ui.label')
     })
     it('is after the button and pointing="left" by default', () => {
       const wrapper = shallow(<Button label='foo' />)
       wrapper.should.have.exactly(1).descendants('Label[pointing="left"]')
 
-      wrapper
-        .childAt(0)
-        .childAt(0)
-        .should.match('button')
-      wrapper
-        .childAt(1)
-        .shallow()
-        .should.match('.ui.label')
+      wrapper.childAt(0).childAt(0).should.match('button')
+      wrapper.childAt(1).shallow().should.match('.ui.label')
     })
   })
 

@@ -50,7 +50,7 @@ const ExampleEditor = (props) => {
         unstable_hot
       >
         {({ element, error, markup }) => (
-          <React.Fragment>
+          <>
             <Grid.Column
               className={`rendered-example ${getKebabExamplePath(examplePath)}`}
               style={renderedExampleStyle}
@@ -79,7 +79,7 @@ const ExampleEditor = (props) => {
                 <CodeSnippet fitted mode='html' value={markup} />
               </Grid.Column>
             )}
-          </React.Fragment>
+          </>
         )}
       </SourceRender>
     )

@@ -31,7 +31,7 @@ export interface StrictTextAreaProps {
   value?: number | string
 }
 
-declare class TextArea extends React.Component<TextAreaProps, {}> {
+declare class TextArea extends React.Component<TextAreaProps> {
   focus: () => void
 }
 

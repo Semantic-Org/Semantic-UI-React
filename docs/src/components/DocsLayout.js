@@ -12,14 +12,6 @@ const anchors = new AnchorJS({
 })
 
 class DocsLayout extends Component {
-  static propTypes = {
-    additionalTitle: PropTypes.string,
-    children: PropTypes.node,
-    location: PropTypes.object.isRequired,
-    sidebar: PropTypes.bool,
-    title: PropTypes.string.isRequired,
-  }
-
   componentDidMount() {
     this.resetPage()
   }
@@ -54,7 +46,7 @@ class DocsLayout extends Component {
     const mainStyle = sidebar ? style.sidebarMain : style.main
 
     return (
-      <React.Fragment>
+      <>
         <Head>
           <title>
             {additionalTitle ? `${additionalTitle} - ` : ''}
@@ -62,9 +54,17 @@ class DocsLayout extends Component {
           </title>
         </Head>
         <div style={mainStyle}>{children}</div>
-      </React.Fragment>
+      </>
     )
   }
+}
+
+DocsLayout.propTypes = {
+  additionalTitle: PropTypes.string,
+  children: PropTypes.node,
+  location: PropTypes.object.isRequired,
+  sidebar: PropTypes.bool,
+  title: PropTypes.string.isRequired,
 }
 
 export default withRouter(DocsLayout)

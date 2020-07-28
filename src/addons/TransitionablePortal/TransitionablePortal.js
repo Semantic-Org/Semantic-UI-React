@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 
 import Portal from '../Portal'
 import Transition from '../../modules/Transition'
+import { TRANSITION_STATUS_ENTERING } from '../../modules/Transition/utils/computeStatuses'
 import { getUnhandledProps, makeDebugger } from '../../lib'
 
 const debug = makeDebugger('transitionable_portal')
@@ -14,56 +15,6 @@ const debug = makeDebugger('transitionable_portal')
  * @see Transition
  */
 export default class TransitionablePortal extends Component {
-  static propTypes = {
-    /** Primary content. */
-    children: PropTypes.node.isRequired,
-
-    /**
-     * Called when a close event happens.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props and internal state.
-     */
-    onClose: PropTypes.func,
-
-    /**
-     * Callback on each transition that changes visibility to hidden.
-     *
-     * @param {null}
-     * @param {object} data - All props with transition status and internal state.
-     */
-    onHide: PropTypes.func,
-
-    /**
-     * Called when an open event happens.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props and internal state.
-     */
-    onOpen: PropTypes.func,
-
-    /**
-     * Callback on animation start.
-     *
-     * @param {null}
-     * @param {object} data - All props with transition status and internal state.
-     */
-    onStart: PropTypes.func,
-
-    /** Controls whether or not the portal is displayed. */
-    open: PropTypes.bool,
-
-    /** Transition props. */
-    transition: PropTypes.object,
-  }
-
-  static defaultProps = {
-    transition: {
-      animation: 'scale',
-      duration: 400,
-    },
-  }
-
   state = {}
 
   // ----------------------------------------
@@ -117,7 +68,7 @@ export default class TransitionablePortal extends Component {
     debug('handleTransitionStart()')
     const { portalOpen } = this.state
     const { status } = data
-    const transitionVisible = status === Transition.ENTERING
+    const transitionVisible = status === TRANSITION_STATUS_ENTERING
 
     _.invoke(this.props, 'onStart', null, { ...data, portalOpen, transitionVisible })
 
@@ -134,7 +85,7 @@ export default class TransitionablePortal extends Component {
 
   render() {
     debug('render()', this.state)
-    // console.log('render', this.state)
+
     const { children, transition } = this.props
     const { portalOpen, transitionVisible } = this.state
 
@@ -155,4 +106,54 @@ export default class TransitionablePortal extends Component {
       </Portal>
     )
   }
+}
+
+TransitionablePortal.propTypes = {
+  /** Primary content. */
+  children: PropTypes.node.isRequired,
+
+  /**
+   * Called when a close event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and internal state.
+   */
+  onClose: PropTypes.func,
+
+  /**
+   * Callback on each transition that changes visibility to hidden.
+   *
+   * @param {null}
+   * @param {object} data - All props with transition status and internal state.
+   */
+  onHide: PropTypes.func,
+
+  /**
+   * Called when an open event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and internal state.
+   */
+  onOpen: PropTypes.func,
+
+  /**
+   * Callback on animation start.
+   *
+   * @param {null}
+   * @param {object} data - All props with transition status and internal state.
+   */
+  onStart: PropTypes.func,
+
+  /** Controls whether or not the portal is displayed. */
+  open: PropTypes.bool,
+
+  /** Transition props. */
+  transition: PropTypes.object,
+}
+
+TransitionablePortal.defaultProps = {
+  transition: {
+    animation: 'scale',
+    duration: 400,
+  },
 }

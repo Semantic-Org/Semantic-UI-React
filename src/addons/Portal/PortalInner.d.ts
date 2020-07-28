@@ -31,6 +31,6 @@ export interface StrictPortalInnerProps {
   onUnmount?: (nothing: null, data: PortalInnerProps) => void
 }
 
-declare class PortalInner extends React.Component<PortalInnerProps, {}> {}
+declare class PortalInner extends React.Component<PortalInnerProps> {}
 
 export default PortalInner
