@@ -174,10 +174,7 @@ describe('Input', () => {
       const wrapper = mount(<Input value={value} />, { attachTo: mountNode })
       wrapper.instance().select()
 
-      window
-        .getSelection()
-        .toString()
-        .should.equal(value)
+      window.getSelection().toString().should.equal(value)
 
       wrapper.detach()
       document.body.removeChild(mountNode)

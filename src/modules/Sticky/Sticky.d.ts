@@ -21,7 +21,7 @@ export interface StrictStickyProps {
   className?: string
 
   /** Context which sticky element should stick to. */
-  context?: object | React.Ref<HTMLElement>
+  context?: Document | Window | HTMLElement | React.Ref<HTMLElement>
 
   /** Offset in pixels from the top of the screen when fixing element to viewport. */
   offset?: number
@@ -62,10 +62,10 @@ export interface StrictStickyProps {
   pushing?: boolean
 
   /** Context which sticky should attach onscroll events. */
-  scrollContext?: object | React.Ref<HTMLElement>
+  scrollContext?: Document | Window | HTMLElement | React.Ref<HTMLElement>
 
   /** Custom style for sticky element. */
-  styleElement?: object
+  styleElement?: React.CSSProperties
 }
 
 declare const Sticky: React.ComponentClass<StickyProps>

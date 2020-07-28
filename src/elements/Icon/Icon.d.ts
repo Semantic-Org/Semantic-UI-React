@@ -63,7 +63,7 @@ export interface StrictIconProps {
   'aria-label'?: string
 }
 
-declare class Icon extends React.PureComponent<IconProps, {}> {
+declare class Icon extends React.PureComponent<IconProps> {
   static Group: typeof IconGroup
 }
 

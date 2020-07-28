@@ -2,7 +2,7 @@ import React from 'react'
 import { Icon, Popup } from 'semantic-ui-react'
 
 const PopupExampleWide = () => (
-  <React.Fragment>
+  <>
     <Popup trigger={<Icon circular name='heart' />}>
       Hello. This is a regular pop-up which does not allow for lots of content.
       You cannot fit a lot of words here as the paragraphs will be pretty
@@ -18,7 +18,7 @@ const PopupExampleWide = () => (
       additional space. You can fit a lot of words here and the paragraphs will
       be pretty wide.
     </Popup>
-  </React.Fragment>
+  </>
 )
 
 export default PopupExampleWide

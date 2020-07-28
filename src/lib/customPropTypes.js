@@ -62,12 +62,7 @@ export const suggest = (suggestions) => {
   // way of looking up a value in the map, i.e. we can sort the words in the
   // incoming propValue and look that up without having to check all permutations.
   const suggestionsLookup = suggestions.reduce((acc, key) => {
-    acc[
-      key
-        .split(' ')
-        .sort()
-        .join(' ')
-    ] = true
+    acc[key.split(' ').sort().join(' ')] = true
     return acc
   }, {})
 
@@ -80,10 +75,7 @@ export const suggest = (suggestions) => {
     // check if the words were correct but ordered differently.
     // Since we're matching for classNames we need to allow any word order
     // to pass validation, e.g. `left chevron` vs `chevron left`.
-    const propValueSorted = propValue
-      .split(' ')
-      .sort()
-      .join(' ')
+    const propValueSorted = propValue.split(' ').sort().join(' ')
     if (suggestionsLookup[propValueSorted]) return
 
     // find best suggestions

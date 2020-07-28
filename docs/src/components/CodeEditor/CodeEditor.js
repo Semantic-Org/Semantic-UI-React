@@ -97,17 +97,6 @@ class CodeEditor extends React.Component {
   editorRef = React.createRef()
   name = `docs-editor-${_.uniqueId()}`
 
-  static propTypes = {
-    active: PropTypes.bool,
-    showCursor: PropTypes.bool,
-    value: PropTypes.string.isRequired,
-  }
-
-  static defaultProps = {
-    active: true,
-    showCursor: true,
-  }
-
   componentDidMount() {
     this.setCursorVisibility(this.props.showCursor)
   }
@@ -157,6 +146,17 @@ class CodeEditor extends React.Component {
       />
     )
   }
+}
+
+CodeEditor.propTypes = {
+  active: PropTypes.bool,
+  showCursor: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+}
+
+CodeEditor.defaultProps = {
+  active: true,
+  showCursor: true,
 }
 
 export default CodeEditor

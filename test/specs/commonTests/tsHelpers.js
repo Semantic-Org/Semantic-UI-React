@@ -77,7 +77,7 @@ export const hasAnySignature = (nodes) => {
 
 export const requireTs = (tsPath) => {
   try {
-    return require(`!raw-loader!../../../src/${tsPath}`)
+    return require(`!raw-loader!../../../src/${tsPath}`).default
   } catch (e) {
     return false
   }

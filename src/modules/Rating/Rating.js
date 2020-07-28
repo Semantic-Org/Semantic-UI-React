@@ -16,56 +16,6 @@ import RatingIcon from './RatingIcon'
  * A rating indicates user interest in content.
  */
 export default class Rating extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /**
-     * You can clear the rating by clicking on the current start rating.
-     * By default a rating will be only clearable if there is 1 icon.
-     * Setting to `true`/`false` will allow or disallow a user to clear their rating.
-     */
-    clearable: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['auto'])]),
-
-    /** The initial rating value. */
-    defaultRating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /** You can disable or enable interactive rating.  Makes a read-only rating. */
-    disabled: PropTypes.bool,
-
-    /** A rating can use a set of star or heart icons. */
-    icon: PropTypes.oneOf(['star', 'heart']),
-
-    /** The total number of icons. */
-    maxRating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /**
-     * Called after user selects a new rating.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props and proposed rating.
-     */
-    onRate: PropTypes.func,
-
-    /** The current number of active icons. */
-    rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /** A progress bar can vary in size. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
-  }
-
-  static autoControlledProps = ['rating']
-
-  static defaultProps = {
-    clearable: 'auto',
-    maxRating: 1,
-  }
-
-  static Icon = RatingIcon
-
   handleIconClick = (e, { index }) => {
     const { clearable, disabled, maxRating, onRate } = this.props
     const { rating } = this.state
@@ -142,3 +92,53 @@ export default class Rating extends Component {
     )
   }
 }
+
+Rating.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /**
+   * You can clear the rating by clicking on the current start rating.
+   * By default a rating will be only clearable if there is 1 icon.
+   * Setting to `true`/`false` will allow or disallow a user to clear their rating.
+   */
+  clearable: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['auto'])]),
+
+  /** The initial rating value. */
+  defaultRating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /** You can disable or enable interactive rating.  Makes a read-only rating. */
+  disabled: PropTypes.bool,
+
+  /** A rating can use a set of star or heart icons. */
+  icon: PropTypes.oneOf(['star', 'heart']),
+
+  /** The total number of icons. */
+  maxRating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /**
+   * Called after user selects a new rating.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and proposed rating.
+   */
+  onRate: PropTypes.func,
+
+  /** The current number of active icons. */
+  rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /** A progress bar can vary in size. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
+}
+
+Rating.autoControlledProps = ['rating']
+
+Rating.defaultProps = {
+  clearable: 'auto',
+  maxRating: 1,
+}
+
+Rating.Icon = RatingIcon

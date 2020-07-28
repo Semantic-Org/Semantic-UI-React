@@ -12,14 +12,6 @@ const nodeRegistry = new NodeRegistry()
  * A component that allows to manage classNames on a DOM node in declarative manner.
  */
 export default class MountNode extends Component {
-  static propTypes = {
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** The DOM node where we will apply class names. Defaults to document.body. */
-    node: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
-  }
-
   shouldComponentUpdate({ className: nextClassName }) {
     const { className: currentClassName } = this.props
 
@@ -47,4 +39,12 @@ export default class MountNode extends Component {
   render() {
     return null
   }
+}
+
+MountNode.propTypes = {
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** The DOM node where we will apply class names. Defaults to document.body. */
+  node: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
 }

@@ -30,137 +30,6 @@ const debug = makeDebugger('popup')
  * A Popup displays additional information on top of a page.
  */
 export default class Popup extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** Display the popup without the pointing arrow. */
-    basic: PropTypes.bool,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Simple text content for the popover. */
-    content: customPropTypes.itemShorthand,
-
-    /** Existing element the pop-up should be bound to. */
-    context: PropTypes.oneOfType([PropTypes.object, customPropTypes.refObject]),
-
-    /** A disabled popup only renders its trigger. */
-    disabled: PropTypes.bool,
-
-    /** Enables the Popper.js event listeners. */
-    eventsEnabled: PropTypes.bool,
-
-    /** A flowing Popup has no maximum width and continues to flow to fit its content. */
-    flowing: PropTypes.bool,
-
-    /** Takes up the entire width of its offset container. */
-    // TODO: implement the Popup fluid layout
-    // fluid: PropTypes.bool,
-
-    /** Header displayed above the content in bold. */
-    header: customPropTypes.itemShorthand,
-
-    /** Hide the Popup when scrolling the window. */
-    hideOnScroll: PropTypes.bool,
-
-    /** Whether the popup should not close on hover. */
-    hoverable: PropTypes.bool,
-
-    /** Invert the colors of the Popup. */
-    inverted: PropTypes.bool,
-
-    /** Offset value to apply to rendered popup. Accepts the following units:
-     * - px or unit-less, interpreted as pixels
-     * - %, percentage relative to the length of the trigger element
-     * - %p, percentage relative to the length of the popup element
-     * - vw, CSS viewport width unit
-     * - vh, CSS viewport height unit
-     */
-    offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /** Events triggering the popup. */
-    on: PropTypes.oneOfType([
-      PropTypes.oneOf(['hover', 'click', 'focus']),
-      PropTypes.arrayOf(PropTypes.oneOf(['hover', 'click', 'focus'])),
-    ]),
-
-    /**
-     * Called when a close event happens.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClose: PropTypes.func,
-
-    /**
-     * Called when the portal is mounted on the DOM.
-     *
-     * @param {null}
-     * @param {object} data - All props.
-     */
-    onMount: PropTypes.func,
-
-    /**
-     * Called when an open event happens.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onOpen: PropTypes.func,
-
-    /**
-     * Called when the portal is unmounted from the DOM.
-     *
-     * @param {null}
-     * @param {object} data - All props.
-     */
-    onUnmount: PropTypes.func,
-
-    /** Disables automatic repositioning of the component, it will always be placed according to the position value. */
-    pinned: PropTypes.bool,
-
-    /** Position for the popover. */
-    position: PropTypes.oneOf(positions),
-
-    /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
-    positionFixed: PropTypes.bool,
-
-    /** An object containing custom settings for the Popper.js modifiers. */
-    popperModifiers: PropTypes.object,
-
-    /** A popup can have dependencies which update will schedule a position update. */
-    popperDependencies: PropTypes.array,
-
-    /** Popup size. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big', 'massive')),
-
-    /** Custom Popup style. */
-    style: PropTypes.object,
-
-    /** Element to be rendered in-place where the popup is defined. */
-    trigger: PropTypes.node,
-
-    /** Popup width. */
-    wide: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
-  }
-
-  static defaultProps = {
-    disabled: false,
-    eventsEnabled: true,
-    offset: 0,
-    on: ['click', 'hover'],
-    pinned: false,
-    position: 'top left',
-  }
-
-  static Content = PopupContent
-  static Header = PopupHeader
-
   state = {}
 
   open = false
@@ -314,10 +183,10 @@ export default class Popup extends Component {
       <Ref innerRef={popperRef}>
         <ElementType {...contentRestProps} className={classes} style={styles}>
           {childrenUtils.isNil(children) ? (
-            <React.Fragment>
+            <>
               {PopupHeader.create(header, { autoGenerateKey: false })}
               {PopupContent.create(content, { autoGenerateKey: false })}
-            </React.Fragment>
+            </>
           ) : (
             children
           )}
@@ -341,7 +210,9 @@ export default class Popup extends Component {
     } = this.props
     const { closed, portalRestProps } = this.state
 
-    if (closed || disabled) return trigger
+    if (closed || disabled) {
+      return trigger
+    }
 
     const modifiers = _.merge(
       {
@@ -382,3 +253,134 @@ export default class Popup extends Component {
     )
   }
 }
+
+Popup.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Display the popup without the pointing arrow. */
+  basic: PropTypes.bool,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Simple text content for the popover. */
+  content: customPropTypes.itemShorthand,
+
+  /** Existing element the pop-up should be bound to. */
+  context: PropTypes.oneOfType([PropTypes.object, customPropTypes.refObject]),
+
+  /** A disabled popup only renders its trigger. */
+  disabled: PropTypes.bool,
+
+  /** Enables the Popper.js event listeners. */
+  eventsEnabled: PropTypes.bool,
+
+  /** A flowing Popup has no maximum width and continues to flow to fit its content. */
+  flowing: PropTypes.bool,
+
+  /** Takes up the entire width of its offset container. */
+  // TODO: implement the Popup fluid layout
+  // fluid: PropTypes.bool,
+
+  /** Header displayed above the content in bold. */
+  header: customPropTypes.itemShorthand,
+
+  /** Hide the Popup when scrolling the window. */
+  hideOnScroll: PropTypes.bool,
+
+  /** Whether the popup should not close on hover. */
+  hoverable: PropTypes.bool,
+
+  /** Invert the colors of the Popup. */
+  inverted: PropTypes.bool,
+
+  /** Offset value to apply to rendered popup. Accepts the following units:
+   * - px or unit-less, interpreted as pixels
+   * - %, percentage relative to the length of the trigger element
+   * - %p, percentage relative to the length of the popup element
+   * - vw, CSS viewport width unit
+   * - vh, CSS viewport height unit
+   */
+  offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /** Events triggering the popup. */
+  on: PropTypes.oneOfType([
+    PropTypes.oneOf(['hover', 'click', 'focus']),
+    PropTypes.arrayOf(PropTypes.oneOf(['hover', 'click', 'focus'])),
+  ]),
+
+  /**
+   * Called when a close event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClose: PropTypes.func,
+
+  /**
+   * Called when the portal is mounted on the DOM.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onMount: PropTypes.func,
+
+  /**
+   * Called when an open event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onOpen: PropTypes.func,
+
+  /**
+   * Called when the portal is unmounted from the DOM.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onUnmount: PropTypes.func,
+
+  /** Disables automatic repositioning of the component, it will always be placed according to the position value. */
+  pinned: PropTypes.bool,
+
+  /** Position for the popover. */
+  position: PropTypes.oneOf(positions),
+
+  /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
+  positionFixed: PropTypes.bool,
+
+  /** An object containing custom settings for the Popper.js modifiers. */
+  popperModifiers: PropTypes.object,
+
+  /** A popup can have dependencies which update will schedule a position update. */
+  popperDependencies: PropTypes.array,
+
+  /** Popup size. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big', 'massive')),
+
+  /** Custom Popup style. */
+  style: PropTypes.object,
+
+  /** Element to be rendered in-place where the popup is defined. */
+  trigger: PropTypes.node,
+
+  /** Popup width. */
+  wide: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
+}
+
+Popup.defaultProps = {
+  disabled: false,
+  eventsEnabled: true,
+  offset: 0,
+  on: ['click', 'hover'],
+  pinned: false,
+  position: 'top left',
+}
+
+Popup.Content = PopupContent
+Popup.Header = PopupHeader
