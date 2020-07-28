@@ -1,7 +1,7 @@
-import { useBooleanKnob } from '@stardust-ui/docs-components'
 import React from 'react'
 import {
   Button,
+  Checkbox,
   Grid,
   Header,
   Image,
@@ -32,11 +32,19 @@ const logReducer = (state, action) => {
 
 const SidebarExampleCallback = () => {
   const [logs, dispatch] = React.useReducer(logReducer, initialState)
-  const [visible, setVisible] = useBooleanKnob({ name: 'visible' })
+  const [visible, setVisible] = React.useState(false)
 
   return (
-    <Grid columns={2}>
-      <Grid.Column>
+    <Grid>
+      <Grid.Column width={16}>
+        <Checkbox
+          checked={visible}
+          label={{ children: <code>visible</code> }}
+          onChange={(e, data) => setVisible(data.checked)}
+        />
+      </Grid.Column>
+
+      <Grid.Column width={8}>
         <Sidebar.Pushable as={Segment}>
           <Sidebar
             as={Menu}
@@ -68,7 +76,7 @@ const SidebarExampleCallback = () => {
         </Sidebar.Pushable>
       </Grid.Column>
 
-      <Grid.Column>
+      <Grid.Column width={8}>
         <Segment.Group>
           <Segment>
             <Button

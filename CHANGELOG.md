@@ -1,5 +1,26 @@
 # Change Log
 
+## [v1.0.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.0.0) (2020-07-21)
+
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.88.2...v1.0.0)
+
+**Merged pull requests:**
+
+- docs: remove knobs usage [\#3988](https://github.com/Semantic-Org/Semantic-UI-React/pull/3988) ([layershifter](https://github.com/layershifter))
+- chore\(Dropdown\): remove deprecated lifecycle methods [\#3986](https://github.com/Semantic-Org/Semantic-UI-React/pull/3986) ([layershifter](https://github.com/layershifter))
+- chore: use `react-intersection-observer` in docs to improve perf [\#3985](https://github.com/Semantic-Org/Semantic-UI-React/pull/3985) ([reefman001](https://github.com/reefman001))
+- chore\(Transition\): remove deprecated lifecycle methods [\#3982](https://github.com/Semantic-Org/Semantic-UI-React/pull/3982) ([layershifter](https://github.com/layershifter))
+- chore\(Sticky\): remove usage of deprecated lifecycle methods [\#3974](https://github.com/Semantic-Org/Semantic-UI-React/pull/3974) ([layershifter](https://github.com/layershifter))
+- chore\(Visibility\): remove usage of deprecated lifecycle methods [\#3973](https://github.com/Semantic-Org/Semantic-UI-React/pull/3973) ([layershifter](https://github.com/layershifter))
+- chore\(TransitionGroup\): remove deprecated lifecycle methods [\#3970](https://github.com/Semantic-Org/Semantic-UI-React/pull/3970) ([layershifter](https://github.com/layershifter))
+- chore\(Search\): replace deprecated lifecycle methods [\#3968](https://github.com/Semantic-Org/Semantic-UI-React/pull/3968) ([layershifter](https://github.com/layershifter))
+- chore: use ModernAutoControlled component [\#3967](https://github.com/Semantic-Org/Semantic-UI-React/pull/3967) ([layershifter](https://github.com/layershifter))
+- chore\(TransitionablePortal\): remove usage of UNSAFE\_\* methods [\#3966](https://github.com/Semantic-Org/Semantic-UI-React/pull/3966) ([layershifter](https://github.com/layershifter))
+- fix\(customProptypes\): add a check for Element existance [\#3965](https://github.com/Semantic-Org/Semantic-UI-React/pull/3965) ([layershifter](https://github.com/layershifter))
+- docs\(README.md\): fix formatting [\#3958](https://github.com/Semantic-Org/Semantic-UI-React/pull/3958) ([klunico](https://github.com/klunico))
+- docs\(VisibilityExampleUpdateOn\): Correcting Typo [\#3952](https://github.com/Semantic-Org/Semantic-UI-React/pull/3952) ([mattorton](https://github.com/mattorton))
+- fix\(Input\): add 'inputMode' attribute to input [\#3916](https://github.com/Semantic-Org/Semantic-UI-React/pull/3916) ([RoyalHunt](https://github.com/RoyalHunt))
+
 ## [v0.88.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.88.2) (2019-12-08)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.88.1...v0.88.2)
 

@@ -20,16 +20,6 @@ const exampleEndStyle = {
 }
 
 class ComponentDoc extends Component {
-  static propTypes = {
-    componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
-    displayName: PropTypes.string.isRequired,
-    history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    seeTags: docTypes.seeTags.isRequired,
-    sidebarSections: docTypes.sidebarSections.isRequired,
-    title: PropTypes.string.isRequired,
-  }
-
   state = {}
   examplesRef = createRef()
 
@@ -112,6 +102,16 @@ class ComponentDoc extends Component {
       </DocsLayout>
     )
   }
+}
+
+ComponentDoc.propTypes = {
+  componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
+  displayName: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  seeTags: docTypes.seeTags.isRequired,
+  sidebarSections: docTypes.sidebarSections.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default withRouteData(withRouter(ComponentDoc))

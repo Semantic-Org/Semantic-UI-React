@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { default as PortalInner } from './PortalInner'
+import PortalInner from './PortalInner'
 
 export interface PortalProps extends StrictPortalProps {
   [key: string]: any
@@ -97,7 +97,7 @@ export interface StrictPortalProps {
   triggerRef?: React.Ref<any>
 }
 
-declare class Portal extends React.Component<PortalProps, {}> {
+declare class Portal extends React.Component<PortalProps> {
   static Inner: typeof PortalInner
 }
 

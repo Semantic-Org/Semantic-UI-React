@@ -31,55 +31,6 @@ const defaultRenderer = ({ image, price, title, description }) => [
 ]
 
 export default class SearchResult extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** The item currently selected by keyboard shortcut. */
-    active: PropTypes.bool,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Shorthand for primary content. */
-    content: customPropTypes.contentShorthand,
-
-    /** Additional text with less emphasis. */
-    description: PropTypes.string,
-
-    /** A unique identifier. */
-    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /** Add an image to the item. */
-    image: PropTypes.string,
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-
-    /** Customized text for price. */
-    price: PropTypes.string,
-
-    /**
-     * Renders the result contents.
-     *
-     * @param {object} props - The SearchResult props object.
-     * @returns {*} - Renderable result contents.
-     */
-    renderer: PropTypes.func,
-
-    /** Display title. */
-    title: PropTypes.string.isRequired,
-  }
-
-  static defaultProps = {
-    renderer: defaultRenderer,
-  }
-
   handleClick = (e) => {
     const { onClick } = this.props
 
@@ -103,4 +54,53 @@ export default class SearchResult extends Component {
       </ElementType>
     )
   }
+}
+
+SearchResult.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** The item currently selected by keyboard shortcut. */
+  active: PropTypes.bool,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
+  /** Additional text with less emphasis. */
+  description: PropTypes.string,
+
+  /** A unique identifier. */
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /** Add an image to the item. */
+  image: PropTypes.string,
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
+
+  /** Customized text for price. */
+  price: PropTypes.string,
+
+  /**
+   * Renders the result contents.
+   *
+   * @param {object} props - The SearchResult props object.
+   * @returns {*} - Renderable result contents.
+   */
+  renderer: PropTypes.func,
+
+  /** Display title. */
+  title: PropTypes.string.isRequired,
+}
+
+SearchResult.defaultProps = {
+  renderer: defaultRenderer,
 }

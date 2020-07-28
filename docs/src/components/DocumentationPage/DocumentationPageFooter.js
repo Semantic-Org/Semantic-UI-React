@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link } from 'react-static'
 import { Divider, Grid, Header } from 'semantic-ui-react'
 
 const DocumentationPageFooter = ({ nextPage, prevPage }) =>
   nextPage || prevPage ? (
-    <Fragment>
+    <>
       <Divider />
 
       <Grid columns={2}>
@@ -25,7 +25,7 @@ const DocumentationPageFooter = ({ nextPage, prevPage }) =>
           )}
         </Grid.Column>
       </Grid>
-    </Fragment>
+    </>
   ) : null
 
 DocumentationPageFooter.propTypes = {

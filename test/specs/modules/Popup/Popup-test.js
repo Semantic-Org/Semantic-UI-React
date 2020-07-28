@@ -311,10 +311,7 @@ describe('Popup', () => {
       }
       wrapperMount(<Popup popperModifiers={modifiers} open />)
 
-      wrapper
-        .find('Popper')
-        .should.have.prop('modifiers')
-        .deep.include(modifiers)
+      wrapper.find('Popper').should.have.prop('modifiers').deep.include(modifiers)
     })
   })
 
