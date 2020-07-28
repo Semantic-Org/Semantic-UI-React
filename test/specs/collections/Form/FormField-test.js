@@ -198,4 +198,21 @@ describe('FormField', () => {
       button.should.have.prop('content', 'Click Me')
     })
   })
+
+  describe('id', () => {
+    it('is set when content is provided', () => {
+      const wrapper = mount(<FormField content='content' id='testId' />)
+      const fieldId = wrapper.getDOMNode().getAttribute('id')
+      expect(fieldId).to.equal('testId')
+    })
+    it('is set when have child elements', () => {
+      const wrapper = mount(
+        <FormField id='testId'>
+          <input />
+        </FormField>,
+      )
+      const fieldId = wrapper.getDOMNode().getAttribute('id')
+      expect(fieldId).to.equal('testId')
+    })
+  })
 })

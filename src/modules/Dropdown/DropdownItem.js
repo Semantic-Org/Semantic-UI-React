@@ -21,61 +21,6 @@ import Label from '../../elements/Label'
  * An item sub-component for Dropdown component.
  */
 class DropdownItem extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** Style as the currently chosen item. */
-    active: PropTypes.bool,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Shorthand for primary content. */
-    content: customPropTypes.contentShorthand,
-
-    /** Additional text with less emphasis. */
-    description: customPropTypes.itemShorthand,
-
-    /** A dropdown item can be disabled. */
-    disabled: PropTypes.bool,
-
-    /** Shorthand for Flag. */
-    flag: customPropTypes.itemShorthand,
-
-    /** Shorthand for Icon. */
-    icon: customPropTypes.itemShorthand,
-
-    /** Shorthand for Image. */
-    image: customPropTypes.itemShorthand,
-
-    /** Shorthand for Label. */
-    label: customPropTypes.itemShorthand,
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * The item currently selected by keyboard shortcut.
-     * This is not the active item.
-     */
-    selected: PropTypes.bool,
-
-    /** Display text. */
-    text: customPropTypes.contentShorthand,
-
-    /** Stored value. */
-    value: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
-  }
-
   handleClick = (e) => {
     _.invoke(this.props, 'onClick', e, this.props)
   }
@@ -150,6 +95,61 @@ class DropdownItem extends Component {
       </ElementType>
     )
   }
+}
+
+DropdownItem.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Style as the currently chosen item. */
+  active: PropTypes.bool,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
+  /** Additional text with less emphasis. */
+  description: customPropTypes.itemShorthand,
+
+  /** A dropdown item can be disabled. */
+  disabled: PropTypes.bool,
+
+  /** Shorthand for Flag. */
+  flag: customPropTypes.itemShorthand,
+
+  /** Shorthand for Icon. */
+  icon: customPropTypes.itemShorthand,
+
+  /** Shorthand for Image. */
+  image: customPropTypes.itemShorthand,
+
+  /** Shorthand for Label. */
+  label: customPropTypes.itemShorthand,
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
+
+  /**
+   * The item currently selected by keyboard shortcut.
+   * This is not the active item.
+   */
+  selected: PropTypes.bool,
+
+  /** Display text. */
+  text: customPropTypes.contentShorthand,
+
+  /** Stored value. */
+  value: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
 }
 
 DropdownItem.create = createShorthandFactory(DropdownItem, (opts) => opts)

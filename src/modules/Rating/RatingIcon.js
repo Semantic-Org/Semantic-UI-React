@@ -10,51 +10,6 @@ import { getElementType, getUnhandledProps, useKeyOnly } from '../../lib'
  * An internal icon sub-component for Rating component
  */
 export default class RatingIcon extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** Indicates activity of an icon. */
-    active: PropTypes.bool,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** An index of icon inside Rating. */
-    index: PropTypes.number,
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * Called on keyup.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onKeyUp: PropTypes.func,
-
-    /**
-     * Called on mouseenter.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onMouseEnter: PropTypes.func,
-
-    /** Indicates selection of an icon. */
-    selected: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    as: 'i',
-  }
-
   handleClick = (e) => {
     _.invoke(this.props, 'onClick', e, this.props)
   }
@@ -98,4 +53,49 @@ export default class RatingIcon extends Component {
       />
     )
   }
+}
+
+RatingIcon.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Indicates activity of an icon. */
+  active: PropTypes.bool,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** An index of icon inside Rating. */
+  index: PropTypes.number,
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
+
+  /**
+   * Called on keyup.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onKeyUp: PropTypes.func,
+
+  /**
+   * Called on mouseenter.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onMouseEnter: PropTypes.func,
+
+  /** Indicates selection of an icon. */
+  selected: PropTypes.bool,
+}
+
+RatingIcon.defaultProps = {
+  as: 'i',
 }

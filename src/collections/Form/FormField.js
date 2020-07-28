@@ -78,14 +78,14 @@ function FormField(props) {
   if (_.isNil(control)) {
     if (_.isNil(label)) {
       return (
-        <ElementType {...rest} className={classes}>
+        <ElementType {...rest} className={classes} id={id}>
           {childrenUtils.isNil(children) ? content : children}
         </ElementType>
       )
     }
 
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} id={id}>
         {errorLabelBefore}
         {createHTMLLabel(label, { autoGenerateKey: false })}
         {errorLabelAfter}

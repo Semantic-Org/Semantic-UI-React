@@ -30,15 +30,6 @@ const getGithubEditHref = (examplePath) => {
 class ExampleEditorMenu extends PureComponent {
   state = {}
 
-  static propTypes = {
-    examplePath: PropTypes.string.isRequired,
-    hasError: PropTypes.bool.isRequired,
-    hasCodeChanged: PropTypes.bool.isRequired,
-    onCodeFormat: PropTypes.func.isRequired,
-    onCodeReset: PropTypes.func.isRequired,
-    sourceCode: PropTypes.string.isRequired,
-  }
-
   constructor(props) {
     super(props)
     this.state = {
@@ -114,6 +105,15 @@ class ExampleEditorMenu extends PureComponent {
       </Menu>
     )
   }
+}
+
+ExampleEditorMenu.propTypes = {
+  examplePath: PropTypes.string.isRequired,
+  hasError: PropTypes.bool.isRequired,
+  hasCodeChanged: PropTypes.bool.isRequired,
+  onCodeFormat: PropTypes.func.isRequired,
+  onCodeReset: PropTypes.func.isRequired,
+  sourceCode: PropTypes.string.isRequired,
 }
 
 export default ExampleEditorMenu

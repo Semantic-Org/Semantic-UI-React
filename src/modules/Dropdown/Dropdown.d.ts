@@ -3,7 +3,7 @@ import * as React from 'react'
 import { LabelProps } from '../../elements/Label'
 import DropdownDivider from './DropdownDivider'
 import DropdownHeader from './DropdownHeader'
-import { default as DropdownItem, DropdownItemProps } from './DropdownItem'
+import DropdownItem, { DropdownItemProps } from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
 
@@ -74,7 +74,7 @@ export interface StrictDropdownProps {
   defaultUpward?: boolean
 
   /** Initial value or value array if multiple. */
-  defaultValue?: string | number | boolean | (number | string | boolean)[]
+  defaultValue?: string | number | boolean | number | string | boolean[]
 
   /** A dropdown menu can open to the left or to the right. */
   direction?: 'left' | 'right'
@@ -246,7 +246,7 @@ export interface StrictDropdownProps {
    * A selection dropdown can allow a user to search through a large list of choices.
    * Pass a function here to replace the default search.
    */
-  search?: boolean | ((options: DropdownItemProps[], value: string) => DropdownItemProps[])
+  search?: (options: DropdownItemProps[], value: string) => DropdownItemProps[] | boolean
 
   /** A shorthand for a search input. */
   searchInput?: any
@@ -279,7 +279,7 @@ export interface StrictDropdownProps {
   trigger?: React.ReactNode
 
   /** Current value or value array if multiple. Creates a controlled component. */
-  value?: boolean | number | string | (boolean | number | string)[]
+  value?: boolean | number | string | boolean | number | string[]
 
   /** Controls whether the dropdown will open upward. */
   upward?: boolean

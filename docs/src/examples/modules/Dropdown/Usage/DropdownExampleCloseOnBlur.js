@@ -41,7 +41,7 @@ const friendOptions = [
 ]
 
 const DropdownExampleCloseOnBlur = () => (
-  <React.Fragment>
+  <>
     <Dropdown
       placeholder='I close on blur'
       closeOnBlur
@@ -54,7 +54,7 @@ const DropdownExampleCloseOnBlur = () => (
       selection
       options={friendOptions}
     />
-  </React.Fragment>
+  </>
 )
 
 export default DropdownExampleCloseOnBlur

@@ -9,31 +9,6 @@ import { createShorthandFactory, getUnhandledProps } from '../../lib'
  * A search item sub-component for Dropdown component.
  */
 class DropdownSearchInput extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
-
-    /** An input can have the auto complete. */
-    autoComplete: PropTypes.string,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** An input can receive focus. */
-    tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-    /** The HTML input type. */
-    type: PropTypes.string,
-
-    /** Stored value. */
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  }
-
-  static defaultProps = {
-    autoComplete: 'off',
-    type: 'text',
-  }
-
   handleChange = (e) => {
     const value = _.get(e, 'target.value')
 
@@ -58,6 +33,31 @@ class DropdownSearchInput extends Component {
       />
     )
   }
+}
+
+DropdownSearchInput.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** An input can have the auto complete. */
+  autoComplete: PropTypes.string,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** An input can receive focus. */
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /** The HTML input type. */
+  type: PropTypes.string,
+
+  /** Stored value. */
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+}
+
+DropdownSearchInput.defaultProps = {
+  autoComplete: 'off',
+  type: 'text',
 }
 
 DropdownSearchInput.create = createShorthandFactory(DropdownSearchInput, (type) => ({ type }))

@@ -43,6 +43,8 @@ export default {
     src: config.paths.docsSrc(),
     public: config.paths.docsPublic(),
   },
-  siteRoot: 'https://react.semantic-ui.com',
+  siteRoot: process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://react.semantic-ui.com',
   webpack,
 }

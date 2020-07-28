@@ -3,16 +3,6 @@ import React from 'react'
 import copyToClipboard from 'copy-to-clipboard'
 
 class CopyToClipboard extends React.Component {
-  static propTypes = {
-    render: PropTypes.func.isRequired,
-    timeout: PropTypes.number,
-    value: PropTypes.string.isRequired,
-  }
-
-  static defaultProps = {
-    timeout: 3000,
-  }
-
   state = {
     active: false,
   }
@@ -42,6 +32,16 @@ class CopyToClipboard extends React.Component {
 
     return render(active, this.handleClick)
   }
+}
+
+CopyToClipboard.propTypes = {
+  render: PropTypes.func.isRequired,
+  timeout: PropTypes.number,
+  value: PropTypes.string.isRequired,
+}
+
+CopyToClipboard.defaultProps = {
+  timeout: 3000,
 }
 
 export default CopyToClipboard

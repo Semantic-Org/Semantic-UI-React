@@ -12,6 +12,6 @@ export interface StrictMountNodeProps {
   node?: HTMLElement | React.Ref<any>
 }
 
-declare class MountNode extends React.Component<MountNodeProps, {}> {}
+declare class MountNode extends React.Component<MountNodeProps> {}
 
 export default MountNode

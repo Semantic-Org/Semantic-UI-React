@@ -129,7 +129,7 @@ describe('Search', () => {
       )
     })
     it('defaults to the first item with selectFirstResult', () => {
-      wrapperShallow(<Search results={options} minCharacters={0} selectFirstResult />)
+      wrapperMount(<Search results={options} minCharacters={0} selectFirstResult />)
         .find('SearchResult')
         .first()
         .should.have.prop('active', true)
@@ -146,15 +146,9 @@ describe('Search', () => {
       wrapper.update()
 
       // selection moved to second item
-      wrapper
-        .find('SearchResult')
-        .first()
-        .should.have.prop('active', false)
+      wrapper.find('SearchResult').first().should.have.prop('active', false)
 
-      wrapper
-        .find('SearchResult')
-        .at(1)
-        .should.have.prop('active', true)
+      wrapper.find('SearchResult').at(1).should.have.prop('active', true)
     })
     it('moves up on arrow up when open', () => {
       wrapperMount(<Search results={options} minCharacters={0} />)
@@ -168,10 +162,7 @@ describe('Search', () => {
       wrapper.update()
 
       // selection moved to last item
-      wrapper
-        .find('SearchResult')
-        .first()
-        .should.have.prop('active', false)
+      wrapper.find('SearchResult').first().should.have.prop('active', false)
 
       wrapper
         .find('SearchResult')
@@ -269,15 +260,9 @@ describe('Search', () => {
         <Search results={categoryOptions} category minCharacters={0} selectFirstResult />,
       )
 
-      wrapper
-        .find('SearchCategory')
-        .first()
-        .should.have.prop('active', true)
+      wrapper.find('SearchCategory').first().should.have.prop('active', true)
 
-      wrapper
-        .find('SearchResult')
-        .first()
-        .should.have.prop('active', true)
+      wrapper.find('SearchResult').first().should.have.prop('active', true)
     })
     it('moves down on arrow down when open', () => {
       wrapperMount(
@@ -293,25 +278,13 @@ describe('Search', () => {
       wrapper.update()
 
       // selection moved to second item
-      wrapper
-        .find('SearchCategory')
-        .first()
-        .should.have.prop('active', false)
+      wrapper.find('SearchCategory').first().should.have.prop('active', false)
 
-      wrapper
-        .find('SearchResult')
-        .first()
-        .should.have.prop('active', false)
+      wrapper.find('SearchResult').first().should.have.prop('active', false)
 
-      wrapper
-        .find('SearchCategory')
-        .at(1)
-        .should.have.prop('active', true)
+      wrapper.find('SearchCategory').at(1).should.have.prop('active', true)
 
-      wrapper
-        .find('SearchResult')
-        .at(categoryResultsLength)
-        .should.have.prop('active', true)
+      wrapper.find('SearchResult').at(categoryResultsLength).should.have.prop('active', true)
     })
     it('moves up on arrow up when open', () => {
       wrapperMount(<Search results={categoryOptions} category minCharacters={0} />)
@@ -325,15 +298,9 @@ describe('Search', () => {
       wrapper.update()
 
       // selection moved to last item
-      wrapper
-        .find('SearchCategory')
-        .first()
-        .should.have.prop('active', false)
+      wrapper.find('SearchCategory').first().should.have.prop('active', false)
 
-      wrapper
-        .find('SearchResult')
-        .first()
-        .should.have.prop('active', false)
+      wrapper.find('SearchResult').first().should.have.prop('active', false)
 
       wrapper
         .find('SearchCategory')
@@ -392,10 +359,7 @@ describe('Search', () => {
         .find('.prompt')
         .should.have.value(initialValue)
 
-      wrapper
-        .setProps({ value: nextValue })
-        .find('.prompt')
-        .should.have.value(nextValue)
+      wrapper.setProps({ value: nextValue }).find('.prompt').should.have.value(nextValue)
     })
   })
 
@@ -527,10 +491,7 @@ describe('Search', () => {
       wrapperMount(<Search results={options} onBlur={onBlur} />)
 
       openSearchResults()
-      wrapper
-        .find('SearchResult')
-        .at('0')
-        .simulate('click', nativeEvent)
+      wrapper.find('SearchResult').at('0').simulate('click', nativeEvent)
       onBlur.should.have.not.been.called()
     })
   })
@@ -560,10 +521,7 @@ describe('Search', () => {
       openSearchResults()
       searchResultsIsOpen()
 
-      wrapper
-        .find('SearchResult')
-        .at(randomIndex)
-        .simulate('click', nativeEvent)
+      wrapper.find('SearchResult').at(randomIndex).simulate('click', nativeEvent)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(
@@ -771,6 +729,25 @@ describe('Search', () => {
       wrapperMount(<Search results={[]} minCharacters={0} showNoResults={false} />)
 
       wrapper.find('.message.empty').should.not.be.present()
+    })
+  })
+
+  describe('input', () => {
+    it(`merges nested shorthand props for the <input>`, () => {
+      wrapperMount(<Search input={{ input: { className: 'foo', tabIndex: '-1' } }} />)
+      const input = wrapper.find('input')
+
+      input.should.have.prop('tabIndex', '-1')
+      input.should.have.className('foo')
+      input.should.have.className('prompt')
+    })
+
+    it(`will not merge for a function`, () => {
+      wrapperMount(<Search input={{ input: (Component, props) => <Component {...props} /> }} />)
+      const input = wrapper.find('input')
+
+      input.should.have.prop('autoComplete', 'off')
+      input.should.have.not.className('prompt')
     })
   })
 

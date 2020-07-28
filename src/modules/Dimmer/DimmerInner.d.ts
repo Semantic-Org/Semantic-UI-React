@@ -53,6 +53,6 @@ export interface StrictDimmerInnerProps {
   verticalAlign?: 'bottom' | 'top'
 }
 
-declare class DimmerInner extends React.Component<DimmerInnerProps, {}> {}
+declare class DimmerInner extends React.Component<DimmerInnerProps> {}
 
 export default DimmerInner

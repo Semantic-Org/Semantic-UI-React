@@ -6,7 +6,7 @@ import React from 'react'
 import shallowEqual from 'shallowequal'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   customPropTypes,
   eventStack,
   getElementType,
@@ -27,198 +27,36 @@ import SearchResults from './SearchResults'
 
 const debug = makeDebugger('search')
 
+const overrideSearchInputProps = (predefinedProps) => {
+  const { input } = predefinedProps
+
+  if (_.isUndefined(input)) {
+    return { ...predefinedProps, input: { className: 'prompt' } }
+  }
+  if (_.isPlainObject(input)) {
+    return { ...predefinedProps, input: { ...input, className: cx(input.className, 'prompt') } }
+  }
+
+  return predefinedProps
+}
+
 /**
  * A search module allows a user to query for results from a selection of data
  */
 export default class Search extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: PropTypes.elementType,
+  static getAutoControlledStateFromProps(props, state) {
+    debug('getAutoControlledStateFromProps()')
 
-    // ------------------------------------
-    // Behavior
-    // ------------------------------------
-
-    /** Initial value of open. */
-    defaultOpen: PropTypes.bool,
-
-    /** Initial value. */
-    defaultValue: PropTypes.string,
-
-    /** Shorthand for Icon. */
-    icon: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
-
-    /** Minimum characters to query for results */
-    minCharacters: PropTypes.number,
-
-    /** Additional text for "No Results" message with less emphasis. */
-    noResultsDescription: PropTypes.node,
-
-    /** Message to display when there are no results. */
-    noResultsMessage: PropTypes.node,
-
-    /** Controls whether or not the results menu is displayed. */
-    open: PropTypes.bool,
-
-    /**
-     * One of:
-     * - array of Search.Result props e.g. `{ title: '', description: '' }` or
-     * - object of categories e.g. `{ name: '', results: [{ title: '', description: '' }]`
-     */
-    results: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.shape(SearchResult.propTypes)),
-      PropTypes.shape(SearchCategory.propTypes),
-    ]),
-
-    /** Whether the search should automatically select the first result after searching. */
-    selectFirstResult: PropTypes.bool,
-
-    /** Whether a "no results" message should be shown if no results are found. */
-    showNoResults: PropTypes.bool,
-
-    /** Current value of the search input. Creates a controlled component. */
-    value: PropTypes.string,
-
-    // ------------------------------------
-    // Rendering
-    // ------------------------------------
-
-    /**
-     * Renders the SearchCategory layout.
-     *
-     * @param {object} categoryContent - The Renderable SearchCategory contents.
-     * @param {object} resultsContent - The Renderable SearchResult contents.
-     * @returns {*} - Renderable SearchCategory layout.
-     */
-    categoryLayoutRenderer: PropTypes.func,
-
-    /**
-     * Renders the SearchCategory contents.
-     *
-     * @param {object} props - The SearchCategory props object.
-     * @returns {*} - Renderable SearchCategory contents.
-     */
-    categoryRenderer: PropTypes.func,
-
-    /**
-     * Renders the SearchResult contents.
-     *
-     * @param {object} props - The SearchResult props object.
-     * @returns {*} - Renderable SearchResult contents.
-     */
-    resultRenderer: PropTypes.func,
-
-    // ------------------------------------
-    // Callbacks
-    // ------------------------------------
-
-    /**
-     * Called on blur.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onBlur: PropTypes.func,
-
-    /**
-     * Called on focus.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onFocus: PropTypes.func,
-
-    /**
-     * Called on mousedown.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onMouseDown: PropTypes.func,
-
-    /**
-     * Called when a result is selected.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onResultSelect: PropTypes.func,
-
-    /**
-     * Called on search input change.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props, includes current value of search input.
-     */
-    onSearchChange: PropTypes.func,
-
-    /**
-     * Called when the active selection index is changed.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onSelectionChange: PropTypes.func,
-
-    // ------------------------------------
-    // Style
-    // ------------------------------------
-
-    /** A search can have its results aligned to its left or right container edge. */
-    aligned: PropTypes.string,
-
-    /** A search can display results from remote content ordered by categories. */
-    category: PropTypes.bool,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** A search can have its results take up the width of its container. */
-    fluid: PropTypes.bool,
-
-    /** Shorthand for input element. */
-    input: customPropTypes.itemShorthand,
-
-    /** A search can show a loading indicator. */
-    loading: PropTypes.bool,
-
-    /** A search can have different sizes. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
-  }
-
-  static defaultProps = {
-    icon: 'search',
-    input: 'text',
-    minCharacters: 1,
-    noResultsMessage: 'No results found.',
-    showNoResults: true,
-  }
-
-  static autoControlledProps = ['open', 'value']
-
-  static Category = SearchCategory
-  static Result = SearchResult
-  static Results = SearchResults
-
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillMount() {
-    debug('componentWillMount()')
-    const { open, value } = this.state
-
-    this.setValue(value)
-    if (open) this.open()
-  }
-
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    super.UNSAFE_componentWillReceiveProps(nextProps)
-    debug('componentWillReceiveProps()')
-    debug('changed props:', objectDiff(nextProps, this.props))
-
-    if (!shallowEqual(nextProps.value, this.props.value)) {
-      debug('value changed, setting', nextProps.value)
-      this.setValue(nextProps.value)
+    // We need to store a `prevValue` to compare as in `getDerivedStateFromProps` we don't have
+    // prevState
+    if (typeof state.prevValue !== 'undefined' && shallowEqual(state.prevValue, state.value)) {
+      return { prevValue: state.value }
     }
+
+    const selectedIndex = props.selectFirstResult ? 0 : -1
+    debug('value changed, setting selectedIndex', selectedIndex)
+
+    return { prevValue: state.value, selectedIndex }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -459,7 +297,7 @@ export default class Search extends Component {
 
     const { selectFirstResult } = this.props
 
-    this.trySetState({ value, selectedIndex: selectFirstResult ? 0 : -1 })
+    this.setState({ value, selectedIndex: selectFirstResult ? 0 : -1 })
   }
 
   moveSelectionBy = (e, offset) => {
@@ -516,12 +354,12 @@ export default class Search extends Component {
 
   open = () => {
     debug('open()')
-    this.trySetState({ open: true })
+    this.setState({ open: true })
   }
 
   close = () => {
     debug('close()')
-    this.trySetState({ open: false })
+    this.setState({ open: false })
   }
 
   // ----------------------------------------
@@ -536,12 +374,15 @@ export default class Search extends Component {
       autoGenerateKey: false,
       defaultProps: {
         ...rest,
+        autoComplete: 'off',
         icon,
-        input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
         onChange: this.handleSearchChange,
         onClick: this.handleInputClick,
+        tabIndex: '0',
         value,
       },
+      // Nested shorthand props need special treatment to survive the shallow merge
+      overrideProps: overrideSearchInputProps,
     })
   }
 
@@ -669,3 +510,172 @@ export default class Search extends Component {
     )
   }
 }
+
+Search.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  // ------------------------------------
+  // Behavior
+  // ------------------------------------
+
+  /** Initial value of open. */
+  defaultOpen: PropTypes.bool,
+
+  /** Initial value. */
+  defaultValue: PropTypes.string,
+
+  /** Shorthand for Icon. */
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
+
+  /** Minimum characters to query for results */
+  minCharacters: PropTypes.number,
+
+  /** Additional text for "No Results" message with less emphasis. */
+  noResultsDescription: PropTypes.node,
+
+  /** Message to display when there are no results. */
+  noResultsMessage: PropTypes.node,
+
+  /** Controls whether or not the results menu is displayed. */
+  open: PropTypes.bool,
+
+  /**
+   * One of:
+   * - array of Search.Result props e.g. `{ title: '', description: '' }` or
+   * - object of categories e.g. `{ name: '', results: [{ title: '', description: '' }]`
+   */
+  results: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.shape(SearchResult.propTypes)),
+    PropTypes.shape(SearchCategory.propTypes),
+  ]),
+
+  /** Whether the search should automatically select the first result after searching. */
+  selectFirstResult: PropTypes.bool,
+
+  /** Whether a "no results" message should be shown if no results are found. */
+  showNoResults: PropTypes.bool,
+
+  /** Current value of the search input. Creates a controlled component. */
+  value: PropTypes.string,
+
+  // ------------------------------------
+  // Rendering
+  // ------------------------------------
+
+  /**
+   * Renders the SearchCategory layout.
+   *
+   * @param {object} categoryContent - The Renderable SearchCategory contents.
+   * @param {object} resultsContent - The Renderable SearchResult contents.
+   * @returns {*} - Renderable SearchCategory layout.
+   */
+  categoryLayoutRenderer: PropTypes.func,
+
+  /**
+   * Renders the SearchCategory contents.
+   *
+   * @param {object} props - The SearchCategory props object.
+   * @returns {*} - Renderable SearchCategory contents.
+   */
+  categoryRenderer: PropTypes.func,
+
+  /**
+   * Renders the SearchResult contents.
+   *
+   * @param {object} props - The SearchResult props object.
+   * @returns {*} - Renderable SearchResult contents.
+   */
+  resultRenderer: PropTypes.func,
+
+  // ------------------------------------
+  // Callbacks
+  // ------------------------------------
+
+  /**
+   * Called on blur.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onBlur: PropTypes.func,
+
+  /**
+   * Called on focus.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onFocus: PropTypes.func,
+
+  /**
+   * Called on mousedown.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onMouseDown: PropTypes.func,
+
+  /**
+   * Called when a result is selected.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onResultSelect: PropTypes.func,
+
+  /**
+   * Called on search input change.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props, includes current value of search input.
+   */
+  onSearchChange: PropTypes.func,
+
+  /**
+   * Called when the active selection index is changed.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onSelectionChange: PropTypes.func,
+
+  // ------------------------------------
+  // Style
+  // ------------------------------------
+
+  /** A search can have its results aligned to its left or right container edge. */
+  aligned: PropTypes.string,
+
+  /** A search can display results from remote content ordered by categories. */
+  category: PropTypes.bool,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** A search can have its results take up the width of its container. */
+  fluid: PropTypes.bool,
+
+  /** Shorthand for input element. */
+  input: customPropTypes.itemShorthand,
+
+  /** A search can show a loading indicator. */
+  loading: PropTypes.bool,
+
+  /** A search can have different sizes. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+}
+
+Search.defaultProps = {
+  icon: 'search',
+  input: 'text',
+  minCharacters: 1,
+  noResultsMessage: 'No results found.',
+  showNoResults: true,
+}
+
+Search.autoControlledProps = ['open', 'value']
+
+Search.Category = SearchCategory
+Search.Result = SearchResult
+Search.Results = SearchResults

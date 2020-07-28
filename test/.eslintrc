@@ -11,11 +11,12 @@
     "shallow": false,
     "render": false
   },
-  "plugins": [
-    "mocha"
-  ],
+  "plugins": ["mocha"],
   "rules": {
-    "jsx-a11y/alt-text": 0,
-    "jsx-a11y/tabindex-no-positive": 0
+    "jsx-a11y/alt-text": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "jsx-a11y/tabindex-no-positive": "off",
+    "react/forbid-foreign-prop-types": "off",
+    "react/prop-types": "off"
   }
 }

@@ -12,7 +12,7 @@ import TableCell from './TableCell'
 import TableFooter from './TableFooter'
 import TableHeader from './TableHeader'
 import TableHeaderCell from './TableHeaderCell'
-import { default as TableRow, TableRowProps } from './TableRow'
+import TableRow, { TableRowProps } from './TableRow'
 
 export interface TableProps extends StrictTableProps {
   [key: string]: any

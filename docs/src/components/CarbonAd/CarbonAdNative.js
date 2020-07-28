@@ -9,10 +9,6 @@ const debug = makeDebugger('carbon-ad-native')
 const MAX_FAILED_ADS = 10
 
 class CarbonAdNative extends PureComponent {
-  static propTypes = {
-    inverted: PropTypes.bool,
-  }
-
   state = {}
 
   componentDidMount() {
@@ -23,7 +19,8 @@ class CarbonAdNative extends PureComponent {
     this.getAd()
   }
 
-  componentWillUpdate() {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillUpdate() {
     const shouldGetAd = Date.now() - this.timeOfLastAd > 10000
     debug('componentWillUpdate', { mounted: this.mounted, shouldGetAd })
     if (shouldGetAd) {
@@ -175,6 +172,10 @@ class CarbonAdNative extends PureComponent {
       </a>
     )
   }
+}
+
+CarbonAdNative.propTypes = {
+  inverted: PropTypes.bool,
 }
 
 export default CarbonAdNative
