@@ -48,7 +48,7 @@ export const prettifyCode = (code, parser) => {
 }
 
 const formatters = {
-  bash: (val = '') => val.replace(/^/g, '$  '),
+  bash: (val = '') => val.replace(/^[\w]/gm, '$$  $&'),
   json: (val) => prettifyCode(val, 'json'),
   js: (val = '') => prettifyCode(val, 'babel'),
   jsx: (val = '') => prettifyCode(val, 'babel'),
