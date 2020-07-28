@@ -1,68 +1,79 @@
 import _ from 'lodash'
-import React, { useState } from "react";
-import { Header, Table } from "semantic-ui-react";
+import React from 'react'
+import { Table } from 'semantic-ui-react'
 
 const tableData = [
-  { name: "John", age: 15, gender: "Male" },
-  { name: "Amber", age: 40, gender: "Female" },
-  { name: "Leslie", age: 25, gender: "Other" },
-  { name: "Ben", age: 70, gender: "Male" },
-];
+  { name: 'John', age: 15, gender: 'Male' },
+  { name: 'Amber', age: 40, gender: 'Female' },
+  { name: 'Leslie', age: 25, gender: 'Other' },
+  { name: 'Ben', age: 70, gender: 'Male' },
+]
 
-function Table() {
-  const [column, updateColumn] = useState(null);
-  const [data, updateData] = useState(tableData);
-  const [direction, updateDirection] = useState(null);
+function exampleReducer(state, action) {
+  switch (action.type) {
+    case 'CHANGE_SORT':
+      if (state.column === action.column) {
+        return {
+          ...state,
+          data: state.data.reverse(),
+          direction:
+            state.direction === 'ascending' ? 'descending' : 'ascending',
+        }
+      }
 
-  const handleSort = (clickedColumn) => {
-    if (column !== clickedColumn) {
-      updateColumn(clickedColumn);
-      updateData(_.sortBy(data, [clickedColumn]));
-      updateDirection("ascending");
-      return
-    }
-    updateData(data.reverse())
-    updateDirection( direction === 'ascending' ? 'descending' : 'ascending')
-  };
-
-  return (
-    <div>
-      <Header as="h2">Recent files from file table</Header>
-      <Table sortable celled fixed>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell
-              sorted={column === "name" ? direction : null}
-              onClick={ () => handleSort("name")}
-            >
-              Name
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "age" ? direction : null}
-              onClick={() => handleSort("age")}
-            >
-              Age
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "gender" ? direction : null}
-              onClick={() => handleSort("gender")}
-            >
-              Gender
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {_.map(data, ({ age, gender, name }) => (
-            <Table.Row key={name}>
-              <Table.Cell>{name}</Table.Cell>
-              <Table.Cell>{age}</Table.Cell>
-              <Table.Cell>{gender}</Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
-    </div>
-  );
+      return {
+        column: action.column,
+        data: _.sortBy(state.data, [action.column]),
+        direction: 'ascending',
+      }
+    default:
+      throw new Error()
+  }
 }
 
-export default Table;
+function TableExampleSortable() {
+  const [state, dispatch] = React.useReducer(exampleReducer, {
+    column: null,
+    data: tableData,
+    direction: null,
+  })
+  const { column, data, direction } = state
+
+  return (
+    <Table sortable celled fixed>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell
+            sorted={column === 'name' ? direction : null}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
+          >
+            Name
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            sorted={column === 'age' ? direction : null}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'age' })}
+          >
+            Age
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            sorted={column === 'gender' ? direction : null}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'gender' })}
+          >
+            Gender
+          </Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {data.map(({ age, gender, name }) => (
+          <Table.Row key={name}>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
+  )
+}
+
+export default TableExampleSortable
