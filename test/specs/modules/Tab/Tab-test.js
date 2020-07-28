@@ -29,37 +29,22 @@ describe('Tab', () => {
         .find('MenuItem')
 
       items.should.have.lengthOf(3)
-      items
-        .at(0)
-        .shallow()
-        .should.contain.text('Tab 1')
-      items
-        .at(1)
-        .shallow()
-        .should.contain.text('Tab 2')
-      items
-        .at(2)
-        .shallow()
-        .should.contain.text('Tab 3')
+      items.at(0).shallow().should.contain.text('Tab 1')
+      items.at(1).shallow().should.contain.text('Tab 2')
+      items.at(2).shallow().should.contain.text('Tab 3')
     })
 
     it('renders above the pane by default', () => {
       const wrapper = shallow(<Tab panes={panes} />)
 
       wrapper.childAt(0).should.match('Menu')
-      wrapper
-        .childAt(1)
-        .shallow()
-        .should.match('Segment')
+      wrapper.childAt(1).shallow().should.match('Segment')
     })
 
     it("renders below the pane when attached='bottom'", () => {
       const wrapper = shallow(<Tab menu={{ attached: 'bottom' }} panes={panes} />)
 
-      wrapper
-        .childAt(0)
-        .shallow()
-        .should.match('Segment')
+      wrapper.childAt(0).shallow().should.match('Segment')
       wrapper.childAt(1).should.match('Menu')
     })
 
@@ -68,18 +53,8 @@ describe('Tab', () => {
       const wrapper = shallow(<Tab menu={menu} menuPosition='right' panes={panes} />)
 
       wrapper.childAt(0).should.match('Grid')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(1)
-        .should.match('GridColumn')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(1)
-        .shallow()
-        .childAt(0)
-        .should.match('Menu')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).should.match('Menu')
       wrapper.find('Menu').should.have.prop('tabular', 'right')
     })
 
@@ -88,18 +63,8 @@ describe('Tab', () => {
       const wrapper = shallow(<Tab menu={menu} menuPosition='left' panes={panes} />)
 
       wrapper.childAt(0).should.match('Grid')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .should.match('GridColumn')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .should.match('Menu')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).should.match('Menu')
       wrapper.find('Menu').should.have.prop('tabular', 'right')
     })
 
@@ -108,31 +73,10 @@ describe('Tab', () => {
       const wrapper = shallow(<Tab menu={menu} panes={panes} />)
 
       wrapper.childAt(0).should.match('Grid')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .should.match('GridColumn')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .shallow()
-        .should.match('Segment')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(1)
-        .should.match('GridColumn')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(1)
-        .shallow()
-        .childAt(0)
-        .should.match('Menu')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).shallow().should.match('Segment')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).should.match('Menu')
     })
   })
 
@@ -142,31 +86,10 @@ describe('Tab', () => {
       const wrapper = shallow(<Tab menu={menu} menuPosition='left' panes={panes} />)
 
       wrapper.childAt(0).should.match('Grid')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .should.match('GridColumn')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .should.match('Menu')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(1)
-        .should.match('GridColumn')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(1)
-        .shallow()
-        .childAt(0)
-        .shallow()
-        .should.match('Segment')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).should.match('Menu')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).shallow().should.match('Segment')
     })
 
     it("renders left of the pane when set 'left', even if tabular is right", () => {
@@ -174,31 +97,10 @@ describe('Tab', () => {
       const wrapper = shallow(<Tab menu={menu} menuPosition='left' panes={panes} />)
 
       wrapper.childAt(0).should.match('Grid')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .should.match('GridColumn')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .should.match('Menu')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(1)
-        .should.match('GridColumn')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(1)
-        .shallow()
-        .childAt(0)
-        .shallow()
-        .should.match('Segment')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).should.match('Menu')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).shallow().should.match('Segment')
     })
 
     it("renders right of the pane when set 'right'", () => {
@@ -206,31 +108,10 @@ describe('Tab', () => {
       const wrapper = shallow(<Tab menu={menu} menuPosition='right' panes={panes} />)
 
       wrapper.childAt(0).should.match('Grid')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .should.match('GridColumn')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .shallow()
-        .childAt(0)
-        .shallow()
-        .should.match('Segment')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(1)
-        .should.match('GridColumn')
-      wrapper
-        .childAt(0)
-        .shallow()
-        .childAt(1)
-        .shallow()
-        .childAt(0)
-        .should.match('Menu')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).shallow().should.match('Segment')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).should.match('Menu')
     })
   })
 
@@ -246,10 +127,7 @@ describe('Tab', () => {
 
       wrapper.find('TabPane[active]').should.contain.text('Tab 1 Content')
 
-      wrapper
-        .find('MenuItem')
-        .at(1)
-        .simulate('click')
+      wrapper.find('MenuItem').at(1).simulate('click')
 
       wrapper.find('TabPane[active]').should.contain.text('Tab 2 Content')
     })

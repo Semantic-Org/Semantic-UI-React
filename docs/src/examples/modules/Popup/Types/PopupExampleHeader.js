@@ -20,7 +20,7 @@ const users = [
 ]
 
 const PopupExampleHeader = () => (
-  <React.Fragment>
+  <>
     {users.map((user) => (
       <Popup
         content={user.bio}
@@ -29,7 +29,7 @@ const PopupExampleHeader = () => (
         trigger={<Image src={user.avatar} avatar />}
       />
     ))}
-  </React.Fragment>
+  </>
 )
 
 export default PopupExampleHeader

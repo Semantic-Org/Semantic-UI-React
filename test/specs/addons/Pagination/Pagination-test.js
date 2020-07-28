@@ -58,10 +58,7 @@ describe('Pagination', () => {
         />,
       )
 
-      wrapper
-        .find('PaginationItem')
-        .at(0)
-        .simulate('click')
+      wrapper.find('PaginationItem').at(0).simulate('click')
       onPageChange.should.have.not.been.called()
     })
 
@@ -77,10 +74,7 @@ describe('Pagination', () => {
         />,
       )
 
-      wrapper
-        .find('PaginationItem')
-        .at(1)
-        .simulate('click')
+      wrapper.find('PaginationItem').at(1).simulate('click')
       onPageChange.should.have.not.been.called()
     })
   })

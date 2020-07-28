@@ -115,7 +115,7 @@ export interface StrictButtonProps {
   toggle?: boolean
 }
 
-declare class Button extends React.Component<ButtonProps, {}> {
+declare class Button extends React.Component<ButtonProps> {
   static Content: typeof ButtonContent
   static Group: typeof ButtonGroup
   static Or: typeof ButtonOr

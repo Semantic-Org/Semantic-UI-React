@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { SemanticShorthandItem } from '../../generic'
-import { default as PaginationItem, PaginationItemProps } from './PaginationItem'
+import PaginationItem, { PaginationItemProps } from './PaginationItem'
 
 export interface PaginationProps extends StrictPaginationProps {
   [key: string]: any
@@ -56,7 +56,7 @@ export interface StrictPaginationProps {
   totalPages: number | string
 }
 
-declare class Pagination extends React.Component<PaginationProps, {}> {
+declare class Pagination extends React.Component<PaginationProps> {
   static Item: typeof PaginationItem
 }
 

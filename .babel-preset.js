@@ -24,6 +24,9 @@ const plugins = [
     '@babel/plugin-transform-runtime',
     {
       regenerator: isDocsBuild,
+      useESModules: isESBuild,
+      // https://github.com/babel/babel/issues/10261
+      version: require('@babel/runtime/package.json').version,
     },
   ],
   // Plugins that allow to reduce the target bundle size

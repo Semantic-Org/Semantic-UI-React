@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { SemanticShorthandItem } from '../../generic'
-import { default as TabPane, TabPaneProps } from './TabPane'
+import TabPane, { TabPaneProps } from './TabPane'
 
 export interface TabProps extends StrictTabProps {
   [key: string]: any
@@ -49,9 +49,9 @@ export interface StrictTabProps {
    * }
    */
   panes?: {
-    pane?: SemanticShorthandItem<TabPaneProps>;
-    menuItem?: any;
-    render?: () => React.ReactNode;
+    pane?: SemanticShorthandItem<TabPaneProps>
+    menuItem?: any
+    render?: () => React.ReactNode
   }[]
 
   /** A Tab can render only active pane. */

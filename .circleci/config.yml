@@ -71,10 +71,7 @@ jobs:
           at: ~/project
       - *restore_node_modules
       - run:
-          name: Lint TypeScript
-          command: yarn tsd:lint
-      - run:
-          name: Lint JavaScript
+          name: Lint
           command: yarn lint
 
 workflows:

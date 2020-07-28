@@ -2,7 +2,7 @@ import React from 'react'
 import { Icon, Popup } from 'semantic-ui-react'
 
 const PopupExampleOffset = () => (
-  <React.Fragment>
+  <>
     <Popup
       trigger={<Icon size='large' name='heart' circular />}
       content='Way off to the left'
@@ -27,7 +27,7 @@ const PopupExampleOffset = () => (
       offset='0, 50px'
       position='bottom center'
     />
-  </React.Fragment>
+  </>
 )
 
 export default PopupExampleOffset
