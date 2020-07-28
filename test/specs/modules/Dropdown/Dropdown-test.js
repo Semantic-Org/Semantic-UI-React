@@ -4,12 +4,14 @@ import React from 'react'
 
 import * as common from 'test/specs/commonTests'
 import { consoleUtil, domEvent, sandbox } from 'test/utils'
+import Label from 'src/elements/Label/Label'
 import Dropdown from 'src/modules/Dropdown/Dropdown'
 import DropdownDivider from 'src/modules/Dropdown/DropdownDivider'
 import DropdownHeader from 'src/modules/Dropdown/DropdownHeader'
 import DropdownItem from 'src/modules/Dropdown/DropdownItem'
 import DropdownMenu from 'src/modules/Dropdown/DropdownMenu'
 import DropdownSearchInput from 'src/modules/Dropdown/DropdownSearchInput'
+import DropdownText from 'src/modules/Dropdown/DropdownText'
 
 let attachTo
 let options
@@ -92,6 +94,7 @@ describe('Dropdown', () => {
     DropdownItem,
     DropdownMenu,
     DropdownSearchInput,
+    DropdownText,
   ])
 
   common.implementsIconProp(Dropdown, {
@@ -289,13 +292,6 @@ describe('Dropdown', () => {
     it('should label normal dropdown as a listbox', () => {
       wrapperMount(<Dropdown />)
       wrapper.find('div').at(0).should.have.prop('role', 'listbox')
-    })
-    it('should render an aria-live region with aria-atomic', () => {
-      wrapperMount(<Dropdown />)
-      wrapper
-        .find('div')
-        .at(1)
-        .should.have.props({ 'aria-live': 'polite', 'aria-atomic': true, role: 'alert' })
     })
     it('should label search dropdown as a combobox', () => {
       wrapperMount(<Dropdown search />)
@@ -1466,18 +1462,43 @@ describe('Dropdown', () => {
     it('filters active options out of the list', () => {
       // make all the items active, expect to see none in the list
       const value = _.map(options, 'value')
-      wrapperShallow(
-        <Dropdown options={options} selection value={value} multiple />,
-      ).should.not.have.descendants('DropdownItem')
+
+      wrapperShallow(<Dropdown options={options} selection value={value} multiple />)
+      wrapper.should.not.have.descendants('DropdownItem')
     })
     it('displays a label for active items', () => {
       // select a random item, expect a label with the item's text
-      const activeItem = _.sample(options)
-      wrapperShallow(
-        <Dropdown options={options} selection value={[activeItem.value]} multiple />,
-      ).should.have.descendants('Label')
+      const testOptions = [
+        { value: 'foo', text: 'foo' },
+        { value: 'bar', text: 'bar', image: 'bar.jpg' },
+        { value: 'baz', text: <span className='baz'>baz</span> },
+        {
+          value: 'qux',
+          text: () => (
+            <span className='qux' key='qux'>
+              qux
+            </span>
+          ),
+        },
+      ]
 
-      wrapper.find('Label').should.have.prop('content', activeItem.text)
+      consoleUtil.disableOnce()
+      wrapperMount(
+        <Dropdown
+          multiple
+          options={testOptions}
+          selection
+          value={testOptions.map((option) => option.value)}
+        />,
+      )
+
+      expect(wrapper.find(Label).at(0).getDOMNode().innerText).to.include('foo')
+
+      expect(wrapper.find(Label).at(1).getDOMNode().innerText).to.include('bar')
+      wrapper.find(Label).at(1).find('Image').should.have.prop('src', 'bar.jpg')
+
+      wrapper.find('span.baz').should.contain.text('baz')
+      wrapper.find('span.qux').should.contain.text('qux')
     })
     it('keeps the selection within the range of remaining options', () => {
       // items are removed as they are made active
@@ -1981,8 +2002,8 @@ describe('Dropdown', () => {
       wrapperMount(
         <Dropdown minCharacters={3} options={options} placeholder='foo' selection search />,
       )
-        .find('.default.text')
-        .simulate('click')
+
+      wrapper.find(DropdownText).simulate('click')
 
       const activeElement = document.activeElement
       const searchIsFocused = activeElement === document.querySelector('input.search')

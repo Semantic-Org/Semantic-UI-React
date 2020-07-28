@@ -134,6 +134,7 @@ export DropdownHeader from './modules/Dropdown/DropdownHeader'
 export DropdownItem from './modules/Dropdown/DropdownItem'
 export DropdownMenu from './modules/Dropdown/DropdownMenu'
 export DropdownSearchInput from './modules/Dropdown/DropdownSearchInput'
+export DropdownText from './modules/Dropdown/DropdownText'
 
 export Embed from './modules/Embed'
 
