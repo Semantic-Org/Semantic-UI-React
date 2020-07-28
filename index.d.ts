@@ -38,7 +38,11 @@ export {
   StrictResponsiveProps,
 } from './dist/commonjs/addons/Responsive'
 export { default as Select, SelectProps } from './dist/commonjs/addons/Select'
-export { default as TextArea, TextAreaProps, StrictTextAreaProps } from './dist/commonjs/addons/TextArea'
+export {
+  default as TextArea,
+  TextAreaProps,
+  StrictTextAreaProps,
+} from './dist/commonjs/addons/TextArea'
 export {
   default as TransitionablePortal,
   TransitionablePortalProps,
@@ -625,11 +629,7 @@ export {
   StrictCardMetaProps,
 } from './dist/commonjs/views/Card/CardMeta'
 
-export {
-  default as Comment,
-  CommentProps,
-  StrictCommentProps,
-} from './dist/commonjs/views/Comment'
+export { default as Comment, CommentProps, StrictCommentProps } from './dist/commonjs/views/Comment'
 export {
   default as CommentAction,
   CommentActionProps,

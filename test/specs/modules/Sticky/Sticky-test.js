@@ -133,20 +133,14 @@ describe('Sticky', () => {
       )
 
       _.forEach(['ui', 'sticky', 'fixed', 'top'], (className) =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        wrapper.childAt(0).childAt(1).should.have.className(className),
       )
       onStick.should.have.been.calledOnce()
       onStick.should.have.been.calledWithMatch(undefined, positions)
 
       wrapper.setProps({ active: false })
       scrollToTop()
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.not.className('fixed')
+      wrapper.childAt(0).childAt(1).should.have.not.className('fixed')
       onUnStick.should.not.have.been.called()
     })
   })
@@ -171,15 +165,9 @@ describe('Sticky', () => {
       scrollAfterTrigger()
 
       _.forEach(['ui', 'sticky', 'fixed', 'top'], (className) =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        wrapper.childAt(0).childAt(1).should.have.className(className),
       )
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('top', '12px')
+      wrapper.childAt(0).childAt(1).should.have.style('top', '12px')
     })
 
     it('should stick to bottom of context', () => {
@@ -189,15 +177,9 @@ describe('Sticky', () => {
 
       scrollAfterContext()
       _.forEach(['ui', 'sticky', 'bound', 'bottom'], (className) =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        wrapper.childAt(0).childAt(1).should.have.className(className),
       )
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('bottom', '0px')
+      wrapper.childAt(0).childAt(1).should.have.style('bottom', '0px')
     })
 
     it('should preserve sticky element height', () => {
@@ -208,10 +190,7 @@ describe('Sticky', () => {
       // Scroll after trigger
       scrollAfterTrigger()
 
-      wrapper
-        .childAt(0)
-        .childAt(0)
-        .should.have.style('height', '100px')
+      wrapper.childAt(0).childAt(0).should.have.style('height', '100px')
     })
   })
   describe('onBottom', () => {
@@ -294,33 +273,18 @@ describe('Sticky', () => {
       domEvent.scroll(window)
 
       _.forEach(['ui', 'sticky', 'bound', 'bottom'], (className) =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        wrapper.childAt(0).childAt(1).should.have.className(className),
       )
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('bottom', '0px')
+      wrapper.childAt(0).childAt(1).should.have.style('bottom', '0px')
 
       // Scroll a bit before the top: component should stick to screen bottom
       scrollAfterTrigger()
 
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('bottom', '30px')
+      wrapper.childAt(0).childAt(1).should.have.style('bottom', '30px')
       _.forEach(['ui', 'sticky', 'fixed', 'bottom'], (className) =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        wrapper.childAt(0).childAt(1).should.have.className(className),
       )
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.not.have.style('top')
+      wrapper.childAt(0).childAt(1).should.not.have.style('top')
     })
 
     it('should stop pushing when reaching top', () => {
@@ -335,15 +299,9 @@ describe('Sticky', () => {
 
       // Component should stick again to the top
       _.forEach(['ui', 'sticky', 'fixed', 'top'], (className) =>
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .should.have.className(className),
+        wrapper.childAt(0).childAt(1).should.have.className(className),
       )
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .should.have.style('top', '10px')
+      wrapper.childAt(0).childAt(1).should.have.style('top', '10px')
     })
 
     it('should return true if oversized', () => {
@@ -352,10 +310,7 @@ describe('Sticky', () => {
       wrapperMount(<Sticky {...positions} context={contextEl} pushing />)
 
       scrollAfterTrigger()
-      wrapper
-        .instance()
-        .isOversized()
-        .should.be.equal(true)
+      wrapper.instance().isOversized().should.be.equal(true)
     })
   })
 
