@@ -16,6 +16,7 @@
     "jsx-a11y/alt-text": "off",
     "jsx-a11y/control-has-associated-label": "off",
     "jsx-a11y/tabindex-no-positive": "off",
+    "react/forbid-foreign-prop-types": "off",
     "react/prop-types": "off"
   }
 }

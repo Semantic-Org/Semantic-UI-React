@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import { SemanticShorthandItem } from '../../generic'
 import { StrictPortalProps } from '../../addons/Portal'
-import { default as PopupContent, PopupContentProps } from './PopupContent'
-import { default as PopupHeader, PopupHeaderProps } from './PopupHeader'
+import PopupContent, { PopupContentProps } from './PopupContent'
+import PopupHeader, { PopupHeaderProps } from './PopupHeader'
 
 export interface PopupProps extends StrictPopupProps {
   [key: string]: any
@@ -26,7 +26,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   content?: SemanticShorthandItem<PopupContentProps>
 
   /** Existing element the pop-up should be bound to. */
-  context?: object | React.RefObject<HTMLElement>
+  context?: Document | Window | HTMLElement | React.RefObject<HTMLElement>
 
   /** A disabled popup only renders its trigger. */
   disabled?: boolean
@@ -59,7 +59,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   offset?: number | string
 
   /** Events triggering the popup. */
-  on?: 'hover' | 'click' | 'focus' | ('hover' | 'click' | 'focus')[]
+  on?: 'hover' | 'click' | 'focus' | 'hover' | 'click' | 'focus'[]
 
   /**
    * Called when a close event happens.
@@ -111,7 +111,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   positionFixed?: boolean
 
   /** An object containing custom settings for the Popper.js modifiers. */
-  popperModifiers?: object
+  popperModifiers?: Record<string, any>
 
   /** A popup can have dependencies which update will schedule a position update. */
   popperDependencies?: any[]
@@ -120,7 +120,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge'
 
   /** Custom Popup style. */
-  style?: Object
+  style?: React.CSSProperties
 
   /** Element to be rendered in-place where the popup is defined. */
   trigger?: React.ReactNode

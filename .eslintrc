@@ -1,4 +1,5 @@
 {
+  "root": true,
   "parser": "babel-eslint",
   "extends": ["airbnb", "prettier"],
   "env": {
@@ -15,11 +16,14 @@
     "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
     "no-return-assign": ["error", "except-parens"],
     "no-underscore-dangle": "off",
-    "padded-blocks": ["error", {
-      "blocks": "never",
-      "switches": "never",
-      "classes": "never"
-    }],
+    "padded-blocks": [
+      "error",
+      {
+        "blocks": "never",
+        "switches": "never",
+        "classes": "never"
+      }
+    ],
     "prefer-destructuring": "off",
     "jsx-a11y/alt-text": "warn",
     "jsx-a11y/anchor-is-valid": "off",
@@ -39,13 +43,31 @@
     "react/destructuring-assignment": "off",
     "react/forbid-prop-types": "off",
     "react/jsx-curly-newline": "off",
-    "react/jsx-one-expression-per-line":  "off",
-    "react/jsx-filename-extension": [2, { "extensions": [".js"] }],
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".tsx"] }],
     "react/jsx-props-no-spreading": "off",
     "react/jsx-wrap-multilines": "off",
+    "react/prefer-stateless-function": "off",
     "react/no-unused-prop-types": "off",
     "react/sort-comp": "off",
     "react/state-in-constructor": "off",
-    "react/require-default-props":"off"
-  }
+    "react/require-default-props": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-empty-interface": "off"
+      }
+    }
+  ]
 }

@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import { SemanticShorthandItem } from '../../generic'
 import { InputProps } from '../../elements/Input'
-import { default as SearchCategory, SearchCategoryProps } from './SearchCategory'
-import { default as SearchResult, SearchResultProps } from './SearchResult'
+import SearchCategory, { SearchCategoryProps } from './SearchCategory'
+import SearchResult, { SearchResultProps } from './SearchResult'
 import SearchResults from './SearchResults'
 
 export interface SearchProps extends StrictSearchProps {
@@ -44,7 +44,7 @@ export interface StrictSearchProps {
    * - array of Search.Result props e.g. `{ title: '', description: '' }` or
    * - object of categories e.g. `{ name: '', results: [{ title: '', description: '' }]`
    */
-  results?: any[] | Object
+  results?: any[] | Record<string, any>
 
   /** Whether the search should automatically select the first result after searching. */
   selectFirstResult?: boolean

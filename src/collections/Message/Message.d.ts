@@ -7,8 +7,8 @@ import {
   SemanticShorthandItem,
 } from '../../generic'
 import MessageContent from './MessageContent'
-import { default as MessageHeader, MessageHeaderProps } from './MessageHeader'
-import { default as MessageItem, MessageItemProps } from './MessageItem'
+import MessageHeader, { MessageHeaderProps } from './MessageHeader'
+import MessageItem, { MessageItemProps } from './MessageItem'
 import MessageList from './MessageList'
 
 export type MessageSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
