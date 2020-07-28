@@ -35,10 +35,11 @@ See the [**Documentation**][2] for an introduction, usage information, and examp
 
 ## Built With
 
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/amazon-logo.png" />
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/netflix-logo.png" />
-<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/microsoft-logo.png" />
-<br />
+<p align="center">
+  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/amazon-logo.png" />
+  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/netflix-logo.png" />
+  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/microsoft-logo.png" />
+</p>
 
 - Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
 - Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
