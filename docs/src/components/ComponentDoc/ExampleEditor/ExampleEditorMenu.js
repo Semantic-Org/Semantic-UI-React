@@ -89,17 +89,15 @@ class ExampleEditorMenu extends PureComponent {
           <Button inverted compact content='Nevermind' onClick={this.resetStop} />
         </Popup>
 
-        <CopyToClipboard
-          render={(active, onClick) => (
+        <CopyToClipboard timeout={1000} value={sourceCode}>
+          {(active, onClick) => (
             <Menu.Item
               icon={active ? { color: 'green', name: 'check' } : 'copy'}
               content='Copy'
               onClick={onClick}
             />
           )}
-          timeout={1000}
-          value={sourceCode}
-        />
+        </CopyToClipboard>
 
         <Menu.Item icon='github' content='Edit' href={githubEditHref} target='_blank' />
       </Menu>

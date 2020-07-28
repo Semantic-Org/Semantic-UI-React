@@ -22,10 +22,9 @@ export default (webpackConfig, { stage }) => ({
           '@babel/standalone': 'Babel',
           faker: 'faker',
           'prettier/standalone': 'prettier',
-          // These Prettier plugins doesn't have any exports
-          'prettier/parser-babylon': 'window',
-          'prettier/parser-html': 'window',
-          'prettier/parser-typescript': 'window',
+          // These Prettier plugins are available under window.prettierPlugins
+          'prettier/parser-babel': 'prettierPlugins.babel',
+          'prettier/parser-html': 'prettierPlugins.html',
 
           'prop-types': 'PropTypes',
           react: 'React',
