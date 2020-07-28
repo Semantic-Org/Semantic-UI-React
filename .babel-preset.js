@@ -39,13 +39,6 @@ const plugins = [
       removeImport: isUMDBuild,
     },
   ],
-  // A plugin for react-static
-  isDocsBuild && [
-    'universal-import',
-    {
-      disableWarnings: true,
-    },
-  ],
   // A plugin for removal of debug in production builds
   isLibBuild && [
     'filter-imports',
@@ -79,4 +72,15 @@ module.exports = () => ({
       plugins: [['istanbul', { include: ['src'] }]],
     },
   },
+  overrides: [
+    // A workaround to avoid collisions between "babel-plugin-dynamic-import-node" & "universal-import"
+    {
+      test: /react-static-routes.js/,
+      plugins: [
+        ['universal-import', { disableWarnings: true }],
+        '@babel/plugin-transform-modules-commonjs',
+      ],
+      presets: [['@babel/env', { modules: false }]],
+    },
+  ],
 })
