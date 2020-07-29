@@ -254,7 +254,7 @@ export default class Dropdown extends Component {
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
     if (_.isNil(selectedValue) || !open) {
-      return [value, selectedIndex]
+      return
     }
 
     // state value may be undefined
@@ -272,8 +272,6 @@ export default class Dropdown extends Component {
         _.invoke(this.props, 'onAddItem', e, { ...this.props, value: selectedValue })
       }
     }
-
-    return [newValue]
   }
 
   selectItemOnEnter = (e) => {

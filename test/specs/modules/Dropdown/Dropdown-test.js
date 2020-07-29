@@ -72,7 +72,7 @@ const dropdownMenuIsOpen = () => {
 
 const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
 
-describe.only('Dropdown', () => {
+describe('Dropdown', () => {
   beforeEach(() => {
     attachTo = undefined
     wrapper = undefined
