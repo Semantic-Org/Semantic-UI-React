@@ -1521,6 +1521,37 @@ describe('Dropdown', () => {
       wrapper.should.have.exactly(options.length - 1).descendants('DropdownItem')
       wrapper.find('DropdownItem').last().should.have.prop('selected', true)
     })
+    it('keeps the selection on the same index', () => {
+      wrapperMount(<Dropdown options={options} selection multiple />)
+
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      wrapper.simulate('keydown', { key: 'ArrowDown' })
+      wrapper.find('DropdownItem').at(1).should.have.prop('selected', true)
+
+      wrapper.simulate('keydown', { key: 'Enter' })
+      wrapper.find('DropdownItem').at(1).should.have.prop('selected', true)
+    })
+    it('skips disabled items in selection', () => {
+      const testOptions = [
+        { value: 'foo', key: 'foo', text: 'foo' },
+        { value: 'bar', key: 'bar', text: 'bar' },
+        { value: 'baz', key: 'baz', text: 'baz', disabled: true },
+        { value: 'qux', key: 'qux', text: 'qux' },
+      ]
+
+      wrapperMount(<Dropdown options={testOptions} selection multiple />)
+
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      wrapper.simulate('keydown', { key: 'ArrowDown' })
+      wrapper.find('DropdownItem').at(1).should.have.prop('selected', true)
+
+      wrapper.simulate('keydown', { key: 'Enter' })
+      wrapper.find('DropdownItem').at(2).should.have.prop('selected', true)
+    })
     it('has labels with delete icons', () => {
       // add a value so we have a label
       const value = [_.head(options).value]

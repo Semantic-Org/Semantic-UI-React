@@ -27,7 +27,7 @@ export default function getSelectedIndex(config) {
     multiple,
     search,
   })
-  const enabledIndicies = _.reduce(
+  const enabledIndexes = _.reduce(
     menuOptions,
     (memo, item, index) => {
       if (!item.disabled) memo.push(index)
@@ -40,30 +40,32 @@ export default function getSelectedIndex(config) {
 
   // update the selected index
   if (!selectedIndex || selectedIndex < 0) {
-    const firstIndex = enabledIndicies[0]
+    const firstIndex = enabledIndexes[0]
 
     // Select the currently active item, if none, use the first item.
     // Multiple selects remove active items from the list,
     // their initial selected index should be 0.
     newSelectedIndex = multiple
       ? firstIndex
-      : _.findIndex(menuOptions, ['value', value]) || enabledIndicies[0]
+      : _.findIndex(menuOptions, ['value', value]) || enabledIndexes[0]
   } else if (multiple) {
+    newSelectedIndex = _.find(enabledIndexes, (index) => index >= selectedIndex)
+
     // multiple selects remove options from the menu as they are made active
     // keep the selected index within range of the remaining items
     if (selectedIndex >= menuOptions.length - 1) {
-      newSelectedIndex = enabledIndicies[enabledIndicies.length - 1]
+      newSelectedIndex = enabledIndexes[enabledIndexes.length - 1]
     }
   } else {
     const activeIndex = _.findIndex(menuOptions, ['value', value])
 
     // regular selects can only have one active item
     // set the selected index to the currently active item
-    newSelectedIndex = _.includes(enabledIndicies, activeIndex) ? activeIndex : undefined
+    newSelectedIndex = _.includes(enabledIndexes, activeIndex) ? activeIndex : undefined
   }
 
   if (!newSelectedIndex || newSelectedIndex < 0) {
-    newSelectedIndex = enabledIndicies[0]
+    newSelectedIndex = enabledIndexes[0]
   }
 
   return newSelectedIndex
