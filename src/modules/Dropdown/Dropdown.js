@@ -21,11 +21,14 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
+import Flag from '../../elements/Flag'
+import Image from '../../elements/Image'
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
+import DropdownText from './DropdownText'
 import getMenuOptions from './utils/getMenuOptions'
 import getSelectedIndex from './utils/getSelectedIndex'
 
@@ -34,6 +37,27 @@ const debug = makeDebugger('dropdown')
 const getKeyOrValue = (key, value) => (_.isNil(key) ? value : key)
 const getKeyAndValues = (options) =>
   options ? options.map((option) => _.pick(option, ['key', 'value'])) : options
+
+function renderItemContent(item) {
+  const { flag, image, text } = item
+
+  // TODO: remove this in v2
+  // This maintains compatibility with Shorthand API in v1 as this might be called in "Label.create()"
+  if (React.isValidElement(text) || _.isFunction(text)) {
+    return text
+  }
+
+  return {
+    content: (
+      <>
+        {Flag.create(flag)}
+        {Image.create(image)}
+
+        {text}
+      </>
+    ),
+  }
+}
 
 /**
  * A dropdown allows a user to select a value from a series of options.
@@ -842,20 +866,21 @@ export default class Dropdown extends Component {
       search && searchQuery && 'filtered',
     )
     let _text = placeholder
+    let selectedItem
 
     if (text) {
       _text = text
     } else if (open && !multiple) {
-      _text = _.get(this.getSelectedItem(selectedIndex), 'text')
+      selectedItem = this.getSelectedItem(selectedIndex)
     } else if (hasValue) {
-      _text = _.get(this.getItemByValue(value), 'text')
+      selectedItem = this.getItemByValue(value)
     }
 
-    return (
-      <div className={classes} role='alert' aria-live='polite' aria-atomic>
-        {_text}
-      </div>
-    )
+    return DropdownText.create(selectedItem ? renderItemContent(selectedItem) : _text, {
+      defaultProps: {
+        className: classes,
+      },
+    })
   }
 
   renderSearchInput = () => {
@@ -1398,7 +1423,7 @@ Dropdown.defaultProps = {
   minCharacters: 1,
   noResultsMessage: 'No results found.',
   openOnFocus: true,
-  renderLabel: ({ text }) => text,
+  renderLabel: renderItemContent,
   searchInput: 'text',
   selectOnBlur: true,
   selectOnNavigation: true,
@@ -1412,3 +1437,4 @@ Dropdown.Header = DropdownHeader
 Dropdown.Item = DropdownItem
 Dropdown.Menu = DropdownMenu
 Dropdown.SearchInput = DropdownSearchInput
+Dropdown.Text = DropdownText
