@@ -638,6 +638,24 @@ describe('Dropdown', () => {
       wrapper.simulate('click')
       wrapper.should.have.state('selectedIndex', 4)
     })
+
+    it('keeps "selectedIndex" when the same item was selected', () => {
+      const option = _.last(options)
+
+      wrapperMount(<Dropdown options={options} search selection />)
+      const input = wrapper.find('input.search')
+
+      // simulate search and select option
+      input.simulate('change', { target: { value: option.text } })
+      wrapper.simulate('keydown', { key: 'Enter' })
+
+      wrapper.should.have.state('selectedIndex', 4)
+
+      // select the same option again
+      input.simulate('change', { target: { value: option.text } })
+      wrapper.simulate('keydown', { key: 'Enter' })
+      wrapper.should.have.state('selectedIndex', 4)
+    })
   })
 
   describe('isMouseDown', () => {

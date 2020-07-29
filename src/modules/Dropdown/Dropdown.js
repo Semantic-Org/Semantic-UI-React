@@ -52,28 +52,17 @@ export default class Dropdown extends Component {
 
   static getAutoControlledStateFromProps(nextProps, computedState, prevState) {
     // These values are stored only for a comparison on next getAutoControlledStateFromProps()
-    const derivedState = { __value: prevState.value, __options: nextProps.options }
+    const derivedState = { __options: nextProps.options, __value: computedState.value }
 
-    if (!shallowEqual(nextProps.value, prevState.__value)) {
-      derivedState.selectedIndex = getSelectedIndex({
-        additionLabel: nextProps.additionLabel,
-        additionPosition: nextProps.additionPosition,
-        allowAdditions: nextProps.allowAdditions,
-        deburr: nextProps.deburr,
-        multiple: nextProps.multiple,
-        search: nextProps.search,
-        selectedIndex: computedState.selectedIndex,
+    // The selected index is only dependent:
+    const shouldComputeSelectedIndex =
+      // On value change
+      !shallowEqual(prevState.__value, computedState.value) ||
+      // On option keys/values, we only check those properties to avoid recursive performance impacts.
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/3000
+      !_.isEqual(getKeyAndValues(nextProps.options), getKeyAndValues(prevState.__options))
 
-        value: computedState.value,
-        options: nextProps.options,
-        searchQuery: computedState.searchQuery,
-      })
-    }
-
-    // The selected index is only dependent on option keys/values.
-    // We only check those properties to avoid recursive performance impacts.
-    // https://github.com/Semantic-Org/Semantic-UI-React/issues/3000
-    if (!_.isEqual(getKeyAndValues(nextProps.options), getKeyAndValues(prevState.__options))) {
+    if (shouldComputeSelectedIndex) {
       derivedState.selectedIndex = getSelectedIndex({
         additionLabel: nextProps.additionLabel,
         additionPosition: nextProps.additionPosition,
@@ -158,6 +147,10 @@ export default class Dropdown extends Component {
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
     }
+
+    if (prevState.selectedIndex !== this.state.selectedIndex) {
+      this.scrollSelectedItemIntoView()
+    }
   }
 
   // ----------------------------------------
@@ -216,9 +209,7 @@ export default class Dropdown extends Component {
       this.makeSelectedItemActive(e, nextIndex)
     }
 
-    this.setState({ selectedIndex: nextIndex }, () => {
-      this.scrollSelectedItemIntoView()
-    })
+    this.setState({ selectedIndex: nextIndex })
   }
 
   openOnSpace = (e) => {
@@ -254,7 +245,7 @@ export default class Dropdown extends Component {
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
     if (_.isNil(selectedValue) || !open) {
-      return
+      return value
     }
 
     // state value may be undefined
@@ -272,12 +263,14 @@ export default class Dropdown extends Component {
         _.invoke(this.props, 'onAddItem', e, { ...this.props, value: selectedValue })
       }
     }
+
+    return value
   }
 
   selectItemOnEnter = (e) => {
     debug('selectItemOnEnter()', keyboardKey.getKey(e))
     const { search } = this.props
-    const { open } = this.state
+    const { open, selectedIndex } = this.state
 
     if (!open) {
       return
@@ -313,7 +306,25 @@ export default class Dropdown extends Component {
       return
     }
 
-    this.makeSelectedItemActive(e, this.state.selectedIndex)
+    const nextValue = this.makeSelectedItemActive(e, selectedIndex)
+
+    // This is required as selected value may be the same
+    this.setState({
+      selectedIndex: getSelectedIndex({
+        additionLabel: this.props.additionLabel,
+        additionPosition: this.props.additionPosition,
+        allowAdditions: this.props.allowAdditions,
+        deburr: this.props.deburr,
+        multiple: this.props.multiple,
+        search: this.props.search,
+        selectedIndex,
+
+        value: nextValue,
+        options: this.props.options,
+        searchQuery: '',
+      }),
+    })
+
     this.closeOnChange(e)
     this.clearSearchQuery()
 
