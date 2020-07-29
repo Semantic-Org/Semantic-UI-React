@@ -52,7 +52,7 @@ export default class Dropdown extends Component {
 
   static getAutoControlledStateFromProps(nextProps, computedState, prevState) {
     // These values are stored only for a comparison on next getAutoControlledStateFromProps()
-    const derivedState = { __value: nextProps.value, __options: nextProps.options }
+    const derivedState = { __value: prevState.value, __options: nextProps.options }
 
     if (!shallowEqual(nextProps.value, prevState.__value)) {
       derivedState.selectedIndex = getSelectedIndex({
@@ -94,9 +94,7 @@ export default class Dropdown extends Component {
 
   componentDidMount() {
     debug('componentDidMount()')
-    const { open, value } = this.state
-
-    this.setSelectedIndex(value)
+    const { open } = this.state
 
     if (open) {
       this.open(null, false)
@@ -177,7 +175,9 @@ export default class Dropdown extends Component {
     const { closeOnChange, multiple } = this.props
     const shouldClose = _.isUndefined(closeOnChange) ? !multiple : closeOnChange
 
-    if (shouldClose) this.close(e, _.noop)
+    if (shouldClose) {
+      this.close(e, _.noop)
+    }
   }
 
   closeOnEscape = (e) => {
@@ -193,16 +193,32 @@ export default class Dropdown extends Component {
     debug('moveSelectionOnKeyDown()', keyboardKey.getKey(e))
 
     const { multiple, selectOnNavigation } = this.props
+    const { open } = this.state
+
+    if (!open) {
+      return
+    }
+
     const moves = {
       [keyboardKey.ArrowDown]: 1,
       [keyboardKey.ArrowUp]: -1,
     }
     const move = moves[keyboardKey.getCode(e)]
 
-    if (move === undefined) return
+    if (move === undefined) {
+      return
+    }
+
     e.preventDefault()
-    this.moveSelectionBy(move)
-    if (!multiple && selectOnNavigation) this.makeSelectedItemActive(e)
+    const nextIndex = this.getSelectedIndexAfterMove(move)
+
+    if (!multiple && selectOnNavigation) {
+      this.makeSelectedItemActive(e, nextIndex)
+    }
+
+    this.setState({ selectedIndex: nextIndex }, () => {
+      this.scrollSelectedItemIntoView()
+    })
   }
 
   openOnSpace = (e) => {
@@ -216,35 +232,38 @@ export default class Dropdown extends Component {
 
   openOnArrow = (e) => {
     debug('openOnArrow()')
+    const { focus, open } = this.state
 
-    const code = keyboardKey.getCode(e)
-    if (!_.includes([keyboardKey.ArrowDown, keyboardKey.ArrowUp], code)) return
-    if (this.state.open) return
+    if (focus && !open) {
+      const code = keyboardKey.getCode(e)
 
-    e.preventDefault()
-
-    this.open(e)
+      if (code === keyboardKey.ArrowDown || code === keyboardKey.ArrowUp) {
+        e.preventDefault()
+        this.open(e)
+      }
+    }
   }
 
-  makeSelectedItemActive = (e) => {
+  makeSelectedItemActive = (e, selectedIndex) => {
     const { open, value } = this.state
     const { multiple } = this.props
 
-    const item = this.getSelectedItem()
+    const item = this.getSelectedItem(selectedIndex)
     const selectedValue = _.get(item, 'value')
 
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
-    if (_.isNil(selectedValue) || !open) return
+    if (_.isNil(selectedValue) || !open) {
+      return [value, selectedIndex]
+    }
 
     // state value may be undefined
-    const newValue = multiple ? _.union(this.state.value, [selectedValue]) : selectedValue
+    const newValue = multiple ? _.union(value, [selectedValue]) : selectedValue
     const valueHasChanged = multiple ? !!_.difference(newValue, value).length : newValue !== value
 
     if (valueHasChanged) {
       // notify the onChange prop that the user is trying to change value
       this.setState({ value: newValue })
-      this.setSelectedIndex(newValue)
       this.handleChange(e, newValue)
 
       // Heads up! This event handler should be called after `onChange`
@@ -253,18 +272,28 @@ export default class Dropdown extends Component {
         _.invoke(this.props, 'onAddItem', e, { ...this.props, value: selectedValue })
       }
     }
+
+    return [newValue]
   }
 
   selectItemOnEnter = (e) => {
     debug('selectItemOnEnter()', keyboardKey.getKey(e))
     const { search } = this.props
+    const { open } = this.state
+
+    if (!open) {
+      return
+    }
 
     const shouldSelect =
       keyboardKey.getCode(e) === keyboardKey.Enter ||
       // https://github.com/Semantic-Org/Semantic-UI-React/pull/3766
       (!search && keyboardKey.getCode(e) === keyboardKey.Spacebar)
 
-    if (!shouldSelect) return
+    if (!shouldSelect) {
+      return
+    }
+
     e.preventDefault()
 
     const optionSize = _.size(
@@ -281,12 +310,18 @@ export default class Dropdown extends Component {
         search: this.props.search,
       }),
     )
-    if (search && optionSize === 0) return
 
-    this.makeSelectedItemActive(e)
+    if (search && optionSize === 0) {
+      return
+    }
+
+    this.makeSelectedItemActive(e, this.state.selectedIndex)
     this.closeOnChange(e)
     this.clearSearchQuery()
-    if (search) _.invoke(this.searchRef.current, 'focus')
+
+    if (search) {
+      _.invoke(this.searchRef.current, 'focus')
+    }
   }
 
   removeItemOnBackspace = (e) => {
@@ -303,7 +338,6 @@ export default class Dropdown extends Component {
     const newValue = _.dropRight(value)
 
     this.setState({ value: newValue })
-    this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
 
@@ -385,9 +419,14 @@ export default class Dropdown extends Component {
 
     // prevent toggle() in handleClick()
     e.stopPropagation()
+
     // prevent closeOnDocumentClick() if multiple or item is disabled
-    if (multiple || item.disabled) e.nativeEvent.stopImmediatePropagation()
-    if (item.disabled) return
+    if (multiple || item.disabled) {
+      e.nativeEvent.stopImmediatePropagation()
+    }
+    if (item.disabled) {
+      return
+    }
 
     const isAdditionItem = item['data-additional']
     const newValue = multiple ? _.union(this.state.value, [value]) : value
@@ -398,12 +437,10 @@ export default class Dropdown extends Component {
     // notify the onChange prop that the user is trying to change value
     if (valueHasChanged) {
       this.setState({ value: newValue })
-      this.setSelectedIndex(value)
-
       this.handleChange(e, newValue)
     }
 
-    this.clearSearchQuery(value)
+    this.clearSearchQuery()
 
     if (search) {
       _.invoke(this.searchRef.current, 'focus')
@@ -415,7 +452,9 @@ export default class Dropdown extends Component {
 
     // Heads up! This event handler should be called after `onChange`
     // Notify the onAddItem prop if this is a new value
-    if (isAdditionItem) _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
+    if (isAdditionItem) {
+      _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
+    }
   }
 
   handleFocus = (e) => {
@@ -443,7 +482,7 @@ export default class Dropdown extends Component {
     _.invoke(this.props, 'onBlur', e, this.props)
 
     if (selectOnBlur && !multiple) {
-      this.makeSelectedItemActive(e)
+      this.makeSelectedItemActive(e, this.state.selectedIndex)
       if (closeOnBlur) this.close()
     }
 
@@ -474,12 +513,19 @@ export default class Dropdown extends Component {
     if (open && minCharacters !== 1 && newQuery.length < minCharacters) this.close()
   }
 
+  handleKeyDown = (e) => {
+    this.moveSelectionOnKeyDown(e)
+    this.openOnArrow(e)
+    this.selectItemOnEnter(e)
+
+    _.invoke(this.props, 'onKeyDown', e)
+  }
+
   // ----------------------------------------
   // Getters
   // ----------------------------------------
 
-  getSelectedItem = () => {
-    const { selectedIndex } = this.state
+  getSelectedItem = (selectedIndex) => {
     const options = getMenuOptions({
       value: this.state.value,
       options: this.props.options,
@@ -532,37 +578,13 @@ export default class Dropdown extends Component {
   // Setters
   // ----------------------------------------
 
-  clearSearchQuery = (value) => {
+  clearSearchQuery = () => {
     debug('clearSearchQuery()')
 
     const { searchQuery } = this.state
     if (searchQuery === undefined || searchQuery === '') return
 
     this.setState({ searchQuery: '' })
-    this.setSelectedIndex(value, undefined, '')
-  }
-
-  setSelectedIndex = (
-    value = this.state.value,
-    optionsProps = this.props.options,
-    searchQuery = this.state.searchQuery,
-  ) => {
-    const newSelectedIndex = getSelectedIndex({
-      additionLabel: this.props.additionLabel,
-      additionPosition: this.props.additionPosition,
-      allowAdditions: this.props.allowAdditions,
-      deburr: this.props.deburr,
-      multiple: this.props.multiple,
-      search: this.props.search,
-      // eslint-disable-next-line react/no-access-state-in-setstate
-      selectedIndex: this.state.selectedIndex,
-
-      value,
-      options: optionsProps,
-      searchQuery,
-    })
-
-    this.setState({ selectedIndex: newSelectedIndex })
   }
 
   handleLabelClick = (e, labelProps) => {
@@ -586,11 +608,10 @@ export default class Dropdown extends Component {
     debug('new value:', newValue)
 
     this.setState({ value: newValue })
-    this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
 
-  moveSelectionBy = (offset, startIndex = this.state.selectedIndex) => {
+  getSelectedIndexAfterMove = (offset, startIndex = this.state.selectedIndex) => {
     debug('moveSelectionBy()')
     debug(`offset: ${offset}`)
 
@@ -627,12 +648,10 @@ export default class Dropdown extends Component {
     }
 
     if (options[nextIndex].disabled) {
-      this.moveSelectionBy(offset, nextIndex)
-      return
+      return this.getSelectedIndexAfterMove(offset, nextIndex)
     }
 
-    this.setState({ selectedIndex: nextIndex })
-    this.scrollSelectedItemIntoView()
+    return nextIndex
   }
 
   // ----------------------------------------
@@ -661,7 +680,6 @@ export default class Dropdown extends Component {
     const newValue = multiple ? [] : ''
 
     this.setState({ value: newValue })
-    this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
   }
 
@@ -806,7 +824,7 @@ export default class Dropdown extends Component {
 
   renderText = () => {
     const { multiple, placeholder, search, text } = this.props
-    const { searchQuery, value, open } = this.state
+    const { searchQuery, selectedIndex, value, open } = this.state
     const hasValue = this.hasValue()
 
     const classes = cx(
@@ -819,7 +837,7 @@ export default class Dropdown extends Component {
     if (text) {
       _text = text
     } else if (open && !multiple) {
-      _text = _.get(this.getSelectedItem(), 'text')
+      _text = _.get(this.getSelectedItem(selectedIndex), 'text')
     } else if (hasValue) {
       _text = _.get(this.getItemByValue(value), 'text')
     }
@@ -1017,6 +1035,7 @@ export default class Dropdown extends Component {
           className={classes}
           onBlur={this.handleBlur}
           onClick={this.handleClick}
+          onKeyDown={this.handleKeyDown}
           onMouseDown={this.handleMouseDown}
           onFocus={this.handleFocus}
           onChange={this.handleChange}
@@ -1033,12 +1052,9 @@ export default class Dropdown extends Component {
           {this.renderMenu()}
 
           {open && <EventStack name='keydown' on={this.closeOnEscape} />}
-          {open && <EventStack name='keydown' on={this.moveSelectionOnKeyDown} />}
           {open && <EventStack name='click' on={this.closeOnDocumentClick} />}
-          {open && <EventStack name='keydown' on={this.selectItemOnEnter} />}
 
           {focus && <EventStack name='keydown' on={this.removeItemOnBackspace} />}
-          {focus && !open && <EventStack name='keydown' on={this.openOnArrow} />}
           {focus && !open && <EventStack name='keydown' on={this.openOnSpace} />}
         </ElementType>
       </Ref>
