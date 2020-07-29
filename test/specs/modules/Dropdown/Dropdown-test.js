@@ -1099,13 +1099,10 @@ describe('Dropdown', () => {
       const nextItem = _.sample(_.without(options, initialItem))
 
       wrapperMount(<Dropdown options={options} selection value={initialItem.value} />)
-        .find('div.text')
-        .should.contain.text(initialItem.text)
+      wrapper.find(DropdownText).should.contain.text(initialItem.text)
 
-      wrapper
-        .setProps({ value: nextItem.value })
-        .find('div.text')
-        .should.contain.text(nextItem.text)
+      wrapper.setProps({ value: nextItem.value })
+      wrapper.find(DropdownText).should.contain.text(nextItem.text)
     })
 
     it('updates value on down arrow', () => {

@@ -873,7 +873,7 @@ export default class Dropdown extends Component {
     } else if (open && !multiple) {
       selectedItem = this.getSelectedItem(selectedIndex)
     } else if (hasValue) {
-      selectedItem = this.getSelectedItem(value)
+      selectedItem = this.getItemByValue(value)
     }
 
     return DropdownText.create(selectedItem ? renderItemContent(selectedItem) : _text, {
