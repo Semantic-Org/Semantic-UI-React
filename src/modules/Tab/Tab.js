@@ -122,7 +122,7 @@ Tab.propTypes = {
   /** Align vertical menu */
   menuPosition: PropTypes.oneOf(['left', 'right']),
 
-  /** Shorthand props for the Grid. */
+  /** Shorthand props for the Grid. Only applicable to vertical menus. */
   grid: PropTypes.object,
 
   /**
