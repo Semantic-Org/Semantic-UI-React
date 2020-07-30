@@ -1,6 +1,6 @@
 import EventStack from '@semantic-ui-react/event-stack'
 import { Ref } from '@stardust-ui/react-component-ref'
-import cx from 'classnames'
+import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'

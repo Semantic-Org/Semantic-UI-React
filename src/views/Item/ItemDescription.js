@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 

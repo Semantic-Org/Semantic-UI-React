@@ -1,6 +1,6 @@
 import { EventListener, documentRef } from '@stardust-ui/react-component-event-listener'
 import { isRefObject, toRefObject, Ref } from '@stardust-ui/react-component-ref'
-import cx from 'classnames'
+import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
