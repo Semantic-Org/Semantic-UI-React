@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import * as SUIR from 'semantic-ui-react'
 
+import pkg from '../../../../../package.json'
+
 const isIE11 =
   typeof window !== 'undefined' && !!window.MSInputMethodContext && !!document.documentMode
 
@@ -17,16 +19,36 @@ export const babelConfig = {
 }
 
 export const externals = {
-  faker,
+  faker: {
+    module: faker,
+    required: false,
+    version: pkg.devDependencies.faker,
+  },
   lodash: require('lodash'),
-  'prop-types': PropTypes,
-  react: React,
-  'react-dom': ReactDOM,
-  'semantic-ui-react': SUIR,
+  'prop-types': {
+    module: PropTypes,
+    required: false,
+    version: pkg.dependencies['prop-types'],
+  },
+  react: {
+    module: React,
+    version: pkg.peerDependencies.react,
+    required: true,
+  },
+  'react-dom': {
+    module: ReactDOM,
+    version: pkg.peerDependencies['react-dom'],
+    required: true,
+  },
+  'semantic-ui-react': {
+    module: SUIR,
+    version: pkg.version,
+    required: true,
+  },
 }
 
 export const resolver = (importPath, { displayName }) => {
-  if (externals[importPath]) return externals[importPath]
+  if (externals[importPath]) return externals[importPath].module
 
   throw new Error(
     [
