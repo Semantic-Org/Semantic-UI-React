@@ -21,11 +21,6 @@ export default (webpackConfig, { stage }) => ({
           'anchor-js': 'AnchorJS',
           '@babel/standalone': 'Babel',
           faker: 'faker',
-          'prettier/standalone': 'prettier',
-          // These Prettier plugins are available under window.prettierPlugins
-          'prettier/parser-babel': 'prettierPlugins.babel',
-          'prettier/parser-html': 'prettierPlugins.html',
-
           'prop-types': 'PropTypes',
           react: 'React',
           'react-dom': 'ReactDOM',
@@ -43,6 +38,7 @@ export default (webpackConfig, { stage }) => ({
           path.resolve(__dirname, 'node_modules/chalk'),
           path.resolve(__dirname, 'node_modules/debug'),
           path.resolve(__dirname, 'node_modules/leven'),
+          path.resolve(__dirname, 'node_modules/prettier'),
 
           path.resolve(__dirname, 'docs'),
           path.resolve(__dirname, 'src'),

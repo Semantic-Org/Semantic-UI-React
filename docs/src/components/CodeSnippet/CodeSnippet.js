@@ -1,8 +1,5 @@
 import _ from 'lodash'
 import * as Prism from 'prismjs/components/prism-core'
-import prettier from 'prettier/standalone'
-import babel from 'prettier/parser-babel'
-import html from 'prettier/parser-html'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -16,19 +13,6 @@ import 'prismjs/components/prism-jsx'
 
 import CodeSnippetLabel from './CodeSnippetLabel'
 
-const prettierConfig = {
-  htmlWhitespaceSensitivity: 'ignore',
-  printWidth: 100,
-  tabWidth: 2,
-  semi: false,
-  singleQuote: true,
-  trailingComma: 'all',
-  plugins: {
-    babel,
-    html,
-  },
-}
-
 const normalizeToString = (value) => {
   if (Array.isArray(value)) {
     return value.join('\n')
@@ -37,22 +21,12 @@ const normalizeToString = (value) => {
   return _.isObject(value) ? JSON.stringify(value, null, 2) : value
 }
 
-export const prettifyCode = (code, parser) => {
-  const formatted = prettier.format(code, {
-    ...prettierConfig,
-    // a narrower print width is more friendly to doc examples
-    parser,
-  })
-
-  return formatted.replace(/^;</m, '<') // remove beginning semi in JSX/HTML
-}
-
 const formatters = {
   bash: (val = '') => val.replace(/^[\w]/gm, '$$  $&'),
-  json: (val) => prettifyCode(val, 'json'),
-  js: (val = '') => prettifyCode(val, 'babel'),
-  jsx: (val = '') => prettifyCode(val, 'babel'),
-  html: (val = '') => prettifyCode(val, 'html'),
+  json: (val) => val,
+  js: (val = '') => val,
+  jsx: (val = '') => val,
+  html: (val = '') => val,
 }
 
 export const formatCode = (code, mode) => {
