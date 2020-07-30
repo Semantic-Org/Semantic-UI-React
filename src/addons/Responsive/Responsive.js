@@ -7,6 +7,8 @@ import isVisible from './lib/isVisible'
 
 /**
  * Responsive can control visibility of content.
+ *
+ * @deprecated This component is deprecated and will be removed in next major release.
  */
 export default class Responsive extends Component {
   state = {
@@ -22,6 +24,17 @@ export default class Responsive extends Component {
 
   componentDidMount() {
     const { fireOnMount } = this.props
+
+    if (process.env.NODE_ENV !== 'production') {
+      if (!Responsive.__deprecationWarningWasRaised) {
+        Responsive.__deprecationWarningWasRaised = true
+
+        // eslint-disable-next-line no-console
+        console.warn(
+          'Warning: "Responsive" component from Semantic UI React is deprecated and will be removed in the next major release. Please follow our upgrade guide: https://github.com/Semantic-Org/Semantic-UI-React/pull/4008',
+        )
+      }
+    }
 
     eventStack.sub('resize', this.handleResize, { target: 'window' })
     if (fireOnMount) this.handleUpdate()
@@ -110,3 +123,7 @@ Responsive.onlyTablet = { minWidth: 768, maxWidth: 991 }
 Responsive.onlyComputer = { minWidth: 992 }
 Responsive.onlyLargeScreen = { minWidth: 1200, maxWidth: 1919 }
 Responsive.onlyWidescreen = { minWidth: 1920 }
+
+if (process.env.NODE_ENV !== 'production') {
+  Responsive.__deprecationWarningWasRaised = false
+}
