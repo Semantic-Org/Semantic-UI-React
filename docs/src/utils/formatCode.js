@@ -1,4 +1,6 @@
 import prettier from 'prettier/standalone'
+import babel from 'prettier/parser-babel'
+
 import prettierConfig from '../../../.prettierrc.json'
 import isBrowser from '../../../src/lib/isBrowser'
 
@@ -21,7 +23,7 @@ const formatCode = isBrowser()
         ...prettierConfig,
         printWidth,
         parser,
-        plugins: window.prettierPlugins,
+        plugins: { babel },
       })
 
       return formatted.replace(/^;</, '<') // remove beginning semi in JSX/HTML
