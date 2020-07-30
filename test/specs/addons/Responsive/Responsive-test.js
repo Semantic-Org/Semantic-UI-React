@@ -3,9 +3,14 @@ import React from 'react'
 import Responsive from 'src/addons/Responsive/Responsive'
 import { isBrowser } from 'src/lib'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { consoleUtil, domEvent, sandbox } from 'test/utils'
 
 describe('Responsive', () => {
+  it('a render to strip deprecation warning', () => {
+    consoleUtil.disableOnce()
+    mount(<Responsive />)
+  })
+
   common.isConformant(Responsive)
   common.rendersChildren(Responsive, {
     rendersContent: false,
