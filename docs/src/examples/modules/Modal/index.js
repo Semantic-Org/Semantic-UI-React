@@ -1,13 +1,17 @@
 import React from 'react'
 
+import Content from './Content'
 import Types from './Types'
 import Variations from './Variations'
+import Usage from './Usage'
 
-const DropdownExamples = () => (
+const ModalExamples = () => (
   <div>
     <Types />
+    <Content />
     <Variations />
+    <Usage />
   </div>
 )
 
-export default DropdownExamples
+export default ModalExamples

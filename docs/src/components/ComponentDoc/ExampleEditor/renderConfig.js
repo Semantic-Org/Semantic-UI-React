@@ -24,7 +24,11 @@ export const externals = {
     required: false,
     version: pkg.devDependencies.faker,
   },
-  lodash: require('lodash'),
+  lodash: {
+    module: require('lodash'),
+    required: false,
+    version: pkg.dependencies.lodash,
+  },
   'prop-types': {
     module: PropTypes,
     required: false,

@@ -1,22 +1,18 @@
 import React from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
-function ModalExampleBasic() {
+function ModalExampleCloseIcon() {
   const [open, setOpen] = React.useState(false)
 
   return (
     <Modal
-      basic
+      closeIcon
+      open={open}
+      trigger={<Button>Show Modal</Button>}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
-      open={open}
-      size='small'
-      trigger={<Button>Basic Modal</Button>}
     >
-      <Header icon>
-        <Icon name='archive' />
-        Archive Old Messages
-      </Header>
+      <Header icon='archive' content='Archive Old Messages' />
       <Modal.Content>
         <p>
           Your inbox is getting full, would you like us to enable automatic
@@ -24,10 +20,10 @@ function ModalExampleBasic() {
         </p>
       </Modal.Content>
       <Modal.Actions>
-        <Button basic color='red' inverted onClick={() => setOpen(false)}>
+        <Button color='red' onClick={() => setOpen(false)}>
           <Icon name='remove' /> No
         </Button>
-        <Button color='green' inverted onClick={() => setOpen(false)}>
+        <Button color='green' onClick={() => setOpen(false)}>
           <Icon name='checkmark' /> Yes
         </Button>
       </Modal.Actions>
@@ -35,4 +31,4 @@ function ModalExampleBasic() {
   )
 }
 
-export default ModalExampleBasic
+export default ModalExampleCloseIcon
