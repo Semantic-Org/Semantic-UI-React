@@ -2,6 +2,7 @@ import AnchorJS from 'anchor-js'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Head, withRouter } from 'react-static'
+import { Grid } from 'semantic-ui-react'
 
 import style from 'docs/src/Style'
 import { scrollToAnchor } from 'docs/src/utils'
@@ -43,6 +44,10 @@ class DocsLayout extends Component {
 
   render() {
     const { additionalTitle, children, sidebar, title } = this.props
+
+    const bottomColumnWidth = sidebar
+      ? { computer: 11, largeScreen: 12, widescreen: 12 }
+      : { width: 16 }
     const mainStyle = sidebar ? style.sidebarMain : style.main
 
     return (
@@ -53,7 +58,18 @@ class DocsLayout extends Component {
             {title}
           </title>
         </Head>
-        <div style={mainStyle}>{children}</div>
+        <div style={mainStyle}>
+          {children}
+          <Grid>
+            <Grid.Column {...bottomColumnWidth} textAlign='center'>
+              Blazing deployments by{' '}
+              <a href='https://vercel.com/?utm_source=semantic-ui-react'>
+                <img height='12' width='14' src='/vercel-logo.svg' /> Vercel
+              </a>
+              .
+            </Grid.Column>
+          </Grid>
+        </div>
       </>
     )
   }

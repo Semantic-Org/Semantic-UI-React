@@ -122,6 +122,8 @@ Created by [@levithomason][26] and an amazing community of [contributors][20].
 
 Made possible only by [@jlukic][32] authoring [Semantic UI][5].
 
+Blazing deployments by <a href="https://vercel.com/?utm_source=semantic-ui-react"><img height="12" width="14" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/vercel-logo.svg" /> Vercel</a>.
+
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
 [2]: https://react.semantic-ui.com/
 [3]: https://facebook.github.io/react/
