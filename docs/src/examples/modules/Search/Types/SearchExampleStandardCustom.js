@@ -35,7 +35,7 @@ function exampleReducer(state, action) {
 
 const resultRenderer = ({ title }) => <Label content={title} />
 
-function SearchExampleStandard(props) {
+function SearchExampleStandardCustom() {
   const [state, dispatch] = React.useReducer(exampleReducer, initialState)
   const { loading, query, results, selection } = state
 
@@ -96,4 +96,4 @@ function SearchExampleStandard(props) {
   )
 }
 
-export default SearchExampleStandard
+export default SearchExampleStandardCustom
