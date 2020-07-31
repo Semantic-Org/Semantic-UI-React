@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types'
 import _ from 'lodash'
 import faker from 'faker'
-import React, { useState } from 'react'
+import React from 'react'
 import { Search, Grid, Header, Segment, Label } from 'semantic-ui-react'
 
 const source = _.times(5, () => ({
@@ -11,65 +10,91 @@ const source = _.times(5, () => ({
   price: faker.finance.amount(0, 100, 2, '$'),
 }))
 
-const resultRenderer = ({ title }) => <Label content={title} />
-
-resultRenderer.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
+const initialState = {
+  loading: false,
+  results: [],
+  query: '',
+  selection: undefined,
 }
 
+function exampleReducer(state, action) {
+  switch (action.type) {
+    case 'CLEAN_QUERY':
+      return initialState
+    case 'START_SEARCH':
+      return { ...state, loading: true, query: action.query }
+    case 'FINISH_SEARCH':
+      return { ...state, loading: false, results: action.results }
+    case 'UPDATE_SELECTION':
+      return { ...state, selection: action.selection }
 
-function SearchExampleStandard (props) {
-  const [state, setState] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState([]);
-  const [value, setValue] = useState("");
+    default:
+      throw new Error()
+  }
+}
 
-  const handleResultSelect = (e, { result }) => setState(result.title)
+const resultRenderer = ({ title }) => <Label content={title} />
 
-  const handleSearchChange = (e, { value }) => {
-    setIsLoading(true)
+function SearchExampleStandard(props) {
+  const [state, dispatch] = React.useReducer(exampleReducer, initialState)
+  const { loading, query, results, selection } = state
 
-    setTimeout(() => {
-      if (value.length < 1) return setValue(value)
+  const timeoutRef = React.useRef()
+  const handleSearchChange = React.useCallback((e, { value }) => {
+    clearTimeout(timeoutRef.current)
+    dispatch({ type: 'START_SEARCH', query: value })
+
+    timeoutRef.current = setTimeout(() => {
+      if (value.length === 0) {
+        dispatch({ type: 'CLEAN_QUERY' })
+        return
+      }
 
       const re = new RegExp(_.escapeRegExp(value), 'i')
       const isMatch = (result) => re.test(result.title)
 
-      setIsLoading(false);
-      setResults(_.filter(source, isMatch));
+      dispatch({
+        type: 'FINISH_SEARCH',
+        results: _.filter(source, isMatch),
+      })
     }, 300)
-  }
+  }, [])
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timeoutRef.current)
+    }
+  }, [])
 
-    return (
-      <Grid>
-        <Grid.Column width={6}>
-          <Search
-            loading={isLoading}
-            onResultSelect={handleResultSelect}
-            onSearchChange={_.debounce(handleSearchChange, 500, {
-              leading: true,
-            })}
-            results={results}
-            value={value}
-            resultRenderer={resultRenderer}
-            {...props}
-          />
-        </Grid.Column>
-        <Grid.Column width={10}>
-          <Segment>
-            <Header>State</Header>
-            <pre style={{ overflowX: 'auto' }}>
-              {JSON.stringify(state, null, 2)}
-            </pre>
-            <Header>Options</Header>
-            <pre style={{ overflowX: 'auto' }}>
-              {JSON.stringify(source, null, 2)}
-            </pre>
-          </Segment>
-        </Grid.Column>
-      </Grid>
-    ) 
+  return (
+    <Grid>
+      <Grid.Column width={6}>
+        <Search
+          loading={loading}
+          onResultSelect={(e, { result }) =>
+            dispatch({ type: 'UPDATE_SELECTION', selection: result.title })
+          }
+          onSearchChange={handleSearchChange}
+          resultRenderer={resultRenderer}
+          results={results}
+          value={query}
+          {...props}
+        />
+      </Grid.Column>
+
+      <Grid.Column width={10}>
+        <Segment>
+          <Header>Selection</Header>
+          <pre style={{ overflowX: 'auto' }}>
+            {JSON.stringify(selection, null, 2)}
+          </pre>
+          <Header>Options</Header>
+          <pre style={{ overflowX: 'auto' }}>
+            {JSON.stringify(source, null, 2)}
+          </pre>
+        </Segment>
+      </Grid.Column>
+    </Grid>
+  )
 }
 
-export default SearchExampleStandard;
+export default SearchExampleStandard
