@@ -394,9 +394,10 @@ Modal.defaultProps = {
 
 Modal.autoControlledProps = ['open']
 
-Modal.Header = ModalHeader
+Modal.Actions = ModalActions
 Modal.Content = ModalContent
 Modal.Description = ModalDescription
-Modal.Actions = ModalActions
+Modal.Dimmer = ModalDimmer
+Modal.Header = ModalHeader
 
 export default Modal
