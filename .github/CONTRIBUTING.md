@@ -203,7 +203,7 @@ Each group has an API pattern and prop util for building up the `className` and 
 Use [`classNameBuilders`][4] to extract the prop values and build up the `className`.  Grouped classes like `color` and `size` simply use the prop value as the `className`.
 
 ```js
-import cx from 'classnames'
+import cx from 'clsx'
 import { useKeyOnly, useValueAndKey, useKeyOrValueAndKey } from '../../lib'
 
 function Segment({ size, color, basic, floated, padded }) {
@@ -444,7 +444,7 @@ class MyComponent extends Component {
 
 TODO
 
->For now, you should reference Dropdown as an example implementation.  You can also consult the comments in AutoControlledComponent.js for more background.
+>For now, you should reference Dropdown as an example implementation. You can also consult the comments in AutoControlledComponent.js for more background.
 
 ## Documentation
 

@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'

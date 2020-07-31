@@ -23,13 +23,16 @@ process.env.NODE_ENV = 'build-es'
 const makeWebpackConfig = (entry) => ({
   devtool: false,
   mode: 'production',
-  name: 'client',
   target: 'web',
 
   entry,
   output: {
     filename: path.basename(entry),
     path: config.paths.base('bundle-size', 'dist'),
+
+    ...(argv.debug && {
+      pathinfo: true,
+    }),
   },
 
   module: {

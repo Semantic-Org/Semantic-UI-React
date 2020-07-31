@@ -1,5 +1,5 @@
 import { handleRef } from '@stardust-ui/react-component-ref'
-import cx from 'classnames'
+import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Children, cloneElement, Component, createRef } from 'react'

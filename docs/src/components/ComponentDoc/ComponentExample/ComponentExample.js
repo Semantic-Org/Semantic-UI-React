@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import copyToClipboard from 'copy-to-clipboard'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
