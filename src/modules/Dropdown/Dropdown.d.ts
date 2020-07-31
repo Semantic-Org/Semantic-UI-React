@@ -246,7 +246,7 @@ export interface StrictDropdownProps {
    * A selection dropdown can allow a user to search through a large list of choices.
    * Pass a function here to replace the default search.
    */
-  search?: (options: DropdownItemProps[], value: string) => DropdownItemProps[] | boolean
+  search?: boolean | ((options: DropdownItemProps[], value: string) => DropdownItemProps[])
 
   /** A shorthand for a search input. */
   searchInput?: any
