@@ -1,15 +1,15 @@
-import React, { createRef, Fragment } from 'react'
+import React from 'react'
 import { Button, Popup } from 'semantic-ui-react'
 
 class PopupExampleContextControlled extends React.Component {
   state = {}
-  contextRef = createRef()
+  contextRef = React.createRef()
 
   toggle = () => this.setState((prevState) => ({ open: !prevState.open }))
 
   render() {
     return (
-      <Fragment>
+      <>
         <Button content='Open controlled Popup' onClick={this.toggle} />
         <Popup
           context={this.contextRef}
@@ -19,7 +19,7 @@ class PopupExampleContextControlled extends React.Component {
         />
         ---------->
         <strong ref={this.contextRef}>here</strong>
-      </Fragment>
+      </>
     )
   }
 }

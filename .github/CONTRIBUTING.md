@@ -60,7 +60,7 @@ cd Semantic-UI-React
 yarn
 ```
 
->Note, we use `yarn` because `npm` has unfortunately become unreliable.  Get it [here][16].
+>Note: we use `yarn` and advise you do too while contributing. Get it [here](https://yarnpkg.com/). You can use `npm install / npm ci` but we don't include a `package-lock.json` in the repository, so you may end up with slightly out of sync dependencies.
 
 Add our repo as a git remote so you can pull/rebase your fork with our latest updates:
 
@@ -203,7 +203,7 @@ Each group has an API pattern and prop util for building up the `className` and 
 Use [`classNameBuilders`][4] to extract the prop values and build up the `className`.  Grouped classes like `color` and `size` simply use the prop value as the `className`.
 
 ```js
-import cx from 'classnames'
+import cx from 'clsx'
 import { useKeyOnly, useValueAndKey, useKeyOrValueAndKey } from '../../lib'
 
 function Segment({ size, color, basic, floated, padded }) {
@@ -444,7 +444,7 @@ class MyComponent extends Component {
 
 TODO
 
->For now, you should reference Dropdown as an example implementation.  You can also consult the comments in AutoControlledComponent.js for more background.
+>For now, you should reference Dropdown as an example implementation. You can also consult the comments in AutoControlledComponent.js for more background.
 
 ## Documentation
 
@@ -516,7 +516,7 @@ Label.propTypes = {
 
 ### Examples
 
->This section is lacking in instruction as the the docs are set to be overhauled (PRs welcome!).
+>This section is lacking in instruction as the docs are set to be overhauled (PRs welcome!).
 
 Usage examples for a component live in `docs/src/examples`.  The examples follow the SUI doc site examples.
 

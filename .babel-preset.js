@@ -16,7 +16,7 @@ const browsers = [
 ]
 
 const plugins = [
-  '@babel/plugin-proposal-class-properties',
+  ['@babel/plugin-proposal-class-properties', { loose: true }],
   '@babel/plugin-proposal-export-default-from',
   '@babel/plugin-proposal-export-namespace-from',
   '@babel/plugin-syntax-dynamic-import',
@@ -24,6 +24,9 @@ const plugins = [
     '@babel/plugin-transform-runtime',
     {
       regenerator: isDocsBuild,
+      useESModules: isESBuild,
+      // https://github.com/babel/babel/issues/10261
+      version: require('@babel/runtime/package.json').version,
     },
   ],
   // Plugins that allow to reduce the target bundle size
@@ -34,13 +37,6 @@ const plugins = [
     {
       mode: isUMDBuild ? 'remove' : 'wrap',
       removeImport: isUMDBuild,
-    },
-  ],
-  // A plugin for react-static
-  isDocsBuild && [
-    'universal-import',
-    {
-      disableWarnings: true,
     },
   ],
   // A plugin for removal of debug in production builds
@@ -62,6 +58,7 @@ module.exports = () => ({
       '@babel/env',
       {
         modules: isESBuild || isUMDBuild ? false : 'commonjs',
+        loose: true,
         targets: { browsers },
       },
     ],
@@ -76,4 +73,15 @@ module.exports = () => ({
       plugins: [['istanbul', { include: ['src'] }]],
     },
   },
+  overrides: [
+    // A workaround to avoid collisions between "babel-plugin-dynamic-import-node" & "universal-import"
+    {
+      test: /react-static-routes.js/,
+      plugins: [
+        ['universal-import', { disableWarnings: true }],
+        '@babel/plugin-transform-modules-commonjs',
+      ],
+      presets: [['@babel/env', { modules: false }]],
+    },
+  ],
 })

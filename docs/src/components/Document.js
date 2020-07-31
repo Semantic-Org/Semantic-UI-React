@@ -21,25 +21,15 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       />
 
       <script src='https://cdn.jsdelivr.net/npm/core-js-bundle/minified.js' />
+      <script src='https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver' />
       <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`}
       />
       <script
         src={`https://cdn.jsdelivr.net/npm/@babel/standalone@${versions.babel.standalone}/babel.min.js`}
       />
-      <script
-        src={`https://cdn.jsdelivr.net/npm/@babel/preset-env-standalone@${versions.babel.standaloneEnv}/babel-preset-env.min.js`}
-      />
       <script src={`https://cdn.jsdelivr.net/faker.js/${versions.faker}/faker.min.js`} />
 
-      <script
-        crossOrigin='true'
-        src={`https://cdn.jsdelivr.net/npm/prettier@${versions.prettier}/standalone.min.js`}
-      />
-      <script
-        crossOrigin='true'
-        src={`https://cdn.jsdelivr.net/combine/npm/prettier@${versions.prettier}/parser-babylon.min.js,npm/prettier@${versions.prettier}/parser-html.min.js`}
-      />
       <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/prop-types/${versions.propTypes}/prop-types${
           siteData.dev ? '' : '.min'

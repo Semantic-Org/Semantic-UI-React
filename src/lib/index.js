@@ -1,8 +1,6 @@
 import makeDebugger from './makeDebugger'
 
-export AutoControlledComponent from './AutoControlledComponent'
 export ModernAutoControlledComponent from './ModernAutoControlledComponent'
-export { getChildMapping, mergeChildMappings } from './childMapping'
 export * as childrenUtils from './childrenUtils'
 
 export {

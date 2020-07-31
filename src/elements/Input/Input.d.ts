@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { HtmlInputrops, SemanticShorthandItem, SemanticSIZES } from '../../generic'
+import { HtmlInputrops, SemanticShorthandItem } from '../../generic'
 import { LabelProps } from '../Label'
 
 export interface InputProps extends StrictInputProps {
@@ -81,7 +81,7 @@ export interface InputOnChangeData extends InputProps {
   value: string
 }
 
-declare class Input extends React.Component<InputProps, {}> {
+declare class Input extends React.Component<InputProps> {
   focus: () => void
   select: () => void
 }

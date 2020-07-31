@@ -3,20 +3,31 @@ import { externals } from 'docs/src/components/ComponentDoc/ExampleEditor/render
 
 const name = 'semantic-ui-example'
 const description = 'An exported example from Semantic UI React, https://react.semantic-ui.com/'
-const dependencies = {
-  ..._.mapValues(externals, () => 'latest'),
-  // required to enable all features due old templates in https://github.com/codesandbox/codesandbox-importers
-  'react-scripts': 'latest',
+
+function createDependencies(code) {
+  // Will include only required packages intentionally like "react" or required by a current example
+  const filteredPackages = _.pickBy(
+    externals,
+    (declaration, importName) =>
+      declaration.required || new RegExp(`from ['|"]${importName}['|"]`).exec(code),
+  )
+
+  return {
+    ..._.mapValues(filteredPackages, (pkg) => pkg.version),
+    // required to enable all features due old templates in https://github.com/codesandbox/codesandbox-importers
+    // https://github.com/microsoft/fluent-ui-react/issues/1519
+    'react-scripts': 'latest',
+  }
 }
 
-const createPackageJson = () => ({
+const createPackageJson = (code) => ({
   content: JSON.stringify(
     {
       name,
       version: '1.0.0',
       description,
       main: 'index.js',
-      dependencies,
+      dependencies: createDependencies(code),
     },
     null,
     2,

@@ -49,6 +49,10 @@ export default async () => {
           exampleSources,
           sidebarSections,
           displayName: baseInfo.displayName,
+          deprecated: !!_.find(
+            _.get(componentsInfo[baseInfo.displayName], 'docblock.tags'),
+            (tag) => tag.title === 'deprecated',
+          ),
           seeTags: getInfoForSeeTags(componentsInfo[baseInfo.displayName]),
         }
       },

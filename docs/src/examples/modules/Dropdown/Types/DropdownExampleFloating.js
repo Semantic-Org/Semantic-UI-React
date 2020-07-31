@@ -14,7 +14,7 @@ const DropdownExampleFloating = () => (
       className='button icon'
       floating
       options={options}
-      trigger={<React.Fragment />}
+      trigger={<></>}
     />
   </Button.Group>
 )

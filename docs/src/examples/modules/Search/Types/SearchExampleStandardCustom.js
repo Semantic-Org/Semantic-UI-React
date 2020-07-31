@@ -77,7 +77,6 @@ function SearchExampleStandard(props) {
           resultRenderer={resultRenderer}
           results={results}
           value={query}
-          {...props}
         />
       </Grid.Column>
 

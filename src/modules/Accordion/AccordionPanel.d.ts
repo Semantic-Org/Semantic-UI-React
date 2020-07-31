@@ -30,6 +30,6 @@ export interface StrictAccordionPanelProps {
   title?: SemanticShorthandItem<AccordionTitleProps>
 }
 
-declare class AccordionPanel extends React.Component<AccordionPanelProps, {}> {}
+declare class AccordionPanel extends React.Component<AccordionPanelProps> {}
 
 export default AccordionPanel
