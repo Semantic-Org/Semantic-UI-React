@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Icon, Image, Modal } from 'semantic-ui-react'
 
-const ModalExampleScrollingContent = () => {
+function ModalScrollingExample() {
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -9,12 +9,11 @@ const ModalExampleScrollingContent = () => {
       open={open}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
-      trigger={<Button>Scrolling Content Modal</Button>}
+      trigger={<Button>Long Modal</Button>}
     >
-      <Modal.Header>Profile Picture</Modal.Header>
-      <Modal.Content image scrolling>
+      <Modal.Header>Modal Header</Modal.Header>
+      <Modal.Content image>
         <Image size='medium' src='/images/wireframe/image.png' wrapped />
-
         <Modal.Description>
           <p>
             This is an example of expanded content that will cause the modal's
@@ -53,12 +52,12 @@ const ModalExampleScrollingContent = () => {
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={() => setOpen(false)} primary>
-          Proceed <Icon name='chevron right' />
+        <Button primary onClick={() => setOpen(false)}>
+          Proceed <Icon name='right chevron' />
         </Button>
       </Modal.Actions>
     </Modal>
   )
 }
 
-export default ModalExampleScrollingContent
+export default ModalScrollingExample
