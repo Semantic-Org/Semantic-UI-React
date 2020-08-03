@@ -22,8 +22,7 @@ export interface StrictDropdownProps {
   additionPosition?: 'top' | 'bottom'
 
   /**
-   * Allow user additions to the list of options (boolea
-   n).
+   * Allow user additions to the list of options (boolean).
    * Requires the use of `selection`, `options` and `search`.
    */
   allowAdditions?: boolean
