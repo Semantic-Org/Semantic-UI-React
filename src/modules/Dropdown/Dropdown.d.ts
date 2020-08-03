@@ -22,7 +22,8 @@ export interface StrictDropdownProps {
   additionPosition?: 'top' | 'bottom'
 
   /**
-   * Allow user additions to the list of options (boolean).
+   * Allow user additions to the list of options (boolea
+   n).
    * Requires the use of `selection`, `options` and `search`.
    */
   allowAdditions?: boolean
@@ -74,7 +75,7 @@ export interface StrictDropdownProps {
   defaultUpward?: boolean
 
   /** Initial value or value array if multiple. */
-  defaultValue?: string | number | boolean | number | string | boolean[]
+  defaultValue?: string | number | boolean | (number | string | boolean)[]
 
   /** A dropdown menu can open to the left or to the right. */
   direction?: 'left' | 'right'
@@ -279,7 +280,7 @@ export interface StrictDropdownProps {
   trigger?: React.ReactNode
 
   /** Current value or value array if multiple. Creates a controlled component. */
-  value?: boolean | number | string | boolean | number | string[]
+  value?: boolean | number | string | (boolean | number | string)[]
 
   /** Controls whether the dropdown will open upward. */
   upward?: boolean
