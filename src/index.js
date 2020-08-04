@@ -142,6 +142,7 @@ export Modal from './modules/Modal'
 export ModalActions from './modules/Modal/ModalActions'
 export ModalContent from './modules/Modal/ModalContent'
 export ModalDescription from './modules/Modal/ModalDescription'
+export ModalDimmer from './modules/Modal/ModalDimmer'
 export ModalHeader from './modules/Modal/ModalHeader'
 
 export Popup from './modules/Popup'

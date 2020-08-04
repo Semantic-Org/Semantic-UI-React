@@ -18,12 +18,12 @@ import {
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
-import MountNode from '../../addons/MountNode'
 import Portal from '../../addons/Portal'
-import ModalHeader from './ModalHeader'
-import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
+import ModalContent from './ModalContent'
 import ModalDescription from './ModalDescription'
+import ModalDimmer from './ModalDimmer'
+import ModalHeader from './ModalHeader'
 import { canFit, getLegacyStyles, isLegacy } from './utils'
 
 const debug = makeDebugger('modal')
@@ -132,17 +132,8 @@ class Modal extends Component {
     _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
-  setDimmerNodeStyle = () => {
-    debug('setDimmerNodeStyle()')
-    const { current } = this.dimmerRef
-
-    if (current && current.style && current.style.display !== 'flex') {
-      current.style.setProperty('display', 'flex', 'important')
-    }
-  }
-
   setPositionAndClassNames = () => {
-    const { centered, dimmer } = this.props
+    const { centered } = this.props
 
     let scrolling
     const newState = {}
@@ -164,18 +155,8 @@ class Modal extends Component {
       }
     }
 
-    const classes = cx(
-      useKeyOnly(dimmer, 'dimmable dimmed'),
-      useKeyOnly(dimmer === 'blurring', ' blurring'),
-      useKeyOnly(scrolling, ' scrolling'),
-    )
-
-    if (this.state.mountClasses !== classes) newState.mountClasses = classes
     if (!_.isEmpty(newState)) this.setState(newState)
-
     this.animationRequestId = requestAnimationFrame(this.setPositionAndClassNames)
-
-    this.setDimmerNodeStyle()
   }
 
   renderContent = (rest) => {
@@ -187,11 +168,10 @@ class Modal extends Component {
       closeIcon,
       content,
       header,
-      mountNode,
       size,
       style,
     } = this.props
-    const { legacyStyles, mountClasses, scrolling } = this.state
+    const { legacyStyles, scrolling } = this.state
 
     const classes = cx(
       'ui',
@@ -210,8 +190,6 @@ class Modal extends Component {
     return (
       <Ref innerRef={this.ref}>
         <ElementType {...rest} className={classes} style={{ ...legacyStyles, ...style }}>
-          <MountNode className={mountClasses} node={mountNode} />
-
           {closeIconJSX}
           {childrenUtils.isNil(children) ? (
             <>
@@ -228,8 +206,8 @@ class Modal extends Component {
   }
 
   render() {
-    const { open } = this.state
     const { centered, closeOnDocumentClick, dimmer, eventPool, trigger } = this.props
+    const { open, scrolling } = this.state
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -250,14 +228,6 @@ class Modal extends Component {
       {},
     )
     const portalProps = _.pick(unhandled, portalPropNames)
-
-    // wrap dimmer modals
-    const dimmerClasses = cx(
-      'ui',
-      dimmer === 'inverted' && 'inverted',
-      !centered && 'top aligned',
-      'page modals dimmer transition visible active',
-    )
 
     // Heads up!
     //
@@ -283,9 +253,21 @@ class Modal extends Component {
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
       >
-        <div className={dimmerClasses} ref={this.dimmerRef}>
-          {this.renderContent(rest)}
-        </div>
+        <Ref innerRef={this.dimmerRef}>
+          {ModalDimmer.create(_.isPlainObject(dimmer) ? dimmer : {}, {
+            autoGenerateKey: false,
+            defaultProps: {
+              blurring: dimmer === 'blurring',
+              inverted: dimmer === 'inverted',
+            },
+            overrideProps: {
+              children: this.renderContent(rest),
+              centered,
+              mountNode,
+              scrolling,
+            },
+          })}
+        </Ref>
       </Portal>
     )
   }
@@ -326,7 +308,12 @@ Modal.propTypes = {
   defaultOpen: PropTypes.bool,
 
   /** A Modal can appear in a dimmer. */
-  dimmer: PropTypes.oneOf([true, 'inverted', 'blurring']),
+  dimmer: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.oneOf(['inverted', 'blurring']),
+  ]),
 
   /** Event pool namespace that is used to handle component events */
   eventPool: PropTypes.string,
@@ -405,9 +392,10 @@ Modal.defaultProps = {
 
 Modal.autoControlledProps = ['open']
 
-Modal.Header = ModalHeader
+Modal.Actions = ModalActions
 Modal.Content = ModalContent
 Modal.Description = ModalDescription
-Modal.Actions = ModalActions
+Modal.Dimmer = ModalDimmer
+Modal.Header = ModalHeader
 
 export default Modal
