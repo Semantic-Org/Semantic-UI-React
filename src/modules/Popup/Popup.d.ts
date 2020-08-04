@@ -59,7 +59,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   offset?: number | string
 
   /** Events triggering the popup. */
-  on?: 'hover' | 'click' | 'focus' | 'hover' | 'click' | 'focus'[]
+  on?: 'hover' | 'click' | 'focus' | ('hover' | 'click' | 'focus')[]
 
   /**
    * Called when a close event happens.
