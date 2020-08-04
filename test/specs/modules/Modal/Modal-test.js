@@ -29,7 +29,7 @@ let wrapper
 const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
-describe.only('Modal', () => {
+describe('Modal', () => {
   beforeEach(() => {
     if (wrapper && wrapper.unmount) {
       try {
