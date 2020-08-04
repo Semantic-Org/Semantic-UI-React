@@ -12,10 +12,10 @@ describe('ModalDimmer', () => {
 
   describe('children', () => {
     it('adds classes to "MountNode"', () => {
-      const wrapper = shallow(<ModalDimmer blurring />)
+      const wrapper = shallow(<ModalDimmer />)
 
       wrapper.find('MountNode').should.have.className('dimmable')
-      wrapper.find('MountNode').should.have.className('dimmable')
+      wrapper.find('MountNode').should.have.className('dimmed')
     })
   })
 

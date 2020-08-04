@@ -23,13 +23,13 @@ function ModalDimmer(props) {
   const classes = cx(
     'ui',
     useKeyOnly(inverted, 'inverted'),
-    !centered && 'top aligned',
+    useKeyOnly(!centered, 'top aligned'),
     'page modals dimmer transition visible active',
     className,
   )
   const bodyClasses = cx(
     'dimmable dimmed',
-    useKeyOnly(blurring, ' blurring'),
+    useKeyOnly(blurring, 'blurring'),
     useKeyOnly(scrolling, 'scrolling'),
   )
 
