@@ -13,8 +13,7 @@ const source = _.times(5, () => ({
 const initialState = {
   loading: false,
   results: [],
-  query: '',
-  selection: undefined,
+  value: '',
 }
 
 function exampleReducer(state, action) {
@@ -22,11 +21,11 @@ function exampleReducer(state, action) {
     case 'CLEAN_QUERY':
       return initialState
     case 'START_SEARCH':
-      return { ...state, loading: true, query: action.query }
+      return { ...state, loading: true, value: action.query }
     case 'FINISH_SEARCH':
       return { ...state, loading: false, results: action.results }
     case 'UPDATE_SELECTION':
-      return { ...state, selection: action.selection }
+      return { ...state, value: action.selection }
 
     default:
       throw new Error()
@@ -37,20 +36,20 @@ const resultRenderer = ({ title }) => <Label content={title} />
 
 function SearchExampleStandardCustom() {
   const [state, dispatch] = React.useReducer(exampleReducer, initialState)
-  const { loading, query, results, selection } = state
+  const { loading, results, value } = state
 
   const timeoutRef = React.useRef()
-  const handleSearchChange = React.useCallback((e, { value }) => {
+  const handleSearchChange = React.useCallback((e, data) => {
     clearTimeout(timeoutRef.current)
-    dispatch({ type: 'START_SEARCH', query: value })
+    dispatch({ type: 'START_SEARCH', query: data.value })
 
     timeoutRef.current = setTimeout(() => {
-      if (value.length === 0) {
+      if (data.value.length === 0) {
         dispatch({ type: 'CLEAN_QUERY' })
         return
       }
 
-      const re = new RegExp(_.escapeRegExp(value), 'i')
+      const re = new RegExp(_.escapeRegExp(data.value), 'i')
       const isMatch = (result) => re.test(result.title)
 
       dispatch({
@@ -70,21 +69,21 @@ function SearchExampleStandardCustom() {
       <Grid.Column width={6}>
         <Search
           loading={loading}
-          onResultSelect={(e, { result }) =>
-            dispatch({ type: 'UPDATE_SELECTION', selection: result.title })
+          onResultSelect={(e, data) =>
+            dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })
           }
           onSearchChange={handleSearchChange}
           resultRenderer={resultRenderer}
           results={results}
-          value={query}
+          value={value}
         />
       </Grid.Column>
 
       <Grid.Column width={10}>
         <Segment>
-          <Header>Selection</Header>
+          <Header>State</Header>
           <pre style={{ overflowX: 'auto' }}>
-            {JSON.stringify(selection, null, 2)}
+            {JSON.stringify({ loading, results, value }, null, 2)}
           </pre>
           <Header>Options</Header>
           <pre style={{ overflowX: 'auto' }}>
