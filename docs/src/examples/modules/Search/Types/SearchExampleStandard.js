@@ -32,7 +32,7 @@ function exampleReducer(state, action) {
   }
 }
 
-function SearchExampleStandardCustom() {
+function SearchExampleStandard() {
   const [state, dispatch] = React.useReducer(exampleReducer, initialState)
   const { loading, results, value } = state
 
@@ -92,4 +92,4 @@ function SearchExampleStandardCustom() {
   )
 }
 
-export default SearchExampleStandardCustom
+export default SearchExampleStandard
