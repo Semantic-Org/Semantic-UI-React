@@ -1,5 +1,16 @@
 # Change Log
 
+## [v1.1.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.1.1) (2020-08-03)
+
+#### :bug: Bug Fix
+* [#4014](https://github.com/Semantic-Org/Semantic-UI-React/pull/4014) fix(Dropdown): update search prop typing ([@charliematters](https://github.com/charliematters))
+
+#### :memo: Documentation
+* [#4012](https://github.com/Semantic-Org/Semantic-UI-React/pull/4012) docs(Modal): improve examples, use React hooks ([@layershifter](https://github.com/layershifter))
+
+#### :house: Internal
+* [#4011](https://github.com/Semantic-Org/Semantic-UI-React/pull/4011) chore: improve bundle size ([@layershifter](https://github.com/layershifter))
+
 ## [v1.1.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.1.0) (2020-07-30)
 
 #### :rocket: New Feature
