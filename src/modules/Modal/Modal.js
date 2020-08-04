@@ -254,21 +254,19 @@ class Modal extends Component {
         onUnmount={this.handlePortalUnmount}
       >
         <Ref innerRef={this.dimmerRef}>
-          {ModalDimmer.create(
-            {},
-            {
-              defaultProps: {
-                blurring: dimmer === 'blurring',
-                inverted: dimmer === 'inverted',
-              },
-              overrideProps: {
-                children: this.renderContent(rest),
-                centered,
-                mountNode,
-                scrolling,
-              },
+          {ModalDimmer.create(_.isPlainObject(dimmer) ? dimmer : {}, {
+            autoGenerateKey: false,
+            defaultProps: {
+              blurring: dimmer === 'blurring',
+              inverted: dimmer === 'inverted',
             },
-          )}
+            overrideProps: {
+              children: this.renderContent(rest),
+              centered,
+              mountNode,
+              scrolling,
+            },
+          })}
         </Ref>
       </Portal>
     )

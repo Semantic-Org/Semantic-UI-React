@@ -29,7 +29,7 @@ let wrapper
 const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
-describe('Modal', () => {
+describe.only('Modal', () => {
   beforeEach(() => {
     if (wrapper && wrapper.unmount) {
       try {
@@ -235,31 +235,20 @@ describe('Modal', () => {
   })
 
   describe('dimmer', () => {
-    describe('defaults', () => {
-      it('is set to true by default', () => {
-        Modal.defaultProps.dimmer.should.equal(true)
-      })
-
-      it('is present by default', () => {
-        wrapperMount(<Modal open />)
-        assertBodyContains('.ui.dimmer')
-      })
+    it('adds a "dimmer" className to the body', () => {
+      wrapperMount(<Modal open />)
+      assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
     })
 
-    describe('true', () => {
+    describe('can be "true"', () => {
       it('adds/removes body classes "dimmable dimmed" on mount/unmount', () => {
         assertBodyClasses('dimmable dimmed', false)
 
         wrapperMount(<Modal open dimmer />)
         assertBodyClasses('dimmable dimmed')
 
-        wrapper.unmount()
+        wrapper.setProps({ open: false })
         assertBodyClasses('dimmable dimmed', false)
-      })
-
-      it('adds a dimmer to the body', () => {
-        wrapperMount(<Modal open dimmer />)
-        assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
       })
     })
 
@@ -270,7 +259,7 @@ describe('Modal', () => {
         wrapperMount(<Modal open dimmer='blurring' />)
         assertBodyClasses('dimmable dimmed blurring')
 
-        wrapper.unmount()
+        wrapper.setProps({ open: false })
         assertBodyClasses('dimmable dimmed blurring', false)
       })
 
@@ -287,13 +276,23 @@ describe('Modal', () => {
         wrapperMount(<Modal open dimmer />)
         assertBodyClasses('dimmable dimmed')
 
-        wrapper.unmount()
+        wrapper.setProps({ open: false })
         assertBodyClasses('dimmable dimmed', false)
       })
 
       it('adds an inverted dimmer to the body', () => {
         wrapperMount(<Modal open dimmer='inverted' />)
         assertBodyContains('.ui.inverted.page.modals.dimmer.transition.visible.active')
+      })
+    })
+
+    describe('object', () => {
+      it('passes props to a dimmer element', () => {
+        wrapperMount(<Modal open dimmer={{ className: 'bar', id: 'dimmer', inverted: true }} />)
+
+        wrapper.find('ModalDimmer').should.have.prop('inverted', true)
+        wrapper.find('.dimmer').should.have.className('bar')
+        wrapper.find('.dimmer').should.have.prop('id', 'dimmer')
       })
     })
   })
