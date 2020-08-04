@@ -12,7 +12,7 @@ export interface StrictVisibilityProps {
   children?: React.ReactNode
 
   /** Context which sticky element should stick to. */
-  context?: object
+  context?: Document | Window | HTMLElement
 
   /**
    * When set to true a callback will occur anytime an element passes a condition not just immediately after the

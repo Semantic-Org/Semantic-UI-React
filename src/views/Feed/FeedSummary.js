@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -33,7 +33,13 @@ function FeedSummary(props) {
   return (
     <ElementType {...rest} className={classes}>
       {createShorthand(FeedUser, (val) => ({ content: val }), user, { autoGenerateKey: false })}
+      {/*
+        Content styles require wrapping whitespace
+        https://github.com/Semantic-Org/Semantic-UI-React/pull/3836
+      */}
+      {content && ' '}
       {content}
+      {content && ' '}
       {createShorthand(FeedDate, (val) => ({ content: val }), date, { autoGenerateKey: false })}
     </ElementType>
   )

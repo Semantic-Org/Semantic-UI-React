@@ -23,10 +23,7 @@ export default () => {
     }
 
     try {
-      const sourceName = _.split(file.path, path.sep)
-        .slice(-4)
-        .join('/')
-        .slice(0, -3)
+      const sourceName = _.split(file.path, path.sep).slice(-4).join('/').slice(0, -3)
 
       exampleSources[sourceName] = file.contents.toString()
       cb()

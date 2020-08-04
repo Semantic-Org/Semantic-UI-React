@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { Button, Dropdown } from '../index'
 
-const BasicAssert = () => <Button />
+export const BasicAssert = () => <Button />
 
-const ShorthandItemElementAssert = () => (
+export const ShorthandItemElementAssert = () => (
   <Dropdown additionLabel={<i style={{ color: 'red' }}>Custom Language: </i>} />
 )
 
-const ShorthandItemFuncAssert = () => (
+export const ShorthandItemFuncAssert = () => (
   <Button
     content='Foo'
     icon={(Component, props) => (
@@ -18,7 +18,7 @@ const ShorthandItemFuncAssert = () => (
   />
 )
 
-const ShorthandItemFuncChildren = () => (
+export const ShorthandItemFuncChildren = () => (
   <Button
     content='Foo'
     label={(Component, props, children) => (
@@ -29,6 +29,4 @@ const ShorthandItemFuncChildren = () => (
   />
 )
 
-const ShorthandItemFuncNullAssert = () => <Button content='Foo' icon={() => null} />
-
-export default BasicAssert
+export const ShorthandItemFuncNullAssert = () => <Button content='Foo' icon={() => null} />

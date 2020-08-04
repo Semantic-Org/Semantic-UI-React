@@ -126,14 +126,7 @@ type SemanticDIRECTIONALTRANSITIONS =
   | 'swing left'
   | 'swing right'
   | 'zoom'
-type SemanticSTATICTRANSITIONS =
-  | 'jiggle'
-  | 'flash'
-  | 'shake'
-  | 'pulse'
-  | 'tada'
-  | 'bounce'
-  | 'glow'
+type SemanticSTATICTRANSITIONS = 'jiggle' | 'flash' | 'shake' | 'pulse' | 'tada' | 'bounce' | 'glow'
 
 export type SemanticTRANSITIONS = SemanticDIRECTIONALTRANSITIONS | SemanticSTATICTRANSITIONS
 

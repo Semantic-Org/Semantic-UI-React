@@ -3,7 +3,7 @@ import * as React from 'react'
 import { LabelProps } from '../../elements/Label'
 import DropdownDivider from './DropdownDivider'
 import DropdownHeader from './DropdownHeader'
-import { default as DropdownItem, DropdownItemProps } from './DropdownItem'
+import DropdownItem, { DropdownItemProps } from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
 

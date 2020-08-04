@@ -16,6 +16,7 @@ export const htmlInputAttrs = [
   'disabled',
   'form',
   'id',
+  'inputMode',
   'lang',
   'list',
   'max',
