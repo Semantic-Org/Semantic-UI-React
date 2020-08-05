@@ -1,5 +1,5 @@
-import { EventListener, documentRef } from '@stardust-ui/react-component-event-listener'
-import { isRefObject, toRefObject, Ref } from '@stardust-ui/react-component-ref'
+import { EventListener, documentRef } from '@fluentui/react-component-event-listener'
+import { Ref, isRefObject } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -106,14 +106,14 @@ class Sidebar extends Component {
     )
     const rest = getUnhandledProps(Sidebar, this.props)
     const ElementType = getElementType(Sidebar, this.props)
-    const targetRef = isRefObject(target) ? target : toRefObject(target)
+    const targetProp = isRefObject(target) ? { targetRef: target } : { target }
 
     return (
       <Ref innerRef={this.ref}>
         <ElementType {...rest} className={classes}>
           {childrenUtils.isNil(children) ? content : children}
           {visible && (
-            <EventListener listener={this.handleDocumentClick} targetRef={targetRef} type='click' />
+            <EventListener listener={this.handleDocumentClick} type='click' {...targetProp} />
           )}
         </ElementType>
       </Ref>

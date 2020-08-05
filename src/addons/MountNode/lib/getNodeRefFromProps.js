@@ -1,4 +1,4 @@
-import { isRefObject, toRefObject } from '@stardust-ui/react-component-ref'
+import { isRefObject } from '@fluentui/react-component-ref'
 import _ from 'lodash'
 
 import { isBrowser } from '../../../lib'
@@ -14,7 +14,7 @@ const getNodeRefFromProps = (props) => {
 
   if (isBrowser()) {
     if (isRefObject(node)) return node
-    return _.isNil(node) ? toRefObject(document.body) : toRefObject(node)
+    return { current: _.isNil(node) ? document.body : node }
   }
 }
 

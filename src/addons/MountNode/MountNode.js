@@ -4,14 +4,17 @@ import { Component } from 'react'
 import { customPropTypes } from '../../lib'
 import getNodeRefFromProps from './lib/getNodeRefFromProps'
 import handleClassNamesChange from './lib/handleClassNamesChange'
-import NodeRegistry from './lib/NodeRegistry'
-
-const nodeRegistry = new NodeRegistry()
 
 /**
  * A component that allows to manage classNames on a DOM node in declarative manner.
  */
 export default class MountNode extends Component {
+  constructor(props) {
+    super(props)
+
+    this.ref = getNodeRefFromProps(props)
+  }
+
   shouldComponentUpdate({ className: nextClassName }) {
     const { className: currentClassName } = this.props
 
@@ -19,21 +22,19 @@ export default class MountNode extends Component {
   }
 
   componentDidMount() {
-    const nodeRef = getNodeRefFromProps(this.props)
-
-    nodeRegistry.add(nodeRef, this)
-    nodeRegistry.emit(nodeRef, handleClassNamesChange)
+    handleClassNamesChange(this.ref, [this])
   }
 
-  componentDidUpdate() {
-    nodeRegistry.emit(getNodeRefFromProps(this.props), handleClassNamesChange)
+  componentDidUpdate(prevProps) {
+    if (this.props.node !== prevProps.node) {
+      this.ref = getNodeRefFromProps(this.props)
+    }
+
+    handleClassNamesChange(this.ref, [this])
   }
 
   componentWillUnmount() {
-    const nodeRef = getNodeRefFromProps(this.props)
-
-    nodeRegistry.del(nodeRef, this)
-    nodeRegistry.emit(nodeRef, handleClassNamesChange)
+    handleClassNamesChange(this.ref, [])
   }
 
   render() {
