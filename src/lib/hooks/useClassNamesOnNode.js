@@ -1,5 +1,5 @@
+import { isRefObject } from '@fluentui/react-component-ref'
 import React from 'react'
-import { isRefObject } from '@stardust-ui/react-component-ref'
 
 import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 
