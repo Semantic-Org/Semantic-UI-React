@@ -97,6 +97,11 @@ const PopupUsageExamples = () => (
       examplePath='modules/Popup/Usage/PopupExampleContextControlled'
     />
     <ComponentExample
+      title='Context Menu'
+      description='A popup can open over a DOM node as used as a context menu.'
+      examplePath='modules/Popup/Usage/PopupExampleContextMenu'
+    />
+    <ComponentExample
       title='Hide on scroll'
       description='A popup can be hidden on a scroll event.'
       examplePath='modules/Popup/Usage/PopupExampleHideOnScroll'

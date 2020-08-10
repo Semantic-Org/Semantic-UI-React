@@ -1,27 +1,26 @@
 import React from 'react'
 import { Button, Popup } from 'semantic-ui-react'
 
-class PopupExampleContextControlled extends React.Component {
-  state = {}
-  contextRef = React.createRef()
+function PopupExampleContextControlled() {
+  const contextRef = React.useRef()
+  const [open, setOpen] = React.useState(false)
 
-  toggle = () => this.setState((prevState) => ({ open: !prevState.open }))
-
-  render() {
-    return (
-      <>
-        <Button content='Open controlled Popup' onClick={this.toggle} />
-        <Popup
-          context={this.contextRef}
-          content='Hello'
-          position='top center'
-          open={this.state.open}
-        />
-        ---------->
-        <strong ref={this.contextRef}>here</strong>
-      </>
-    )
-  }
+  return (
+    <>
+      <Button
+        content='Open controlled Popup'
+        onClick={() => setOpen((prevOpen) => !prevOpen)}
+      />
+      <Popup
+        context={contextRef}
+        content='Hello'
+        position='top center'
+        open={open}
+      />
+      ---------->
+      <strong ref={contextRef}>here</strong>
+    </>
+  )
 }
 
 export default PopupExampleContextControlled
