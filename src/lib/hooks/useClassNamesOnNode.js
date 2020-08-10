@@ -5,14 +5,22 @@ import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 
 const CLASS_NAME_DELITIMITER = /\s+/
 
+/**
+ * Accepts a set of ref objects that contain classnames as a string and returns an array of unique
+ * classNames.
+ *
+ * @param {Set<React.RefObject>|undefined} classNameRefs
+ * @returns String[]
+ */
 export function computeClassNames(classNameRefs) {
   const classNames = []
 
   if (classNameRefs) {
     classNameRefs.forEach((classNameRef) => {
       if (typeof classNameRef.current === 'string') {
-        // TODO: describe why
-        classNameRef.current.split(CLASS_NAME_DELITIMITER).forEach((className) => {
+        const classNamesForRef = classNameRef.current.split(CLASS_NAME_DELITIMITER)
+
+        classNamesForRef.forEach((className) => {
           classNames.push(className)
         })
       }
@@ -26,6 +34,12 @@ export function computeClassNames(classNameRefs) {
   return []
 }
 
+/**
+ * Computes classnames that should be removed and added to a node based on input differences.
+ *
+ * @param {String[]} prevClassNames
+ * @param {String[]} currentClassNames
+ */
 export function computeClassNamesDifference(prevClassNames, currentClassNames) {
   return [
     currentClassNames.filter((className) => prevClassNames.indexOf(className) === -1),
@@ -37,10 +51,10 @@ const prevClassNames = new Map()
 
 /**
  * @param {HTMLElement} node
- * @param {Object[]} components
+ * @param {Set<React.RefObject>|undefined} classNameRefs
  */
-export const handleClassNamesChange = (node, components) => {
-  const currentClassNames = computeClassNames(components)
+export const handleClassNamesChange = (node, classNameRefs) => {
+  const currentClassNames = computeClassNames(classNameRefs)
   const [forAdd, forRemoval] = computeClassNamesDifference(
     prevClassNames.get(node) || [],
     currentClassNames,
@@ -59,22 +73,22 @@ export class NodeRegistry {
     this.nodes = new Map()
   }
 
-  add = (node, component) => {
+  add = (node, classNameRef) => {
     if (this.nodes.has(node)) {
       const set = this.nodes.get(node)
 
-      set.add(component)
+      set.add(classNameRef)
       return
     }
 
-    // IE11 do not support constructor params
+    // IE11 does not support constructor params
     const set = new Set()
-    set.add(component)
+    set.add(classNameRef)
 
     this.nodes.set(node, set)
   }
 
-  del = (node, component) => {
+  del = (node, classNameRef) => {
     if (!this.nodes.has(node)) {
       return
     }
@@ -86,7 +100,7 @@ export class NodeRegistry {
       return
     }
 
-    set.delete(component)
+    set.delete(classNameRef)
   }
 
   emit = (node, callback) => {
