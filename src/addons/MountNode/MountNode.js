@@ -9,7 +9,7 @@ import { customPropTypes, useClassNamesOnNode } from '../../lib'
 function MountNode(props) {
   useClassNamesOnNode(props.node, props.className)
 
-  // A workaround for `react-docgen`
+  // A workaround for `react-docgen`: https://github.com/reactjs/react-docgen/issues/336
   if (process.env.NODE_ENV === 'test') {
     return <div />
   }
