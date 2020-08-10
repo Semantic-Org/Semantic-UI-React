@@ -110,6 +110,13 @@ export class NodeRegistry {
 
 const nodeRegistry = new NodeRegistry()
 
+/**
+ * A React hooks that allows to manage classNames on a DOM node in declarative manner. Accepts
+ * a HTML element or React ref objects with it.
+ *
+ * @param {HTMLElement|React.RefObject} node
+ * @param {String} className
+ */
 export default function useClassNamesOnNode(node, className) {
   const classNameRef = React.useRef()
   const isMounted = React.useRef(false)
