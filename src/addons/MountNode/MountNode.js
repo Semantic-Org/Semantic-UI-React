@@ -5,6 +5,8 @@ import { customPropTypes, useClassNamesOnNode } from '../../lib'
 
 /**
  * A component that allows to manage classNames on a DOM node in declarative manner.
+ *
+ * @deprecated This component is deprecated and will be removed in next major release.
  */
 function MountNode(props) {
   useClassNamesOnNode(props.node, props.className)
