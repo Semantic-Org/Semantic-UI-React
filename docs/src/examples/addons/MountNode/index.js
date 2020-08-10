@@ -11,7 +11,7 @@ const MountNodeExamples = () => (
       <Message.Content>
         <Message.Header>Deprecation notice</Message.Header>
         <p>
-          <code>Responsive</code> component is deprecated and will be removed in
+          <code>MountNode</code> component is deprecated and will be removed in
           the next major release. Please follow our{' '}
           <a href='https://github.com/Semantic-Org/Semantic-UI-React/pull/4027'>
             upgrade guide
