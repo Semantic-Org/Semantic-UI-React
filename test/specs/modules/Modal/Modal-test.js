@@ -13,6 +13,7 @@ import {
   assertNodeContains,
   assertBodyClasses,
   assertBodyContains,
+  assertWithTimeout,
   domEvent,
   sandbox,
 } from 'test/utils'
@@ -538,15 +539,16 @@ describe('Modal', () => {
       wrapperMount(<Modal open>foo</Modal>)
       window.innerHeight = 10
 
-      requestAnimationFrame(() => {
-        assertBodyClasses('scrolling')
-        window.innerHeight = 10000
-
-        requestAnimationFrame(() => {
-          assertBodyClasses('scrolling', false)
-          done()
-        })
-      })
+      assertWithTimeout(
+        () => {
+          assertBodyClasses('scrolling')
+          window.innerHeight = 10000
+        },
+        () =>
+          assertWithTimeout(() => {
+            assertBodyClasses('scrolling', false)
+          }, done),
+      )
     })
 
     it('adds the scrolling class to the body after re-open', (done) => {
@@ -555,18 +557,23 @@ describe('Modal', () => {
       window.innerHeight = 10
       wrapperMount(<Modal defaultOpen>foo</Modal>)
 
-      requestAnimationFrame(() => {
-        assertBodyClasses('scrolling')
-        domEvent.click('.ui.dimmer')
-
-        assertBodyClasses('scrolling', false)
-
-        wrapper.setProps({ open: true })
-        requestAnimationFrame(() => {
+      assertWithTimeout(
+        () => {
           assertBodyClasses('scrolling')
-          done()
-        })
-      })
+          domEvent.click('.ui.dimmer')
+        },
+        () =>
+          assertWithTimeout(
+            () => {
+              assertBodyClasses('scrolling', false)
+              wrapper.setProps({ open: true })
+            },
+            () =>
+              assertWithTimeout(() => {
+                assertBodyClasses('scrolling')
+              }, done),
+          ),
+      )
     })
 
     it('removes the scrolling class from the body on unmount', (done) => {

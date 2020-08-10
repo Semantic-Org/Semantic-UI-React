@@ -12,24 +12,27 @@ describe('ModalDimmer', () => {
 
   describe('children', () => {
     it('adds classes to "MountNode"', () => {
-      const wrapper = shallow(<ModalDimmer />)
+      const element = document.createElement('div')
+      mount(<ModalDimmer mountNode={element} />)
 
-      wrapper.find('MountNode').should.have.className('dimmable')
-      wrapper.find('MountNode').should.have.className('dimmed')
+      element.className.should.contain('dimmable')
+      element.className.should.contain('dimmed')
     })
   })
 
   describe('blurring', () => {
     it('adds nothing "MountNode" by default', () => {
-      shallow(<ModalDimmer />)
-        .find('MountNode')
-        .should.have.not.className('blurring')
+      const element = document.createElement('div')
+      mount(<ModalDimmer mountNode={element} />)
+
+      element.className.should.not.contain('blurring')
     })
 
     it('adds a class to "MountNode" when is "true"', () => {
-      shallow(<ModalDimmer blurring />)
-        .find('MountNode')
-        .should.have.className('blurring')
+      const element = document.createElement('div')
+      mount(<ModalDimmer blurring mountNode={element} />)
+
+      element.className.should.contain('blurring')
     })
   })
 
@@ -47,27 +50,19 @@ describe('ModalDimmer', () => {
     })
   })
 
-  describe('mountNode', () => {
-    it('is passed to "MountNode" as "node"', () => {
-      const mountNode = document.createElement('div')
-
-      shallow(<ModalDimmer mountNode={mountNode} />)
-        .find('MountNode')
-        .should.have.prop('node', mountNode)
-    })
-  })
-
   describe('scrolling', () => {
     it('adds nothing "MountNode" by default', () => {
-      shallow(<ModalDimmer />)
-        .find('MountNode')
-        .should.have.not.className('scrolling')
+      const element = document.createElement('div')
+      mount(<ModalDimmer mountNode={element} />)
+
+      element.className.should.not.contain('scrolling')
     })
 
     it('adds "className" to "MountNode"', () => {
-      shallow(<ModalDimmer scrolling />)
-        .find('MountNode')
-        .should.have.className('scrolling')
+      const element = document.createElement('div')
+      mount(<ModalDimmer mountNode={element} scrolling />)
+
+      element.className.should.contain('scrolling')
     })
   })
 
