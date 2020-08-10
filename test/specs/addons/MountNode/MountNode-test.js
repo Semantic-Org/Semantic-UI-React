@@ -35,20 +35,4 @@ describe('MountNode', () => {
       node.classList.contains('foo').should.be.equal(false)
     })
   })
-
-  describe('shouldComponentUpdate', () => {
-    it('will not rerender when nextClassName is same', () => {
-      const wrapper = shallow(<MountNode className='foo' />)
-      const shouldUpdate = wrapper.instance().shouldComponentUpdate({ className: 'foo' })
-
-      shouldUpdate.should.be.equal(false)
-    })
-
-    it('will rerender when nextClassName is another', () => {
-      const wrapper = shallow(<MountNode className='foo' />)
-      const shouldUpdate = wrapper.instance().shouldComponentUpdate({ className: 'bar' })
-
-      shouldUpdate.should.be.equal(true)
-    })
-  })
 })

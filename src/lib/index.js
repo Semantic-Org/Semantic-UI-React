@@ -41,3 +41,9 @@ export objectDiff from './objectDiff'
 
 // Heads up! We import/export for this module to safely remove it with "babel-plugin-filter-imports"
 export { makeDebugger }
+
+//
+// Hooks
+//
+
+export useClassNamesOnNode from './hooks/useClassNamesOnNode'
