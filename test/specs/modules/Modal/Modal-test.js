@@ -30,6 +30,16 @@ let wrapper
 const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
+// cleanup in `useEffect()` is executed async, so we need to perform a proper cleanup first to avoid
+// collisions with other tests
+function waitForClassesCleanup(done, customAssertions = () => {}) {
+  wrapper.unmount()
+  assertWithTimeout(() => {
+    assertBodyClasses('dimmed', false)
+    customAssertions()
+  }, done)
+}
+
 describe('Modal', () => {
   beforeEach(() => {
     if (wrapper && wrapper.unmount) {
@@ -236,13 +246,17 @@ describe('Modal', () => {
   })
 
   describe('dimmer', () => {
-    it('adds a "dimmer" className to the body', () => {
-      wrapperMount(<Modal open />)
-      assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
+    describe('ss', () => {
+      it('adds a "dimmer" className to the body', (done) => {
+        wrapperMount(<Modal open />)
+
+        assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
+        waitForClassesCleanup(done)
+      })
     })
 
     describe('can be "true"', () => {
-      it('adds/removes body classes "dimmable dimmed" on mount/unmount', () => {
+      it('adds/removes body classes "dimmable dimmed" on mount/unmount', (done) => {
         assertBodyClasses('dimmable dimmed', false)
 
         wrapperMount(<Modal open dimmer />)
@@ -250,11 +264,13 @@ describe('Modal', () => {
 
         wrapper.setProps({ open: false })
         assertBodyClasses('dimmable dimmed', false)
+
+        waitForClassesCleanup(done)
       })
     })
 
     describe('blurring', () => {
-      it('adds/removes body classes "dimmable dimmed blurring" on mount/unmount', () => {
+      it('adds/removes body classes "dimmable dimmed blurring" on mount/unmount', (done) => {
         assertBodyClasses('dimmable dimmed blurring', false)
 
         wrapperMount(<Modal open dimmer='blurring' />)
@@ -262,16 +278,20 @@ describe('Modal', () => {
 
         wrapper.setProps({ open: false })
         assertBodyClasses('dimmable dimmed blurring', false)
+
+        waitForClassesCleanup(done)
       })
 
-      it('adds a dimmer to the body', () => {
+      it('adds a dimmer to the body', (done) => {
         wrapperMount(<Modal open dimmer='blurring' />)
+
         assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
+        waitForClassesCleanup(done)
       })
     })
 
     describe('inverted', () => {
-      it('adds/removes body classes "dimmable dimmed" on mount/unmount', () => {
+      it('adds/removes body classes "dimmable dimmed" on mount/unmount', (done) => {
         assertBodyClasses('dimmable dimmed', false)
 
         wrapperMount(<Modal open dimmer />)
@@ -279,11 +299,15 @@ describe('Modal', () => {
 
         wrapper.setProps({ open: false })
         assertBodyClasses('dimmable dimmed', false)
+
+        waitForClassesCleanup(done)
       })
 
-      it('adds an inverted dimmer to the body', () => {
+      it('adds an inverted dimmer to the body', (done) => {
         wrapperMount(<Modal open dimmer='inverted' />)
+
         assertBodyContains('.ui.inverted.page.modals.dimmer.transition.visible.active')
+        waitForClassesCleanup(done)
       })
     })
 
@@ -509,9 +533,11 @@ describe('Modal', () => {
       window.innerHeight = innerHeight
     })
 
-    it('does not add the scrolling class to the body by default', () => {
+    it('does not add the scrolling class to the body by default', (done) => {
       wrapperMount(<Modal open />)
+
       assertBodyClasses('scrolling', false)
+      waitForClassesCleanup(done)
     })
 
     it('does not add the scrolling class to the body when equal to the window height', (done) => {
@@ -588,12 +614,8 @@ describe('Modal', () => {
       window.innerHeight = 10
       wrapperMount(<Modal open>foo</Modal>)
 
-      requestAnimationFrame(() => {
-        assertBodyClasses('scrolling')
-        wrapper.unmount()
-
+      waitForClassesCleanup(done, () => {
         assertBodyClasses('scrolling', false)
-        done()
       })
     })
   })

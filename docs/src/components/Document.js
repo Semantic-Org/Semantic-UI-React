@@ -40,11 +40,9 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
         }.js`}
       />
       <script
-        src={
-          dev
-            ? ` https://cdn.jsdelivr.net/npm/@hot-loader/react-dom@${versions.react}/umd/react-dom.development.js`
-            : `https://cdn.jsdelivr.net/npm/react-dom@${versions.react}/umd/react-dom.production.min.js`
-        }
+        src={`https://cdn.jsdelivr.net/npm/react-dom@${versions.react}/umd/react-dom${
+          dev ? '.development' : '.production.min'
+        }.js`}
       />
       <script
         src={`https://cdn.jsdelivr.net/npm/react-dom@${
