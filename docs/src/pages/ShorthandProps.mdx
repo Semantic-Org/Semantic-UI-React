@@ -52,7 +52,10 @@ This works because `name` is the default prop of shorthand's `<Icon />` element.
 It is also possible to pass falsy values (`false`, `null` or `undefined`) - in that case there will be nothing rendered for the component's shorthand.
 
 ```jsx
-<Dropdown icon={null} />
+<>
+  <Dropdown icon={null} />
+  <Dropdown icon={false} />
+</>
 ```
 
 ## React Element as value
@@ -68,9 +71,9 @@ There are cases where it might be necessary to customize the element tree that w
   <Message.Content>
     There is a very important caveat here, though: whenever React Element is directly used as a
     shorthand value, all props that Semantic UI React has created for the shorthand's Component will
-    be spread on the passed element. This means that the provided element should be able to handle props
-    - while this requirement is satisfied for all SUIR components, you should be aware of that when
-    either HTML or any third-party elements are provided.
+    be spread on the passed element. This means that the provided element should be able to handle
+    props - while this requirement is satisfied for all SUIR components, you should be aware of that
+    when either HTML or any third-party elements are provided.
   </Message.Content>
 </Message>
 
@@ -82,19 +85,17 @@ Due to this limitation, you should strive to use other options for shorthand val
 
 However, there still might be cases where it would be impossible to use the object form of the shorthand value - for example, you might want to render some custom elements tree for the shorthand. In that case, function value should be used.
 
-## Function as value
+## Render props via `children`
 
-Providing function as a shorthand value is the most involving but, at the same time, the most powerful option for customizing component's shorthand. The only requirements for this function are:
-
-- it should finish synchronously
-- it should return React Element as a result
-
-Thus, in its simplest form, it could be used the following way:
+Providing function as a shorthand value is the most involving but, at the same time, the most powerful option for customizing component's shorthand. It should return React Element as a result or `null`.
 
 ```jsx
 <Button
   content='Like'
-  icon={(Component, componentProps) => <Component {...componentProps} color='red' name='like' />}
+  icon={{
+    children: (Component, componentProps) => <Component {...componentProps} color='red' />,
+    name: 'question',
+  }}
 />
 ```
 
@@ -103,5 +104,8 @@ Thus, in its simplest form, it could be used the following way:
 There is another use case when render function is very useful for - this is the case where custom element's tree should be rendered for the shorthand. As you might recall, there is a problem that might happen when React Element is provided directly as shorthand value - in that case, props are not propagated to rendered. In order to avoid that the following strategy should be considered:
 
 ```jsx
-<Button content='Like' icon={(Component, componentProps) => <Label basic>+1</Label>} />
+<Button
+  content='Like'
+  icon={{ children: (Component, componentProps) => <Label basic>+1</Label> }}
+/>
 ```
