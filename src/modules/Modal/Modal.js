@@ -59,7 +59,7 @@ class Modal extends Component {
   handleClose = (e) => {
     debug('close()')
 
-    _.invoke(this.props, 'onClose', e, this.props)
+    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
     this.setState({ open: false })
   }
 
@@ -94,7 +94,7 @@ class Modal extends Component {
   handleOpen = (e) => {
     debug('open()')
 
-    _.invoke(this.props, 'onOpen', e, this.props)
+    _.invoke(this.props, 'onOpen', e, { ...this.props, open: true })
     this.setState({ open: true })
   }
 

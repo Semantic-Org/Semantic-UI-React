@@ -112,12 +112,12 @@ export default class Popup extends Component {
 
   handleClose = (e) => {
     debug('handleClose()')
-    _.invoke(this.props, 'onClose', e, this.props)
+    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
   }
 
   handleOpen = (e) => {
     debug('handleOpen()')
-    _.invoke(this.props, 'onOpen', e, this.props)
+    _.invoke(this.props, 'onOpen', e, { ...this.props, open: true })
   }
 
   handlePortalMount = (e) => {
