@@ -50,12 +50,10 @@
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
       "prettier --write",
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "**/*.mdx": [
-      "prettier --parser mdx --write",
-      "git add"
+      "prettier --parser mdx --write"
     ]
   },
   "repository": {
