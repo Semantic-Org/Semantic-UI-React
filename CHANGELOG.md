@@ -1,5 +1,22 @@
 # Change Log
 
+## [v1.2.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.2.0) (2020-08-12)
+
+#### :rocket: New Feature
+* [#1739](https://github.com/Semantic-Org/Semantic-UI-React/pull/1739) feat(Modal): impliment Dimmer shorthand ([@qoalu](https://github.com/qoalu))
+
+#### :bug: Bug Fix
+* [#4026](https://github.com/Semantic-Org/Semantic-UI-React/pull/4026) fix(Popup): do not throw if `context` & `trigger` are missing ([@layershifter](https://github.com/layershifter))
+* [#4018](https://github.com/Semantic-Org/Semantic-UI-React/pull/4018) fix(Dropdown): update typings for `defaultValue` & `value` ([@zhongeric](https://github.com/zhongeric))
+* [#4019](https://github.com/Semantic-Org/Semantic-UI-React/pull/4019) fix(Popup|Visibility): update types definitions for props ([@daigof](https://github.com/daigof))
+
+#### :memo: Documentation
+* [#3794](https://github.com/Semantic-Org/Semantic-UI-React/pull/3794) docs(SearchExampleStandard): use React hooks ([@rpatelcode](https://github.com/rpatelcode))
+* [#3795](https://github.com/Semantic-Org/Semantic-UI-React/pull/3795) docs(SearchExampleStandardCustom): use React hooks ([@rpatelcode](https://github.com/rpatelcode))
+
+#### :house: Internal
+* [#4027](https://github.com/Semantic-Org/Semantic-UI-React/pull/4027) chore(MountNode): deprecate component ([@layershifter](https://github.com/layershifter))
+
 ## [v1.1.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.1.1) (2020-08-03)
 
 #### :bug: Bug Fix
