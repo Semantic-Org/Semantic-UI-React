@@ -27,14 +27,8 @@ describe('CardGroup', () => {
 
       const wrapper = mount(<CardGroup items={items} />).find('Card')
 
-      wrapper
-        .first()
-        .find('CardHeader')
-        .should.contain.text(firstText)
-      wrapper
-        .last()
-        .find('CardHeader')
-        .should.contain.text(secondText)
+      wrapper.first().find('CardHeader').should.contain.text(firstText)
+      wrapper.last().find('CardHeader').should.contain.text(secondText)
     })
   })
 })
