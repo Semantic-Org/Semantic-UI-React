@@ -10,17 +10,6 @@ import DimmerInner from './DimmerInner'
  * A dimmer hides distractions to focus attention on particular content.
  */
 export default class Dimmer extends Component {
-  static propTypes = {
-    /** An active dimmer will dim its parent container. */
-    active: PropTypes.bool,
-
-    /** A dimmer can be formatted to be fixed to the page. */
-    page: PropTypes.bool,
-  }
-
-  static Dimmable = DimmerDimmable
-  static Inner = DimmerInner
-
   handlePortalMount = () => {
     if (!isBrowser()) return
 
@@ -60,4 +49,15 @@ export default class Dimmer extends Component {
   }
 }
 
-Dimmer.create = createShorthandFactory(Dimmer, value => ({ content: value }))
+Dimmer.propTypes = {
+  /** An active dimmer will dim its parent container. */
+  active: PropTypes.bool,
+
+  /** A dimmer can be formatted to be fixed to the page. */
+  page: PropTypes.bool,
+}
+
+Dimmer.Dimmable = DimmerDimmable
+Dimmer.Inner = DimmerInner
+
+Dimmer.create = createShorthandFactory(Dimmer, (value) => ({ content: value }))

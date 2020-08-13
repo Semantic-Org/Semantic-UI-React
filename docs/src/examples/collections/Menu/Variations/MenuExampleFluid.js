@@ -11,9 +11,21 @@ export default class MenuExampleFluid extends Component {
 
     return (
       <Menu fluid vertical>
-        <Menu.Item name='run' active={activeItem === 'run'} onClick={this.handleItemClick} />
-        <Menu.Item name='walk' active={activeItem === 'walk'} onClick={this.handleItemClick} />
-        <Menu.Item name='bike' active={activeItem === 'bike'} onClick={this.handleItemClick} />
+        <Menu.Item
+          name='run'
+          active={activeItem === 'run'}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name='walk'
+          active={activeItem === 'walk'}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name='bike'
+          active={activeItem === 'bike'}
+          onClick={this.handleItemClick}
+        />
       </Menu>
     )
   }

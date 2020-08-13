@@ -15,35 +15,21 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
         rel='stylesheet'
         href={`https://cdn.jsdelivr.net/npm/semantic-ui@${versions.sui}/dist/semantic.min.css`}
       />
+      <link
+        rel='stylesheet'
+        href={`https://cdn.jsdelivr.net/npm/prismjs@${versions.prismjs}/themes/prism-tomorrow.min.css`}
+      />
 
-      <script src='https://cdn.jsdelivr.net/npm/@babel/polyfill@7.0.0/dist/polyfill.min.js' />
+      <script src='https://cdn.jsdelivr.net/npm/core-js-bundle/minified.js' />
+      <script src='https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver' />
       <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`}
       />
       <script
-        src={`https://cdn.jsdelivr.net/npm/@babel/standalone@${
-          versions.babel.standalone
-        }/babel.min.js`}
-      />
-      <script
-        src={`https://cdn.jsdelivr.net/npm/@babel/preset-env-standalone@${
-          versions.babel.standaloneEnv
-        }/babel-preset-env.min.js`}
+        src={`https://cdn.jsdelivr.net/npm/@babel/standalone@${versions.babel.standalone}/babel.min.js`}
       />
       <script src={`https://cdn.jsdelivr.net/faker.js/${versions.faker}/faker.min.js`} />
 
-      <script
-        crossOrigin='true'
-        src={`https://unpkg.com/prettier@${versions.prettier}/standalone.js`}
-      />
-      <script
-        crossOrigin='true'
-        src={`https://unpkg.com/prettier@${versions.prettier}/parser-babylon.js`}
-      />
-      <script
-        crossOrigin='true'
-        src={`https://unpkg.com/prettier@${versions.prettier}/parser-html.js`}
-      />
       <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/prop-types/${versions.propTypes}/prop-types${
           siteData.dev ? '' : '.min'
@@ -57,12 +43,8 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       <script
         src={
           dev
-            ? ` https://cdn.jsdelivr.net/npm/@hot-loader/react-dom@${
-                versions.react
-              }/umd/react-dom.development.js`
-            : `https://cdn.jsdelivr.net/npm/react-dom@${
-                versions.react
-              }/umd/react-dom.production.min.js`
+            ? ` https://cdn.jsdelivr.net/npm/@hot-loader/react-dom@${versions.react}/umd/react-dom.development.js`
+            : `https://cdn.jsdelivr.net/npm/react-dom@${versions.react}/umd/react-dom.production.min.js`
         }
       />
       <script

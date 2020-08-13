@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -87,7 +87,7 @@ Segment.Inline = SegmentInline
 
 Segment.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Attach segment to other content, like a header. */
   attached: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['top', 'bottom'])]),

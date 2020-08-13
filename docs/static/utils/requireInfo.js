@@ -1,3 +1,3 @@
-const requireInfo = displayName => require(`../../src/componentInfo/${displayName}.info.json`)
+const requireInfo = (displayName) => require(`../../src/componentInfo/${displayName}.info.json`)
 
 export default requireInfo

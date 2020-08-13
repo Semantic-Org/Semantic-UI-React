@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 
@@ -19,10 +18,6 @@ const colors = [
 ]
 
 class ExampleMenu extends Component {
-  static propTypes = {
-    color: PropTypes.string,
-  }
-
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -33,7 +28,11 @@ class ExampleMenu extends Component {
 
     return (
       <Menu color={color} widths={3}>
-        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+        <Menu.Item
+          name='home'
+          active={activeItem === 'home'}
+          onClick={this.handleItemClick}
+        />
         <Menu.Item
           name='messages'
           active={activeItem === 'messages'}
@@ -50,7 +49,7 @@ class ExampleMenu extends Component {
 }
 
 const MenuExampleColoredMenus = () => {
-  const menus = colors.map(color => <ExampleMenu color={color} key={color} />)
+  const menus = colors.map((color) => <ExampleMenu color={color} key={color} />)
 
   return <div>{menus}</div>
 }

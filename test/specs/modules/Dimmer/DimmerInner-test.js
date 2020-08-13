@@ -51,10 +51,7 @@ describe('DimmerInner', () => {
         },
       )
 
-      wrapper
-        .find('div.content')
-        .childAt(0)
-        .simulate('click')
+      wrapper.find('div.content').childAt(0).simulate('click')
       onClickOutside.should.have.not.been.called()
 
       wrapper.unmount()

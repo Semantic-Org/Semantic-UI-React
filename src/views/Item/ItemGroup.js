@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -64,7 +64,7 @@ function ItemGroup(props) {
 
 ItemGroup.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,

@@ -27,14 +27,19 @@ const transitions = [
   'swing right',
   'zoom',
 ]
-const options = transitions.map(name => ({ key: name, text: name, value: name }))
+const options = transitions.map((name) => ({
+  key: name,
+  text: name,
+  value: name,
+}))
 
 export default class TransitionExampleSingleExplorer extends Component {
   state = { animation: transitions[0], duration: 500, visible: true }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-  handleVisibility = () => this.setState(prevState => ({ visible: !prevState.visible }))
+  handleVisibility = () =>
+    this.setState((prevState) => ({ visible: !prevState.visible }))
 
   render() {
     const { animation, duration, visible } = this.state
@@ -59,12 +64,17 @@ export default class TransitionExampleSingleExplorer extends Component {
             type='range'
             value={duration}
           />
-          <Form.Button content={visible ? 'Unmount' : 'Mount'} onClick={this.handleVisibility} />
+          <Form.Button
+            content={visible ? 'Unmount' : 'Mount'}
+            onClick={this.handleVisibility}
+          />
         </Grid.Column>
 
         <Grid.Column>
           <Transition.Group animation={animation} duration={duration}>
-            {visible && <Image centered size='small' src='/images/leaves/4.png' />}
+            {visible && (
+              <Image centered size='small' src='/images/leaves/4.png' />
+            )}
           </Transition.Group>
         </Grid.Column>
       </Grid>

@@ -2,10 +2,11 @@ import * as React from 'react'
 
 import { SemanticShorthandItem } from '../../generic'
 import { StrictPortalProps } from '../../addons/Portal'
-import { default as ModalActions, ModalActionsProps } from './ModalActions'
-import { default as ModalContent, ModalContentProps } from './ModalContent'
+import ModalActions, { ModalActionsProps } from './ModalActions'
+import ModalContent, { ModalContentProps } from './ModalContent'
 import ModalDescription from './ModalDescription'
-import { default as ModalHeader, ModalHeaderProps } from './ModalHeader'
+import ModalDimmer, { ModalDimmerProps } from './ModalDimmer'
+import ModalHeader, { ModalHeaderProps } from './ModalHeader'
 
 export interface ModalProps extends StrictModalProps {
   [key: string]: any
@@ -21,7 +22,7 @@ export interface StrictModalProps extends StrictPortalProps {
   /** A Modal can reduce its complexity */
   basic?: boolean
 
-  /** A modal can be vertically centered in the viewport */
+  /** A modal can be vertically centered in the viewport. */
   centered?: boolean
 
   /** Primary content. */
@@ -46,7 +47,7 @@ export interface StrictModalProps extends StrictPortalProps {
   defaultOpen?: boolean
 
   /** A modal can appear in a dimmer. */
-  dimmer?: true | 'blurring' | 'inverted'
+  dimmer?: true | 'blurring' | 'inverted' | SemanticShorthandItem<ModalDimmerProps>
 
   /** Event pool namespace that is used to handle component events */
   eventPool?: string
@@ -114,6 +115,7 @@ interface ModalComponent extends React.ComponentClass<ModalProps> {
   Actions: typeof ModalActions
   Content: typeof ModalContent
   Description: typeof ModalDescription
+  Dimmer: typeof ModalDimmer
   Header: typeof ModalHeader
 }
 

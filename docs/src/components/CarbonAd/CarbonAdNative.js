@@ -9,10 +9,6 @@ const debug = makeDebugger('carbon-ad-native')
 const MAX_FAILED_ADS = 10
 
 class CarbonAdNative extends PureComponent {
-  static propTypes = {
-    inverted: PropTypes.bool,
-  }
-
   state = {}
 
   componentDidMount() {
@@ -23,7 +19,8 @@ class CarbonAdNative extends PureComponent {
     this.getAd()
   }
 
-  componentWillUpdate() {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillUpdate() {
     const shouldGetAd = Date.now() - this.timeOfLastAd > 10000
     debug('componentWillUpdate', { mounted: this.mounted, shouldGetAd })
     if (shouldGetAd) {
@@ -67,8 +64,8 @@ class CarbonAdNative extends PureComponent {
     debug('handleNativeJSON', { mounted: this.mounted })
     try {
       const sanitizedAd = json.ads
-        .filter(ad => Object.keys(ad).length > 0)
-        .filter(ad => !!ad.statlink)
+        .filter((ad) => Object.keys(ad).length > 0)
+        .filter((ad) => !!ad.statlink)
         .filter(Boolean)[0]
       debug('handleNativeJSON sanitizedAd', sanitizedAd)
 
@@ -99,19 +96,19 @@ class CarbonAdNative extends PureComponent {
 
     const colors = inverted
       ? {
-        divider: '#333',
-        background: '#222',
-        backgroundHover: '#1d1d1d',
-        color: '#999',
-        colorHover: '#ccc',
-      }
+          divider: '#333',
+          background: '#222',
+          backgroundHover: '#1d1d1d',
+          color: '#999',
+          colorHover: '#ccc',
+        }
       : {
-        divider: '#eee',
-        background: '#fff',
-        backgroundHover: 'whitesmoke',
-        color: '#555',
-        colorHover: '#333',
-      }
+          divider: '#eee',
+          background: '#fff',
+          backgroundHover: 'whitesmoke',
+          color: '#555',
+          colorHover: '#333',
+        }
 
     return (
       <a id={id} href={ad.statlink} target='_blank' rel='noopener noreferrer'>
@@ -142,7 +139,8 @@ class CarbonAdNative extends PureComponent {
               />
             ))}
 
-        <style>{`
+        <style>
+          {`
           #${id} {
             display: block;
             overflow: hidden;
@@ -174,6 +172,10 @@ class CarbonAdNative extends PureComponent {
       </a>
     )
   }
+}
+
+CarbonAdNative.propTypes = {
+  inverted: PropTypes.bool,
 }
 
 export default CarbonAdNative

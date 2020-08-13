@@ -19,10 +19,7 @@ describe('ItemGroup', () => {
     it('renders children', () => {
       const firstText = faker.hacker.phrase()
       const secondText = faker.hacker.phrase()
-      const items = [
-        { content: firstText },
-        { content: secondText },
-      ]
+      const items = [{ content: firstText }, { content: secondText }]
 
       const wrapper = mount(<ItemGroup items={items} />)
       const itemWrappers = wrapper.find('Item')

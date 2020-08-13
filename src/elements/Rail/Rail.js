@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -52,7 +52,7 @@ function Rail(props) {
 
 Rail.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A rail can appear attached to the main viewport. */
   attached: PropTypes.bool,

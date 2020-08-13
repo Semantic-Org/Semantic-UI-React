@@ -35,7 +35,7 @@ export interface StrictIconProps {
   /** Fitted, without space to left or right of Icon. */
   fitted?: boolean
 
-  /** Icon can flipped. */
+  /** Icon can be flipped. */
   flipped?: 'horizontally' | 'vertically'
 
   /** Formatted to have its colors inverted for contrast. */
@@ -63,7 +63,7 @@ export interface StrictIconProps {
   'aria-label'?: string
 }
 
-declare class Icon extends React.PureComponent<IconProps, {}> {
+declare class Icon extends React.PureComponent<IconProps> {
   static Group: typeof IconGroup
 }
 

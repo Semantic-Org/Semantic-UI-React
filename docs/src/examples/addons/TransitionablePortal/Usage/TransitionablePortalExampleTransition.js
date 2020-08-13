@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { Form, Grid, Header, Segment, TransitionablePortal } from 'semantic-ui-react'
+import {
+  Form,
+  Grid,
+  Header,
+  Segment,
+  TransitionablePortal,
+} from 'semantic-ui-react'
 
 const transitions = [
   'browse',
@@ -27,13 +33,17 @@ const transitions = [
   'swing right',
   'zoom',
 ]
-const options = transitions.map(name => ({ key: name, text: name, value: name }))
+const options = transitions.map((name) => ({
+  key: name,
+  text: name,
+  value: name,
+}))
 
 export default class TransitionablePortalExampleTransition extends Component {
   state = { animation: transitions[0], duration: 500, open: false }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
-  handleClick = () => this.setState(prevState => ({ open: !prevState.open }))
+  handleClick = () => this.setState((prevState) => ({ open: !prevState.open }))
 
   render() {
     const { animation, duration, open } = this.state
@@ -67,8 +77,18 @@ export default class TransitionablePortalExampleTransition extends Component {
             />
           </Form>
 
-          <TransitionablePortal open={open} transition={{ animation, duration }}>
-            <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
+          <TransitionablePortal
+            open={open}
+            transition={{ animation, duration }}
+          >
+            <Segment
+              style={{
+                left: '40%',
+                position: 'fixed',
+                top: '50%',
+                zIndex: 1000,
+              }}
+            >
               <Header>This is a controlled portal</Header>
               <p>Portals have tons of great callback functions to hook into.</p>
               <p>To close, simply click the close button or click away</p>

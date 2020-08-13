@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -28,7 +28,7 @@ function MessageItem(props) {
 
 MessageItem.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -44,6 +44,6 @@ MessageItem.defaultProps = {
   as: 'li',
 }
 
-MessageItem.create = createShorthandFactory(MessageItem, content => ({ content }))
+MessageItem.create = createShorthandFactory(MessageItem, (content) => ({ content }))
 
 export default MessageItem

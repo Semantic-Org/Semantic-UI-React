@@ -1,8 +1,8 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A dropdown menu can contain dividers to separate related content.
@@ -18,7 +18,7 @@ function DropdownDivider(props) {
 
 DropdownDivider.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Additional classes. */
   className: PropTypes.string,

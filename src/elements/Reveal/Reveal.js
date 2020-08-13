@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -38,7 +38,7 @@ function Reveal(props) {
 
 Reveal.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** An active reveal displays its hidden content. */
   active: PropTypes.bool,

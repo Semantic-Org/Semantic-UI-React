@@ -1,8 +1,8 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { customPropTypes, getUnhandledProps, useValueAndKey } from '../../lib'
+import { getUnhandledProps, useValueAndKey } from '../../lib'
 import TableCell from './TableCell'
 
 /**
@@ -18,7 +18,7 @@ function TableHeaderCell(props) {
 
 TableHeaderCell.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Additional classes. */
   className: PropTypes.string,

@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -17,38 +17,7 @@ import Icon from '../../elements/Icon'
  * A title sub-component for Accordion component.
  */
 export default class AccordionTitle extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
-    /** Whether or not the title is in the open state. */
-    active: PropTypes.bool,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Shorthand for primary content. */
-    content: customPropTypes.contentShorthand,
-
-    /** Shorthand for Icon. */
-    icon: customPropTypes.itemShorthand,
-
-    /** AccordionTitle index inside Accordion. */
-    index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-  }
-
-  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
+  handleClick = (e) => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const { active, children, className, content, icon } = this.props
@@ -75,4 +44,34 @@ export default class AccordionTitle extends Component {
   }
 }
 
-AccordionTitle.create = createShorthandFactory(AccordionTitle, content => ({ content }))
+AccordionTitle.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Whether or not the title is in the open state. */
+  active: PropTypes.bool,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
+  /** Shorthand for Icon. */
+  icon: customPropTypes.itemShorthand,
+
+  /** AccordionTitle index inside Accordion. */
+  index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
+}
+AccordionTitle.create = createShorthandFactory(AccordionTitle, (content) => ({ content }))

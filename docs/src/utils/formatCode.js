@@ -1,4 +1,6 @@
 import prettier from 'prettier/standalone'
+import babel from 'prettier/parser-babel'
+
 import prettierConfig from '../../../.prettierrc.json'
 import isBrowser from '../../../src/lib/isBrowser'
 
@@ -15,17 +17,17 @@ delete prettierConfig.overrides
 
 const formatCode = isBrowser()
   ? (code, parser = 'babel') => {
-    if (!code) return ''
+      if (!code) return ''
 
-    const formatted = prettier.format(code, {
-      ...prettierConfig,
-      printWidth,
-      parser,
-      plugins: window.prettierPlugins,
-    })
+      const formatted = prettier.format(code, {
+        ...prettierConfig,
+        printWidth,
+        parser,
+        plugins: { babel },
+      })
 
-    return formatted.replace(/^;</, '<') // remove beginning semi in JSX/HTML
-  }
-  : x => x
+      return formatted.replace(/^;</, '<') // remove beginning semi in JSX/HTML
+    }
+  : (x) => x
 
 export default formatCode

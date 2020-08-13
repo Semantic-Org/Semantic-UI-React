@@ -1,27 +1,29 @@
-import React, { Component } from 'react'
-import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import React from 'react'
+import {
+  Checkbox,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  Menu,
+  Segment,
+  Sidebar,
+} from 'semantic-ui-react'
 
-export default class SidebarExampleMultiple extends Component {
-  state = { visible: false }
+const SidebarExampleMultiple = () => {
+  const [visible, setVisible] = React.useState(false)
 
-  handleHideClick = () => this.setState({ visible: false })
-  handleShowClick = () => this.setState({ visible: true })
-  handleSidebarHide = () => this.setState({ visible: false })
+  return (
+    <Grid columns={1}>
+      <Grid.Column>
+        <Checkbox
+          checked={visible}
+          label={{ children: <code>visible</code> }}
+          onChange={(e, data) => setVisible(data.checked)}
+        />
+      </Grid.Column>
 
-  render() {
-    const { visible } = this.state
-
-    return (
-      <div>
-        <Button.Group>
-          <Button disabled={visible} onClick={this.handleShowClick}>
-            Show sidebars
-          </Button>
-          <Button disabled={!visible} onClick={this.handleHideClick}>
-            Hide sidebars
-          </Button>
-        </Button.Group>
-
+      <Grid.Column>
         <Sidebar.Pushable as={Segment}>
           <Sidebar
             as={Menu}
@@ -29,7 +31,7 @@ export default class SidebarExampleMultiple extends Component {
             direction='left'
             icon='labeled'
             inverted
-            onHide={this.handleSidebarHide}
+            onHide={() => setVisible(false)}
             vertical
             visible={visible}
             width='thin'
@@ -72,7 +74,9 @@ export default class SidebarExampleMultiple extends Component {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-      </div>
-    )
-  }
+      </Grid.Column>
+    </Grid>
+  )
 }
+
+export default SidebarExampleMultiple

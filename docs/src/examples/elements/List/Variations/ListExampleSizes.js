@@ -6,7 +6,7 @@ const ListExampleSizes = () => {
 
   return (
     <div>
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <div key={size}>
           <List divided horizontal size={size}>
             <List.Item>

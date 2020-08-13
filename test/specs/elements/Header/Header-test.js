@@ -19,7 +19,7 @@ describe('Header', () => {
     autoGenerateKey: false,
     propKey: 'subheader',
     ShorthandComponent: HeaderSubheader,
-    mapValueToProps: val => ({ content: val }),
+    mapValueToProps: (val) => ({ content: val }),
   })
   common.implementsTextAlignProp(Header)
 

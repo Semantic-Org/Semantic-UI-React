@@ -26,7 +26,7 @@ const PopupExampleActions = () => (
     </Grid.Column>
     <Grid.Column>
       <Popup
-        trigger={<Button icon>Click me or Hover me</Button>}
+        trigger={<Button>Click me or Hover me</Button>}
         header='Movie Search'
         content='Multiple events can trigger a popup'
         on={['hover', 'click']}

@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -28,7 +28,7 @@ export default function PopupContent(props) {
 
 PopupContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** The content of the Popup */
   children: PropTypes.node,
@@ -40,4 +40,4 @@ PopupContent.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-PopupContent.create = createShorthandFactory(PopupContent, children => ({ children }))
+PopupContent.create = createShorthandFactory(PopupContent, (children) => ({ children }))

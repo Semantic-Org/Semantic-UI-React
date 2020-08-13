@@ -5,7 +5,7 @@ export default class ProgressExampleIndicating extends Component {
   state = { percent: 33 }
 
   increment = () =>
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       percent: prevState.percent >= 100 ? 0 : prevState.percent + 20,
     }))
 

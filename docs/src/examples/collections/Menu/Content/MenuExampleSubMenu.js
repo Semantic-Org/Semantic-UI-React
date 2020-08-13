@@ -25,16 +25,28 @@ export default class MenuExampleSubMenu extends Component {
             >
               Search
             </Menu.Item>
-            <Menu.Item name='add' active={activeItem === 'add'} onClick={this.handleItemClick}>
+            <Menu.Item
+              name='add'
+              active={activeItem === 'add'}
+              onClick={this.handleItemClick}
+            >
               Add
             </Menu.Item>
-            <Menu.Item name='about' active={activeItem === 'about'} onClick={this.handleItemClick}>
+            <Menu.Item
+              name='about'
+              active={activeItem === 'about'}
+              onClick={this.handleItemClick}
+            >
               Remove
             </Menu.Item>
           </Menu.Menu>
         </Menu.Item>
 
-        <Menu.Item name='browse' active={activeItem === 'browse'} onClick={this.handleItemClick}>
+        <Menu.Item
+          name='browse'
+          active={activeItem === 'browse'}
+          onClick={this.handleItemClick}
+        >
           <Icon name='grid layout' />
           Browse
         </Menu.Item>

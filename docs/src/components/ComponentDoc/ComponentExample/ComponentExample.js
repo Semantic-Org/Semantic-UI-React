@@ -1,8 +1,8 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import copyToClipboard from 'copy-to-clipboard'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import VisibilitySensor from 'react-visibility-sensor'
+import { InView } from 'react-intersection-observer'
 import { Grid } from 'semantic-ui-react'
 
 import { examplePathToHash, scrollToAnchor } from 'docs/src/utils'
@@ -25,26 +25,9 @@ const componentControlsStyle = {
 
 /**
  * Renders a `component` and the raw `code` that produced it.
- * Allows toggling the the raw `code` code block.
+ * Allows toggling the raw `code` code block.
  */
 class ComponentExample extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    description: PropTypes.node,
-    examplePath: PropTypes.string.isRequired,
-    history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    onVisibilityChange: PropTypes.func.isRequired,
-    renderHtml: PropTypes.bool,
-    sourceCode: PropTypes.string.isRequired,
-    suiVersion: PropTypes.string,
-    title: PropTypes.node,
-  }
-
-  static defaultProps = {
-    renderHtml: true,
-  }
-
   constructor(props) {
     super(props)
 
@@ -68,6 +51,23 @@ class ComponentExample extends Component {
     if (state.isActiveHash && !willBeActiveHash) {
       derivedState.showCode = false
       derivedState.showHTML = false
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      const wasCodeChanged = state.originalSourceCode !== state.sourceCode
+      const wasCodeUpdated = props.sourceCode !== state.originalSourceCode
+
+      if (wasCodeUpdated) {
+        if (wasCodeChanged) {
+          /* eslint-disable-next-line no-console */
+          console.warn(
+            `[HMR] the code of example (${props.examplePath}) was not reload because it was modified, please reset your changes.`,
+          )
+        } else {
+          derivedState.originalSourceCode = props.sourceCode
+          derivedState.sourceCode = props.sourceCode
+        }
+      }
     }
 
     return derivedState
@@ -126,11 +126,7 @@ class ComponentExample extends Component {
     } = this.state
 
     return (
-      <VisibilitySensor
-        delayedCall={!wasEverVisible}
-        partialVisibility
-        onChange={this.handleVisibility}
-      >
+      <InView onChange={this.handleVisibility}>
         <div id={anchorName} style={{ marginTop: '1rem' }}>
           <Grid className={cx('docs-example', showCode && 'active')} padded='vertically'>
             <Grid.Row columns='equal'>
@@ -175,12 +171,30 @@ class ComponentExample extends Component {
                 visible={wasEverVisible}
               />
             </Grid.Row>
+
             {isActiveHash && <CarbonAdNative inverted={showCode} />}
           </Grid>
         </div>
-      </VisibilitySensor>
+      </InView>
     )
   }
+}
+
+ComponentExample.propTypes = {
+  children: PropTypes.node,
+  description: PropTypes.node,
+  examplePath: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  onVisibilityChange: PropTypes.func.isRequired,
+  renderHtml: PropTypes.bool,
+  sourceCode: PropTypes.string.isRequired,
+  suiVersion: PropTypes.string,
+  title: PropTypes.node,
+}
+
+ComponentExample.defaultProps = {
+  renderHtml: true,
 }
 
 /* TODO: Replace this temporary component with hooks */
@@ -195,7 +209,10 @@ const Wrapper = (props) => {
       {...rest}
       /* eslint-disable-next-line react/prop-types */
       sourceCode={sourceCode}
-    />
+    >
+      {/* eslint-disable-next-line react/prop-types */}
+      {props.children}
+    </ComponentExample>
   )
 }
 

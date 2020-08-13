@@ -1,10 +1,10 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  AutoControlledComponent as Component,
+  ModernAutoControlledComponent as Component,
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
@@ -30,57 +30,6 @@ const warnIfPropsAreInvalid = (props, state) => {
  * An Accordion can contain sub-accordions.
  */
 export default class AccordionAccordion extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
-    /** Index of the currently active panel. */
-    activeIndex: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-    ]),
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Initial activeIndex value. */
-    defaultActiveIndex: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-    ]),
-
-    /** Only allow one panel open at a time. */
-    exclusive: PropTypes.bool,
-
-    /**
-     * Called when a panel title is clicked.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All item props.
-     */
-    onTitleClick: customPropTypes.every([customPropTypes.disallow(['children']), PropTypes.func]),
-
-    /** Shorthand array of props for Accordion. */
-    panels: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.arrayOf(
-        PropTypes.shape({
-          content: customPropTypes.itemShorthand,
-          title: customPropTypes.itemShorthand,
-        }),
-      ),
-    ]),
-  }
-
-  static defaultProps = {
-    exclusive: true,
-  }
-
-  static autoControlledProps = ['activeIndex']
-
   getInitialAutoControlledState({ exclusive }) {
     return { activeIndex: exclusive ? -1 : [] }
   }
@@ -110,7 +59,7 @@ export default class AccordionAccordion extends Component {
   handleTitleClick = (e, titleProps) => {
     const { index } = titleProps
 
-    this.trySetState({ activeIndex: this.computeNewIndex(index) })
+    this.setState({ activeIndex: this.computeNewIndex(index) })
     _.invoke(this.props, 'onTitleClick', e, titleProps)
   }
 
@@ -132,18 +81,69 @@ export default class AccordionAccordion extends Component {
       <ElementType {...rest} className={classes}>
         {childrenUtils.isNil(children)
           ? _.map(panels, (panel, index) =>
-            AccordionPanel.create(panel, {
-              defaultProps: {
-                active: this.isIndexActive(index),
-                index,
-                onTitleClick: this.handleTitleClick,
-              },
-            }),
-          )
+              AccordionPanel.create(panel, {
+                defaultProps: {
+                  active: this.isIndexActive(index),
+                  index,
+                  onTitleClick: this.handleTitleClick,
+                },
+              }),
+            )
           : children}
       </ElementType>
     )
   }
 }
 
-AccordionAccordion.create = createShorthandFactory(AccordionAccordion, content => ({ content }))
+AccordionAccordion.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Index of the currently active panel. */
+  activeIndex: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  ]),
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Initial activeIndex value. */
+  defaultActiveIndex: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  ]),
+
+  /** Only allow one panel open at a time. */
+  exclusive: PropTypes.bool,
+
+  /**
+   * Called when a panel title is clicked.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All item props.
+   */
+  onTitleClick: customPropTypes.every([customPropTypes.disallow(['children']), PropTypes.func]),
+
+  /** Shorthand array of props for Accordion. */
+  panels: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        content: customPropTypes.itemShorthand,
+        title: customPropTypes.itemShorthand,
+      }),
+    ),
+  ]),
+}
+
+AccordionAccordion.defaultProps = {
+  exclusive: true,
+}
+
+AccordionAccordion.autoControlledProps = ['activeIndex']
+
+AccordionAccordion.create = createShorthandFactory(AccordionAccordion, (content) => ({ content }))

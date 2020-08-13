@@ -15,7 +15,7 @@ const { paths } = config
 const g = loadPlugins()
 const { log } = g.util
 
-const handleWatchChange = filename =>
+const handleWatchChange = (filename) =>
   log(`File ${path.basename(filename)} was changed, running tasks...`)
 
 /**
@@ -28,10 +28,7 @@ const handleWatchChange = filename =>
  * @returns {String}
  */
 const toUniversalGlob = (directory, glob) => {
-  const relative = path
-    .relative(process.cwd(), directory)
-    .split(path.sep)
-    .join('/')
+  const relative = path.relative(process.cwd(), directory).split(path.sep).join('/')
 
   return `${relative}/${glob}`
 }

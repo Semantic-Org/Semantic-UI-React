@@ -33,7 +33,7 @@ const DropdownExampleImage = () => (
   >
     <Dropdown.Menu>
       <Dropdown.Header content='People You Might Know' />
-      {friendOptions.map(option => (
+      {friendOptions.map((option) => (
         <Dropdown.Item key={option.value} {...option} />
       ))}
     </Dropdown.Menu>

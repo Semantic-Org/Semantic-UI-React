@@ -48,7 +48,10 @@ describe('Menu', () => {
   })
 
   describe('activeIndex', () => {
-    const items = [{ key: 'home', name: 'home' }, { key: 'users', name: 'users' }]
+    const items = [
+      { key: 'home', name: 'home' },
+      { key: 'users', name: 'users' },
+    ]
 
     it('is null by default', () => {
       shallow(<Menu items={items} />).should.not.have.descendants('.active')
@@ -57,16 +60,10 @@ describe('Menu', () => {
     it('is set when clicking an item', () => {
       const wrapper = mount(<Menu items={items} />)
 
-      wrapper
-        .find('MenuItem')
-        .at(1)
-        .simulate('click')
+      wrapper.find('MenuItem').at(1).simulate('click')
 
       // must re-query for the menu items or we get a cached copy
-      wrapper
-        .find('MenuItem')
-        .at(1)
-        .should.have.prop('active', true)
+      wrapper.find('MenuItem').at(1).should.have.prop('active', true)
     })
 
     it('works as a string', () => {
@@ -106,7 +103,7 @@ describe('Menu', () => {
     })
 
     it('passes arbitrary props', () => {
-      children.everyWhere(item => item.should.have.prop('data-foo', 'something'))
+      children.everyWhere((item) => item.should.have.prop('data-foo', 'something'))
     })
   })
 

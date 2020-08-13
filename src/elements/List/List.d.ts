@@ -11,7 +11,7 @@ import ListContent from './ListContent'
 import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'
 import ListIcon from './ListIcon'
-import { default as ListItem, ListItemProps } from './ListItem'
+import ListItem, { ListItemProps } from './ListItem'
 import ListList from './ListList'
 
 export interface ListProps extends StrictListProps {

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Button, Card, Divider, Image, Placeholder } from 'semantic-ui-react'
 
 const cards = [
@@ -38,14 +38,14 @@ export default class PlaceholderExampleCard extends Component {
     const { loading } = this.state
 
     return (
-      <Fragment>
+      <>
         <Button loading={loading} onClick={this.handleLoadingClick} primary>
           Simulate loading
         </Button>
         <Divider />
 
         <Card.Group doubling itemsPerRow={3} stackable>
-          {_.map(cards, card => (
+          {_.map(cards, (card) => (
             <Card key={card.header}>
               {loading ? (
                 <Placeholder>
@@ -67,11 +67,11 @@ export default class PlaceholderExampleCard extends Component {
                     </Placeholder.Paragraph>
                   </Placeholder>
                 ) : (
-                  <Fragment>
+                  <>
                     <Card.Header>{card.header}</Card.Header>
                     <Card.Meta>{card.date}</Card.Meta>
                     <Card.Description>{card.description}</Card.Description>
-                  </Fragment>
+                  </>
                 )}
               </Card.Content>
 
@@ -84,7 +84,7 @@ export default class PlaceholderExampleCard extends Component {
             </Card>
           ))}
         </Card.Group>
-      </Fragment>
+      </>
     )
   }
 }

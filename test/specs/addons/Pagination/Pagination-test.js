@@ -18,7 +18,7 @@ describe('Pagination', () => {
       const wrapper = shallow(<Pagination activePage={1} disabled totalPages={3} />)
       const items = wrapper.find('PaginationItem')
 
-      items.everyWhere(item => item.prop('disabled', true)).should.to.equal(true)
+      items.everyWhere((item) => item.prop('disabled', true)).should.to.equal(true)
     })
   })
 
@@ -58,10 +58,7 @@ describe('Pagination', () => {
         />,
       )
 
-      wrapper
-        .find('PaginationItem')
-        .at(0)
-        .simulate('click')
+      wrapper.find('PaginationItem').at(0).simulate('click')
       onPageChange.should.have.not.been.called()
     })
 
@@ -77,10 +74,7 @@ describe('Pagination', () => {
         />,
       )
 
-      wrapper
-        .find('PaginationItem')
-        .at(1)
-        .simulate('click')
+      wrapper.find('PaginationItem').at(1).simulate('click')
       onPageChange.should.have.not.been.called()
     })
   })

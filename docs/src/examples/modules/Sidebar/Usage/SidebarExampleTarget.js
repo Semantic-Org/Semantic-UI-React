@@ -1,6 +1,7 @@
-import React, { Component, createRef } from 'react'
+import React from 'react'
 import {
-  Button,
+  Checkbox,
+  Grid,
   Header,
   Image,
   Menu,
@@ -9,38 +10,30 @@ import {
   Sidebar,
 } from 'semantic-ui-react'
 
-export default class VisibilityExampleTarget extends Component {
-  state = {}
-  segmentRef = createRef()
+const SidebarExampleTarget = () => {
+  const segmentRef = React.useRef()
+  const [visible, setVisible] = React.useState(false)
 
-  handleHideClick = () => this.setState({ visible: false })
-  handleShowClick = () => this.setState({ visible: true })
+  return (
+    <Grid columns={1}>
+      <Grid.Column>
+        <Checkbox
+          checked={visible}
+          label={{ children: <code>visible</code> }}
+          onChange={(e, data) => setVisible(data.checked)}
+        />
+      </Grid.Column>
 
-  handleSidebarHide = () => this.setState({ visible: false })
-
-  render() {
-    const { visible } = this.state
-
-    return (
-      <div>
-        <Button.Group>
-          <Button disabled={visible} onClick={this.handleShowClick}>
-            Show sidebar
-          </Button>
-          <Button disabled={!visible} onClick={this.handleHideClick}>
-            Hide sidebar
-          </Button>
-        </Button.Group>
-
+      <Grid.Column>
         <Sidebar.Pushable as={Segment.Group} raised>
           <Sidebar
             as={Menu}
             animation='overlay'
             icon='labeled'
             inverted
-            onHide={this.handleSidebarHide}
+            onHide={() => setVisible(false)}
             vertical
-            target={this.segmentRef}
+            target={segmentRef}
             visible={visible}
             width='thin'
           >
@@ -49,8 +42,8 @@ export default class VisibilityExampleTarget extends Component {
             <Menu.Item as='a'>Channels</Menu.Item>
           </Sidebar>
 
-          <Ref innerRef={this.segmentRef}>
-            <Segment>
+          <Ref innerRef={segmentRef}>
+            <Segment secondary>
               <Header as='h3'>Clickable area</Header>
               <p>When you will click there, the sidebar will be closed.</p>
             </Segment>
@@ -61,7 +54,9 @@ export default class VisibilityExampleTarget extends Component {
             <Image src='/images/wireframe/paragraph.png' />
           </Segment>
         </Sidebar.Pushable>
-      </div>
-    )
-  }
+      </Grid.Column>
+    </Grid>
+  )
 }
+
+export default SidebarExampleTarget

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { LabelProps } from '../../elements/Label'
 import DropdownDivider from './DropdownDivider'
 import DropdownHeader from './DropdownHeader'
-import { default as DropdownItem, DropdownItemProps } from './DropdownItem'
+import DropdownItem, { DropdownItemProps } from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
 
@@ -44,6 +44,9 @@ export interface StrictDropdownProps {
 
   /** Whether or not the menu should close when the dropdown is blurred. */
   closeOnBlur?: boolean
+
+  /** Whether or not the dropdown should close when the escape key is pressed. */
+  closeOnEscape?: boolean
 
   /**
    * Whether or not the menu should close when a value is selected from the dropdown.

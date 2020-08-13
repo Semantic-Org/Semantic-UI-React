@@ -7,7 +7,7 @@ import {
   SemanticSIZES,
 } from '../../generic'
 import { IconProps } from '../Icon'
-import { default as LabelDetail, LabelDetailProps } from './LabelDetail'
+import LabelDetail, { LabelDetailProps } from './LabelDetail'
 import LabelGroup from './LabelGroup'
 
 export interface LabelProps extends StrictLabelProps {
@@ -81,6 +81,9 @@ export interface StrictLabelProps {
 
   /** A label can point to content next to it. */
   pointing?: boolean | 'above' | 'below' | 'left' | 'right'
+
+  /** A label can prompt for an error in your forms. */
+  prompt?: boolean
 
   /** Shorthand for Icon to appear as the last child and trigger onRemove. */
   removeIcon?: SemanticShorthandItem<IconProps>

@@ -47,41 +47,40 @@ const ExampleEditor = (props) => {
         renderHtml={showCode && renderHtml}
         resolver={resolver}
         source={sourceCode}
+        unstable_hot
       >
-        <SourceRender.Consumer>
-          {({ element, error, markup }) => (
-            <React.Fragment>
-              <Grid.Column
-                className={`rendered-example ${getKebabExamplePath(examplePath)}`}
-                style={renderedExampleStyle}
-                width={16}
-              >
-                {element}
+        {({ element, error, markup }) => (
+          <>
+            <Grid.Column
+              className={`rendered-example ${getKebabExamplePath(examplePath)}`}
+              style={renderedExampleStyle}
+              width={16}
+            >
+              {element}
+            </Grid.Column>
+
+            {showCode && (
+              <Grid.Column width={16} style={editorStyle}>
+                <ExampleEditorMenu
+                  examplePath={examplePath}
+                  hasError={!!error}
+                  hasCodeChanged={hasCodeChanged}
+                  onCodeFormat={onCodeFormat}
+                  onCodeReset={onCodeReset}
+                  sourceCode={sourceCode}
+                />
+                <CodeEditor onChange={onCodeChange} value={sourceCode} />
+
+                {error && (
+                  <Segment color='red' basic secondary inverted style={errorStyle}>
+                    {error.toString()}
+                  </Segment>
+                )}
+                <CodeSnippet fitted mode='html' value={markup} />
               </Grid.Column>
-
-              {showCode && (
-                <Grid.Column width={16} style={editorStyle}>
-                  <ExampleEditorMenu
-                    examplePath={examplePath}
-                    hasError={!!error}
-                    hasCodeChanged={hasCodeChanged}
-                    onCodeFormat={onCodeFormat}
-                    onCodeReset={onCodeReset}
-                    sourceCode={sourceCode}
-                  />
-                  <CodeEditor onChange={onCodeChange} value={sourceCode} />
-
-                  {error && (
-                    <Segment color='red' basic secondary inverted style={errorStyle}>
-                      {error.toString()}
-                    </Segment>
-                  )}
-                  <CodeSnippet fitted mode='html' value={markup} />
-                </Grid.Column>
-              )}
-            </React.Fragment>
-          )}
-        </SourceRender.Consumer>
+            )}
+          </>
+        )}
       </SourceRender>
     )
   }

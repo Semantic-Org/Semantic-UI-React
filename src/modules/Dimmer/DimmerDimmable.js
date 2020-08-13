@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -34,7 +34,7 @@ function DimmerDimmable(props) {
 
 DimmerDimmable.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** A dimmable element can blur its contents. */
   blurring: PropTypes.bool,

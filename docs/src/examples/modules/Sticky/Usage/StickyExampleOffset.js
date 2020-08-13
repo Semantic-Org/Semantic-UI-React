@@ -21,12 +21,12 @@ export default class StickyExampleOffset extends Component {
         <Grid.Column>
           <Ref innerRef={this.contextRef}>
             <Segment>
-              {_.times(10, i => (
+              {_.times(10, (i) => (
                 <Placeholder key={i} />
               ))}
 
               <Rail position='left'>
-                {_.times(3, i => (
+                {_.times(3, (i) => (
                   <Placeholder key={i} />
                 ))}
 

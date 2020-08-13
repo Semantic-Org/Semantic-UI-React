@@ -2,7 +2,8 @@ import React from 'react'
 import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react'
 
 const InlineStyle = () => (
-  <style>{`
+  <style>
+    {`
     .grid {
       position: relative;
     }
@@ -158,8 +159,7 @@ const GridLayout = () => (
       <Header as='h3'>Special Variations</Header>
       <p>
         Some special variations that format grids like tables require you to specify rows. For
-        example a
-        <code>divided grid</code> or a <code>celled grid</code> requires row wrappers.
+        example a<code>divided grid</code> or a <code>celled grid</code> requires row wrappers.
       </p>
 
       <Divider section horizontal>
@@ -243,9 +243,8 @@ const GridLayout = () => (
       <Header as='h3'>Centering Content</Header>
       <p>
         If a row does not take up all sixteen grid columns, you can use a{' '}
-        <code>ui centered grid</code>,
-        <code>centered row</code>, or <code>centered column</code> to center the column contents
-        inside the grid.
+        <code>ui centered grid</code>,<code>centered row</code>, or <code>centered column</code> to
+        center the column contents inside the grid.
       </p>
 
       <Grid centered columns={2}>
@@ -259,8 +258,7 @@ const GridLayout = () => (
       <Header as='h3'>Floating Rows</Header>
       <p>
         Since Semantic UI's grid is based on flex box, a <code>left floated</code> item should come
-        first, and a
-        <code>right floated</code> item last in its row.
+        first, and a<code>right floated</code> item last in its row.
       </p>
 
       <Grid>

@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { createElement } from 'react'
@@ -13,6 +13,7 @@ import {
   useKeyOnly,
   useWidthProp,
 } from '../../lib'
+import Label from '../../elements/Label'
 import Checkbox from '../../modules/Checkbox'
 import Radio from '../../addons/Radio'
 
@@ -40,6 +41,7 @@ function FormField(props) {
     required,
     type,
     width,
+    id,
   } = props
 
   const classes = cx(
@@ -54,6 +56,21 @@ function FormField(props) {
   const rest = getUnhandledProps(FormField, props)
   const ElementType = getElementType(FormField, props)
 
+  const errorPointing = _.get(error, 'pointing', 'above')
+  const errorLabel = Label.create(error, {
+    autoGenerateKey: false,
+    defaultProps: {
+      prompt: true,
+      pointing: errorPointing,
+      id: id ? `${id}-error-message` : undefined,
+      role: 'alert',
+      'aria-atomic': true,
+    },
+  })
+
+  const errorLabelBefore = (errorPointing === 'below' || errorPointing === 'right') && errorLabel
+  const errorLabelAfter = (errorPointing === 'above' || errorPointing === 'left') && errorLabel
+
   // ----------------------------------------
   // No Control
   // ----------------------------------------
@@ -61,15 +78,17 @@ function FormField(props) {
   if (_.isNil(control)) {
     if (_.isNil(label)) {
       return (
-        <ElementType {...rest} className={classes}>
+        <ElementType {...rest} className={classes} id={id}>
           {childrenUtils.isNil(children) ? content : children}
         </ElementType>
       )
     }
 
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} id={id}>
+        {errorLabelBefore}
         {createHTMLLabel(label, { autoGenerateKey: false })}
+        {errorLabelAfter}
       </ElementType>
     )
   }
@@ -77,14 +96,22 @@ function FormField(props) {
   // ----------------------------------------
   // Checkbox/Radio Control
   // ----------------------------------------
-  const controlProps = { ...rest, content, children, disabled, required, type }
+
+  const ariaDescribedBy = id && error ? `${id}-error-message` : null
+  const ariaAttrs = {
+    'aria-describedby': ariaDescribedBy,
+    'aria-invalid': error !== undefined ? true : undefined,
+  }
+  const controlProps = { ...rest, content, children, disabled, required, type, id }
 
   // wrap HTML checkboxes/radios in the label
   if (control === 'input' && (type === 'checkbox' || type === 'radio')) {
     return (
       <ElementType className={classes}>
         <label>
-          {createElement(control, controlProps)} {label}
+          {errorLabelBefore}
+          {createElement(control, { ...ariaAttrs, ...controlProps })} {label}
+          {errorLabelAfter}
         </label>
       </ElementType>
     )
@@ -94,7 +121,9 @@ function FormField(props) {
   if (control === Checkbox || control === Radio) {
     return (
       <ElementType className={classes}>
-        {createElement(control, { ...controlProps, label })}
+        {errorLabelBefore}
+        {createElement(control, { ...ariaAttrs, ...controlProps, label })}
+        {errorLabelAfter}
       </ElementType>
     )
   }
@@ -106,17 +135,19 @@ function FormField(props) {
   return (
     <ElementType className={classes}>
       {createHTMLLabel(label, {
-        defaultProps: { htmlFor: _.get(controlProps, 'id') },
+        defaultProps: { htmlFor: id },
         autoGenerateKey: false,
       })}
-      {createElement(control, controlProps)}
+      {errorLabelBefore}
+      {createElement(control, { ...ariaAttrs, ...controlProps })}
+      {errorLabelAfter}
     </ElementType>
   )
 }
 
 FormField.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -140,8 +171,11 @@ FormField.propTypes = {
   /** Individual fields may be disabled. */
   disabled: PropTypes.bool,
 
-  /** Individual fields may display an error state. */
-  error: PropTypes.bool,
+  /** Individual fields may display an error state along with a message. */
+  error: PropTypes.oneOfType([PropTypes.bool, customPropTypes.itemShorthand]),
+
+  /** The id of the control */
+  id: PropTypes.string,
 
   /** A field can have its label next to instead of above it. */
   inline: PropTypes.bool,

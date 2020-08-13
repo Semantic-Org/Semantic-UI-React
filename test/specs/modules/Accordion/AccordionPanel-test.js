@@ -15,7 +15,7 @@ describe('AccordionPanel', () => {
     parentIsFragment: true,
     propKey: 'content',
     ShorthandComponent: AccordionContent,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
   common.implementsShorthandProp(AccordionPanel, {
     assertExactMatch: false,
@@ -23,7 +23,7 @@ describe('AccordionPanel', () => {
     parentIsFragment: true,
     propKey: 'title',
     ShorthandComponent: AccordionTitle,
-    mapValueToProps: content => ({ content }),
+    mapValueToProps: (content) => ({ content }),
   })
 
   describe('active', () => {

@@ -16,7 +16,8 @@ const docsButtonStyle = {
 }
 
 const style = (
-  <style>{`
+  <style>
+    {`
     @keyframes back-to-docs {
         0% { transform: translateY(0); }
         50% { transform: translateY(0.35em); }
@@ -27,10 +28,6 @@ const style = (
 )
 
 class LayoutsLayout extends PureComponent {
-  static propTypes = {
-    componentFilename: PropTypes.string.isRequired,
-  }
-
   constructor(props) {
     super(props)
 
@@ -68,6 +65,10 @@ class LayoutsLayout extends PureComponent {
       </div>
     )
   }
+}
+
+LayoutsLayout.propTypes = {
+  componentFilename: PropTypes.string.isRequired,
 }
 
 export default withRouteData(LayoutsLayout)

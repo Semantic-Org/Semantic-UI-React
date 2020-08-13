@@ -1,10 +1,9 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
   createHTMLImage,
-  customPropTypes,
   getElementType,
   getUnhandledProps,
   htmlImageProps,
@@ -31,7 +30,7 @@ function CommentAvatar(props) {
 
 CommentAvatar.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Additional classes. */
   className: PropTypes.string,

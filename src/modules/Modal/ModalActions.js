@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -16,32 +16,7 @@ import Button from '../../elements/Button'
  * A modal can contain a row of actions.
  */
 export default class ModalActions extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
-    /** Array of shorthand buttons. */
-    actions: customPropTypes.collectionShorthand,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Shorthand for primary content. */
-    content: customPropTypes.contentShorthand,
-
-    /**
-     * Action onClick handler when using shorthand `actions`.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props from the clicked action.
-     */
-    onActionClick: customPropTypes.every([customPropTypes.disallow(['children']), PropTypes.func]),
-  }
-
-  handleButtonOverrides = predefinedProps => ({
+  handleButtonOverrides = (predefinedProps) => ({
     onClick: (e, buttonProps) => {
       _.invoke(predefinedProps, 'onClick', e, buttonProps)
       _.invoke(this.props, 'onActionClick', e, buttonProps)
@@ -71,7 +46,7 @@ export default class ModalActions extends Component {
 
     return (
       <ElementType {...rest} className={classes}>
-        {_.map(actions, action =>
+        {_.map(actions, (action) =>
           Button.create(action, { overrideProps: this.handleButtonOverrides }),
         )}
       </ElementType>
@@ -79,4 +54,29 @@ export default class ModalActions extends Component {
   }
 }
 
-ModalActions.create = createShorthandFactory(ModalActions, actions => ({ actions }))
+ModalActions.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.elementType,
+
+  /** Array of shorthand buttons. */
+  actions: customPropTypes.collectionShorthand,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
+  /**
+   * Action onClick handler when using shorthand `actions`.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props from the clicked action.
+   */
+  onActionClick: customPropTypes.every([customPropTypes.disallow(['children']), PropTypes.func]),
+}
+
+ModalActions.create = createShorthandFactory(ModalActions, (actions) => ({ actions }))

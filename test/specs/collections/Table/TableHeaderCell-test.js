@@ -8,7 +8,6 @@ describe('TableHeaderCell', () => {
   common.propKeyAndValueToClassName(TableHeaderCell, 'sorted', ['ascending', 'descending'])
 
   it('renders as a th by default', () => {
-    shallow(<TableHeaderCell />)
-      .should.have.tagName('th')
+    shallow(<TableHeaderCell />).should.have.tagName('th')
   })
 })

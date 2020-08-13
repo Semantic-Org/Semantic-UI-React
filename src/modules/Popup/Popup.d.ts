@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import { SemanticShorthandItem } from '../../generic'
 import { StrictPortalProps } from '../../addons/Portal'
-import { default as PopupContent, PopupContentProps } from './PopupContent'
-import { default as PopupHeader, PopupHeaderProps } from './PopupHeader'
+import PopupContent, { PopupContentProps } from './PopupContent'
+import PopupHeader, { PopupHeaderProps } from './PopupHeader'
 
 export interface PopupProps extends StrictPopupProps {
   [key: string]: any
@@ -26,10 +26,13 @@ export interface StrictPopupProps extends StrictPortalProps {
   content?: SemanticShorthandItem<PopupContentProps>
 
   /** Existing element the pop-up should be bound to. */
-  context?: object | React.RefObject<HTMLElement>
+  context?: Document | Window | HTMLElement | React.RefObject<HTMLElement>
 
   /** A disabled popup only renders its trigger. */
   disabled?: boolean
+
+  /** Enables the Popper.js event listeners. */
+  eventsEnabled?: boolean
 
   /** A flowing Popup has no maximum width and continues to flow to fit its content. */
   flowing?: boolean
@@ -37,7 +40,7 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** Header displayed above the content in bold. */
   header?: SemanticShorthandItem<PopupHeaderProps>
 
-  /** The node where the popup should mount. */
+  /** Hide the Popup when scrolling the window. */
   hideOnScroll?: boolean
 
   /** Whether the popup should not close on hover. */
@@ -90,6 +93,9 @@ export interface StrictPopupProps extends StrictPortalProps {
    */
   onUnmount?: (nothing: null, data: PopupProps) => void
 
+  /** Disables automatic repositioning of the component, it will always be placed according to the position value. */
+  pinned?: boolean
+
   /** Position for the popover. */
   position?:
     | 'top left'
@@ -101,11 +107,20 @@ export interface StrictPopupProps extends StrictPortalProps {
     | 'top center'
     | 'bottom center'
 
+  /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
+  positionFixed?: boolean
+
+  /** An object containing custom settings for the Popper.js modifiers. */
+  popperModifiers?: Record<string, any>
+
+  /** A popup can have dependencies which update will schedule a position update. */
+  popperDependencies?: any[]
+
   /** Popup size. */
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge'
 
   /** Custom Popup style. */
-  style?: Object
+  style?: React.CSSProperties
 
   /** Element to be rendered in-place where the popup is defined. */
   trigger?: React.ReactNode

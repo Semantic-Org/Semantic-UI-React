@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -15,7 +15,7 @@ import {
  */
 function ModalHeader(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'header')
+  const classes = cx('header', className)
   const rest = getUnhandledProps(ModalHeader, props)
   const ElementType = getElementType(ModalHeader, props)
 
@@ -28,7 +28,7 @@ function ModalHeader(props) {
 
 ModalHeader.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -40,6 +40,6 @@ ModalHeader.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ModalHeader.create = createShorthandFactory(ModalHeader, content => ({ content }))
+ModalHeader.create = createShorthandFactory(ModalHeader, (content) => ({ content }))
 
 export default ModalHeader

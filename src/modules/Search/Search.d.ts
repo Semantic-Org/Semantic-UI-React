@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import { SemanticShorthandItem } from '../../generic'
 import { InputProps } from '../../elements/Input'
-import { default as SearchCategory, SearchCategoryProps } from './SearchCategory'
-import { default as SearchResult, SearchResultProps } from './SearchResult'
+import SearchCategory, { SearchCategoryProps } from './SearchCategory'
+import SearchResult, { SearchResultProps } from './SearchResult'
 import SearchResults from './SearchResults'
 
 export interface SearchProps extends StrictSearchProps {
@@ -44,7 +44,7 @@ export interface StrictSearchProps {
    * - array of Search.Result props e.g. `{ title: '', description: '' }` or
    * - object of categories e.g. `{ name: '', results: [{ title: '', description: '' }]`
    */
-  results?: any[] | Object
+  results?: any[] | Record<string, any>
 
   /** Whether the search should automatically select the first result after searching. */
   selectFirstResult?: boolean
@@ -58,6 +58,14 @@ export interface StrictSearchProps {
   // ------------------------------------
   // Rendering
   // ------------------------------------
+  /**
+   * Renders the SearchCategory layout.
+   *
+   * @param {object} categoryContent - The Renderable SearchCategory contents.
+   * @param {object} resultsContent - The Renderable SearchResult contents.
+   * @returns {*} - Renderable SearchCategory layout.
+   */
+  categoryLayoutRenderer?: (props: SearchCategoryProps) => React.ReactElement<any>
 
   /**
    * Renders the SearchCategory contents.
@@ -143,7 +151,7 @@ export interface StrictSearchProps {
   /** A search can have its results take up the width of its container. */
   fluid?: boolean
 
-  /** A search input can take up the width of its container. */
+  /** Shorthand for input element. */
   input?: SemanticShorthandItem<InputProps>
 
   /** A search can show a loading indicator. */

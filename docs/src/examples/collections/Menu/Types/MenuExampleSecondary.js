@@ -11,7 +11,11 @@ export default class MenuExampleSecondary extends Component {
 
     return (
       <Menu secondary>
-        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+        <Menu.Item
+          name='home'
+          active={activeItem === 'home'}
+          onClick={this.handleItemClick}
+        />
         <Menu.Item
           name='messages'
           active={activeItem === 'messages'}

@@ -31,15 +31,6 @@ SelectedItemLabel.propTypes = {
 }
 
 class Sidebar extends Component {
-  static propTypes = {
-    componentMenu: docTypes.componentMenu.isRequired,
-    history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
-    style: PropTypes.object,
-    version: PropTypes.string.isRequired,
-  }
-
   state = { query: '' }
 
   constructor(props) {
@@ -218,7 +209,7 @@ class Sidebar extends Component {
                   Get Started
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/augmentation' activeClassName='active'>
-                  Augmentation
+                  Composition
                 </Menu.Item>
                 <Menu.Item as={Link} exact to='/shorthand-props' activeClassName='active'>
                   Shorthand Props
@@ -255,6 +246,15 @@ class Sidebar extends Component {
       </div>
     )
   }
+}
+
+Sidebar.propTypes = {
+  componentMenu: docTypes.componentMenu.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  style: PropTypes.object,
+  version: PropTypes.string.isRequired,
 }
 
 export default Sidebar

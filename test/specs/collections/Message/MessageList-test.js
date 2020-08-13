@@ -10,13 +10,11 @@ describe('MessageList', () => {
   })
 
   it('renders an ul tag', () => {
-    shallow(<MessageList />)
-      .should.have.tagName('ul')
+    shallow(<MessageList />).should.have.tagName('ul')
   })
 
   it('has className list', () => {
-    shallow(<MessageList />)
-      .should.have.className('list')
+    shallow(<MessageList />).should.have.className('list')
   })
 
   describe('items', () => {
@@ -26,20 +24,11 @@ describe('MessageList', () => {
 
       wrapper.should.have.exactly(3).descendants('MessageItem')
 
-      wrapper
-        .childAt(0)
-        .shallow()
-        .should.have.text(items[0])
+      wrapper.childAt(0).shallow().should.have.text(items[0])
 
-      wrapper
-        .childAt(1)
-        .shallow()
-        .should.have.text(items[1])
+      wrapper.childAt(1).shallow().should.have.text(items[1])
 
-      wrapper
-        .childAt(2)
-        .shallow()
-        .should.have.text(items[2])
+      wrapper.childAt(2).shallow().should.have.text(items[2])
     })
   })
 })

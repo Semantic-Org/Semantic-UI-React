@@ -51,9 +51,7 @@ const itAppliesDefaultProps = (value) => {
   it('applies defaultProps', () => {
     const defaultProps = { some: 'defaults' }
 
-    shallow(getShorthand({ value, defaultProps }))
-      .props()
-      .should.deep.equal(defaultProps)
+    shallow(getShorthand({ value, defaultProps })).props().should.deep.equal(defaultProps)
   })
 }
 
@@ -81,9 +79,7 @@ const itMergesClassNames = (classNameSource, extraClassName, shorthandConfig) =>
 
 const itAppliesProps = (propsSource, expectedProps, shorthandConfig) => {
   it(`applies props from the ${propsSource} props`, () => {
-    shallow(getShorthand(shorthandConfig))
-      .props()
-      .should.deep.equal(expectedProps)
+    shallow(getShorthand(shorthandConfig)).props().should.deep.equal(expectedProps)
   })
 }
 
@@ -117,7 +113,11 @@ describe('factories', () => {
     })
 
     it('does not throw if passed a function Component', () => {
-      const goodUsage = () => createShorthandFactory(() => <div />, () => ({}))
+      const goodUsage = () =>
+        createShorthandFactory(
+          () => <div />,
+          () => ({}),
+        )
 
       expect(goodUsage).not.to.throw()
     })
@@ -145,7 +145,11 @@ describe('factories', () => {
     })
 
     it('does not throw if passed a function Component', () => {
-      const goodUsage = () => createShorthand(() => <div />, () => ({}))
+      const goodUsage = () =>
+        createShorthand(
+          () => <div />,
+          () => ({}),
+        )
 
       expect(goodUsage).not.to.throw()
     })
@@ -332,7 +336,7 @@ describe('factories', () => {
         const defaultProps = { 'data-some': 'defaults' }
         const overrideProps = sandbox.spy(() => ({}))
         const value = 'foo'
-        const mapValueToProps = val => ({ 'data-mapped': val })
+        const mapValueToProps = (val) => ({ 'data-mapped': val })
 
         shallow(getShorthand({ defaultProps, mapValueToProps, overrideProps, value }))
         overrideProps.should.have.been.calledWith({ ...defaultProps, ...mapValueToProps(value) })

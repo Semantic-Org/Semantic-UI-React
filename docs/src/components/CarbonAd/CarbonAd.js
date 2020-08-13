@@ -30,10 +30,6 @@ const waitForLoad = () => {
 }
 
 class CarbonAd extends Component {
-  static propTypes = {
-    location: PropTypes.object.isRequired,
-  }
-
   shouldComponentUpdate(nextProps) {
     return this.props.location.pathname !== nextProps.location.pathname
   }
@@ -71,6 +67,10 @@ class CarbonAd extends Component {
   render() {
     return <div id='docs-carbonads' />
   }
+}
+
+CarbonAd.propTypes = {
+  location: PropTypes.object.isRequired,
 }
 
 export default withRouter(CarbonAd)

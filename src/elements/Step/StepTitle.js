@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -28,7 +28,7 @@ function StepTitle(props) {
 
 StepTitle.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -40,6 +40,6 @@ StepTitle.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-StepTitle.create = createShorthandFactory(StepTitle, content => ({ content }))
+StepTitle.create = createShorthandFactory(StepTitle, (content) => ({ content }))
 
 export default StepTitle

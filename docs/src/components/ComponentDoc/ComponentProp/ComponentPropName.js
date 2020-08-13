@@ -3,11 +3,6 @@ import React, { PureComponent } from 'react'
 import { Icon, Popup } from 'semantic-ui-react'
 
 export default class ComponentPropName extends PureComponent {
-  static propTypes = {
-    name: PropTypes.string,
-    required: PropTypes.bool,
-  }
-
   render() {
     const { name, required } = this.props
 
@@ -26,4 +21,9 @@ export default class ComponentPropName extends PureComponent {
       </div>
     )
   }
+}
+
+ComponentPropName.propTypes = {
+  name: PropTypes.string,
+  required: PropTypes.bool,
 }

@@ -1,34 +1,32 @@
 import * as React from 'react'
 import { Button, Dropdown } from '../index'
 
-const BasicAssert = () => <Button />
+export const BasicAssert = () => <Button />
 
-const ShorthandItemElementAssert = () => (
+export const ShorthandItemElementAssert = () => (
   <Dropdown additionLabel={<i style={{ color: 'red' }}>Custom Language: </i>} />
 )
 
-const ShorthandItemFuncAssert = () => (
+export const ShorthandItemFuncAssert = () => (
   <Button
-    content="Foo"
+    content='Foo'
     icon={(Component, props) => (
-      <div className="bar">
+      <div className='bar'>
         <Component name={props.name} />
       </div>
     )}
   />
 )
 
-const ShorthandItemFuncChildren = () => (
+export const ShorthandItemFuncChildren = () => (
   <Button
-    content="Foo"
+    content='Foo'
     label={(Component, props, children) => (
-      <div className="bar">
+      <div className='bar'>
         <Component active={props.active}>{children}</Component>
       </div>
     )}
   />
 )
 
-const ShorthandItemFuncNullAssert = () => <Button content="Foo" icon={() => null} />
-
-export default BasicAssert
+export const ShorthandItemFuncNullAssert = () => <Button content='Foo' icon={() => null} />

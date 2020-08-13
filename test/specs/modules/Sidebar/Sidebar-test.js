@@ -131,13 +131,13 @@ describe('Sidebar', () => {
   })
 
   describe('target', () => {
-    it('is passed to the EventStack component', () => {
+    it('is passed to the EventListener component', () => {
       const target = document.createElement('div')
 
       const wrapper = shallow(<Sidebar target={target} visible />)
-      const stack = wrapper.find('EventStack')
+      const listener = wrapper.find('EventListener')
 
-      stack.should.have.prop('target', target)
+      listener.should.have.prop('targetRef').that.eql({ current: target })
     })
   })
 })

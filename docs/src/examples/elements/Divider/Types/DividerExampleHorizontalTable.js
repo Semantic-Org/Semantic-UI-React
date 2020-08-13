@@ -2,7 +2,7 @@ import React from 'react'
 import { Divider, Header, Icon, Table } from 'semantic-ui-react'
 
 const DividerExampleHorizontalTable = () => (
-  <React.Fragment>
+  <>
     <Divider horizontal>
       <Header as='h4'>
         <Icon name='tag' />
@@ -11,8 +11,8 @@ const DividerExampleHorizontalTable = () => (
     </Divider>
 
     <p>
-      Doggie treats are good for all times of the year. Proven to be eaten by 99.9% of all dogs
-      worldwide.
+      Doggie treats are good for all times of the year. Proven to be eaten by
+      99.9% of all dogs worldwide.
     </p>
 
     <Divider horizontal>
@@ -42,7 +42,7 @@ const DividerExampleHorizontalTable = () => (
         </Table.Row>
       </Table.Body>
     </Table>
-  </React.Fragment>
+  </>
 )
 
 export default DividerExampleHorizontalTable

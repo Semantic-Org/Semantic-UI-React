@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -28,7 +28,7 @@ function ListDescription(props) {
 
 ListDescription.propTypes = {
   /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  as: PropTypes.elementType,
 
   /** Primary content. */
   children: PropTypes.node,
@@ -40,6 +40,6 @@ ListDescription.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ListDescription.create = createShorthandFactory(ListDescription, content => ({ content }))
+ListDescription.create = createShorthandFactory(ListDescription, (content) => ({ content }))
 
 export default ListDescription
