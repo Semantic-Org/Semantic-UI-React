@@ -78,4 +78,25 @@ describe('Pagination', () => {
       onPageChange.should.have.not.been.called()
     })
   })
+
+  describe('activePage', () => {
+    it('defaults to "1"', () => {
+      const wrapper = mount(<Pagination totalPages={3} />)
+
+      wrapper.find('PaginationItem').at(1).prop('value').should.equal(1)
+      wrapper.find('PaginationItem').at(5).prop('value').should.equal(2)
+    })
+
+    it('can be set via "defaultActivePage"', () => {
+      const wrapper = mount(<Pagination defaultActivePage={2} totalPages={3} />)
+
+      wrapper.find('PaginationItem').at(3).should.have.prop('active')
+    })
+
+    it('can be set via "activePage"', () => {
+      const wrapper = mount(<Pagination activePage={2} totalPages={3} />)
+
+      wrapper.find('PaginationItem').at(3).should.have.prop('active')
+    })
+  })
 })
