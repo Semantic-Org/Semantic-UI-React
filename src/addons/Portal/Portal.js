@@ -1,5 +1,5 @@
 import EventStack from '@semantic-ui-react/event-stack'
-import { handleRef, Ref } from '@stardust-ui/react-component-ref'
+import { handleRef, Ref } from '@fluentui/react-component-ref'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'

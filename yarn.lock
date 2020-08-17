@@ -969,10 +969,10 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.5", "@babel/runtime@^7.4.5", "@babel/runtime@^7.8.4":
-  version "7.10.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.5.tgz#303d8bd440ecd5a491eae6117fd3367698674c5c"
-  integrity sha512-otddXKhdNn7d0ptoFRHtMLa8LqDxLYwTjB4nYgM1yy5N6gU/MUf8zqyyLltCH3yAVitBzmwK4us+DD0l/MauAg==
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.4", "@babel/runtime@^7.10.5", "@babel/runtime@^7.4.5", "@babel/runtime@^7.8.4":
+  version "7.11.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
+  integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -1048,6 +1048,21 @@
     "@babel/helper-validator-identifier" "^7.10.4"
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
+
+"@fluentui/react-component-event-listener@~0.51.0":
+  version "0.51.0"
+  resolved "https://registry.yarnpkg.com/@fluentui/react-component-event-listener/-/react-component-event-listener-0.51.0.tgz#29701f875a37870e168b99b0198d3518866a7f84"
+  integrity sha512-YzvtrqSOQIr19V5hLQ71Zt2HnBpHsPbgE6YNRI0fYkld1YbZWggiPSpk6nhmjB5U30h3EqwZzvsuQTvHbuP2Iw==
+  dependencies:
+    "@babel/runtime" "^7.10.4"
+
+"@fluentui/react-component-ref@~0.51.0":
+  version "0.51.0"
+  resolved "https://registry.yarnpkg.com/@fluentui/react-component-ref/-/react-component-ref-0.51.0.tgz#e27e50e36a7d96586bc814c16bd84f9da53b3029"
+  integrity sha512-eYTiZCGmcsU1RuKeHepd8i6XksnroSF5b2lqHJaQO9x+Ec62d7+M2i9FW/nhe2Mpb5f96inL0Oz3zzVMrSwJdw==
+  dependencies:
+    "@babel/runtime" "^7.10.4"
+    react-is "^16.6.3"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -1175,23 +1190,6 @@
   integrity sha512-VabOMoIllRc36/HthwY7xctwyqzQ/Piy1EEIb/SOHjB2S7IVRKRtXDNULRRD+gaY0gMyHZaK1u81M3xJkVKBAg==
   dependencies:
     semver "7.3.2"
-
-"@stardust-ui/react-component-event-listener@~0.38.0":
-  version "0.38.0"
-  resolved "https://registry.yarnpkg.com/@stardust-ui/react-component-event-listener/-/react-component-event-listener-0.38.0.tgz#1787faded94b40ad41226e6289baf13e701c6e7f"
-  integrity sha512-sIP/e0dyOrrlb8K7KWumfMxj/gAifswTBC4o68Aa+C/GA73ccRp/6W1VlHvF/dlOR4KLsA+5SKnhjH36xzPsWg==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-    prop-types "^15.7.2"
-
-"@stardust-ui/react-component-ref@~0.38.0":
-  version "0.38.0"
-  resolved "https://registry.yarnpkg.com/@stardust-ui/react-component-ref/-/react-component-ref-0.38.0.tgz#52d555f2d5edd213c923c93a106f7de940e427ef"
-  integrity sha512-xjs6WnvJVueSIXMWw0C3oWIgAPpcD03qw43oGOjUXqFktvpNkB73JoKIhS4sCrtQxBdct75qqr4ZL6JiyPcESw==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-    prop-types "^15.7.2"
-    react-is "^16.6.3"
 
 "@textlint/ast-node-types@^4.0.3":
   version "4.2.1"

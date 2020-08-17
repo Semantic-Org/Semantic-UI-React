@@ -1,6 +1,6 @@
 // Third party
 
-export { Ref, RefProps } from '@stardust-ui/react-component-ref'
+export { Ref, RefProps } from '@fluentui/react-component-ref'
 
 // Addons
 
