@@ -15,7 +15,7 @@ import PlaceholderLine from './PlaceholderLine'
 import PlaceholderParagraph from './PlaceholderParagraph'
 
 /**
- * A placeholder is used to reserve splace for content that soon will appear in a layout.
+ * A placeholder is used to reserve space for content that soon will appear in a layout.
  */
 function Placeholder(props) {
   const { children, className, content, fluid, inverted } = props
