@@ -94,7 +94,7 @@ export default async () => {
             docblock: {
               tags: [],
               description: [
-                'This component exposes the `innerRef` prop that supports functional and createRef() API and returns the DOM node of both functional and class component children.',
+                'This component exposes the `innerRef` prop that supports functional and React.createRef()/React.useRef() API and returns the DOM node of both functional and class component children.',
               ],
             },
             examplesExist: true,
