@@ -1,4 +1,4 @@
-import { isRefObject, toRefObject } from '@fluentui/react-component-ref'
+import { isRefObject } from '@fluentui/react-component-ref'
 import _ from 'lodash'
 
 class ReferenceProxy {
@@ -31,7 +31,7 @@ class ReferenceProxy {
  * @see https://popper.js.org/popper-documentation.html#referenceObject
  */
 const createReferenceProxy = _.memoize(
-  (reference) => new ReferenceProxy(isRefObject(reference) ? reference : toRefObject(reference)),
+  (reference) => new ReferenceProxy(isRefObject(reference) ? reference : { current: reference }),
 )
 
 export default createReferenceProxy

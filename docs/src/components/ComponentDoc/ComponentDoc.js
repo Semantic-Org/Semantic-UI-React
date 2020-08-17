@@ -73,12 +73,14 @@ class ComponentDoc extends Component {
                 subheader={_.join(componentInfo.docblock.description, ' ')}
               />
               <ComponentDocSee seeTags={seeTags} />
-              <ComponentDocLinks
-                displayName={displayName}
-                parentDisplayName={componentInfo.parentDisplayName}
-                repoPath={componentInfo.repoPath}
-                type={componentInfo.type}
-              />
+              {componentInfo.repoPath && (
+                <ComponentDocLinks
+                  displayName={displayName}
+                  parentDisplayName={componentInfo.parentDisplayName}
+                  repoPath={componentInfo.repoPath}
+                  type={componentInfo.type}
+                />
+              )}
               <ComponentProps componentsInfo={componentsInfo} displayName={displayName} />
             </Grid.Column>
           </Grid.Row>
