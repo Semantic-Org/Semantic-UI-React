@@ -215,4 +215,35 @@ describe('FormField', () => {
       expect(fieldId).to.equal('testId')
     })
   })
+
+  describe('aria-invalid', () => {
+    it('is not set by default', () => {
+      shallow(<FormField control='input' />)
+        .find('input')
+        .should.not.have.prop('aria-invalid')
+    })
+    it('is not set when error is false', () => {
+      shallow(<FormField control='input' error={false} />)
+        .find('input')
+        .should.not.have.prop('aria-invalid')
+    })
+    it('is set when error is true', () => {
+      shallow(<FormField control='input' error />)
+        .find('input')
+        .should.have.prop('aria-invalid', true)
+    })
+    it('is is set when error object is provided', () => {
+      shallow(
+        <FormField
+          control='input'
+          error={{
+            content: 'Error message',
+            pointing: 'left',
+          }}
+        />,
+      )
+        .find('input')
+        .should.have.prop('aria-invalid', true)
+    })
+  })
 })
