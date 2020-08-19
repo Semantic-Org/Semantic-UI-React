@@ -242,9 +242,9 @@ export default class Dropdown extends Component {
     const shouldHandleEvent =
       this.state.focus && !this.state.open && keyboardKey.getCode(e) === keyboardKey.Spacebar
     const shouldPreventDefault =
-      e.target.tagName !== 'INPUT' &&
-      e.target.tagName !== 'TEXTAREA' &&
-      e.target.isContentEditable !== true
+      e.target?.tagName !== 'INPUT' &&
+      e.target?.tagName !== 'TEXTAREA' &&
+      e.target?.isContentEditable !== true
 
     if (shouldHandleEvent) {
       if (shouldPreventDefault) {
