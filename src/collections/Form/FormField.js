@@ -100,7 +100,7 @@ function FormField(props) {
   const ariaDescribedBy = id && error ? `${id}-error-message` : null
   const ariaAttrs = {
     'aria-describedby': ariaDescribedBy,
-    'aria-invalid': error !== undefined ? true : undefined,
+    'aria-invalid': error ? true : undefined,
   }
   const controlProps = { ...rest, content, children, disabled, required, type, id }
 
