@@ -239,10 +239,20 @@ export default class Dropdown extends Component {
   openOnSpace = (e) => {
     debug('openOnSpace()')
 
-    if (keyboardKey.getCode(e) !== keyboardKey.Spacebar) return
+    const shouldHandleEvent =
+      this.state.focus && !this.state.open && keyboardKey.getCode(e) === keyboardKey.Spacebar
+    const shouldPreventDefault =
+      e.target?.tagName !== 'INPUT' &&
+      e.target?.tagName !== 'TEXTAREA' &&
+      e.target?.isContentEditable !== true
 
-    e.preventDefault()
-    this.open(e)
+    if (shouldHandleEvent) {
+      if (shouldPreventDefault) {
+        e.preventDefault()
+      }
+
+      this.open(e)
+    }
   }
 
   openOnArrow = (e) => {
@@ -549,6 +559,7 @@ export default class Dropdown extends Component {
   handleKeyDown = (e) => {
     this.moveSelectionOnKeyDown(e)
     this.openOnArrow(e)
+    this.openOnSpace(e)
     this.selectItemOnEnter(e)
 
     _.invoke(this.props, 'onKeyDown', e)
@@ -1089,7 +1100,6 @@ export default class Dropdown extends Component {
           {open && <EventStack name='click' on={this.closeOnDocumentClick} />}
 
           {focus && <EventStack name='keydown' on={this.removeItemOnBackspace} />}
-          {focus && !open && <EventStack name='keydown' on={this.openOnSpace} />}
         </ElementType>
       </Ref>
     )

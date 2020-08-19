@@ -17,6 +17,7 @@ const browsers = [
 
 const plugins = [
   ['@babel/plugin-proposal-class-properties', { loose: true }],
+  ['@babel/plugin-proposal-optional-chaining', { loose: true }],
   '@babel/plugin-proposal-export-default-from',
   '@babel/plugin-proposal-export-namespace-from',
   '@babel/plugin-syntax-dynamic-import',
