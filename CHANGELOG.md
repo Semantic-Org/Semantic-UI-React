@@ -1,5 +1,19 @@
 # Change Log
 
+## [v1.2.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.2.1) (2020-08-19)
+
+#### :bug: Bug Fix
+* [#4037](https://github.com/Semantic-Org/Semantic-UI-React/pull/4037) fix(Pagination): set a default activePage in Pagination's state ([@gcalica](https://github.com/gcalica))
+* [#4041](https://github.com/Semantic-Org/Semantic-UI-React/pull/4041) fix(Dropdown): fix handling of "Space" key  ([@layershifter](https://github.com/layershifter))
+* [#4043](https://github.com/Semantic-Org/Semantic-UI-React/pull/4043) fix(FormField): fix aria-invalid on error false ([@aoelen](https://github.com/aoelen))
+
+#### :memo: Documentation
+* [#4040](https://github.com/Semantic-Org/Semantic-UI-React/pull/4040) docs(Placeholder): fix description of the component ([@eugenelim](https://github.com/eugenelim))
+* [#4039](https://github.com/Semantic-Org/Semantic-UI-React/pull/4039) docs(Ref): restore docs for a component ([@layershifter](https://github.com/layershifter))
+
+#### :house: Internal
+* [#4023](https://github.com/Semantic-Org/Semantic-UI-React/pull/4023) chore: update Ref dependency to latest version ([@jluxenberg](https://github.com/jluxenberg))
+
 ## [v1.2.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.2.0) (2020-08-12)
 
 #### :rocket: New Feature
