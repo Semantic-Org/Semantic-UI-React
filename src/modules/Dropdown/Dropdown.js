@@ -41,9 +41,9 @@ const getKeyAndValues = (options) =>
 function renderItemContent(item) {
   const { flag, image, text } = item
 
-  // TODO: remove this in v2
+  // TODO: remove this in v3
   // This maintains compatibility with Shorthand API in v1 as this might be called in "Label.create()"
-  if (React.isValidElement(text) || _.isFunction(text)) {
+  if (_.isFunction(text)) {
     return text
   }
 
