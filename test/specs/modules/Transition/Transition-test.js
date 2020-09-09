@@ -419,6 +419,27 @@ describe('Transition', () => {
         </Transition>,
       )
     })
+
+    it('is called after a render with visibility changes', (done) => {
+      // This test ensures that a setTimeout will not be cleared on a simple rerender
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/4059
+
+      const onComplete = sandbox.spy()
+
+      wrapperMount(
+        <Transition duration={200} onComplete={onComplete} transitionOnMount>
+          <p />
+        </Transition>,
+      )
+
+      setTimeout(() => {
+        wrapper.setProps({})
+      }, 100)
+      setTimeout(() => {
+        onComplete.should.have.been.calledOnce()
+        done()
+      }, 250)
+    })
   })
 
   describe('onHide', () => {

@@ -15,6 +15,10 @@ import PaginationItem from './PaginationItem'
  * A component to render a pagination.
  */
 export default class Pagination extends Component {
+  getInitialAutoControlledState() {
+    return { activePage: 1 }
+  }
+
   handleItemClick = (e, { value: nextActivePage }) => {
     const { activePage: prevActivePage } = this.state
 

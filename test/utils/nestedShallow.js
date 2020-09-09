@@ -1,4 +1,4 @@
-import { Ref } from '@stardust-ui/react-component-ref'
+import { Ref } from '@fluentui/react-component-ref'
 import enzyme from 'enzyme'
 import _ from 'lodash'
 

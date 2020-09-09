@@ -1,5 +1,5 @@
 // Third party
-export { Ref } from '@stardust-ui/react-component-ref'
+export { Ref } from '@fluentui/react-component-ref'
 
 // Addons
 export Confirm from './addons/Confirm'

@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "description": "The official Semantic-UI-React integration.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
@@ -15,7 +15,6 @@
   "sideEffects": false,
   "scripts": {
     "build": "cross-env NODE_ENV=production gulp build",
-    "build:changelog": "github_changelog_generator --user Semantic-Org --project Semantic-UI-React --no-issues --no-unreleased --release-branch master --since-tag $(git describe --abbrev=0 --tags $(git rev-parse HEAD~250))",
     "build:docs": "cross-env NODE_ENV=production gulp build:docs",
     "build:docs:staging": "cross-env STAGING=true yarn build:docs && yarn serve docs/dist",
     "build:dist": "gulp build:dist",
@@ -23,9 +22,7 @@
     "build:size": "node bundle-size/bundle.js",
     "ci": "yarn tsd:test && yarn lint && yarn test",
     "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs && gulp build:docs:cname",
-    "deploy:changelog": "git add CHANGELOG.md && git commit -m \"docs(changelog): update changelog [ci skip]\" && git push",
     "deploy:docs": "gulp deploy:docs",
-    "postdeploy:docs": "yarn build:changelog && yarn deploy:changelog",
     "lint": "cross-env NODE_ENV=production eslint . --ext .js,.ts,.tsx",
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --list-different \"**/*.{js,jsx,ts,tsx}\"",
@@ -53,12 +50,10 @@
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
       "prettier --write",
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "**/*.mdx": [
-      "prettier --parser mdx --write",
-      "git add"
+      "prettier --parser mdx --write"
     ]
   },
   "repository": {
@@ -73,9 +68,9 @@
   "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
   "dependencies": {
     "@babel/runtime": "^7.10.5",
+    "@fluentui/react-component-event-listener": "~0.51.0",
+    "@fluentui/react-component-ref": "~0.51.0",
     "@semantic-ui-react/event-stack": "^3.1.0",
-    "@stardust-ui/react-component-event-listener": "~0.38.0",
-    "@stardust-ui/react-component-ref": "~0.38.0",
     "clsx": "^1.1.1",
     "keyboard-key": "^1.1.0",
     "lodash": "^4.17.19",

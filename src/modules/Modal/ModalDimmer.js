@@ -1,15 +1,15 @@
-import { Ref } from '@stardust-ui/react-component-ref'
+import { Ref } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import MountNode from '../../addons/MountNode'
 import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  useClassNamesOnNode,
   useKeyOnly,
 } from '../../lib'
 
@@ -36,6 +36,7 @@ function ModalDimmer(props) {
   const rest = getUnhandledProps(ModalDimmer, props)
   const ElementType = getElementType(ModalDimmer, props)
 
+  useClassNamesOnNode(mountNode, bodyClasses)
   React.useEffect(() => {
     if (ref.current && ref.current.style) {
       ref.current.style.setProperty('display', 'flex', 'important')
@@ -46,8 +47,6 @@ function ModalDimmer(props) {
     <Ref innerRef={ref}>
       <ElementType {...rest} className={classes}>
         {childrenUtils.isNil(children) ? content : children}
-
-        <MountNode className={bodyClasses} node={mountNode} />
       </ElementType>
     </Ref>
   )

@@ -530,7 +530,7 @@ describe('Dropdown', () => {
       document.activeElement.blur()
 
       // doesn't open on space
-      domEvent.keyDown(document, { key: ' ' })
+      wrapper.simulate('keydown', { key: 'Spacebar' })
       wrapper.update()
       dropdownMenuIsClosed()
     })
@@ -1263,6 +1263,7 @@ describe('Dropdown', () => {
     })
 
     it('opens on space when focused', () => {
+      const preventDefault = sandbox.spy()
       wrapperMount(<Dropdown options={options} selection />)
 
       // Note: This mousedown is necessary to get the Dropdown focused
@@ -1271,8 +1272,24 @@ describe('Dropdown', () => {
       wrapper.simulate('focus')
       dropdownMenuIsClosed()
 
-      domEvent.keyDown(document, { key: ' ' })
+      wrapper.simulate('keydown', { key: 'Spacebar', preventDefault })
       dropdownMenuIsOpen()
+      preventDefault.should.have.been.calledOnce()
+    })
+
+    it('opens on space in search input when focused', () => {
+      const preventDefault = sandbox.spy()
+      wrapperMount(<Dropdown options={options} selection search />)
+
+      // Note: This mousedown is necessary to get the Dropdown focused
+      // without it being open.
+      wrapper.simulate('mousedown')
+      wrapper.simulate('focus')
+      dropdownMenuIsClosed()
+
+      wrapper.find('input.search').simulate('keydown', { key: 'Spacebar', preventDefault })
+      dropdownMenuIsOpen()
+      preventDefault.should.have.not.been.called()
     })
 
     it('does not open on arrow down when not focused', () => {
@@ -1287,7 +1304,7 @@ describe('Dropdown', () => {
       wrapperMount(<Dropdown options={options} selection />)
       dropdownMenuIsClosed()
 
-      domEvent.keyDown(document, { key: ' ' })
+      wrapper.simulate('keydown', { key: 'Spacebar' })
       dropdownMenuIsClosed()
     })
 

@@ -1,44 +1,23 @@
 import PropTypes from 'prop-types'
-import { Component } from 'react'
+import React from 'react'
 
-import { customPropTypes } from '../../lib'
-import getNodeRefFromProps from './lib/getNodeRefFromProps'
-import handleClassNamesChange from './lib/handleClassNamesChange'
-import NodeRegistry from './lib/NodeRegistry'
-
-const nodeRegistry = new NodeRegistry()
+import { customPropTypes, useClassNamesOnNode } from '../../lib'
 
 /**
  * A component that allows to manage classNames on a DOM node in declarative manner.
+ *
+ * @deprecated This component is deprecated and will be removed in next major release.
  */
-export default class MountNode extends Component {
-  shouldComponentUpdate({ className: nextClassName }) {
-    const { className: currentClassName } = this.props
+function MountNode(props) {
+  useClassNamesOnNode(props.node, props.className)
 
-    return nextClassName !== currentClassName
+  // A workaround for `react-docgen`: https://github.com/reactjs/react-docgen/issues/336
+  if (process.env.NODE_ENV === 'test') {
+    return <div />
   }
 
-  componentDidMount() {
-    const nodeRef = getNodeRefFromProps(this.props)
-
-    nodeRegistry.add(nodeRef, this)
-    nodeRegistry.emit(nodeRef, handleClassNamesChange)
-  }
-
-  componentDidUpdate() {
-    nodeRegistry.emit(getNodeRefFromProps(this.props), handleClassNamesChange)
-  }
-
-  componentWillUnmount() {
-    const nodeRef = getNodeRefFromProps(this.props)
-
-    nodeRegistry.del(nodeRef, this)
-    nodeRegistry.emit(nodeRef, handleClassNamesChange)
-  }
-
-  render() {
-    return null
-  }
+  /* istanbul ignore next */
+  return null
 }
 
 MountNode.propTypes = {
@@ -48,3 +27,5 @@ MountNode.propTypes = {
   /** The DOM node where we will apply class names. Defaults to document.body. */
   node: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
 }
+
+export default MountNode

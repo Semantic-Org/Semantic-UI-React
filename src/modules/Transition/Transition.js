@@ -87,16 +87,17 @@ export default class Transition extends Component {
     const durationType = TRANSITION_CALLBACK_TYPE[nextStatus]
     const durationValue = normalizeTransitionDuration(duration, durationType)
 
-    clearTimeout(this.timeoutId)
-    this.timeoutId = setTimeout(
-      () => this.setState((state) => ({ status: state.nextStatus })),
-      durationValue,
-    )
+    this.timeoutId = setTimeout(() => this.setState({ status: nextStatus }), durationValue)
   }
 
   updateStatus = (prevState) => {
-    if (this.state.status !== this.state.nextStatus && this.state.nextStatus) {
-      this.handleStart(this.state.nextStatus)
+    if (prevState.status !== this.state.status) {
+      // Timeout should be cleared in any case as previous can lead set to unexpected `nextStatus`
+      clearTimeout(this.timeoutId)
+
+      if (this.state.nextStatus) {
+        this.handleStart(this.state.nextStatus)
+      }
     }
 
     if (!prevState.animating && this.state.animating) {

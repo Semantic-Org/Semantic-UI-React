@@ -1,4 +1,4 @@
-import computeClassNames from 'src/addons/MountNode/lib/computeClassNames'
+import { computeClassNames } from 'src/lib/hooks/useClassNamesOnNode'
 
 describe('computeClassNames', () => {
   it('accepts Set as value', () => {
@@ -9,41 +9,38 @@ describe('computeClassNames', () => {
   })
 
   it('combines classNames', () => {
-    const map = new Set([{ props: { className: 'foo' } }, { props: { className: 'bar' } }])
+    const map = new Set([{ current: 'foo' }, { current: 'bar' }])
 
     computeClassNames(map).should.have.members(['foo', 'bar'])
   })
 
   it('combines only unique classNames', () => {
-    const map = new Set([
-      { props: { className: 'foo' } },
-      { props: { className: 'bar' } },
-      { props: { className: 'foo bar baz' } },
-    ])
+    const map = new Set([{ current: 'foo' }, { current: 'bar' }, { current: 'foo bar baz' }])
 
     computeClassNames(map).should.have.members(['foo', 'bar', 'baz'])
   })
 
   it('omits false, undefined and null classNames', () => {
     const map = new Set([
-      { props: { className: 'foo' } },
-      { props: {} },
-      { props: { className: false } },
-      { props: { className: null } },
-      { props: { className: undefined } },
-      { props: { className: '0' } },
-      { props: { className: 'false' } },
+      { current: 'foo' },
+      {},
+      { current: false },
+      { current: null },
+      { current: undefined },
+      { current: '0' },
+      { current: 'false' },
     ])
 
     computeClassNames(map).should.have.members(['foo', '0', 'false'])
   })
 
   it('trims classNames', () => {
-    const map = new Set([
-      { props: { className: ' foo     bar ' } },
-      { props: { className: '    baz qux' } },
-    ])
+    const map = new Set([{ current: ' foo     bar ' }, { current: '    baz qux' }])
 
     computeClassNames(map).should.have.members(['foo', 'bar', 'baz', 'qux'])
+  })
+
+  it('skips "undefined" as input', () => {
+    computeClassNames([]).should.have.length(0)
   })
 })

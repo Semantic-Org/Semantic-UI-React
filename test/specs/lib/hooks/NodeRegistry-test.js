@@ -1,4 +1,4 @@
-import NodeRegistry from 'src/addons/MountNode/lib/NodeRegistry'
+import { NodeRegistry } from 'src/lib/hooks/useClassNamesOnNode'
 import { sandbox } from 'test/utils'
 
 describe('NodeRegistry', () => {
