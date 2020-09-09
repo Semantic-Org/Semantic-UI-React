@@ -56,18 +56,31 @@ export interface StrictHtmlSpanProps {
 // Types
 // ======================================================
 
+/**
+ * @deprecated Will be removed in v3
+ */
 export type SemanticShorthandItemFunc<TProps> = (
-  component: React.ReactType<TProps>,
+  component: React.ElementType<TProps>,
   props: TProps,
   children?: React.ReactNode | React.ReactNodeArray,
 ) => React.ReactElement<any> | null
 
+export type ShorthandRenderFunction<C extends React.ElementType, P> = (
+  Component: C,
+  props: P,
+) => React.ReactNode
+
 export type SemanticShorthandCollection<TProps> = SemanticShorthandItem<TProps>[]
 export type SemanticShorthandContent = React.ReactNode
-export type SemanticShorthandItem<TProps> =
+export type SemanticShorthandItem<TProps extends Record<string, any>> =
   | React.ReactNode
-  | TProps
   | SemanticShorthandItemFunc<TProps>
+  | (Omit<TProps, 'children'> & {
+      // Not all TProps can have `children`, without this condition it will match to "any"
+      children?: TProps extends { children: any }
+        ? TProps['children'] | ShorthandRenderFunction<React.ElementType<TProps>, TProps>
+        : ShorthandRenderFunction<React.ElementType<TProps>, TProps>
+    })
 
 // ======================================================
 // Styling

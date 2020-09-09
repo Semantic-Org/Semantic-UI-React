@@ -8,7 +8,7 @@ import SearchCategory from 'src/modules/Search/SearchCategory'
 import SearchResult from 'src/modules/Search/SearchResult'
 import SearchResults from 'src/modules/Search/SearchResults'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { consoleUtil, domEvent, sandbox } from 'test/utils'
 
 let attachTo
 let options
@@ -743,6 +743,9 @@ describe('Search', () => {
     })
 
     it(`will not merge for a function`, () => {
+      // TODO: V3 remove this test and simplify the implementation
+      consoleUtil.disableOnce()
+
       wrapperMount(<Search input={{ input: (Component, props) => <Component {...props} /> }} />)
       const input = wrapper.find('input')
 

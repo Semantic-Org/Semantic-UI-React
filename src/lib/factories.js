@@ -1,6 +1,8 @@
-import _ from 'lodash'
 import cx from 'clsx'
+import _ from 'lodash'
 import * as React from 'react'
+
+const DEPRECATED_CALLS = {}
 
 // ============================================================
 // Factories
@@ -22,8 +24,11 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createShorthand() Component must be a string or function.')
   }
+
   // short circuit noop values
-  if (_.isNil(val) || _.isBoolean(val)) return null
+  if (_.isNil(val) || _.isBoolean(val)) {
+    return null
+  }
 
   const valIsString = _.isString(val)
   const valIsNumber = _.isNumber(val)
@@ -108,7 +113,13 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   // ----------------------------------------
 
   // Clone ReactElements
-  if (valIsReactElement) return React.cloneElement(val, props)
+  if (valIsReactElement) {
+    return React.cloneElement(val, props)
+  }
+
+  if (typeof props.children === 'function') {
+    return props.children(Component, { ...props, children: undefined })
+  }
 
   // Create ReactElements from built up props
   if (valIsPrimitiveValue || valIsPropsObject) {
@@ -116,7 +127,21 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   }
 
   // Call functions with args similar to createElement()
-  if (valIsFunction) return val(Component, props, props.children)
+  // TODO: V3 remove the implementation
+  if (valIsFunction) {
+    if (process.env.NODE_ENV !== 'production') {
+      if (!DEPRECATED_CALLS[Component]) {
+        DEPRECATED_CALLS[Component] = true
+
+        // eslint-disable-next-line no-console
+        console.warn(
+          `Warning: There is a deprecated shorthand function usage for "${Component}". It is deprecated and will be removed in v3 release. Please follow our upgrade guide: https://github.com/Semantic-Org/Semantic-UI-React/pull/4029`,
+        )
+      }
+    }
+
+    return val(Component, props, props.children)
+  }
   /* eslint-enable react/prop-types */
 }
 
