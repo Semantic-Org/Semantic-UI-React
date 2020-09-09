@@ -2,6 +2,8 @@ import cx from 'clsx'
 import _ from 'lodash'
 import * as React from 'react'
 
+const DEPRECATED_CALLS = {}
+
 // ============================================================
 // Factories
 // ============================================================
@@ -125,8 +127,19 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   }
 
   // Call functions with args similar to createElement()
-  // TODO: deprecate
+  // TODO: V3 remove the implementation
   if (valIsFunction) {
+    if (process.env.NODE_ENV !== 'production') {
+      if (!DEPRECATED_CALLS[Component]) {
+        DEPRECATED_CALLS[Component] = true
+
+        // eslint-disable-next-line no-console
+        console.warn(
+          `Warning: There is a deprecated shorthand function usage for "${Component}". It is deprecated and will be removed in v3 release. Please follow our upgrade guide: https://github.com/Semantic-Org/Semantic-UI-React/pull/4029`,
+        )
+      }
+    }
+
     return val(Component, props, props.children)
   }
   /* eslint-enable react/prop-types */
