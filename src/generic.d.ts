@@ -57,7 +57,7 @@ export interface StrictHtmlSpanProps {
 // ======================================================
 
 /**
- * @deprecated Will be removed in v2
+ * @deprecated Will be removed in v3
  */
 export type SemanticShorthandItemFunc<TProps> = (
   component: React.ElementType<TProps>,
