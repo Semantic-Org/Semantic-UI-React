@@ -19,8 +19,19 @@ There are several forms of shorthand values that can be provided, but all of the
 Each component's shorthand has an associated default element type. For example, by default, there is `<Icon />` element rendered for `Button`'s icon shorthand. It is possible to customize props of this default element by providing props object as shorthand value:
 
 ```jsx
-// 💡 'color' and 'name' will be used as <Icon /> element's props
-<Button content='Like' icon={{ color: 'red', name: 'like' }} />
+<>
+  {/* 💡 'color' and 'name' will be used as <Icon /> element's props */}
+  <Button content='Like' icon={{ color: 'red', name: 'like' }} />
+  {/* 💡 you can also add handlers and any DOM props to shorthands */}
+  <Input
+    action={{
+      icon: 'search',
+      onClick: () => console.log('An action was clicked!'),
+    }}
+    actionPosition='left'
+    placeholder='Search...'
+  />
+</>
 ```
 
 ## String as value
@@ -53,6 +64,7 @@ It is also possible to pass falsy values (`false`, `null` or `undefined`) - in t
 
 ```jsx
 <>
+  {/* 💡 hides a toogle icon in `Dropdown` */}
   <Dropdown icon={null} />
   <Dropdown icon={false} />
 </>
@@ -99,7 +111,7 @@ Providing function as a shorthand value is the most involving but, at the same t
 />
 ```
 
-## Customizing rendered shorthand
+### Customizing rendered shorthand
 
 There is another use case when render function is very useful for - this is the case where custom element's tree should be rendered for the shorthand. As you might recall, there is a problem that might happen when React Element is provided directly as shorthand value - in that case, props are not propagated to rendered. In order to avoid that the following strategy should be considered:
 
@@ -107,5 +119,25 @@ There is another use case when render function is very useful for - this is the 
 <Button
   content='Like'
   icon={{ children: (Component, componentProps) => <Label basic>+1</Label> }}
+/>
+```
+
+## Function as value (_deprecated_)
+
+<Message warning>
+  This usage is deprecated and will be removed in v3, please use render props instead.
+</Message>
+
+Providing function as a shorthand value is the most involving but, at the same time, the most powerful option for customizing component's shorthand. The only requirements for this function are:
+
+- it should finish synchronously
+- it should return React Element as a result
+
+Thus, in its simplest form, it could be used the following way:
+
+```jsx
+<Button
+  content='Like'
+  icon={(Component, componentProps) => <Component {...componentProps} color='red' name='like' />}
 />
 ```
