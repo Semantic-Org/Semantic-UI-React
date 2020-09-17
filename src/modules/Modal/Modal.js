@@ -80,7 +80,7 @@ class Modal extends Component {
     )
       return
 
-    _.invoke(this.props, 'onClose', e, this.props)
+    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
     this.setState({ open: false })
   }
 

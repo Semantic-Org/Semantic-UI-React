@@ -186,6 +186,36 @@ describe('Portal', () => {
     })
   })
 
+  describe('onOpen', () => {
+    it('is called on trigger click', () => {
+      const onOpen = sandbox.spy()
+      wrapperMount(
+        <Portal onOpen={onOpen} trigger={<div id='trigger' />}>
+          <p />
+        </Portal>,
+      )
+
+      wrapper.find('#trigger').simulate('click')
+      onOpen.should.have.been.calledOnce()
+      onOpen.should.have.been.calledWithMatch({}, { open: true })
+    })
+  })
+
+  describe('onClose', () => {
+    it('is called on body click', () => {
+      const onClose = sandbox.spy()
+      wrapperMount(
+        <Portal defaultOpen onClose={onClose} trigger={<div />}>
+          <p />
+        </Portal>,
+      )
+
+      domEvent.click(document.body)
+      onClose.should.have.been.called()
+      onClose.should.have.been.calledWithMatch({}, { open: false })
+    })
+  })
+
   describe('trigger', () => {
     it('renders null when not set', () => {
       wrapperMount(
