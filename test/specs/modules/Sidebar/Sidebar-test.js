@@ -137,7 +137,7 @@ describe('Sidebar', () => {
       const wrapper = shallow(<Sidebar target={target} visible />)
       const listener = wrapper.find('EventListener')
 
-      listener.should.have.prop('targetRef').that.eql({ current: target })
+      listener.should.have.prop('target').that.eql(target)
     })
   })
 })
