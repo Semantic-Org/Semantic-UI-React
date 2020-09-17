@@ -217,6 +217,36 @@ describe('Popup', () => {
     })
   })
 
+  describe('onOpen', () => {
+    it('is called on trigger click', () => {
+      const onOpen = sandbox.spy()
+      wrapperMount(
+        <Popup onOpen={onOpen} trigger={<div id='trigger' />}>
+          <p />
+        </Popup>,
+      )
+
+      wrapper.find('#trigger').simulate('click')
+      onOpen.should.have.been.calledOnce()
+      onOpen.should.have.been.calledWithMatch({}, { open: true })
+    })
+  })
+
+  describe('onClose', () => {
+    it('is called on body click', () => {
+      const onClose = sandbox.spy()
+      wrapperMount(
+        <Popup defaultOpen onClose={onClose} trigger={<div />}>
+          <p />
+        </Popup>,
+      )
+
+      domEvent.click(document.body)
+      onClose.should.have.been.called()
+      onClose.should.have.been.calledWithMatch({}, { open: false })
+    })
+  })
+
   describe('open', () => {
     it('is not open by default', () => {
       wrapperMount(<Popup />)
