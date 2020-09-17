@@ -300,98 +300,104 @@ describe('Modal', () => {
 
   describe('onOpen', () => {
     it('is called on trigger click', () => {
-      const spy = sandbox.spy()
-      wrapperMount(<Modal onOpen={spy} trigger={<div id='trigger' />} />)
+      const onOpen = sandbox.spy()
+      wrapperMount(<Modal onOpen={onOpen} trigger={<div id='trigger' />} />)
 
       wrapper.find('#trigger').simulate('click')
-      spy.should.have.been.calledOnce()
+      onOpen.should.have.been.calledOnce()
+      onOpen.should.have.been.calledWithMatch({}, { open: true })
     })
 
     it('is not called on body click', () => {
-      const spy = sandbox.spy()
-      wrapperMount(<Modal onOpen={spy} />)
+      const onOpen = sandbox.spy()
+      wrapperMount(<Modal onOpen={onOpen} />)
 
       domEvent.click(document.body)
-      spy.should.not.have.been.called()
+      onOpen.should.not.have.been.called()
     })
   })
 
   describe('onClose', () => {
-    let spy
-
-    beforeEach(() => {
-      spy = sandbox.spy()
-    })
-
     it('is called on dimmer click', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      const onClose = sandbox.spy()
+      wrapperMount(<Modal onClose={onClose} defaultOpen />)
 
       domEvent.click('.ui.dimmer')
-      spy.should.have.been.calledOnce()
+      onClose.should.have.been.calledOnce()
+      onClose.should.have.been.calledWithMatch({}, { open: false })
     })
 
     it('is called on click outside of the modal', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      const onClose = sandbox.spy()
+      wrapperMount(<Modal onClose={onClose} defaultOpen />)
 
       domEvent.click(document.querySelector('.ui.modal').parentNode)
-      spy.should.have.been.calledOnce()
+      onClose.should.have.been.calledOnce()
     })
 
     it('is not called on mousedown inside and mouseup outside of the modal', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      const onClose = sandbox.spy()
+      wrapperMount(<Modal onClose={onClose} defaultOpen />)
 
       domEvent.mouseDown(document.querySelector('.ui.modal'))
       domEvent.click(document.querySelector('.ui.modal').parentNode)
-      spy.should.not.have.been.called()
+      onClose.should.not.have.been.called()
     })
 
     it('is not called on click inside of the modal', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      const onClose = sandbox.spy()
+      wrapperMount(<Modal onClose={onClose} defaultOpen />)
 
       domEvent.click(document.querySelector('.ui.modal'))
-      spy.should.not.have.been.called()
+      onClose.should.not.have.been.called()
     })
 
     it('is not called on body click', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      const onClose = sandbox.spy()
+      wrapperMount(<Modal onClose={onClose} defaultOpen />)
 
       domEvent.click(document.body)
-      spy.should.not.have.been.calledOnce()
+      onClose.should.not.have.been.calledOnce()
     })
 
     it('is called when pressing escape', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      const onClose = sandbox.spy()
+      wrapperMount(<Modal onClose={onClose} defaultOpen />)
 
       domEvent.keyDown(document, { key: 'Escape' })
-      spy.should.have.been.calledOnce()
+      onClose.should.have.been.calledOnce()
     })
 
     it('is not called when the open prop changes to false', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      const onClose = sandbox.spy()
+      wrapperMount(<Modal onClose={onClose} defaultOpen />)
 
       wrapper.setProps({ open: false })
-      spy.should.not.have.been.called()
+      onClose.should.not.have.been.called()
     })
 
     it('is not called when open changes to false programmatically', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
+      const onClose = sandbox.spy()
+      wrapperMount(<Modal onClose={onClose} defaultOpen />)
 
       wrapper.setProps({ open: false })
-      spy.should.not.have.been.called()
+      onClose.should.not.have.been.called()
     })
 
     it('is not called on dimmer click when closeOnDimmerClick is false', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen closeOnDimmerClick={false} />)
+      const onClose = sandbox.spy()
+      wrapperMount(<Modal onClose={onClose} defaultOpen closeOnDimmerClick={false} />)
 
       domEvent.click('.ui.dimmer')
-      spy.should.not.have.been.called()
+      onClose.should.not.have.been.called()
     })
 
     it('is not called on body click when closeOnDocumentClick is false', () => {
-      wrapperMount(<Modal onClose={spy} defaultOpen closeOnDocumentClick={false} />)
+      const onClose = sandbox.spy()
+      wrapperMount(<Modal onClose={onClose} defaultOpen closeOnDocumentClick={false} />)
 
       domEvent.click(document.body)
-      spy.should.not.have.been.called()
+      onClose.should.not.have.been.called()
     })
   })
 
