@@ -1,7 +1,5 @@
 .ui.table {
   position: relative;
-  padding-left: 85px;
-  padding-right: 85px;
   border: none !important;
   border-collapse: separate;
   border-spacing: 0 8px;
@@ -20,7 +18,7 @@
       background: #1d2630;
     }
 
-     tr:first-child>th:only-child {
+    tr:first-child>th:only-child {
       border-radius: 8px !important;
     }
 
@@ -33,9 +31,10 @@
     }
   }
 
-   tbody tr {
+  tbody tr {
     background-color: #f6f7f9;
     cursor: pointer;
+
     &:hover {
       background: #f5f2fd;
     }
@@ -48,6 +47,13 @@
     tr:first-child > th:last-child:not {
       border-top-right-radius: 8px;
       border-bottom-right-radius: 8px;
+    }
+
+    td {
+      font-size: 16px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      border: 0 none;
     }
   }
 
@@ -63,9 +69,9 @@
 
   td.active {
     box-shadow: none;
-    background: none;
+    background: none !important;
     font-weight: 600;
-    color: #3d5066;
+    color: #3d5066 !important;
   }
 
   tfoot th {
@@ -73,8 +79,8 @@
   }
 
    &.striped {
-      tr:nth-child(2n),
-      tbody tr:nth-child(2n) {
+    > tr:nth-child(2n),
+    tbody tr:nth-child(2n) {
       background-color: #f6f7f9;
     }
   }
@@ -83,11 +89,11 @@
 .ui.selectable.table {
   tbody {
     tr:hover {
-      background: #f5f2fd;
+      background: #f5f2fd !important;
 
       td {
         &.active {
-          background: none;
+          background: none !important;
         }
       }
     }
