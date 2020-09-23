@@ -1049,17 +1049,17 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@fluentui/react-component-event-listener@~0.51.0":
-  version "0.51.0"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-component-event-listener/-/react-component-event-listener-0.51.0.tgz#29701f875a37870e168b99b0198d3518866a7f84"
-  integrity sha512-YzvtrqSOQIr19V5hLQ71Zt2HnBpHsPbgE6YNRI0fYkld1YbZWggiPSpk6nhmjB5U30h3EqwZzvsuQTvHbuP2Iw==
+"@fluentui/react-component-event-listener@~0.51.1":
+  version "0.51.1"
+  resolved "https://registry.yarnpkg.com/@fluentui/react-component-event-listener/-/react-component-event-listener-0.51.1.tgz#0ef671a53fcac3906425328e7b1c53b039e17379"
+  integrity sha512-5krZPZW7dDcPCTIMS1KYTVtK3PrqiootE9a4SEhpYPjnIrr3Fv91nPcQx12htsI3FQX4ppdDCaS+YNEFLumItw==
   dependencies:
     "@babel/runtime" "^7.10.4"
 
-"@fluentui/react-component-ref@~0.51.0":
-  version "0.51.0"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-component-ref/-/react-component-ref-0.51.0.tgz#e27e50e36a7d96586bc814c16bd84f9da53b3029"
-  integrity sha512-eYTiZCGmcsU1RuKeHepd8i6XksnroSF5b2lqHJaQO9x+Ec62d7+M2i9FW/nhe2Mpb5f96inL0Oz3zzVMrSwJdw==
+"@fluentui/react-component-ref@~0.51.1":
+  version "0.51.1"
+  resolved "https://registry.yarnpkg.com/@fluentui/react-component-ref/-/react-component-ref-0.51.1.tgz#af0cc81c5c587d4e29ec4e6528a690c1b99a2fdb"
+  integrity sha512-TxYq2px9Qy8+gT2fyqgsGzBAJGS6RqNO9BEY9AJ6c0sWCByLRViBbfKRv+95gt+CowEjVbP1B5woPeLwuWSG6g==
   dependencies:
     "@babel/runtime" "^7.10.4"
     react-is "^16.6.3"
