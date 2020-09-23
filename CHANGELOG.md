@@ -1,5 +1,14 @@
 # Change Log
 
+## [v1.3.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.3.0) (2020-09-23)
+
+#### :rocket: New Feature
+* [#4029](https://github.com/Semantic-Org/Semantic-UI-React/pull/4029) feat: introduce `children` function to shorthands ([@layershifter](https://github.com/layershifter))
+
+#### :bug: Bug Fix
+* [#4060](https://github.com/Semantic-Org/Semantic-UI-React/pull/4060) fix(Transition): schedule changes only on `status` change ([@layershifter](https://github.com/layershifter))
+* [#4047](https://github.com/Semantic-Org/Semantic-UI-React/pull/4047) fix(Dropdown): handle `text` as a content in `renderLabel` ([@layershifter](https://github.com/layershifter))
+
 ## [v1.2.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.2.1) (2020-08-19)
 
 #### :bug: Bug Fix
