@@ -6,7 +6,6 @@
 .yarn-cache/
 
 coverage/
-dist/
 docs/src/componentInfo
 docs/src/componentMenu.json
 docs/src/exampleSources.json
