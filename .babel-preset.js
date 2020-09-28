@@ -31,7 +31,20 @@ const plugins = [
     },
   ],
   // Plugins that allow to reduce the target bundle size
+
+  // `babel-plugin-lodash` is required for all kinds of modules to simplify the resolution of
+  // modules and avoid modules that prevent tree-shaking:
+  // https://github.com/lodash/lodash/issues/4119
   'lodash',
+  // CJS modules are not tree-shakable in any bundler by default
+  // https://github.com/formium/tsdx#using-lodash
+  (isESBuild || isUMDBuild) && [
+    'babel-plugin-transform-rename-import',
+    {
+      replacements: [{ original: 'lodash', replacement: 'lodash-es' }],
+    },
+  ],
+
   'transform-react-handled-props',
   [
     'transform-react-remove-prop-types',

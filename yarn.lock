@@ -2798,6 +2798,11 @@ babel-plugin-transform-regenerator@^6.22.0:
   dependencies:
     regenerator-transform "^0.10.0"
 
+babel-plugin-transform-rename-import@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-rename-import/-/babel-plugin-transform-rename-import-2.3.0.tgz#5d9d645f937b0ca5c26a24b2510a06277b6ffd9b"
+  integrity sha512-dPgJoT57XC0PqSnLgl2FwNvxFrWlspatX2dkk7yjKQj5HHGw071vAcOf+hqW8ClqcBDMvEbm6mevn5yHAD8mlQ==
+
 babel-plugin-transform-runtime@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-runtime/-/babel-plugin-transform-runtime-6.23.0.tgz#88490d446502ea9b8e7efb0fe09ec4d99479b1ee"
@@ -8606,6 +8611,11 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
+
+lodash-es@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
+  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
 
 lodash._basecopy@^3.0.0:
   version "3.0.1"
