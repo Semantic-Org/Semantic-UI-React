@@ -1,5 +1,4 @@
 import EventStack from '@semantic-ui-react/event-stack'
-import { Ref } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -136,12 +135,7 @@ export default class Popup extends Component {
     if (this.positionUpdate) this.positionUpdate()
   }
 
-  renderContent = ({
-    placement: popperPlacement,
-    ref: popperRef,
-    scheduleUpdate,
-    style: popperStyle,
-  }) => {
+  renderContent = ({ placement: popperPlacement, ref: popperRef, update, style: popperStyle }) => {
     const {
       basic,
       children,
@@ -157,7 +151,7 @@ export default class Popup extends Component {
     } = this.props
     const { contentRestProps } = this.state
 
-    this.positionUpdate = scheduleUpdate
+    this.positionUpdate = update
 
     const classes = cx(
       'ui',
@@ -175,12 +169,17 @@ export default class Popup extends Component {
       // Heads up! We need default styles to get working correctly `flowing`
       left: 'auto',
       right: 'auto',
-      ...popperStyle,
+      // This is required to be properly positioned inside wrapping `div`
+      position: 'initial',
       ...style,
     }
 
     return (
-      <Ref innerRef={popperRef}>
+      // https://github.com/popperjs/popper-core/blob/f1f9d1ab75b6b0e962f90a5b2a50f6cfd307d794/src/createPopper.js#L136-L137
+      // Heads up!
+      // A wrapping `div` there is a pure magic, it's required as Popper warns on margins that are
+      // defined by SUI CSS. It also means that this `div` will be positioned instead of `content`.
+      <div ref={popperRef} style={popperStyle}>
         <ElementType {...contentRestProps} className={classes} style={styles}>
           {childrenUtils.isNil(children) ? (
             <>
@@ -192,7 +191,7 @@ export default class Popup extends Component {
           )}
           {hideOnScroll && <EventStack on={this.hideOnScroll} name='scroll' target='window' />}
         </ElementType>
-      </Ref>
+      </div>
     )
   }
 
@@ -214,17 +213,16 @@ export default class Popup extends Component {
       return trigger
     }
 
-    const modifiers = _.merge(
-      {
-        arrow: { enabled: false },
-        flip: { enabled: !pinned },
-        // There are issues with `keepTogether` and `offset`
-        // https://github.com/FezVrasta/popper.js/issues/557
-        keepTogether: { enabled: !!offset },
-        offset: { offset },
-      },
-      popperModifiers,
-    )
+    const modifiers = [
+      { name: 'arrow', enabled: false },
+      { name: 'eventListeners', options: { scroll: !!eventsEnabled, resize: !!eventsEnabled } },
+      { name: 'flip', enabled: !pinned },
+      { name: 'preventOverflow', enabled: !!offset },
+      { name: 'offset', enabled: !!offset, options: { offset } },
+      ...popperModifiers,
+    ]
+    debug('popper modifiers:', modifiers)
+
     const referenceElement = createReferenceProxy(_.isNil(context) ? this.triggerRef : context)
 
     const mergedPortalProps = { ...this.getPortalProps(), ...portalRestProps }
@@ -241,10 +239,9 @@ export default class Popup extends Component {
         triggerRef={this.triggerRef}
       >
         <Popper
-          eventsEnabled={eventsEnabled}
           modifiers={modifiers}
           placement={positionsMapping[position]}
-          positionFixed={positionFixed}
+          strategy={positionFixed ? 'fixed' : null}
           referenceElement={referenceElement}
         >
           {this.renderContent}
@@ -298,14 +295,15 @@ Popup.propTypes = {
   /** Invert the colors of the Popup. */
   inverted: PropTypes.bool,
 
-  /** Offset value to apply to rendered popup. Accepts the following units:
-   * - px or unit-less, interpreted as pixels
-   * - %, percentage relative to the length of the trigger element
-   * - %p, percentage relative to the length of the popup element
-   * - vw, CSS viewport width unit
-   * - vh, CSS viewport height unit
+  /**
+   * Offset values in px unit to apply to rendered popup. The basic offset accepts an
+   * array with two numbers in the form [skidding, distance]:
+   * - `skidding` displaces the Popup along the reference element
+   * - `distance` displaces the Popup away from, or toward, the reference element in the direction of its placement. A positive number displaces it further away, while a negative number lets it overlap the reference.
+   *
+   * @see https://popper.js.org/docs/v2/modifiers/offset/
    */
-  offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.arrayOf(PropTypes.number)]),
 
   /** Events triggering the popup. */
   on: PropTypes.oneOfType([
@@ -354,8 +352,8 @@ Popup.propTypes = {
   /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
   positionFixed: PropTypes.bool,
 
-  /** An object containing custom settings for the Popper.js modifiers. */
-  popperModifiers: PropTypes.object,
+  /** An array containing custom settings for the Popper.js modifiers. */
+  popperModifiers: PropTypes.array,
 
   /** A popup can have dependencies which update will schedule a position update. */
   popperDependencies: PropTypes.array,
@@ -376,9 +374,9 @@ Popup.propTypes = {
 Popup.defaultProps = {
   disabled: false,
   eventsEnabled: true,
-  offset: 0,
   on: ['click', 'hover'],
   pinned: false,
+  popperModifiers: [],
   position: 'top left',
 }
 
