@@ -163,8 +163,8 @@ FormField.propTypes = {
    * Extra FormField props are passed to the control component.
    * Mutually exclusive with children.
    */
-  control: customPropTypes.some([
-    PropTypes.func,
+  control: PropTypes.oneOfType([
+    PropTypes.elementType,
     PropTypes.oneOf(['button', 'input', 'select', 'textarea']),
   ]),
 
