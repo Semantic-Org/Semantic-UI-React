@@ -223,6 +223,9 @@ class Sidebar extends Component {
                 <Menu.Item as={Link} exact to='/prototypes' activeClassName='active'>
                   Prototypes
                 </Menu.Item>
+                <Menu.Item as={Link} exact to='/migration-guide' activeClassName='active'>
+                  Migration guide to v2
+                </Menu.Item>
               </Menu.Menu>
             </Menu.Item>
             <Menu.Item fitted>
