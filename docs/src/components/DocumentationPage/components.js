@@ -23,3 +23,5 @@ export const code = ({ className, children, fitted, formattable, label }) => (
 export const h1 = ({ children }) => <Header as='h1' content={children} textAlign='center' />
 
 export const h2 = ({ children }) => <Header as='h2' content={children} dividing />
+
+export const h3 = ({ children }) => <Header as='h3' content={children} />

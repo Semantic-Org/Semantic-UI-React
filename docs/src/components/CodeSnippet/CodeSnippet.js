@@ -5,6 +5,7 @@ import React from 'react'
 
 // Order of PrismJS imports there is sensitive
 import 'prismjs/components/prism-clike'
+import 'prismjs/components/prism-diff'
 import 'prismjs/components/prism-json'
 import 'prismjs/components/prism-markup'
 import 'prismjs/components/prism-bash'
@@ -23,6 +24,7 @@ const normalizeToString = (value) => {
 
 const formatters = {
   bash: (val = '') => val.replace(/^[\w]/gm, '$$  $&'),
+  diff: (val) => val,
   json: (val) => val,
   js: (val = '') => val,
   jsx: (val = '') => val,

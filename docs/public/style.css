@@ -12,7 +12,7 @@ body {
 }
 
 blockquote {
-  border-left: 3px solid rgba(34, 36, 38, .15);
+  border-left: 3px solid rgba(34, 36, 38, 0.15);
   margin-left: 0;
   padding-left: 10px;
   font-style: italic;
@@ -43,7 +43,7 @@ pre {
   margin: 0;
 }
 
-code:not([class*="language-"]) {
+code:not([class*='language-']) {
   font-size: 87.5%;
   background-color: rgba(0, 0, 0, 0.04);
   border-radius: 3px;
@@ -51,12 +51,12 @@ code:not([class*="language-"]) {
   display: inline-block;
 }
 
-code:not([class*="language-"])::before {
+code:not([class*='language-'])::before {
   letter-spacing: -0.2em;
   content: '\00a0';
 }
 
-code:not([class*="language-"])::after {
+code:not([class*='language-'])::after {
   letter-spacing: -0.2em;
   content: '\00a0';
 }
@@ -137,4 +137,14 @@ code:not([class*="language-"])::after {
 
 .carbon-poweredby:hover {
   color: #ddd;
+}
+
+/* --- */
+
+.token.deleted {
+  color: #e2777a;
+}
+
+.token.inserted {
+  color: #7ec699;
 }
