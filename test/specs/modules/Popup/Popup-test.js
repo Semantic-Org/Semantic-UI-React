@@ -113,14 +113,21 @@ describe('Popup', () => {
   describe('eventsEnabled ', () => {
     it(`is "true" by default`, () => {
       wrapperMount(<Popup open />)
-
       wrapper.should.have.prop('eventsEnabled', true)
-      wrapper.find('Popper').should.have.prop('eventsEnabled', true)
+
+      const modifiers = wrapper.find('Popper').prop('modifiers')
+      const eventListeners = _.find(modifiers, (m) => m.name === 'eventListeners')
+
+      eventListeners.should.have.property('options').deep.include({ scroll: true, resize: true })
     })
 
     it(`can be set to "false"`, () => {
       wrapperMount(<Popup eventsEnabled={false} open />)
-      wrapper.find('Popper').should.have.prop('eventsEnabled', false)
+
+      const modifiers = wrapper.find('Popper').prop('modifiers')
+      const eventListeners = _.find(modifiers, (m) => m.name === 'eventListeners')
+
+      eventListeners.should.have.property('options').deep.include({ scroll: false, resize: false })
     })
   })
 

@@ -240,7 +240,6 @@ export default class Popup extends Component {
         triggerRef={this.triggerRef}
       >
         <Popper
-          eventsEnabled={eventsEnabled}
           modifiers={modifiers}
           placement={positionsMapping[position]}
           strategy={positionFixed ? 'fixed' : null}
