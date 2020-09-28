@@ -375,7 +375,7 @@ Popup.propTypes = {
 
 Popup.defaultProps = {
   disabled: false,
-  offset: [0, 0],
+  eventsEnabled: true,
   on: ['click', 'hover'],
   pinned: false,
   popperModifiers: [],
