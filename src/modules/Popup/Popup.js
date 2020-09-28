@@ -1,5 +1,4 @@
 import EventStack from '@semantic-ui-react/event-stack'
-import { Ref } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -170,12 +169,17 @@ export default class Popup extends Component {
       // Heads up! We need default styles to get working correctly `flowing`
       left: 'auto',
       right: 'auto',
-      ...popperStyle,
+      // This is required to be properly positioned inside wrapping `div`
+      position: 'initial',
       ...style,
     }
 
     return (
-      <Ref innerRef={popperRef}>
+      // https://github.com/popperjs/popper-core/blob/f1f9d1ab75b6b0e962f90a5b2a50f6cfd307d794/src/createPopper.js#L136-L137
+      // Heads up!
+      // A wrapping `div` there is a pure magic, it's required as Popper warns on margins that are
+      // defined by SUI CSS. It also means that this `div` will be positioned instead of `content`.
+      <div ref={popperRef} style={popperStyle}>
         <ElementType {...contentRestProps} className={classes} style={styles}>
           {childrenUtils.isNil(children) ? (
             <>
@@ -187,7 +191,7 @@ export default class Popup extends Component {
           )}
           {hideOnScroll && <EventStack on={this.hideOnScroll} name='scroll' target='window' />}
         </ElementType>
-      </Ref>
+      </div>
     )
   }
 
