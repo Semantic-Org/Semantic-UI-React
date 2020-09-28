@@ -67,6 +67,15 @@ const PopupUsageExamples = () => (
       />
     </ComponentExample>
     <ComponentExample
+      title={<code>eventsEnabled</code>}
+      description={
+        <span>
+          Enables the <code>Popper.js</code> event listeners.
+        </span>
+      }
+      examplePath='modules/Popup/Usage/PopupExampleEventsEnabled'
+    />
+    <ComponentExample
       title='Popper Dependencies'
       description={
         <span>

@@ -200,6 +200,7 @@ export default class Popup extends Component {
     const {
       context,
       disabled,
+      eventsEnabled,
       offset,
       pinned,
       popperModifiers,
@@ -215,6 +216,7 @@ export default class Popup extends Component {
 
     const defaultModifiers = [
       { name: 'arrow', enabled: false },
+      { name: 'eventListeners', options: { scroll: eventsEnabled, resize: eventsEnabled } },
       { name: 'flip', enabled: !pinned },
       { name: 'preventOverflow', enabled: !!offset },
       { name: 'offset', options: { offset } },
@@ -240,6 +242,7 @@ export default class Popup extends Component {
         triggerRef={this.triggerRef}
       >
         <Popper
+          eventsEnabled={eventsEnabled}
           modifiers={modifiers}
           placement={positionsMapping[position]}
           strategy={positionFixed ? 'fixed' : null}
@@ -273,6 +276,9 @@ Popup.propTypes = {
 
   /** A disabled popup only renders its trigger. */
   disabled: PropTypes.bool,
+
+  /** Enables the Popper.js event listeners. */
+  eventsEnabled: PropTypes.bool,
 
   /** A flowing Popup has no maximum width and continues to flow to fit its content. */
   flowing: PropTypes.bool,
