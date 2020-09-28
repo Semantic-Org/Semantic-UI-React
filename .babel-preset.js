@@ -31,7 +31,14 @@ const plugins = [
     },
   ],
   // Plugins that allow to reduce the target bundle size
-  'lodash',
+  isESBuild || isUMDBuild
+    ? [
+        'babel-plugin-transform-rename-import',
+        {
+          replacements: [{ original: 'lodash', replacement: 'lodash-es' }],
+        },
+      ]
+    : 'lodash',
   'transform-react-handled-props',
   [
     'transform-react-remove-prop-types',
