@@ -14,33 +14,55 @@ const PopupUsageExamples = () => (
       <Message info>
         <p>
           We are using Popper.js for positioning, so you can use the{' '}
-          <code>offset</code> prop as it described in their docs. Accepts the
-          following units:
+          <code>offset</code> prop as it described in{' '}
+          <a
+            href='https://popper.js.org/docs/v2/modifiers/offset/'
+            rel='noreferrer'
+            target='_blank'
+          >
+            their docs
+          </a>
+          . The basic offset accepts an array with two numbers in the form{' '}
+          <code>[skidding, distance].</code>
         </p>
         <Message.List>
           <Message.Item>
-            <code>px</code> or unit-less, interpreted as pixels
+            <code>skidding</code> displaces the <code>Popup</code> along the
+            reference element
           </Message.Item>
           <Message.Item>
-            <code>%</code>, percentage relative to the length of the trigger
-            element
-          </Message.Item>
-          <Message.Item>
-            <code>%p</code>, percentage relative to the length of the popup
-            element
-          </Message.Item>
-          <Message.Item>
-            <code>vw</code>, CSS viewport width unit
-          </Message.Item>
-          <Message.Item>
-            <code>vh</code>, CSS viewport height unit
+            <code>distance</code> displaces the <code>Popup</code> away from, or
+            toward, the reference element in the direction of its placement. A
+            positive number displaces it further away, while a negative number
+            lets it overlap the reference
           </Message.Item>
         </Message.List>
       </Message>
       <Button
         content='Popper.JS: offset'
-        href='https://popper.js.org/popper-documentation.html#modifiers..offset'
+        href='https://popper.js.org/docs/v2/modifiers/offset/'
         icon='book'
+        rel='noreferrer'
+        target='_blank'
+      />
+    </ComponentExample>
+    <ComponentExample
+      title='Offset as a function'
+      description='A popup position can accept computed offset via functions'
+      examplePath='modules/Popup/Usage/PopupExampleOffsetFunction'
+    >
+      <Message>
+        It's preferred to define <code>offset</code> as a tuple of values,
+        however it's also possible to use functions for more complex scenarios.
+        In this example, we are applying half the <code>Popup</code>'s height as
+        margin between the two elements only when the popper is positioned below
+        its reference element.
+      </Message>
+      <Button
+        content='Popper.JS: offset'
+        href='https://popper.js.org/docs/v2/modifiers/offset/'
+        icon='book'
+        rel='noreferrer'
         target='_blank'
       />
     </ComponentExample>
