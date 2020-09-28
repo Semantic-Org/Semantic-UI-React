@@ -164,7 +164,7 @@ FormField.propTypes = {
    * Mutually exclusive with children.
    */
   control: PropTypes.oneOfType([
-    PropTypes.func,
+    PropTypes.elementType,
     PropTypes.oneOf(['button', 'input', 'select', 'textarea']),
   ]),
 
