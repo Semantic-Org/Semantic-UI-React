@@ -247,7 +247,7 @@ Button.propTypes = {
   fluid: PropTypes.bool,
 
   /** Add an Icon by name, props object, or pass an <Icon />. */
-  icon: customPropTypes.some([
+  icon: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
     PropTypes.object,
@@ -258,7 +258,7 @@ Button.propTypes = {
   inverted: PropTypes.bool,
 
   /** Add a Label by text, props object, or pass a <Label />. */
-  label: customPropTypes.some([PropTypes.string, PropTypes.object, PropTypes.element]),
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]),
 
   /** A labeled button can format a Label or Icon to appear on the left or right. */
   labelPosition: PropTypes.oneOf(['right', 'left']),
