@@ -1,9 +1,17 @@
 import * as React from 'react'
+import * as Popper from '@popperjs/core'
 
 import { SemanticShorthandItem } from '../../generic'
 import { StrictPortalProps } from '../../addons/Portal'
 import PopupContent, { PopupContentProps } from './PopupContent'
 import PopupHeader, { PopupHeaderProps } from './PopupHeader'
+
+type PopperOffsetsFunctionParams = {
+  popper: Popper.Rect
+  reference: Popper.Rect
+  placement: Popper.Placement
+}
+type PopperOffsetsFunction = (params: PopperOffsetsFunctionParams) => [number?, number?]
 
 export interface PopupProps extends StrictPopupProps {
   [key: string]: any
@@ -46,16 +54,15 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** Invert the colors of the popup */
   inverted?: boolean
 
-  /** Offset values in px unit to apply to rendered popup. The basic offset accepts an
-   * array with two numbers in the form [skidding, distance].
+  /**
+   * Offset values in px unit to apply to rendered popup. The basic offset accepts an
+   * array with two numbers in the form [skidding, distance]:
+   * - `skidding` displaces the Popup along the reference element
+   * - `distance` displaces the Popup away from, or toward, the reference element in the direction of its placement. A positive number displaces it further away, while a negative number lets it overlap the reference.
    *
-   * The first number, skidding, displaces the popper along the reference element.
-   *
-   * The second number, distance, displaces the popper away from, or toward, the
-   * reference element in the direction of its placement. A positive number displaces
-   * it further away, while a negative number lets it overlap the reference.
+   * @see https://popper.js.org/docs/v2/modifiers/offset/
    */
-  offset?: number[]
+  offset?: [number, number?] | PopperOffsetsFunction
 
   /** Events triggering the popup. */
   on?: 'hover' | 'click' | 'focus' | ('hover' | 'click' | 'focus')[]

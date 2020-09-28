@@ -299,16 +299,15 @@ Popup.propTypes = {
   /** Invert the colors of the Popup. */
   inverted: PropTypes.bool,
 
-  /** Offset values in px unit to apply to rendered popup. The basic offset accepts an
-   * array with two numbers in the form [skidding, distance].
+  /**
+   * Offset values in px unit to apply to rendered popup. The basic offset accepts an
+   * array with two numbers in the form [skidding, distance]:
+   * - `skidding` displaces the Popup along the reference element
+   * - `distance` displaces the Popup away from, or toward, the reference element in the direction of its placement. A positive number displaces it further away, while a negative number lets it overlap the reference.
    *
-   * The first number, skidding, displaces the popper along the reference element.
-   *
-   * The second number, distance, displaces the popper away from, or toward, the
-   * reference element in the direction of its placement. A positive number displaces
-   * it further away, while a negative number lets it overlap the reference.
+   * @see https://popper.js.org/docs/v2/modifiers/offset/
    */
-  offset: PropTypes.arrayOf(PropTypes.number),
+  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.arrayOf(PropTypes.number)]),
 
   /** Events triggering the popup. */
   on: PropTypes.oneOfType([
