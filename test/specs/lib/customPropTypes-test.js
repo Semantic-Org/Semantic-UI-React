@@ -5,7 +5,7 @@ import { consoleUtil, sandbox } from 'test/utils'
 
 /* eslint-disable no-console */
 
-describe.only('customPropTypes', () => {
+describe('customPropTypes', () => {
   beforeEach(() => {
     consoleUtil.disable()
     sandbox.spy(console, 'error')
