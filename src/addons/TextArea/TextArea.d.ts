@@ -14,7 +14,7 @@ export interface StrictTextAreaProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaProps) => void
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, data: TextAreaProps) => void
 
   /**
    * Called on input.
