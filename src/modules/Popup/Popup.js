@@ -214,16 +214,14 @@ export default class Popup extends Component {
       return trigger
     }
 
-    const defaultModifiers = [
+    const modifiers = [
       { name: 'arrow', enabled: false },
-      { name: 'eventListeners', options: { scroll: eventsEnabled, resize: eventsEnabled } },
+      { name: 'eventListeners', options: { scroll: !!eventsEnabled, resize: !!eventsEnabled } },
       { name: 'flip', enabled: !pinned },
       { name: 'preventOverflow', enabled: !!offset },
-      { name: 'offset', options: { offset } },
+      { name: 'offset', enabled: !!offset, options: { offset } },
+      ...popperModifiers,
     ]
-    const modifiers = popperModifiers
-      ? _.unionBy(popperModifiers, defaultModifiers, 'name')
-      : defaultModifiers
     debug('popper modifiers:', modifiers)
 
     const referenceElement = createReferenceProxy(_.isNil(context) ? this.triggerRef : context)
@@ -380,6 +378,7 @@ Popup.defaultProps = {
   offset: [0, 0],
   on: ['click', 'hover'],
   pinned: false,
+  popperModifiers: [],
   position: 'top left',
 }
 
