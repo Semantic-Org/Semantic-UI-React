@@ -56,6 +56,19 @@ describe.only('customPropTypes', () => {
         /Invalid name `name` of type `number` supplied/,
       )
     })
+
+    it('should execute all validators including custom', () => {
+      PropTypes.checkPropTypes(
+        {
+          name: customPropTypes.every([customPropTypes.suggest(['foo']), PropTypes.number]),
+        },
+        { name: 'bar' },
+        'name',
+        'FooComponent',
+      )
+
+      console.error.should.have.been.calledWithMatch(/Instead of `bar`, did you mean:/)
+    })
   })
 
   describe('suggest', () => {
