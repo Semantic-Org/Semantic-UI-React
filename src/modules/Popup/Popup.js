@@ -136,12 +136,7 @@ export default class Popup extends Component {
     if (this.positionUpdate) this.positionUpdate()
   }
 
-  renderContent = ({
-    placement: popperPlacement,
-    ref: popperRef,
-    scheduleUpdate,
-    style: popperStyle,
-  }) => {
+  renderContent = ({ placement: popperPlacement, ref: popperRef, update, style: popperStyle }) => {
     const {
       basic,
       children,
@@ -157,7 +152,7 @@ export default class Popup extends Component {
     } = this.props
     const { contentRestProps } = this.state
 
-    this.positionUpdate = scheduleUpdate
+    this.positionUpdate = update
 
     const classes = cx(
       'ui',
