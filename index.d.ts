@@ -10,11 +10,6 @@ export {
   StrictConfirmProps,
 } from './dist/commonjs/addons/Confirm'
 export {
-  default as MountNode,
-  MountNodeProps,
-  StrictMountNodeProps,
-} from './dist/commonjs/addons/MountNode'
-export {
   default as Pagination,
   PaginationProps,
   StrictPaginationProps,

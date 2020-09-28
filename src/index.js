@@ -3,7 +3,6 @@ export { Ref } from '@fluentui/react-component-ref'
 
 // Addons
 export Confirm from './addons/Confirm'
-export MountNode from './addons/MountNode'
 export Pagination from './addons/Pagination'
 export PaginationItem from './addons/Pagination/PaginationItem'
 export Portal from './addons/Portal'
