@@ -1,5 +1,15 @@
 # Change Log
 
+## [v1.3.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.3.1) (2020-09-28)
+
+#### :bug: Bug Fix
+* [#4079](https://github.com/Semantic-Org/Semantic-UI-React/pull/4079) fix(TextArea): update onChange type ([@foooomio](https://github.com/foooomio))
+
+#### :house: Internal
+* [#4072](https://github.com/Semantic-Org/Semantic-UI-React/pull/4072) chore: use lodash-es to improve bundle size ([@layershifter](https://github.com/layershifter))
+* [#4073](https://github.com/Semantic-Org/Semantic-UI-React/pull/4073) chore: remove usages of `lodash/fp` in customPropTypes ([@layershifter](https://github.com/layershifter))
+* [#4068](https://github.com/Semantic-Org/Semantic-UI-React/pull/4068) chore: bump update a package with `Ref` component ([@layershifter](https://github.com/layershifter))
+
 ## [v1.3.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.3.0) (2020-09-23)
 
 #### :rocket: New Feature
