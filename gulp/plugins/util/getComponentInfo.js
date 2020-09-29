@@ -43,9 +43,11 @@ const getComponentInfo = (filepath) => {
   // remove keys we don't use
   delete info.methods
 
-  // add exported Component info
-  const Component = require(absPath).default
-  info.constructorName = _.get(Component, 'prototype.constructor.name', null)
+  if (!info.displayName) {
+    throw new Error(
+      `Please check that static property "displayName" is defined on a component in "${filepath}".`,
+    )
+  }
 
   // add component type
   info.type = componentType
