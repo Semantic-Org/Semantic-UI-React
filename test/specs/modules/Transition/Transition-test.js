@@ -17,7 +17,7 @@ let wrapper
 const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
-describe.only('Transition', () => {
+describe('Transition', () => {
   common.hasSubcomponents(Transition, [TransitionGroup])
   common.hasValidTypings(Transition)
 
