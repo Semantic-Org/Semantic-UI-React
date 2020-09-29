@@ -6,7 +6,7 @@ import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
 import * as common from 'test/specs/commonTests'
 import { consoleUtil, sandbox } from 'test/utils'
 
-describe.only('AccordionAccordion', () => {
+describe('AccordionAccordion', () => {
   common.isConformant(AccordionAccordion)
   common.rendersChildren(AccordionAccordion, {
     rendersContent: false,
