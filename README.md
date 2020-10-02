@@ -1,8 +1,6 @@
 ## Design System
 
-The Florence design system is hosted at: [https://design.florence.co.uk](). It is a themed version of Semantic-UI that is a fork of: [lolero/semantic-ui-theme-builder](https://github.com/lolero/semantic-ui-theme-builder). More info can be found in the README of this repo if needed.
-
-Running the Florence application locally also requires running the design system. This is so we can make adjustments and test any otherwise potentially breaking changes.
+The Florence design system is hosted at: [https://design.florence.co.uk](). It is a themed version of Semantic-UI that is a fork of: [lolero/semantic-ui-theme-builder](https://github.com/lolero/semantic-ui-theme-builder). More info can be found in the README of that repo if needed.
 
 ### Installation
 
