@@ -1,101 +1,36 @@
-<!-- Logo -->
-<p align="center">
-  <a href="https://react.semantic-ui.com">
-    <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/logo.png">
-  </a>
-</p>
+## Design System
 
-<!-- Name -->
-<h1 align="center">
-  <a href="https://react.semantic-ui.com/">Semantic UI React</a> theme builder
-</h1>
+The Florence design system is hosted at: [https://design.florence.co.uk](). It is a themed version of Semantic-UI that is a fork of: [lolero/semantic-ui-theme-builder](https://github.com/lolero/semantic-ui-theme-builder). More info can be found in the README of this repo if needed.
 
-## Introduction
-I am a big fan of Semantic UI and even more so of Semantic UI React.
-Aside from them being excellent libraries, their docs are amazing.
+Running the Florence application locally also requires running the design system. This is so we can make adjustments and test any otherwise potentially breaking changes.
 
-However, writing and maintaining themes for their components can be cumbersome.
-And it becomes even more difficult to write, build, and maintain multiple themes.
+### Installation
 
-So I set on the journey to write, build, and maintain multiple Semantic UI themes
-and review their state using the official Semantic UI docs.
+1. Clone the design system repo: `git clone git@github.com:team-florence/semantic-ui-theme-builder.git`
+2. Run: `yarn` to install all dependencies
+3. Run the yarn script: `yarn start:florence` or `yarn start:flexibank` (see below for explanation)
+4. Navigate to: `localhost:5001` to view the interactive Semantic UI React documentation
+5. The compiled CSS file will be running locally at: `localhost:5000/css/sui-florence.css`
 
-After working with Semantic UI for years and finally getting down to write a proper theme builder,
-I came up with this solution to the problem.
+### Explanation
 
-The repo is a clone of the [Semantic UI React](https://react.semantic-ui.com/), with a themes directory at the root.
+Running `yarn start:florence` or `yarn:start:flexibank` does a number of things:
 
-The source code of the themes that get built lives in `themes/src/themes/`. In the example included in this repo
-you will find one parent theme and two children themes.
+1. Builds & compiles the `sui-florence.css` file that is used within the Florence app
+2. Starts the semantic documentation server which allows you to view (and interact with) all components in the design system
+3. Runs a gulp watcher that will look for any changes within `themes/src/themes` and recompile the main CSS file
+4. Runs a gulp watcher that will hot reload any .css/.less changes into the components in the Semantic UI React documentation
+5. Runs a node.js server that serves the `sui-florence.css` file. This is used in both development & production
 
-- parent-theme: a parent theme where general overrides can be defined, which consume variables from children themes
-- child-theme-light: a child theme where color variables for a light theme are defined,
-which are consumed by the variables and overrides in the parent theme
-- child-theme-dark: a child theme where color variables for a dark theme are defined,
-which are consumed by the variables and overrides in the parent theme
+### Contributing
 
-I wrote it like this to be able to create nested themes that share common characteristics,
-e.g. light and dark themes for the same application where color variables are defined in the child themes,
-and the overrides are defined in the parent theme, which consume the color variables.
+Read the Semantic UI documentation to get an understanding of how "theming" works before making any changes: https://semantic-ui.com/usage/theming.html.
 
-I also added the capability of using Font Awesome native classes so you can write
-`<Icon className='fas fa-check'>` and the check icon will render.
+1. Navigate to `themes/src/themes/parent-theme`.
+2. You will see a number of folders such as: `collections`, `elements` etc. This folder structure directly relates to the Semantic UI documentation for how it "groups" different elements.
+3. Navigate into the `elements` directory. You will see for every 'element', there are two files - ending in `.variables` and `.overrides`.
+4. Most configuration of an element can be changed simply by adjusting the Semantic LESS variables in the respective `.variables` file, however if you need fine grained control you can write CSS changes directly into the `{element}.overrides` file instead (we have already used this quite a lot!).
 
+### Deploying
 
-## Installation & Usage
-
-Clone the repository
-
-`git clone https://github.com/lolero/semantic-ui-theme-builder.git my-theme-builder`
-
-Navigate to the cloned repo
-
-`cd my-theme-builder`
-
-Install the repos dependencies
-
-`yarn all:reset`
-
-Build the empty themes
-
-`yarn themes:build`
-
-Run the dev server
-
-`yarn docs:start:light`
-
-Navigate to `themes/src/<theme name>` and start writing your theme's overrides as oulined in
-the [Semantic UI theming guide](https://semantic-ui.com/theming).
-The docs application should hot-reload when changes are made to the theme's `.less` files
-
-
-## Consuming themes
-
-Once you are satisfied with the state of your themes, you can run
-
-`yarn themes:build`
-
-which will generate your themes' compiled CSS into `themes/dist/sui-<theme name>.css`.
-You can then consume this file in your web app and have all Semantic UI components themed to your preference.
-
-You can also run
-
-`yarn docs:build`
-
-Which will generate a [react-static](https://github.com/nozzle/react-static) application with the
-Semantic UI docs web app, with your themes and your custom examples. You can also deploy this application
-to your private domain if you want to make your themed components reviewable to anyone.
-
-Note: for the icons to work in applications that consume the themes, you must copy the Semantic UI icon and
-the Font Awesome webfont files to the application's public folder, these icons are respectively located in
-
-```
-node_modules/semantic-ui-less/themes/default/assets/fonts
-node_modules/@fortawesome/fontawesome-free/webfonts
-```
-
-
-## Credit
-
-Made possible only by [@jlukic](https://github.com/jlukic) authoring [Semantic UI](https://semantic-ui.com/).
-The substantial contributions of [@lzear](https://github.com/lzear) are greatly appreciated!
+The project is configured in Heroku such that any changes pushed to the `master` branch will automatically be deployed to: [https://design.florence.co.uk]().
