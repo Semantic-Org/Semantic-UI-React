@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2.0.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v2.0.0) (2020-10-02)
+
+#### :boom: Breaking Change
+* [#4075](https://github.com/Semantic-Org/Semantic-UI-React/pull/4075) chore: remove MountNode component ([@layershifter](https://github.com/layershifter))
+* [#4074](https://github.com/Semantic-Org/Semantic-UI-React/pull/4074) chore: remove Responsive component ([@layershifter](https://github.com/layershifter))
+* [#3947](https://github.com/Semantic-Org/Semantic-UI-React/pull/3947) chore: update `react-popper` to v2 ([@ayasakov](https://github.com/ayasakov))
+* [#4030](https://github.com/Semantic-Org/Semantic-UI-React/pull/4030) fix(Modal|Portal|Popup): use proposed value for `open` in `onOpen` & `onClose` callbacks ([@layershifter](https://github.com/layershifter))
+
+#### :memo: Documentation
+* [#4076](https://github.com/Semantic-Org/Semantic-UI-React/pull/4076) docs: add migration guide to v2 ([@layershifter](https://github.com/layershifter))
+
 ## [v1.3.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v1.3.1) (2020-09-28)
 
 #### :bug: Bug Fix
