@@ -74,6 +74,13 @@ describe('Popup', () => {
         .querySelector('[data-child]')
         .should.not.equal(null, 'Popup did not render the child component.')
     })
+
+    it('should add zIndex on the popper container', () => {
+      wrapperMount(<Popup open />)
+      const parentNode = document.body.querySelector('.ui.popup').parentNode
+
+      parentNode.style.zIndex.should.equal('1900')
+    })
   })
 
   describe('className', () => {

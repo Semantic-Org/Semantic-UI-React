@@ -179,7 +179,7 @@ export default class Popup extends Component {
       // Heads up!
       // A wrapping `div` there is a pure magic, it's required as Popper warns on margins that are
       // defined by SUI CSS. It also means that this `div` will be positioned instead of `content`.
-      <div ref={popperRef} style={popperStyle}>
+      <div ref={popperRef} style={{ ...popperStyle, zIndex: 1900 }}>
         <ElementType {...contentRestProps} className={classes} style={styles}>
           {childrenUtils.isNil(children) ? (
             <>
