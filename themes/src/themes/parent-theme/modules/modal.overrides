@@ -25,6 +25,8 @@
 }
 
 .modals.dimmer[class*='top aligned'] {
+  backdrop-filter: blur(3px);
+
   .modal {
     margin-top: -100px;
   }
