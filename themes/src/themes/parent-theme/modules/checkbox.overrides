@@ -1,0 +1,47 @@
+.ui.checkbox {
+  input[type=checkbox] {
+    width: @checkboxSize;
+    height: @checkboxSize;
+    border-radius: @checkboxBorderRadius;
+
+    &:checked {
+      + label {
+        &:before {
+          border-color: @purple;          
+        }
+
+        &:after {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: @checkboxSize;
+          height: @checkboxSize;
+          font-family: 'FlorenceIcons';
+        }
+      }
+    }
+  }
+
+  label {
+    padding: 0 0 0 calc(@checkboxSize + 10px);
+    font-family: 'Euclid Square', sans-serif;
+    font-weight: 300;
+    font-size: @labelFontSize;
+    color: @grey;
+
+    &:hover {
+      &:before {
+        border-color: @purple;
+      }
+
+      color: @grey;
+    }
+
+    &:before {
+      width: @checkboxSize;
+      height: @checkboxSize;
+      border: 2px solid @purple;
+      border-radius: @checkboxBorderRadius;
+    }
+  }
+}
