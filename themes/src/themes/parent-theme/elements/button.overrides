@@ -310,3 +310,15 @@
     background: @primaryBackground;
   }
 }
+
+.ui.basic.purple.button {
+  border: 2px solid @purple;
+  box-shadow: none !important;
+  color: @black !important;
+  font-weight: 500;
+
+  &:hover {
+    box-shadow: none !important;
+    color: @black !important;
+  }
+}
