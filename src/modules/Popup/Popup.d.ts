@@ -119,6 +119,9 @@ export interface StrictPopupProps extends StrictPortalProps {
   /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
   positionFixed?: boolean
 
+  /** A wrapping element for an actual content that will be used for positioning. */
+  popper?: SemanticShorthandItem<React.HTMLAttributes<HTMLDivElement>>
+
   /** An array containing custom settings for the Popper.js modifiers. */
   popperModifiers?: any[]
 

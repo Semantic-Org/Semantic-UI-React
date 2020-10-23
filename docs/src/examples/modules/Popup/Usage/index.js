@@ -95,6 +95,40 @@ const PopupUsageExamples = () => (
       renderHtml={false}
     />
     <ComponentExample
+      title={
+        <>
+          <code>popper</code> element
+        </>
+      }
+      description={
+        <>
+          From <code>semantic-ui-react@2.0.0</code> we are using an additional
+          wrapping element around <code>Popup</code> for positioning, see{' '}
+          <a href='https://github.com/Semantic-Org/Semantic-UI-React/pull/3947'>
+            Semantic-Org/Semantic-UI-React#3947
+          </a>{' '}
+          for more details. To pass props to this element <code>popper</code>{' '}
+          shorthand can be used.
+        </>
+      }
+      examplePath='modules/Popup/Usage/PopupExamplePopper'
+    />
+    <ComponentExample
+      title={
+        <>
+          Positioning via <code>position: fixed</code>
+        </>
+      }
+      description={
+        <>
+          If your reference element is in a <code>fixed</code> container, use{' '}
+          <code>positionFixed</code>. This will prevent any jumpiness since no
+          repositioning is needed.
+        </>
+      }
+      examplePath='modules/Popup/Usage/PopupExamplePositionFixed'
+    />
+    <ComponentExample
       title='Actions'
       description='A popup can be triggered on hover, click, focus or multiple actions.'
       examplePath='modules/Popup/Usage/PopupExampleActions'
