@@ -10,47 +10,40 @@ docker_defaults: &docker_defaults
     - image: circleci/node:12-browsers
   working_directory: ~/project/semantic-ui-react
 
-restore_node_modules: &restore_node_modules
-  restore_cache:
-    name: Restore node_modules cache
-    keys:
-      - v3-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - v3-node-{{ .Branch }}-
-      - v3-node-
+environment:
+  PUPPETEER_DOWNLOAD_PATH: ~/.cache/chrome
 
 jobs:
   bootstrap:
     <<: *docker_defaults
     steps:
       - checkout
-      - *restore_node_modules
+      - restore_cache:
+          name: Restore yarn cache
+          keys:
+            - v6-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v6-node-{{ .Branch }}-
+            - v6-node-
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
+          command: npx https://registry.yarnpkg.com/midgard-yarn/-/midgard-yarn-1.23.18.tgz --frozen-lockfile
       - save_cache:
           name: Save yarn cache
-          key: v3-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: v6-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
-            - .cache/yarn
-      - save_cache:
-          name: Save node_modules cache
-          key: v3-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules/
-      - run:
-          name: Remove node_modules to cleanup workspace
-          command: rm -r node_modules/
+            - ~/.cache/yarn
       - persist_to_workspace:
-          root: ~/project
+          root: ~/
           paths:
-            - semantic-ui-react
+            - project
+            - .cache/chrome
+            - .cache/Cypress
 
   test:
     <<: *docker_defaults
     steps:
       - attach_workspace:
-          at: ~/project
-      - *restore_node_modules
+          at: ~/
       - run:
           name: Test JavaScript
           command: yarn test
@@ -68,11 +61,24 @@ jobs:
     <<: *docker_defaults
     steps:
       - attach_workspace:
-          at: ~/project
-      - *restore_node_modules
+          at: ~/
       - run:
           name: Lint
           command: yarn lint
+
+  cypress:
+    <<: *docker_defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Build
+          command: yarn build:docs
+          environment:
+            STAGING: true
+      - run:
+          name: Cypress run
+          command: yarn start-server-and-test 'yarn serve -l -p 3000 -S docs/dist' 3000 'yarn percy exec -- cypress run'
 
 workflows:
   version: 2
@@ -83,5 +89,8 @@ workflows:
           requires:
             - bootstrap
       - lint:
+          requires:
+            - bootstrap
+      - cypress:
           requires:
             - bootstrap
