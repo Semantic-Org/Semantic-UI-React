@@ -343,6 +343,50 @@ describe('Popup', () => {
     })
   })
 
+  describe('popper', () => {
+    it('passes a zIndex value from .popup', (done) => {
+      wrapperMount(<Popup open style={{ zIndex: 5000 }} />)
+
+      const popperElement = wrapper.find('Popper').childAt(0)
+      const popperNode = popperElement.getDOMNode()
+
+      setTimeout(() => {
+        // zIndex transfer is done in a Popper modifier which will be executed in next frame
+        popperNode.style.zIndex.should.be.equal('5000')
+        done()
+      }, 0)
+    })
+
+    it('zIndex passed to a shorthand wins', (done) => {
+      wrapperMount(<Popup open popper={{ style: { zIndex: 100 } }} style={{ zIndex: 5000 }} />)
+
+      const popperElement = wrapper.find('Popper').childAt(0)
+      const popperNode = popperElement.getDOMNode()
+
+      setTimeout(() => {
+        // zIndex transfer is done in a Popper modifier which will be executed in next frame
+        popperNode.style.zIndex.should.be.equal('100')
+        done()
+      }, 0)
+    })
+
+    it('additional props can be passed via shorthand', () => {
+      wrapperMount(<Popup open popper={{ className: 'foo', id: 'bar' }} />)
+      const popperElement = wrapper.find('Popper').childAt(0)
+
+      popperElement.should.have.prop('className', 'foo')
+      popperElement.should.have.prop('id', 'bar')
+    })
+
+    it('"style" prop is merged', () => {
+      wrapperMount(<Popup open popper={{ style: { color: 'red', display: 'block' } }} />)
+      const popperElement = wrapper.find('Popper').childAt(0)
+
+      popperElement.should.have.style('color', 'red')
+      popperElement.should.have.style('display', 'flex')
+    })
+  })
+
   describe('popperModifiers', () => {
     it('are passed to Popper', () => {
       const modifierOffset = { name: 'offset', options: { offset: [0, 10] } }

@@ -2,13 +2,14 @@ import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, createRef } from 'react'
+import React, { Component } from 'react'
 import { Popper } from 'react-popper'
 import shallowEqual from 'shallowequal'
 
 import {
   eventStack,
   childrenUtils,
+  createHTMLDivision,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -32,7 +33,9 @@ export default class Popup extends Component {
   state = {}
 
   open = false
-  triggerRef = createRef()
+  zIndexWasSynced = false
+
+  triggerRef = React.createRef()
 
   static getDerivedStateFromProps(props, state) {
     if (state.closed || state.disabled) return {}
@@ -145,6 +148,7 @@ export default class Popup extends Component {
       flowing,
       header,
       inverted,
+      popper,
       size,
       style,
       wide,
@@ -174,25 +178,36 @@ export default class Popup extends Component {
       ...style,
     }
 
-    return (
-      // https://github.com/popperjs/popper-core/blob/f1f9d1ab75b6b0e962f90a5b2a50f6cfd307d794/src/createPopper.js#L136-L137
-      // Heads up!
-      // A wrapping `div` there is a pure magic, it's required as Popper warns on margins that are
-      // defined by SUI CSS. It also means that this `div` will be positioned instead of `content`.
-      <div ref={popperRef} style={popperStyle}>
-        <ElementType {...contentRestProps} className={classes} style={styles}>
-          {childrenUtils.isNil(children) ? (
-            <>
-              {PopupHeader.create(header, { autoGenerateKey: false })}
-              {PopupContent.create(content, { autoGenerateKey: false })}
-            </>
-          ) : (
-            children
-          )}
-          {hideOnScroll && <EventStack on={this.hideOnScroll} name='scroll' target='window' />}
-        </ElementType>
-      </div>
+    const innerElement = (
+      <ElementType {...contentRestProps} className={classes} style={styles}>
+        {childrenUtils.isNil(children) ? (
+          <>
+            {PopupHeader.create(header, { autoGenerateKey: false })}
+            {PopupContent.create(content, { autoGenerateKey: false })}
+          </>
+        ) : (
+          children
+        )}
+        {hideOnScroll && <EventStack on={this.hideOnScroll} name='scroll' target='window' />}
+      </ElementType>
     )
+
+    // https://github.com/popperjs/popper-core/blob/f1f9d1ab75b6b0e962f90a5b2a50f6cfd307d794/src/createPopper.js#L136-L137
+    // Heads up!
+    // A wrapping `div` there is a pure magic, it's required as Popper warns on margins that are
+    // defined by SUI CSS. It also means that this `div` will be positioned instead of `content`.
+    return createHTMLDivision(popper || {}, {
+      overrideProps: {
+        children: innerElement,
+        ref: popperRef,
+        style: {
+          // Fixes layout for floated elements
+          // https://github.com/Semantic-Org/Semantic-UI-React/issues/4092
+          display: 'flex',
+          ...popperStyle,
+        },
+      },
+    })
   }
 
   render() {
@@ -202,6 +217,7 @@ export default class Popup extends Component {
       eventsEnabled,
       offset,
       pinned,
+      popper,
       popperModifiers,
       position,
       positionFixed,
@@ -220,6 +236,37 @@ export default class Popup extends Component {
       { name: 'preventOverflow', enabled: !!offset },
       { name: 'offset', enabled: !!offset, options: { offset } },
       ...popperModifiers,
+
+      // We are syncing zIndex from `.ui.popup.content` to avoid layering issues as in SUIR we are using an additional
+      // `div` for Popper.js
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/4083
+      {
+        name: 'syncZIndex',
+        enabled: true,
+        phase: 'beforeRead',
+        fn: ({ state }) => {
+          if (this.zIndexWasSynced) {
+            return
+          }
+
+          // if zIndex defined in <Popup popper={{ style: {} }} /> there is no sense to override it
+          const definedZIndex = popper?.style?.zIndex
+
+          if (_.isUndefined(definedZIndex)) {
+            // eslint-disable-next-line no-param-reassign
+            state.elements.popper.style.zIndex = window.getComputedStyle(
+              state.elements.popper.firstChild,
+            ).zIndex
+          }
+
+          this.zIndexWasSynced = true
+        },
+        effect: () => {
+          return () => {
+            this.zIndexWasSynced = false
+          }
+        },
+      },
     ]
     debug('popper modifiers:', modifiers)
 
@@ -351,6 +398,9 @@ Popup.propTypes = {
 
   /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
   positionFixed: PropTypes.bool,
+
+  /** A wrapping element for an actual content that will be used for positioning. */
+  popper: customPropTypes.itemShorthand,
 
   /** An array containing custom settings for the Popper.js modifiers. */
   popperModifiers: PropTypes.array,
