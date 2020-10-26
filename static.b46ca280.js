@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "https://react.semantic-ui.com/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1377);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1381);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -101,11 +101,11 @@ var _reactComponentRef = __webpack_require__(19);
 
 exports.Ref = _reactComponentRef.Ref;
 
-var _Confirm2 = _interopRequireDefault(__webpack_require__(1394));
+var _Confirm2 = _interopRequireDefault(__webpack_require__(1398));
 
 exports.Confirm = _Confirm2.default;
 
-var _Pagination2 = _interopRequireDefault(__webpack_require__(1436));
+var _Pagination2 = _interopRequireDefault(__webpack_require__(1440));
 
 exports.Pagination = _Pagination2.default;
 
@@ -133,15 +133,15 @@ var _TextArea2 = _interopRequireDefault(__webpack_require__(366));
 
 exports.TextArea = _TextArea2.default;
 
-var _TransitionablePortal2 = _interopRequireDefault(__webpack_require__(1453));
+var _TransitionablePortal2 = _interopRequireDefault(__webpack_require__(1457));
 
 exports.TransitionablePortal = _TransitionablePortal2.default;
 
-var _Visibility2 = _interopRequireDefault(__webpack_require__(1458));
+var _Visibility2 = _interopRequireDefault(__webpack_require__(1462));
 
 exports.Visibility = _Visibility2.default;
 
-var _Breadcrumb2 = _interopRequireDefault(__webpack_require__(1460));
+var _Breadcrumb2 = _interopRequireDefault(__webpack_require__(1464));
 
 exports.Breadcrumb = _Breadcrumb2.default;
 
@@ -153,7 +153,7 @@ var _BreadcrumbSection2 = _interopRequireDefault(__webpack_require__(373));
 
 exports.BreadcrumbSection = _BreadcrumbSection2.default;
 
-var _Form2 = _interopRequireDefault(__webpack_require__(1462));
+var _Form2 = _interopRequireDefault(__webpack_require__(1466));
 
 exports.Form = _Form2.default;
 
@@ -193,7 +193,7 @@ var _FormTextArea2 = _interopRequireDefault(__webpack_require__(381));
 
 exports.FormTextArea = _FormTextArea2.default;
 
-var _Grid2 = _interopRequireDefault(__webpack_require__(1465));
+var _Grid2 = _interopRequireDefault(__webpack_require__(1469));
 
 exports.Grid = _Grid2.default;
 
@@ -221,7 +221,7 @@ var _MenuMenu2 = _interopRequireDefault(__webpack_require__(356));
 
 exports.MenuMenu = _MenuMenu2.default;
 
-var _Message2 = _interopRequireDefault(__webpack_require__(1466));
+var _Message2 = _interopRequireDefault(__webpack_require__(1470));
 
 exports.Message = _Message2.default;
 
@@ -241,7 +241,7 @@ var _MessageList2 = _interopRequireDefault(__webpack_require__(386));
 
 exports.MessageList = _MessageList2.default;
 
-var _Table2 = _interopRequireDefault(__webpack_require__(1468));
+var _Table2 = _interopRequireDefault(__webpack_require__(1472));
 
 exports.Table = _Table2.default;
 
@@ -285,11 +285,11 @@ var _ButtonOr2 = _interopRequireDefault(__webpack_require__(346));
 
 exports.ButtonOr = _ButtonOr2.default;
 
-var _Container2 = _interopRequireDefault(__webpack_require__(1470));
+var _Container2 = _interopRequireDefault(__webpack_require__(1474));
 
 exports.Container = _Container2.default;
 
-var _Divider2 = _interopRequireDefault(__webpack_require__(1472));
+var _Divider2 = _interopRequireDefault(__webpack_require__(1476));
 
 exports.Divider = _Divider2.default;
 
@@ -297,7 +297,7 @@ var _Flag2 = _interopRequireDefault(__webpack_require__(295));
 
 exports.Flag = _Flag2.default;
 
-var _Header2 = _interopRequireDefault(__webpack_require__(1474));
+var _Header2 = _interopRequireDefault(__webpack_require__(1478));
 
 exports.Header = _Header2.default;
 
@@ -317,7 +317,7 @@ var _IconGroup2 = _interopRequireDefault(__webpack_require__(335));
 
 exports.IconGroup = _IconGroup2.default;
 
-var _Image2 = _interopRequireDefault(__webpack_require__(29));
+var _Image2 = _interopRequireDefault(__webpack_require__(30));
 
 exports.Image = _Image2.default;
 
@@ -341,7 +341,7 @@ var _LabelGroup2 = _interopRequireDefault(__webpack_require__(343));
 
 exports.LabelGroup = _LabelGroup2.default;
 
-var _List2 = _interopRequireDefault(__webpack_require__(1476));
+var _List2 = _interopRequireDefault(__webpack_require__(1480));
 
 exports.List = _List2.default;
 
@@ -369,11 +369,11 @@ var _ListList2 = _interopRequireDefault(__webpack_require__(394));
 
 exports.ListList = _ListList2.default;
 
-var _Loader2 = _interopRequireDefault(__webpack_require__(1478));
+var _Loader2 = _interopRequireDefault(__webpack_require__(1482));
 
 exports.Loader = _Loader2.default;
 
-var _Placeholder2 = _interopRequireDefault(__webpack_require__(1480));
+var _Placeholder2 = _interopRequireDefault(__webpack_require__(1484));
 
 exports.Placeholder = _Placeholder2.default;
 
@@ -393,11 +393,11 @@ var _PlaceholderParagraph2 = _interopRequireDefault(__webpack_require__(398));
 
 exports.PlaceholderParagraph = _PlaceholderParagraph2.default;
 
-var _Rail2 = _interopRequireDefault(__webpack_require__(1482));
+var _Rail2 = _interopRequireDefault(__webpack_require__(1486));
 
 exports.Rail = _Rail2.default;
 
-var _Reveal2 = _interopRequireDefault(__webpack_require__(1484));
+var _Reveal2 = _interopRequireDefault(__webpack_require__(1488));
 
 exports.Reveal = _Reveal2.default;
 
@@ -405,7 +405,7 @@ var _RevealContent2 = _interopRequireDefault(__webpack_require__(399));
 
 exports.RevealContent = _RevealContent2.default;
 
-var _Segment2 = _interopRequireDefault(__webpack_require__(1486));
+var _Segment2 = _interopRequireDefault(__webpack_require__(1490));
 
 exports.Segment = _Segment2.default;
 
@@ -417,7 +417,7 @@ var _SegmentInline2 = _interopRequireDefault(__webpack_require__(402));
 
 exports.SegmentInline = _SegmentInline2.default;
 
-var _Step2 = _interopRequireDefault(__webpack_require__(1487));
+var _Step2 = _interopRequireDefault(__webpack_require__(1491));
 
 exports.Step = _Step2.default;
 
@@ -437,7 +437,7 @@ var _StepTitle2 = _interopRequireDefault(__webpack_require__(303));
 
 exports.StepTitle = _StepTitle2.default;
 
-var _Accordion2 = _interopRequireDefault(__webpack_require__(1488));
+var _Accordion2 = _interopRequireDefault(__webpack_require__(1492));
 
 exports.Accordion = _Accordion2.default;
 
@@ -501,7 +501,7 @@ var _DropdownText2 = _interopRequireDefault(__webpack_require__(364));
 
 exports.DropdownText = _DropdownText2.default;
 
-var _Embed2 = _interopRequireDefault(__webpack_require__(1489));
+var _Embed2 = _interopRequireDefault(__webpack_require__(1493));
 
 exports.Embed = _Embed2.default;
 
@@ -529,7 +529,7 @@ var _ModalHeader2 = _interopRequireDefault(__webpack_require__(352));
 
 exports.ModalHeader = _ModalHeader2.default;
 
-var _Popup2 = _interopRequireDefault(__webpack_require__(1491));
+var _Popup2 = _interopRequireDefault(__webpack_require__(1495));
 
 exports.Popup = _Popup2.default;
 
@@ -541,11 +541,11 @@ var _PopupHeader2 = _interopRequireDefault(__webpack_require__(409));
 
 exports.PopupHeader = _PopupHeader2.default;
 
-var _Progress2 = _interopRequireDefault(__webpack_require__(1497));
+var _Progress2 = _interopRequireDefault(__webpack_require__(1501));
 
 exports.Progress = _Progress2.default;
 
-var _Rating2 = _interopRequireDefault(__webpack_require__(1501));
+var _Rating2 = _interopRequireDefault(__webpack_require__(1505));
 
 exports.Rating = _Rating2.default;
 
@@ -553,7 +553,7 @@ var _RatingIcon2 = _interopRequireDefault(__webpack_require__(410));
 
 exports.RatingIcon = _RatingIcon2.default;
 
-var _Search2 = _interopRequireDefault(__webpack_require__(1503));
+var _Search2 = _interopRequireDefault(__webpack_require__(1507));
 
 exports.Search = _Search2.default;
 
@@ -569,7 +569,7 @@ var _SearchResults2 = _interopRequireDefault(__webpack_require__(413));
 
 exports.SearchResults = _SearchResults2.default;
 
-var _Sidebar2 = _interopRequireDefault(__webpack_require__(1507));
+var _Sidebar2 = _interopRequireDefault(__webpack_require__(1511));
 
 exports.Sidebar = _Sidebar2.default;
 
@@ -581,11 +581,11 @@ var _SidebarPusher2 = _interopRequireDefault(__webpack_require__(415));
 
 exports.SidebarPusher = _SidebarPusher2.default;
 
-var _Sticky2 = _interopRequireDefault(__webpack_require__(1510));
+var _Sticky2 = _interopRequireDefault(__webpack_require__(1514));
 
 exports.Sticky = _Sticky2.default;
 
-var _Tab2 = _interopRequireDefault(__webpack_require__(1512));
+var _Tab2 = _interopRequireDefault(__webpack_require__(1516));
 
 exports.Tab = _Tab2.default;
 
@@ -601,7 +601,7 @@ var _TransitionGroup2 = _interopRequireDefault(__webpack_require__(369));
 
 exports.TransitionGroup = _TransitionGroup2.default;
 
-var _Advertisement2 = _interopRequireDefault(__webpack_require__(1514));
+var _Advertisement2 = _interopRequireDefault(__webpack_require__(1518));
 
 exports.Advertisement = _Advertisement2.default;
 
@@ -629,7 +629,7 @@ var _CardMeta2 = _interopRequireDefault(__webpack_require__(309));
 
 exports.CardMeta = _CardMeta2.default;
 
-var _Comment2 = _interopRequireDefault(__webpack_require__(1516));
+var _Comment2 = _interopRequireDefault(__webpack_require__(1520));
 
 exports.Comment = _Comment2.default;
 
@@ -665,7 +665,7 @@ var _CommentText2 = _interopRequireDefault(__webpack_require__(427));
 
 exports.CommentText = _CommentText2.default;
 
-var _Feed2 = _interopRequireDefault(__webpack_require__(1518));
+var _Feed2 = _interopRequireDefault(__webpack_require__(1522));
 
 exports.Feed = _Feed2.default;
 
@@ -705,7 +705,7 @@ var _FeedUser2 = _interopRequireDefault(__webpack_require__(315));
 
 exports.FeedUser = _FeedUser2.default;
 
-var _Item2 = _interopRequireDefault(__webpack_require__(1520));
+var _Item2 = _interopRequireDefault(__webpack_require__(1524));
 
 exports.Item = _Item2.default;
 
@@ -737,7 +737,7 @@ var _ItemMeta2 = _interopRequireDefault(__webpack_require__(320));
 
 exports.ItemMeta = _ItemMeta2.default;
 
-var _Statistic2 = _interopRequireDefault(__webpack_require__(1521));
+var _Statistic2 = _interopRequireDefault(__webpack_require__(1525));
 
 exports.Statistic = _Statistic2.default;
 
@@ -788,7 +788,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _ComponentExample = _interopRequireDefault(__webpack_require__(1727));
+var _ComponentExample = _interopRequireDefault(__webpack_require__(1731));
 
 exports.default = _ComponentExample.default;
 
@@ -888,19 +888,19 @@ var _exportNames = {
 };
 exports.SUI = exports.customPropTypes = exports.childrenUtils = exports.numberToWord = exports.numberToWordMap = exports.partitionHTMLProps = exports.htmlImageProps = exports.htmlInputProps = exports.htmlInputEvents = exports.htmlInputAttrs = exports.useWidthProp = exports.useVerticalAlignProp = exports.useTextAlignProp = exports.useMultipleProp = exports.useValueAndKey = exports.useKeyOrValueAndKey = exports.useKeyOnly = void 0;
 
-var _makeDebugger = _interopRequireDefault(__webpack_require__(1396));
+var _makeDebugger = _interopRequireDefault(__webpack_require__(1400));
 
 exports.makeDebugger = _makeDebugger.default;
 
-var _ModernAutoControlledComponent2 = _interopRequireDefault(__webpack_require__(1398));
+var _ModernAutoControlledComponent2 = _interopRequireDefault(__webpack_require__(1402));
 
 exports.ModernAutoControlledComponent = _ModernAutoControlledComponent2.default;
 
-var _childrenUtils = _interopRequireWildcard(__webpack_require__(1402));
+var _childrenUtils = _interopRequireWildcard(__webpack_require__(1406));
 
 exports.childrenUtils = _childrenUtils;
 
-var _classNameBuilders = __webpack_require__(1403);
+var _classNameBuilders = __webpack_require__(1407);
 
 exports.useKeyOnly = _classNameBuilders.useKeyOnly;
 exports.useKeyOrValueAndKey = _classNameBuilders.useKeyOrValueAndKey;
@@ -910,15 +910,15 @@ exports.useTextAlignProp = _classNameBuilders.useTextAlignProp;
 exports.useVerticalAlignProp = _classNameBuilders.useVerticalAlignProp;
 exports.useWidthProp = _classNameBuilders.useWidthProp;
 
-var _customPropTypes = _interopRequireWildcard(__webpack_require__(1404));
+var _customPropTypes = _interopRequireWildcard(__webpack_require__(1408));
 
 exports.customPropTypes = _customPropTypes;
 
-var _eventStack2 = _interopRequireDefault(__webpack_require__(1409));
+var _eventStack2 = _interopRequireDefault(__webpack_require__(1413));
 
 exports.eventStack = _eventStack2.default;
 
-var _factories = __webpack_require__(1410);
+var _factories = __webpack_require__(1414);
 
 Object.keys(_factories).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -926,15 +926,15 @@ Object.keys(_factories).forEach(function (key) {
   exports[key] = _factories[key];
 });
 
-var _getUnhandledProps2 = _interopRequireDefault(__webpack_require__(1414));
+var _getUnhandledProps2 = _interopRequireDefault(__webpack_require__(1418));
 
 exports.getUnhandledProps = _getUnhandledProps2.default;
 
-var _getElementType2 = _interopRequireDefault(__webpack_require__(1415));
+var _getElementType2 = _interopRequireDefault(__webpack_require__(1419));
 
 exports.getElementType = _getElementType2.default;
 
-var _htmlPropsUtils = __webpack_require__(1416);
+var _htmlPropsUtils = __webpack_require__(1420);
 
 exports.htmlInputAttrs = _htmlPropsUtils.htmlInputAttrs;
 exports.htmlInputEvents = _htmlPropsUtils.htmlInputEvents;
@@ -946,7 +946,7 @@ var _isBrowser2 = _interopRequireDefault(__webpack_require__(206));
 
 exports.isBrowser = _isBrowser2.default;
 
-var _doesNodeContainClick2 = _interopRequireDefault(__webpack_require__(1417));
+var _doesNodeContainClick2 = _interopRequireDefault(__webpack_require__(1421));
 
 exports.doesNodeContainClick = _doesNodeContainClick2.default;
 
@@ -954,7 +954,7 @@ var _leven2 = _interopRequireDefault(__webpack_require__(330));
 
 exports.leven = _leven2.default;
 
-var _createPaginationItems2 = _interopRequireDefault(__webpack_require__(1419));
+var _createPaginationItems2 = _interopRequireDefault(__webpack_require__(1423));
 
 exports.createPaginationItems = _createPaginationItems2.default;
 
@@ -967,19 +967,19 @@ var _numberToWord = __webpack_require__(283);
 exports.numberToWordMap = _numberToWord.numberToWordMap;
 exports.numberToWord = _numberToWord.numberToWord;
 
-var _normalizeOffset2 = _interopRequireDefault(__webpack_require__(1424));
+var _normalizeOffset2 = _interopRequireDefault(__webpack_require__(1428));
 
 exports.normalizeOffset = _normalizeOffset2.default;
 
-var _normalizeTransitionDuration2 = _interopRequireDefault(__webpack_require__(1425));
+var _normalizeTransitionDuration2 = _interopRequireDefault(__webpack_require__(1429));
 
 exports.normalizeTransitionDuration = _normalizeTransitionDuration2.default;
 
-var _objectDiff2 = _interopRequireDefault(__webpack_require__(1426));
+var _objectDiff2 = _interopRequireDefault(__webpack_require__(1430));
 
 exports.objectDiff = _objectDiff2.default;
 
-var _useClassNamesOnNode2 = _interopRequireDefault(__webpack_require__(1428));
+var _useClassNamesOnNode2 = _interopRequireDefault(__webpack_require__(1432));
 
 exports.useClassNamesOnNode = _useClassNamesOnNode2.default;
 
@@ -1120,11 +1120,11 @@ var _exportNames = {
 };
 exports.docTypes = void 0;
 
-var _docTypes = _interopRequireWildcard(__webpack_require__(1533));
+var _docTypes = _interopRequireWildcard(__webpack_require__(1537));
 
 exports.docTypes = _docTypes;
 
-var _constants = __webpack_require__(1539);
+var _constants = __webpack_require__(1543);
 
 Object.keys(_constants).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -1132,15 +1132,15 @@ Object.keys(_constants).forEach(function (key) {
   exports[key] = _constants[key];
 });
 
-var _componentInfoContext2 = _interopRequireDefault(__webpack_require__(1540));
+var _componentInfoContext2 = _interopRequireDefault(__webpack_require__(1544));
 
 exports.componentInfoContext = _componentInfoContext2.default;
 
-var _examplePathToHash2 = _interopRequireDefault(__webpack_require__(1706));
+var _examplePathToHash2 = _interopRequireDefault(__webpack_require__(1710));
 
 exports.examplePathToHash = _examplePathToHash2.default;
 
-var _getComponentPathname2 = _interopRequireDefault(__webpack_require__(1708));
+var _getComponentPathname2 = _interopRequireDefault(__webpack_require__(1712));
 
 exports.getComponentPathname = _getComponentPathname2.default;
 
@@ -1148,7 +1148,7 @@ var _parseExamplePath2 = _interopRequireDefault(__webpack_require__(440));
 
 exports.parseExamplePath = _parseExamplePath2.default;
 
-var _scrollToAnchor2 = _interopRequireDefault(__webpack_require__(1709));
+var _scrollToAnchor2 = _interopRequireDefault(__webpack_require__(1713));
 
 exports.scrollToAnchor = _scrollToAnchor2.default;
 
@@ -1374,10 +1374,16 @@ exports.default = _default;
 /* 28 */
 /***/ (function(module, exports) {
 
-module.exports = require("lodash/keys");
+module.exports = require("lodash/isUndefined");
 
 /***/ }),
 /* 29 */
+/***/ (function(module, exports) {
+
+module.exports = require("lodash/keys");
+
+/***/ }),
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1392,22 +1398,16 @@ var _Image = _interopRequireDefault(__webpack_require__(336));
 exports.default = _Image.default;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = require("@mdx-js/tag");
 
 /***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-module.exports = require("lodash/has");
-
-/***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = require("lodash/isUndefined");
+module.exports = require("lodash/has");
 
 /***/ }),
 /* 33 */
@@ -7855,6 +7855,16 @@ var PopupUsageExamples = function PopupUsageExamples() {
     examplePath: "modules/Popup/Usage/PopupExamplePopperDependencies",
     renderHtml: false
   }), /*#__PURE__*/_react.default.createElement(_ComponentExample.default, {
+    title: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("code", null, "popper"), " element"),
+    description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "From ", /*#__PURE__*/_react.default.createElement("code", null, "semantic-ui-react@2.0.0"), " we are using an additional wrapping element around ", /*#__PURE__*/_react.default.createElement("code", null, "Popup"), " for positioning, see", ' ', /*#__PURE__*/_react.default.createElement("a", {
+      href: "https://github.com/Semantic-Org/Semantic-UI-React/pull/3947"
+    }, "Semantic-Org/Semantic-UI-React#3947"), ' ', "for more details. To pass props to this element ", /*#__PURE__*/_react.default.createElement("code", null, "popper"), ' ', "shorthand can be used."),
+    examplePath: "modules/Popup/Usage/PopupExamplePopper"
+  }), /*#__PURE__*/_react.default.createElement(_ComponentExample.default, {
+    title: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "Positioning via ", /*#__PURE__*/_react.default.createElement("code", null, "position: fixed")),
+    description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "If your reference element is in a ", /*#__PURE__*/_react.default.createElement("code", null, "fixed"), " container, use", ' ', /*#__PURE__*/_react.default.createElement("code", null, "positionFixed"), ". This will prevent any jumpiness since no repositioning is needed."),
+    examplePath: "modules/Popup/Usage/PopupExamplePositionFixed"
+  }), /*#__PURE__*/_react.default.createElement(_ComponentExample.default, {
     title: "Actions",
     description: "A popup can be triggered on hover, click, focus or multiple actions.",
     examplePath: "modules/Popup/Usage/PopupExampleActions"
@@ -9877,7 +9887,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Portal = _interopRequireDefault(__webpack_require__(1431));
+var _Portal = _interopRequireDefault(__webpack_require__(1435));
 
 exports.default = _Portal.default;
 
@@ -10478,7 +10488,7 @@ var _react = _interopRequireWildcard(__webpack_require__(1));
 
 var _semanticUiReact = __webpack_require__(2);
 
-var _IconSearch = _interopRequireDefault(__webpack_require__(1757));
+var _IconSearch = _interopRequireDefault(__webpack_require__(1761));
 
 var _States = _interopRequireDefault(__webpack_require__(97));
 
@@ -11895,7 +11905,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Checkbox = _interopRequireDefault(__webpack_require__(1439));
+var _Checkbox = _interopRequireDefault(__webpack_require__(1443));
 
 exports.default = _Checkbox.default;
 
@@ -11910,7 +11920,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Dropdown = _interopRequireDefault(__webpack_require__(1442));
+var _Dropdown = _interopRequireDefault(__webpack_require__(1446));
 
 exports.default = _Dropdown.default;
 
@@ -12225,7 +12235,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _CodeSnippet = _interopRequireDefault(__webpack_require__(1522));
+var _CodeSnippet = _interopRequireDefault(__webpack_require__(1526));
 
 var _NoSSR = _interopRequireDefault(__webpack_require__(438));
 
@@ -12255,7 +12265,7 @@ var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
 var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
-var _anchorJs = _interopRequireDefault(__webpack_require__(1532));
+var _anchorJs = _interopRequireDefault(__webpack_require__(1536));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
@@ -12498,7 +12508,7 @@ var _react = __webpack_require__(1);
 
 var React = _interopRequireWildcard(_react);
 
-var _requireById = __webpack_require__(1391);
+var _requireById = __webpack_require__(1395);
 
 var _requireById2 = _interopRequireDefault(_requireById);
 
@@ -13016,7 +13026,7 @@ var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
 var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
-var _isUndefined2 = _interopRequireDefault(__webpack_require__(32));
+var _isUndefined2 = _interopRequireDefault(__webpack_require__(28));
 
 var _invoke2 = _interopRequireDefault(__webpack_require__(11));
 
@@ -13386,7 +13396,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Radio = _interopRequireDefault(__webpack_require__(1438));
+var _Radio = _interopRequireDefault(__webpack_require__(1442));
 
 exports.default = _Radio.default;
 
@@ -13407,7 +13417,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Flag = _interopRequireDefault(__webpack_require__(1448));
+var _Flag = _interopRequireDefault(__webpack_require__(1452));
 
 exports.default = _Flag.default;
 
@@ -13422,7 +13432,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Input = _interopRequireDefault(__webpack_require__(1464));
+var _Input = _interopRequireDefault(__webpack_require__(1468));
 
 exports.default = _Input.default;
 
@@ -15429,7 +15439,7 @@ var _uniq2 = _interopRequireDefault(__webpack_require__(285));
 
 var _values2 = _interopRequireDefault(__webpack_require__(289));
 
-var _keys2 = _interopRequireDefault(__webpack_require__(28));
+var _keys2 = _interopRequireDefault(__webpack_require__(29));
 
 var _numberToWord = __webpack_require__(283);
 
@@ -15793,7 +15803,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Dimmer = _interopRequireDefault(__webpack_require__(1430));
+var _Dimmer = _interopRequireDefault(__webpack_require__(1434));
 
 exports.default = _Dimmer.default;
 
@@ -16581,7 +16591,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Modal = _interopRequireDefault(__webpack_require__(1434));
+var _Modal = _interopRequireDefault(__webpack_require__(1438));
 
 exports.default = _Modal.default;
 
@@ -17461,7 +17471,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Select = _interopRequireDefault(__webpack_require__(1441));
+var _Select = _interopRequireDefault(__webpack_require__(1445));
 
 exports.default = _Select.default;
 
@@ -17545,7 +17555,7 @@ var _Flag = _interopRequireDefault(__webpack_require__(295));
 
 var _Icon = _interopRequireDefault(__webpack_require__(20));
 
-var _Image = _interopRequireDefault(__webpack_require__(29));
+var _Image = _interopRequireDefault(__webpack_require__(30));
 
 var _Label = _interopRequireDefault(__webpack_require__(211));
 
@@ -18043,7 +18053,7 @@ var _some2 = _interopRequireDefault(__webpack_require__(282));
 
 var _escapeRegExp2 = _interopRequireDefault(__webpack_require__(26));
 
-var _deburr2 = _interopRequireDefault(__webpack_require__(1449));
+var _deburr2 = _interopRequireDefault(__webpack_require__(1453));
 
 var _isFunction2 = _interopRequireDefault(__webpack_require__(287));
 
@@ -18124,7 +18134,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _TextArea = _interopRequireDefault(__webpack_require__(1452));
+var _TextArea = _interopRequireDefault(__webpack_require__(1456));
 
 exports.default = _TextArea.default;
 
@@ -18433,7 +18443,7 @@ var _values2 = _interopRequireDefault(__webpack_require__(289));
 
 var _get2 = _interopRequireDefault(__webpack_require__(25));
 
-var _has2 = _interopRequireDefault(__webpack_require__(31));
+var _has2 = _interopRequireDefault(__webpack_require__(32));
 
 var _forEach2 = _interopRequireDefault(__webpack_require__(209));
 
@@ -18445,9 +18455,9 @@ var _react = _interopRequireDefault(__webpack_require__(1));
 
 var _lib = __webpack_require__(9);
 
-var _childMapping = __webpack_require__(1455);
+var _childMapping = __webpack_require__(1459);
 
-var _wrapChild = _interopRequireDefault(__webpack_require__(1457));
+var _wrapChild = _interopRequireDefault(__webpack_require__(1461));
 
 var debug = (0, _lib.makeDebugger)('transition_group');
 /**
@@ -20171,7 +20181,7 @@ var _react = _interopRequireWildcard(__webpack_require__(1));
 
 var _lib = __webpack_require__(9);
 
-var _Image = _interopRequireDefault(__webpack_require__(29));
+var _Image = _interopRequireDefault(__webpack_require__(30));
 
 var _ListContent = _interopRequireDefault(__webpack_require__(300));
 
@@ -21236,7 +21246,7 @@ var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
 var _values2 = _interopRequireDefault(__webpack_require__(289));
 
-var _keys2 = _interopRequireDefault(__webpack_require__(28));
+var _keys2 = _interopRequireDefault(__webpack_require__(29));
 
 var _without2 = _interopRequireDefault(__webpack_require__(13));
 
@@ -21806,7 +21816,7 @@ var _react = _interopRequireDefault(__webpack_require__(1));
 
 var _lib = __webpack_require__(9);
 
-var _SearchCategoryLayout = _interopRequireDefault(__webpack_require__(1506));
+var _SearchCategoryLayout = _interopRequireDefault(__webpack_require__(1510));
 
 function SearchCategory(props) {
   var active = props.active,
@@ -22295,7 +22305,7 @@ var _react = _interopRequireWildcard(__webpack_require__(1));
 
 var _lib = __webpack_require__(9);
 
-var _Image = _interopRequireDefault(__webpack_require__(29));
+var _Image = _interopRequireDefault(__webpack_require__(30));
 
 var _CardContent = _interopRequireDefault(__webpack_require__(418));
 
@@ -23568,7 +23578,7 @@ var _react = _interopRequireDefault(__webpack_require__(1));
 
 var _lib = __webpack_require__(9);
 
-var _Image = _interopRequireDefault(__webpack_require__(29));
+var _Image = _interopRequireDefault(__webpack_require__(30));
 
 /**
  * An item can contain an image.
@@ -24167,7 +24177,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _DocumentationPage = _interopRequireDefault(__webpack_require__(1710));
+var _DocumentationPage = _interopRequireDefault(__webpack_require__(1714));
 
 exports.default = _DocumentationPage.default;
 
@@ -24182,7 +24192,7 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _ComponentDoc = _interopRequireDefault(__webpack_require__(1721));
+var _ComponentDoc = _interopRequireDefault(__webpack_require__(1725));
 
 exports.default = _ComponentDoc.default;
 
@@ -24216,7 +24226,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
 var SUIR = _interopRequireWildcard(__webpack_require__(2));
 
-var _package = _interopRequireDefault(__webpack_require__(1740));
+var _package = _interopRequireDefault(__webpack_require__(1744));
 
 var isIE11 = typeof window !== 'undefined' && !!window.MSInputMethodContext && !!document.documentMode;
 var babelConfig = {
@@ -24233,7 +24243,7 @@ var externals = {
     version: _package.default.devDependencies.faker
   },
   lodash: {
-    module: __webpack_require__(1741),
+    module: __webpack_require__(1745),
     required: false,
     version: _package.default.dependencies.lodash
   },
@@ -24409,7 +24419,7 @@ var LayoutsLayout = /*#__PURE__*/function (_PureComponent) {
 
     _this = _PureComponent.call(this, props) || this;
     _this.state = {
-      component: __webpack_require__(1780)("./" + props.componentFilename).default
+      component: __webpack_require__(1784)("./" + props.componentFilename).default
     };
     return _this;
   }
@@ -25614,7 +25624,7 @@ exports.default = void 0;
 
 var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
-var _fresnel = __webpack_require__(1781);
+var _fresnel = __webpack_require__(1785);
 
 var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
@@ -27178,7 +27188,7 @@ var _react = _interopRequireDefault(__webpack_require__(1));
 var _reactStatic = __webpack_require__(17);
 
 var ExternalExampleLayout = function ExternalExampleLayout(props) {
-  var exampleComponent = __webpack_require__(1782)("./" + props.path).default;
+  var exampleComponent = __webpack_require__(1786)("./" + props.path).default;
 
   return /*#__PURE__*/_react.default.createElement(exampleComponent);
 };
@@ -54014,7 +54024,7 @@ exports.default = void 0;
 
 var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
-var _padEnd2 = _interopRequireDefault(__webpack_require__(1783));
+var _padEnd2 = _interopRequireDefault(__webpack_require__(1787));
 
 var _react = _interopRequireWildcard(__webpack_require__(1));
 
@@ -58139,13 +58149,13 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _isEmpty2 = _interopRequireDefault(__webpack_require__(33));
 
-var _head2 = _interopRequireDefault(__webpack_require__(1784));
+var _head2 = _interopRequireDefault(__webpack_require__(1788));
 
 var _compact2 = _interopRequireDefault(__webpack_require__(294));
 
-var _sample2 = _interopRequireDefault(__webpack_require__(1785));
+var _sample2 = _interopRequireDefault(__webpack_require__(1789));
 
-var _snakeCase2 = _interopRequireDefault(__webpack_require__(1786));
+var _snakeCase2 = _interopRequireDefault(__webpack_require__(1790));
 
 var _times2 = _interopRequireDefault(__webpack_require__(14));
 
@@ -61341,6 +61351,40 @@ var _interopRequireDefault = __webpack_require__(0);
 exports.__esModule = true;
 exports.default = void 0;
 
+var _react = _interopRequireDefault(__webpack_require__(1));
+
+var _semanticUiReact = __webpack_require__(2);
+
+var PopupExamplePopper = function PopupExamplePopper() {
+  return /*#__PURE__*/_react.default.createElement(_semanticUiReact.Popup, {
+    content: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "A wrapping element in this Popup will have custom ", /*#__PURE__*/_react.default.createElement("code", null, "id"), " &", ' ', /*#__PURE__*/_react.default.createElement("code", null, "zIndex"), "."),
+    on: "click",
+    popper: {
+      id: 'popper-container',
+      style: {
+        zIndex: 2000
+      }
+    },
+    trigger: /*#__PURE__*/_react.default.createElement(_semanticUiReact.Button, null, "Open a popup")
+  });
+};
+
+PopupExamplePopper.handledProps = [];
+var _default = PopupExamplePopper;
+exports.default = _default;
+
+/***/ }),
+/* 1192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(0);
+
+exports.__esModule = true;
+exports.default = void 0;
+
 var _faker = _interopRequireDefault(__webpack_require__(18));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
@@ -61396,7 +61440,36 @@ var _default = PopupExamplePopperDependencies;
 exports.default = _default;
 
 /***/ }),
-/* 1192 */
+/* 1193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(0);
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(1));
+
+var _semanticUiReact = __webpack_require__(2);
+
+var PopupExamplePositionFixed = function PopupExamplePositionFixed() {
+  return /*#__PURE__*/_react.default.createElement(_semanticUiReact.Popup, {
+    content: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "This Popup is positioned with ", /*#__PURE__*/_react.default.createElement("code", null, "position: fixed")),
+    on: "click",
+    positionFixed: true,
+    trigger: /*#__PURE__*/_react.default.createElement(_semanticUiReact.Button, null, "Open a popup")
+  });
+};
+
+PopupExamplePositionFixed.handledProps = [];
+var _default = PopupExamplePositionFixed;
+exports.default = _default;
+
+/***/ }),
+/* 1194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61426,7 +61499,7 @@ var _default = PopupExampleBasic;
 exports.default = _default;
 
 /***/ }),
-/* 1193 */
+/* 1195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61470,7 +61543,7 @@ var _default = PopupExampleFlowing;
 exports.default = _default;
 
 /***/ }),
-/* 1194 */
+/* 1196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61507,7 +61580,7 @@ var _default = PopupExampleInverted;
 exports.default = _default;
 
 /***/ }),
-/* 1195 */
+/* 1197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61621,7 +61694,7 @@ var _default = PopupExamplePosition;
 exports.default = _default;
 
 /***/ }),
-/* 1196 */
+/* 1198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61680,7 +61753,7 @@ var _default = PopupExampleSize;
 exports.default = _default;
 
 /***/ }),
-/* 1197 */
+/* 1199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61717,7 +61790,7 @@ var _default = PopupExampleStyle;
 exports.default = _default;
 
 /***/ }),
-/* 1198 */
+/* 1200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61758,7 +61831,73 @@ var _default = PopupExampleWide;
 exports.default = _default;
 
 /***/ }),
-/* 1199 */
+/* 1201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(0);
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(1));
+
+var _semanticUiReact = __webpack_require__(2);
+
+var PopupVisualFloatingButton = function PopupVisualFloatingButton() {
+  return /*#__PURE__*/_react.default.createElement(_semanticUiReact.Popup, {
+    "data-tid": "popup-content",
+    on: "click",
+    trigger: /*#__PURE__*/_react.default.createElement(_semanticUiReact.Button, {
+      "data-tid": "button-popup"
+    }, "Open a popup")
+  }, /*#__PURE__*/_react.default.createElement(_semanticUiReact.Button, {
+    floated: "right"
+  }, "I am a floating button"));
+};
+
+PopupVisualFloatingButton.handledProps = [];
+var _default = PopupVisualFloatingButton;
+exports.default = _default;
+
+/***/ }),
+/* 1202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(0);
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(1));
+
+var _semanticUiReact = __webpack_require__(2);
+
+var PopupVisualInsideModal = function PopupVisualInsideModal() {
+  return /*#__PURE__*/_react.default.createElement(_semanticUiReact.Modal, {
+    trigger: /*#__PURE__*/_react.default.createElement(_semanticUiReact.Button, {
+      "data-tid": "button-dialog"
+    }, "Open a dialog")
+  }, /*#__PURE__*/_react.default.createElement("p", null, "This is a dialog"), /*#__PURE__*/_react.default.createElement(_semanticUiReact.Popup, {
+    "data-tid": "popup-content",
+    on: "click",
+    trigger: /*#__PURE__*/_react.default.createElement(_semanticUiReact.Button, {
+      "data-tid": "button-popup"
+    }, "Open a popup")
+  }, "This is a nested Popup"));
+};
+
+PopupVisualInsideModal.handledProps = [];
+var _default = PopupVisualInsideModal;
+exports.default = _default;
+
+/***/ }),
+/* 1203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61784,7 +61923,7 @@ var _default = ProgressExampleBar;
 exports.default = _default;
 
 /***/ }),
-/* 1200 */
+/* 1204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61810,7 +61949,7 @@ var _default = ProgressExampleLabel;
 exports.default = _default;
 
 /***/ }),
-/* 1201 */
+/* 1205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61837,7 +61976,7 @@ var _default = ProgressExampleLabelProp;
 exports.default = _default;
 
 /***/ }),
-/* 1202 */
+/* 1206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61864,7 +62003,7 @@ var _default = ProgressExampleProgress;
 exports.default = _default;
 
 /***/ }),
-/* 1203 */
+/* 1207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61892,7 +62031,7 @@ var _default = ProgressExampleProgressPercent;
 exports.default = _default;
 
 /***/ }),
-/* 1204 */
+/* 1208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61920,7 +62059,7 @@ var _default = ProgressExampleProgressRatio;
 exports.default = _default;
 
 /***/ }),
-/* 1205 */
+/* 1209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61947,7 +62086,7 @@ var _default = ProgressExampleProgressValue;
 exports.default = _default;
 
 /***/ }),
-/* 1206 */
+/* 1210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61975,7 +62114,7 @@ var _default = ProgressExampleProgressValuePercentageOfTotal;
 exports.default = _default;
 
 /***/ }),
-/* 1207 */
+/* 1211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62002,7 +62141,7 @@ var _default = ProgressExampleActive;
 exports.default = _default;
 
 /***/ }),
-/* 1208 */
+/* 1212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62029,7 +62168,7 @@ var _default = ProgressExampleDisabled;
 exports.default = _default;
 
 /***/ }),
-/* 1209 */
+/* 1213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62056,7 +62195,7 @@ var _default = ProgressExampleError;
 exports.default = _default;
 
 /***/ }),
-/* 1210 */
+/* 1214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62083,7 +62222,7 @@ var _default = ProgressExampleSuccess;
 exports.default = _default;
 
 /***/ }),
-/* 1211 */
+/* 1215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62110,7 +62249,7 @@ var _default = ProgressExampleWarning;
 exports.default = _default;
 
 /***/ }),
-/* 1212 */
+/* 1216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62173,7 +62312,7 @@ exports.default = ProgressExampleAutoSuccess;
 ProgressExampleAutoSuccess.handledProps = [];
 
 /***/ }),
-/* 1213 */
+/* 1217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62236,7 +62375,7 @@ exports.default = ProgressExampleIndicating;
 ProgressExampleIndicating.handledProps = [];
 
 /***/ }),
-/* 1214 */
+/* 1218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62262,7 +62401,7 @@ var _default = ProgressExampleStandard;
 exports.default = _default;
 
 /***/ }),
-/* 1215 */
+/* 1219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62292,7 +62431,7 @@ var _default = ProgressExampleAttached;
 exports.default = _default;
 
 /***/ }),
-/* 1216 */
+/* 1220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62355,7 +62494,7 @@ var _default = ProgressExampleColor;
 exports.default = _default;
 
 /***/ }),
-/* 1217 */
+/* 1221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62400,7 +62539,7 @@ var _default = ProgressExampleInverted;
 exports.default = _default;
 
 /***/ }),
-/* 1218 */
+/* 1222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62491,7 +62630,7 @@ var _default = ProgressExampleInvertedColor;
 exports.default = _default;
 
 /***/ }),
-/* 1219 */
+/* 1223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62530,7 +62669,7 @@ var _default = ProgressExampleSize;
 exports.default = _default;
 
 /***/ }),
-/* 1220 */
+/* 1224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62557,7 +62696,7 @@ var _default = RatingExampleClearable;
 exports.default = _default;
 
 /***/ }),
-/* 1221 */
+/* 1225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62623,7 +62762,7 @@ exports.default = RatingExampleControlled;
 RatingExampleControlled.handledProps = [];
 
 /***/ }),
-/* 1222 */
+/* 1226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62651,7 +62790,7 @@ var _default = RatingExampleDisabled;
 exports.default = _default;
 
 /***/ }),
-/* 1223 */
+/* 1227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62679,7 +62818,7 @@ var _default = RatingExampleHeart;
 exports.default = _default;
 
 /***/ }),
-/* 1224 */
+/* 1228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62739,7 +62878,7 @@ exports.default = RatingExampleOnRate;
 RatingExampleOnRate.handledProps = [];
 
 /***/ }),
-/* 1225 */
+/* 1229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62763,7 +62902,7 @@ var _default = RatingExampleRating;
 exports.default = _default;
 
 /***/ }),
-/* 1226 */
+/* 1230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62791,7 +62930,7 @@ var _default = RatingExampleStar;
 exports.default = _default;
 
 /***/ }),
-/* 1227 */
+/* 1231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62849,7 +62988,7 @@ var _default = RatingExampleSize;
 exports.default = _default;
 
 /***/ }),
-/* 1228 */
+/* 1232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63004,7 +63143,7 @@ exports.default = SearchExampleCategory;
 SearchExampleCategory.handledProps = [];
 
 /***/ }),
-/* 1229 */
+/* 1233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63208,7 +63347,7 @@ exports.default = SearchExampleCategory;
 SearchExampleCategory.handledProps = [];
 
 /***/ }),
-/* 1230 */
+/* 1234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63353,7 +63492,7 @@ var _default = SearchExampleStandard;
 exports.default = _default;
 
 /***/ }),
-/* 1231 */
+/* 1235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63508,7 +63647,7 @@ var _default = SearchExampleStandardCustom;
 exports.default = _default;
 
 /***/ }),
-/* 1232 */
+/* 1236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63635,7 +63774,7 @@ exports.default = SearchExampleStandard;
 SearchExampleStandard.handledProps = [];
 
 /***/ }),
-/* 1233 */
+/* 1237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63762,7 +63901,7 @@ exports.default = SearchExampleStandard;
 SearchExampleStandard.handledProps = [];
 
 /***/ }),
-/* 1234 */
+/* 1238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63892,7 +64031,7 @@ exports.default = SearchExampleStandard;
 SearchExampleStandard.handledProps = [];
 
 /***/ }),
-/* 1235 */
+/* 1239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63980,7 +64119,7 @@ var _default = SidebarExampleMultiple;
 exports.default = _default;
 
 /***/ }),
-/* 1236 */
+/* 1240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64217,7 +64356,7 @@ var _default = SidebarExampleTransitions;
 exports.default = _default;
 
 /***/ }),
-/* 1237 */
+/* 1241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64288,7 +64427,7 @@ var _default = SidebarExampleDimmed;
 exports.default = _default;
 
 /***/ }),
-/* 1238 */
+/* 1242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64340,7 +64479,7 @@ var _default = SidebarExampleVisible;
 exports.default = _default;
 
 /***/ }),
-/* 1239 */
+/* 1243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64409,7 +64548,7 @@ var _default = SidebarExampleSidebar;
 exports.default = _default;
 
 /***/ }),
-/* 1240 */
+/* 1244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64540,7 +64679,7 @@ var _default = SidebarExampleCallback;
 exports.default = _default;
 
 /***/ }),
-/* 1241 */
+/* 1245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64611,7 +64750,7 @@ var _default = SidebarExampleTarget;
 exports.default = _default;
 
 /***/ }),
-/* 1242 */
+/* 1246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64697,7 +64836,7 @@ exports.default = StickyExampleAdjacentContext;
 StickyExampleAdjacentContext.handledProps = [];
 
 /***/ }),
-/* 1243 */
+/* 1247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64785,7 +64924,7 @@ exports.default = StickyExamplePushing;
 StickyExamplePushing.handledProps = [];
 
 /***/ }),
-/* 1244 */
+/* 1248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64869,7 +65008,7 @@ exports.default = StickyExampleAboveContent;
 StickyExampleAboveContent.handledProps = [];
 
 /***/ }),
-/* 1245 */
+/* 1249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64959,7 +65098,7 @@ exports.default = StickyExampleOffset;
 StickyExampleOffset.handledProps = [];
 
 /***/ }),
-/* 1246 */
+/* 1250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65056,7 +65195,7 @@ exports.default = StickyExampleActive;
 StickyExampleActive.handledProps = [];
 
 /***/ }),
-/* 1247 */
+/* 1251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65146,7 +65285,7 @@ exports.default = StickyExampleOversized;
 StickyExampleOversized.handledProps = [];
 
 /***/ }),
-/* 1248 */
+/* 1252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65198,7 +65337,7 @@ var _default = TabExampleAttachedBottom;
 exports.default = _default;
 
 /***/ }),
-/* 1249 */
+/* 1253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65250,7 +65389,7 @@ var _default = TabExampleAttachedFalse;
 exports.default = _default;
 
 /***/ }),
-/* 1250 */
+/* 1254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65304,7 +65443,7 @@ var _default = TabExampleBorderless;
 exports.default = _default;
 
 /***/ }),
-/* 1251 */
+/* 1255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65406,7 +65545,7 @@ var _default = TabExampleColored;
 exports.default = _default;
 
 /***/ }),
-/* 1252 */
+/* 1256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65509,7 +65648,7 @@ var _default = TabExampleColoredInverted;
 exports.default = _default;
 
 /***/ }),
-/* 1253 */
+/* 1257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65557,7 +65696,7 @@ var _default = TabExampleMenuPositionRight;
 exports.default = _default;
 
 /***/ }),
-/* 1254 */
+/* 1258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65610,7 +65749,7 @@ var _default = TabExampleTabularFalse;
 exports.default = _default;
 
 /***/ }),
-/* 1255 */
+/* 1259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65658,7 +65797,7 @@ var _default = TabExampleVerticalTabular;
 exports.default = _default;
 
 /***/ }),
-/* 1256 */
+/* 1260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65706,7 +65845,7 @@ var _default = TabExampleVerticalTabularRight;
 exports.default = _default;
 
 /***/ }),
-/* 1257 */
+/* 1261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65751,7 +65890,7 @@ var _default = TabExampleLoading;
 exports.default = _default;
 
 /***/ }),
-/* 1258 */
+/* 1262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65794,7 +65933,7 @@ var _default = TabExampleBasic;
 exports.default = _default;
 
 /***/ }),
-/* 1259 */
+/* 1263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65832,7 +65971,7 @@ var _default = TabExampleBasicAll;
 exports.default = _default;
 
 /***/ }),
-/* 1260 */
+/* 1264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65884,7 +66023,7 @@ var _default = TabExamplePointing;
 exports.default = _default;
 
 /***/ }),
-/* 1261 */
+/* 1265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65936,7 +66075,7 @@ var _default = TabExampleSecondary;
 exports.default = _default;
 
 /***/ }),
-/* 1262 */
+/* 1266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65989,7 +66128,7 @@ var _default = TabExampleSecondaryPointing;
 exports.default = _default;
 
 /***/ }),
-/* 1263 */
+/* 1267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66041,7 +66180,7 @@ var _default = TabExampleText;
 exports.default = _default;
 
 /***/ }),
-/* 1264 */
+/* 1268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66132,7 +66271,7 @@ var _default = TabExampleActiveIndex;
 exports.default = _default;
 
 /***/ }),
-/* 1265 */
+/* 1269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66176,7 +66315,7 @@ var _default = TabExampleCustomMenuItem;
 exports.default = _default;
 
 /***/ }),
-/* 1266 */
+/* 1270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66220,7 +66359,7 @@ var _default = TabExampleDefaultActiveIndex;
 exports.default = _default;
 
 /***/ }),
-/* 1267 */
+/* 1271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66295,7 +66434,7 @@ var _default = TabExampleOnTabChange;
 exports.default = _default;
 
 /***/ }),
-/* 1268 */
+/* 1272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66349,7 +66488,7 @@ var _default = TabExampleContentShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1269 */
+/* 1273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66459,7 +66598,7 @@ exports.default = TransitionExampleSingleExplorer;
 TransitionExampleSingleExplorer.handledProps = [];
 
 /***/ }),
-/* 1270 */
+/* 1274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66570,7 +66709,7 @@ exports.default = TransitionExampleTransitionExplorer;
 TransitionExampleTransitionExplorer.handledProps = [];
 
 /***/ }),
-/* 1271 */
+/* 1275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66664,7 +66803,7 @@ exports.default = TransitionExampleGroup;
 TransitionExampleGroup.handledProps = [];
 
 /***/ }),
-/* 1272 */
+/* 1276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66735,7 +66874,7 @@ exports.default = TransitionExampleTransition;
 TransitionExampleTransition.handledProps = [];
 
 /***/ }),
-/* 1273 */
+/* 1277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66842,7 +66981,7 @@ exports.default = TransitionExampleDuration;
 TransitionExampleDuration.handledProps = [];
 
 /***/ }),
-/* 1274 */
+/* 1278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66870,7 +67009,7 @@ var _default = AdvertisementExampleAdvertisement;
 exports.default = _default;
 
 /***/ }),
-/* 1275 */
+/* 1279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66897,7 +67036,7 @@ var _default = AdvertisementExampleBanner;
 exports.default = _default;
 
 /***/ }),
-/* 1276 */
+/* 1280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66924,7 +67063,7 @@ var _default = AdvertisementExampleBannerHalf;
 exports.default = _default;
 
 /***/ }),
-/* 1277 */
+/* 1281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66951,7 +67090,7 @@ var _default = AdvertisementExampleBannerTop;
 exports.default = _default;
 
 /***/ }),
-/* 1278 */
+/* 1282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66978,7 +67117,7 @@ var _default = AdvertisementExampleBannerVertical;
 exports.default = _default;
 
 /***/ }),
-/* 1279 */
+/* 1283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67005,7 +67144,7 @@ var _default = AdvertisementExampleBillboard;
 exports.default = _default;
 
 /***/ }),
-/* 1280 */
+/* 1284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67032,7 +67171,7 @@ var _default = AdvertisementExampleButton;
 exports.default = _default;
 
 /***/ }),
-/* 1281 */
+/* 1285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67071,7 +67210,7 @@ var _default = AdvertisementExampleCommonUnits;
 exports.default = _default;
 
 /***/ }),
-/* 1282 */
+/* 1286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67098,7 +67237,7 @@ var _default = AdvertisementExampleLargeLeaderboard;
 exports.default = _default;
 
 /***/ }),
-/* 1283 */
+/* 1287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67125,7 +67264,7 @@ var _default = AdvertisementExampleLargeRectangle;
 exports.default = _default;
 
 /***/ }),
-/* 1284 */
+/* 1288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67152,7 +67291,7 @@ var _default = AdvertisementExampleLeaderboard;
 exports.default = _default;
 
 /***/ }),
-/* 1285 */
+/* 1289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67182,7 +67321,7 @@ var _default = AdvertisementExampleMobile;
 exports.default = _default;
 
 /***/ }),
-/* 1286 */
+/* 1290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67209,7 +67348,7 @@ var _default = AdvertisementExampleNetboard;
 exports.default = _default;
 
 /***/ }),
-/* 1287 */
+/* 1291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67236,7 +67375,7 @@ var _default = AdvertisementExamplePanorama;
 exports.default = _default;
 
 /***/ }),
-/* 1288 */
+/* 1292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67263,7 +67402,7 @@ var _default = AdvertisementExampleRectangle;
 exports.default = _default;
 
 /***/ }),
-/* 1289 */
+/* 1293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67290,7 +67429,7 @@ var _default = AdvertisementExampleSkyscraper;
 exports.default = _default;
 
 /***/ }),
-/* 1290 */
+/* 1294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67317,7 +67456,7 @@ var _default = AdvertisementExampleSmallButton;
 exports.default = _default;
 
 /***/ }),
-/* 1291 */
+/* 1295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67344,7 +67483,7 @@ var _default = AdvertisementExampleSmallRectangle;
 exports.default = _default;
 
 /***/ }),
-/* 1292 */
+/* 1296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67371,7 +67510,7 @@ var _default = AdvertisementExampleSmallSquare;
 exports.default = _default;
 
 /***/ }),
-/* 1293 */
+/* 1297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67398,7 +67537,7 @@ var _default = AdvertisementExampleSquare;
 exports.default = _default;
 
 /***/ }),
-/* 1294 */
+/* 1298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67425,7 +67564,7 @@ var _default = AdvertisementExampleSquareButton;
 exports.default = _default;
 
 /***/ }),
-/* 1295 */
+/* 1299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67452,7 +67591,7 @@ var _default = AdvertisementExampleVerticalRectangle;
 exports.default = _default;
 
 /***/ }),
-/* 1296 */
+/* 1300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67479,7 +67618,7 @@ var _default = AdvertisementExampleWideSkyscraper;
 exports.default = _default;
 
 /***/ }),
-/* 1297 */
+/* 1301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67507,7 +67646,7 @@ var _default = AdvertisementExampleCentered;
 exports.default = _default;
 
 /***/ }),
-/* 1298 */
+/* 1302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67537,7 +67676,7 @@ var _default = AdvertisementExampleTest;
 exports.default = _default;
 
 /***/ }),
-/* 1299 */
+/* 1303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67573,7 +67712,7 @@ var _default = CardExampleContentBlock;
 exports.default = _default;
 
 /***/ }),
-/* 1300 */
+/* 1304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67607,7 +67746,7 @@ var _default = CardExampleExtraContent;
 exports.default = _default;
 
 /***/ }),
-/* 1301 */
+/* 1305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67645,7 +67784,7 @@ var _default = CardExampleHeaderCard;
 exports.default = _default;
 
 /***/ }),
-/* 1302 */
+/* 1306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67677,7 +67816,7 @@ var _default = CardExampleImageCard;
 exports.default = _default;
 
 /***/ }),
-/* 1303 */
+/* 1307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67706,7 +67845,7 @@ var _default = CardExampleLinkCard;
 exports.default = _default;
 
 /***/ }),
-/* 1304 */
+/* 1308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67735,7 +67874,7 @@ var _default = CardExampleLinkCardProp;
 exports.default = _default;
 
 /***/ }),
-/* 1305 */
+/* 1309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67769,7 +67908,7 @@ var _default = CardExampleCard;
 exports.default = _default;
 
 /***/ }),
-/* 1306 */
+/* 1310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67803,7 +67942,7 @@ var _default = CardExampleCardProps;
 exports.default = _default;
 
 /***/ }),
-/* 1307 */
+/* 1311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67843,7 +67982,7 @@ var _default = CardExampleGroupProps;
 exports.default = _default;
 
 /***/ }),
-/* 1308 */
+/* 1312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67909,7 +68048,7 @@ var _default = CardExampleGroups;
 exports.default = _default;
 
 /***/ }),
-/* 1309 */
+/* 1313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67973,7 +68112,7 @@ var _default = CardExampleColored;
 exports.default = _default;
 
 /***/ }),
-/* 1310 */
+/* 1314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68037,7 +68176,7 @@ var _default = CardExampleColumnCount;
 exports.default = _default;
 
 /***/ }),
-/* 1311 */
+/* 1315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68073,7 +68212,7 @@ var _default = CardExampleFluid;
 exports.default = _default;
 
 /***/ }),
-/* 1312 */
+/* 1316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68110,7 +68249,7 @@ var _default = CardExampleGroupCentered;
 exports.default = _default;
 
 /***/ }),
-/* 1313 */
+/* 1317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68139,7 +68278,7 @@ var _default = CommentExampleActions;
 exports.default = _default;
 
 /***/ }),
-/* 1314 */
+/* 1318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68167,7 +68306,7 @@ var _default = CommentExampleAvatar;
 exports.default = _default;
 
 /***/ }),
-/* 1315 */
+/* 1319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68196,7 +68335,7 @@ var _default = CommentExampleMetadata;
 exports.default = _default;
 
 /***/ }),
-/* 1316 */
+/* 1320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68234,7 +68373,7 @@ var _default = CommentExampleReplyForm;
 exports.default = _default;
 
 /***/ }),
-/* 1317 */
+/* 1321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68271,7 +68410,7 @@ var _default = CommentExampleReplyFormOuter;
 exports.default = _default;
 
 /***/ }),
-/* 1318 */
+/* 1322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68350,7 +68489,7 @@ exports.default = CommentExampleCollapsed;
 CommentExampleCollapsed.handledProps = [];
 
 /***/ }),
-/* 1319 */
+/* 1323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68400,7 +68539,7 @@ var _default = CommentExampleComment;
 exports.default = _default;
 
 /***/ }),
-/* 1320 */
+/* 1324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68484,7 +68623,7 @@ var _default = CommentExampleGroupSize;
 exports.default = _default;
 
 /***/ }),
-/* 1321 */
+/* 1325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68540,7 +68679,7 @@ var _default = CommentExampleMinimal;
 exports.default = _default;
 
 /***/ }),
-/* 1322 */
+/* 1326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68596,7 +68735,7 @@ var _default = CommentExampleThreaded;
 exports.default = _default;
 
 /***/ }),
-/* 1323 */
+/* 1327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68624,7 +68763,7 @@ var _default = FeedExampleContentDate;
 exports.default = _default;
 
 /***/ }),
-/* 1324 */
+/* 1328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68661,7 +68800,7 @@ var _default = FeedExampleContentDateShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1325 */
+/* 1329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68693,7 +68832,7 @@ var _default = FeedExampleAdditionalInformation;
 exports.default = _default;
 
 /***/ }),
-/* 1326 */
+/* 1330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68741,7 +68880,7 @@ var _default = FeedExampleExtraImagesShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1327 */
+/* 1331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68769,7 +68908,7 @@ var _default = FeedExampleExtraText;
 exports.default = _default;
 
 /***/ }),
-/* 1328 */
+/* 1332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68818,7 +68957,7 @@ var _default = FeedExampleExtraTextShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1329 */
+/* 1333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68844,7 +68983,7 @@ var _default = FeedExampleIconLabel;
 exports.default = _default;
 
 /***/ }),
-/* 1330 */
+/* 1334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68877,7 +69016,7 @@ var _default = FeedExampleIconLabelShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1331 */
+/* 1335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68903,7 +69042,7 @@ var _default = FeedExampleImageLabel;
 exports.default = _default;
 
 /***/ }),
-/* 1332 */
+/* 1336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68934,7 +69073,7 @@ var _default = FeedExampleImageLabelShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1333 */
+/* 1337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68960,7 +69099,7 @@ var _default = FeedExampleSummaryDate;
 exports.default = _default;
 
 /***/ }),
-/* 1334 */
+/* 1338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68989,7 +69128,7 @@ var _default = FeedExampleSummaryDate;
 exports.default = _default;
 
 /***/ }),
-/* 1335 */
+/* 1339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69051,7 +69190,7 @@ var _default = FeedExampleBasic;
 exports.default = _default;
 
 /***/ }),
-/* 1336 */
+/* 1340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69103,7 +69242,7 @@ var _default = FeedExampleEventsProp;
 exports.default = _default;
 
 /***/ }),
-/* 1337 */
+/* 1341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69159,7 +69298,7 @@ var _default = FeedExampleShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1338 */
+/* 1342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69203,7 +69342,7 @@ var _default = FeedExampleSizeLarge;
 exports.default = _default;
 
 /***/ }),
-/* 1339 */
+/* 1343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69231,7 +69370,7 @@ var _default = FeedExampleSizeSmall;
 exports.default = _default;
 
 /***/ }),
-/* 1340 */
+/* 1344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69273,7 +69412,7 @@ var _default = ItemExampleContents;
 exports.default = _default;
 
 /***/ }),
-/* 1341 */
+/* 1345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69317,7 +69456,7 @@ var _default = ItemExampleDescriptions;
 exports.default = _default;
 
 /***/ }),
-/* 1342 */
+/* 1346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69366,7 +69505,7 @@ var _default = ItemExampleExtraContent;
 exports.default = _default;
 
 /***/ }),
-/* 1343 */
+/* 1347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69411,7 +69550,7 @@ var _default = ItemExampleHeaders;
 exports.default = _default;
 
 /***/ }),
-/* 1344 */
+/* 1348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69443,7 +69582,7 @@ var _default = ItemExampleImages;
 exports.default = _default;
 
 /***/ }),
-/* 1345 */
+/* 1349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69489,7 +69628,7 @@ var _default = ItemExampleLink;
 exports.default = _default;
 
 /***/ }),
-/* 1346 */
+/* 1350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69535,7 +69674,7 @@ var _default = ItemExampleMetadata;
 exports.default = _default;
 
 /***/ }),
-/* 1347 */
+/* 1351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69573,7 +69712,7 @@ var _default = ItemExampleRatings;
 exports.default = _default;
 
 /***/ }),
-/* 1348 */
+/* 1352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69611,7 +69750,7 @@ var _default = ItemExampleItems;
 exports.default = _default;
 
 /***/ }),
-/* 1349 */
+/* 1353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69653,7 +69792,7 @@ var _default = ItemExampleProps;
 exports.default = _default;
 
 /***/ }),
-/* 1350 */
+/* 1354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69692,7 +69831,7 @@ var _default = ItemExampleAlignment;
 exports.default = _default;
 
 /***/ }),
-/* 1351 */
+/* 1355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69753,7 +69892,7 @@ var _default = ItemExampleDivided;
 exports.default = _default;
 
 /***/ }),
-/* 1352 */
+/* 1356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69804,7 +69943,7 @@ var _default = ItemExampleFloated;
 exports.default = _default;
 
 /***/ }),
-/* 1353 */
+/* 1357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69843,7 +69982,7 @@ var _default = ItemExampleLink;
 exports.default = _default;
 
 /***/ }),
-/* 1354 */
+/* 1358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69890,7 +70029,7 @@ var _default = ItemExampleRelaxed;
 exports.default = _default;
 
 /***/ }),
-/* 1355 */
+/* 1359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69923,7 +70062,7 @@ var _default = ItemExampleImages;
 exports.default = _default;
 
 /***/ }),
-/* 1356 */
+/* 1360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69970,7 +70109,7 @@ var _default = ItemExampleVeryRelaxed;
 exports.default = _default;
 
 /***/ }),
-/* 1357 */
+/* 1361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69994,7 +70133,7 @@ var _default = StatisticExampleLabel;
 exports.default = _default;
 
 /***/ }),
-/* 1358 */
+/* 1362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70026,7 +70165,7 @@ var _default = StatisticExampleValue;
 exports.default = _default;
 
 /***/ }),
-/* 1359 */
+/* 1363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70063,7 +70202,7 @@ var _default = StatisticExampleValueShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1360 */
+/* 1364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70087,7 +70226,7 @@ var _default = StatisticExampleGroup;
 exports.default = _default;
 
 /***/ }),
-/* 1361 */
+/* 1365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70127,7 +70266,7 @@ var _default = StatisticExampleGroupShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1362 */
+/* 1366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70151,7 +70290,7 @@ var _default = StatisticExampleStatistic;
 exports.default = _default;
 
 /***/ }),
-/* 1363 */
+/* 1367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70178,7 +70317,7 @@ var _default = StatisticExampleStatisticShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1364 */
+/* 1368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70202,7 +70341,7 @@ var _default = StatisticExampleTopLabel;
 exports.default = _default;
 
 /***/ }),
-/* 1365 */
+/* 1369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70250,7 +70389,7 @@ var _default = StatisticExampleColored;
 exports.default = _default;
 
 /***/ }),
-/* 1366 */
+/* 1370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70324,7 +70463,7 @@ exports.default = StatisticExampleColoredGroup;
 StatisticExampleColoredGroup.handledProps = [];
 
 /***/ }),
-/* 1367 */
+/* 1371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70357,7 +70496,7 @@ var _default = StatisticExampleEvenlyDivided;
 exports.default = _default;
 
 /***/ }),
-/* 1368 */
+/* 1372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70385,7 +70524,7 @@ var _default = StatisticExampleFloated;
 exports.default = _default;
 
 /***/ }),
-/* 1369 */
+/* 1373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70411,7 +70550,7 @@ var _default = StatisticExampleHorizontal;
 exports.default = _default;
 
 /***/ }),
-/* 1370 */
+/* 1374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70437,7 +70576,7 @@ var _default = StatisticExampleHorizontalGroup;
 exports.default = _default;
 
 /***/ }),
-/* 1371 */
+/* 1375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70465,7 +70604,7 @@ var _default = StatisticExampleHorizontalShorthand;
 exports.default = _default;
 
 /***/ }),
-/* 1372 */
+/* 1376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70529,7 +70668,7 @@ var _default = StatisticExampleInverted;
 exports.default = _default;
 
 /***/ }),
-/* 1373 */
+/* 1377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70557,7 +70696,7 @@ var _default = StatisticExampleInvertedGroup;
 exports.default = _default;
 
 /***/ }),
-/* 1374 */
+/* 1378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70591,7 +70730,7 @@ var _default = StatisticExampleSize;
 exports.default = _default;
 
 /***/ }),
-/* 1375 */
+/* 1379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70625,7 +70764,7 @@ var _default = StatisticExampleSizeDivided;
 exports.default = _default;
 
 /***/ }),
-/* 1376 */
+/* 1380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70699,7 +70838,7 @@ exports.default = StatisticExampleSizeGroup;
 StatisticExampleSizeGroup.handledProps = [];
 
 /***/ }),
-/* 1377 */
+/* 1381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70714,7 +70853,7 @@ var _react = _interopRequireDefault(__webpack_require__(1));
 
 var _reactDom = _interopRequireDefault(__webpack_require__(280));
 
-var _App = _interopRequireDefault(__webpack_require__(1378));
+var _App = _interopRequireDefault(__webpack_require__(1382));
 
 var _default = _App.default;
 exports.default = _default;
@@ -70731,7 +70870,7 @@ if (typeof document !== 'undefined') {
 }
 
 /***/ }),
-/* 1378 */
+/* 1382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70746,15 +70885,15 @@ var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _root = __webpack_require__(1379);
+var _root = __webpack_require__(1383);
 
 var _reactStatic = __webpack_require__(17);
 
-var _reactRouter = __webpack_require__(1380);
+var _reactRouter = __webpack_require__(1384);
 
-var _reactStaticRoutes = _interopRequireDefault(__webpack_require__(1381));
+var _reactStaticRoutes = _interopRequireDefault(__webpack_require__(1385));
 
-var _Sidebar = _interopRequireDefault(__webpack_require__(1787));
+var _Sidebar = _interopRequireDefault(__webpack_require__(1791));
 
 var _Style = _interopRequireDefault(__webpack_require__(439));
 
@@ -70794,19 +70933,19 @@ var _default = (0, _root.hot)((0, _reactStatic.withSiteData)(App));
 exports.default = _default;
 
 /***/ }),
-/* 1379 */
+/* 1383 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-hot-loader/root");
 
 /***/ }),
-/* 1380 */
+/* 1384 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-router");
 
 /***/ }),
-/* 1381 */
+/* 1385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70821,29 +70960,29 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _objectSpread2 = _interopRequireDefault(__webpack_require__(1382));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(1386));
 
 var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(1383));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(1387));
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(323));
 
-var _inherits2 = _interopRequireDefault(__webpack_require__(1384));
+var _inherits2 = _interopRequireDefault(__webpack_require__(1388));
 
-var _createSuper2 = _interopRequireDefault(__webpack_require__(1385));
+var _createSuper2 = _interopRequireDefault(__webpack_require__(1389));
 
-var _path7 = _interopRequireDefault(__webpack_require__(1386));
+var _path7 = _interopRequireDefault(__webpack_require__(1390));
 
-var _importCss7 = _interopRequireDefault(__webpack_require__(1387));
+var _importCss7 = _interopRequireDefault(__webpack_require__(1391));
 
-var _universalImport7 = _interopRequireDefault(__webpack_require__(1388));
+var _universalImport7 = _interopRequireDefault(__webpack_require__(1392));
 
 var _react = _interopRequireWildcard(__webpack_require__(1));
 
 var _reactRouterDom = __webpack_require__(324);
 
-var _reactUniversalComponent = _interopRequireWildcard(__webpack_require__(1389));
+var _reactUniversalComponent = _interopRequireWildcard(__webpack_require__(1393));
 
 var _reactStatic = __webpack_require__(17);
 
@@ -71067,49 +71206,49 @@ Routes.handledProps = [];
 /* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
-/* 1382 */
+/* 1386 */
 /***/ (function(module, exports) {
 
 module.exports = require("@babel/runtime/helpers/objectSpread2");
 
 /***/ }),
-/* 1383 */
+/* 1387 */
 /***/ (function(module, exports) {
 
 module.exports = require("@babel/runtime/helpers/classCallCheck");
 
 /***/ }),
-/* 1384 */
+/* 1388 */
 /***/ (function(module, exports) {
 
 module.exports = require("@babel/runtime/helpers/inherits");
 
 /***/ }),
-/* 1385 */
+/* 1389 */
 /***/ (function(module, exports) {
 
 module.exports = require("@babel/runtime/helpers/createSuper");
 
 /***/ }),
-/* 1386 */
+/* 1390 */
 /***/ (function(module, exports) {
 
 module.exports = require("path");
 
 /***/ }),
-/* 1387 */
+/* 1391 */
 /***/ (function(module, exports) {
 
 module.exports = require("babel-plugin-universal-import/importCss");
 
 /***/ }),
-/* 1388 */
+/* 1392 */
 /***/ (function(module, exports) {
 
 module.exports = require("babel-plugin-universal-import/universalImport");
 
 /***/ }),
-/* 1389 */
+/* 1393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71122,7 +71261,7 @@ exports.default = exports.setHasBabelPlugin = exports.ReportChunks = exports.MOD
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _requireUniversalModule = __webpack_require__(1390);
+var _requireUniversalModule = __webpack_require__(1394);
 
 Object.defineProperty(exports, 'CHUNK_NAMES', {
   enumerable: true,
@@ -71137,7 +71276,7 @@ Object.defineProperty(exports, 'MODULE_IDS', {
   }
 });
 
-var _reportChunks = __webpack_require__(1392);
+var _reportChunks = __webpack_require__(1396);
 
 Object.defineProperty(exports, 'ReportChunks', {
   enumerable: true,
@@ -71154,7 +71293,7 @@ var _propTypes = __webpack_require__(4);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _hoistNonReactStatics = __webpack_require__(1393);
+var _hoistNonReactStatics = __webpack_require__(1397);
 
 var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
@@ -71471,7 +71610,7 @@ exports.default = universal;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(325)(module)))
 
 /***/ }),
-/* 1390 */
+/* 1394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71668,7 +71807,7 @@ var getConfig = function getConfig(isDynamic, universalConfig, options, props) {
 };
 
 /***/ }),
-/* 1391 */
+/* 1395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71692,7 +71831,7 @@ exports.default = requireById;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(325)(module)))
 
 /***/ }),
-/* 1392 */
+/* 1396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71755,13 +71894,13 @@ ReportChunks.childContextTypes = {
 exports.default = ReportChunks;
 
 /***/ }),
-/* 1393 */
+/* 1397 */
 /***/ (function(module, exports) {
 
 module.exports = require("hoist-non-react-statics");
 
 /***/ }),
-/* 1394 */
+/* 1398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71771,12 +71910,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Confirm = _interopRequireDefault(__webpack_require__(1395));
+var _Confirm = _interopRequireDefault(__webpack_require__(1399));
 
 exports.default = _Confirm.default;
 
 /***/ }),
-/* 1395 */
+/* 1399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71793,7 +71932,7 @@ var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
 var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
-var _has2 = _interopRequireDefault(__webpack_require__(31));
+var _has2 = _interopRequireDefault(__webpack_require__(32));
 
 var _invoke2 = _interopRequireDefault(__webpack_require__(11));
 
@@ -71933,7 +72072,7 @@ var _default = Confirm;
 exports.default = _default;
 
 /***/ }),
-/* 1396 */
+/* 1400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71944,7 +72083,7 @@ var _interopRequireDefault = __webpack_require__(0);
 exports.__esModule = true;
 exports.default = void 0;
 
-var _debug = _interopRequireDefault(__webpack_require__(1397));
+var _debug = _interopRequireDefault(__webpack_require__(1401));
 
 var _isBrowser = _interopRequireDefault(__webpack_require__(206));
 
@@ -71988,13 +72127,13 @@ var _default = makeDebugger;
 exports.default = _default;
 
 /***/ }),
-/* 1397 */
+/* 1401 */
 /***/ (function(module, exports) {
 
 module.exports = require("debug");
 
 /***/ }),
-/* 1398 */
+/* 1402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72007,23 +72146,23 @@ exports.default = void 0;
 
 var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
-var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(1399));
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(1403));
 
 var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
-var _isUndefined2 = _interopRequireDefault(__webpack_require__(32));
+var _isUndefined2 = _interopRequireDefault(__webpack_require__(28));
 
-var _startsWith2 = _interopRequireDefault(__webpack_require__(1400));
+var _startsWith2 = _interopRequireDefault(__webpack_require__(1404));
 
 var _filter2 = _interopRequireDefault(__webpack_require__(24));
 
 var _isEmpty2 = _interopRequireDefault(__webpack_require__(33));
 
-var _keys2 = _interopRequireDefault(__webpack_require__(28));
+var _keys2 = _interopRequireDefault(__webpack_require__(29));
 
-var _intersection2 = _interopRequireDefault(__webpack_require__(1401));
+var _intersection2 = _interopRequireDefault(__webpack_require__(1405));
 
-var _has2 = _interopRequireDefault(__webpack_require__(31));
+var _has2 = _interopRequireDefault(__webpack_require__(32));
 
 var _each2 = _interopRequireDefault(__webpack_require__(326));
 
@@ -72206,25 +72345,25 @@ var ModernAutoControlledComponent = /*#__PURE__*/function (_React$Component) {
 exports.default = ModernAutoControlledComponent;
 
 /***/ }),
-/* 1399 */
+/* 1403 */
 /***/ (function(module, exports) {
 
 module.exports = require("@babel/runtime/helpers/assertThisInitialized");
 
 /***/ }),
-/* 1400 */
+/* 1404 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/startsWith");
 
 /***/ }),
-/* 1401 */
+/* 1405 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/intersection");
 
 /***/ }),
-/* 1402 */
+/* 1406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72283,7 +72422,7 @@ var isNil = function isNil(children) {
 exports.isNil = isNil;
 
 /***/ }),
-/* 1403 */
+/* 1407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72463,7 +72602,7 @@ var useWidthProp = function useWidthProp(val, widthClass, canEqual) {
 exports.useWidthProp = useWidthProp;
 
 /***/ }),
-/* 1404 */
+/* 1408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72476,27 +72615,27 @@ exports.ref = exports.refObject = exports.deprecate = exports.collectionShorthan
 
 var _difference2 = _interopRequireDefault(__webpack_require__(327));
 
-var _trim2 = _interopRequireDefault(__webpack_require__(1405));
+var _trim2 = _interopRequireDefault(__webpack_require__(1409));
 
 var _isObject2 = _interopRequireDefault(__webpack_require__(328));
 
 var _pick2 = _interopRequireDefault(__webpack_require__(207));
 
-var _keys2 = _interopRequireDefault(__webpack_require__(28));
+var _keys2 = _interopRequireDefault(__webpack_require__(29));
 
 var _isPlainObject2 = _interopRequireDefault(__webpack_require__(208));
 
 var _isNil2 = _interopRequireDefault(__webpack_require__(16));
 
-var _min2 = _interopRequireDefault(__webpack_require__(1406));
+var _min2 = _interopRequireDefault(__webpack_require__(1410));
 
-var _sum2 = _interopRequireDefault(__webpack_require__(1407));
+var _sum2 = _interopRequireDefault(__webpack_require__(1411));
 
 var _map2 = _interopRequireDefault(__webpack_require__(12));
 
 var _sortBy2 = _interopRequireDefault(__webpack_require__(329));
 
-var _take2 = _interopRequireDefault(__webpack_require__(1408));
+var _take2 = _interopRequireDefault(__webpack_require__(1412));
 
 var _memoize2 = _interopRequireDefault(__webpack_require__(284));
 
@@ -72842,31 +72981,31 @@ var ref = _propTypes.default.oneOfType([_propTypes.default.func, refObject]);
 exports.ref = ref;
 
 /***/ }),
-/* 1405 */
+/* 1409 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/trim");
 
 /***/ }),
-/* 1406 */
+/* 1410 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/min");
 
 /***/ }),
-/* 1407 */
+/* 1411 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/sum");
 
 /***/ }),
-/* 1408 */
+/* 1412 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/take");
 
 /***/ }),
-/* 1409 */
+/* 1413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72881,7 +73020,7 @@ var _default = _eventStack.instance;
 exports.default = _default;
 
 /***/ }),
-/* 1410 */
+/* 1414 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72906,11 +73045,11 @@ var _isPlainObject2 = _interopRequireDefault(__webpack_require__(208));
 
 var _isFunction2 = _interopRequireDefault(__webpack_require__(287));
 
-var _isNumber2 = _interopRequireDefault(__webpack_require__(1411));
+var _isNumber2 = _interopRequireDefault(__webpack_require__(1415));
 
-var _isString2 = _interopRequireDefault(__webpack_require__(1412));
+var _isString2 = _interopRequireDefault(__webpack_require__(1416));
 
-var _isBoolean2 = _interopRequireDefault(__webpack_require__(1413));
+var _isBoolean2 = _interopRequireDefault(__webpack_require__(1417));
 
 var _isNil2 = _interopRequireDefault(__webpack_require__(16));
 
@@ -73114,25 +73253,25 @@ var createHTMLParagraph = /* #__PURE__ */createShorthandFactory('p', function (v
 exports.createHTMLParagraph = createHTMLParagraph;
 
 /***/ }),
-/* 1411 */
+/* 1415 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/isNumber");
 
 /***/ }),
-/* 1412 */
+/* 1416 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/isString");
 
 /***/ }),
-/* 1413 */
+/* 1417 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/isBoolean");
 
 /***/ }),
-/* 1414 */
+/* 1418 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73163,7 +73302,7 @@ var _default = getUnhandledProps;
 exports.default = _default;
 
 /***/ }),
-/* 1415 */
+/* 1419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73206,7 +73345,7 @@ var _default = getElementType;
 exports.default = _default;
 
 /***/ }),
-/* 1416 */
+/* 1420 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73271,7 +73410,7 @@ var partitionHTMLProps = function partitionHTMLProps(props, options) {
 exports.partitionHTMLProps = partitionHTMLProps;
 
 /***/ }),
-/* 1417 */
+/* 1421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73284,7 +73423,7 @@ exports.default = void 0;
 
 var _inRange2 = _interopRequireDefault(__webpack_require__(331));
 
-var _first3 = _interopRequireDefault(__webpack_require__(1418));
+var _first3 = _interopRequireDefault(__webpack_require__(1422));
 
 var _invoke2 = _interopRequireDefault(__webpack_require__(11));
 
@@ -73344,13 +73483,13 @@ var _default = doesNodeContainClick;
 exports.default = _default;
 
 /***/ }),
-/* 1418 */
+/* 1422 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/first");
 
 /***/ }),
-/* 1419 */
+/* 1423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73360,12 +73499,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _createPaginationItems = _interopRequireDefault(__webpack_require__(1420));
+var _createPaginationItems = _interopRequireDefault(__webpack_require__(1424));
 
 exports.default = _createPaginationItems.default;
 
 /***/ }),
-/* 1420 */
+/* 1424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73376,9 +73515,9 @@ exports.default = void 0;
 
 var _itemFactories = __webpack_require__(332);
 
-var _rangeFactories = __webpack_require__(1421);
+var _rangeFactories = __webpack_require__(1425);
 
-var _paginationUtils = __webpack_require__(1423);
+var _paginationUtils = __webpack_require__(1427);
 
 /**
  * @param {object} rawOptions
@@ -73401,7 +73540,7 @@ var _default = createPaginationItems;
 exports.default = _default;
 
 /***/ }),
-/* 1421 */
+/* 1425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73416,7 +73555,7 @@ var _range2 = _interopRequireDefault(__webpack_require__(288));
 
 var _map2 = _interopRequireDefault(__webpack_require__(12));
 
-var _suffixFactories = __webpack_require__(1422);
+var _suffixFactories = __webpack_require__(1426);
 
 var createSimpleRange = function createSimpleRange(start, end, pageFactory) {
   return (0, _map2.default)((0, _range2.default)(start, end + 1), pageFactory);
@@ -73444,7 +73583,7 @@ var createComplexRange = function createComplexRange(options, pageFactory) {
 exports.createComplexRange = createComplexRange;
 
 /***/ }),
-/* 1422 */
+/* 1426 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73474,7 +73613,7 @@ var createInnerSuffix = function createInnerSuffix(innerGroupEnd, lastGroupStart
 exports.createInnerSuffix = createInnerSuffix;
 
 /***/ }),
-/* 1423 */
+/* 1427 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73524,7 +73663,7 @@ var typifyOptions = function typifyOptions(_ref2) {
 exports.typifyOptions = typifyOptions;
 
 /***/ }),
-/* 1424 */
+/* 1428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73545,7 +73684,7 @@ var _default = function _default(value) {
 exports.default = _default;
 
 /***/ }),
-/* 1425 */
+/* 1429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73567,7 +73706,7 @@ var _default = function _default(duration, type) {
 exports.default = _default;
 
 /***/ }),
-/* 1426 */
+/* 1430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73580,9 +73719,9 @@ exports.default = void 0;
 
 var _isEqual2 = _interopRequireDefault(__webpack_require__(334));
 
-var _has2 = _interopRequireDefault(__webpack_require__(31));
+var _has2 = _interopRequireDefault(__webpack_require__(32));
 
-var _transform2 = _interopRequireDefault(__webpack_require__(1427));
+var _transform2 = _interopRequireDefault(__webpack_require__(1431));
 
 /**
  * Naive and inefficient object difference, intended for development / debugging use only.
@@ -73611,13 +73750,13 @@ var _default = function _default(source, target) {
 exports.default = _default;
 
 /***/ }),
-/* 1427 */
+/* 1431 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/transform");
 
 /***/ }),
-/* 1428 */
+/* 1432 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73635,7 +73774,7 @@ var _reactComponentRef = __webpack_require__(19);
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _useIsomorphicLayoutEffect = _interopRequireDefault(__webpack_require__(1429));
+var _useIsomorphicLayoutEffect = _interopRequireDefault(__webpack_require__(1433));
 
 var CLASS_NAME_DELITIMITER = /\s+/;
 /**
@@ -73787,7 +73926,7 @@ function useClassNamesOnNode(node, className) {
 }
 
 /***/ }),
-/* 1429 */
+/* 1433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73809,7 +73948,7 @@ var _default = useIsomorphicLayoutEffect;
 exports.default = _default;
 
 /***/ }),
-/* 1430 */
+/* 1434 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73919,7 +74058,7 @@ Dimmer.create = (0, _lib.createShorthandFactory)(Dimmer, function (value) {
 });
 
 /***/ }),
-/* 1431 */
+/* 1435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73948,7 +74087,7 @@ var _react = _interopRequireDefault(__webpack_require__(1));
 
 var _lib = __webpack_require__(9);
 
-var _validateTrigger = _interopRequireDefault(__webpack_require__(1432));
+var _validateTrigger = _interopRequireDefault(__webpack_require__(1436));
 
 var _PortalInner = _interopRequireDefault(__webpack_require__(338));
 
@@ -74359,7 +74498,7 @@ var _default = Portal;
 exports.default = _default;
 
 /***/ }),
-/* 1432 */
+/* 1436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74374,7 +74513,7 @@ exports.default = validateTrigger;
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var ReactIs = _interopRequireWildcard(__webpack_require__(1433));
+var ReactIs = _interopRequireWildcard(__webpack_require__(1437));
 
 /**
  * Asserts that a passed element can be used cloned a props will be applied properly.
@@ -74390,13 +74529,13 @@ function validateTrigger(element) {
 }
 
 /***/ }),
-/* 1433 */
+/* 1437 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-is");
 
 /***/ }),
-/* 1434 */
+/* 1438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74451,7 +74590,7 @@ var _ModalDimmer = _interopRequireDefault(__webpack_require__(351));
 
 var _ModalHeader = _interopRequireDefault(__webpack_require__(352));
 
-var _utils = __webpack_require__(1435);
+var _utils = __webpack_require__(1439);
 
 var debug = (0, _lib.makeDebugger)('modal');
 /**
@@ -74845,7 +74984,7 @@ var _default = Modal;
 exports.default = _default;
 
 /***/ }),
-/* 1435 */
+/* 1439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74919,7 +75058,7 @@ var isLegacy = function isLegacy() {
 exports.isLegacy = isLegacy;
 
 /***/ }),
-/* 1436 */
+/* 1440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74929,12 +75068,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Pagination = _interopRequireDefault(__webpack_require__(1437));
+var _Pagination = _interopRequireDefault(__webpack_require__(1441));
 
 exports.default = _Pagination.default;
 
 /***/ }),
-/* 1437 */
+/* 1441 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75138,7 +75277,7 @@ Pagination.defaultProps = {
 Pagination.Item = _PaginationItem.default;
 
 /***/ }),
-/* 1438 */
+/* 1442 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75198,7 +75337,7 @@ var _default = Radio;
 exports.default = _default;
 
 /***/ }),
-/* 1439 */
+/* 1443 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75215,7 +75354,7 @@ var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
 var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
-var _set2 = _interopRequireDefault(__webpack_require__(1440));
+var _set2 = _interopRequireDefault(__webpack_require__(1444));
 
 var _invoke2 = _interopRequireDefault(__webpack_require__(11));
 
@@ -75534,13 +75673,13 @@ Checkbox.defaultProps = {
 Checkbox.autoControlledProps = ['checked', 'indeterminate'];
 
 /***/ }),
-/* 1440 */
+/* 1444 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/set");
 
 /***/ }),
-/* 1441 */
+/* 1445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75583,7 +75722,7 @@ var _default = Select;
 exports.default = _default;
 
 /***/ }),
-/* 1442 */
+/* 1446 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75606,31 +75745,31 @@ var _compact2 = _interopRequireDefault(__webpack_require__(294));
 
 var _map2 = _interopRequireDefault(__webpack_require__(12));
 
-var _every2 = _interopRequireDefault(__webpack_require__(1443));
+var _every2 = _interopRequireDefault(__webpack_require__(1447));
 
 var _without2 = _interopRequireDefault(__webpack_require__(13));
 
 var _find2 = _interopRequireDefault(__webpack_require__(264));
 
-var _dropRight2 = _interopRequireDefault(__webpack_require__(1444));
+var _dropRight2 = _interopRequireDefault(__webpack_require__(1448));
 
 var _isEmpty2 = _interopRequireDefault(__webpack_require__(33));
 
-var _size2 = _interopRequireDefault(__webpack_require__(1445));
+var _size2 = _interopRequireDefault(__webpack_require__(1449));
 
 var _difference2 = _interopRequireDefault(__webpack_require__(327));
 
-var _union2 = _interopRequireDefault(__webpack_require__(1446));
+var _union2 = _interopRequireDefault(__webpack_require__(1450));
 
 var _get2 = _interopRequireDefault(__webpack_require__(25));
 
-var _noop2 = _interopRequireDefault(__webpack_require__(1447));
+var _noop2 = _interopRequireDefault(__webpack_require__(1451));
 
-var _isUndefined2 = _interopRequireDefault(__webpack_require__(32));
+var _isUndefined2 = _interopRequireDefault(__webpack_require__(28));
 
 var _invoke2 = _interopRequireDefault(__webpack_require__(11));
 
-var _has2 = _interopRequireDefault(__webpack_require__(31));
+var _has2 = _interopRequireDefault(__webpack_require__(32));
 
 var _isEqual2 = _interopRequireDefault(__webpack_require__(334));
 
@@ -75662,7 +75801,7 @@ var _Label = _interopRequireDefault(__webpack_require__(211));
 
 var _Flag = _interopRequireDefault(__webpack_require__(295));
 
-var _Image = _interopRequireDefault(__webpack_require__(29));
+var _Image = _interopRequireDefault(__webpack_require__(30));
 
 var _DropdownDivider = _interopRequireDefault(__webpack_require__(359));
 
@@ -75678,7 +75817,7 @@ var _DropdownText = _interopRequireDefault(__webpack_require__(364));
 
 var _getMenuOptions = _interopRequireDefault(__webpack_require__(365));
 
-var _getSelectedIndex = _interopRequireDefault(__webpack_require__(1450));
+var _getSelectedIndex = _interopRequireDefault(__webpack_require__(1454));
 
 var debug = (0, _lib.makeDebugger)('dropdown');
 
@@ -77131,37 +77270,37 @@ Dropdown.SearchInput = _DropdownSearchInput.default;
 Dropdown.Text = _DropdownText.default;
 
 /***/ }),
-/* 1443 */
+/* 1447 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/every");
 
 /***/ }),
-/* 1444 */
+/* 1448 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/dropRight");
 
 /***/ }),
-/* 1445 */
+/* 1449 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/size");
 
 /***/ }),
-/* 1446 */
+/* 1450 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/union");
 
 /***/ }),
-/* 1447 */
+/* 1451 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/noop");
 
 /***/ }),
-/* 1448 */
+/* 1452 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77240,13 +77379,13 @@ var _default = Flag;
 exports.default = _default;
 
 /***/ }),
-/* 1449 */
+/* 1453 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/deburr");
 
 /***/ }),
-/* 1450 */
+/* 1454 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77261,7 +77400,7 @@ var _includes2 = _interopRequireDefault(__webpack_require__(23));
 
 var _find2 = _interopRequireDefault(__webpack_require__(264));
 
-var _findIndex2 = _interopRequireDefault(__webpack_require__(1451));
+var _findIndex2 = _interopRequireDefault(__webpack_require__(1455));
 
 var _reduce2 = _interopRequireDefault(__webpack_require__(35));
 
@@ -77325,13 +77464,13 @@ function getSelectedIndex(config) {
 }
 
 /***/ }),
-/* 1451 */
+/* 1455 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/findIndex");
 
 /***/ }),
-/* 1452 */
+/* 1456 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77452,7 +77591,7 @@ var _default = TextArea;
 exports.default = _default;
 
 /***/ }),
-/* 1453 */
+/* 1457 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77462,12 +77601,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _TransitionablePortal = _interopRequireDefault(__webpack_require__(1454));
+var _TransitionablePortal = _interopRequireDefault(__webpack_require__(1458));
 
 exports.default = _TransitionablePortal.default;
 
 /***/ }),
-/* 1454 */
+/* 1458 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77486,7 +77625,7 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _invoke2 = _interopRequireDefault(__webpack_require__(11));
 
-var _isUndefined2 = _interopRequireDefault(__webpack_require__(32));
+var _isUndefined2 = _interopRequireDefault(__webpack_require__(28));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
@@ -77689,7 +77828,7 @@ TransitionablePortal.defaultProps = {
 };
 
 /***/ }),
-/* 1455 */
+/* 1459 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77700,15 +77839,15 @@ var _interopRequireDefault = __webpack_require__(0);
 exports.__esModule = true;
 exports.mergeChildMappings = exports.getChildMapping = void 0;
 
-var _has2 = _interopRequireDefault(__webpack_require__(31));
+var _has2 = _interopRequireDefault(__webpack_require__(32));
 
-var _keys2 = _interopRequireDefault(__webpack_require__(28));
+var _keys2 = _interopRequireDefault(__webpack_require__(29));
 
 var _forEach2 = _interopRequireDefault(__webpack_require__(209));
 
 var _filter2 = _interopRequireDefault(__webpack_require__(24));
 
-var _keyBy2 = _interopRequireDefault(__webpack_require__(1456));
+var _keyBy2 = _interopRequireDefault(__webpack_require__(1460));
 
 var _react = __webpack_require__(1);
 
@@ -77788,13 +77927,13 @@ var mergeChildMappings = function mergeChildMappings(prev, next) {
 exports.mergeChildMappings = mergeChildMappings;
 
 /***/ }),
-/* 1456 */
+/* 1460 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/keyBy");
 
 /***/ }),
-/* 1457 */
+/* 1461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77850,7 +77989,7 @@ function wrapChild(child, onHide, options) {
 wrapChild.handledProps = [];
 
 /***/ }),
-/* 1458 */
+/* 1462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77860,12 +77999,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Visibility = _interopRequireDefault(__webpack_require__(1459));
+var _Visibility = _interopRequireDefault(__webpack_require__(1463));
 
 exports.default = _Visibility.default;
 
 /***/ }),
-/* 1459 */
+/* 1463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78372,7 +78511,7 @@ Visibility.defaultProps = {
 };
 
 /***/ }),
-/* 1460 */
+/* 1464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78382,12 +78521,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Breadcrumb = _interopRequireDefault(__webpack_require__(1461));
+var _Breadcrumb = _interopRequireDefault(__webpack_require__(1465));
 
 exports.default = _Breadcrumb.default;
 
 /***/ }),
-/* 1461 */
+/* 1465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78487,7 +78626,7 @@ var _default = Breadcrumb;
 exports.default = _default;
 
 /***/ }),
-/* 1462 */
+/* 1466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78497,12 +78636,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Form = _interopRequireDefault(__webpack_require__(1463));
+var _Form = _interopRequireDefault(__webpack_require__(1467));
 
 exports.default = _Form.default;
 
 /***/ }),
-/* 1463 */
+/* 1467 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78677,7 +78816,7 @@ var _default = Form;
 exports.default = _default;
 
 /***/ }),
-/* 1464 */
+/* 1468 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78958,7 +79097,7 @@ var _default = Input;
 exports.default = _default;
 
 /***/ }),
-/* 1465 */
+/* 1469 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78973,7 +79112,7 @@ var _Grid = _interopRequireDefault(__webpack_require__(382));
 exports.default = _Grid.default;
 
 /***/ }),
-/* 1466 */
+/* 1470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78983,12 +79122,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Message = _interopRequireDefault(__webpack_require__(1467));
+var _Message = _interopRequireDefault(__webpack_require__(1471));
 
 exports.default = _Message.default;
 
 /***/ }),
-/* 1467 */
+/* 1471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79185,7 +79324,7 @@ Message.List = _MessageList.default;
 Message.Item = _MessageItem.default;
 
 /***/ }),
-/* 1468 */
+/* 1472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79195,12 +79334,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Table = _interopRequireDefault(__webpack_require__(1469));
+var _Table = _interopRequireDefault(__webpack_require__(1473));
 
 exports.default = _Table.default;
 
 /***/ }),
-/* 1469 */
+/* 1473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79407,7 +79546,7 @@ var _default = Table;
 exports.default = _default;
 
 /***/ }),
-/* 1470 */
+/* 1474 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79417,12 +79556,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Container = _interopRequireDefault(__webpack_require__(1471));
+var _Container = _interopRequireDefault(__webpack_require__(1475));
 
 exports.default = _Container.default;
 
 /***/ }),
-/* 1471 */
+/* 1475 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79488,7 +79627,7 @@ var _default = Container;
 exports.default = _default;
 
 /***/ }),
-/* 1472 */
+/* 1476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79498,12 +79637,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Divider = _interopRequireDefault(__webpack_require__(1473));
+var _Divider = _interopRequireDefault(__webpack_require__(1477));
 
 exports.default = _Divider.default;
 
 /***/ }),
-/* 1473 */
+/* 1477 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79585,7 +79724,7 @@ var _default = Divider;
 exports.default = _default;
 
 /***/ }),
-/* 1474 */
+/* 1478 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79595,12 +79734,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Header = _interopRequireDefault(__webpack_require__(1475));
+var _Header = _interopRequireDefault(__webpack_require__(1479));
 
 exports.default = _Header.default;
 
 /***/ }),
-/* 1475 */
+/* 1479 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79625,7 +79764,7 @@ var _lib = __webpack_require__(9);
 
 var _Icon = _interopRequireDefault(__webpack_require__(20));
 
-var _Image = _interopRequireDefault(__webpack_require__(29));
+var _Image = _interopRequireDefault(__webpack_require__(30));
 
 var _HeaderSubheader = _interopRequireDefault(__webpack_require__(391));
 
@@ -79743,7 +79882,7 @@ var _default = Header;
 exports.default = _default;
 
 /***/ }),
-/* 1476 */
+/* 1480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79753,12 +79892,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _List = _interopRequireDefault(__webpack_require__(1477));
+var _List = _interopRequireDefault(__webpack_require__(1481));
 
 exports.default = _List.default;
 
 /***/ }),
-/* 1477 */
+/* 1481 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79954,7 +80093,7 @@ var _default = List;
 exports.default = _default;
 
 /***/ }),
-/* 1478 */
+/* 1482 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79964,12 +80103,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Loader = _interopRequireDefault(__webpack_require__(1479));
+var _Loader = _interopRequireDefault(__webpack_require__(1483));
 
 exports.default = _Loader.default;
 
 /***/ }),
-/* 1479 */
+/* 1483 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80048,7 +80187,7 @@ var _default = Loader;
 exports.default = _default;
 
 /***/ }),
-/* 1480 */
+/* 1484 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80058,12 +80197,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Placeholder = _interopRequireDefault(__webpack_require__(1481));
+var _Placeholder = _interopRequireDefault(__webpack_require__(1485));
 
 exports.default = _Placeholder.default;
 
 /***/ }),
-/* 1481 */
+/* 1485 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80137,7 +80276,7 @@ var _default = Placeholder;
 exports.default = _default;
 
 /***/ }),
-/* 1482 */
+/* 1486 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80147,12 +80286,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Rail = _interopRequireDefault(__webpack_require__(1483));
+var _Rail = _interopRequireDefault(__webpack_require__(1487));
 
 exports.default = _Rail.default;
 
 /***/ }),
-/* 1483 */
+/* 1487 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80232,7 +80371,7 @@ var _default = Rail;
 exports.default = _default;
 
 /***/ }),
-/* 1484 */
+/* 1488 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80242,12 +80381,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Reveal = _interopRequireDefault(__webpack_require__(1485));
+var _Reveal = _interopRequireDefault(__webpack_require__(1489));
 
 exports.default = _Reveal.default;
 
 /***/ }),
-/* 1485 */
+/* 1489 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80320,7 +80459,7 @@ var _default = Reveal;
 exports.default = _default;
 
 /***/ }),
-/* 1486 */
+/* 1490 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80335,7 +80474,7 @@ var _Segment = _interopRequireDefault(__webpack_require__(400));
 exports.default = _Segment.default;
 
 /***/ }),
-/* 1487 */
+/* 1491 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80350,7 +80489,7 @@ var _Step = _interopRequireDefault(__webpack_require__(403));
 exports.default = _Step.default;
 
 /***/ }),
-/* 1488 */
+/* 1492 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80416,7 +80555,7 @@ var _default = Accordion;
 exports.default = _default;
 
 /***/ }),
-/* 1489 */
+/* 1493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80426,12 +80565,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Embed = _interopRequireDefault(__webpack_require__(1490));
+var _Embed = _interopRequireDefault(__webpack_require__(1494));
 
 exports.default = _Embed.default;
 
 /***/ }),
-/* 1490 */
+/* 1494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80632,7 +80771,7 @@ Embed.propTypes =  false ? {
 Embed.autoControlledProps = ['active'];
 
 /***/ }),
-/* 1491 */
+/* 1495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80642,12 +80781,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Popup = _interopRequireDefault(__webpack_require__(1492));
+var _Popup = _interopRequireDefault(__webpack_require__(1496));
 
 exports.default = _Popup.default;
 
 /***/ }),
-/* 1492 */
+/* 1496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80668,6 +80807,8 @@ var _without2 = _interopRequireDefault(__webpack_require__(13));
 
 var _isNil2 = _interopRequireDefault(__webpack_require__(16));
 
+var _isUndefined2 = _interopRequireDefault(__webpack_require__(28));
+
 var _invoke2 = _interopRequireDefault(__webpack_require__(11));
 
 var _isArray2 = _interopRequireDefault(__webpack_require__(286));
@@ -80686,7 +80827,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
 var _react = _interopRequireWildcard(__webpack_require__(1));
 
-var _reactPopper = __webpack_require__(1493);
+var _reactPopper = __webpack_require__(1497);
 
 var _shallowequal = _interopRequireDefault(__webpack_require__(268));
 
@@ -80694,9 +80835,9 @@ var _lib = __webpack_require__(9);
 
 var _Portal = _interopRequireDefault(__webpack_require__(210));
 
-var _positions = __webpack_require__(1494);
+var _positions = __webpack_require__(1498);
 
-var _createReferenceProxy = _interopRequireDefault(__webpack_require__(1496));
+var _createReferenceProxy = _interopRequireDefault(__webpack_require__(1500));
 
 var _PopupContent = _interopRequireDefault(__webpack_require__(408));
 
@@ -80720,7 +80861,8 @@ var Popup = /*#__PURE__*/function (_Component) {
     _this = _Component.call.apply(_Component, [this].concat(args)) || this;
     _this.state = {};
     _this.open = false;
-    _this.triggerRef = /*#__PURE__*/(0, _react.createRef)();
+    _this.zIndexWasSynced = false;
+    _this.triggerRef = /*#__PURE__*/_react.default.createRef();
 
     _this.getPortalProps = function () {
       debug('getPortalProps()');
@@ -80818,6 +80960,7 @@ var Popup = /*#__PURE__*/function (_Component) {
           flowing = _this$props2.flowing,
           header = _this$props2.header,
           inverted = _this$props2.inverted,
+          popper = _this$props2.popper,
           size = _this$props2.size,
           style = _this$props2.style,
           wide = _this$props2.wide;
@@ -80832,28 +80975,35 @@ var Popup = /*#__PURE__*/function (_Component) {
         // This is required to be properly positioned inside wrapping `div`
         position: 'initial'
       }, style);
-      return (
-        /*#__PURE__*/
-        // https://github.com/popperjs/popper-core/blob/f1f9d1ab75b6b0e962f90a5b2a50f6cfd307d794/src/createPopper.js#L136-L137
-        // Heads up!
-        // A wrapping `div` there is a pure magic, it's required as Popper warns on margins that are
-        // defined by SUI CSS. It also means that this `div` will be positioned instead of `content`.
-        _react.default.createElement("div", {
+
+      var innerElement = /*#__PURE__*/_react.default.createElement(ElementType, (0, _extends2.default)({}, contentRestProps, {
+        className: classes,
+        style: styles
+      }), _lib.childrenUtils.isNil(children) ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, _PopupHeader.default.create(header, {
+        autoGenerateKey: false
+      }), _PopupContent.default.create(content, {
+        autoGenerateKey: false
+      })) : children, hideOnScroll && /*#__PURE__*/_react.default.createElement(_eventStack.default, {
+        on: _this.hideOnScroll,
+        name: "scroll",
+        target: "window"
+      })); // https://github.com/popperjs/popper-core/blob/f1f9d1ab75b6b0e962f90a5b2a50f6cfd307d794/src/createPopper.js#L136-L137
+      // Heads up!
+      // A wrapping `div` there is a pure magic, it's required as Popper warns on margins that are
+      // defined by SUI CSS. It also means that this `div` will be positioned instead of `content`.
+
+
+      return (0, _lib.createHTMLDivision)(popper || {}, {
+        overrideProps: {
+          children: innerElement,
           ref: popperRef,
-          style: popperStyle
-        }, /*#__PURE__*/_react.default.createElement(ElementType, (0, _extends2.default)({}, contentRestProps, {
-          className: classes,
-          style: styles
-        }), _lib.childrenUtils.isNil(children) ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, _PopupHeader.default.create(header, {
-          autoGenerateKey: false
-        }), _PopupContent.default.create(content, {
-          autoGenerateKey: false
-        })) : children, hideOnScroll && /*#__PURE__*/_react.default.createElement(_eventStack.default, {
-          on: _this.hideOnScroll,
-          name: "scroll",
-          target: "window"
-        })))
-      );
+          style: (0, _extends2.default)({
+            // Fixes layout for floated elements
+            // https://github.com/Semantic-Org/Semantic-UI-React/issues/4092
+            display: 'flex'
+          }, popperStyle)
+        }
+      });
     };
 
     return _this;
@@ -80892,12 +81042,15 @@ var Popup = /*#__PURE__*/function (_Component) {
   };
 
   _proto.render = function render() {
+    var _this2 = this;
+
     var _this$props3 = this.props,
         context = _this$props3.context,
         disabled = _this$props3.disabled,
         eventsEnabled = _this$props3.eventsEnabled,
         offset = _this$props3.offset,
         pinned = _this$props3.pinned,
+        popper = _this$props3.popper,
         popperModifiers = _this$props3.popperModifiers,
         position = _this$props3.position,
         positionFixed = _this$props3.positionFixed,
@@ -80931,7 +81084,38 @@ var Popup = /*#__PURE__*/function (_Component) {
       options: {
         offset: offset
       }
-    }].concat(popperModifiers);
+    }].concat(popperModifiers, [// We are syncing zIndex from `.ui.popup.content` to avoid layering issues as in SUIR we are using an additional
+    // `div` for Popper.js
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/4083
+    {
+      name: 'syncZIndex',
+      enabled: true,
+      phase: 'beforeRead',
+      fn: function fn(_ref2) {
+        var _popper$style;
+
+        var state = _ref2.state;
+
+        if (_this2.zIndexWasSynced) {
+          return;
+        } // if zIndex defined in <Popup popper={{ style: {} }} /> there is no sense to override it
+
+
+        var definedZIndex = popper == null ? void 0 : (_popper$style = popper.style) == null ? void 0 : _popper$style.zIndex;
+
+        if ((0, _isUndefined2.default)(definedZIndex)) {
+          // eslint-disable-next-line no-param-reassign
+          state.elements.popper.style.zIndex = window.getComputedStyle(state.elements.popper.firstChild).zIndex;
+        }
+
+        _this2.zIndexWasSynced = true;
+      },
+      effect: function effect() {
+        return function () {
+          _this2.zIndexWasSynced = false;
+        };
+      }
+    }]);
     debug('popper modifiers:', modifiers);
     var referenceElement = (0, _createReferenceProxy.default)((0, _isNil2.default)(context) ? this.triggerRef : context);
     var mergedPortalProps = (0, _extends2.default)({}, this.getPortalProps(), portalRestProps);
@@ -80955,7 +81139,7 @@ var Popup = /*#__PURE__*/function (_Component) {
 }(_react.Component);
 
 exports.default = Popup;
-Popup.handledProps = ["as", "basic", "children", "className", "content", "context", "disabled", "eventsEnabled", "flowing", "header", "hideOnScroll", "hoverable", "inverted", "offset", "on", "onClose", "onMount", "onOpen", "onUnmount", "pinned", "popperDependencies", "popperModifiers", "position", "positionFixed", "size", "style", "trigger", "wide"];
+Popup.handledProps = ["as", "basic", "children", "className", "content", "context", "disabled", "eventsEnabled", "flowing", "header", "hideOnScroll", "hoverable", "inverted", "offset", "on", "onClose", "onMount", "onOpen", "onUnmount", "pinned", "popper", "popperDependencies", "popperModifiers", "position", "positionFixed", "size", "style", "trigger", "wide"];
 Popup.propTypes =  false ? {
   /** An element type to render as (string or function). */
   as: _propTypes.default.elementType,
@@ -81054,6 +81238,9 @@ Popup.propTypes =  false ? {
   /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
   positionFixed: _propTypes.default.bool,
 
+  /** A wrapping element for an actual content that will be used for positioning. */
+  popper: _lib.customPropTypes.itemShorthand,
+
   /** An array containing custom settings for the Popper.js modifiers. */
   popperModifiers: _propTypes.default.array,
 
@@ -81084,13 +81271,13 @@ Popup.Content = _PopupContent.default;
 Popup.Header = _PopupHeader.default;
 
 /***/ }),
-/* 1493 */
+/* 1497 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-popper");
 
 /***/ }),
-/* 1494 */
+/* 1498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81101,9 +81288,9 @@ var _interopRequireDefault = __webpack_require__(0);
 exports.__esModule = true;
 exports.placementMapping = exports.positions = exports.positionsMapping = void 0;
 
-var _invert2 = _interopRequireDefault(__webpack_require__(1495));
+var _invert2 = _interopRequireDefault(__webpack_require__(1499));
 
-var _keys2 = _interopRequireDefault(__webpack_require__(28));
+var _keys2 = _interopRequireDefault(__webpack_require__(29));
 
 var positionsMapping = {
   'top center': 'top',
@@ -81122,13 +81309,13 @@ var placementMapping = (0, _invert2.default)(positionsMapping);
 exports.placementMapping = placementMapping;
 
 /***/ }),
-/* 1495 */
+/* 1499 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/invert");
 
 /***/ }),
-/* 1496 */
+/* 1500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81194,7 +81381,7 @@ var _default = createReferenceProxy;
 exports.default = _default;
 
 /***/ }),
-/* 1497 */
+/* 1501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81204,12 +81391,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Progress = _interopRequireDefault(__webpack_require__(1498));
+var _Progress = _interopRequireDefault(__webpack_require__(1502));
 
 exports.default = _Progress.default;
 
 /***/ }),
-/* 1498 */
+/* 1502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81228,11 +81415,11 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _without2 = _interopRequireDefault(__webpack_require__(13));
 
-var _round2 = _interopRequireDefault(__webpack_require__(1499));
+var _round2 = _interopRequireDefault(__webpack_require__(1503));
 
-var _clamp2 = _interopRequireDefault(__webpack_require__(1500));
+var _clamp2 = _interopRequireDefault(__webpack_require__(1504));
 
-var _isUndefined2 = _interopRequireDefault(__webpack_require__(32));
+var _isUndefined2 = _interopRequireDefault(__webpack_require__(28));
 
 var _clsx = _interopRequireDefault(__webpack_require__(10));
 
@@ -81436,19 +81623,19 @@ var _default = Progress;
 exports.default = _default;
 
 /***/ }),
-/* 1499 */
+/* 1503 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/round");
 
 /***/ }),
-/* 1500 */
+/* 1504 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/clamp");
 
 /***/ }),
-/* 1501 */
+/* 1505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81458,12 +81645,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Rating = _interopRequireDefault(__webpack_require__(1502));
+var _Rating = _interopRequireDefault(__webpack_require__(1506));
 
 exports.default = _Rating.default;
 
 /***/ }),
-/* 1502 */
+/* 1506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81660,7 +81847,7 @@ Rating.defaultProps = {
 Rating.Icon = _RatingIcon.default;
 
 /***/ }),
-/* 1503 */
+/* 1507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81670,12 +81857,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Search = _interopRequireDefault(__webpack_require__(1504));
+var _Search = _interopRequireDefault(__webpack_require__(1508));
 
 exports.default = _Search.default;
 
 /***/ }),
-/* 1504 */
+/* 1508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81696,7 +81883,7 @@ var _without2 = _interopRequireDefault(__webpack_require__(13));
 
 var _isEmpty2 = _interopRequireDefault(__webpack_require__(33));
 
-var _partialRight2 = _interopRequireDefault(__webpack_require__(1505));
+var _partialRight2 = _interopRequireDefault(__webpack_require__(1509));
 
 var _inRange2 = _interopRequireDefault(__webpack_require__(331));
 
@@ -81710,7 +81897,7 @@ var _invoke2 = _interopRequireDefault(__webpack_require__(11));
 
 var _isPlainObject2 = _interopRequireDefault(__webpack_require__(208));
 
-var _isUndefined2 = _interopRequireDefault(__webpack_require__(32));
+var _isUndefined2 = _interopRequireDefault(__webpack_require__(28));
 
 var _clsx = _interopRequireDefault(__webpack_require__(10));
 
@@ -82423,13 +82610,13 @@ Search.Result = _SearchResult.default;
 Search.Results = _SearchResults.default;
 
 /***/ }),
-/* 1505 */
+/* 1509 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/partialRight");
 
 /***/ }),
-/* 1506 */
+/* 1510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82466,7 +82653,7 @@ var _default = SearchCategoryLayout;
 exports.default = _default;
 
 /***/ }),
-/* 1507 */
+/* 1511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82476,12 +82663,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Sidebar = _interopRequireDefault(__webpack_require__(1508));
+var _Sidebar = _interopRequireDefault(__webpack_require__(1512));
 
 exports.default = _Sidebar.default;
 
 /***/ }),
-/* 1508 */
+/* 1512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82500,7 +82687,7 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _invoke2 = _interopRequireDefault(__webpack_require__(11));
 
-var _reactComponentEventListener = __webpack_require__(1509);
+var _reactComponentEventListener = __webpack_require__(1513);
 
 var _reactComponentRef = __webpack_require__(19);
 
@@ -82696,13 +82883,13 @@ var _default = Sidebar;
 exports.default = _default;
 
 /***/ }),
-/* 1509 */
+/* 1513 */
 /***/ (function(module, exports) {
 
 module.exports = require("@fluentui/react-component-event-listener");
 
 /***/ }),
-/* 1510 */
+/* 1514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82712,12 +82899,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Sticky = _interopRequireDefault(__webpack_require__(1511));
+var _Sticky = _interopRequireDefault(__webpack_require__(1515));
 
 exports.default = _Sticky.default;
 
 /***/ }),
-/* 1511 */
+/* 1515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83104,7 +83291,7 @@ Sticky.defaultProps = {
 };
 
 /***/ }),
-/* 1512 */
+/* 1516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83114,12 +83301,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Tab = _interopRequireDefault(__webpack_require__(1513));
+var _Tab = _interopRequireDefault(__webpack_require__(1517));
 
 exports.default = _Tab.default;
 
 /***/ }),
-/* 1513 */
+/* 1517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83338,7 +83525,7 @@ var _default = Tab;
 exports.default = _default;
 
 /***/ }),
-/* 1514 */
+/* 1518 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83348,12 +83535,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Advertisement = _interopRequireDefault(__webpack_require__(1515));
+var _Advertisement = _interopRequireDefault(__webpack_require__(1519));
 
 exports.default = _Advertisement.default;
 
 /***/ }),
-/* 1515 */
+/* 1519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83420,7 +83607,7 @@ var _default = Advertisement;
 exports.default = _default;
 
 /***/ }),
-/* 1516 */
+/* 1520 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83430,12 +83617,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Comment = _interopRequireDefault(__webpack_require__(1517));
+var _Comment = _interopRequireDefault(__webpack_require__(1521));
 
 exports.default = _Comment.default;
 
 /***/ }),
-/* 1517 */
+/* 1521 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83517,7 +83704,7 @@ var _default = Comment;
 exports.default = _default;
 
 /***/ }),
-/* 1518 */
+/* 1522 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83527,12 +83714,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _Feed = _interopRequireDefault(__webpack_require__(1519));
+var _Feed = _interopRequireDefault(__webpack_require__(1523));
 
 exports.default = _Feed.default;
 
 /***/ }),
-/* 1519 */
+/* 1523 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83644,7 +83831,7 @@ var _default = Feed;
 exports.default = _default;
 
 /***/ }),
-/* 1520 */
+/* 1524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83659,7 +83846,7 @@ var _Item = _interopRequireDefault(__webpack_require__(429));
 exports.default = _Item.default;
 
 /***/ }),
-/* 1521 */
+/* 1525 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83674,7 +83861,7 @@ var _Statistic = _interopRequireDefault(__webpack_require__(433));
 exports.default = _Statistic.default;
 
 /***/ }),
-/* 1522 */
+/* 1526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83691,19 +83878,11 @@ var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
 var _isObject2 = _interopRequireDefault(__webpack_require__(328));
 
-var Prism = _interopRequireWildcard(__webpack_require__(1523));
+var Prism = _interopRequireWildcard(__webpack_require__(1527));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
-
-__webpack_require__(1524);
-
-__webpack_require__(1525);
-
-__webpack_require__(1526);
-
-__webpack_require__(1527);
 
 __webpack_require__(1528);
 
@@ -83711,7 +83890,15 @@ __webpack_require__(1529);
 
 __webpack_require__(1530);
 
-var _CodeSnippetLabel = _interopRequireDefault(__webpack_require__(1531));
+__webpack_require__(1531);
+
+__webpack_require__(1532);
+
+__webpack_require__(1533);
+
+__webpack_require__(1534);
+
+var _CodeSnippetLabel = _interopRequireDefault(__webpack_require__(1535));
 
 // Order of PrismJS imports there is sensitive
 var normalizeToString = function normalizeToString(value) {
@@ -83824,55 +84011,55 @@ var _default = CodeSnippet;
 exports.default = _default;
 
 /***/ }),
-/* 1523 */
+/* 1527 */
 /***/ (function(module, exports) {
 
 module.exports = require("prismjs/components/prism-core");
 
 /***/ }),
-/* 1524 */
+/* 1528 */
 /***/ (function(module, exports) {
 
 module.exports = require("prismjs/components/prism-clike");
 
 /***/ }),
-/* 1525 */
+/* 1529 */
 /***/ (function(module, exports) {
 
 module.exports = require("prismjs/components/prism-diff");
 
 /***/ }),
-/* 1526 */
+/* 1530 */
 /***/ (function(module, exports) {
 
 module.exports = require("prismjs/components/prism-json");
 
 /***/ }),
-/* 1527 */
+/* 1531 */
 /***/ (function(module, exports) {
 
 module.exports = require("prismjs/components/prism-markup");
 
 /***/ }),
-/* 1528 */
+/* 1532 */
 /***/ (function(module, exports) {
 
 module.exports = require("prismjs/components/prism-bash");
 
 /***/ }),
-/* 1529 */
+/* 1533 */
 /***/ (function(module, exports) {
 
 module.exports = require("prismjs/components/prism-javascript");
 
 /***/ }),
-/* 1530 */
+/* 1534 */
 /***/ (function(module, exports) {
 
 module.exports = require("prismjs/components/prism-jsx");
 
 /***/ }),
-/* 1531 */
+/* 1535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83958,13 +84145,13 @@ var _default = CodeSnippetLabel;
 exports.default = _default;
 
 /***/ }),
-/* 1532 */
+/* 1536 */
 /***/ (function(module, exports) {
 
 module.exports = require("anchor-js");
 
 /***/ }),
-/* 1533 */
+/* 1537 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83974,28 +84161,28 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _componentInfoShape2 = _interopRequireDefault(__webpack_require__(1534));
+var _componentInfoShape2 = _interopRequireDefault(__webpack_require__(1538));
 
 exports.componentInfoShape = _componentInfoShape2.default;
 
-var _componentMenu2 = _interopRequireDefault(__webpack_require__(1535));
+var _componentMenu2 = _interopRequireDefault(__webpack_require__(1539));
 
 exports.componentMenu = _componentMenu2.default;
 
-var _seeTags2 = _interopRequireDefault(__webpack_require__(1536));
+var _seeTags2 = _interopRequireDefault(__webpack_require__(1540));
 
 exports.seeTags = _seeTags2.default;
 
-var _sidebarSections2 = _interopRequireDefault(__webpack_require__(1537));
+var _sidebarSections2 = _interopRequireDefault(__webpack_require__(1541));
 
 exports.sidebarSections = _sidebarSections2.default;
 
-var _versions2 = _interopRequireDefault(__webpack_require__(1538));
+var _versions2 = _interopRequireDefault(__webpack_require__(1542));
 
 exports.versions = _versions2.default;
 
 /***/ }),
-/* 1534 */
+/* 1538 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84047,7 +84234,7 @@ var _default = componentInfoShape;
 exports.default = _default;
 
 /***/ }),
-/* 1535 */
+/* 1539 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84069,7 +84256,7 @@ var _default = componentMenu;
 exports.default = _default;
 
 /***/ }),
-/* 1536 */
+/* 1540 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84091,7 +84278,7 @@ var _default = seeTags;
 exports.default = _default;
 
 /***/ }),
-/* 1537 */
+/* 1541 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84116,7 +84303,7 @@ var _default = sidebarSections;
 exports.default = _default;
 
 /***/ }),
-/* 1538 */
+/* 1542 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84145,7 +84332,7 @@ var _default = versions;
 exports.default = _default;
 
 /***/ }),
-/* 1539 */
+/* 1543 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84165,7 +84352,7 @@ var semanticUICSSRepoURL = 'https://github.com/Semantic-Org/Semantic-UI-CSS';
 exports.semanticUICSSRepoURL = semanticUICSSRepoURL;
 
 /***/ }),
-/* 1540 */
+/* 1544 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84181,7 +84368,7 @@ var _isBrowser = _interopRequireDefault(__webpack_require__(206));
 /**
  * Get the Webpack Context for all Component.info.json files.
  */
-var componentInfoContext = (0, _isBrowser.default)() ? __webpack_require__(1541) : {};
+var componentInfoContext = (0, _isBrowser.default)() ? __webpack_require__(1545) : {};
 
 if ((0, _isBrowser.default)()) {
   var keys = componentInfoContext.keys();
@@ -84210,174 +84397,174 @@ var _default = componentInfoContext;
 exports.default = _default;
 
 /***/ }),
-/* 1541 */
+/* 1545 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./Accordion.info.json": 1542,
-	"./AccordionAccordion.info.json": 1543,
-	"./AccordionContent.info.json": 1544,
-	"./AccordionPanel.info.json": 1545,
-	"./AccordionTitle.info.json": 1546,
-	"./Advertisement.info.json": 1547,
-	"./Breadcrumb.info.json": 1548,
-	"./BreadcrumbDivider.info.json": 1549,
-	"./BreadcrumbSection.info.json": 1550,
-	"./Button.info.json": 1551,
-	"./ButtonContent.info.json": 1552,
-	"./ButtonGroup.info.json": 1553,
-	"./ButtonOr.info.json": 1554,
-	"./Card.info.json": 1555,
-	"./CardContent.info.json": 1556,
-	"./CardDescription.info.json": 1557,
-	"./CardGroup.info.json": 1558,
-	"./CardHeader.info.json": 1559,
-	"./CardMeta.info.json": 1560,
-	"./Checkbox.info.json": 1561,
-	"./Comment.info.json": 1562,
-	"./CommentAction.info.json": 1563,
-	"./CommentActions.info.json": 1564,
-	"./CommentAuthor.info.json": 1565,
-	"./CommentAvatar.info.json": 1566,
-	"./CommentContent.info.json": 1567,
-	"./CommentGroup.info.json": 1568,
-	"./CommentMetadata.info.json": 1569,
-	"./CommentText.info.json": 1570,
-	"./Confirm.info.json": 1571,
-	"./Container.info.json": 1572,
-	"./Dimmer.info.json": 1573,
-	"./DimmerDimmable.info.json": 1574,
-	"./DimmerInner.info.json": 1575,
-	"./Divider.info.json": 1576,
-	"./Dropdown.info.json": 1577,
-	"./DropdownDivider.info.json": 1578,
-	"./DropdownHeader.info.json": 1579,
-	"./DropdownItem.info.json": 1580,
-	"./DropdownMenu.info.json": 1581,
-	"./DropdownSearchInput.info.json": 1582,
-	"./DropdownText.info.json": 1583,
-	"./Embed.info.json": 1584,
-	"./Feed.info.json": 1585,
-	"./FeedContent.info.json": 1586,
-	"./FeedDate.info.json": 1587,
-	"./FeedEvent.info.json": 1588,
-	"./FeedExtra.info.json": 1589,
-	"./FeedLabel.info.json": 1590,
-	"./FeedLike.info.json": 1591,
-	"./FeedMeta.info.json": 1592,
-	"./FeedSummary.info.json": 1593,
-	"./FeedUser.info.json": 1594,
-	"./Flag.info.json": 1595,
-	"./Form.info.json": 1596,
-	"./FormButton.info.json": 1597,
-	"./FormCheckbox.info.json": 1598,
-	"./FormDropdown.info.json": 1599,
-	"./FormField.info.json": 1600,
-	"./FormGroup.info.json": 1601,
-	"./FormInput.info.json": 1602,
-	"./FormRadio.info.json": 1603,
-	"./FormSelect.info.json": 1604,
-	"./FormTextArea.info.json": 1605,
-	"./Grid.info.json": 1606,
-	"./GridColumn.info.json": 1607,
-	"./GridRow.info.json": 1608,
-	"./Header.info.json": 1609,
-	"./HeaderContent.info.json": 1610,
-	"./HeaderSubheader.info.json": 1611,
-	"./Icon.info.json": 1612,
-	"./IconGroup.info.json": 1613,
-	"./Image.info.json": 1614,
-	"./ImageGroup.info.json": 1615,
-	"./Input.info.json": 1616,
-	"./Item.info.json": 1617,
-	"./ItemContent.info.json": 1618,
-	"./ItemDescription.info.json": 1619,
-	"./ItemExtra.info.json": 1620,
-	"./ItemGroup.info.json": 1621,
-	"./ItemHeader.info.json": 1622,
-	"./ItemImage.info.json": 1623,
-	"./ItemMeta.info.json": 1624,
-	"./Label.info.json": 1625,
-	"./LabelDetail.info.json": 1626,
-	"./LabelGroup.info.json": 1627,
-	"./List.info.json": 1628,
-	"./ListContent.info.json": 1629,
-	"./ListDescription.info.json": 1630,
-	"./ListHeader.info.json": 1631,
-	"./ListIcon.info.json": 1632,
-	"./ListItem.info.json": 1633,
-	"./ListList.info.json": 1634,
-	"./Loader.info.json": 1635,
-	"./Menu.info.json": 1636,
-	"./MenuHeader.info.json": 1637,
-	"./MenuItem.info.json": 1638,
-	"./MenuMenu.info.json": 1639,
-	"./Message.info.json": 1640,
-	"./MessageContent.info.json": 1641,
-	"./MessageHeader.info.json": 1642,
-	"./MessageItem.info.json": 1643,
-	"./MessageList.info.json": 1644,
-	"./Modal.info.json": 1645,
-	"./ModalActions.info.json": 1646,
-	"./ModalContent.info.json": 1647,
-	"./ModalDescription.info.json": 1648,
-	"./ModalDimmer.info.json": 1649,
-	"./ModalHeader.info.json": 1650,
-	"./Pagination.info.json": 1651,
-	"./PaginationItem.info.json": 1652,
-	"./Placeholder.info.json": 1653,
-	"./PlaceholderHeader.info.json": 1654,
-	"./PlaceholderImage.info.json": 1655,
-	"./PlaceholderLine.info.json": 1656,
-	"./PlaceholderParagraph.info.json": 1657,
-	"./Popup.info.json": 1658,
-	"./PopupContent.info.json": 1659,
-	"./PopupHeader.info.json": 1660,
-	"./Portal.info.json": 1661,
-	"./PortalInner.info.json": 1662,
-	"./Progress.info.json": 1663,
-	"./Radio.info.json": 1664,
-	"./Rail.info.json": 1665,
-	"./Rating.info.json": 1666,
-	"./RatingIcon.info.json": 1667,
-	"./Reveal.info.json": 1668,
-	"./RevealContent.info.json": 1669,
-	"./Search.info.json": 1670,
-	"./SearchCategory.info.json": 1671,
-	"./SearchCategoryLayout.info.json": 1672,
-	"./SearchResult.info.json": 1673,
-	"./SearchResults.info.json": 1674,
-	"./Segment.info.json": 1675,
-	"./SegmentGroup.info.json": 1676,
-	"./SegmentInline.info.json": 1677,
-	"./Select.info.json": 1678,
-	"./Sidebar.info.json": 1679,
-	"./SidebarPushable.info.json": 1680,
-	"./SidebarPusher.info.json": 1681,
-	"./Statistic.info.json": 1682,
-	"./StatisticGroup.info.json": 1683,
-	"./StatisticLabel.info.json": 1684,
-	"./StatisticValue.info.json": 1685,
-	"./Step.info.json": 1686,
-	"./StepContent.info.json": 1687,
-	"./StepDescription.info.json": 1688,
-	"./StepGroup.info.json": 1689,
-	"./StepTitle.info.json": 1690,
-	"./Sticky.info.json": 1691,
-	"./Tab.info.json": 1692,
-	"./TabPane.info.json": 1693,
-	"./Table.info.json": 1694,
-	"./TableBody.info.json": 1695,
-	"./TableCell.info.json": 1696,
-	"./TableFooter.info.json": 1697,
-	"./TableHeader.info.json": 1698,
-	"./TableHeaderCell.info.json": 1699,
-	"./TableRow.info.json": 1700,
-	"./TextArea.info.json": 1701,
-	"./Transition.info.json": 1702,
-	"./TransitionGroup.info.json": 1703,
-	"./TransitionablePortal.info.json": 1704,
-	"./Visibility.info.json": 1705
+	"./Accordion.info.json": 1546,
+	"./AccordionAccordion.info.json": 1547,
+	"./AccordionContent.info.json": 1548,
+	"./AccordionPanel.info.json": 1549,
+	"./AccordionTitle.info.json": 1550,
+	"./Advertisement.info.json": 1551,
+	"./Breadcrumb.info.json": 1552,
+	"./BreadcrumbDivider.info.json": 1553,
+	"./BreadcrumbSection.info.json": 1554,
+	"./Button.info.json": 1555,
+	"./ButtonContent.info.json": 1556,
+	"./ButtonGroup.info.json": 1557,
+	"./ButtonOr.info.json": 1558,
+	"./Card.info.json": 1559,
+	"./CardContent.info.json": 1560,
+	"./CardDescription.info.json": 1561,
+	"./CardGroup.info.json": 1562,
+	"./CardHeader.info.json": 1563,
+	"./CardMeta.info.json": 1564,
+	"./Checkbox.info.json": 1565,
+	"./Comment.info.json": 1566,
+	"./CommentAction.info.json": 1567,
+	"./CommentActions.info.json": 1568,
+	"./CommentAuthor.info.json": 1569,
+	"./CommentAvatar.info.json": 1570,
+	"./CommentContent.info.json": 1571,
+	"./CommentGroup.info.json": 1572,
+	"./CommentMetadata.info.json": 1573,
+	"./CommentText.info.json": 1574,
+	"./Confirm.info.json": 1575,
+	"./Container.info.json": 1576,
+	"./Dimmer.info.json": 1577,
+	"./DimmerDimmable.info.json": 1578,
+	"./DimmerInner.info.json": 1579,
+	"./Divider.info.json": 1580,
+	"./Dropdown.info.json": 1581,
+	"./DropdownDivider.info.json": 1582,
+	"./DropdownHeader.info.json": 1583,
+	"./DropdownItem.info.json": 1584,
+	"./DropdownMenu.info.json": 1585,
+	"./DropdownSearchInput.info.json": 1586,
+	"./DropdownText.info.json": 1587,
+	"./Embed.info.json": 1588,
+	"./Feed.info.json": 1589,
+	"./FeedContent.info.json": 1590,
+	"./FeedDate.info.json": 1591,
+	"./FeedEvent.info.json": 1592,
+	"./FeedExtra.info.json": 1593,
+	"./FeedLabel.info.json": 1594,
+	"./FeedLike.info.json": 1595,
+	"./FeedMeta.info.json": 1596,
+	"./FeedSummary.info.json": 1597,
+	"./FeedUser.info.json": 1598,
+	"./Flag.info.json": 1599,
+	"./Form.info.json": 1600,
+	"./FormButton.info.json": 1601,
+	"./FormCheckbox.info.json": 1602,
+	"./FormDropdown.info.json": 1603,
+	"./FormField.info.json": 1604,
+	"./FormGroup.info.json": 1605,
+	"./FormInput.info.json": 1606,
+	"./FormRadio.info.json": 1607,
+	"./FormSelect.info.json": 1608,
+	"./FormTextArea.info.json": 1609,
+	"./Grid.info.json": 1610,
+	"./GridColumn.info.json": 1611,
+	"./GridRow.info.json": 1612,
+	"./Header.info.json": 1613,
+	"./HeaderContent.info.json": 1614,
+	"./HeaderSubheader.info.json": 1615,
+	"./Icon.info.json": 1616,
+	"./IconGroup.info.json": 1617,
+	"./Image.info.json": 1618,
+	"./ImageGroup.info.json": 1619,
+	"./Input.info.json": 1620,
+	"./Item.info.json": 1621,
+	"./ItemContent.info.json": 1622,
+	"./ItemDescription.info.json": 1623,
+	"./ItemExtra.info.json": 1624,
+	"./ItemGroup.info.json": 1625,
+	"./ItemHeader.info.json": 1626,
+	"./ItemImage.info.json": 1627,
+	"./ItemMeta.info.json": 1628,
+	"./Label.info.json": 1629,
+	"./LabelDetail.info.json": 1630,
+	"./LabelGroup.info.json": 1631,
+	"./List.info.json": 1632,
+	"./ListContent.info.json": 1633,
+	"./ListDescription.info.json": 1634,
+	"./ListHeader.info.json": 1635,
+	"./ListIcon.info.json": 1636,
+	"./ListItem.info.json": 1637,
+	"./ListList.info.json": 1638,
+	"./Loader.info.json": 1639,
+	"./Menu.info.json": 1640,
+	"./MenuHeader.info.json": 1641,
+	"./MenuItem.info.json": 1642,
+	"./MenuMenu.info.json": 1643,
+	"./Message.info.json": 1644,
+	"./MessageContent.info.json": 1645,
+	"./MessageHeader.info.json": 1646,
+	"./MessageItem.info.json": 1647,
+	"./MessageList.info.json": 1648,
+	"./Modal.info.json": 1649,
+	"./ModalActions.info.json": 1650,
+	"./ModalContent.info.json": 1651,
+	"./ModalDescription.info.json": 1652,
+	"./ModalDimmer.info.json": 1653,
+	"./ModalHeader.info.json": 1654,
+	"./Pagination.info.json": 1655,
+	"./PaginationItem.info.json": 1656,
+	"./Placeholder.info.json": 1657,
+	"./PlaceholderHeader.info.json": 1658,
+	"./PlaceholderImage.info.json": 1659,
+	"./PlaceholderLine.info.json": 1660,
+	"./PlaceholderParagraph.info.json": 1661,
+	"./Popup.info.json": 1662,
+	"./PopupContent.info.json": 1663,
+	"./PopupHeader.info.json": 1664,
+	"./Portal.info.json": 1665,
+	"./PortalInner.info.json": 1666,
+	"./Progress.info.json": 1667,
+	"./Radio.info.json": 1668,
+	"./Rail.info.json": 1669,
+	"./Rating.info.json": 1670,
+	"./RatingIcon.info.json": 1671,
+	"./Reveal.info.json": 1672,
+	"./RevealContent.info.json": 1673,
+	"./Search.info.json": 1674,
+	"./SearchCategory.info.json": 1675,
+	"./SearchCategoryLayout.info.json": 1676,
+	"./SearchResult.info.json": 1677,
+	"./SearchResults.info.json": 1678,
+	"./Segment.info.json": 1679,
+	"./SegmentGroup.info.json": 1680,
+	"./SegmentInline.info.json": 1681,
+	"./Select.info.json": 1682,
+	"./Sidebar.info.json": 1683,
+	"./SidebarPushable.info.json": 1684,
+	"./SidebarPusher.info.json": 1685,
+	"./Statistic.info.json": 1686,
+	"./StatisticGroup.info.json": 1687,
+	"./StatisticLabel.info.json": 1688,
+	"./StatisticValue.info.json": 1689,
+	"./Step.info.json": 1690,
+	"./StepContent.info.json": 1691,
+	"./StepDescription.info.json": 1692,
+	"./StepGroup.info.json": 1693,
+	"./StepTitle.info.json": 1694,
+	"./Sticky.info.json": 1695,
+	"./Tab.info.json": 1696,
+	"./TabPane.info.json": 1697,
+	"./Table.info.json": 1698,
+	"./TableBody.info.json": 1699,
+	"./TableCell.info.json": 1700,
+	"./TableFooter.info.json": 1701,
+	"./TableHeader.info.json": 1702,
+	"./TableHeaderCell.info.json": 1703,
+	"./TableRow.info.json": 1704,
+	"./TextArea.info.json": 1705,
+	"./Transition.info.json": 1706,
+	"./TransitionGroup.info.json": 1707,
+	"./TransitionablePortal.info.json": 1708,
+	"./Visibility.info.json": 1709
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -84393,994 +84580,994 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1541;
-
-/***/ }),
-/* 1542 */
-/***/ (function(module, exports) {
-
-module.exports = {"displayName":"Accordion","props":[{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Format to take up the width of its container."],"tags":[],"name":"fluid"},{"type":"bool","required":false,"description":["Format for dark backgrounds."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["Adds some basic styling to accordion panels."],"tags":[],"name":"styled"}],"constructorName":"Accordion","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["AccordionAccordion","AccordionContent","AccordionPanel","AccordionTitle"],"apiPath":"Accordion","componentClassName":"accordion","docblock":{"tags":[],"description":["An accordion allows users to toggle the display of sections of content."]},"examplesExist":true,"repoPath":"src/modules/Accordion/Accordion.js","filename":"Accordion.js","filenameWithoutExt":"Accordion"}
-
-/***/ }),
-/* 1543 */
-/***/ (function(module, exports) {
-
-module.exports = {"displayName":"AccordionAccordion","props":[{"type":"union","required":false,"description":["Index of the currently active panel."],"tags":[],"value":[],"name":"activeIndex"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"union","required":false,"description":["Initial activeIndex value."],"tags":[],"value":[],"name":"defaultActiveIndex"},{"type":"bool","required":false,"description":["Only allow one panel open at a time."],"defaultValue":"true","tags":[],"name":"exclusive"},{"type":"func","required":false,"description":["Called when a panel title is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All item props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"value":[],"name":"onTitleClick"},{"type":"arrayOf","required":false,"description":["Shorthand array of props for Accordion."],"tags":[],"value":[],"name":"panels"}],"constructorName":"AccordionAccordion","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Accordion","subcomponentName":"Accordion","subcomponents":null,"apiPath":"Accordion.Accordion","componentClassName":"accordion","docblock":{"tags":[],"description":["An Accordion can contain sub-accordions."]},"examplesExist":false,"repoPath":"src/modules/Accordion/AccordionAccordion.js","filename":"AccordionAccordion.js","filenameWithoutExt":"AccordionAccordion"}
-
-/***/ }),
-/* 1544 */
-/***/ (function(module, exports) {
-
-module.exports = {"displayName":"AccordionContent","props":[{"type":"bool","required":false,"description":["Whether or not the content is visible."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"AccordionContent","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Accordion","subcomponentName":"Content","subcomponents":null,"apiPath":"Accordion.Content","componentClassName":"content","docblock":{"tags":[],"description":["A content sub-component for Accordion component."]},"examplesExist":false,"repoPath":"src/modules/Accordion/AccordionContent.js","filename":"AccordionContent.js","filenameWithoutExt":"AccordionContent"}
-
-/***/ }),
-/* 1545 */
-/***/ (function(module, exports) {
-
-module.exports = {"displayName":"AccordionPanel","props":[{"type":"bool","required":false,"description":["Whether or not the title is in the open state."],"tags":[],"name":"active"},{"type":"custom","required":false,"description":["A shorthand for Accordion.Content."],"tags":[],"name":"content"},{"type":"number|string","required":false,"description":["A panel index."],"tags":[],"value":[],"name":"index"},{"type":"func","required":false,"description":["Called when a panel title is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All item props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onTitleClick"},{"type":"custom","required":false,"description":["A shorthand for Accordion.Title."],"tags":[],"name":"title"}],"constructorName":"AccordionPanel","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Accordion","subcomponentName":"Panel","subcomponents":null,"apiPath":"Accordion.Panel","componentClassName":"panel","docblock":{"tags":[],"description":["A panel sub-component for Accordion component."]},"examplesExist":false,"repoPath":"src/modules/Accordion/AccordionPanel.js","filename":"AccordionPanel.js","filenameWithoutExt":"AccordionPanel"}
+webpackContext.id = 1545;
 
 /***/ }),
 /* 1546 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"AccordionTitle","props":[{"type":"bool","required":false,"description":["Whether or not the title is in the open state."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for Icon."],"tags":[],"name":"icon"},{"type":"string|number","required":false,"description":["AccordionTitle index inside Accordion."],"tags":[],"value":[],"name":"index"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"}],"constructorName":"AccordionTitle","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Accordion","subcomponentName":"Title","subcomponents":null,"apiPath":"Accordion.Title","componentClassName":"title","docblock":{"tags":[],"description":["A title sub-component for Accordion component."]},"examplesExist":false,"repoPath":"src/modules/Accordion/AccordionTitle.js","filename":"AccordionTitle.js","filenameWithoutExt":"AccordionTitle"}
+module.exports = {"displayName":"Accordion","props":[{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Format to take up the width of its container."],"tags":[],"name":"fluid"},{"type":"bool","required":false,"description":["Format for dark backgrounds."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["Adds some basic styling to accordion panels."],"tags":[],"name":"styled"}],"constructorName":"Accordion","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["AccordionAccordion","AccordionContent","AccordionPanel","AccordionTitle"],"apiPath":"Accordion","componentClassName":"accordion","docblock":{"tags":[],"description":["An accordion allows users to toggle the display of sections of content."]},"examplesExist":true,"repoPath":"src/modules/Accordion/Accordion.js","filename":"Accordion.js","filenameWithoutExt":"Accordion"}
 
 /***/ }),
 /* 1547 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Advertisement","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["Center the advertisement."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool|number|string","required":false,"description":["Text to be displayed on the advertisement."],"tags":[],"value":[],"name":"test"},{"type":"enum","required":true,"description":["Varies the size of the advertisement."],"tags":[],"value":["medium rectangle","large rectangle","vertical rectangle","small rectangle","mobile banner","banner","vertical banner","top banner","half banner","button","square button","small button","skyscraper","wide skyscraper","leaderboard","large leaderboard","mobile leaderboard","billboard","panorama","netboard","half page","square","small square"],"name":"unit"}],"constructorName":"Advertisement","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Advertisement","componentClassName":"advertisement","docblock":{"tags":[],"description":["An ad displays third-party promotional content."]},"examplesExist":true,"repoPath":"src/views/Advertisement/Advertisement.js","filename":"Advertisement.js","filenameWithoutExt":"Advertisement"}
+module.exports = {"displayName":"AccordionAccordion","props":[{"type":"union","required":false,"description":["Index of the currently active panel."],"tags":[],"value":[],"name":"activeIndex"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"union","required":false,"description":["Initial activeIndex value."],"tags":[],"value":[],"name":"defaultActiveIndex"},{"type":"bool","required":false,"description":["Only allow one panel open at a time."],"defaultValue":"true","tags":[],"name":"exclusive"},{"type":"func","required":false,"description":["Called when a panel title is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All item props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"value":[],"name":"onTitleClick"},{"type":"arrayOf","required":false,"description":["Shorthand array of props for Accordion."],"tags":[],"value":[],"name":"panels"}],"constructorName":"AccordionAccordion","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Accordion","subcomponentName":"Accordion","subcomponents":null,"apiPath":"Accordion.Accordion","componentClassName":"accordion","docblock":{"tags":[],"description":["An Accordion can contain sub-accordions."]},"examplesExist":false,"repoPath":"src/modules/Accordion/AccordionAccordion.js","filename":"AccordionAccordion.js","filenameWithoutExt":"AccordionAccordion"}
 
 /***/ }),
 /* 1548 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Breadcrumb","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content of the Breadcrumb.Divider."],"tags":[],"value":[],"name":"divider"},{"type":"custom","required":false,"description":["For use with the sections prop. Render as an `Icon` component with `divider` class instead of a `div` in","Breadcrumb.Divider."],"tags":[],"value":[],"name":"icon"},{"type":"custom","required":false,"description":["Shorthand array of props for Breadcrumb.Section."],"tags":[],"name":"sections"},{"type":"enum","required":false,"description":["Size of Breadcrumb."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"}],"constructorName":"Breadcrumb","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["BreadcrumbDivider","BreadcrumbSection"],"apiPath":"Breadcrumb","componentClassName":"breadcrumb","docblock":{"tags":[],"description":["A breadcrumb is used to show hierarchy between content."]},"examplesExist":true,"repoPath":"src/collections/Breadcrumb/Breadcrumb.js","filename":"Breadcrumb.js","filenameWithoutExt":"Breadcrumb"}
+module.exports = {"displayName":"AccordionContent","props":[{"type":"bool","required":false,"description":["Whether or not the content is visible."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"AccordionContent","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Accordion","subcomponentName":"Content","subcomponents":null,"apiPath":"Accordion.Content","componentClassName":"content","docblock":{"tags":[],"description":["A content sub-component for Accordion component."]},"examplesExist":false,"repoPath":"src/modules/Accordion/AccordionContent.js","filename":"AccordionContent.js","filenameWithoutExt":"AccordionContent"}
 
 /***/ }),
 /* 1549 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"BreadcrumbDivider","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Render as an `Icon` component with `divider` class instead of a `div`."],"tags":[],"name":"icon"}],"constructorName":"BreadcrumbDivider","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Breadcrumb","subcomponentName":"Divider","subcomponents":null,"apiPath":"Breadcrumb.Divider","componentClassName":"divider","docblock":{"tags":[],"description":["A divider sub-component for Breadcrumb component."]},"examplesExist":false,"repoPath":"src/collections/Breadcrumb/BreadcrumbDivider.js","filename":"BreadcrumbDivider.js","filenameWithoutExt":"BreadcrumbDivider"}
+module.exports = {"displayName":"AccordionPanel","props":[{"type":"bool","required":false,"description":["Whether or not the title is in the open state."],"tags":[],"name":"active"},{"type":"custom","required":false,"description":["A shorthand for Accordion.Content."],"tags":[],"name":"content"},{"type":"number|string","required":false,"description":["A panel index."],"tags":[],"value":[],"name":"index"},{"type":"func","required":false,"description":["Called when a panel title is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All item props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onTitleClick"},{"type":"custom","required":false,"description":["A shorthand for Accordion.Title."],"tags":[],"name":"title"}],"constructorName":"AccordionPanel","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Accordion","subcomponentName":"Panel","subcomponents":null,"apiPath":"Accordion.Panel","componentClassName":"panel","docblock":{"tags":[],"description":["A panel sub-component for Accordion component."]},"examplesExist":false,"repoPath":"src/modules/Accordion/AccordionPanel.js","filename":"AccordionPanel.js","filenameWithoutExt":"AccordionPanel"}
 
 /***/ }),
 /* 1550 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"BreadcrumbSection","props":[{"type":"bool","required":false,"description":["Style as the currently active section."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"string","required":false,"description":["Render as an `a` tag instead of a `div` and adds the href attribute."],"tags":[],"value":[],"name":"href"},{"type":"bool","required":false,"description":["Render as an `a` tag instead of a `div`."],"tags":[],"value":[],"name":"link"},{"type":"func","required":false,"description":["Called on click. When passed, the component will render as an `a`","tag by default instead of a `div`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"}],"constructorName":"BreadcrumbSection","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Breadcrumb","subcomponentName":"Section","subcomponents":null,"apiPath":"Breadcrumb.Section","componentClassName":"section","docblock":{"tags":[],"description":["A section sub-component for Breadcrumb component."]},"examplesExist":false,"repoPath":"src/collections/Breadcrumb/BreadcrumbSection.js","filename":"BreadcrumbSection.js","filenameWithoutExt":"BreadcrumbSection"}
+module.exports = {"displayName":"AccordionTitle","props":[{"type":"bool","required":false,"description":["Whether or not the title is in the open state."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for Icon."],"tags":[],"name":"icon"},{"type":"string|number","required":false,"description":["AccordionTitle index inside Accordion."],"tags":[],"value":[],"name":"index"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"}],"constructorName":"AccordionTitle","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Accordion","subcomponentName":"Title","subcomponents":null,"apiPath":"Accordion.Title","componentClassName":"title","docblock":{"tags":[],"description":["A title sub-component for Accordion component."]},"examplesExist":false,"repoPath":"src/modules/Accordion/AccordionTitle.js","filename":"AccordionTitle.js","filenameWithoutExt":"AccordionTitle"}
 
 /***/ }),
 /* 1551 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Button","props":[{"type":"bool","required":false,"description":["A button can show it is currently the active user selection."],"tags":[],"name":"active"},{"type":"bool|enum","required":false,"description":["A button can animate to show hidden content."],"tags":[],"value":["fade","vertical"],"name":"animated"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'button'","tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["A button can be attached to other content."],"tags":[],"value":["left","right","top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["A basic button is less pronounced."],"tags":[],"name":"basic"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"value":[],"name":"children"},{"type":"bool","required":false,"description":["A button can be circular."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A button can have different colors"],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black","facebook","google plus","instagram","linkedin","twitter","vk","youtube"],"name":"color"},{"type":"bool","required":false,"description":["A button can reduce its padding to fit into tighter spaces."],"tags":[],"name":"compact"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A button can show it is currently unable to be interacted with."],"tags":[],"name":"disabled"},{"type":"enum","required":false,"description":["A button can be aligned to the left or right of its container."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["A button can take the width of its container."],"tags":[],"name":"fluid"},{"type":"bool|string|object|element","required":false,"description":["Add an Icon by name, props object, or pass an <Icon />."],"tags":[],"value":[],"name":"icon"},{"type":"bool","required":false,"description":["A button can be formatted to appear on dark backgrounds."],"tags":[],"name":"inverted"},{"type":"string|object|element","required":false,"description":["Add a Label by text, props object, or pass a <Label />."],"tags":[],"value":[],"name":"label"},{"type":"enum","required":false,"description":["A labeled button can format a Label or Icon to appear on the left or right."],"tags":[],"value":["right","left"],"name":"labelPosition"},{"type":"bool","required":false,"description":["A button can show a loading indicator."],"tags":[],"name":"loading"},{"type":"bool","required":false,"description":["A button can hint towards a negative consequence."],"tags":[],"name":"negative"},{"type":"func","required":false,"description":["Called after user's click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"bool","required":false,"description":["A button can hint towards a positive consequence."],"tags":[],"name":"positive"},{"type":"bool","required":false,"description":["A button can be formatted to show different levels of emphasis."],"tags":[],"name":"primary"},{"type":"string","required":false,"description":["The role of the HTML element."],"tags":[],"name":"role"},{"type":"bool","required":false,"description":["A button can be formatted to show different levels of emphasis."],"tags":[],"name":"secondary"},{"type":"enum","required":false,"description":["A button can have different sizes."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"number|string","required":false,"description":["A button can receive focus."],"tags":[],"value":[],"name":"tabIndex"},{"type":"bool","required":false,"description":["A button can be formatted to toggle on and off."],"tags":[],"name":"toggle"}],"constructorName":"Button","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["ButtonContent","ButtonGroup","ButtonOr"],"apiPath":"Button","componentClassName":"button","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Icon"},{"title":"see","description":"Label"}],"description":["A Button indicates a possible user action."]},"examplesExist":true,"repoPath":"src/elements/Button/Button.js","filename":"Button.js","filenameWithoutExt":"Button"}
+module.exports = {"displayName":"Advertisement","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["Center the advertisement."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool|number|string","required":false,"description":["Text to be displayed on the advertisement."],"tags":[],"value":[],"name":"test"},{"type":"enum","required":true,"description":["Varies the size of the advertisement."],"tags":[],"value":["medium rectangle","large rectangle","vertical rectangle","small rectangle","mobile banner","banner","vertical banner","top banner","half banner","button","square button","small button","skyscraper","wide skyscraper","leaderboard","large leaderboard","mobile leaderboard","billboard","panorama","netboard","half page","square","small square"],"name":"unit"}],"constructorName":"Advertisement","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Advertisement","componentClassName":"advertisement","docblock":{"tags":[],"description":["An ad displays third-party promotional content."]},"examplesExist":true,"repoPath":"src/views/Advertisement/Advertisement.js","filename":"Advertisement.js","filenameWithoutExt":"Advertisement"}
 
 /***/ }),
 /* 1552 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ButtonContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Initially hidden, visible on hover."],"tags":[],"name":"hidden"},{"type":"bool","required":false,"description":["Initially visible, hidden on hover."],"tags":[],"name":"visible"}],"constructorName":"ButtonContent","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Button","subcomponentName":"Content","subcomponents":null,"apiPath":"Button.Content","componentClassName":"content","docblock":{"tags":[],"description":["Used in some Button types, such as `animated`."]},"examplesExist":false,"repoPath":"src/elements/Button/ButtonContent.js","filename":"ButtonContent.js","filenameWithoutExt":"ButtonContent"}
+module.exports = {"displayName":"Breadcrumb","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content of the Breadcrumb.Divider."],"tags":[],"value":[],"name":"divider"},{"type":"custom","required":false,"description":["For use with the sections prop. Render as an `Icon` component with `divider` class instead of a `div` in","Breadcrumb.Divider."],"tags":[],"value":[],"name":"icon"},{"type":"custom","required":false,"description":["Shorthand array of props for Breadcrumb.Section."],"tags":[],"name":"sections"},{"type":"enum","required":false,"description":["Size of Breadcrumb."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"}],"constructorName":"Breadcrumb","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["BreadcrumbDivider","BreadcrumbSection"],"apiPath":"Breadcrumb","componentClassName":"breadcrumb","docblock":{"tags":[],"description":["A breadcrumb is used to show hierarchy between content."]},"examplesExist":true,"repoPath":"src/collections/Breadcrumb/Breadcrumb.js","filename":"Breadcrumb.js","filenameWithoutExt":"Breadcrumb"}
 
 /***/ }),
 /* 1553 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ButtonGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["Groups can be attached to other content."],"tags":[],"value":["left","right","top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["Groups can be less pronounced."],"tags":[],"name":"basic"},{"type":"custom","required":false,"description":["Array of shorthand Button values."],"tags":[],"name":"buttons"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Groups can have a shared color."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"bool","required":false,"description":["Groups can reduce their padding to fit into tighter spaces."],"tags":[],"name":"compact"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["Groups can be aligned to the left or right of its container."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["Groups can take the width of their container."],"tags":[],"name":"fluid"},{"type":"bool","required":false,"description":["Groups can be formatted as icons."],"tags":[],"name":"icon"},{"type":"bool","required":false,"description":["Groups can be formatted to appear on dark backgrounds."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["Groups can be formatted as labeled icon buttons."],"tags":[],"name":"labeled"},{"type":"bool","required":false,"description":["Groups can hint towards a negative consequence."],"tags":[],"name":"negative"},{"type":"bool","required":false,"description":["Groups can hint towards a positive consequence."],"tags":[],"name":"positive"},{"type":"bool","required":false,"description":["Groups can be formatted to show different levels of emphasis."],"tags":[],"name":"primary"},{"type":"bool","required":false,"description":["Groups can be formatted to show different levels of emphasis."],"tags":[],"name":"secondary"},{"type":"enum","required":false,"description":["Groups can have different sizes."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["Groups can be formatted to toggle on and off."],"tags":[],"name":"toggle"},{"type":"bool","required":false,"description":["Groups can be formatted to appear vertically."],"tags":[],"name":"vertical"},{"type":"enum","required":false,"description":["Groups can have their widths divided evenly."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"widths"}],"constructorName":"ButtonGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Button","subcomponentName":"Group","subcomponents":null,"apiPath":"Button.Group","componentClassName":"buttons","docblock":{"tags":[],"description":["Buttons can be grouped."]},"examplesExist":false,"repoPath":"src/elements/Button/ButtonGroup.js","filename":"ButtonGroup.js","filenameWithoutExt":"ButtonGroup"}
+module.exports = {"displayName":"BreadcrumbDivider","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Render as an `Icon` component with `divider` class instead of a `div`."],"tags":[],"name":"icon"}],"constructorName":"BreadcrumbDivider","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Breadcrumb","subcomponentName":"Divider","subcomponents":null,"apiPath":"Breadcrumb.Divider","componentClassName":"divider","docblock":{"tags":[],"description":["A divider sub-component for Breadcrumb component."]},"examplesExist":false,"repoPath":"src/collections/Breadcrumb/BreadcrumbDivider.js","filename":"BreadcrumbDivider.js","filenameWithoutExt":"BreadcrumbDivider"}
 
 /***/ }),
 /* 1554 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ButtonOr","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"number|string","required":false,"description":["Or buttons can have their text localized, or adjusted by using the text prop."],"tags":[],"value":[],"name":"text"}],"constructorName":"ButtonOr","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Button","subcomponentName":"Or","subcomponents":null,"apiPath":"Button.Or","componentClassName":"or","docblock":{"tags":[],"description":["Button groups can contain conditionals."]},"examplesExist":false,"repoPath":"src/elements/Button/ButtonOr.js","filename":"ButtonOr.js","filenameWithoutExt":"ButtonOr"}
+module.exports = {"displayName":"BreadcrumbSection","props":[{"type":"bool","required":false,"description":["Style as the currently active section."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"string","required":false,"description":["Render as an `a` tag instead of a `div` and adds the href attribute."],"tags":[],"value":[],"name":"href"},{"type":"bool","required":false,"description":["Render as an `a` tag instead of a `div`."],"tags":[],"value":[],"name":"link"},{"type":"func","required":false,"description":["Called on click. When passed, the component will render as an `a`","tag by default instead of a `div`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"}],"constructorName":"BreadcrumbSection","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Breadcrumb","subcomponentName":"Section","subcomponents":null,"apiPath":"Breadcrumb.Section","componentClassName":"section","docblock":{"tags":[],"description":["A section sub-component for Breadcrumb component."]},"examplesExist":false,"repoPath":"src/collections/Breadcrumb/BreadcrumbSection.js","filename":"BreadcrumbSection.js","filenameWithoutExt":"BreadcrumbSection"}
 
 /***/ }),
 /* 1555 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Card","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A Card can center itself inside its container."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A Card can be formatted to display different colors."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for CardDescription."],"tags":[],"name":"description"},{"type":"custom","required":false,"description":["Shorthand for primary content of CardContent."],"tags":[],"name":"extra"},{"type":"bool","required":false,"description":["A Card can be formatted to take up the width of its container."],"tags":[],"name":"fluid"},{"type":"custom","required":false,"description":["Shorthand for CardHeader."],"tags":[],"name":"header"},{"type":"string","required":false,"description":["Render as an `a` tag instead of a `div` and adds the href attribute."],"tags":[],"name":"href"},{"type":"custom","required":false,"description":["A card can contain an Image component."],"tags":[],"name":"image"},{"type":"bool","required":false,"description":["A card can be formatted to link to other content."],"tags":[],"name":"link"},{"type":"custom","required":false,"description":["Shorthand for CardMeta."],"tags":[],"name":"meta"},{"type":"func","required":false,"description":["Called on click. When passed, the component renders as an `a`","tag by default instead of a `div`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"bool","required":false,"description":["A Card can be formatted to raise above the page."],"tags":[],"name":"raised"}],"constructorName":"Card","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["CardContent","CardDescription","CardGroup","CardHeader","CardMeta"],"apiPath":"Card","componentClassName":"card","docblock":{"tags":[],"description":["A card displays site content in a manner similar to a playing card."]},"examplesExist":true,"repoPath":"src/views/Card/Card.js","filename":"Card.js","filenameWithoutExt":"Card"}
+module.exports = {"displayName":"Button","props":[{"type":"bool","required":false,"description":["A button can show it is currently the active user selection."],"tags":[],"name":"active"},{"type":"bool|enum","required":false,"description":["A button can animate to show hidden content."],"tags":[],"value":["fade","vertical"],"name":"animated"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'button'","tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["A button can be attached to other content."],"tags":[],"value":["left","right","top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["A basic button is less pronounced."],"tags":[],"name":"basic"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"value":[],"name":"children"},{"type":"bool","required":false,"description":["A button can be circular."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A button can have different colors"],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black","facebook","google plus","instagram","linkedin","twitter","vk","youtube"],"name":"color"},{"type":"bool","required":false,"description":["A button can reduce its padding to fit into tighter spaces."],"tags":[],"name":"compact"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A button can show it is currently unable to be interacted with."],"tags":[],"name":"disabled"},{"type":"enum","required":false,"description":["A button can be aligned to the left or right of its container."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["A button can take the width of its container."],"tags":[],"name":"fluid"},{"type":"bool|string|object|element","required":false,"description":["Add an Icon by name, props object, or pass an <Icon />."],"tags":[],"value":[],"name":"icon"},{"type":"bool","required":false,"description":["A button can be formatted to appear on dark backgrounds."],"tags":[],"name":"inverted"},{"type":"string|object|element","required":false,"description":["Add a Label by text, props object, or pass a <Label />."],"tags":[],"value":[],"name":"label"},{"type":"enum","required":false,"description":["A labeled button can format a Label or Icon to appear on the left or right."],"tags":[],"value":["right","left"],"name":"labelPosition"},{"type":"bool","required":false,"description":["A button can show a loading indicator."],"tags":[],"name":"loading"},{"type":"bool","required":false,"description":["A button can hint towards a negative consequence."],"tags":[],"name":"negative"},{"type":"func","required":false,"description":["Called after user's click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"bool","required":false,"description":["A button can hint towards a positive consequence."],"tags":[],"name":"positive"},{"type":"bool","required":false,"description":["A button can be formatted to show different levels of emphasis."],"tags":[],"name":"primary"},{"type":"string","required":false,"description":["The role of the HTML element."],"tags":[],"name":"role"},{"type":"bool","required":false,"description":["A button can be formatted to show different levels of emphasis."],"tags":[],"name":"secondary"},{"type":"enum","required":false,"description":["A button can have different sizes."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"number|string","required":false,"description":["A button can receive focus."],"tags":[],"value":[],"name":"tabIndex"},{"type":"bool","required":false,"description":["A button can be formatted to toggle on and off."],"tags":[],"name":"toggle"}],"constructorName":"Button","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["ButtonContent","ButtonGroup","ButtonOr"],"apiPath":"Button","componentClassName":"button","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Icon"},{"title":"see","description":"Label"}],"description":["A Button indicates a possible user action."]},"examplesExist":true,"repoPath":"src/elements/Button/Button.js","filename":"Button.js","filenameWithoutExt":"Button"}
 
 /***/ }),
 /* 1556 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CardContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for CardDescription."],"tags":[],"name":"description"},{"type":"bool","required":false,"description":["A card can contain extra content meant to be formatted separately from the main content."],"tags":[],"name":"extra"},{"type":"custom","required":false,"description":["Shorthand for CardHeader."],"tags":[],"name":"header"},{"type":"custom","required":false,"description":["Shorthand for CardMeta."],"tags":[],"name":"meta"},{"type":"enum","required":false,"description":["A card content can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"}],"constructorName":"CardContent","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Card","subcomponentName":"Content","subcomponents":null,"apiPath":"Card.Content","componentClassName":"content","docblock":{"tags":[],"description":["A card can contain blocks of content or extra content meant to be formatted separately from the main content."]},"examplesExist":false,"repoPath":"src/views/Card/CardContent.js","filename":"CardContent.js","filenameWithoutExt":"CardContent"}
+module.exports = {"displayName":"ButtonContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Initially hidden, visible on hover."],"tags":[],"name":"hidden"},{"type":"bool","required":false,"description":["Initially visible, hidden on hover."],"tags":[],"name":"visible"}],"constructorName":"ButtonContent","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Button","subcomponentName":"Content","subcomponents":null,"apiPath":"Button.Content","componentClassName":"content","docblock":{"tags":[],"description":["Used in some Button types, such as `animated`."]},"examplesExist":false,"repoPath":"src/elements/Button/ButtonContent.js","filename":"ButtonContent.js","filenameWithoutExt":"ButtonContent"}
 
 /***/ }),
 /* 1557 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CardDescription","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A card content can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"}],"constructorName":"CardDescription","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Card","subcomponentName":"Description","subcomponents":null,"apiPath":"Card.Description","componentClassName":"description","docblock":{"tags":[],"description":["A card can contain a description with one or more paragraphs."]},"examplesExist":false,"repoPath":"src/views/Card/CardDescription.js","filename":"CardDescription.js","filenameWithoutExt":"CardDescription"}
+module.exports = {"displayName":"ButtonGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["Groups can be attached to other content."],"tags":[],"value":["left","right","top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["Groups can be less pronounced."],"tags":[],"name":"basic"},{"type":"custom","required":false,"description":["Array of shorthand Button values."],"tags":[],"name":"buttons"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Groups can have a shared color."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"bool","required":false,"description":["Groups can reduce their padding to fit into tighter spaces."],"tags":[],"name":"compact"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["Groups can be aligned to the left or right of its container."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["Groups can take the width of their container."],"tags":[],"name":"fluid"},{"type":"bool","required":false,"description":["Groups can be formatted as icons."],"tags":[],"name":"icon"},{"type":"bool","required":false,"description":["Groups can be formatted to appear on dark backgrounds."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["Groups can be formatted as labeled icon buttons."],"tags":[],"name":"labeled"},{"type":"bool","required":false,"description":["Groups can hint towards a negative consequence."],"tags":[],"name":"negative"},{"type":"bool","required":false,"description":["Groups can hint towards a positive consequence."],"tags":[],"name":"positive"},{"type":"bool","required":false,"description":["Groups can be formatted to show different levels of emphasis."],"tags":[],"name":"primary"},{"type":"bool","required":false,"description":["Groups can be formatted to show different levels of emphasis."],"tags":[],"name":"secondary"},{"type":"enum","required":false,"description":["Groups can have different sizes."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["Groups can be formatted to toggle on and off."],"tags":[],"name":"toggle"},{"type":"bool","required":false,"description":["Groups can be formatted to appear vertically."],"tags":[],"name":"vertical"},{"type":"enum","required":false,"description":["Groups can have their widths divided evenly."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"widths"}],"constructorName":"ButtonGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Button","subcomponentName":"Group","subcomponents":null,"apiPath":"Button.Group","componentClassName":"buttons","docblock":{"tags":[],"description":["Buttons can be grouped."]},"examplesExist":false,"repoPath":"src/elements/Button/ButtonGroup.js","filename":"ButtonGroup.js","filenameWithoutExt":"ButtonGroup"}
 
 /***/ }),
 /* 1558 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CardGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A group of cards can center itself inside its container."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A group of cards can double its column width for mobile."],"tags":[],"name":"doubling"},{"type":"custom","required":false,"description":["Shorthand array of props for Card."],"tags":[],"name":"items"},{"type":"enum","required":false,"description":["A group of cards can set how many cards should exist in a row."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"itemsPerRow"},{"type":"bool","required":false,"description":["A group of cards can automatically stack rows to a single columns on mobile devices."],"tags":[],"name":"stackable"},{"type":"enum","required":false,"description":["A card group can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"}],"constructorName":"CardGroup","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Card","subcomponentName":"Group","subcomponents":null,"apiPath":"Card.Group","componentClassName":"cards","docblock":{"tags":[],"description":["A group of cards."]},"examplesExist":false,"repoPath":"src/views/Card/CardGroup.js","filename":"CardGroup.js","filenameWithoutExt":"CardGroup"}
+module.exports = {"displayName":"ButtonOr","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"number|string","required":false,"description":["Or buttons can have their text localized, or adjusted by using the text prop."],"tags":[],"value":[],"name":"text"}],"constructorName":"ButtonOr","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Button","subcomponentName":"Or","subcomponents":null,"apiPath":"Button.Or","componentClassName":"or","docblock":{"tags":[],"description":["Button groups can contain conditionals."]},"examplesExist":false,"repoPath":"src/elements/Button/ButtonOr.js","filename":"ButtonOr.js","filenameWithoutExt":"ButtonOr"}
 
 /***/ }),
 /* 1559 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CardHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A card header can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"}],"constructorName":"CardHeader","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Card","subcomponentName":"Header","subcomponents":null,"apiPath":"Card.Header","componentClassName":"header","docblock":{"tags":[],"description":["A card can contain a header."]},"examplesExist":false,"repoPath":"src/views/Card/CardHeader.js","filename":"CardHeader.js","filenameWithoutExt":"CardHeader"}
+module.exports = {"displayName":"Card","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A Card can center itself inside its container."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A Card can be formatted to display different colors."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for CardDescription."],"tags":[],"name":"description"},{"type":"custom","required":false,"description":["Shorthand for primary content of CardContent."],"tags":[],"name":"extra"},{"type":"bool","required":false,"description":["A Card can be formatted to take up the width of its container."],"tags":[],"name":"fluid"},{"type":"custom","required":false,"description":["Shorthand for CardHeader."],"tags":[],"name":"header"},{"type":"string","required":false,"description":["Render as an `a` tag instead of a `div` and adds the href attribute."],"tags":[],"name":"href"},{"type":"custom","required":false,"description":["A card can contain an Image component."],"tags":[],"name":"image"},{"type":"bool","required":false,"description":["A card can be formatted to link to other content."],"tags":[],"name":"link"},{"type":"custom","required":false,"description":["Shorthand for CardMeta."],"tags":[],"name":"meta"},{"type":"func","required":false,"description":["Called on click. When passed, the component renders as an `a`","tag by default instead of a `div`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"bool","required":false,"description":["A Card can be formatted to raise above the page."],"tags":[],"name":"raised"}],"constructorName":"Card","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["CardContent","CardDescription","CardGroup","CardHeader","CardMeta"],"apiPath":"Card","componentClassName":"card","docblock":{"tags":[],"description":["A card displays site content in a manner similar to a playing card."]},"examplesExist":true,"repoPath":"src/views/Card/Card.js","filename":"Card.js","filenameWithoutExt":"Card"}
 
 /***/ }),
 /* 1560 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CardMeta","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A card meta can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"}],"constructorName":"CardMeta","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Card","subcomponentName":"Meta","subcomponents":null,"apiPath":"Card.Meta","componentClassName":"meta","docblock":{"tags":[],"description":["A card can contain content metadata."]},"examplesExist":false,"repoPath":"src/views/Card/CardMeta.js","filename":"CardMeta.js","filenameWithoutExt":"CardMeta"}
+module.exports = {"displayName":"CardContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for CardDescription."],"tags":[],"name":"description"},{"type":"bool","required":false,"description":["A card can contain extra content meant to be formatted separately from the main content."],"tags":[],"name":"extra"},{"type":"custom","required":false,"description":["Shorthand for CardHeader."],"tags":[],"name":"header"},{"type":"custom","required":false,"description":["Shorthand for CardMeta."],"tags":[],"name":"meta"},{"type":"enum","required":false,"description":["A card content can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"}],"constructorName":"CardContent","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Card","subcomponentName":"Content","subcomponents":null,"apiPath":"Card.Content","componentClassName":"content","docblock":{"tags":[],"description":["A card can contain blocks of content or extra content meant to be formatted separately from the main content."]},"examplesExist":false,"repoPath":"src/views/Card/CardContent.js","filename":"CardContent.js","filenameWithoutExt":"CardContent"}
 
 /***/ }),
 /* 1561 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Checkbox","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["Whether or not checkbox is checked."],"tags":[],"name":"checked"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["The initial value of checked."],"tags":[],"name":"defaultChecked"},{"type":"bool","required":false,"description":["Whether or not checkbox is indeterminate."],"tags":[],"name":"defaultIndeterminate"},{"type":"bool","required":false,"description":["A checkbox can appear disabled and be unable to change states"],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["Removes padding for a label. Auto applied when there is no label."],"tags":[],"name":"fitted"},{"type":"number|string","required":false,"description":["A unique identifier."],"tags":[],"value":[],"name":"id"},{"type":"bool","required":false,"description":["Whether or not checkbox is indeterminate."],"tags":[],"name":"indeterminate"},{"type":"custom","required":false,"description":["The text of the associated label element."],"tags":[],"name":"label"},{"type":"string","required":false,"description":["The HTML input name."],"tags":[],"name":"name"},{"type":"func","required":false,"description":["Called when the user attempts to change the checked state."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and proposed checked/indeterminate state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onChange"},{"type":"func","required":false,"description":["Called when the checkbox or label is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and current checked/indeterminate state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Called when the user presses down on the mouse."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and current checked/indeterminate state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onMouseDown"},{"type":"func","required":false,"description":["Called when the user releases the mouse."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and current checked/indeterminate state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onMouseUp"},{"type":"bool","required":false,"description":["Format as a radio element. This means it is an exclusive option."],"tags":[],"value":[],"name":"radio"},{"type":"bool","required":false,"description":["A checkbox can be read-only and unable to change states."],"tags":[],"name":"readOnly"},{"type":"bool","required":false,"description":["Format to emphasize the current selection state."],"tags":[],"value":[],"name":"slider"},{"type":"number|string","required":false,"description":["A checkbox can receive focus."],"tags":[],"value":[],"name":"tabIndex"},{"type":"bool","required":false,"description":["Format to show an on or off choice."],"tags":[],"value":[],"name":"toggle"},{"type":"enum","required":false,"description":["HTML input type, either checkbox or radio."],"defaultValue":"'checkbox'","tags":[],"value":["checkbox","radio"],"name":"type"},{"type":"string|number","required":false,"description":["The HTML input value."],"tags":[],"value":[],"name":"value"}],"constructorName":"Checkbox","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Checkbox","componentClassName":"checkbox","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Radio"}],"description":["A checkbox allows a user to select a value from a small set of options, often binary."]},"examplesExist":true,"repoPath":"src/modules/Checkbox/Checkbox.js","filename":"Checkbox.js","filenameWithoutExt":"Checkbox"}
+module.exports = {"displayName":"CardDescription","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A card content can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"}],"constructorName":"CardDescription","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Card","subcomponentName":"Description","subcomponents":null,"apiPath":"Card.Description","componentClassName":"description","docblock":{"tags":[],"description":["A card can contain a description with one or more paragraphs."]},"examplesExist":false,"repoPath":"src/views/Card/CardDescription.js","filename":"CardDescription.js","filenameWithoutExt":"CardDescription"}
 
 /***/ }),
 /* 1562 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Comment","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Comment can be collapsed, or hidden from view."],"tags":[],"name":"collapsed"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"Comment","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["CommentAction","CommentActions","CommentAuthor","CommentAvatar","CommentContent","CommentGroup","CommentMetadata","CommentText"],"apiPath":"Comment","componentClassName":"comment","docblock":{"tags":[],"description":["A comment displays user feedback to site content."]},"examplesExist":true,"repoPath":"src/views/Comment/Comment.js","filename":"Comment.js","filenameWithoutExt":"Comment"}
+module.exports = {"displayName":"CardGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A group of cards can center itself inside its container."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A group of cards can double its column width for mobile."],"tags":[],"name":"doubling"},{"type":"custom","required":false,"description":["Shorthand array of props for Card."],"tags":[],"name":"items"},{"type":"enum","required":false,"description":["A group of cards can set how many cards should exist in a row."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"itemsPerRow"},{"type":"bool","required":false,"description":["A group of cards can automatically stack rows to a single columns on mobile devices."],"tags":[],"name":"stackable"},{"type":"enum","required":false,"description":["A card group can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"}],"constructorName":"CardGroup","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Card","subcomponentName":"Group","subcomponents":null,"apiPath":"Card.Group","componentClassName":"cards","docblock":{"tags":[],"description":["A group of cards."]},"examplesExist":false,"repoPath":"src/views/Card/CardGroup.js","filename":"CardGroup.js","filenameWithoutExt":"CardGroup"}
 
 /***/ }),
 /* 1563 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CommentAction","props":[{"type":"bool","required":false,"description":["Style as the currently active action."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'a'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentAction","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Action","subcomponents":null,"apiPath":"Comment.Action","componentClassName":"action","docblock":{"tags":[],"description":["A comment can contain an action."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentAction.js","filename":"CommentAction.js","filenameWithoutExt":"CommentAction"}
+module.exports = {"displayName":"CardHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A card header can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"}],"constructorName":"CardHeader","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Card","subcomponentName":"Header","subcomponents":null,"apiPath":"Card.Header","componentClassName":"header","docblock":{"tags":[],"description":["A card can contain a header."]},"examplesExist":false,"repoPath":"src/views/Card/CardHeader.js","filename":"CardHeader.js","filenameWithoutExt":"CardHeader"}
 
 /***/ }),
 /* 1564 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CommentActions","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentActions","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Actions","subcomponents":null,"apiPath":"Comment.Actions","componentClassName":"actions","docblock":{"tags":[],"description":["A comment can contain an list of actions a user may perform related to this comment."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentActions.js","filename":"CommentActions.js","filenameWithoutExt":"CommentActions"}
+module.exports = {"displayName":"CardMeta","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A card meta can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"}],"constructorName":"CardMeta","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Card","subcomponentName":"Meta","subcomponents":null,"apiPath":"Card.Meta","componentClassName":"meta","docblock":{"tags":[],"description":["A card can contain content metadata."]},"examplesExist":false,"repoPath":"src/views/Card/CardMeta.js","filename":"CardMeta.js","filenameWithoutExt":"CardMeta"}
 
 /***/ }),
 /* 1565 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CommentAuthor","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentAuthor","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Author","subcomponents":null,"apiPath":"Comment.Author","componentClassName":"author","docblock":{"tags":[],"description":["A comment can contain an author."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentAuthor.js","filename":"CommentAuthor.js","filenameWithoutExt":"CommentAuthor"}
+module.exports = {"displayName":"Checkbox","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["Whether or not checkbox is checked."],"tags":[],"name":"checked"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["The initial value of checked."],"tags":[],"name":"defaultChecked"},{"type":"bool","required":false,"description":["Whether or not checkbox is indeterminate."],"tags":[],"name":"defaultIndeterminate"},{"type":"bool","required":false,"description":["A checkbox can appear disabled and be unable to change states"],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["Removes padding for a label. Auto applied when there is no label."],"tags":[],"name":"fitted"},{"type":"number|string","required":false,"description":["A unique identifier."],"tags":[],"value":[],"name":"id"},{"type":"bool","required":false,"description":["Whether or not checkbox is indeterminate."],"tags":[],"name":"indeterminate"},{"type":"custom","required":false,"description":["The text of the associated label element."],"tags":[],"name":"label"},{"type":"string","required":false,"description":["The HTML input name."],"tags":[],"name":"name"},{"type":"func","required":false,"description":["Called when the user attempts to change the checked state."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and proposed checked/indeterminate state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onChange"},{"type":"func","required":false,"description":["Called when the checkbox or label is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and current checked/indeterminate state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Called when the user presses down on the mouse."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and current checked/indeterminate state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onMouseDown"},{"type":"func","required":false,"description":["Called when the user releases the mouse."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and current checked/indeterminate state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onMouseUp"},{"type":"bool","required":false,"description":["Format as a radio element. This means it is an exclusive option."],"tags":[],"value":[],"name":"radio"},{"type":"bool","required":false,"description":["A checkbox can be read-only and unable to change states."],"tags":[],"name":"readOnly"},{"type":"bool","required":false,"description":["Format to emphasize the current selection state."],"tags":[],"value":[],"name":"slider"},{"type":"number|string","required":false,"description":["A checkbox can receive focus."],"tags":[],"value":[],"name":"tabIndex"},{"type":"bool","required":false,"description":["Format to show an on or off choice."],"tags":[],"value":[],"name":"toggle"},{"type":"enum","required":false,"description":["HTML input type, either checkbox or radio."],"defaultValue":"'checkbox'","tags":[],"value":["checkbox","radio"],"name":"type"},{"type":"string|number","required":false,"description":["The HTML input value."],"tags":[],"value":[],"name":"value"}],"constructorName":"Checkbox","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Checkbox","componentClassName":"checkbox","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Radio"}],"description":["A checkbox allows a user to select a value from a small set of options, often binary."]},"examplesExist":true,"repoPath":"src/modules/Checkbox/Checkbox.js","filename":"Checkbox.js","filenameWithoutExt":"Checkbox"}
 
 /***/ }),
 /* 1566 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CommentAvatar","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"string","required":false,"description":["Specifies the URL of the image."],"tags":[],"name":"src"}],"constructorName":"CommentAvatar","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Avatar","subcomponents":null,"apiPath":"Comment.Avatar","componentClassName":"avatar","docblock":{"tags":[],"description":["A comment can contain an image or avatar."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentAvatar.js","filename":"CommentAvatar.js","filenameWithoutExt":"CommentAvatar"}
+module.exports = {"displayName":"Comment","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Comment can be collapsed, or hidden from view."],"tags":[],"name":"collapsed"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"Comment","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["CommentAction","CommentActions","CommentAuthor","CommentAvatar","CommentContent","CommentGroup","CommentMetadata","CommentText"],"apiPath":"Comment","componentClassName":"comment","docblock":{"tags":[],"description":["A comment displays user feedback to site content."]},"examplesExist":true,"repoPath":"src/views/Comment/Comment.js","filename":"Comment.js","filenameWithoutExt":"Comment"}
 
 /***/ }),
 /* 1567 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CommentContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentContent","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Content","subcomponents":null,"apiPath":"Comment.Content","componentClassName":"content","docblock":{"tags":[],"description":["A comment can contain content."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentContent.js","filename":"CommentContent.js","filenameWithoutExt":"CommentContent"}
+module.exports = {"displayName":"CommentAction","props":[{"type":"bool","required":false,"description":["Style as the currently active action."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'a'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentAction","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Action","subcomponents":null,"apiPath":"Comment.Action","componentClassName":"action","docblock":{"tags":[],"description":["A comment can contain an action."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentAction.js","filename":"CommentAction.js","filenameWithoutExt":"CommentAction"}
 
 /***/ }),
 /* 1568 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CommentGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Comments can be collapsed, or hidden from view."],"tags":[],"name":"collapsed"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Comments can hide extra information unless a user shows intent to interact with a comment."],"tags":[],"name":"minimal"},{"type":"enum","required":false,"description":["Comments can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["A comment list can be threaded to showing the relationship between conversations."],"tags":[],"name":"threaded"}],"constructorName":"CommentGroup","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Group","subcomponents":null,"apiPath":"Comment.Group","componentClassName":"comments","docblock":{"tags":[],"description":["Comments can be grouped."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentGroup.js","filename":"CommentGroup.js","filenameWithoutExt":"CommentGroup"}
+module.exports = {"displayName":"CommentActions","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentActions","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Actions","subcomponents":null,"apiPath":"Comment.Actions","componentClassName":"actions","docblock":{"tags":[],"description":["A comment can contain an list of actions a user may perform related to this comment."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentActions.js","filename":"CommentActions.js","filenameWithoutExt":"CommentActions"}
 
 /***/ }),
 /* 1569 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CommentMetadata","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentMetadata","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Metadata","subcomponents":null,"apiPath":"Comment.Metadata","componentClassName":"metadata","docblock":{"tags":[],"description":["A comment can contain metadata about the comment, an arbitrary amount of metadata may be defined."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentMetadata.js","filename":"CommentMetadata.js","filenameWithoutExt":"CommentMetadata"}
+module.exports = {"displayName":"CommentAuthor","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentAuthor","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Author","subcomponents":null,"apiPath":"Comment.Author","componentClassName":"author","docblock":{"tags":[],"description":["A comment can contain an author."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentAuthor.js","filename":"CommentAuthor.js","filenameWithoutExt":"CommentAuthor"}
 
 /***/ }),
 /* 1570 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"CommentText","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentText","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Text","subcomponents":null,"apiPath":"Comment.Text","componentClassName":"text","docblock":{"tags":[],"description":["A comment can contain text."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentText.js","filename":"CommentText.js","filenameWithoutExt":"CommentText"}
+module.exports = {"displayName":"CommentAvatar","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"string","required":false,"description":["Specifies the URL of the image."],"tags":[],"name":"src"}],"constructorName":"CommentAvatar","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Avatar","subcomponents":null,"apiPath":"Comment.Avatar","componentClassName":"avatar","docblock":{"tags":[],"description":["A comment can contain an image or avatar."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentAvatar.js","filename":"CommentAvatar.js","filenameWithoutExt":"CommentAvatar"}
 
 /***/ }),
 /* 1571 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Confirm","props":[{"type":"custom","required":false,"description":["The cancel button text."],"defaultValue":"'Cancel'","tags":[],"name":"cancelButton"},{"type":"custom","required":false,"description":["The OK button text."],"defaultValue":"'OK'","tags":[],"name":"confirmButton"},{"type":"custom","required":false,"description":["The ModalContent text."],"defaultValue":"'Are you sure?'","tags":[],"name":"content"},{"type":"custom","required":false,"description":["The ModalHeader text."],"tags":[],"name":"header"},{"type":"func","required":false,"description":["Called when the Modal is closed without clicking confirm."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onCancel"},{"type":"func","required":false,"description":["Called when the OK button is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onConfirm"},{"type":"bool","required":false,"description":["Whether or not the modal is visible."],"tags":[],"name":"open"},{"type":"enum","required":false,"description":["A Confirm can vary in size"],"defaultValue":"'small'","tags":[],"value":["mini","tiny","small","large","fullscreen"],"name":"size"}],"constructorName":"Confirm","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Confirm","componentClassName":"confirm","docblock":{"tags":[{"title":"see","description":"Modal"}],"description":["A Confirm modal gives the user a choice to confirm or cancel an action/"]},"examplesExist":true,"repoPath":"src/addons/Confirm/Confirm.js","filename":"Confirm.js","filenameWithoutExt":"Confirm"}
+module.exports = {"displayName":"CommentContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentContent","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Content","subcomponents":null,"apiPath":"Comment.Content","componentClassName":"content","docblock":{"tags":[],"description":["A comment can contain content."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentContent.js","filename":"CommentContent.js","filenameWithoutExt":"CommentContent"}
 
 /***/ }),
 /* 1572 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Container","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Container has no maximum width."],"tags":[],"name":"fluid"},{"type":"bool","required":false,"description":["Reduce maximum width to more naturally accommodate text."],"tags":[],"name":"text"},{"type":"enum","required":false,"description":["Align container text."],"tags":[],"value":["left","center","right","justified"],"name":"textAlign"}],"constructorName":"Container","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Container","componentClassName":"container","docblock":{"tags":[],"description":["A container limits content to a maximum width."]},"examplesExist":true,"repoPath":"src/elements/Container/Container.js","filename":"Container.js","filenameWithoutExt":"Container"}
+module.exports = {"displayName":"CommentGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Comments can be collapsed, or hidden from view."],"tags":[],"name":"collapsed"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Comments can hide extra information unless a user shows intent to interact with a comment."],"tags":[],"name":"minimal"},{"type":"enum","required":false,"description":["Comments can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["A comment list can be threaded to showing the relationship between conversations."],"tags":[],"name":"threaded"}],"constructorName":"CommentGroup","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Group","subcomponents":null,"apiPath":"Comment.Group","componentClassName":"comments","docblock":{"tags":[],"description":["Comments can be grouped."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentGroup.js","filename":"CommentGroup.js","filenameWithoutExt":"CommentGroup"}
 
 /***/ }),
 /* 1573 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Dimmer","props":[{"type":"bool","required":false,"description":["An active dimmer will dim its parent container."],"tags":[],"name":"active"},{"type":"bool","required":false,"description":["A dimmer can be formatted to be fixed to the page."],"tags":[],"name":"page"}],"constructorName":"Dimmer","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["DimmerDimmable","DimmerInner"],"apiPath":"Dimmer","componentClassName":"dimmer","docblock":{"tags":[],"description":["A dimmer hides distractions to focus attention on particular content."]},"examplesExist":true,"repoPath":"src/modules/Dimmer/Dimmer.js","filename":"Dimmer.js","filenameWithoutExt":"Dimmer"}
+module.exports = {"displayName":"CommentMetadata","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentMetadata","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Metadata","subcomponents":null,"apiPath":"Comment.Metadata","componentClassName":"metadata","docblock":{"tags":[],"description":["A comment can contain metadata about the comment, an arbitrary amount of metadata may be defined."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentMetadata.js","filename":"CommentMetadata.js","filenameWithoutExt":"CommentMetadata"}
 
 /***/ }),
 /* 1574 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"DimmerDimmable","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A dimmable element can blur its contents."],"tags":[],"name":"blurring"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Controls whether or not the dim is displayed."],"tags":[],"name":"dimmed"}],"constructorName":"DimmerDimmable","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dimmer","subcomponentName":"Dimmable","subcomponents":null,"apiPath":"Dimmer.Dimmable","componentClassName":"dimmable","docblock":{"tags":[],"description":["A dimmable sub-component for Dimmer."]},"examplesExist":false,"repoPath":"src/modules/Dimmer/DimmerDimmable.js","filename":"DimmerDimmable.js","filenameWithoutExt":"DimmerDimmable"}
+module.exports = {"displayName":"CommentText","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"CommentText","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Comment","subcomponentName":"Text","subcomponents":null,"apiPath":"Comment.Text","componentClassName":"text","docblock":{"tags":[],"description":["A comment can contain text."]},"examplesExist":false,"repoPath":"src/views/Comment/CommentText.js","filename":"CommentText.js","filenameWithoutExt":"CommentText"}
 
 /***/ }),
 /* 1575 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"DimmerInner","props":[{"type":"bool","required":false,"description":["An active dimmer will dim its parent container."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A disabled dimmer cannot be activated"],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["A dimmer can be formatted to have its colors inverted."],"tags":[],"name":"inverted"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Handles click outside Dimmer's content, but inside Dimmer area."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClickOutside"},{"type":"bool","required":false,"description":["A dimmer can be formatted to be fixed to the page."],"tags":[],"name":"page"},{"type":"bool","required":false,"description":["A dimmer can be controlled with simple prop."],"tags":[],"name":"simple"},{"type":"enum","required":false,"description":["A dimmer can have its content top or bottom aligned."],"tags":[],"value":["bottom","top"],"name":"verticalAlign"}],"constructorName":"DimmerInner","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dimmer","subcomponentName":"Inner","subcomponents":null,"apiPath":"Dimmer.Inner","componentClassName":"inner","docblock":{"tags":[],"description":["An inner element for a Dimmer."]},"examplesExist":false,"repoPath":"src/modules/Dimmer/DimmerInner.js","filename":"DimmerInner.js","filenameWithoutExt":"DimmerInner"}
+module.exports = {"displayName":"Confirm","props":[{"type":"custom","required":false,"description":["The cancel button text."],"defaultValue":"'Cancel'","tags":[],"name":"cancelButton"},{"type":"custom","required":false,"description":["The OK button text."],"defaultValue":"'OK'","tags":[],"name":"confirmButton"},{"type":"custom","required":false,"description":["The ModalContent text."],"defaultValue":"'Are you sure?'","tags":[],"name":"content"},{"type":"custom","required":false,"description":["The ModalHeader text."],"tags":[],"name":"header"},{"type":"func","required":false,"description":["Called when the Modal is closed without clicking confirm."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onCancel"},{"type":"func","required":false,"description":["Called when the OK button is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onConfirm"},{"type":"bool","required":false,"description":["Whether or not the modal is visible."],"tags":[],"name":"open"},{"type":"enum","required":false,"description":["A Confirm can vary in size"],"defaultValue":"'small'","tags":[],"value":["mini","tiny","small","large","fullscreen"],"name":"size"}],"constructorName":"Confirm","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Confirm","componentClassName":"confirm","docblock":{"tags":[{"title":"see","description":"Modal"}],"description":["A Confirm modal gives the user a choice to confirm or cancel an action/"]},"examplesExist":true,"repoPath":"src/addons/Confirm/Confirm.js","filename":"Confirm.js","filenameWithoutExt":"Confirm"}
 
 /***/ }),
 /* 1576 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Divider","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Divider can clear the content above it."],"tags":[],"name":"clearing"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Divider can be fitted without any space above or below it."],"tags":[],"name":"fitted"},{"type":"bool","required":false,"description":["Divider can divide content without creating a dividing line."],"tags":[],"name":"hidden"},{"type":"bool","required":false,"description":["Divider can segment content horizontally."],"tags":[],"name":"horizontal"},{"type":"bool","required":false,"description":["Divider can have its colours inverted."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["Divider can provide greater margins to divide sections of content."],"tags":[],"name":"section"},{"type":"bool","required":false,"description":["Divider can segment content vertically."],"tags":[],"name":"vertical"}],"constructorName":"Divider","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Divider","componentClassName":"divider","docblock":{"tags":[],"description":["A divider visually segments content into groups."]},"examplesExist":true,"repoPath":"src/elements/Divider/Divider.js","filename":"Divider.js","filenameWithoutExt":"Divider"}
+module.exports = {"displayName":"Container","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Container has no maximum width."],"tags":[],"name":"fluid"},{"type":"bool","required":false,"description":["Reduce maximum width to more naturally accommodate text."],"tags":[],"name":"text"},{"type":"enum","required":false,"description":["Align container text."],"tags":[],"value":["left","center","right","justified"],"name":"textAlign"}],"constructorName":"Container","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Container","componentClassName":"container","docblock":{"tags":[],"description":["A container limits content to a maximum width."]},"examplesExist":true,"repoPath":"src/elements/Container/Container.js","filename":"Container.js","filenameWithoutExt":"Container"}
 
 /***/ }),
 /* 1577 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Dropdown","props":[{"type":"element|string","required":false,"description":["Label prefixed to an option added by a user."],"defaultValue":"'Add '","tags":[],"value":[],"name":"additionLabel"},{"type":"enum","required":false,"description":["Position of the `Add: ...` option in the dropdown list ('top' or 'bottom')."],"defaultValue":"'top'","tags":[],"value":["top","bottom"],"name":"additionPosition"},{"type":"bool","required":false,"description":["Allow user additions to the list of options (boolean).","Requires the use of `selection`, `options` and `search`."],"tags":[],"value":[],"name":"allowAdditions"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A Dropdown can reduce its complexity."],"tags":[],"name":"basic"},{"type":"bool","required":false,"description":["Format the Dropdown to appear as a button."],"tags":[],"name":"button"},{"type":"","required":false,"description":["Primary content."],"tags":[],"value":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Using the clearable setting will let users remove their selection from a dropdown."],"tags":[],"name":"clearable"},{"type":"bool","required":false,"description":["Whether or not the menu should close when the dropdown is blurred."],"defaultValue":"true","tags":[],"name":"closeOnBlur"},{"type":"bool","required":false,"description":["Whether or not the menu should close when a value is selected from the dropdown.","By default, multiple selection dropdowns will remain open on change, while single","selection dropdowns will close on change."],"tags":[],"name":"closeOnChange"},{"type":"bool","required":false,"description":["Whether or not the dropdown should close when the escape key is pressed."],"defaultValue":"true","tags":[],"name":"closeOnEscape"},{"type":"bool","required":false,"description":["A compact dropdown has no minimum width."],"tags":[],"name":"compact"},{"type":"bool","required":false,"description":["Whether or not the dropdown should strip diacritics in options and input search"],"defaultValue":"false","tags":[],"name":"deburr"},{"type":"bool","required":false,"description":["Initial value of open."],"tags":[],"name":"defaultOpen"},{"type":"string","required":false,"description":["Initial value of searchQuery."],"tags":[],"name":"defaultSearchQuery"},{"type":"union","required":false,"description":["Currently selected label in multi-select."],"tags":[],"value":[],"name":"defaultSelectedLabel"},{"type":"bool","required":false,"description":["Initial value of upward."],"tags":[],"name":"defaultUpward"},{"type":"number|string|bool|arrayOf","required":false,"description":["Initial value or value array if multiple."],"tags":[],"value":[],"name":"defaultValue"},{"type":"enum","required":false,"description":["A dropdown menu can open to the left or to the right."],"tags":[],"value":["left","right"],"name":"direction"},{"type":"bool","required":false,"description":["A disabled dropdown menu or item does not allow user interaction."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["An errored dropdown can alert a user to a problem."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["A dropdown menu can contain floated content."],"tags":[],"name":"floating"},{"type":"bool","required":false,"description":["A dropdown can take the full width of its parent"],"tags":[],"name":"fluid"},{"type":"node","required":false,"description":["A dropdown menu can contain a header."],"tags":[],"name":"header"},{"type":"node|object","required":false,"description":["Shorthand for Icon."],"defaultValue":"'dropdown'","tags":[],"value":[],"name":"icon"},{"type":"bool","required":false,"description":["A dropdown can be formatted to appear inline in other content."],"tags":[],"name":"inline"},{"type":"bool","required":false,"description":["A dropdown can be formatted as a Menu item."],"tags":[],"name":"item"},{"type":"bool","required":false,"description":["A dropdown can be labeled."],"tags":[],"name":"labeled"},{"type":"bool","required":false,"description":["A dropdown can defer rendering its options until it is open."],"tags":[],"name":"lazyLoad"},{"type":"bool","required":false,"description":["A dropdown can show that it is currently loading data."],"tags":[],"name":"loading"},{"type":"number","required":false,"description":["The minimum characters for a search to begin showing results."],"defaultValue":"1","tags":[],"name":"minCharacters"},{"type":"bool","required":false,"description":["A selection dropdown can allow multiple selections."],"tags":[],"name":"multiple"},{"type":"node","required":false,"description":["Message to display when there are no results."],"defaultValue":"'No results found.'","tags":[],"name":"noResultsMessage"},{"type":"func","required":false,"description":["Called when a user adds a new item. Use this to update the options list."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and the new item's value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onAddItem"},{"type":"func","required":false,"description":["Called on blur."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onBlur"},{"type":"func","required":false,"description":["Called when the user attempts to change the value."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and proposed value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onChange"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Called when a close event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClose"},{"type":"func","required":false,"description":["Called on focus."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onFocus"},{"type":"func","required":false,"description":["Called when a multi-select label is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All label props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onLabelClick"},{"type":"func","required":false,"description":["Called on mousedown."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onMouseDown"},{"type":"func","required":false,"description":["Called when an open event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onOpen"},{"type":"func","required":false,"description":["Called on search input change."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props, includes current value of searchQuery.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onSearchChange"},{"type":"bool","required":false,"description":["Controls whether or not the dropdown menu is displayed."],"tags":[],"name":"open"},{"type":"bool","required":false,"description":["Whether or not the menu should open when the dropdown is focused."],"defaultValue":"true","tags":[],"name":"openOnFocus"},{"type":"arrayOf","required":false,"description":["Array of Dropdown.Item props e.g. `{ text: '', value: '' }`"],"tags":[],"value":[],"name":"options"},{"type":"string","required":false,"description":["Placeholder text."],"tags":[],"name":"placeholder"},{"type":"bool|enum","required":false,"description":["A dropdown can be formatted so that its menu is pointing."],"tags":[],"value":["left","right","top","top left","top right","bottom","bottom left","bottom right"],"name":"pointing"},{"type":"func","required":false,"description":["Mapped over the active items and returns shorthand for the active item Labels.","Only applies to `multiple` Dropdowns."],"defaultValue":"function renderItemContent(item) {\n  const { flag, image, text } = item\n\n  // TODO: remove this in v3\n  // This maintains compatibility with Shorthand API in v1 as this might be called in \"Label.create()\"\n  if (_.isFunction(text)) {\n    return text\n  }\n\n  return {\n    content: (\n      <>\n        {Flag.create(flag)}\n        {Image.create(image)}\n\n        {text}\n      </>\n    ),\n  }\n}","tags":[{"title":"param","description":"A currently active dropdown item.","type":{"type":"NameExpression","name":"object"},"name":"item"},{"title":"param","description":"The current index.","type":{"type":"NameExpression","name":"number"},"name":"index"},{"title":"param","description":"The default props for an active item Label.","type":{"type":"NameExpression","name":"object"},"name":"defaultLabelProps"},{"title":"returns","description":"Shorthand for a Label.","type":{"type":"AllLiteral"}}],"name":"renderLabel"},{"type":"bool","required":false,"description":["A dropdown can have its menu scroll."],"tags":[],"name":"scrolling"},{"type":"bool|func","required":false,"description":["A selection dropdown can allow a user to search through a large list of choices.","Pass a function here to replace the default search."],"tags":[],"value":[],"name":"search"},{"type":"array|node|object","required":false,"description":["A shorthand for a search input."],"defaultValue":"'text'","tags":[],"value":[],"name":"searchInput"},{"type":"string","required":false,"description":["Current value of searchQuery. Creates a controlled component."],"tags":[],"name":"searchQuery"},{"type":"bool","required":false,"description":["Define whether the highlighted item should be selected on blur."],"defaultValue":"true","tags":[],"name":"selectOnBlur"},{"type":"bool","required":false,"description":["Whether or not to change the value when navigating the menu using arrow keys.","Setting to false will require enter or left click to confirm a choice."],"defaultValue":"true","tags":[],"name":"selectOnNavigation"},{"type":"union","required":false,"description":["Currently selected label in multi-select."],"tags":[],"value":[],"name":"selectedLabel"},{"type":"bool","required":false,"description":["A dropdown can be used to select between choices in a form."],"tags":[],"value":[],"name":"selection"},{"type":"bool","required":false,"description":["A simple dropdown can open without Javascript."],"tags":[],"name":"simple"},{"type":"number|string","required":false,"description":["A dropdown can receive focus."],"tags":[],"value":[],"name":"tabIndex"},{"type":"string","required":false,"description":["The text displayed in the dropdown, usually for the active item."],"tags":[],"name":"text"},{"type":"node","required":false,"description":["Custom element to trigger the menu to become visible. Takes place of 'text'."],"tags":[],"value":[],"name":"trigger"},{"type":"bool","required":false,"description":["Controls whether the dropdown will open upward."],"tags":[],"name":"upward"},{"type":"bool|string|number|arrayOf","required":false,"description":["Current value or value array if multiple. Creates a controlled component."],"tags":[],"value":[],"name":"value"},{"type":"bool","required":false,"description":["A dropdown will go to the last element when ArrowUp is pressed on the first,","or go to the first when ArrowDown is pressed on the last( aka infinite selection )"],"defaultValue":"true","tags":[],"name":"wrapSelection"}],"constructorName":"Dropdown","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["DropdownDivider","DropdownHeader","DropdownItem","DropdownMenu","DropdownSearchInput","DropdownText"],"apiPath":"Dropdown","componentClassName":"dropdown","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Select"},{"title":"see","description":"Menu"}],"description":["A dropdown allows a user to select a value from a series of options."]},"examplesExist":true,"repoPath":"src/modules/Dropdown/Dropdown.js","filename":"Dropdown.js","filenameWithoutExt":"Dropdown"}
+module.exports = {"displayName":"Dimmer","props":[{"type":"bool","required":false,"description":["An active dimmer will dim its parent container."],"tags":[],"name":"active"},{"type":"bool","required":false,"description":["A dimmer can be formatted to be fixed to the page."],"tags":[],"name":"page"}],"constructorName":"Dimmer","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["DimmerDimmable","DimmerInner"],"apiPath":"Dimmer","componentClassName":"dimmer","docblock":{"tags":[],"description":["A dimmer hides distractions to focus attention on particular content."]},"examplesExist":true,"repoPath":"src/modules/Dimmer/Dimmer.js","filename":"Dimmer.js","filenameWithoutExt":"Dimmer"}
 
 /***/ }),
 /* 1578 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"DropdownDivider","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"}],"constructorName":"DropdownDivider","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"Divider","subcomponents":null,"apiPath":"Dropdown.Divider","componentClassName":"divider","docblock":{"tags":[],"description":["A dropdown menu can contain dividers to separate related content."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownDivider.js","filename":"DropdownDivider.js","filenameWithoutExt":"DropdownDivider"}
+module.exports = {"displayName":"DimmerDimmable","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A dimmable element can blur its contents."],"tags":[],"name":"blurring"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Controls whether or not the dim is displayed."],"tags":[],"name":"dimmed"}],"constructorName":"DimmerDimmable","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dimmer","subcomponentName":"Dimmable","subcomponents":null,"apiPath":"Dimmer.Dimmable","componentClassName":"dimmable","docblock":{"tags":[],"description":["A dimmable sub-component for Dimmer."]},"examplesExist":false,"repoPath":"src/modules/Dimmer/DimmerDimmable.js","filename":"DimmerDimmable.js","filenameWithoutExt":"DimmerDimmable"}
 
 /***/ }),
 /* 1579 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"DropdownHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)"],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for Icon."],"tags":[],"name":"icon"}],"constructorName":"DropdownHeader","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"Header","subcomponents":null,"apiPath":"Dropdown.Header","componentClassName":"header","docblock":{"tags":[],"description":["A dropdown menu can contain a header."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownHeader.js","filename":"DropdownHeader.js","filenameWithoutExt":"DropdownHeader"}
+module.exports = {"displayName":"DimmerInner","props":[{"type":"bool","required":false,"description":["An active dimmer will dim its parent container."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A disabled dimmer cannot be activated"],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["A dimmer can be formatted to have its colors inverted."],"tags":[],"name":"inverted"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Handles click outside Dimmer's content, but inside Dimmer area."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClickOutside"},{"type":"bool","required":false,"description":["A dimmer can be formatted to be fixed to the page."],"tags":[],"name":"page"},{"type":"bool","required":false,"description":["A dimmer can be controlled with simple prop."],"tags":[],"name":"simple"},{"type":"enum","required":false,"description":["A dimmer can have its content top or bottom aligned."],"tags":[],"value":["bottom","top"],"name":"verticalAlign"}],"constructorName":"DimmerInner","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dimmer","subcomponentName":"Inner","subcomponents":null,"apiPath":"Dimmer.Inner","componentClassName":"inner","docblock":{"tags":[],"description":["An inner element for a Dimmer."]},"examplesExist":false,"repoPath":"src/modules/Dimmer/DimmerInner.js","filename":"DimmerInner.js","filenameWithoutExt":"DimmerInner"}
 
 /***/ }),
 /* 1580 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"DropdownItem","props":[{"type":"bool","required":false,"description":["Style as the currently chosen item."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Additional text with less emphasis."],"tags":[],"name":"description"},{"type":"bool","required":false,"description":["A dropdown item can be disabled."],"tags":[],"name":"disabled"},{"type":"custom","required":false,"description":["Shorthand for Flag."],"tags":[],"name":"flag"},{"type":"custom","required":false,"description":["Shorthand for Icon."],"tags":[],"name":"icon"},{"type":"custom","required":false,"description":["Shorthand for Image."],"tags":[],"name":"image"},{"type":"custom","required":false,"description":["Shorthand for Label."],"tags":[],"name":"label"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"bool","required":false,"description":["The item currently selected by keyboard shortcut.","This is not the active item."],"tags":[],"name":"selected"},{"type":"custom","required":false,"description":["Display text."],"tags":[],"name":"text"},{"type":"bool|number|string","required":false,"description":["Stored value."],"tags":[],"value":[],"name":"value"}],"constructorName":"DropdownItem","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"Item","subcomponents":null,"apiPath":"Dropdown.Item","componentClassName":"item","docblock":{"tags":[],"description":["An item sub-component for Dropdown component."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownItem.js","filename":"DropdownItem.js","filenameWithoutExt":"DropdownItem"}
+module.exports = {"displayName":"Divider","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Divider can clear the content above it."],"tags":[],"name":"clearing"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Divider can be fitted without any space above or below it."],"tags":[],"name":"fitted"},{"type":"bool","required":false,"description":["Divider can divide content without creating a dividing line."],"tags":[],"name":"hidden"},{"type":"bool","required":false,"description":["Divider can segment content horizontally."],"tags":[],"name":"horizontal"},{"type":"bool","required":false,"description":["Divider can have its colours inverted."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["Divider can provide greater margins to divide sections of content."],"tags":[],"name":"section"},{"type":"bool","required":false,"description":["Divider can segment content vertically."],"tags":[],"name":"vertical"}],"constructorName":"Divider","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Divider","componentClassName":"divider","docblock":{"tags":[],"description":["A divider visually segments content into groups."]},"examplesExist":true,"repoPath":"src/elements/Divider/Divider.js","filename":"Divider.js","filenameWithoutExt":"Divider"}
 
 /***/ }),
 /* 1581 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"DropdownMenu","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A dropdown menu can open to the left or to the right."],"tags":[],"value":["left","right"],"name":"direction"},{"type":"bool","required":false,"description":["Whether or not the dropdown menu is displayed."],"tags":[],"name":"open"},{"type":"bool","required":false,"description":["A dropdown menu can scroll."],"tags":[],"name":"scrolling"}],"constructorName":"DropdownMenu","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"Menu","subcomponents":null,"apiPath":"Dropdown.Menu","componentClassName":"menu","docblock":{"tags":[],"description":["A dropdown menu can contain a menu."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownMenu.js","filename":"DropdownMenu.js","filenameWithoutExt":"DropdownMenu"}
+module.exports = {"displayName":"Dropdown","props":[{"type":"element|string","required":false,"description":["Label prefixed to an option added by a user."],"defaultValue":"'Add '","tags":[],"value":[],"name":"additionLabel"},{"type":"enum","required":false,"description":["Position of the `Add: ...` option in the dropdown list ('top' or 'bottom')."],"defaultValue":"'top'","tags":[],"value":["top","bottom"],"name":"additionPosition"},{"type":"bool","required":false,"description":["Allow user additions to the list of options (boolean).","Requires the use of `selection`, `options` and `search`."],"tags":[],"value":[],"name":"allowAdditions"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A Dropdown can reduce its complexity."],"tags":[],"name":"basic"},{"type":"bool","required":false,"description":["Format the Dropdown to appear as a button."],"tags":[],"name":"button"},{"type":"","required":false,"description":["Primary content."],"tags":[],"value":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Using the clearable setting will let users remove their selection from a dropdown."],"tags":[],"name":"clearable"},{"type":"bool","required":false,"description":["Whether or not the menu should close when the dropdown is blurred."],"defaultValue":"true","tags":[],"name":"closeOnBlur"},{"type":"bool","required":false,"description":["Whether or not the menu should close when a value is selected from the dropdown.","By default, multiple selection dropdowns will remain open on change, while single","selection dropdowns will close on change."],"tags":[],"name":"closeOnChange"},{"type":"bool","required":false,"description":["Whether or not the dropdown should close when the escape key is pressed."],"defaultValue":"true","tags":[],"name":"closeOnEscape"},{"type":"bool","required":false,"description":["A compact dropdown has no minimum width."],"tags":[],"name":"compact"},{"type":"bool","required":false,"description":["Whether or not the dropdown should strip diacritics in options and input search"],"defaultValue":"false","tags":[],"name":"deburr"},{"type":"bool","required":false,"description":["Initial value of open."],"tags":[],"name":"defaultOpen"},{"type":"string","required":false,"description":["Initial value of searchQuery."],"tags":[],"name":"defaultSearchQuery"},{"type":"union","required":false,"description":["Currently selected label in multi-select."],"tags":[],"value":[],"name":"defaultSelectedLabel"},{"type":"bool","required":false,"description":["Initial value of upward."],"tags":[],"name":"defaultUpward"},{"type":"number|string|bool|arrayOf","required":false,"description":["Initial value or value array if multiple."],"tags":[],"value":[],"name":"defaultValue"},{"type":"enum","required":false,"description":["A dropdown menu can open to the left or to the right."],"tags":[],"value":["left","right"],"name":"direction"},{"type":"bool","required":false,"description":["A disabled dropdown menu or item does not allow user interaction."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["An errored dropdown can alert a user to a problem."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["A dropdown menu can contain floated content."],"tags":[],"name":"floating"},{"type":"bool","required":false,"description":["A dropdown can take the full width of its parent"],"tags":[],"name":"fluid"},{"type":"node","required":false,"description":["A dropdown menu can contain a header."],"tags":[],"name":"header"},{"type":"node|object","required":false,"description":["Shorthand for Icon."],"defaultValue":"'dropdown'","tags":[],"value":[],"name":"icon"},{"type":"bool","required":false,"description":["A dropdown can be formatted to appear inline in other content."],"tags":[],"name":"inline"},{"type":"bool","required":false,"description":["A dropdown can be formatted as a Menu item."],"tags":[],"name":"item"},{"type":"bool","required":false,"description":["A dropdown can be labeled."],"tags":[],"name":"labeled"},{"type":"bool","required":false,"description":["A dropdown can defer rendering its options until it is open."],"tags":[],"name":"lazyLoad"},{"type":"bool","required":false,"description":["A dropdown can show that it is currently loading data."],"tags":[],"name":"loading"},{"type":"number","required":false,"description":["The minimum characters for a search to begin showing results."],"defaultValue":"1","tags":[],"name":"minCharacters"},{"type":"bool","required":false,"description":["A selection dropdown can allow multiple selections."],"tags":[],"name":"multiple"},{"type":"node","required":false,"description":["Message to display when there are no results."],"defaultValue":"'No results found.'","tags":[],"name":"noResultsMessage"},{"type":"func","required":false,"description":["Called when a user adds a new item. Use this to update the options list."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and the new item's value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onAddItem"},{"type":"func","required":false,"description":["Called on blur."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onBlur"},{"type":"func","required":false,"description":["Called when the user attempts to change the value."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and proposed value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onChange"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Called when a close event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClose"},{"type":"func","required":false,"description":["Called on focus."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onFocus"},{"type":"func","required":false,"description":["Called when a multi-select label is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All label props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onLabelClick"},{"type":"func","required":false,"description":["Called on mousedown."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onMouseDown"},{"type":"func","required":false,"description":["Called when an open event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onOpen"},{"type":"func","required":false,"description":["Called on search input change."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props, includes current value of searchQuery.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onSearchChange"},{"type":"bool","required":false,"description":["Controls whether or not the dropdown menu is displayed."],"tags":[],"name":"open"},{"type":"bool","required":false,"description":["Whether or not the menu should open when the dropdown is focused."],"defaultValue":"true","tags":[],"name":"openOnFocus"},{"type":"arrayOf","required":false,"description":["Array of Dropdown.Item props e.g. `{ text: '', value: '' }`"],"tags":[],"value":[],"name":"options"},{"type":"string","required":false,"description":["Placeholder text."],"tags":[],"name":"placeholder"},{"type":"bool|enum","required":false,"description":["A dropdown can be formatted so that its menu is pointing."],"tags":[],"value":["left","right","top","top left","top right","bottom","bottom left","bottom right"],"name":"pointing"},{"type":"func","required":false,"description":["Mapped over the active items and returns shorthand for the active item Labels.","Only applies to `multiple` Dropdowns."],"defaultValue":"function renderItemContent(item) {\n  const { flag, image, text } = item\n\n  // TODO: remove this in v3\n  // This maintains compatibility with Shorthand API in v1 as this might be called in \"Label.create()\"\n  if (_.isFunction(text)) {\n    return text\n  }\n\n  return {\n    content: (\n      <>\n        {Flag.create(flag)}\n        {Image.create(image)}\n\n        {text}\n      </>\n    ),\n  }\n}","tags":[{"title":"param","description":"A currently active dropdown item.","type":{"type":"NameExpression","name":"object"},"name":"item"},{"title":"param","description":"The current index.","type":{"type":"NameExpression","name":"number"},"name":"index"},{"title":"param","description":"The default props for an active item Label.","type":{"type":"NameExpression","name":"object"},"name":"defaultLabelProps"},{"title":"returns","description":"Shorthand for a Label.","type":{"type":"AllLiteral"}}],"name":"renderLabel"},{"type":"bool","required":false,"description":["A dropdown can have its menu scroll."],"tags":[],"name":"scrolling"},{"type":"bool|func","required":false,"description":["A selection dropdown can allow a user to search through a large list of choices.","Pass a function here to replace the default search."],"tags":[],"value":[],"name":"search"},{"type":"array|node|object","required":false,"description":["A shorthand for a search input."],"defaultValue":"'text'","tags":[],"value":[],"name":"searchInput"},{"type":"string","required":false,"description":["Current value of searchQuery. Creates a controlled component."],"tags":[],"name":"searchQuery"},{"type":"bool","required":false,"description":["Define whether the highlighted item should be selected on blur."],"defaultValue":"true","tags":[],"name":"selectOnBlur"},{"type":"bool","required":false,"description":["Whether or not to change the value when navigating the menu using arrow keys.","Setting to false will require enter or left click to confirm a choice."],"defaultValue":"true","tags":[],"name":"selectOnNavigation"},{"type":"union","required":false,"description":["Currently selected label in multi-select."],"tags":[],"value":[],"name":"selectedLabel"},{"type":"bool","required":false,"description":["A dropdown can be used to select between choices in a form."],"tags":[],"value":[],"name":"selection"},{"type":"bool","required":false,"description":["A simple dropdown can open without Javascript."],"tags":[],"name":"simple"},{"type":"number|string","required":false,"description":["A dropdown can receive focus."],"tags":[],"value":[],"name":"tabIndex"},{"type":"string","required":false,"description":["The text displayed in the dropdown, usually for the active item."],"tags":[],"name":"text"},{"type":"node","required":false,"description":["Custom element to trigger the menu to become visible. Takes place of 'text'."],"tags":[],"value":[],"name":"trigger"},{"type":"bool","required":false,"description":["Controls whether the dropdown will open upward."],"tags":[],"name":"upward"},{"type":"bool|string|number|arrayOf","required":false,"description":["Current value or value array if multiple. Creates a controlled component."],"tags":[],"value":[],"name":"value"},{"type":"bool","required":false,"description":["A dropdown will go to the last element when ArrowUp is pressed on the first,","or go to the first when ArrowDown is pressed on the last( aka infinite selection )"],"defaultValue":"true","tags":[],"name":"wrapSelection"}],"constructorName":"Dropdown","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["DropdownDivider","DropdownHeader","DropdownItem","DropdownMenu","DropdownSearchInput","DropdownText"],"apiPath":"Dropdown","componentClassName":"dropdown","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Select"},{"title":"see","description":"Menu"}],"description":["A dropdown allows a user to select a value from a series of options."]},"examplesExist":true,"repoPath":"src/modules/Dropdown/Dropdown.js","filename":"Dropdown.js","filenameWithoutExt":"Dropdown"}
 
 /***/ }),
 /* 1582 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"DropdownSearchInput","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["An input can have the auto complete."],"defaultValue":"'off'","tags":[],"name":"autoComplete"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"number|string","required":false,"description":["An input can receive focus."],"tags":[],"value":[],"name":"tabIndex"},{"type":"string","required":false,"description":["The HTML input type."],"defaultValue":"'text'","tags":[],"name":"type"},{"type":"number|string","required":false,"description":["Stored value."],"tags":[],"value":[],"name":"value"}],"constructorName":"DropdownSearchInput","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"SearchInput","subcomponents":null,"apiPath":"Dropdown.SearchInput","componentClassName":"searchinput","docblock":{"tags":[],"description":["A search item sub-component for Dropdown component."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownSearchInput.js","filename":"DropdownSearchInput.js","filenameWithoutExt":"DropdownSearchInput"}
+module.exports = {"displayName":"DropdownDivider","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"}],"constructorName":"DropdownDivider","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"Divider","subcomponents":null,"apiPath":"Dropdown.Divider","componentClassName":"divider","docblock":{"tags":[],"description":["A dropdown menu can contain dividers to separate related content."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownDivider.js","filename":"DropdownDivider.js","filenameWithoutExt":"DropdownDivider"}
 
 /***/ }),
 /* 1583 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"DropdownText","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"DropdownText","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"Text","subcomponents":null,"apiPath":"Dropdown.Text","componentClassName":"text","docblock":{"tags":[],"description":["A dropdown contains a selected value."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownText.js","filename":"DropdownText.js","filenameWithoutExt":"DropdownText"}
+module.exports = {"displayName":"DropdownHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)"],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for Icon."],"tags":[],"name":"icon"}],"constructorName":"DropdownHeader","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"Header","subcomponents":null,"apiPath":"Dropdown.Header","componentClassName":"header","docblock":{"tags":[],"description":["A dropdown menu can contain a header."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownHeader.js","filename":"DropdownHeader.js","filenameWithoutExt":"DropdownHeader"}
 
 /***/ }),
 /* 1584 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Embed","props":[{"type":"bool","required":false,"description":["An embed can be active."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"enum","required":false,"description":["An embed can specify an alternative aspect ratio."],"tags":[],"value":["4:3","16:9","21:9"],"name":"aspectRatio"},{"type":"bool","required":false,"description":["Setting to true or false will force autoplay."],"tags":[],"value":[],"name":"autoplay"},{"type":"bool","required":false,"description":["Whether to show networks branded UI like title cards, or after video calls to action."],"tags":[],"value":[],"name":"brandedUI"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"string","required":false,"description":["Specifies a default chrome color with Vimeo or YouTube."],"tags":[],"value":[],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Initial value of active."],"tags":[],"name":"defaultActive"},{"type":"bool","required":false,"description":["Whether to prefer HD content."],"tags":[],"value":[],"name":"hd"},{"type":"custom","required":false,"description":["Specifies an icon to use with placeholder content."],"tags":[],"name":"icon"},{"type":"string","required":false,"description":["Specifies an id for source."],"tags":[],"value":[],"name":"id"},{"type":"custom","required":false,"description":["Shorthand for HTML iframe."],"tags":[],"value":[],"name":"iframe"},{"type":"func","required":false,"description":["Сalled on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and proposed value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"string","required":false,"description":["A placeholder image for embed."],"tags":[],"name":"placeholder"},{"type":"enum","required":false,"description":["Specifies a source to use."],"tags":[],"value":["youtube","vimeo"],"name":"source"},{"type":"string","required":false,"description":["Specifies a url to use for embed."],"tags":[],"value":[],"name":"url"}],"constructorName":"Embed","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Embed","componentClassName":"embed","docblock":{"tags":[],"description":["An embed displays content from other websites like YouTube videos or Google Maps."]},"examplesExist":true,"repoPath":"src/modules/Embed/Embed.js","filename":"Embed.js","filenameWithoutExt":"Embed"}
+module.exports = {"displayName":"DropdownItem","props":[{"type":"bool","required":false,"description":["Style as the currently chosen item."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Additional text with less emphasis."],"tags":[],"name":"description"},{"type":"bool","required":false,"description":["A dropdown item can be disabled."],"tags":[],"name":"disabled"},{"type":"custom","required":false,"description":["Shorthand for Flag."],"tags":[],"name":"flag"},{"type":"custom","required":false,"description":["Shorthand for Icon."],"tags":[],"name":"icon"},{"type":"custom","required":false,"description":["Shorthand for Image."],"tags":[],"name":"image"},{"type":"custom","required":false,"description":["Shorthand for Label."],"tags":[],"name":"label"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"bool","required":false,"description":["The item currently selected by keyboard shortcut.","This is not the active item."],"tags":[],"name":"selected"},{"type":"custom","required":false,"description":["Display text."],"tags":[],"name":"text"},{"type":"bool|number|string","required":false,"description":["Stored value."],"tags":[],"value":[],"name":"value"}],"constructorName":"DropdownItem","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"Item","subcomponents":null,"apiPath":"Dropdown.Item","componentClassName":"item","docblock":{"tags":[],"description":["An item sub-component for Dropdown component."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownItem.js","filename":"DropdownItem.js","filenameWithoutExt":"DropdownItem"}
 
 /***/ }),
 /* 1585 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Feed","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand array of props for FeedEvent."],"tags":[],"name":"events"},{"type":"enum","required":false,"description":["A feed can have different sizes."],"tags":[],"value":["small","large"],"name":"size"}],"constructorName":"Feed","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["FeedContent","FeedDate","FeedEvent","FeedExtra","FeedLabel","FeedLike","FeedMeta","FeedSummary","FeedUser"],"apiPath":"Feed","componentClassName":"feed","docblock":{"tags":[],"description":["A feed presents user activity chronologically."]},"examplesExist":true,"repoPath":"src/views/Feed/Feed.js","filename":"Feed.js","filenameWithoutExt":"Feed"}
+module.exports = {"displayName":"DropdownMenu","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A dropdown menu can open to the left or to the right."],"tags":[],"value":["left","right"],"name":"direction"},{"type":"bool","required":false,"description":["Whether or not the dropdown menu is displayed."],"tags":[],"name":"open"},{"type":"bool","required":false,"description":["A dropdown menu can scroll."],"tags":[],"name":"scrolling"}],"constructorName":"DropdownMenu","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"Menu","subcomponents":null,"apiPath":"Dropdown.Menu","componentClassName":"menu","docblock":{"tags":[],"description":["A dropdown menu can contain a menu."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownMenu.js","filename":"DropdownMenu.js","filenameWithoutExt":"DropdownMenu"}
 
 /***/ }),
 /* 1586 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FeedContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["An event can contain a date."],"tags":[],"name":"date"},{"type":"custom","required":false,"description":["Shorthand for FeedExtra with images."],"tags":[],"name":"extraImages"},{"type":"custom","required":false,"description":["Shorthand for FeedExtra with text."],"tags":[],"name":"extraText"},{"type":"custom","required":false,"description":["Shorthand for FeedMeta."],"tags":[],"name":"meta"},{"type":"custom","required":false,"description":["Shorthand for FeedSummary."],"tags":[],"name":"summary"}],"constructorName":"FeedContent","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Content","subcomponents":null,"apiPath":"Feed.Content","componentClassName":"content","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/views/Feed/FeedContent.js","filename":"FeedContent.js","filenameWithoutExt":"FeedContent"}
+module.exports = {"displayName":"DropdownSearchInput","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["An input can have the auto complete."],"defaultValue":"'off'","tags":[],"name":"autoComplete"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"number|string","required":false,"description":["An input can receive focus."],"tags":[],"value":[],"name":"tabIndex"},{"type":"string","required":false,"description":["The HTML input type."],"defaultValue":"'text'","tags":[],"name":"type"},{"type":"number|string","required":false,"description":["Stored value."],"tags":[],"value":[],"name":"value"}],"constructorName":"DropdownSearchInput","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"SearchInput","subcomponents":null,"apiPath":"Dropdown.SearchInput","componentClassName":"searchinput","docblock":{"tags":[],"description":["A search item sub-component for Dropdown component."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownSearchInput.js","filename":"DropdownSearchInput.js","filenameWithoutExt":"DropdownSearchInput"}
 
 /***/ }),
 /* 1587 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FeedDate","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"FeedDate","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Date","subcomponents":null,"apiPath":"Feed.Date","componentClassName":"date","docblock":{"tags":[],"description":["An event or an event summary can contain a date."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedDate.js","filename":"FeedDate.js","filenameWithoutExt":"FeedDate"}
+module.exports = {"displayName":"DropdownText","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"DropdownText","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Dropdown","subcomponentName":"Text","subcomponents":null,"apiPath":"Dropdown.Text","componentClassName":"text","docblock":{"tags":[],"description":["A dropdown contains a selected value."]},"examplesExist":false,"repoPath":"src/modules/Dropdown/DropdownText.js","filename":"DropdownText.js","filenameWithoutExt":"DropdownText"}
 
 /***/ }),
 /* 1588 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FeedEvent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for FeedContent."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for FeedDate."],"tags":[],"name":"date"},{"type":"custom","required":false,"description":["Shorthand for FeedExtra with images."],"tags":[],"name":"extraImages"},{"type":"custom","required":false,"description":["Shorthand for FeedExtra with content."],"tags":[],"name":"extraText"},{"type":"custom","required":false,"description":["An event can contain icon label."],"tags":[],"name":"icon"},{"type":"custom","required":false,"description":["An event can contain image label."],"tags":[],"name":"image"},{"type":"custom","required":false,"description":["Shorthand for FeedMeta."],"tags":[],"name":"meta"},{"type":"custom","required":false,"description":["Shorthand for FeedSummary."],"tags":[],"name":"summary"}],"constructorName":"FeedEvent","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Event","subcomponents":null,"apiPath":"Feed.Event","componentClassName":"event","docblock":{"tags":[],"description":["A feed contains an event."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedEvent.js","filename":"FeedEvent.js","filenameWithoutExt":"FeedEvent"}
+module.exports = {"displayName":"Embed","props":[{"type":"bool","required":false,"description":["An embed can be active."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"enum","required":false,"description":["An embed can specify an alternative aspect ratio."],"tags":[],"value":["4:3","16:9","21:9"],"name":"aspectRatio"},{"type":"bool","required":false,"description":["Setting to true or false will force autoplay."],"tags":[],"value":[],"name":"autoplay"},{"type":"bool","required":false,"description":["Whether to show networks branded UI like title cards, or after video calls to action."],"tags":[],"value":[],"name":"brandedUI"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"string","required":false,"description":["Specifies a default chrome color with Vimeo or YouTube."],"tags":[],"value":[],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Initial value of active."],"tags":[],"name":"defaultActive"},{"type":"bool","required":false,"description":["Whether to prefer HD content."],"tags":[],"value":[],"name":"hd"},{"type":"custom","required":false,"description":["Specifies an icon to use with placeholder content."],"tags":[],"name":"icon"},{"type":"string","required":false,"description":["Specifies an id for source."],"tags":[],"value":[],"name":"id"},{"type":"custom","required":false,"description":["Shorthand for HTML iframe."],"tags":[],"value":[],"name":"iframe"},{"type":"func","required":false,"description":["Сalled on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and proposed value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"string","required":false,"description":["A placeholder image for embed."],"tags":[],"name":"placeholder"},{"type":"enum","required":false,"description":["Specifies a source to use."],"tags":[],"value":["youtube","vimeo"],"name":"source"},{"type":"string","required":false,"description":["Specifies a url to use for embed."],"tags":[],"value":[],"name":"url"}],"constructorName":"Embed","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Embed","componentClassName":"embed","docblock":{"tags":[],"description":["An embed displays content from other websites like YouTube videos or Google Maps."]},"examplesExist":true,"repoPath":"src/modules/Embed/Embed.js","filename":"Embed.js","filenameWithoutExt":"Embed"}
 
 /***/ }),
 /* 1589 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FeedExtra","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"union","required":false,"description":["An event can contain additional information like a set of images."],"tags":[],"value":[],"name":"images"},{"type":"bool","required":false,"description":["An event can contain additional text information."],"tags":[],"name":"text"}],"constructorName":"FeedExtra","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Extra","subcomponents":null,"apiPath":"Feed.Extra","componentClassName":"extra","docblock":{"tags":[],"description":["A feed can contain an extra content."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedExtra.js","filename":"FeedExtra.js","filenameWithoutExt":"FeedExtra"}
+module.exports = {"displayName":"Feed","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand array of props for FeedEvent."],"tags":[],"name":"events"},{"type":"enum","required":false,"description":["A feed can have different sizes."],"tags":[],"value":["small","large"],"name":"size"}],"constructorName":"Feed","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["FeedContent","FeedDate","FeedEvent","FeedExtra","FeedLabel","FeedLike","FeedMeta","FeedSummary","FeedUser"],"apiPath":"Feed","componentClassName":"feed","docblock":{"tags":[],"description":["A feed presents user activity chronologically."]},"examplesExist":true,"repoPath":"src/views/Feed/Feed.js","filename":"Feed.js","filenameWithoutExt":"Feed"}
 
 /***/ }),
 /* 1590 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FeedLabel","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["An event can contain icon label."],"tags":[],"name":"icon"},{"type":"custom","required":false,"description":["An event can contain image label."],"tags":[],"name":"image"}],"constructorName":"FeedLabel","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Label","subcomponents":null,"apiPath":"Feed.Label","componentClassName":"label","docblock":{"tags":[],"description":["An event can contain an image or icon label."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedLabel.js","filename":"FeedLabel.js","filenameWithoutExt":"FeedLabel"}
+module.exports = {"displayName":"FeedContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["An event can contain a date."],"tags":[],"name":"date"},{"type":"custom","required":false,"description":["Shorthand for FeedExtra with images."],"tags":[],"name":"extraImages"},{"type":"custom","required":false,"description":["Shorthand for FeedExtra with text."],"tags":[],"name":"extraText"},{"type":"custom","required":false,"description":["Shorthand for FeedMeta."],"tags":[],"name":"meta"},{"type":"custom","required":false,"description":["Shorthand for FeedSummary."],"tags":[],"name":"summary"}],"constructorName":"FeedContent","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Content","subcomponents":null,"apiPath":"Feed.Content","componentClassName":"content","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/views/Feed/FeedContent.js","filename":"FeedContent.js","filenameWithoutExt":"FeedContent"}
 
 /***/ }),
 /* 1591 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FeedLike","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'a'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for icon. Mutually exclusive with children."],"tags":[],"name":"icon"}],"constructorName":"FeedLike","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Like","subcomponents":null,"apiPath":"Feed.Like","componentClassName":"like","docblock":{"tags":[],"description":["A feed can contain a like element."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedLike.js","filename":"FeedLike.js","filenameWithoutExt":"FeedLike"}
+module.exports = {"displayName":"FeedDate","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"FeedDate","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Date","subcomponents":null,"apiPath":"Feed.Date","componentClassName":"date","docblock":{"tags":[],"description":["An event or an event summary can contain a date."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedDate.js","filename":"FeedDate.js","filenameWithoutExt":"FeedDate"}
 
 /***/ }),
 /* 1592 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FeedMeta","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for FeedLike."],"tags":[],"name":"like"}],"constructorName":"FeedMeta","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Meta","subcomponents":null,"apiPath":"Feed.Meta","componentClassName":"meta","docblock":{"tags":[],"description":["A feed can contain a meta."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedMeta.js","filename":"FeedMeta.js","filenameWithoutExt":"FeedMeta"}
+module.exports = {"displayName":"FeedEvent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for FeedContent."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for FeedDate."],"tags":[],"name":"date"},{"type":"custom","required":false,"description":["Shorthand for FeedExtra with images."],"tags":[],"name":"extraImages"},{"type":"custom","required":false,"description":["Shorthand for FeedExtra with content."],"tags":[],"name":"extraText"},{"type":"custom","required":false,"description":["An event can contain icon label."],"tags":[],"name":"icon"},{"type":"custom","required":false,"description":["An event can contain image label."],"tags":[],"name":"image"},{"type":"custom","required":false,"description":["Shorthand for FeedMeta."],"tags":[],"name":"meta"},{"type":"custom","required":false,"description":["Shorthand for FeedSummary."],"tags":[],"name":"summary"}],"constructorName":"FeedEvent","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Event","subcomponents":null,"apiPath":"Feed.Event","componentClassName":"event","docblock":{"tags":[],"description":["A feed contains an event."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedEvent.js","filename":"FeedEvent.js","filenameWithoutExt":"FeedEvent"}
 
 /***/ }),
 /* 1593 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FeedSummary","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for FeedDate."],"tags":[],"name":"date"},{"type":"custom","required":false,"description":["Shorthand for FeedUser."],"tags":[],"name":"user"}],"constructorName":"FeedSummary","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Summary","subcomponents":null,"apiPath":"Feed.Summary","componentClassName":"summary","docblock":{"tags":[],"description":["A feed can contain a summary."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedSummary.js","filename":"FeedSummary.js","filenameWithoutExt":"FeedSummary"}
+module.exports = {"displayName":"FeedExtra","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"union","required":false,"description":["An event can contain additional information like a set of images."],"tags":[],"value":[],"name":"images"},{"type":"bool","required":false,"description":["An event can contain additional text information."],"tags":[],"name":"text"}],"constructorName":"FeedExtra","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Extra","subcomponents":null,"apiPath":"Feed.Extra","componentClassName":"extra","docblock":{"tags":[],"description":["A feed can contain an extra content."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedExtra.js","filename":"FeedExtra.js","filenameWithoutExt":"FeedExtra"}
 
 /***/ }),
 /* 1594 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FeedUser","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'a'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"FeedUser","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"User","subcomponents":null,"apiPath":"Feed.User","componentClassName":"user","docblock":{"tags":[],"description":["A feed can contain a user element."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedUser.js","filename":"FeedUser.js","filenameWithoutExt":"FeedUser"}
+module.exports = {"displayName":"FeedLabel","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["An event can contain icon label."],"tags":[],"name":"icon"},{"type":"custom","required":false,"description":["An event can contain image label."],"tags":[],"name":"image"}],"constructorName":"FeedLabel","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Label","subcomponents":null,"apiPath":"Feed.Label","componentClassName":"label","docblock":{"tags":[],"description":["An event can contain an image or icon label."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedLabel.js","filename":"FeedLabel.js","filenameWithoutExt":"FeedLabel"}
 
 /***/ }),
 /* 1595 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Flag","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'i'","tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Flag name, can use the two digit country code, the full name, or a common alias."],"tags":[],"value":["ad","andorra","ae","united arab emirates","uae","af","afghanistan","ag","antigua","ai","anguilla","al","albania","am","armenia","an","netherlands antilles","ao","angola","ar","argentina","as","american samoa","at","austria","au","australia","aw","aruba","ax","aland islands","az","azerbaijan","ba","bosnia","bb","barbados","bd","bangladesh","be","belgium","bf","burkina faso","bg","bulgaria","bh","bahrain","bi","burundi","bj","benin","bm","bermuda","bn","brunei","bo","bolivia","br","brazil","bs","bahamas","bt","bhutan","bv","bouvet island","bw","botswana","by","belarus","bz","belize","ca","canada","cc","cocos islands","cd","congo","cf","central african republic","cg","congo brazzaville","ch","switzerland","ci","cote divoire","ck","cook islands","cl","chile","cm","cameroon","cn","china","co","colombia","cr","costa rica","cs","cu","cuba","cv","cape verde","cx","christmas island","cy","cyprus","cz","czech republic","de","germany","dj","djibouti","dk","denmark","dm","dominica","do","dominican republic","dz","algeria","ec","ecuador","england","gb eng","ee","estonia","eg","egypt","eh","western sahara","er","eritrea","es","spain","et","ethiopia","eu","european union","fi","finland","fj","fiji","fk","falkland islands","fm","micronesia","fo","faroe islands","fr","france","ga","gabon","gb","uk","united kingdom","gd","grenada","ge","georgia","gf","french guiana","gh","ghana","gi","gibraltar","gl","greenland","gm","gambia","gn","guinea","gp","guadeloupe","gq","equatorial guinea","gr","greece","gs","sandwich islands","gt","guatemala","gu","guam","gw","guinea-bissau","gy","guyana","hk","hong kong","hm","heard island","hn","honduras","hr","croatia","ht","haiti","hu","hungary","id","indonesia","ie","ireland","il","israel","in","india","io","indian ocean territory","iq","iraq","ir","iran","is","iceland","it","italy","jm","jamaica","jo","jordan","jp","japan","ke","kenya","kg","kyrgyzstan","kh","cambodia","ki","kiribati","km","comoros","kn","saint kitts and nevis","kp","north korea","kr","south korea","kw","kuwait","ky","cayman islands","kz","kazakhstan","la","laos","lb","lebanon","lc","saint lucia","li","liechtenstein","lk","sri lanka","lr","liberia","ls","lesotho","lt","lithuania","lu","luxembourg","lv","latvia","ly","libya","ma","morocco","mc","monaco","md","moldova","me","montenegro","mg","madagascar","mh","marshall islands","mk","macedonia","ml","mali","mm","myanmar","burma","mn","mongolia","mo","macau","mp","northern mariana islands","mq","martinique","mr","mauritania","ms","montserrat","mt","malta","mu","mauritius","mv","maldives","mw","malawi","mx","mexico","my","malaysia","mz","mozambique","na","namibia","nc","new caledonia","ne","niger","nf","norfolk island","ng","nigeria","ni","nicaragua","nl","netherlands","no","norway","np","nepal","nr","nauru","nu","niue","nz","new zealand","om","oman","pa","panama","pe","peru","pf","french polynesia","pg","new guinea","ph","philippines","pk","pakistan","pl","poland","pm","saint pierre","pn","pitcairn islands","pr","puerto rico","ps","palestine","pt","portugal","pw","palau","py","paraguay","qa","qatar","re","reunion","ro","romania","rs","serbia","ru","russia","rw","rwanda","sa","saudi arabia","sb","solomon islands","sc","seychelles","gb sct","scotland","sd","sudan","se","sweden","sg","singapore","sh","saint helena","si","slovenia","sj","svalbard","jan mayen","sk","slovakia","sl","sierra leone","sm","san marino","sn","senegal","so","somalia","sr","suriname","st","sao tome","sv","el salvador","sy","syria","sz","swaziland","tc","caicos islands","td","chad","tf","french territories","tg","togo","th","thailand","tj","tajikistan","tk","tokelau","tl","timorleste","tm","turkmenistan","tn","tunisia","to","tonga","tr","turkey","tt","trinidad","tv","tuvalu","tw","taiwan","tz","tanzania","ua","ukraine","ug","uganda","um","us minor islands","us","america","united states","uy","uruguay","uz","uzbekistan","va","vatican city","vc","saint vincent","ve","venezuela","vg","british virgin islands","vi","us virgin islands","vn","vietnam","vu","vanuatu","gb wls","wales","wf","wallis and futuna","ws","samoa","ye","yemen","yt","mayotte","za","south africa","zm","zambia","zw","zimbabwe"],"name":"name"}],"constructorName":"Flag","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Flag","componentClassName":"flag","docblock":{"tags":[],"description":["A flag is is used to represent a political state."]},"examplesExist":true,"repoPath":"src/elements/Flag/Flag.js","filename":"Flag.js","filenameWithoutExt":"Flag"}
+module.exports = {"displayName":"FeedLike","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'a'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for icon. Mutually exclusive with children."],"tags":[],"name":"icon"}],"constructorName":"FeedLike","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Like","subcomponents":null,"apiPath":"Feed.Like","componentClassName":"like","docblock":{"tags":[],"description":["A feed can contain a like element."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedLike.js","filename":"FeedLike.js","filenameWithoutExt":"FeedLike"}
 
 /***/ }),
 /* 1596 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Form","props":[{"type":"string","required":false,"description":["The HTML form action"],"tags":[],"name":"action"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'form'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Automatically show any error Message children."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["A form can have its color inverted for contrast."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["Automatically show a loading indicator."],"tags":[],"name":"loading"},{"type":"func","required":false,"description":["The HTML form submit handler."],"tags":[],"name":"onSubmit"},{"type":"bool","required":false,"description":["A comment can contain a form to reply to a comment. This may have arbitrary content."],"tags":[],"name":"reply"},{"type":"enum","required":false,"description":["A form can vary in size."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["Automatically show any success Message children."],"tags":[],"name":"success"},{"type":"bool","required":false,"description":["A form can prevent itself from stacking on mobile."],"tags":[],"name":"unstackable"},{"type":"bool","required":false,"description":["Automatically show any warning Message children."],"tags":[],"name":"warning"},{"type":"enum","required":false,"description":["Forms can automatically divide fields to be equal width."],"tags":[],"value":["equal"],"name":"widths"}],"constructorName":"Form","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["FormButton","FormCheckbox","FormDropdown","FormField","FormGroup","FormInput","FormRadio","FormSelect","FormTextArea"],"apiPath":"Form","componentClassName":"form","docblock":{"tags":[{"title":"see","description":"Button"},{"title":"see","description":"Checkbox"},{"title":"see","description":"Dropdown"},{"title":"see","description":"Input"},{"title":"see","description":"Message"},{"title":"see","description":"Radio"},{"title":"see","description":"Select"},{"title":"see","description":"Visibility"}],"description":["A Form displays a set of related user input fields in a structured way."]},"examplesExist":true,"repoPath":"src/collections/Form/Form.js","filename":"Form.js","filenameWithoutExt":"Form"}
+module.exports = {"displayName":"FeedMeta","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for FeedLike."],"tags":[],"name":"like"}],"constructorName":"FeedMeta","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Meta","subcomponents":null,"apiPath":"Feed.Meta","componentClassName":"meta","docblock":{"tags":[],"description":["A feed can contain a meta."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedMeta.js","filename":"FeedMeta.js","filenameWithoutExt":"FeedMeta"}
 
 /***/ }),
 /* 1597 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FormButton","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Button","tags":[],"name":"control"}],"constructorName":"FormButton","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Button","subcomponents":null,"apiPath":"Form.Button","componentClassName":"button","docblock":{"tags":[{"title":"see","description":"Button"},{"title":"see","description":"Form"}],"description":["Sugar for <Form.Field control={Button} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormButton.js","filename":"FormButton.js","filenameWithoutExt":"FormButton"}
+module.exports = {"displayName":"FeedSummary","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for FeedDate."],"tags":[],"name":"date"},{"type":"custom","required":false,"description":["Shorthand for FeedUser."],"tags":[],"name":"user"}],"constructorName":"FeedSummary","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"Summary","subcomponents":null,"apiPath":"Feed.Summary","componentClassName":"summary","docblock":{"tags":[],"description":["A feed can contain a summary."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedSummary.js","filename":"FeedSummary.js","filenameWithoutExt":"FeedSummary"}
 
 /***/ }),
 /* 1598 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FormCheckbox","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Checkbox","tags":[],"name":"control"}],"constructorName":"FormCheckbox","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Checkbox","subcomponents":null,"apiPath":"Form.Checkbox","componentClassName":"checkbox","docblock":{"tags":[{"title":"see","description":"Checkbox"},{"title":"see","description":"Form"}],"description":["Sugar for <Form.Field control={Checkbox} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormCheckbox.js","filename":"FormCheckbox.js","filenameWithoutExt":"FormCheckbox"}
+module.exports = {"displayName":"FeedUser","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'a'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"FeedUser","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Feed","subcomponentName":"User","subcomponents":null,"apiPath":"Feed.User","componentClassName":"user","docblock":{"tags":[],"description":["A feed can contain a user element."]},"examplesExist":false,"repoPath":"src/views/Feed/FeedUser.js","filename":"FeedUser.js","filenameWithoutExt":"FeedUser"}
 
 /***/ }),
 /* 1599 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FormDropdown","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Dropdown","tags":[],"name":"control"}],"constructorName":"FormDropdown","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Dropdown","subcomponents":null,"apiPath":"Form.Dropdown","componentClassName":"dropdown","docblock":{"tags":[{"title":"see","description":"Dropdown"},{"title":"see","description":"Form"}],"description":["Sugar for <Form.Field control={Dropdown} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormDropdown.js","filename":"FormDropdown.js","filenameWithoutExt":"FormDropdown"}
+module.exports = {"displayName":"Flag","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'i'","tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Flag name, can use the two digit country code, the full name, or a common alias."],"tags":[],"value":["ad","andorra","ae","united arab emirates","uae","af","afghanistan","ag","antigua","ai","anguilla","al","albania","am","armenia","an","netherlands antilles","ao","angola","ar","argentina","as","american samoa","at","austria","au","australia","aw","aruba","ax","aland islands","az","azerbaijan","ba","bosnia","bb","barbados","bd","bangladesh","be","belgium","bf","burkina faso","bg","bulgaria","bh","bahrain","bi","burundi","bj","benin","bm","bermuda","bn","brunei","bo","bolivia","br","brazil","bs","bahamas","bt","bhutan","bv","bouvet island","bw","botswana","by","belarus","bz","belize","ca","canada","cc","cocos islands","cd","congo","cf","central african republic","cg","congo brazzaville","ch","switzerland","ci","cote divoire","ck","cook islands","cl","chile","cm","cameroon","cn","china","co","colombia","cr","costa rica","cs","cu","cuba","cv","cape verde","cx","christmas island","cy","cyprus","cz","czech republic","de","germany","dj","djibouti","dk","denmark","dm","dominica","do","dominican republic","dz","algeria","ec","ecuador","england","gb eng","ee","estonia","eg","egypt","eh","western sahara","er","eritrea","es","spain","et","ethiopia","eu","european union","fi","finland","fj","fiji","fk","falkland islands","fm","micronesia","fo","faroe islands","fr","france","ga","gabon","gb","uk","united kingdom","gd","grenada","ge","georgia","gf","french guiana","gh","ghana","gi","gibraltar","gl","greenland","gm","gambia","gn","guinea","gp","guadeloupe","gq","equatorial guinea","gr","greece","gs","sandwich islands","gt","guatemala","gu","guam","gw","guinea-bissau","gy","guyana","hk","hong kong","hm","heard island","hn","honduras","hr","croatia","ht","haiti","hu","hungary","id","indonesia","ie","ireland","il","israel","in","india","io","indian ocean territory","iq","iraq","ir","iran","is","iceland","it","italy","jm","jamaica","jo","jordan","jp","japan","ke","kenya","kg","kyrgyzstan","kh","cambodia","ki","kiribati","km","comoros","kn","saint kitts and nevis","kp","north korea","kr","south korea","kw","kuwait","ky","cayman islands","kz","kazakhstan","la","laos","lb","lebanon","lc","saint lucia","li","liechtenstein","lk","sri lanka","lr","liberia","ls","lesotho","lt","lithuania","lu","luxembourg","lv","latvia","ly","libya","ma","morocco","mc","monaco","md","moldova","me","montenegro","mg","madagascar","mh","marshall islands","mk","macedonia","ml","mali","mm","myanmar","burma","mn","mongolia","mo","macau","mp","northern mariana islands","mq","martinique","mr","mauritania","ms","montserrat","mt","malta","mu","mauritius","mv","maldives","mw","malawi","mx","mexico","my","malaysia","mz","mozambique","na","namibia","nc","new caledonia","ne","niger","nf","norfolk island","ng","nigeria","ni","nicaragua","nl","netherlands","no","norway","np","nepal","nr","nauru","nu","niue","nz","new zealand","om","oman","pa","panama","pe","peru","pf","french polynesia","pg","new guinea","ph","philippines","pk","pakistan","pl","poland","pm","saint pierre","pn","pitcairn islands","pr","puerto rico","ps","palestine","pt","portugal","pw","palau","py","paraguay","qa","qatar","re","reunion","ro","romania","rs","serbia","ru","russia","rw","rwanda","sa","saudi arabia","sb","solomon islands","sc","seychelles","gb sct","scotland","sd","sudan","se","sweden","sg","singapore","sh","saint helena","si","slovenia","sj","svalbard","jan mayen","sk","slovakia","sl","sierra leone","sm","san marino","sn","senegal","so","somalia","sr","suriname","st","sao tome","sv","el salvador","sy","syria","sz","swaziland","tc","caicos islands","td","chad","tf","french territories","tg","togo","th","thailand","tj","tajikistan","tk","tokelau","tl","timorleste","tm","turkmenistan","tn","tunisia","to","tonga","tr","turkey","tt","trinidad","tv","tuvalu","tw","taiwan","tz","tanzania","ua","ukraine","ug","uganda","um","us minor islands","us","america","united states","uy","uruguay","uz","uzbekistan","va","vatican city","vc","saint vincent","ve","venezuela","vg","british virgin islands","vi","us virgin islands","vn","vietnam","vu","vanuatu","gb wls","wales","wf","wallis and futuna","ws","samoa","ye","yemen","yt","mayotte","za","south africa","zm","zambia","zw","zimbabwe"],"name":"name"}],"constructorName":"Flag","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Flag","componentClassName":"flag","docblock":{"tags":[],"description":["A flag is is used to represent a political state."]},"examplesExist":true,"repoPath":"src/elements/Flag/Flag.js","filename":"Flag.js","filenameWithoutExt":"Flag"}
 
 /***/ }),
 /* 1600 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FormField","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"elementType|enum","required":false,"description":["A form control component (i.e. Dropdown) or HTML tagName (i.e. 'input').","Extra FormField props are passed to the control component.","Mutually exclusive with children."],"tags":[],"value":["button","input","select","textarea"],"name":"control"},{"type":"bool","required":false,"description":["Individual fields may be disabled."],"tags":[],"name":"disabled"},{"type":"bool|custom","required":false,"description":["Individual fields may display an error state along with a message."],"tags":[],"value":[],"name":"error"},{"type":"string","required":false,"description":["The id of the control"],"tags":[],"name":"id"},{"type":"bool","required":false,"description":["A field can have its label next to instead of above it."],"tags":[],"name":"inline"},{"type":"node|object","required":false,"description":["Mutually exclusive with children."],"tags":[],"value":[],"name":"label"},{"type":"bool","required":false,"description":["A field can show that input is mandatory."],"tags":[],"name":"required"},{"type":"","required":false,"description":["Passed to the control component (i.e. <input type='password' />)"],"tags":[],"value":[],"name":"type"},{"type":"enum","required":false,"description":["A field can specify its width in grid columns"],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"width"}],"constructorName":"FormField","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Field","subcomponents":null,"apiPath":"Form.Field","componentClassName":"field","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Button"},{"title":"see","description":"Checkbox"},{"title":"see","description":"Dropdown"},{"title":"see","description":"Input"},{"title":"see","description":"Radio"},{"title":"see","description":"Select"},{"title":"see","description":"Visibility"}],"description":["A field is a form element containing a label and an input."]},"examplesExist":false,"repoPath":"src/collections/Form/FormField.js","filename":"FormField.js","filenameWithoutExt":"FormField"}
+module.exports = {"displayName":"Form","props":[{"type":"string","required":false,"description":["The HTML form action"],"tags":[],"name":"action"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'form'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Automatically show any error Message children."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["A form can have its color inverted for contrast."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["Automatically show a loading indicator."],"tags":[],"name":"loading"},{"type":"func","required":false,"description":["The HTML form submit handler."],"tags":[],"name":"onSubmit"},{"type":"bool","required":false,"description":["A comment can contain a form to reply to a comment. This may have arbitrary content."],"tags":[],"name":"reply"},{"type":"enum","required":false,"description":["A form can vary in size."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["Automatically show any success Message children."],"tags":[],"name":"success"},{"type":"bool","required":false,"description":["A form can prevent itself from stacking on mobile."],"tags":[],"name":"unstackable"},{"type":"bool","required":false,"description":["Automatically show any warning Message children."],"tags":[],"name":"warning"},{"type":"enum","required":false,"description":["Forms can automatically divide fields to be equal width."],"tags":[],"value":["equal"],"name":"widths"}],"constructorName":"Form","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["FormButton","FormCheckbox","FormDropdown","FormField","FormGroup","FormInput","FormRadio","FormSelect","FormTextArea"],"apiPath":"Form","componentClassName":"form","docblock":{"tags":[{"title":"see","description":"Button"},{"title":"see","description":"Checkbox"},{"title":"see","description":"Dropdown"},{"title":"see","description":"Input"},{"title":"see","description":"Message"},{"title":"see","description":"Radio"},{"title":"see","description":"Select"},{"title":"see","description":"Visibility"}],"description":["A Form displays a set of related user input fields in a structured way."]},"examplesExist":true,"repoPath":"src/collections/Form/Form.js","filename":"Form.js","filenameWithoutExt":"Form"}
 
 /***/ }),
 /* 1601 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FormGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Fields can show related choices."],"tags":[],"value":[],"name":"grouped"},{"type":"bool","required":false,"description":["Multiple fields may be inline in a row."],"tags":[],"value":[],"name":"inline"},{"type":"bool","required":false,"description":["A form group can prevent itself from stacking on mobile."],"tags":[],"name":"unstackable"},{"type":"enum","required":false,"description":["Fields Groups can specify their width in grid columns or automatically divide fields to be equal width."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","equal"],"name":"widths"}],"constructorName":"FormGroup","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Group","subcomponents":null,"apiPath":"Form.Group","componentClassName":"forms","docblock":{"tags":[{"title":"see","description":"Form"}],"description":["A set of fields can appear grouped together."]},"examplesExist":false,"repoPath":"src/collections/Form/FormGroup.js","filename":"FormGroup.js","filenameWithoutExt":"FormGroup"}
+module.exports = {"displayName":"FormButton","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Button","tags":[],"name":"control"}],"constructorName":"FormButton","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Button","subcomponents":null,"apiPath":"Form.Button","componentClassName":"button","docblock":{"tags":[{"title":"see","description":"Button"},{"title":"see","description":"Form"}],"description":["Sugar for <Form.Field control={Button} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormButton.js","filename":"FormButton.js","filenameWithoutExt":"FormButton"}
 
 /***/ }),
 /* 1602 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FormInput","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Input","tags":[],"name":"control"}],"constructorName":"FormInput","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Input","subcomponents":null,"apiPath":"Form.Input","componentClassName":"input","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Input"}],"description":["Sugar for <Form.Field control={Input} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormInput.js","filename":"FormInput.js","filenameWithoutExt":"FormInput"}
+module.exports = {"displayName":"FormCheckbox","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Checkbox","tags":[],"name":"control"}],"constructorName":"FormCheckbox","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Checkbox","subcomponents":null,"apiPath":"Form.Checkbox","componentClassName":"checkbox","docblock":{"tags":[{"title":"see","description":"Checkbox"},{"title":"see","description":"Form"}],"description":["Sugar for <Form.Field control={Checkbox} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormCheckbox.js","filename":"FormCheckbox.js","filenameWithoutExt":"FormCheckbox"}
 
 /***/ }),
 /* 1603 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FormRadio","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Radio","tags":[],"name":"control"}],"constructorName":"FormRadio","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Radio","subcomponents":null,"apiPath":"Form.Radio","componentClassName":"radio","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Radio"}],"description":["Sugar for <Form.Field control={Radio} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormRadio.js","filename":"FormRadio.js","filenameWithoutExt":"FormRadio"}
+module.exports = {"displayName":"FormDropdown","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Dropdown","tags":[],"name":"control"}],"constructorName":"FormDropdown","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Dropdown","subcomponents":null,"apiPath":"Form.Dropdown","componentClassName":"dropdown","docblock":{"tags":[{"title":"see","description":"Dropdown"},{"title":"see","description":"Form"}],"description":["Sugar for <Form.Field control={Dropdown} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormDropdown.js","filename":"FormDropdown.js","filenameWithoutExt":"FormDropdown"}
 
 /***/ }),
 /* 1604 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FormSelect","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Select","tags":[],"name":"control"},{"type":"arrayOf","required":true,"description":["Array of Dropdown.Item props e.g. `{ text: '', value: '' }`"],"tags":[],"value":{"name":"shape","value":"Dropdown.Item.propTypes","computed":true},"name":"options"}],"constructorName":"FormSelect","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Select","subcomponents":null,"apiPath":"Form.Select","componentClassName":"select","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Select"}],"description":["Sugar for <Form.Field control={Select} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormSelect.js","filename":"FormSelect.js","filenameWithoutExt":"FormSelect"}
+module.exports = {"displayName":"FormField","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"elementType|enum","required":false,"description":["A form control component (i.e. Dropdown) or HTML tagName (i.e. 'input').","Extra FormField props are passed to the control component.","Mutually exclusive with children."],"tags":[],"value":["button","input","select","textarea"],"name":"control"},{"type":"bool","required":false,"description":["Individual fields may be disabled."],"tags":[],"name":"disabled"},{"type":"bool|custom","required":false,"description":["Individual fields may display an error state along with a message."],"tags":[],"value":[],"name":"error"},{"type":"string","required":false,"description":["The id of the control"],"tags":[],"name":"id"},{"type":"bool","required":false,"description":["A field can have its label next to instead of above it."],"tags":[],"name":"inline"},{"type":"node|object","required":false,"description":["Mutually exclusive with children."],"tags":[],"value":[],"name":"label"},{"type":"bool","required":false,"description":["A field can show that input is mandatory."],"tags":[],"name":"required"},{"type":"","required":false,"description":["Passed to the control component (i.e. <input type='password' />)"],"tags":[],"value":[],"name":"type"},{"type":"enum","required":false,"description":["A field can specify its width in grid columns"],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"width"}],"constructorName":"FormField","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Field","subcomponents":null,"apiPath":"Form.Field","componentClassName":"field","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Button"},{"title":"see","description":"Checkbox"},{"title":"see","description":"Dropdown"},{"title":"see","description":"Input"},{"title":"see","description":"Radio"},{"title":"see","description":"Select"},{"title":"see","description":"Visibility"}],"description":["A field is a form element containing a label and an input."]},"examplesExist":false,"repoPath":"src/collections/Form/FormField.js","filename":"FormField.js","filenameWithoutExt":"FormField"}
 
 /***/ }),
 /* 1605 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"FormTextArea","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"TextArea","tags":[],"name":"control"}],"constructorName":"FormTextArea","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"TextArea","subcomponents":null,"apiPath":"Form.TextArea","componentClassName":"textarea","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"TextArea"}],"description":["Sugar for <Form.Field control={TextArea} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormTextArea.js","filename":"FormTextArea.js","filenameWithoutExt":"FormTextArea"}
+module.exports = {"displayName":"FormGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Fields can show related choices."],"tags":[],"value":[],"name":"grouped"},{"type":"bool","required":false,"description":["Multiple fields may be inline in a row."],"tags":[],"value":[],"name":"inline"},{"type":"bool","required":false,"description":["A form group can prevent itself from stacking on mobile."],"tags":[],"name":"unstackable"},{"type":"enum","required":false,"description":["Fields Groups can specify their width in grid columns or automatically divide fields to be equal width."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","equal"],"name":"widths"}],"constructorName":"FormGroup","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Group","subcomponents":null,"apiPath":"Form.Group","componentClassName":"forms","docblock":{"tags":[{"title":"see","description":"Form"}],"description":["A set of fields can appear grouped together."]},"examplesExist":false,"repoPath":"src/collections/Form/FormGroup.js","filename":"FormGroup.js","filenameWithoutExt":"FormGroup"}
 
 /***/ }),
 /* 1606 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Grid","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["A grid can have rows divided into cells."],"tags":[],"value":["internally"],"name":"celled"},{"type":"bool","required":false,"description":["A grid can have its columns centered."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Represents column count per row in Grid."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","equal"],"name":"columns"},{"type":"bool","required":false,"description":["A grid can be combined with a container to use the available layout and alignment."],"tags":[],"name":"container"},{"type":"bool|enum","required":false,"description":["A grid can have dividers between its columns."],"tags":[],"value":["vertically"],"name":"divided"},{"type":"bool","required":false,"description":["A grid can double its column width on tablet and mobile sizes."],"tags":[],"name":"doubling"},{"type":"bool","required":false,"description":["A grid's colors can be inverted."],"tags":[],"name":"inverted"},{"type":"bool|enum","required":false,"description":["A grid can preserve its vertical and horizontal gutters on first and last columns."],"tags":[],"value":["horizontally","vertically"],"name":"padded"},{"type":"bool|enum","required":false,"description":["A grid can increase its gutters to allow for more negative space."],"tags":[],"value":["very"],"name":"relaxed"},{"type":"custom","required":false,"description":["A grid can specify that its columns should reverse order at different device sizes."],"tags":[],"name":"reversed"},{"type":"bool","required":false,"description":["A grid can have its columns stack on-top of each other after reaching mobile breakpoints."],"tags":[],"name":"stackable"},{"type":"bool","required":false,"description":["A grid can stretch its contents to take up the entire grid height."],"tags":[],"name":"stretched"},{"type":"enum","required":false,"description":["A grid can specify its text alignment."],"tags":[],"value":["left","center","right","justified"],"name":"textAlign"},{"type":"enum","required":false,"description":["A grid can specify its vertical alignment to have all its columns vertically centered."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"Grid","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["GridColumn","GridRow"],"apiPath":"Grid","componentClassName":"grid","docblock":{"tags":[],"description":["A grid is used to harmonize negative space in a layout."]},"examplesExist":true,"repoPath":"src/collections/Grid/Grid.js","filename":"Grid.js","filenameWithoutExt":"Grid"}
+module.exports = {"displayName":"FormInput","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Input","tags":[],"name":"control"}],"constructorName":"FormInput","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Input","subcomponents":null,"apiPath":"Form.Input","componentClassName":"input","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Input"}],"description":["Sugar for <Form.Field control={Input} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormInput.js","filename":"FormInput.js","filenameWithoutExt":"FormInput"}
 
 /***/ }),
 /* 1607 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"GridColumn","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A grid column can be colored."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"enum","required":false,"description":["A column can specify a width for a computer."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"computer"},{"type":"enum","required":false,"description":["A column can sit flush against the left or right edge of a row."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"enum","required":false,"description":["A column can specify a width for a large screen device."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"largeScreen"},{"type":"enum","required":false,"description":["A column can specify a width for a mobile device."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"mobile"},{"type":"custom","required":false,"description":["A column can appear only for a specific device, or screen sizes."],"tags":[],"name":"only"},{"type":"bool","required":false,"description":["A column can stretch its contents to take up the entire grid or row height."],"tags":[],"name":"stretched"},{"type":"enum","required":false,"description":["A column can specify a width for a tablet device."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"tablet"},{"type":"enum","required":false,"description":["A column can specify its text alignment."],"tags":[],"value":["left","center","right","justified"],"name":"textAlign"},{"type":"enum","required":false,"description":["A column can specify its vertical alignment to have all its columns vertically centered."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"},{"type":"enum","required":false,"description":["A column can specify a width for a wide screen device."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"widescreen"},{"type":"enum","required":false,"description":["Represents width of column."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"width"}],"constructorName":"GridColumn","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Grid","subcomponentName":"Column","subcomponents":null,"apiPath":"Grid.Column","componentClassName":"column","docblock":{"tags":[],"description":["A column sub-component for Grid."]},"examplesExist":false,"repoPath":"src/collections/Grid/GridColumn.js","filename":"GridColumn.js","filenameWithoutExt":"GridColumn"}
+module.exports = {"displayName":"FormRadio","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Radio","tags":[],"name":"control"}],"constructorName":"FormRadio","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Radio","subcomponents":null,"apiPath":"Form.Radio","componentClassName":"radio","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Radio"}],"description":["Sugar for <Form.Field control={Radio} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormRadio.js","filename":"FormRadio.js","filenameWithoutExt":"FormRadio"}
 
 /***/ }),
 /* 1608 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"GridRow","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A row can have its columns centered."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A grid row can be colored."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"enum","required":false,"description":["Represents column count per line in Row."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","equal"],"name":"columns"},{"type":"bool","required":false,"description":["A row can have dividers between its columns."],"tags":[],"name":"divided"},{"type":"custom","required":false,"description":["A row can appear only for a specific device, or screen sizes."],"tags":[],"name":"only"},{"type":"custom","required":false,"description":["A row can specify that its columns should reverse order at different device sizes."],"tags":[],"name":"reversed"},{"type":"bool","required":false,"description":["A row can stretch its contents to take up the entire column height."],"tags":[],"name":"stretched"},{"type":"enum","required":false,"description":["A row can specify its text alignment."],"tags":[],"value":["left","center","right","justified"],"name":"textAlign"},{"type":"enum","required":false,"description":["A row can specify its vertical alignment to have all its columns vertically centered."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"GridRow","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Grid","subcomponentName":"Row","subcomponents":null,"apiPath":"Grid.Row","componentClassName":"row","docblock":{"tags":[],"description":["A row sub-component for Grid."]},"examplesExist":false,"repoPath":"src/collections/Grid/GridRow.js","filename":"GridRow.js","filenameWithoutExt":"GridRow"}
+module.exports = {"displayName":"FormSelect","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"Select","tags":[],"name":"control"},{"type":"arrayOf","required":true,"description":["Array of Dropdown.Item props e.g. `{ text: '', value: '' }`"],"tags":[],"value":{"name":"shape","value":"Dropdown.Item.propTypes","computed":true},"name":"options"}],"constructorName":"FormSelect","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"Select","subcomponents":null,"apiPath":"Form.Select","componentClassName":"select","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"Select"}],"description":["Sugar for <Form.Field control={Select} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormSelect.js","filename":"FormSelect.js","filenameWithoutExt":"FormSelect"}
 
 /***/ }),
 /* 1609 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Header","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["Attach header  to other content, like a segment."],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["Format header to appear inside a content block."],"tags":[],"name":"block"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Color of the header."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Show that the header is inactive."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["Divide header from the content below it."],"tags":[],"name":"dividing"},{"type":"enum","required":false,"description":["Header can sit to the left or right of other content."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"union","required":false,"description":["Add an icon by icon name or pass an Icon."],"tags":[],"value":[],"name":"icon"},{"type":"union","required":false,"description":["Add an image by img src or pass an Image."],"tags":[],"value":[],"name":"image"},{"type":"bool","required":false,"description":["Inverts the color of the header for dark backgrounds."],"tags":[],"name":"inverted"},{"type":"enum","required":false,"description":["Content headings are sized with em and are based on the font-size of their container."],"tags":[],"value":["tiny","small","medium","large","huge"],"name":"size"},{"type":"bool","required":false,"description":["Headers may be formatted to label smaller or de-emphasized content."],"tags":[],"name":"sub"},{"type":"custom","required":false,"description":["Shorthand for Header.Subheader."],"tags":[],"name":"subheader"},{"type":"enum","required":false,"description":["Align header content."],"tags":[],"value":["left","center","right","justified"],"name":"textAlign"}],"constructorName":"Header","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["HeaderContent","HeaderSubheader"],"apiPath":"Header","componentClassName":"header","docblock":{"tags":[],"description":["A header provides a short summary of content"]},"examplesExist":true,"repoPath":"src/elements/Header/Header.js","filename":"Header.js","filenameWithoutExt":"Header"}
+module.exports = {"displayName":"FormTextArea","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"FormField","tags":[],"name":"as"},{"type":"custom","required":false,"description":["A FormField control prop."],"defaultValue":"TextArea","tags":[],"name":"control"}],"constructorName":"FormTextArea","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Form","subcomponentName":"TextArea","subcomponents":null,"apiPath":"Form.TextArea","componentClassName":"textarea","docblock":{"tags":[{"title":"see","description":"Form"},{"title":"see","description":"TextArea"}],"description":["Sugar for <Form.Field control={TextArea} />."]},"examplesExist":false,"repoPath":"src/collections/Form/FormTextArea.js","filename":"FormTextArea.js","filenameWithoutExt":"FormTextArea"}
 
 /***/ }),
 /* 1610 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"HeaderContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"HeaderContent","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Header","subcomponentName":"Content","subcomponents":null,"apiPath":"Header.Content","componentClassName":"content","docblock":{"tags":[],"description":["Header content wraps the main content when there is an adjacent Icon or Image."]},"examplesExist":false,"repoPath":"src/elements/Header/HeaderContent.js","filename":"HeaderContent.js","filenameWithoutExt":"HeaderContent"}
+module.exports = {"displayName":"Grid","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["A grid can have rows divided into cells."],"tags":[],"value":["internally"],"name":"celled"},{"type":"bool","required":false,"description":["A grid can have its columns centered."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Represents column count per row in Grid."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","equal"],"name":"columns"},{"type":"bool","required":false,"description":["A grid can be combined with a container to use the available layout and alignment."],"tags":[],"name":"container"},{"type":"bool|enum","required":false,"description":["A grid can have dividers between its columns."],"tags":[],"value":["vertically"],"name":"divided"},{"type":"bool","required":false,"description":["A grid can double its column width on tablet and mobile sizes."],"tags":[],"name":"doubling"},{"type":"bool","required":false,"description":["A grid's colors can be inverted."],"tags":[],"name":"inverted"},{"type":"bool|enum","required":false,"description":["A grid can preserve its vertical and horizontal gutters on first and last columns."],"tags":[],"value":["horizontally","vertically"],"name":"padded"},{"type":"bool|enum","required":false,"description":["A grid can increase its gutters to allow for more negative space."],"tags":[],"value":["very"],"name":"relaxed"},{"type":"custom","required":false,"description":["A grid can specify that its columns should reverse order at different device sizes."],"tags":[],"name":"reversed"},{"type":"bool","required":false,"description":["A grid can have its columns stack on-top of each other after reaching mobile breakpoints."],"tags":[],"name":"stackable"},{"type":"bool","required":false,"description":["A grid can stretch its contents to take up the entire grid height."],"tags":[],"name":"stretched"},{"type":"enum","required":false,"description":["A grid can specify its text alignment."],"tags":[],"value":["left","center","right","justified"],"name":"textAlign"},{"type":"enum","required":false,"description":["A grid can specify its vertical alignment to have all its columns vertically centered."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"Grid","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["GridColumn","GridRow"],"apiPath":"Grid","componentClassName":"grid","docblock":{"tags":[],"description":["A grid is used to harmonize negative space in a layout."]},"examplesExist":true,"repoPath":"src/collections/Grid/Grid.js","filename":"Grid.js","filenameWithoutExt":"Grid"}
 
 /***/ }),
 /* 1611 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"HeaderSubheader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"HeaderSubheader","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Header","subcomponentName":"Subheader","subcomponents":null,"apiPath":"Header.Subheader","componentClassName":"subheader","docblock":{"tags":[],"description":["Headers may contain subheaders."]},"examplesExist":false,"repoPath":"src/elements/Header/HeaderSubheader.js","filename":"HeaderSubheader.js","filenameWithoutExt":"HeaderSubheader"}
+module.exports = {"displayName":"GridColumn","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A grid column can be colored."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"enum","required":false,"description":["A column can specify a width for a computer."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"computer"},{"type":"enum","required":false,"description":["A column can sit flush against the left or right edge of a row."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"enum","required":false,"description":["A column can specify a width for a large screen device."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"largeScreen"},{"type":"enum","required":false,"description":["A column can specify a width for a mobile device."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"mobile"},{"type":"custom","required":false,"description":["A column can appear only for a specific device, or screen sizes."],"tags":[],"name":"only"},{"type":"bool","required":false,"description":["A column can stretch its contents to take up the entire grid or row height."],"tags":[],"name":"stretched"},{"type":"enum","required":false,"description":["A column can specify a width for a tablet device."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"tablet"},{"type":"enum","required":false,"description":["A column can specify its text alignment."],"tags":[],"value":["left","center","right","justified"],"name":"textAlign"},{"type":"enum","required":false,"description":["A column can specify its vertical alignment to have all its columns vertically centered."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"},{"type":"enum","required":false,"description":["A column can specify a width for a wide screen device."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"widescreen"},{"type":"enum","required":false,"description":["Represents width of column."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"width"}],"constructorName":"GridColumn","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Grid","subcomponentName":"Column","subcomponents":null,"apiPath":"Grid.Column","componentClassName":"column","docblock":{"tags":[],"description":["A column sub-component for Grid."]},"examplesExist":false,"repoPath":"src/collections/Grid/GridColumn.js","filename":"GridColumn.js","filenameWithoutExt":"GridColumn"}
 
 /***/ }),
 /* 1612 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Icon","props":[{"type":"string","required":false,"description":["Icon can have an aria label."],"tags":[],"name":"aria-hidden"},{"type":"string","required":false,"description":["Icon can have an aria label."],"tags":[],"name":"aria-label"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'i'","tags":[],"name":"as"},{"type":"bool","required":false,"description":["Formatted to appear bordered."],"tags":[],"name":"bordered"},{"type":"bool","required":false,"description":["Icon can formatted to appear circular."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Color of the icon."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"bool|enum","required":false,"description":["Icons can display a smaller corner icon."],"tags":[],"value":["top left","top right","bottom left","bottom right"],"name":"corner"},{"type":"bool","required":false,"description":["Show that the icon is inactive."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["Fitted, without space to left or right of Icon."],"tags":[],"name":"fitted"},{"type":"enum","required":false,"description":["Icon can be flipped."],"tags":[],"value":["horizontally","vertically"],"name":"flipped"},{"type":"bool","required":false,"description":["Formatted to have its colors inverted for contrast."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["Icon can be formatted as a link."],"tags":[],"name":"link"},{"type":"bool","required":false,"description":["Icon can be used as a simple loader."],"tags":[],"name":"loading"},{"type":"enum","required":false,"description":["Name of the icon."],"tags":[],"value":["american sign language interpreting","assistive listening systems","audio description","blind","braille","closed captioning","closed captioning outline","deaf","low vision","phone volume","question circle","question circle outline","sign language","tty","universal access","wheelchair","angle double down","angle double left","angle double right","angle double up","angle down","angle left","angle right","angle up","arrow alternate circle down","arrow alternate circle down outline","arrow alternate circle left","arrow alternate circle left outline","arrow alternate circle right","arrow alternate circle right outline","arrow alternate circle up","arrow alternate circle up outline","arrow circle down","arrow circle left","arrow circle right","arrow circle up","arrow down","arrow left","arrow right","arrow up","arrows alternate","arrows alternate horizontal","arrows alternate vertical","caret down","caret left","caret right","caret square down","caret square down outline","caret square left","caret square left outline","caret square right","caret square right outline","caret square up","caret square up outline","caret up","cart arrow down","chart line","chevron circle down","chevron circle left","chevron circle right","chevron circle up","chevron down","chevron left","chevron right","chevron up","cloud download","cloud upload","download","exchange","expand arrows alternate","external alternate","external square alternate","hand point down","hand point down outline","hand point left","hand point left outline","hand point right","hand point right outline","hand point up","hand point up outline","hand pointer","hand pointer outline","history","level down alternate","level up alternate","location arrow","long arrow alternate down","long arrow alternate left","long arrow alternate right","long arrow alternate up","mouse pointer","play","random","recycle","redo","redo alternate","reply","reply all","retweet","share","share square","share square outline","sign-in","sign-out","sign-in alternate","sign-out alternate","sort","sort alphabet down","sort alphabet up","sort amount down","sort amount up","sort down","sort numeric down","sort numeric up","sort up","sync","sync alternate","text height","text width","undo","undo alternate","upload","zoom-in","zoom-out","backward","circle","circle outline","compress","eject","expand","fast backward","fast forward","file audio","file audio outline","file video","file video outline","film","forward","headphones","microphone","microphone slash","music","pause","pause circle","pause circle outline","play circle","play circle outline","podcast","rss","rss square","step backward","step forward","stop","stop circle","stop circle outline","video","volume down","volume off","volume up","address book","address book outline","address card","address card outline","archive","balance scale","birthday cake","book","briefcase","building","building outline","bullhorn","bullseye","calculator","calendar","calendar outline","calendar alternate","calendar alternate outline","certificate","chart area","chart bar","chart bar outline","chart pie","clipboard","clipboard outline","coffee","columns","compass","compass outline","copy","copy outline","copyright","copyright outline","cut","edit","edit outline","envelope","envelope outline","envelope open","envelope open outline","envelope square","eraser","fax","file","file outline","file alternate","file alternate outline","folder","folder outline","folder open","folder open outline","globe","industry","paperclip","paste","pen square","pencil alternate","percent","phone","phone square","registered","registered outline","save","save outline","sitemap","sticky note","sticky note outline","suitcase","table","tag","tags","tasks","thumbtack","trademark","chess","chess bishop","chess board","chess king","chess knight","chess pawn","chess queen","chess rook","square full","barcode","bath","bug","code","code branch","file code","file code outline","filter","fire extinguisher","keyboard","keyboard outline","microchip","qrcode","shield alternate","terminal","user secret","window close","window close outline","window maximize","window maximize outline","window minimize","window minimize outline","window restore","window restore outline","at","bell","bell outline","bell slash","bell slash outline","comment","comment outline","comment alternate","comment alternate outline","comments","comments outline","inbox","language","mobile","mobile alternate","paper plane","paper plane outline","wifi","desktop","hdd","hdd outline","laptop","plug","power off","print","server","tablet","tablet alternate","tv","dollar sign","euro sign","lira sign","money bill alternate","money bill alternate outline","pound sign","ruble sign","rupee sign","shekel sign","won sign","yen sign","calendar check","calendar check outline","calendar minus","calendar minus outline","calendar plus","calendar plus outline","calendar times","calendar times outline","clock","clock outline","hourglass","hourglass outline","hourglass end","hourglass half","hourglass start","stopwatch","adjust","clone","clone outline","crop","crosshairs","eye","eye dropper","eye slash","eye slash outline","object group","object group outline","object ungroup","object ungroup outline","paint brush","tint","align center","align justify","align left","align right","bold","font","heading","i cursor","indent","italic","linkify","list","list alternate","list alternate outline","list ol","list ul","outdent","paragraph","quote left","quote right","strikethrough","subscript","superscript","th","th large","th list","trash","trash alternate","trash alternate outline","underline","unlink","file archive","file archive outline","file excel","file excel outline","file image","file image outline","file pdf","file pdf outline","file powerpoint","file powerpoint outline","file word","file word outline","genderless","mars","mars double","mars stroke","mars stroke horizontal","mars stroke vertical","mercury","neuter","transgender","transgender alternate","venus","venus double","venus mars","hand lizard","hand lizard outline","hand paper","hand paper outline","hand peace","hand peace outline","hand rock","hand rock outline","hand scissors","hand scissors outline","hand spock","hand spock outline","handshake","handshake outline","thumbs down","thumbs down outline","thumbs up","thumbs up outline","ambulance","h square","heart","heart outline","heartbeat","hospital","hospital outline","medkit","plus square","plus square outline","stethoscope","user md","bolt","camera","camera retro","id badge","id badge outline","id card","id card outline","image","image outline","images","images outline","sliders horizontal","ban","bars","beer","check","check circle","check circle outline","check square","check square outline","cloud","cog","cogs","database","dot circle","dot circle outline","ellipsis horizontal","ellipsis vertical","exclamation","exclamation circle","exclamation triangle","flag","flag outline","flag checkered","frown","frown outline","hashtag","home","info","info circle","magic","meh","meh outline","minus","minus circle","minus square","minus square outline","plus","plus circle","question","search","search minus","search plus","share alternate","share alternate square","signal","smile","smile outline","star","star outline","star half","star half outline","times","times circle","times circle outline","toggle off","toggle on","trophy","user","user outline","user circle","user circle outline","box","boxes","clipboard check","clipboard list","dolly","dolly flatbed","pallet","shipping fast","truck","warehouse","anchor","bed","bicycle","binoculars","bomb","bookmark","bookmark outline","car","fighter jet","fire","flask","gamepad","gavel","gift","glass martini","graduation cap","key","leaf","lemon","lemon outline","life ring","life ring outline","lightbulb","lightbulb outline","magnet","male","map","map outline","map marker","map marker alternate","map pin","map signs","motorcycle","newspaper","newspaper outline","paw","plane","road","rocket","ship","shopping bag","shopping basket","shopping cart","shower","street view","subway","taxi","ticket alternate","train","tree","umbrella","university","utensil spoon","utensils","wrench","band aid","dna","first aid","hospital symbol","pills","syringe","thermometer","weight","bus","cube","cubes","futbol","futbol outline","gem","gem outline","lock","lock open","moon","moon outline","puzzle piece","snowflake","snowflake outline","space shuttle","sun","sun outline","tachometer alternate","unlock","unlock alternate","cart plus","credit card","credit card outline","square","square outline","asterisk","circle notch","spinner","baseball ball","basketball ball","bowling ball","football ball","golf ball","hockey puck","quidditch","table tennis","volleyball ball","battery empty","battery full","battery half","battery quarter","battery three quarters","sign in alternate","sign out alternate","thermometer empty","thermometer full","thermometer half","thermometer quarter","thermometer three quarters","child","female","user plus","user times","users","500px","accessible","accusoft","adn","adversal","affiliatetheme","algolia","amazon","amazon pay","amilia","android","angellist","angrycreative","angular","app store","app store ios","apper","apple","apple pay","asymmetrik","audible","autoprefixer","avianex","aviato","aws","bandcamp","behance","behance square","bimobject","bitbucket","bitcoin","bity","black tie","blackberry","blogger","blogger b","bluetooth","bluetooth b","btc","buromobelexperte","buysellads","cc amazon pay","cc amex","cc apple pay","cc diners club","cc discover","cc jcb","cc mastercard","cc paypal","cc stripe","cc visa","centercode","chrome","cloudscale","cloudsmith","cloudversify","codepen","codiepie","connectdevelop","contao","cpanel","creative commons","css3","css3 alternate","cuttlefish","d and d","dashcube","delicious","deploydog","deskpro","deviantart","digg","digital ocean","discord","discourse","dochub","docker","draft2digital","dribbble","dribbble square","dropbox","drupal","dyalog","earlybirds","edge","elementor","ember","empire","envira","erlang","ethereum","etsy","expeditedssl","facebook","facebook f","facebook messenger","facebook square","firefox","first order","firstdraft","flickr","flipboard","fly","font awesome","font awesome alternate","font awesome flag","fonticons","fonticons fi","fort awesome","fort awesome alternate","forumbee","foursquare","free code camp","freebsd","get pocket","gg","gg circle","git","git square","github","github alternate","github square","gitkraken","gitlab","gitter","glide","glide g","gofore","goodreads","goodreads g","google","google drive","google play","google plus","google plus g","google plus square","google wallet","gratipay","grav","gripfire","grunt","gulp","hacker news","hacker news square","hips","hire a helper","hooli","hotjar","houzz","html5","hubspot","imdb","instagram","internet explorer","ioxhost","itunes","itunes note","jenkins","joget","joomla","js","js square","jsfiddle","keycdn","kickstarter","kickstarter k","korvue","laravel","lastfm","lastfm square","leanpub","less","linechat","linkedin","linkedin alternate","linode","linux","lyft","magento","maxcdn","medapps","medium","medium m","medrt","meetup","microsoft","mix","mixcloud","mizuni","modx","monero","napster","nintendo switch","node","node js","npm","ns8","nutritionix","odnoklassniki","odnoklassniki square","opencart","openid","opera","optin monster","osi","page4","pagelines","palfed","patreon","paypal","periscope","phabricator","phoenix framework","php","pied piper","pied piper alternate","pied piper pp","pinterest","pinterest p","pinterest square","playstation","product hunt","pushed","python","qq","quinscape","quora","ravelry","react","rebel","redriver","reddit","reddit alien","reddit square","rendact","renren","replyd","resolving","rocketchat","rockrms","safari","sass","schlix","scribd","searchengin","sellcast","sellsy","servicestack","shirtsinbulk","simplybuilt","sistrix","skyatlas","skype","slack","slack hash","slideshare","snapchat","snapchat ghost","snapchat square","soundcloud","speakap","spotify","stack exchange","stack overflow","staylinked","steam","steam square","steam symbol","sticker mule","strava","stripe","stripe s","studiovinari","stumbleupon","stumbleupon circle","superpowers","supple","telegram","telegram plane","tencent weibo","themeisle","trello","tripadvisor","tumblr","tumblr square","twitch","twitter","twitter square","typo3","uber","uikit","uniregistry","untappd","usb","ussunnah","vaadin","viacoin","viadeo","viadeo square","viber","vimeo","vimeo square","vimeo v","vine","vk","vnv","vuejs","wechat","weibo","weixin","whatsapp","whatsapp square","whmcs","wikipedia w","windows","wordpress","wordpress simple","wpbeginner","wpexplorer","wpforms","xbox","xing","xing square","y combinator","yahoo","yandex","yandex international","yelp","yoast","youtube","youtube square","chess rock","ordered list","unordered list","user doctor","shield","puzzle","add circle","add square","add to calendar","add to cart","add user","add","alarm mute","alarm","ald","als","announcement","area chart","area graph","arrow down cart","asexual","asl interpreting","asl","assistive listening devices","attach","attention","balance","bar","bathtub","battery four","battery high","battery low","battery one","battery three","battery two","battery zero","birthday","block layout","bluetooth alternative","broken chain","browser","call square","call","cancel","cart","cc","chain","chat","checked calendar","checkmark","circle notched","close","cny","cocktail","commenting","computer","configure","content","deafness","delete calendar","delete","detective","discussions","doctor","dollar","dont","drivers license","dropdown","emergency","envira gallery","erase","eur","euro","eyedropper","factory","favorite","feed","female homosexual","file text","file text outline","find","fork","game","gay","gbp","google plus circle","google plus official","grab","graduation","grid layout","group","h","hand victory","handicap","hard of hearing","header","help circle","help","heterosexual","hide","hotel","hourglass four","hourglass full","hourglass one","hourglass three","hourglass two","idea","ils","in cart","inr","intergender","intersex","jpy","krw","lab","law","legal","lesbian","lightning","like","line graph","linkedin square","lira","list layout","magnify","mail forward","mail outline","mail square","mail","male homosexual","man","marker","mars alternate","mars horizontal","mars vertical","microsoft edge","military","ms edge","mute","new pied piper","non binary transgender","numbered list","options","other gender horizontal","other gender vertical","other gender","payment","paypal card","pencil square","photo","picture","pie chart","pie graph","pied piper hat","pin","plus cart","point","pointing down","pointing left","pointing right","pointing up","pound","power cord","power","privacy","r circle","rain","record","refresh","remove circle","remove from calendar","remove user","remove","repeat","rmb","rouble","rub","ruble","rupee","s15","selected radio","send","setting","settings","shekel","sheqel","shipping","shop","shuffle","shutdown","sidebar","signing","signup","sliders","soccer","sort alphabet ascending","sort alphabet descending","sort ascending","sort content ascending","sort content descending","sort descending","sort numeric ascending","sort numeric descending","sound","spy","stripe card","student","talk","target","teletype","television","text cursor","text telephone","theme","thumb tack","time","tm","toggle down","toggle left","toggle right","toggle up","translate","travel","treatment","triangle down","triangle left","triangle right","triangle up","try","unhide","unlinkify","unmute","usd","user cancel","user close","user delete","user x","vcard","video camera","video play","volume control phone","wait","warning circle","warning sign","warning","wi-fi","winner","wizard","woman","won","wordpress beginner","wordpress forms","world","write square","x","yen","zip","zoom in","zoom out","zoom","bitbucket square","checkmark box","circle thin","compose","conversation","credit card alternative","currency","dashboard","diamond","disk","external share","external square","external","facebook official","food","hourglass zero","level down","level up","log out","meanpath","money","move","pencil","protect","radio","remove bookmark","resize horizontal","resize vertical","sign in","sign out","spoon","star half empty","star half full","ticket","times rectangle","write","youtube play","left dropdown"],"name":"name"},{"type":"enum","required":false,"description":["Icon can rotated."],"tags":[],"value":["clockwise","counterclockwise"],"name":"rotated"},{"type":"enum","required":false,"description":["Size of the icon."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"}],"constructorName":"Icon","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["IconGroup"],"apiPath":"Icon","componentClassName":"icon","docblock":{"tags":[{"title":"see","description":"Image"}],"description":["An icon is a glyph used to represent something else."]},"examplesExist":true,"repoPath":"src/elements/Icon/Icon.js","filename":"Icon.js","filenameWithoutExt":"Icon"}
+module.exports = {"displayName":"GridRow","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A row can have its columns centered."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A grid row can be colored."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"enum","required":false,"description":["Represents column count per line in Row."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","equal"],"name":"columns"},{"type":"bool","required":false,"description":["A row can have dividers between its columns."],"tags":[],"name":"divided"},{"type":"custom","required":false,"description":["A row can appear only for a specific device, or screen sizes."],"tags":[],"name":"only"},{"type":"custom","required":false,"description":["A row can specify that its columns should reverse order at different device sizes."],"tags":[],"name":"reversed"},{"type":"bool","required":false,"description":["A row can stretch its contents to take up the entire column height."],"tags":[],"name":"stretched"},{"type":"enum","required":false,"description":["A row can specify its text alignment."],"tags":[],"value":["left","center","right","justified"],"name":"textAlign"},{"type":"enum","required":false,"description":["A row can specify its vertical alignment to have all its columns vertically centered."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"GridRow","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Grid","subcomponentName":"Row","subcomponents":null,"apiPath":"Grid.Row","componentClassName":"row","docblock":{"tags":[],"description":["A row sub-component for Grid."]},"examplesExist":false,"repoPath":"src/collections/Grid/GridRow.js","filename":"GridRow.js","filenameWithoutExt":"GridRow"}
 
 /***/ }),
 /* 1613 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"IconGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'i'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["Size of the icon group."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"}],"constructorName":"IconGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Icon","subcomponentName":"Group","subcomponents":null,"apiPath":"Icon.Group","componentClassName":"icons","docblock":{"tags":[],"description":["Several icons can be used together as a group."]},"examplesExist":false,"repoPath":"src/elements/Icon/IconGroup.js","filename":"IconGroup.js","filenameWithoutExt":"IconGroup"}
+module.exports = {"displayName":"Header","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["Attach header  to other content, like a segment."],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["Format header to appear inside a content block."],"tags":[],"name":"block"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Color of the header."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Show that the header is inactive."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["Divide header from the content below it."],"tags":[],"name":"dividing"},{"type":"enum","required":false,"description":["Header can sit to the left or right of other content."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"union","required":false,"description":["Add an icon by icon name or pass an Icon."],"tags":[],"value":[],"name":"icon"},{"type":"union","required":false,"description":["Add an image by img src or pass an Image."],"tags":[],"value":[],"name":"image"},{"type":"bool","required":false,"description":["Inverts the color of the header for dark backgrounds."],"tags":[],"name":"inverted"},{"type":"enum","required":false,"description":["Content headings are sized with em and are based on the font-size of their container."],"tags":[],"value":["tiny","small","medium","large","huge"],"name":"size"},{"type":"bool","required":false,"description":["Headers may be formatted to label smaller or de-emphasized content."],"tags":[],"name":"sub"},{"type":"custom","required":false,"description":["Shorthand for Header.Subheader."],"tags":[],"name":"subheader"},{"type":"enum","required":false,"description":["Align header content."],"tags":[],"value":["left","center","right","justified"],"name":"textAlign"}],"constructorName":"Header","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["HeaderContent","HeaderSubheader"],"apiPath":"Header","componentClassName":"header","docblock":{"tags":[],"description":["A header provides a short summary of content"]},"examplesExist":true,"repoPath":"src/elements/Header/Header.js","filename":"Header.js","filenameWithoutExt":"Header"}
 
 /***/ }),
 /* 1614 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Image","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'img'","tags":[],"name":"as"},{"type":"bool","required":false,"description":["An image may be formatted to appear inline with text as an avatar."],"tags":[],"name":"avatar"},{"type":"bool","required":false,"description":["An image may include a border to emphasize the edges of white or transparent content."],"tags":[],"name":"bordered"},{"type":"bool","required":false,"description":["An image can appear centered in a content block."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["An image may appear circular."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for Dimmer."],"tags":[],"name":"dimmer"},{"type":"bool","required":false,"description":["An image can show that it is disabled and cannot be selected."],"tags":[],"name":"disabled"},{"type":"enum","required":false,"description":["An image can sit to the left or right of other content."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["An image can take up the width of its container."],"tags":[],"value":[],"name":"fluid"},{"type":"bool","required":false,"description":["An image can be hidden."],"tags":[],"name":"hidden"},{"type":"string","required":false,"description":["Renders the Image as an <a> tag with this href."],"tags":[],"name":"href"},{"type":"bool","required":false,"description":["An image may appear inline."],"tags":[],"name":"inline"},{"type":"custom","required":false,"description":["Shorthand for Label."],"tags":[],"name":"label"},{"type":"bool","required":false,"description":["An image may appear rounded."],"tags":[],"name":"rounded"},{"type":"enum","required":false,"description":["An image may appear at different sizes."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"bool|enum","required":false,"description":["An image can specify that it needs an additional spacing to separate it from nearby content."],"tags":[],"value":["left","right"],"name":"spaced"},{"type":"bool","required":false,"description":["Whether or not to add the ui className."],"defaultValue":"true","tags":[],"name":"ui"},{"type":"enum","required":false,"description":["An image can specify its vertical alignment."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"},{"type":"bool","required":false,"description":["An image can render wrapped in a `div.ui.image` as alternative HTML markup."],"tags":[],"name":"wrapped"}],"constructorName":"Image","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["ImageGroup"],"apiPath":"Image","componentClassName":"image","docblock":{"tags":[{"title":"see","description":"Icon"}],"description":["An image is a graphic representation of something."]},"examplesExist":true,"repoPath":"src/elements/Image/Image.js","filename":"Image.js","filenameWithoutExt":"Image"}
+module.exports = {"displayName":"HeaderContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"HeaderContent","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Header","subcomponentName":"Content","subcomponents":null,"apiPath":"Header.Content","componentClassName":"content","docblock":{"tags":[],"description":["Header content wraps the main content when there is an adjacent Icon or Image."]},"examplesExist":false,"repoPath":"src/elements/Header/HeaderContent.js","filename":"HeaderContent.js","filenameWithoutExt":"HeaderContent"}
 
 /***/ }),
 /* 1615 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ImageGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A group of images can be formatted to have the same size."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"}],"constructorName":"ImageGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Image","subcomponentName":"Group","subcomponents":null,"apiPath":"Image.Group","componentClassName":"images","docblock":{"tags":[],"description":["A group of images."]},"examplesExist":false,"repoPath":"src/elements/Image/ImageGroup.js","filename":"ImageGroup.js","filenameWithoutExt":"ImageGroup"}
+module.exports = {"displayName":"HeaderSubheader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"HeaderSubheader","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Header","subcomponentName":"Subheader","subcomponents":null,"apiPath":"Header.Subheader","componentClassName":"subheader","docblock":{"tags":[],"description":["Headers may contain subheaders."]},"examplesExist":false,"repoPath":"src/elements/Header/HeaderSubheader.js","filename":"HeaderSubheader.js","filenameWithoutExt":"HeaderSubheader"}
 
 /***/ }),
 /* 1616 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Input","props":[{"type":"bool|custom","required":false,"description":["An Input can be formatted to alert the user to an action they may perform."],"tags":[],"value":[],"name":"action"},{"type":"enum","required":false,"description":["An action can appear along side an Input on the left or right."],"tags":[],"value":["left"],"name":"actionPosition"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["An Input field can show that it is disabled."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["An Input field can show the data contains errors."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["Take on the size of its container."],"tags":[],"name":"fluid"},{"type":"bool","required":false,"description":["An Input field can show a user is currently interacting with it."],"tags":[],"name":"focus"},{"type":"bool|custom","required":false,"description":["Optional Icon to display inside the Input."],"tags":[],"value":[],"name":"icon"},{"type":"enum","required":false,"description":["An Icon can appear inside an Input on the left or right."],"tags":[],"value":["left"],"name":"iconPosition"},{"type":"custom","required":false,"description":["Shorthand for creating the HTML Input."],"tags":[],"name":"input"},{"type":"bool","required":false,"description":["Format to appear on dark backgrounds."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Optional Label to display along side the Input."],"tags":[],"name":"label"},{"type":"enum","required":false,"description":["A Label can appear outside an Input on the left or right."],"tags":[],"value":["left","right","left corner","right corner"],"name":"labelPosition"},{"type":"bool","required":false,"description":["An Icon Input field can show that it is currently loading data."],"tags":[],"name":"loading"},{"type":"func","required":false,"description":["Called on change."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"ChangeEvent"},"name":"event"},{"title":"param","description":"All props and a proposed value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onChange"},{"type":"enum","required":false,"description":["An Input can vary in size."],"tags":[],"value":["mini","small","large","big","huge","massive"],"name":"size"},{"type":"number|string","required":false,"description":["An Input can receive focus."],"tags":[],"value":[],"name":"tabIndex"},{"type":"bool","required":false,"description":["Transparent Input has no background."],"tags":[],"name":"transparent"},{"type":"string","required":false,"description":["The HTML input type."],"defaultValue":"'text'","tags":[],"name":"type"}],"constructorName":"Input","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Input","componentClassName":"input","docblock":{"tags":[{"title":"see","description":"Button"},{"title":"see","description":"Form"},{"title":"see","description":"Icon"},{"title":"see","description":"Label"}],"description":["An Input is a field used to elicit a response from a user."]},"examplesExist":true,"repoPath":"src/elements/Input/Input.js","filename":"Input.js","filenameWithoutExt":"Input"}
+module.exports = {"displayName":"Icon","props":[{"type":"string","required":false,"description":["Icon can have an aria label."],"tags":[],"name":"aria-hidden"},{"type":"string","required":false,"description":["Icon can have an aria label."],"tags":[],"name":"aria-label"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'i'","tags":[],"name":"as"},{"type":"bool","required":false,"description":["Formatted to appear bordered."],"tags":[],"name":"bordered"},{"type":"bool","required":false,"description":["Icon can formatted to appear circular."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Color of the icon."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"bool|enum","required":false,"description":["Icons can display a smaller corner icon."],"tags":[],"value":["top left","top right","bottom left","bottom right"],"name":"corner"},{"type":"bool","required":false,"description":["Show that the icon is inactive."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["Fitted, without space to left or right of Icon."],"tags":[],"name":"fitted"},{"type":"enum","required":false,"description":["Icon can be flipped."],"tags":[],"value":["horizontally","vertically"],"name":"flipped"},{"type":"bool","required":false,"description":["Formatted to have its colors inverted for contrast."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["Icon can be formatted as a link."],"tags":[],"name":"link"},{"type":"bool","required":false,"description":["Icon can be used as a simple loader."],"tags":[],"name":"loading"},{"type":"enum","required":false,"description":["Name of the icon."],"tags":[],"value":["american sign language interpreting","assistive listening systems","audio description","blind","braille","closed captioning","closed captioning outline","deaf","low vision","phone volume","question circle","question circle outline","sign language","tty","universal access","wheelchair","angle double down","angle double left","angle double right","angle double up","angle down","angle left","angle right","angle up","arrow alternate circle down","arrow alternate circle down outline","arrow alternate circle left","arrow alternate circle left outline","arrow alternate circle right","arrow alternate circle right outline","arrow alternate circle up","arrow alternate circle up outline","arrow circle down","arrow circle left","arrow circle right","arrow circle up","arrow down","arrow left","arrow right","arrow up","arrows alternate","arrows alternate horizontal","arrows alternate vertical","caret down","caret left","caret right","caret square down","caret square down outline","caret square left","caret square left outline","caret square right","caret square right outline","caret square up","caret square up outline","caret up","cart arrow down","chart line","chevron circle down","chevron circle left","chevron circle right","chevron circle up","chevron down","chevron left","chevron right","chevron up","cloud download","cloud upload","download","exchange","expand arrows alternate","external alternate","external square alternate","hand point down","hand point down outline","hand point left","hand point left outline","hand point right","hand point right outline","hand point up","hand point up outline","hand pointer","hand pointer outline","history","level down alternate","level up alternate","location arrow","long arrow alternate down","long arrow alternate left","long arrow alternate right","long arrow alternate up","mouse pointer","play","random","recycle","redo","redo alternate","reply","reply all","retweet","share","share square","share square outline","sign-in","sign-out","sign-in alternate","sign-out alternate","sort","sort alphabet down","sort alphabet up","sort amount down","sort amount up","sort down","sort numeric down","sort numeric up","sort up","sync","sync alternate","text height","text width","undo","undo alternate","upload","zoom-in","zoom-out","backward","circle","circle outline","compress","eject","expand","fast backward","fast forward","file audio","file audio outline","file video","file video outline","film","forward","headphones","microphone","microphone slash","music","pause","pause circle","pause circle outline","play circle","play circle outline","podcast","rss","rss square","step backward","step forward","stop","stop circle","stop circle outline","video","volume down","volume off","volume up","address book","address book outline","address card","address card outline","archive","balance scale","birthday cake","book","briefcase","building","building outline","bullhorn","bullseye","calculator","calendar","calendar outline","calendar alternate","calendar alternate outline","certificate","chart area","chart bar","chart bar outline","chart pie","clipboard","clipboard outline","coffee","columns","compass","compass outline","copy","copy outline","copyright","copyright outline","cut","edit","edit outline","envelope","envelope outline","envelope open","envelope open outline","envelope square","eraser","fax","file","file outline","file alternate","file alternate outline","folder","folder outline","folder open","folder open outline","globe","industry","paperclip","paste","pen square","pencil alternate","percent","phone","phone square","registered","registered outline","save","save outline","sitemap","sticky note","sticky note outline","suitcase","table","tag","tags","tasks","thumbtack","trademark","chess","chess bishop","chess board","chess king","chess knight","chess pawn","chess queen","chess rook","square full","barcode","bath","bug","code","code branch","file code","file code outline","filter","fire extinguisher","keyboard","keyboard outline","microchip","qrcode","shield alternate","terminal","user secret","window close","window close outline","window maximize","window maximize outline","window minimize","window minimize outline","window restore","window restore outline","at","bell","bell outline","bell slash","bell slash outline","comment","comment outline","comment alternate","comment alternate outline","comments","comments outline","inbox","language","mobile","mobile alternate","paper plane","paper plane outline","wifi","desktop","hdd","hdd outline","laptop","plug","power off","print","server","tablet","tablet alternate","tv","dollar sign","euro sign","lira sign","money bill alternate","money bill alternate outline","pound sign","ruble sign","rupee sign","shekel sign","won sign","yen sign","calendar check","calendar check outline","calendar minus","calendar minus outline","calendar plus","calendar plus outline","calendar times","calendar times outline","clock","clock outline","hourglass","hourglass outline","hourglass end","hourglass half","hourglass start","stopwatch","adjust","clone","clone outline","crop","crosshairs","eye","eye dropper","eye slash","eye slash outline","object group","object group outline","object ungroup","object ungroup outline","paint brush","tint","align center","align justify","align left","align right","bold","font","heading","i cursor","indent","italic","linkify","list","list alternate","list alternate outline","list ol","list ul","outdent","paragraph","quote left","quote right","strikethrough","subscript","superscript","th","th large","th list","trash","trash alternate","trash alternate outline","underline","unlink","file archive","file archive outline","file excel","file excel outline","file image","file image outline","file pdf","file pdf outline","file powerpoint","file powerpoint outline","file word","file word outline","genderless","mars","mars double","mars stroke","mars stroke horizontal","mars stroke vertical","mercury","neuter","transgender","transgender alternate","venus","venus double","venus mars","hand lizard","hand lizard outline","hand paper","hand paper outline","hand peace","hand peace outline","hand rock","hand rock outline","hand scissors","hand scissors outline","hand spock","hand spock outline","handshake","handshake outline","thumbs down","thumbs down outline","thumbs up","thumbs up outline","ambulance","h square","heart","heart outline","heartbeat","hospital","hospital outline","medkit","plus square","plus square outline","stethoscope","user md","bolt","camera","camera retro","id badge","id badge outline","id card","id card outline","image","image outline","images","images outline","sliders horizontal","ban","bars","beer","check","check circle","check circle outline","check square","check square outline","cloud","cog","cogs","database","dot circle","dot circle outline","ellipsis horizontal","ellipsis vertical","exclamation","exclamation circle","exclamation triangle","flag","flag outline","flag checkered","frown","frown outline","hashtag","home","info","info circle","magic","meh","meh outline","minus","minus circle","minus square","minus square outline","plus","plus circle","question","search","search minus","search plus","share alternate","share alternate square","signal","smile","smile outline","star","star outline","star half","star half outline","times","times circle","times circle outline","toggle off","toggle on","trophy","user","user outline","user circle","user circle outline","box","boxes","clipboard check","clipboard list","dolly","dolly flatbed","pallet","shipping fast","truck","warehouse","anchor","bed","bicycle","binoculars","bomb","bookmark","bookmark outline","car","fighter jet","fire","flask","gamepad","gavel","gift","glass martini","graduation cap","key","leaf","lemon","lemon outline","life ring","life ring outline","lightbulb","lightbulb outline","magnet","male","map","map outline","map marker","map marker alternate","map pin","map signs","motorcycle","newspaper","newspaper outline","paw","plane","road","rocket","ship","shopping bag","shopping basket","shopping cart","shower","street view","subway","taxi","ticket alternate","train","tree","umbrella","university","utensil spoon","utensils","wrench","band aid","dna","first aid","hospital symbol","pills","syringe","thermometer","weight","bus","cube","cubes","futbol","futbol outline","gem","gem outline","lock","lock open","moon","moon outline","puzzle piece","snowflake","snowflake outline","space shuttle","sun","sun outline","tachometer alternate","unlock","unlock alternate","cart plus","credit card","credit card outline","square","square outline","asterisk","circle notch","spinner","baseball ball","basketball ball","bowling ball","football ball","golf ball","hockey puck","quidditch","table tennis","volleyball ball","battery empty","battery full","battery half","battery quarter","battery three quarters","sign in alternate","sign out alternate","thermometer empty","thermometer full","thermometer half","thermometer quarter","thermometer three quarters","child","female","user plus","user times","users","500px","accessible","accusoft","adn","adversal","affiliatetheme","algolia","amazon","amazon pay","amilia","android","angellist","angrycreative","angular","app store","app store ios","apper","apple","apple pay","asymmetrik","audible","autoprefixer","avianex","aviato","aws","bandcamp","behance","behance square","bimobject","bitbucket","bitcoin","bity","black tie","blackberry","blogger","blogger b","bluetooth","bluetooth b","btc","buromobelexperte","buysellads","cc amazon pay","cc amex","cc apple pay","cc diners club","cc discover","cc jcb","cc mastercard","cc paypal","cc stripe","cc visa","centercode","chrome","cloudscale","cloudsmith","cloudversify","codepen","codiepie","connectdevelop","contao","cpanel","creative commons","css3","css3 alternate","cuttlefish","d and d","dashcube","delicious","deploydog","deskpro","deviantart","digg","digital ocean","discord","discourse","dochub","docker","draft2digital","dribbble","dribbble square","dropbox","drupal","dyalog","earlybirds","edge","elementor","ember","empire","envira","erlang","ethereum","etsy","expeditedssl","facebook","facebook f","facebook messenger","facebook square","firefox","first order","firstdraft","flickr","flipboard","fly","font awesome","font awesome alternate","font awesome flag","fonticons","fonticons fi","fort awesome","fort awesome alternate","forumbee","foursquare","free code camp","freebsd","get pocket","gg","gg circle","git","git square","github","github alternate","github square","gitkraken","gitlab","gitter","glide","glide g","gofore","goodreads","goodreads g","google","google drive","google play","google plus","google plus g","google plus square","google wallet","gratipay","grav","gripfire","grunt","gulp","hacker news","hacker news square","hips","hire a helper","hooli","hotjar","houzz","html5","hubspot","imdb","instagram","internet explorer","ioxhost","itunes","itunes note","jenkins","joget","joomla","js","js square","jsfiddle","keycdn","kickstarter","kickstarter k","korvue","laravel","lastfm","lastfm square","leanpub","less","linechat","linkedin","linkedin alternate","linode","linux","lyft","magento","maxcdn","medapps","medium","medium m","medrt","meetup","microsoft","mix","mixcloud","mizuni","modx","monero","napster","nintendo switch","node","node js","npm","ns8","nutritionix","odnoklassniki","odnoklassniki square","opencart","openid","opera","optin monster","osi","page4","pagelines","palfed","patreon","paypal","periscope","phabricator","phoenix framework","php","pied piper","pied piper alternate","pied piper pp","pinterest","pinterest p","pinterest square","playstation","product hunt","pushed","python","qq","quinscape","quora","ravelry","react","rebel","redriver","reddit","reddit alien","reddit square","rendact","renren","replyd","resolving","rocketchat","rockrms","safari","sass","schlix","scribd","searchengin","sellcast","sellsy","servicestack","shirtsinbulk","simplybuilt","sistrix","skyatlas","skype","slack","slack hash","slideshare","snapchat","snapchat ghost","snapchat square","soundcloud","speakap","spotify","stack exchange","stack overflow","staylinked","steam","steam square","steam symbol","sticker mule","strava","stripe","stripe s","studiovinari","stumbleupon","stumbleupon circle","superpowers","supple","telegram","telegram plane","tencent weibo","themeisle","trello","tripadvisor","tumblr","tumblr square","twitch","twitter","twitter square","typo3","uber","uikit","uniregistry","untappd","usb","ussunnah","vaadin","viacoin","viadeo","viadeo square","viber","vimeo","vimeo square","vimeo v","vine","vk","vnv","vuejs","wechat","weibo","weixin","whatsapp","whatsapp square","whmcs","wikipedia w","windows","wordpress","wordpress simple","wpbeginner","wpexplorer","wpforms","xbox","xing","xing square","y combinator","yahoo","yandex","yandex international","yelp","yoast","youtube","youtube square","chess rock","ordered list","unordered list","user doctor","shield","puzzle","add circle","add square","add to calendar","add to cart","add user","add","alarm mute","alarm","ald","als","announcement","area chart","area graph","arrow down cart","asexual","asl interpreting","asl","assistive listening devices","attach","attention","balance","bar","bathtub","battery four","battery high","battery low","battery one","battery three","battery two","battery zero","birthday","block layout","bluetooth alternative","broken chain","browser","call square","call","cancel","cart","cc","chain","chat","checked calendar","checkmark","circle notched","close","cny","cocktail","commenting","computer","configure","content","deafness","delete calendar","delete","detective","discussions","doctor","dollar","dont","drivers license","dropdown","emergency","envira gallery","erase","eur","euro","eyedropper","factory","favorite","feed","female homosexual","file text","file text outline","find","fork","game","gay","gbp","google plus circle","google plus official","grab","graduation","grid layout","group","h","hand victory","handicap","hard of hearing","header","help circle","help","heterosexual","hide","hotel","hourglass four","hourglass full","hourglass one","hourglass three","hourglass two","idea","ils","in cart","inr","intergender","intersex","jpy","krw","lab","law","legal","lesbian","lightning","like","line graph","linkedin square","lira","list layout","magnify","mail forward","mail outline","mail square","mail","male homosexual","man","marker","mars alternate","mars horizontal","mars vertical","microsoft edge","military","ms edge","mute","new pied piper","non binary transgender","numbered list","options","other gender horizontal","other gender vertical","other gender","payment","paypal card","pencil square","photo","picture","pie chart","pie graph","pied piper hat","pin","plus cart","point","pointing down","pointing left","pointing right","pointing up","pound","power cord","power","privacy","r circle","rain","record","refresh","remove circle","remove from calendar","remove user","remove","repeat","rmb","rouble","rub","ruble","rupee","s15","selected radio","send","setting","settings","shekel","sheqel","shipping","shop","shuffle","shutdown","sidebar","signing","signup","sliders","soccer","sort alphabet ascending","sort alphabet descending","sort ascending","sort content ascending","sort content descending","sort descending","sort numeric ascending","sort numeric descending","sound","spy","stripe card","student","talk","target","teletype","television","text cursor","text telephone","theme","thumb tack","time","tm","toggle down","toggle left","toggle right","toggle up","translate","travel","treatment","triangle down","triangle left","triangle right","triangle up","try","unhide","unlinkify","unmute","usd","user cancel","user close","user delete","user x","vcard","video camera","video play","volume control phone","wait","warning circle","warning sign","warning","wi-fi","winner","wizard","woman","won","wordpress beginner","wordpress forms","world","write square","x","yen","zip","zoom in","zoom out","zoom","bitbucket square","checkmark box","circle thin","compose","conversation","credit card alternative","currency","dashboard","diamond","disk","external share","external square","external","facebook official","food","hourglass zero","level down","level up","log out","meanpath","money","move","pencil","protect","radio","remove bookmark","resize horizontal","resize vertical","sign in","sign out","spoon","star half empty","star half full","ticket","times rectangle","write","youtube play","left dropdown"],"name":"name"},{"type":"enum","required":false,"description":["Icon can rotated."],"tags":[],"value":["clockwise","counterclockwise"],"name":"rotated"},{"type":"enum","required":false,"description":["Size of the icon."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"}],"constructorName":"Icon","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["IconGroup"],"apiPath":"Icon","componentClassName":"icon","docblock":{"tags":[{"title":"see","description":"Image"}],"description":["An icon is a glyph used to represent something else."]},"examplesExist":true,"repoPath":"src/elements/Icon/Icon.js","filename":"Icon.js","filenameWithoutExt":"Icon"}
 
 /***/ }),
 /* 1617 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Item","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for ItemContent component."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for ItemDescription component."],"tags":[],"name":"description"},{"type":"custom","required":false,"description":["Shorthand for ItemExtra component."],"tags":[],"name":"extra"},{"type":"custom","required":false,"description":["Shorthand for ItemHeader component."],"tags":[],"name":"header"},{"type":"custom","required":false,"description":["Shorthand for ItemImage component."],"tags":[],"name":"image"},{"type":"custom","required":false,"description":["Shorthand for ItemMeta component."],"tags":[],"name":"meta"}],"constructorName":"Item","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["ItemContent","ItemDescription","ItemExtra","ItemGroup","ItemHeader","ItemImage","ItemMeta"],"apiPath":"Item","componentClassName":"item","docblock":{"tags":[],"description":["An item view presents large collections of site content for display."]},"examplesExist":true,"repoPath":"src/views/Item/Item.js","filename":"Item.js","filenameWithoutExt":"Item"}
+module.exports = {"displayName":"IconGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'i'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["Size of the icon group."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"}],"constructorName":"IconGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Icon","subcomponentName":"Group","subcomponents":null,"apiPath":"Icon.Group","componentClassName":"icons","docblock":{"tags":[],"description":["Several icons can be used together as a group."]},"examplesExist":false,"repoPath":"src/elements/Icon/IconGroup.js","filename":"IconGroup.js","filenameWithoutExt":"IconGroup"}
 
 /***/ }),
 /* 1618 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ItemContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for ItemDescription component."],"tags":[],"name":"description"},{"type":"custom","required":false,"description":["Shorthand for ItemExtra component."],"tags":[],"name":"extra"},{"type":"custom","required":false,"description":["Shorthand for ItemHeader component."],"tags":[],"name":"header"},{"type":"custom","required":false,"description":["Shorthand for ItemMeta component."],"tags":[],"name":"meta"},{"type":"enum","required":false,"description":["Content can specify its vertical alignment."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"ItemContent","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Content","subcomponents":null,"apiPath":"Item.Content","componentClassName":"content","docblock":{"tags":[],"description":["An item can contain content."]},"examplesExist":false,"repoPath":"src/views/Item/ItemContent.js","filename":"ItemContent.js","filenameWithoutExt":"ItemContent"}
+module.exports = {"displayName":"Image","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'img'","tags":[],"name":"as"},{"type":"bool","required":false,"description":["An image may be formatted to appear inline with text as an avatar."],"tags":[],"name":"avatar"},{"type":"bool","required":false,"description":["An image may include a border to emphasize the edges of white or transparent content."],"tags":[],"name":"bordered"},{"type":"bool","required":false,"description":["An image can appear centered in a content block."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["An image may appear circular."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for Dimmer."],"tags":[],"name":"dimmer"},{"type":"bool","required":false,"description":["An image can show that it is disabled and cannot be selected."],"tags":[],"name":"disabled"},{"type":"enum","required":false,"description":["An image can sit to the left or right of other content."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["An image can take up the width of its container."],"tags":[],"value":[],"name":"fluid"},{"type":"bool","required":false,"description":["An image can be hidden."],"tags":[],"name":"hidden"},{"type":"string","required":false,"description":["Renders the Image as an <a> tag with this href."],"tags":[],"name":"href"},{"type":"bool","required":false,"description":["An image may appear inline."],"tags":[],"name":"inline"},{"type":"custom","required":false,"description":["Shorthand for Label."],"tags":[],"name":"label"},{"type":"bool","required":false,"description":["An image may appear rounded."],"tags":[],"name":"rounded"},{"type":"enum","required":false,"description":["An image may appear at different sizes."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"bool|enum","required":false,"description":["An image can specify that it needs an additional spacing to separate it from nearby content."],"tags":[],"value":["left","right"],"name":"spaced"},{"type":"bool","required":false,"description":["Whether or not to add the ui className."],"defaultValue":"true","tags":[],"name":"ui"},{"type":"enum","required":false,"description":["An image can specify its vertical alignment."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"},{"type":"bool","required":false,"description":["An image can render wrapped in a `div.ui.image` as alternative HTML markup."],"tags":[],"name":"wrapped"}],"constructorName":"Image","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["ImageGroup"],"apiPath":"Image","componentClassName":"image","docblock":{"tags":[{"title":"see","description":"Icon"}],"description":["An image is a graphic representation of something."]},"examplesExist":true,"repoPath":"src/elements/Image/Image.js","filename":"Image.js","filenameWithoutExt":"Image"}
 
 /***/ }),
 /* 1619 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ItemDescription","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ItemDescription","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Description","subcomponents":null,"apiPath":"Item.Description","componentClassName":"description","docblock":{"tags":[],"description":["An item can contain a description with a single or multiple paragraphs."]},"examplesExist":false,"repoPath":"src/views/Item/ItemDescription.js","filename":"ItemDescription.js","filenameWithoutExt":"ItemDescription"}
+module.exports = {"displayName":"ImageGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A group of images can be formatted to have the same size."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"}],"constructorName":"ImageGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Image","subcomponentName":"Group","subcomponents":null,"apiPath":"Image.Group","componentClassName":"images","docblock":{"tags":[],"description":["A group of images."]},"examplesExist":false,"repoPath":"src/elements/Image/ImageGroup.js","filename":"ImageGroup.js","filenameWithoutExt":"ImageGroup"}
 
 /***/ }),
 /* 1620 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ItemExtra","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ItemExtra","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Extra","subcomponents":null,"apiPath":"Item.Extra","componentClassName":"extra","docblock":{"tags":[],"description":["An item can contain extra content meant to be formatted separately from the main content."]},"examplesExist":false,"repoPath":"src/views/Item/ItemExtra.js","filename":"ItemExtra.js","filenameWithoutExt":"ItemExtra"}
+module.exports = {"displayName":"Input","props":[{"type":"bool|custom","required":false,"description":["An Input can be formatted to alert the user to an action they may perform."],"tags":[],"value":[],"name":"action"},{"type":"enum","required":false,"description":["An action can appear along side an Input on the left or right."],"tags":[],"value":["left"],"name":"actionPosition"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["An Input field can show that it is disabled."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["An Input field can show the data contains errors."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["Take on the size of its container."],"tags":[],"name":"fluid"},{"type":"bool","required":false,"description":["An Input field can show a user is currently interacting with it."],"tags":[],"name":"focus"},{"type":"bool|custom","required":false,"description":["Optional Icon to display inside the Input."],"tags":[],"value":[],"name":"icon"},{"type":"enum","required":false,"description":["An Icon can appear inside an Input on the left or right."],"tags":[],"value":["left"],"name":"iconPosition"},{"type":"custom","required":false,"description":["Shorthand for creating the HTML Input."],"tags":[],"name":"input"},{"type":"bool","required":false,"description":["Format to appear on dark backgrounds."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Optional Label to display along side the Input."],"tags":[],"name":"label"},{"type":"enum","required":false,"description":["A Label can appear outside an Input on the left or right."],"tags":[],"value":["left","right","left corner","right corner"],"name":"labelPosition"},{"type":"bool","required":false,"description":["An Icon Input field can show that it is currently loading data."],"tags":[],"name":"loading"},{"type":"func","required":false,"description":["Called on change."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"ChangeEvent"},"name":"event"},{"title":"param","description":"All props and a proposed value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onChange"},{"type":"enum","required":false,"description":["An Input can vary in size."],"tags":[],"value":["mini","small","large","big","huge","massive"],"name":"size"},{"type":"number|string","required":false,"description":["An Input can receive focus."],"tags":[],"value":[],"name":"tabIndex"},{"type":"bool","required":false,"description":["Transparent Input has no background."],"tags":[],"name":"transparent"},{"type":"string","required":false,"description":["The HTML input type."],"defaultValue":"'text'","tags":[],"name":"type"}],"constructorName":"Input","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Input","componentClassName":"input","docblock":{"tags":[{"title":"see","description":"Button"},{"title":"see","description":"Form"},{"title":"see","description":"Icon"},{"title":"see","description":"Label"}],"description":["An Input is a field used to elicit a response from a user."]},"examplesExist":true,"repoPath":"src/elements/Input/Input.js","filename":"Input.js","filenameWithoutExt":"Input"}
 
 /***/ }),
 /* 1621 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ItemGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Items can be divided to better distinguish between grouped content."],"tags":[],"name":"divided"},{"type":"custom","required":false,"description":["Shorthand array of props for Item."],"tags":[],"name":"items"},{"type":"bool","required":false,"description":["An item can be formatted so that the entire contents link to another page."],"tags":[],"name":"link"},{"type":"bool|enum","required":false,"description":["A group of items can relax its padding to provide more negative space."],"tags":[],"value":["very"],"name":"relaxed"},{"type":"bool","required":false,"description":["Prevent items from stacking on mobile."],"tags":[],"name":"unstackable"}],"constructorName":"ItemGroup","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Group","subcomponents":null,"apiPath":"Item.Group","componentClassName":"items","docblock":{"tags":[],"description":["A group of items."]},"examplesExist":false,"repoPath":"src/views/Item/ItemGroup.js","filename":"ItemGroup.js","filenameWithoutExt":"ItemGroup"}
+module.exports = {"displayName":"Item","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for ItemContent component."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for ItemDescription component."],"tags":[],"name":"description"},{"type":"custom","required":false,"description":["Shorthand for ItemExtra component."],"tags":[],"name":"extra"},{"type":"custom","required":false,"description":["Shorthand for ItemHeader component."],"tags":[],"name":"header"},{"type":"custom","required":false,"description":["Shorthand for ItemImage component."],"tags":[],"name":"image"},{"type":"custom","required":false,"description":["Shorthand for ItemMeta component."],"tags":[],"name":"meta"}],"constructorName":"Item","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["ItemContent","ItemDescription","ItemExtra","ItemGroup","ItemHeader","ItemImage","ItemMeta"],"apiPath":"Item","componentClassName":"item","docblock":{"tags":[],"description":["An item view presents large collections of site content for display."]},"examplesExist":true,"repoPath":"src/views/Item/Item.js","filename":"Item.js","filenameWithoutExt":"Item"}
 
 /***/ }),
 /* 1622 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ItemHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ItemHeader","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Header","subcomponents":null,"apiPath":"Item.Header","componentClassName":"header","docblock":{"tags":[],"description":["An item can contain a header."]},"examplesExist":false,"repoPath":"src/views/Item/ItemHeader.js","filename":"ItemHeader.js","filenameWithoutExt":"ItemHeader"}
+module.exports = {"displayName":"ItemContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for ItemDescription component."],"tags":[],"name":"description"},{"type":"custom","required":false,"description":["Shorthand for ItemExtra component."],"tags":[],"name":"extra"},{"type":"custom","required":false,"description":["Shorthand for ItemHeader component."],"tags":[],"name":"header"},{"type":"custom","required":false,"description":["Shorthand for ItemMeta component."],"tags":[],"name":"meta"},{"type":"enum","required":false,"description":["Content can specify its vertical alignment."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"ItemContent","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Content","subcomponents":null,"apiPath":"Item.Content","componentClassName":"content","docblock":{"tags":[],"description":["An item can contain content."]},"examplesExist":false,"repoPath":"src/views/Item/ItemContent.js","filename":"ItemContent.js","filenameWithoutExt":"ItemContent"}
 
 /***/ }),
 /* 1623 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ItemImage","props":[{"type":"custom","required":false,"description":["An image may appear at different sizes."],"tags":[],"name":"size"}],"constructorName":"ItemImage","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Image","subcomponents":null,"apiPath":"Item.Image","componentClassName":"image","docblock":{"tags":[],"description":["An item can contain an image."]},"examplesExist":false,"repoPath":"src/views/Item/ItemImage.js","filename":"ItemImage.js","filenameWithoutExt":"ItemImage"}
+module.exports = {"displayName":"ItemDescription","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ItemDescription","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Description","subcomponents":null,"apiPath":"Item.Description","componentClassName":"description","docblock":{"tags":[],"description":["An item can contain a description with a single or multiple paragraphs."]},"examplesExist":false,"repoPath":"src/views/Item/ItemDescription.js","filename":"ItemDescription.js","filenameWithoutExt":"ItemDescription"}
 
 /***/ }),
 /* 1624 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ItemMeta","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ItemMeta","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Meta","subcomponents":null,"apiPath":"Item.Meta","componentClassName":"meta","docblock":{"tags":[],"description":["An item can contain content metadata."]},"examplesExist":false,"repoPath":"src/views/Item/ItemMeta.js","filename":"ItemMeta.js","filenameWithoutExt":"ItemMeta"}
+module.exports = {"displayName":"ItemExtra","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ItemExtra","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Extra","subcomponents":null,"apiPath":"Item.Extra","componentClassName":"extra","docblock":{"tags":[],"description":["An item can contain extra content meant to be formatted separately from the main content."]},"examplesExist":false,"repoPath":"src/views/Item/ItemExtra.js","filename":"ItemExtra.js","filenameWithoutExt":"ItemExtra"}
 
 /***/ }),
 /* 1625 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Label","props":[{"type":"bool","required":false,"description":["A label can be active."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"enum","required":false,"description":["A label can attach to a content segment."],"tags":[],"value":["top","bottom","top right","top left","bottom left","bottom right"],"name":"attached"},{"type":"bool","required":false,"description":["A label can reduce its complexity."],"tags":[],"name":"basic"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["A label can be circular."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Color of the label."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool|enum","required":false,"description":["A label can position itself in the corner of an element."],"tags":[],"value":["left","right"],"name":"corner"},{"type":"custom","required":false,"description":["Shorthand for LabelDetail."],"tags":[],"name":"detail"},{"type":"bool","required":false,"description":["Formats the label as a dot."],"tags":[],"value":[],"name":"empty"},{"type":"bool","required":false,"description":["Float above another element in the upper right corner."],"tags":[],"name":"floating"},{"type":"bool","required":false,"description":["A horizontal label is formatted to label content along-side it horizontally."],"tags":[],"name":"horizontal"},{"type":"custom","required":false,"description":["Shorthand for Icon."],"tags":[],"name":"icon"},{"type":"bool|custom","required":false,"description":["A label can be formatted to emphasize an image or prop can be used as shorthand for Image."],"tags":[],"value":[],"name":"image"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Adds an \"x\" icon, called when \"x\" is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onRemove"},{"type":"bool|enum","required":false,"description":["A label can point to content next to it."],"tags":[],"value":["above","below","left","right"],"name":"pointing"},{"type":"bool","required":false,"description":["A label can prompt for an error in your forms."],"tags":[],"name":"prompt"},{"type":"custom","required":false,"description":["Shorthand for Icon to appear as the last child and trigger onRemove."],"tags":[],"name":"removeIcon"},{"type":"bool|enum","required":false,"description":["A label can appear as a ribbon attaching itself to an element."],"tags":[],"value":["right"],"name":"ribbon"},{"type":"enum","required":false,"description":["A label can have different sizes."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["A label can appear as a tag."],"tags":[],"name":"tag"}],"constructorName":"Label","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["LabelDetail","LabelGroup"],"apiPath":"Label","componentClassName":"label","docblock":{"tags":[],"description":["A label displays content classification."]},"examplesExist":true,"repoPath":"src/elements/Label/Label.js","filename":"Label.js","filenameWithoutExt":"Label"}
+module.exports = {"displayName":"ItemGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Items can be divided to better distinguish between grouped content."],"tags":[],"name":"divided"},{"type":"custom","required":false,"description":["Shorthand array of props for Item."],"tags":[],"name":"items"},{"type":"bool","required":false,"description":["An item can be formatted so that the entire contents link to another page."],"tags":[],"name":"link"},{"type":"bool|enum","required":false,"description":["A group of items can relax its padding to provide more negative space."],"tags":[],"value":["very"],"name":"relaxed"},{"type":"bool","required":false,"description":["Prevent items from stacking on mobile."],"tags":[],"name":"unstackable"}],"constructorName":"ItemGroup","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Group","subcomponents":null,"apiPath":"Item.Group","componentClassName":"items","docblock":{"tags":[],"description":["A group of items."]},"examplesExist":false,"repoPath":"src/views/Item/ItemGroup.js","filename":"ItemGroup.js","filenameWithoutExt":"ItemGroup"}
 
 /***/ }),
 /* 1626 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"LabelDetail","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"LabelDetail","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Label","subcomponentName":"Detail","subcomponents":null,"apiPath":"Label.Detail","componentClassName":"detail","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/elements/Label/LabelDetail.js","filename":"LabelDetail.js","filenameWithoutExt":"LabelDetail"}
+module.exports = {"displayName":"ItemHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ItemHeader","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Header","subcomponents":null,"apiPath":"Item.Header","componentClassName":"header","docblock":{"tags":[],"description":["An item can contain a header."]},"examplesExist":false,"repoPath":"src/views/Item/ItemHeader.js","filename":"ItemHeader.js","filenameWithoutExt":"ItemHeader"}
 
 /***/ }),
 /* 1627 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"LabelGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["Labels can share shapes."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Label group can share colors together."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["Label group can share sizes together."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["Label group can share tag formatting."],"tags":[],"name":"tag"}],"constructorName":"LabelGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Label","subcomponentName":"Group","subcomponents":null,"apiPath":"Label.Group","componentClassName":"labels","docblock":{"tags":[],"description":["A label can be grouped."]},"examplesExist":false,"repoPath":"src/elements/Label/LabelGroup.js","filename":"LabelGroup.js","filenameWithoutExt":"LabelGroup"}
+module.exports = {"displayName":"ItemImage","props":[{"type":"custom","required":false,"description":["An image may appear at different sizes."],"tags":[],"name":"size"}],"constructorName":"ItemImage","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Image","subcomponents":null,"apiPath":"Item.Image","componentClassName":"image","docblock":{"tags":[],"description":["An item can contain an image."]},"examplesExist":false,"repoPath":"src/views/Item/ItemImage.js","filename":"ItemImage.js","filenameWithoutExt":"ItemImage"}
 
 /***/ }),
 /* 1628 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"List","props":[{"type":"bool","required":false,"description":["A list can animate to set the current item apart from the list."],"tags":[],"name":"animated"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A list can mark items with a bullet."],"tags":[],"name":"bulleted"},{"type":"bool","required":false,"description":["A list can divide its items into cells."],"tags":[],"name":"celled"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A list can show divisions between content."],"tags":[],"name":"divided"},{"type":"enum","required":false,"description":["An list can be floated left or right."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["A list can be formatted to have items appear horizontally."],"tags":[],"name":"horizontal"},{"type":"bool","required":false,"description":["A list can be inverted to appear on a dark background."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Shorthand array of props for ListItem."],"tags":[],"name":"items"},{"type":"bool","required":false,"description":["A list can be specially formatted for navigation links."],"tags":[],"name":"link"},{"type":"func","required":false,"description":["onClick handler for ListItem. Mutually exclusive with children."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All item props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"value":[],"name":"onItemClick"},{"type":"bool","required":false,"description":["A list can be ordered numerically."],"tags":[],"name":"ordered"},{"type":"bool|enum","required":false,"description":["A list can relax its padding to provide more negative space."],"tags":[],"value":["very"],"name":"relaxed"},{"type":"bool","required":false,"description":["A selection list formats list items as possible choices."],"tags":[],"name":"selection"},{"type":"enum","required":false,"description":["A list can vary in size."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"enum","required":false,"description":["An element inside a list can be vertically aligned."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"List","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["ListContent","ListDescription","ListHeader","ListIcon","ListItem","ListList"],"apiPath":"List","componentClassName":"list","docblock":{"tags":[],"description":["A list groups related content."]},"examplesExist":true,"repoPath":"src/elements/List/List.js","filename":"List.js","filenameWithoutExt":"List"}
+module.exports = {"displayName":"ItemMeta","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ItemMeta","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Item","subcomponentName":"Meta","subcomponents":null,"apiPath":"Item.Meta","componentClassName":"meta","docblock":{"tags":[],"description":["An item can contain content metadata."]},"examplesExist":false,"repoPath":"src/views/Item/ItemMeta.js","filename":"ItemMeta.js","filenameWithoutExt":"ItemMeta"}
 
 /***/ }),
 /* 1629 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ListContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for ListDescription."],"tags":[],"name":"description"},{"type":"enum","required":false,"description":["An list content can be floated left or right."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"custom","required":false,"description":["Shorthand for ListHeader."],"tags":[],"name":"header"},{"type":"enum","required":false,"description":["An element inside a list can be vertically aligned."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"ListContent","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"Content","subcomponents":null,"apiPath":"List.Content","componentClassName":"content","docblock":{"tags":[],"description":["A list item can contain a content."]},"examplesExist":false,"repoPath":"src/elements/List/ListContent.js","filename":"ListContent.js","filenameWithoutExt":"ListContent"}
+module.exports = {"displayName":"Label","props":[{"type":"bool","required":false,"description":["A label can be active."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"enum","required":false,"description":["A label can attach to a content segment."],"tags":[],"value":["top","bottom","top right","top left","bottom left","bottom right"],"name":"attached"},{"type":"bool","required":false,"description":["A label can reduce its complexity."],"tags":[],"name":"basic"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["A label can be circular."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Color of the label."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool|enum","required":false,"description":["A label can position itself in the corner of an element."],"tags":[],"value":["left","right"],"name":"corner"},{"type":"custom","required":false,"description":["Shorthand for LabelDetail."],"tags":[],"name":"detail"},{"type":"bool","required":false,"description":["Formats the label as a dot."],"tags":[],"value":[],"name":"empty"},{"type":"bool","required":false,"description":["Float above another element in the upper right corner."],"tags":[],"name":"floating"},{"type":"bool","required":false,"description":["A horizontal label is formatted to label content along-side it horizontally."],"tags":[],"name":"horizontal"},{"type":"custom","required":false,"description":["Shorthand for Icon."],"tags":[],"name":"icon"},{"type":"bool|custom","required":false,"description":["A label can be formatted to emphasize an image or prop can be used as shorthand for Image."],"tags":[],"value":[],"name":"image"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Adds an \"x\" icon, called when \"x\" is clicked."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onRemove"},{"type":"bool|enum","required":false,"description":["A label can point to content next to it."],"tags":[],"value":["above","below","left","right"],"name":"pointing"},{"type":"bool","required":false,"description":["A label can prompt for an error in your forms."],"tags":[],"name":"prompt"},{"type":"custom","required":false,"description":["Shorthand for Icon to appear as the last child and trigger onRemove."],"tags":[],"name":"removeIcon"},{"type":"bool|enum","required":false,"description":["A label can appear as a ribbon attaching itself to an element."],"tags":[],"value":["right"],"name":"ribbon"},{"type":"enum","required":false,"description":["A label can have different sizes."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["A label can appear as a tag."],"tags":[],"name":"tag"}],"constructorName":"Label","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["LabelDetail","LabelGroup"],"apiPath":"Label","componentClassName":"label","docblock":{"tags":[],"description":["A label displays content classification."]},"examplesExist":true,"repoPath":"src/elements/Label/Label.js","filename":"Label.js","filenameWithoutExt":"Label"}
 
 /***/ }),
 /* 1630 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ListDescription","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ListDescription","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"Description","subcomponents":null,"apiPath":"List.Description","componentClassName":"description","docblock":{"tags":[],"description":["A list item can contain a description."]},"examplesExist":false,"repoPath":"src/elements/List/ListDescription.js","filename":"ListDescription.js","filenameWithoutExt":"ListDescription"}
+module.exports = {"displayName":"LabelDetail","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"LabelDetail","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Label","subcomponentName":"Detail","subcomponents":null,"apiPath":"Label.Detail","componentClassName":"detail","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/elements/Label/LabelDetail.js","filename":"LabelDetail.js","filenameWithoutExt":"LabelDetail"}
 
 /***/ }),
 /* 1631 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ListHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ListHeader","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"Header","subcomponents":null,"apiPath":"List.Header","componentClassName":"header","docblock":{"tags":[],"description":["A list item can contain a header."]},"examplesExist":false,"repoPath":"src/elements/List/ListHeader.js","filename":"ListHeader.js","filenameWithoutExt":"ListHeader"}
+module.exports = {"displayName":"LabelGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["Labels can share shapes."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Label group can share colors together."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["Label group can share sizes together."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["Label group can share tag formatting."],"tags":[],"name":"tag"}],"constructorName":"LabelGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Label","subcomponentName":"Group","subcomponents":null,"apiPath":"Label.Group","componentClassName":"labels","docblock":{"tags":[],"description":["A label can be grouped."]},"examplesExist":false,"repoPath":"src/elements/Label/LabelGroup.js","filename":"LabelGroup.js","filenameWithoutExt":"LabelGroup"}
 
 /***/ }),
 /* 1632 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ListIcon","props":[{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["An element inside a list can be vertically aligned."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"ListIcon","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"Icon","subcomponents":null,"apiPath":"List.Icon","componentClassName":"icon","docblock":{"tags":[],"description":["A list item can contain an icon."]},"examplesExist":false,"repoPath":"src/elements/List/ListIcon.js","filename":"ListIcon.js","filenameWithoutExt":"ListIcon"}
+module.exports = {"displayName":"List","props":[{"type":"bool","required":false,"description":["A list can animate to set the current item apart from the list."],"tags":[],"name":"animated"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A list can mark items with a bullet."],"tags":[],"name":"bulleted"},{"type":"bool","required":false,"description":["A list can divide its items into cells."],"tags":[],"name":"celled"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A list can show divisions between content."],"tags":[],"name":"divided"},{"type":"enum","required":false,"description":["An list can be floated left or right."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["A list can be formatted to have items appear horizontally."],"tags":[],"name":"horizontal"},{"type":"bool","required":false,"description":["A list can be inverted to appear on a dark background."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Shorthand array of props for ListItem."],"tags":[],"name":"items"},{"type":"bool","required":false,"description":["A list can be specially formatted for navigation links."],"tags":[],"name":"link"},{"type":"func","required":false,"description":["onClick handler for ListItem. Mutually exclusive with children."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All item props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"value":[],"name":"onItemClick"},{"type":"bool","required":false,"description":["A list can be ordered numerically."],"tags":[],"name":"ordered"},{"type":"bool|enum","required":false,"description":["A list can relax its padding to provide more negative space."],"tags":[],"value":["very"],"name":"relaxed"},{"type":"bool","required":false,"description":["A selection list formats list items as possible choices."],"tags":[],"name":"selection"},{"type":"enum","required":false,"description":["A list can vary in size."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"},{"type":"enum","required":false,"description":["An element inside a list can be vertically aligned."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"List","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["ListContent","ListDescription","ListHeader","ListIcon","ListItem","ListList"],"apiPath":"List","componentClassName":"list","docblock":{"tags":[],"description":["A list groups related content."]},"examplesExist":true,"repoPath":"src/elements/List/List.js","filename":"List.js","filenameWithoutExt":"List"}
 
 /***/ }),
 /* 1633 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ListItem","props":[{"type":"bool","required":false,"description":["A list item can active."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content.","","Heads up!","","This is handled slightly differently than the typical `content` prop since","the wrapping ListContent is not used when there's no icon or image.","","If you pass content as:","- an element/literal, it's treated as the sibling node to","header/description (whether wrapped in Item.Content or not).","- a props object, it forces the presence of Item.Content and passes those","props to it. If you pass a content prop within that props object, it","will be treated as the sibling node to header/description."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for ListDescription."],"tags":[],"name":"description"},{"type":"bool","required":false,"description":["A list item can disabled."],"tags":[],"name":"disabled"},{"type":"custom","required":false,"description":["Shorthand for ListHeader."],"tags":[],"name":"header"},{"type":"custom","required":false,"description":["Shorthand for ListIcon."],"tags":[],"value":[],"name":"icon"},{"type":"custom","required":false,"description":["Shorthand for Image."],"tags":[],"value":[],"name":"image"},{"type":"func","required":false,"description":["A ListItem can be clicked"],"tags":[],"name":"onClick"},{"type":"string","required":false,"description":["A value for an ordered list."],"tags":[],"name":"value"}],"constructorName":"ListItem","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"Item","subcomponents":null,"apiPath":"List.Item","componentClassName":"item","docblock":{"tags":[],"description":["A list item can contain a set of items."]},"examplesExist":false,"repoPath":"src/elements/List/ListItem.js","filename":"ListItem.js","filenameWithoutExt":"ListItem"}
+module.exports = {"displayName":"ListContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for ListDescription."],"tags":[],"name":"description"},{"type":"enum","required":false,"description":["An list content can be floated left or right."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"custom","required":false,"description":["Shorthand for ListHeader."],"tags":[],"name":"header"},{"type":"enum","required":false,"description":["An element inside a list can be vertically aligned."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"ListContent","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"Content","subcomponents":null,"apiPath":"List.Content","componentClassName":"content","docblock":{"tags":[],"description":["A list item can contain a content."]},"examplesExist":false,"repoPath":"src/elements/List/ListContent.js","filename":"ListContent.js","filenameWithoutExt":"ListContent"}
 
 /***/ }),
 /* 1634 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ListList","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ListList","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"List","subcomponents":null,"apiPath":"List.List","componentClassName":"list","docblock":{"tags":[],"description":["A list can contain a sub list."]},"examplesExist":false,"repoPath":"src/elements/List/ListList.js","filename":"ListList.js","filenameWithoutExt":"ListList"}
+module.exports = {"displayName":"ListDescription","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ListDescription","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"Description","subcomponents":null,"apiPath":"List.Description","componentClassName":"description","docblock":{"tags":[],"description":["A list item can contain a description."]},"examplesExist":false,"repoPath":"src/elements/List/ListDescription.js","filename":"ListDescription.js","filenameWithoutExt":"ListDescription"}
 
 /***/ }),
 /* 1635 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Loader","props":[{"type":"bool","required":false,"description":["A loader can be active or visible."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A loader can be disabled or hidden."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["A loader can show it's unsure of how long a task will take."],"tags":[],"name":"indeterminate"},{"type":"bool|enum","required":false,"description":["Loaders can appear inline with content."],"tags":[],"value":["centered"],"name":"inline"},{"type":"bool","required":false,"description":["Loaders can have their colors inverted."],"tags":[],"name":"inverted"},{"type":"enum","required":false,"description":["Loaders can have different sizes."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"}],"constructorName":"Loader","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Loader","componentClassName":"loader","docblock":{"tags":[{"title":"see","description":"Dimmer"}],"description":["A loader alerts a user to wait for an activity to complete."]},"examplesExist":true,"repoPath":"src/elements/Loader/Loader.js","filename":"Loader.js","filenameWithoutExt":"Loader"}
+module.exports = {"displayName":"ListHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ListHeader","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"Header","subcomponents":null,"apiPath":"List.Header","componentClassName":"header","docblock":{"tags":[],"description":["A list item can contain a header."]},"examplesExist":false,"repoPath":"src/elements/List/ListHeader.js","filename":"ListHeader.js","filenameWithoutExt":"ListHeader"}
 
 /***/ }),
 /* 1636 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Menu","props":[{"type":"number|string","required":false,"description":["Index of the currently active item."],"tags":[],"value":[],"name":"activeIndex"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["A menu may be attached to other content segments."],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["A menu item or menu can have no borders."],"tags":[],"name":"borderless"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Additional colors can be specified."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"bool","required":false,"description":["A menu can take up only the space necessary to fit its content."],"tags":[],"name":"compact"},{"type":"number|string","required":false,"description":["Initial activeIndex value."],"tags":[],"value":[],"name":"defaultActiveIndex"},{"type":"enum","required":false,"description":["A menu can be fixed to a side of its context."],"tags":[],"value":["left","right","bottom","top"],"name":"fixed"},{"type":"bool|enum","required":false,"description":["A menu can be floated."],"tags":[],"value":["right"],"name":"floated"},{"type":"bool","required":false,"description":["A vertical menu may take the size of its container."],"tags":[],"name":"fluid"},{"type":"bool|enum","required":false,"description":["A menu may have just icons (bool) or labeled icons."],"tags":[],"value":["labeled"],"name":"icon"},{"type":"bool","required":false,"description":["A menu may have its colors inverted to show greater contrast."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Shorthand array of props for Menu."],"tags":[],"name":"items"},{"type":"func","required":false,"description":["onClick handler for MenuItem. Mutually exclusive with children."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All item props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"value":[],"name":"onItemClick"},{"type":"bool","required":false,"description":["A pagination menu is specially formatted to present links to pages of content."],"tags":[],"name":"pagination"},{"type":"bool","required":false,"description":["A menu can point to show its relationship to nearby content."],"tags":[],"name":"pointing"},{"type":"bool","required":false,"description":["A menu can adjust its appearance to de-emphasize its contents."],"tags":[],"name":"secondary"},{"type":"enum","required":false,"description":["A menu can vary in size."],"tags":[],"value":["mini","tiny","small","large","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["A menu can stack at mobile resolutions."],"tags":[],"name":"stackable"},{"type":"bool|enum","required":false,"description":["A menu can be formatted to show tabs of information."],"tags":[],"value":["right"],"name":"tabular"},{"type":"bool","required":false,"description":["A menu can be formatted for text content."],"tags":[],"name":"text"},{"type":"bool","required":false,"description":["A vertical menu displays elements vertically."],"tags":[],"name":"vertical"},{"type":"enum","required":false,"description":["A menu can have its items divided evenly."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"widths"}],"constructorName":"Menu","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["MenuHeader","MenuItem","MenuMenu"],"apiPath":"Menu","componentClassName":"menu","docblock":{"tags":[{"title":"see","description":"Dropdown"}],"description":["A menu displays grouped navigation actions."]},"examplesExist":true,"repoPath":"src/collections/Menu/Menu.js","filename":"Menu.js","filenameWithoutExt":"Menu"}
+module.exports = {"displayName":"ListIcon","props":[{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["An element inside a list can be vertically aligned."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"ListIcon","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"Icon","subcomponents":null,"apiPath":"List.Icon","componentClassName":"icon","docblock":{"tags":[],"description":["A list item can contain an icon."]},"examplesExist":false,"repoPath":"src/elements/List/ListIcon.js","filename":"ListIcon.js","filenameWithoutExt":"ListIcon"}
 
 /***/ }),
 /* 1637 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"MenuHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"MenuHeader","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Menu","subcomponentName":"Header","subcomponents":null,"apiPath":"Menu.Header","componentClassName":"header","docblock":{"tags":[],"description":["A menu item may include a header or may itself be a header."]},"examplesExist":false,"repoPath":"src/collections/Menu/MenuHeader.js","filename":"MenuHeader.js","filenameWithoutExt":"MenuHeader"}
+module.exports = {"displayName":"ListItem","props":[{"type":"bool","required":false,"description":["A list item can active."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content.","","Heads up!","","This is handled slightly differently than the typical `content` prop since","the wrapping ListContent is not used when there's no icon or image.","","If you pass content as:","- an element/literal, it's treated as the sibling node to","header/description (whether wrapped in Item.Content or not).","- a props object, it forces the presence of Item.Content and passes those","props to it. If you pass a content prop within that props object, it","will be treated as the sibling node to header/description."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for ListDescription."],"tags":[],"name":"description"},{"type":"bool","required":false,"description":["A list item can disabled."],"tags":[],"name":"disabled"},{"type":"custom","required":false,"description":["Shorthand for ListHeader."],"tags":[],"name":"header"},{"type":"custom","required":false,"description":["Shorthand for ListIcon."],"tags":[],"value":[],"name":"icon"},{"type":"custom","required":false,"description":["Shorthand for Image."],"tags":[],"value":[],"name":"image"},{"type":"func","required":false,"description":["A ListItem can be clicked"],"tags":[],"name":"onClick"},{"type":"string","required":false,"description":["A value for an ordered list."],"tags":[],"name":"value"}],"constructorName":"ListItem","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"Item","subcomponents":null,"apiPath":"List.Item","componentClassName":"item","docblock":{"tags":[],"description":["A list item can contain a set of items."]},"examplesExist":false,"repoPath":"src/elements/List/ListItem.js","filename":"ListItem.js","filenameWithoutExt":"ListItem"}
 
 /***/ }),
 /* 1638 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"MenuItem","props":[{"type":"bool","required":false,"description":["A menu item can be active."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Additional colors can be specified."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A menu item can be disabled."],"tags":[],"name":"disabled"},{"type":"bool|enum","required":false,"description":["A menu item or menu can remove element padding, vertically or horizontally."],"tags":[],"value":["horizontally","vertically"],"name":"fitted"},{"type":"bool","required":false,"description":["A menu item may include a header or may itself be a header."],"tags":[],"name":"header"},{"type":"bool|custom","required":false,"description":["MenuItem can be only icon."],"tags":[],"value":[],"name":"icon"},{"type":"number","required":false,"description":["MenuItem index inside Menu."],"tags":[],"name":"index"},{"type":"bool","required":false,"description":["A menu item can be link."],"tags":[],"name":"link"},{"type":"string","required":false,"description":["Internal name of the MenuItem."],"tags":[],"name":"name"},{"type":"func","required":false,"description":["Called on click. When passed, the component will render as an `a`","tag by default instead of a `div`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"enum","required":false,"description":["A menu item can take left or right position."],"tags":[],"value":["left","right"],"name":"position"}],"constructorName":"MenuItem","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Menu","subcomponentName":"Item","subcomponents":null,"apiPath":"Menu.Item","componentClassName":"item","docblock":{"tags":[],"description":["A menu can contain an item."]},"examplesExist":false,"repoPath":"src/collections/Menu/MenuItem.js","filename":"MenuItem.js","filenameWithoutExt":"MenuItem"}
+module.exports = {"displayName":"ListList","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ListList","type":"element","isParent":false,"isChild":true,"parentDisplayName":"List","subcomponentName":"List","subcomponents":null,"apiPath":"List.List","componentClassName":"list","docblock":{"tags":[],"description":["A list can contain a sub list."]},"examplesExist":false,"repoPath":"src/elements/List/ListList.js","filename":"ListList.js","filenameWithoutExt":"ListList"}
 
 /***/ }),
 /* 1639 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"MenuMenu","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A sub menu can take left or right position."],"tags":[],"value":["left","right"],"name":"position"}],"constructorName":"MenuMenu","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Menu","subcomponentName":"Menu","subcomponents":null,"apiPath":"Menu.Menu","componentClassName":"menu","docblock":{"tags":[],"description":["A menu can contain a sub menu."]},"examplesExist":false,"repoPath":"src/collections/Menu/MenuMenu.js","filename":"MenuMenu.js","filenameWithoutExt":"MenuMenu"}
+module.exports = {"displayName":"Loader","props":[{"type":"bool","required":false,"description":["A loader can be active or visible."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A loader can be disabled or hidden."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["A loader can show it's unsure of how long a task will take."],"tags":[],"name":"indeterminate"},{"type":"bool|enum","required":false,"description":["Loaders can appear inline with content."],"tags":[],"value":["centered"],"name":"inline"},{"type":"bool","required":false,"description":["Loaders can have their colors inverted."],"tags":[],"name":"inverted"},{"type":"enum","required":false,"description":["Loaders can have different sizes."],"tags":[],"value":["mini","tiny","small","medium","large","big","huge","massive"],"name":"size"}],"constructorName":"Loader","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Loader","componentClassName":"loader","docblock":{"tags":[{"title":"see","description":"Dimmer"}],"description":["A loader alerts a user to wait for an activity to complete."]},"examplesExist":true,"repoPath":"src/elements/Loader/Loader.js","filename":"Loader.js","filenameWithoutExt":"Loader"}
 
 /***/ }),
 /* 1640 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Message","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["A message can be formatted to attach itself to other content."],"tags":[],"value":["bottom","top"],"name":"attached"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A message can be formatted to be different colors."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"bool","required":false,"description":["A message can only take up the width of its content."],"tags":[],"name":"compact"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A message may be formatted to display a negative message. Same as `negative`."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["A message can float above content that it is related to."],"tags":[],"name":"floating"},{"type":"custom","required":false,"description":["Shorthand for MessageHeader."],"tags":[],"name":"header"},{"type":"bool","required":false,"description":["A message can be hidden."],"tags":[],"name":"hidden"},{"type":"custom|bool","required":false,"description":["A message can contain an icon."],"tags":[],"value":[],"name":"icon"},{"type":"bool","required":false,"description":["A message may be formatted to display information."],"tags":[],"name":"info"},{"type":"custom","required":false,"description":["Array shorthand items for the MessageList. Mutually exclusive with children."],"tags":[],"name":"list"},{"type":"bool","required":false,"description":["A message may be formatted to display a negative message. Same as `error`."],"tags":[],"name":"negative"},{"type":"func","required":false,"description":["A message that the user can choose to hide.","Called when the user clicks the \"x\" icon. This also adds the \"x\" icon."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onDismiss"},{"type":"bool","required":false,"description":["A message may be formatted to display a positive message.  Same as `success`."],"tags":[],"name":"positive"},{"type":"enum","required":false,"description":["A message can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["A message may be formatted to display a positive message.  Same as `positive`."],"tags":[],"name":"success"},{"type":"bool","required":false,"description":["A message can be set to visible to force itself to be shown."],"tags":[],"name":"visible"},{"type":"bool","required":false,"description":["A message may be formatted to display warning messages."],"tags":[],"name":"warning"}],"constructorName":"Message","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["MessageContent","MessageHeader","MessageItem","MessageList"],"apiPath":"Message","componentClassName":"message","docblock":{"tags":[{"title":"see","description":"Form"}],"description":["A message displays information that explains nearby content."]},"examplesExist":true,"repoPath":"src/collections/Message/Message.js","filename":"Message.js","filenameWithoutExt":"Message"}
+module.exports = {"displayName":"Menu","props":[{"type":"number|string","required":false,"description":["Index of the currently active item."],"tags":[],"value":[],"name":"activeIndex"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["A menu may be attached to other content segments."],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["A menu item or menu can have no borders."],"tags":[],"name":"borderless"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Additional colors can be specified."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"bool","required":false,"description":["A menu can take up only the space necessary to fit its content."],"tags":[],"name":"compact"},{"type":"number|string","required":false,"description":["Initial activeIndex value."],"tags":[],"value":[],"name":"defaultActiveIndex"},{"type":"enum","required":false,"description":["A menu can be fixed to a side of its context."],"tags":[],"value":["left","right","bottom","top"],"name":"fixed"},{"type":"bool|enum","required":false,"description":["A menu can be floated."],"tags":[],"value":["right"],"name":"floated"},{"type":"bool","required":false,"description":["A vertical menu may take the size of its container."],"tags":[],"name":"fluid"},{"type":"bool|enum","required":false,"description":["A menu may have just icons (bool) or labeled icons."],"tags":[],"value":["labeled"],"name":"icon"},{"type":"bool","required":false,"description":["A menu may have its colors inverted to show greater contrast."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Shorthand array of props for Menu."],"tags":[],"name":"items"},{"type":"func","required":false,"description":["onClick handler for MenuItem. Mutually exclusive with children."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All item props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"value":[],"name":"onItemClick"},{"type":"bool","required":false,"description":["A pagination menu is specially formatted to present links to pages of content."],"tags":[],"name":"pagination"},{"type":"bool","required":false,"description":["A menu can point to show its relationship to nearby content."],"tags":[],"name":"pointing"},{"type":"bool","required":false,"description":["A menu can adjust its appearance to de-emphasize its contents."],"tags":[],"name":"secondary"},{"type":"enum","required":false,"description":["A menu can vary in size."],"tags":[],"value":["mini","tiny","small","large","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["A menu can stack at mobile resolutions."],"tags":[],"name":"stackable"},{"type":"bool|enum","required":false,"description":["A menu can be formatted to show tabs of information."],"tags":[],"value":["right"],"name":"tabular"},{"type":"bool","required":false,"description":["A menu can be formatted for text content."],"tags":[],"name":"text"},{"type":"bool","required":false,"description":["A vertical menu displays elements vertically."],"tags":[],"name":"vertical"},{"type":"enum","required":false,"description":["A menu can have its items divided evenly."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"widths"}],"constructorName":"Menu","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["MenuHeader","MenuItem","MenuMenu"],"apiPath":"Menu","componentClassName":"menu","docblock":{"tags":[{"title":"see","description":"Dropdown"}],"description":["A menu displays grouped navigation actions."]},"examplesExist":true,"repoPath":"src/collections/Menu/Menu.js","filename":"Menu.js","filenameWithoutExt":"Menu"}
 
 /***/ }),
 /* 1641 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"MessageContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"MessageContent","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Message","subcomponentName":"Content","subcomponents":null,"apiPath":"Message.Content","componentClassName":"content","docblock":{"tags":[],"description":["A message can contain a content."]},"examplesExist":false,"repoPath":"src/collections/Message/MessageContent.js","filename":"MessageContent.js","filenameWithoutExt":"MessageContent"}
+module.exports = {"displayName":"MenuHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"MenuHeader","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Menu","subcomponentName":"Header","subcomponents":null,"apiPath":"Menu.Header","componentClassName":"header","docblock":{"tags":[],"description":["A menu item may include a header or may itself be a header."]},"examplesExist":false,"repoPath":"src/collections/Menu/MenuHeader.js","filename":"MenuHeader.js","filenameWithoutExt":"MenuHeader"}
 
 /***/ }),
 /* 1642 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"MessageHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"MessageHeader","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Message","subcomponentName":"Header","subcomponents":null,"apiPath":"Message.Header","componentClassName":"header","docblock":{"tags":[],"description":["A message can contain a header."]},"examplesExist":false,"repoPath":"src/collections/Message/MessageHeader.js","filename":"MessageHeader.js","filenameWithoutExt":"MessageHeader"}
+module.exports = {"displayName":"MenuItem","props":[{"type":"bool","required":false,"description":["A menu item can be active."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["Additional colors can be specified."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A menu item can be disabled."],"tags":[],"name":"disabled"},{"type":"bool|enum","required":false,"description":["A menu item or menu can remove element padding, vertically or horizontally."],"tags":[],"value":["horizontally","vertically"],"name":"fitted"},{"type":"bool","required":false,"description":["A menu item may include a header or may itself be a header."],"tags":[],"name":"header"},{"type":"bool|custom","required":false,"description":["MenuItem can be only icon."],"tags":[],"value":[],"name":"icon"},{"type":"number","required":false,"description":["MenuItem index inside Menu."],"tags":[],"name":"index"},{"type":"bool","required":false,"description":["A menu item can be link."],"tags":[],"name":"link"},{"type":"string","required":false,"description":["Internal name of the MenuItem."],"tags":[],"name":"name"},{"type":"func","required":false,"description":["Called on click. When passed, the component will render as an `a`","tag by default instead of a `div`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"enum","required":false,"description":["A menu item can take left or right position."],"tags":[],"value":["left","right"],"name":"position"}],"constructorName":"MenuItem","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Menu","subcomponentName":"Item","subcomponents":null,"apiPath":"Menu.Item","componentClassName":"item","docblock":{"tags":[],"description":["A menu can contain an item."]},"examplesExist":false,"repoPath":"src/collections/Menu/MenuItem.js","filename":"MenuItem.js","filenameWithoutExt":"MenuItem"}
 
 /***/ }),
 /* 1643 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"MessageItem","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'li'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"MessageItem","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Message","subcomponentName":"Item","subcomponents":null,"apiPath":"Message.Item","componentClassName":"item","docblock":{"tags":[],"description":["A message list can contain an item."]},"examplesExist":false,"repoPath":"src/collections/Message/MessageItem.js","filename":"MessageItem.js","filenameWithoutExt":"MessageItem"}
+module.exports = {"displayName":"MenuMenu","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A sub menu can take left or right position."],"tags":[],"value":["left","right"],"name":"position"}],"constructorName":"MenuMenu","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Menu","subcomponentName":"Menu","subcomponents":null,"apiPath":"Menu.Menu","componentClassName":"menu","docblock":{"tags":[],"description":["A menu can contain a sub menu."]},"examplesExist":false,"repoPath":"src/collections/Menu/MenuMenu.js","filename":"MenuMenu.js","filenameWithoutExt":"MenuMenu"}
 
 /***/ }),
 /* 1644 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"MessageList","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'ul'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand Message.Items."],"tags":[],"name":"items"}],"constructorName":"MessageList","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Message","subcomponentName":"List","subcomponents":null,"apiPath":"Message.List","componentClassName":"list","docblock":{"tags":[],"description":["A message can contain a list of items."]},"examplesExist":false,"repoPath":"src/collections/Message/MessageList.js","filename":"MessageList.js","filenameWithoutExt":"MessageList"}
+module.exports = {"displayName":"Message","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["A message can be formatted to attach itself to other content."],"tags":[],"value":["bottom","top"],"name":"attached"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A message can be formatted to be different colors."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"bool","required":false,"description":["A message can only take up the width of its content."],"tags":[],"name":"compact"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A message may be formatted to display a negative message. Same as `negative`."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["A message can float above content that it is related to."],"tags":[],"name":"floating"},{"type":"custom","required":false,"description":["Shorthand for MessageHeader."],"tags":[],"name":"header"},{"type":"bool","required":false,"description":["A message can be hidden."],"tags":[],"name":"hidden"},{"type":"custom|bool","required":false,"description":["A message can contain an icon."],"tags":[],"value":[],"name":"icon"},{"type":"bool","required":false,"description":["A message may be formatted to display information."],"tags":[],"name":"info"},{"type":"custom","required":false,"description":["Array shorthand items for the MessageList. Mutually exclusive with children."],"tags":[],"name":"list"},{"type":"bool","required":false,"description":["A message may be formatted to display a negative message. Same as `error`."],"tags":[],"name":"negative"},{"type":"func","required":false,"description":["A message that the user can choose to hide.","Called when the user clicks the \"x\" icon. This also adds the \"x\" icon."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onDismiss"},{"type":"bool","required":false,"description":["A message may be formatted to display a positive message.  Same as `success`."],"tags":[],"name":"positive"},{"type":"enum","required":false,"description":["A message can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["A message may be formatted to display a positive message.  Same as `positive`."],"tags":[],"name":"success"},{"type":"bool","required":false,"description":["A message can be set to visible to force itself to be shown."],"tags":[],"name":"visible"},{"type":"bool","required":false,"description":["A message may be formatted to display warning messages."],"tags":[],"name":"warning"}],"constructorName":"Message","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["MessageContent","MessageHeader","MessageItem","MessageList"],"apiPath":"Message","componentClassName":"message","docblock":{"tags":[{"title":"see","description":"Form"}],"description":["A message displays information that explains nearby content."]},"examplesExist":true,"repoPath":"src/collections/Message/Message.js","filename":"Message.js","filenameWithoutExt":"Message"}
 
 /***/ }),
 /* 1645 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Modal","props":[{"type":"custom","required":false,"description":["Shorthand for Modal.Actions. Typically an array of button shorthand."],"tags":[],"name":"actions"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A modal can reduce its complexity"],"tags":[],"name":"basic"},{"type":"bool","required":false,"description":["A modal can be vertically centered in the viewport"],"defaultValue":"true","tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"node|object|bool","required":false,"description":["Shorthand for the close icon. Closes the modal on click."],"tags":[],"value":[],"name":"closeIcon"},{"type":"bool","required":false,"description":["Whether or not the Modal should close when the dimmer is clicked."],"defaultValue":"true","tags":[],"name":"closeOnDimmerClick"},{"type":"bool","required":false,"description":["Whether or not the Modal should close when the document is clicked."],"defaultValue":"false","tags":[],"name":"closeOnDocumentClick"},{"type":"custom","required":false,"description":["Simple text content for the Modal."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Initial value of open."],"tags":[],"name":"defaultOpen"},{"type":"bool|func|object|enum","required":false,"description":["A Modal can appear in a dimmer."],"defaultValue":"true","tags":[],"value":["inverted","blurring"],"name":"dimmer"},{"type":"string","required":false,"description":["Event pool namespace that is used to handle component events"],"defaultValue":"'Modal'","tags":[],"name":"eventPool"},{"type":"custom","required":false,"description":["Modal displayed above the content in bold."],"tags":[],"name":"header"},{"type":"any","required":false,"description":["The node where the modal should mount. Defaults to document.body."],"tags":[],"name":"mountNode"},{"type":"func","required":false,"description":["Action onClick handler when using shorthand `actions`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onActionClick"},{"type":"func","required":false,"description":["Called when a close event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClose"},{"type":"func","required":false,"description":["Called when the portal is mounted on the DOM."],"tags":[],"name":"onMount"},{"type":"func","required":false,"description":["Called when an open event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onOpen"},{"type":"func","required":false,"description":["Called when the portal is unmounted from the DOM."],"tags":[],"name":"onUnmount"},{"type":"bool","required":false,"description":["Controls whether or not the Modal is displayed."],"tags":[],"name":"open"},{"type":"enum","required":false,"description":["A modal can vary in size"],"tags":[],"value":["mini","tiny","small","large","fullscreen"],"name":"size"},{"type":"object","required":false,"description":["Custom styles."],"tags":[],"name":"style"},{"type":"node","required":false,"description":["Element to be rendered in-place where the portal is defined."],"tags":[],"name":"trigger"}],"constructorName":"Modal","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["ModalActions","ModalContent","ModalDescription","ModalDimmer","ModalHeader"],"apiPath":"Modal","componentClassName":"modal","docblock":{"tags":[{"title":"see","description":"Confirm"},{"title":"see","description":"Portal"}],"description":["A modal displays content that temporarily blocks interactions with the main view of a site."]},"examplesExist":true,"repoPath":"src/modules/Modal/Modal.js","filename":"Modal.js","filenameWithoutExt":"Modal"}
+module.exports = {"displayName":"MessageContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"MessageContent","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Message","subcomponentName":"Content","subcomponents":null,"apiPath":"Message.Content","componentClassName":"content","docblock":{"tags":[],"description":["A message can contain a content."]},"examplesExist":false,"repoPath":"src/collections/Message/MessageContent.js","filename":"MessageContent.js","filenameWithoutExt":"MessageContent"}
 
 /***/ }),
 /* 1646 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ModalActions","props":[{"type":"custom","required":false,"description":["Array of shorthand buttons."],"tags":[],"name":"actions"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"func","required":false,"description":["Action onClick handler when using shorthand `actions`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props from the clicked action.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"value":[],"name":"onActionClick"}],"constructorName":"ModalActions","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Modal","subcomponentName":"Actions","subcomponents":null,"apiPath":"Modal.Actions","componentClassName":"actions","docblock":{"tags":[],"description":["A modal can contain a row of actions."]},"examplesExist":false,"repoPath":"src/modules/Modal/ModalActions.js","filename":"ModalActions.js","filenameWithoutExt":"ModalActions"}
+module.exports = {"displayName":"MessageHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"MessageHeader","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Message","subcomponentName":"Header","subcomponents":null,"apiPath":"Message.Header","componentClassName":"header","docblock":{"tags":[],"description":["A message can contain a header."]},"examplesExist":false,"repoPath":"src/collections/Message/MessageHeader.js","filename":"MessageHeader.js","filenameWithoutExt":"MessageHeader"}
 
 /***/ }),
 /* 1647 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ModalContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A modal can contain image content."],"tags":[],"name":"image"},{"type":"bool","required":false,"description":["A modal can use the entire size of the screen."],"tags":[],"name":"scrolling"}],"constructorName":"ModalContent","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Modal","subcomponentName":"Content","subcomponents":null,"apiPath":"Modal.Content","componentClassName":"content","docblock":{"tags":[],"description":["A modal can contain content."]},"examplesExist":false,"repoPath":"src/modules/Modal/ModalContent.js","filename":"ModalContent.js","filenameWithoutExt":"ModalContent"}
+module.exports = {"displayName":"MessageItem","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'li'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"MessageItem","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Message","subcomponentName":"Item","subcomponents":null,"apiPath":"Message.Item","componentClassName":"item","docblock":{"tags":[],"description":["A message list can contain an item."]},"examplesExist":false,"repoPath":"src/collections/Message/MessageItem.js","filename":"MessageItem.js","filenameWithoutExt":"MessageItem"}
 
 /***/ }),
 /* 1648 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ModalDescription","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ModalDescription","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Modal","subcomponentName":"Description","subcomponents":null,"apiPath":"Modal.Description","componentClassName":"description","docblock":{"tags":[],"description":["A modal can contain a description with one or more paragraphs."]},"examplesExist":false,"repoPath":"src/modules/Modal/ModalDescription.js","filename":"ModalDescription.js","filenameWithoutExt":"ModalDescription"}
+module.exports = {"displayName":"MessageList","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'ul'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand Message.Items."],"tags":[],"name":"items"}],"constructorName":"MessageList","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Message","subcomponentName":"List","subcomponents":null,"apiPath":"Message.List","componentClassName":"list","docblock":{"tags":[],"description":["A message can contain a list of items."]},"examplesExist":false,"repoPath":"src/collections/Message/MessageList.js","filename":"MessageList.js","filenameWithoutExt":"MessageList"}
 
 /***/ }),
 /* 1649 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ModalDimmer","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A dimmer can be blurred."],"tags":[],"name":"blurring"},{"type":"bool","required":false,"description":["A dimmer can center its contents in the viewport."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A dimmer can be inverted."],"tags":[],"name":"inverted"},{"type":"any","required":false,"description":["The node where the modal should mount. Defaults to document.body."],"tags":[],"name":"mountNode"},{"type":"bool","required":false,"description":["A dimmer can make body scrollable."],"tags":[],"name":"scrolling"}],"constructorName":"ModalDimmer","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Modal","subcomponentName":"Dimmer","subcomponents":null,"apiPath":"Modal.Dimmer","componentClassName":"dimmer","docblock":{"tags":[],"description":["A modal has a dimmer."]},"examplesExist":false,"repoPath":"src/modules/Modal/ModalDimmer.js","filename":"ModalDimmer.js","filenameWithoutExt":"ModalDimmer"}
+module.exports = {"displayName":"Modal","props":[{"type":"custom","required":false,"description":["Shorthand for Modal.Actions. Typically an array of button shorthand."],"tags":[],"name":"actions"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A modal can reduce its complexity"],"tags":[],"name":"basic"},{"type":"bool","required":false,"description":["A modal can be vertically centered in the viewport"],"defaultValue":"true","tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"node|object|bool","required":false,"description":["Shorthand for the close icon. Closes the modal on click."],"tags":[],"value":[],"name":"closeIcon"},{"type":"bool","required":false,"description":["Whether or not the Modal should close when the dimmer is clicked."],"defaultValue":"true","tags":[],"name":"closeOnDimmerClick"},{"type":"bool","required":false,"description":["Whether or not the Modal should close when the document is clicked."],"defaultValue":"false","tags":[],"name":"closeOnDocumentClick"},{"type":"custom","required":false,"description":["Simple text content for the Modal."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Initial value of open."],"tags":[],"name":"defaultOpen"},{"type":"bool|func|object|enum","required":false,"description":["A Modal can appear in a dimmer."],"defaultValue":"true","tags":[],"value":["inverted","blurring"],"name":"dimmer"},{"type":"string","required":false,"description":["Event pool namespace that is used to handle component events"],"defaultValue":"'Modal'","tags":[],"name":"eventPool"},{"type":"custom","required":false,"description":["Modal displayed above the content in bold."],"tags":[],"name":"header"},{"type":"any","required":false,"description":["The node where the modal should mount. Defaults to document.body."],"tags":[],"name":"mountNode"},{"type":"func","required":false,"description":["Action onClick handler when using shorthand `actions`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onActionClick"},{"type":"func","required":false,"description":["Called when a close event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClose"},{"type":"func","required":false,"description":["Called when the portal is mounted on the DOM."],"tags":[],"name":"onMount"},{"type":"func","required":false,"description":["Called when an open event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onOpen"},{"type":"func","required":false,"description":["Called when the portal is unmounted from the DOM."],"tags":[],"name":"onUnmount"},{"type":"bool","required":false,"description":["Controls whether or not the Modal is displayed."],"tags":[],"name":"open"},{"type":"enum","required":false,"description":["A modal can vary in size"],"tags":[],"value":["mini","tiny","small","large","fullscreen"],"name":"size"},{"type":"object","required":false,"description":["Custom styles."],"tags":[],"name":"style"},{"type":"node","required":false,"description":["Element to be rendered in-place where the portal is defined."],"tags":[],"name":"trigger"}],"constructorName":"Modal","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["ModalActions","ModalContent","ModalDescription","ModalDimmer","ModalHeader"],"apiPath":"Modal","componentClassName":"modal","docblock":{"tags":[{"title":"see","description":"Confirm"},{"title":"see","description":"Portal"}],"description":["A modal displays content that temporarily blocks interactions with the main view of a site."]},"examplesExist":true,"repoPath":"src/modules/Modal/Modal.js","filename":"Modal.js","filenameWithoutExt":"Modal"}
 
 /***/ }),
 /* 1650 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"ModalHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ModalHeader","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Modal","subcomponentName":"Header","subcomponents":null,"apiPath":"Modal.Header","componentClassName":"header","docblock":{"tags":[],"description":["A modal can have a header."]},"examplesExist":false,"repoPath":"src/modules/Modal/ModalHeader.js","filename":"ModalHeader.js","filenameWithoutExt":"ModalHeader"}
+module.exports = {"displayName":"ModalActions","props":[{"type":"custom","required":false,"description":["Array of shorthand buttons."],"tags":[],"name":"actions"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"func","required":false,"description":["Action onClick handler when using shorthand `actions`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props from the clicked action.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"value":[],"name":"onActionClick"}],"constructorName":"ModalActions","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Modal","subcomponentName":"Actions","subcomponents":null,"apiPath":"Modal.Actions","componentClassName":"actions","docblock":{"tags":[],"description":["A modal can contain a row of actions."]},"examplesExist":false,"repoPath":"src/modules/Modal/ModalActions.js","filename":"ModalActions.js","filenameWithoutExt":"ModalActions"}
 
 /***/ }),
 /* 1651 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Pagination","props":[{"type":"number|string","required":false,"description":["Index of the currently active page."],"tags":[],"value":[],"name":"activePage"},{"type":"string","required":false,"description":["A pagination item can have an aria label."],"defaultValue":"'Pagination Navigation'","tags":[],"name":"aria-label"},{"type":"number|string","required":false,"description":["Number of always visible pages at the beginning and end."],"defaultValue":"1","tags":[],"value":[],"name":"boundaryRange"},{"type":"number|string","required":false,"description":["Initial activePage value."],"tags":[],"value":[],"name":"defaultActivePage"},{"type":"bool","required":false,"description":["A pagination can be disabled."],"tags":[],"name":"disabled"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"'...'","tags":[],"name":"ellipsisItem"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"{\n  'aria-label': 'First item',\n  content: '«',\n}","tags":[],"name":"firstItem"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"{\n  'aria-label': 'Last item',\n  content: '»',\n}","tags":[],"name":"lastItem"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"{\n  'aria-label': 'Next item',\n  content: '⟩',\n}","tags":[],"name":"nextItem"},{"type":"func","required":false,"description":["Called on change of an active page."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onPageChange"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"{}","tags":[],"name":"pageItem"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"{\n  'aria-label': 'Previous item',\n  content: '⟨',\n}","tags":[],"name":"prevItem"},{"type":"number|string","required":false,"description":["Number of always visible pages before and after the current one."],"defaultValue":"1","tags":[],"value":[],"name":"siblingRange"},{"type":"number|string","required":true,"description":["Total number of pages."],"tags":[],"value":[],"name":"totalPages"}],"constructorName":"Pagination","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["PaginationItem"],"apiPath":"Pagination","componentClassName":"pagination","docblock":{"tags":[],"description":["A component to render a pagination."]},"examplesExist":true,"repoPath":"src/addons/Pagination/Pagination.js","filename":"Pagination.js","filenameWithoutExt":"Pagination"}
+module.exports = {"displayName":"ModalContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A modal can contain image content."],"tags":[],"name":"image"},{"type":"bool","required":false,"description":["A modal can use the entire size of the screen."],"tags":[],"name":"scrolling"}],"constructorName":"ModalContent","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Modal","subcomponentName":"Content","subcomponents":null,"apiPath":"Modal.Content","componentClassName":"content","docblock":{"tags":[],"description":["A modal can contain content."]},"examplesExist":false,"repoPath":"src/modules/Modal/ModalContent.js","filename":"ModalContent.js","filenameWithoutExt":"ModalContent"}
 
 /***/ }),
 /* 1652 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"PaginationItem","props":[{"type":"bool","required":false,"description":["A pagination item can be active."],"tags":[],"name":"active"},{"type":"bool","required":false,"description":["A pagination item can be disabled."],"tags":[],"name":"disabled"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Called on key down."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onKeyDown"},{"type":"enum","required":false,"description":["A pagination should have a type."],"tags":[],"value":["ellipsisItem","firstItem","prevItem","pageItem","nextItem","lastItem"],"name":"type"}],"constructorName":"PaginationItem","type":"addon","isParent":false,"isChild":true,"parentDisplayName":"Pagination","subcomponentName":"Item","subcomponents":null,"apiPath":"Pagination.Item","componentClassName":"item","docblock":{"tags":[],"description":["An item of a pagination."]},"examplesExist":false,"repoPath":"src/addons/Pagination/PaginationItem.js","filename":"PaginationItem.js","filenameWithoutExt":"PaginationItem"}
+module.exports = {"displayName":"ModalDescription","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ModalDescription","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Modal","subcomponentName":"Description","subcomponents":null,"apiPath":"Modal.Description","componentClassName":"description","docblock":{"tags":[],"description":["A modal can contain a description with one or more paragraphs."]},"examplesExist":false,"repoPath":"src/modules/Modal/ModalDescription.js","filename":"ModalDescription.js","filenameWithoutExt":"ModalDescription"}
 
 /***/ }),
 /* 1653 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Placeholder","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A fluid placeholder takes up the width of its container."],"tags":[],"name":"fluid"},{"type":"bool","required":false,"description":["A placeholder can have their colors inverted."],"tags":[],"name":"inverted"}],"constructorName":"Placeholder","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["PlaceholderHeader","PlaceholderImage","PlaceholderLine","PlaceholderParagraph"],"apiPath":"Placeholder","componentClassName":"placeholder","docblock":{"tags":[],"description":["A placeholder is used to reserve space for content that soon will appear in a layout."]},"examplesExist":true,"repoPath":"src/elements/Placeholder/Placeholder.js","filename":"Placeholder.js","filenameWithoutExt":"Placeholder"}
+module.exports = {"displayName":"ModalDimmer","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A dimmer can be blurred."],"tags":[],"name":"blurring"},{"type":"bool","required":false,"description":["A dimmer can center its contents in the viewport."],"tags":[],"name":"centered"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A dimmer can be inverted."],"tags":[],"name":"inverted"},{"type":"any","required":false,"description":["The node where the modal should mount. Defaults to document.body."],"tags":[],"name":"mountNode"},{"type":"bool","required":false,"description":["A dimmer can make body scrollable."],"tags":[],"name":"scrolling"}],"constructorName":"ModalDimmer","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Modal","subcomponentName":"Dimmer","subcomponents":null,"apiPath":"Modal.Dimmer","componentClassName":"dimmer","docblock":{"tags":[],"description":["A modal has a dimmer."]},"examplesExist":false,"repoPath":"src/modules/Modal/ModalDimmer.js","filename":"ModalDimmer.js","filenameWithoutExt":"ModalDimmer"}
 
 /***/ }),
 /* 1654 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"PlaceholderHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A placeholder can contain an image."],"tags":[],"name":"image"}],"constructorName":"PlaceholderHeader","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Placeholder","subcomponentName":"Header","subcomponents":null,"apiPath":"Placeholder.Header","componentClassName":"header","docblock":{"tags":[],"description":["A placeholder can contain a header."]},"examplesExist":false,"repoPath":"src/elements/Placeholder/PlaceholderHeader.js","filename":"PlaceholderHeader.js","filenameWithoutExt":"PlaceholderHeader"}
+module.exports = {"displayName":"ModalHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"ModalHeader","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Modal","subcomponentName":"Header","subcomponents":null,"apiPath":"Modal.Header","componentClassName":"header","docblock":{"tags":[],"description":["A modal can have a header."]},"examplesExist":false,"repoPath":"src/modules/Modal/ModalHeader.js","filename":"ModalHeader.js","filenameWithoutExt":"ModalHeader"}
 
 /***/ }),
 /* 1655 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"PlaceholderImage","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["An image can modify size correctly with responsive styles."],"tags":[],"value":[],"name":"rectangular"},{"type":"bool","required":false,"description":["An image can modify size correctly with responsive styles."],"tags":[],"value":[],"name":"square"}],"constructorName":"PlaceholderImage","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Placeholder","subcomponentName":"Image","subcomponents":null,"apiPath":"Placeholder.Image","componentClassName":"image","docblock":{"tags":[],"description":["A placeholder can contain an image."]},"examplesExist":false,"repoPath":"src/elements/Placeholder/PlaceholderImage.js","filename":"PlaceholderImage.js","filenameWithoutExt":"PlaceholderImage"}
+module.exports = {"displayName":"Pagination","props":[{"type":"number|string","required":false,"description":["Index of the currently active page."],"tags":[],"value":[],"name":"activePage"},{"type":"string","required":false,"description":["A pagination item can have an aria label."],"defaultValue":"'Pagination Navigation'","tags":[],"name":"aria-label"},{"type":"number|string","required":false,"description":["Number of always visible pages at the beginning and end."],"defaultValue":"1","tags":[],"value":[],"name":"boundaryRange"},{"type":"number|string","required":false,"description":["Initial activePage value."],"tags":[],"value":[],"name":"defaultActivePage"},{"type":"bool","required":false,"description":["A pagination can be disabled."],"tags":[],"name":"disabled"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"'...'","tags":[],"name":"ellipsisItem"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"{\n  'aria-label': 'First item',\n  content: '«',\n}","tags":[],"name":"firstItem"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"{\n  'aria-label': 'Last item',\n  content: '»',\n}","tags":[],"name":"lastItem"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"{\n  'aria-label': 'Next item',\n  content: '⟩',\n}","tags":[],"name":"nextItem"},{"type":"func","required":false,"description":["Called on change of an active page."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onPageChange"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"{}","tags":[],"name":"pageItem"},{"type":"custom","required":false,"description":["A shorthand for PaginationItem."],"defaultValue":"{\n  'aria-label': 'Previous item',\n  content: '⟨',\n}","tags":[],"name":"prevItem"},{"type":"number|string","required":false,"description":["Number of always visible pages before and after the current one."],"defaultValue":"1","tags":[],"value":[],"name":"siblingRange"},{"type":"number|string","required":true,"description":["Total number of pages."],"tags":[],"value":[],"name":"totalPages"}],"constructorName":"Pagination","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["PaginationItem"],"apiPath":"Pagination","componentClassName":"pagination","docblock":{"tags":[],"description":["A component to render a pagination."]},"examplesExist":true,"repoPath":"src/addons/Pagination/Pagination.js","filename":"Pagination.js","filenameWithoutExt":"Pagination"}
 
 /***/ }),
 /* 1656 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"PlaceholderLine","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A line can specify how long its contents should appear."],"tags":[],"value":["full","very long","long","medium","short","very short"],"name":"length"}],"constructorName":"PlaceholderLine","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Placeholder","subcomponentName":"Line","subcomponents":null,"apiPath":"Placeholder.Line","componentClassName":"line","docblock":{"tags":[],"description":["A placeholder can contain have lines of text."]},"examplesExist":false,"repoPath":"src/elements/Placeholder/PlaceholderLine.js","filename":"PlaceholderLine.js","filenameWithoutExt":"PlaceholderLine"}
+module.exports = {"displayName":"PaginationItem","props":[{"type":"bool","required":false,"description":["A pagination item can be active."],"tags":[],"name":"active"},{"type":"bool","required":false,"description":["A pagination item can be disabled."],"tags":[],"name":"disabled"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Called on key down."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onKeyDown"},{"type":"enum","required":false,"description":["A pagination should have a type."],"tags":[],"value":["ellipsisItem","firstItem","prevItem","pageItem","nextItem","lastItem"],"name":"type"}],"constructorName":"PaginationItem","type":"addon","isParent":false,"isChild":true,"parentDisplayName":"Pagination","subcomponentName":"Item","subcomponents":null,"apiPath":"Pagination.Item","componentClassName":"item","docblock":{"tags":[],"description":["An item of a pagination."]},"examplesExist":false,"repoPath":"src/addons/Pagination/PaginationItem.js","filename":"PaginationItem.js","filenameWithoutExt":"PaginationItem"}
 
 /***/ }),
 /* 1657 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"PlaceholderParagraph","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"PlaceholderParagraph","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Placeholder","subcomponentName":"Paragraph","subcomponents":null,"apiPath":"Placeholder.Paragraph","componentClassName":"paragraph","docblock":{"tags":[],"description":["A placeholder can contain a paragraph."]},"examplesExist":false,"repoPath":"src/elements/Placeholder/PlaceholderParagraph.js","filename":"PlaceholderParagraph.js","filenameWithoutExt":"PlaceholderParagraph"}
+module.exports = {"displayName":"Placeholder","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A fluid placeholder takes up the width of its container."],"tags":[],"name":"fluid"},{"type":"bool","required":false,"description":["A placeholder can have their colors inverted."],"tags":[],"name":"inverted"}],"constructorName":"Placeholder","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["PlaceholderHeader","PlaceholderImage","PlaceholderLine","PlaceholderParagraph"],"apiPath":"Placeholder","componentClassName":"placeholder","docblock":{"tags":[],"description":["A placeholder is used to reserve space for content that soon will appear in a layout."]},"examplesExist":true,"repoPath":"src/elements/Placeholder/Placeholder.js","filename":"Placeholder.js","filenameWithoutExt":"Placeholder"}
 
 /***/ }),
 /* 1658 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Popup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["Display the popup without the pointing arrow."],"tags":[],"name":"basic"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Simple text content for the popover."],"tags":[],"name":"content"},{"type":"object|custom","required":false,"description":["Existing element the pop-up should be bound to."],"tags":[],"value":[],"name":"context"},{"type":"bool","required":false,"description":["A disabled popup only renders its trigger."],"defaultValue":"false","tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["Enables the Popper.js event listeners."],"defaultValue":"true","tags":[],"name":"eventsEnabled"},{"type":"bool","required":false,"description":["A flowing Popup has no maximum width and continues to flow to fit its content."],"tags":[],"name":"flowing"},{"type":"custom","required":false,"description":["Header displayed above the content in bold."],"tags":[],"name":"header"},{"type":"bool","required":false,"description":["Hide the Popup when scrolling the window."],"tags":[],"name":"hideOnScroll"},{"type":"bool","required":false,"description":["Whether the popup should not close on hover."],"tags":[],"name":"hoverable"},{"type":"bool","required":false,"description":["Invert the colors of the Popup."],"tags":[],"name":"inverted"},{"type":"func|arrayOf","required":false,"description":["Offset values in px unit to apply to rendered popup. The basic offset accepts an","array with two numbers in the form [skidding, distance]:","- `skidding` displaces the Popup along the reference element","- `distance` displaces the Popup away from, or toward, the reference element in the direction of its placement. A positive number displaces it further away, while a negative number lets it overlap the reference."],"tags":[{"title":"see","description":"https://popper.js.org/docs/v2/modifiers/offset/"}],"value":[],"name":"offset"},{"type":"enum|arrayOf","required":false,"description":["Events triggering the popup."],"defaultValue":"['click', 'hover']","tags":[],"value":["hover","click","focus"],"name":"on"},{"type":"func","required":false,"description":["Called when a close event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClose"},{"type":"func","required":false,"description":["Called when the portal is mounted on the DOM."],"tags":[],"name":"onMount"},{"type":"func","required":false,"description":["Called when an open event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onOpen"},{"type":"func","required":false,"description":["Called when the portal is unmounted from the DOM."],"tags":[],"name":"onUnmount"},{"type":"bool","required":false,"description":["Disables automatic repositioning of the component, it will always be placed according to the position value."],"defaultValue":"false","tags":[],"name":"pinned"},{"type":"array","required":false,"description":["A popup can have dependencies which update will schedule a position update."],"tags":[],"name":"popperDependencies"},{"type":"array","required":false,"description":["An array containing custom settings for the Popper.js modifiers."],"defaultValue":"[]","tags":[],"name":"popperModifiers"},{"type":"enum","required":false,"description":["Position for the popover."],"defaultValue":"'top left'","tags":[],"value":["top center","top left","top right","bottom center","bottom left","bottom right","right center","left center"],"name":"position"},{"type":"bool","required":false,"description":["Tells `Popper.js` to use the `position: fixed` strategy to position the popover."],"tags":[],"name":"positionFixed"},{"type":"enum","required":false,"description":["Popup size."],"tags":[],"value":["mini","tiny","small","large","huge"],"name":"size"},{"type":"object","required":false,"description":["Custom Popup style."],"tags":[],"name":"style"},{"type":"node","required":false,"description":["Element to be rendered in-place where the popup is defined."],"tags":[],"name":"trigger"},{"type":"bool|enum","required":false,"description":["Popup width."],"tags":[],"value":["very"],"name":"wide"}],"constructorName":"Popup","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["PopupContent","PopupHeader"],"apiPath":"Popup","componentClassName":"popup","docblock":{"tags":[],"description":["A Popup displays additional information on top of a page."]},"examplesExist":true,"repoPath":"src/modules/Popup/Popup.js","filename":"Popup.js","filenameWithoutExt":"Popup"}
+module.exports = {"displayName":"PlaceholderHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A placeholder can contain an image."],"tags":[],"name":"image"}],"constructorName":"PlaceholderHeader","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Placeholder","subcomponentName":"Header","subcomponents":null,"apiPath":"Placeholder.Header","componentClassName":"header","docblock":{"tags":[],"description":["A placeholder can contain a header."]},"examplesExist":false,"repoPath":"src/elements/Placeholder/PlaceholderHeader.js","filename":"PlaceholderHeader.js","filenameWithoutExt":"PlaceholderHeader"}
 
 /***/ }),
 /* 1659 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"PopupContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["The content of the Popup"],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Classes to add to the Popup content className."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"PopupContent","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Popup","subcomponentName":"Content","subcomponents":null,"apiPath":"Popup.Content","componentClassName":"content","docblock":{"tags":[],"description":["A PopupContent displays the content body of a Popover."]},"examplesExist":false,"repoPath":"src/modules/Popup/PopupContent.js","filename":"PopupContent.js","filenameWithoutExt":"PopupContent"}
+module.exports = {"displayName":"PlaceholderImage","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["An image can modify size correctly with responsive styles."],"tags":[],"value":[],"name":"rectangular"},{"type":"bool","required":false,"description":["An image can modify size correctly with responsive styles."],"tags":[],"value":[],"name":"square"}],"constructorName":"PlaceholderImage","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Placeholder","subcomponentName":"Image","subcomponents":null,"apiPath":"Placeholder.Image","componentClassName":"image","docblock":{"tags":[],"description":["A placeholder can contain an image."]},"examplesExist":false,"repoPath":"src/elements/Placeholder/PlaceholderImage.js","filename":"PlaceholderImage.js","filenameWithoutExt":"PlaceholderImage"}
 
 /***/ }),
 /* 1660 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"PopupHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"PopupHeader","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Popup","subcomponentName":"Header","subcomponents":null,"apiPath":"Popup.Header","componentClassName":"header","docblock":{"tags":[],"description":["A PopupHeader displays a header in a Popover."]},"examplesExist":false,"repoPath":"src/modules/Popup/PopupHeader.js","filename":"PopupHeader.js","filenameWithoutExt":"PopupHeader"}
+module.exports = {"displayName":"PlaceholderLine","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A line can specify how long its contents should appear."],"tags":[],"value":["full","very long","long","medium","short","very short"],"name":"length"}],"constructorName":"PlaceholderLine","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Placeholder","subcomponentName":"Line","subcomponents":null,"apiPath":"Placeholder.Line","componentClassName":"line","docblock":{"tags":[],"description":["A placeholder can contain have lines of text."]},"examplesExist":false,"repoPath":"src/elements/Placeholder/PlaceholderLine.js","filename":"PlaceholderLine.js","filenameWithoutExt":"PlaceholderLine"}
 
 /***/ }),
 /* 1661 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Portal","props":[{"type":"node","required":true,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close when the document is clicked."],"defaultValue":"true","tags":[],"name":"closeOnDocumentClick"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close when escape is pressed is displayed."],"defaultValue":"true","tags":[],"name":"closeOnEscape"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close when mousing out of the portal.","NOTE: This will prevent `closeOnTriggerMouseLeave` when mousing over the","gap from the trigger to the portal."],"tags":[],"name":"closeOnPortalMouseLeave"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close on blur of the trigger."],"tags":[],"name":"closeOnTriggerBlur"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close on click of the trigger."],"tags":[],"name":"closeOnTriggerClick"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close when mousing out of the trigger."],"tags":[],"name":"closeOnTriggerMouseLeave"},{"type":"bool","required":false,"description":["Initial value of open."],"tags":[],"name":"defaultOpen"},{"type":"string","required":false,"description":["Event pool namespace that is used to handle component events"],"defaultValue":"'default'","tags":[],"name":"eventPool"},{"type":"any","required":false,"description":["The node where the portal should mount."],"tags":[],"name":"mountNode"},{"type":"number","required":false,"description":["Milliseconds to wait before opening on mouse over"],"tags":[],"name":"mouseEnterDelay"},{"type":"number","required":false,"description":["Milliseconds to wait before closing on mouse leave"],"tags":[],"name":"mouseLeaveDelay"},{"type":"func","required":false,"description":["Called when a close event happens"],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClose"},{"type":"func","required":false,"description":["Called when the portal is mounted on the DOM."],"tags":[],"name":"onMount"},{"type":"func","required":false,"description":["Called when an open event happens"],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onOpen"},{"type":"func","required":false,"description":["Called when the portal is unmounted from the DOM."],"tags":[],"name":"onUnmount"},{"type":"bool","required":false,"description":["Controls whether or not the portal is displayed."],"tags":[],"name":"open"},{"type":"bool","required":false,"description":["Controls whether or not the portal should open when the trigger is clicked."],"defaultValue":"true","tags":[],"name":"openOnTriggerClick"},{"type":"bool","required":false,"description":["Controls whether or not the portal should open on focus of the trigger."],"tags":[],"name":"openOnTriggerFocus"},{"type":"bool","required":false,"description":["Controls whether or not the portal should open when mousing over the trigger."],"tags":[],"name":"openOnTriggerMouseEnter"},{"type":"node","required":false,"description":["Element to be rendered in-place where the portal is defined."],"tags":[],"name":"trigger"},{"type":"custom","required":false,"description":["Called with a ref to the trigger node."],"tags":[],"name":"triggerRef"}],"constructorName":"Portal","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["PortalInner"],"apiPath":"Portal","componentClassName":"portal","docblock":{"tags":[{"title":"see","description":"Modal"},{"title":"see","description":"Popup"},{"title":"see","description":"Dimmer"},{"title":"see","description":"Confirm"}],"description":["A component that allows you to render children outside their parent."]},"examplesExist":true,"repoPath":"src/addons/Portal/Portal.js","filename":"Portal.js","filenameWithoutExt":"Portal"}
+module.exports = {"displayName":"PlaceholderParagraph","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"PlaceholderParagraph","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Placeholder","subcomponentName":"Paragraph","subcomponents":null,"apiPath":"Placeholder.Paragraph","componentClassName":"paragraph","docblock":{"tags":[],"description":["A placeholder can contain a paragraph."]},"examplesExist":false,"repoPath":"src/elements/Placeholder/PlaceholderParagraph.js","filename":"PlaceholderParagraph.js","filenameWithoutExt":"PlaceholderParagraph"}
 
 /***/ }),
 /* 1662 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"PortalInner","props":[{"type":"node","required":true,"description":["Primary content."],"tags":[],"name":"children"},{"type":"custom","required":false,"description":["Called with a ref to the inner node."],"tags":[],"name":"innerRef"},{"type":"any","required":false,"description":["The node where the portal should mount."],"tags":[],"name":"mountNode"},{"type":"func","required":false,"description":["Called when the portal is mounted on the DOM"],"tags":[],"name":"onMount"},{"type":"func","required":false,"description":["Called when the portal is unmounted from the DOM"],"tags":[],"name":"onUnmount"}],"constructorName":"PortalInner","type":"addon","isParent":false,"isChild":true,"parentDisplayName":"Portal","subcomponentName":"Inner","subcomponents":null,"apiPath":"Portal.Inner","componentClassName":"inner","docblock":{"tags":[],"description":["An inner component that allows you to render children outside their parent."]},"examplesExist":false,"repoPath":"src/addons/Portal/PortalInner.js","filename":"PortalInner.js","filenameWithoutExt":"PortalInner"}
+module.exports = {"displayName":"Popup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["Display the popup without the pointing arrow."],"tags":[],"name":"basic"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Simple text content for the popover."],"tags":[],"name":"content"},{"type":"object|custom","required":false,"description":["Existing element the pop-up should be bound to."],"tags":[],"value":[],"name":"context"},{"type":"bool","required":false,"description":["A disabled popup only renders its trigger."],"defaultValue":"false","tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["Enables the Popper.js event listeners."],"defaultValue":"true","tags":[],"name":"eventsEnabled"},{"type":"bool","required":false,"description":["A flowing Popup has no maximum width and continues to flow to fit its content."],"tags":[],"name":"flowing"},{"type":"custom","required":false,"description":["Header displayed above the content in bold."],"tags":[],"name":"header"},{"type":"bool","required":false,"description":["Hide the Popup when scrolling the window."],"tags":[],"name":"hideOnScroll"},{"type":"bool","required":false,"description":["Whether the popup should not close on hover."],"tags":[],"name":"hoverable"},{"type":"bool","required":false,"description":["Invert the colors of the Popup."],"tags":[],"name":"inverted"},{"type":"func|arrayOf","required":false,"description":["Offset values in px unit to apply to rendered popup. The basic offset accepts an","array with two numbers in the form [skidding, distance]:","- `skidding` displaces the Popup along the reference element","- `distance` displaces the Popup away from, or toward, the reference element in the direction of its placement. A positive number displaces it further away, while a negative number lets it overlap the reference."],"tags":[{"title":"see","description":"https://popper.js.org/docs/v2/modifiers/offset/"}],"value":[],"name":"offset"},{"type":"enum|arrayOf","required":false,"description":["Events triggering the popup."],"defaultValue":"['click', 'hover']","tags":[],"value":["hover","click","focus"],"name":"on"},{"type":"func","required":false,"description":["Called when a close event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClose"},{"type":"func","required":false,"description":["Called when the portal is mounted on the DOM."],"tags":[],"name":"onMount"},{"type":"func","required":false,"description":["Called when an open event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onOpen"},{"type":"func","required":false,"description":["Called when the portal is unmounted from the DOM."],"tags":[],"name":"onUnmount"},{"type":"bool","required":false,"description":["Disables automatic repositioning of the component, it will always be placed according to the position value."],"defaultValue":"false","tags":[],"name":"pinned"},{"type":"custom","required":false,"description":["A wrapping element for an actual content that will be used for positioning."],"tags":[],"name":"popper"},{"type":"array","required":false,"description":["A popup can have dependencies which update will schedule a position update."],"tags":[],"name":"popperDependencies"},{"type":"array","required":false,"description":["An array containing custom settings for the Popper.js modifiers."],"defaultValue":"[]","tags":[],"name":"popperModifiers"},{"type":"enum","required":false,"description":["Position for the popover."],"defaultValue":"'top left'","tags":[],"value":["top center","top left","top right","bottom center","bottom left","bottom right","right center","left center"],"name":"position"},{"type":"bool","required":false,"description":["Tells `Popper.js` to use the `position: fixed` strategy to position the popover."],"tags":[],"name":"positionFixed"},{"type":"enum","required":false,"description":["Popup size."],"tags":[],"value":["mini","tiny","small","large","huge"],"name":"size"},{"type":"object","required":false,"description":["Custom Popup style."],"tags":[],"name":"style"},{"type":"node","required":false,"description":["Element to be rendered in-place where the popup is defined."],"tags":[],"name":"trigger"},{"type":"bool|enum","required":false,"description":["Popup width."],"tags":[],"value":["very"],"name":"wide"}],"constructorName":"Popup","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["PopupContent","PopupHeader"],"apiPath":"Popup","componentClassName":"popup","docblock":{"tags":[],"description":["A Popup displays additional information on top of a page."]},"examplesExist":true,"repoPath":"src/modules/Popup/Popup.js","filename":"Popup.js","filenameWithoutExt":"Popup"}
 
 /***/ }),
 /* 1663 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Progress","props":[{"type":"bool","required":false,"description":["A progress bar can show activity."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"enum","required":false,"description":["A progress bar can attach to and show the progress of an element (i.e. Card or Segment)."],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["Whether success state should automatically trigger when progress completes."],"tags":[],"name":"autoSuccess"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A progress bar can have different colors."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A progress bar be disabled."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["A progress bar can show a error state."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["An indicating progress bar visually indicates the current level of progress of a task."],"tags":[],"name":"indicating"},{"type":"bool","required":false,"description":["A progress bar can have its colors inverted."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Can be set to either to display progress as percent or ratio."],"tags":[],"name":"label"},{"type":"union","required":false,"description":["Current percent complete."],"tags":[],"value":[],"name":"percent"},{"type":"number","required":false,"description":["Decimal point precision for calculated progress."],"tags":[],"name":"precision"},{"type":"bool|enum","required":false,"description":["A progress bar can contain a text value indicating current progress."],"tags":[],"value":["percent","ratio","value"],"name":"progress"},{"type":"enum","required":false,"description":["A progress bar can vary in size."],"tags":[],"value":["tiny","small","medium","large","big"],"name":"size"},{"type":"bool","required":false,"description":["A progress bar can show a success state."],"tags":[],"name":"success"},{"type":"union","required":false,"description":["For use with value. Together, these will calculate the percent. Mutually excludes percent."],"tags":[],"value":[],"name":"total"},{"type":"union","required":false,"description":["For use with total. Together, these will calculate the percent. Mutually excludes percent."],"tags":[],"value":[],"name":"value"},{"type":"bool","required":false,"description":["A progress bar can show a warning state."],"tags":[],"name":"warning"}],"constructorName":"Progress","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Progress","componentClassName":"progress","docblock":{"tags":[],"description":["A progress bar shows the progression of a task."]},"examplesExist":true,"repoPath":"src/modules/Progress/Progress.js","filename":"Progress.js","filenameWithoutExt":"Progress"}
+module.exports = {"displayName":"PopupContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["The content of the Popup"],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Classes to add to the Popup content className."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"PopupContent","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Popup","subcomponentName":"Content","subcomponents":null,"apiPath":"Popup.Content","componentClassName":"content","docblock":{"tags":[],"description":["A PopupContent displays the content body of a Popover."]},"examplesExist":false,"repoPath":"src/modules/Popup/PopupContent.js","filename":"PopupContent.js","filenameWithoutExt":"PopupContent"}
 
 /***/ }),
 /* 1664 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Radio","props":[{"type":"custom","required":false,"description":["Format to emphasize the current selection state."],"tags":[],"name":"slider"},{"type":"custom","required":false,"description":["Format to show an on or off choice."],"tags":[],"name":"toggle"},{"type":"custom","required":false,"description":["HTML input type, either checkbox or radio."],"defaultValue":"'radio'","tags":[],"name":"type"}],"constructorName":"Radio","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Radio","componentClassName":"radio","docblock":{"tags":[{"title":"see","description":"Checkbox"},{"title":"see","description":"Form"}],"description":["A Radio is sugar for <Checkbox radio />.","Useful for exclusive groups of sliders or toggles."]},"examplesExist":true,"repoPath":"src/addons/Radio/Radio.js","filename":"Radio.js","filenameWithoutExt":"Radio"}
+module.exports = {"displayName":"PopupHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"PopupHeader","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Popup","subcomponentName":"Header","subcomponents":null,"apiPath":"Popup.Header","componentClassName":"header","docblock":{"tags":[],"description":["A PopupHeader displays a header in a Popover."]},"examplesExist":false,"repoPath":"src/modules/Popup/PopupHeader.js","filename":"PopupHeader.js","filenameWithoutExt":"PopupHeader"}
 
 /***/ }),
 /* 1665 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Rail","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A rail can appear attached to the main viewport."],"tags":[],"name":"attached"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool|enum","required":false,"description":["A rail can appear closer to the main viewport."],"tags":[],"value":["very"],"name":"close"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A rail can create a division between itself and a container."],"tags":[],"name":"dividing"},{"type":"bool","required":false,"description":["A rail can attach itself to the inside of a container."],"tags":[],"name":"internal"},{"type":"enum","required":true,"description":["A rail can be presented on the left or right side of a container."],"tags":[],"value":["left","right"],"name":"position"},{"type":"enum","required":false,"description":["A rail can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"}],"constructorName":"Rail","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Rail","componentClassName":"rail","docblock":{"tags":[],"description":["A rail is used to show accompanying content outside the boundaries of the main view of a site."]},"examplesExist":true,"repoPath":"src/elements/Rail/Rail.js","filename":"Rail.js","filenameWithoutExt":"Rail"}
+module.exports = {"displayName":"Portal","props":[{"type":"node","required":true,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close when the document is clicked."],"defaultValue":"true","tags":[],"name":"closeOnDocumentClick"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close when escape is pressed is displayed."],"defaultValue":"true","tags":[],"name":"closeOnEscape"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close when mousing out of the portal.","NOTE: This will prevent `closeOnTriggerMouseLeave` when mousing over the","gap from the trigger to the portal."],"tags":[],"name":"closeOnPortalMouseLeave"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close on blur of the trigger."],"tags":[],"name":"closeOnTriggerBlur"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close on click of the trigger."],"tags":[],"name":"closeOnTriggerClick"},{"type":"bool","required":false,"description":["Controls whether or not the portal should close when mousing out of the trigger."],"tags":[],"name":"closeOnTriggerMouseLeave"},{"type":"bool","required":false,"description":["Initial value of open."],"tags":[],"name":"defaultOpen"},{"type":"string","required":false,"description":["Event pool namespace that is used to handle component events"],"defaultValue":"'default'","tags":[],"name":"eventPool"},{"type":"any","required":false,"description":["The node where the portal should mount."],"tags":[],"name":"mountNode"},{"type":"number","required":false,"description":["Milliseconds to wait before opening on mouse over"],"tags":[],"name":"mouseEnterDelay"},{"type":"number","required":false,"description":["Milliseconds to wait before closing on mouse leave"],"tags":[],"name":"mouseLeaveDelay"},{"type":"func","required":false,"description":["Called when a close event happens"],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClose"},{"type":"func","required":false,"description":["Called when the portal is mounted on the DOM."],"tags":[],"name":"onMount"},{"type":"func","required":false,"description":["Called when an open event happens"],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onOpen"},{"type":"func","required":false,"description":["Called when the portal is unmounted from the DOM."],"tags":[],"name":"onUnmount"},{"type":"bool","required":false,"description":["Controls whether or not the portal is displayed."],"tags":[],"name":"open"},{"type":"bool","required":false,"description":["Controls whether or not the portal should open when the trigger is clicked."],"defaultValue":"true","tags":[],"name":"openOnTriggerClick"},{"type":"bool","required":false,"description":["Controls whether or not the portal should open on focus of the trigger."],"tags":[],"name":"openOnTriggerFocus"},{"type":"bool","required":false,"description":["Controls whether or not the portal should open when mousing over the trigger."],"tags":[],"name":"openOnTriggerMouseEnter"},{"type":"node","required":false,"description":["Element to be rendered in-place where the portal is defined."],"tags":[],"name":"trigger"},{"type":"custom","required":false,"description":["Called with a ref to the trigger node."],"tags":[],"name":"triggerRef"}],"constructorName":"Portal","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["PortalInner"],"apiPath":"Portal","componentClassName":"portal","docblock":{"tags":[{"title":"see","description":"Modal"},{"title":"see","description":"Popup"},{"title":"see","description":"Dimmer"},{"title":"see","description":"Confirm"}],"description":["A component that allows you to render children outside their parent."]},"examplesExist":true,"repoPath":"src/addons/Portal/Portal.js","filename":"Portal.js","filenameWithoutExt":"Portal"}
 
 /***/ }),
 /* 1666 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Rating","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool|enum","required":false,"description":["You can clear the rating by clicking on the current start rating.","By default a rating will be only clearable if there is 1 icon.","Setting to `true`/`false` will allow or disallow a user to clear their rating."],"defaultValue":"'auto'","tags":[],"value":["auto"],"name":"clearable"},{"type":"number|string","required":false,"description":["The initial rating value."],"tags":[],"value":[],"name":"defaultRating"},{"type":"bool","required":false,"description":["You can disable or enable interactive rating.  Makes a read-only rating."],"tags":[],"name":"disabled"},{"type":"enum","required":false,"description":["A rating can use a set of star or heart icons."],"tags":[],"value":["star","heart"],"name":"icon"},{"type":"number|string","required":false,"description":["The total number of icons."],"defaultValue":"1","tags":[],"value":[],"name":"maxRating"},{"type":"func","required":false,"description":["Called after user selects a new rating."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and proposed rating.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onRate"},{"type":"number|string","required":false,"description":["The current number of active icons."],"tags":[],"value":[],"name":"rating"},{"type":"enum","required":false,"description":["A progress bar can vary in size."],"tags":[],"value":["mini","tiny","small","large","huge","massive"],"name":"size"}],"constructorName":"Rating","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["RatingIcon"],"apiPath":"Rating","componentClassName":"rating","docblock":{"tags":[],"description":["A rating indicates user interest in content."]},"examplesExist":true,"repoPath":"src/modules/Rating/Rating.js","filename":"Rating.js","filenameWithoutExt":"Rating"}
+module.exports = {"displayName":"PortalInner","props":[{"type":"node","required":true,"description":["Primary content."],"tags":[],"name":"children"},{"type":"custom","required":false,"description":["Called with a ref to the inner node."],"tags":[],"name":"innerRef"},{"type":"any","required":false,"description":["The node where the portal should mount."],"tags":[],"name":"mountNode"},{"type":"func","required":false,"description":["Called when the portal is mounted on the DOM"],"tags":[],"name":"onMount"},{"type":"func","required":false,"description":["Called when the portal is unmounted from the DOM"],"tags":[],"name":"onUnmount"}],"constructorName":"PortalInner","type":"addon","isParent":false,"isChild":true,"parentDisplayName":"Portal","subcomponentName":"Inner","subcomponents":null,"apiPath":"Portal.Inner","componentClassName":"inner","docblock":{"tags":[],"description":["An inner component that allows you to render children outside their parent."]},"examplesExist":false,"repoPath":"src/addons/Portal/PortalInner.js","filename":"PortalInner.js","filenameWithoutExt":"PortalInner"}
 
 /***/ }),
 /* 1667 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"RatingIcon","props":[{"type":"bool","required":false,"description":["Indicates activity of an icon."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'i'","tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"number","required":false,"description":["An index of icon inside Rating."],"tags":[],"name":"index"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Called on keyup."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onKeyUp"},{"type":"func","required":false,"description":["Called on mouseenter."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onMouseEnter"},{"type":"bool","required":false,"description":["Indicates selection of an icon."],"tags":[],"name":"selected"}],"constructorName":"RatingIcon","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Rating","subcomponentName":"Icon","subcomponents":null,"apiPath":"Rating.Icon","componentClassName":"icon","docblock":{"tags":[],"description":["An internal icon sub-component for Rating component"]},"examplesExist":false,"repoPath":"src/modules/Rating/RatingIcon.js","filename":"RatingIcon.js","filenameWithoutExt":"RatingIcon"}
+module.exports = {"displayName":"Progress","props":[{"type":"bool","required":false,"description":["A progress bar can show activity."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"enum","required":false,"description":["A progress bar can attach to and show the progress of an element (i.e. Card or Segment)."],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["Whether success state should automatically trigger when progress completes."],"tags":[],"name":"autoSuccess"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A progress bar can have different colors."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A progress bar be disabled."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["A progress bar can show a error state."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["An indicating progress bar visually indicates the current level of progress of a task."],"tags":[],"name":"indicating"},{"type":"bool","required":false,"description":["A progress bar can have its colors inverted."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Can be set to either to display progress as percent or ratio."],"tags":[],"name":"label"},{"type":"union","required":false,"description":["Current percent complete."],"tags":[],"value":[],"name":"percent"},{"type":"number","required":false,"description":["Decimal point precision for calculated progress."],"tags":[],"name":"precision"},{"type":"bool|enum","required":false,"description":["A progress bar can contain a text value indicating current progress."],"tags":[],"value":["percent","ratio","value"],"name":"progress"},{"type":"enum","required":false,"description":["A progress bar can vary in size."],"tags":[],"value":["tiny","small","medium","large","big"],"name":"size"},{"type":"bool","required":false,"description":["A progress bar can show a success state."],"tags":[],"name":"success"},{"type":"union","required":false,"description":["For use with value. Together, these will calculate the percent. Mutually excludes percent."],"tags":[],"value":[],"name":"total"},{"type":"union","required":false,"description":["For use with total. Together, these will calculate the percent. Mutually excludes percent."],"tags":[],"value":[],"name":"value"},{"type":"bool","required":false,"description":["A progress bar can show a warning state."],"tags":[],"name":"warning"}],"constructorName":"Progress","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Progress","componentClassName":"progress","docblock":{"tags":[],"description":["A progress bar shows the progression of a task."]},"examplesExist":true,"repoPath":"src/modules/Progress/Progress.js","filename":"Progress.js","filenameWithoutExt":"Progress"}
 
 /***/ }),
 /* 1668 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Reveal","props":[{"type":"bool","required":false,"description":["An active reveal displays its hidden content."],"tags":[],"name":"active"},{"type":"enum","required":false,"description":["An animation name that will be applied to Reveal."],"tags":[],"value":["fade","small fade","move","move right","move up","move down","rotate","rotate left"],"name":"animated"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A disabled reveal will not animate when hovered."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["An element can show its content without delay."],"tags":[],"name":"instant"}],"constructorName":"Reveal","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["RevealContent"],"apiPath":"Reveal","componentClassName":"reveal","docblock":{"tags":[],"description":["A reveal displays additional content in place of previous content when activated."]},"examplesExist":true,"repoPath":"src/elements/Reveal/Reveal.js","filename":"Reveal.js","filenameWithoutExt":"Reveal"}
+module.exports = {"displayName":"Radio","props":[{"type":"custom","required":false,"description":["Format to emphasize the current selection state."],"tags":[],"name":"slider"},{"type":"custom","required":false,"description":["Format to show an on or off choice."],"tags":[],"name":"toggle"},{"type":"custom","required":false,"description":["HTML input type, either checkbox or radio."],"defaultValue":"'radio'","tags":[],"name":"type"}],"constructorName":"Radio","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Radio","componentClassName":"radio","docblock":{"tags":[{"title":"see","description":"Checkbox"},{"title":"see","description":"Form"}],"description":["A Radio is sugar for <Checkbox radio />.","Useful for exclusive groups of sliders or toggles."]},"examplesExist":true,"repoPath":"src/addons/Radio/Radio.js","filename":"Radio.js","filenameWithoutExt":"Radio"}
 
 /***/ }),
 /* 1669 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"RevealContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A reveal may contain content that is visible before interaction."],"tags":[],"name":"hidden"},{"type":"bool","required":false,"description":["A reveal may contain content that is hidden before user interaction."],"tags":[],"name":"visible"}],"constructorName":"RevealContent","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Reveal","subcomponentName":"Content","subcomponents":null,"apiPath":"Reveal.Content","componentClassName":"content","docblock":{"tags":[],"description":["A content sub-component for the Reveal."]},"examplesExist":false,"repoPath":"src/elements/Reveal/RevealContent.js","filename":"RevealContent.js","filenameWithoutExt":"RevealContent"}
+module.exports = {"displayName":"Rail","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A rail can appear attached to the main viewport."],"tags":[],"name":"attached"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool|enum","required":false,"description":["A rail can appear closer to the main viewport."],"tags":[],"value":["very"],"name":"close"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A rail can create a division between itself and a container."],"tags":[],"name":"dividing"},{"type":"bool","required":false,"description":["A rail can attach itself to the inside of a container."],"tags":[],"name":"internal"},{"type":"enum","required":true,"description":["A rail can be presented on the left or right side of a container."],"tags":[],"value":["left","right"],"name":"position"},{"type":"enum","required":false,"description":["A rail can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"}],"constructorName":"Rail","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Rail","componentClassName":"rail","docblock":{"tags":[],"description":["A rail is used to show accompanying content outside the boundaries of the main view of a site."]},"examplesExist":true,"repoPath":"src/elements/Rail/Rail.js","filename":"Rail.js","filenameWithoutExt":"Rail"}
 
 /***/ }),
 /* 1670 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Search","props":[{"type":"string","required":false,"description":["A search can have its results aligned to its left or right container edge."],"tags":[],"name":"aligned"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A search can display results from remote content ordered by categories."],"tags":[],"name":"category"},{"type":"func","required":false,"description":["Renders the SearchCategory layout."],"tags":[{"title":"param","description":"The Renderable SearchCategory contents.","type":{"type":"NameExpression","name":"object"},"name":"categoryContent"},{"title":"param","description":"The Renderable SearchResult contents.","type":{"type":"NameExpression","name":"object"},"name":"resultsContent"},{"title":"returns","description":"Renderable SearchCategory layout.","type":{"type":"AllLiteral"}}],"name":"categoryLayoutRenderer"},{"type":"func","required":false,"description":["Renders the SearchCategory contents."],"tags":[{"title":"param","description":"The SearchCategory props object.","type":{"type":"NameExpression","name":"object"},"name":"props"},{"title":"returns","description":"Renderable SearchCategory contents.","type":{"type":"AllLiteral"}}],"name":"categoryRenderer"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Initial value of open."],"tags":[],"name":"defaultOpen"},{"type":"string","required":false,"description":["Initial value."],"tags":[],"name":"defaultValue"},{"type":"bool","required":false,"description":["A search can have its results take up the width of its container."],"tags":[],"name":"fluid"},{"type":"node|object","required":false,"description":["Shorthand for Icon."],"defaultValue":"'search'","tags":[],"value":[],"name":"icon"},{"type":"custom","required":false,"description":["Shorthand for input element."],"defaultValue":"'text'","tags":[],"name":"input"},{"type":"bool","required":false,"description":["A search can show a loading indicator."],"tags":[],"name":"loading"},{"type":"number","required":false,"description":["Minimum characters to query for results"],"defaultValue":"1","tags":[],"name":"minCharacters"},{"type":"node","required":false,"description":["Additional text for \"No Results\" message with less emphasis."],"tags":[],"name":"noResultsDescription"},{"type":"node","required":false,"description":["Message to display when there are no results."],"defaultValue":"'No results found.'","tags":[],"name":"noResultsMessage"},{"type":"func","required":false,"description":["Called on blur."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onBlur"},{"type":"func","required":false,"description":["Called on focus."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onFocus"},{"type":"func","required":false,"description":["Called on mousedown."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onMouseDown"},{"type":"func","required":false,"description":["Called when a result is selected."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onResultSelect"},{"type":"func","required":false,"description":["Called on search input change."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props, includes current value of search input.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onSearchChange"},{"type":"func","required":false,"description":["Called when the active selection index is changed."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onSelectionChange"},{"type":"bool","required":false,"description":["Controls whether or not the results menu is displayed."],"tags":[],"name":"open"},{"type":"func","required":false,"description":["Renders the SearchResult contents."],"tags":[{"title":"param","description":"The SearchResult props object.","type":{"type":"NameExpression","name":"object"},"name":"props"},{"title":"returns","description":"Renderable SearchResult contents.","type":{"type":"AllLiteral"}}],"name":"resultRenderer"},{"type":"arrayOf|shape","required":false,"description":["One of:","- array of Search.Result props e.g. `{ title: '', description: '' }` or","- object of categories e.g. `{ name: '', results: [{ title: '', description: '' }]`"],"tags":[],"value":[],"name":"results"},{"type":"bool","required":false,"description":["Whether the search should automatically select the first result after searching."],"tags":[],"name":"selectFirstResult"},{"type":"bool","required":false,"description":["Whether a \"no results\" message should be shown if no results are found."],"defaultValue":"true","tags":[],"name":"showNoResults"},{"type":"enum","required":false,"description":["A search can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"string","required":false,"description":["Current value of the search input. Creates a controlled component."],"tags":[],"name":"value"}],"constructorName":"Search","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["SearchCategory","SearchCategoryLayout","SearchResult","SearchResults"],"apiPath":"Search","componentClassName":"search","docblock":{"tags":[],"description":["A search module allows a user to query for results from a selection of data"]},"examplesExist":true,"repoPath":"src/modules/Search/Search.js","filename":"Search.js","filenameWithoutExt":"Search"}
+module.exports = {"displayName":"Rating","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool|enum","required":false,"description":["You can clear the rating by clicking on the current start rating.","By default a rating will be only clearable if there is 1 icon.","Setting to `true`/`false` will allow or disallow a user to clear their rating."],"defaultValue":"'auto'","tags":[],"value":["auto"],"name":"clearable"},{"type":"number|string","required":false,"description":["The initial rating value."],"tags":[],"value":[],"name":"defaultRating"},{"type":"bool","required":false,"description":["You can disable or enable interactive rating.  Makes a read-only rating."],"tags":[],"name":"disabled"},{"type":"enum","required":false,"description":["A rating can use a set of star or heart icons."],"tags":[],"value":["star","heart"],"name":"icon"},{"type":"number|string","required":false,"description":["The total number of icons."],"defaultValue":"1","tags":[],"value":[],"name":"maxRating"},{"type":"func","required":false,"description":["Called after user selects a new rating."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and proposed rating.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onRate"},{"type":"number|string","required":false,"description":["The current number of active icons."],"tags":[],"value":[],"name":"rating"},{"type":"enum","required":false,"description":["A progress bar can vary in size."],"tags":[],"value":["mini","tiny","small","large","huge","massive"],"name":"size"}],"constructorName":"Rating","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["RatingIcon"],"apiPath":"Rating","componentClassName":"rating","docblock":{"tags":[],"description":["A rating indicates user interest in content."]},"examplesExist":true,"repoPath":"src/modules/Rating/Rating.js","filename":"Rating.js","filenameWithoutExt":"Rating"}
 
 /***/ }),
 /* 1671 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"SearchCategory","props":[{"type":"bool","required":false,"description":["The item currently selected by keyboard shortcut."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"func","required":false,"description":["Renders the category layout contents."],"defaultValue":"SearchCategoryLayout","tags":[{"title":"param","description":"The SearchCategoryLayout props object.","type":{"type":"NameExpression","name":"object"},"name":"props"},{"title":"returns","description":"Renderable category layout contents.","type":{"type":"AllLiteral"}}],"name":"layoutRenderer"},{"type":"string","required":false,"description":["Display name."],"tags":[],"name":"name"},{"type":"func","required":false,"description":["Renders the category contents."],"defaultValue":"({ name }) => name","tags":[{"title":"param","description":"The SearchCategory props object.","type":{"type":"NameExpression","name":"object"},"name":"props"},{"title":"returns","description":"Renderable category contents.","type":{"type":"AllLiteral"}}],"name":"renderer"},{"type":"array","required":false,"description":["Array of Search.Result props."],"tags":[],"name":"results"}],"constructorName":"SearchCategory","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Search","subcomponentName":"Category","subcomponents":null,"apiPath":"Search.Category","componentClassName":"category","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/modules/Search/SearchCategory.js","filename":"SearchCategory.js","filenameWithoutExt":"SearchCategory"}
+module.exports = {"displayName":"RatingIcon","props":[{"type":"bool","required":false,"description":["Indicates activity of an icon."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'i'","tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"number","required":false,"description":["An index of icon inside Rating."],"tags":[],"name":"index"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"func","required":false,"description":["Called on keyup."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onKeyUp"},{"type":"func","required":false,"description":["Called on mouseenter."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onMouseEnter"},{"type":"bool","required":false,"description":["Indicates selection of an icon."],"tags":[],"name":"selected"}],"constructorName":"RatingIcon","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Rating","subcomponentName":"Icon","subcomponents":null,"apiPath":"Rating.Icon","componentClassName":"icon","docblock":{"tags":[],"description":["An internal icon sub-component for Rating component"]},"examplesExist":false,"repoPath":"src/modules/Rating/RatingIcon.js","filename":"RatingIcon.js","filenameWithoutExt":"RatingIcon"}
 
 /***/ }),
 /* 1672 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"SearchCategoryLayout","props":[{"type":"element","required":true,"description":["The rendered category content"],"tags":[],"name":"categoryContent"},{"type":"element","required":true,"description":["The rendered results content"],"tags":[],"name":"resultsContent"}],"constructorName":"SearchCategoryLayout","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Search","subcomponentName":"CategoryLayout","subcomponents":null,"apiPath":"Search.CategoryLayout","componentClassName":"categorylayout","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/modules/Search/SearchCategoryLayout.js","filename":"SearchCategoryLayout.js","filenameWithoutExt":"SearchCategoryLayout"}
+module.exports = {"displayName":"Reveal","props":[{"type":"bool","required":false,"description":["An active reveal displays its hidden content."],"tags":[],"name":"active"},{"type":"enum","required":false,"description":["An animation name that will be applied to Reveal."],"tags":[],"value":["fade","small fade","move","move right","move up","move down","rotate","rotate left"],"name":"animated"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A disabled reveal will not animate when hovered."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["An element can show its content without delay."],"tags":[],"name":"instant"}],"constructorName":"Reveal","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["RevealContent"],"apiPath":"Reveal","componentClassName":"reveal","docblock":{"tags":[],"description":["A reveal displays additional content in place of previous content when activated."]},"examplesExist":true,"repoPath":"src/elements/Reveal/Reveal.js","filename":"Reveal.js","filenameWithoutExt":"Reveal"}
 
 /***/ }),
 /* 1673 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"SearchResult","props":[{"type":"bool","required":false,"description":["The item currently selected by keyboard shortcut."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"string","required":false,"description":["Additional text with less emphasis."],"tags":[],"name":"description"},{"type":"number|string","required":false,"description":["A unique identifier."],"tags":[],"value":[],"name":"id"},{"type":"string","required":false,"description":["Add an image to the item."],"tags":[],"name":"image"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"string","required":false,"description":["Customized text for price."],"tags":[],"name":"price"},{"type":"func","required":false,"description":["Renders the result contents."],"defaultValue":"({ image, price, title, description }) => [\n  image && (\n    <div key='image' className='image'>\n      {createHTMLImage(image, { autoGenerateKey: false })}\n    </div>\n  ),\n  <div key='content' className='content'>\n    {price && <div className='price'>{price}</div>}\n    {title && <div className='title'>{title}</div>}\n    {description && <div className='description'>{description}</div>}\n  </div>,\n]","tags":[{"title":"param","description":"The SearchResult props object.","type":{"type":"NameExpression","name":"object"},"name":"props"},{"title":"returns","description":"Renderable result contents.","type":{"type":"AllLiteral"}}],"name":"renderer"},{"type":"string","required":true,"description":["Display title."],"tags":[],"name":"title"}],"constructorName":"SearchResult","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Search","subcomponentName":"Result","subcomponents":null,"apiPath":"Search.Result","componentClassName":"result","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/modules/Search/SearchResult.js","filename":"SearchResult.js","filenameWithoutExt":"SearchResult"}
+module.exports = {"displayName":"RevealContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A reveal may contain content that is visible before interaction."],"tags":[],"name":"hidden"},{"type":"bool","required":false,"description":["A reveal may contain content that is hidden before user interaction."],"tags":[],"name":"visible"}],"constructorName":"RevealContent","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Reveal","subcomponentName":"Content","subcomponents":null,"apiPath":"Reveal.Content","componentClassName":"content","docblock":{"tags":[],"description":["A content sub-component for the Reveal."]},"examplesExist":false,"repoPath":"src/elements/Reveal/RevealContent.js","filename":"RevealContent.js","filenameWithoutExt":"RevealContent"}
 
 /***/ }),
 /* 1674 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"SearchResults","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"SearchResults","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Search","subcomponentName":"Results","subcomponents":null,"apiPath":"Search.Results","componentClassName":"results","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/modules/Search/SearchResults.js","filename":"SearchResults.js","filenameWithoutExt":"SearchResults"}
+module.exports = {"displayName":"Search","props":[{"type":"string","required":false,"description":["A search can have its results aligned to its left or right container edge."],"tags":[],"name":"aligned"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool","required":false,"description":["A search can display results from remote content ordered by categories."],"tags":[],"name":"category"},{"type":"func","required":false,"description":["Renders the SearchCategory layout."],"tags":[{"title":"param","description":"The Renderable SearchCategory contents.","type":{"type":"NameExpression","name":"object"},"name":"categoryContent"},{"title":"param","description":"The Renderable SearchResult contents.","type":{"type":"NameExpression","name":"object"},"name":"resultsContent"},{"title":"returns","description":"Renderable SearchCategory layout.","type":{"type":"AllLiteral"}}],"name":"categoryLayoutRenderer"},{"type":"func","required":false,"description":["Renders the SearchCategory contents."],"tags":[{"title":"param","description":"The SearchCategory props object.","type":{"type":"NameExpression","name":"object"},"name":"props"},{"title":"returns","description":"Renderable SearchCategory contents.","type":{"type":"AllLiteral"}}],"name":"categoryRenderer"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["Initial value of open."],"tags":[],"name":"defaultOpen"},{"type":"string","required":false,"description":["Initial value."],"tags":[],"name":"defaultValue"},{"type":"bool","required":false,"description":["A search can have its results take up the width of its container."],"tags":[],"name":"fluid"},{"type":"node|object","required":false,"description":["Shorthand for Icon."],"defaultValue":"'search'","tags":[],"value":[],"name":"icon"},{"type":"custom","required":false,"description":["Shorthand for input element."],"defaultValue":"'text'","tags":[],"name":"input"},{"type":"bool","required":false,"description":["A search can show a loading indicator."],"tags":[],"name":"loading"},{"type":"number","required":false,"description":["Minimum characters to query for results"],"defaultValue":"1","tags":[],"name":"minCharacters"},{"type":"node","required":false,"description":["Additional text for \"No Results\" message with less emphasis."],"tags":[],"name":"noResultsDescription"},{"type":"node","required":false,"description":["Message to display when there are no results."],"defaultValue":"'No results found.'","tags":[],"name":"noResultsMessage"},{"type":"func","required":false,"description":["Called on blur."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onBlur"},{"type":"func","required":false,"description":["Called on focus."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onFocus"},{"type":"func","required":false,"description":["Called on mousedown."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onMouseDown"},{"type":"func","required":false,"description":["Called when a result is selected."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onResultSelect"},{"type":"func","required":false,"description":["Called on search input change."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props, includes current value of search input.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onSearchChange"},{"type":"func","required":false,"description":["Called when the active selection index is changed."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onSelectionChange"},{"type":"bool","required":false,"description":["Controls whether or not the results menu is displayed."],"tags":[],"name":"open"},{"type":"func","required":false,"description":["Renders the SearchResult contents."],"tags":[{"title":"param","description":"The SearchResult props object.","type":{"type":"NameExpression","name":"object"},"name":"props"},{"title":"returns","description":"Renderable SearchResult contents.","type":{"type":"AllLiteral"}}],"name":"resultRenderer"},{"type":"arrayOf|shape","required":false,"description":["One of:","- array of Search.Result props e.g. `{ title: '', description: '' }` or","- object of categories e.g. `{ name: '', results: [{ title: '', description: '' }]`"],"tags":[],"value":[],"name":"results"},{"type":"bool","required":false,"description":["Whether the search should automatically select the first result after searching."],"tags":[],"name":"selectFirstResult"},{"type":"bool","required":false,"description":["Whether a \"no results\" message should be shown if no results are found."],"defaultValue":"true","tags":[],"name":"showNoResults"},{"type":"enum","required":false,"description":["A search can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"string","required":false,"description":["Current value of the search input. Creates a controlled component."],"tags":[],"name":"value"}],"constructorName":"Search","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["SearchCategory","SearchCategoryLayout","SearchResult","SearchResults"],"apiPath":"Search","componentClassName":"search","docblock":{"tags":[],"description":["A search module allows a user to query for results from a selection of data"]},"examplesExist":true,"repoPath":"src/modules/Search/Search.js","filename":"Search.js","filenameWithoutExt":"Search"}
 
 /***/ }),
 /* 1675 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Segment","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["Attach segment to other content, like a header."],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["A basic segment has no special formatting."],"tags":[],"name":"basic"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["A segment can be circular."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A segment can clear floated content."],"tags":[],"name":"clearing"},{"type":"enum","required":false,"description":["Segment can be colored."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"bool","required":false,"description":["A segment may take up only as much space as is necessary."],"tags":[],"name":"compact"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A segment may show its content is disabled."],"tags":[],"name":"disabled"},{"type":"enum","required":false,"description":["Segment content can be floated to the left or right."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["A segment can have its colors inverted for contrast."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["A segment may show its content is being loaded."],"tags":[],"name":"loading"},{"type":"bool|enum","required":false,"description":["A segment can increase its padding."],"tags":[],"value":["very"],"name":"padded"},{"type":"bool","required":false,"description":["Formatted to look like a pile of pages."],"tags":[],"name":"piled"},{"type":"bool","required":false,"description":["A segment can be used to reserve space for conditionally displayed content."],"tags":[],"name":"placeholder"},{"type":"bool","required":false,"description":["A segment may be formatted to raise above the page."],"tags":[],"name":"raised"},{"type":"bool","required":false,"description":["A segment can be formatted to appear less noticeable."],"tags":[],"name":"secondary"},{"type":"enum","required":false,"description":["A segment can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["Formatted to show it contains multiple pages."],"tags":[],"name":"stacked"},{"type":"bool","required":false,"description":["A segment can be formatted to appear even less noticeable."],"tags":[],"name":"tertiary"},{"type":"enum","required":false,"description":["Formats content to be aligned as part of a vertical group."],"tags":[],"value":["left","center","right"],"name":"textAlign"},{"type":"bool","required":false,"description":["Formats content to be aligned vertically."],"tags":[],"name":"vertical"}],"constructorName":"Segment","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["SegmentGroup","SegmentInline"],"apiPath":"Segment","componentClassName":"segment","docblock":{"tags":[],"description":["A segment is used to create a grouping of related content."]},"examplesExist":true,"repoPath":"src/elements/Segment/Segment.js","filename":"Segment.js","filenameWithoutExt":"Segment"}
+module.exports = {"displayName":"SearchCategory","props":[{"type":"bool","required":false,"description":["The item currently selected by keyboard shortcut."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"func","required":false,"description":["Renders the category layout contents."],"defaultValue":"SearchCategoryLayout","tags":[{"title":"param","description":"The SearchCategoryLayout props object.","type":{"type":"NameExpression","name":"object"},"name":"props"},{"title":"returns","description":"Renderable category layout contents.","type":{"type":"AllLiteral"}}],"name":"layoutRenderer"},{"type":"string","required":false,"description":["Display name."],"tags":[],"name":"name"},{"type":"func","required":false,"description":["Renders the category contents."],"defaultValue":"({ name }) => name","tags":[{"title":"param","description":"The SearchCategory props object.","type":{"type":"NameExpression","name":"object"},"name":"props"},{"title":"returns","description":"Renderable category contents.","type":{"type":"AllLiteral"}}],"name":"renderer"},{"type":"array","required":false,"description":["Array of Search.Result props."],"tags":[],"name":"results"}],"constructorName":"SearchCategory","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Search","subcomponentName":"Category","subcomponents":null,"apiPath":"Search.Category","componentClassName":"category","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/modules/Search/SearchCategory.js","filename":"SearchCategory.js","filenameWithoutExt":"SearchCategory"}
 
 /***/ }),
 /* 1676 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"SegmentGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A segment may take up only as much space as is necessary."],"tags":[],"name":"compact"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Formats content to be aligned horizontally."],"tags":[],"name":"horizontal"},{"type":"bool","required":false,"description":["Formatted to look like a pile of pages."],"tags":[],"name":"piled"},{"type":"bool","required":false,"description":["A segment group may be formatted to raise above the page."],"tags":[],"name":"raised"},{"type":"enum","required":false,"description":["A segment group can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["Formatted to show it contains multiple pages."],"tags":[],"name":"stacked"}],"constructorName":"SegmentGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Segment","subcomponentName":"Group","subcomponents":null,"apiPath":"Segment.Group","componentClassName":"segments","docblock":{"tags":[],"description":["A group of segments can be formatted to appear together."]},"examplesExist":false,"repoPath":"src/elements/Segment/SegmentGroup.js","filename":"SegmentGroup.js","filenameWithoutExt":"SegmentGroup"}
+module.exports = {"displayName":"SearchCategoryLayout","props":[{"type":"element","required":true,"description":["The rendered category content"],"tags":[],"name":"categoryContent"},{"type":"element","required":true,"description":["The rendered results content"],"tags":[],"name":"resultsContent"}],"constructorName":"SearchCategoryLayout","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Search","subcomponentName":"CategoryLayout","subcomponents":null,"apiPath":"Search.CategoryLayout","componentClassName":"categorylayout","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/modules/Search/SearchCategoryLayout.js","filename":"SearchCategoryLayout.js","filenameWithoutExt":"SearchCategoryLayout"}
 
 /***/ }),
 /* 1677 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"SegmentInline","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"SegmentInline","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Segment","subcomponentName":"Inline","subcomponents":null,"apiPath":"Segment.Inline","componentClassName":"inline","docblock":{"tags":[],"description":["A placeholder segment can be inline."]},"examplesExist":false,"repoPath":"src/elements/Segment/SegmentInline.js","filename":"SegmentInline.js","filenameWithoutExt":"SegmentInline"}
+module.exports = {"displayName":"SearchResult","props":[{"type":"bool","required":false,"description":["The item currently selected by keyboard shortcut."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"string","required":false,"description":["Additional text with less emphasis."],"tags":[],"name":"description"},{"type":"number|string","required":false,"description":["A unique identifier."],"tags":[],"value":[],"name":"id"},{"type":"string","required":false,"description":["Add an image to the item."],"tags":[],"name":"image"},{"type":"func","required":false,"description":["Called on click."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"string","required":false,"description":["Customized text for price."],"tags":[],"name":"price"},{"type":"func","required":false,"description":["Renders the result contents."],"defaultValue":"({ image, price, title, description }) => [\n  image && (\n    <div key='image' className='image'>\n      {createHTMLImage(image, { autoGenerateKey: false })}\n    </div>\n  ),\n  <div key='content' className='content'>\n    {price && <div className='price'>{price}</div>}\n    {title && <div className='title'>{title}</div>}\n    {description && <div className='description'>{description}</div>}\n  </div>,\n]","tags":[{"title":"param","description":"The SearchResult props object.","type":{"type":"NameExpression","name":"object"},"name":"props"},{"title":"returns","description":"Renderable result contents.","type":{"type":"AllLiteral"}}],"name":"renderer"},{"type":"string","required":true,"description":["Display title."],"tags":[],"name":"title"}],"constructorName":"SearchResult","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Search","subcomponentName":"Result","subcomponents":null,"apiPath":"Search.Result","componentClassName":"result","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/modules/Search/SearchResult.js","filename":"SearchResult.js","filenameWithoutExt":"SearchResult"}
 
 /***/ }),
 /* 1678 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Select","props":[{"type":"arrayOf","required":true,"description":["Array of Dropdown.Item props e.g. `{ text: '', value: '' }`"],"tags":[],"value":{"name":"shape","value":"Dropdown.Item.propTypes","computed":true},"name":"options"}],"constructorName":"Select","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Select","componentClassName":"select","docblock":{"tags":[{"title":"see","description":"Dropdown"},{"title":"see","description":"Form"}],"description":["A Select is sugar for <Dropdown selection />."]},"examplesExist":true,"repoPath":"src/addons/Select/Select.js","filename":"Select.js","filenameWithoutExt":"Select"}
+module.exports = {"displayName":"SearchResults","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"SearchResults","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Search","subcomponentName":"Results","subcomponents":null,"apiPath":"Search.Results","componentClassName":"results","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/modules/Search/SearchResults.js","filename":"SearchResults.js","filenameWithoutExt":"SearchResults"}
 
 /***/ }),
 /* 1679 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Sidebar","props":[{"type":"enum","required":false,"description":["Animation style."],"tags":[],"value":["overlay","push","scale down","uncover","slide out","slide along"],"name":"animation"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["Direction the sidebar should appear on."],"defaultValue":"'left'","tags":[],"value":["top","right","bottom","left"],"name":"direction"},{"type":"func","required":false,"description":["Called after a sidebar has finished animating out."],"tags":[],"name":"onHidden"},{"type":"func","required":false,"description":["Called before a sidebar begins to animate out."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onHide"},{"type":"func","required":false,"description":["Called when a sidebar has finished animating in."],"tags":[],"name":"onShow"},{"type":"func","required":false,"description":["Called when a sidebar begins animating in."],"tags":[],"name":"onVisible"},{"type":"custom|custom","required":false,"description":["A sidebar can handle clicks on the passed element."],"defaultValue":"documentRef","tags":[],"value":[],"name":"target"},{"type":"bool","required":false,"description":["Controls whether or not the sidebar is visible on the page."],"defaultValue":"false","tags":[],"name":"visible"},{"type":"enum","required":false,"description":["Sidebar width."],"tags":[],"value":["very thin","thin","wide","very wide"],"name":"width"}],"constructorName":"Sidebar","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["SidebarPushable","SidebarPusher"],"apiPath":"Sidebar","componentClassName":"sidebar","docblock":{"tags":[],"description":["A sidebar hides additional content beside a page."]},"examplesExist":true,"repoPath":"src/modules/Sidebar/Sidebar.js","filename":"Sidebar.js","filenameWithoutExt":"Sidebar"}
+module.exports = {"displayName":"Segment","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["Attach segment to other content, like a header."],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"bool","required":false,"description":["A basic segment has no special formatting."],"tags":[],"name":"basic"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["A segment can be circular."],"tags":[],"name":"circular"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A segment can clear floated content."],"tags":[],"name":"clearing"},{"type":"enum","required":false,"description":["Segment can be colored."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"bool","required":false,"description":["A segment may take up only as much space as is necessary."],"tags":[],"name":"compact"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A segment may show its content is disabled."],"tags":[],"name":"disabled"},{"type":"enum","required":false,"description":["Segment content can be floated to the left or right."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["A segment can have its colors inverted for contrast."],"tags":[],"name":"inverted"},{"type":"bool","required":false,"description":["A segment may show its content is being loaded."],"tags":[],"name":"loading"},{"type":"bool|enum","required":false,"description":["A segment can increase its padding."],"tags":[],"value":["very"],"name":"padded"},{"type":"bool","required":false,"description":["Formatted to look like a pile of pages."],"tags":[],"name":"piled"},{"type":"bool","required":false,"description":["A segment can be used to reserve space for conditionally displayed content."],"tags":[],"name":"placeholder"},{"type":"bool","required":false,"description":["A segment may be formatted to raise above the page."],"tags":[],"name":"raised"},{"type":"bool","required":false,"description":["A segment can be formatted to appear less noticeable."],"tags":[],"name":"secondary"},{"type":"enum","required":false,"description":["A segment can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["Formatted to show it contains multiple pages."],"tags":[],"name":"stacked"},{"type":"bool","required":false,"description":["A segment can be formatted to appear even less noticeable."],"tags":[],"name":"tertiary"},{"type":"enum","required":false,"description":["Formats content to be aligned as part of a vertical group."],"tags":[],"value":["left","center","right"],"name":"textAlign"},{"type":"bool","required":false,"description":["Formats content to be aligned vertically."],"tags":[],"name":"vertical"}],"constructorName":"Segment","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["SegmentGroup","SegmentInline"],"apiPath":"Segment","componentClassName":"segment","docblock":{"tags":[],"description":["A segment is used to create a grouping of related content."]},"examplesExist":true,"repoPath":"src/elements/Segment/Segment.js","filename":"Segment.js","filenameWithoutExt":"Segment"}
 
 /***/ }),
 /* 1680 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"SidebarPushable","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"SidebarPushable","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Sidebar","subcomponentName":"Pushable","subcomponents":null,"apiPath":"Sidebar.Pushable","componentClassName":"pushable","docblock":{"tags":[],"description":["A pushable sub-component for Sidebar."]},"examplesExist":false,"repoPath":"src/modules/Sidebar/SidebarPushable.js","filename":"SidebarPushable.js","filenameWithoutExt":"SidebarPushable"}
+module.exports = {"displayName":"SegmentGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A segment may take up only as much space as is necessary."],"tags":[],"name":"compact"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Formats content to be aligned horizontally."],"tags":[],"name":"horizontal"},{"type":"bool","required":false,"description":["Formatted to look like a pile of pages."],"tags":[],"name":"piled"},{"type":"bool","required":false,"description":["A segment group may be formatted to raise above the page."],"tags":[],"name":"raised"},{"type":"enum","required":false,"description":["A segment group can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"bool","required":false,"description":["Formatted to show it contains multiple pages."],"tags":[],"name":"stacked"}],"constructorName":"SegmentGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Segment","subcomponentName":"Group","subcomponents":null,"apiPath":"Segment.Group","componentClassName":"segments","docblock":{"tags":[],"description":["A group of segments can be formatted to appear together."]},"examplesExist":false,"repoPath":"src/elements/Segment/SegmentGroup.js","filename":"SegmentGroup.js","filenameWithoutExt":"SegmentGroup"}
 
 /***/ }),
 /* 1681 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"SidebarPusher","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Controls whether or not the dim is displayed."],"tags":[],"name":"dimmed"}],"constructorName":"SidebarPusher","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Sidebar","subcomponentName":"Pusher","subcomponents":null,"apiPath":"Sidebar.Pusher","componentClassName":"pusher","docblock":{"tags":[],"description":["A pushable sub-component for Sidebar."]},"examplesExist":false,"repoPath":"src/modules/Sidebar/SidebarPusher.js","filename":"SidebarPusher.js","filenameWithoutExt":"SidebarPusher"}
+module.exports = {"displayName":"SegmentInline","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"SegmentInline","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Segment","subcomponentName":"Inline","subcomponents":null,"apiPath":"Segment.Inline","componentClassName":"inline","docblock":{"tags":[],"description":["A placeholder segment can be inline."]},"examplesExist":false,"repoPath":"src/elements/Segment/SegmentInline.js","filename":"SegmentInline.js","filenameWithoutExt":"SegmentInline"}
 
 /***/ }),
 /* 1682 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Statistic","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A statistic can be formatted to be different colors."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A statistic can sit to the left or right of other content."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["A statistic can present its measurement horizontally."],"tags":[],"name":"horizontal"},{"type":"bool","required":false,"description":["A statistic can be formatted to fit on a dark background."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Label content of the Statistic."],"tags":[],"name":"label"},{"type":"enum","required":false,"description":["A statistic can vary in size."],"tags":[],"value":["mini","tiny","small","large","huge"],"name":"size"},{"type":"bool","required":false,"description":["Format the StatisticValue with smaller font size to fit nicely beside number values."],"tags":[],"name":"text"},{"type":"custom","required":false,"description":["Value content of the Statistic."],"tags":[],"name":"value"}],"constructorName":"Statistic","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["StatisticGroup","StatisticLabel","StatisticValue"],"apiPath":"Statistic","componentClassName":"statistic","docblock":{"tags":[],"description":["A statistic emphasizes the current value of an attribute."]},"examplesExist":true,"repoPath":"src/views/Statistic/Statistic.js","filename":"Statistic.js","filenameWithoutExt":"Statistic"}
+module.exports = {"displayName":"Select","props":[{"type":"arrayOf","required":true,"description":["Array of Dropdown.Item props e.g. `{ text: '', value: '' }`"],"tags":[],"value":{"name":"shape","value":"Dropdown.Item.propTypes","computed":true},"name":"options"}],"constructorName":"Select","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Select","componentClassName":"select","docblock":{"tags":[{"title":"see","description":"Dropdown"},{"title":"see","description":"Form"}],"description":["A Select is sugar for <Dropdown selection />."]},"examplesExist":true,"repoPath":"src/addons/Select/Select.js","filename":"Select.js","filenameWithoutExt":"Select"}
 
 /***/ }),
 /* 1683 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"StatisticGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A statistic group can be formatted to be different colors."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A statistic group can present its measurement horizontally."],"tags":[],"name":"horizontal"},{"type":"bool","required":false,"description":["A statistic group can be formatted to fit on a dark background."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Array of props for Statistic."],"tags":[],"name":"items"},{"type":"enum","required":false,"description":["A statistic group can vary in size."],"tags":[],"value":["mini","tiny","small","large","huge"],"name":"size"},{"type":"enum","required":false,"description":["A statistic group can have its items divided evenly."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"widths"}],"constructorName":"StatisticGroup","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Statistic","subcomponentName":"Group","subcomponents":null,"apiPath":"Statistic.Group","componentClassName":"statistics","docblock":{"tags":[],"description":["A group of statistics."]},"examplesExist":false,"repoPath":"src/views/Statistic/StatisticGroup.js","filename":"StatisticGroup.js","filenameWithoutExt":"StatisticGroup"}
+module.exports = {"displayName":"Sidebar","props":[{"type":"enum","required":false,"description":["Animation style."],"tags":[],"value":["overlay","push","scale down","uncover","slide out","slide along"],"name":"animation"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["Direction the sidebar should appear on."],"defaultValue":"'left'","tags":[],"value":["top","right","bottom","left"],"name":"direction"},{"type":"func","required":false,"description":["Called after a sidebar has finished animating out."],"tags":[],"name":"onHidden"},{"type":"func","required":false,"description":["Called before a sidebar begins to animate out."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onHide"},{"type":"func","required":false,"description":["Called when a sidebar has finished animating in."],"tags":[],"name":"onShow"},{"type":"func","required":false,"description":["Called when a sidebar begins animating in."],"tags":[],"name":"onVisible"},{"type":"custom|custom","required":false,"description":["A sidebar can handle clicks on the passed element."],"defaultValue":"documentRef","tags":[],"value":[],"name":"target"},{"type":"bool","required":false,"description":["Controls whether or not the sidebar is visible on the page."],"defaultValue":"false","tags":[],"name":"visible"},{"type":"enum","required":false,"description":["Sidebar width."],"tags":[],"value":["very thin","thin","wide","very wide"],"name":"width"}],"constructorName":"Sidebar","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["SidebarPushable","SidebarPusher"],"apiPath":"Sidebar","componentClassName":"sidebar","docblock":{"tags":[],"description":["A sidebar hides additional content beside a page."]},"examplesExist":true,"repoPath":"src/modules/Sidebar/Sidebar.js","filename":"Sidebar.js","filenameWithoutExt":"Sidebar"}
 
 /***/ }),
 /* 1684 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"StatisticLabel","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"StatisticLabel","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Statistic","subcomponentName":"Label","subcomponents":null,"apiPath":"Statistic.Label","componentClassName":"label","docblock":{"tags":[],"description":["A statistic can contain a label to help provide context for the presented value."]},"examplesExist":false,"repoPath":"src/views/Statistic/StatisticLabel.js","filename":"StatisticLabel.js","filenameWithoutExt":"StatisticLabel"}
+module.exports = {"displayName":"SidebarPushable","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"SidebarPushable","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Sidebar","subcomponentName":"Pushable","subcomponents":null,"apiPath":"Sidebar.Pushable","componentClassName":"pushable","docblock":{"tags":[],"description":["A pushable sub-component for Sidebar."]},"examplesExist":false,"repoPath":"src/modules/Sidebar/SidebarPushable.js","filename":"SidebarPushable.js","filenameWithoutExt":"SidebarPushable"}
 
 /***/ }),
 /* 1685 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"StatisticValue","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Format the value with smaller font size to fit nicely beside number values."],"tags":[],"name":"text"}],"constructorName":"StatisticValue","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Statistic","subcomponentName":"Value","subcomponents":null,"apiPath":"Statistic.Value","componentClassName":"value","docblock":{"tags":[],"description":["A statistic can contain a numeric, icon, image, or text value."]},"examplesExist":false,"repoPath":"src/views/Statistic/StatisticValue.js","filename":"StatisticValue.js","filenameWithoutExt":"StatisticValue"}
+module.exports = {"displayName":"SidebarPusher","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Controls whether or not the dim is displayed."],"tags":[],"name":"dimmed"}],"constructorName":"SidebarPusher","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Sidebar","subcomponentName":"Pusher","subcomponents":null,"apiPath":"Sidebar.Pusher","componentClassName":"pusher","docblock":{"tags":[],"description":["A pushable sub-component for Sidebar."]},"examplesExist":false,"repoPath":"src/modules/Sidebar/SidebarPusher.js","filename":"SidebarPusher.js","filenameWithoutExt":"SidebarPusher"}
 
 /***/ }),
 /* 1686 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Step","props":[{"type":"bool","required":false,"description":["A step can be highlighted as active."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A step can show that a user has completed it."],"tags":[],"name":"completed"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for StepDescription."],"tags":[],"name":"description"},{"type":"bool","required":false,"description":["Show that the Loader is inactive."],"tags":[],"name":"disabled"},{"type":"string","required":false,"description":["Render as an `a` tag instead of a `div` and adds the href attribute."],"tags":[],"name":"href"},{"type":"custom","required":false,"description":["Shorthand for Icon."],"tags":[],"name":"icon"},{"type":"bool","required":false,"description":["A step can be link."],"tags":[],"name":"link"},{"type":"func","required":false,"description":["Called on click. When passed, the component will render as an `a`","tag by default instead of a `div`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"bool","required":false,"description":["A step can show a ordered sequence of steps. Passed from StepGroup."],"tags":[],"name":"ordered"},{"type":"custom","required":false,"description":["Shorthand for StepTitle."],"tags":[],"name":"title"}],"constructorName":"Step","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["StepContent","StepDescription","StepGroup","StepTitle"],"apiPath":"Step","componentClassName":"step","docblock":{"tags":[],"description":["A step shows the completion status of an activity in a series of activities."]},"examplesExist":true,"repoPath":"src/elements/Step/Step.js","filename":"Step.js","filenameWithoutExt":"Step"}
+module.exports = {"displayName":"Statistic","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A statistic can be formatted to be different colors."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"enum","required":false,"description":["A statistic can sit to the left or right of other content."],"tags":[],"value":["left","right"],"name":"floated"},{"type":"bool","required":false,"description":["A statistic can present its measurement horizontally."],"tags":[],"name":"horizontal"},{"type":"bool","required":false,"description":["A statistic can be formatted to fit on a dark background."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Label content of the Statistic."],"tags":[],"name":"label"},{"type":"enum","required":false,"description":["A statistic can vary in size."],"tags":[],"value":["mini","tiny","small","large","huge"],"name":"size"},{"type":"bool","required":false,"description":["Format the StatisticValue with smaller font size to fit nicely beside number values."],"tags":[],"name":"text"},{"type":"custom","required":false,"description":["Value content of the Statistic."],"tags":[],"name":"value"}],"constructorName":"Statistic","type":"view","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["StatisticGroup","StatisticLabel","StatisticValue"],"apiPath":"Statistic","componentClassName":"statistic","docblock":{"tags":[],"description":["A statistic emphasizes the current value of an attribute."]},"examplesExist":true,"repoPath":"src/views/Statistic/Statistic.js","filename":"Statistic.js","filenameWithoutExt":"Statistic"}
 
 /***/ }),
 /* 1687 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"StepContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for StepDescription."],"tags":[],"name":"description"},{"type":"custom","required":false,"description":["Shorthand for StepTitle."],"tags":[],"name":"title"}],"constructorName":"StepContent","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Step","subcomponentName":"Content","subcomponents":null,"apiPath":"Step.Content","componentClassName":"content","docblock":{"tags":[],"description":["A step can contain a content."]},"examplesExist":false,"repoPath":"src/elements/Step/StepContent.js","filename":"StepContent.js","filenameWithoutExt":"StepContent"}
+module.exports = {"displayName":"StatisticGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A statistic group can be formatted to be different colors."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A statistic group can present its measurement horizontally."],"tags":[],"name":"horizontal"},{"type":"bool","required":false,"description":["A statistic group can be formatted to fit on a dark background."],"tags":[],"name":"inverted"},{"type":"custom","required":false,"description":["Array of props for Statistic."],"tags":[],"name":"items"},{"type":"enum","required":false,"description":["A statistic group can vary in size."],"tags":[],"value":["mini","tiny","small","large","huge"],"name":"size"},{"type":"enum","required":false,"description":["A statistic group can have its items divided evenly."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"widths"}],"constructorName":"StatisticGroup","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Statistic","subcomponentName":"Group","subcomponents":null,"apiPath":"Statistic.Group","componentClassName":"statistics","docblock":{"tags":[],"description":["A group of statistics."]},"examplesExist":false,"repoPath":"src/views/Statistic/StatisticGroup.js","filename":"StatisticGroup.js","filenameWithoutExt":"StatisticGroup"}
 
 /***/ }),
 /* 1688 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"StepDescription","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"StepDescription","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Step","subcomponentName":"Description","subcomponents":null,"apiPath":"Step.Description","componentClassName":"description","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/elements/Step/StepDescription.js","filename":"StepDescription.js","filenameWithoutExt":"StepDescription"}
+module.exports = {"displayName":"StatisticLabel","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"StatisticLabel","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Statistic","subcomponentName":"Label","subcomponents":null,"apiPath":"Statistic.Label","componentClassName":"label","docblock":{"tags":[],"description":["A statistic can contain a label to help provide context for the presented value."]},"examplesExist":false,"repoPath":"src/views/Statistic/StatisticLabel.js","filename":"StatisticLabel.js","filenameWithoutExt":"StatisticLabel"}
 
 /***/ }),
 /* 1689 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"StepGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["Steps can be attached to other elements."],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A fluid step takes up the width of its container."],"tags":[],"name":"fluid"},{"type":"custom","required":false,"description":["Shorthand array of props for Step."],"tags":[],"name":"items"},{"type":"bool","required":false,"description":["A step can show a ordered sequence of steps."],"tags":[],"name":"ordered"},{"type":"enum","required":false,"description":["Steps can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"enum","required":false,"description":["A step can stack vertically only on smaller screens."],"tags":[],"value":["tablet"],"name":"stackable"},{"type":"bool","required":false,"description":["A step can prevent itself from stacking on mobile."],"tags":[],"name":"unstackable"},{"type":"bool","required":false,"description":["A step can be displayed stacked vertically."],"tags":[],"name":"vertical"},{"type":"enum","required":false,"description":["Steps can be divided evenly inside their parent."],"tags":[],"value":["..._.keys(numberMap)","..._.keys(numberMap).map(Number)","..._.values(numberMap)"],"name":"widths"}],"constructorName":"StepGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Step","subcomponentName":"Group","subcomponents":null,"apiPath":"Step.Group","componentClassName":"steps","docblock":{"tags":[],"description":["A set of steps."]},"examplesExist":false,"repoPath":"src/elements/Step/StepGroup.js","filename":"StepGroup.js","filenameWithoutExt":"StepGroup"}
+module.exports = {"displayName":"StatisticValue","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["Format the value with smaller font size to fit nicely beside number values."],"tags":[],"name":"text"}],"constructorName":"StatisticValue","type":"view","isParent":false,"isChild":true,"parentDisplayName":"Statistic","subcomponentName":"Value","subcomponents":null,"apiPath":"Statistic.Value","componentClassName":"value","docblock":{"tags":[],"description":["A statistic can contain a numeric, icon, image, or text value."]},"examplesExist":false,"repoPath":"src/views/Statistic/StatisticValue.js","filename":"StatisticValue.js","filenameWithoutExt":"StatisticValue"}
 
 /***/ }),
 /* 1690 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"StepTitle","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"StepTitle","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Step","subcomponentName":"Title","subcomponents":null,"apiPath":"Step.Title","componentClassName":"title","docblock":{"tags":[],"description":["A step can contain a title."]},"examplesExist":false,"repoPath":"src/elements/Step/StepTitle.js","filename":"StepTitle.js","filenameWithoutExt":"StepTitle"}
+module.exports = {"displayName":"Step","props":[{"type":"bool","required":false,"description":["A step can be highlighted as active."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A step can show that a user has completed it."],"tags":[],"name":"completed"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for StepDescription."],"tags":[],"name":"description"},{"type":"bool","required":false,"description":["Show that the Loader is inactive."],"tags":[],"name":"disabled"},{"type":"string","required":false,"description":["Render as an `a` tag instead of a `div` and adds the href attribute."],"tags":[],"name":"href"},{"type":"custom","required":false,"description":["Shorthand for Icon."],"tags":[],"name":"icon"},{"type":"bool","required":false,"description":["A step can be link."],"tags":[],"name":"link"},{"type":"func","required":false,"description":["Called on click. When passed, the component will render as an `a`","tag by default instead of a `div`."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClick"},{"type":"bool","required":false,"description":["A step can show a ordered sequence of steps. Passed from StepGroup."],"tags":[],"name":"ordered"},{"type":"custom","required":false,"description":["Shorthand for StepTitle."],"tags":[],"name":"title"}],"constructorName":"Step","type":"element","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["StepContent","StepDescription","StepGroup","StepTitle"],"apiPath":"Step","componentClassName":"step","docblock":{"tags":[],"description":["A step shows the completion status of an activity in a series of activities."]},"examplesExist":true,"repoPath":"src/elements/Step/Step.js","filename":"Step.js","filenameWithoutExt":"Step"}
 
 /***/ }),
 /* 1691 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Sticky","props":[{"type":"bool","required":false,"description":["A Sticky can be active."],"defaultValue":"true","tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"number","required":false,"description":["Offset in pixels from the bottom of the screen when fixing element to viewport."],"defaultValue":"0","tags":[],"name":"bottomOffset"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom|custom","required":false,"description":["Context which sticky element should stick to."],"tags":[],"value":[],"name":"context"},{"type":"number","required":false,"description":["Offset in pixels from the top of the screen when fixing element to viewport."],"defaultValue":"0","tags":[],"name":"offset"},{"type":"func","required":false,"description":["Callback when element is bound to bottom of parent container."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onBottom"},{"type":"func","required":false,"description":["Callback when element is fixed to page."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onStick"},{"type":"func","required":false,"description":["Callback when element is bound to top of parent container."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onTop"},{"type":"func","required":false,"description":["Callback when element is unfixed from page."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onUnstick"},{"type":"bool","required":false,"description":["Whether element should be \"pushed\" by the viewport, attaching to the bottom of the screen when scrolling up."],"tags":[],"name":"pushing"},{"type":"custom|custom","required":false,"description":["Context which sticky should attach onscroll events."],"defaultValue":"isBrowser() ? window : null","tags":[],"value":[],"name":"scrollContext"},{"type":"object","required":false,"description":["Custom style for sticky element."],"tags":[],"name":"styleElement"}],"constructorName":"Sticky","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Sticky","componentClassName":"sticky","docblock":{"tags":[],"description":["Sticky content stays fixed to the browser viewport while another column of content is visible on the page."]},"examplesExist":true,"repoPath":"src/modules/Sticky/Sticky.js","filename":"Sticky.js","filenameWithoutExt":"Sticky"}
+module.exports = {"displayName":"StepContent","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"custom","required":false,"description":["Shorthand for StepDescription."],"tags":[],"name":"description"},{"type":"custom","required":false,"description":["Shorthand for StepTitle."],"tags":[],"name":"title"}],"constructorName":"StepContent","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Step","subcomponentName":"Content","subcomponents":null,"apiPath":"Step.Content","componentClassName":"content","docblock":{"tags":[],"description":["A step can contain a content."]},"examplesExist":false,"repoPath":"src/elements/Step/StepContent.js","filename":"StepContent.js","filenameWithoutExt":"StepContent"}
 
 /***/ }),
 /* 1692 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Tab","props":[{"type":"number|string","required":false,"description":["Index of the currently active tab."],"tags":[],"value":[],"name":"activeIndex"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"number|string","required":false,"description":["The initial activeIndex."],"tags":[],"value":[],"name":"defaultActiveIndex"},{"type":"object","required":false,"description":["Shorthand props for the Grid. Only applicable to vertical menus."],"defaultValue":"{ paneWidth: 12, tabWidth: 4 }","tags":[],"name":"grid"},{"type":"object","required":false,"description":["Shorthand props for the Menu.","tabular, if true, will derive final value from `menuPosition`, otherwise set 'left' or 'right' explicitly."],"defaultValue":"{ attached: true, tabular: true }","tags":[],"name":"menu"},{"type":"enum","required":false,"description":["Align vertical menu"],"tags":[],"value":["left","right"],"name":"menuPosition"},{"type":"func","required":false,"description":["Called on tab change."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and proposed new activeIndex.","type":{"type":"NameExpression","name":"object"},"name":"data"},{"title":"param","description":"The new proposed activeIndex.","type":{"type":"NameExpression","name":"object"},"name":"data.activeIndex"}],"name":"onTabChange"},{"type":"arrayOf","required":false,"description":["Array of objects describing each Menu.Item and Tab.Pane:","{ menuItem: 'Home', render: () => <Tab.Pane /> }","or","{ menuItem: 'Home', pane: 'Welcome' }"],"tags":[],"value":{"name":"shape","value":{"menuItem":{"name":"custom","raw":"customPropTypes.itemShorthand","required":false},"pane":{"name":"custom","raw":"customPropTypes.itemShorthand","required":false},"render":{"name":"func","required":false}}},"name":"panes"},{"type":"bool","required":false,"description":["A Tab can render only active pane."],"defaultValue":"true","tags":[],"name":"renderActiveOnly"}],"constructorName":"Tab","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["TabPane"],"apiPath":"Tab","componentClassName":"tab","docblock":{"tags":[{"title":"see","description":"Menu"},{"title":"see","description":"Segment"}],"description":["A Tab is a hidden section of content activated by a Menu."]},"examplesExist":true,"repoPath":"src/modules/Tab/Tab.js","filename":"Tab.js","filenameWithoutExt":"Tab"}
+module.exports = {"displayName":"StepDescription","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"StepDescription","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Step","subcomponentName":"Description","subcomponents":null,"apiPath":"Step.Description","componentClassName":"description","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/elements/Step/StepDescription.js","filename":"StepDescription.js","filenameWithoutExt":"StepDescription"}
 
 /***/ }),
 /* 1693 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"TabPane","props":[{"type":"bool","required":false,"description":["A tab pane can be active."],"defaultValue":"true","tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"Segment","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A Tab.Pane can display a loading indicator."],"tags":[],"name":"loading"}],"constructorName":"TabPane","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Tab","subcomponentName":"Pane","subcomponents":null,"apiPath":"Tab.Pane","componentClassName":"pane","docblock":{"tags":[],"description":["A tab pane holds the content of a tab."]},"examplesExist":false,"repoPath":"src/modules/Tab/TabPane.js","filename":"TabPane.js","filenameWithoutExt":"TabPane"}
+module.exports = {"displayName":"StepGroup","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["Steps can be attached to other elements."],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A fluid step takes up the width of its container."],"tags":[],"name":"fluid"},{"type":"custom","required":false,"description":["Shorthand array of props for Step."],"tags":[],"name":"items"},{"type":"bool","required":false,"description":["A step can show a ordered sequence of steps."],"tags":[],"name":"ordered"},{"type":"enum","required":false,"description":["Steps can have different sizes."],"tags":[],"value":["mini","tiny","small","large","big","huge","massive"],"name":"size"},{"type":"enum","required":false,"description":["A step can stack vertically only on smaller screens."],"tags":[],"value":["tablet"],"name":"stackable"},{"type":"bool","required":false,"description":["A step can prevent itself from stacking on mobile."],"tags":[],"name":"unstackable"},{"type":"bool","required":false,"description":["A step can be displayed stacked vertically."],"tags":[],"name":"vertical"},{"type":"enum","required":false,"description":["Steps can be divided evenly inside their parent."],"tags":[],"value":["..._.keys(numberMap)","..._.keys(numberMap).map(Number)","..._.values(numberMap)"],"name":"widths"}],"constructorName":"StepGroup","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Step","subcomponentName":"Group","subcomponents":null,"apiPath":"Step.Group","componentClassName":"steps","docblock":{"tags":[],"description":["A set of steps."]},"examplesExist":false,"repoPath":"src/elements/Step/StepGroup.js","filename":"StepGroup.js","filenameWithoutExt":"StepGroup"}
 
 /***/ }),
 /* 1694 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Table","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'table'","tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["Attach table to other content"],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"enum|bool","required":false,"description":["A table can reduce its complexity to increase readability."],"tags":[],"value":["very"],"name":"basic"},{"type":"bool","required":false,"description":["A table may be divided each row into separate cells."],"tags":[],"name":"celled"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A table can be collapsing, taking up only as much space as its rows."],"tags":[],"name":"collapsing"},{"type":"enum","required":false,"description":["A table can be given a color to distinguish it from other tables."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"enum","required":false,"description":["A table can specify its column count to divide its content evenly."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"columns"},{"type":"bool|enum","required":false,"description":["A table may sometimes need to be more compact to make more rows visible at a time."],"tags":[],"value":["very"],"name":"compact"},{"type":"bool","required":false,"description":["A table may be formatted to emphasize a first column that defines a rows content."],"tags":[],"name":"definition"},{"type":"bool","required":false,"description":["A table can use fixed a special faster form of table rendering that does not resize table cells based on content"],"tags":[],"name":"fixed"},{"type":"custom","required":false,"description":["Shorthand for a TableRow to be placed within Table.Footer."],"tags":[],"name":"footerRow"},{"type":"custom","required":false,"description":["Shorthand for a TableRow to be placed within Table.Header."],"tags":[],"value":[],"name":"headerRow"},{"type":"custom","required":false,"description":["Shorthand for multiple TableRows to be placed within Table.Header."],"tags":[],"value":[],"name":"headerRows"},{"type":"bool","required":false,"description":["A table's colors can be inverted."],"tags":[],"name":"inverted"},{"type":"bool|enum","required":false,"description":["A table may sometimes need to be more padded for legibility."],"tags":[],"value":["very"],"name":"padded"},{"type":"func","required":false,"description":["Mapped over `tableData` and should return shorthand for each Table.Row to be placed within Table.Body."],"tags":[{"title":"param","description":"An element in the `tableData` array.","type":{"type":"AllLiteral"},"name":"data"},{"title":"param","description":"The index of the current element in `tableData`.","type":{"type":"NameExpression","name":"number"},"name":"index"},{"title":"returns","description":"Shorthand for a Table.Row.","type":{"type":"AllLiteral"}}],"value":[],"name":"renderBodyRow"},{"type":"bool","required":false,"description":["A table can have its rows appear selectable."],"tags":[],"name":"selectable"},{"type":"bool","required":false,"description":["A table can specify that its cell contents should remain on a single line and not wrap."],"tags":[],"name":"singleLine"},{"type":"enum","required":false,"description":["A table can also be small or large."],"tags":[],"value":["small","large"],"name":"size"},{"type":"bool","required":false,"description":["A table may allow a user to sort contents by clicking on a table header."],"tags":[],"name":"sortable"},{"type":"bool","required":false,"description":["A table can specify how it stacks table content responsively."],"tags":[],"name":"stackable"},{"type":"bool","required":false,"description":["A table can stripe alternate rows of content with a darker color to increase contrast."],"tags":[],"name":"striped"},{"type":"bool","required":false,"description":["A table can be formatted to display complex structured data."],"tags":[],"name":"structured"},{"type":"array","required":false,"description":["Data to be passed to the renderBodyRow function."],"tags":[],"value":[],"name":"tableData"},{"type":"enum","required":false,"description":["A table can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"},{"type":"bool","required":false,"description":["A table can specify how it stacks table content responsively."],"tags":[],"name":"unstackable"},{"type":"enum","required":false,"description":["A table can adjust its text alignment."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"Table","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["TableBody","TableCell","TableFooter","TableHeader","TableHeaderCell","TableRow"],"apiPath":"Table","componentClassName":"table","docblock":{"tags":[],"description":["A table displays a collections of data grouped into rows."]},"examplesExist":true,"repoPath":"src/collections/Table/Table.js","filename":"Table.js","filenameWithoutExt":"Table"}
+module.exports = {"displayName":"StepTitle","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"}],"constructorName":"StepTitle","type":"element","isParent":false,"isChild":true,"parentDisplayName":"Step","subcomponentName":"Title","subcomponents":null,"apiPath":"Step.Title","componentClassName":"title","docblock":{"tags":[],"description":["A step can contain a title."]},"examplesExist":false,"repoPath":"src/elements/Step/StepTitle.js","filename":"StepTitle.js","filenameWithoutExt":"StepTitle"}
 
 /***/ }),
 /* 1695 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"TableBody","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'tbody'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"}],"constructorName":"TableBody","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"Body","subcomponents":null,"apiPath":"Table.Body","componentClassName":"body","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/collections/Table/TableBody.js","filename":"TableBody.js","filenameWithoutExt":"TableBody"}
+module.exports = {"displayName":"Sticky","props":[{"type":"bool","required":false,"description":["A Sticky can be active."],"defaultValue":"true","tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"number","required":false,"description":["Offset in pixels from the bottom of the screen when fixing element to viewport."],"defaultValue":"0","tags":[],"name":"bottomOffset"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom|custom","required":false,"description":["Context which sticky element should stick to."],"tags":[],"value":[],"name":"context"},{"type":"number","required":false,"description":["Offset in pixels from the top of the screen when fixing element to viewport."],"defaultValue":"0","tags":[],"name":"offset"},{"type":"func","required":false,"description":["Callback when element is bound to bottom of parent container."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onBottom"},{"type":"func","required":false,"description":["Callback when element is fixed to page."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onStick"},{"type":"func","required":false,"description":["Callback when element is bound to top of parent container."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onTop"},{"type":"func","required":false,"description":["Callback when element is unfixed from page."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onUnstick"},{"type":"bool","required":false,"description":["Whether element should be \"pushed\" by the viewport, attaching to the bottom of the screen when scrolling up."],"tags":[],"name":"pushing"},{"type":"custom|custom","required":false,"description":["Context which sticky should attach onscroll events."],"defaultValue":"isBrowser() ? window : null","tags":[],"value":[],"name":"scrollContext"},{"type":"object","required":false,"description":["Custom style for sticky element."],"tags":[],"name":"styleElement"}],"constructorName":"Sticky","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Sticky","componentClassName":"sticky","docblock":{"tags":[],"description":["Sticky content stays fixed to the browser viewport while another column of content is visible on the page."]},"examplesExist":true,"repoPath":"src/modules/Sticky/Sticky.js","filename":"Sticky.js","filenameWithoutExt":"Sticky"}
 
 /***/ }),
 /* 1696 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"TableCell","props":[{"type":"bool","required":false,"description":["A cell can be active or selected by a user."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'td'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A cell can be collapsing so that it only uses as much space as required."],"tags":[],"name":"collapsing"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A cell can be disabled."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["A cell may call attention to an error or a negative value."],"tags":[],"name":"error"},{"type":"custom","required":false,"description":["Add an Icon by name, props object, or pass an <Icon />"],"tags":[],"name":"icon"},{"type":"bool","required":false,"description":["A cell may let a user know whether a value is bad."],"tags":[],"name":"negative"},{"type":"bool","required":false,"description":["A cell may let a user know whether a value is good."],"tags":[],"name":"positive"},{"type":"bool","required":false,"description":["A cell can be selectable."],"tags":[],"name":"selectable"},{"type":"bool","required":false,"description":["A cell can specify that its contents should remain on a single line and not wrap."],"tags":[],"name":"singleLine"},{"type":"enum","required":false,"description":["A table cell can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"},{"type":"enum","required":false,"description":["A table cell can adjust its text alignment."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"},{"type":"bool","required":false,"description":["A cell may warn a user."],"tags":[],"name":"warning"},{"type":"enum","required":false,"description":["A table can specify the width of individual columns independently."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"width"}],"constructorName":"TableCell","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"Cell","subcomponents":null,"apiPath":"Table.Cell","componentClassName":"cell","docblock":{"tags":[],"description":["A table row can have cells."]},"examplesExist":false,"repoPath":"src/collections/Table/TableCell.js","filename":"TableCell.js","filenameWithoutExt":"TableCell"}
+module.exports = {"displayName":"Tab","props":[{"type":"number|string","required":false,"description":["Index of the currently active tab."],"tags":[],"value":[],"name":"activeIndex"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"number|string","required":false,"description":["The initial activeIndex."],"tags":[],"value":[],"name":"defaultActiveIndex"},{"type":"object","required":false,"description":["Shorthand props for the Grid. Only applicable to vertical menus."],"defaultValue":"{ paneWidth: 12, tabWidth: 4 }","tags":[],"name":"grid"},{"type":"object","required":false,"description":["Shorthand props for the Menu.","tabular, if true, will derive final value from `menuPosition`, otherwise set 'left' or 'right' explicitly."],"defaultValue":"{ attached: true, tabular: true }","tags":[],"name":"menu"},{"type":"enum","required":false,"description":["Align vertical menu"],"tags":[],"value":["left","right"],"name":"menuPosition"},{"type":"func","required":false,"description":["Called on tab change."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and proposed new activeIndex.","type":{"type":"NameExpression","name":"object"},"name":"data"},{"title":"param","description":"The new proposed activeIndex.","type":{"type":"NameExpression","name":"object"},"name":"data.activeIndex"}],"name":"onTabChange"},{"type":"arrayOf","required":false,"description":["Array of objects describing each Menu.Item and Tab.Pane:","{ menuItem: 'Home', render: () => <Tab.Pane /> }","or","{ menuItem: 'Home', pane: 'Welcome' }"],"tags":[],"value":{"name":"shape","value":{"menuItem":{"name":"custom","raw":"customPropTypes.itemShorthand","required":false},"pane":{"name":"custom","raw":"customPropTypes.itemShorthand","required":false},"render":{"name":"func","required":false}}},"name":"panes"},{"type":"bool","required":false,"description":["A Tab can render only active pane."],"defaultValue":"true","tags":[],"name":"renderActiveOnly"}],"constructorName":"Tab","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["TabPane"],"apiPath":"Tab","componentClassName":"tab","docblock":{"tags":[{"title":"see","description":"Menu"},{"title":"see","description":"Segment"}],"description":["A Tab is a hidden section of content activated by a Menu."]},"examplesExist":true,"repoPath":"src/modules/Tab/Tab.js","filename":"Tab.js","filenameWithoutExt":"Tab"}
 
 /***/ }),
 /* 1697 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"TableFooter","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'tfoot'","tags":[],"name":"as"}],"constructorName":"TableFooter","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"Footer","subcomponents":null,"apiPath":"Table.Footer","componentClassName":"footer","docblock":{"tags":[],"description":["A table can have a footer."]},"examplesExist":false,"repoPath":"src/collections/Table/TableFooter.js","filename":"TableFooter.js","filenameWithoutExt":"TableFooter"}
+module.exports = {"displayName":"TabPane","props":[{"type":"bool","required":false,"description":["A tab pane can be active."],"defaultValue":"true","tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"Segment","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A Tab.Pane can display a loading indicator."],"tags":[],"name":"loading"}],"constructorName":"TabPane","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Tab","subcomponentName":"Pane","subcomponents":null,"apiPath":"Tab.Pane","componentClassName":"pane","docblock":{"tags":[],"description":["A tab pane holds the content of a tab."]},"examplesExist":false,"repoPath":"src/modules/Tab/TabPane.js","filename":"TabPane.js","filenameWithoutExt":"TabPane"}
 
 /***/ }),
 /* 1698 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"TableHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'thead'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A definition table can have a full width header or footer, filling in the gap left by the first column."],"tags":[],"name":"fullWidth"}],"constructorName":"TableHeader","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"Header","subcomponents":null,"apiPath":"Table.Header","componentClassName":"header","docblock":{"tags":[],"description":["A table can have a header."]},"examplesExist":false,"repoPath":"src/collections/Table/TableHeader.js","filename":"TableHeader.js","filenameWithoutExt":"TableHeader"}
+module.exports = {"displayName":"Table","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'table'","tags":[],"name":"as"},{"type":"bool|enum","required":false,"description":["Attach table to other content"],"tags":[],"value":["top","bottom"],"name":"attached"},{"type":"enum|bool","required":false,"description":["A table can reduce its complexity to increase readability."],"tags":[],"value":["very"],"name":"basic"},{"type":"bool","required":false,"description":["A table may be divided each row into separate cells."],"tags":[],"name":"celled"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A table can be collapsing, taking up only as much space as its rows."],"tags":[],"name":"collapsing"},{"type":"enum","required":false,"description":["A table can be given a color to distinguish it from other tables."],"tags":[],"value":["red","orange","yellow","olive","green","teal","blue","violet","purple","pink","brown","grey","black"],"name":"color"},{"type":"enum","required":false,"description":["A table can specify its column count to divide its content evenly."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"columns"},{"type":"bool|enum","required":false,"description":["A table may sometimes need to be more compact to make more rows visible at a time."],"tags":[],"value":["very"],"name":"compact"},{"type":"bool","required":false,"description":["A table may be formatted to emphasize a first column that defines a rows content."],"tags":[],"name":"definition"},{"type":"bool","required":false,"description":["A table can use fixed a special faster form of table rendering that does not resize table cells based on content"],"tags":[],"name":"fixed"},{"type":"custom","required":false,"description":["Shorthand for a TableRow to be placed within Table.Footer."],"tags":[],"name":"footerRow"},{"type":"custom","required":false,"description":["Shorthand for a TableRow to be placed within Table.Header."],"tags":[],"value":[],"name":"headerRow"},{"type":"custom","required":false,"description":["Shorthand for multiple TableRows to be placed within Table.Header."],"tags":[],"value":[],"name":"headerRows"},{"type":"bool","required":false,"description":["A table's colors can be inverted."],"tags":[],"name":"inverted"},{"type":"bool|enum","required":false,"description":["A table may sometimes need to be more padded for legibility."],"tags":[],"value":["very"],"name":"padded"},{"type":"func","required":false,"description":["Mapped over `tableData` and should return shorthand for each Table.Row to be placed within Table.Body."],"tags":[{"title":"param","description":"An element in the `tableData` array.","type":{"type":"AllLiteral"},"name":"data"},{"title":"param","description":"The index of the current element in `tableData`.","type":{"type":"NameExpression","name":"number"},"name":"index"},{"title":"returns","description":"Shorthand for a Table.Row.","type":{"type":"AllLiteral"}}],"value":[],"name":"renderBodyRow"},{"type":"bool","required":false,"description":["A table can have its rows appear selectable."],"tags":[],"name":"selectable"},{"type":"bool","required":false,"description":["A table can specify that its cell contents should remain on a single line and not wrap."],"tags":[],"name":"singleLine"},{"type":"enum","required":false,"description":["A table can also be small or large."],"tags":[],"value":["small","large"],"name":"size"},{"type":"bool","required":false,"description":["A table may allow a user to sort contents by clicking on a table header."],"tags":[],"name":"sortable"},{"type":"bool","required":false,"description":["A table can specify how it stacks table content responsively."],"tags":[],"name":"stackable"},{"type":"bool","required":false,"description":["A table can stripe alternate rows of content with a darker color to increase contrast."],"tags":[],"name":"striped"},{"type":"bool","required":false,"description":["A table can be formatted to display complex structured data."],"tags":[],"name":"structured"},{"type":"array","required":false,"description":["Data to be passed to the renderBodyRow function."],"tags":[],"value":[],"name":"tableData"},{"type":"enum","required":false,"description":["A table can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"},{"type":"bool","required":false,"description":["A table can specify how it stacks table content responsively."],"tags":[],"name":"unstackable"},{"type":"enum","required":false,"description":["A table can adjust its text alignment."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"}],"constructorName":"Table","type":"collection","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["TableBody","TableCell","TableFooter","TableHeader","TableHeaderCell","TableRow"],"apiPath":"Table","componentClassName":"table","docblock":{"tags":[],"description":["A table displays a collections of data grouped into rows."]},"examplesExist":true,"repoPath":"src/collections/Table/Table.js","filename":"Table.js","filenameWithoutExt":"Table"}
 
 /***/ }),
 /* 1699 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"TableHeaderCell","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'th'","tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A header cell can be sorted in ascending or descending order."],"tags":[],"value":["ascending","descending"],"name":"sorted"}],"constructorName":"TableHeaderCell","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"HeaderCell","subcomponents":null,"apiPath":"Table.HeaderCell","componentClassName":"headercell","docblock":{"tags":[],"description":["A table can have a header cell."]},"examplesExist":false,"repoPath":"src/collections/Table/TableHeaderCell.js","filename":"TableHeaderCell.js","filenameWithoutExt":"TableHeaderCell"}
+module.exports = {"displayName":"TableBody","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'tbody'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"}],"constructorName":"TableBody","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"Body","subcomponents":null,"apiPath":"Table.Body","componentClassName":"body","docblock":{"tags":[],"description":[""]},"examplesExist":false,"repoPath":"src/collections/Table/TableBody.js","filename":"TableBody.js","filenameWithoutExt":"TableBody"}
 
 /***/ }),
 /* 1700 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"TableRow","props":[{"type":"bool","required":false,"description":["A row can be active or selected by a user."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'tr'","tags":[],"name":"as"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'td'","tags":[],"name":"cellAs"},{"type":"custom","required":false,"description":["Shorthand array of props for TableCell."],"tags":[],"name":"cells"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A row can be disabled."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["A row may call attention to an error or a negative value."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["A row may let a user know whether a value is bad."],"tags":[],"name":"negative"},{"type":"bool","required":false,"description":["A row may let a user know whether a value is good."],"tags":[],"name":"positive"},{"type":"enum","required":false,"description":["A table row can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"},{"type":"enum","required":false,"description":["A table row can adjust its vertical alignment."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"},{"type":"bool","required":false,"description":["A row may warn a user."],"tags":[],"name":"warning"}],"constructorName":"TableRow","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"Row","subcomponents":null,"apiPath":"Table.Row","componentClassName":"row","docblock":{"tags":[],"description":["A table can have rows."]},"examplesExist":false,"repoPath":"src/collections/Table/TableRow.js","filename":"TableRow.js","filenameWithoutExt":"TableRow"}
+module.exports = {"displayName":"TableCell","props":[{"type":"bool","required":false,"description":["A cell can be active or selected by a user."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'td'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A cell can be collapsing so that it only uses as much space as required."],"tags":[],"name":"collapsing"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A cell can be disabled."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["A cell may call attention to an error or a negative value."],"tags":[],"name":"error"},{"type":"custom","required":false,"description":["Add an Icon by name, props object, or pass an <Icon />"],"tags":[],"name":"icon"},{"type":"bool","required":false,"description":["A cell may let a user know whether a value is bad."],"tags":[],"name":"negative"},{"type":"bool","required":false,"description":["A cell may let a user know whether a value is good."],"tags":[],"name":"positive"},{"type":"bool","required":false,"description":["A cell can be selectable."],"tags":[],"name":"selectable"},{"type":"bool","required":false,"description":["A cell can specify that its contents should remain on a single line and not wrap."],"tags":[],"name":"singleLine"},{"type":"enum","required":false,"description":["A table cell can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"},{"type":"enum","required":false,"description":["A table cell can adjust its text alignment."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"},{"type":"bool","required":false,"description":["A cell may warn a user."],"tags":[],"name":"warning"},{"type":"enum","required":false,"description":["A table can specify the width of individual columns independently."],"tags":[],"value":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen"],"name":"width"}],"constructorName":"TableCell","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"Cell","subcomponents":null,"apiPath":"Table.Cell","componentClassName":"cell","docblock":{"tags":[],"description":["A table row can have cells."]},"examplesExist":false,"repoPath":"src/collections/Table/TableCell.js","filename":"TableCell.js","filenameWithoutExt":"TableCell"}
 
 /***/ }),
 /* 1701 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"TextArea","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'textarea'","tags":[],"name":"as"},{"type":"func","required":false,"description":["Called on change."],"tags":[{"title":"param","description":"The React SyntheticEvent object","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and the event value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onChange"},{"type":"func","required":false,"description":["Called on input."],"tags":[{"title":"param","description":"The React SyntheticEvent object","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and the event value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onInput"},{"type":"number|string","required":false,"description":["Indicates row count for a TextArea."],"defaultValue":"3","tags":[],"value":[],"name":"rows"},{"type":"number|string","required":false,"description":["The value of the textarea."],"tags":[],"value":[],"name":"value"}],"constructorName":"TextArea","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"TextArea","componentClassName":"textarea","docblock":{"tags":[{"title":"see","description":"Form"}],"description":["A TextArea can be used to allow for extended user input."]},"examplesExist":true,"repoPath":"src/addons/TextArea/TextArea.js","filename":"TextArea.js","filenameWithoutExt":"TextArea"}
+module.exports = {"displayName":"TableFooter","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'tfoot'","tags":[],"name":"as"}],"constructorName":"TableFooter","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"Footer","subcomponents":null,"apiPath":"Table.Footer","componentClassName":"footer","docblock":{"tags":[],"description":["A table can have a footer."]},"examplesExist":false,"repoPath":"src/collections/Table/TableFooter.js","filename":"TableFooter.js","filenameWithoutExt":"TableFooter"}
 
 /***/ }),
 /* 1702 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Transition","props":[{"type":"enum|string","required":false,"description":["Named animation event to used. Must be defined in CSS."],"defaultValue":"'fade'","tags":[],"value":["browse","browse right","drop","fade","fade up","fade down","fade left","fade right","fly up","fly down","fly left","fly right","horizontal flip","vertical flip","scale","slide up","slide down","slide left","slide right","swing up","swing down","swing left","swing right","zoom","jiggle","flash","shake","pulse","tada","bounce","glow"],"name":"animation"},{"type":"element","required":true,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["Whether it is directional animation event or not. Use it only for custom transitions."],"tags":[],"name":"directional"},{"type":"number|shape|string","required":false,"description":["Duration of the CSS transition animation in milliseconds."],"defaultValue":"500","tags":[],"value":[],"name":"duration"},{"type":"bool","required":false,"description":["Wait until the first \"enter\" transition to mount the component (add it to the DOM)."],"defaultValue":"true","tags":[],"name":"mountOnShow"},{"type":"func","required":false,"description":["Callback on each transition that changes visibility to shown."],"tags":[],"name":"onComplete"},{"type":"func","required":false,"description":["Callback on each transition that changes visibility to hidden."],"tags":[],"name":"onHide"},{"type":"func","required":false,"description":["Callback on each transition that changes visibility to shown."],"tags":[],"name":"onShow"},{"type":"func","required":false,"description":["Callback on animation start."],"tags":[],"name":"onStart"},{"type":"string","required":false,"description":["React's key of the element."],"tags":[],"name":"reactKey"},{"type":"bool","required":false,"description":["Run the enter animation when the component mounts, if it is initially shown."],"defaultValue":"false","tags":[],"name":"transitionOnMount"},{"type":"bool","required":false,"description":["Unmount the component (remove it from the DOM) when it is not shown."],"defaultValue":"false","tags":[],"name":"unmountOnHide"},{"type":"bool","required":false,"description":["Show the component; triggers the enter or exit animation."],"defaultValue":"true","tags":[],"name":"visible"}],"constructorName":"Transition","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["TransitionGroup"],"apiPath":"Transition","componentClassName":"transition","docblock":{"tags":[],"description":["A transition is an animation usually used to move content in or out of view."]},"examplesExist":true,"repoPath":"src/modules/Transition/Transition.js","filename":"Transition.js","filenameWithoutExt":"Transition"}
+module.exports = {"displayName":"TableHeader","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'thead'","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"custom","required":false,"description":["Shorthand for primary content."],"tags":[],"name":"content"},{"type":"bool","required":false,"description":["A definition table can have a full width header or footer, filling in the gap left by the first column."],"tags":[],"name":"fullWidth"}],"constructorName":"TableHeader","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"Header","subcomponents":null,"apiPath":"Table.Header","componentClassName":"header","docblock":{"tags":[],"description":["A table can have a header."]},"examplesExist":false,"repoPath":"src/collections/Table/TableHeader.js","filename":"TableHeader.js","filenameWithoutExt":"TableHeader"}
 
 /***/ }),
 /* 1703 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"TransitionGroup","props":[{"type":"enum|string","required":false,"description":["Named animation event to used. Must be defined in CSS."],"defaultValue":"'fade'","tags":[],"value":["browse","browse right","drop","fade","fade up","fade down","fade left","fade right","fly up","fly down","fly left","fly right","horizontal flip","vertical flip","scale","slide up","slide down","slide left","slide right","swing up","swing down","swing left","swing right","zoom","jiggle","flash","shake","pulse","tada","bounce","glow"],"name":"animation"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"React.Fragment","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["Whether it is directional animation event or not. Use it only for custom transitions."],"tags":[],"name":"directional"},{"type":"number|shape|string","required":false,"description":["Duration of the CSS transition animation in milliseconds."],"defaultValue":"500","tags":[],"value":[],"name":"duration"}],"constructorName":"TransitionGroup","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Transition","subcomponentName":"Group","subcomponents":null,"apiPath":"Transition.Group","componentClassName":"transitions","docblock":{"tags":[],"description":["A Transition.Group animates children as they mount and unmount."]},"examplesExist":false,"repoPath":"src/modules/Transition/TransitionGroup.js","filename":"TransitionGroup.js","filenameWithoutExt":"TransitionGroup"}
+module.exports = {"displayName":"TableHeaderCell","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'th'","tags":[],"name":"as"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"enum","required":false,"description":["A header cell can be sorted in ascending or descending order."],"tags":[],"value":["ascending","descending"],"name":"sorted"}],"constructorName":"TableHeaderCell","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"HeaderCell","subcomponents":null,"apiPath":"Table.HeaderCell","componentClassName":"headercell","docblock":{"tags":[],"description":["A table can have a header cell."]},"examplesExist":false,"repoPath":"src/collections/Table/TableHeaderCell.js","filename":"TableHeaderCell.js","filenameWithoutExt":"TableHeaderCell"}
 
 /***/ }),
 /* 1704 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"TransitionablePortal","props":[{"type":"node","required":true,"description":["Primary content."],"tags":[],"name":"children"},{"type":"func","required":false,"description":["Called when a close event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and internal state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClose"},{"type":"func","required":false,"description":["Callback on each transition that changes visibility to hidden."],"tags":[],"name":"onHide"},{"type":"func","required":false,"description":["Called when an open event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and internal state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onOpen"},{"type":"func","required":false,"description":["Callback on animation start."],"tags":[],"name":"onStart"},{"type":"bool","required":false,"description":["Controls whether or not the portal is displayed."],"tags":[],"name":"open"},{"type":"object","required":false,"description":["Transition props."],"defaultValue":"{\n  animation: 'scale',\n  duration: 400,\n}","tags":[],"name":"transition"}],"constructorName":"TransitionablePortal","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"TransitionablePortal","componentClassName":"transitionableportal","docblock":{"tags":[{"title":"see","description":"Portal"},{"title":"see","description":"Transition"}],"description":["A sugar for `Portal` and `Transition`."]},"examplesExist":true,"repoPath":"src/addons/TransitionablePortal/TransitionablePortal.js","filename":"TransitionablePortal.js","filenameWithoutExt":"TransitionablePortal"}
+module.exports = {"displayName":"TableRow","props":[{"type":"bool","required":false,"description":["A row can be active or selected by a user."],"tags":[],"name":"active"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'tr'","tags":[],"name":"as"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'td'","tags":[],"name":"cellAs"},{"type":"custom","required":false,"description":["Shorthand array of props for TableCell."],"tags":[],"name":"cells"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"string","required":false,"description":["Additional classes."],"tags":[],"name":"className"},{"type":"bool","required":false,"description":["A row can be disabled."],"tags":[],"name":"disabled"},{"type":"bool","required":false,"description":["A row may call attention to an error or a negative value."],"tags":[],"name":"error"},{"type":"bool","required":false,"description":["A row may let a user know whether a value is bad."],"tags":[],"name":"negative"},{"type":"bool","required":false,"description":["A row may let a user know whether a value is good."],"tags":[],"name":"positive"},{"type":"enum","required":false,"description":["A table row can adjust its text alignment."],"tags":[],"value":["left","center","right"],"name":"textAlign"},{"type":"enum","required":false,"description":["A table row can adjust its vertical alignment."],"tags":[],"value":["bottom","middle","top"],"name":"verticalAlign"},{"type":"bool","required":false,"description":["A row may warn a user."],"tags":[],"name":"warning"}],"constructorName":"TableRow","type":"collection","isParent":false,"isChild":true,"parentDisplayName":"Table","subcomponentName":"Row","subcomponents":null,"apiPath":"Table.Row","componentClassName":"row","docblock":{"tags":[],"description":["A table can have rows."]},"examplesExist":false,"repoPath":"src/collections/Table/TableRow.js","filename":"TableRow.js","filenameWithoutExt":"TableRow"}
 
 /***/ }),
 /* 1705 */
 /***/ (function(module, exports) {
 
-module.exports = {"displayName":"Visibility","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"object","required":false,"description":["Context which visibility should attach onscroll events."],"defaultValue":"isBrowser() ? window : null","tags":[],"name":"context"},{"type":"bool","required":false,"description":["When set to true a callback will occur anytime an element passes a condition not just immediately after the","threshold is met."],"defaultValue":"false","tags":[],"name":"continuous"},{"type":"bool","required":false,"description":["Fires callbacks immediately after mount."],"tags":[],"name":"fireOnMount"},{"type":"number|string|arrayOf","required":false,"description":["Value that context should be adjusted in pixels. Useful for making content appear below content fixed to the","page."],"defaultValue":"[0, 0]","tags":[],"value":[],"name":"offset"},{"type":"func","required":false,"description":["Element's bottom edge has passed top of screen."],"tags":[],"name":"onBottomPassed"},{"type":"func","required":false,"description":["Element's bottom edge has not passed top of screen."],"tags":[],"name":"onBottomPassedReverse"},{"type":"func","required":false,"description":["Element's bottom edge has passed bottom of screen"],"tags":[],"name":"onBottomVisible"},{"type":"func","required":false,"description":["Element's bottom edge has not passed bottom of screen."],"tags":[],"name":"onBottomVisibleReverse"},{"type":"func","required":false,"description":["Element is not visible on the screen."],"tags":[],"name":"onOffScreen"},{"type":"func","required":false,"description":["Element is visible on the screen."],"tags":[],"name":"onOnScreen"},{"type":"object","required":false,"description":["Element is not visible on the screen."],"tags":[],"name":"onPassed"},{"type":"func","required":false,"description":["Any part of an element is visible on screen."],"tags":[],"name":"onPassing"},{"type":"func","required":false,"description":["Element's top has not passed top of screen but bottom has."],"tags":[],"name":"onPassingReverse"},{"type":"func","required":false,"description":["Element's top edge has passed top of the screen."],"tags":[],"name":"onTopPassed"},{"type":"func","required":false,"description":["Element's top edge has not passed top of the screen."],"tags":[],"name":"onTopPassedReverse"},{"type":"func","required":false,"description":["Element's top edge has passed bottom of screen."],"tags":[],"name":"onTopVisible"},{"type":"func","required":false,"description":["Element's top edge has not passed bottom of screen."],"tags":[],"name":"onTopVisibleReverse"},{"type":"func","required":false,"description":["Element's top edge has passed bottom of screen."],"tags":[],"name":"onUpdate"},{"type":"bool","required":false,"description":["When set to false a callback will occur each time an element passes the threshold for a condition."],"defaultValue":"true","tags":[],"name":"once"},{"type":"enum","required":false,"description":["Allows to choose the mode of the position calculations:","- `events` - (default) update and fire callbacks only on scroll/resize events","- `repaint` - update and fire callbacks on browser repaint (animation frames)"],"defaultValue":"'events'","tags":[],"value":["events","repaint"],"name":"updateOn"}],"constructorName":"Visibility","type":"behavior","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Visibility","componentClassName":"visibility","docblock":{"tags":[],"description":["Visibility provides a set of callbacks for when a content appears in the viewport."]},"examplesExist":true,"repoPath":"src/behaviors/Visibility/Visibility.js","filename":"Visibility.js","filenameWithoutExt":"Visibility"}
+module.exports = {"displayName":"TextArea","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"'textarea'","tags":[],"name":"as"},{"type":"func","required":false,"description":["Called on change."],"tags":[{"title":"param","description":"The React SyntheticEvent object","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and the event value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onChange"},{"type":"func","required":false,"description":["Called on input."],"tags":[{"title":"param","description":"The React SyntheticEvent object","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and the event value.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onInput"},{"type":"number|string","required":false,"description":["Indicates row count for a TextArea."],"defaultValue":"3","tags":[],"value":[],"name":"rows"},{"type":"number|string","required":false,"description":["The value of the textarea."],"tags":[],"value":[],"name":"value"}],"constructorName":"TextArea","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"TextArea","componentClassName":"textarea","docblock":{"tags":[{"title":"see","description":"Form"}],"description":["A TextArea can be used to allow for extended user input."]},"examplesExist":true,"repoPath":"src/addons/TextArea/TextArea.js","filename":"TextArea.js","filenameWithoutExt":"TextArea"}
 
 /***/ }),
 /* 1706 */
+/***/ (function(module, exports) {
+
+module.exports = {"displayName":"Transition","props":[{"type":"enum|string","required":false,"description":["Named animation event to used. Must be defined in CSS."],"defaultValue":"'fade'","tags":[],"value":["browse","browse right","drop","fade","fade up","fade down","fade left","fade right","fly up","fly down","fly left","fly right","horizontal flip","vertical flip","scale","slide up","slide down","slide left","slide right","swing up","swing down","swing left","swing right","zoom","jiggle","flash","shake","pulse","tada","bounce","glow"],"name":"animation"},{"type":"element","required":true,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["Whether it is directional animation event or not. Use it only for custom transitions."],"tags":[],"name":"directional"},{"type":"number|shape|string","required":false,"description":["Duration of the CSS transition animation in milliseconds."],"defaultValue":"500","tags":[],"value":[],"name":"duration"},{"type":"bool","required":false,"description":["Wait until the first \"enter\" transition to mount the component (add it to the DOM)."],"defaultValue":"true","tags":[],"name":"mountOnShow"},{"type":"func","required":false,"description":["Callback on each transition that changes visibility to shown."],"tags":[],"name":"onComplete"},{"type":"func","required":false,"description":["Callback on each transition that changes visibility to hidden."],"tags":[],"name":"onHide"},{"type":"func","required":false,"description":["Callback on each transition that changes visibility to shown."],"tags":[],"name":"onShow"},{"type":"func","required":false,"description":["Callback on animation start."],"tags":[],"name":"onStart"},{"type":"string","required":false,"description":["React's key of the element."],"tags":[],"name":"reactKey"},{"type":"bool","required":false,"description":["Run the enter animation when the component mounts, if it is initially shown."],"defaultValue":"false","tags":[],"name":"transitionOnMount"},{"type":"bool","required":false,"description":["Unmount the component (remove it from the DOM) when it is not shown."],"defaultValue":"false","tags":[],"name":"unmountOnHide"},{"type":"bool","required":false,"description":["Show the component; triggers the enter or exit animation."],"defaultValue":"true","tags":[],"name":"visible"}],"constructorName":"Transition","type":"module","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":["TransitionGroup"],"apiPath":"Transition","componentClassName":"transition","docblock":{"tags":[],"description":["A transition is an animation usually used to move content in or out of view."]},"examplesExist":true,"repoPath":"src/modules/Transition/Transition.js","filename":"Transition.js","filenameWithoutExt":"Transition"}
+
+/***/ }),
+/* 1707 */
+/***/ (function(module, exports) {
+
+module.exports = {"displayName":"TransitionGroup","props":[{"type":"enum|string","required":false,"description":["Named animation event to used. Must be defined in CSS."],"defaultValue":"'fade'","tags":[],"value":["browse","browse right","drop","fade","fade up","fade down","fade left","fade right","fly up","fly down","fly left","fly right","horizontal flip","vertical flip","scale","slide up","slide down","slide left","slide right","swing up","swing down","swing left","swing right","zoom","jiggle","flash","shake","pulse","tada","bounce","glow"],"name":"animation"},{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"defaultValue":"React.Fragment","tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"bool","required":false,"description":["Whether it is directional animation event or not. Use it only for custom transitions."],"tags":[],"name":"directional"},{"type":"number|shape|string","required":false,"description":["Duration of the CSS transition animation in milliseconds."],"defaultValue":"500","tags":[],"value":[],"name":"duration"}],"constructorName":"TransitionGroup","type":"module","isParent":false,"isChild":true,"parentDisplayName":"Transition","subcomponentName":"Group","subcomponents":null,"apiPath":"Transition.Group","componentClassName":"transitions","docblock":{"tags":[],"description":["A Transition.Group animates children as they mount and unmount."]},"examplesExist":false,"repoPath":"src/modules/Transition/TransitionGroup.js","filename":"TransitionGroup.js","filenameWithoutExt":"TransitionGroup"}
+
+/***/ }),
+/* 1708 */
+/***/ (function(module, exports) {
+
+module.exports = {"displayName":"TransitionablePortal","props":[{"type":"node","required":true,"description":["Primary content."],"tags":[],"name":"children"},{"type":"func","required":false,"description":["Called when a close event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and internal state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onClose"},{"type":"func","required":false,"description":["Callback on each transition that changes visibility to hidden."],"tags":[],"name":"onHide"},{"type":"func","required":false,"description":["Called when an open event happens."],"tags":[{"title":"param","description":"React's original SyntheticEvent.","type":{"type":"NameExpression","name":"SyntheticEvent"},"name":"event"},{"title":"param","description":"All props and internal state.","type":{"type":"NameExpression","name":"object"},"name":"data"}],"name":"onOpen"},{"type":"func","required":false,"description":["Callback on animation start."],"tags":[],"name":"onStart"},{"type":"bool","required":false,"description":["Controls whether or not the portal is displayed."],"tags":[],"name":"open"},{"type":"object","required":false,"description":["Transition props."],"defaultValue":"{\n  animation: 'scale',\n  duration: 400,\n}","tags":[],"name":"transition"}],"constructorName":"TransitionablePortal","type":"addon","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"TransitionablePortal","componentClassName":"transitionableportal","docblock":{"tags":[{"title":"see","description":"Portal"},{"title":"see","description":"Transition"}],"description":["A sugar for `Portal` and `Transition`."]},"examplesExist":true,"repoPath":"src/addons/TransitionablePortal/TransitionablePortal.js","filename":"TransitionablePortal.js","filenameWithoutExt":"TransitionablePortal"}
+
+/***/ }),
+/* 1709 */
+/***/ (function(module, exports) {
+
+module.exports = {"displayName":"Visibility","props":[{"type":"elementType","required":false,"description":["An element type to render as (string or function)."],"tags":[],"name":"as"},{"type":"node","required":false,"description":["Primary content."],"tags":[],"name":"children"},{"type":"object","required":false,"description":["Context which visibility should attach onscroll events."],"defaultValue":"isBrowser() ? window : null","tags":[],"name":"context"},{"type":"bool","required":false,"description":["When set to true a callback will occur anytime an element passes a condition not just immediately after the","threshold is met."],"defaultValue":"false","tags":[],"name":"continuous"},{"type":"bool","required":false,"description":["Fires callbacks immediately after mount."],"tags":[],"name":"fireOnMount"},{"type":"number|string|arrayOf","required":false,"description":["Value that context should be adjusted in pixels. Useful for making content appear below content fixed to the","page."],"defaultValue":"[0, 0]","tags":[],"value":[],"name":"offset"},{"type":"func","required":false,"description":["Element's bottom edge has passed top of screen."],"tags":[],"name":"onBottomPassed"},{"type":"func","required":false,"description":["Element's bottom edge has not passed top of screen."],"tags":[],"name":"onBottomPassedReverse"},{"type":"func","required":false,"description":["Element's bottom edge has passed bottom of screen"],"tags":[],"name":"onBottomVisible"},{"type":"func","required":false,"description":["Element's bottom edge has not passed bottom of screen."],"tags":[],"name":"onBottomVisibleReverse"},{"type":"func","required":false,"description":["Element is not visible on the screen."],"tags":[],"name":"onOffScreen"},{"type":"func","required":false,"description":["Element is visible on the screen."],"tags":[],"name":"onOnScreen"},{"type":"object","required":false,"description":["Element is not visible on the screen."],"tags":[],"name":"onPassed"},{"type":"func","required":false,"description":["Any part of an element is visible on screen."],"tags":[],"name":"onPassing"},{"type":"func","required":false,"description":["Element's top has not passed top of screen but bottom has."],"tags":[],"name":"onPassingReverse"},{"type":"func","required":false,"description":["Element's top edge has passed top of the screen."],"tags":[],"name":"onTopPassed"},{"type":"func","required":false,"description":["Element's top edge has not passed top of the screen."],"tags":[],"name":"onTopPassedReverse"},{"type":"func","required":false,"description":["Element's top edge has passed bottom of screen."],"tags":[],"name":"onTopVisible"},{"type":"func","required":false,"description":["Element's top edge has not passed bottom of screen."],"tags":[],"name":"onTopVisibleReverse"},{"type":"func","required":false,"description":["Element's top edge has passed bottom of screen."],"tags":[],"name":"onUpdate"},{"type":"bool","required":false,"description":["When set to false a callback will occur each time an element passes the threshold for a condition."],"defaultValue":"true","tags":[],"name":"once"},{"type":"enum","required":false,"description":["Allows to choose the mode of the position calculations:","- `events` - (default) update and fire callbacks only on scroll/resize events","- `repaint` - update and fire callbacks on browser repaint (animation frames)"],"defaultValue":"'events'","tags":[],"value":["events","repaint"],"name":"updateOn"}],"constructorName":"Visibility","type":"behavior","isParent":true,"isChild":false,"parentDisplayName":null,"subcomponentName":null,"subcomponents":[],"apiPath":"Visibility","componentClassName":"visibility","docblock":{"tags":[],"description":["Visibility provides a set of callbacks for when a content appears in the viewport."]},"examplesExist":true,"repoPath":"src/behaviors/Visibility/Visibility.js","filename":"Visibility.js","filenameWithoutExt":"Visibility"}
+
+/***/ }),
+/* 1710 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85391,7 +85578,7 @@ var _interopRequireDefault = __webpack_require__(0);
 exports.__esModule = true;
 exports.default = void 0;
 
-var _kebabCase2 = _interopRequireDefault(__webpack_require__(1707));
+var _kebabCase2 = _interopRequireDefault(__webpack_require__(1711));
 
 var _parseExamplePath2 = _interopRequireDefault(__webpack_require__(440));
 
@@ -85419,13 +85606,13 @@ var _default = examplePathToHash;
 exports.default = _default;
 
 /***/ }),
-/* 1707 */
+/* 1711 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/fp/kebabCase");
 
 /***/ }),
-/* 1708 */
+/* 1712 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85452,7 +85639,7 @@ var _default = getComponentPathname;
 exports.default = _default;
 
 /***/ }),
-/* 1709 */
+/* 1713 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85493,7 +85680,7 @@ var _default = scrollToAnchor;
 exports.default = _default;
 
 /***/ }),
-/* 1710 */
+/* 1714 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85520,16 +85707,16 @@ var _semanticUiReact = __webpack_require__(2);
 
 var _DocsLayout = _interopRequireDefault(__webpack_require__(276));
 
-var components = _interopRequireWildcard(__webpack_require__(1711));
+var components = _interopRequireWildcard(__webpack_require__(1715));
 
-var _DocumentationPageFooter = _interopRequireDefault(__webpack_require__(1712));
+var _DocumentationPageFooter = _interopRequireDefault(__webpack_require__(1716));
 
 var DocumentationPage = function DocumentationPage(_ref) {
   var pageName = _ref.pageName,
       title = _ref.title,
       rest = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["pageName", "title"]);
 
-  var _require = __webpack_require__(1713)("./" + pageName),
+  var _require = __webpack_require__(1717)("./" + pageName),
       MarkdownComponent = _require.default,
       meta = _require.meta;
 
@@ -85566,7 +85753,7 @@ var _default = (0, _reactStatic.withSiteData)((0, _reactStatic.withRouteData)(Do
 exports.default = _default;
 
 /***/ }),
-/* 1711 */
+/* 1715 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85654,7 +85841,7 @@ exports.h3 = h3;
 h3.handledProps = [];
 
 /***/ }),
-/* 1712 */
+/* 1716 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85708,21 +85895,21 @@ var _default = DocumentationPageFooter;
 exports.default = _default;
 
 /***/ }),
-/* 1713 */
+/* 1717 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./Augmentation.mdx": 1714,
+	"./Augmentation.mdx": 1718,
 	"./Introduction": 263,
 	"./Introduction.js": 263,
-	"./Layouts.mdx": 1715,
-	"./MigrationGuide.mdx": 1716,
+	"./Layouts.mdx": 1719,
+	"./MigrationGuide.mdx": 1720,
 	"./PageNotFound": 277,
 	"./PageNotFound.js": 277,
-	"./Prototypes.mdx": 1717,
-	"./ShorthandProps.mdx": 1718,
-	"./Theming.mdx": 1719,
-	"./Usage.mdx": 1720
+	"./Prototypes.mdx": 1721,
+	"./ShorthandProps.mdx": 1722,
+	"./Theming.mdx": 1723,
+	"./Usage.mdx": 1724
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -85738,10 +85925,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1713;
+webpackContext.id = 1717;
 
 /***/ }),
-/* 1714 */
+/* 1718 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85758,7 +85945,7 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _tag = __webpack_require__(30);
+var _tag = __webpack_require__(31);
 
 var _semanticUiReact = __webpack_require__(2);
 
@@ -85874,7 +86061,7 @@ MDXContent.handledProps = [];
 MDXContent.isMDXComponent = true;
 
 /***/ }),
-/* 1715 */
+/* 1719 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85891,7 +86078,7 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _tag = __webpack_require__(30);
+var _tag = __webpack_require__(31);
 
 var _reactStatic = __webpack_require__(17);
 
@@ -86018,7 +86205,7 @@ MDXContent.handledProps = [];
 MDXContent.isMDXComponent = true;
 
 /***/ }),
-/* 1716 */
+/* 1720 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86035,7 +86222,7 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _tag = __webpack_require__(30);
+var _tag = __webpack_require__(31);
 
 var meta = {
   title: 'Migration Guide',
@@ -86146,6 +86333,52 @@ var MDXContent = /*#__PURE__*/function (_React$Component) {
         "className": "language-diff"
       }
     }, "-<Popup popperModifiers={{ preventOverflow: { padding: 0 } }} />\n+<Popup popperModifiers={[{ name: 'preventOverflow', options: { padding: 0 } }]} />\n")), /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
+      name: "h3",
+      components: components
+    }, "a wrapping element around ", /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
+      name: "inlineCode",
+      components: components,
+      parentName: "h3"
+    }, "Popup")), /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
+      name: "p",
+      components: components
+    }, "We started to use an additional wrapping element around ", /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
+      name: "inlineCode",
+      components: components,
+      parentName: "p"
+    }, "Popup"), " for positioning, see ", /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
+      name: "a",
+      components: components,
+      parentName: "p",
+      props: {
+        "href": "https://github.com/Semantic-Org/Semantic-UI-React/pull/3947"
+      }
+    }, "Semantic-Org/Semantic-UI-React#3947"), " for more details. To pass props to this element ", /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
+      name: "inlineCode",
+      components: components,
+      parentName: "p"
+    }, "popper"), " shorthand can be used, see ", /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
+      name: "a",
+      components: components,
+      parentName: "p",
+      props: {
+        "href": "/modules/popup/#usage-position-fixed"
+      }
+    }, "an example"), "."), /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
+      name: "p",
+      components: components
+    }, "\u26A0\uFE0FWe also made a fix in ", /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
+      name: "a",
+      components: components,
+      parentName: "p",
+      props: {
+        "href": "https://github.com/Semantic-Org/Semantic-UI-React/pull/4094"
+      }
+    }, "Semantic-Org/Semantic-UI-React#4094"), " to transfer ", /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
+      name: "inlineCode",
+      components: components,
+      parentName: "p"
+    }, "zIndex"), " value to avoid any breaks."), /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
       name: "h2",
       components: components
     }, /*#__PURE__*/_react.default.createElement(_tag.MDXTag, {
@@ -86225,7 +86458,7 @@ MDXContent.handledProps = [];
 MDXContent.isMDXComponent = true;
 
 /***/ }),
-/* 1717 */
+/* 1721 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86242,7 +86475,7 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _tag = __webpack_require__(30);
+var _tag = __webpack_require__(31);
 
 var _semanticUiReact = __webpack_require__(2);
 
@@ -86357,7 +86590,7 @@ MDXContent.handledProps = [];
 MDXContent.isMDXComponent = true;
 
 /***/ }),
-/* 1718 */
+/* 1722 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86374,7 +86607,7 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _tag = __webpack_require__(30);
+var _tag = __webpack_require__(31);
 
 var _semanticUiReact = __webpack_require__(2);
 
@@ -86664,7 +86897,7 @@ MDXContent.handledProps = [];
 MDXContent.isMDXComponent = true;
 
 /***/ }),
-/* 1719 */
+/* 1723 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86681,7 +86914,7 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _tag = __webpack_require__(30);
+var _tag = __webpack_require__(31);
 
 var _semanticUiReact = __webpack_require__(2);
 
@@ -87028,7 +87261,7 @@ MDXContent.handledProps = [];
 MDXContent.isMDXComponent = true;
 
 /***/ }),
-/* 1720 */
+/* 1724 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87045,7 +87278,7 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _tag = __webpack_require__(30);
+var _tag = __webpack_require__(31);
 
 var _reactStatic = __webpack_require__(17);
 
@@ -87286,7 +87519,7 @@ MDXContent.handledProps = [];
 MDXContent.isMDXComponent = true;
 
 /***/ }),
-/* 1721 */
+/* 1725 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87305,7 +87538,7 @@ var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
 var _join2 = _interopRequireDefault(__webpack_require__(444));
 
-var _findKey2 = _interopRequireDefault(__webpack_require__(1722));
+var _findKey2 = _interopRequireDefault(__webpack_require__(1726));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
@@ -87319,15 +87552,15 @@ var _DocsLayout = _interopRequireDefault(__webpack_require__(276));
 
 var _utils = __webpack_require__(22);
 
-var _ComponentDocLinks = _interopRequireDefault(__webpack_require__(1723));
+var _ComponentDocLinks = _interopRequireDefault(__webpack_require__(1727));
 
-var _ComponentDocSee = _interopRequireDefault(__webpack_require__(1724));
+var _ComponentDocSee = _interopRequireDefault(__webpack_require__(1728));
 
-var _ComponentExamples = _interopRequireDefault(__webpack_require__(1725));
+var _ComponentExamples = _interopRequireDefault(__webpack_require__(1729));
 
-var _ComponentProps = _interopRequireDefault(__webpack_require__(1761));
+var _ComponentProps = _interopRequireDefault(__webpack_require__(1765));
 
-var _ComponentSidebar = _interopRequireDefault(__webpack_require__(1777));
+var _ComponentSidebar = _interopRequireDefault(__webpack_require__(1781));
 
 var _ComponentDocContext = _interopRequireDefault(__webpack_require__(446));
 
@@ -87469,13 +87702,13 @@ var _default = (0, _reactStatic.withRouteData)((0, _reactStatic.withRouter)(Comp
 exports.default = _default;
 
 /***/ }),
-/* 1722 */
+/* 1726 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/findKey");
 
 /***/ }),
-/* 1723 */
+/* 1727 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87559,7 +87792,7 @@ ComponentDocLinks.propTypes =  false ? {
 } : {};
 
 /***/ }),
-/* 1724 */
+/* 1728 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87615,7 +87848,7 @@ var _default = ComponentDocSee;
 exports.default = _default;
 
 /***/ }),
-/* 1725 */
+/* 1729 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87654,7 +87887,7 @@ var ComponentExamples = /*#__PURE__*/function (_Component) {
       var _this$props = _this.props,
           displayName = _this$props.displayName,
           type = _this$props.type;
-      return /*#__PURE__*/(0, _react.createElement)(__webpack_require__(1726)("./" + type + "s/" + displayName + "/index.js").default);
+      return /*#__PURE__*/(0, _react.createElement)(__webpack_require__(1730)("./" + type + "s/" + displayName + "/index.js").default);
     };
 
     _this.renderMissingExamples = function () {
@@ -87686,7 +87919,7 @@ ComponentExamples.propTypes =  false ? {
 } : {};
 
 /***/ }),
-/* 1726 */
+/* 1730 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -87924,10 +88157,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1726;
+webpackContext.id = 1730;
 
 /***/ }),
-/* 1727 */
+/* 1731 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87954,23 +88187,23 @@ var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
 var _react = _interopRequireWildcard(__webpack_require__(1));
 
-var _reactIntersectionObserver = __webpack_require__(1728);
+var _reactIntersectionObserver = __webpack_require__(1732);
 
 var _semanticUiReact = __webpack_require__(2);
 
 var _utils = __webpack_require__(22);
 
-var _CarbonAdNative = _interopRequireDefault(__webpack_require__(1729));
+var _CarbonAdNative = _interopRequireDefault(__webpack_require__(1733));
 
-var _formatCode = _interopRequireDefault(__webpack_require__(1730));
+var _formatCode = _interopRequireDefault(__webpack_require__(1734));
 
-var _ComponentControls = _interopRequireDefault(__webpack_require__(1734));
+var _ComponentControls = _interopRequireDefault(__webpack_require__(1738));
 
-var _ExampleEditor = _interopRequireDefault(__webpack_require__(1743));
+var _ExampleEditor = _interopRequireDefault(__webpack_require__(1747));
 
 var _ComponentDocContext = _interopRequireDefault(__webpack_require__(446));
 
-var _ComponentExampleTitle = _interopRequireDefault(__webpack_require__(1756));
+var _ComponentExampleTitle = _interopRequireDefault(__webpack_require__(1760));
 
 var childrenStyle = {
   paddingBottom: 0,
@@ -88208,13 +88441,13 @@ var _default = Wrapper;
 exports.default = _default;
 
 /***/ }),
-/* 1728 */
+/* 1732 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-intersection-observer");
 
 /***/ }),
-/* 1729 */
+/* 1733 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88405,7 +88638,7 @@ var _default = CarbonAdNative;
 exports.default = _default;
 
 /***/ }),
-/* 1730 */
+/* 1734 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88418,11 +88651,11 @@ exports.default = void 0;
 
 var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
-var _standalone = _interopRequireDefault(__webpack_require__(1731));
+var _standalone = _interopRequireDefault(__webpack_require__(1735));
 
-var _parserBabel = _interopRequireDefault(__webpack_require__(1732));
+var _parserBabel = _interopRequireDefault(__webpack_require__(1736));
 
-var _prettierrc = _interopRequireDefault(__webpack_require__(1733));
+var _prettierrc = _interopRequireDefault(__webpack_require__(1737));
 
 var _isBrowser = _interopRequireDefault(__webpack_require__(206));
 
@@ -88459,25 +88692,25 @@ var _default = formatCode;
 exports.default = _default;
 
 /***/ }),
-/* 1731 */
+/* 1735 */
 /***/ (function(module, exports) {
 
 module.exports = require("prettier/standalone");
 
 /***/ }),
-/* 1732 */
+/* 1736 */
 /***/ (function(module, exports) {
 
 module.exports = require("prettier/parser-babel");
 
 /***/ }),
-/* 1733 */
+/* 1737 */
 /***/ (function(module, exports) {
 
 module.exports = {"$schema":"http://json.schemastore.org/prettierrc","arrowParens":"always","jsxSingleQuote":true,"printWidth":100,"tabWidth":2,"semi":false,"singleQuote":true,"trailingComma":"all","overrides":[{"files":".prettierrc","options":{"parser":"json"}},{"files":"docs/src/examples/**/*.js","options":{"printWidth":80}}]}
 
 /***/ }),
-/* 1734 */
+/* 1738 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88487,12 +88720,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _ComponentControls = _interopRequireDefault(__webpack_require__(1735));
+var _ComponentControls = _interopRequireDefault(__webpack_require__(1739));
 
 exports.default = _ComponentControls.default;
 
 /***/ }),
-/* 1735 */
+/* 1739 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88511,9 +88744,9 @@ var _react = _interopRequireDefault(__webpack_require__(1));
 
 var _semanticUiReact = __webpack_require__(2);
 
-var _ComponentControlsCopyLink = _interopRequireDefault(__webpack_require__(1736));
+var _ComponentControlsCopyLink = _interopRequireDefault(__webpack_require__(1740));
 
-var _ComponentControlsCodeSandbox = _interopRequireDefault(__webpack_require__(1737));
+var _ComponentControlsCodeSandbox = _interopRequireDefault(__webpack_require__(1741));
 
 var ComponentControls = function ComponentControls(props) {
   var anchorName = props.anchorName,
@@ -88577,7 +88810,7 @@ var _default = /*#__PURE__*/_react.default.memo(ComponentControls);
 exports.default = _default;
 
 /***/ }),
-/* 1736 */
+/* 1740 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88665,7 +88898,7 @@ ComponentControlsCopyLink.propTypes =  false ? {
 } : {};
 
 /***/ }),
-/* 1737 */
+/* 1741 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88684,13 +88917,13 @@ var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
 var React = _interopRequireWildcard(__webpack_require__(1));
 
-var _reactCodesandboxer = _interopRequireDefault(__webpack_require__(1738));
+var _reactCodesandboxer = _interopRequireDefault(__webpack_require__(1742));
 
 var _semanticUiReact = __webpack_require__(2);
 
-var _createPackageJson = _interopRequireDefault(__webpack_require__(1739));
+var _createPackageJson = _interopRequireDefault(__webpack_require__(1743));
 
-var _enhanceExampleCode = _interopRequireDefault(__webpack_require__(1742));
+var _enhanceExampleCode = _interopRequireDefault(__webpack_require__(1746));
 
 var appTemplate = "import React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport { Container, Header, List } from \"semantic-ui-react\";\n\nimport pkg from 'semantic-ui-react/package.json'\nimport Example from \"./example\";\n\nconst App = ({ children }) => (\n  <Container style={{ margin: 20 }}>\n    <Header as=\"h3\">This example is powered by Semantic UI React {pkg.version} \uD83D\uDE0A</Header>\n    <List bulleted>\n      <List.Item\n        as=\"a\"\n        content=\"\uD83D\uDC8C Official documentation\"\n        href=\"https://react.semantic-ui.com/\"\n        target=\"_blank\"\n      />\n      <List.Item\n        as=\"a\"\n        content=\"\uD83D\uDCA1 StackOverflow\"\n        href=\"https://stackoverflow.com/questions/tagged/semantic-ui-react?sort=frequent\"\n        target=\"_blank\"\n      />\n    </List>\n\n    {children}\n  </Container>\n);\n\n// TODO: Switch to https://github.com/palmerhq/the-platform#stylesheet when it will be stable\nconst styleLink = document.createElement(\"link\");\nstyleLink.rel = \"stylesheet\";\nstyleLink.href = \"https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css\";\ndocument.head.appendChild(styleLink);\n\nReactDOM.render(\n  <App>\n    <Example />\n  </App>,\n  document.getElementById(\"root\")\n);\n";
 
@@ -88816,13 +89049,13 @@ var _default = ComponentControlsCodeSandbox;
 exports.default = _default;
 
 /***/ }),
-/* 1738 */
+/* 1742 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-codesandboxer");
 
 /***/ }),
-/* 1739 */
+/* 1743 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88874,19 +89107,19 @@ var _default = createPackageJson;
 exports.default = _default;
 
 /***/ }),
-/* 1740 */
+/* 1744 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"semantic-ui-react","version":"2.0.0","description":"The official Semantic-UI-React integration.","jsnext:main":"dist/es/index.js","main":"dist/commonjs/index.js","module":"dist/es/index.js","types":"index.d.ts","unpkg":"dist/umd/semantic-ui-react.min.js","files":["src","dist","index.d.ts"],"sideEffects":false,"scripts":{"build":"cross-env NODE_ENV=production gulp build","build:docs":"cross-env NODE_ENV=production gulp build:docs","build:docs:staging":"cross-env STAGING=true yarn build:docs && yarn serve docs/dist","build:dist":"gulp build:dist","prebuild:size":"gulp build:dist:es","build:size":"node bundle-size/bundle.js","ci":"yarn tsd:test && yarn lint && yarn test","predeploy:docs":"cross-env NODE_ENV=production yarn build:docs && gulp build:docs:cname","deploy:docs":"gulp deploy:docs","lint":"cross-env NODE_ENV=production eslint . --ext .js,.ts,.tsx","lint:fix":"yarn lint --fix","prettier":"prettier --list-different \"**/*.{js,jsx,ts,tsx}\"","prettier:fix":"prettier --write \"**/*.{js,jsx,ts,tsx}\"","prerelease":"yarn lint && yarn tsd:test && yarn test && cross-env NODE_ENV=production yarn build","postrelease":"yarn deploy:docs","release:major":"yarn prerelease && ta-script npm/release major && yarn postrelease","release:minor":"yarn prerelease && ta-script npm/release minor && yarn postrelease","release:patch":"yarn prerelease && ta-script npm/release patch && yarn postrelease","prestart":"yarn satisfied --fix yarn","start":"cross-env NODE_ENV=development gulp --series start:docs","satisfied":"satisfied --ignore \"webpack\" --skip-invalid","pretest":"yarn satisfied && gulp build:docs:docgen","test":"cross-env NODE_ENV=test node -r @babel/register ./node_modules/karma/bin/karma start karma.conf.babel.js","test:watch":"yarn test --no-single-run","test:umd":"gulp build:dist:umd && node test/umd.js","tsd:test":"gulp build:dist:commonjs:tsd && tsc -p ./ --noEmit"},"husky":{"hooks":{"pre-commit":"lint-staged","post-commit":"git update-index --again"}},"lint-staged":{"**/*.{js,jsx,ts,tsx}":["prettier --write","eslint --fix"],"**/*.mdx":["prettier --parser mdx --write"]},"repository":{"type":"git","url":"git+ssh://github.com/Semantic-Org/Semantic-UI-React.git"},"author":"Levi Thomason <me@levithomason.com>","license":"MIT","bugs":{"url":"https://github.com/Semantic-Org/Semantic-UI-React/issues"},"homepage":"https://github.com/Semantic-Org/Semantic-UI-React#readme","dependencies":{"@babel/runtime":"^7.10.5","@fluentui/react-component-event-listener":"~0.51.1","@fluentui/react-component-ref":"~0.51.1","@popperjs/core":"^2.5.2","@semantic-ui-react/event-stack":"^3.1.0","clsx":"^1.1.1","keyboard-key":"^1.1.0","lodash":"^4.17.19","lodash-es":"^4.17.15","prop-types":"^15.7.2","react-is":"^16.8.6","react-popper":"^2.2.3","shallowequal":"^1.1.0"},"devDependencies":{"@artsy/fresnel":"^1.2.0","@babel/cli":"^7.10.5","@babel/core":"^7.10.5","@babel/plugin-proposal-class-properties":"^7.10.4","@babel/plugin-proposal-export-default-from":"^7.10.4","@babel/plugin-proposal-export-namespace-from":"^7.10.4","@babel/plugin-syntax-dynamic-import":"^7.8.3","@babel/plugin-transform-runtime":"^7.10.5","@babel/preset-env":"^7.10.4","@babel/preset-react":"^7.10.4","@babel/register":"^7.10.5","@babel/standalone":"^7.10.5","@mdx-js/loader":"^0.20.3","@size-limit/file":"^4.5.5","@types/react":"^16.9.43","@typescript-eslint/eslint-plugin":"^3.7.1","@typescript-eslint/parser":"^3.7.1","anchor-js":"^4.2.2","babel-eslint":"^10.1.0","babel-loader":"^8.1.0","babel-plugin-filter-imports":"^4.0.0","babel-plugin-istanbul":"^6.0.0","babel-plugin-lodash":"^3.3.4","babel-plugin-transform-react-handled-props":"^2.1.0","babel-plugin-transform-react-remove-prop-types":"^0.4.24","babel-plugin-transform-rename-import":"^2.3.0","babel-plugin-universal-import":"^2.0.2","chai":"^4.2.0","chai-enzyme":"^1.0.0-beta.1","copy-to-clipboard":"^3.3.1","cross-env":"^7.0.2","debug":"^4.1.1","dirty-chai":"^2.0.1","doctoc":"^1.4.0","doctrine":"^3.0.0","enzyme":"^3.11.0","enzyme-adapter-react-16":"^1.15.2","eslint":"^7.5.0","eslint-config-airbnb":"^18.2.0","eslint-config-prettier":"^6.11.0","eslint-plugin-import":"^2.22.0","eslint-plugin-jsx-a11y":"^6.3.1","eslint-plugin-mocha":"^7.0.1","eslint-plugin-react":"^7.20.4","eslint-plugin-react-hooks":"^4.0.8","faker":"^4.1.0","gh-pages":"^3.1.0","gulp":"^4.0.2","gulp-load-plugins":"^2.0.3","gulp-util":"^3.0.8","husky":"^4.2.5","imports-loader":"^1.1.0","karma":"^5.1.0","karma-chrome-launcher":"^3.1.0","karma-cli":"^2.0.0","karma-coverage":"^2.0.2","karma-mocha":"^2.0.1","karma-mocha-reporter":"^2.2.5","karma-webpack":"^4.0.2","leven":"^3.1.0","lint-staged":"^10.2.11","mocha":"^8.0.1","prettier":"^2.0.5","prismjs":"^1.20.0","puppeteer":"^5.2.1","raw-loader":"^4.0.1","react":"^16.9.0","react-ace":"^6.4.0","react-codesandboxer":"^3.1.3","react-docgen":"^4.1.0","react-dom":"^16.9.0","react-hot-loader":"^4.12.11","react-intersection-observer":"^8.26.2","react-router":"^5.0.0","react-router-dom":"^5.0.0","react-source-render":"^3.0.0-5","react-static":"^5.9.7","react-static-routes":"^1.0.0","react-test-renderer":"^16.9.0","react-universal-component":"^3.0.3","rimraf":"^3.0.2","satisfied":"^1.1.2","semantic-ui-css":"^2.4.1","simulant":"^0.2.2","sinon":"^9.0.2","sinon-chai":"^3.5.0","size-limit":"^4.5.5","ta-scripts":"^2.5.2","terser-webpack-plugin":"^3.0.8","terser-webpack-plugin-legacy":"^1.2.3","through2":"^3.0.1","typescript":"^3.9.5","vinyl":"^2.2.0","webpack":"^4.28.4","webpack-bundle-analyzer":"^3.8.0","webpack-cli":"^3.3.12","webpack-dev-middleware":"^3.7.2"},"peerDependencies":{"react":"^16.8.0","react-dom":"^16.8.0"},"resolutions":{"babel-plugin-universal-import":"^2.0.2","react-universal-component":"^3.0.3","react-router":"^5.0.0","react-router-dom":"^5.0.0"}}
+module.exports = {"name":"semantic-ui-react","version":"2.0.1","description":"The official Semantic-UI-React integration.","jsnext:main":"dist/es/index.js","main":"dist/commonjs/index.js","module":"dist/es/index.js","types":"index.d.ts","unpkg":"dist/umd/semantic-ui-react.min.js","files":["src","dist","index.d.ts"],"sideEffects":false,"scripts":{"build":"cross-env NODE_ENV=production gulp build","build:docs":"cross-env NODE_ENV=production gulp build:docs","build:docs:staging":"cross-env STAGING=true yarn build:docs && yarn serve docs/dist","build:dist":"gulp build:dist","prebuild:size":"gulp build:dist:es","build:size":"node bundle-size/bundle.js","ci":"yarn tsd:test && yarn lint && yarn test","predeploy:docs":"cross-env NODE_ENV=production yarn build:docs && gulp build:docs:cname","deploy:docs":"gulp deploy:docs","lint":"cross-env NODE_ENV=production eslint . --ext .js,.ts,.tsx","lint:fix":"yarn lint --fix","prettier":"prettier --list-different \"**/*.{js,jsx,ts,tsx}\"","prettier:fix":"prettier --write \"**/*.{js,jsx,ts,tsx}\"","prerelease":"yarn lint && yarn tsd:test && yarn test && cross-env NODE_ENV=production yarn build","postrelease":"yarn deploy:docs","release:major":"yarn prerelease && ta-script npm/release major && yarn postrelease","release:minor":"yarn prerelease && ta-script npm/release minor && yarn postrelease","release:patch":"yarn prerelease && ta-script npm/release patch && yarn postrelease","prestart":"yarn satisfied --fix yarn","start":"cross-env NODE_ENV=development gulp --series start:docs","satisfied":"satisfied --ignore \"webpack\" --skip-invalid","pretest":"yarn satisfied && gulp build:docs:docgen","test":"cross-env NODE_ENV=test node -r @babel/register ./node_modules/karma/bin/karma start karma.conf.babel.js","test:watch":"yarn test --no-single-run","test:umd":"gulp build:dist:umd && node test/umd.js","tsd:test":"gulp build:dist:commonjs:tsd && tsc -p ./ --noEmit"},"husky":{"hooks":{"pre-commit":"lint-staged","post-commit":"git update-index --again"}},"lint-staged":{"**/*.{js,jsx,ts,tsx}":["prettier --write","eslint --fix"],"**/*.mdx":["prettier --parser mdx --write"]},"repository":{"type":"git","url":"git+ssh://github.com/Semantic-Org/Semantic-UI-React.git"},"author":"Levi Thomason <me@levithomason.com>","license":"MIT","bugs":{"url":"https://github.com/Semantic-Org/Semantic-UI-React/issues"},"homepage":"https://github.com/Semantic-Org/Semantic-UI-React#readme","dependencies":{"@babel/runtime":"^7.10.5","@fluentui/react-component-event-listener":"~0.51.1","@fluentui/react-component-ref":"~0.51.1","@popperjs/core":"^2.5.2","@semantic-ui-react/event-stack":"^3.1.0","clsx":"^1.1.1","keyboard-key":"^1.1.0","lodash":"^4.17.19","lodash-es":"^4.17.15","prop-types":"^15.7.2","react-is":"^16.8.6","react-popper":"^2.2.3","shallowequal":"^1.1.0"},"devDependencies":{"@artsy/fresnel":"^1.2.0","@babel/cli":"^7.10.5","@babel/core":"^7.10.5","@babel/plugin-proposal-class-properties":"^7.10.4","@babel/plugin-proposal-export-default-from":"^7.10.4","@babel/plugin-proposal-export-namespace-from":"^7.10.4","@babel/plugin-syntax-dynamic-import":"^7.8.3","@babel/plugin-transform-runtime":"^7.10.5","@babel/preset-env":"^7.10.4","@babel/preset-react":"^7.10.4","@babel/register":"^7.10.5","@babel/standalone":"^7.10.5","@mdx-js/loader":"^0.20.3","@percy/cypress":"^2.3.2","@size-limit/file":"^4.5.5","@types/react":"^16.9.43","@typescript-eslint/eslint-plugin":"^3.7.1","@typescript-eslint/parser":"^3.7.1","anchor-js":"^4.2.2","babel-eslint":"^10.1.0","babel-loader":"^8.1.0","babel-plugin-filter-imports":"^4.0.0","babel-plugin-istanbul":"^6.0.0","babel-plugin-lodash":"^3.3.4","babel-plugin-transform-react-handled-props":"^2.1.0","babel-plugin-transform-react-remove-prop-types":"^0.4.24","babel-plugin-transform-rename-import":"^2.3.0","babel-plugin-universal-import":"^2.0.2","chai":"^4.2.0","chai-enzyme":"^1.0.0-beta.1","copy-to-clipboard":"^3.3.1","cross-env":"^7.0.2","cypress":"^5.4.0","debug":"^4.1.1","dirty-chai":"^2.0.1","doctoc":"^1.4.0","doctrine":"^3.0.0","enzyme":"^3.11.0","enzyme-adapter-react-16":"^1.15.2","eslint":"^7.5.0","eslint-config-airbnb":"^18.2.0","eslint-config-prettier":"^6.11.0","eslint-plugin-cypress":"^2.11.2","eslint-plugin-import":"^2.22.0","eslint-plugin-jsx-a11y":"^6.3.1","eslint-plugin-mocha":"^7.0.1","eslint-plugin-react":"^7.20.4","eslint-plugin-react-hooks":"^4.0.8","faker":"^4.1.0","gh-pages":"^3.1.0","gulp":"^4.0.2","gulp-load-plugins":"^2.0.3","gulp-util":"^3.0.8","husky":"^4.2.5","imports-loader":"^1.1.0","karma":"^5.1.0","karma-chrome-launcher":"^3.1.0","karma-cli":"^2.0.0","karma-coverage":"^2.0.2","karma-mocha":"^2.0.1","karma-mocha-reporter":"^2.2.5","karma-webpack":"^4.0.2","leven":"^3.1.0","lint-staged":"^10.2.11","mocha":"^8.0.1","prettier":"^2.0.5","prismjs":"^1.20.0","puppeteer":"^5.2.1","raw-loader":"^4.0.1","react":"^16.9.0","react-ace":"^6.4.0","react-codesandboxer":"^3.1.3","react-docgen":"^4.1.0","react-dom":"^16.9.0","react-hot-loader":"^4.12.11","react-intersection-observer":"^8.26.2","react-router":"^5.0.0","react-router-dom":"^5.0.0","react-source-render":"^3.0.0-5","react-static":"^5.9.7","react-static-routes":"^1.0.0","react-test-renderer":"^16.9.0","react-universal-component":"^3.0.3","rimraf":"^3.0.2","satisfied":"^1.1.2","semantic-ui-css":"^2.4.1","simulant":"^0.2.2","sinon":"^9.0.2","sinon-chai":"^3.5.0","size-limit":"^4.5.5","start-server-and-test":"^1.11.5","ta-scripts":"^2.5.2","terser-webpack-plugin":"^3.0.8","terser-webpack-plugin-legacy":"^1.2.3","through2":"^3.0.1","typescript":"^3.9.5","vinyl":"^2.2.0","webpack":"^4.28.4","webpack-bundle-analyzer":"^3.8.0","webpack-cli":"^3.3.12","webpack-dev-middleware":"^3.7.2"},"peerDependencies":{"react":"^16.8.0","react-dom":"^16.8.0"},"resolutions":{"babel-plugin-universal-import":"^2.0.2","react-universal-component":"^3.0.3","react-router":"^5.0.0","react-router-dom":"^5.0.0"}}
 
 /***/ }),
-/* 1741 */
+/* 1745 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash");
 
 /***/ }),
-/* 1742 */
+/* 1746 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88905,7 +89138,7 @@ var _default = enhanceExampleCode;
 exports.default = _default;
 
 /***/ }),
-/* 1743 */
+/* 1747 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88915,12 +89148,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _ExampleEditor = _interopRequireDefault(__webpack_require__(1744));
+var _ExampleEditor = _interopRequireDefault(__webpack_require__(1748));
 
 exports.default = _ExampleEditor.default;
 
 /***/ }),
-/* 1744 */
+/* 1748 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88939,17 +89172,17 @@ var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _reactSourceRender = _interopRequireDefault(__webpack_require__(1745));
+var _reactSourceRender = _interopRequireDefault(__webpack_require__(1749));
 
 var _semanticUiReact = __webpack_require__(2);
 
-var _CodeEditor = _interopRequireDefault(__webpack_require__(1746));
+var _CodeEditor = _interopRequireDefault(__webpack_require__(1750));
 
 var _CodeSnippet = _interopRequireDefault(__webpack_require__(275));
 
-var _ExampleEditorMenu = _interopRequireDefault(__webpack_require__(1754));
+var _ExampleEditorMenu = _interopRequireDefault(__webpack_require__(1758));
 
-var _ExampleEditorPlaceholder = _interopRequireDefault(__webpack_require__(1755));
+var _ExampleEditorPlaceholder = _interopRequireDefault(__webpack_require__(1759));
 
 var _renderConfig = __webpack_require__(445);
 
@@ -89045,13 +89278,13 @@ var _default = /*#__PURE__*/_react.default.memo(ExampleEditor);
 exports.default = _default;
 
 /***/ }),
-/* 1745 */
+/* 1749 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-source-render");
 
 /***/ }),
-/* 1746 */
+/* 1750 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89072,7 +89305,7 @@ var _NoSSR = _interopRequireDefault(__webpack_require__(438));
 
 var CodeEditor = /*#__PURE__*/_react.default.lazy(function () {
   return Promise.resolve().then(function () {
-    return (0, _interopRequireWildcard2.default)(__webpack_require__(1747));
+    return (0, _interopRequireWildcard2.default)(__webpack_require__(1751));
   });
 });
 
@@ -89090,7 +89323,7 @@ var _default = CodeEditorSafe;
 exports.default = _default;
 
 /***/ }),
-/* 1747 */
+/* 1751 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89109,11 +89342,11 @@ var _invoke2 = _interopRequireDefault(__webpack_require__(11));
 
 var _debounce2 = _interopRequireDefault(__webpack_require__(38));
 
-var _uniqueId2 = _interopRequireDefault(__webpack_require__(1748));
+var _uniqueId2 = _interopRequireDefault(__webpack_require__(1752));
 
 var _uniq2 = _interopRequireDefault(__webpack_require__(285));
 
-var _words2 = _interopRequireDefault(__webpack_require__(1749));
+var _words2 = _interopRequireDefault(__webpack_require__(1753));
 
 var _forEach2 = _interopRequireDefault(__webpack_require__(209));
 
@@ -89121,13 +89354,13 @@ var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
 var _react = _interopRequireDefault(__webpack_require__(1));
 
-var _reactAce = _interopRequireDefault(__webpack_require__(1750));
+var _reactAce = _interopRequireDefault(__webpack_require__(1754));
 
-__webpack_require__(1751);
+__webpack_require__(1755);
 
-__webpack_require__(1752);
+__webpack_require__(1756);
 
-__webpack_require__(1753);
+__webpack_require__(1757);
 
 var _utils = __webpack_require__(22);
 
@@ -89297,43 +89530,43 @@ var _default = CodeEditor;
 exports.default = _default;
 
 /***/ }),
-/* 1748 */
+/* 1752 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/uniqueId");
 
 /***/ }),
-/* 1749 */
+/* 1753 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/words");
 
 /***/ }),
-/* 1750 */
+/* 1754 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-ace");
 
 /***/ }),
-/* 1751 */
+/* 1755 */
 /***/ (function(module, exports) {
 
 module.exports = require("brace/ext/language_tools");
 
 /***/ }),
-/* 1752 */
+/* 1756 */
 /***/ (function(module, exports) {
 
 module.exports = require("brace/mode/jsx");
 
 /***/ }),
-/* 1753 */
+/* 1757 */
 /***/ (function(module, exports) {
 
 module.exports = require("brace/theme/tomorrow_night_eighties");
 
 /***/ }),
-/* 1754 */
+/* 1758 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89505,7 +89738,7 @@ var _default = ExampleEditorMenu;
 exports.default = _default;
 
 /***/ }),
-/* 1755 */
+/* 1759 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89535,7 +89768,7 @@ var _default = /*#__PURE__*/_react.default.memo(ExampleEditorPlaceholder, areEqu
 exports.default = _default;
 
 /***/ }),
-/* 1756 */
+/* 1760 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89603,7 +89836,7 @@ ComponentExampleTitle.propTypes =  false ? {
 } : {};
 
 /***/ }),
-/* 1757 */
+/* 1761 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89618,9 +89851,9 @@ exports.default = void 0;
 
 var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
-var _debounce2 = _interopRequireDefault(__webpack_require__(1758));
+var _debounce2 = _interopRequireDefault(__webpack_require__(1762));
 
-var _sum2 = _interopRequireDefault(__webpack_require__(1759));
+var _sum2 = _interopRequireDefault(__webpack_require__(1763));
 
 var _min2 = _interopRequireDefault(__webpack_require__(447));
 
@@ -89630,7 +89863,7 @@ var _flow2 = _interopRequireDefault(__webpack_require__(449));
 
 var _copyToClipboard = _interopRequireDefault(__webpack_require__(321));
 
-var _leven = _interopRequireDefault(__webpack_require__(1760));
+var _leven = _interopRequireDefault(__webpack_require__(1764));
 
 var _react = _interopRequireWildcard(__webpack_require__(1));
 
@@ -89954,25 +90187,25 @@ exports.default = IconSearch;
 IconSearch.handledProps = [];
 
 /***/ }),
-/* 1758 */
+/* 1762 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/fp/debounce");
 
 /***/ }),
-/* 1759 */
+/* 1763 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/fp/sum");
 
 /***/ }),
-/* 1760 */
+/* 1764 */
 /***/ (function(module, exports) {
 
 module.exports = require("leven");
 
 /***/ }),
-/* 1761 */
+/* 1765 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89982,12 +90215,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _ComponentProps = _interopRequireDefault(__webpack_require__(1762));
+var _ComponentProps = _interopRequireDefault(__webpack_require__(1766));
 
 exports.default = _ComponentProps.default;
 
 /***/ }),
-/* 1762 */
+/* 1766 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90006,7 +90239,7 @@ var _join2 = _interopRequireDefault(__webpack_require__(444));
 
 var _get2 = _interopRequireDefault(__webpack_require__(25));
 
-var _keys2 = _interopRequireDefault(__webpack_require__(28));
+var _keys2 = _interopRequireDefault(__webpack_require__(29));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(4));
 
@@ -90016,11 +90249,11 @@ var _semanticUiReact = __webpack_require__(2);
 
 var _utils = __webpack_require__(22);
 
-var _ComponentTable = _interopRequireDefault(__webpack_require__(1763));
+var _ComponentTable = _interopRequireDefault(__webpack_require__(1767));
 
-var _ComponentPropsComponents = _interopRequireDefault(__webpack_require__(1775));
+var _ComponentPropsComponents = _interopRequireDefault(__webpack_require__(1779));
 
-var _ComponentPropsDescription = _interopRequireDefault(__webpack_require__(1776));
+var _ComponentPropsDescription = _interopRequireDefault(__webpack_require__(1780));
 
 var propsContainerStyle = {
   overflowX: 'auto'
@@ -90111,7 +90344,7 @@ ComponentProps.propTypes =  false ? {
 } : {};
 
 /***/ }),
-/* 1763 */
+/* 1767 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90121,12 +90354,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _ComponentTable = _interopRequireDefault(__webpack_require__(1764));
+var _ComponentTable = _interopRequireDefault(__webpack_require__(1768));
 
 exports.default = _ComponentTable.default;
 
 /***/ }),
-/* 1764 */
+/* 1768 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90147,9 +90380,9 @@ var _react = _interopRequireDefault(__webpack_require__(1));
 
 var _semanticUiReact = __webpack_require__(2);
 
-var _ComponentTableHeader = _interopRequireDefault(__webpack_require__(1765));
+var _ComponentTableHeader = _interopRequireDefault(__webpack_require__(1769));
 
-var _ComponentTableRow = _interopRequireDefault(__webpack_require__(1766));
+var _ComponentTableRow = _interopRequireDefault(__webpack_require__(1770));
 
 /**
  * Displays a table of a Component's PropTypes.
@@ -90176,7 +90409,7 @@ var _default = /*#__PURE__*/_react.default.memo(ComponentTable);
 exports.default = _default;
 
 /***/ }),
-/* 1765 */
+/* 1769 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90206,7 +90439,7 @@ var _default = /*#__PURE__*/_react.default.memo(ComponentTableHeader, areEqual);
 exports.default = _default;
 
 /***/ }),
-/* 1766 */
+/* 1770 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90227,15 +90460,15 @@ var _react = _interopRequireWildcard(__webpack_require__(1));
 
 var _semanticUiReact = __webpack_require__(2);
 
-var _ComponentPropDefaultValue = _interopRequireDefault(__webpack_require__(1767));
+var _ComponentPropDefaultValue = _interopRequireDefault(__webpack_require__(1771));
 
-var _ComponentPropDescription = _interopRequireDefault(__webpack_require__(1768));
+var _ComponentPropDescription = _interopRequireDefault(__webpack_require__(1772));
 
-var _ComponentPropEnum = _interopRequireDefault(__webpack_require__(1769));
+var _ComponentPropEnum = _interopRequireDefault(__webpack_require__(1773));
 
-var _ComponentPropFunctionSignature = _interopRequireDefault(__webpack_require__(1773));
+var _ComponentPropFunctionSignature = _interopRequireDefault(__webpack_require__(1777));
 
-var _ComponentPropName = _interopRequireDefault(__webpack_require__(1774));
+var _ComponentPropName = _interopRequireDefault(__webpack_require__(1778));
 
 var ComponentTableRow = /*#__PURE__*/function (_Component) {
   (0, _inheritsLoose2.default)(ComponentTableRow, _Component);
@@ -90315,7 +90548,7 @@ ComponentTableRow.propTypes =  false ? {
 } : {};
 
 /***/ }),
-/* 1767 */
+/* 1771 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90360,7 +90593,7 @@ ComponentPropDefaultValue.propTypes =  false ? {
 } : {};
 
 /***/ }),
-/* 1768 */
+/* 1772 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90409,7 +90642,7 @@ ComponentPropDescription.propTypes =  false ? {
 } : {};
 
 /***/ }),
-/* 1769 */
+/* 1773 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90422,7 +90655,7 @@ exports.default = void 0;
 
 var _map2 = _interopRequireDefault(__webpack_require__(12));
 
-var _slice2 = _interopRequireDefault(__webpack_require__(1770));
+var _slice2 = _interopRequireDefault(__webpack_require__(1774));
 
 var _includes2 = _interopRequireDefault(__webpack_require__(23));
 
@@ -90432,9 +90665,9 @@ var _react = _interopRequireDefault(__webpack_require__(1));
 
 var _ComponentPropExtra = _interopRequireDefault(__webpack_require__(450));
 
-var _ComponentPropEnumToggle = _interopRequireDefault(__webpack_require__(1771));
+var _ComponentPropEnumToggle = _interopRequireDefault(__webpack_require__(1775));
 
-var _ComponentPropEnumValue = _interopRequireDefault(__webpack_require__(1772));
+var _ComponentPropEnumValue = _interopRequireDefault(__webpack_require__(1776));
 
 var ComponentPropEnum = function ComponentPropEnum(_ref) {
   var limit = _ref.limit,
@@ -90476,13 +90709,13 @@ var _default = /*#__PURE__*/_react.default.memo(ComponentPropEnum);
 exports.default = _default;
 
 /***/ }),
-/* 1770 */
+/* 1774 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/slice");
 
 /***/ }),
-/* 1771 */
+/* 1775 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90523,7 +90756,7 @@ var _default = /*#__PURE__*/_react.default.memo(ComponentPropEnumToggle);
 exports.default = _default;
 
 /***/ }),
-/* 1772 */
+/* 1776 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90564,7 +90797,7 @@ var _default = /*#__PURE__*/_react.default.memo(ComponentPropEnumValue, areEqual
 exports.default = _default;
 
 /***/ }),
-/* 1773 */
+/* 1777 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90657,7 +90890,7 @@ var _default = /*#__PURE__*/_react.default.memo(ComponentPropFunctionSignature, 
 exports.default = _default;
 
 /***/ }),
-/* 1774 */
+/* 1778 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90715,7 +90948,7 @@ ComponentPropName.propTypes =  false ? {
 } : {};
 
 /***/ }),
-/* 1775 */
+/* 1779 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90773,7 +91006,7 @@ var _default = /*#__PURE__*/_react.default.memo(ComponentPropsComponents, areEqu
 exports.default = _default;
 
 /***/ }),
-/* 1776 */
+/* 1780 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90812,7 +91045,7 @@ var _default = /*#__PURE__*/_react.default.memo(ComponentPropsDescription);
 exports.default = _default;
 
 /***/ }),
-/* 1777 */
+/* 1781 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90822,12 +91055,12 @@ var _interopRequireDefault = __webpack_require__(0);
 
 exports.__esModule = true;
 
-var _ComponentSidebar = _interopRequireDefault(__webpack_require__(1778));
+var _ComponentSidebar = _interopRequireDefault(__webpack_require__(1782));
 
 exports.default = _ComponentSidebar.default;
 
 /***/ }),
-/* 1778 */
+/* 1782 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90848,7 +91081,7 @@ var _semanticUiReact = __webpack_require__(2);
 
 var _utils = __webpack_require__(22);
 
-var _ComponentSidebarSection = _interopRequireDefault(__webpack_require__(1779));
+var _ComponentSidebarSection = _interopRequireDefault(__webpack_require__(1783));
 
 var sidebarStyle = {
   background: '#fff',
@@ -90902,7 +91135,7 @@ var _default = /*#__PURE__*/_react.default.memo(ComponentSidebar, areEqual);
 exports.default = _default;
 
 /***/ }),
-/* 1779 */
+/* 1783 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91021,7 +91254,7 @@ ComponentSidebarSection.propTypes =  false ? {
 } : {};
 
 /***/ }),
-/* 1780 */
+/* 1784 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -91060,16 +91293,16 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1780;
+webpackContext.id = 1784;
 
 /***/ }),
-/* 1781 */
+/* 1785 */
 /***/ (function(module, exports) {
 
 module.exports = require("@artsy/fresnel");
 
 /***/ }),
-/* 1782 */
+/* 1786 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -93185,88 +93418,96 @@ var map = {
 	"./modules/Popup/Usage/PopupExampleOffset.js": 1189,
 	"./modules/Popup/Usage/PopupExampleOffsetFunction": 1190,
 	"./modules/Popup/Usage/PopupExampleOffsetFunction.js": 1190,
-	"./modules/Popup/Usage/PopupExamplePopperDependencies": 1191,
-	"./modules/Popup/Usage/PopupExamplePopperDependencies.js": 1191,
+	"./modules/Popup/Usage/PopupExamplePopper": 1191,
+	"./modules/Popup/Usage/PopupExamplePopper.js": 1191,
+	"./modules/Popup/Usage/PopupExamplePopperDependencies": 1192,
+	"./modules/Popup/Usage/PopupExamplePopperDependencies.js": 1192,
+	"./modules/Popup/Usage/PopupExamplePositionFixed": 1193,
+	"./modules/Popup/Usage/PopupExamplePositionFixed.js": 1193,
 	"./modules/Popup/Usage/index": 164,
 	"./modules/Popup/Usage/index.js": 164,
 	"./modules/Popup/Variations": 165,
 	"./modules/Popup/Variations/": 165,
-	"./modules/Popup/Variations/PopupExampleBasic": 1192,
-	"./modules/Popup/Variations/PopupExampleBasic.js": 1192,
-	"./modules/Popup/Variations/PopupExampleFlowing": 1193,
-	"./modules/Popup/Variations/PopupExampleFlowing.js": 1193,
-	"./modules/Popup/Variations/PopupExampleInverted": 1194,
-	"./modules/Popup/Variations/PopupExampleInverted.js": 1194,
-	"./modules/Popup/Variations/PopupExamplePosition": 1195,
-	"./modules/Popup/Variations/PopupExamplePosition.js": 1195,
-	"./modules/Popup/Variations/PopupExampleSize": 1196,
-	"./modules/Popup/Variations/PopupExampleSize.js": 1196,
-	"./modules/Popup/Variations/PopupExampleStyle": 1197,
-	"./modules/Popup/Variations/PopupExampleStyle.js": 1197,
-	"./modules/Popup/Variations/PopupExampleWide": 1198,
-	"./modules/Popup/Variations/PopupExampleWide.js": 1198,
+	"./modules/Popup/Variations/PopupExampleBasic": 1194,
+	"./modules/Popup/Variations/PopupExampleBasic.js": 1194,
+	"./modules/Popup/Variations/PopupExampleFlowing": 1195,
+	"./modules/Popup/Variations/PopupExampleFlowing.js": 1195,
+	"./modules/Popup/Variations/PopupExampleInverted": 1196,
+	"./modules/Popup/Variations/PopupExampleInverted.js": 1196,
+	"./modules/Popup/Variations/PopupExamplePosition": 1197,
+	"./modules/Popup/Variations/PopupExamplePosition.js": 1197,
+	"./modules/Popup/Variations/PopupExampleSize": 1198,
+	"./modules/Popup/Variations/PopupExampleSize.js": 1198,
+	"./modules/Popup/Variations/PopupExampleStyle": 1199,
+	"./modules/Popup/Variations/PopupExampleStyle.js": 1199,
+	"./modules/Popup/Variations/PopupExampleWide": 1200,
+	"./modules/Popup/Variations/PopupExampleWide.js": 1200,
 	"./modules/Popup/Variations/index": 165,
 	"./modules/Popup/Variations/index.js": 165,
+	"./modules/Popup/Visual/PopupVisualFloatingButton": 1201,
+	"./modules/Popup/Visual/PopupVisualFloatingButton.js": 1201,
+	"./modules/Popup/Visual/PopupVisualInsideModal": 1202,
+	"./modules/Popup/Visual/PopupVisualInsideModal.js": 1202,
 	"./modules/Popup/index": 249,
 	"./modules/Popup/index.js": 249,
 	"./modules/Progress": 250,
 	"./modules/Progress/": 250,
 	"./modules/Progress/Content": 166,
 	"./modules/Progress/Content/": 166,
-	"./modules/Progress/Content/ProgressExampleBar": 1199,
-	"./modules/Progress/Content/ProgressExampleBar.js": 1199,
-	"./modules/Progress/Content/ProgressExampleLabel": 1200,
-	"./modules/Progress/Content/ProgressExampleLabel.js": 1200,
-	"./modules/Progress/Content/ProgressExampleLabelProp": 1201,
-	"./modules/Progress/Content/ProgressExampleLabelProp.js": 1201,
-	"./modules/Progress/Content/ProgressExampleProgress": 1202,
-	"./modules/Progress/Content/ProgressExampleProgress.js": 1202,
-	"./modules/Progress/Content/ProgressExampleProgressPercent": 1203,
-	"./modules/Progress/Content/ProgressExampleProgressPercent.js": 1203,
-	"./modules/Progress/Content/ProgressExampleProgressRatio": 1204,
-	"./modules/Progress/Content/ProgressExampleProgressRatio.js": 1204,
-	"./modules/Progress/Content/ProgressExampleProgressValue": 1205,
-	"./modules/Progress/Content/ProgressExampleProgressValue.js": 1205,
-	"./modules/Progress/Content/ProgressExampleProgressValuePercentageOfTotal": 1206,
-	"./modules/Progress/Content/ProgressExampleProgressValuePercentageOfTotal.js": 1206,
+	"./modules/Progress/Content/ProgressExampleBar": 1203,
+	"./modules/Progress/Content/ProgressExampleBar.js": 1203,
+	"./modules/Progress/Content/ProgressExampleLabel": 1204,
+	"./modules/Progress/Content/ProgressExampleLabel.js": 1204,
+	"./modules/Progress/Content/ProgressExampleLabelProp": 1205,
+	"./modules/Progress/Content/ProgressExampleLabelProp.js": 1205,
+	"./modules/Progress/Content/ProgressExampleProgress": 1206,
+	"./modules/Progress/Content/ProgressExampleProgress.js": 1206,
+	"./modules/Progress/Content/ProgressExampleProgressPercent": 1207,
+	"./modules/Progress/Content/ProgressExampleProgressPercent.js": 1207,
+	"./modules/Progress/Content/ProgressExampleProgressRatio": 1208,
+	"./modules/Progress/Content/ProgressExampleProgressRatio.js": 1208,
+	"./modules/Progress/Content/ProgressExampleProgressValue": 1209,
+	"./modules/Progress/Content/ProgressExampleProgressValue.js": 1209,
+	"./modules/Progress/Content/ProgressExampleProgressValuePercentageOfTotal": 1210,
+	"./modules/Progress/Content/ProgressExampleProgressValuePercentageOfTotal.js": 1210,
 	"./modules/Progress/Content/index": 166,
 	"./modules/Progress/Content/index.js": 166,
 	"./modules/Progress/States": 167,
 	"./modules/Progress/States/": 167,
-	"./modules/Progress/States/ProgressExampleActive": 1207,
-	"./modules/Progress/States/ProgressExampleActive.js": 1207,
-	"./modules/Progress/States/ProgressExampleDisabled": 1208,
-	"./modules/Progress/States/ProgressExampleDisabled.js": 1208,
-	"./modules/Progress/States/ProgressExampleError": 1209,
-	"./modules/Progress/States/ProgressExampleError.js": 1209,
-	"./modules/Progress/States/ProgressExampleSuccess": 1210,
-	"./modules/Progress/States/ProgressExampleSuccess.js": 1210,
-	"./modules/Progress/States/ProgressExampleWarning": 1211,
-	"./modules/Progress/States/ProgressExampleWarning.js": 1211,
+	"./modules/Progress/States/ProgressExampleActive": 1211,
+	"./modules/Progress/States/ProgressExampleActive.js": 1211,
+	"./modules/Progress/States/ProgressExampleDisabled": 1212,
+	"./modules/Progress/States/ProgressExampleDisabled.js": 1212,
+	"./modules/Progress/States/ProgressExampleError": 1213,
+	"./modules/Progress/States/ProgressExampleError.js": 1213,
+	"./modules/Progress/States/ProgressExampleSuccess": 1214,
+	"./modules/Progress/States/ProgressExampleSuccess.js": 1214,
+	"./modules/Progress/States/ProgressExampleWarning": 1215,
+	"./modules/Progress/States/ProgressExampleWarning.js": 1215,
 	"./modules/Progress/States/index": 167,
 	"./modules/Progress/States/index.js": 167,
 	"./modules/Progress/Types": 168,
 	"./modules/Progress/Types/": 168,
-	"./modules/Progress/Types/ProgressExampleAutoSuccess": 1212,
-	"./modules/Progress/Types/ProgressExampleAutoSuccess.js": 1212,
-	"./modules/Progress/Types/ProgressExampleIndicating": 1213,
-	"./modules/Progress/Types/ProgressExampleIndicating.js": 1213,
-	"./modules/Progress/Types/ProgressExampleStandard": 1214,
-	"./modules/Progress/Types/ProgressExampleStandard.js": 1214,
+	"./modules/Progress/Types/ProgressExampleAutoSuccess": 1216,
+	"./modules/Progress/Types/ProgressExampleAutoSuccess.js": 1216,
+	"./modules/Progress/Types/ProgressExampleIndicating": 1217,
+	"./modules/Progress/Types/ProgressExampleIndicating.js": 1217,
+	"./modules/Progress/Types/ProgressExampleStandard": 1218,
+	"./modules/Progress/Types/ProgressExampleStandard.js": 1218,
 	"./modules/Progress/Types/index": 168,
 	"./modules/Progress/Types/index.js": 168,
 	"./modules/Progress/Variations": 169,
 	"./modules/Progress/Variations/": 169,
-	"./modules/Progress/Variations/ProgressExampleAttached": 1215,
-	"./modules/Progress/Variations/ProgressExampleAttached.js": 1215,
-	"./modules/Progress/Variations/ProgressExampleColor": 1216,
-	"./modules/Progress/Variations/ProgressExampleColor.js": 1216,
-	"./modules/Progress/Variations/ProgressExampleInverted": 1217,
-	"./modules/Progress/Variations/ProgressExampleInverted.js": 1217,
-	"./modules/Progress/Variations/ProgressExampleInvertedColor": 1218,
-	"./modules/Progress/Variations/ProgressExampleInvertedColor.js": 1218,
-	"./modules/Progress/Variations/ProgressExampleSize": 1219,
-	"./modules/Progress/Variations/ProgressExampleSize.js": 1219,
+	"./modules/Progress/Variations/ProgressExampleAttached": 1219,
+	"./modules/Progress/Variations/ProgressExampleAttached.js": 1219,
+	"./modules/Progress/Variations/ProgressExampleColor": 1220,
+	"./modules/Progress/Variations/ProgressExampleColor.js": 1220,
+	"./modules/Progress/Variations/ProgressExampleInverted": 1221,
+	"./modules/Progress/Variations/ProgressExampleInverted.js": 1221,
+	"./modules/Progress/Variations/ProgressExampleInvertedColor": 1222,
+	"./modules/Progress/Variations/ProgressExampleInvertedColor.js": 1222,
+	"./modules/Progress/Variations/ProgressExampleSize": 1223,
+	"./modules/Progress/Variations/ProgressExampleSize.js": 1223,
 	"./modules/Progress/Variations/index": 169,
 	"./modules/Progress/Variations/index.js": 169,
 	"./modules/Progress/index": 250,
@@ -93275,26 +93516,26 @@ var map = {
 	"./modules/Rating/": 251,
 	"./modules/Rating/Types": 170,
 	"./modules/Rating/Types/": 170,
-	"./modules/Rating/Types/RatingExampleClearable": 1220,
-	"./modules/Rating/Types/RatingExampleClearable.js": 1220,
-	"./modules/Rating/Types/RatingExampleControlled": 1221,
-	"./modules/Rating/Types/RatingExampleControlled.js": 1221,
-	"./modules/Rating/Types/RatingExampleDisabled": 1222,
-	"./modules/Rating/Types/RatingExampleDisabled.js": 1222,
-	"./modules/Rating/Types/RatingExampleHeart": 1223,
-	"./modules/Rating/Types/RatingExampleHeart.js": 1223,
-	"./modules/Rating/Types/RatingExampleOnRate": 1224,
-	"./modules/Rating/Types/RatingExampleOnRate.js": 1224,
-	"./modules/Rating/Types/RatingExampleRating": 1225,
-	"./modules/Rating/Types/RatingExampleRating.js": 1225,
-	"./modules/Rating/Types/RatingExampleStar": 1226,
-	"./modules/Rating/Types/RatingExampleStar.js": 1226,
+	"./modules/Rating/Types/RatingExampleClearable": 1224,
+	"./modules/Rating/Types/RatingExampleClearable.js": 1224,
+	"./modules/Rating/Types/RatingExampleControlled": 1225,
+	"./modules/Rating/Types/RatingExampleControlled.js": 1225,
+	"./modules/Rating/Types/RatingExampleDisabled": 1226,
+	"./modules/Rating/Types/RatingExampleDisabled.js": 1226,
+	"./modules/Rating/Types/RatingExampleHeart": 1227,
+	"./modules/Rating/Types/RatingExampleHeart.js": 1227,
+	"./modules/Rating/Types/RatingExampleOnRate": 1228,
+	"./modules/Rating/Types/RatingExampleOnRate.js": 1228,
+	"./modules/Rating/Types/RatingExampleRating": 1229,
+	"./modules/Rating/Types/RatingExampleRating.js": 1229,
+	"./modules/Rating/Types/RatingExampleStar": 1230,
+	"./modules/Rating/Types/RatingExampleStar.js": 1230,
 	"./modules/Rating/Types/index": 170,
 	"./modules/Rating/Types/index.js": 170,
 	"./modules/Rating/Variations": 171,
 	"./modules/Rating/Variations/": 171,
-	"./modules/Rating/Variations/RatingExampleSize": 1227,
-	"./modules/Rating/Variations/RatingExampleSize.js": 1227,
+	"./modules/Rating/Variations/RatingExampleSize": 1231,
+	"./modules/Rating/Variations/RatingExampleSize.js": 1231,
 	"./modules/Rating/Variations/index": 171,
 	"./modules/Rating/Variations/index.js": 171,
 	"./modules/Rating/index": 251,
@@ -93303,24 +93544,24 @@ var map = {
 	"./modules/Search/": 252,
 	"./modules/Search/Types": 172,
 	"./modules/Search/Types/": 172,
-	"./modules/Search/Types/SearchExampleCategory": 1228,
-	"./modules/Search/Types/SearchExampleCategory.js": 1228,
-	"./modules/Search/Types/SearchExampleCategoryCustom": 1229,
-	"./modules/Search/Types/SearchExampleCategoryCustom.js": 1229,
-	"./modules/Search/Types/SearchExampleStandard": 1230,
-	"./modules/Search/Types/SearchExampleStandard.js": 1230,
-	"./modules/Search/Types/SearchExampleStandardCustom": 1231,
-	"./modules/Search/Types/SearchExampleStandardCustom.js": 1231,
+	"./modules/Search/Types/SearchExampleCategory": 1232,
+	"./modules/Search/Types/SearchExampleCategory.js": 1232,
+	"./modules/Search/Types/SearchExampleCategoryCustom": 1233,
+	"./modules/Search/Types/SearchExampleCategoryCustom.js": 1233,
+	"./modules/Search/Types/SearchExampleStandard": 1234,
+	"./modules/Search/Types/SearchExampleStandard.js": 1234,
+	"./modules/Search/Types/SearchExampleStandardCustom": 1235,
+	"./modules/Search/Types/SearchExampleStandardCustom.js": 1235,
 	"./modules/Search/Types/index": 172,
 	"./modules/Search/Types/index.js": 172,
 	"./modules/Search/Variations": 173,
 	"./modules/Search/Variations/": 173,
-	"./modules/Search/Variations/SearchExampleAligned": 1232,
-	"./modules/Search/Variations/SearchExampleAligned.js": 1232,
-	"./modules/Search/Variations/SearchExampleFluid": 1233,
-	"./modules/Search/Variations/SearchExampleFluid.js": 1233,
-	"./modules/Search/Variations/SearchExampleInput": 1234,
-	"./modules/Search/Variations/SearchExampleInput.js": 1234,
+	"./modules/Search/Variations/SearchExampleAligned": 1236,
+	"./modules/Search/Variations/SearchExampleAligned.js": 1236,
+	"./modules/Search/Variations/SearchExampleFluid": 1237,
+	"./modules/Search/Variations/SearchExampleFluid.js": 1237,
+	"./modules/Search/Variations/SearchExampleInput": 1238,
+	"./modules/Search/Variations/SearchExampleInput.js": 1238,
 	"./modules/Search/Variations/index": 173,
 	"./modules/Search/Variations/index.js": 173,
 	"./modules/Search/index": 252,
@@ -93329,32 +93570,32 @@ var map = {
 	"./modules/Sidebar/": 253,
 	"./modules/Sidebar/Examples": 174,
 	"./modules/Sidebar/Examples/": 174,
-	"./modules/Sidebar/Examples/SidebarExampleMultiple": 1235,
-	"./modules/Sidebar/Examples/SidebarExampleMultiple.js": 1235,
-	"./modules/Sidebar/Examples/SidebarExampleTransitions": 1236,
-	"./modules/Sidebar/Examples/SidebarExampleTransitions.js": 1236,
+	"./modules/Sidebar/Examples/SidebarExampleMultiple": 1239,
+	"./modules/Sidebar/Examples/SidebarExampleMultiple.js": 1239,
+	"./modules/Sidebar/Examples/SidebarExampleTransitions": 1240,
+	"./modules/Sidebar/Examples/SidebarExampleTransitions.js": 1240,
 	"./modules/Sidebar/Examples/index": 174,
 	"./modules/Sidebar/Examples/index.js": 174,
 	"./modules/Sidebar/States": 175,
 	"./modules/Sidebar/States/": 175,
-	"./modules/Sidebar/States/SidebarExampleDimmed": 1237,
-	"./modules/Sidebar/States/SidebarExampleDimmed.js": 1237,
-	"./modules/Sidebar/States/SidebarExampleVisible": 1238,
-	"./modules/Sidebar/States/SidebarExampleVisible.js": 1238,
+	"./modules/Sidebar/States/SidebarExampleDimmed": 1241,
+	"./modules/Sidebar/States/SidebarExampleDimmed.js": 1241,
+	"./modules/Sidebar/States/SidebarExampleVisible": 1242,
+	"./modules/Sidebar/States/SidebarExampleVisible.js": 1242,
 	"./modules/Sidebar/States/index": 175,
 	"./modules/Sidebar/States/index.js": 175,
 	"./modules/Sidebar/Types": 176,
 	"./modules/Sidebar/Types/": 176,
-	"./modules/Sidebar/Types/SidebarExampleSidebar": 1239,
-	"./modules/Sidebar/Types/SidebarExampleSidebar.js": 1239,
+	"./modules/Sidebar/Types/SidebarExampleSidebar": 1243,
+	"./modules/Sidebar/Types/SidebarExampleSidebar.js": 1243,
 	"./modules/Sidebar/Types/index": 176,
 	"./modules/Sidebar/Types/index.js": 176,
 	"./modules/Sidebar/Usage": 177,
 	"./modules/Sidebar/Usage/": 177,
-	"./modules/Sidebar/Usage/SidebarExampleCallback": 1240,
-	"./modules/Sidebar/Usage/SidebarExampleCallback.js": 1240,
-	"./modules/Sidebar/Usage/SidebarExampleTarget": 1241,
-	"./modules/Sidebar/Usage/SidebarExampleTarget.js": 1241,
+	"./modules/Sidebar/Usage/SidebarExampleCallback": 1244,
+	"./modules/Sidebar/Usage/SidebarExampleCallback.js": 1244,
+	"./modules/Sidebar/Usage/SidebarExampleTarget": 1245,
+	"./modules/Sidebar/Usage/SidebarExampleTarget.js": 1245,
 	"./modules/Sidebar/Usage/index": 177,
 	"./modules/Sidebar/Usage/index.js": 177,
 	"./modules/Sidebar/index": 253,
@@ -93363,26 +93604,26 @@ var map = {
 	"./modules/Sticky/": 254,
 	"./modules/Sticky/Types": 178,
 	"./modules/Sticky/Types/": 178,
-	"./modules/Sticky/Types/StickyExampleAdjacentContext": 1242,
-	"./modules/Sticky/Types/StickyExampleAdjacentContext.js": 1242,
-	"./modules/Sticky/Types/StickyExamplePushing": 1243,
-	"./modules/Sticky/Types/StickyExamplePushing.js": 1243,
+	"./modules/Sticky/Types/StickyExampleAdjacentContext": 1246,
+	"./modules/Sticky/Types/StickyExampleAdjacentContext.js": 1246,
+	"./modules/Sticky/Types/StickyExamplePushing": 1247,
+	"./modules/Sticky/Types/StickyExamplePushing.js": 1247,
 	"./modules/Sticky/Types/index": 178,
 	"./modules/Sticky/Types/index.js": 178,
 	"./modules/Sticky/Usage": 179,
 	"./modules/Sticky/Usage/": 179,
-	"./modules/Sticky/Usage/StickyExampleAboveContent": 1244,
-	"./modules/Sticky/Usage/StickyExampleAboveContent.js": 1244,
-	"./modules/Sticky/Usage/StickyExampleOffset": 1245,
-	"./modules/Sticky/Usage/StickyExampleOffset.js": 1245,
+	"./modules/Sticky/Usage/StickyExampleAboveContent": 1248,
+	"./modules/Sticky/Usage/StickyExampleAboveContent.js": 1248,
+	"./modules/Sticky/Usage/StickyExampleOffset": 1249,
+	"./modules/Sticky/Usage/StickyExampleOffset.js": 1249,
 	"./modules/Sticky/Usage/index": 179,
 	"./modules/Sticky/Usage/index.js": 179,
 	"./modules/Sticky/Variations": 180,
 	"./modules/Sticky/Variations/": 180,
-	"./modules/Sticky/Variations/StickyExampleActive": 1246,
-	"./modules/Sticky/Variations/StickyExampleActive.js": 1246,
-	"./modules/Sticky/Variations/StickyExampleOversized": 1247,
-	"./modules/Sticky/Variations/StickyExampleOversized.js": 1247,
+	"./modules/Sticky/Variations/StickyExampleActive": 1250,
+	"./modules/Sticky/Variations/StickyExampleActive.js": 1250,
+	"./modules/Sticky/Variations/StickyExampleOversized": 1251,
+	"./modules/Sticky/Variations/StickyExampleOversized.js": 1251,
 	"./modules/Sticky/Variations/index": 180,
 	"./modules/Sticky/Variations/index.js": 180,
 	"./modules/Sticky/index": 254,
@@ -93391,60 +93632,60 @@ var map = {
 	"./modules/Tab/": 255,
 	"./modules/Tab/MenuVariations": 181,
 	"./modules/Tab/MenuVariations/": 181,
-	"./modules/Tab/MenuVariations/TabExampleAttachedBottom": 1248,
-	"./modules/Tab/MenuVariations/TabExampleAttachedBottom.js": 1248,
-	"./modules/Tab/MenuVariations/TabExampleAttachedFalse": 1249,
-	"./modules/Tab/MenuVariations/TabExampleAttachedFalse.js": 1249,
-	"./modules/Tab/MenuVariations/TabExampleBorderless": 1250,
-	"./modules/Tab/MenuVariations/TabExampleBorderless.js": 1250,
-	"./modules/Tab/MenuVariations/TabExampleColored": 1251,
-	"./modules/Tab/MenuVariations/TabExampleColored.js": 1251,
-	"./modules/Tab/MenuVariations/TabExampleColoredInverted": 1252,
-	"./modules/Tab/MenuVariations/TabExampleColoredInverted.js": 1252,
-	"./modules/Tab/MenuVariations/TabExampleMenuPositionRight": 1253,
-	"./modules/Tab/MenuVariations/TabExampleMenuPositionRight.js": 1253,
-	"./modules/Tab/MenuVariations/TabExampleTabularFalse": 1254,
-	"./modules/Tab/MenuVariations/TabExampleTabularFalse.js": 1254,
-	"./modules/Tab/MenuVariations/TabExampleVerticalTabular": 1255,
-	"./modules/Tab/MenuVariations/TabExampleVerticalTabular.js": 1255,
-	"./modules/Tab/MenuVariations/TabExampleVerticalTabularRight": 1256,
-	"./modules/Tab/MenuVariations/TabExampleVerticalTabularRight.js": 1256,
+	"./modules/Tab/MenuVariations/TabExampleAttachedBottom": 1252,
+	"./modules/Tab/MenuVariations/TabExampleAttachedBottom.js": 1252,
+	"./modules/Tab/MenuVariations/TabExampleAttachedFalse": 1253,
+	"./modules/Tab/MenuVariations/TabExampleAttachedFalse.js": 1253,
+	"./modules/Tab/MenuVariations/TabExampleBorderless": 1254,
+	"./modules/Tab/MenuVariations/TabExampleBorderless.js": 1254,
+	"./modules/Tab/MenuVariations/TabExampleColored": 1255,
+	"./modules/Tab/MenuVariations/TabExampleColored.js": 1255,
+	"./modules/Tab/MenuVariations/TabExampleColoredInverted": 1256,
+	"./modules/Tab/MenuVariations/TabExampleColoredInverted.js": 1256,
+	"./modules/Tab/MenuVariations/TabExampleMenuPositionRight": 1257,
+	"./modules/Tab/MenuVariations/TabExampleMenuPositionRight.js": 1257,
+	"./modules/Tab/MenuVariations/TabExampleTabularFalse": 1258,
+	"./modules/Tab/MenuVariations/TabExampleTabularFalse.js": 1258,
+	"./modules/Tab/MenuVariations/TabExampleVerticalTabular": 1259,
+	"./modules/Tab/MenuVariations/TabExampleVerticalTabular.js": 1259,
+	"./modules/Tab/MenuVariations/TabExampleVerticalTabularRight": 1260,
+	"./modules/Tab/MenuVariations/TabExampleVerticalTabularRight.js": 1260,
 	"./modules/Tab/MenuVariations/index": 181,
 	"./modules/Tab/MenuVariations/index.js": 181,
 	"./modules/Tab/States": 182,
 	"./modules/Tab/States/": 182,
-	"./modules/Tab/States/TabExampleLoading": 1257,
-	"./modules/Tab/States/TabExampleLoading.js": 1257,
+	"./modules/Tab/States/TabExampleLoading": 1261,
+	"./modules/Tab/States/TabExampleLoading.js": 1261,
 	"./modules/Tab/States/index": 182,
 	"./modules/Tab/States/index.js": 182,
 	"./modules/Tab/Types": 183,
 	"./modules/Tab/Types/": 183,
-	"./modules/Tab/Types/TabExampleBasic": 1258,
-	"./modules/Tab/Types/TabExampleBasic.js": 1258,
-	"./modules/Tab/Types/TabExampleBasicAll": 1259,
-	"./modules/Tab/Types/TabExampleBasicAll.js": 1259,
-	"./modules/Tab/Types/TabExamplePointing": 1260,
-	"./modules/Tab/Types/TabExamplePointing.js": 1260,
-	"./modules/Tab/Types/TabExampleSecondary": 1261,
-	"./modules/Tab/Types/TabExampleSecondary.js": 1261,
-	"./modules/Tab/Types/TabExampleSecondaryPointing": 1262,
-	"./modules/Tab/Types/TabExampleSecondaryPointing.js": 1262,
-	"./modules/Tab/Types/TabExampleText": 1263,
-	"./modules/Tab/Types/TabExampleText.js": 1263,
+	"./modules/Tab/Types/TabExampleBasic": 1262,
+	"./modules/Tab/Types/TabExampleBasic.js": 1262,
+	"./modules/Tab/Types/TabExampleBasicAll": 1263,
+	"./modules/Tab/Types/TabExampleBasicAll.js": 1263,
+	"./modules/Tab/Types/TabExamplePointing": 1264,
+	"./modules/Tab/Types/TabExamplePointing.js": 1264,
+	"./modules/Tab/Types/TabExampleSecondary": 1265,
+	"./modules/Tab/Types/TabExampleSecondary.js": 1265,
+	"./modules/Tab/Types/TabExampleSecondaryPointing": 1266,
+	"./modules/Tab/Types/TabExampleSecondaryPointing.js": 1266,
+	"./modules/Tab/Types/TabExampleText": 1267,
+	"./modules/Tab/Types/TabExampleText.js": 1267,
 	"./modules/Tab/Types/index": 183,
 	"./modules/Tab/Types/index.js": 183,
 	"./modules/Tab/Usage": 184,
 	"./modules/Tab/Usage/": 184,
-	"./modules/Tab/Usage/TabExampleActiveIndex": 1264,
-	"./modules/Tab/Usage/TabExampleActiveIndex.js": 1264,
-	"./modules/Tab/Usage/TabExampleCustomMenuItem": 1265,
-	"./modules/Tab/Usage/TabExampleCustomMenuItem.js": 1265,
-	"./modules/Tab/Usage/TabExampleDefaultActiveIndex": 1266,
-	"./modules/Tab/Usage/TabExampleDefaultActiveIndex.js": 1266,
-	"./modules/Tab/Usage/TabExampleOnTabChange": 1267,
-	"./modules/Tab/Usage/TabExampleOnTabChange.js": 1267,
-	"./modules/Tab/Usage/TabExamplePaneShorthand": 1268,
-	"./modules/Tab/Usage/TabExamplePaneShorthand.js": 1268,
+	"./modules/Tab/Usage/TabExampleActiveIndex": 1268,
+	"./modules/Tab/Usage/TabExampleActiveIndex.js": 1268,
+	"./modules/Tab/Usage/TabExampleCustomMenuItem": 1269,
+	"./modules/Tab/Usage/TabExampleCustomMenuItem.js": 1269,
+	"./modules/Tab/Usage/TabExampleDefaultActiveIndex": 1270,
+	"./modules/Tab/Usage/TabExampleDefaultActiveIndex.js": 1270,
+	"./modules/Tab/Usage/TabExampleOnTabChange": 1271,
+	"./modules/Tab/Usage/TabExampleOnTabChange.js": 1271,
+	"./modules/Tab/Usage/TabExamplePaneShorthand": 1272,
+	"./modules/Tab/Usage/TabExamplePaneShorthand.js": 1272,
 	"./modules/Tab/Usage/index": 184,
 	"./modules/Tab/Usage/index.js": 184,
 	"./modules/Tab/index": 255,
@@ -93453,24 +93694,24 @@ var map = {
 	"./modules/Transition/": 256,
 	"./modules/Transition/Explorers": 185,
 	"./modules/Transition/Explorers/": 185,
-	"./modules/Transition/Explorers/TransitionExampleGroupExplorer": 1269,
-	"./modules/Transition/Explorers/TransitionExampleGroupExplorer.js": 1269,
-	"./modules/Transition/Explorers/TransitionExampleTransitionExplorer": 1270,
-	"./modules/Transition/Explorers/TransitionExampleTransitionExplorer.js": 1270,
+	"./modules/Transition/Explorers/TransitionExampleGroupExplorer": 1273,
+	"./modules/Transition/Explorers/TransitionExampleGroupExplorer.js": 1273,
+	"./modules/Transition/Explorers/TransitionExampleTransitionExplorer": 1274,
+	"./modules/Transition/Explorers/TransitionExampleTransitionExplorer.js": 1274,
 	"./modules/Transition/Explorers/index": 185,
 	"./modules/Transition/Explorers/index.js": 185,
 	"./modules/Transition/Types": 186,
 	"./modules/Transition/Types/": 186,
-	"./modules/Transition/Types/TransitionExampleGroup": 1271,
-	"./modules/Transition/Types/TransitionExampleGroup.js": 1271,
-	"./modules/Transition/Types/TransitionExampleTransition": 1272,
-	"./modules/Transition/Types/TransitionExampleTransition.js": 1272,
+	"./modules/Transition/Types/TransitionExampleGroup": 1275,
+	"./modules/Transition/Types/TransitionExampleGroup.js": 1275,
+	"./modules/Transition/Types/TransitionExampleTransition": 1276,
+	"./modules/Transition/Types/TransitionExampleTransition.js": 1276,
 	"./modules/Transition/Types/index": 186,
 	"./modules/Transition/Types/index.js": 186,
 	"./modules/Transition/Usage": 187,
 	"./modules/Transition/Usage/": 187,
-	"./modules/Transition/Usage/TransitionExampleDuration": 1273,
-	"./modules/Transition/Usage/TransitionExampleDuration.js": 1273,
+	"./modules/Transition/Usage/TransitionExampleDuration": 1277,
+	"./modules/Transition/Usage/TransitionExampleDuration.js": 1277,
 	"./modules/Transition/Usage/index": 187,
 	"./modules/Transition/Usage/index.js": 187,
 	"./modules/Transition/index": 256,
@@ -93479,60 +93720,60 @@ var map = {
 	"./views/Advertisement/": 257,
 	"./views/Advertisement/Types": 188,
 	"./views/Advertisement/Types/": 188,
-	"./views/Advertisement/Types/AdvertisementExampleAdvertisement": 1274,
-	"./views/Advertisement/Types/AdvertisementExampleAdvertisement.js": 1274,
-	"./views/Advertisement/Types/AdvertisementExampleBanner": 1275,
-	"./views/Advertisement/Types/AdvertisementExampleBanner.js": 1275,
-	"./views/Advertisement/Types/AdvertisementExampleBannerHalf": 1276,
-	"./views/Advertisement/Types/AdvertisementExampleBannerHalf.js": 1276,
-	"./views/Advertisement/Types/AdvertisementExampleBannerTop": 1277,
-	"./views/Advertisement/Types/AdvertisementExampleBannerTop.js": 1277,
-	"./views/Advertisement/Types/AdvertisementExampleBannerVertical": 1278,
-	"./views/Advertisement/Types/AdvertisementExampleBannerVertical.js": 1278,
-	"./views/Advertisement/Types/AdvertisementExampleBillboard": 1279,
-	"./views/Advertisement/Types/AdvertisementExampleBillboard.js": 1279,
-	"./views/Advertisement/Types/AdvertisementExampleButton": 1280,
-	"./views/Advertisement/Types/AdvertisementExampleButton.js": 1280,
-	"./views/Advertisement/Types/AdvertisementExampleCommonUnits": 1281,
-	"./views/Advertisement/Types/AdvertisementExampleCommonUnits.js": 1281,
-	"./views/Advertisement/Types/AdvertisementExampleLargeLeaderboard": 1282,
-	"./views/Advertisement/Types/AdvertisementExampleLargeLeaderboard.js": 1282,
-	"./views/Advertisement/Types/AdvertisementExampleLargeRectangle": 1283,
-	"./views/Advertisement/Types/AdvertisementExampleLargeRectangle.js": 1283,
-	"./views/Advertisement/Types/AdvertisementExampleLeaderboard": 1284,
-	"./views/Advertisement/Types/AdvertisementExampleLeaderboard.js": 1284,
-	"./views/Advertisement/Types/AdvertisementExampleMobile": 1285,
-	"./views/Advertisement/Types/AdvertisementExampleMobile.js": 1285,
-	"./views/Advertisement/Types/AdvertisementExampleNetboard": 1286,
-	"./views/Advertisement/Types/AdvertisementExampleNetboard.js": 1286,
-	"./views/Advertisement/Types/AdvertisementExamplePanorama": 1287,
-	"./views/Advertisement/Types/AdvertisementExamplePanorama.js": 1287,
-	"./views/Advertisement/Types/AdvertisementExampleRectangle": 1288,
-	"./views/Advertisement/Types/AdvertisementExampleRectangle.js": 1288,
-	"./views/Advertisement/Types/AdvertisementExampleSkyscraper": 1289,
-	"./views/Advertisement/Types/AdvertisementExampleSkyscraper.js": 1289,
-	"./views/Advertisement/Types/AdvertisementExampleSmallButton": 1290,
-	"./views/Advertisement/Types/AdvertisementExampleSmallButton.js": 1290,
-	"./views/Advertisement/Types/AdvertisementExampleSmallRectangle": 1291,
-	"./views/Advertisement/Types/AdvertisementExampleSmallRectangle.js": 1291,
-	"./views/Advertisement/Types/AdvertisementExampleSmallSquare": 1292,
-	"./views/Advertisement/Types/AdvertisementExampleSmallSquare.js": 1292,
-	"./views/Advertisement/Types/AdvertisementExampleSquare": 1293,
-	"./views/Advertisement/Types/AdvertisementExampleSquare.js": 1293,
-	"./views/Advertisement/Types/AdvertisementExampleSquareButton": 1294,
-	"./views/Advertisement/Types/AdvertisementExampleSquareButton.js": 1294,
-	"./views/Advertisement/Types/AdvertisementExampleVerticalRectangle": 1295,
-	"./views/Advertisement/Types/AdvertisementExampleVerticalRectangle.js": 1295,
-	"./views/Advertisement/Types/AdvertisementExampleWideSkyscraper": 1296,
-	"./views/Advertisement/Types/AdvertisementExampleWideSkyscraper.js": 1296,
+	"./views/Advertisement/Types/AdvertisementExampleAdvertisement": 1278,
+	"./views/Advertisement/Types/AdvertisementExampleAdvertisement.js": 1278,
+	"./views/Advertisement/Types/AdvertisementExampleBanner": 1279,
+	"./views/Advertisement/Types/AdvertisementExampleBanner.js": 1279,
+	"./views/Advertisement/Types/AdvertisementExampleBannerHalf": 1280,
+	"./views/Advertisement/Types/AdvertisementExampleBannerHalf.js": 1280,
+	"./views/Advertisement/Types/AdvertisementExampleBannerTop": 1281,
+	"./views/Advertisement/Types/AdvertisementExampleBannerTop.js": 1281,
+	"./views/Advertisement/Types/AdvertisementExampleBannerVertical": 1282,
+	"./views/Advertisement/Types/AdvertisementExampleBannerVertical.js": 1282,
+	"./views/Advertisement/Types/AdvertisementExampleBillboard": 1283,
+	"./views/Advertisement/Types/AdvertisementExampleBillboard.js": 1283,
+	"./views/Advertisement/Types/AdvertisementExampleButton": 1284,
+	"./views/Advertisement/Types/AdvertisementExampleButton.js": 1284,
+	"./views/Advertisement/Types/AdvertisementExampleCommonUnits": 1285,
+	"./views/Advertisement/Types/AdvertisementExampleCommonUnits.js": 1285,
+	"./views/Advertisement/Types/AdvertisementExampleLargeLeaderboard": 1286,
+	"./views/Advertisement/Types/AdvertisementExampleLargeLeaderboard.js": 1286,
+	"./views/Advertisement/Types/AdvertisementExampleLargeRectangle": 1287,
+	"./views/Advertisement/Types/AdvertisementExampleLargeRectangle.js": 1287,
+	"./views/Advertisement/Types/AdvertisementExampleLeaderboard": 1288,
+	"./views/Advertisement/Types/AdvertisementExampleLeaderboard.js": 1288,
+	"./views/Advertisement/Types/AdvertisementExampleMobile": 1289,
+	"./views/Advertisement/Types/AdvertisementExampleMobile.js": 1289,
+	"./views/Advertisement/Types/AdvertisementExampleNetboard": 1290,
+	"./views/Advertisement/Types/AdvertisementExampleNetboard.js": 1290,
+	"./views/Advertisement/Types/AdvertisementExamplePanorama": 1291,
+	"./views/Advertisement/Types/AdvertisementExamplePanorama.js": 1291,
+	"./views/Advertisement/Types/AdvertisementExampleRectangle": 1292,
+	"./views/Advertisement/Types/AdvertisementExampleRectangle.js": 1292,
+	"./views/Advertisement/Types/AdvertisementExampleSkyscraper": 1293,
+	"./views/Advertisement/Types/AdvertisementExampleSkyscraper.js": 1293,
+	"./views/Advertisement/Types/AdvertisementExampleSmallButton": 1294,
+	"./views/Advertisement/Types/AdvertisementExampleSmallButton.js": 1294,
+	"./views/Advertisement/Types/AdvertisementExampleSmallRectangle": 1295,
+	"./views/Advertisement/Types/AdvertisementExampleSmallRectangle.js": 1295,
+	"./views/Advertisement/Types/AdvertisementExampleSmallSquare": 1296,
+	"./views/Advertisement/Types/AdvertisementExampleSmallSquare.js": 1296,
+	"./views/Advertisement/Types/AdvertisementExampleSquare": 1297,
+	"./views/Advertisement/Types/AdvertisementExampleSquare.js": 1297,
+	"./views/Advertisement/Types/AdvertisementExampleSquareButton": 1298,
+	"./views/Advertisement/Types/AdvertisementExampleSquareButton.js": 1298,
+	"./views/Advertisement/Types/AdvertisementExampleVerticalRectangle": 1299,
+	"./views/Advertisement/Types/AdvertisementExampleVerticalRectangle.js": 1299,
+	"./views/Advertisement/Types/AdvertisementExampleWideSkyscraper": 1300,
+	"./views/Advertisement/Types/AdvertisementExampleWideSkyscraper.js": 1300,
 	"./views/Advertisement/Types/index": 188,
 	"./views/Advertisement/Types/index.js": 188,
 	"./views/Advertisement/Variations": 189,
 	"./views/Advertisement/Variations/": 189,
-	"./views/Advertisement/Variations/AdvertisementExampleCentered": 1297,
-	"./views/Advertisement/Variations/AdvertisementExampleCentered.js": 1297,
-	"./views/Advertisement/Variations/AdvertisementExampleTest": 1298,
-	"./views/Advertisement/Variations/AdvertisementExampleTest.js": 1298,
+	"./views/Advertisement/Variations/AdvertisementExampleCentered": 1301,
+	"./views/Advertisement/Variations/AdvertisementExampleCentered.js": 1301,
+	"./views/Advertisement/Variations/AdvertisementExampleTest": 1302,
+	"./views/Advertisement/Variations/AdvertisementExampleTest.js": 1302,
 	"./views/Advertisement/Variations/index": 189,
 	"./views/Advertisement/Variations/index.js": 189,
 	"./views/Advertisement/index": 257,
@@ -93541,42 +93782,42 @@ var map = {
 	"./views/Card/": 258,
 	"./views/Card/Content": 190,
 	"./views/Card/Content/": 190,
-	"./views/Card/Content/CardExampleContentBlock": 1299,
-	"./views/Card/Content/CardExampleContentBlock.js": 1299,
-	"./views/Card/Content/CardExampleExtraContent": 1300,
-	"./views/Card/Content/CardExampleExtraContent.js": 1300,
-	"./views/Card/Content/CardExampleHeaderCard": 1301,
-	"./views/Card/Content/CardExampleHeaderCard.js": 1301,
-	"./views/Card/Content/CardExampleImageCard": 1302,
-	"./views/Card/Content/CardExampleImageCard.js": 1302,
-	"./views/Card/Content/CardExampleLinkCard": 1303,
-	"./views/Card/Content/CardExampleLinkCard.js": 1303,
-	"./views/Card/Content/CardExampleLinkCardProp": 1304,
-	"./views/Card/Content/CardExampleLinkCardProp.js": 1304,
+	"./views/Card/Content/CardExampleContentBlock": 1303,
+	"./views/Card/Content/CardExampleContentBlock.js": 1303,
+	"./views/Card/Content/CardExampleExtraContent": 1304,
+	"./views/Card/Content/CardExampleExtraContent.js": 1304,
+	"./views/Card/Content/CardExampleHeaderCard": 1305,
+	"./views/Card/Content/CardExampleHeaderCard.js": 1305,
+	"./views/Card/Content/CardExampleImageCard": 1306,
+	"./views/Card/Content/CardExampleImageCard.js": 1306,
+	"./views/Card/Content/CardExampleLinkCard": 1307,
+	"./views/Card/Content/CardExampleLinkCard.js": 1307,
+	"./views/Card/Content/CardExampleLinkCardProp": 1308,
+	"./views/Card/Content/CardExampleLinkCardProp.js": 1308,
 	"./views/Card/Content/index": 190,
 	"./views/Card/Content/index.js": 190,
 	"./views/Card/Types": 191,
 	"./views/Card/Types/": 191,
-	"./views/Card/Types/CardExampleCard": 1305,
-	"./views/Card/Types/CardExampleCard.js": 1305,
-	"./views/Card/Types/CardExampleCardProps": 1306,
-	"./views/Card/Types/CardExampleCardProps.js": 1306,
-	"./views/Card/Types/CardExampleGroupProps": 1307,
-	"./views/Card/Types/CardExampleGroupProps.js": 1307,
-	"./views/Card/Types/CardExampleGroups": 1308,
-	"./views/Card/Types/CardExampleGroups.js": 1308,
+	"./views/Card/Types/CardExampleCard": 1309,
+	"./views/Card/Types/CardExampleCard.js": 1309,
+	"./views/Card/Types/CardExampleCardProps": 1310,
+	"./views/Card/Types/CardExampleCardProps.js": 1310,
+	"./views/Card/Types/CardExampleGroupProps": 1311,
+	"./views/Card/Types/CardExampleGroupProps.js": 1311,
+	"./views/Card/Types/CardExampleGroups": 1312,
+	"./views/Card/Types/CardExampleGroups.js": 1312,
 	"./views/Card/Types/index": 191,
 	"./views/Card/Types/index.js": 191,
 	"./views/Card/Variations": 192,
 	"./views/Card/Variations/": 192,
-	"./views/Card/Variations/CardExampleColored": 1309,
-	"./views/Card/Variations/CardExampleColored.js": 1309,
-	"./views/Card/Variations/CardExampleColumnCount": 1310,
-	"./views/Card/Variations/CardExampleColumnCount.js": 1310,
-	"./views/Card/Variations/CardExampleFluid": 1311,
-	"./views/Card/Variations/CardExampleFluid.js": 1311,
-	"./views/Card/Variations/CardExampleGroupCentered": 1312,
-	"./views/Card/Variations/CardExampleGroupCentered.js": 1312,
+	"./views/Card/Variations/CardExampleColored": 1313,
+	"./views/Card/Variations/CardExampleColored.js": 1313,
+	"./views/Card/Variations/CardExampleColumnCount": 1314,
+	"./views/Card/Variations/CardExampleColumnCount.js": 1314,
+	"./views/Card/Variations/CardExampleFluid": 1315,
+	"./views/Card/Variations/CardExampleFluid.js": 1315,
+	"./views/Card/Variations/CardExampleGroupCentered": 1316,
+	"./views/Card/Variations/CardExampleGroupCentered.js": 1316,
 	"./views/Card/Variations/index": 192,
 	"./views/Card/Variations/index.js": 192,
 	"./views/Card/index": 258,
@@ -93585,38 +93826,38 @@ var map = {
 	"./views/Comment/": 259,
 	"./views/Comment/Content": 193,
 	"./views/Comment/Content/": 193,
-	"./views/Comment/Content/CommentExampleActions": 1313,
-	"./views/Comment/Content/CommentExampleActions.js": 1313,
-	"./views/Comment/Content/CommentExampleAvatar": 1314,
-	"./views/Comment/Content/CommentExampleAvatar.js": 1314,
-	"./views/Comment/Content/CommentExampleMetadata": 1315,
-	"./views/Comment/Content/CommentExampleMetadata.js": 1315,
-	"./views/Comment/Content/CommentExampleReplyForm": 1316,
-	"./views/Comment/Content/CommentExampleReplyForm.js": 1316,
-	"./views/Comment/Content/CommentExampleReplyFormOuter": 1317,
-	"./views/Comment/Content/CommentExampleReplyFormOuter.js": 1317,
+	"./views/Comment/Content/CommentExampleActions": 1317,
+	"./views/Comment/Content/CommentExampleActions.js": 1317,
+	"./views/Comment/Content/CommentExampleAvatar": 1318,
+	"./views/Comment/Content/CommentExampleAvatar.js": 1318,
+	"./views/Comment/Content/CommentExampleMetadata": 1319,
+	"./views/Comment/Content/CommentExampleMetadata.js": 1319,
+	"./views/Comment/Content/CommentExampleReplyForm": 1320,
+	"./views/Comment/Content/CommentExampleReplyForm.js": 1320,
+	"./views/Comment/Content/CommentExampleReplyFormOuter": 1321,
+	"./views/Comment/Content/CommentExampleReplyFormOuter.js": 1321,
 	"./views/Comment/Content/index": 193,
 	"./views/Comment/Content/index.js": 193,
 	"./views/Comment/States": 194,
 	"./views/Comment/States/": 194,
-	"./views/Comment/States/CommentExampleCollapsed": 1318,
-	"./views/Comment/States/CommentExampleCollapsed.js": 1318,
+	"./views/Comment/States/CommentExampleCollapsed": 1322,
+	"./views/Comment/States/CommentExampleCollapsed.js": 1322,
 	"./views/Comment/States/index": 194,
 	"./views/Comment/States/index.js": 194,
 	"./views/Comment/Types": 195,
 	"./views/Comment/Types/": 195,
-	"./views/Comment/Types/CommentExampleComment": 1319,
-	"./views/Comment/Types/CommentExampleComment.js": 1319,
+	"./views/Comment/Types/CommentExampleComment": 1323,
+	"./views/Comment/Types/CommentExampleComment.js": 1323,
 	"./views/Comment/Types/index": 195,
 	"./views/Comment/Types/index.js": 195,
 	"./views/Comment/Variations": 196,
 	"./views/Comment/Variations/": 196,
-	"./views/Comment/Variations/CommentExampleGroupSize": 1320,
-	"./views/Comment/Variations/CommentExampleGroupSize.js": 1320,
-	"./views/Comment/Variations/CommentExampleMinimal": 1321,
-	"./views/Comment/Variations/CommentExampleMinimal.js": 1321,
-	"./views/Comment/Variations/CommentExampleThreaded": 1322,
-	"./views/Comment/Variations/CommentExampleThreaded.js": 1322,
+	"./views/Comment/Variations/CommentExampleGroupSize": 1324,
+	"./views/Comment/Variations/CommentExampleGroupSize.js": 1324,
+	"./views/Comment/Variations/CommentExampleMinimal": 1325,
+	"./views/Comment/Variations/CommentExampleMinimal.js": 1325,
+	"./views/Comment/Variations/CommentExampleThreaded": 1326,
+	"./views/Comment/Variations/CommentExampleThreaded.js": 1326,
 	"./views/Comment/Variations/index": 196,
 	"./views/Comment/Variations/index.js": 196,
 	"./views/Comment/index": 259,
@@ -93625,48 +93866,48 @@ var map = {
 	"./views/Feed/": 260,
 	"./views/Feed/Content": 197,
 	"./views/Feed/Content/": 197,
-	"./views/Feed/Content/FeedExampleContentDate": 1323,
-	"./views/Feed/Content/FeedExampleContentDate.js": 1323,
-	"./views/Feed/Content/FeedExampleContentDateShorthand": 1324,
-	"./views/Feed/Content/FeedExampleContentDateShorthand.js": 1324,
-	"./views/Feed/Content/FeedExampleExtraImages": 1325,
-	"./views/Feed/Content/FeedExampleExtraImages.js": 1325,
-	"./views/Feed/Content/FeedExampleExtraImagesShorthand": 1326,
-	"./views/Feed/Content/FeedExampleExtraImagesShorthand.js": 1326,
-	"./views/Feed/Content/FeedExampleExtraText": 1327,
-	"./views/Feed/Content/FeedExampleExtraText.js": 1327,
-	"./views/Feed/Content/FeedExampleExtraTextShorthand": 1328,
-	"./views/Feed/Content/FeedExampleExtraTextShorthand.js": 1328,
-	"./views/Feed/Content/FeedExampleIconLabel": 1329,
-	"./views/Feed/Content/FeedExampleIconLabel.js": 1329,
-	"./views/Feed/Content/FeedExampleIconLabelShorthand": 1330,
-	"./views/Feed/Content/FeedExampleIconLabelShorthand.js": 1330,
-	"./views/Feed/Content/FeedExampleImageLabel": 1331,
-	"./views/Feed/Content/FeedExampleImageLabel.js": 1331,
-	"./views/Feed/Content/FeedExampleImageLabelShorthand": 1332,
-	"./views/Feed/Content/FeedExampleImageLabelShorthand.js": 1332,
-	"./views/Feed/Content/FeedExampleSummaryDate": 1333,
-	"./views/Feed/Content/FeedExampleSummaryDate.js": 1333,
-	"./views/Feed/Content/FeedExampleSummaryDateShorthand": 1334,
-	"./views/Feed/Content/FeedExampleSummaryDateShorthand.js": 1334,
+	"./views/Feed/Content/FeedExampleContentDate": 1327,
+	"./views/Feed/Content/FeedExampleContentDate.js": 1327,
+	"./views/Feed/Content/FeedExampleContentDateShorthand": 1328,
+	"./views/Feed/Content/FeedExampleContentDateShorthand.js": 1328,
+	"./views/Feed/Content/FeedExampleExtraImages": 1329,
+	"./views/Feed/Content/FeedExampleExtraImages.js": 1329,
+	"./views/Feed/Content/FeedExampleExtraImagesShorthand": 1330,
+	"./views/Feed/Content/FeedExampleExtraImagesShorthand.js": 1330,
+	"./views/Feed/Content/FeedExampleExtraText": 1331,
+	"./views/Feed/Content/FeedExampleExtraText.js": 1331,
+	"./views/Feed/Content/FeedExampleExtraTextShorthand": 1332,
+	"./views/Feed/Content/FeedExampleExtraTextShorthand.js": 1332,
+	"./views/Feed/Content/FeedExampleIconLabel": 1333,
+	"./views/Feed/Content/FeedExampleIconLabel.js": 1333,
+	"./views/Feed/Content/FeedExampleIconLabelShorthand": 1334,
+	"./views/Feed/Content/FeedExampleIconLabelShorthand.js": 1334,
+	"./views/Feed/Content/FeedExampleImageLabel": 1335,
+	"./views/Feed/Content/FeedExampleImageLabel.js": 1335,
+	"./views/Feed/Content/FeedExampleImageLabelShorthand": 1336,
+	"./views/Feed/Content/FeedExampleImageLabelShorthand.js": 1336,
+	"./views/Feed/Content/FeedExampleSummaryDate": 1337,
+	"./views/Feed/Content/FeedExampleSummaryDate.js": 1337,
+	"./views/Feed/Content/FeedExampleSummaryDateShorthand": 1338,
+	"./views/Feed/Content/FeedExampleSummaryDateShorthand.js": 1338,
 	"./views/Feed/Content/index": 197,
 	"./views/Feed/Content/index.js": 197,
 	"./views/Feed/Types": 198,
 	"./views/Feed/Types/": 198,
-	"./views/Feed/Types/FeedExampleBasic": 1335,
-	"./views/Feed/Types/FeedExampleBasic.js": 1335,
-	"./views/Feed/Types/FeedExampleEventsProp": 1336,
-	"./views/Feed/Types/FeedExampleEventsProp.js": 1336,
-	"./views/Feed/Types/FeedExampleShorthand": 1337,
-	"./views/Feed/Types/FeedExampleShorthand.js": 1337,
+	"./views/Feed/Types/FeedExampleBasic": 1339,
+	"./views/Feed/Types/FeedExampleBasic.js": 1339,
+	"./views/Feed/Types/FeedExampleEventsProp": 1340,
+	"./views/Feed/Types/FeedExampleEventsProp.js": 1340,
+	"./views/Feed/Types/FeedExampleShorthand": 1341,
+	"./views/Feed/Types/FeedExampleShorthand.js": 1341,
 	"./views/Feed/Types/index": 198,
 	"./views/Feed/Types/index.js": 198,
 	"./views/Feed/Variations": 199,
 	"./views/Feed/Variations/": 199,
-	"./views/Feed/Variations/FeedExampleSizeLarge": 1338,
-	"./views/Feed/Variations/FeedExampleSizeLarge.js": 1338,
-	"./views/Feed/Variations/FeedExampleSizeSmall": 1339,
-	"./views/Feed/Variations/FeedExampleSizeSmall.js": 1339,
+	"./views/Feed/Variations/FeedExampleSizeLarge": 1342,
+	"./views/Feed/Variations/FeedExampleSizeLarge.js": 1342,
+	"./views/Feed/Variations/FeedExampleSizeSmall": 1343,
+	"./views/Feed/Variations/FeedExampleSizeSmall.js": 1343,
 	"./views/Feed/Variations/index": 199,
 	"./views/Feed/Variations/index.js": 199,
 	"./views/Feed/index": 260,
@@ -93675,48 +93916,48 @@ var map = {
 	"./views/Item/": 261,
 	"./views/Item/Content": 200,
 	"./views/Item/Content/": 200,
-	"./views/Item/Content/ItemExampleContents": 1340,
-	"./views/Item/Content/ItemExampleContents.js": 1340,
-	"./views/Item/Content/ItemExampleDescriptions": 1341,
-	"./views/Item/Content/ItemExampleDescriptions.js": 1341,
-	"./views/Item/Content/ItemExampleExtraContent": 1342,
-	"./views/Item/Content/ItemExampleExtraContent.js": 1342,
-	"./views/Item/Content/ItemExampleHeaders": 1343,
-	"./views/Item/Content/ItemExampleHeaders.js": 1343,
-	"./views/Item/Content/ItemExampleImages": 1344,
-	"./views/Item/Content/ItemExampleImages.js": 1344,
-	"./views/Item/Content/ItemExampleLink": 1345,
-	"./views/Item/Content/ItemExampleLink.js": 1345,
-	"./views/Item/Content/ItemExampleMetadata": 1346,
-	"./views/Item/Content/ItemExampleMetadata.js": 1346,
-	"./views/Item/Content/ItemExampleRatings": 1347,
-	"./views/Item/Content/ItemExampleRatings.js": 1347,
+	"./views/Item/Content/ItemExampleContents": 1344,
+	"./views/Item/Content/ItemExampleContents.js": 1344,
+	"./views/Item/Content/ItemExampleDescriptions": 1345,
+	"./views/Item/Content/ItemExampleDescriptions.js": 1345,
+	"./views/Item/Content/ItemExampleExtraContent": 1346,
+	"./views/Item/Content/ItemExampleExtraContent.js": 1346,
+	"./views/Item/Content/ItemExampleHeaders": 1347,
+	"./views/Item/Content/ItemExampleHeaders.js": 1347,
+	"./views/Item/Content/ItemExampleImages": 1348,
+	"./views/Item/Content/ItemExampleImages.js": 1348,
+	"./views/Item/Content/ItemExampleLink": 1349,
+	"./views/Item/Content/ItemExampleLink.js": 1349,
+	"./views/Item/Content/ItemExampleMetadata": 1350,
+	"./views/Item/Content/ItemExampleMetadata.js": 1350,
+	"./views/Item/Content/ItemExampleRatings": 1351,
+	"./views/Item/Content/ItemExampleRatings.js": 1351,
 	"./views/Item/Content/index": 200,
 	"./views/Item/Content/index.js": 200,
 	"./views/Item/Types": 201,
 	"./views/Item/Types/": 201,
-	"./views/Item/Types/ItemExampleItems": 1348,
-	"./views/Item/Types/ItemExampleItems.js": 1348,
-	"./views/Item/Types/ItemExampleProps": 1349,
-	"./views/Item/Types/ItemExampleProps.js": 1349,
+	"./views/Item/Types/ItemExampleItems": 1352,
+	"./views/Item/Types/ItemExampleItems.js": 1352,
+	"./views/Item/Types/ItemExampleProps": 1353,
+	"./views/Item/Types/ItemExampleProps.js": 1353,
 	"./views/Item/Types/index": 201,
 	"./views/Item/Types/index.js": 201,
 	"./views/Item/Variations": 202,
 	"./views/Item/Variations/": 202,
-	"./views/Item/Variations/ItemExampleAlignment": 1350,
-	"./views/Item/Variations/ItemExampleAlignment.js": 1350,
-	"./views/Item/Variations/ItemExampleDivided": 1351,
-	"./views/Item/Variations/ItemExampleDivided.js": 1351,
-	"./views/Item/Variations/ItemExampleFloated": 1352,
-	"./views/Item/Variations/ItemExampleFloated.js": 1352,
-	"./views/Item/Variations/ItemExampleLink": 1353,
-	"./views/Item/Variations/ItemExampleLink.js": 1353,
-	"./views/Item/Variations/ItemExampleRelaxed": 1354,
-	"./views/Item/Variations/ItemExampleRelaxed.js": 1354,
-	"./views/Item/Variations/ItemExampleUnstackable": 1355,
-	"./views/Item/Variations/ItemExampleUnstackable.js": 1355,
-	"./views/Item/Variations/ItemExampleVeryRelaxed": 1356,
-	"./views/Item/Variations/ItemExampleVeryRelaxed.js": 1356,
+	"./views/Item/Variations/ItemExampleAlignment": 1354,
+	"./views/Item/Variations/ItemExampleAlignment.js": 1354,
+	"./views/Item/Variations/ItemExampleDivided": 1355,
+	"./views/Item/Variations/ItemExampleDivided.js": 1355,
+	"./views/Item/Variations/ItemExampleFloated": 1356,
+	"./views/Item/Variations/ItemExampleFloated.js": 1356,
+	"./views/Item/Variations/ItemExampleLink": 1357,
+	"./views/Item/Variations/ItemExampleLink.js": 1357,
+	"./views/Item/Variations/ItemExampleRelaxed": 1358,
+	"./views/Item/Variations/ItemExampleRelaxed.js": 1358,
+	"./views/Item/Variations/ItemExampleUnstackable": 1359,
+	"./views/Item/Variations/ItemExampleUnstackable.js": 1359,
+	"./views/Item/Variations/ItemExampleVeryRelaxed": 1360,
+	"./views/Item/Variations/ItemExampleVeryRelaxed.js": 1360,
 	"./views/Item/Variations/index": 202,
 	"./views/Item/Variations/index.js": 202,
 	"./views/Item/index": 261,
@@ -93725,54 +93966,54 @@ var map = {
 	"./views/Statistic/": 262,
 	"./views/Statistic/Content": 203,
 	"./views/Statistic/Content/": 203,
-	"./views/Statistic/Content/StatisticExampleLabel": 1357,
-	"./views/Statistic/Content/StatisticExampleLabel.js": 1357,
-	"./views/Statistic/Content/StatisticExampleValue": 1358,
-	"./views/Statistic/Content/StatisticExampleValue.js": 1358,
-	"./views/Statistic/Content/StatisticExampleValueShorthand": 1359,
-	"./views/Statistic/Content/StatisticExampleValueShorthand.js": 1359,
+	"./views/Statistic/Content/StatisticExampleLabel": 1361,
+	"./views/Statistic/Content/StatisticExampleLabel.js": 1361,
+	"./views/Statistic/Content/StatisticExampleValue": 1362,
+	"./views/Statistic/Content/StatisticExampleValue.js": 1362,
+	"./views/Statistic/Content/StatisticExampleValueShorthand": 1363,
+	"./views/Statistic/Content/StatisticExampleValueShorthand.js": 1363,
 	"./views/Statistic/Content/index": 203,
 	"./views/Statistic/Content/index.js": 203,
 	"./views/Statistic/Types": 204,
 	"./views/Statistic/Types/": 204,
-	"./views/Statistic/Types/StatisticExampleGroup": 1360,
-	"./views/Statistic/Types/StatisticExampleGroup.js": 1360,
-	"./views/Statistic/Types/StatisticExampleGroupShorthand": 1361,
-	"./views/Statistic/Types/StatisticExampleGroupShorthand.js": 1361,
-	"./views/Statistic/Types/StatisticExampleStatistic": 1362,
-	"./views/Statistic/Types/StatisticExampleStatistic.js": 1362,
-	"./views/Statistic/Types/StatisticExampleStatisticShorthand": 1363,
-	"./views/Statistic/Types/StatisticExampleStatisticShorthand.js": 1363,
-	"./views/Statistic/Types/StatisticExampleTopLabel": 1364,
-	"./views/Statistic/Types/StatisticExampleTopLabel.js": 1364,
+	"./views/Statistic/Types/StatisticExampleGroup": 1364,
+	"./views/Statistic/Types/StatisticExampleGroup.js": 1364,
+	"./views/Statistic/Types/StatisticExampleGroupShorthand": 1365,
+	"./views/Statistic/Types/StatisticExampleGroupShorthand.js": 1365,
+	"./views/Statistic/Types/StatisticExampleStatistic": 1366,
+	"./views/Statistic/Types/StatisticExampleStatistic.js": 1366,
+	"./views/Statistic/Types/StatisticExampleStatisticShorthand": 1367,
+	"./views/Statistic/Types/StatisticExampleStatisticShorthand.js": 1367,
+	"./views/Statistic/Types/StatisticExampleTopLabel": 1368,
+	"./views/Statistic/Types/StatisticExampleTopLabel.js": 1368,
 	"./views/Statistic/Types/index": 204,
 	"./views/Statistic/Types/index.js": 204,
 	"./views/Statistic/Variations": 205,
 	"./views/Statistic/Variations/": 205,
-	"./views/Statistic/Variations/StatisticExampleColored": 1365,
-	"./views/Statistic/Variations/StatisticExampleColored.js": 1365,
-	"./views/Statistic/Variations/StatisticExampleColoredGroup": 1366,
-	"./views/Statistic/Variations/StatisticExampleColoredGroup.js": 1366,
-	"./views/Statistic/Variations/StatisticExampleEvenlyDivided": 1367,
-	"./views/Statistic/Variations/StatisticExampleEvenlyDivided.js": 1367,
-	"./views/Statistic/Variations/StatisticExampleFloated": 1368,
-	"./views/Statistic/Variations/StatisticExampleFloated.js": 1368,
-	"./views/Statistic/Variations/StatisticExampleHorizontal": 1369,
-	"./views/Statistic/Variations/StatisticExampleHorizontal.js": 1369,
-	"./views/Statistic/Variations/StatisticExampleHorizontalGroup": 1370,
-	"./views/Statistic/Variations/StatisticExampleHorizontalGroup.js": 1370,
-	"./views/Statistic/Variations/StatisticExampleHorizontalShorthand": 1371,
-	"./views/Statistic/Variations/StatisticExampleHorizontalShorthand.js": 1371,
-	"./views/Statistic/Variations/StatisticExampleInverted": 1372,
-	"./views/Statistic/Variations/StatisticExampleInverted.js": 1372,
-	"./views/Statistic/Variations/StatisticExampleInvertedGroup": 1373,
-	"./views/Statistic/Variations/StatisticExampleInvertedGroup.js": 1373,
-	"./views/Statistic/Variations/StatisticExampleSize": 1374,
-	"./views/Statistic/Variations/StatisticExampleSize.js": 1374,
-	"./views/Statistic/Variations/StatisticExampleSizeDivided": 1375,
-	"./views/Statistic/Variations/StatisticExampleSizeDivided.js": 1375,
-	"./views/Statistic/Variations/StatisticExampleSizeGroup": 1376,
-	"./views/Statistic/Variations/StatisticExampleSizeGroup.js": 1376,
+	"./views/Statistic/Variations/StatisticExampleColored": 1369,
+	"./views/Statistic/Variations/StatisticExampleColored.js": 1369,
+	"./views/Statistic/Variations/StatisticExampleColoredGroup": 1370,
+	"./views/Statistic/Variations/StatisticExampleColoredGroup.js": 1370,
+	"./views/Statistic/Variations/StatisticExampleEvenlyDivided": 1371,
+	"./views/Statistic/Variations/StatisticExampleEvenlyDivided.js": 1371,
+	"./views/Statistic/Variations/StatisticExampleFloated": 1372,
+	"./views/Statistic/Variations/StatisticExampleFloated.js": 1372,
+	"./views/Statistic/Variations/StatisticExampleHorizontal": 1373,
+	"./views/Statistic/Variations/StatisticExampleHorizontal.js": 1373,
+	"./views/Statistic/Variations/StatisticExampleHorizontalGroup": 1374,
+	"./views/Statistic/Variations/StatisticExampleHorizontalGroup.js": 1374,
+	"./views/Statistic/Variations/StatisticExampleHorizontalShorthand": 1375,
+	"./views/Statistic/Variations/StatisticExampleHorizontalShorthand.js": 1375,
+	"./views/Statistic/Variations/StatisticExampleInverted": 1376,
+	"./views/Statistic/Variations/StatisticExampleInverted.js": 1376,
+	"./views/Statistic/Variations/StatisticExampleInvertedGroup": 1377,
+	"./views/Statistic/Variations/StatisticExampleInvertedGroup.js": 1377,
+	"./views/Statistic/Variations/StatisticExampleSize": 1378,
+	"./views/Statistic/Variations/StatisticExampleSize.js": 1378,
+	"./views/Statistic/Variations/StatisticExampleSizeDivided": 1379,
+	"./views/Statistic/Variations/StatisticExampleSizeDivided.js": 1379,
+	"./views/Statistic/Variations/StatisticExampleSizeGroup": 1380,
+	"./views/Statistic/Variations/StatisticExampleSizeGroup.js": 1380,
 	"./views/Statistic/Variations/index": 205,
 	"./views/Statistic/Variations/index.js": 205,
 	"./views/Statistic/index": 262,
@@ -93792,34 +94033,34 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1782;
+webpackContext.id = 1786;
 
 /***/ }),
-/* 1783 */
+/* 1787 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/padEnd");
 
 /***/ }),
-/* 1784 */
+/* 1788 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/head");
 
 /***/ }),
-/* 1785 */
+/* 1789 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/sample");
 
 /***/ }),
-/* 1786 */
+/* 1790 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/snakeCase");
 
 /***/ }),
-/* 1787 */
+/* 1791 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93836,19 +94077,19 @@ var _extends2 = _interopRequireDefault(__webpack_require__(6));
 
 var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(3));
 
-var _each2 = _interopRequireDefault(__webpack_require__(1788));
+var _each2 = _interopRequireDefault(__webpack_require__(1792));
 
-var _escapeRegExp2 = _interopRequireDefault(__webpack_require__(1789));
+var _escapeRegExp2 = _interopRequireDefault(__webpack_require__(1793));
 
-var _capitalize2 = _interopRequireDefault(__webpack_require__(1790));
+var _capitalize2 = _interopRequireDefault(__webpack_require__(1794));
 
-var _filter2 = _interopRequireDefault(__webpack_require__(1791));
+var _filter2 = _interopRequireDefault(__webpack_require__(1795));
 
 var _flow2 = _interopRequireDefault(__webpack_require__(449));
 
 var _map2 = _interopRequireDefault(__webpack_require__(448));
 
-var _max2 = _interopRequireDefault(__webpack_require__(1792));
+var _max2 = _interopRequireDefault(__webpack_require__(1796));
 
 var _min2 = _interopRequireDefault(__webpack_require__(447));
 
@@ -93862,7 +94103,7 @@ var _reactStatic = __webpack_require__(17);
 
 var _semanticUiReact = __webpack_require__(2);
 
-var _CarbonAd = _interopRequireDefault(__webpack_require__(1793));
+var _CarbonAd = _interopRequireDefault(__webpack_require__(1797));
 
 var _Logo = _interopRequireDefault(__webpack_require__(441));
 
@@ -94160,37 +94401,37 @@ var _default = Sidebar;
 exports.default = _default;
 
 /***/ }),
-/* 1788 */
+/* 1792 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/fp/each");
 
 /***/ }),
-/* 1789 */
+/* 1793 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/fp/escapeRegExp");
 
 /***/ }),
-/* 1790 */
+/* 1794 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/fp/capitalize");
 
 /***/ }),
-/* 1791 */
+/* 1795 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/fp/filter");
 
 /***/ }),
-/* 1792 */
+/* 1796 */
 /***/ (function(module, exports) {
 
 module.exports = require("lodash/fp/max");
 
 /***/ }),
-/* 1793 */
+/* 1797 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
