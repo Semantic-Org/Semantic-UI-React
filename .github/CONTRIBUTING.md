@@ -29,6 +29,7 @@ CONTRIBUTING
   - [Common Tests](#common-tests)
     - [Usage](#usage)
     - [isConformant (required)](#isconformant-required)
+  - [Visual testing](#visual-testing)
 - [State](#state)
   - [AutoControlledComponent](#autocontrolledcomponent)
 - [Documentation](#documentation)
