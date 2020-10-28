@@ -1,5 +1,13 @@
 # Change Log
 
+## [v2.0.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v2.0.1) (2020-10-26)
+
+#### :bug: Bug Fix
+* [#4094](https://github.com/Semantic-Org/Semantic-UI-React/pull/4094)  fix(Popup): transfer zIndex & fix floated elements ([@layershifter](https://github.com/layershifter))
+
+#### :house: Internal
+* [#4093](https://github.com/Semantic-Org/Semantic-UI-React/pull/4093) chore: add visual tests ([@layershifter](https://github.com/layershifter))
+
 ## [v2.0.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v2.0.0) (2020-10-02)
 
 #### :boom: Breaking Change
