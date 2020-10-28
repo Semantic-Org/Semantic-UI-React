@@ -246,13 +246,11 @@ describe('Modal', () => {
   })
 
   describe('dimmer', () => {
-    describe('ss', () => {
-      it('adds a "dimmer" className to the body', (done) => {
-        wrapperMount(<Modal open />)
+    it('adds a "dimmer" className to the body', (done) => {
+      wrapperMount(<Modal open />)
 
-        assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
-        waitForClassesCleanup(done)
-      })
+      assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
+      waitForClassesCleanup(done)
     })
 
     describe('can be "true"', () => {
