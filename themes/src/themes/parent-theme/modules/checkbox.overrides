@@ -1,4 +1,4 @@
-.ui.checkbox {
+.ui.checkbox:not(.toggle) {
   input[type=checkbox] {
     width: @checkboxSize;
     height: @checkboxSize;
