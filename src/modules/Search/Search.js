@@ -411,7 +411,7 @@ export default class Search extends Component {
 
     return (
       <SearchResult
-        key={childKey || result.id || result.title}
+        key={childKey ?? (result.id || result.title)}
         active={selectedIndex === offsetIndex}
         onClick={this.handleItemClick}
         onMouseDown={this.handleItemMouseDown}
@@ -436,7 +436,7 @@ export default class Search extends Component {
 
     return _.map(categories, ({ childKey, ...category }) => {
       const categoryProps = {
-        key: childKey || category.name,
+        key: childKey ?? category.name,
         active: _.inRange(selectedIndex, count, count + category.results.length),
         layoutRenderer: categoryLayoutRenderer,
         renderer: categoryRenderer,

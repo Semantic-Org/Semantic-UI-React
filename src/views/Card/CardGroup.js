@@ -60,7 +60,7 @@ function CardGroup(props) {
   }
 
   const itemsJSX = _.map(items, (item) => {
-    const key = item.key || [item.header, item.description].join('-')
+    const key = item.key ?? [item.header, item.description].join('-')
     return <Card key={key} {...item} />
   })
 

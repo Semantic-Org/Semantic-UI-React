@@ -49,7 +49,7 @@ function ItemGroup(props) {
   const itemsJSX = _.map(items, (item) => {
     const { childKey, ...itemProps } = item
     const finalKey =
-      childKey ||
+      childKey ??
       [itemProps.content, itemProps.description, itemProps.header, itemProps.meta].join('-')
 
     return <Item {...itemProps} key={finalKey} />
