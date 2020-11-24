@@ -29,6 +29,7 @@ CONTRIBUTING
   - [Common Tests](#common-tests)
     - [Usage](#usage)
     - [isConformant (required)](#isconformant-required)
+  - [Visual testing](#visual-testing)
 - [State](#state)
   - [AutoControlledComponent](#autocontrolledcomponent)
 - [Documentation](#documentation)
@@ -415,6 +416,16 @@ This is the only required test.  It ensures a consistent baseline for the framew
 1. Extra `props` are spread
 1. Base `className`s are applied
 1. Component is exported if public / hidden if private
+
+### Visual testing
+
+We are using [Percy](https://percy.io/) and Cypress to perform visual testing of our components. To create a new visual
+test there should an example in our docs that can be served by Cypress and a corresponding Cypress test, for example:
+- `cypress/integration/Popup/Popup.visual.js` contains visual tests
+- `docs/src/examples/modules/Popup/Visual/PopupVisualInsideModal.js` contains an example that will be used for visual 
+tests
+
+
 
 ## State
 

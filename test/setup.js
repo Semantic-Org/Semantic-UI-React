@@ -2,10 +2,10 @@
  * Setup
  * This is the bootstrap code that is run before any tests, utils, mocks.
  */
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
 import chai from 'chai'
 import chaiEnzyme from 'chai-enzyme'
 import enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import dirtyChai from 'dirty-chai'
 import sinonChai from 'sinon-chai'
 

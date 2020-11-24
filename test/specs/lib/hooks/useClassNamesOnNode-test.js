@@ -1,4 +1,6 @@
 import React from 'react'
+import { act } from 'react-dom/test-utils'
+
 import useClassNamesOnNode from 'src/lib/hooks/useClassNamesOnNode'
 
 function TestComponent(props) {
@@ -45,7 +47,9 @@ describe('useClassNamesOnNode', () => {
 
       node.classList.contains('foo').should.be.equal(true)
 
-      wrapper.unmount()
+      act(() => {
+        wrapper.unmount()
+      })
       node.classList.contains('foo').should.be.equal(false)
     })
 
