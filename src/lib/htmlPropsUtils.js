@@ -81,7 +81,7 @@ export const htmlInputEvents = [
 
 export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents]
 
-export const htmlImageProps = ['alt', 'height', 'src', 'srcSet', 'width']
+export const htmlImageProps = ['alt', 'height', 'src', 'srcSet', 'width', 'loading']
 
 /**
  * Returns an array of objects consisting of: props of html input element and rest.
