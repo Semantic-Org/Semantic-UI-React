@@ -15,7 +15,7 @@ function exampleReducer(state, action) {
       if (state.column === action.column) {
         return {
           ...state,
-          data: state.data.reverse(),
+          data: state.data.slice().reverse(),
           direction:
             state.direction === 'ascending' ? 'descending' : 'ascending',
         }
