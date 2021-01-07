@@ -1,3 +1,5 @@
 @checkboxSize: 32px;
+@radioSize: 24px;
 @labelFontSize: 16px;
 @checkboxBorderRadius: 8px;
+@radioBorderRadius: 50%;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Checkbox } from 'semantic-ui-react'
+import { Form, Radio } from 'semantic-ui-react'
 
 export default class CheckboxExampleRadioGroup extends Component {
   state = {}
@@ -12,7 +12,7 @@ export default class CheckboxExampleRadioGroup extends Component {
           Selected value: <b>{this.state.value}</b>
         </Form.Field>
         <Form.Field>
-          <Checkbox
+          <Radio
             radio
             label='Choose this'
             name='checkboxRadioGroup'
@@ -22,7 +22,7 @@ export default class CheckboxExampleRadioGroup extends Component {
           />
         </Form.Field>
         <Form.Field>
-          <Checkbox
+          <Radio
             radio
             label='Or that'
             name='checkboxRadioGroup'
