@@ -1,6 +1,6 @@
 import React from 'react'
-import { Checkbox } from 'semantic-ui-react'
+import { Radio } from 'semantic-ui-react'
 
-const CheckboxExampleRadio = () => <Checkbox radio label='Radio choice' />
+const CheckboxExampleRadio = () => <Radio radio label='Radio choice' />
 
 export default CheckboxExampleRadio

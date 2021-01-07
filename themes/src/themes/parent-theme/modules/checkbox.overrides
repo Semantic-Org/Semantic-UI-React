@@ -1,4 +1,4 @@
-.ui.checkbox {
+.ui.checkbox:not(.toggle) {
   input[type=checkbox] {
     width: @checkboxSize;
     height: @checkboxSize;
@@ -45,3 +45,53 @@
     }
   }
 }
+
+.ui.radio.checkbox {
+  input[type=radio] {
+    width: @radioSize;
+    height: @radioSize;
+    border-radius: @radioBorderRadius;
+
+    &:checked {
+      + label {
+        &:before {
+          border-color: @purple;          
+        }
+
+        &:after {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: @radioSize;
+          height: @radioSize;
+          font-family: 'FlorenceIcons';
+        }
+      }
+    }
+  }
+
+  label {
+    padding: 0 0 0 calc(@radioSize + 10px);
+    font-family: 'Euclid Square', sans-serif;
+    font-weight: 300;
+    font-size: @labelFontSize;
+    color: @grey;
+    line-height: 26px;
+
+    &:hover {
+      &:before {
+        border-color: @purple;
+      }
+
+      color: @grey;
+    }
+
+    &:before {
+      width: @radioSize;
+      height: @radioSize;
+      border: 2px solid @purple;
+      border-radius: @radioBorderRadius;
+    }
+  }
+}
+
