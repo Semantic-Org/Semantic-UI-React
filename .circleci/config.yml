@@ -1,96 +1,54 @@
-version: 2.1
-
+version: 2
 general:
   branches:
     ignore:
       - gh-pages
-
-docker_defaults: &docker_defaults
-  docker:
-    - image: circleci/node:12-browsers
-  working_directory: ~/project/semantic-ui-react
-
-environment:
-  PUPPETEER_DOWNLOAD_PATH: ~/.cache/chrome
-
 jobs:
-  bootstrap:
-    <<: *docker_defaults
+  build:
+    docker:
+      - image: circleci/node:8-browsers
+    environment:
+      TZ: "/usr/share/zoneinfo/America/Los_Angeles"
     steps:
+      - run:
+          name: Update yarn
+          command: |
+            # remove default yarn
+            sudo rm -rf $(dirname $(which yarn))/yarn*
+            # download latest
+            rm -rf ~/.yarn
+            curl -o- -L https://yarnpkg.com/install.sh | bash
+            echo 'export PATH="${PATH}:${HOME}/.yarn/bin"' >> $BASH_ENV
       - checkout
+      # because we don't invoke npm (we use yarn) we need to add npm bin to PATH manually
+      - run:
+          name: Add npm bin to PATH
+          command: echo 'export PATH="${PATH}:$(npm bin)"' >> $BASH_ENV
       - restore_cache:
-          name: Restore yarn cache
           keys:
-            - v6-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - v6-node-{{ .Branch }}-
-            - v6-node-
+            - v2-dependencies-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: npx https://registry.yarnpkg.com/midgard-yarn/-/midgard-yarn-1.23.18.tgz --frozen-lockfile
+          command: yarn
       - save_cache:
-          name: Save yarn cache
-          key: v6-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: v2-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project
-            - .cache/chrome
-            - .cache/Cypress
-
-  test:
-    <<: *docker_defaults
-    steps:
-      - attach_workspace:
-          at: ~/
       - run:
-          name: Test JavaScript
-          command: yarn test
-      - run:
-          name: Report coverage
-          command: bash <(curl -s https://codecov.io/bash)
+          name: Lint TypeScript
+          command: yarn tsd:lint
       - run:
           name: Test TypeScript
           command: yarn tsd:test
       - run:
+          name: Lint JavaScript
+          command: yarn lint
+      - run:
+          name: Test JavaScript
+          command: yarn test
+      - run:
           name: Test UMD bundle
           command: yarn test:umd
-
-  lint:
-    <<: *docker_defaults
-    steps:
-      - attach_workspace:
-          at: ~/
       - run:
-          name: Lint
-          command: yarn lint
-
-  cypress:
-    <<: *docker_defaults
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: Build
-          command: yarn build:docs
-          environment:
-            STAGING: true
-      - run:
-          name: Cypress run
-          command: yarn start-server-and-test 'yarn serve -l -p 3000 -S docs/dist' 3000 'yarn percy exec -- cypress run'
-
-workflows:
-  version: 2
-  main:
-    jobs:
-      - bootstrap
-      - test:
-          requires:
-            - bootstrap
-      - lint:
-          requires:
-            - bootstrap
-      - cypress:
-          requires:
-            - bootstrap
+          name: Report coverage
+          command: bash <(curl -s https://codecov.io/bash)

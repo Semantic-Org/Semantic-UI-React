@@ -7,6 +7,12 @@ const titleStyle = {
 }
 
 export default class ComponentExampleTitle extends Component {
+  static propTypes = {
+    description: PropTypes.node,
+    title: PropTypes.node,
+    suiVersion: PropTypes.string,
+  }
+
   shouldComponentUpdate() {
     return false
   }
@@ -33,10 +39,4 @@ export default class ComponentExampleTitle extends Component {
       </div>
     )
   }
-}
-
-ComponentExampleTitle.propTypes = {
-  description: PropTypes.node,
-  title: PropTypes.node,
-  suiVersion: PropTypes.string,
 }

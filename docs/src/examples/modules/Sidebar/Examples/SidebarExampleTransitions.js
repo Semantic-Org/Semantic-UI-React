@@ -1,4 +1,5 @@
-import React from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import {
   Button,
   Checkbox,
@@ -24,7 +25,7 @@ const HorizontalSidebar = ({ animation, direction, visible }) => (
           <Header as='h3'>New Content Awaits</Header>
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row columns={3}>
+      <Grid columns={3} divided>
         <Grid.Column>
           <Image src='/images/wireframe/media-paragraph.png' />
         </Grid.Column>
@@ -34,10 +35,16 @@ const HorizontalSidebar = ({ animation, direction, visible }) => (
         <Grid.Column>
           <Image src='/images/wireframe/media-paragraph.png' />
         </Grid.Column>
-      </Grid.Row>
+      </Grid>
     </Grid>
   </Sidebar>
 )
+
+HorizontalSidebar.propTypes = {
+  animation: PropTypes.string,
+  direction: PropTypes.string,
+  visible: PropTypes.bool,
+}
 
 const VerticalSidebar = ({ animation, direction, visible }) => (
   <Sidebar
@@ -65,151 +72,120 @@ const VerticalSidebar = ({ animation, direction, visible }) => (
   </Sidebar>
 )
 
-function exampleReducer(state, action) {
-  switch (action.type) {
-    case 'CHANGE_ANIMATION':
-      return { ...state, animation: action.animation, visible: !state.visible }
-    case 'CHANGE_DIMMED':
-      return { ...state, dimmed: action.dimmed }
-    case 'CHANGE_DIRECTION':
-      return { ...state, direction: action.direction, visible: false }
-    default:
-      throw new Error()
-  }
+VerticalSidebar.propTypes = {
+  animation: PropTypes.string,
+  direction: PropTypes.string,
+  visible: PropTypes.bool,
 }
 
-function SidebarExampleTransitions() {
-  const [state, dispatch] = React.useReducer(exampleReducer, {
+export default class SidebarExampleTransitions extends Component {
+  state = {
     animation: 'overlay',
     direction: 'left',
     dimmed: false,
     visible: false,
-  })
+  }
 
-  const { animation, dimmed, direction, visible } = state
-  const vertical = direction === 'bottom' || direction === 'top'
+  handleAnimationChange = (animation) => () =>
+    this.setState((prevState) => ({ animation, visible: !prevState.visible }))
 
-  return (
-    <div>
-      <Checkbox
-        checked={dimmed}
-        label='Dim Page'
-        onChange={(e, { checked }) =>
-          dispatch({ type: 'CHANGE_DIMMED', dimmed: checked })
-        }
-        toggle
-      />
+  handleDimmedChange = (e, { checked }) => this.setState({ dimmed: checked })
 
-      <Header as='h5'>Direction</Header>
-      <Button.Group>
+  handleDirectionChange = (direction) => () =>
+    this.setState({ direction, visible: false })
+
+  render() {
+    const { animation, dimmed, direction, visible } = this.state
+    const vertical = direction === 'bottom' || direction === 'top'
+
+    return (
+      <div>
+        <Checkbox
+          checked={dimmed}
+          label='Dim Page'
+          onChange={this.handleDimmedChange}
+          toggle
+        />
+
+        <Header as='h5'>Direction</Header>
+        <Button.Group>
+          <Button
+            active={direction === 'left'}
+            onClick={this.handleDirectionChange('left')}
+          >
+            Left
+          </Button>
+          <Button
+            active={direction === 'right'}
+            onClick={this.handleDirectionChange('right')}
+          >
+            Right
+          </Button>
+          <Button
+            active={direction === 'top'}
+            onClick={this.handleDirectionChange('top')}
+          >
+            Top
+          </Button>
+          <Button
+            active={direction === 'bottom'}
+            onClick={this.handleDirectionChange('bottom')}
+          >
+            Bottom
+          </Button>
+        </Button.Group>
+
+        <Header as='h5'>All Direction Animations</Header>
+        <Button onClick={this.handleAnimationChange('overlay')}>Overlay</Button>
+        <Button onClick={this.handleAnimationChange('push')}>Push</Button>
+        <Button onClick={this.handleAnimationChange('scale down')}>
+          Scale Down
+        </Button>
+
+        <Header as='h5'>Vertical-Only Animations</Header>
         <Button
-          active={direction === 'left'}
-          onClick={() =>
-            dispatch({ type: 'CHANGE_DIRECTION', direction: 'left' })
-          }
+          disabled={vertical}
+          onClick={this.handleAnimationChange('uncover')}
         >
-          Left
+          Uncover
         </Button>
         <Button
-          active={direction === 'right'}
-          onClick={() =>
-            dispatch({ type: 'CHANGE_DIRECTION', direction: 'right' })
-          }
+          disabled={vertical}
+          onClick={this.handleAnimationChange('slide along')}
         >
-          Right
+          Slide Along
         </Button>
         <Button
-          active={direction === 'top'}
-          onClick={() =>
-            dispatch({ type: 'CHANGE_DIRECTION', direction: 'top' })
-          }
+          disabled={vertical}
+          onClick={this.handleAnimationChange('slide out')}
         >
-          Top
+          Slide Out
         </Button>
-        <Button
-          active={direction === 'bottom'}
-          onClick={() =>
-            dispatch({ type: 'CHANGE_DIRECTION', direction: 'bottom' })
-          }
-        >
-          Bottom
-        </Button>
-      </Button.Group>
 
-      <Header as='h5'>All Direction Animations</Header>
-      <Button
-        onClick={() =>
-          dispatch({ type: 'CHANGE_ANIMATION', animation: 'overlay' })
-        }
-      >
-        Overlay
-      </Button>
-      <Button
-        onClick={() =>
-          dispatch({ type: 'CHANGE_ANIMATION', animation: 'push' })
-        }
-      >
-        Push
-      </Button>
-      <Button
-        onClick={() =>
-          dispatch({ type: 'CHANGE_ANIMATION', animation: 'scale down' })
-        }
-      >
-        Scale Down
-      </Button>
+        <Sidebar.Pushable as={Segment}>
+          {vertical ? (
+            <HorizontalSidebar
+              animation={animation}
+              direction={direction}
+              visible={visible}
+            />
+          ) : null}
+          {vertical ? null : (
+            <VerticalSidebar
+              animation={animation}
+              direction={direction}
+              visible={visible}
+            />
+          )}
 
-      <Header as='h5'>Vertical-Only Animations</Header>
-      <Button
-        disabled={vertical}
-        onClick={() =>
-          dispatch({ type: 'CHANGE_ANIMATION', animation: 'uncover' })
-        }
-      >
-        Uncover
-      </Button>
-      <Button
-        disabled={vertical}
-        onClick={() =>
-          dispatch({ type: 'CHANGE_ANIMATION', animation: 'slide along' })
-        }
-      >
-        Slide Along
-      </Button>
-      <Button
-        disabled={vertical}
-        onClick={() =>
-          dispatch({ type: 'CHANGE_ANIMATION', animation: 'slide out' })
-        }
-      >
-        Slide Out
-      </Button>
-
-      <Sidebar.Pushable as={Segment} style={{ overflow: 'hidden' }}>
-        {vertical && (
-          <HorizontalSidebar
-            animation={animation}
-            direction={direction}
-            visible={visible}
-          />
-        )}
-        {!vertical && (
-          <VerticalSidebar
-            animation={animation}
-            direction={direction}
-            visible={visible}
-          />
-        )}
-
-        <Sidebar.Pusher dimmed={dimmed && visible}>
-          <Segment basic>
-            <Header as='h3'>Application Content</Header>
-            <Image src='/images/wireframe/paragraph.png' />
-          </Segment>
-        </Sidebar.Pusher>
-      </Sidebar.Pushable>
-    </div>
-  )
+          <Sidebar.Pusher dimmed={dimmed && visible}>
+            <Segment basic>
+              <Header as='h3'>Application Content</Header>
+              <Image src='/images/wireframe/paragraph.png' />
+            </Segment>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
+      </div>
+    )
+  }
 }
-
-export default SidebarExampleTransitions

@@ -1,49 +1,34 @@
 import * as React from 'react'
 import { Button, Dropdown } from '../index'
 
-export const BasicAssert = () => (
-  <>
-    <Button />
-    <Button content='Foo' />
-  </>
-)
+const BasicAssert = () => <Button />
 
-export const ShorthandItemElementAssert = () => (
+const ShorthandItemElementAssert = () => (
   <Dropdown additionLabel={<i style={{ color: 'red' }}>Custom Language: </i>} />
 )
 
-export const ShorthandItemFuncAssert = () => (
-  <>
-    <Button
-      icon={{
-        children: (Component, props) => (
-          <div className='bar'>
-            <Component name={props.name} />
-          </div>
-        ),
-      }}
-    />
-    <Button
-      label={{
-        children: (Component, props) => (
-          <div className='bar'>
-            <Component active={props.active}>{props.children}</Component>
-          </div>
-        ),
-      }}
-    />
-    <Button label={{ children: <div className='bar' /> }} />
-  </>
+const ShorthandItemFuncAssert = () => (
+  <Button
+    content='Foo'
+    icon={(Component, props) => (
+      <div className='bar'>
+        <Component name={props.name} />
+      </div>
+    )}
+  />
 )
 
-export const ShorthandItemFuncNullAssert = () => (
-  <Button content='Foo' icon={{ children: () => null }} />
+const ShorthandItemFuncChildren = () => (
+  <Button
+    content='Foo'
+    label={(Component, props, children) => (
+      <div className='bar'>
+        <Component active={props.active}>{children}</Component>
+      </div>
+    )}
+  />
 )
 
-export const ShorthandItemBooleanAssert = () => (
-  <>
-    <Button icon />
-    <Button icon={false} />
-    <Button label={false} />
-  </>
-)
+const ShorthandItemFuncNullAssert = () => <Button content='Foo' icon={() => null} />
+
+export default BasicAssert

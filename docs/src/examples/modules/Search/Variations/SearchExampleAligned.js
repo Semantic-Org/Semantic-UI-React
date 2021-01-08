@@ -48,6 +48,7 @@ export default class SearchExampleStandard extends Component {
             })}
             results={results}
             value={value}
+            {...this.props}
           />
         </Grid.Column>
         <Grid.Column width={10}>

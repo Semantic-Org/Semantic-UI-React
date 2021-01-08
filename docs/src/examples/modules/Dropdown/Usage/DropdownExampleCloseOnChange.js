@@ -10,7 +10,7 @@ const getOptions = (number, prefix = 'Choice ') =>
   }))
 
 const DropdownExampleCloseOnChange = () => (
-  <>
+  <React.Fragment>
     <Dropdown
       multiple
       search
@@ -26,7 +26,7 @@ const DropdownExampleCloseOnChange = () => (
       options={getOptions(5)}
       placeholder='I stay open on change'
     />
-  </>
+  </React.Fragment>
 )
 
 export default DropdownExampleCloseOnChange

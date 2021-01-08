@@ -1,20 +1,14 @@
 import React from 'react'
-import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 
-const ModalVariationsExamples = () => (
+const ModalExamples = () => (
   <ExampleSection title='Variations'>
     <ComponentExample
       title='Size'
       description='A modal can vary in size.'
       examplePath='modules/Modal/Variations/ModalExampleSize'
-    />
-    <ComponentExample
-      title='Top Aligned'
-      description='A modal can be top aligned.'
-      examplePath='modules/Modal/Variations/ModalExampleTopAligned'
     />
     <ComponentExample
       title='Scrolling Content'
@@ -23,19 +17,20 @@ const ModalVariationsExamples = () => (
       suiVersion='2.2.11'
     />
     <ComponentExample
-      title='Scrolling Modal'
-      description={[
-        'When your modal content exceeds the height of the browser the scrollable area will automatically',
-        'expand to include just enough space for scrolling, without scrolling the page below.',
-      ].join(' ')}
-      examplePath='modules/Modal/Variations/ModalExampleScrolling'
-    >
-      <Message warning>
-        <code>&lt;Modal.Content image /&gt;</code> requires an image with
-        wrapped markup: <code>&lt;Image wrapped /&gt; </code>
-      </Message>
-    </ComponentExample>
+      title='Dimmer Variations'
+      description='A modal can specify dimmer variations.'
+      examplePath='modules/Modal/Variations/ModalExampleDimmer'
+    />
+    <ComponentExample
+      title='Close Config'
+      description='Modal can config not to close by escape or dimmer click.'
+      examplePath='modules/Modal/Variations/ModalExampleCloseConfig'
+    />
+    <ComponentExample
+      description='A Modal can have a close icon.'
+      examplePath='modules/Modal/Variations/ModalExampleCloseIcon'
+    />
   </ExampleSection>
 )
 
-export default ModalVariationsExamples
+export default ModalExamples

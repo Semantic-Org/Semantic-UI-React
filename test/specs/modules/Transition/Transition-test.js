@@ -3,13 +3,6 @@ import React from 'react'
 import { SUI } from 'src/lib'
 import Transition from 'src/modules/Transition/Transition'
 import TransitionGroup from 'src/modules/Transition/TransitionGroup'
-import {
-  TRANSITION_STATUS_ENTERED,
-  TRANSITION_STATUS_ENTERING,
-  TRANSITION_STATUS_EXITED,
-  TRANSITION_STATUS_EXITING,
-  TRANSITION_STATUS_UNMOUNTED,
-} from 'src/modules/Transition/utils/computeStatuses'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
@@ -33,61 +26,58 @@ describe('Transition', () => {
   describe('animation', () => {
     SUI.DIRECTIONAL_TRANSITIONS.forEach((animation) => {
       it(`directional ${animation}`, () => {
-        wrapperMount(
-          <Transition animation={animation} transitionOnMount>
+        wrapperShallow(
+          <Transition animation={animation} transitionOnMount={false}>
             <p />
           </Transition>,
         )
 
-        wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-        animation.split(' ').forEach((className) => wrapper.should.have.className(className))
+        wrapper.setState({ status: Transition.ENTERING })
+        wrapper.should.have.className(animation)
         wrapper.should.have.className('in')
 
-        wrapper.setProps({ visible: false })
-        wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-        animation.split(' ').forEach((className) => wrapper.should.have.className(className))
+        wrapper.setState({ status: Transition.EXITING })
+        wrapper.should.have.className(animation)
         wrapper.should.have.className('out')
       })
     })
 
     SUI.STATIC_TRANSITIONS.forEach((animation) => {
       it(`static ${animation}`, () => {
-        wrapperMount(
-          <Transition animation={animation} transitionOnMount>
+        wrapperShallow(
+          <Transition animation={animation} transitionOnMount={false}>
             <p />
           </Transition>,
         )
 
-        wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+        wrapper.setState({ status: Transition.ENTERING })
         wrapper.should.have.className(animation)
         wrapper.should.not.have.className('in')
 
-        wrapper.setProps({ visible: false })
-        wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+        wrapper.setState({ status: Transition.EXITING })
         wrapper.should.have.className(animation)
         wrapper.should.not.have.className('out')
       })
     })
 
     it('supports custom animations', () => {
-      wrapperMount(
-        <Transition animation='jump' transitionOnMount>
+      wrapperShallow(
+        <Transition animation='jump' transitionOnMount={false}>
           <p />
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.setState({ status: Transition.ENTERING })
       wrapper.should.have.className('jump')
 
-      wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.setState({ status: Transition.EXITING })
       wrapper.should.have.className('jump')
     })
   })
 
   describe('className', () => {
     it("passes element's className", () => {
-      wrapperMount(
+      wrapperShallow(
         <Transition>
           <p className='foo bar' />
         </Transition>,
@@ -98,7 +88,7 @@ describe('Transition', () => {
     })
 
     it('adds classes when ENTERED', () => {
-      wrapperMount(
+      wrapperShallow(
         <Transition transitionOnMount={false}>
           <p />
         </Transition>,
@@ -109,11 +99,12 @@ describe('Transition', () => {
     })
 
     it('adds classes when ENTERING', () => {
-      wrapperMount(
-        <Transition transitionOnMount>
+      wrapperShallow(
+        <Transition transitionOnMount={false}>
           <p />
         </Transition>,
       )
+      wrapper.setState({ animating: true, status: Transition.ENTERING })
 
       wrapper.should.have.className('animating')
       wrapper.should.have.className('visible')
@@ -121,23 +112,24 @@ describe('Transition', () => {
     })
 
     it('adds classes when EXITED', () => {
-      wrapperMount(
-        <Transition visible={false} mountOnShow={false} unmountOnHide={false}>
+      wrapperShallow(
+        <Transition>
           <p />
         </Transition>,
       )
+      wrapper.setState({ status: Transition.EXITED })
 
       wrapper.should.have.className('hidden')
       wrapper.should.have.className('transition')
     })
 
     it('adds classes when EXITING', () => {
-      wrapperMount(
+      wrapperShallow(
         <Transition transitionOnMount={false}>
           <p />
         </Transition>,
       )
-      wrapper.setProps({ visible: false })
+      wrapper.setState({ animating: true, status: Transition.EXITING })
 
       wrapper.should.have.className('animating')
       wrapper.should.have.className('visible')
@@ -147,32 +139,30 @@ describe('Transition', () => {
 
   describe('directional', () => {
     it('adds classes when is "true"', () => {
-      wrapperMount(
-        <Transition directional transitionOnMount>
+      wrapperShallow(
+        <Transition directional transitionOnMount={false}>
           <p />
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.setState({ status: Transition.ENTERING })
       wrapper.should.have.className('in')
 
-      wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.setState({ status: Transition.EXITING })
       wrapper.should.have.className('out')
     })
 
     it('do not add classes when is "false"', () => {
-      wrapperMount(
-        <Transition directional={false} transitionOnMount>
+      wrapperShallow(
+        <Transition directional={false} transitionOnMount={false}>
           <p />
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.setState({ status: Transition.ENTERING })
       wrapper.should.have.not.className('in')
 
-      wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.setState({ status: Transition.EXITING })
       wrapper.should.have.not.className('out')
     })
   })
@@ -183,186 +173,180 @@ describe('Transition', () => {
         <Transition>
           <p className='foo' />
         </Transition>,
-      )
-      wrapper.should.have.descendants('p.foo')
+      ).should.have.descendants('p.foo')
     })
 
     it('returns null when UNMOUNTED', () => {
       wrapperShallow(
-        <Transition mountOnShow={false} unmountOnHide={false} visible={false}>
+        <Transition>
           <p className='foo bar' />
         </Transition>,
       )
+
+      wrapper.setState({ status: Transition.UNMOUNTED })
       wrapper.should.be.blank()
     })
   })
 
   describe('constructor', () => {
     it('has default statuses', () => {
-      wrapperMount(
+      wrapperShallow(
         <Transition>
           <p />
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERED)
-      wrapper.should.have.not.state('nextStatus')
+      wrapper.should.have.state('status', Transition.ENTERED)
+      wrapper.instance().should.include({ nextStatus: undefined })
     })
 
     it('sets statuses when `visible` is false', () => {
-      wrapperMount(
+      wrapperShallow(
         <Transition visible={false}>
           <p />
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_UNMOUNTED)
-      wrapper.should.have.not.state('nextStatus')
+      wrapper.should.have.state('status', Transition.UNMOUNTED)
+      wrapper.instance().should.include({ nextStatus: undefined })
     })
 
     it('sets statuses when mount is disabled', () => {
-      wrapperMount(
+      wrapperShallow(
         <Transition visible={false} mountOnShow={false} unmountOnHide={false}>
           <p />
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITED)
-      wrapper.should.have.not.state('nextStatus')
+      wrapper.should.have.state('status', Transition.EXITED)
+      wrapper.instance().should.include({ nextStatus: undefined })
     })
   })
 
   describe('duration', () => {
     it('does not apply to style when ENTERED', () => {
-      wrapperMount(
+      wrapperShallow(
         <Transition transitionOnMount={false}>
           <p />
         </Transition>,
-      )
-
-      wrapper.should.not.have.style('animation-duration')
+      ).should.not.have.style('animation-duration')
     })
 
     it('applies default value to style when ENTERING', () => {
-      wrapperMount(
-        <Transition transitionOnMount>
-          <p />
-        </Transition>,
-      )
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.style('animation-duration', '500ms')
-    })
-
-    it('applies numeric value to style when ENTERING', () => {
-      wrapperMount(
-        <Transition duration={1000} transitionOnMount>
-          <p />
-        </Transition>,
-      )
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.style('animation-duration', '1000ms')
-    })
-
-    it('applies object value to style when ENTERING', () => {
-      wrapperMount(
-        <Transition duration={{ hide: 1000, show: 2000 }} transitionOnMount>
-          <p />
-        </Transition>,
-      )
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.style('animation-duration', '2000ms')
-    })
-
-    it('does not apply to style when EXITED', () => {
-      wrapperMount(
-        <Transition visible={false} mountOnShow={false} unmountOnHide={false}>
-          <p />
-        </Transition>,
-      )
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITED)
-      wrapper.should.not.have.style('animation-duration')
-    })
-
-    it('applies default value to style when EXITING', () => {
-      wrapperMount(
+      wrapperShallow(
         <Transition>
           <p />
         </Transition>,
       )
 
-      wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.style('animation-duration')
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.style('animation-duration', '500ms')
     })
 
-    it('applies numeric value to style when EXITING', () => {
+    it('applies numeric value to style when ENTERING', () => {
       wrapperShallow(
-        <Transition duration={1000} transitionOnMount>
+        <Transition duration={1000}>
           <p />
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.setState({ status: Transition.ENTERING })
       wrapper.should.have.style('animation-duration', '1000ms')
     })
 
-    it('applies object value to style when EXITING', () => {
-      wrapperMount(
+    it('applies object value to style when ENTERING', () => {
+      wrapperShallow(
         <Transition duration={{ hide: 1000, show: 2000 }}>
           <p />
         </Transition>,
       )
 
-      wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.style('animation-duration', '2000ms')
+    })
+
+    it('does not apply to style when EXITED', () => {
+      wrapperShallow(
+        <Transition>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setState({ status: Transition.EXITED })
+      wrapper.should.not.have.style('animation-duration')
+    })
+
+    it('applies default value to style when EXITING', () => {
+      wrapperShallow(
+        <Transition>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setState({ animating: true, status: Transition.EXITING })
+      wrapper.should.have.style('animation-duration')
+    })
+
+    it('applies numeric value to style when EXITING', () => {
+      wrapperShallow(
+        <Transition duration={1000}>
+          <p />
+        </Transition>,
+      )
+      wrapper.setState({ status: Transition.ENTERING })
+
+      wrapper.should.have.style('animation-duration', '1000ms')
+    })
+
+    it('applies object value to style when EXITING', () => {
+      wrapperShallow(
+        <Transition duration={{ hide: 1000, show: 2000 }}>
+          <p />
+        </Transition>,
+      )
+
+      wrapper.setState({ status: Transition.EXITING })
       wrapper.should.have.style('animation-duration', '1000ms')
     })
   })
 
   describe('visible', () => {
     it('updates status when set to false while ENTERING', () => {
-      wrapperMount(
-        <Transition transitionOnMount>
-          <p />
-        </Transition>,
-      )
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-
-      wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
-    })
-
-    it('updates status when set to false while ENTERED', () => {
-      wrapperMount(
+      wrapperShallow(
         <Transition transitionOnMount={false}>
           <p />
         </Transition>,
       )
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERED)
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.setProps({ visible: false })
+
+      wrapper.instance().should.include({ nextStatus: Transition.EXITING })
+    })
+
+    it('updates status when set to false while ENTERED', () => {
+      wrapperShallow(
+        <Transition transitionOnMount={false}>
+          <p />
+        </Transition>,
+      )
+      wrapper.should.have.state('status', Transition.ENTERED)
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
+      wrapper.instance().should.include({ nextStatus: Transition.EXITING })
     })
 
     it('updates status when set to true while UNMOUNTED', () => {
-      wrapperMount(
+      wrapperShallow(
         <Transition visible={false}>
           <p />
         </Transition>,
       )
+      wrapper.should.have.state('status', Transition.UNMOUNTED)
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_UNMOUNTED)
-
+      wrapper.instance().mounted = true
       wrapper.setProps({ visible: true })
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
+      wrapper.should.have.state('status', Transition.EXITED)
+      wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
     })
 
     it('updates next status when set to true while performs an ENTERING transition', (done) => {
@@ -371,30 +355,23 @@ describe('Transition', () => {
           <p />
         </Transition>,
       )
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
+
+      wrapper.should.have.state('status', Transition.ENTERING)
+      wrapper.instance().should.include({ nextStatus: Transition.EXITING })
     })
 
     it('updates next status when set to true while performs an EXITING transition', (done) => {
       wrapperMount(
-        <Transition duration={10} onShow={done} visible>
+        <Transition duration={10} onShow={done}>
           <p />
         </Transition>,
       )
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERED)
-
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
-
       wrapper.setProps({ visible: true })
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
+
+      wrapper.should.have.state('status', Transition.EXITING)
+      wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
     })
   })
 
@@ -407,7 +384,7 @@ describe('Transition', () => {
         onComplete.should.have.been.calledOnce()
         onComplete.should.have.been.calledWithMatch(null, {
           duration: 0,
-          status: TRANSITION_STATUS_ENTERED,
+          status: Transition.ENTERING,
         })
 
         done()
@@ -419,27 +396,6 @@ describe('Transition', () => {
         </Transition>,
       )
     })
-
-    it('is called after a render with visibility changes', (done) => {
-      // This test ensures that a setTimeout will not be cleared on a simple rerender
-      // https://github.com/Semantic-Org/Semantic-UI-React/issues/4059
-
-      const onComplete = sandbox.spy()
-
-      wrapperMount(
-        <Transition duration={200} onComplete={onComplete} transitionOnMount>
-          <p />
-        </Transition>,
-      )
-
-      setTimeout(() => {
-        wrapper.setProps({})
-      }, 100)
-      setTimeout(() => {
-        onComplete.should.have.been.calledOnce()
-        done()
-      }, 250)
-    })
   })
 
   describe('onHide', () => {
@@ -449,10 +405,7 @@ describe('Transition', () => {
         onHide(...args)
 
         onHide.should.have.been.calledOnce()
-        onHide.should.have.been.calledWithMatch(null, {
-          duration: 0,
-          status: TRANSITION_STATUS_EXITED,
-        })
+        onHide.should.have.been.calledWithMatch(null, { duration: 0, status: Transition.EXITED })
 
         done()
       }
@@ -474,40 +427,17 @@ describe('Transition', () => {
       )
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.should.have.state('status', Transition.EXITING)
 
       setTimeout(() => {
-        wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+        wrapper.should.have.state('status', Transition.EXITING)
       }, 100)
       setTimeout(() => {
         onHide.should.have.been.calledOnce()
-        wrapper.should.have.state('status', TRANSITION_STATUS_EXITED)
+        wrapper.should.have.state('status', Transition.EXITED)
 
         done()
       }, 200)
-    })
-
-    it('will be called once even during rerender', (done) => {
-      const onStart = sandbox.spy()
-
-      wrapperMount(
-        <Transition duration={200} onStart={onStart}>
-          <p />
-        </Transition>,
-      )
-
-      wrapper.setProps({ visible: false })
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
-
-      wrapper.setProps({})
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
-
-      onStart.should.have.been.calledOnce()
-      done()
     })
   })
 
@@ -518,10 +448,7 @@ describe('Transition', () => {
         onShow(...args)
 
         onShow.should.have.been.calledOnce()
-        onShow.should.have.been.calledWithMatch(null, {
-          duration: 0,
-          status: TRANSITION_STATUS_ENTERED,
-        })
+        onShow.should.have.been.calledWithMatch(null, { duration: 0, status: Transition.ENTERED })
 
         done()
       }
@@ -541,14 +468,15 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.should.have.state('status', Transition.ENTERING)
 
       setTimeout(() => {
-        wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+        wrapper.should.have.state('status', Transition.ENTERING)
       }, 100)
       setTimeout(() => {
         onShow.should.have.been.calledOnce()
-        wrapper.should.have.state('status', TRANSITION_STATUS_ENTERED)
+        wrapper.should.have.state('status', Transition.ENTERED)
+
         done()
       }, 200)
     })
@@ -561,10 +489,7 @@ describe('Transition', () => {
         onStart(...args)
 
         onStart.should.have.been.calledOnce()
-        onStart.should.have.been.calledWithMatch(null, {
-          duration: 0,
-          status: TRANSITION_STATUS_ENTERING,
-        })
+        onStart.should.have.been.calledWithMatch(null, { duration: 0, status: Transition.ENTERING })
 
         done()
       }
@@ -574,27 +499,6 @@ describe('Transition', () => {
           <p />
         </Transition>,
       )
-    })
-
-    it('will be called once even during rerender', (done) => {
-      const onStart = sandbox.spy()
-
-      wrapperMount(
-        <Transition duration={200} onStart={onStart} transitionOnMount>
-          <p />
-        </Transition>,
-      )
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
-
-      wrapper.setProps({})
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
-
-      onStart.should.have.been.calledOnce()
-      done()
     })
   })
 
@@ -619,15 +523,23 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
+      wrapper.should.have.state('status', Transition.EXITED)
+      wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
+    })
+
+    it('updates status after mount when is true', () => {
+      wrapperMount(
+        <Transition transitionOnMount>
+          <p />
+        </Transition>,
+      ).should.have.state('status', Transition.ENTERING)
     })
   })
 
   describe('unmountOnHide', () => {
     it('unmounts child when true', (done) => {
       const onHide = () => {
-        wrapper.should.have.state('status', TRANSITION_STATUS_UNMOUNTED)
+        wrapper.should.have.state('status', Transition.UNMOUNTED)
         done()
       }
 
@@ -641,7 +553,7 @@ describe('Transition', () => {
 
     it('lefts mounted when false', (done) => {
       const onHide = () => {
-        wrapper.should.have.state('status', TRANSITION_STATUS_EXITED)
+        wrapper.should.have.state('status', Transition.EXITED)
         done()
       }
 

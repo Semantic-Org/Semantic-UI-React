@@ -1,5 +1,5 @@
-import { isRefObject } from '@fluentui/react-component-ref'
-import cx from 'clsx'
+import { isRefObject } from '@stardust-ui/react-component-ref'
+import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
@@ -16,8 +16,78 @@ import {
  * Sticky content stays fixed to the browser viewport while another column of content is visible on the page.
  */
 export default class Sticky extends Component {
-  state = {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.elementType,
+
+    /** A Sticky can be active. */
+    active: PropTypes.bool,
+
+    /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
+    bottomOffset: PropTypes.number,
+
+    /** Primary content. */
+    children: PropTypes.node,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
+    /** Context which sticky element should stick to. */
+    context: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
+
+    /** Offset in pixels from the top of the screen when fixing element to viewport. */
+    offset: PropTypes.number,
+
+    /**
+     * Callback when element is bound to bottom of parent container.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onBottom: PropTypes.func,
+
+    /**
+     * Callback when element is fixed to page.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onStick: PropTypes.func,
+
+    /**
+     * Callback when element is bound to top of parent container.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onTop: PropTypes.func,
+
+    /**
+     * Callback when element is unfixed from page.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onUnstick: PropTypes.func,
+
+    /** Whether element should be "pushed" by the viewport, attaching to the bottom of the screen when scrolling up. */
+    pushing: PropTypes.bool,
+
+    /** Context which sticky should attach onscroll events. */
+    scrollContext: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
+
+    /** Custom style for sticky element. */
+    styleElement: PropTypes.object,
+  }
+
+  static defaultProps = {
     active: true,
+    bottomOffset: 0,
+    offset: 0,
+    scrollContext: isBrowser() ? window : null,
+  }
+
+  state = {
     sticky: false,
   }
 
@@ -26,47 +96,43 @@ export default class Sticky extends Component {
 
   componentDidMount() {
     if (!isBrowser()) return
-    const { active } = this.state
+    const { active } = this.props
 
     if (active) {
       this.handleUpdate()
-      this.addListeners(this.props.scrollContext)
+      this.addListeners(this.props)
     }
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (state.active !== props.active && !props.active) {
-      return { active: props.active, sticky: false }
-    }
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const { active: current, scrollContext: currentScrollContext } = this.props
+    const { active: next, scrollContext: nextScrollContext } = nextProps
 
-    return { active: props.active }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.active === this.state.active) {
-      if (prevProps.scrollContext !== this.props.scrollContext) {
-        this.removeListeners(prevProps.scrollContext)
-        this.addListeners(this.props.scrollContext)
+    if (current === next) {
+      if (currentScrollContext !== nextScrollContext) {
+        this.removeListeners()
+        this.addListeners(nextProps)
       }
-
       return
     }
 
-    if (this.state.active) {
+    if (next) {
       this.handleUpdate()
-      this.addListeners(this.props.scrollContext)
+      this.addListeners(nextProps)
       return
     }
 
-    this.removeListeners(prevProps.scrollContext)
+    this.removeListeners()
+    this.setState({ sticky: false })
   }
 
   componentWillUnmount() {
     if (!isBrowser()) return
-    const { active } = this.state
+    const { active } = this.props
 
     if (active) {
-      this.removeListeners(this.props.scrollContext)
+      this.removeListeners()
       cancelAnimationFrame(this.frameId)
     }
   }
@@ -75,7 +141,8 @@ export default class Sticky extends Component {
   // Events
   // ----------------------------------------
 
-  addListeners = (scrollContext) => {
+  addListeners = (props) => {
+    const { scrollContext } = props
     const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
 
     if (scrollContextNode) {
@@ -84,7 +151,8 @@ export default class Sticky extends Component {
     }
   }
 
-  removeListeners = (scrollContext) => {
+  removeListeners = () => {
+    const { scrollContext } = this.props
     const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
 
     if (scrollContextNode) {
@@ -260,75 +328,4 @@ export default class Sticky extends Component {
       </ElementType>
     )
   }
-}
-
-Sticky.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.elementType,
-
-  /** A Sticky can be active. */
-  active: PropTypes.bool,
-
-  /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
-  bottomOffset: PropTypes.number,
-
-  /** Primary content. */
-  children: PropTypes.node,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /** Context which sticky element should stick to. */
-  context: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
-
-  /** Offset in pixels from the top of the screen when fixing element to viewport. */
-  offset: PropTypes.number,
-
-  /**
-   * Callback when element is bound to bottom of parent container.
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
-   */
-  onBottom: PropTypes.func,
-
-  /**
-   * Callback when element is fixed to page.
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
-   */
-  onStick: PropTypes.func,
-
-  /**
-   * Callback when element is bound to top of parent container.
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
-   */
-  onTop: PropTypes.func,
-
-  /**
-   * Callback when element is unfixed from page.
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
-   */
-  onUnstick: PropTypes.func,
-
-  /** Whether element should be "pushed" by the viewport, attaching to the bottom of the screen when scrolling up. */
-  pushing: PropTypes.bool,
-
-  /** Context which sticky should attach onscroll events. */
-  scrollContext: PropTypes.oneOfType([customPropTypes.domNode, customPropTypes.refObject]),
-
-  /** Custom style for sticky element. */
-  styleElement: PropTypes.object,
-}
-
-Sticky.defaultProps = {
-  active: true,
-  bottomOffset: 0,
-  offset: 0,
-  scrollContext: isBrowser() ? window : null,
 }

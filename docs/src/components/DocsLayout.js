@@ -2,7 +2,6 @@ import AnchorJS from 'anchor-js'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Head, withRouter } from 'react-static'
-import { Grid } from 'semantic-ui-react'
 
 import style from 'docs/src/Style'
 import { scrollToAnchor } from 'docs/src/utils'
@@ -13,6 +12,14 @@ const anchors = new AnchorJS({
 })
 
 class DocsLayout extends Component {
+  static propTypes = {
+    additionalTitle: PropTypes.string,
+    children: PropTypes.node,
+    location: PropTypes.object.isRequired,
+    sidebar: PropTypes.bool,
+    title: PropTypes.string.isRequired,
+  }
+
   componentDidMount() {
     this.resetPage()
   }
@@ -44,43 +51,20 @@ class DocsLayout extends Component {
 
   render() {
     const { additionalTitle, children, sidebar, title } = this.props
-
-    const bottomColumnWidth = sidebar
-      ? { computer: 11, largeScreen: 12, widescreen: 12 }
-      : { width: 16 }
     const mainStyle = sidebar ? style.sidebarMain : style.main
 
     return (
-      <>
+      <React.Fragment>
         <Head>
           <title>
             {additionalTitle ? `${additionalTitle} - ` : ''}
             {title}
           </title>
         </Head>
-        <div style={mainStyle}>
-          {children}
-          <Grid>
-            <Grid.Column {...bottomColumnWidth} textAlign='center'>
-              Blazing deployments by{' '}
-              <a href='https://vercel.com/?utm_source=semantic-ui-react'>
-                <img height='12' width='14' src='/vercel-logo.svg' /> Vercel
-              </a>
-              .
-            </Grid.Column>
-          </Grid>
-        </div>
-      </>
+        <div style={mainStyle}>{children}</div>
+      </React.Fragment>
     )
   }
-}
-
-DocsLayout.propTypes = {
-  additionalTitle: PropTypes.string,
-  children: PropTypes.node,
-  location: PropTypes.object.isRequired,
-  sidebar: PropTypes.bool,
-  title: PropTypes.string.isRequired,
 }
 
 export default withRouter(DocsLayout)

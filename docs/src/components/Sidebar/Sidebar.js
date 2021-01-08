@@ -31,6 +31,15 @@ SelectedItemLabel.propTypes = {
 }
 
 class Sidebar extends Component {
+  static propTypes = {
+    componentMenu: docTypes.componentMenu.isRequired,
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    style: PropTypes.object,
+    version: PropTypes.string.isRequired,
+  }
+
   state = { query: '' }
 
   constructor(props) {
@@ -223,9 +232,6 @@ class Sidebar extends Component {
                 <Menu.Item as={Link} exact to='/prototypes' activeClassName='active'>
                   Prototypes
                 </Menu.Item>
-                <Menu.Item as={Link} exact to='/migration-guide' activeClassName='active'>
-                  Migration guide to v2
-                </Menu.Item>
               </Menu.Menu>
             </Menu.Item>
             <Menu.Item fitted>
@@ -249,15 +255,6 @@ class Sidebar extends Component {
       </div>
     )
   }
-}
-
-Sidebar.propTypes = {
-  componentMenu: docTypes.componentMenu.isRequired,
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
-  style: PropTypes.object,
-  version: PropTypes.string.isRequired,
 }
 
 export default Sidebar

@@ -1,9 +1,10 @@
-import cx from 'clsx'
+import { KnobProvider } from '@stardust-ui/docs-components'
+import cx from 'classnames'
 import copyToClipboard from 'copy-to-clipboard'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { InView } from 'react-intersection-observer'
-import { Grid } from 'semantic-ui-react'
+import VisibilitySensor from 'react-visibility-sensor'
+import { Checkbox, Grid, Label } from 'semantic-ui-react'
 
 import { examplePathToHash, scrollToAnchor } from 'docs/src/utils'
 import CarbonAdNative from 'docs/src/components/CarbonAd/CarbonAdNative'
@@ -11,6 +12,7 @@ import formatCode from 'docs/src/utils/formatCode'
 import ComponentControls from '../ComponentControls'
 import ExampleEditor from '../ExampleEditor'
 import ComponentDocContext from '../ComponentDocContext'
+import ComponentExampleKnobs from './ComponentExampleKnobs'
 import ComponentExampleTitle from './ComponentExampleTitle'
 
 const childrenStyle = {
@@ -23,11 +25,51 @@ const componentControlsStyle = {
   width: 'auto',
 }
 
+/* eslint-disable react/prop-types */
+const knobComponents = {
+  KnobControl: (props) => (
+    <div style={{ display: 'flex', alignItems: 'center', flexGrow: 1, marginLeft: 5 }}>
+      {props.children}
+    </div>
+  ),
+  KnobBoolean: (props) => (
+    <Checkbox
+      checked={props.value}
+      onChange={(e, data) => props.setValue(data.checked)}
+      type='checkbox'
+      value={props.value}
+    />
+  ),
+  KnobLabel: (props) => (
+    <Label size='small' style={{ fontFamily: 'monospace' }}>
+      {props.name}
+    </Label>
+  ),
+}
+/* eslint-enable react/prop-types */
+
 /**
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the raw `code` code block.
  */
 class ComponentExample extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    description: PropTypes.node,
+    examplePath: PropTypes.string.isRequired,
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    onVisibilityChange: PropTypes.func.isRequired,
+    renderHtml: PropTypes.bool,
+    sourceCode: PropTypes.string.isRequired,
+    suiVersion: PropTypes.string,
+    title: PropTypes.node,
+  }
+
+  static defaultProps = {
+    renderHtml: true,
+  }
+
   constructor(props) {
     super(props)
 
@@ -126,7 +168,11 @@ class ComponentExample extends Component {
     } = this.state
 
     return (
-      <InView onChange={this.handleVisibility}>
+      <VisibilitySensor
+        delayedCall={!wasEverVisible}
+        partialVisibility
+        onChange={this.handleVisibility}
+      >
         <div id={anchorName} style={{ marginTop: '1rem' }}>
           <Grid className={cx('docs-example', showCode && 'active')} padded='vertically'>
             <Grid.Row columns='equal'>
@@ -150,51 +196,37 @@ class ComponentExample extends Component {
                 />
               </Grid.Column>
             </Grid.Row>
+            <KnobProvider components={knobComponents}>
+              <ComponentExampleKnobs />
 
-            {children && (
-              <Grid.Row columns={1} style={childrenStyle}>
-                <Grid.Column>{children}</Grid.Column>
+              {children && (
+                <Grid.Row columns={1} style={childrenStyle}>
+                  <Grid.Column>{children}</Grid.Column>
+                </Grid.Row>
+              )}
+
+              <Grid.Row style={{ paddingBottom: wasEverVisible && 0 }}>
+                <ExampleEditor
+                  examplePath={examplePath}
+                  hasCodeChanged={originalSourceCode !== sourceCode}
+                  onCodeChange={this.handleCodeChange}
+                  onCodeFormat={this.handleCodeFormat}
+                  onCodeReset={this.handleCodeReset}
+                  renderHtml={renderHtml}
+                  showCode={showCode}
+                  sourceCode={sourceCode}
+                  title={title}
+                  visible={wasEverVisible}
+                />
               </Grid.Row>
-            )}
-
-            <Grid.Row style={{ paddingBottom: wasEverVisible && 0 }}>
-              <ExampleEditor
-                examplePath={examplePath}
-                hasCodeChanged={originalSourceCode !== sourceCode}
-                onCodeChange={this.handleCodeChange}
-                onCodeFormat={this.handleCodeFormat}
-                onCodeReset={this.handleCodeReset}
-                renderHtml={renderHtml}
-                showCode={showCode}
-                sourceCode={sourceCode}
-                title={title}
-                visible={wasEverVisible}
-              />
-            </Grid.Row>
+            </KnobProvider>
 
             {isActiveHash && <CarbonAdNative inverted={showCode} />}
           </Grid>
         </div>
-      </InView>
+      </VisibilitySensor>
     )
   }
-}
-
-ComponentExample.propTypes = {
-  children: PropTypes.node,
-  description: PropTypes.node,
-  examplePath: PropTypes.string.isRequired,
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  onVisibilityChange: PropTypes.func.isRequired,
-  renderHtml: PropTypes.bool,
-  sourceCode: PropTypes.string.isRequired,
-  suiVersion: PropTypes.string,
-  title: PropTypes.node,
-}
-
-ComponentExample.defaultProps = {
-  renderHtml: true,
 }
 
 /* TODO: Replace this temporary component with hooks */

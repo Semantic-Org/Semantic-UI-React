@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
 import { withRouter, withRouteData } from 'react-static'
-import { Grid, Header, Icon, Label, Popup } from 'semantic-ui-react'
+import { Grid, Header, Icon } from 'semantic-ui-react'
 
 import DocsLayout from 'docs/src/components/DocsLayout'
 import { docTypes, examplePathToHash } from 'docs/src/utils'
@@ -20,6 +20,16 @@ const exampleEndStyle = {
 }
 
 class ComponentDoc extends Component {
+  static propTypes = {
+    componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
+    displayName: PropTypes.string.isRequired,
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    seeTags: docTypes.seeTags.isRequired,
+    sidebarSections: docTypes.sidebarSections.isRequired,
+    title: PropTypes.string.isRequired,
+  }
+
   state = {}
   examplesRef = createRef()
 
@@ -47,7 +57,7 @@ class ComponentDoc extends Component {
   }
 
   render() {
-    const { componentsInfo, displayName, deprecated, seeTags, sidebarSections } = this.props
+    const { componentsInfo, displayName, seeTags, sidebarSections } = this.props
     const activePath = _.findKey(this.state.exampleStates)
     const componentInfo = componentsInfo[displayName]
     const contextValue = { ...this.props, onVisibilityChange: this.handleExampleVisibility }
@@ -60,27 +70,16 @@ class ComponentDoc extends Component {
             <Grid.Column>
               <Header
                 as='h1'
-                content={
-                  <>
-                    <span>{displayName}</span>
-                    {deprecated && (
-                      <Popup trigger={<Label color='black'>Deprecated</Label>}>
-                        This component is deprecated and will be removed in the next major release.
-                      </Popup>
-                    )}
-                  </>
-                }
+                content={displayName}
                 subheader={_.join(componentInfo.docblock.description, ' ')}
               />
               <ComponentDocSee seeTags={seeTags} />
-              {componentInfo.repoPath && (
-                <ComponentDocLinks
-                  displayName={displayName}
-                  parentDisplayName={componentInfo.parentDisplayName}
-                  repoPath={componentInfo.repoPath}
-                  type={componentInfo.type}
-                />
-              )}
+              <ComponentDocLinks
+                displayName={displayName}
+                parentDisplayName={componentInfo.parentDisplayName}
+                repoPath={componentInfo.repoPath}
+                type={componentInfo.type}
+              />
               <ComponentProps componentsInfo={componentsInfo} displayName={displayName} />
             </Grid.Column>
           </Grid.Row>
@@ -113,17 +112,6 @@ class ComponentDoc extends Component {
       </DocsLayout>
     )
   }
-}
-
-ComponentDoc.propTypes = {
-  componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
-  displayName: PropTypes.string.isRequired,
-  deprecated: PropTypes.bool.isRequired,
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  seeTags: docTypes.seeTags.isRequired,
-  sidebarSections: docTypes.sidebarSections.isRequired,
-  title: PropTypes.string.isRequired,
 }
 
 export default withRouteData(withRouter(ComponentDoc))

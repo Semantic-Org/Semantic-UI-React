@@ -62,10 +62,9 @@ export default () => {
 
   function endStream(cb) {
     _.forEach(exampleFilesByDisplayName, (contents, displayName) => {
-      const sortedContents = _.sortBy(contents, [
-        'order',
-        'sectionName',
-      ]).map(({ sectionName, examples }) => ({ sectionName, examples }))
+      const sortedContents = _.sortBy(contents, ['order', 'sectionName']).map(
+        ({ sectionName, examples }) => ({ sectionName, examples }),
+      )
 
       const file = new Vinyl({
         path: `./${displayName}.examples.json`,

@@ -1,11 +1,12 @@
+import { KnobProvider } from '@stardust-ui/docs-components'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { createElement } from 'react'
 import { withRouteData } from 'react-static'
 
 const ExternalExampleLayout = (props) => {
   const exampleComponent = require(`docs/src/examples/${props.path}`).default
 
-  return React.createElement(exampleComponent)
+  return <KnobProvider>{createElement(exampleComponent)}</KnobProvider>
 }
 
 ExternalExampleLayout.propTypes = {

@@ -1,6 +1,5 @@
-import _ from 'lodash'
+import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
-
 import leven from './leven'
 
 const typeOf = (...args) => Object.prototype.toString.call(...args)
@@ -11,8 +10,6 @@ const typeOf = (...args) => Object.prototype.toString.call(...args)
 export const domNode = (props, propName) => {
   // skip if prop is undefined
   if (props[propName] === undefined) return
-  // short circle for SSR env
-  if (typeof Element === 'undefined') return
   // skip if prop is valid
   if (props[propName] instanceof Element) return
 
@@ -34,31 +31,27 @@ export const suggest = (suggestions) => {
   const findBestSuggestions = _.memoize((str) => {
     const propValueWords = str.split(' ')
 
-    return _.take(
-      _.sortBy(
-        _.map(suggestions, (suggestion) => {
-          const suggestionWords = suggestion.split(' ')
+    return _.flow(
+      _.map((suggestion) => {
+        const suggestionWords = suggestion.split(' ')
 
-          const propValueScore = _.sum(
-            _.map(
-              _.map(propValueWords, (x) => _.map(suggestionWords, (y) => leven(x, y))),
-              _.min,
-            ),
-          )
+        const propValueScore = _.flow(
+          _.map((x) => _.map((y) => leven(x, y), suggestionWords)),
+          _.map(_.min),
+          _.sum,
+        )(propValueWords)
 
-          const suggestionScore = _.sum(
-            _.map(
-              _.map(suggestionWords, (x) => _.map(propValueWords, (y) => leven(x, y))),
-              _.min,
-            ),
-          )
+        const suggestionScore = _.flow(
+          _.map((x) => _.map((y) => leven(x, y), propValueWords)),
+          _.map(_.min),
+          _.sum,
+        )(suggestionWords)
 
-          return { suggestion, score: propValueScore + suggestionScore }
-        }),
-        ['score', 'suggestion'],
-      ),
-      3,
-    )
+        return { suggestion, score: propValueScore + suggestionScore }
+      }),
+      _.sortBy(['score', 'suggestion']),
+      _.take(3),
+    )(suggestions)
   })
   /* eslint-enable max-nested-callbacks */
 
@@ -67,7 +60,12 @@ export const suggest = (suggestions) => {
   // way of looking up a value in the map, i.e. we can sort the words in the
   // incoming propValue and look that up without having to check all permutations.
   const suggestionsLookup = suggestions.reduce((acc, key) => {
-    acc[key.split(' ').sort().join(' ')] = true
+    acc[
+      key
+        .split(' ')
+        .sort()
+        .join(' ')
+    ] = true
     return acc
   }, {})
 
@@ -80,7 +78,10 @@ export const suggest = (suggestions) => {
     // check if the words were correct but ordered differently.
     // Since we're matching for classNames we need to allow any word order
     // to pass validation, e.g. `left chevron` vs `chevron left`.
-    const propValueSorted = propValue.split(' ').sort().join(' ')
+    const propValueSorted = propValue
+      .split(' ')
+      .sort()
+      .join(' ')
     if (suggestionsLookup[propValueSorted]) return
 
     // find best suggestions
@@ -115,9 +116,7 @@ export const disallow = (disallowedProps) => (props, propName, componentName) =>
   }
 
   // skip if prop is undefined
-  if (_.isNil(props[propName]) || props[propName] === false) {
-    return
-  }
+  if (_.isNil(props[propName]) || props[propName] === false) return
 
   // find disallowed props with values
   const disallowed = disallowedProps.reduce((acc, disallowedProp) => {
@@ -153,24 +152,53 @@ export const every = (validators) => (props, propName, componentName, ...rest) =
     )
   }
 
-  const errors = []
-
-  validators.forEach((validator) => {
-    if (typeof validator !== 'function') {
-      throw new Error(
-        `every() argument "validators" should contain functions, found: ${typeOf(validator)}.`,
-      )
-    }
-
-    const error = validator(props, propName, componentName, ...rest)
-
-    if (error) {
-      errors.push(error)
-    }
-  })
+  const errors = _.flow(
+    _.map((validator) => {
+      if (typeof validator !== 'function') {
+        throw new Error(
+          `every() argument "validators" should contain functions, found: ${typeOf(validator)}.`,
+        )
+      }
+      return validator(props, propName, componentName, ...rest)
+    }),
+    _.compact,
+  )(validators)
 
   // we can only return one error at a time
   return errors[0]
+}
+
+/**
+ * Ensure a prop adherers to at least one of the given prop type validators.
+ * @param {function[]} validators An array of propType functions.
+ */
+export const some = (validators) => (props, propName, componentName, ...rest) => {
+  if (!Array.isArray(validators)) {
+    throw new Error(
+      [
+        'Invalid argument supplied to some, expected an instance of array.',
+        `See \`${propName}\` prop in \`${componentName}\`.`,
+      ].join(' '),
+    )
+  }
+
+  const errors = _.compact(
+    _.map(validators, (validator) => {
+      if (!_.isFunction(validator)) {
+        throw new Error(
+          `some() argument "validators" should contain functions, found: ${typeOf(validator)}.`,
+        )
+      }
+      return validator(props, propName, componentName, ...rest)
+    }),
+  )
+
+  // fail only if all validators failed
+  if (errors.length === validators.length) {
+    const error = new Error('One of these validators must pass:')
+    error.message += `\n${_.map(errors, (err, i) => `[${i + 1}]: ${err.message}`).join('\n')}`
+    return error
+  }
 }
 
 /**

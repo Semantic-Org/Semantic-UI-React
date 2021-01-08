@@ -61,7 +61,7 @@ const config = {
     hash: false, // the hash of the compilation
     version: false, // webpack version info
     timings: true, // timing info
-    assets: false, // assets info
+    assets: true, // assets info
     chunks: false, // chunk info
     colors: true, // with console colors
     chunkModules: false, // built modules info to chunk info
@@ -74,7 +74,6 @@ const config = {
     modulesSort: '', // (string) sort the modules by that field
     chunksSort: '', // (string) sort the chunks by that field
     assetsSort: '', // (string) sort the assets by that field
-    warningsFilter: [/critical dependency:/i],
   },
 }
 

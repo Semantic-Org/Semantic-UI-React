@@ -56,31 +56,18 @@ export interface StrictHtmlSpanProps {
 // Types
 // ======================================================
 
-/**
- * @deprecated Will be removed in v3
- */
 export type SemanticShorthandItemFunc<TProps> = (
-  component: React.ElementType<TProps>,
+  component: React.ReactType<TProps>,
   props: TProps,
   children?: React.ReactNode | React.ReactNodeArray,
 ) => React.ReactElement<any> | null
 
-export type ShorthandRenderFunction<C extends React.ElementType, P> = (
-  Component: C,
-  props: P,
-) => React.ReactNode
-
 export type SemanticShorthandCollection<TProps> = SemanticShorthandItem<TProps>[]
 export type SemanticShorthandContent = React.ReactNode
-export type SemanticShorthandItem<TProps extends Record<string, any>> =
+export type SemanticShorthandItem<TProps> =
   | React.ReactNode
+  | TProps
   | SemanticShorthandItemFunc<TProps>
-  | (Omit<TProps, 'children'> & {
-      // Not all TProps can have `children`, without this condition it will match to "any"
-      children?: TProps extends { children: any }
-        ? TProps['children'] | ShorthandRenderFunction<React.ElementType<TProps>, TProps>
-        : ShorthandRenderFunction<React.ElementType<TProps>, TProps>
-    })
 
 // ======================================================
 // Styling
@@ -139,7 +126,14 @@ type SemanticDIRECTIONALTRANSITIONS =
   | 'swing left'
   | 'swing right'
   | 'zoom'
-type SemanticSTATICTRANSITIONS = 'jiggle' | 'flash' | 'shake' | 'pulse' | 'tada' | 'bounce' | 'glow'
+type SemanticSTATICTRANSITIONS =
+  | 'jiggle'
+  | 'flash'
+  | 'shake'
+  | 'pulse'
+  | 'tada'
+  | 'bounce'
+  | 'glow'
 
 export type SemanticTRANSITIONS = SemanticDIRECTIONALTRANSITIONS | SemanticSTATICTRANSITIONS
 

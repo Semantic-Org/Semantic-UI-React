@@ -4,7 +4,7 @@ import { Breadcrumb, Divider } from 'semantic-ui-react'
 const sizes = ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
 
 const BreadcrumbExampleSize = () => (
-  <>
+  <React.Fragment>
     {sizes.map((size) => (
       <React.Fragment key={size}>
         <Breadcrumb size={size}>
@@ -17,7 +17,7 @@ const BreadcrumbExampleSize = () => (
         <Divider hidden />
       </React.Fragment>
     ))}
-  </>
+  </React.Fragment>
 )
 
 export default BreadcrumbExampleSize

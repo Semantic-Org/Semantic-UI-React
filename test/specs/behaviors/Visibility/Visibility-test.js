@@ -34,63 +34,35 @@ const expectations = [
     name: 'topPassed',
     callbackName: 'onTopPassed',
     reversible: true,
-    truthy: [
-      [-1, 100],
-      [-100, -1],
-    ],
-    falsy: [
-      [0, 100],
-      [window.innerHeight + 100, window.innerHeight + 300],
-    ],
+    truthy: [[-1, 100], [-100, -1]],
+    falsy: [[0, 100], [window.innerHeight + 100, window.innerHeight + 300]],
   },
   {
     name: 'bottomPassed',
     callbackName: 'onBottomPassed',
     reversible: true,
-    truthy: [
-      [-100, -1],
-      [-100, -10],
-    ],
-    falsy: [
-      [-10, 0],
-      [-100, window.innerHeight],
-    ],
+    truthy: [[-100, -1], [-100, -10]],
+    falsy: [[-10, 0], [-100, window.innerHeight]],
   },
   {
     name: 'topVisible',
     callbackName: 'onTopVisible',
     reversible: true,
-    truthy: [
-      [0, 100],
-      [window.innerHeight, window.innerHeight],
-    ],
-    falsy: [
-      [-1, 100],
-      [window.innerHeight + 1, window.innerHeight + 2],
-    ],
+    truthy: [[0, 100], [window.innerHeight, window.innerHeight]],
+    falsy: [[-1, 100], [window.innerHeight + 1, window.innerHeight + 2]],
   },
   {
     name: 'bottomVisible',
     callbackName: 'onBottomVisible',
     reversible: true,
-    truthy: [
-      [-100, 0],
-      [-100, window.innerHeight],
-    ],
-    falsy: [
-      [-100, -1],
-      [0, window.innerHeight + 1],
-    ],
+    truthy: [[-100, 0], [-100, window.innerHeight]],
+    falsy: [[-100, -1], [0, window.innerHeight + 1]],
   },
   {
     name: 'passing',
     callbackName: 'onPassing',
     reversible: true,
-    truthy: [
-      [-1, window.innerHeight + 1],
-      [-1, window.innerHeight - 1],
-      [-1, 0],
-    ],
+    truthy: [[-1, window.innerHeight + 1], [-1, window.innerHeight - 1], [-1, 0]],
     falsy: [
       [0, window.innerHeight],
       [1, window.innerHeight + 1],
@@ -107,18 +79,12 @@ const expectations = [
       [-1, window.innerHeight],
       [0, window.innerHeight + 1],
     ],
-    falsy: [
-      [-2, -1],
-      [window.innerHeight + 1, window.innerHeight + 2],
-    ],
+    falsy: [[-2, -1], [window.innerHeight + 1, window.innerHeight + 2]],
   },
   {
     name: 'offScreen',
     callbackName: 'onOffScreen',
-    truthy: [
-      [-2, -1],
-      [window.innerHeight + 1, window.innerHeight + 2],
-    ],
+    truthy: [[-2, -1], [window.innerHeight + 1, window.innerHeight + 2]],
     falsy: [
       [0, window.innerHeight],
       [-1, window.innerHeight + 1],
@@ -129,11 +95,7 @@ const expectations = [
   {
     name: 'fits',
     truthy: [[0, window.innerHeight]],
-    falsy: [
-      [-1, window.innerHeight + 1],
-      [0, window.innerHeight + 1],
-      [-1, window.innerHeight],
-    ],
+    falsy: [[-1, window.innerHeight + 1], [0, window.innerHeight + 1], [-1, window.innerHeight]],
   },
 ]
 
@@ -141,7 +103,10 @@ describe('Visibility', () => {
   common.isConformant(Visibility)
 
   beforeEach(() => {
-    sandbox.stub(window, 'requestAnimationFrame').callsArg(0).returns(1)
+    sandbox
+      .stub(window, 'requestAnimationFrame')
+      .callsArg(0)
+      .returns(1)
     wrapper = undefined
   })
 

@@ -41,7 +41,7 @@ const friendOptions = [
 ]
 
 const DropdownExampleCloseOnEscape = () => (
-  <>
+  <React.Fragment>
     <Dropdown
       placeholder='I close on escape'
       closeOnEscape
@@ -54,7 +54,7 @@ const DropdownExampleCloseOnEscape = () => (
       selection
       options={friendOptions}
     />
-  </>
+  </React.Fragment>
 )
 
 export default DropdownExampleCloseOnEscape

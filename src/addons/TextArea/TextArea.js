@@ -1,4 +1,4 @@
-import { Ref } from '@fluentui/react-component-ref'
+import { Ref } from '@stardust-ui/react-component-ref'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component, createRef } from 'react'
@@ -10,6 +10,36 @@ import { getElementType, getUnhandledProps } from '../../lib'
  * @see Form
  */
 class TextArea extends Component {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.elementType,
+
+    /**
+     * Called on change.
+     * @param {SyntheticEvent} event - The React SyntheticEvent object
+     * @param {object} data - All props and the event value.
+     */
+    onChange: PropTypes.func,
+
+    /**
+     * Called on input.
+     * @param {SyntheticEvent} event - The React SyntheticEvent object
+     * @param {object} data - All props and the event value.
+     */
+    onInput: PropTypes.func,
+
+    /** Indicates row count for a TextArea. */
+    rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+    /** The value of the textarea. */
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  }
+
+  static defaultProps = {
+    as: 'textarea',
+    rows: 3,
+  }
+
   ref = createRef()
 
   focus = () => this.ref.current.focus()
@@ -43,36 +73,6 @@ class TextArea extends Component {
       </Ref>
     )
   }
-}
-
-TextArea.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.elementType,
-
-  /**
-   * Called on change.
-   * @param {SyntheticEvent} event - The React SyntheticEvent object
-   * @param {object} data - All props and the event value.
-   */
-  onChange: PropTypes.func,
-
-  /**
-   * Called on input.
-   * @param {SyntheticEvent} event - The React SyntheticEvent object
-   * @param {object} data - All props and the event value.
-   */
-  onInput: PropTypes.func,
-
-  /** Indicates row count for a TextArea. */
-  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-  /** The value of the textarea. */
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-}
-
-TextArea.defaultProps = {
-  as: 'textarea',
-  rows: 3,
 }
 
 export default TextArea

@@ -40,10 +40,10 @@ const PopupExamplePopperDependencies = () => {
           </Placeholder.Paragraph>
         </Placeholder>
       ) : (
-        <>
+        <React.Fragment>
           <Header as='h2' content={data.name} subheader={data.title} />
           <p>{data.description}</p>
-        </>
+        </React.Fragment>
       )}
     </Popup>
   )

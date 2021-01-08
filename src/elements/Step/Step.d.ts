@@ -3,9 +3,9 @@ import * as React from 'react'
 import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../Icon'
 import StepContent from './StepContent'
-import StepDescription, { StepDescriptionProps } from './StepDescription'
+import { default as StepDescription, StepDescriptionProps } from './StepDescription'
 import StepGroup from './StepGroup'
-import StepTitle, { StepTitleProps } from './StepTitle'
+import { default as StepTitle, StepTitleProps } from './StepTitle'
 
 export interface StepProps extends StrictStepProps {
   [key: string]: any

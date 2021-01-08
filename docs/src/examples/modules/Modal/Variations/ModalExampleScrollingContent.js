@@ -1,64 +1,35 @@
+import _ from 'lodash'
 import React from 'react'
-import { Button, Icon, Image, Modal } from 'semantic-ui-react'
+import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
 
-const ModalExampleScrollingContent = () => {
-  const [open, setOpen] = React.useState(false)
+const ModalExampleScrollingContent = () => (
+  <Modal trigger={<Button>Scrolling Content Modal</Button>}>
+    <Modal.Header>Profile Picture</Modal.Header>
+    <Modal.Content image scrolling>
+      <Image size='medium' src='/images/wireframe/image.png' wrapped />
 
-  return (
-    <Modal
-      open={open}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      trigger={<Button>Scrolling Content Modal</Button>}
-    >
-      <Modal.Header>Profile Picture</Modal.Header>
-      <Modal.Content image scrolling>
-        <Image size='medium' src='/images/wireframe/image.png' wrapped />
+      <Modal.Description>
+        <Header>Modal Header</Header>
+        <p>
+          This is an example of expanded content that will cause the modal's
+          dimmer to scroll
+        </p>
 
-        <Modal.Description>
-          <p>
-            This is an example of expanded content that will cause the modal's
-            dimmer to scroll.
-          </p>
-
+        {_.times(8, (i) => (
           <Image
+            key={i}
             src='/images/wireframe/paragraph.png'
-            style={{ marginBottom: 10 }}
+            style={{ paddingBottom: 5 }}
           />
-          <Image
-            src='/images/wireframe/paragraph.png'
-            style={{ marginBottom: 10 }}
-          />
-          <Image
-            src='/images/wireframe/paragraph.png'
-            style={{ marginBottom: 10 }}
-          />
-          <Image
-            src='/images/wireframe/paragraph.png'
-            style={{ marginBottom: 10 }}
-          />
-          <Image
-            src='/images/wireframe/paragraph.png'
-            style={{ marginBottom: 10 }}
-          />
-          <Image
-            src='/images/wireframe/paragraph.png'
-            style={{ marginBottom: 10 }}
-          />
-          <Image
-            src='/images/wireframe/paragraph.png'
-            style={{ marginBottom: 10 }}
-          />
-          <Image src='/images/wireframe/paragraph.png' />
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button onClick={() => setOpen(false)} primary>
-          Proceed <Icon name='chevron right' />
-        </Button>
-      </Modal.Actions>
-    </Modal>
-  )
-}
+        ))}
+      </Modal.Description>
+    </Modal.Content>
+    <Modal.Actions>
+      <Button primary>
+        Proceed <Icon name='chevron right' />
+      </Button>
+    </Modal.Actions>
+  </Modal>
+)
 
 export default ModalExampleScrollingContent

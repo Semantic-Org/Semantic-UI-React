@@ -1,6 +1,8 @@
 import makeDebugger from './makeDebugger'
 
+export AutoControlledComponent from './AutoControlledComponent'
 export ModernAutoControlledComponent from './ModernAutoControlledComponent'
+export { getChildMapping, mergeChildMappings } from './childMapping'
 export * as childrenUtils from './childrenUtils'
 
 export {
@@ -41,9 +43,3 @@ export objectDiff from './objectDiff'
 
 // Heads up! We import/export for this module to safely remove it with "babel-plugin-filter-imports"
 export { makeDebugger }
-
-//
-// Hooks
-//
-
-export useClassNamesOnNode from './hooks/useClassNamesOnNode'

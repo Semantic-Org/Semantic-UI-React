@@ -1,7 +1,3 @@
-/* eslint-disable max-classes-per-file */
-/* eslint-disable react/no-multi-comp */
-
-import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import {
@@ -14,22 +10,24 @@ import {
   Image,
   List,
   Menu,
+  Responsive,
   Segment,
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
 
-const { MediaContextProvider, Media } = createMedia({
-  breakpoints: {
-    mobile: 0,
-    tablet: 768,
-    computer: 1024,
-  },
-})
+// Heads up!
+// We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
+// For more advanced usage please check Responsive docs under the "Usage" section.
+const getWidth = () => {
+  const isSSR = typeof window === 'undefined'
 
-/* Heads up!
- * HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled
- * components for such things.
+  return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
+}
+
+/* eslint-disable react/no-multi-comp */
+/* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
+ * such things.
  */
 const HomepageHeading = ({ mobile }) => (
   <Container text>
@@ -80,7 +78,7 @@ class DesktopContainer extends Component {
     const { fixed } = this.state
 
     return (
-      <Media greaterThan='mobile'>
+      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -121,7 +119,7 @@ class DesktopContainer extends Component {
         </Visibility>
 
         {children}
-      </Media>
+      </Responsive>
     )
   }
 }
@@ -142,55 +140,57 @@ class MobileContainer extends Component {
     const { sidebarOpened } = this.state
 
     return (
-      <Media as={Sidebar.Pushable} at='mobile'>
-        <Sidebar.Pushable>
-          <Sidebar
-            as={Menu}
-            animation='overlay'
+      <Responsive
+        as={Sidebar.Pushable}
+        getWidth={getWidth}
+        maxWidth={Responsive.onlyMobile.maxWidth}
+      >
+        <Sidebar
+          as={Menu}
+          animation='push'
+          inverted
+          onHide={this.handleSidebarHide}
+          vertical
+          visible={sidebarOpened}
+        >
+          <Menu.Item as='a' active>
+            Home
+          </Menu.Item>
+          <Menu.Item as='a'>Work</Menu.Item>
+          <Menu.Item as='a'>Company</Menu.Item>
+          <Menu.Item as='a'>Careers</Menu.Item>
+          <Menu.Item as='a'>Log in</Menu.Item>
+          <Menu.Item as='a'>Sign Up</Menu.Item>
+        </Sidebar>
+
+        <Sidebar.Pusher dimmed={sidebarOpened}>
+          <Segment
             inverted
-            onHide={this.handleSidebarHide}
+            textAlign='center'
+            style={{ minHeight: 350, padding: '1em 0em' }}
             vertical
-            visible={sidebarOpened}
           >
-            <Menu.Item as='a' active>
-              Home
-            </Menu.Item>
-            <Menu.Item as='a'>Work</Menu.Item>
-            <Menu.Item as='a'>Company</Menu.Item>
-            <Menu.Item as='a'>Careers</Menu.Item>
-            <Menu.Item as='a'>Log in</Menu.Item>
-            <Menu.Item as='a'>Sign Up</Menu.Item>
-          </Sidebar>
+            <Container>
+              <Menu inverted pointing secondary size='large'>
+                <Menu.Item onClick={this.handleToggle}>
+                  <Icon name='sidebar' />
+                </Menu.Item>
+                <Menu.Item position='right'>
+                  <Button as='a' inverted>
+                    Log in
+                  </Button>
+                  <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
+                    Sign Up
+                  </Button>
+                </Menu.Item>
+              </Menu>
+            </Container>
+            <HomepageHeading mobile />
+          </Segment>
 
-          <Sidebar.Pusher dimmed={sidebarOpened}>
-            <Segment
-              inverted
-              textAlign='center'
-              style={{ minHeight: 350, padding: '1em 0em' }}
-              vertical
-            >
-              <Container>
-                <Menu inverted pointing secondary size='large'>
-                  <Menu.Item onClick={this.handleToggle}>
-                    <Icon name='sidebar' />
-                  </Menu.Item>
-                  <Menu.Item position='right'>
-                    <Button as='a' inverted>
-                      Log in
-                    </Button>
-                    <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
-                      Sign Up
-                    </Button>
-                  </Menu.Item>
-                </Menu>
-              </Container>
-              <HomepageHeading mobile />
-            </Segment>
-
-            {children}
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </Media>
+          {children}
+        </Sidebar.Pusher>
+      </Responsive>
     )
   }
 }
@@ -200,14 +200,10 @@ MobileContainer.propTypes = {
 }
 
 const ResponsiveContainer = ({ children }) => (
-  /* Heads up!
-   * For large applications it may not be best option to put all page into these containers at
-   * they will be rendered twice for SSR.
-   */
-  <MediaContextProvider>
+  <div>
     <DesktopContainer>{children}</DesktopContainer>
     <MobileContainer>{children}</MobileContainer>
-  </MediaContextProvider>
+  </div>
 )
 
 ResponsiveContainer.propTypes = {
