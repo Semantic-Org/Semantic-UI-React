@@ -1,10 +1,16 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { cloneElement, Fragment } from 'react'
 
-import { getElementType, getUnhandledProps, makeDebugger, SUI } from '../../lib'
-import { getChildMapping, mergeChildMappings } from './utils/childMapping'
-import wrapChild from './utils/wrapChild'
+import {
+  getChildMapping,
+  getElementType,
+  getUnhandledProps,
+  makeDebugger,
+  mergeChildMappings,
+  SUI,
+} from '../../lib'
+import Transition from './Transition'
 
 const debug = makeDebugger('transition_group')
 
@@ -12,59 +18,63 @@ const debug = makeDebugger('transition_group')
  * A Transition.Group animates children as they mount and unmount.
  */
 export default class TransitionGroup extends React.Component {
-  state = {
-    // Keeping a callback under the state is a hack to make it accessible under getDerivedStateFromProps()
-    handleOnHide: (nothing, childProps) => {
-      debug('handleOnHide', childProps)
-      const { reactKey } = childProps
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.elementType,
 
-      this.setState((state) => {
-        const children = { ...state.children }
-        delete children[reactKey]
+    /** Named animation event to used. Must be defined in CSS. */
+    animation: PropTypes.oneOfType([PropTypes.oneOf(SUI.TRANSITIONS), PropTypes.string]),
 
-        return { children }
-      })
-    },
+    /** Primary content. */
+    children: PropTypes.node,
+
+    /** Whether it is directional animation event or not. Use it only for custom transitions. */
+    directional: PropTypes.bool,
+
+    /** Duration of the CSS transition animation in milliseconds. */
+    duration: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+        hide: PropTypes.number.isRequired,
+        show: PropTypes.number.isRequired,
+      }),
+      PropTypes.string,
+    ]),
   }
 
-  static getDerivedStateFromProps(props, state) {
-    debug('getDerivedStateFromProps()')
+  static defaultProps = {
+    as: Fragment,
+    animation: 'fade',
+    duration: 500,
+  }
 
-    const { animation, duration, directional } = props
-    const { children: prevMapping } = state
+  constructor(...args) {
+    super(...args)
 
-    // A short circuit for an initial render as there will be no `prevMapping`
-    if (typeof prevMapping === 'undefined') {
-      return {
-        children: _.mapValues(getChildMapping(props.children), (child) =>
-          wrapChild(child, state.handleOnHide, {
-            animation,
-            duration,
-            directional,
-          }),
-        ),
-      }
+    const { children } = this.props
+    this.state = {
+      children: _.mapValues(getChildMapping(children), (child) => this.wrapChild(child)),
     }
+  }
 
-    const nextMapping = getChildMapping(props.children)
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    debug('componentWillReceiveProps()')
+
+    const { children: prevMapping } = this.state
+    const nextMapping = getChildMapping(nextProps.children)
     const children = mergeChildMappings(prevMapping, nextMapping)
 
     _.forEach(children, (child, key) => {
       const hasPrev = _.has(prevMapping, key)
       const hasNext = _.has(nextMapping, key)
-
       const { [key]: prevChild } = prevMapping
       const isLeaving = !_.get(prevChild, 'props.visible')
 
       // Heads up!
       // An item is new (entering), it will be picked from `nextChildren`, so it should be wrapped
       if (hasNext && (!hasPrev || isLeaving)) {
-        children[key] = wrapChild(child, state.handleOnHide, {
-          animation,
-          duration,
-          directional,
-          transitionOnMount: true,
-        })
+        children[key] = this.wrapChild(child, { transitionOnMount: true })
         return
       }
 
@@ -72,7 +82,7 @@ export default class TransitionGroup extends React.Component {
       // An item is old (exiting), it will be picked from `prevChildren`, so it has been already
       // wrapped, so should be only updated
       if (!hasNext && hasPrev && !isLeaving) {
-        children[key] = React.cloneElement(prevChild, { visible: false })
+        children[key] = cloneElement(prevChild, { visible: false })
         return
       }
 
@@ -83,16 +93,43 @@ export default class TransitionGroup extends React.Component {
         props: { visible, transitionOnMount },
       } = prevChild
 
-      children[key] = wrapChild(child, state.handleOnHide, {
-        animation,
-        duration,
-        directional,
-        transitionOnMount,
-        visible,
-      })
+      children[key] = this.wrapChild(child, { transitionOnMount, visible })
     })
 
-    return { children }
+    this.setState({ children })
+  }
+
+  handleOnHide = (nothing, childProps) => {
+    debug('handleOnHide', childProps)
+    const { reactKey } = childProps
+
+    this.setState((state) => {
+      const children = { ...state.children }
+      delete children[reactKey]
+
+      return { children }
+    })
+  }
+
+  wrapChild = (child, options = {}) => {
+    const { animation, directional, duration } = this.props
+    const { key } = child
+    const { visible = true, transitionOnMount = false } = options
+
+    return (
+      <Transition
+        animation={animation}
+        directional={directional}
+        duration={duration}
+        key={key}
+        onHide={this.handleOnHide}
+        reactKey={key}
+        transitionOnMount={transitionOnMount}
+        visible={visible}
+      >
+        {child}
+      </Transition>
+    )
   }
 
   render() {
@@ -106,34 +143,4 @@ export default class TransitionGroup extends React.Component {
 
     return <ElementType {...rest}>{_.values(children)}</ElementType>
   }
-}
-
-TransitionGroup.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.elementType,
-
-  /** Named animation event to used. Must be defined in CSS. */
-  animation: PropTypes.oneOfType([PropTypes.oneOf(SUI.TRANSITIONS), PropTypes.string]),
-
-  /** Primary content. */
-  children: PropTypes.node,
-
-  /** Whether it is directional animation event or not. Use it only for custom transitions. */
-  directional: PropTypes.bool,
-
-  /** Duration of the CSS transition animation in milliseconds. */
-  duration: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({
-      hide: PropTypes.number.isRequired,
-      show: PropTypes.number.isRequired,
-    }),
-    PropTypes.string,
-  ]),
-}
-
-TransitionGroup.defaultProps = {
-  as: React.Fragment,
-  animation: 'fade',
-  duration: 500,
 }

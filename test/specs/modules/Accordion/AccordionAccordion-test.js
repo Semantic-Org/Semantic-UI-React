@@ -42,10 +42,16 @@ describe('AccordionAccordion', () => {
     it('is toggled to -1 when clicking Title a second time', () => {
       const wrapper = mount(<AccordionAccordion panels={panels} />)
 
-      wrapper.find(AccordionTitle).at(0).simulate('click')
+      wrapper
+        .find(AccordionTitle)
+        .at(0)
+        .simulate('click')
       wrapper.should.have.state('activeIndex', 0)
 
-      wrapper.find(AccordionTitle).at(0).simulate('click')
+      wrapper
+        .find(AccordionTitle)
+        .at(0)
+        .simulate('click')
       wrapper.should.have.state('activeIndex', -1)
     })
 
@@ -99,10 +105,16 @@ describe('AccordionAccordion', () => {
     it('can be inclusive and can open multiple panels by clicking', () => {
       const wrapper = mount(<AccordionAccordion exclusive={false} panels={panels} />)
 
-      wrapper.find(AccordionTitle).at(0).simulate('click')
+      wrapper
+        .find(AccordionTitle)
+        .at(0)
+        .simulate('click')
       wrapper.should.have.state('activeIndex').that.includes(0)
 
-      wrapper.find(AccordionTitle).at(1).simulate('click')
+      wrapper
+        .find(AccordionTitle)
+        .at(1)
+        .simulate('click')
       wrapper.should.have.state('activeIndex').that.includes(0, 1)
     })
 
@@ -111,10 +123,16 @@ describe('AccordionAccordion', () => {
         <AccordionAccordion defaultActiveIndex={[0, 1]} exclusive={false} panels={panels} />,
       )
 
-      wrapper.find(AccordionTitle).at(0).simulate('click')
+      wrapper
+        .find(AccordionTitle)
+        .at(0)
+        .simulate('click')
       wrapper.should.have.state('activeIndex').that.includes(1)
 
-      wrapper.find(AccordionTitle).at(1).simulate('click')
+      wrapper
+        .find(AccordionTitle)
+        .at(1)
+        .simulate('click')
       wrapper.should.have.state('activeIndex').that.is.empty()
     })
 
@@ -147,10 +165,7 @@ describe('AccordionAccordion', () => {
     const event = { target: null }
     const onClick = sandbox.spy()
     const onTitleClick = sandbox.spy()
-    const panels = [
-      { key: 'A', title: { content: 'A', onClick } },
-      { key: 'B', title: 'B' },
-    ]
+    const panels = [{ key: 'A', title: { content: 'A', onClick } }, { key: 'B', title: 'B' }]
 
     it('is called with (e, titleProps) when clicked', () => {
       mount(<AccordionAccordion panels={panels} onTitleClick={onTitleClick} />)
@@ -192,7 +207,10 @@ describe('AccordionAccordion', () => {
     })
 
     it('passes onClick handler', () => {
-      children.find(AccordionTitle).at(0).simulate('click', event)
+      children
+        .find(AccordionTitle)
+        .at(0)
+        .simulate('click', event)
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(event, { content: 'A', index: 0 })

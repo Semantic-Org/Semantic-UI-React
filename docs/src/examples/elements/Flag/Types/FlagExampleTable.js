@@ -68,7 +68,6 @@ const countries = [
   { name: 'Ecuador', countryCode: 'ec' },
   { name: 'Egypt', countryCode: 'eg' },
   { name: 'El Salvador', countryCode: 'sv' },
-  { name: 'England', countryCode: 'gb eng' },
   { name: 'Equatorial Guinea', countryCode: 'gq' },
   { name: 'Eritrea', countryCode: 'er' },
   { name: 'Estonia', countryCode: 'ee' },

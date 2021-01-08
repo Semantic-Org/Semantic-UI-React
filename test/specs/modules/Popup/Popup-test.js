@@ -113,21 +113,14 @@ describe('Popup', () => {
   describe('eventsEnabled ', () => {
     it(`is "true" by default`, () => {
       wrapperMount(<Popup open />)
+
       wrapper.should.have.prop('eventsEnabled', true)
-
-      const modifiers = wrapper.find('Popper').prop('modifiers')
-      const eventListeners = _.find(modifiers, (m) => m.name === 'eventListeners')
-
-      eventListeners.should.have.property('options').deep.include({ scroll: true, resize: true })
+      wrapper.find('Popper').should.have.prop('eventsEnabled', true)
     })
 
     it(`can be set to "false"`, () => {
       wrapperMount(<Popup eventsEnabled={false} open />)
-
-      const modifiers = wrapper.find('Popper').prop('modifiers')
-      const eventListeners = _.find(modifiers, (m) => m.name === 'eventListeners')
-
-      eventListeners.should.have.property('options').deep.include({ scroll: false, resize: false })
+      wrapper.find('Popper').should.have.prop('eventsEnabled', false)
     })
   })
 
@@ -181,12 +174,12 @@ describe('Popup', () => {
 
   describe('offset', () => {
     it('passes values to Popper', () => {
-      wrapperMount(<Popup content='foo' open offset={[50, 100]} position='bottom right' />)
+      wrapperMount(<Popup content='foo' open offset='50, 100' position='bottom right' />)
 
       const modifiers = wrapper.find('Popper').prop('modifiers')
-      const offset = _.find(modifiers, (m) => m.name === 'offset')
+      const offset = modifiers.offset
 
-      offset.should.have.property('options').deep.include({ offset: [50, 100] })
+      offset.should.have.property('offset', '50, 100')
     })
   })
 
@@ -221,36 +214,6 @@ describe('Popup', () => {
 
       wrapper.setProps({ open: false })
       onClose.should.not.have.been.called()
-    })
-  })
-
-  describe('onOpen', () => {
-    it('is called on trigger click', () => {
-      const onOpen = sandbox.spy()
-      wrapperMount(
-        <Popup onOpen={onOpen} trigger={<div id='trigger' />}>
-          <p />
-        </Popup>,
-      )
-
-      wrapper.find('#trigger').simulate('click')
-      onOpen.should.have.been.calledOnce()
-      onOpen.should.have.been.calledWithMatch({}, { open: true })
-    })
-  })
-
-  describe('onClose', () => {
-    it('is called on body click', () => {
-      const onClose = sandbox.spy()
-      wrapperMount(
-        <Popup defaultOpen onClose={onClose} trigger={<div />}>
-          <p />
-        </Popup>,
-      )
-
-      domEvent.click(document.body)
-      onClose.should.have.been.called()
-      onClose.should.have.been.calledWithMatch({}, { open: false })
     })
   })
 
@@ -291,13 +254,10 @@ describe('Popup', () => {
   })
 
   describe('pinned', () => {
-    it(`is "true" by default`, () => {
+    it(`is "false" by default`, () => {
       wrapperMount(<Popup open />)
 
-      wrapper
-        .find('Popper')
-        .should.have.prop('modifiers')
-        .deep.include({ name: 'flip', enabled: true })
+      wrapper.should.have.prop('pinned', false)
     })
 
     it(`disables "flip" modifier in PopperJS when is "true"`, () => {
@@ -306,7 +266,7 @@ describe('Popup', () => {
       wrapper
         .find('Popper')
         .should.have.prop('modifiers')
-        .deep.include({ name: 'flip', enabled: false })
+        .deep.include({ flip: { enabled: false } })
     })
 
     it(`enables "flip" modifier in PopperJS when is "false"`, () => {
@@ -315,7 +275,7 @@ describe('Popup', () => {
       wrapper
         .find('Popper')
         .should.have.prop('modifiers')
-        .deep.include({ name: 'flip', enabled: true })
+        .deep.include({ flip: { enabled: true } })
     })
   })
 
@@ -339,65 +299,22 @@ describe('Popup', () => {
 
     it(`can be set to "true"`, () => {
       wrapperMount(<Popup positionFixed open />)
-      wrapper.find('Popper').should.have.prop('strategy', 'fixed')
-    })
-  })
-
-  describe('popper', () => {
-    it('passes a zIndex value from .popup', (done) => {
-      wrapperMount(<Popup open style={{ zIndex: 5000 }} />)
-
-      const popperElement = wrapper.find('Popper').childAt(0)
-      const popperNode = popperElement.getDOMNode()
-
-      setTimeout(() => {
-        // zIndex transfer is done in a Popper modifier which will be executed in next frame
-        popperNode.style.zIndex.should.be.equal('5000')
-        done()
-      }, 0)
-    })
-
-    it('zIndex passed to a shorthand wins', (done) => {
-      wrapperMount(<Popup open popper={{ style: { zIndex: 100 } }} style={{ zIndex: 5000 }} />)
-
-      const popperElement = wrapper.find('Popper').childAt(0)
-      const popperNode = popperElement.getDOMNode()
-
-      setTimeout(() => {
-        // zIndex transfer is done in a Popper modifier which will be executed in next frame
-        popperNode.style.zIndex.should.be.equal('100')
-        done()
-      }, 0)
-    })
-
-    it('additional props can be passed via shorthand', () => {
-      wrapperMount(<Popup open popper={{ className: 'foo', id: 'bar' }} />)
-      const popperElement = wrapper.find('Popper').childAt(0)
-
-      popperElement.should.have.prop('className', 'foo')
-      popperElement.should.have.prop('id', 'bar')
-    })
-
-    it('"style" prop is merged', () => {
-      wrapperMount(<Popup open popper={{ style: { color: 'red', display: 'block' } }} />)
-      const popperElement = wrapper.find('Popper').childAt(0)
-
-      popperElement.should.have.style('color', 'red')
-      popperElement.should.have.style('display', 'flex')
+      wrapper.find('Popper').should.have.prop('positionFixed', true)
     })
   })
 
   describe('popperModifiers', () => {
     it('are passed to Popper', () => {
-      const modifierOffset = { name: 'offset', options: { offset: [0, 10] } }
-      const modifierPreventOverflow = { name: 'preventOverflow', options: { padding: 0 } }
-      wrapperMount(<Popup popperModifiers={[modifierOffset, modifierPreventOverflow]} open />)
+      const modifiers = {
+        keepTogether: { enabled: false },
+        preventOverflow: { padding: 0 },
+      }
+      wrapperMount(<Popup popperModifiers={modifiers} open />)
 
       wrapper
         .find('Popper')
         .should.have.prop('modifiers')
-        .deep.include(modifierOffset)
-        .deep.include(modifierPreventOverflow)
+        .deep.include(modifiers)
     })
   })
 

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Component } from 'react'
 
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
@@ -10,7 +10,11 @@ import PortalInner from 'src/addons/Portal/PortalInner'
 let wrapper
 
 const createHandlingComponent = (eventName) =>
-  class HandlingComponent extends React.Component {
+  class HandlingComponent extends Component {
+    static propTypes = {
+      handler: PropTypes.func,
+    }
+
     handleEvent = (e) => this.props.handler(e, this.props)
 
     render() {
@@ -183,36 +187,6 @@ describe('Portal', () => {
         </Portal>,
       )
       wrapper.instance().contentRef.current.tagName.should.equal('P')
-    })
-  })
-
-  describe('onOpen', () => {
-    it('is called on trigger click', () => {
-      const onOpen = sandbox.spy()
-      wrapperMount(
-        <Portal onOpen={onOpen} trigger={<div id='trigger' />}>
-          <p />
-        </Portal>,
-      )
-
-      wrapper.find('#trigger').simulate('click')
-      onOpen.should.have.been.calledOnce()
-      onOpen.should.have.been.calledWithMatch({}, { open: true })
-    })
-  })
-
-  describe('onClose', () => {
-    it('is called on body click', () => {
-      const onClose = sandbox.spy()
-      wrapperMount(
-        <Portal defaultOpen onClose={onClose} trigger={<div />}>
-          <p />
-        </Portal>,
-      )
-
-      domEvent.click(document.body)
-      onClose.should.have.been.called()
-      onClose.should.have.been.calledWithMatch({}, { open: false })
     })
   })
 

@@ -30,6 +30,15 @@ const getGithubEditHref = (examplePath) => {
 class ExampleEditorMenu extends PureComponent {
   state = {}
 
+  static propTypes = {
+    examplePath: PropTypes.string.isRequired,
+    hasError: PropTypes.bool.isRequired,
+    hasCodeChanged: PropTypes.bool.isRequired,
+    onCodeFormat: PropTypes.func.isRequired,
+    onCodeReset: PropTypes.func.isRequired,
+    sourceCode: PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -89,29 +98,22 @@ class ExampleEditorMenu extends PureComponent {
           <Button inverted compact content='Nevermind' onClick={this.resetStop} />
         </Popup>
 
-        <CopyToClipboard timeout={1000} value={sourceCode}>
-          {(active, onClick) => (
+        <CopyToClipboard
+          render={(active, onClick) => (
             <Menu.Item
               icon={active ? { color: 'green', name: 'check' } : 'copy'}
               content='Copy'
               onClick={onClick}
             />
           )}
-        </CopyToClipboard>
+          timeout={1000}
+          value={sourceCode}
+        />
 
         <Menu.Item icon='github' content='Edit' href={githubEditHref} target='_blank' />
       </Menu>
     )
   }
-}
-
-ExampleEditorMenu.propTypes = {
-  examplePath: PropTypes.string.isRequired,
-  hasError: PropTypes.bool.isRequired,
-  hasCodeChanged: PropTypes.bool.isRequired,
-  onCodeFormat: PropTypes.func.isRequired,
-  onCodeReset: PropTypes.func.isRequired,
-  sourceCode: PropTypes.string.isRequired,
 }
 
 export default ExampleEditorMenu

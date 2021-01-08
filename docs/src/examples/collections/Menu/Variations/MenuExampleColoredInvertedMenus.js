@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 
@@ -18,6 +19,10 @@ const colors = [
 ]
 
 class ExampleMenu extends Component {
+  static propTypes = {
+    color: PropTypes.string,
+  }
+
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })

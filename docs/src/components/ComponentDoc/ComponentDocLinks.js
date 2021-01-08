@@ -15,6 +15,13 @@ const linkListStyle = {
 }
 
 export default class ComponentDocLinks extends PureComponent {
+  static propTypes = {
+    displayName: PropTypes.string.isRequired,
+    parentDisplayName: PropTypes.string,
+    repoPath: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }
+
   render() {
     const { displayName, parentDisplayName, repoPath, type } = this.props
     const ghLink = `${repoURL}/blob/master/${repoPath}`
@@ -46,11 +53,4 @@ export default class ComponentDocLinks extends PureComponent {
       </List>
     )
   }
-}
-
-ComponentDocLinks.propTypes = {
-  displayName: PropTypes.string.isRequired,
-  parentDisplayName: PropTypes.string,
-  repoPath: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
 }

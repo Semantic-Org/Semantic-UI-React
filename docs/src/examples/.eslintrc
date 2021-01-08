@@ -17,12 +17,6 @@
       "rules": {
         "no-restricted-imports": "off"
       }
-    },
-    {
-      "files": ["**/*Example*.js"],
-      "rules": {
-        "react/prop-types": "off"
-      }
     }
   ]
 }

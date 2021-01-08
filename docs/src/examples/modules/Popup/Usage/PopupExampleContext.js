@@ -1,21 +1,23 @@
-import React from 'react'
+import React, { createRef } from 'react'
 import { Button, Popup } from 'semantic-ui-react'
 
-function PopupExampleContext() {
-  const contextRef = React.useRef()
+class PopupExampleContextControlled extends React.Component {
+  contextRef = createRef()
 
-  return (
-    <>
-      <Popup
-        trigger={<Button content='Trigger Popup' />}
-        context={contextRef}
-        content='Hello'
-        position='top center'
-      />
-      ---------->
-      <strong ref={contextRef}>here</strong>
-    </>
-  )
+  render() {
+    return (
+      <React.Fragment>
+        <Popup
+          trigger={<Button content='Trigger Popup' />}
+          context={this.contextRef}
+          content='Hello'
+          position='top center'
+        />
+        ---------->
+        <strong ref={this.contextRef}>here</strong>
+      </React.Fragment>
+    )
+  }
 }
 
-export default PopupExampleContext
+export default PopupExampleContextControlled

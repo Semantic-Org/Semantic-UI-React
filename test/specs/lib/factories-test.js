@@ -51,7 +51,9 @@ const itAppliesDefaultProps = (value) => {
   it('applies defaultProps', () => {
     const defaultProps = { some: 'defaults' }
 
-    shallow(getShorthand({ value, defaultProps })).props().should.deep.equal(defaultProps)
+    shallow(getShorthand({ value, defaultProps }))
+      .props()
+      .should.deep.equal(defaultProps)
   })
 }
 
@@ -79,7 +81,9 @@ const itMergesClassNames = (classNameSource, extraClassName, shorthandConfig) =>
 
 const itAppliesProps = (propsSource, expectedProps, shorthandConfig) => {
   it(`applies props from the ${propsSource} props`, () => {
-    shallow(getShorthand(shorthandConfig)).props().should.deep.equal(expectedProps)
+    shallow(getShorthand(shorthandConfig))
+      .props()
+      .should.deep.equal(expectedProps)
   })
 }
 
@@ -113,11 +117,7 @@ describe('factories', () => {
     })
 
     it('does not throw if passed a function Component', () => {
-      const goodUsage = () =>
-        createShorthandFactory(
-          () => <div />,
-          () => ({}),
-        )
+      const goodUsage = () => createShorthandFactory(() => <div />, () => ({}))
 
       expect(goodUsage).not.to.throw()
     })
@@ -145,11 +145,7 @@ describe('factories', () => {
     })
 
     it('does not throw if passed a function Component', () => {
-      const goodUsage = () =>
-        createShorthand(
-          () => <div />,
-          () => ({}),
-        )
+      const goodUsage = () => createShorthand(() => <div />, () => ({}))
 
       expect(goodUsage).not.to.throw()
     })
@@ -433,49 +429,9 @@ describe('factories', () => {
       itOverridesDefaultPropsWithFalseyProps('props object', {
         value: { undef: undefined, nil: null, zero: 0, empty: '' },
       })
-
-      describe('children', () => {
-        it('is called once', () => {
-          const children = sandbox.spy()
-
-          getShorthand({ value: { children } })
-          children.should.have.been.calledOnce()
-        })
-
-        it('is called with Component, props, children', () => {
-          const children = sandbox.spy(() => <div />)
-
-          getShorthand({ Component: 'p', value: { children } })
-          children.should.have.been.calledWithExactly('p', { children: undefined })
-        })
-
-        it('receives defaultProps in its props argument', () => {
-          const children = sandbox.spy(() => <div />)
-          const defaultProps = { defaults: true }
-
-          getShorthand({ Component: 'p', defaultProps, value: { children } })
-          children.should.have.been.calledWithExactly('p', { ...defaultProps, children: undefined })
-        })
-
-        it('receives overrideProps in its props argument', () => {
-          const children = sandbox.spy(() => <div />)
-          const overrideProps = { overrides: true }
-
-          getShorthand({ Component: 'p', overrideProps, value: { children } })
-          children.should.have.been.calledWithExactly('p', {
-            ...overrideProps,
-            children: undefined,
-          })
-        })
-      })
     })
 
-    // TODO: V3 remove this test
     describe('from a function', () => {
-      beforeEach(() => {
-        consoleUtil.disableOnce()
-      })
-
       itReturnsAValidElement(() => <div />)
       itDoesNotIncludePropsFromMapValueToProps(() => <div />)
 
@@ -483,30 +439,34 @@ describe('factories', () => {
         const spy = sandbox.spy()
 
         getShorthand({ value: spy })
+
         spy.should.have.been.calledOnce()
       })
 
       it('is called with Component, props, children', () => {
-        const value = sandbox.spy(() => <div />)
+        const spy = sandbox.spy(() => <div />)
 
-        getShorthand({ Component: 'p', value })
-        value.should.have.been.calledWithExactly('p', {}, undefined)
+        getShorthand({ Component: 'p', value: spy })
+
+        spy.should.have.been.calledWithExactly('p', {}, undefined)
       })
 
       it('receives defaultProps in its props argument', () => {
-        const value = sandbox.spy(() => <div />)
+        const spy = sandbox.spy(() => <div />)
         const defaultProps = { defaults: true }
 
-        getShorthand({ Component: 'p', defaultProps, value })
-        value.should.have.been.calledWithExactly('p', defaultProps, undefined)
+        getShorthand({ Component: 'p', defaultProps, value: spy })
+
+        spy.should.have.been.calledWithExactly('p', defaultProps, undefined)
       })
 
       it('receives overrideProps in its props argument', () => {
-        const value = sandbox.spy(() => <div />)
+        const spy = sandbox.spy(() => <div />)
         const overrideProps = { overrides: true }
 
-        getShorthand({ Component: 'p', overrideProps, value })
-        value.should.have.been.calledWithExactly('p', overrideProps, undefined)
+        getShorthand({ Component: 'p', overrideProps, value: spy })
+
+        spy.should.have.been.calledWithExactly('p', overrideProps, undefined)
       })
     })
 

@@ -1,13 +1,15 @@
 // Third party
-export { Ref } from '@fluentui/react-component-ref'
+export { Ref } from '@stardust-ui/react-component-ref'
 
 // Addons
 export Confirm from './addons/Confirm'
+export MountNode from './addons/MountNode'
 export Pagination from './addons/Pagination'
 export PaginationItem from './addons/Pagination/PaginationItem'
 export Portal from './addons/Portal'
 export PortalInner from './addons/Portal/PortalInner'
 export Radio from './addons/Radio'
+export Responsive from './addons/Responsive'
 export Select from './addons/Select'
 export TextArea from './addons/TextArea'
 export TransitionablePortal from './addons/TransitionablePortal'
@@ -132,7 +134,6 @@ export DropdownHeader from './modules/Dropdown/DropdownHeader'
 export DropdownItem from './modules/Dropdown/DropdownItem'
 export DropdownMenu from './modules/Dropdown/DropdownMenu'
 export DropdownSearchInput from './modules/Dropdown/DropdownSearchInput'
-export DropdownText from './modules/Dropdown/DropdownText'
 
 export Embed from './modules/Embed'
 
@@ -140,7 +141,6 @@ export Modal from './modules/Modal'
 export ModalActions from './modules/Modal/ModalActions'
 export ModalContent from './modules/Modal/ModalContent'
 export ModalDescription from './modules/Modal/ModalDescription'
-export ModalDimmer from './modules/Modal/ModalDimmer'
 export ModalHeader from './modules/Modal/ModalHeader'
 
 export Popup from './modules/Popup'

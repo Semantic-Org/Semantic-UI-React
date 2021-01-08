@@ -15,6 +15,12 @@
       }
     },
     {
+      "files": "*.{ts,tsx}",
+      "options": {
+        "semi": true
+      }
+    },
+    {
       "files": "docs/src/examples/**/*.js",
       "options": {
         "printWidth": 80

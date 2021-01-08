@@ -1,15 +1,15 @@
 import EventStack from '@semantic-ui-react/event-stack'
-import cx from 'clsx'
+import { Ref } from '@stardust-ui/react-component-ref'
+import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { Popper } from 'react-popper'
 import shallowEqual from 'shallowequal'
 
 import {
   eventStack,
   childrenUtils,
-  createHTMLDivision,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -30,12 +30,141 @@ const debug = makeDebugger('popup')
  * A Popup displays additional information on top of a page.
  */
 export default class Popup extends Component {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.elementType,
+
+    /** Display the popup without the pointing arrow. */
+    basic: PropTypes.bool,
+
+    /** Primary content. */
+    children: PropTypes.node,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
+    /** Simple text content for the popover. */
+    content: customPropTypes.itemShorthand,
+
+    /** Existing element the pop-up should be bound to. */
+    context: PropTypes.oneOfType([PropTypes.object, customPropTypes.refObject]),
+
+    /** A disabled popup only renders its trigger. */
+    disabled: PropTypes.bool,
+
+    /** Enables the Popper.js event listeners. */
+    eventsEnabled: PropTypes.bool,
+
+    /** A flowing Popup has no maximum width and continues to flow to fit its content. */
+    flowing: PropTypes.bool,
+
+    /** Takes up the entire width of its offset container. */
+    // TODO: implement the Popup fluid layout
+    // fluid: PropTypes.bool,
+
+    /** Header displayed above the content in bold. */
+    header: customPropTypes.itemShorthand,
+
+    /** Hide the Popup when scrolling the window. */
+    hideOnScroll: PropTypes.bool,
+
+    /** Whether the popup should not close on hover. */
+    hoverable: PropTypes.bool,
+
+    /** Invert the colors of the Popup. */
+    inverted: PropTypes.bool,
+
+    /** Offset value to apply to rendered popup. Accepts the following units:
+     * - px or unit-less, interpreted as pixels
+     * - %, percentage relative to the length of the trigger element
+     * - %p, percentage relative to the length of the popup element
+     * - vw, CSS viewport width unit
+     * - vh, CSS viewport height unit
+     */
+    offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+    /** Events triggering the popup. */
+    on: PropTypes.oneOfType([
+      PropTypes.oneOf(['hover', 'click', 'focus']),
+      PropTypes.arrayOf(PropTypes.oneOf(['hover', 'click', 'focus'])),
+    ]),
+
+    /**
+     * Called when a close event happens.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onClose: PropTypes.func,
+
+    /**
+     * Called when the portal is mounted on the DOM.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onMount: PropTypes.func,
+
+    /**
+     * Called when an open event happens.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onOpen: PropTypes.func,
+
+    /**
+     * Called when the portal is unmounted from the DOM.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onUnmount: PropTypes.func,
+
+    /** Disables automatic repositioning of the component, it will always be placed according to the position value. */
+    pinned: PropTypes.bool,
+
+    /** Position for the popover. */
+    position: PropTypes.oneOf(positions),
+
+    /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
+    positionFixed: PropTypes.bool,
+
+    /** An object containing custom settings for the Popper.js modifiers. */
+    popperModifiers: PropTypes.object,
+
+    /** A popup can have dependencies which update will schedule a position update. */
+    popperDependencies: PropTypes.array,
+
+    /** Popup size. */
+    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big', 'massive')),
+
+    /** Custom Popup style. */
+    style: PropTypes.object,
+
+    /** Element to be rendered in-place where the popup is defined. */
+    trigger: PropTypes.node,
+
+    /** Popup width. */
+    wide: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
+  }
+
+  static defaultProps = {
+    disabled: false,
+    eventsEnabled: true,
+    offset: 0,
+    on: ['click', 'hover'],
+    pinned: false,
+    position: 'top left',
+  }
+
+  static Content = PopupContent
+  static Header = PopupHeader
+
   state = {}
 
   open = false
-  zIndexWasSynced = false
-
-  triggerRef = React.createRef()
+  triggerRef = createRef()
 
   static getDerivedStateFromProps(props, state) {
     if (state.closed || state.disabled) return {}
@@ -114,12 +243,12 @@ export default class Popup extends Component {
 
   handleClose = (e) => {
     debug('handleClose()')
-    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
+    _.invoke(this.props, 'onClose', e, this.props)
   }
 
   handleOpen = (e) => {
     debug('handleOpen()')
-    _.invoke(this.props, 'onOpen', e, { ...this.props, open: true })
+    _.invoke(this.props, 'onOpen', e, this.props)
   }
 
   handlePortalMount = (e) => {
@@ -138,7 +267,12 @@ export default class Popup extends Component {
     if (this.positionUpdate) this.positionUpdate()
   }
 
-  renderContent = ({ placement: popperPlacement, ref: popperRef, update, style: popperStyle }) => {
+  renderContent = ({
+    placement: popperPlacement,
+    ref: popperRef,
+    scheduleUpdate,
+    style: popperStyle,
+  }) => {
     const {
       basic,
       children,
@@ -148,14 +282,13 @@ export default class Popup extends Component {
       flowing,
       header,
       inverted,
-      popper,
       size,
       style,
       wide,
     } = this.props
     const { contentRestProps } = this.state
 
-    this.positionUpdate = update
+    this.positionUpdate = scheduleUpdate
 
     const classes = cx(
       'ui',
@@ -173,41 +306,25 @@ export default class Popup extends Component {
       // Heads up! We need default styles to get working correctly `flowing`
       left: 'auto',
       right: 'auto',
-      // This is required to be properly positioned inside wrapping `div`
-      position: 'initial',
+      ...popperStyle,
       ...style,
     }
 
-    const innerElement = (
-      <ElementType {...contentRestProps} className={classes} style={styles}>
-        {childrenUtils.isNil(children) ? (
-          <>
-            {PopupHeader.create(header, { autoGenerateKey: false })}
-            {PopupContent.create(content, { autoGenerateKey: false })}
-          </>
-        ) : (
-          children
-        )}
-        {hideOnScroll && <EventStack on={this.hideOnScroll} name='scroll' target='window' />}
-      </ElementType>
+    return (
+      <Ref innerRef={popperRef}>
+        <ElementType {...contentRestProps} className={classes} style={styles}>
+          {childrenUtils.isNil(children) ? (
+            <React.Fragment>
+              {PopupHeader.create(header, { autoGenerateKey: false })}
+              {PopupContent.create(content, { autoGenerateKey: false })}
+            </React.Fragment>
+          ) : (
+            children
+          )}
+          {hideOnScroll && <EventStack on={this.hideOnScroll} name='scroll' target='window' />}
+        </ElementType>
+      </Ref>
     )
-
-    // https://github.com/popperjs/popper-core/blob/f1f9d1ab75b6b0e962f90a5b2a50f6cfd307d794/src/createPopper.js#L136-L137
-    // Heads up!
-    // A wrapping `div` there is a pure magic, it's required as Popper warns on margins that are
-    // defined by SUI CSS. It also means that this `div` will be positioned instead of `content`.
-    return createHTMLDivision(popper || {}, {
-      overrideProps: {
-        children: innerElement,
-        ref: popperRef,
-        style: {
-          // Fixes layout for floated elements
-          // https://github.com/Semantic-Org/Semantic-UI-React/issues/4092
-          display: 'flex',
-          ...popperStyle,
-        },
-      },
-    })
   }
 
   render() {
@@ -217,7 +334,6 @@ export default class Popup extends Component {
       eventsEnabled,
       offset,
       pinned,
-      popper,
       popperModifiers,
       position,
       positionFixed,
@@ -225,51 +341,19 @@ export default class Popup extends Component {
     } = this.props
     const { closed, portalRestProps } = this.state
 
-    if (closed || disabled) {
-      return trigger
-    }
+    if (closed || disabled) return trigger
 
-    const modifiers = [
-      { name: 'arrow', enabled: false },
-      { name: 'eventListeners', options: { scroll: !!eventsEnabled, resize: !!eventsEnabled } },
-      { name: 'flip', enabled: !pinned },
-      { name: 'preventOverflow', enabled: !!offset },
-      { name: 'offset', enabled: !!offset, options: { offset } },
-      ...popperModifiers,
-
-      // We are syncing zIndex from `.ui.popup.content` to avoid layering issues as in SUIR we are using an additional
-      // `div` for Popper.js
-      // https://github.com/Semantic-Org/Semantic-UI-React/issues/4083
+    const modifiers = _.merge(
       {
-        name: 'syncZIndex',
-        enabled: true,
-        phase: 'beforeRead',
-        fn: ({ state }) => {
-          if (this.zIndexWasSynced) {
-            return
-          }
-
-          // if zIndex defined in <Popup popper={{ style: {} }} /> there is no sense to override it
-          const definedZIndex = popper?.style?.zIndex
-
-          if (_.isUndefined(definedZIndex)) {
-            // eslint-disable-next-line no-param-reassign
-            state.elements.popper.style.zIndex = window.getComputedStyle(
-              state.elements.popper.firstChild,
-            ).zIndex
-          }
-
-          this.zIndexWasSynced = true
-        },
-        effect: () => {
-          return () => {
-            this.zIndexWasSynced = false
-          }
-        },
+        arrow: { enabled: false },
+        flip: { enabled: !pinned },
+        // There are issues with `keepTogether` and `offset`
+        // https://github.com/FezVrasta/popper.js/issues/557
+        keepTogether: { enabled: !!offset },
+        offset: { offset },
       },
-    ]
-    debug('popper modifiers:', modifiers)
-
+      popperModifiers,
+    )
     const referenceElement = createReferenceProxy(_.isNil(context) ? this.triggerRef : context)
 
     const mergedPortalProps = { ...this.getPortalProps(), ...portalRestProps }
@@ -286,9 +370,10 @@ export default class Popup extends Component {
         triggerRef={this.triggerRef}
       >
         <Popper
+          eventsEnabled={eventsEnabled}
           modifiers={modifiers}
           placement={positionsMapping[position]}
-          strategy={positionFixed ? 'fixed' : null}
+          positionFixed={positionFixed}
           referenceElement={referenceElement}
         >
           {this.renderContent}
@@ -297,138 +382,3 @@ export default class Popup extends Component {
     )
   }
 }
-
-Popup.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.elementType,
-
-  /** Display the popup without the pointing arrow. */
-  basic: PropTypes.bool,
-
-  /** Primary content. */
-  children: PropTypes.node,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /** Simple text content for the popover. */
-  content: customPropTypes.itemShorthand,
-
-  /** Existing element the pop-up should be bound to. */
-  context: PropTypes.oneOfType([PropTypes.object, customPropTypes.refObject]),
-
-  /** A disabled popup only renders its trigger. */
-  disabled: PropTypes.bool,
-
-  /** Enables the Popper.js event listeners. */
-  eventsEnabled: PropTypes.bool,
-
-  /** A flowing Popup has no maximum width and continues to flow to fit its content. */
-  flowing: PropTypes.bool,
-
-  /** Takes up the entire width of its offset container. */
-  // TODO: implement the Popup fluid layout
-  // fluid: PropTypes.bool,
-
-  /** Header displayed above the content in bold. */
-  header: customPropTypes.itemShorthand,
-
-  /** Hide the Popup when scrolling the window. */
-  hideOnScroll: PropTypes.bool,
-
-  /** Whether the popup should not close on hover. */
-  hoverable: PropTypes.bool,
-
-  /** Invert the colors of the Popup. */
-  inverted: PropTypes.bool,
-
-  /**
-   * Offset values in px unit to apply to rendered popup. The basic offset accepts an
-   * array with two numbers in the form [skidding, distance]:
-   * - `skidding` displaces the Popup along the reference element
-   * - `distance` displaces the Popup away from, or toward, the reference element in the direction of its placement. A positive number displaces it further away, while a negative number lets it overlap the reference.
-   *
-   * @see https://popper.js.org/docs/v2/modifiers/offset/
-   */
-  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.arrayOf(PropTypes.number)]),
-
-  /** Events triggering the popup. */
-  on: PropTypes.oneOfType([
-    PropTypes.oneOf(['hover', 'click', 'focus']),
-    PropTypes.arrayOf(PropTypes.oneOf(['hover', 'click', 'focus'])),
-  ]),
-
-  /**
-   * Called when a close event happens.
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
-   */
-  onClose: PropTypes.func,
-
-  /**
-   * Called when the portal is mounted on the DOM.
-   *
-   * @param {null}
-   * @param {object} data - All props.
-   */
-  onMount: PropTypes.func,
-
-  /**
-   * Called when an open event happens.
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
-   */
-  onOpen: PropTypes.func,
-
-  /**
-   * Called when the portal is unmounted from the DOM.
-   *
-   * @param {null}
-   * @param {object} data - All props.
-   */
-  onUnmount: PropTypes.func,
-
-  /** Disables automatic repositioning of the component, it will always be placed according to the position value. */
-  pinned: PropTypes.bool,
-
-  /** Position for the popover. */
-  position: PropTypes.oneOf(positions),
-
-  /** Tells `Popper.js` to use the `position: fixed` strategy to position the popover. */
-  positionFixed: PropTypes.bool,
-
-  /** A wrapping element for an actual content that will be used for positioning. */
-  popper: customPropTypes.itemShorthand,
-
-  /** An array containing custom settings for the Popper.js modifiers. */
-  popperModifiers: PropTypes.array,
-
-  /** A popup can have dependencies which update will schedule a position update. */
-  popperDependencies: PropTypes.array,
-
-  /** Popup size. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big', 'massive')),
-
-  /** Custom Popup style. */
-  style: PropTypes.object,
-
-  /** Element to be rendered in-place where the popup is defined. */
-  trigger: PropTypes.node,
-
-  /** Popup width. */
-  wide: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
-}
-
-Popup.defaultProps = {
-  disabled: false,
-  eventsEnabled: true,
-  on: ['click', 'hover'],
-  pinned: false,
-  popperModifiers: [],
-  position: 'top left',
-}
-
-Popup.Content = PopupContent
-Popup.Header = PopupHeader

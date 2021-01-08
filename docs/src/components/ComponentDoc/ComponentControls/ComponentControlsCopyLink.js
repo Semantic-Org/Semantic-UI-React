@@ -5,6 +5,11 @@ import { Icon, Menu } from 'semantic-ui-react'
 export default class ComponentControlsCopyLink extends Component {
   state = {}
 
+  static propTypes = {
+    anchorName: PropTypes.string,
+    onClick: PropTypes.func,
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.active !== nextState.active
   }
@@ -34,9 +39,4 @@ export default class ComponentControlsCopyLink extends Component {
       </Menu.Item>
     )
   }
-}
-
-ComponentControlsCopyLink.propTypes = {
-  anchorName: PropTypes.string,
-  onClick: PropTypes.func,
 }

@@ -10,12 +10,11 @@ const appTemplate = `import React from "react";
 import ReactDOM from "react-dom";
 import { Container, Header, List } from "semantic-ui-react";
 
-import pkg from 'semantic-ui-react/package.json'
 import Example from "./example";
 
 const App = ({ children }) => (
   <Container style={{ margin: 20 }}>
-    <Header as="h3">This example is powered by Semantic UI React {pkg.version} 😊</Header>
+    <Header as="h3">This example is powered by Semantic UI React 😊</Header>
     <List bulleted>
       <List.Item
         as="a"
@@ -49,23 +48,12 @@ ReactDOM.render(
 );
 `
 
-function CodeSandboxIcon() {
-  return (
-    <i aria-hidden className='grey icon'>
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        fill='currentColor'
-        height='100%'
-        viewBox='0 0 24 24'
-        width='100%'
-      >
-        <path d='M2 6l10.455-6L22.91 6 23 17.95 12.455 24 2 18V6zm2.088 2.481v4.757l3.345 1.86v3.516l3.972 2.296v-8.272L4.088 8.481zm16.739 0l-7.317 4.157v8.272l3.972-2.296V15.1l3.345-1.861V8.48zM5.134 6.601l7.303 4.144 7.32-4.18-3.871-2.197-3.41 1.945-3.43-1.968L5.133 6.6z' />
-      </svg>
-    </i>
-  )
-}
-
 class ComponentControlsCodeSandbox extends React.Component {
+  static propTypes = {
+    exampleCode: PropTypes.string.isRequired,
+    visible: PropTypes.bool.isRequired,
+  }
+
   state = {
     exampleCode: '',
     sandboxUrl: '',
@@ -108,7 +96,7 @@ class ComponentControlsCodeSandbox extends React.Component {
         example={enhanceExampleCode(exampleCode)}
         providedFiles={{
           'index.js': { content: appTemplate },
-          'package.json': createPackageJson(exampleCode),
+          'package.json': createPackageJson(),
         }}
         skipRedirect
         template='create-react-app'
@@ -120,7 +108,10 @@ class ComponentControlsCodeSandbox extends React.Component {
             <Menu.Item
               as='a'
               content={loading ? 'Exporting...' : 'CodeSandbox'}
-              icon={loading ? { loading, name: 'spinner' } : () => <CodeSandboxIcon />}
+              icon={{
+                loading,
+                name: loading ? 'spinner' : 'connectdevelop',
+              }}
               title='Export to CodeSandbox'
             />
           )
@@ -130,11 +121,6 @@ class ComponentControlsCodeSandbox extends React.Component {
       <Menu.Item as='a' content='CodeSandbox' icon={{ loading: true, name: 'spinner' }} />
     )
   }
-}
-
-ComponentControlsCodeSandbox.propTypes = {
-  exampleCode: PropTypes.string.isRequired,
-  visible: PropTypes.bool.isRequired,
 }
 
 export default ComponentControlsCodeSandbox

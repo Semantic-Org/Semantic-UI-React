@@ -41,7 +41,7 @@ const friendOptions = [
 ]
 
 const DropdownExampleOpenOnFocus = () => (
-  <>
+  <React.Fragment>
     <Dropdown
       placeholder='I open on focus'
       openOnFocus
@@ -54,7 +54,7 @@ const DropdownExampleOpenOnFocus = () => (
       selection
       options={friendOptions}
     />
-  </>
+  </React.Fragment>
 )
 
 export default DropdownExampleOpenOnFocus

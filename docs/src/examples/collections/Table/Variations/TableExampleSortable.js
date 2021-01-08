@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
+import React, { Component } from 'react'
 import { Table } from 'semantic-ui-react'
 
 const tableData = [
@@ -9,71 +9,69 @@ const tableData = [
   { name: 'Ben', age: 70, gender: 'Male' },
 ]
 
-function exampleReducer(state, action) {
-  switch (action.type) {
-    case 'CHANGE_SORT':
-      if (state.column === action.column) {
-        return {
-          ...state,
-          data: state.data.slice().reverse(),
-          direction:
-            state.direction === 'ascending' ? 'descending' : 'ascending',
-        }
-      }
-
-      return {
-        column: action.column,
-        data: _.sortBy(state.data, [action.column]),
-        direction: 'ascending',
-      }
-    default:
-      throw new Error()
-  }
-}
-
-function TableExampleSortable() {
-  const [state, dispatch] = React.useReducer(exampleReducer, {
+export default class TableExampleSortable extends Component {
+  state = {
     column: null,
     data: tableData,
     direction: null,
-  })
-  const { column, data, direction } = state
+  }
 
-  return (
-    <Table sortable celled fixed>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell
-            sorted={column === 'name' ? direction : null}
-            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
-          >
-            Name
-          </Table.HeaderCell>
-          <Table.HeaderCell
-            sorted={column === 'age' ? direction : null}
-            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'age' })}
-          >
-            Age
-          </Table.HeaderCell>
-          <Table.HeaderCell
-            sorted={column === 'gender' ? direction : null}
-            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'gender' })}
-          >
-            Gender
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {data.map(({ age, gender, name }) => (
-          <Table.Row key={name}>
-            <Table.Cell>{name}</Table.Cell>
-            <Table.Cell>{age}</Table.Cell>
-            <Table.Cell>{gender}</Table.Cell>
+  handleSort = (clickedColumn) => () => {
+    const { column, data, direction } = this.state
+
+    if (column !== clickedColumn) {
+      this.setState({
+        column: clickedColumn,
+        data: _.sortBy(data, [clickedColumn]),
+        direction: 'ascending',
+      })
+
+      return
+    }
+
+    this.setState({
+      data: data.reverse(),
+      direction: direction === 'ascending' ? 'descending' : 'ascending',
+    })
+  }
+
+  render() {
+    const { column, data, direction } = this.state
+
+    return (
+      <Table sortable celled fixed>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell
+              sorted={column === 'name' ? direction : null}
+              onClick={this.handleSort('name')}
+            >
+              Name
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === 'age' ? direction : null}
+              onClick={this.handleSort('age')}
+            >
+              Age
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === 'gender' ? direction : null}
+              onClick={this.handleSort('gender')}
+            >
+              Gender
+            </Table.HeaderCell>
           </Table.Row>
-        ))}
-      </Table.Body>
-    </Table>
-  )
+        </Table.Header>
+        <Table.Body>
+          {_.map(data, ({ age, gender, name }) => (
+            <Table.Row key={name}>
+              <Table.Cell>{name}</Table.Cell>
+              <Table.Cell>{age}</Table.Cell>
+              <Table.Cell>{gender}</Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    )
+  }
 }
-
-export default TableExampleSortable

@@ -10,12 +10,12 @@ const LabelExampleImage = () => (
     </Label>
     <Label as='a' color='teal' image>
       <img src='/images/avatar/small/jenny.jpg' />
-      Jenny
+      Veronika
       <Label.Detail>Friend</Label.Detail>
     </Label>
     <Label as='a' color='yellow' image>
       <img src='/images/avatar/small/christian.jpg' />
-      Christian
+      Helen
       <Label.Detail>Co-worker</Label.Detail>
     </Label>
   </div>

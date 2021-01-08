@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import cx from 'clsx'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 

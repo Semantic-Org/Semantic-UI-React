@@ -103,6 +103,7 @@ export default class SearchExampleCategory extends Component {
             resultRenderer={resultRenderer}
             results={results}
             value={value}
+            {...this.props}
           />
         </Grid.Column>
         <Grid.Column width={8}>

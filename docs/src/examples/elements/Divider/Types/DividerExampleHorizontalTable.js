@@ -2,7 +2,7 @@ import React from 'react'
 import { Divider, Header, Icon, Table } from 'semantic-ui-react'
 
 const DividerExampleHorizontalTable = () => (
-  <>
+  <React.Fragment>
     <Divider horizontal>
       <Header as='h4'>
         <Icon name='tag' />
@@ -42,7 +42,7 @@ const DividerExampleHorizontalTable = () => (
         </Table.Row>
       </Table.Body>
     </Table>
-  </>
+  </React.Fragment>
 )
 
 export default DividerExampleHorizontalTable

@@ -29,7 +29,6 @@ CONTRIBUTING
   - [Common Tests](#common-tests)
     - [Usage](#usage)
     - [isConformant (required)](#isconformant-required)
-  - [Visual testing](#visual-testing)
 - [State](#state)
   - [AutoControlledComponent](#autocontrolledcomponent)
 - [Documentation](#documentation)
@@ -204,7 +203,7 @@ Each group has an API pattern and prop util for building up the `className` and 
 Use [`classNameBuilders`][4] to extract the prop values and build up the `className`.  Grouped classes like `color` and `size` simply use the prop value as the `className`.
 
 ```js
-import cx from 'clsx'
+import cx from 'classnames'
 import { useKeyOnly, useValueAndKey, useKeyOrValueAndKey } from '../../lib'
 
 function Segment({ size, color, basic, floated, padded }) {
@@ -417,16 +416,6 @@ This is the only required test.  It ensures a consistent baseline for the framew
 1. Base `className`s are applied
 1. Component is exported if public / hidden if private
 
-### Visual testing
-
-We are using [Percy](https://percy.io/) and Cypress to perform visual testing of our components. To create a new visual
-test there should an example in our docs that can be served by Cypress and a corresponding Cypress test, for example:
-- `cypress/integration/Popup/Popup.visual.js` contains visual tests
-- `docs/src/examples/modules/Popup/Visual/PopupVisualInsideModal.js` contains an example that will be used for visual 
-tests
-
-
-
 ## State
 
 Strive to use stateless functional components when possible:
@@ -455,7 +444,7 @@ class MyComponent extends Component {
 
 TODO
 
->For now, you should reference Dropdown as an example implementation. You can also consult the comments in AutoControlledComponent.js for more background.
+>For now, you should reference Dropdown as an example implementation.  You can also consult the comments in AutoControlledComponent.js for more background.
 
 ## Documentation
 

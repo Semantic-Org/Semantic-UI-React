@@ -1,1 +1,0 @@
-import '@percy/cypress'

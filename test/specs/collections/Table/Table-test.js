@@ -143,15 +143,25 @@ describe('Table', () => {
 
       thead.should.have.lengthOf(1)
       thead.find('tr').should.have.lengthOf(1)
-      thead.find('tr').find('th').should.have.lengthOf(headerRow.length)
+      thead
+        .find('tr')
+        .find('th')
+        .should.have.lengthOf(headerRow.length)
 
       tbody.should.have.lengthOf(1)
       tbody.find('tr').should.have.lengthOf(tableData.length)
-      tbody.find('tr').first().find('td').should.have.lengthOf(3)
+      tbody
+        .find('tr')
+        .first()
+        .find('td')
+        .should.have.lengthOf(3)
 
       tfoot.should.have.lengthOf(1)
       tfoot.find('tr').should.have.lengthOf(1)
-      tfoot.find('tr').find('td').should.have.lengthOf(footerRow.length)
+      tfoot
+        .find('tr')
+        .find('td')
+        .should.have.lengthOf(footerRow.length)
     })
 
     it('renders the table with 2 lines header', () => {
@@ -159,16 +169,31 @@ describe('Table', () => {
 
       thead.should.have.lengthOf(1)
       thead.find('tr').should.have.lengthOf(2)
-      thead.find('tr').at(0).find('th').should.have.lengthOf(3)
-      thead.find('tr').at(1).find('th').should.have.lengthOf(2)
+      thead
+        .find('tr')
+        .at(0)
+        .find('th')
+        .should.have.lengthOf(3)
+      thead
+        .find('tr')
+        .at(1)
+        .find('th')
+        .should.have.lengthOf(2)
 
       tbody.should.have.lengthOf(1)
       tbody.find('tr').should.have.lengthOf(tableData.length)
-      tbody.find('tr').first().find('td').should.have.lengthOf(4)
+      tbody
+        .find('tr')
+        .first()
+        .find('td')
+        .should.have.lengthOf(4)
 
       tfoot.should.have.lengthOf(1)
       tfoot.find('tr').should.have.lengthOf(1)
-      tfoot.find('tr').find('td').should.have.lengthOf(footerRow.length)
+      tfoot
+        .find('tr')
+        .find('td')
+        .should.have.lengthOf(footerRow.length)
     })
   })
 })

@@ -4,6 +4,19 @@ import React, { PureComponent } from 'react'
 import { Accordion, Icon, Menu } from 'semantic-ui-react'
 
 export default class ComponentSidebarSection extends PureComponent {
+  static propTypes = {
+    activePath: PropTypes.string,
+    examples: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        examplePath: PropTypes.string,
+      }),
+    ),
+    sectionName: PropTypes.string,
+    onItemClick: PropTypes.func,
+    onTitleClick: PropTypes.func,
+  }
+
   state = {}
 
   static getDerivedStateFromProps(props, state) {
@@ -52,17 +65,4 @@ export default class ComponentSidebarSection extends PureComponent {
       </Menu.Item>
     )
   }
-}
-
-ComponentSidebarSection.propTypes = {
-  activePath: PropTypes.string,
-  examples: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      examplePath: PropTypes.string,
-    }),
-  ),
-  sectionName: PropTypes.string,
-  onItemClick: PropTypes.func,
-  onTitleClick: PropTypes.func,
 }

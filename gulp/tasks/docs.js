@@ -28,7 +28,10 @@ const handleWatchChange = (filename) =>
  * @returns {String}
  */
 const toUniversalGlob = (directory, glob) => {
-  const relative = path.relative(process.cwd(), directory).split(path.sep).join('/')
+  const relative = path
+    .relative(process.cwd(), directory)
+    .split(path.sep)
+    .join('/')
 
   return `${relative}/${glob}`
 }

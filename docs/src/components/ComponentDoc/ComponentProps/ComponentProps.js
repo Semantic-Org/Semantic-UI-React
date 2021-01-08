@@ -11,6 +11,11 @@ import ComponentPropsDescription from './ComponentPropsDescription'
 const propsContainerStyle = { overflowX: 'auto' }
 
 export default class ComponentProps extends Component {
+  static propTypes = {
+    componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
+    displayName: PropTypes.string.isRequired,
+  }
+
   state = {}
 
   static getDerivedStateFromProps(props, state) {
@@ -40,7 +45,7 @@ export default class ComponentProps extends Component {
     const description = _.get(docblock, 'description', [])
 
     return (
-      <>
+      <React.Fragment>
         <Checkbox slider checked={!!activeDisplayName} label='Props' onChange={this.handleToggle} />
         <ComponentPropsComponents
           activeDisplayName={activeDisplayName}
@@ -55,12 +60,7 @@ export default class ComponentProps extends Component {
             <ComponentTable displayName={activeDisplayName} props={props} />
           </div>
         )}
-      </>
+      </React.Fragment>
     )
   }
-}
-
-ComponentProps.propTypes = {
-  componentsInfo: PropTypes.objectOf(docTypes.componentInfoShape).isRequired,
-  displayName: PropTypes.string.isRequired,
 }

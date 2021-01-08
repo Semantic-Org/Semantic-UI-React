@@ -1,1 +1,6 @@
-export { default, DropdownProps, StrictDropdownProps, DropdownOnSearchChangeData } from './Dropdown'
+export {
+  default,
+  DropdownProps,
+  StrictDropdownProps,
+  DropdownOnSearchChangeData,
+} from './Dropdown'

@@ -5,6 +5,12 @@ import { Grid } from 'semantic-ui-react'
 import ContributionPrompt from './ContributionPrompt'
 
 export default class ComponentExamples extends Component {
+  static propTypes = {
+    displayName: PropTypes.string.isRequired,
+    examplesExist: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
+  }
+
   renderExamples = () => {
     const { displayName, type } = this.props
 
@@ -29,10 +35,4 @@ export default class ComponentExamples extends Component {
 
     return examplesExist ? this.renderExamples() : this.renderMissingExamples()
   }
-}
-
-ComponentExamples.propTypes = {
-  displayName: PropTypes.string.isRequired,
-  examplesExist: PropTypes.bool.isRequired,
-  type: PropTypes.string.isRequired,
 }

@@ -1,4 +1,4 @@
-import cx from 'clsx'
+import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { createElement } from 'react'
@@ -78,14 +78,14 @@ function FormField(props) {
   if (_.isNil(control)) {
     if (_.isNil(label)) {
       return (
-        <ElementType {...rest} className={classes} id={id}>
+        <ElementType {...rest} className={classes}>
           {childrenUtils.isNil(children) ? content : children}
         </ElementType>
       )
     }
 
     return (
-      <ElementType {...rest} className={classes} id={id}>
+      <ElementType {...rest} className={classes}>
         {errorLabelBefore}
         {createHTMLLabel(label, { autoGenerateKey: false })}
         {errorLabelAfter}
@@ -100,7 +100,7 @@ function FormField(props) {
   const ariaDescribedBy = id && error ? `${id}-error-message` : null
   const ariaAttrs = {
     'aria-describedby': ariaDescribedBy,
-    'aria-invalid': error ? true : undefined,
+    'aria-invalid': error !== undefined ? true : undefined,
   }
   const controlProps = { ...rest, content, children, disabled, required, type, id }
 
@@ -163,8 +163,8 @@ FormField.propTypes = {
    * Extra FormField props are passed to the control component.
    * Mutually exclusive with children.
    */
-  control: PropTypes.oneOfType([
-    PropTypes.elementType,
+  control: customPropTypes.some([
+    PropTypes.func,
     PropTypes.oneOf(['button', 'input', 'select', 'textarea']),
   ]),
 

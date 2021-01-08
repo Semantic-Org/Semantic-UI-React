@@ -1,4 +1,4 @@
-import cx from 'clsx'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 
@@ -132,8 +132,6 @@ export const names = [
   'algeria',
   'ec',
   'ecuador',
-  'england',
-  'gb eng',
   'ee',
   'estonia',
   'eg',
@@ -510,6 +508,21 @@ export const names = [
  * A flag is is used to represent a political state.
  */
 class Flag extends PureComponent {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.elementType,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
+    /** Flag name, can use the two digit country code, the full name, or a common alias. */
+    name: customPropTypes.suggest(names),
+  }
+
+  static defaultProps = {
+    as: 'i',
+  }
+
   render() {
     const { className, name } = this.props
     const classes = cx(name, 'flag', className)
@@ -518,21 +531,6 @@ class Flag extends PureComponent {
 
     return <ElementType {...rest} className={classes} />
   }
-}
-
-Flag.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.elementType,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /** Flag name, can use the two digit country code, the full name, or a common alias. */
-  name: customPropTypes.suggest(names),
-}
-
-Flag.defaultProps = {
-  as: 'i',
 }
 
 Flag.create = createShorthandFactory(Flag, (value) => ({ name: value }))
