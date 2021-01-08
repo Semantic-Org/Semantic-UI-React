@@ -33,6 +33,7 @@
     "release:major": "yarn prerelease && ta-script npm/release major && yarn postrelease",
     "release:minor": "yarn prerelease && ta-script npm/release minor && yarn postrelease",
     "release:patch": "yarn prerelease && ta-script npm/release patch && yarn postrelease",
+    "prepare": "npm run build",
     "prestart": "yarn satisfied --fix yarn",
     "start": "cross-env NODE_ENV=development gulp --series start:docs",
     "satisfied": "satisfied --ignore \"webpack\" --skip-invalid",
