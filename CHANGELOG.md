@@ -1,5 +1,22 @@
 # Change Log
 
+## v2.0.2 (2021-01-13)
+
+#### :bug: Bug Fix
+* [#4116](https://github.com/Semantic-Org/Semantic-UI-React/pull/4116) fix(Image): pass `loading` attribute to an `img` element ([@noinkling](https://github.com/noinkling))
+
+#### :memo: Documentation
+* [#4097](https://github.com/Semantic-Org/Semantic-UI-React/pull/4097) docs(Table): fix sort issue in TableExampleSortable ([@Mental1993](https://github.com/Mental1993))
+
+#### :house: Internal
+* [#4138](https://github.com/Semantic-Org/Semantic-UI-React/pull/4138) chore: bump dependencies to allow React 17 in peerDependencies ([@layershifter](https://github.com/layershifter))
+* [#4031](https://github.com/Semantic-Org/Semantic-UI-React/pull/4031) chore: support React 17 ([@layershifter](https://github.com/layershifter))
+
+#### Committers: 3
+- Malcolm ([@noinkling](https://github.com/noinkling))
+- Oleksandr Fediashov ([@layershifter](https://github.com/layershifter))
+- Pechlivanis Dimitrios ([@Mental1993](https://github.com/Mental1993))
+
 ## [v2.0.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v2.0.1) (2020-10-26)
 
 #### :bug: Bug Fix
