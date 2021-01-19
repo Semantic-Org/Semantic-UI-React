@@ -1,9 +1,14 @@
 import { Ref } from '@fluentui/react-component-ref'
 import enzyme from 'enzyme'
 import _ from 'lodash'
+import React from 'react'
 
 const diveToLevel = (wrapper, autoNesting, nestingLevel) => {
   let nestedWrapper = wrapper
+
+  if (autoNesting && nestedWrapper.is(React.Fragment)) {
+    nestedWrapper = nestedWrapper.childAt(0)
+  }
 
   if (autoNesting && nestedWrapper.is(Ref)) {
     nestedWrapper = nestedWrapper.childAt(0)

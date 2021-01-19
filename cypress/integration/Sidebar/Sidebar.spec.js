@@ -1,6 +1,13 @@
 /// <reference types="cypress" />
 
 describe('Sidebar: spec', () => {
+  it('with a Menu', () => {
+    cy.visit('/maximize/sidebar-and-menu/')
+
+    cy.get('[data-tid="menu"]').should('be.visible')
+    cy.get('[data-tid="menu-item"]').should('be.visible')
+  })
+
   it('with a Modal', () => {
     cy.visit('/maximize/sidebar-and-modal/')
 
