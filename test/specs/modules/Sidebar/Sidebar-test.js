@@ -4,7 +4,7 @@ import Sidebar from 'src/modules/Sidebar/Sidebar'
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
 
-describe.only('Sidebar', () => {
+describe('Sidebar', () => {
   common.isConformant(Sidebar)
   common.hasUIClassName(Sidebar)
   common.rendersChildren(Sidebar)
