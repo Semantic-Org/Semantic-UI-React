@@ -109,14 +109,16 @@ class Sidebar extends Component {
     const targetProp = isRefObject(target) ? { targetRef: target } : { target }
 
     return (
-      <Ref innerRef={this.ref}>
-        <ElementType {...rest} className={classes}>
-          {childrenUtils.isNil(children) ? content : children}
-          {visible && (
-            <EventListener listener={this.handleDocumentClick} type='click' {...targetProp} />
-          )}
-        </ElementType>
-      </Ref>
+      <>
+        <Ref innerRef={this.ref}>
+          <ElementType {...rest} className={classes}>
+            {childrenUtils.isNil(children) ? content : children}
+          </ElementType>
+        </Ref>
+        {visible && (
+          <EventListener listener={this.handleDocumentClick} type='click' {...targetProp} />
+        )}
+      </>
     )
   }
 }
