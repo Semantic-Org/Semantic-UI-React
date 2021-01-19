@@ -2,6 +2,7 @@
 *.iml
 
 .DS_Store
+.changelog
 .idea/
 .yarn-cache/
 

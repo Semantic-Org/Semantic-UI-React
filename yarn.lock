@@ -1102,17 +1102,17 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
-"@fluentui/react-component-event-listener@~0.51.1":
-  version "0.51.1"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-component-event-listener/-/react-component-event-listener-0.51.1.tgz#0ef671a53fcac3906425328e7b1c53b039e17379"
-  integrity sha512-5krZPZW7dDcPCTIMS1KYTVtK3PrqiootE9a4SEhpYPjnIrr3Fv91nPcQx12htsI3FQX4ppdDCaS+YNEFLumItw==
+"@fluentui/react-component-event-listener@~0.51.6":
+  version "0.51.6"
+  resolved "https://registry.yarnpkg.com/@fluentui/react-component-event-listener/-/react-component-event-listener-0.51.6.tgz#8e193b8bb20570aed09581080f110f5a95b51432"
+  integrity sha512-XbT3p28N6Bz6TsQSf4drCqJNL133DUYCSvyiWsDl7Y5IWzAMKwGcc4nETxqjP07XvInD9fJW9vOqWFlpLBe1xg==
   dependencies:
     "@babel/runtime" "^7.10.4"
 
-"@fluentui/react-component-ref@~0.51.1":
-  version "0.51.1"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-component-ref/-/react-component-ref-0.51.1.tgz#af0cc81c5c587d4e29ec4e6528a690c1b99a2fdb"
-  integrity sha512-TxYq2px9Qy8+gT2fyqgsGzBAJGS6RqNO9BEY9AJ6c0sWCByLRViBbfKRv+95gt+CowEjVbP1B5woPeLwuWSG6g==
+"@fluentui/react-component-ref@~0.51.6":
+  version "0.51.6"
+  resolved "https://registry.yarnpkg.com/@fluentui/react-component-ref/-/react-component-ref-0.51.6.tgz#ba1fc8a82a49f4775a043079ca8a234f3c02a1c4"
+  integrity sha512-FrUJKizIdL2PlUji5zMB3cTNICv/zk4/nbX6W9F+FmaEAozEm62MRZWOSAX83bnzPQX0OtPBYTenh+5dAI+BMA==
   dependencies:
     "@babel/runtime" "^7.10.4"
     react-is "^16.6.3"
@@ -1376,10 +1376,10 @@
     "@percy/agent" "~0"
     axios "^0.20.0"
 
-"@popperjs/core@^2.5.2":
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.5.2.tgz#d3217d5f630766c0c92fbd55cf285ba64de0578b"
-  integrity sha512-tVkIU9JQw5fYPxLQgok/a7I6J1eEZ79svwQGpe2mb3jlVsPADOleefOnQBiS/takK7jQuNeswCUicMH1VWVziA==
+"@popperjs/core@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.6.0.tgz#f022195afdfc942e088ee2101285a1d31c7d727f"
+  integrity sha512-cPqjjzuFWNK3BSKLm0abspP0sp/IGOli4p5I5fKFAzdS8fvjdOwDCfZqAaIiXd9lPkOWi3SUUfZof3hEb7J/uw==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.1"
@@ -1388,10 +1388,10 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@semantic-ui-react/event-stack@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@semantic-ui-react/event-stack/-/event-stack-3.1.0.tgz#aadbe4a28b0dd7703c5f451640d0fefe66dd9208"
-  integrity sha512-WHtU9wutZByZtFZxzj4BVEk+rvWldZpZhRcyv6d84+XLSolm83zLHYJLTACGuSl6Xa/xpgVXquvm9GyMudkJYg==
+"@semantic-ui-react/event-stack@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@semantic-ui-react/event-stack/-/event-stack-3.1.2.tgz#14fac9796695aa3967962d94ea9733a85325f9c4"
+  integrity sha512-Yd0Qf7lPCIjzJ9bZYfurlNu2RDXT6KKSyubHfYK3WjRauhxCsq6Fk2LMRI9DEvShoEU+AsLSv3NGkqXAcVp0zg==
   dependencies:
     exenv "^1.2.2"
     prop-types "^15.6.2"
@@ -12176,10 +12176,10 @@ react-node-resolver@^1.0.1:
   resolved "https://registry.yarnpkg.com/react-node-resolver/-/react-node-resolver-1.0.1.tgz#1798a729c0e218bf2f0e8ddf79c550d4af61d83a"
   integrity sha1-F5inKcDiGL8vDo3fecVQ1K9h2Do=
 
-react-popper@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.2.3.tgz#33d425fa6975d4bd54d9acd64897a89d904b9d97"
-  integrity sha512-mOEiMNT1249js0jJvkrOjyHsGvqcJd3aGW/agkiMoZk3bZ1fXN1wQszIQSjHIai48fE67+zwF8Cs+C4fWqlfjw==
+react-popper@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.2.4.tgz#d2ad3d2474ac9f1abf93df3099d408e5aa6a2e22"
+  integrity sha512-NacOu4zWupdQjVXq02XpTD3yFPSfg5a7fex0wa3uGKVkFK7UN6LvVxgcb+xYr56UCuWiNPMH20tntdVdJRwYew==
   dependencies:
     react-fast-compare "^3.0.1"
     warning "^4.0.2"
