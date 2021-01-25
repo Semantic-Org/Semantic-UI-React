@@ -1,5 +1,12 @@
 # Change Log
 
+## v2.0.3 (2021-01-20)
+
+#### :bug: Bug Fix
+* [#4145](https://github.com/Semantic-Org/Semantic-UI-React/pull/4145) fix(Sidebar): fix a collision between `children` and shorthand props ([@layershifter](https://github.com/layershifter))
+* [#4112](https://github.com/Semantic-Org/Semantic-UI-React/pull/4112) fix(Feed|CardGroup|ItemGroup|Search): change key checks from falsy to nullish semantics ([@noinkling](https://github.com/noinkling))
+* [#4144](https://github.com/Semantic-Org/Semantic-UI-React/pull/4144) fix(Sidebar): fix issue with Portals in React 17 ([@layershifter](https://github.com/layershifter))
+
 ## v2.0.2 (2021-01-13)
 
 #### :bug: Bug Fix
