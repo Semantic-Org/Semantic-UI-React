@@ -24,6 +24,11 @@
   margin-top: -100px !important;
 }
 
+// Targets IE 11 in order to fix centre alignment modal issue
+@media all and (-ms-high-contrast:none) {
+  *::-ms-backdrop, .ui.legacy.modal { margin-top: -200px !important; }
+}
+
 .modals.dimmer[class*='top aligned'] {
   backdrop-filter: blur(3px);
 
