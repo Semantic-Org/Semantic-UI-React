@@ -8,7 +8,9 @@
   thead {
     background: #1d2630;
     color: @white;
-    
+    background: none;
+    border-radius: 8px;
+
     th {
       font-size: 16px;
       font-weight: 500;
@@ -33,6 +35,7 @@
 
   tbody tr {
     background-color: #f6f7f9;
+    border-radius: 8px;
     cursor: pointer;
 
     &:hover {
@@ -106,6 +109,7 @@
       color: @white;
 
       &:hover {
+        background: #1d2630;
         color: @white;
       }
 
