@@ -73,3 +73,19 @@ a.ui.purple.labels {
 .ui.yellow.labels {
   color: @offBlack !important;
 }
+
+.ui.violet.label,
+.ui.violet.labels {
+  background: @lighterPurple !important;
+  border-color: @lighterPurple !important;
+  color: @offBlack !important;
+  font-weight: lighter !important;
+}
+
+.ui.olive.label,
+.ui.olive.labels {
+  background: @lighterGrey  !important;
+  border-color: @lighterGrey  !important;
+  color: @offBlack !important;
+  font-weight: lighter !important;
+} 
