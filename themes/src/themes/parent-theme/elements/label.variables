@@ -158,6 +158,8 @@
 @brownTextColor: @white;
 @greyTextColor: @white;
 @blackTextColor: @white;
+@lighterGrey: #F5F2FD;
+@lighterPurple: #D2C2F9;
 
 @redHoverTextColor: @white;
 @orangeHoverTextColor: @white;
