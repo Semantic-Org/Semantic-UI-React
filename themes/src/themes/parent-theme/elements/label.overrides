@@ -74,6 +74,7 @@ a.ui.purple.labels {
   color: @offBlack !important;
 }
 
+/* Can't add new color options to default config - this replaces violet with lighterPurple */
 .ui.violet.label,
 .ui.violet.labels {
   background: @lighterPurple !important;
@@ -82,6 +83,7 @@ a.ui.purple.labels {
   font-weight: lighter !important;
 }
 
+/* Same as above - this replaces olive with lighterGrey */
 .ui.olive.label,
 .ui.olive.labels {
   background: @lighterGrey  !important;
