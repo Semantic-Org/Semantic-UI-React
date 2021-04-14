@@ -10,12 +10,20 @@ const options = [
 class FormExampleSubcomponentControl extends Component {
   state = {}
 
-  handleChange = (e, { value }) => this.setState({ value })
+  handleChange = (e, { value }) => {
+    debugger;
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
+  handleSubmit = (e, data) => {
+    console.log(e.target.elements, e.target.elements.genders.value);
+  };
+
+  
   render() {
     const { value } = this.state
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
           <Form.Input fluid label='First name' placeholder='First name' />
           <Form.Input fluid label='Last name' placeholder='Last name' />
@@ -26,6 +34,14 @@ class FormExampleSubcomponentControl extends Component {
             placeholder='Gender'
           />
         </Form.Group>
+        <Form.Field style={{backgroundColor: "#3399ff"}}>
+            <label for="genders">HTML Select: (this on works fine)</label>
+            <select name="genders" id="genders">
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+            </select>
+        </Form.Field>
         <Form.Group inline>
           <label>Size</label>
           <Form.Radio
