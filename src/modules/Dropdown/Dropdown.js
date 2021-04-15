@@ -194,6 +194,7 @@ export default class Dropdown extends Component {
 
     if (shouldClose) {
       this.close(e, _.noop)
+      this.closeOnDocumentClick(e)
     }
   }
 
