@@ -33,6 +33,8 @@ const DropdownExampleInline = () => (
     Show me posts by{' '}
     <Dropdown
       inline
+      selection
+      multiple
       options={friendOptions}
       defaultValue={friendOptions[0].value}
     />

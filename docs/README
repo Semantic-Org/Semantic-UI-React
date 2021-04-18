@@ -1,0 +1,16 @@
+How to proceed
+To get an overview of the problem, just type in the search bar
+
+expected result : the arrow of the scrolling menu should not be above the text
+
+actual result: the text is confused with the arrow
+
+
+
+how to solve the problem :
+it is necessary to go to the example.js file
+then some line of commands must be added in the constant dropdownExampleInline
+add the following commands : multiple and selection
+nb: one of these commands is enough
+
+
