@@ -11,11 +11,10 @@ class FormExampleSubcomponentControl extends Component {
   state = {}
 
   handleChange = (e, { value }) => {
-    debugger;
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ value });
   };
 
-  handleSubmit = (e, data) => {
+  handleSubmit = (e) => {
     console.log(e.target.elements, e.target.elements.genders.value);
   };
 
@@ -35,12 +34,12 @@ class FormExampleSubcomponentControl extends Component {
           />
         </Form.Group>
         <Form.Field style={{backgroundColor: "#3399ff"}}>
-            <label for="genders">HTML Select: (this on works fine)</label>
-            <select name="genders" id="genders">
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-              <option value="other">Other</option>
-            </select>
+          <label htmlFor="genders">HTML Select: (this on works fine)</label>
+          <select name="genders" id="genders">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="other">Other</option>
+          </select>
         </Form.Field>
         <Form.Group inline>
           <label>Size</label>
