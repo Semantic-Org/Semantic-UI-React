@@ -14,7 +14,7 @@ const countryOptions = [
   { key: 'ar', value: 'ar', flag: 'ar', text: 'Argentina' },
   { key: 'am', value: 'am', flag: 'am', text: 'Armenia' },
   { key: 'aw', value: 'aw', flag: 'aw', text: 'Aruba' },
-  { key: 'au', value: 'au', flag: 'au', text: 'Australia' },
+  { disabled: true, key: 'au', value: 'au', flag: 'au', text: 'Australia' },
   { key: 'at', value: 'at', flag: 'at', text: 'Austria' },
   { key: 'az', value: 'az', flag: 'az', text: 'Azerbaijan' },
   { key: 'bs', value: 'bs', flag: 'bs', text: 'Bahamas' },
