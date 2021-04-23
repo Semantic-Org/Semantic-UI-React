@@ -2,11 +2,11 @@ import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 const countryOptions = [
-  { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
+  { disabled: true, key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
   { key: 'ax', value: 'ax', flag: 'ax', text: 'Aland Islands' },
   { key: 'al', value: 'al', flag: 'al', text: 'Albania' },
   { key: 'dz', value: 'dz', flag: 'dz', text: 'Algeria' },
-  { disabled: true, key: 'as', value: 'as', flag: 'as', text: 'American Samoa' },
+  { key: 'as', value: 'as', flag: 'as', text: 'American Samoa' },
   { key: 'ad', value: 'ad', flag: 'ad', text: 'Andorra' },
   { key: 'ao', value: 'ao', flag: 'ao', text: 'Angola' },
   { key: 'ai', value: 'ai', flag: 'ai', text: 'Anguilla' },
@@ -14,7 +14,7 @@ const countryOptions = [
   { key: 'ar', value: 'ar', flag: 'ar', text: 'Argentina' },
   { key: 'am', value: 'am', flag: 'am', text: 'Armenia' },
   { key: 'aw', value: 'aw', flag: 'aw', text: 'Aruba' },
-  { disabled: true, key: 'au', value: 'au', flag: 'au', text: 'Australia' },
+  { key: 'au', value: 'au', flag: 'au', text: 'Australia' },
   { key: 'at', value: 'at', flag: 'at', text: 'Austria' },
   { key: 'az', value: 'az', flag: 'az', text: 'Azerbaijan' },
   { key: 'bs', value: 'bs', flag: 'bs', text: 'Bahamas' },
