@@ -6,7 +6,7 @@ const countryOptions = [
   { key: 'ax', value: 'ax', flag: 'ax', text: 'Aland Islands' },
   { key: 'al', value: 'al', flag: 'al', text: 'Albania' },
   { key: 'dz', value: 'dz', flag: 'dz', text: 'Algeria' },
-  { key: 'as', value: 'as', flag: 'as', text: 'American Samoa' },
+  { disabled: true, key: 'as', value: 'as', flag: 'as', text: 'American Samoa' },
   { key: 'ad', value: 'ad', flag: 'ad', text: 'Andorra' },
   { key: 'ao', value: 'ao', flag: 'ao', text: 'Angola' },
   { key: 'ai', value: 'ai', flag: 'ai', text: 'Anguilla' },
