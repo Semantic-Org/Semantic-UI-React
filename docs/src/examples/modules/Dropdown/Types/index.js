@@ -45,6 +45,7 @@ const DropdownTypesExamples = () => (
       description='Type something that results in no results found in the dropdown search.'
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchSelection'
     />
+
     <ComponentExample
       title='Inline'
       description='A dropdown can be formatted to appear inline in other content.'
