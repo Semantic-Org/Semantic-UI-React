@@ -37,7 +37,7 @@ const DropdownTypesExamples = () => (
       title='Multiple Search Selection'
       description='A selection dropdown can allow multiple search selections.
       The dropdown arrow not being on top of the text.'
-      examplePath='modules/Dropdown/Types/DropdownExampleInline'
+      examplePath='modules/Dropdown/Types/DropdownExampleInlineclear'
     />
 
     <ComponentExample
@@ -78,11 +78,6 @@ const DropdownTypesExamples = () => (
         support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
-    <ComponentExample
-      title='Inline'
-      description='A dropdown can be formatted to appear inline in other content.'
-      examplePath='modules/Dropdown/Types/DropdownExampleInline'
-    />
     <ComponentExample examplePath='modules/Dropdown/Types/DropdownExampleInlineTwo' />
     <ComponentExample
       title='Pointing'
@@ -99,6 +94,11 @@ const DropdownTypesExamples = () => (
       title='Floating'
       description='A dropdown menu can appear to be floating below an element.'
       examplePath='modules/Dropdown/Types/DropdownExampleFloating'
+    />
+    <ComponentExample
+      title='Inline'
+      description='A dropdown can be formatted to appear inline in other content.'
+      examplePath='modules/Dropdown/Types/DropdownExampleInline'
     />
     <ComponentExample
       title='Simple'
