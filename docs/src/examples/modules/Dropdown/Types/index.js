@@ -46,6 +46,11 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchSelection'
     />
     <ComponentExample
+      title='Inline'
+      description='A dropdown can be formatted to appear inline in other content.'
+      examplePath='modules/Dropdown/Types/DropdownExampleInline'
+    />
+    <ComponentExample
       title='Clearable'
       description='Using the clearable setting will let users remove their selection from a dropdown..'
       examplePath='modules/Dropdown/Types/DropdownExampleClearable'
@@ -100,11 +105,6 @@ const DropdownTypesExamples = () => (
       title='Simple'
       description='A simple dropdown can open without Javascript.'
       examplePath='modules/Dropdown/Types/DropdownExampleSimple'
-    />
-    <ComponentExample
-      title='Inline'
-      description='A dropdown can be formatted to appear inline in other content.'
-      examplePath='modules/Dropdown/Types/DropdownExampleInline'
     />
   </ExampleSection>
 )
