@@ -1438,6 +1438,8 @@ Dropdown.defaultProps = {
   selectOnBlur: true,
   selectOnNavigation: true,
   wrapSelection: true,
+  selection:true,
+  search:true,
 }
 
 Dropdown.autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']

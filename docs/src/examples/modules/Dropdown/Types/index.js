@@ -39,6 +39,12 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchSelection'
     />
     <ComponentExample
+      title='inline Search Selection'
+      description='Type something that results in no results found in the dropdown search.
+      The dropdown arrow not being on top of the text.'
+      examplePath='modules/Dropdown/Types/DropdownExampleInline'
+    />
+    <ComponentExample
       title='Clearable'
       description='Using the clearable setting will let users remove their selection from a dropdown..'
       examplePath='modules/Dropdown/Types/DropdownExampleClearable'
