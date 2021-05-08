@@ -95,15 +95,16 @@ const DropdownTypesExamples = () => (
       description='A dropdown menu can appear to be floating below an element.'
       examplePath='modules/Dropdown/Types/DropdownExampleFloating'
     />
-    <ComponentExample
-      title='Inline'
-      description='A dropdown can be formatted to appear inline in other content.'
-      examplePath='modules/Dropdown/Types/DropdownExampleInline'
-    />
+
     <ComponentExample
       title='Simple'
       description='A simple dropdown can open without Javascript.'
       examplePath='modules/Dropdown/Types/DropdownExampleSimple'
+    />
+    <ComponentExample
+      title='Inline'
+      description='A dropdown can be formatted to appear inline in other content.'
+      examplePath='modules/Dropdown/Types/DropdownExampleInline'
     />
   </ExampleSection>
 )

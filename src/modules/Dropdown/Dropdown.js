@@ -1424,17 +1424,17 @@ Dropdown.propTypes = {
 }
 
 Dropdown.defaultProps = {
-  selection: true,
-  search: true,
   additionLabel: 'Add ',
   additionPosition: 'top',
   closeOnBlur: true,
   closeOnEscape: true,
   deburr: false,
+  search: true,
   icon: 'dropdown',
   minCharacters: 1,
   noResultsMessage: 'No results found.',
   openOnFocus: true,
+  selection: true,
   renderLabel: renderItemContent,
   searchInput: 'text',
   selectOnBlur: true,
