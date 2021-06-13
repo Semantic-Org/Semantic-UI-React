@@ -1194,6 +1194,8 @@ Dropdown.propTypes = {
   /** A disabled dropdown menu or item does not allow user interaction. */
   disabled: PropTypes.bool,
 
+  match: PropTypes.bool,
+
   /** An errored dropdown can alert a user to a problem. */
   error: PropTypes.bool,
 
@@ -1437,7 +1439,7 @@ Dropdown.defaultProps = {
   openOnFocus: true,
   renderLabel: renderItemContent,
   searchInput: 'text',
-
+  match: true,
   selectOnBlur: true,
   selectOnNavigation: true,
   wrapSelection: true,
