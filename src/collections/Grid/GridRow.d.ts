@@ -38,10 +38,10 @@ export interface StrictGridRowProps {
   /** A row can appear only for a specific device, or screen sizes. */
   only?: GridOnlyProp
 
-  /** A  row can specify that its columns should reverse order at different device sizes. */
+  /** A row can specify that its columns should reverse order at different device sizes. */
   reversed?: GridReversedProp
 
-  /** An can stretch its contents to take up the entire column height. */
+  /** A row can stretch its contents to take up the entire column height. */
   stretched?: boolean
 
   /** A row can specify its text alignment. */

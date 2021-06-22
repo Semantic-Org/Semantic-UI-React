@@ -48,13 +48,13 @@ export interface StrictGridColumnProps {
   /** A column can appear only for a specific device, or screen sizes. */
   only?: GridOnlyProp
 
-  /** An can stretch its contents to take up the entire grid or row height. */
+  /** A column can stretch its contents to take up the entire grid or row height. */
   stretched?: boolean
 
   /** A column can specify a width for a tablet device. */
   tablet?: SemanticWIDTHS
 
-  /** A row can specify its text alignment. */
+  /** A column can specify its text alignment. */
   textAlign?: SemanticTEXTALIGNMENTS
 
   /** A column can specify its vertical alignment to have all its columns vertically centered. */
