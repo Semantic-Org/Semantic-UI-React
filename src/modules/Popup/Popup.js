@@ -277,7 +277,7 @@ export default class Popup extends Component {
         ? { mountNode: referenceElement.ref.current.ownerDocument.body }
         : {}
 
-    const mergedPortalProps = { ...this.getPortalProps(), ...portalRestProps }
+    const mergedPortalProps = { ...this.getPortalProps(), ...portalRestProps, ...mountNodeProp }
     debug('portal props:', mergedPortalProps)
 
     return (
