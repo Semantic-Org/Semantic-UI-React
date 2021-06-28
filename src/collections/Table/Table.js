@@ -129,7 +129,7 @@ Table.propTypes = {
   /** A table can reduce its complexity to increase readability. */
   basic: PropTypes.oneOfType([PropTypes.oneOf(['very']), PropTypes.bool]),
 
-  /** A table may be divided each row into separate cells. */
+  /** A table may be divided into individual cells. */
   celled: PropTypes.bool,
 
   /** Primary content. */
