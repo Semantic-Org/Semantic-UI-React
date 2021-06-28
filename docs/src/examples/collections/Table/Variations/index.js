@@ -79,7 +79,7 @@ const Variations = () => (
 
     <ComponentExample
       title='Celled'
-      description='A table may be divided each row into separate cells.'
+      description='A table may be divided into individual cells.'
       examplePath='collections/Table/Variations/TableExampleCelled'
     />
 
