@@ -44,18 +44,40 @@ If you are using TypeScript, you don't need to install anything, typings are inc
 
 ### Option 2: CDN (no bundler)
 
-This is the quickest way to get started, just add this link and script tag to the `<head>` of your `index.html` file.
+This is the quickest way to get started _however_ we still recommend to use
+[Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/) or other preconfigured tooling.
+
+Follow React's guide to prepare your enrivonment: [Add React in One Minute](https://reactjs.org/docs/add-react-to-a-website.html#add-react-in-one-minute).
+And then just add this link and script tag to the `<body>` after initializing React in your `index.html` file.
 
 ```html fitted label=index.html
-<link
-  async
-  rel="stylesheet"
-  href="//cdn.jsdelivr.net/npm/semantic-ui@${props.versions.sui}/dist/semantic.min.css"
-/>
-<script
-  async
-  src="//cdn.jsdelivr.net/npm/semantic-ui@${props.versions.sui}/dist/semantic.min.js"
-></script>
+<body>
+  <!-- ... other HTML ... -->
+  <!-- ... Load React ... -->
+
+  <link
+    async
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/semantic.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui-react/dist/umd/semantic-ui-react.min.js"></script>
+
+  <!-- Load our React component. -->
+  <script src="like_button.js"></script>
+</body>
+```
+
+```js label=like_button.js
+const e = React.createElement
+const { Button } = semanticUIReact
+
+// ... Other JS code ...
+
+const domContainer = document.querySelector('#like_button_container')
+
+// 💡 This example is simplied to use React without JSX
+//    https://reactjs.org/docs/react-without-jsx.html
+ReactDOM.render(e(Button, { primary: true }, 'Hello world!'), domContainer)
 ```
 
 ## Custom themes
@@ -70,9 +92,9 @@ Semantic UI React is fully supported by all modern JavaScript bundlers.
 
 Semantic UI React is fully compatible with `create-react-app` and works out the box. Setting up of custom theme is covered in [Theming guide](/theming).
 
-### Webpack 4
+### Webpack 4/5
 
-Semantic UI React is fully supported by Webpack 4. Please ensure that you build your app in [production mode](https://webpack.js.org/guides/production/) before release. Semantic UI React includes several optimizations in production mode, such as stripping `propTypes` from your build.
+Semantic UI React is fully supported by Webpack 4/5. Please ensure that you build your app in [production mode](https://webpack.js.org/guides/production/) before release. Semantic UI React includes several optimizations in production mode, such as stripping `propTypes` from your build.
 
 ## Examples
 
