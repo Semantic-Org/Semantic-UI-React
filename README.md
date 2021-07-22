@@ -47,11 +47,11 @@ See the [**Documentation**][2] for an introduction, usage information, and examp
 - Microsoft's [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
 
 ## Elements
-Button [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
+Button [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software).
 
-Contianer [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
-Divider [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
-Flag [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
+Contianer [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software).
+Divider [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software).
+Flag [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software).
 
 ## Example Projects
 
