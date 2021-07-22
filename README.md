@@ -50,7 +50,9 @@ See the [**Documentation**][2] for an introduction, usage information, and examp
 Button [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software).
 
 Contianer [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software).
+
 Divider [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software).
+
 Flag [Demo](https://products.office.com/en-US/microsoft-teams/group-chat-software).
 
 ## Example Projects
