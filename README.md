@@ -46,6 +46,12 @@ See the [**Documentation**][2] for an introduction, usage information, and examp
 - Netflix's [flamescope][31]
 - Microsoft's [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
 
+## Elements
+Button [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
+Contianer [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
+Divider [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
+Flag [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
+
 ## Example Projects
 
 This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
