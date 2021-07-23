@@ -21,89 +21,74 @@ describe('AccordionAccordion', () => {
       { key: 'C', title: 'C', content: 'Something C' },
     ]
 
-    it('defaults to -1', () => {
-      shallow(<AccordionAccordion />).should.have.state('activeIndex', -1)
+    it('there is no active items by default', () => {
+      mount(<AccordionAccordion />).should.not.have.descendants('.active')
     })
 
-    it('defaults to -1 when "exclusive" is false', () => {
-      shallow(<AccordionAccordion exclusive={false} />)
-        .should.have.state('activeIndex')
-        .that.is.empty()
+    it('there is no active items by default when "exclusive" is false', () => {
+      mount(<AccordionAccordion exclusive={false} />).should.not.have.descendants('.active')
     })
 
-    it('makes Accordion.Content at activeIndex - 0 "active"', () => {
-      const wrapper = shallow(<AccordionAccordion activeIndex={0} panels={panels} />)
+    it('activates an item', () => {
+      const wrapper = mount(<AccordionAccordion activeIndex={0} panels={panels} />)
 
-      wrapper.childAt(0).should.have.prop('active', true)
-      wrapper.childAt(1).should.have.prop('active', false)
-      wrapper.childAt(2).should.have.prop('active', false)
+      wrapper.find('.title').at(0).should.have.className('active')
+      wrapper.find('.title').at(1).should.not.have.className('active')
+      wrapper.find('.title').at(2).should.not.have.className('active')
     })
 
-    it('is toggled to -1 when clicking Title a second time', () => {
+    it('items can be toggled by a click', () => {
       const wrapper = mount(<AccordionAccordion panels={panels} />)
 
-      wrapper.find(AccordionTitle).at(0).simulate('click')
-      wrapper.should.have.state('activeIndex', 0)
+      wrapper.find('.title').at(0).simulate('click')
+      wrapper.find('.title').at(0).should.have.className('active')
 
-      wrapper.find(AccordionTitle).at(0).simulate('click')
-      wrapper.should.have.state('activeIndex', -1)
+      wrapper.find('.title').at(0).simulate('click')
+      wrapper.find('.title').at(0).should.not.have.className('active')
     })
 
-    it('sets the correct panel active', () => {
-      const wrapper = shallow(<AccordionAccordion activeIndex={0} panels={panels} />)
-
-      wrapper.childAt(0).should.have.prop('active', true)
-      wrapper.childAt(1).should.have.prop('active', false)
-      wrapper.childAt(2).should.have.prop('active', false)
+    it('activates a proper item', () => {
+      const wrapper = mount(<AccordionAccordion activeIndex={0} panels={panels} />)
 
       wrapper.setProps({ activeIndex: 1 })
-      wrapper.childAt(0).should.have.prop('active', false)
-      wrapper.childAt(1).should.have.prop('active', true)
-      wrapper.childAt(2).should.have.prop('active', false)
+      wrapper.find('.title').at(0).should.not.have.className('active')
+      wrapper.find('.title').at(1).should.have.className('active')
+      wrapper.find('.title').at(2).should.not.have.className('active')
     })
 
-    it('can be an array', () => {
-      const wrapper = shallow(
-        <AccordionAccordion activeIndex={[0, 1]} exclusive={false} panels={panels} />,
-      )
-      wrapper.childAt(0).should.have.prop('active', true)
-      wrapper.childAt(1).should.have.prop('active', true)
-      wrapper.childAt(2).should.have.prop('active', false)
-
-      wrapper.setProps({ activeIndex: [1, 2] })
-      wrapper.childAt(0).should.have.prop('active', false)
-      wrapper.childAt(1).should.have.prop('active', true)
-      wrapper.childAt(2).should.have.prop('active', true)
-    })
-
-    it('can be inclusive and makes Accordion.Content at activeIndex - 1 "active"', () => {
-      const wrapper = shallow(
+    it('can activate a single item when "exclusive" is false', () => {
+      const wrapper = mount(
         <AccordionAccordion activeIndex={[0]} exclusive={false} panels={panels} />,
       )
 
-      wrapper.childAt(0).should.have.prop('active', true)
-      wrapper.childAt(1).should.have.prop('active', false)
-      wrapper.childAt(2).should.have.prop('active', false)
+      wrapper.find('.title').at(0).should.have.className('active')
+      wrapper.find('.title').at(1).should.not.have.className('active')
+      wrapper.find('.title').at(2).should.not.have.className('active')
     })
 
-    it('can be inclusive and allows multiple open', () => {
-      const wrapper = shallow(
+    it('can activate multiple items when "exclusive" is false', () => {
+      const wrapper = mount(
         <AccordionAccordion activeIndex={[0, 1]} exclusive={false} panels={panels} />,
       )
+      wrapper.find('.title').at(0).should.have.className('active')
+      wrapper.find('.title').at(1).should.have.className('active')
+      wrapper.find('.title').at(2).should.not.have.className('active')
 
-      wrapper.childAt(0).should.have.prop('active', true)
-      wrapper.childAt(1).should.have.prop('active', true)
-      wrapper.childAt(2).should.have.prop('active', false)
+      wrapper.setProps({ activeIndex: [1, 2] })
+      wrapper.find('.title').at(0).should.not.have.className('active')
+      wrapper.find('.title').at(1).should.have.className('active')
+      wrapper.find('.title').at(2).should.have.className('active')
     })
 
     it('can be inclusive and can open multiple panels by clicking', () => {
       const wrapper = mount(<AccordionAccordion exclusive={false} panels={panels} />)
 
-      wrapper.find(AccordionTitle).at(0).simulate('click')
-      wrapper.should.have.state('activeIndex').that.includes(0)
+      wrapper.find('.title').at(0).simulate('click')
+      wrapper.find('.title').at(0).should.have.className('active')
 
-      wrapper.find(AccordionTitle).at(1).simulate('click')
-      wrapper.should.have.state('activeIndex').that.includes(0, 1)
+      wrapper.find('.title').at(1).simulate('click')
+      wrapper.find('.title').at(0).should.have.className('active')
+      wrapper.find('.title').at(1).should.have.className('active')
     })
 
     it('can be inclusive and close multiple panels by clicking', () => {
@@ -111,11 +96,13 @@ describe('AccordionAccordion', () => {
         <AccordionAccordion defaultActiveIndex={[0, 1]} exclusive={false} panels={panels} />,
       )
 
-      wrapper.find(AccordionTitle).at(0).simulate('click')
-      wrapper.should.have.state('activeIndex').that.includes(1)
+      wrapper.find('.title').at(0).simulate('click')
+      wrapper.find('.title').at(0).should.not.have.className('active')
+      wrapper.find('.title').at(1).should.have.className('active')
 
-      wrapper.find(AccordionTitle).at(1).simulate('click')
-      wrapper.should.have.state('activeIndex').that.is.empty()
+      wrapper.find('.title').at(1).simulate('click')
+      wrapper.find('.title').at(0).should.not.have.className('active')
+      wrapper.find('.title').at(1).should.not.have.className('active')
     })
 
     it('warns if is `exclusive` and is given an array', () => {
@@ -139,7 +126,18 @@ describe('AccordionAccordion', () => {
 
   describe('defaultActiveIndex', () => {
     it('sets the initial activeIndex state', () => {
-      shallow(<AccordionAccordion defaultActiveIndex={123} />).should.have.state('activeIndex', 123)
+      const wrapper = mount(
+        <AccordionAccordion
+          defaultActiveIndex={1}
+          panels={[
+            { key: 'A', title: 'A', content: 'Something A' },
+            { key: 'B', title: 'B', content: 'Something B' },
+          ]}
+        />,
+      )
+
+      wrapper.find('.title').at(0).should.not.have.className('active')
+      wrapper.find('.title').at(1).should.have.className('active')
     })
   })
 
@@ -153,14 +151,11 @@ describe('AccordionAccordion', () => {
     ]
 
     it('is called with (e, titleProps) when clicked', () => {
-      mount(<AccordionAccordion panels={panels} onTitleClick={onTitleClick} />)
-        .find(AccordionTitle)
-        .at(0)
-        .simulate('click', event)
+      const wrapper = mount(<AccordionAccordion panels={panels} onTitleClick={onTitleClick} />)
 
+      wrapper.find('.title').at(0).simulate('click', event)
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(event, { index: 0, content: 'A' })
-
       onTitleClick.should.have.been.calledOnce()
       onTitleClick.should.have.been.calledWithMatch(event, { index: 0, content: 'A' })
     })

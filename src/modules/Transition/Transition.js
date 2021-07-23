@@ -87,7 +87,11 @@ export default class Transition extends Component {
     const durationType = TRANSITION_CALLBACK_TYPE[nextStatus]
     const durationValue = normalizeTransitionDuration(duration, durationType)
 
-    this.timeoutId = setTimeout(() => this.setState({ status: nextStatus }), durationValue)
+    if (durationValue === 0) {
+      this.setState({ status: nextStatus })
+    } else {
+      this.timeoutId = setTimeout(() => this.setState({ status: nextStatus }), durationValue)
+    }
   }
 
   updateStatus = (prevState) => {
@@ -161,7 +165,7 @@ export default class Transition extends Component {
     debug('render(): state', this.state)
 
     const { children } = this.props
-    const { status } = this.state
+    const { nextStatus, status } = this.state
 
     if (status === TRANSITION_STATUS_UNMOUNTED) {
       return null
@@ -170,6 +174,10 @@ export default class Transition extends Component {
     return cloneElement(children, {
       className: this.computeClasses(),
       style: this.computeStyle(),
+      ...(process.env.NODE_ENV !== 'production' && {
+        'data-test-status': status,
+        'data-test-next-status': nextStatus,
+      }),
     })
   }
 }
