@@ -8,7 +8,6 @@ import {
   TRANSITION_STATUS_ENTERING,
   TRANSITION_STATUS_EXITED,
   TRANSITION_STATUS_EXITING,
-  TRANSITION_STATUS_UNMOUNTED,
 } from 'src/modules/Transition/utils/computeStatuses'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
@@ -39,12 +38,12 @@ describe('Transition', () => {
           </Transition>,
         )
 
-        wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+        wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
         animation.split(' ').forEach((className) => wrapper.should.have.className(className))
         wrapper.should.have.className('in')
 
         wrapper.setProps({ visible: false })
-        wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+        wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
         animation.split(' ').forEach((className) => wrapper.should.have.className(className))
         wrapper.should.have.className('out')
       })
@@ -58,12 +57,12 @@ describe('Transition', () => {
           </Transition>,
         )
 
-        wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+        wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
         wrapper.should.have.className(animation)
         wrapper.should.not.have.className('in')
 
         wrapper.setProps({ visible: false })
-        wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+        wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
         wrapper.should.have.className(animation)
         wrapper.should.not.have.className('out')
       })
@@ -76,11 +75,11 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
       wrapper.should.have.className('jump')
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
       wrapper.should.have.className('jump')
     })
   })
@@ -153,11 +152,11 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
       wrapper.should.have.className('in')
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
       wrapper.should.have.className('out')
     })
 
@@ -168,11 +167,11 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
       wrapper.should.have.not.className('in')
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
       wrapper.should.have.not.className('out')
     })
   })
@@ -205,8 +204,8 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERED)
-      wrapper.should.have.not.state('nextStatus')
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERED)
+      wrapper.find('p').should.not.have.data('test-next-status')
     })
 
     it('sets statuses when `visible` is false', () => {
@@ -216,8 +215,7 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_UNMOUNTED)
-      wrapper.should.have.not.state('nextStatus')
+      wrapper.should.have.not.descendants('p')
     })
 
     it('sets statuses when mount is disabled', () => {
@@ -227,8 +225,8 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITED)
-      wrapper.should.have.not.state('nextStatus')
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITED)
+      wrapper.find('p').should.not.have.data('test-next-status')
     })
   })
 
@@ -250,7 +248,7 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
       wrapper.should.have.style('animation-duration', '500ms')
     })
 
@@ -261,7 +259,7 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
       wrapper.should.have.style('animation-duration', '1000ms')
     })
 
@@ -272,7 +270,7 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
       wrapper.should.have.style('animation-duration', '2000ms')
     })
 
@@ -283,7 +281,7 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITED)
       wrapper.should.not.have.style('animation-duration')
     })
 
@@ -295,7 +293,7 @@ describe('Transition', () => {
       )
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
       wrapper.should.have.style('animation-duration')
     })
 
@@ -306,7 +304,7 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
       wrapper.should.have.style('animation-duration', '1000ms')
     })
 
@@ -318,7 +316,7 @@ describe('Transition', () => {
       )
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
       wrapper.should.have.style('animation-duration', '1000ms')
     })
   })
@@ -331,11 +329,11 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_EXITED)
     })
 
     it('updates status when set to false while ENTERED', () => {
@@ -344,11 +342,11 @@ describe('Transition', () => {
           <p />
         </Transition>,
       )
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERED)
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_EXITED)
     })
 
     it('updates status when set to true while UNMOUNTED', () => {
@@ -357,12 +355,11 @@ describe('Transition', () => {
           <p />
         </Transition>,
       )
-
-      wrapper.should.have.state('status', TRANSITION_STATUS_UNMOUNTED)
+      wrapper.should.have.not.descendants('p')
 
       wrapper.setProps({ visible: true })
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_ENTERED)
     })
 
     it('updates next status when set to true while performs an ENTERING transition', (done) => {
@@ -372,11 +369,11 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_EXITED)
     })
 
     it('updates next status when set to true while performs an EXITING transition', (done) => {
@@ -386,15 +383,15 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERED)
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_EXITED)
 
       wrapper.setProps({ visible: true })
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_ENTERED)
     })
   })
 
@@ -474,14 +471,14 @@ describe('Transition', () => {
       )
 
       wrapper.setProps({ visible: false })
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
 
       setTimeout(() => {
-        wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
+        wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
       }, 100)
       setTimeout(() => {
         onHide.should.have.been.calledOnce()
-        wrapper.should.have.state('status', TRANSITION_STATUS_EXITED)
+        wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITED)
 
         done()
       }, 200)
@@ -498,13 +495,13 @@ describe('Transition', () => {
 
       wrapper.setProps({ visible: false })
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_EXITED)
 
       wrapper.setProps({})
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_EXITING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_EXITED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_EXITED)
 
       onStart.should.have.been.calledOnce()
       done()
@@ -541,14 +538,14 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
 
       setTimeout(() => {
-        wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
+        wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
       }, 100)
       setTimeout(() => {
         onShow.should.have.been.calledOnce()
-        wrapper.should.have.state('status', TRANSITION_STATUS_ENTERED)
+        wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERED)
         done()
       }, 200)
     })
@@ -585,13 +582,13 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_ENTERED)
 
       wrapper.setProps({})
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_ENTERED)
 
       onStart.should.have.been.calledOnce()
       done()
@@ -619,38 +616,34 @@ describe('Transition', () => {
         </Transition>,
       )
 
-      wrapper.should.have.state('status', TRANSITION_STATUS_ENTERING)
-      wrapper.should.have.state('nextStatus', TRANSITION_STATUS_ENTERED)
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_ENTERING)
+      wrapper.find('p').should.have.data('test-next-status', TRANSITION_STATUS_ENTERED)
     })
   })
 
   describe('unmountOnHide', () => {
-    it('unmounts child when true', (done) => {
-      const onHide = () => {
-        wrapper.should.have.state('status', TRANSITION_STATUS_UNMOUNTED)
-        done()
-      }
-
+    it('unmounts child when true', () => {
       wrapperMount(
-        <Transition duration={0} onHide={onHide} transitionOnMount={false} unmountOnHide>
+        <Transition duration={0} transitionOnMount={false} unmountOnHide>
           <p />
         </Transition>,
       )
+
       wrapper.setProps({ visible: false })
+      wrapper.update()
+      wrapper.should.have.not.descendants('p')
     })
 
-    it('lefts mounted when false', (done) => {
-      const onHide = () => {
-        wrapper.should.have.state('status', TRANSITION_STATUS_EXITED)
-        done()
-      }
-
+    it('lefts mounted when false', () => {
       wrapperMount(
-        <Transition duration={5} onHide={onHide} transitionOnMount={false} unmountOnHide={false}>
+        <Transition duration={0} transitionOnMount={false} unmountOnHide={false}>
           <p />
         </Transition>,
       )
+
       wrapper.setProps({ visible: false })
+      wrapper.update()
+      wrapper.find('p').should.have.data('test-status', TRANSITION_STATUS_EXITED)
     })
   })
 })

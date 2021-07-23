@@ -4,68 +4,26 @@ import TransitionablePortal from 'src/addons/TransitionablePortal/Transitionable
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox, assertWithTimeout } from 'test/utils'
 
-// ----------------------------------------
-// Wrapper
-// ----------------------------------------
-let wrapper
-
-// we need to unmount the modal after every test to remove it from the document
-// wrap the render methods to update a global wrapper that is unmounted after each test
-const wrapperMount = (...args) => (wrapper = mount(...args))
-const wrapperShallow = (...args) => (wrapper = shallow(...args))
-
 const quickTransition = { duration: 0 }
 const requiredProps = {
-  children: <div />,
+  children: <div id='children' />,
 }
 
 describe('TransitionablePortal', () => {
-  beforeEach(() => {
-    wrapper = undefined
-    document.body.innerHTML = ''
-  })
-
-  afterEach(() => {
-    if (wrapper && wrapper.unmount) wrapper.unmount()
-  })
-
   common.isConformant(TransitionablePortal, { requiredProps })
 
   describe('children', () => {
-    it('renders a Portal', () => {
-      wrapperShallow(<TransitionablePortal {...requiredProps} />).should.have.descendants('Portal')
-    })
-
     it('renders a Transition', () => {
-      wrapperShallow(<TransitionablePortal {...requiredProps} />).should.have.descendants(
-        'Transition',
-      )
-    })
-  })
+      const wrapper = mount(<TransitionablePortal {...requiredProps} open />)
 
-  describe('getDerivedStateFromProps', () => {
-    it('passes `open` prop to `portalOpen` when defined', () => {
-      wrapperMount(<TransitionablePortal {...requiredProps} />)
-
-      wrapper.setProps({ open: true })
-      wrapper.should.have.state('portalOpen', true)
-      wrapper.setProps({ open: false })
-      wrapper.should.have.state('portalOpen', false)
-    })
-
-    it('does not pass `open` prop to `portalOpen` when not defined', () => {
-      wrapperMount(<TransitionablePortal {...requiredProps} />)
-
-      wrapper.setProps({ transition: {} })
-      wrapper.should.have.not.state('portalOpen')
+      wrapper.should.have.descendants('.transition')
     })
   })
 
   describe('onClose', () => {
-    it('is called with (null, data) when Portal closes', (done) => {
+    it('is called with (null, data) on a click outside', (done) => {
       const onClose = sandbox.spy()
-
-      wrapperMount(
+      const wrapper = mount(
         <TransitionablePortal
           {...requiredProps}
           onClose={onClose}
@@ -80,36 +38,33 @@ describe('TransitionablePortal', () => {
       assertWithTimeout(() => {
         onClose.should.have.been.calledOnce()
         onClose.should.have.been.calledWithMatch(null, { portalOpen: false })
+
+        wrapper.unmount()
       }, done)
     })
 
-    it('changes `portalOpen` to false', () => {
-      wrapperMount(
-        <TransitionablePortal
-          {...requiredProps}
-          transition={quickTransition}
-          trigger={<button />}
-        />,
-      )
+    it('hides contents on a click outside', () => {
+      const wrapper = mount(<TransitionablePortal {...requiredProps} trigger={<button />} />)
 
       wrapper.find('button').simulate('click')
-      domEvent.click(document.body)
+      wrapper.should.have.descendants('.in#children')
 
-      wrapper.should.have.state('portalOpen', false)
+      domEvent.click(document.body)
+      wrapper.update()
+      wrapper.should.have.descendants('.out#children')
     })
   })
 
   describe('onHide', () => {
     it('is called with (null, data) when exiting transition finished', (done) => {
       const onHide = sandbox.spy()
-      const trigger = <button />
-      wrapperMount(
+      const wrapper = mount(
         <TransitionablePortal
           {...requiredProps}
           onHide={onHide}
           open
           transition={quickTransition}
-          trigger={trigger}
+          trigger={<button />}
         />,
       )
 
@@ -121,37 +76,58 @@ describe('TransitionablePortal', () => {
           portalOpen: false,
           transitionVisible: false,
         })
+
+        wrapper.unmount()
       }, done)
     })
   })
 
   describe('onOpen', () => {
-    it('is called with (null, data) when Portal opens', () => {
+    it('is called with (null, data) when opens', () => {
       const onOpen = sandbox.spy()
+      const wrapper = mount(
+        <TransitionablePortal {...requiredProps} onOpen={onOpen} trigger={<button />} />,
+      )
 
-      wrapperMount(<TransitionablePortal {...requiredProps} onOpen={onOpen} trigger={<button />} />)
       wrapper.find('button').simulate('click')
-
       onOpen.should.have.been.calledOnce()
       onOpen.should.have.been.calledWithMatch(null, { portalOpen: true })
     })
 
-    it('changes `portalOpen` to true', () => {
-      wrapperMount(<TransitionablePortal {...requiredProps} trigger={<button />} />)
+    it('renders contents', () => {
+      const wrapper = mount(<TransitionablePortal {...requiredProps} trigger={<button />} />)
 
       wrapper.find('button').simulate('click')
-      wrapper.should.have.state('portalOpen', true)
+      wrapper.should.have.descendants('.in#children')
     })
   })
 
   describe('open', () => {
-    it('does not block update of state on Portal close', () => {
-      wrapperMount(<TransitionablePortal {...requiredProps} open />)
-      wrapper.should.have.state('portalOpen', true)
-      wrapper.update()
+    it('does not block update of state on a portal close', () => {
+      const wrapper = mount(<TransitionablePortal {...requiredProps} open />)
+      wrapper.should.have.descendants('.in#children')
 
       domEvent.click(document.body)
-      wrapper.should.have.state('portalOpen', false)
+      wrapper.update()
+      wrapper.should.have.descendants('.out#children')
+    })
+
+    it('passes `open` prop to Transition when defined', () => {
+      const wrapper = mount(<TransitionablePortal {...requiredProps} />)
+
+      wrapper.setProps({ open: true })
+      wrapper.should.have.descendants('.in#children')
+
+      wrapper.setProps({ open: false })
+      wrapper.should.have.descendants('.out#children')
+    })
+
+    it('does not pass `open` prop to Transition when not defined', () => {
+      const wrapper = mount(<TransitionablePortal {...requiredProps} />)
+      wrapper.should.have.not.descendants('#children')
+
+      wrapper.setProps({ transition: {} })
+      wrapper.should.have.not.descendants('#children')
     })
   })
 })
