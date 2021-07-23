@@ -2,6 +2,7 @@ import _ from 'lodash'
 
 import { customPropTypes } from 'src/lib'
 import { componentInfoContext } from 'docs/src/utils'
+import { getComponentName, getComponentProps } from 'test/utils'
 import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
 
 const isShorthand = (propType) =>
@@ -27,8 +28,8 @@ const shorthandMap = {
  * @param {array} [options.ignoredTypingsProps=[]] Props that will be ignored in tests.
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
-export default (Component, componentInfo, options = {}) => {
-  const { displayName, repoPath } = componentInfoContext.fromComponent(Component)
+export default function hasValidTypings(Component, componentInfo, options = {}) {
+  const { displayName, repoPath } = componentInfoContext.byDisplayName[getComponentName(Component)]
   const { ignoredTypingsProps = [], requiredProps } = options
 
   const tsFile = repoPath.replace('src/', '').replace('.js', '.d.ts')
@@ -79,7 +80,7 @@ export default (Component, componentInfo, options = {}) => {
       })
 
       it('match the typings interface', () => {
-        const componentPropTypes = _.get(Component, 'propTypes')
+        const componentPropTypes = getComponentProps(Component).propTypes
         const componentProps = _.keys(componentPropTypes)
         const interfaceProps = _.without(_.map(props, 'name'), ...ignoredTypingsProps)
 
