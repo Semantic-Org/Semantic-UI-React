@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import faker from 'faker'
 import React from 'react'
 
 import Image from 'src/elements/Image/Image'
@@ -9,6 +10,21 @@ import * as common from 'test/specs/commonTests'
 
 describe('Image', () => {
   common.isConformant(Image)
+
+  common.forwardsRef(Image, { tagName: 'img' })
+  common.forwardsRef(Image, {
+    requiredProps: { as: 'div', children: <span /> },
+    tagName: 'div',
+  })
+  common.forwardsRef(Image, {
+    requiredProps: { as: 'div', content: <span /> },
+    tagName: 'div',
+  })
+  common.forwardsRef(Image, {
+    requiredProps: { label: faker.lorem.word() },
+    tagName: 'img',
+  })
+
   common.hasSubcomponents(Image, [ImageGroup])
   common.hasUIClassName(Image)
   common.rendersChildren(Image)
@@ -40,10 +56,8 @@ describe('Image', () => {
   common.propValueOnlyToClassName(Image, 'size', SUI.SIZES)
 
   describe('as', () => {
-    it('renders an img tag', () => {
-      shallow(<Image />)
-        .type()
-        .should.equal('img')
+    it('renders "i" by default', () => {
+      mount(<Image />).should.have.tagName('img')
     })
   })
 
