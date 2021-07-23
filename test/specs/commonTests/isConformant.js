@@ -1,12 +1,19 @@
 import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
+import ReactIs from 'react-is'
 import ReactDOMServer from 'react-dom/server'
 import * as semanticUIReact from 'semantic-ui-react'
 
 import { componentInfoContext } from 'docs/src/utils'
-import { assertBodyContains, consoleUtil, sandbox, syntheticEvent } from 'test/utils'
-import helpers from './commonHelpers'
+import {
+  assertBodyContains,
+  consoleUtil,
+  getComponentName,
+  getComponentProps,
+  sandbox,
+  syntheticEvent,
+} from 'test/utils'
 import hasValidTypings from './hasValidTypings'
 
 /**
@@ -20,7 +27,7 @@ import hasValidTypings from './hasValidTypings'
  * @param {boolean} [options.rendersPortal=false] Does this component render a Portal powered component?
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
-export default (Component, options = {}) => {
+export default function isConformant(Component, options = {}) {
   const {
     eventTargets = {},
     nestingLevel = 0,
@@ -29,25 +36,26 @@ export default (Component, options = {}) => {
     rendersFragmentByDefault = false,
     rendersPortal = false,
   } = options
-  const { throwError } = helpers('isConformant', Component)
+  const constructorName = getComponentName(Component)
 
-  const componentType = typeof Component
-
-  // make sure components are properly exported
-  if (componentType !== 'function') {
-    throwError(`Components should export a class or function, got: ${componentType}.`)
-  }
-
-  // tests depend on Component constructor names, enforce them
-  const constructorName = Component.prototype.constructor.name
-  if (!constructorName) {
-    throwError(
-      [
-        'Component is not a named function. This should help identify it:\n\n',
-        `${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
-      ].join(''),
+  it('a valid component should be exported', () => {
+    expect(ReactIs.isValidElementType(Component)).to.equal(
+      true,
+      `Components should export a class or function, got: ${typeof Component}.`,
     )
-  }
+  })
+
+  it('a component should be a function/class or "displayName" should be defined', () => {
+    if (!constructorName) {
+      throw new Error(
+        [
+          'Component is not a named function and does not have a "displayName".',
+          'This should help identify it:\n\n',
+          `${ReactDOMServer.renderToStaticMarkup(<Component {...requiredProps} />)}`,
+        ].join(''),
+      )
+    }
+  })
 
   const info = componentInfoContext.byDisplayName[constructorName]
 
@@ -192,20 +200,22 @@ export default (Component, options = {}) => {
   }
 
   describe('handles props', () => {
+    const componentProps = getComponentProps(Component)
+
     it('defines handled props in Component.handledProps', () => {
-      Component.should.have.any.keys('handledProps')
-      Component.handledProps.should.be.an('array')
+      componentProps.should.have.any.keys('handledProps')
+      componentProps.handledProps.should.be.an('array')
     })
 
     it('Component.handledProps includes all handled props', () => {
       const computedProps = _.union(
-        Component.autoControlledProps,
-        _.keys(Component.defaultProps),
-        _.keys(Component.propTypes),
+        componentProps.autoControlledProps,
+        _.keys(componentProps.defaultProps),
+        _.keys(componentProps.propTypes),
       )
       const expectedProps = _.uniq(computedProps).sort()
 
-      Component.handledProps.should.to.deep.equal(
+      componentProps.handledProps.should.to.deep.equal(
         expectedProps,
         'It seems that not all props were defined in Component.handledProps, you need to check that they are equal ' +
           'to the union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes',
@@ -376,6 +386,7 @@ export default (Component, options = {}) => {
       })
     })
   }
+
   // ----------------------------------------
   // Test typings
   // ----------------------------------------
