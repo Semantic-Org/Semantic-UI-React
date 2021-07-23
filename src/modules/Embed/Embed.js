@@ -1,4 +1,5 @@
 import cx from 'clsx'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -57,10 +58,9 @@ export default class Embed extends Component {
   }
 
   handleClick = (e) => {
-    const { onClick } = this.props
     const { active } = this.state
 
-    if (onClick) onClick(e, { ...this.props, active: true })
+    _.invoke(this.props, 'onClick', e, { ...this.props, active: true })
     if (!active) this.setState({ active: true })
   }
 
