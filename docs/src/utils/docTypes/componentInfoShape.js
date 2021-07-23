@@ -17,7 +17,6 @@ const componentInfoShape = PropTypes.shape({
       name: PropTypes.string,
     }),
   ),
-  constructorName: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   isParent: PropTypes.bool.isRequired,
   isChild: PropTypes.bool.isRequired,
