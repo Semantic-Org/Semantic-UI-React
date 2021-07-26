@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -12,6 +12,7 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  useEventCallback,
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import MessageContent from './MessageContent'
@@ -23,86 +24,82 @@ import MessageItem from './MessageItem'
  * A message displays information that explains nearby content.
  * @see Form
  */
-export default class Message extends Component {
-  handleDismiss = (e) => {
-    const { onDismiss } = this.props
+const Message = React.forwardRef(function (props, ref) {
+  const {
+    attached,
+    children,
+    className,
+    color,
+    compact,
+    content,
+    error,
+    floating,
+    header,
+    hidden,
+    icon,
+    info,
+    list,
+    negative,
+    onDismiss,
+    positive,
+    size,
+    success,
+    visible,
+    warning,
+  } = props
 
-    if (onDismiss) onDismiss(e, this.props)
-  }
+  const classes = cx(
+    'ui',
+    color,
+    size,
+    useKeyOnly(compact, 'compact'),
+    useKeyOnly(error, 'error'),
+    useKeyOnly(floating, 'floating'),
+    useKeyOnly(hidden, 'hidden'),
+    useKeyOnly(icon, 'icon'),
+    useKeyOnly(info, 'info'),
+    useKeyOnly(negative, 'negative'),
+    useKeyOnly(positive, 'positive'),
+    useKeyOnly(success, 'success'),
+    useKeyOnly(visible, 'visible'),
+    useKeyOnly(warning, 'warning'),
+    useKeyOrValueAndKey(attached, 'attached'),
+    'message',
+    className,
+  )
+  const rest = getUnhandledProps(Message, props)
+  const ElementType = getElementType(Message, props)
 
-  render() {
-    const {
-      attached,
-      children,
-      className,
-      color,
-      compact,
-      content,
-      error,
-      floating,
-      header,
-      hidden,
-      icon,
-      info,
-      list,
-      negative,
-      onDismiss,
-      positive,
-      size,
-      success,
-      visible,
-      warning,
-    } = this.props
+  const handleDismiss = useEventCallback((e) => {
+    _.invoke(props, 'onDismiss', e, props)
+  })
+  const dismissIcon = onDismiss && <Icon name='close' onClick={handleDismiss} />
 
-    const classes = cx(
-      'ui',
-      color,
-      size,
-      useKeyOnly(compact, 'compact'),
-      useKeyOnly(error, 'error'),
-      useKeyOnly(floating, 'floating'),
-      useKeyOnly(hidden, 'hidden'),
-      useKeyOnly(icon, 'icon'),
-      useKeyOnly(info, 'info'),
-      useKeyOnly(negative, 'negative'),
-      useKeyOnly(positive, 'positive'),
-      useKeyOnly(success, 'success'),
-      useKeyOnly(visible, 'visible'),
-      useKeyOnly(warning, 'warning'),
-      useKeyOrValueAndKey(attached, 'attached'),
-      'message',
-      className,
-    )
-
-    const dismissIcon = onDismiss && <Icon name='close' onClick={this.handleDismiss} />
-    const rest = getUnhandledProps(Message, this.props)
-    const ElementType = getElementType(Message, this.props)
-
-    if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType {...rest} className={classes}>
-          {dismissIcon}
-          {children}
-        </ElementType>
-      )
-    }
-
+  if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {dismissIcon}
-        {Icon.create(icon, { autoGenerateKey: false })}
-        {(!_.isNil(header) || !_.isNil(content) || !_.isNil(list)) && (
-          <MessageContent>
-            {MessageHeader.create(header, { autoGenerateKey: false })}
-            {MessageList.create(list, { autoGenerateKey: false })}
-            {createHTMLParagraph(content, { autoGenerateKey: false })}
-          </MessageContent>
-        )}
+        {children}
       </ElementType>
     )
   }
-}
 
+  return (
+    <ElementType {...rest} className={classes} ref={ref}>
+      {dismissIcon}
+      {Icon.create(icon, { autoGenerateKey: false })}
+      {(!_.isNil(header) || !_.isNil(content) || !_.isNil(list)) && (
+        <MessageContent>
+          {MessageHeader.create(header, { autoGenerateKey: false })}
+          {MessageList.create(list, { autoGenerateKey: false })}
+          {createHTMLParagraph(content, { autoGenerateKey: false })}
+        </MessageContent>
+      )}
+    </ElementType>
+  )
+})
+
+Message.displayName = 'Message'
 Message.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -178,3 +175,5 @@ Message.Content = MessageContent
 Message.Header = MessageHeader
 Message.List = MessageList
 Message.Item = MessageItem
+
+export default Message

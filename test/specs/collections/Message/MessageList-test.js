@@ -4,6 +4,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('MessageList', () => {
   common.isConformant(MessageList)
+  common.forwardsRef(MessageList, { tagName: 'ul' })
   common.implementsCreateMethod(MessageList)
   common.rendersChildren(MessageList, {
     rendersContent: false,
