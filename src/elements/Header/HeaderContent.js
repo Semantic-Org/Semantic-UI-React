@@ -7,7 +7,7 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * Header content wraps the main content when there is an adjacent Icon or Image.
  */
-const HeaderContent = React.forwardRef(function HeaderContentInner(props, ref) {
+const HeaderContent = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(HeaderContent, props)

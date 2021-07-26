@@ -20,7 +20,7 @@ import SegmentInline from './SegmentInline'
 /**
  * A segment is used to create a grouping of related content.
  */
-const Segment = React.forwardRef(function SegmentInner(props, ref) {
+const Segment = React.forwardRef(function (props, ref) {
   const {
     attached,
     basic,

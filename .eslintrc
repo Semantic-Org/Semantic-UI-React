@@ -11,6 +11,7 @@
     "consistent-return": "off",
     "complexity": ["warn", 10],
     "global-require": "off",
+    "func-names": "off",
     "lines-between-class-members": "off",
     "no-console": "error",
     "no-multi-spaces": ["error", { "ignoreEOLComments": true }],

@@ -15,7 +15,7 @@ import StepTitle from './StepTitle'
 /**
  * A step can contain a content.
  */
-const StepContent = React.forwardRef(function StepContentInner(props, ref) {
+const StepContent = React.forwardRef(function (props, ref) {
   const { children, className, content, description, title } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(StepContent, props)

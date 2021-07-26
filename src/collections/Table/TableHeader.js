@@ -13,7 +13,7 @@ import {
 /**
  * A table can have a header.
  */
-const TableHeader = React.forwardRef(function TableHeaderInner(props, ref) {
+const TableHeader = React.forwardRef(function (props, ref) {
   const { children, className, content, fullWidth } = props
   const classes = cx(useKeyOnly(fullWidth, 'full-width'), className)
   const rest = getUnhandledProps(TableHeader, props)
