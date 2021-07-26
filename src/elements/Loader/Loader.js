@@ -16,7 +16,7 @@ import {
  * A loader alerts a user to wait for an activity to complete.
  * @see Dimmer
  */
-function Loader(props) {
+const Loader = React.forwardRef(function (props, ref) {
   const {
     active,
     children,
@@ -45,12 +45,13 @@ function Loader(props) {
   const ElementType = getElementType(Loader, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+Loader.displayName = 'Loader'
 Loader.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

@@ -15,7 +15,7 @@ import {
 /**
  * A container limits content to a maximum width.
  */
-function Container(props) {
+const Container = React.forwardRef(function (props, ref) {
   const { children, className, content, fluid, text, textAlign } = props
   const classes = cx(
     'ui',
@@ -29,12 +29,13 @@ function Container(props) {
   const ElementType = getElementType(Container, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+Container.displayName = 'Container'
 Container.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
