@@ -20,7 +20,7 @@ import CardMeta from './CardMeta'
 /**
  * A card can contain blocks of content or extra content meant to be formatted separately from the main content.
  */
-function CardContent(props) {
+const CardContent = React.forwardRef(function (props, ref) {
   const { children, className, content, description, extra, header, meta, textAlign } = props
 
   const classes = cx(useKeyOnly(extra, 'extra'), useTextAlignProp(textAlign), 'content', className)
@@ -29,21 +29,21 @@ function CardContent(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
   if (!childrenUtils.isNil(content)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {content}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {createShorthand(CardHeader, (val) => ({ content: val }), header, { autoGenerateKey: false })}
       {createShorthand(CardMeta, (val) => ({ content: val }), meta, { autoGenerateKey: false })}
       {createShorthand(CardDescription, (val) => ({ content: val }), description, {
@@ -51,8 +51,9 @@ function CardContent(props) {
       })}
     </ElementType>
   )
-}
+})
 
+CardContent.displayName = 'CardContent'
 CardContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

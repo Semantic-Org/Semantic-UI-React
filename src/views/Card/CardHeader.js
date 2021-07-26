@@ -15,19 +15,20 @@ import {
 /**
  * A card can contain a header.
  */
-function CardHeader(props) {
+const CardHeader = React.forwardRef(function (props, ref) {
   const { children, className, content, textAlign } = props
   const classes = cx(useTextAlignProp(textAlign), 'header', className)
   const rest = getUnhandledProps(CardHeader, props)
   const ElementType = getElementType(CardHeader, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+CardHeader.displayName = 'CardHeader'
 CardHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

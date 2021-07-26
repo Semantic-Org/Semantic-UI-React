@@ -1,4 +1,6 @@
+import faker from 'faker'
 import _ from 'lodash'
+import React from 'react'
 
 import { SUI } from 'src/lib'
 import CardContent from 'src/views/Card/CardContent'
@@ -9,6 +11,9 @@ import * as common from 'test/specs/commonTests'
 
 describe('CardContent', () => {
   common.isConformant(CardContent)
+  common.forwardsRef(CardContent)
+  common.forwardsRef(CardContent, { requiredProps: { children: <span /> } })
+  common.forwardsRef(CardContent, { requiredProps: { content: faker.lorem.word() } })
   common.rendersChildren(CardContent)
 
   common.implementsShorthandProp(CardContent, {
