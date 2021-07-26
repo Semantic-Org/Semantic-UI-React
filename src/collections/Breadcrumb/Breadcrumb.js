@@ -10,7 +10,7 @@ import BreadcrumbSection from './BreadcrumbSection'
 /**
  * A breadcrumb is used to show hierarchy between content.
  */
-function Breadcrumb(props) {
+const Breadcrumb = React.forwardRef(function (props, ref) {
   const { children, className, divider, icon, sections, size } = props
 
   const classes = cx('ui', size, 'breadcrumb', className)
@@ -19,7 +19,7 @@ function Breadcrumb(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
@@ -40,12 +40,13 @@ function Breadcrumb(props) {
   })
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childElements}
     </ElementType>
   )
-}
+})
 
+Breadcrumb.displayName = 'Breadcrumb'
 Breadcrumb.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
