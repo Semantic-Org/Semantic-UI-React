@@ -26,7 +26,7 @@ describe('Confirm', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
-  common.isConformant(Confirm)
+  common.isConformant(Confirm, { rendersPortal: true })
 
   common.implementsShorthandProp(Confirm, {
     autoGenerateKey: false,
