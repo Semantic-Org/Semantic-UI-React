@@ -5,6 +5,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Container', () => {
   common.isConformant(Container)
+  common.forwardsRef(Container)
   common.rendersChildren(Container)
   common.hasUIClassName(Container)
 
