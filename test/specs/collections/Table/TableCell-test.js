@@ -6,6 +6,8 @@ import { SUI } from 'src/lib'
 
 describe('TableCell', () => {
   common.isConformant(TableCell)
+  common.forwardsRef(TableCell, { tagName: 'td' })
+  common.forwardsRef(TableCell, { requiredProps: { children: <span /> }, tagName: 'td' })
   common.rendersChildren(TableCell)
 
   common.implementsCreateMethod(TableCell)
