@@ -20,6 +20,7 @@ const CommentText = React.forwardRef(function (props, ref) {
   )
 })
 
+CommentText.displayName = 'CommentText'
 CommentText.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
