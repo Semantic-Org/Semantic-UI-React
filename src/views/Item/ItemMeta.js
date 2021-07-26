@@ -13,19 +13,20 @@ import {
 /**
  * An item can contain content metadata.
  */
-function ItemMeta(props) {
+const ItemMeta = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('meta', className)
   const rest = getUnhandledProps(ItemMeta, props)
   const ElementType = getElementType(ItemMeta, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+ItemMeta.displayName = 'ItemMeta'
 ItemMeta.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
