@@ -13,7 +13,7 @@ import {
 /**
  * Headers may contain subheaders.
  */
-const HeaderSubheader = React.forwardRef(function HeaderSubheaderInner(props, ref) {
+const HeaderSubheader = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('sub header', className)
   const rest = getUnhandledProps(HeaderSubheader, props)
