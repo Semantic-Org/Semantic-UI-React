@@ -14,19 +14,21 @@ import {
 /**
  * A content sub-component for Accordion component.
  */
-function AccordionContent(props) {
+const AccordionContent = React.forwardRef(function (props, ref) {
   const { active, children, className, content } = props
+
   const classes = cx('content', useKeyOnly(active, 'active'), className)
   const rest = getUnhandledProps(AccordionContent, props)
   const ElementType = getElementType(AccordionContent, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+AccordionContent.displayName = 'AccordionContent'
 AccordionContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
