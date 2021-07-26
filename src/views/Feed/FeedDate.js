@@ -7,19 +7,20 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * An event or an event summary can contain a date.
  */
-function FeedDate(props) {
+const FeedDate = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('date', className)
   const rest = getUnhandledProps(FeedDate, props)
   const ElementType = getElementType(FeedDate, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+FeedDate.displayName = 'FeedDate'
 FeedDate.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

@@ -14,7 +14,7 @@ import FeedExtra from './FeedExtra'
 import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
 
-function FeedContent(props) {
+const FeedContent = React.forwardRef(function (props, ref) {
   const { children, className, content, extraImages, extraText, date, meta, summary } = props
 
   const classes = cx('content', className)
@@ -23,14 +23,14 @@ function FeedContent(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {createShorthand(FeedDate, (val) => ({ content: val }), date, { autoGenerateKey: false })}
       {createShorthand(FeedSummary, (val) => ({ content: val }), summary, {
         autoGenerateKey: false,
@@ -45,8 +45,9 @@ function FeedContent(props) {
       {createShorthand(FeedMeta, (val) => ({ content: val }), meta, { autoGenerateKey: false })}
     </ElementType>
   )
-}
+})
 
+FeedContent.displayName = 'FeedContent'
 FeedContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
