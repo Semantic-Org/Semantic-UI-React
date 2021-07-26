@@ -7,7 +7,7 @@ import { customPropTypes, getElementType, getUnhandledProps, useKeyOnly } from '
 /**
  * A placeholder can contain an image.
  */
-function PlaceholderImage(props) {
+const PlaceholderImage = React.forwardRef(function PlaceholderImageInner(props, ref) {
   const { className, square, rectangular } = props
   const classes = cx(
     useKeyOnly(square, 'square'),
@@ -18,9 +18,10 @@ function PlaceholderImage(props) {
   const rest = getUnhandledProps(PlaceholderImage, props)
   const ElementType = getElementType(PlaceholderImage, props)
 
-  return <ElementType {...rest} className={classes} />
-}
+  return <ElementType {...rest} className={classes} ref={ref} />
+})
 
+PlaceholderImage.displayName = 'PlaceholderImage'
 PlaceholderImage.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
