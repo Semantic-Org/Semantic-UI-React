@@ -6,6 +6,8 @@ import * as common from 'test/specs/commonTests'
 
 describe('FeedSummary', () => {
   common.isConformant(FeedSummary)
+  common.forwardsRef(FeedSummary)
+  common.forwardsRef(FeedSummary, { requiredProps: { children: <span /> } })
   common.rendersChildren(FeedSummary)
 
   common.implementsShorthandProp(FeedSummary, {
