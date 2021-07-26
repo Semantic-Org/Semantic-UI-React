@@ -4,6 +4,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('MessageContent', () => {
   common.isConformant(MessageContent)
+  common.forwardsRef(MessageContent)
   common.rendersChildren(MessageContent)
 
   it('renders an div tag', () => {
