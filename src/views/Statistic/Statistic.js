@@ -20,7 +20,7 @@ import StatisticValue from './StatisticValue'
 /**
  * A statistic emphasizes the current value of an attribute.
  */
-function Statistic(props) {
+const Statistic = React.forwardRef(function (props, ref) {
   const {
     children,
     className,
@@ -50,21 +50,21 @@ function Statistic(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
   if (!childrenUtils.isNil(content)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {content}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {StatisticValue.create(value, {
         defaultProps: { text },
         autoGenerateKey: false,
@@ -72,8 +72,9 @@ function Statistic(props) {
       {StatisticLabel.create(label, { autoGenerateKey: false })}
     </ElementType>
   )
-}
+})
 
+Statistic.displayName = 'Statistic'
 Statistic.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
