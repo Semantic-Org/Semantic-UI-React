@@ -13,6 +13,11 @@ import { sandbox } from 'test/utils'
 
 describe('Card', () => {
   common.isConformant(Card)
+
+  common.forwardsRef(Card)
+  common.forwardsRef(Card, { requiredProps: { children: <span /> } })
+  common.forwardsRef(Card, { requiredProps: { content: faker.lorem.word() } })
+
   common.hasSubcomponents(Card, [CardContent, CardDescription, CardGroup, CardHeader, CardMeta])
   common.hasUIClassName(Card)
   common.rendersChildren(Card)

@@ -8,6 +8,11 @@ import * as common from 'test/specs/commonTests'
 
 describe('CardGroup', () => {
   common.isConformant(CardGroup)
+
+  common.forwardsRef(CardGroup)
+  common.forwardsRef(CardGroup, { requiredProps: { children: <span /> } })
+  common.forwardsRef(CardGroup, { requiredProps: { content: faker.lorem.word() } })
+
   common.hasUIClassName(CardGroup)
   common.rendersChildren(CardGroup)
 
