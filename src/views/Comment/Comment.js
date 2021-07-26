@@ -21,7 +21,7 @@ import CommentText from './CommentText'
 /**
  * A comment displays user feedback to site content.
  */
-function Comment(props) {
+const Comment = React.forwardRef(function (props, ref) {
   const { className, children, collapsed, content } = props
 
   const classes = cx(useKeyOnly(collapsed, 'collapsed'), 'comment', className)
@@ -29,12 +29,13 @@ function Comment(props) {
   const ElementType = getElementType(Comment, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+Comment.displayName = 'Comment'
 Comment.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

@@ -13,7 +13,7 @@ import {
 /**
  * A comment can contain an action.
  */
-function CommentAction(props) {
+const CommentAction = React.forwardRef(function (props, ref) {
   const { active, className, children, content } = props
 
   const classes = cx(useKeyOnly(active, 'active'), className)
@@ -21,16 +21,17 @@ function CommentAction(props) {
   const ElementType = getElementType(CommentAction, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
 CommentAction.defaultProps = {
   as: 'a',
 }
 
+CommentAction.displayName = 'CommentAction'
 CommentAction.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
