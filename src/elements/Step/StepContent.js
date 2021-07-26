@@ -15,7 +15,7 @@ import StepTitle from './StepTitle'
 /**
  * A step can contain a content.
  */
-function StepContent(props) {
+const StepContent = React.forwardRef(function StepContentInner(props, ref) {
   const { children, className, content, description, title } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(StepContent, props)
@@ -23,27 +23,29 @@ function StepContent(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
+
   if (!childrenUtils.isNil(content)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {content}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {StepTitle.create(title, { autoGenerateKey: false })}
       {StepDescription.create(description, { autoGenerateKey: false })}
     </ElementType>
   )
-}
+})
 
+StepContent.displayName = 'StepContent'
 StepContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
