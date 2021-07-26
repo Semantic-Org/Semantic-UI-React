@@ -10,6 +10,8 @@ import { sandbox } from 'test/utils'
 
 describe('Label', () => {
   common.isConformant(Label)
+  common.forwardsRef(Label)
+  common.forwardsRef(Label, { requiredProps: { children: <span /> } })
   common.hasSubcomponents(Label, [LabelDetail, LabelGroup])
   common.hasUIClassName(Label)
   common.rendersChildren(Label)
@@ -103,19 +105,14 @@ describe('Label', () => {
   })
 
   describe('onClick', () => {
-    it('omitted when not defined', () => {
-      const click = () => shallow(<Label />).simulate('click')
-      expect(click).to.not.throw()
-    })
-
     it('is called with (e) when clicked', () => {
-      const spy = sandbox.spy()
+      const onClick = sandbox.spy()
       const event = { target: null }
 
-      shallow(<Label onClick={spy} />).simulate('click', event)
+      mount(<Label onClick={onClick} />).simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event)
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch(event)
     })
   })
 
