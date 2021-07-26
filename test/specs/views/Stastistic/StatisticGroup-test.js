@@ -1,3 +1,4 @@
+import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
@@ -7,6 +8,9 @@ import * as common from 'test/specs/commonTests'
 
 describe('StatisticGroup', () => {
   common.isConformant(StatisticGroup)
+  common.forwardsRef(StatisticGroup)
+  common.forwardsRef(StatisticGroup, { requiredProps: { children: <span /> } })
+  common.forwardsRef(StatisticGroup, { requiredProps: { content: faker.lorem.word() } })
   common.hasUIClassName(StatisticGroup)
   common.rendersChildren(StatisticGroup)
 
