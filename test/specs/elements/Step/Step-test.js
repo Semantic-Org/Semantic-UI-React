@@ -10,6 +10,9 @@ import { sandbox } from 'test/utils'
 
 describe('Step', () => {
   common.isConformant(Step)
+  common.forwardsRef(Step)
+  common.forwardsRef(Step, { requiredProps: { content: faker.lorem.word() } })
+  common.forwardsRef(Step, { requiredProps: { content: <span /> } })
   common.hasSubcomponents(Step, [StepContent, StepDescription, StepTitle])
   common.rendersChildren(Step)
 
@@ -53,7 +56,7 @@ describe('Step', () => {
       const event = { target: null }
       const onClick = sandbox.spy()
 
-      shallow(<Step onClick={onClick} />).simulate('click', event)
+      mount(<Step onClick={onClick} />).simulate('click', event)
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(event, { onClick })
@@ -62,7 +65,7 @@ describe('Step', () => {
     it('is not called when is disabled', () => {
       const onClick = sandbox.spy()
 
-      shallow(<Step disabled onClick={onClick} />).simulate('click')
+      mount(<Step disabled onClick={onClick} />).simulate('click')
       onClick.should.have.not.been.called()
     })
 

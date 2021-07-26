@@ -10,7 +10,10 @@ const requiredProps = {
 }
 
 describe('TransitionablePortal', () => {
-  common.isConformant(TransitionablePortal, { requiredProps })
+  common.isConformant(TransitionablePortal, {
+    rendersPortal: true,
+    requiredProps,
+  })
 
   describe('children', () => {
     it('renders a Transition', () => {
