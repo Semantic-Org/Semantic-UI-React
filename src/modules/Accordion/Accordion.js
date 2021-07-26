@@ -11,7 +11,7 @@ import AccordionTitle from './AccordionTitle'
 /**
  * An accordion allows users to toggle the display of sections of content.
  */
-function Accordion(props) {
+const Accordion = React.forwardRef(function (props, ref) {
   const { className, fluid, inverted, styled } = props
 
   const classes = cx(
@@ -23,9 +23,11 @@ function Accordion(props) {
   )
   const rest = getUnhandledProps(Accordion, props)
 
-  return <AccordionAccordion {...rest} className={classes} />
-}
+  // TODO: extract behavior into useAccordion() hook instead of "AccordionAccordion" component
+  return <AccordionAccordion {...rest} className={classes} ref={ref} />
+})
 
+Accordion.displayName = 'Accordion'
 Accordion.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
