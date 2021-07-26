@@ -1,3 +1,4 @@
+import faker from 'faker'
 import React from 'react'
 
 import BreadcrumbDivider from 'src/collections/Breadcrumb/BreadcrumbDivider'
@@ -5,6 +6,8 @@ import * as common from 'test/specs/commonTests'
 
 describe('BreadcrumbDivider', () => {
   common.isConformant(BreadcrumbDivider)
+  common.forwardsRef(BreadcrumbDivider)
+  common.forwardsRef(BreadcrumbDivider, { requiredProps: { content: faker.lorem.word() } })
   common.rendersChildren(BreadcrumbDivider)
 
   common.implementsIconProp(BreadcrumbDivider, {
