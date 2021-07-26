@@ -1,3 +1,4 @@
+import faker from 'faker'
 import React from 'react'
 
 import List from 'src/elements/List/List'
@@ -13,6 +14,9 @@ import { sandbox } from 'test/utils'
 
 describe('List', () => {
   common.isConformant(List)
+  common.forwardsRef(List)
+  common.forwardsRef(List, { requiredProps: { children: <span /> } })
+  common.forwardsRef(List, { requiredProps: { content: faker.lorem.word() } })
   common.hasSubcomponents(List, [
     ListContent,
     ListDescription,
@@ -45,11 +49,6 @@ describe('List', () => {
   const items = ['Name', 'Status', 'Notes']
 
   describe('onItemClick', () => {
-    it('can be omitted', () => {
-      const click = () => shallow(<List items={items} />).simulate('click')
-      expect(click).to.not.throw()
-    })
-
     it('is called with (e, itemProps) when clicked', () => {
       const onClick = sandbox.spy()
       const onItemClick = sandbox.spy()
@@ -58,10 +57,9 @@ describe('List', () => {
       const callbackData = { content: 'Notes', 'data-foo': 'bar' }
       const itemProps = { key: 'notes', content: 'Notes', 'data-foo': 'bar', onClick }
 
-      shallow(<List items={[itemProps]} onItemClick={onItemClick} />)
+      mount(<List items={[itemProps]} onItemClick={onItemClick} />)
         .find('ListItem')
         .first()
-        .shallow()
         .simulate('click', event)
 
       onClick.should.have.been.calledOnce()

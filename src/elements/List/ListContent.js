@@ -18,7 +18,7 @@ import ListHeader from './ListHeader'
 /**
  * A list item can contain a content.
  */
-function ListContent(props) {
+const ListContent = React.forwardRef(function (props, ref) {
   const { children, className, content, description, floated, header, verticalAlign } = props
 
   const classes = cx(
@@ -32,21 +32,22 @@ function ListContent(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {ListHeader.create(header)}
       {ListDescription.create(description)}
       {content}
     </ElementType>
   )
-}
+})
 
+ListContent.displayName = 'ListContent'
 ListContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
