@@ -13,7 +13,7 @@ import {
 /**
  * A divider visually segments content into groups.
  */
-function Divider(props) {
+const Divider = React.forwardRef(function (props, ref) {
   const {
     children,
     className,
@@ -43,12 +43,13 @@ function Divider(props) {
   const ElementType = getElementType(Divider, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+Divider.displayName = 'Divider'
 Divider.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

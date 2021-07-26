@@ -16,7 +16,7 @@ import {
 /**
  * A rail is used to show accompanying content outside the boundaries of the main view of a site.
  */
-function Rail(props) {
+const Rail = React.forwardRef(function (props, ref) {
   const {
     attached,
     children,
@@ -44,12 +44,13 @@ function Rail(props) {
   const ElementType = getElementType(Rail, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+Rail.displayName = 'Rail'
 Rail.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

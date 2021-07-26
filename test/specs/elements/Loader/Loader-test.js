@@ -7,6 +7,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Loader', () => {
   common.isConformant(Loader)
+  common.forwardsRef(Loader)
   common.hasUIClassName(Loader)
   common.rendersChildren(Loader)
 
