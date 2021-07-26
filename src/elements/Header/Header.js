@@ -23,7 +23,7 @@ import HeaderContent from './HeaderContent'
 /**
  * A header provides a short summary of content
  */
-const Header = React.forwardRef(function HeaderInner(props, ref) {
+const Header = React.forwardRef(function (props, ref) {
   const {
     attached,
     block,
