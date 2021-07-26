@@ -9,7 +9,7 @@ import FeedLabel from './FeedLabel'
 /**
  * A feed contains an event.
  */
-function FeedEvent(props) {
+const FeedEvent = React.forwardRef(function (props, ref) {
   const {
     content,
     children,
@@ -31,15 +31,16 @@ function FeedEvent(props) {
   const contentProps = { content, date, extraImages, extraText, meta, summary }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {createShorthand(FeedLabel, (val) => ({ icon: val }), icon, { autoGenerateKey: false })}
       {createShorthand(FeedLabel, (val) => ({ image: val }), image, { autoGenerateKey: false })}
       {hasContentProp && <FeedContent {...contentProps} />}
       {children}
     </ElementType>
   )
-}
+})
 
+FeedEvent.displayName = 'FeedEvent'
 FeedEvent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
