@@ -1,3 +1,4 @@
+import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
@@ -9,6 +10,9 @@ const numberMap = _.pickBy(numberToWordMap, (val, key) => key <= 8)
 
 describe('StepGroup', () => {
   common.isConformant(StepGroup)
+  common.forwardsRef(StepGroup)
+  common.forwardsRef(StepGroup, { requiredProps: { content: faker.lorem.word() } })
+  common.forwardsRef(StepGroup, { requiredProps: { children: <span /> } })
   common.hasUIClassName(StepGroup)
   common.rendersChildren(StepGroup)
 
