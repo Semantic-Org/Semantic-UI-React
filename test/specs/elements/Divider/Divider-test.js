@@ -5,6 +5,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Divider', () => {
   common.isConformant(Divider)
+  common.forwardsRef(Divider)
   common.rendersChildren(Divider)
   common.hasUIClassName(Divider)
 
