@@ -15,7 +15,7 @@ import {
 /**
  * Comments can be grouped.
  */
-function CommentGroup(props) {
+const CommentGroup = React.forwardRef(function (props, ref) {
   const { className, children, collapsed, content, minimal, size, threaded } = props
 
   const classes = cx(
@@ -31,12 +31,13 @@ function CommentGroup(props) {
   const ElementType = getElementType(CommentGroup, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+CommentGroup.displayName = 'CommentGroup'
 CommentGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

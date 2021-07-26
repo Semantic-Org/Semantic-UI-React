@@ -7,19 +7,20 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A comment can contain an list of actions a user may perform related to this comment.
  */
-function CommentActions(props) {
+const CommentActions = React.forwardRef(function (props, ref) {
   const { className, children, content } = props
   const classes = cx('actions', className)
   const rest = getUnhandledProps(CommentActions, props)
   const ElementType = getElementType(CommentActions, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+CommentActions.displayName = 'CommentActions'
 CommentActions.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
