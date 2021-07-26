@@ -21,7 +21,7 @@ import StepTitle from './StepTitle'
 /**
  * A step shows the completion status of an activity in a series of activities.
  */
-const Step = React.forwardRef(function StepInner(props, ref) {
+const Step = React.forwardRef(function (props, ref) {
   const {
     active,
     children,

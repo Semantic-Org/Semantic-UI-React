@@ -10,7 +10,7 @@ import {
   getUnhandledProps,
 } from '../../lib'
 
-const StepDescription = React.forwardRef(function StepDescriptionInner(props, ref) {
+const StepDescription = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('description', className)
   const rest = getUnhandledProps(StepDescription, props)

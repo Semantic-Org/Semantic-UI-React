@@ -25,7 +25,7 @@ import ImageGroup from './ImageGroup'
  * An image is a graphic representation of something.
  * @see Icon
  */
-const Image = React.forwardRef(function ImageInner(props, ref) {
+const Image = React.forwardRef(function (props, ref) {
   const {
     avatar,
     bordered,
