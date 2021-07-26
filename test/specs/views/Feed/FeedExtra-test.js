@@ -5,6 +5,8 @@ import * as common from 'test/specs/commonTests'
 
 describe('FeedExtra', () => {
   common.isConformant(FeedExtra)
+  common.forwardsRef(FeedExtra)
+  common.forwardsRef(FeedExtra, { requiredProps: { children: <span /> } })
   common.rendersChildren(FeedExtra)
 
   common.propKeyOnlyToClassName(FeedExtra, 'images')

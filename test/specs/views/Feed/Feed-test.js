@@ -8,6 +8,8 @@ import * as common from 'test/specs/commonTests'
 
 describe('Feed', () => {
   common.isConformant(Feed)
+  common.forwardsRef(Feed)
+  common.forwardsRef(Feed, { requiredProps: { children: <span /> } })
   common.hasUIClassName(Feed)
   common.rendersChildren(Feed, {
     rendersContent: false,

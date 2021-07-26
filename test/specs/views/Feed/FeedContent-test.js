@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 import FeedContent from 'src/views/Feed/FeedContent'
 import FeedDate from 'src/views/Feed/FeedDate'
 import FeedSummary from 'src/views/Feed/FeedSummary'
@@ -7,6 +9,8 @@ import * as common from 'test/specs/commonTests'
 
 describe('FeedContent', () => {
   common.isConformant(FeedContent)
+  common.forwardsRef(FeedContent)
+  common.forwardsRef(FeedContent, { requiredProps: { children: <span /> } })
   common.rendersChildren(FeedContent)
 
   common.implementsShorthandProp(FeedContent, {

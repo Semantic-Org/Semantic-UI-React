@@ -15,7 +15,7 @@ import {
 /**
  * A feed can contain an extra content.
  */
-function FeedExtra(props) {
+const FeedExtra = React.forwardRef(function (props, ref) {
   const { children, className, content, images, text } = props
 
   const classes = cx(
@@ -29,7 +29,7 @@ function FeedExtra(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
@@ -42,13 +42,14 @@ function FeedExtra(props) {
   })
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {content}
       {imageElements}
     </ElementType>
   )
-}
+})
 
+FeedExtra.displayName = 'FeedExtra'
 FeedExtra.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

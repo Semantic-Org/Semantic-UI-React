@@ -8,7 +8,7 @@ import Icon from '../../elements/Icon'
 /**
  * A feed can contain a like element.
  */
-function FeedLike(props) {
+const FeedLike = React.forwardRef(function (props, ref) {
   const { children, className, content, icon } = props
 
   const classes = cx('like', className)
@@ -17,24 +17,25 @@ function FeedLike(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {Icon.create(icon, { autoGenerateKey: false })}
       {content}
     </ElementType>
   )
-}
+})
 
 FeedLike.defaultProps = {
   as: 'a',
 }
 
+FeedLike.displayName = 'FeedLike'
 FeedLike.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
