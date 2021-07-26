@@ -15,7 +15,7 @@ import FeedUser from './FeedUser'
 /**
  * A feed can contain a summary.
  */
-function FeedSummary(props) {
+const FeedSummary = React.forwardRef(function (props, ref) {
   const { children, className, content, date, user } = props
 
   const classes = cx('summary', className)
@@ -24,14 +24,14 @@ function FeedSummary(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {createShorthand(FeedUser, (val) => ({ content: val }), user, { autoGenerateKey: false })}
       {/*
         Content styles require wrapping whitespace
@@ -43,8 +43,9 @@ function FeedSummary(props) {
       {createShorthand(FeedDate, (val) => ({ content: val }), date, { autoGenerateKey: false })}
     </ElementType>
   )
-}
+})
 
+FeedSummary.displayName = 'FeedSummary'
 FeedSummary.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

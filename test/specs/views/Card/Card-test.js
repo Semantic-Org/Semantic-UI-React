@@ -50,6 +50,14 @@ describe('Card', () => {
 
       wrapper.should.have.tagName('a')
     })
+
+    it('is called with (e, data) when clicked', () => {
+      const onClick = sandbox.spy()
+      mount(<Card onClick={onClick} />).simulate('click')
+
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch({ type: 'click' }, { onClick })
+    })
   })
 
   describe('extra', () => {

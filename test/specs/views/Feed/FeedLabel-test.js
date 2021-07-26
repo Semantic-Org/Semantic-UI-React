@@ -6,6 +6,8 @@ import * as common from 'test/specs/commonTests'
 
 describe('FeedLabel', () => {
   common.isConformant(FeedLabel)
+  common.forwardsRef(FeedLabel)
+  common.forwardsRef(FeedLabel, { requiredProps: { children: <span /> } })
   common.rendersChildren(FeedLabel)
 
   common.implementsIconProp(FeedLabel, { autoGenerateKey: false })

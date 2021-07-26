@@ -17,7 +17,7 @@ import FeedUser from './FeedUser'
 /**
  * A feed presents user activity chronologically.
  */
-function Feed(props) {
+const Feed = React.forwardRef(function (props, ref) {
   const { children, className, events, size } = props
 
   const classes = cx('ui', size, 'feed', className)
@@ -26,7 +26,7 @@ function Feed(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
@@ -36,16 +36,18 @@ function Feed(props) {
     const { childKey, date, meta, summary, ...eventData } = eventProps
     const finalKey = childKey ?? [date, meta, summary].join('-')
 
+    // TODO: use .create() factory
     return <FeedEvent date={date} key={finalKey} meta={meta} summary={summary} {...eventData} />
   })
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {eventElements}
     </ElementType>
   )
-}
+})
 
+Feed.displayName = 'Feed'
 Feed.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
