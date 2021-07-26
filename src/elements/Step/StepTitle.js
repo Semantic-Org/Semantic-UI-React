@@ -13,7 +13,7 @@ import {
 /**
  * A step can contain a title.
  */
-const StepTitle = React.forwardRef(function StepTitleInner(props, ref) {
+const StepTitle = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('title', className)
   const rest = getUnhandledProps(StepTitle, props)

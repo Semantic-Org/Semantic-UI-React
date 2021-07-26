@@ -22,7 +22,7 @@ const numberMap = _.pickBy(numberToWordMap, (val, key) => key <= 8)
 /**
  * A set of steps.
  */
-const StepGroup = React.forwardRef(function StepGroupInner(props, ref) {
+const StepGroup = React.forwardRef(function (props, ref) {
   const {
     attached,
     children,

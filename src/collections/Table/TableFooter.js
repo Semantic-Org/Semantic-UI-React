@@ -7,7 +7,7 @@ import TableHeader from './TableHeader'
 /**
  * A table can have a footer.
  */
-const TableFooter = React.forwardRef(function TableFooterInner(props, ref) {
+const TableFooter = React.forwardRef(function (props, ref) {
   const { as } = props
   const rest = getUnhandledProps(TableFooter, props)
 
