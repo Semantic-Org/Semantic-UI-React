@@ -23,7 +23,7 @@ import HeaderContent from './HeaderContent'
 /**
  * A header provides a short summary of content
  */
-function Header(props) {
+const Header = React.forwardRef(function HeaderInner(props, ref) {
   const {
     attached,
     block,
@@ -65,7 +65,7 @@ function Header(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
@@ -77,7 +77,7 @@ function Header(props) {
 
   if (iconElement || imageElement) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {iconElement || imageElement}
         {(content || subheaderElement) && (
           <HeaderContent>
@@ -90,13 +90,14 @@ function Header(props) {
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {content}
       {subheaderElement}
     </ElementType>
   )
-}
+})
 
+Header.displayName = 'Header'
 Header.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
