@@ -8,6 +8,7 @@ import { consoleUtil, sandbox } from 'test/utils'
 
 describe('AccordionAccordion', () => {
   common.isConformant(AccordionAccordion)
+  common.forwardsRef(AccordionAccordion)
   common.rendersChildren(AccordionAccordion, {
     rendersContent: false,
   })
