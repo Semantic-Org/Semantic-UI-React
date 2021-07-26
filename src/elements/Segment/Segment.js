@@ -20,7 +20,7 @@ import SegmentInline from './SegmentInline'
 /**
  * A segment is used to create a grouping of related content.
  */
-function Segment(props) {
+const Segment = React.forwardRef(function SegmentInner(props, ref) {
   const {
     attached,
     basic,
@@ -76,15 +76,16 @@ function Segment(props) {
   const ElementType = getElementType(Segment, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
 Segment.Group = SegmentGroup
 Segment.Inline = SegmentInline
 
+Segment.displayName = 'Segment'
 Segment.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
