@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -13,6 +13,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
   useValueAndKey,
+  useEventCallback,
 } from '../../lib'
 import Icon from '../Icon/Icon'
 import Image from '../Image/Image'
@@ -22,100 +23,95 @@ import LabelGroup from './LabelGroup'
 /**
  * A label displays content classification.
  */
-export default class Label extends Component {
-  handleClick = (e) => {
-    const { onClick } = this.props
+const Label = React.forwardRef(function (props, ref) {
+  const {
+    active,
+    attached,
+    basic,
+    children,
+    circular,
+    className,
+    color,
+    content,
+    corner,
+    detail,
+    empty,
+    floating,
+    horizontal,
+    icon,
+    image,
+    onRemove,
+    pointing,
+    prompt,
+    removeIcon,
+    ribbon,
+    size,
+    tag,
+  } = props
 
-    if (onClick) onClick(e, this.props)
-  }
+  const pointingClass =
+    (pointing === true && 'pointing') ||
+    ((pointing === 'left' || pointing === 'right') && `${pointing} pointing`) ||
+    ((pointing === 'above' || pointing === 'below') && `pointing ${pointing}`)
 
-  handleIconOverrides = (predefinedProps) => ({
-    onClick: (e) => {
-      _.invoke(predefinedProps, 'onClick', e)
-      _.invoke(this.props, 'onRemove', e, this.props)
-    },
+  const classes = cx(
+    'ui',
+    color,
+    pointingClass,
+    size,
+    useKeyOnly(active, 'active'),
+    useKeyOnly(basic, 'basic'),
+    useKeyOnly(circular, 'circular'),
+    useKeyOnly(empty, 'empty'),
+    useKeyOnly(floating, 'floating'),
+    useKeyOnly(horizontal, 'horizontal'),
+    useKeyOnly(image === true, 'image'),
+    useKeyOnly(prompt, 'prompt'),
+    useKeyOnly(tag, 'tag'),
+    useKeyOrValueAndKey(corner, 'corner'),
+    useKeyOrValueAndKey(ribbon, 'ribbon'),
+    useValueAndKey(attached, 'attached'),
+    'label',
+    className,
+  )
+  const rest = getUnhandledProps(Label, props)
+  const ElementType = getElementType(Label, props)
+
+  const handleClick = useEventCallback((e) => {
+    _.invoke(props, 'onClick', e, props)
   })
 
-  render() {
-    const {
-      active,
-      attached,
-      basic,
-      children,
-      circular,
-      className,
-      color,
-      content,
-      corner,
-      detail,
-      empty,
-      floating,
-      horizontal,
-      icon,
-      image,
-      onRemove,
-      pointing,
-      prompt,
-      removeIcon,
-      ribbon,
-      size,
-      tag,
-    } = this.props
-
-    const pointingClass =
-      (pointing === true && 'pointing') ||
-      ((pointing === 'left' || pointing === 'right') && `${pointing} pointing`) ||
-      ((pointing === 'above' || pointing === 'below') && `pointing ${pointing}`)
-
-    const classes = cx(
-      'ui',
-      color,
-      pointingClass,
-      size,
-      useKeyOnly(active, 'active'),
-      useKeyOnly(basic, 'basic'),
-      useKeyOnly(circular, 'circular'),
-      useKeyOnly(empty, 'empty'),
-      useKeyOnly(floating, 'floating'),
-      useKeyOnly(horizontal, 'horizontal'),
-      useKeyOnly(image === true, 'image'),
-      useKeyOnly(prompt, 'prompt'),
-      useKeyOnly(tag, 'tag'),
-      useKeyOrValueAndKey(corner, 'corner'),
-      useKeyOrValueAndKey(ribbon, 'ribbon'),
-      useValueAndKey(attached, 'attached'),
-      'label',
-      className,
-    )
-    const rest = getUnhandledProps(Label, this.props)
-    const ElementType = getElementType(Label, this.props)
-
-    if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
-    }
-
-    const removeIconShorthand = _.isUndefined(removeIcon) ? 'delete' : removeIcon
-
+  if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType className={classes} onClick={this.handleClick} {...rest}>
-        {Icon.create(icon, { autoGenerateKey: false })}
-        {typeof image !== 'boolean' && Image.create(image, { autoGenerateKey: false })}
-        {content}
-        {LabelDetail.create(detail, { autoGenerateKey: false })}
-        {onRemove &&
-          Icon.create(removeIconShorthand, {
-            autoGenerateKey: false,
-            overrideProps: this.handleIconOverrides,
-          })}
+      <ElementType {...rest} className={classes} onClick={handleClick} ref={ref}>
+        {children}
       </ElementType>
     )
   }
-}
 
+  const removeIconShorthand = _.isUndefined(removeIcon) ? 'delete' : removeIcon
+
+  return (
+    <ElementType {...rest} className={classes} onClick={handleClick} ref={ref}>
+      {Icon.create(icon, { autoGenerateKey: false })}
+      {typeof image !== 'boolean' && Image.create(image, { autoGenerateKey: false })}
+      {content}
+      {LabelDetail.create(detail, { autoGenerateKey: false })}
+      {onRemove &&
+        Icon.create(removeIconShorthand, {
+          autoGenerateKey: false,
+          overrideProps: (predefinedProps) => ({
+            onClick: (e) => {
+              _.invoke(predefinedProps, 'onClick', e)
+              _.invoke(props, 'onRemove', e, props)
+            },
+          }),
+        })}
+    </ElementType>
+  )
+})
+
+Label.displayName = 'Label'
 Label.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -214,3 +210,5 @@ Label.Detail = LabelDetail
 Label.Group = LabelGroup
 
 Label.create = createShorthandFactory(Label, (value) => ({ content: value }))
+
+export default Label
