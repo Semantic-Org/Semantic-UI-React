@@ -18,7 +18,7 @@ import ItemMeta from './ItemMeta'
 /**
  * An item can contain content.
  */
-function ItemContent(props) {
+const ItemContent = React.forwardRef(function (props, ref) {
   const { children, className, content, description, extra, header, meta, verticalAlign } = props
 
   const classes = cx(useVerticalAlignProp(verticalAlign), 'content', className)
@@ -27,14 +27,14 @@ function ItemContent(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {ItemHeader.create(header, { autoGenerateKey: false })}
       {ItemMeta.create(meta, { autoGenerateKey: false })}
       {ItemDescription.create(description, { autoGenerateKey: false })}
@@ -42,8 +42,9 @@ function ItemContent(props) {
       {content}
     </ElementType>
   )
-}
+})
 
+ItemContent.displayName = 'ItemContent'
 ItemContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
