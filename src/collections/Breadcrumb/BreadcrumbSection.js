@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -10,35 +10,31 @@ import {
   getUnhandledProps,
   getElementType,
   useKeyOnly,
+  useEventCallback,
 } from '../../lib'
 
 /**
  * A section sub-component for Breadcrumb component.
  */
-export default class BreadcrumbSection extends Component {
-  computeElementType = () => {
-    const { link, onClick } = this.props
+const BreadcrumbSection = React.forwardRef(function (props, ref) {
+  const { active, children, className, content, href, link, onClick } = props
 
+  const classes = cx(useKeyOnly(active, 'active'), 'section', className)
+  const rest = getUnhandledProps(BreadcrumbSection, props)
+  const ElementType = getElementType(BreadcrumbSection, props, () => {
     if (link || onClick) return 'a'
-  }
+  })
 
-  handleClick = (e) => _.invoke(this.props, 'onClick', e, this.props)
+  const handleClick = useEventCallback((e) => _.invoke(props, 'onClick', e, props))
 
-  render() {
-    const { active, children, className, content, href } = this.props
+  return (
+    <ElementType {...rest} className={classes} href={href} onClick={handleClick} ref={ref}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
+})
 
-    const classes = cx(useKeyOnly(active, 'active'), 'section', className)
-    const rest = getUnhandledProps(BreadcrumbSection, this.props)
-    const ElementType = getElementType(BreadcrumbSection, this.props, this.computeElementType)
-
-    return (
-      <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-        {childrenUtils.isNil(children) ? content : children}
-      </ElementType>
-    )
-  }
-}
-
+BreadcrumbSection.displayName = 'BreadcrumbSection'
 BreadcrumbSection.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -75,3 +71,5 @@ BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, (content) =
   content,
   link: true,
 }))
+
+export default BreadcrumbSection

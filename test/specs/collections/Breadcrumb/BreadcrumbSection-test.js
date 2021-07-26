@@ -6,6 +6,7 @@ import { sandbox } from 'test/utils'
 
 describe('BreadcrumbSection', () => {
   common.isConformant(BreadcrumbSection)
+  common.forwardsRef(BreadcrumbSection)
   common.rendersChildren(BreadcrumbSection)
 
   common.propKeyOnlyToClassName(BreadcrumbSection, 'active')
@@ -39,7 +40,7 @@ describe('BreadcrumbSection', () => {
       const event = { target: null }
       const props = { active: true, content: 'home' }
 
-      shallow(<BreadcrumbSection onClick={onClick} {...props} />).simulate('click', event)
+      mount(<BreadcrumbSection onClick={onClick} {...props} />).simulate('click', event)
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(event, props)
