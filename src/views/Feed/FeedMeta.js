@@ -14,7 +14,7 @@ import FeedLike from './FeedLike'
 /**
  * A feed can contain a meta.
  */
-function FeedMeta(props) {
+const FeedMeta = React.forwardRef(function (props, ref) {
   const { children, className, content, like } = props
 
   const classes = cx('meta', className)
@@ -23,20 +23,21 @@ function FeedMeta(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {createShorthand(FeedLike, (val) => ({ content: val }), like, { autoGenerateKey: false })}
       {content}
     </ElementType>
   )
-}
+})
 
+FeedMeta.displayName = 'FeedMeta'
 FeedMeta.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

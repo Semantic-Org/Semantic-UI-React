@@ -8,6 +8,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('FeedEvent', () => {
   common.isConformant(FeedEvent)
+  common.forwardsRef(FeedEvent)
   common.rendersChildren(FeedEvent, {
     rendersContent: false,
   })
