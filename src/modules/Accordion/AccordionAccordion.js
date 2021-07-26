@@ -4,97 +4,99 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  ModernAutoControlledComponent as Component,
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  useAutoControlledValue,
+  useEventCallback,
 } from '../../lib'
 import AccordionPanel from './AccordionPanel'
 
-const warnIfPropsAreInvalid = (props, state) => {
-  const { exclusive } = props
-  const { activeIndex } = state
+/**
+ * @param {Boolean} exclusive
+ * @param {Number} activeIndex
+ * @param {Number} itemIndex
+ */
+function isIndexActive(exclusive, activeIndex, itemIndex) {
+  return exclusive ? activeIndex === itemIndex : _.includes(activeIndex, itemIndex)
+}
 
-  /* eslint-disable no-console */
-  if (exclusive && typeof activeIndex !== 'number') {
-    console.error('`activeIndex` must be a number if `exclusive` is true')
-  } else if (!exclusive && !_.isArray(activeIndex)) {
-    console.error('`activeIndex` must be an array if `exclusive` is false')
+/**
+ * @param {Boolean} exclusive
+ * @param {Number} activeIndex
+ * @param {Number} itemIndex
+ */
+function computeNewIndex(exclusive, activeIndex, itemIndex) {
+  if (exclusive) {
+    return itemIndex === activeIndex ? -1 : itemIndex
   }
-  /* eslint-enable no-console */
+
+  // check to see if index is in array, and remove it, if not then add it
+  if (_.includes(activeIndex, itemIndex)) {
+    return _.without(activeIndex, itemIndex)
+  }
+
+  return [...activeIndex, itemIndex]
 }
 
 /**
  * An Accordion can contain sub-accordions.
  */
-export default class AccordionAccordion extends Component {
-  getInitialAutoControlledState({ exclusive }) {
-    return { activeIndex: exclusive ? -1 : [] }
-  }
+const AccordionAccordion = React.forwardRef(function (props, ref) {
+  const { className, children, exclusive, panels } = props
+  const [activeIndex, setActiveIndex] = useAutoControlledValue({
+    state: props.activeIndex,
+    defaultState: props.defaultActiveIndex,
+    initialState: () => (exclusive ? -1 : []),
+  })
 
-  componentDidMount() {
-    if (process.env.NODE_ENV !== 'production') {
-      warnIfPropsAreInvalid(this.props, this.state)
-    }
-  }
+  const classes = cx('accordion', className)
+  const rest = getUnhandledProps(AccordionAccordion, props)
+  const ElementType = getElementType(AccordionAccordion, props)
 
-  componentDidUpdate() {
-    if (process.env.NODE_ENV !== 'production') {
-      warnIfPropsAreInvalid(this.props, this.state)
-    }
-  }
-
-  computeNewIndex = (index) => {
-    const { exclusive } = this.props
-    const { activeIndex } = this.state
-
-    if (exclusive) return index === activeIndex ? -1 : index
-
-    // check to see if index is in array, and remove it, if not then add it
-    return _.includes(activeIndex, index) ? _.without(activeIndex, index) : [...activeIndex, index]
-  }
-
-  handleTitleClick = (e, titleProps) => {
+  const handleTitleClick = useEventCallback((e, titleProps) => {
     const { index } = titleProps
 
-    this.setState({ activeIndex: this.computeNewIndex(index) })
-    _.invoke(this.props, 'onTitleClick', e, titleProps)
+    setActiveIndex(computeNewIndex(exclusive, activeIndex, index))
+    _.invoke(props, 'onTitleClick', e, titleProps)
+  })
+
+  if (process.env.NODE_ENV !== 'production') {
+    React.useEffect(() => {
+      /* eslint-disable no-console */
+      if (exclusive && typeof activeIndex !== 'number') {
+        console.error('`activeIndex` must be a number if `exclusive` is true')
+      } else if (!exclusive && !_.isArray(activeIndex)) {
+        console.error('`activeIndex` must be an array if `exclusive` is false')
+      }
+      /* eslint-enable no-console */
+    }, [exclusive, activeIndex])
   }
 
-  isIndexActive = (index) => {
-    const { exclusive } = this.props
-    const { activeIndex } = this.state
+  return (
+    <ElementType {...rest} className={classes} ref={ref}>
+      {childrenUtils.isNil(children)
+        ? _.map(panels, (panel, index) =>
+            AccordionPanel.create(panel, {
+              defaultProps: {
+                active: isIndexActive(exclusive, activeIndex, index),
+                index,
+                onTitleClick: handleTitleClick,
+              },
+            }),
+          )
+        : children}
+    </ElementType>
+  )
+})
 
-    return exclusive ? activeIndex === index : _.includes(activeIndex, index)
-  }
-
-  render() {
-    const { className, children, panels } = this.props
-
-    const classes = cx('accordion', className)
-    const rest = getUnhandledProps(AccordionAccordion, this.props)
-    const ElementType = getElementType(AccordionAccordion, this.props)
-
-    return (
-      <ElementType {...rest} className={classes}>
-        {childrenUtils.isNil(children)
-          ? _.map(panels, (panel, index) =>
-              AccordionPanel.create(panel, {
-                defaultProps: {
-                  active: this.isIndexActive(index),
-                  index,
-                  onTitleClick: this.handleTitleClick,
-                },
-              }),
-            )
-          : children}
-      </ElementType>
-    )
-  }
+AccordionAccordion.defaultProps = {
+  exclusive: true,
 }
 
+AccordionAccordion.displayName = 'AccordionAccordion'
 AccordionAccordion.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -140,10 +142,6 @@ AccordionAccordion.propTypes = {
   ]),
 }
 
-AccordionAccordion.defaultProps = {
-  exclusive: true,
-}
-
-AccordionAccordion.autoControlledProps = ['activeIndex']
-
 AccordionAccordion.create = createShorthandFactory(AccordionAccordion, (content) => ({ content }))
+
+export default AccordionAccordion
