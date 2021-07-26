@@ -73,7 +73,7 @@ export default function isConformant(Component, options = {}) {
   const isTopLevelAPIProp = _.has(semanticUIReact, constructorName)
 
   // find the apiPath in the semanticUIReact object
-  const foundAsSubcomponent = _.isFunction(_.get(semanticUIReact, info.apiPath))
+  const foundAsSubcomponent = ReactIs.isValidElementType(_.get(semanticUIReact, info.apiPath))
 
   // require all components to be exported at the top level
   it('is exported at the top level', () => {

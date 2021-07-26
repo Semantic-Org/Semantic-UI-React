@@ -7,6 +7,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Placeholder', () => {
   common.isConformant(Placeholder)
+  common.forwardsRef(Placeholder)
   common.hasSubcomponents(Placeholder, [
     PlaceholderHeader,
     PlaceholderImage,

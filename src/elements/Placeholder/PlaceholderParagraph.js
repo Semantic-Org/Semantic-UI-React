@@ -7,19 +7,20 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A placeholder can contain a paragraph.
  */
-function PlaceholderParagraph(props) {
+const PlaceholderParagraph = React.forwardRef(function PlaceholderParagraphInner(props, ref) {
   const { children, className, content } = props
   const classes = cx('paragraph', className)
   const rest = getUnhandledProps(PlaceholderParagraph, props)
   const ElementType = getElementType(PlaceholderParagraph, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+PlaceholderParagraph.displayName = 'PlaceholderParagraph'
 PlaceholderParagraph.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
