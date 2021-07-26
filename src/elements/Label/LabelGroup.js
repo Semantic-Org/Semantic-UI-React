@@ -14,7 +14,7 @@ import {
 /**
  * A label can be grouped.
  */
-function LabelGroup(props) {
+const LabelGroup = React.forwardRef(function (props, ref) {
   const { children, circular, className, color, content, size, tag } = props
 
   const classes = cx(
@@ -30,12 +30,13 @@ function LabelGroup(props) {
   const ElementType = getElementType(LabelGroup, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+LabelGroup.displayName = 'LabelGroup'
 LabelGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

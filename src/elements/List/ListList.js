@@ -13,7 +13,7 @@ import {
 /**
  * A list can contain a sub list.
  */
-function ListList(props) {
+const ListList = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
 
   const rest = getUnhandledProps(ListList, props)
@@ -21,12 +21,13 @@ function ListList(props) {
   const classes = cx(useKeyOnly(ElementType !== 'ul' && ElementType !== 'ol', 'list'), className)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+ListList.displayName = 'ListList'
 ListList.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
