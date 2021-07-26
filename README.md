@@ -46,6 +46,12 @@ See the [**Documentation**][2] for an introduction, usage information, and examp
 - Netflix's [flamescope][31]
 - Microsoft's [Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) prototyping
 
+## Elements
+
+[Button](https://jinno.io/app/200/?source=semantic-ui-react)
+
+[Input](https://jinno.io/app/201/?source=semantic-ui-react)
+
 ## Example Projects
 
 This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
