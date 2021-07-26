@@ -8,14 +8,15 @@ import TableCell from './TableCell'
 /**
  * A table can have a header cell.
  */
-function TableHeaderCell(props) {
+const TableHeaderCell = React.forwardRef(function TableHeaderCellInner(props, ref) {
   const { as, className, sorted } = props
   const classes = cx(useValueAndKey(sorted, 'sorted'), className)
   const rest = getUnhandledProps(TableHeaderCell, props)
 
-  return <TableCell {...rest} as={as} className={classes} />
-}
+  return <TableCell {...rest} as={as} className={classes} ref={ref} />
+})
 
+TableHeaderCell.displayName = 'TableHeaderCell'
 TableHeaderCell.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
