@@ -14,7 +14,7 @@ import Icon from '../../elements/Icon'
 /**
  * An event can contain an image or icon label.
  */
-function FeedLabel(props) {
+const FeedLabel = React.forwardRef(function (props, ref) {
   const { children, className, content, icon, image } = props
 
   const classes = cx('label', className)
@@ -23,21 +23,22 @@ function FeedLabel(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {content}
       {Icon.create(icon, { autoGenerateKey: false })}
       {createHTMLImage(image)}
     </ElementType>
   )
-}
+})
 
+FeedLabel.displayName = 'FeedLabel'
 FeedLabel.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
