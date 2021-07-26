@@ -13,6 +13,8 @@ import * as _ from 'lodash'
 
 describe('Table', () => {
   common.isConformant(Table)
+  common.forwardsRef(Table, { tagName: 'table' })
+  common.forwardsRef(Table, { requiredProps: { children: <tbody /> }, tagName: 'table' })
   common.hasSubcomponents(Table, [
     TableBody,
     TableCell,

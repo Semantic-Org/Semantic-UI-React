@@ -5,6 +5,8 @@ import TableRow from 'src/collections/Table/TableRow'
 
 describe('TableRow', () => {
   common.isConformant(TableRow)
+  common.forwardsRef(TableRow, { tagName: 'tr' })
+  common.forwardsRef(TableRow, { requiredProps: { children: <span /> }, tagName: 'tr' })
   common.rendersChildren(TableRow, {
     rendersContent: false,
   })

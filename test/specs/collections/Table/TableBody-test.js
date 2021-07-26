@@ -5,6 +5,7 @@ import TableBody from 'src/collections/Table/TableBody'
 
 describe('TableBody', () => {
   common.isConformant(TableBody)
+  common.forwardsRef(TableBody, { tagName: 'tbody' })
   common.rendersChildren(TableBody, {
     rendersContent: false,
   })
