@@ -13,19 +13,21 @@ import {
 /**
  * A list item can contain a header.
  */
-function ListHeader(props) {
+const ListHeader = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
+
   const classes = cx('header', className)
   const rest = getUnhandledProps(ListHeader, props)
   const ElementType = getElementType(ListHeader, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+ListHeader.displayName = 'ListHeader'
 ListHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
