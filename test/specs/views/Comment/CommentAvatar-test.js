@@ -8,6 +8,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('CommentAvatar', () => {
   common.isConformant(CommentAvatar)
+  common.forwardsRef(CommentAvatar)
 
   describe('src', () => {
     it('passes to the "img" element', () => {
