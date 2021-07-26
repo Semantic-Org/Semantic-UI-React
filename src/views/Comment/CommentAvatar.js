@@ -13,7 +13,7 @@ import {
 /**
  * A comment can contain an image or avatar.
  */
-function CommentAvatar(props) {
+const CommentAvatar = React.forwardRef(function (props, ref) {
   const { className, src } = props
 
   const classes = cx('avatar', className)
@@ -26,8 +26,9 @@ function CommentAvatar(props) {
       {createHTMLImage(src, { autoGenerateKey: false, defaultProps: imageProps })}
     </ElementType>
   )
-}
+})
 
+CommentAvatar.displayName = 'CommentAvatar'
 CommentAvatar.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

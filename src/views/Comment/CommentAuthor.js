@@ -7,19 +7,20 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A comment can contain an author.
  */
-function CommentAuthor(props) {
+const CommentAuthor = React.forwardRef(function (props, ref) {
   const { className, children, content } = props
   const classes = cx('author', className)
   const rest = getUnhandledProps(CommentAuthor, props)
   const ElementType = getElementType(CommentAuthor, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+CommentAuthor.displayName = 'CommentAuthor'
 CommentAuthor.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
