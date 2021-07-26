@@ -5,8 +5,11 @@ import ItemGroup from 'src/views/Item/ItemGroup'
 import * as common from 'test/specs/commonTests'
 
 describe('ItemGroup', () => {
-  common.hasUIClassName(ItemGroup)
   common.isConformant(ItemGroup)
+  common.forwardsRef(ItemGroup)
+  common.forwardsRef(ItemGroup, { requiredProps: { children: <span /> } })
+  common.forwardsRef(ItemGroup, { requiredProps: { content: faker.lorem.word() } })
+  common.hasUIClassName(ItemGroup)
   common.rendersChildren(ItemGroup)
 
   common.propKeyOnlyToClassName(ItemGroup, 'divided')

@@ -4,6 +4,8 @@ import ItemImage from 'src/views/Item/ItemImage'
 import * as common from 'test/specs/commonTests'
 
 describe('ItemImage', () => {
+  common.isConformant(ItemImage, { rendersChildren: false })
+  common.forwardsRef(ItemImage, { tagName: 'img' })
   common.implementsCreateMethod(ItemImage)
 
   it('renders Image component', () => {
