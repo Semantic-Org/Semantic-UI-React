@@ -6,6 +6,7 @@ import { sandbox } from 'test/utils'
 
 describe('AccordionTitle', () => {
   common.isConformant(AccordionTitle)
+  common.forwardsRef(AccordionTitle)
   common.rendersChildren(AccordionTitle)
 
   common.implementsCreateMethod(AccordionTitle)
@@ -18,14 +19,14 @@ describe('AccordionTitle', () => {
 
   describe('onClick', () => {
     it('is called with (e, { name, index }) when clicked', () => {
-      const spy = sandbox.spy()
+      const onClick = sandbox.spy()
       const event = { target: null }
       const props = { content: 'title', index: 0 }
 
-      shallow(<AccordionTitle onClick={spy} {...props} />).simulate('click', event)
+      mount(<AccordionTitle onClick={onClick} {...props} />).simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch(event, props)
     })
   })
 })
