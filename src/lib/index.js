@@ -47,3 +47,4 @@ export { makeDebugger }
 //
 
 export useClassNamesOnNode from './hooks/useClassNamesOnNode'
+export useEventCallback from './hooks/useEventCallback'
