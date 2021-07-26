@@ -1,6 +1,7 @@
 import cx from 'clsx'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -9,6 +10,7 @@ import {
   getUnhandledProps,
   SUI,
   useKeyOnly,
+  useEventCallback,
 } from '../../lib'
 import Image from '../../elements/Image'
 import CardContent from './CardContent'
@@ -20,80 +22,79 @@ import CardMeta from './CardMeta'
 /**
  * A card displays site content in a manner similar to a playing card.
  */
-export default class Card extends Component {
-  handleClick = (e) => {
-    const { onClick } = this.props
+const Card = React.forwardRef(function (props, ref) {
+  const {
+    centered,
+    children,
+    className,
+    color,
+    content,
+    description,
+    extra,
+    fluid,
+    header,
+    href,
+    image,
+    link,
+    meta,
+    onClick,
+    raised,
+  } = props
 
-    if (onClick) onClick(e, this.props)
-  }
-
-  render() {
-    const {
-      centered,
-      children,
-      className,
-      color,
-      content,
-      description,
-      extra,
-      fluid,
-      header,
-      href,
-      image,
-      link,
-      meta,
-      onClick,
-      raised,
-    } = this.props
-
-    const classes = cx(
-      'ui',
-      color,
-      useKeyOnly(centered, 'centered'),
-      useKeyOnly(fluid, 'fluid'),
-      useKeyOnly(link, 'link'),
-      useKeyOnly(raised, 'raised'),
-      'card',
-      className,
-    )
-    const rest = getUnhandledProps(Card, this.props)
-    const ElementType = getElementType(Card, this.props, () => {
-      if (onClick) return 'a'
-    })
-
-    if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
+  const classes = cx(
+    'ui',
+    color,
+    useKeyOnly(centered, 'centered'),
+    useKeyOnly(fluid, 'fluid'),
+    useKeyOnly(link, 'link'),
+    useKeyOnly(raised, 'raised'),
+    'card',
+    className,
+  )
+  const rest = getUnhandledProps(Card, props)
+  const ElementType = getElementType(Card, props, () => {
+    if (onClick) {
+      return 'a'
     }
-    if (!childrenUtils.isNil(content)) {
-      return (
-        <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-          {content}
-        </ElementType>
-      )
-    }
+  })
 
+  const handleClick = useEventCallback((e) => {
+    _.invoke(props, 'onClick', e, props)
+  })
+
+  if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-        {Image.create(image, {
-          autoGenerateKey: false,
-          defaultProps: {
-            ui: false,
-            wrapped: true,
-          },
-        })}
-        {(description || header || meta) && (
-          <CardContent description={description} header={header} meta={meta} />
-        )}
-        {extra && <CardContent extra>{extra}</CardContent>}
+      <ElementType {...rest} className={classes} href={href} onClick={handleClick} ref={ref}>
+        {children}
       </ElementType>
     )
   }
-}
+  if (!childrenUtils.isNil(content)) {
+    return (
+      <ElementType {...rest} className={classes} href={href} onClick={handleClick} ref={ref}>
+        {content}
+      </ElementType>
+    )
+  }
 
+  return (
+    <ElementType {...rest} className={classes} href={href} onClick={handleClick} ref={ref}>
+      {Image.create(image, {
+        autoGenerateKey: false,
+        defaultProps: {
+          ui: false,
+          wrapped: true,
+        },
+      })}
+      {(description || header || meta) && (
+        <CardContent description={description} header={header} meta={meta} />
+      )}
+      {extra && <CardContent extra>{extra}</CardContent>}
+    </ElementType>
+  )
+})
+
+Card.displayName = 'Card'
 Card.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -155,3 +156,5 @@ Card.Description = CardDescription
 Card.Group = CardGroup
 Card.Header = CardHeader
 Card.Meta = CardMeta
+
+export default Card
