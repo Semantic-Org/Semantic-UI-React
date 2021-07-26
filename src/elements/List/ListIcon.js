@@ -8,14 +8,15 @@ import Icon from '../Icon/Icon'
 /**
  * A list item can contain an icon.
  */
-function ListIcon(props) {
+const ListIcon = React.forwardRef(function (props, ref) {
   const { className, verticalAlign } = props
   const classes = cx(useVerticalAlignProp(verticalAlign), className)
   const rest = getUnhandledProps(ListIcon, props)
 
-  return <Icon {...rest} className={classes} />
-}
+  return <Icon {...rest} className={classes} ref={ref} />
+})
 
+ListIcon.displayName = 'ListIcon'
 ListIcon.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,

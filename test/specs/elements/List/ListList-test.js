@@ -5,6 +5,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('ListList', () => {
   common.isConformant(ListList)
+  common.forwardsRef(ListList)
   common.rendersChildren(ListList)
 
   describe('list', () => {

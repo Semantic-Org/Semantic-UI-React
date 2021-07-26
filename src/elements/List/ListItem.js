@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, isValidElement } from 'react'
+import React, { isValidElement } from 'react'
 
 import {
   childrenUtils,
@@ -10,6 +10,7 @@ import {
   getElementType,
   getUnhandledProps,
   useKeyOnly,
+  useEventCallback,
 } from '../../lib'
 import Image from '../Image'
 import ListContent from './ListContent'
@@ -20,112 +21,116 @@ import ListIcon from './ListIcon'
 /**
  * A list item can contain a set of items.
  */
-class ListItem extends Component {
-  handleClick = (e) => {
-    const { disabled } = this.props
+const ListItem = React.forwardRef(function (props, ref) {
+  const {
+    active,
+    children,
+    className,
+    content,
+    description,
+    disabled,
+    header,
+    icon,
+    image,
+    value,
+  } = props
 
-    if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
-  }
+  const ElementType = getElementType(ListItem, props)
+  const classes = cx(
+    useKeyOnly(active, 'active'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(ElementType !== 'li', 'item'),
+    className,
+  )
+  const rest = getUnhandledProps(ListItem, props)
 
-  render() {
-    const {
-      active,
-      children,
-      className,
-      content,
-      description,
-      disabled,
-      header,
-      icon,
-      image,
-      value,
-    } = this.props
-
-    const ElementType = getElementType(ListItem, this.props)
-    const classes = cx(
-      useKeyOnly(active, 'active'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(ElementType !== 'li', 'item'),
-      className,
-    )
-    const rest = getUnhandledProps(ListItem, this.props)
-    const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
-
-    if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType
-          {...valueProp}
-          role='listitem'
-          className={classes}
-          onClick={this.handleClick}
-          {...rest}
-        >
-          {children}
-        </ElementType>
-      )
+  const handleClick = useEventCallback((e) => {
+    if (!disabled) {
+      _.invoke(props, 'onClick', e, props)
     }
+  })
+  const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
-    const iconElement = ListIcon.create(icon, { autoGenerateKey: false })
-    const imageElement = Image.create(image, { autoGenerateKey: false })
-
-    // See description of `content` prop for explanation about why this is necessary.
-    if (!isValidElement(content) && _.isPlainObject(content)) {
-      return (
-        <ElementType
-          {...valueProp}
-          role='listitem'
-          className={classes}
-          onClick={this.handleClick}
-          {...rest}
-        >
-          {iconElement || imageElement}
-          {ListContent.create(content, {
-            autoGenerateKey: false,
-            defaultProps: { header, description },
-          })}
-        </ElementType>
-      )
-    }
-
-    const headerElement = ListHeader.create(header, { autoGenerateKey: false })
-    const descriptionElement = ListDescription.create(description, { autoGenerateKey: false })
-    if (iconElement || imageElement) {
-      return (
-        <ElementType
-          {...valueProp}
-          role='listitem'
-          className={classes}
-          onClick={this.handleClick}
-          {...rest}
-        >
-          {iconElement || imageElement}
-          {(content || headerElement || descriptionElement) && (
-            <ListContent>
-              {headerElement}
-              {descriptionElement}
-              {content}
-            </ListContent>
-          )}
-        </ElementType>
-      )
-    }
-
+  if (!childrenUtils.isNil(children)) {
     return (
       <ElementType
         {...valueProp}
         role='listitem'
-        className={classes}
-        onClick={this.handleClick}
         {...rest}
+        className={classes}
+        onClick={handleClick}
+        ref={ref}
       >
-        {headerElement}
-        {descriptionElement}
-        {content}
+        {children}
       </ElementType>
     )
   }
-}
 
+  const iconElement = ListIcon.create(icon, { autoGenerateKey: false })
+  const imageElement = Image.create(image, { autoGenerateKey: false })
+
+  // See description of `content` prop for explanation about why this is necessary.
+  if (!isValidElement(content) && _.isPlainObject(content)) {
+    return (
+      <ElementType
+        {...valueProp}
+        role='listitem'
+        {...rest}
+        className={classes}
+        onClick={handleClick}
+        ref={ref}
+      >
+        {iconElement || imageElement}
+        {ListContent.create(content, {
+          autoGenerateKey: false,
+          defaultProps: { header, description },
+        })}
+      </ElementType>
+    )
+  }
+
+  const headerElement = ListHeader.create(header, { autoGenerateKey: false })
+  const descriptionElement = ListDescription.create(description, { autoGenerateKey: false })
+
+  if (iconElement || imageElement) {
+    return (
+      <ElementType
+        {...valueProp}
+        role='listitem'
+        {...rest}
+        className={classes}
+        onClick={handleClick}
+        ref={ref}
+      >
+        {iconElement || imageElement}
+        {(content || headerElement || descriptionElement) && (
+          <ListContent>
+            {headerElement}
+            {descriptionElement}
+            {content}
+          </ListContent>
+        )}
+      </ElementType>
+    )
+  }
+
+  return (
+    <ElementType
+      {...valueProp}
+      role='listitem'
+      {...rest}
+      className={classes}
+      onClick={handleClick}
+      ref={ref}
+    >
+      {headerElement}
+      {descriptionElement}
+      {content}
+    </ElementType>
+  )
+})
+
+ListItem.displayName = 'ListItem'
 ListItem.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
