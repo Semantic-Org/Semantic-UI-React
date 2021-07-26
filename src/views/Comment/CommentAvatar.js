@@ -22,7 +22,7 @@ const CommentAvatar = React.forwardRef(function (props, ref) {
   const ElementType = getElementType(CommentAvatar, props)
 
   return (
-    <ElementType {...rootProps} className={classes}>
+    <ElementType {...rootProps} className={classes} ref={ref}>
       {createHTMLImage(src, { autoGenerateKey: false, defaultProps: imageProps })}
     </ElementType>
   )

@@ -31,7 +31,7 @@ const CommentGroup = React.forwardRef(function (props, ref) {
   const ElementType = getElementType(CommentGroup, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
