@@ -13,19 +13,20 @@ import {
 /**
  * An item can contain a description with a single or multiple paragraphs.
  */
-function ItemDescription(props) {
+const ItemDescription = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('description', className)
   const rest = getUnhandledProps(ItemDescription, props)
   const ElementType = getElementType(ItemDescription, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+ItemDescription.displayName = 'ItemDescription'
 ItemDescription.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
