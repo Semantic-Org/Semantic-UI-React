@@ -7,12 +7,13 @@ import * as common from 'test/specs/commonTests'
 
 describe('ListContent', () => {
   common.isConformant(ListContent)
+  common.forwardsRef(ListContent)
+  common.forwardsRef(ListContent, { requiredProps: { children: <span /> } })
   common.rendersChildren(ListContent)
 
   common.implementsCreateMethod(ListContent)
 
   common.implementsVerticalAlignProp(ListContent)
-
   common.propKeyAndValueToClassName(ListContent, 'floated', SUI.FLOATS)
 
   describe('shorthand', () => {
