@@ -3,5 +3,6 @@ import * as common from 'test/specs/commonTests'
 
 describe('HeaderSubheader', () => {
   common.isConformant(HeaderSubheader)
+  common.forwardsRef(HeaderSubheader)
   common.rendersChildren(HeaderSubheader)
 })
