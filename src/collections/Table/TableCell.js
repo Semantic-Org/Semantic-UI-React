@@ -20,7 +20,7 @@ import Icon from '../../elements/Icon'
 /**
  * A table row can have cells.
  */
-const TableCell = React.forwardRef(function TableCellInner(props, ref) {
+const TableCell = React.forwardRef(function (props, ref) {
   const {
     active,
     children,

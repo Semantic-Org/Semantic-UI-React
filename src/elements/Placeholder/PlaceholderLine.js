@@ -7,7 +7,7 @@ import { getElementType, getUnhandledProps } from '../../lib'
 /**
  * A placeholder can contain have lines of text.
  */
-const PlaceholderLine = React.forwardRef(function PlaceholderLineInner(props, ref) {
+const PlaceholderLine = React.forwardRef(function (props, ref) {
   const { className, length } = props
   const classes = cx('line', length, className)
   const rest = getUnhandledProps(PlaceholderLine, props)

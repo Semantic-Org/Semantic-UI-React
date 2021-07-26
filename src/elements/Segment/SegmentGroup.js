@@ -15,7 +15,7 @@ import {
 /**
  * A group of segments can be formatted to appear together.
  */
-const SegmentGroup = React.forwardRef(function SegmentGroupInner(props, ref) {
+const SegmentGroup = React.forwardRef(function (props, ref) {
   const { children, className, compact, content, horizontal, piled, raised, size, stacked } = props
 
   const classes = cx(

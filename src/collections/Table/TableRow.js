@@ -19,7 +19,7 @@ import TableCell from './TableCell'
 /**
  * A table can have rows.
  */
-const TableRow = React.forwardRef(function TableRowInner(props, ref) {
+const TableRow = React.forwardRef(function (props, ref) {
   const {
     active,
     cellAs,

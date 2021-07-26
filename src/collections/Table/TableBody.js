@@ -4,7 +4,7 @@ import React from 'react'
 
 import { getElementType, getUnhandledProps } from '../../lib'
 
-const TableBody = React.forwardRef(function TableBodyInner(props, ref) {
+const TableBody = React.forwardRef(function (props, ref) {
   const { children, className } = props
   const classes = cx(className)
   const rest = getUnhandledProps(TableBody, props)
