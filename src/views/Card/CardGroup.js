@@ -18,7 +18,7 @@ import Card from './Card'
 /**
  * A group of cards.
  */
-function CardGroup(props) {
+const CardGroup = React.forwardRef(function (props, ref) {
   const {
     centered,
     children,
@@ -46,14 +46,14 @@ function CardGroup(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
   if (!childrenUtils.isNil(content)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {content}
       </ElementType>
     )
@@ -65,12 +65,13 @@ function CardGroup(props) {
   })
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {itemsJSX}
     </ElementType>
   )
-}
+})
 
+CardGroup.displayName = 'CardGroup'
 CardGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

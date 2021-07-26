@@ -15,19 +15,20 @@ import {
 /**
  * A card can contain content metadata.
  */
-function CardMeta(props) {
+const CardMeta = React.forwardRef(function (props, ref) {
   const { children, className, content, textAlign } = props
   const classes = cx(useTextAlignProp(textAlign), 'meta', className)
   const rest = getUnhandledProps(CardMeta, props)
   const ElementType = getElementType(CardMeta, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+CardMeta.displayName = 'CardMeta'
 CardMeta.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
