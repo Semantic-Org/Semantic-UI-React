@@ -46,5 +46,6 @@ export { makeDebugger }
 // Hooks
 //
 
+export useAutoControlledValue from './hooks/useAutoControlledValue'
 export useClassNamesOnNode from './hooks/useClassNamesOnNode'
 export useEventCallback from './hooks/useEventCallback'
