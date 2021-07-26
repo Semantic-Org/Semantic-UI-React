@@ -13,6 +13,9 @@ import * as common from 'test/specs/commonTests'
 
 describe('Item', () => {
   common.isConformant(Item)
+  common.forwardsRef(Item)
+  common.forwardsRef(Item, { requiredProps: { children: <span /> } })
+  common.forwardsRef(Item, { requiredProps: { content: faker.lorem.word() } })
   common.hasSubcomponents(Item, [
     ItemContent,
     ItemDescription,
