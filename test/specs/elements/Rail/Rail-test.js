@@ -9,6 +9,7 @@ const requiredProps = { position: 'left' }
 
 describe('Rail', () => {
   common.isConformant(Rail, { requiredProps })
+  common.forwardsRef(Rail, { requiredProps })
   common.hasUIClassName(Rail, { requiredProps })
   common.rendersChildren(Rail, { requiredProps })
 
