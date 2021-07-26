@@ -5,6 +5,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('MessageHeader', () => {
   common.isConformant(MessageHeader)
+  common.forwardsRef(MessageHeader)
   common.implementsCreateMethod(MessageHeader)
   common.rendersChildren(MessageHeader)
 

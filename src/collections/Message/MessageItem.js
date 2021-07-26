@@ -13,19 +13,21 @@ import {
 /**
  * A message list can contain an item.
  */
-function MessageItem(props) {
+const MessageItem = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
+
   const classes = cx('content', className)
   const rest = getUnhandledProps(MessageItem, props)
   const ElementType = getElementType(MessageItem, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+MessageItem.displayName = 'MessageItem'
 MessageItem.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
