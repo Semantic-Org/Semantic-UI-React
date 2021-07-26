@@ -1,3 +1,4 @@
+import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
@@ -10,6 +11,9 @@ import * as common from 'test/specs/commonTests'
 
 describe('Statistic', () => {
   common.isConformant(Statistic)
+  common.forwardsRef(Statistic)
+  common.forwardsRef(Statistic, { requiredProps: { children: <span /> } })
+  common.forwardsRef(Statistic, { requiredProps: { content: faker.lorem.word() } })
   common.implementsCreateMethod(Statistic)
   common.hasSubcomponents(Statistic, [StatisticGroup, StatisticLabel, StatisticValue])
   common.hasUIClassName(Statistic)
