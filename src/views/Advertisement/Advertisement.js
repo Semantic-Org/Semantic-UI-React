@@ -13,7 +13,7 @@ import {
 /**
  * An ad displays third-party promotional content.
  */
-function Advertisement(props) {
+const Advertisement = React.forwardRef(function (props, ref) {
   const { centered, children, className, content, test, unit } = props
 
   const classes = cx(
@@ -28,12 +28,13 @@ function Advertisement(props) {
   const ElementType = getElementType(Advertisement, props)
 
   return (
-    <ElementType {...rest} className={classes} data-text={test}>
+    <ElementType {...rest} className={classes} data-text={test} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+Advertisement.displayName = 'Advertisement'
 Advertisement.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

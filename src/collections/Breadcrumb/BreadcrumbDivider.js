@@ -15,7 +15,7 @@ import Icon from '../../elements/Icon'
 /**
  * A divider sub-component for Breadcrumb component.
  */
-function BreadcrumbDivider(props) {
+const BreadcrumbDivider = React.forwardRef(function (props, ref) {
   const { children, className, content, icon } = props
 
   const classes = cx('divider', className)
@@ -26,24 +26,26 @@ function BreadcrumbDivider(props) {
     return Icon.create(icon, {
       defaultProps: { ...rest, className: classes },
       autoGenerateKey: false,
+      ref,
     })
   }
 
   if (!_.isNil(content)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {content}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? '/' : children}
     </ElementType>
   )
-}
+})
 
+BreadcrumbDivider.displayName = 'BreadcrumbDivider'
 BreadcrumbDivider.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

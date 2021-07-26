@@ -7,6 +7,8 @@ import * as common from 'test/specs/commonTests'
 
 describe('Breadcrumb', () => {
   common.isConformant(Breadcrumb)
+  common.forwardsRef(Breadcrumb)
+  common.forwardsRef(Breadcrumb, { requiredProps: { children: <span /> } })
   common.hasSubcomponents(Breadcrumb, [BreadcrumbDivider, BreadcrumbSection])
   common.hasUIClassName(Breadcrumb)
   common.rendersChildren(Breadcrumb, {
