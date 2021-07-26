@@ -7,15 +7,16 @@ import { getElementType, getUnhandledProps } from '../../lib'
 /**
  * A placeholder can contain have lines of text.
  */
-function PlaceholderLine(props) {
+const PlaceholderLine = React.forwardRef(function PlaceholderLineInner(props, ref) {
   const { className, length } = props
   const classes = cx('line', length, className)
   const rest = getUnhandledProps(PlaceholderLine, props)
   const ElementType = getElementType(PlaceholderLine, props)
 
-  return <ElementType {...rest} className={classes} />
-}
+  return <ElementType {...rest} className={classes} ref={ref} />
+})
 
+PlaceholderLine.displayName = 'PlaceholderLine'
 PlaceholderLine.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
