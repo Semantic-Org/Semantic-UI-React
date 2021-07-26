@@ -10,8 +10,8 @@ import * as common from 'test/specs/commonTests'
 
 describe('Header', () => {
   common.hasUIClassName(Header)
-  common.forwardsRef(Header, { children: <span /> })
-  common.forwardsRef(Header, { icon: 'book' })
+  common.forwardsRef(Header, { requiredProps: { children: <span /> } })
+  common.forwardsRef(Header, { requiredProps: { icon: 'book' } })
   common.hasSubcomponents(Header, [HeaderContent, HeaderSubheader])
   common.rendersChildren(Header)
 
