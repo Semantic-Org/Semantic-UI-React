@@ -6,6 +6,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('SegmentGroup', () => {
   common.isConformant(SegmentGroup)
+  common.forwardsRef(SegmentGroup)
   common.hasUIClassName(SegmentGroup)
   common.rendersChildren(SegmentGroup)
 
