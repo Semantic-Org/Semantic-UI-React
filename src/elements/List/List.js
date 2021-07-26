@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -24,80 +24,81 @@ import ListList from './ListList'
 /**
  * A list groups related content.
  */
-class List extends Component {
-  handleItemOverrides = (predefinedProps) => ({
-    onClick: (e, itemProps) => {
-      _.invoke(predefinedProps, 'onClick', e, itemProps)
-      _.invoke(this.props, 'onItemClick', e, itemProps)
-    },
-  })
+const List = React.forwardRef(function (props, ref) {
+  const {
+    animated,
+    bulleted,
+    celled,
+    children,
+    className,
+    content,
+    divided,
+    floated,
+    horizontal,
+    inverted,
+    items,
+    link,
+    ordered,
+    relaxed,
+    selection,
+    size,
+    verticalAlign,
+  } = props
 
-  render() {
-    const {
-      animated,
-      bulleted,
-      celled,
-      children,
-      className,
-      content,
-      divided,
-      floated,
-      horizontal,
-      inverted,
-      items,
-      link,
-      ordered,
-      relaxed,
-      selection,
-      size,
-      verticalAlign,
-    } = this.props
+  const classes = cx(
+    'ui',
+    size,
+    useKeyOnly(animated, 'animated'),
+    useKeyOnly(bulleted, 'bulleted'),
+    useKeyOnly(celled, 'celled'),
+    useKeyOnly(divided, 'divided'),
+    useKeyOnly(horizontal, 'horizontal'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(link, 'link'),
+    useKeyOnly(ordered, 'ordered'),
+    useKeyOnly(selection, 'selection'),
+    useKeyOrValueAndKey(relaxed, 'relaxed'),
+    useValueAndKey(floated, 'floated'),
+    useVerticalAlignProp(verticalAlign),
+    'list',
+    className,
+  )
+  const rest = getUnhandledProps(List, props)
+  const ElementType = getElementType(List, props)
 
-    const classes = cx(
-      'ui',
-      size,
-      useKeyOnly(animated, 'animated'),
-      useKeyOnly(bulleted, 'bulleted'),
-      useKeyOnly(celled, 'celled'),
-      useKeyOnly(divided, 'divided'),
-      useKeyOnly(horizontal, 'horizontal'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(link, 'link'),
-      useKeyOnly(ordered, 'ordered'),
-      useKeyOnly(selection, 'selection'),
-      useKeyOrValueAndKey(relaxed, 'relaxed'),
-      useValueAndKey(floated, 'floated'),
-      useVerticalAlignProp(verticalAlign),
-      'list',
-      className,
-    )
-    const rest = getUnhandledProps(List, this.props)
-    const ElementType = getElementType(List, this.props)
-
-    if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType role='list' className={classes} {...rest}>
-          {children}
-        </ElementType>
-      )
-    }
-
-    if (!childrenUtils.isNil(content)) {
-      return (
-        <ElementType role='list' className={classes} {...rest}>
-          {content}
-        </ElementType>
-      )
-    }
-
+  if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType role='list' className={classes} {...rest}>
-        {_.map(items, (item) => ListItem.create(item, { overrideProps: this.handleItemOverrides }))}
+      <ElementType role='list' {...rest} className={classes} ref={ref}>
+        {children}
       </ElementType>
     )
   }
-}
 
+  if (!childrenUtils.isNil(content)) {
+    return (
+      <ElementType role='list' {...rest} className={classes} ref={ref}>
+        {content}
+      </ElementType>
+    )
+  }
+
+  return (
+    <ElementType role='list' {...rest} className={classes} ref={ref}>
+      {_.map(items, (item) =>
+        ListItem.create(item, {
+          overrideProps: (predefinedProps) => ({
+            onClick: (e, itemProps) => {
+              _.invoke(predefinedProps, 'onClick', e, itemProps)
+              _.invoke(props, 'onItemClick', e, itemProps)
+            },
+          }),
+        }),
+      )}
+    </ElementType>
+  )
+})
+
+List.displayName = 'List'
 List.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

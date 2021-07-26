@@ -4,6 +4,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('LabelGroup', () => {
   common.isConformant(LabelGroup)
+  common.forwardsRef(LabelGroup)
   common.hasUIClassName(LabelGroup)
   common.rendersChildren(LabelGroup)
 

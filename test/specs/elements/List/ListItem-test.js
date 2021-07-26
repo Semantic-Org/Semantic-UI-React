@@ -9,6 +9,9 @@ import { sandbox } from 'test/utils'
 
 describe('ListItem', () => {
   common.isConformant(ListItem)
+  common.forwardsRef(ListItem)
+  common.forwardsRef(ListItem, { requiredProps: { children: <span /> } })
+  common.forwardsRef(ListItem, { requiredProps: { image: '/images/wireframe/image.png' } })
   common.rendersChildren(ListItem)
 
   common.propKeyOnlyToClassName(ListItem, 'active')
@@ -23,19 +26,18 @@ describe('ListItem', () => {
   describe('onClick', () => {
     it('is called with (e, data) when clicked', () => {
       const onClick = sandbox.spy()
-      const event = { target: null }
       const props = { onClick, 'data-foo': 'bar' }
 
-      shallow(<ListItem {...props} />).simulate('click', event)
+      mount(<ListItem {...props} />).simulate('click')
 
       onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithExactly(event, props)
+      onClick.should.have.been.calledWithMatch({ type: 'click' }, props)
     })
 
     it('is not called when is disabled', () => {
       const onClick = sandbox.spy()
 
-      shallow(<ListItem disabled onClick={onClick} />).simulate('click')
+      mount(<ListItem disabled onClick={onClick} />).simulate('click')
       onClick.should.have.callCount(0)
     })
   })
