@@ -7,7 +7,7 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A placeholder segment can be inline.
  */
-const SegmentInline = React.forwardRef(function SegmentInlineInner(props, ref) {
+const SegmentInline = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('inline', className)
   const rest = getUnhandledProps(SegmentInline, props)

@@ -7,7 +7,7 @@ import { customPropTypes, getElementType, getUnhandledProps, useKeyOnly } from '
 /**
  * A placeholder can contain an image.
  */
-const PlaceholderImage = React.forwardRef(function PlaceholderImageInner(props, ref) {
+const PlaceholderImage = React.forwardRef(function (props, ref) {
   const { className, square, rectangular } = props
   const classes = cx(
     useKeyOnly(square, 'square'),

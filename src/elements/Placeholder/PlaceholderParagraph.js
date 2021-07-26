@@ -7,7 +7,7 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A placeholder can contain a paragraph.
  */
-const PlaceholderParagraph = React.forwardRef(function PlaceholderParagraphInner(props, ref) {
+const PlaceholderParagraph = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('paragraph', className)
   const rest = getUnhandledProps(PlaceholderParagraph, props)

@@ -13,7 +13,7 @@ import {
 /**
  * A placeholder can contain a header.
  */
-const PlaceholderHeader = React.forwardRef(function PlaceholderHeaderInner(props, ref) {
+const PlaceholderHeader = React.forwardRef(function (props, ref) {
   const { children, className, content, image } = props
   const classes = cx(useKeyOnly(image, 'image'), 'header', className)
   const rest = getUnhandledProps(PlaceholderHeader, props)

@@ -16,6 +16,11 @@ export default function forwardsRef(Component, options = {}) {
       expect(ReactIs.isForwardRef(<Component {...requiredProps} />)).to.equal(true)
     })
 
+    it('a render function is anonymous', () => {
+      const innerFunctionName = Component.render.name
+      expect(innerFunctionName).to.equal('')
+    })
+
     it(`forwards ref to "${tagName}"`, () => {
       const ref = sandbox.spy()
 
