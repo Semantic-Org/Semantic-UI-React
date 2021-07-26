@@ -13,19 +13,21 @@ import {
 /**
  * A message can contain a header.
  */
-function MessageHeader(props) {
+const MessageHeader = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
+
   const classes = cx('header', className)
   const rest = getUnhandledProps(MessageHeader, props)
   const ElementType = getElementType(MessageHeader, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+MessageHeader.displayName = 'MessageHeader'
 MessageHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

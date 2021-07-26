@@ -11,6 +11,8 @@ import { sandbox } from 'test/utils'
 
 describe('Message', () => {
   common.isConformant(Message)
+  common.forwardsRef(Message)
+  common.forwardsRef(Message, { requiredProps: { children: <span /> } })
   common.hasSubcomponents(Message, [MessageContent, MessageHeader, MessageList])
   common.hasUIClassName(Message)
   common.rendersChildren(Message, {
