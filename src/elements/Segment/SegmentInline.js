@@ -7,19 +7,20 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A placeholder segment can be inline.
  */
-function SegmentInline(props) {
+const SegmentInline = React.forwardRef(function SegmentInlineInner(props, ref) {
   const { children, className, content } = props
   const classes = cx('inline', className)
   const rest = getUnhandledProps(SegmentInline, props)
   const ElementType = getElementType(SegmentInline, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+SegmentInline.displayName = 'SegmentInline'
 SegmentInline.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
