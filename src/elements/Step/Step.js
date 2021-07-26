@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -10,6 +10,7 @@ import {
   getElementType,
   getUnhandledProps,
   useKeyOnly,
+  useEventCallback,
 } from '../../lib'
 import Icon from '../Icon'
 import StepContent from './StepContent'
@@ -20,70 +21,69 @@ import StepTitle from './StepTitle'
 /**
  * A step shows the completion status of an activity in a series of activities.
  */
-class Step extends Component {
-  computeElementType = () => {
-    const { onClick } = this.props
+const Step = React.forwardRef(function StepInner(props, ref) {
+  const {
+    active,
+    children,
+    className,
+    completed,
+    content,
+    description,
+    disabled,
+    href,
+    onClick,
+    icon,
+    link,
+    title,
+  } = props
 
-    if (onClick) return 'a'
-  }
-
-  handleClick = (e) => {
-    const { disabled } = this.props
-
-    if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
-  }
-
-  render() {
-    const {
-      active,
-      children,
-      className,
-      completed,
-      content,
-      description,
-      disabled,
-      href,
-      icon,
-      link,
-      title,
-    } = this.props
-
-    const classes = cx(
-      useKeyOnly(active, 'active'),
-      useKeyOnly(completed, 'completed'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(link, 'link'),
-      'step',
-      className,
-    )
-    const rest = getUnhandledProps(Step, this.props)
-    const ElementType = getElementType(Step, this.props, this.computeElementType)
-
-    if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
+  const handleClick = useEventCallback((e) => {
+    if (!disabled) {
+      _.invoke(props, 'onClick', e, props)
     }
+  })
 
-    if (!childrenUtils.isNil(content)) {
-      return (
-        <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-          {content}
-        </ElementType>
-      )
+  const classes = cx(
+    useKeyOnly(active, 'active'),
+    useKeyOnly(completed, 'completed'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(link, 'link'),
+    'step',
+    className,
+  )
+
+  const rest = getUnhandledProps(Step, props)
+  const ElementType = getElementType(Step, props, () => {
+    if (onClick) {
+      return 'a'
     }
+  })
 
+  if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-        {Icon.create(icon, { autoGenerateKey: false })}
-        {StepContent.create({ description, title }, { autoGenerateKey: false })}
+      <ElementType {...rest} className={classes} href={href} onClick={handleClick} ref={ref}>
+        {children}
       </ElementType>
     )
   }
-}
 
+  if (!childrenUtils.isNil(content)) {
+    return (
+      <ElementType {...rest} className={classes} href={href} onClick={handleClick} ref={ref}>
+        {content}
+      </ElementType>
+    )
+  }
+
+  return (
+    <ElementType {...rest} className={classes} href={href} onClick={handleClick} ref={ref}>
+      {Icon.create(icon, { autoGenerateKey: false })}
+      {StepContent.create({ description, title }, { autoGenerateKey: false })}
+    </ElementType>
+  )
+})
+
+Step.displayName = 'Step'
 Step.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

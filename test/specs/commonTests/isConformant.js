@@ -226,7 +226,7 @@ export default function isConformant(Component, options = {}) {
   // ----------------------------------------
   // Events
   // ----------------------------------------
-  if (rendersChildren) {
+  if (rendersChildren && !rendersPortal) {
     it('handles events transparently', () => {
       // Events should be handled transparently, working just as they would in vanilla React.
       // Example, both of these handler()s should be called with the same event:
@@ -251,13 +251,14 @@ export default function isConformant(Component, options = {}) {
             'data-simulate-event-here': true,
           }
 
-          const wrapper = shallow(
+          consoleUtil.disableOnce()
+          const wrapper = mount(
             <Component as={rendersFragmentByDefault ? 'div' : undefined} {...props} />,
           )
 
           const eventTarget = eventTargets[listenerName]
             ? wrapper.find(eventTargets[listenerName])
-            : wrapper.find('[data-simulate-event-here]')
+            : wrapper.find('[data-simulate-event-here]').hostNodes()
 
           eventTarget.simulate(eventName, eventShape)
 
@@ -285,18 +286,19 @@ export default function isConformant(Component, options = {}) {
             errorMessage = 'was not called with (event, data)'
           }
 
+          // A handled should be called once
+          handlerSpy.should.have.been.calledOnce()
+
           // Components should return the event first, then any data
-          handlerSpy
-            .calledWithMatch(...expectedArgs)
-            .should.equal(
-              true,
-              [
-                `<${info.displayName} ${listenerName}={${handlerName}} />\n`,
-                `${leftPad} ^ ${errorMessage}`,
-                'It was called with args:',
-                JSON.stringify(handlerSpy.args, null, 2),
-              ].join('\n'),
-            )
+          handlerSpy.calledWithMatch(...expectedArgs).should.equal(
+            true,
+            [
+              `<${info.displayName} ${listenerName}={${handlerName}} />\n`,
+              `${leftPad} ^ ${errorMessage}`,
+              'It was called with args:',
+              //       JSON.stringify(handlerSpy.args, null, 2),
+            ].join('\n'),
+          )
         })
       })
     })
@@ -314,77 +316,79 @@ export default function isConformant(Component, options = {}) {
   // ----------------------------------------
   // Handles className
   // ----------------------------------------
-  if (rendersChildren) {
-    describe('className (common)', () => {
-      it(`has the Semantic UI className "${info.componentClassName}"`, () => {
-        const wrapper = render(<Component {...requiredProps} />)
-        // don't test components with no className at all (i.e. MessageItem)
-        if (wrapper.prop('className')) {
-          wrapper.should.have.className(info.componentClassName)
-        }
-      })
+  if (_.has(Component.propTypes, 'className')) {
+    if (rendersChildren) {
+      describe('className (common)', () => {
+        it(`has the Semantic UI className "${info.componentClassName}"`, () => {
+          const wrapper = render(<Component {...requiredProps} />)
+          // don't test components with no className at all (i.e. MessageItem)
+          if (wrapper.prop('className')) {
+            wrapper.should.have.className(info.componentClassName)
+          }
+        })
 
-      it("applies user's className to root component", () => {
-        const className = 'is-conformant-class-string'
+        it("applies user's className to root component", () => {
+          const className = 'is-conformant-class-string'
 
-        // Portal powered components can render to two elements, a trigger and the actual component
-        // The actual component is shown when the portal is open
-        // If a trigger is rendered, open the portal and make assertions on the portal element
-        if (rendersPortal) {
-          const mountNode = document.createElement('div')
-          document.body.appendChild(mountNode)
+          // Portal powered components can render to two elements, a trigger and the actual component
+          // The actual component is shown when the portal is open
+          // If a trigger is rendered, open the portal and make assertions on the portal element
+          if (rendersPortal) {
+            const mountNode = document.createElement('div')
+            document.body.appendChild(mountNode)
 
-          const wrapper = mount(<Component {...requiredProps} className={className} />, {
-            attachTo: mountNode,
+            const wrapper = mount(<Component {...requiredProps} className={className} />, {
+              attachTo: mountNode,
+            })
+            wrapper.setProps({ open: true })
+
+            // portals/popups/etc may render the component to somewhere besides descendants
+            // we look for the component anywhere in the DOM
+            assertBodyContains(`.${className}`)
+
+            wrapper.detach()
+            document.body.removeChild(mountNode)
+          } else {
+            shallow(
+              <Component
+                as={rendersFragmentByDefault ? 'div' : undefined}
+                {...requiredProps}
+                className={className}
+              />,
+              {
+                autoNesting: true,
+                nestingLevel,
+              },
+            ).should.have.className(className)
+          }
+        })
+
+        it("user's className does not override the default classes", () => {
+          const defaultClasses = shallow(<Component {...requiredProps} />, {
+            autoNesting: true,
+            nestingLevel,
+          }).prop('className')
+
+          if (!defaultClasses) return
+
+          const userClasses = faker.hacker.verb()
+          const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />, {
+            autoNesting: true,
+            nestingLevel,
+          }).prop('className')
+
+          defaultClasses.split(' ').forEach((defaultClass) => {
+            mixedClasses.should.include(
+              defaultClass,
+              [
+                'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+                'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+              ].join(' '),
+            )
           })
-          wrapper.setProps({ open: true })
-
-          // portals/popups/etc may render the component to somewhere besides descendants
-          // we look for the component anywhere in the DOM
-          assertBodyContains(`.${className}`)
-
-          wrapper.detach()
-          document.body.removeChild(mountNode)
-        } else {
-          shallow(
-            <Component
-              as={rendersFragmentByDefault ? 'div' : undefined}
-              {...requiredProps}
-              className={className}
-            />,
-            {
-              autoNesting: true,
-              nestingLevel,
-            },
-          ).should.have.className(className)
-        }
-      })
-
-      it("user's className does not override the default classes", () => {
-        const defaultClasses = shallow(<Component {...requiredProps} />, {
-          autoNesting: true,
-          nestingLevel,
-        }).prop('className')
-
-        if (!defaultClasses) return
-
-        const userClasses = faker.hacker.verb()
-        const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />, {
-          autoNesting: true,
-          nestingLevel,
-        }).prop('className')
-
-        defaultClasses.split(' ').forEach((defaultClass) => {
-          mixedClasses.should.include(
-            defaultClass,
-            [
-              'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
-              'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
-            ].join(' '),
-          )
         })
       })
-    })
+    }
   }
 
   // ----------------------------------------
