@@ -13,19 +13,20 @@ import {
 /**
  * An item can contain extra content meant to be formatted separately from the main content.
  */
-function ItemExtra(props) {
+const ItemExtra = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('extra', className)
   const rest = getUnhandledProps(ItemExtra, props)
   const ElementType = getElementType(ItemExtra, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+ItemExtra.displayName = 'ItemExtra'
 ItemExtra.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

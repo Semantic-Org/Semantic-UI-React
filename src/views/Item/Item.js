@@ -14,7 +14,7 @@ import ItemMeta from './ItemMeta'
 /**
  * An item view presents large collections of site content for display.
  */
-function Item(props) {
+const Item = React.forwardRef(function (props, ref) {
   const { children, className, content, description, extra, header, image, meta } = props
 
   const classes = cx('item', className)
@@ -23,14 +23,14 @@ function Item(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {ItemImage.create(image, { autoGenerateKey: false })}
 
       <ItemContent
@@ -42,7 +42,7 @@ function Item(props) {
       />
     </ElementType>
   )
-}
+})
 
 Item.Content = ItemContent
 Item.Description = ItemDescription
@@ -52,6 +52,7 @@ Item.Header = ItemHeader
 Item.Image = ItemImage
 Item.Meta = ItemMeta
 
+Item.displayName = 'Item'
 Item.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

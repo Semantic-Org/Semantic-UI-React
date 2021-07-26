@@ -16,7 +16,7 @@ import Item from './Item'
 /**
  * A group of items.
  */
-function ItemGroup(props) {
+const ItemGroup = React.forwardRef(function (props, ref) {
   const { children, className, content, divided, items, link, relaxed, unstackable } = props
 
   const classes = cx(
@@ -33,14 +33,14 @@ function ItemGroup(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
   if (!childrenUtils.isNil(content)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {content}
       </ElementType>
     )
@@ -56,12 +56,13 @@ function ItemGroup(props) {
   })
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {itemsJSX}
     </ElementType>
   )
-}
+})
 
+ItemGroup.displayName = 'ItemGroup'
 ItemGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
