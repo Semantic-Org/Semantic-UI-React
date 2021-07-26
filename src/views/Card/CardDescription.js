@@ -15,19 +15,20 @@ import {
 /**
  * A card can contain a description with one or more paragraphs.
  */
-function CardDescription(props) {
+const CardDescription = React.forwardRef(function (props, ref) {
   const { children, className, content, textAlign } = props
   const classes = cx(useTextAlignProp(textAlign), 'description', className)
   const rest = getUnhandledProps(CardDescription, props)
   const ElementType = getElementType(CardDescription, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+CardDescription.displayName = 'CardDescription'
 CardDescription.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
