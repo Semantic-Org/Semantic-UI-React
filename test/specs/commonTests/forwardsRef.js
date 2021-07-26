@@ -1,14 +1,20 @@
-import React from 'react'
+import * as React from 'react'
+import * as ReactIs from 'react-is'
+
 import { consoleUtil, sandbox } from 'test/utils'
 
 /**
  * Assert a Component correctly implements a shorthand create method.
- * @param {React.Component} Component The component to test
+ * @param {React.ElementType} Component The component to test
  * @param {{ requiredProps?: Object, tagName?: string }} options Options for a test
  */
 export default function forwardsRef(Component, options = {}) {
   describe('forwardsRef', () => {
     const { requiredProps = {}, tagName = 'div' } = options
+
+    it('is produced by React.forwardRef() call', () => {
+      expect(ReactIs.isForwardRef(<Component {...requiredProps} />)).to.equal(true)
+    })
 
     it(`forwards ref to "${tagName}"`, () => {
       const ref = sandbox.spy()
