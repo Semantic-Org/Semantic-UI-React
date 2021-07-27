@@ -1,3 +1,4 @@
+import faker from 'faker'
 import React from 'react'
 
 import Button from 'src/elements/Button/Button'
@@ -12,6 +13,8 @@ const syntheticEvent = { preventDefault: () => undefined }
 
 describe('Button', () => {
   common.isConformant(Button)
+  common.forwardsRef(Button, { tagName: 'button' })
+  common.forwardsRef(Button, { requiredProps: { label: faker.lorem.word() }, tagName: 'button' })
   common.hasSubcomponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
   common.hasUIClassName(Button)
   common.rendersChildren(Button)
@@ -97,22 +100,6 @@ describe('Button', () => {
     })
   })
 
-  describe('focus', () => {
-    it('can be set via a ref', () => {
-      const mountNode = document.createElement('div')
-      document.body.appendChild(mountNode)
-
-      const wrapper = mount(<Button />, { attachTo: mountNode })
-      wrapper.instance().focus()
-
-      const button = document.querySelector('button')
-      document.activeElement.should.equal(button)
-
-      wrapper.detach()
-      document.body.removeChild(mountNode)
-    })
-  })
-
   describe('toggle', () => {
     it('is not set by default', () => {
       shallow(<Button />, { autoNesting: true }).should.not.have.prop('toggle')
@@ -166,6 +153,7 @@ describe('Button', () => {
     it('renders as a div', () => {
       shallow(<Button label='http' />).should.have.tagName('div')
     })
+
     it('renders a div with a button and Label child', () => {
       const wrapper = shallow(<Button label='hi' />)
 
@@ -173,9 +161,11 @@ describe('Button', () => {
       wrapper.should.have.exactly(1).descendants('button')
       wrapper.should.have.exactly(1).descendants('Label')
     })
+
     it('adds the labeled className to the root element', () => {
       shallow(<Button label='hi' />).should.have.className('labeled')
     })
+
     it('contains children without disabled class when disabled attribute is set', () => {
       const wrapper = shallow(<Button label='hi' disabled />)
 
@@ -183,6 +173,7 @@ describe('Button', () => {
       wrapper.find('Label').should.not.have.className('disabled')
       wrapper.find('button').should.not.have.className('disabled')
     })
+
     it('contains children without floated class when floated attribute is set', () => {
       const wrapper = shallow(<Button label='hi' floated='left' />)
 
@@ -190,31 +181,38 @@ describe('Button', () => {
       wrapper.find('Label').should.not.have.className('floated')
       wrapper.find('button').should.not.have.className('floated')
     })
+
     it('creates a basic pointing label', () => {
       shallow(<Button label='foo' />)
         .should.have.exactly(1)
         .descendants('Label[basic][pointing]')
     })
+
     it('is before the button and pointing="right" when labelPosition="left"', () => {
-      const wrapper = shallow(<Button labelPosition='left' label='foo' />)
+      const wrapper = mount(<Button labelPosition='left' label='foo' />)
+
       wrapper.should.have.exactly(1).descendants('Label[pointing="right"]')
 
-      wrapper.childAt(0).shallow().should.match('.ui.label')
-      wrapper.childAt(1).childAt(0).should.match('button')
+      wrapper.childAt(0).childAt(0).should.have.className('label')
+      wrapper.childAt(0).childAt(1).should.have.tagName('button')
     })
+
     it('is after the button and pointing="left" when labelPosition="right"', () => {
-      const wrapper = shallow(<Button labelPosition='right' label='foo' />)
+      const wrapper = mount(<Button labelPosition='right' label='foo' />)
+
       wrapper.should.have.exactly(1).descendants('Label[pointing="left"]')
 
-      wrapper.childAt(0).childAt(0).should.match('button')
-      wrapper.childAt(1).shallow().should.match('.ui.label')
+      wrapper.childAt(0).childAt(0).should.have.tagName('button')
+      wrapper.childAt(0).childAt(1).should.have.className('label')
     })
+
     it('is after the button and pointing="left" by default', () => {
-      const wrapper = shallow(<Button label='foo' />)
+      const wrapper = mount(<Button label='foo' />)
+
       wrapper.should.have.exactly(1).descendants('Label[pointing="left"]')
 
-      wrapper.childAt(0).childAt(0).should.match('button')
-      wrapper.childAt(1).shallow().should.match('.ui.label')
+      wrapper.childAt(0).childAt(0).should.have.tagName('button')
+      wrapper.childAt(0).childAt(1).should.have.className('label')
     })
   })
 

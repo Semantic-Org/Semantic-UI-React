@@ -6,6 +6,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('ButtonGroup', () => {
   common.isConformant(ButtonGroup)
+  common.forwardsRef(ButtonGroup)
   common.hasUIClassName(ButtonGroup)
   common.rendersChildren(ButtonGroup)
 

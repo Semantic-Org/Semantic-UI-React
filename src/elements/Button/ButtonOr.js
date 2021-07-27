@@ -7,15 +7,16 @@ import { getElementType, getUnhandledProps } from '../../lib'
 /**
  * Button groups can contain conditionals.
  */
-function ButtonOr(props) {
+const ButtonOr = React.forwardRef(function (props, ref) {
   const { className, text } = props
   const classes = cx('or', className)
   const rest = getUnhandledProps(ButtonOr, props)
   const ElementType = getElementType(ButtonOr, props)
 
-  return <ElementType {...rest} className={classes} data-text={text} />
-}
+  return <ElementType {...rest} className={classes} data-text={text} ref={ref} />
+})
 
+ButtonOr.displayName = 'ButtonOr'
 ButtonOr.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
