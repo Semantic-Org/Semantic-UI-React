@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  ModernAutoControlledComponent as Component,
   createPaginationItems,
   customPropTypes,
   getUnhandledProps,
+  useAutoControlledValue,
 } from '../../lib'
 import Menu from '../../collections/Menu'
 import PaginationItem from './PaginationItem'
@@ -14,68 +14,72 @@ import PaginationItem from './PaginationItem'
 /**
  * A component to render a pagination.
  */
-export default class Pagination extends Component {
-  getInitialAutoControlledState() {
-    return { activePage: 1 }
-  }
+const Pagination = React.forwardRef(function (props, ref) {
+  const {
+    'aria-label': ariaLabel,
+    boundaryRange,
+    disabled,
+    ellipsisItem,
+    siblingRange,
+    totalPages,
+  } = props
+  const [activePage, setActivePage] = useAutoControlledValue({
+    state: props.activePage,
+    defaultState: props.defaultActivePage,
+    initialState: 1,
+  })
 
-  handleItemClick = (e, { value: nextActivePage }) => {
-    const { activePage: prevActivePage } = this.state
+  const handleItemClick = (e, { value: nextActivePage }) => {
+    const prevActivePage = activePage
 
     // Heads up! We need the cast to the "number" type there, as `activePage` can be a string
-    if (+prevActivePage === +nextActivePage) return
+    if (+prevActivePage === +nextActivePage) {
+      return
+    }
 
-    this.setState({ activePage: nextActivePage })
-    _.invoke(this.props, 'onPageChange', e, { ...this.props, activePage: nextActivePage })
+    setActivePage(nextActivePage)
+    _.invoke(props, 'onPageChange', e, { ...props, activePage: nextActivePage })
   }
 
-  handleItemOverrides = (active, type, value) => (predefinedProps) => ({
+  const handleItemOverrides = (active, type, value) => (predefinedProps) => ({
     active,
     type,
     key: `${type}-${value}`,
     onClick: (e, itemProps) => {
       _.invoke(predefinedProps, 'onClick', e, itemProps)
-      if (itemProps.type !== 'ellipsisItem') this.handleItemClick(e, itemProps)
+
+      if (itemProps.type !== 'ellipsisItem') {
+        handleItemClick(e, itemProps)
+      }
     },
   })
 
-  render() {
-    const {
-      'aria-label': ariaLabel,
-      boundaryRange,
-      disabled,
-      ellipsisItem,
-      siblingRange,
-      totalPages,
-    } = this.props
-    const { activePage } = this.state
+  const items = createPaginationItems({
+    activePage,
+    boundaryRange,
+    hideEllipsis: _.isNil(ellipsisItem),
+    siblingRange,
+    totalPages,
+  })
+  const rest = getUnhandledProps(Pagination, props)
 
-    const items = createPaginationItems({
-      activePage,
-      boundaryRange,
-      hideEllipsis: _.isNil(ellipsisItem),
-      siblingRange,
-      totalPages,
-    })
-    const rest = getUnhandledProps(Pagination, this.props)
+  return (
+    <Menu {...rest} aria-label={ariaLabel} pagination role='navigation' ref={ref}>
+      {_.map(items, ({ active, type, value }) =>
+        PaginationItem.create(props[type], {
+          defaultProps: {
+            content: value,
+            disabled,
+            value,
+          },
+          overrideProps: handleItemOverrides(active, type, value),
+        }),
+      )}
+    </Menu>
+  )
+})
 
-    return (
-      <Menu {...rest} aria-label={ariaLabel} pagination role='navigation'>
-        {_.map(items, ({ active, type, value }) =>
-          PaginationItem.create(this.props[type], {
-            defaultProps: {
-              content: value,
-              disabled,
-              value,
-            },
-            overrideProps: this.handleItemOverrides(active, type, value),
-          }),
-        )}
-      </Menu>
-    )
-  }
-}
-
+Pagination.displayName = 'Pagination'
 Pagination.propTypes = {
   /** A pagination item can have an aria label. */
   'aria-label': PropTypes.string,
@@ -125,8 +129,6 @@ Pagination.propTypes = {
   totalPages: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 }
 
-Pagination.autoControlledProps = ['activePage']
-
 Pagination.defaultProps = {
   'aria-label': 'Pagination Navigation',
   boundaryRange: 1,
@@ -152,3 +154,5 @@ Pagination.defaultProps = {
 }
 
 Pagination.Item = PaginationItem
+
+export default Pagination
