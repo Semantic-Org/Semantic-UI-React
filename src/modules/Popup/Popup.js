@@ -2,12 +2,11 @@ import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 import { Popper } from 'react-popper'
 import shallowEqual from 'shallowequal'
 
 import {
-  eventStack,
   childrenUtils,
   createHTMLDivision,
   customPropTypes,
@@ -17,6 +16,9 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  useIsomorphicLayoutEffect,
+  useMergedRefs,
+  usePrevious,
 } from '../../lib'
 import Portal from '../../addons/Portal'
 import { placementMapping, positions, positionsMapping } from './lib/positions'
@@ -27,142 +29,195 @@ import PopupHeader from './PopupHeader'
 const debug = makeDebugger('popup')
 
 /**
+ * Calculates props specific for Portal component.
+ *
+ * @param {Object} props
+ */
+function getPortalProps(props) {
+  const portalProps = {}
+  const normalizedOn = _.isArray(props.on) ? props.on : [props.on]
+
+  if (props.hoverable) {
+    portalProps.closeOnPortalMouseLeave = true
+    portalProps.mouseLeaveDelay = 300
+  }
+
+  if (_.includes(normalizedOn, 'hover')) {
+    portalProps.openOnTriggerClick = false
+    portalProps.closeOnTriggerClick = false
+    portalProps.openOnTriggerMouseEnter = true
+    portalProps.closeOnTriggerMouseLeave = true
+    // Taken from SUI: https://git.io/vPmCm
+    portalProps.mouseLeaveDelay = 70
+    portalProps.mouseEnterDelay = 50
+  }
+
+  if (_.includes(normalizedOn, 'click')) {
+    portalProps.openOnTriggerClick = true
+    portalProps.closeOnTriggerClick = true
+    portalProps.closeOnDocumentClick = true
+  }
+
+  if (_.includes(normalizedOn, 'focus')) {
+    portalProps.openOnTriggerFocus = true
+    portalProps.closeOnTriggerBlur = true
+  }
+
+  return portalProps
+}
+
+/**
+ * Splits props for Portal & Popup.
+ *
+ * @param {Object} unhandledProps
+ * @param {Boolean} closed
+ * @param {Boolean} disabled
+ */
+function partitionPortalProps(unhandledProps, closed, disabled) {
+  if (closed || disabled) {
+    return {}
+  }
+
+  const contentRestProps = _.reduce(
+    unhandledProps,
+    (acc, val, key) => {
+      if (!_.includes(Portal.handledProps, key)) acc[key] = val
+
+      return acc
+    },
+    {},
+  )
+  const portalRestProps = _.pick(unhandledProps, Portal.handledProps)
+
+  return { contentRestProps, portalRestProps }
+}
+
+/**
+ * Performs updates when "popperDependencies" are not shallow equal.
+ *
+ * @param {Array} popperDependencies
+ * @param {React.Ref} positionUpdate
+ */
+function usePositioningEffect(popperDependencies, positionUpdate) {
+  const previousDependencies = usePrevious(popperDependencies)
+
+  useIsomorphicLayoutEffect(() => {
+    if (positionUpdate.current) {
+      positionUpdate.current()
+    }
+  }, [shallowEqual(previousDependencies, popperDependencies)])
+}
+
+/**
  * A Popup displays additional information on top of a page.
  */
-export default class Popup extends Component {
-  state = {}
+const Popup = React.forwardRef(function (props, ref) {
+  const {
+    basic,
+    className,
+    content,
+    context,
+    children,
+    disabled,
+    eventsEnabled,
+    flowing,
+    header,
+    inverted,
+    offset,
+    pinned,
+    popper,
+    popperDependencies,
+    popperModifiers,
+    position,
+    positionFixed,
+    size,
+    style,
+    trigger,
+    wide,
+  } = props
 
-  open = false
-  zIndexWasSynced = false
+  const [closed, setClosed] = React.useState(false)
 
-  triggerRef = React.createRef()
-  elementRef = React.createRef()
+  const unhandledProps = getUnhandledProps(Popup, props)
+  const { contentRestProps, portalRestProps } = partitionPortalProps(
+    unhandledProps,
+    closed,
+    disabled,
+  )
 
-  static getDerivedStateFromProps(props, state) {
-    if (state.closed || state.disabled) return {}
+  const elementRef = useMergedRefs(ref)
+  const positionUpdate = React.useRef()
+  const timeoutId = React.useRef()
+  const triggerRef = React.useRef()
+  const zIndexWasSynced = React.useRef(false)
 
-    const unhandledProps = getUnhandledProps(Popup, props)
-    const contentRestProps = _.reduce(
-      unhandledProps,
-      (acc, val, key) => {
-        if (!_.includes(Portal.handledProps, key)) acc[key] = val
+  // ----------------------------------------
+  // Effects
+  // ----------------------------------------
 
-        return acc
-      },
-      {},
-    )
-    const portalRestProps = _.pick(unhandledProps, Portal.handledProps)
+  usePositioningEffect(popperDependencies, positionUpdate)
 
-    return { contentRestProps, portalRestProps }
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timeoutId.current)
+    }
+  }, [])
+
+  // ----------------------------------------
+  // Handlers
+  // ----------------------------------------
+
+  const handleClose = (e) => {
+    debug('handleClose()')
+    _.invoke(props, 'onClose', e, { ...props, open: false })
   }
 
-  componentDidUpdate(prevProps) {
-    const depsEqual = shallowEqual(this.props.popperDependencies, prevProps.popperDependencies)
-
-    if (!depsEqual) {
-      this.handleUpdate()
-    }
+  const handleOpen = (e) => {
+    debug('handleOpen()')
+    _.invoke(props, 'onOpen', e, { ...props, open: true })
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timeoutId)
-  }
+  const hideOnScroll = (e) => {
+    debug('hideOnScroll()')
 
-  getPortalProps = () => {
-    debug('getPortalProps()')
-    const portalProps = {}
-
-    const { on, hoverable } = this.props
-    const normalizedOn = _.isArray(on) ? on : [on]
-
-    if (hoverable) {
-      portalProps.closeOnPortalMouseLeave = true
-      portalProps.mouseLeaveDelay = 300
-    }
-    if (_.includes(normalizedOn, 'hover')) {
-      portalProps.openOnTriggerClick = false
-      portalProps.closeOnTriggerClick = false
-      portalProps.openOnTriggerMouseEnter = true
-      portalProps.closeOnTriggerMouseLeave = true
-      // Taken from SUI: https://git.io/vPmCm
-      portalProps.mouseLeaveDelay = 70
-      portalProps.mouseEnterDelay = 50
-    }
-    if (_.includes(normalizedOn, 'click')) {
-      portalProps.openOnTriggerClick = true
-      portalProps.closeOnTriggerClick = true
-      portalProps.closeOnDocumentClick = true
-    }
-    if (_.includes(normalizedOn, 'focus')) {
-      portalProps.openOnTriggerFocus = true
-      portalProps.closeOnTriggerBlur = true
-    }
-
-    return portalProps
-  }
-
-  hideOnScroll = (e) => {
     // Do not hide the popup when scroll comes from inside the popup
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/4305
-    if (_.isElement(e.target) && this.elementRef.current.contains(e.target)) {
+    if (_.isElement(e.target) && elementRef.current.contains(e.target)) {
       return
     }
 
-    debug('hideOnScroll()')
-    this.setState({ closed: true })
+    setClosed(true)
 
-    eventStack.unsub('scroll', this.hideOnScroll, { target: window })
-    this.timeoutId = setTimeout(() => {
-      this.setState({ closed: false })
+    timeoutId.current = setTimeout(() => {
+      setClosed(false)
     }, 50)
 
-    this.handleClose(e)
+    handleClose(e)
   }
 
-  handleClose = (e) => {
-    debug('handleClose()')
-    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
-  }
-
-  handleOpen = (e) => {
-    debug('handleOpen()')
-    _.invoke(this.props, 'onOpen', e, { ...this.props, open: true })
-  }
-
-  handlePortalMount = (e) => {
+  const handlePortalMount = (e) => {
     debug('handlePortalMount()')
-    _.invoke(this.props, 'onMount', e, this.props)
+    _.invoke(props, 'onMount', e, props)
   }
 
-  handlePortalUnmount = (e) => {
+  const handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
 
-    this.positionUpdate = null
-    _.invoke(this.props, 'onUnmount', e, this.props)
+    positionUpdate.current = null
+    _.invoke(props, 'onUnmount', e, props)
   }
 
-  handleUpdate() {
-    if (this.positionUpdate) this.positionUpdate()
-  }
+  // ----------------------------------------
+  // Render
+  // ----------------------------------------
 
-  renderContent = ({ placement: popperPlacement, ref: popperRef, update, style: popperStyle }) => {
-    const {
-      basic,
-      children,
-      className,
-      content,
-      hideOnScroll,
-      flowing,
-      header,
-      inverted,
-      popper,
-      size,
-      style,
-      wide,
-    } = this.props
-    const { contentRestProps } = this.state
-
-    this.positionUpdate = update
+  const renderBody = ({
+    placement: popperPlacement,
+    ref: popperRef,
+    update,
+    style: popperStyle,
+  }) => {
+    positionUpdate.current = update
 
     const classes = cx(
       'ui',
@@ -175,7 +230,8 @@ export default class Popup extends Component {
       'popup transition visible',
       className,
     )
-    const ElementType = getElementType(Popup, this.props)
+    const ElementType = getElementType(Popup, props)
+
     const styles = {
       // Heads up! We need default styles to get working correctly `flowing`
       left: 'auto',
@@ -186,7 +242,7 @@ export default class Popup extends Component {
     }
 
     const innerElement = (
-      <ElementType {...contentRestProps} className={classes} style={styles} ref={this.elementRef}>
+      <ElementType {...contentRestProps} className={classes} style={styles} ref={elementRef}>
         {childrenUtils.isNil(children) ? (
           <>
             {PopupHeader.create(header, { autoGenerateKey: false })}
@@ -195,7 +251,7 @@ export default class Popup extends Component {
         ) : (
           children
         )}
-        {hideOnScroll && <EventStack on={this.hideOnScroll} name='scroll' target='window' />}
+        {hideOnScroll && <EventStack on={hideOnScroll} name='scroll' target='window' />}
       </ElementType>
     )
 
@@ -217,94 +273,79 @@ export default class Popup extends Component {
     })
   }
 
-  render() {
-    const {
-      context,
-      disabled,
-      eventsEnabled,
-      offset,
-      pinned,
-      popper,
-      popperModifiers,
-      position,
-      positionFixed,
-      trigger,
-    } = this.props
-    const { closed, portalRestProps } = this.state
-
-    if (closed || disabled) {
-      return trigger
-    }
-
-    const modifiers = [
-      { name: 'arrow', enabled: false },
-      { name: 'eventListeners', options: { scroll: !!eventsEnabled, resize: !!eventsEnabled } },
-      { name: 'flip', enabled: !pinned },
-      { name: 'preventOverflow', enabled: !!offset },
-      { name: 'offset', enabled: !!offset, options: { offset } },
-      ...popperModifiers,
-
-      // We are syncing zIndex from `.ui.popup.content` to avoid layering issues as in SUIR we are using an additional
-      // `div` for Popper.js
-      // https://github.com/Semantic-Org/Semantic-UI-React/issues/4083
-      {
-        name: 'syncZIndex',
-        enabled: true,
-        phase: 'beforeRead',
-        fn: ({ state }) => {
-          if (this.zIndexWasSynced) {
-            return
-          }
-
-          // if zIndex defined in <Popup popper={{ style: {} }} /> there is no sense to override it
-          const definedZIndex = popper?.style?.zIndex
-
-          if (_.isUndefined(definedZIndex)) {
-            // eslint-disable-next-line no-param-reassign
-            state.elements.popper.style.zIndex = window.getComputedStyle(
-              state.elements.popper.firstChild,
-            ).zIndex
-          }
-
-          this.zIndexWasSynced = true
-        },
-        effect: () => {
-          return () => {
-            this.zIndexWasSynced = false
-          }
-        },
-      },
-    ]
-    debug('popper modifiers:', modifiers)
-
-    const referenceElement = createReferenceProxy(_.isNil(context) ? this.triggerRef : context)
-
-    const mergedPortalProps = { ...this.getPortalProps(), ...portalRestProps }
-    debug('portal props:', mergedPortalProps)
-
-    return (
-      <Portal
-        {...mergedPortalProps}
-        onClose={this.handleClose}
-        onMount={this.handlePortalMount}
-        onOpen={this.handleOpen}
-        onUnmount={this.handlePortalUnmount}
-        trigger={trigger}
-        triggerRef={this.triggerRef}
-      >
-        <Popper
-          modifiers={modifiers}
-          placement={positionsMapping[position]}
-          strategy={positionFixed ? 'fixed' : null}
-          referenceElement={referenceElement}
-        >
-          {this.renderContent}
-        </Popper>
-      </Portal>
-    )
+  if (closed || disabled) {
+    return trigger
   }
-}
 
+  const modifiers = [
+    { name: 'arrow', enabled: false },
+    { name: 'eventListeners', options: { scroll: !!eventsEnabled, resize: !!eventsEnabled } },
+    { name: 'flip', enabled: !pinned },
+    { name: 'preventOverflow', enabled: !!offset },
+    { name: 'offset', enabled: !!offset, options: { offset } },
+    ...popperModifiers,
+
+    // We are syncing zIndex from `.ui.popup.content` to avoid layering issues as in SUIR we are using an additional
+    // `div` for Popper.js
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/4083
+    {
+      name: 'syncZIndex',
+      enabled: true,
+      phase: 'beforeRead',
+      fn: ({ state }) => {
+        if (zIndexWasSynced.current) {
+          return
+        }
+
+        // if zIndex defined in <Popup popper={{ style: {} }} /> there is no sense to override it
+        const definedZIndex = popper?.style?.zIndex
+
+        if (_.isUndefined(definedZIndex)) {
+          // eslint-disable-next-line no-param-reassign
+          state.elements.popper.style.zIndex = window.getComputedStyle(
+            state.elements.popper.firstChild,
+          ).zIndex
+        }
+
+        zIndexWasSynced.current = true
+      },
+      effect: () => {
+        return () => {
+          zIndexWasSynced.current = false
+        }
+      },
+    },
+  ]
+  debug('popper modifiers:', modifiers)
+
+  const referenceElement = createReferenceProxy(_.isNil(context) ? triggerRef : context)
+  const mergedPortalProps = { ...getPortalProps(props), ...portalRestProps }
+
+  debug('portal props:', mergedPortalProps)
+
+  return (
+    <Portal
+      {...mergedPortalProps}
+      onClose={handleClose}
+      onMount={handlePortalMount}
+      onOpen={handleOpen}
+      onUnmount={handlePortalUnmount}
+      trigger={trigger}
+      triggerRef={triggerRef}
+    >
+      <Popper
+        modifiers={modifiers}
+        placement={positionsMapping[position]}
+        strategy={positionFixed ? 'fixed' : null}
+        referenceElement={referenceElement}
+      >
+        {renderBody}
+      </Popper>
+    </Portal>
+  )
+})
+
+Popup.displayName = 'Popup'
 Popup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -439,3 +480,5 @@ Popup.defaultProps = {
 
 Popup.Content = PopupContent
 Popup.Header = PopupHeader
+
+export default Popup
