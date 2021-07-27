@@ -406,8 +406,6 @@ Modal.defaultProps = {
   eventPool: 'Modal',
 }
 
-Modal.autoControlledProps = ['open']
-
 Modal.Actions = ModalActions
 Modal.Content = ModalContent
 Modal.Description = ModalDescription

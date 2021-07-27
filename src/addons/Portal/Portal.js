@@ -388,8 +388,6 @@ Portal.defaultProps = {
   openOnTriggerClick: true,
 }
 
-Portal.autoControlledProps = ['open']
-
 Portal.Inner = PortalInner
 
 export default Portal
