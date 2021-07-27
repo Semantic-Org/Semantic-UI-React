@@ -5,12 +5,13 @@ import PaginationItem from 'src/addons/Pagination/PaginationItem'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
+const requiredProps = {
+  totalPages: 0,
+}
+
 describe('Pagination', () => {
-  common.isConformant(Pagination, {
-    requiredProps: {
-      totalPages: 0,
-    },
-  })
+  common.isConformant(Pagination, { requiredProps })
+  common.forwardsRef(Pagination, { requiredProps, tagName: 'div' })
   common.hasSubcomponents(Pagination, [PaginationItem])
 
   describe('disabled', () => {
@@ -24,11 +25,10 @@ describe('Pagination', () => {
 
   describe('onPageChange', () => {
     it('is called with (e, data) when clicked on a pagination item', () => {
-      const event = { target: null }
       const onPageChange = sandbox.spy()
       const onPageItemClick = sandbox.spy()
 
-      mount(
+      const wrapper = mount(
         <Pagination
           activePage={1}
           onPageChange={onPageChange}
@@ -36,14 +36,13 @@ describe('Pagination', () => {
           totalPages={3}
         />,
       )
-        .find('PaginationItem')
-        .at(4)
-        .simulate('click', event)
+
+      wrapper.find('PaginationItem').at(4).simulate('click')
 
       onPageChange.should.have.been.calledOnce()
-      onPageChange.should.have.been.calledWithMatch(event, { activePage: 3 })
+      onPageChange.should.have.been.calledWithMatch({ type: 'click' }, { activePage: 3 })
       onPageItemClick.should.have.been.calledOnce()
-      onPageItemClick.should.have.been.calledWithMatch(event, { value: 3 })
+      onPageItemClick.should.have.been.calledWithMatch({ type: 'click' }, { value: 3 })
     })
 
     it('will be omitted if occurred for the same pagination item as the current', () => {

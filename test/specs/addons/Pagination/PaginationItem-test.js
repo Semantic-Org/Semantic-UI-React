@@ -6,6 +6,7 @@ import { sandbox } from 'test/utils'
 
 describe('PaginationItem', () => {
   common.isConformant(PaginationItem)
+  common.forwardsRef(PaginationItem, { tagName: 'a' })
   common.implementsCreateMethod(PaginationItem)
 
   describe('active', () => {
