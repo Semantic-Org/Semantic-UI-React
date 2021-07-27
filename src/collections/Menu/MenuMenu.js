@@ -7,7 +7,7 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A menu can contain a sub menu.
  */
-function MenuMenu(props) {
+const MenuMenu = React.forwardRef(function (props, ref) {
   const { children, className, content, position } = props
 
   const classes = cx(position, 'menu', className)
@@ -15,12 +15,13 @@ function MenuMenu(props) {
   const ElementType = getElementType(MenuMenu, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+MenuMenu.displayName = 'MenuMenu'
 MenuMenu.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
