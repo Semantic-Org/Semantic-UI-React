@@ -5,12 +5,12 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  customPropTypes,
   doesNodeContainClick,
   makeDebugger,
   useAutoControlledValue,
-  useMergedRefs,
 } from '../../lib'
-import validateTrigger from './utils/validateTrigger'
+import useTrigger from './utils/useTrigger'
 import PortalInner from './PortalInner'
 
 const debug = makeDebugger('portal')
@@ -38,13 +38,7 @@ function Portal(props) {
     openOnTriggerClick,
     openOnTriggerFocus,
     openOnTriggerMouseEnter,
-    trigger,
   } = props
-
-  /* istanbul ignore else */
-  if (process.env.NODE_ENV !== 'production') {
-    validateTrigger(trigger)
-  }
 
   const [open, setOpen] = useAutoControlledValue({
     state: props.open,
@@ -53,7 +47,7 @@ function Portal(props) {
   })
 
   const contentRef = React.useRef()
-  const triggerRef = useMergedRefs(trigger?.ref, React.useRef())
+  const [triggerRef, trigger] = useTrigger(props.trigger, props.triggerRef)
 
   const mouseEnterTimer = React.useRef()
   const mouseLeaveTimer = React.useRef()
@@ -379,6 +373,9 @@ Portal.propTypes = {
 
   /** Element to be rendered in-place where the portal is defined. */
   trigger: PropTypes.node,
+
+  /** Called with a ref to the trigger node. */
+  triggerRef: customPropTypes.ref,
 }
 
 Portal.defaultProps = {

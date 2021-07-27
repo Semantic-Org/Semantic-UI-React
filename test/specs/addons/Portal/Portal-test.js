@@ -210,20 +210,6 @@ describe('Portal', () => {
       expect(wrapper.html()).to.equal(null)
     })
 
-    it('calls an original ref', () => {
-      const elementRef = React.createRef()
-
-      wrapperMount(
-        <Portal trigger={<div id='trigger' ref={elementRef} />}>
-          <p />
-        </Portal>,
-      )
-      const element = wrapper.getDOMNode()
-
-      expect(elementRef.current).to.equal(element)
-      expect(element.tagName).to.equal('DIV')
-    })
-
     it('renders the trigger when set', () => {
       const text = 'open by click on me'
       const trigger = <button>{text}</button>
@@ -257,6 +243,25 @@ describe('Portal', () => {
           color: 'blue',
         })
       })
+    })
+  })
+
+  describe('triggerRef', () => {
+    it('calls itself and an original ref', () => {
+      const elementRef = React.createRef()
+      const triggerRef = React.createRef()
+
+      wrapperMount(
+        <Portal trigger={<div id='trigger' ref={elementRef} />} triggerRef={triggerRef}>
+          <p />
+        </Portal>,
+      )
+      const element = wrapper.getDOMNode()
+
+      expect(element.tagName).to.equal('DIV')
+
+      expect(elementRef.current).to.equal(element)
+      expect(triggerRef.current).to.equal(element)
     })
   })
 
