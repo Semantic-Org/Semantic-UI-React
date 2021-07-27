@@ -1,8 +1,7 @@
-import { Ref } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, createRef } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -14,6 +13,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
   useValueAndKey,
+  useMergedRefs,
 } from '../../lib'
 import Icon from '../Icon/Icon'
 import Label from '../Label/Label'
@@ -22,165 +22,176 @@ import ButtonGroup from './ButtonGroup'
 import ButtonOr from './ButtonOr'
 
 /**
+ * @param {React.ElementType} ElementType
+ * @param {String} role
+ */
+function computeButtonAriaRole(ElementType, role) {
+  if (!_.isNil(role)) {
+    return role
+  }
+
+  if (ElementType !== 'button') {
+    return 'button'
+  }
+}
+
+/**
+ * @param {React.ElementType} ElementType
+ * @param {Boolean} disabled
+ * @param {Number} tabIndex
+ */
+function computeTabIndex(ElementType, disabled, tabIndex) {
+  if (!_.isNil(tabIndex)) {
+    return tabIndex
+  }
+  if (disabled) {
+    return -1
+  }
+  if (ElementType === 'div') {
+    return 0
+  }
+}
+
+function hasIconClass(props) {
+  const { children, content, icon, labelPosition } = props
+
+  if (icon === true) {
+    return true
+  }
+
+  if (icon) {
+    return labelPosition || (childrenUtils.isNil(children) && _.isNil(content))
+  }
+}
+
+/**
  * A Button indicates a possible user action.
  * @see Form
  * @see Icon
  * @see Label
  */
-class Button extends Component {
-  ref = createRef()
+const Button = React.forwardRef(function (props, ref) {
+  const {
+    active,
+    animated,
+    attached,
+    basic,
+    children,
+    circular,
+    className,
+    color,
+    compact,
+    content,
+    disabled,
+    floated,
+    fluid,
+    icon,
+    inverted,
+    label,
+    labelPosition,
+    loading,
+    negative,
+    positive,
+    primary,
+    secondary,
+    size,
+    toggle,
+    type
+  } = props
+  const elementRef = useMergedRefs(ref, React.useRef())
 
-  computeButtonAriaRole(ElementType) {
-    const { role } = this.props
+  const baseClasses = cx(
+    color,
+    size,
+    useKeyOnly(active, 'active'),
+    useKeyOnly(basic, 'basic'),
+    useKeyOnly(circular, 'circular'),
+    useKeyOnly(compact, 'compact'),
+    useKeyOnly(fluid, 'fluid'),
+    useKeyOnly(hasIconClass(props), 'icon'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(loading, 'loading'),
+    useKeyOnly(negative, 'negative'),
+    useKeyOnly(positive, 'positive'),
+    useKeyOnly(primary, 'primary'),
+    useKeyOnly(secondary, 'secondary'),
+    useKeyOnly(toggle, 'toggle'),
+    useKeyOrValueAndKey(animated, 'animated'),
+    useKeyOrValueAndKey(attached, 'attached'),
+  )
+  const labeledClasses = cx(useKeyOrValueAndKey(labelPosition || !!label, 'labeled'))
+  const wrapperClasses = cx(useKeyOnly(disabled, 'disabled'), useValueAndKey(floated, 'floated'))
 
-    if (!_.isNil(role)) return role
-    if (ElementType !== 'button') return 'button'
-  }
+  const rest = getUnhandledProps(Button, props)
+  const ElementType = getElementType(Button, props, () => {
+    if (!_.isNil(attached) || !_.isNil(label)) {
+      return 'div'
+    }
+  })
+  const tabIndex = computeTabIndex(ElementType, disabled, props.tabIndex)
 
-  computeElementType = () => {
-    const { attached, label } = this.props
-
-    if (!_.isNil(attached) || !_.isNil(label)) return 'div'
-  }
-
-  computeTabIndex = (ElementType) => {
-    const { disabled, tabIndex } = this.props
-
-    if (!_.isNil(tabIndex)) return tabIndex
-    if (disabled) return -1
-    if (ElementType === 'div') return 0
-  }
-
-  focus = (options) => _.invoke(this.ref.current, 'focus', options)
-
-  handleClick = (e) => {
-    const { disabled } = this.props
-
+  const handleClick = (e) => {
     if (disabled) {
       e.preventDefault()
       return
     }
 
-    _.invoke(this.props, 'onClick', e, this.props)
+    _.invoke(props, 'onClick', e, props)
   }
 
-  hasIconClass = () => {
-    const { labelPosition, children, content, icon } = this.props
-
-    if (icon === true) return true
-    return icon && (labelPosition || (childrenUtils.isNil(children) && _.isNil(content)))
-  }
-
-  render() {
-    const {
-      active,
-      animated,
-      attached,
-      basic,
-      children,
-      circular,
-      className,
-      color,
-      compact,
-      content,
-      disabled,
-      floated,
-      fluid,
-      icon,
-      inverted,
-      label,
-      labelPosition,
-      loading,
-      negative,
-      positive,
-      primary,
-      secondary,
-      size,
-      toggle,
-      type,
-    } = this.props
-
-    const baseClasses = cx(
-      color,
-      size,
-      useKeyOnly(active, 'active'),
-      useKeyOnly(basic, 'basic'),
-      useKeyOnly(circular, 'circular'),
-      useKeyOnly(compact, 'compact'),
-      useKeyOnly(fluid, 'fluid'),
-      useKeyOnly(this.hasIconClass(), 'icon'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(loading, 'loading'),
-      useKeyOnly(negative, 'negative'),
-      useKeyOnly(positive, 'positive'),
-      useKeyOnly(primary, 'primary'),
-      useKeyOnly(secondary, 'secondary'),
-      useKeyOnly(toggle, 'toggle'),
-      useKeyOrValueAndKey(animated, 'animated'),
-      useKeyOrValueAndKey(attached, 'attached'),
-    )
-    const labeledClasses = cx(useKeyOrValueAndKey(labelPosition || !!label, 'labeled'))
-    const wrapperClasses = cx(useKeyOnly(disabled, 'disabled'), useValueAndKey(floated, 'floated'))
-
-    const rest = getUnhandledProps(Button, this.props)
-    const ElementType = getElementType(Button, this.props, this.computeElementType)
-    const tabIndex = this.computeTabIndex(ElementType)
-
-    if (!_.isNil(label)) {
-      const buttonClasses = cx('ui', baseClasses, 'button', className)
-      const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
-      const labelElement = Label.create(label, {
-        defaultProps: {
-          basic: true,
-          pointing: labelPosition === 'left' ? 'right' : 'left',
-        },
-        autoGenerateKey: false,
-      })
-
-      return (
-        <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
-          {labelPosition === 'left' && labelElement}
-          <Ref innerRef={this.ref}>
-            <button
-              className={buttonClasses}
-              aria-pressed={toggle ? !!active : undefined}
-              disabled={disabled}
-              type={type}
-              tabIndex={tabIndex}
-            >
-              {Icon.create(icon, { autoGenerateKey: false })} {content}
-            </button>
-          </Ref>
-          {(labelPosition === 'right' || !labelPosition) && labelElement}
-        </ElementType>
-      )
-    }
-
-    const classes = cx('ui', baseClasses, wrapperClasses, labeledClasses, 'button', className)
-    const hasChildren = !childrenUtils.isNil(children)
-    const role = this.computeButtonAriaRole(ElementType)
+  if (!_.isNil(label)) {
+    const buttonClasses = cx('ui', baseClasses, 'button', className)
+    const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
+    const labelElement = Label.create(label, {
+      defaultProps: {
+        basic: true,
+        pointing: labelPosition === 'left' ? 'right' : 'left',
+      },
+      autoGenerateKey: false,
+    })
 
     return (
-      <Ref innerRef={this.ref}>
-        <ElementType
-          {...rest}
-          className={classes}
+      <ElementType {...rest} className={containerClasses} onClick={handleClick}>
+        {labelPosition === 'left' && labelElement}
+        <button
+          className={buttonClasses}
           aria-pressed={toggle ? !!active : undefined}
-          disabled={(disabled && ElementType === 'button') || undefined}
-          onClick={this.handleClick}
-          role={role}
-          type={type}
+          disabled={disabled}
           tabIndex={tabIndex}
+          type={type}
+          ref={elementRef}
         >
-          {hasChildren && children}
-          {!hasChildren && Icon.create(icon, { autoGenerateKey: false })}
-          {!hasChildren && content}
-        </ElementType>
-      </Ref>
+          {Icon.create(icon, { autoGenerateKey: false })} {content}
+        </button>
+        {(labelPosition === 'right' || !labelPosition) && labelElement}
+      </ElementType>
     )
   }
-}
 
+  const classes = cx('ui', baseClasses, wrapperClasses, labeledClasses, 'button', className)
+  const hasChildren = !childrenUtils.isNil(children)
+  const role = computeButtonAriaRole(ElementType, props.role)
+
+  return (
+    <ElementType
+      {...rest}
+      className={classes}
+      aria-pressed={toggle ? !!active : undefined}
+      disabled={(disabled && ElementType === 'button') || undefined}
+      onClick={handleClick}
+      role={role}
+      tabIndex={tabIndex}
+      type={type}
+      ref={elementRef}
+    >
+      {hasChildren && children}
+      {!hasChildren && Icon.create(icon, { autoGenerateKey: false })}
+      {!hasChildren && content}
+    </ElementType>
+  )
+})
+
+Button.displayName = 'Button'
 Button.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
