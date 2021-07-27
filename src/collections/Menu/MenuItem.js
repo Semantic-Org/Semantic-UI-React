@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -12,70 +12,70 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  useEventCallback,
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
 /**
  * A menu can contain an item.
  */
-export default class MenuItem extends Component {
-  handleClick = (e) => {
-    const { disabled } = this.props
+const MenuItem = React.forwardRef(function (props, ref) {
+  const {
+    active,
+    children,
+    className,
+    color,
+    content,
+    disabled,
+    fitted,
+    header,
+    icon,
+    link,
+    name,
+    onClick,
+    position,
+  } = props
 
-    if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
-  }
+  const classes = cx(
+    color,
+    position,
+    useKeyOnly(active, 'active'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(icon === true || (icon && !(name || content)), 'icon'),
+    useKeyOnly(header, 'header'),
+    useKeyOnly(link, 'link'),
+    useKeyOrValueAndKey(fitted, 'fitted'),
+    'item',
+    className,
+  )
+  const ElementType = getElementType(MenuItem, props, () => {
+    if (onClick) return 'a'
+  })
+  const rest = getUnhandledProps(MenuItem, props)
 
-  render() {
-    const {
-      active,
-      children,
-      className,
-      color,
-      content,
-      disabled,
-      fitted,
-      header,
-      icon,
-      link,
-      name,
-      onClick,
-      position,
-    } = this.props
-
-    const classes = cx(
-      color,
-      position,
-      useKeyOnly(active, 'active'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(icon === true || (icon && !(name || content)), 'icon'),
-      useKeyOnly(header, 'header'),
-      useKeyOnly(link, 'link'),
-      useKeyOrValueAndKey(fitted, 'fitted'),
-      'item',
-      className,
-    )
-    const ElementType = getElementType(MenuItem, this.props, () => {
-      if (onClick) return 'a'
-    })
-    const rest = getUnhandledProps(MenuItem, this.props)
-
-    if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
+  const handleClick = useEventCallback((e) => {
+    if (!disabled) {
+      _.invoke(props, 'onClick', e, props)
     }
+  })
 
+  if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {Icon.create(icon, { autoGenerateKey: false })}
-        {childrenUtils.isNil(content) ? _.startCase(name) : content}
+      <ElementType {...rest} className={classes} onClick={handleClick} ref={ref}>
+        {children}
       </ElementType>
     )
   }
-}
 
+  return (
+    <ElementType {...rest} className={classes} onClick={handleClick} ref={ref}>
+      {Icon.create(icon, { autoGenerateKey: false })}
+      {childrenUtils.isNil(content) ? _.startCase(name) : content}
+    </ElementType>
+  )
+})
+
+MenuItem.displayName = 'MenuItem'
 MenuItem.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -130,3 +130,5 @@ MenuItem.propTypes = {
 }
 
 MenuItem.create = createShorthandFactory(MenuItem, (val) => ({ content: val, name: val }))
+
+export default MenuItem
