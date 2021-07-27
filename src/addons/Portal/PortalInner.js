@@ -1,40 +1,40 @@
-import { handleRef, Ref } from '@fluentui/react-component-ref'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 import { createPortal } from 'react-dom'
 
-import { customPropTypes, isBrowser, makeDebugger } from '../../lib'
+import { customPropTypes, isBrowser, makeDebugger, useEventCallback } from '../../lib'
+import usePortalElement from './usePortalElement'
 
-const debug = makeDebugger('portalInner')
+const debug = makeDebugger('PortalInner')
 
 /**
  * An inner component that allows you to render children outside their parent.
  */
-class PortalInner extends Component {
-  componentDidMount() {
+const PortalInner = React.forwardRef(function (props, ref) {
+  const handleMount = useEventCallback(() => _.invoke(props, 'onMount', null, props))
+  const handleUnmount = useEventCallback(() => _.invoke(props, 'onUnmount', null, props))
+
+  const element = usePortalElement(props.children, ref)
+
+  React.useEffect(() => {
     debug('componentDidMount()')
-    _.invoke(this.props, 'onMount', null, this.props)
+    handleMount()
+
+    return () => {
+      debug('componentWillUnmount()')
+      handleUnmount()
+    }
+  }, [])
+
+  if (!isBrowser()) {
+    return null
   }
 
-  componentWillUnmount() {
-    debug('componentWillUnmount()')
-    _.invoke(this.props, 'onUnmount', null, this.props)
-  }
+  return createPortal(element, props.mountNode || document.body)
+})
 
-  handleRef = (c) => {
-    debug('handleRef', c)
-    handleRef(this.props.innerRef, c)
-  }
-
-  render() {
-    if (!isBrowser()) return null
-    const { children, mountNode = document.body } = this.props
-
-    return createPortal(<Ref innerRef={this.handleRef}>{children}</Ref>, mountNode)
-  }
-}
-
+PortalInner.displayName = 'PortalInner'
 PortalInner.propTypes = {
   /** Primary content. */
   children: PropTypes.node.isRequired,

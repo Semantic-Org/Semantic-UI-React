@@ -92,9 +92,6 @@ export interface StrictPortalProps {
 
   /** Element to be rendered in-place where the portal is defined. */
   trigger?: React.ReactNode
-
-  /** Called with a ref to the trigger node. */
-  triggerRef?: React.Ref<any>
 }
 
 declare class Portal extends React.Component<PortalProps> {

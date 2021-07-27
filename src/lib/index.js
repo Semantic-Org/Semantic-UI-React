@@ -48,5 +48,6 @@ export { makeDebugger }
 
 export useAutoControlledValue from './hooks/useAutoControlledValue'
 export useClassNamesOnNode from './hooks/useClassNamesOnNode'
+export useMergedRefs from './hooks/useMergedRefs'
 export useEventCallback from './hooks/useEventCallback'
 export useMergedRefs from './hooks/useMergedRefs'
