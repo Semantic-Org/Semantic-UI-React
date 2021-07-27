@@ -7,19 +7,20 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A menu item may include a header or may itself be a header.
  */
-function MenuHeader(props) {
+const MenuHeader = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('header', className)
   const rest = getUnhandledProps(MenuHeader, props)
   const ElementType = getElementType(MenuHeader, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+MenuHeader.displayName = 'MenuHeader'
 MenuHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
