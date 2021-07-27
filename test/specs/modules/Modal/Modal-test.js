@@ -327,7 +327,7 @@ describe('Modal', () => {
 
       wrapper.find('#trigger').simulate('click')
       onOpen.should.have.been.calledOnce()
-      onOpen.should.have.been.calledWithMatch({}, { open: true })
+      onOpen.should.have.been.calledWithMatch({ type: 'click' }, { open: true })
     })
 
     it('is not called on body click', () => {
@@ -585,7 +585,11 @@ describe('Modal', () => {
     it('adds/removes the scrolling class to the body when the window grows/shrinks', (done) => {
       assertBodyClasses('scrolling', false)
 
-      wrapperMount(<Modal open>foo</Modal>)
+      wrapperMount(
+        <Modal open>
+          <span />
+        </Modal>,
+      )
       window.innerHeight = 10
 
       assertWithTimeout(
