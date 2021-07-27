@@ -1,7 +1,7 @@
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import { Component } from 'react'
+import * as React from 'react'
 
 import { createShorthandFactory } from '../../lib'
 import MenuItem from '../../collections/Menu/MenuItem'
@@ -9,40 +9,39 @@ import MenuItem from '../../collections/Menu/MenuItem'
 /**
  * An item of a pagination.
  */
-class PaginationItem extends Component {
-  handleClick = (e) => {
-    _.invoke(this.props, 'onClick', e, this.props)
+const PaginationItem = React.forwardRef(function (props, ref) {
+  const { active, type } = props
+  const disabled = props.disabled || type === 'ellipsisItem'
+
+  const handleClick = (e) => {
+    _.invoke(props, 'onClick', e, props)
   }
 
-  handleKeyDown = (e) => {
-    _.invoke(this.props, 'onKeyDown', e, this.props)
-    if (keyboardKey.getCode(e) === keyboardKey.Enter) _.invoke(this.props, 'onClick', e, this.props)
+  const handleKeyDown = (e) => {
+    _.invoke(props, 'onKeyDown', e, props)
+
+    if (keyboardKey.getCode(e) === keyboardKey.Enter) {
+      _.invoke(props, 'onClick', e, props)
+    }
   }
 
-  handleOverrides = () => ({
-    onClick: this.handleClick,
-    onKeyDown: this.handleKeyDown,
+  return MenuItem.create(props, {
+    defaultProps: {
+      active,
+      'aria-current': active,
+      'aria-disabled': disabled,
+      disabled,
+      tabIndex: disabled ? -1 : 0,
+    },
+    overrideProps: () => ({
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      ref,
+    }),
   })
+})
 
-  render() {
-    const { active, type } = this.props
-    const disabled = this.props.disabled || type === 'ellipsisItem'
-
-    return MenuItem.create(this.props, {
-      defaultProps: {
-        active,
-        'aria-current': active,
-        'aria-disabled': disabled,
-        disabled,
-        onClick: this.handleClick,
-        onKeyDown: this.handleKeyDown,
-        tabIndex: disabled ? -1 : 0,
-      },
-      overrideProps: this.handleOverrides,
-    })
-  }
-}
-
+PaginationItem.displayName = 'PaginationItem'
 PaginationItem.propTypes = {
   /** A pagination item can be active. */
   active: PropTypes.bool,
