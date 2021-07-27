@@ -1,4 +1,3 @@
-import { Ref } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -11,14 +10,15 @@ import {
   getUnhandledProps,
   useClassNamesOnNode,
   useKeyOnly,
+  useMergedRefs,
 } from '../../lib'
 
 /**
  * A modal has a dimmer.
  */
-function ModalDimmer(props) {
+const ModalDimmer = React.forwardRef(function (props, ref) {
   const { blurring, children, className, centered, content, inverted, mountNode, scrolling } = props
-  const ref = React.useRef()
+  const elementRef = useMergedRefs(ref, React.useRef())
 
   const classes = cx(
     'ui',
@@ -37,21 +37,19 @@ function ModalDimmer(props) {
   const ElementType = getElementType(ModalDimmer, props)
 
   useClassNamesOnNode(mountNode, bodyClasses)
+
   React.useEffect(() => {
-    if (ref.current && ref.current.style) {
-      ref.current.style.setProperty('display', 'flex', 'important')
-    }
+    elementRef.current?.style?.setProperty('display', 'flex', 'important')
   }, [])
 
   return (
-    <Ref innerRef={ref}>
-      <ElementType {...rest} className={classes}>
-        {childrenUtils.isNil(children) ? content : children}
-      </ElementType>
-    </Ref>
+    <ElementType {...rest} className={classes} ref={elementRef}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
   )
-}
+})
 
+ModalDimmer.displayName = 'ModalDimmer'
 ModalDimmer.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
