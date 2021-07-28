@@ -7,19 +7,20 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A pushable sub-component for Sidebar.
  */
-function SidebarPushable(props) {
+const SidebarPushable = React.forwardRef(function (props, ref) {
   const { className, children, content } = props
   const classes = cx('pushable', className)
   const rest = getUnhandledProps(SidebarPushable, props)
   const ElementType = getElementType(SidebarPushable, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+SidebarPushable.displayName = 'SidebarPushable'
 SidebarPushable.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

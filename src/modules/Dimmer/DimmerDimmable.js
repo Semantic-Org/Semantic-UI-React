@@ -13,7 +13,7 @@ import {
 /**
  * A dimmable sub-component for Dimmer.
  */
-function DimmerDimmable(props) {
+const DimmerDimmable = React.forwardRef(function (props, ref) {
   const { blurring, className, children, content, dimmed } = props
 
   const classes = cx(
@@ -26,12 +26,13 @@ function DimmerDimmable(props) {
   const ElementType = getElementType(DimmerDimmable, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+DimmerDimmable.displayName = 'DimmerDimmable'
 DimmerDimmable.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
