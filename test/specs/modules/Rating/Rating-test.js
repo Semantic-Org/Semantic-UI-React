@@ -8,6 +8,7 @@ import { sandbox } from 'test/utils'
 
 describe('Rating', () => {
   common.isConformant(Rating)
+  common.forwardsRef(Rating)
   common.hasUIClassName(Rating)
 
   common.propKeyOnlyToClassName(Rating, 'disabled')
