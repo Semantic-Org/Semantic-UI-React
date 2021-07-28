@@ -17,7 +17,7 @@ import {
 /**
  * A row sub-component for Grid.
  */
-function GridRow(props) {
+const GridRow = React.forwardRef(function (props, ref) {
   const {
     centered,
     children,
@@ -49,12 +49,13 @@ function GridRow(props) {
   const ElementType = getElementType(GridRow, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {children}
     </ElementType>
   )
-}
+})
 
+GridRow.displayName = 'GridRow'
 GridRow.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
