@@ -2,59 +2,60 @@ import cx from 'clsx'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import { getElementType, getUnhandledProps, useKeyOnly } from '../../lib'
 
 /**
  * An internal icon sub-component for Rating component
  */
-export default class RatingIcon extends Component {
-  handleClick = (e) => {
-    _.invoke(this.props, 'onClick', e, this.props)
+const RatingIcon = React.forwardRef(function (props, ref) {
+  const { active, className, selected } = props
+
+  const classes = cx(
+    useKeyOnly(active, 'active'),
+    useKeyOnly(selected, 'selected'),
+    'icon',
+    className,
+  )
+  const rest = getUnhandledProps(RatingIcon, props)
+  const ElementType = getElementType(RatingIcon, props)
+
+  const handleClick = (e) => {
+    _.invoke(props, 'onClick', e, props)
   }
 
-  handleKeyUp = (e) => {
-    _.invoke(this.props, 'onKeyUp', e, this.props)
+  const handleKeyUp = (e) => {
+    _.invoke(props, 'onKeyUp', e, props)
 
     switch (keyboardKey.getCode(e)) {
       case keyboardKey.Enter:
       case keyboardKey.Spacebar:
         e.preventDefault()
-        _.invoke(this.props, 'onClick', e, this.props)
+        _.invoke(props, 'onClick', e, props)
         break
       default:
     }
   }
 
-  handleMouseEnter = (e) => {
-    _.invoke(this.props, 'onMouseEnter', e, this.props)
+  const handleMouseEnter = (e) => {
+    _.invoke(props, 'onMouseEnter', e, props)
   }
 
-  render() {
-    const { active, className, selected } = this.props
-    const classes = cx(
-      useKeyOnly(active, 'active'),
-      useKeyOnly(selected, 'selected'),
-      'icon',
-      className,
-    )
-    const rest = getUnhandledProps(RatingIcon, this.props)
-    const ElementType = getElementType(RatingIcon, this.props)
+  return (
+    <ElementType
+      role='radio'
+      {...rest}
+      className={classes}
+      onClick={handleClick}
+      onKeyUp={handleKeyUp}
+      onMouseEnter={handleMouseEnter}
+      ref={ref}
+    />
+  )
+})
 
-    return (
-      <ElementType
-        {...rest}
-        className={classes}
-        onClick={this.handleClick}
-        onKeyUp={this.handleKeyUp}
-        onMouseEnter={this.handleMouseEnter}
-        role='radio'
-      />
-    )
-  }
-}
-
+RatingIcon.displayName = 'RatingIcon'
 RatingIcon.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -99,3 +100,5 @@ RatingIcon.propTypes = {
 RatingIcon.defaultProps = {
   as: 'i',
 }
+
+export default RatingIcon

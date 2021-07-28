@@ -14,7 +14,7 @@ import RevealContent from './RevealContent'
 /**
  * A reveal displays additional content in place of previous content when activated.
  */
-function Reveal(props) {
+const Reveal = React.forwardRef(function (props, ref) {
   const { active, animated, children, className, content, disabled, instant } = props
 
   const classes = cx(
@@ -30,12 +30,13 @@ function Reveal(props) {
   const ElementType = getElementType(Reveal, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+Reveal.displayName = 'Reveal'
 Reveal.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

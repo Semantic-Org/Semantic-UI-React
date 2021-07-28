@@ -4,27 +4,50 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  ModernAutoControlledComponent as Component,
   getElementType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
+  useAutoControlledValue,
 } from '../../lib'
 import RatingIcon from './RatingIcon'
 
 /**
  * A rating indicates user interest in content.
  */
-export default class Rating extends Component {
-  handleIconClick = (e, { index }) => {
-    const { clearable, disabled, maxRating, onRate } = this.props
-    const { rating } = this.state
-    if (disabled) return
+const Rating = React.forwardRef(function (props, ref) {
+  const { className, clearable, disabled, icon, maxRating, size } = props
+
+  const [rating, setRating] = useAutoControlledValue({
+    state: props.rating,
+    defaultState: props.defaultRating,
+    initialState: 0,
+  })
+  const [selectedIndex, setSelectedIndex] = React.useState(-1)
+  const [isSelecting, setIsSelecting] = React.useState(false)
+
+  const classes = cx(
+    'ui',
+    icon,
+    size,
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(isSelecting && !disabled && selectedIndex >= 0, 'selected'),
+    'rating',
+    className,
+  )
+  const rest = getUnhandledProps(Rating, props)
+  const ElementType = getElementType(Rating, props)
+
+  const handleIconClick = (e, { index }) => {
+    if (disabled) {
+      return
+    }
 
     // default newRating is the clicked icon
     // allow toggling a binary rating
     // allow clearing ratings
     let newRating = index + 1
+
     if (clearable === 'auto' && maxRating === 1) {
       newRating = +!rating
     } else if (clearable === true && newRating === rating) {
@@ -32,67 +55,61 @@ export default class Rating extends Component {
     }
 
     // set rating
-    this.setState({ rating: newRating, isSelecting: false })
-    if (onRate) onRate(e, { ...this.props, rating: newRating })
+    setRating(newRating)
+    setIsSelecting(false)
+
+    _.invoke(props, 'onRate', e, { ...props, rating: newRating })
   }
 
-  handleIconMouseEnter = (e, { index }) => {
-    if (this.props.disabled) return
+  const handleIconMouseEnter = (e, { index }) => {
+    if (disabled) {
+      return
+    }
 
-    this.setState({ selectedIndex: index, isSelecting: true })
+    setSelectedIndex(index)
+    setIsSelecting(true)
   }
 
-  handleMouseLeave = (...args) => {
-    _.invoke(this.props, 'onMouseLeave', ...args)
+  const handleMouseLeave = (...args) => {
+    _.invoke(props, 'onMouseLeave', ...args)
 
-    if (this.props.disabled) return
+    if (disabled) {
+      return
+    }
 
-    this.setState({ selectedIndex: -1, isSelecting: false })
+    setSelectedIndex(-1)
+    setIsSelecting(false)
   }
 
-  render() {
-    const { className, disabled, icon, maxRating, size } = this.props
-    const { rating, selectedIndex, isSelecting } = this.state
+  return (
+    <ElementType
+      role='radiogroup'
+      {...rest}
+      className={classes}
+      onMouseLeave={handleMouseLeave}
+      ref={ref}
+      tabIndex={disabled ? 0 : -1}
+    >
+      {_.times(maxRating, (i) => (
+        /* TODO: use .create() factory */
+        <RatingIcon
+          tabIndex={disabled ? -1 : 0}
+          active={rating >= i + 1}
+          aria-checked={rating === i + 1}
+          aria-posinset={i + 1}
+          aria-setsize={maxRating}
+          index={i}
+          key={i}
+          onClick={handleIconClick}
+          onMouseEnter={handleIconMouseEnter}
+          selected={selectedIndex >= i && isSelecting}
+        />
+      ))}
+    </ElementType>
+  )
+})
 
-    const classes = cx(
-      'ui',
-      icon,
-      size,
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(isSelecting && !disabled && selectedIndex >= 0, 'selected'),
-      'rating',
-      className,
-    )
-    const rest = getUnhandledProps(Rating, this.props)
-    const ElementType = getElementType(Rating, this.props)
-
-    return (
-      <ElementType
-        {...rest}
-        className={classes}
-        role='radiogroup'
-        onMouseLeave={this.handleMouseLeave}
-        tabIndex={disabled ? 0 : -1}
-      >
-        {_.times(maxRating, (i) => (
-          <RatingIcon
-            tabIndex={disabled ? -1 : 0}
-            active={rating >= i + 1}
-            aria-checked={rating === i + 1}
-            aria-posinset={i + 1}
-            aria-setsize={maxRating}
-            index={i}
-            key={i}
-            onClick={this.handleIconClick}
-            onMouseEnter={this.handleIconMouseEnter}
-            selected={selectedIndex >= i && isSelecting}
-          />
-        ))}
-      </ElementType>
-    )
-  }
-}
-
+Rating.displayName = 'Rating'
 Rating.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -134,11 +151,11 @@ Rating.propTypes = {
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
 }
 
-Rating.autoControlledProps = ['rating']
-
 Rating.defaultProps = {
   clearable: 'auto',
   maxRating: 1,
 }
 
 Rating.Icon = RatingIcon
+
+export default Rating
