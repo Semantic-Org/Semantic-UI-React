@@ -4,6 +4,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Reveal', () => {
   common.isConformant(Reveal)
+  common.forwardsRef(Reveal)
   common.hasSubcomponents(Reveal, [RevealContent])
   common.hasUIClassName(Reveal)
   common.rendersChildren(Reveal)

@@ -13,7 +13,7 @@ import {
 /**
  * A content sub-component for the Reveal.
  */
-function RevealContent(props) {
+const RevealContent = React.forwardRef(function (props, ref) {
   const { children, className, content, hidden, visible } = props
 
   const classes = cx(
@@ -27,12 +27,13 @@ function RevealContent(props) {
   const ElementType = getElementType(RevealContent, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+RevealContent.displayName = 'RevealContent'
 RevealContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
