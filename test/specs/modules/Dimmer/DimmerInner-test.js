@@ -7,6 +7,7 @@ import { sandbox } from 'test/utils'
 
 describe('DimmerInner', () => {
   common.isConformant(DimmerInner)
+  common.forwardsRef(DimmerInner)
   common.hasUIClassName(DimmerInner)
   common.rendersChildren(DimmerInner)
 
@@ -32,7 +33,7 @@ describe('DimmerInner', () => {
   describe('onClickOutside', () => {
     it('called when Dimmer has not children', () => {
       const onClickOutside = sandbox.spy()
-      const wrapper = shallow(<DimmerInner onClickOutside={onClickOutside} />)
+      const wrapper = mount(<DimmerInner onClickOutside={onClickOutside} />)
 
       wrapper.childAt(0).simulate('click')
       onClickOutside.should.have.been.calledOnce()
@@ -60,10 +61,11 @@ describe('DimmerInner', () => {
 
     it('called when click on Dimmer', () => {
       const onClickOutside = sandbox.spy()
-
-      mount(
+      const wrapper = mount(
         <DimmerInner onClickOutside={onClickOutside}>{faker.hacker.phrase()}</DimmerInner>,
-      ).simulate('click')
+      )
+
+      wrapper.simulate('click')
       onClickOutside.should.have.been.calledOnce()
     })
 

@@ -2,10 +2,11 @@ import React from 'react'
 
 import Sidebar from 'src/modules/Sidebar/Sidebar'
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { assertWithTimeout, domEvent, sandbox } from 'test/utils'
 
 describe('Sidebar', () => {
   common.isConformant(Sidebar)
+  common.forwardsRef(Sidebar)
   common.hasUIClassName(Sidebar)
   common.rendersChildren(Sidebar)
 
@@ -23,12 +24,17 @@ describe('Sidebar', () => {
   common.propValueOnlyToClassName(Sidebar, 'width', ['very thin', 'thin', 'wide', 'very wide'])
 
   describe('componentWillUnmount', () => {
-    it('will call "clearTimeout"', () => {
+    it('will call "clearTimeout"', (done) => {
       const clear = sandbox.spy(window, 'clearTimeout')
       const wrapper = mount(<Sidebar />)
 
+      // start animation
       wrapper.setProps({ visible: true })
-      clear.should.have.been.calledOnce()
+      wrapper.unmount()
+
+      assertWithTimeout(() => {
+        clear.should.have.been.called()
+      }, done)
     })
   })
 
