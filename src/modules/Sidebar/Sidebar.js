@@ -1,9 +1,9 @@
 import { EventListener, documentRef } from '@fluentui/react-component-event-listener'
-import { Ref, isRefObject } from '@fluentui/react-component-ref'
+import { isRefObject } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, createRef } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -12,117 +12,115 @@ import {
   getUnhandledProps,
   getElementType,
   useKeyOnly,
+  useIsomorphicLayoutEffect,
+  useEventCallback,
+  useMergedRefs,
+  usePrevious,
 } from '../../lib'
 import SidebarPushable from './SidebarPushable'
 import SidebarPusher from './SidebarPusher'
 
 /**
+ * We use `animationTick` to understand when an animation should be scheduled.
+ *
+ * @param {Boolean} visible
+ */
+function useAnimationTick(visible) {
+  const previousVisible = usePrevious(visible)
+  const tickIncrement = !!visible === !!previousVisible ? 0 : 1
+
+  const animationTick = React.useRef(0)
+  const [, forceUpdate] = React.useReducer((x) => x + 1, 0)
+
+  const currentTick = animationTick.current + tickIncrement
+  const resetAnimationTick = React.useCallback(() => {
+    animationTick.current = 0
+    forceUpdate()
+  }, [])
+
+  React.useEffect(() => {
+    animationTick.current = currentTick
+  })
+
+  return [currentTick, resetAnimationTick]
+}
+
+/**
  * A sidebar hides additional content beside a page.
  */
-class Sidebar extends Component {
-  ref = createRef()
+const Sidebar = React.forwardRef((props, ref) => {
+  const { animation, className, children, content, direction, target, visible, width } = props
 
-  constructor(props) {
-    super(props)
+  const [animationTick, resetAnimationTick] = useAnimationTick(visible)
+  const elementRef = useMergedRefs(ref, React.useRef())
 
-    this.state = {
-      animationTick: 0,
-      visible: props.visible,
-    }
-  }
+  const animationTimer = React.useRef()
+  const skipNextCallback = React.useRef()
 
-  static getDerivedStateFromProps(props, state) {
-    // We use `animationTick` to understand when an animation should be scheduled
-    const tickIncrement = !!props.visible === !!state.visible ? 0 : 1
+  const handleAnimationEnd = useEventCallback(() => {
+    const callback = visible ? 'onShow' : 'onHidden'
 
-    return {
-      animationTick: state.animationTick + tickIncrement,
-      visible: props.visible,
-    }
-  }
+    resetAnimationTick()
+    _.invoke(props, callback, null, props)
+  })
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.animationTick > prevState.animationTick) {
-      this.handleAnimationStart()
-    }
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.animationTimer)
-  }
-
-  handleAnimationStart = () => {
-    const { visible } = this.props
+  const handleAnimationStart = useEventCallback(() => {
     const callback = visible ? 'onVisible' : 'onHide'
 
-    clearTimeout(this.animationTimer)
-    this.animationTimer = setTimeout(this.handleAnimationEnd, Sidebar.animationDuration)
+    clearTimeout(animationTimer.current)
+    animationTimer.current = setTimeout(handleAnimationEnd, Sidebar.animationDuration)
 
-    if (this.skipNextCallback) {
-      this.skipNextCallback = false
+    if (skipNextCallback.current) {
+      skipNextCallback.current = false
       return
     }
 
-    _.invoke(this.props, callback, null, this.props)
-  }
+    _.invoke(props, callback, null, props)
+  })
 
-  handleAnimationEnd = () => {
-    const { visible } = this.props
-    const callback = visible ? 'onShow' : 'onHidden'
-
-    this.setState({ animationTick: 0 })
-    _.invoke(this.props, callback, null, this.props)
-  }
-
-  handleDocumentClick = (e) => {
-    if (!doesNodeContainClick(this.ref.current, e)) {
-      this.skipNextCallback = true
-      _.invoke(this.props, 'onHide', e, { ...this.props, visible: false })
+  const handleDocumentClick = (e) => {
+    if (!doesNodeContainClick(elementRef.current, e)) {
+      skipNextCallback.current = true
+      _.invoke(props, 'onHide', e, { ...props, visible: false })
     }
   }
 
-  render() {
-    const {
-      animation,
-      className,
-      children,
-      content,
-      direction,
-      target,
-      visible,
-      width,
-    } = this.props
-    const { animationTick } = this.state
+  useIsomorphicLayoutEffect(() => {
+    handleAnimationStart()
+  }, [animationTick])
 
-    const classes = cx(
-      'ui',
-      animation,
-      direction,
-      width,
-      useKeyOnly(animationTick > 0, 'animating'),
-      useKeyOnly(visible, 'visible'),
-      'sidebar',
-      className,
-    )
-    const rest = getUnhandledProps(Sidebar, this.props)
-    const ElementType = getElementType(Sidebar, this.props)
-    const targetProp = isRefObject(target) ? { targetRef: target } : { target }
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(animationTimer.current)
+    }
+  }, [])
 
-    return (
-      <>
-        <Ref innerRef={this.ref}>
-          <ElementType {...rest} className={classes}>
-            {childrenUtils.isNil(children) ? content : children}
-          </ElementType>
-        </Ref>
-        {visible && (
-          <EventListener listener={this.handleDocumentClick} type='click' {...targetProp} />
-        )}
-      </>
-    )
-  }
-}
+  const classes = cx(
+    'ui',
+    animation,
+    direction,
+    width,
+    useKeyOnly(animationTick > 0, 'animating'),
+    useKeyOnly(visible, 'visible'),
+    'sidebar',
+    className,
+  )
+  const rest = getUnhandledProps(Sidebar, props)
+  const ElementType = getElementType(Sidebar, props)
+  const targetProp = isRefObject(target) ? { targetRef: target } : { target }
 
+  return (
+    <>
+      <ElementType {...rest} className={classes} ref={elementRef}>
+        {childrenUtils.isNil(children) ? content : children}
+      </ElementType>
+
+      {visible && <EventListener listener={handleDocumentClick} type='click' {...targetProp} />}
+    </>
+  )
+})
+
+Sidebar.displayName = 'Sidebar'
 Sidebar.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -198,7 +196,6 @@ Sidebar.defaultProps = {
 }
 
 Sidebar.animationDuration = 500
-Sidebar.autoControlledProps = ['visible']
 
 Sidebar.Pushable = SidebarPushable
 Sidebar.Pusher = SidebarPusher
