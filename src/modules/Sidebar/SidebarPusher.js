@@ -13,7 +13,7 @@ import {
 /**
  * A pushable sub-component for Sidebar.
  */
-function SidebarPusher(props) {
+const SidebarPusher = React.forwardRef(function (props, ref) {
   const { className, dimmed, children, content } = props
 
   const classes = cx('pusher', useKeyOnly(dimmed, 'dimmed'), className)
@@ -21,12 +21,13 @@ function SidebarPusher(props) {
   const ElementType = getElementType(SidebarPusher, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+SidebarPusher.displayName = 'SidebarPusher'
 SidebarPusher.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

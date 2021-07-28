@@ -1,8 +1,7 @@
-import { Ref } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, createRef } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -12,94 +11,79 @@ import {
   getUnhandledProps,
   useKeyOnly,
   useVerticalAlignProp,
+  useIsomorphicLayoutEffect,
+  useMergedRefs,
 } from '../../lib'
 
 /**
  * An inner element for a Dimmer.
  */
-export default class DimmerInner extends Component {
-  containerRef = createRef()
-  contentRef = createRef()
+const DimmerInner = React.forwardRef(function (props, ref) {
+  const {
+    active,
+    children,
+    className,
+    content,
+    disabled,
+    inverted,
+    page,
+    simple,
+    verticalAlign,
+  } = props
 
-  componentDidMount() {
-    const { active } = this.props
+  const containerRef = useMergedRefs(ref, React.useRef())
+  const contentRef = React.useRef()
 
-    this.toggleStyles(active)
-  }
-
-  componentDidUpdate(prevProps) {
-    const { active: currentActive } = this.props
-    const { active: prevActive } = prevProps
-
-    if (prevActive !== currentActive) this.toggleStyles(currentActive)
-  }
-
-  handleClick = (e) => {
-    const contentRef = this.contentRef.current
-
-    _.invoke(this.props, 'onClick', e, this.props)
-
-    if (contentRef && contentRef !== e.target && doesNodeContainClick(contentRef, e)) {
+  useIsomorphicLayoutEffect(() => {
+    if (!containerRef.current?.style) {
       return
     }
 
-    _.invoke(this.props, 'onClickOutside', e, this.props)
-  }
-
-  toggleStyles(active) {
-    const containerRef = this.containerRef.current
-
-    if (!containerRef || !containerRef.style) return
     if (active) {
-      containerRef.style.setProperty('display', 'flex', 'important')
+      containerRef.current.style.setProperty('display', 'flex', 'important')
     } else {
-      containerRef.style.removeProperty('display')
+      containerRef.current.style.removeProperty('display')
     }
+  }, [active])
+
+  const handleClick = (e) => {
+    _.invoke(props, 'onClick', e, props)
+
+    if (contentRef.current !== e.target && doesNodeContainClick(contentRef.current, e)) {
+      return
+    }
+
+    _.invoke(props, 'onClickOutside', e, props)
   }
 
-  render() {
-    const {
-      active,
-      children,
-      className,
-      content,
-      disabled,
-      inverted,
-      page,
-      simple,
-      verticalAlign,
-    } = this.props
+  const classes = cx(
+    'ui',
+    useKeyOnly(active, 'active transition visible'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(page, 'page'),
+    useKeyOnly(simple, 'simple'),
+    useVerticalAlignProp(verticalAlign),
+    'dimmer',
+    className,
+  )
+  const rest = getUnhandledProps(DimmerInner, props)
+  const ElementType = getElementType(DimmerInner, props)
 
-    const classes = cx(
-      'ui',
-      useKeyOnly(active, 'active transition visible'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(page, 'page'),
-      useKeyOnly(simple, 'simple'),
-      useVerticalAlignProp(verticalAlign),
-      'dimmer',
-      className,
-    )
-    const rest = getUnhandledProps(DimmerInner, this.props)
-    const ElementType = getElementType(DimmerInner, this.props)
+  const childrenContent = childrenUtils.isNil(children) ? content : children
 
-    const childrenContent = childrenUtils.isNil(children) ? content : children
+  return (
+    <ElementType {...rest} className={classes} onClick={handleClick} ref={containerRef}>
+      {childrenContent && (
+        <div className='content' ref={contentRef}>
+          {childrenContent}
+        </div>
+      )}
+    </ElementType>
+  )
+})
 
-    return (
-      <Ref innerRef={this.containerRef}>
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
-          {childrenContent && (
-            <div className='content' ref={this.contentRef}>
-              {childrenContent}
-            </div>
-          )}
-        </ElementType>
-      </Ref>
-    )
-  }
-}
-
+DimmerInner.displayName = 'DimmerInner'
 DimmerInner.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -147,3 +131,5 @@ DimmerInner.propTypes = {
   /** A dimmer can have its content top or bottom aligned. */
   verticalAlign: PropTypes.oneOf(['bottom', 'top']),
 }
+
+export default DimmerInner
