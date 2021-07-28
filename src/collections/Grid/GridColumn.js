@@ -19,7 +19,7 @@ import {
 /**
  * A column sub-component for Grid.
  */
-function GridColumn(props) {
+const GridColumn = React.forwardRef(function (props, ref) {
   const {
     children,
     className,
@@ -57,12 +57,13 @@ function GridColumn(props) {
   const ElementType = getElementType(GridColumn, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {children}
     </ElementType>
   )
-}
+})
 
+GridColumn.displayName = 'GridColumn'
 GridColumn.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

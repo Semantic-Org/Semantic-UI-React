@@ -20,7 +20,7 @@ import GridRow from './GridRow'
 /**
  * A grid is used to harmonize negative space in a layout.
  */
-function Grid(props) {
+const Grid = React.forwardRef(function (props, ref) {
   const {
     celled,
     centered,
@@ -63,15 +63,16 @@ function Grid(props) {
   const ElementType = getElementType(Grid, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {children}
     </ElementType>
   )
-}
+})
 
 Grid.Column = GridColumn
 Grid.Row = GridRow
 
+Grid.displayName = 'Grid'
 Grid.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

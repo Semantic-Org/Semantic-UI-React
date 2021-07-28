@@ -8,6 +8,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Dimmer', () => {
   common.isConformant(Dimmer)
+  common.forwardsRef(Dimmer)
   common.hasSubcomponents(Dimmer, [DimmerDimmable, DimmerInner])
 
   common.implementsCreateMethod(Dimmer)

@@ -7,6 +7,7 @@ import { SUI } from 'src/lib'
 
 describe('Grid', () => {
   common.isConformant(Grid)
+  common.forwardsRef(Grid)
   common.hasSubcomponents(Grid, [GridRow, GridColumn])
   common.hasUIClassName(Grid)
   common.rendersChildren(Grid, {

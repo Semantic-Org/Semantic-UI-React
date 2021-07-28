@@ -4,6 +4,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('GridColumn', () => {
   common.isConformant(GridColumn)
+  common.forwardsRef(GridColumn)
   common.rendersChildren(GridColumn, {
     rendersContent: false,
   })
