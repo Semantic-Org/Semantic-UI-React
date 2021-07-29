@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -15,105 +15,150 @@ import {
 } from '../../lib'
 
 /**
+ * @param {Number|String} percent
+ * @param {Number|String} total
+ * @param {Number|String} value
+ *
+ * @return {Number|String}
+ */
+function calculatePercent(percent, total, value) {
+  if (!_.isUndefined(percent)) {
+    return percent
+  }
+
+  if (!_.isUndefined(total) && !_.isUndefined(value)) {
+    return (value / total) * 100
+  }
+
+  return 0
+}
+
+/**
+ * @param {Number|String} percent
+ * @param {Number|String} total
+ * @param {Number|String} value
+ * @param {Boolean|'percent'|'ratio'|'value'} progress
+ * @param {Number} precision
+ *
+ * @return {Number}
+ */
+function getPercent(percent, total, value, progress, precision) {
+  const clampedPercent = _.clamp(calculatePercent(percent, total, value), 0, 100)
+
+  if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') {
+    return (value / total) * 100
+  }
+
+  if (progress === 'value') {
+    return value
+  }
+
+  if (_.isUndefined(precision)) {
+    return clampedPercent
+  }
+
+  return _.round(clampedPercent, precision)
+}
+
+/**
  * A progress bar shows the progression of a task.
  */
-class Progress extends Component {
-  calculatePercent = () => {
-    const { percent, total, value } = this.props
+const Progress = React.forwardRef(function (props, ref) {
+  const {
+    active,
+    autoSuccess,
+    attached,
+    children,
+    className,
+    color,
+    content,
+    disabled,
+    error,
+    indicating,
+    inverted,
+    label,
+    percent,
+    precision,
+    progress,
+    total,
+    size,
+    success,
+    value,
+    warning,
+  } = props
 
-    if (!_.isUndefined(percent)) return percent
-    if (!_.isUndefined(total) && !_.isUndefined(value)) return (value / total) * 100
-  }
+  const calculatedPercent = getPercent(percent, total, value, progress, precision) || 0
+  const isAutoSuccess = autoSuccess && (percent >= 100 || value >= total)
 
-  computeValueText = (percent) => {
-    const { progress, total, value } = this.props
-
-    if (progress === 'value') return value
-    if (progress === 'ratio') return `${value}/${total}`
-    return `${percent}%`
-  }
-
-  getPercent = () => {
-    const { precision, progress, total, value } = this.props
-    const percent = _.clamp(this.calculatePercent(), 0, 100)
-
-    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') {
-      return (value / total) * 100
+  const computeValueText = () => {
+    if (progress === 'value') {
+      return value
     }
-    if (progress === 'value') return value
-    if (_.isUndefined(precision)) return percent
-    return _.round(percent, precision)
+
+    if (progress === 'ratio') {
+      return `${value}/${total}`
+    }
+
+    return `${calculatedPercent}%`
   }
 
-  isAutoSuccess = () => {
-    const { autoSuccess, percent, total, value } = this.props
+  const renderLabel = () => {
+    if (!childrenUtils.isNil(children)) {
+      return <div className='label'>{children}</div>
+    }
 
-    return autoSuccess && (percent >= 100 || value >= total)
-  }
+    if (!childrenUtils.isNil(content)) {
+      return <div className='label'>{content}</div>
+    }
 
-  renderLabel = () => {
-    const { children, content, label } = this.props
-
-    if (!childrenUtils.isNil(children)) return <div className='label'>{children}</div>
-    if (!childrenUtils.isNil(content)) return <div className='label'>{content}</div>
     return createHTMLDivision(label, {
       autoGenerateKey: false,
       defaultProps: { className: 'label' },
     })
   }
 
-  renderProgress = (percent) => {
-    const { precision, progress } = this.props
+  const renderProgress = () => {
+    if (!progress && _.isUndefined(precision)) {
+      return
+    }
 
-    if (!progress && _.isUndefined(precision)) return
-    return <div className='progress'>{this.computeValueText(percent)}</div>
+    return <div className='progress'>{computeValueText()}</div>
   }
 
-  render() {
-    const {
-      active,
-      attached,
-      className,
-      color,
-      disabled,
-      error,
-      indicating,
-      inverted,
-      size,
-      success,
-      warning,
-    } = this.props
+  const classes = cx(
+    'ui',
+    color,
+    size,
+    useKeyOnly(active || indicating, 'active'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(error, 'error'),
+    useKeyOnly(indicating, 'indicating'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(success || isAutoSuccess, 'success'),
+    useKeyOnly(warning, 'warning'),
+    useValueAndKey(attached, 'attached'),
+    'progress',
+    className,
+  )
+  const rest = getUnhandledProps(Progress, props)
+  const ElementType = getElementType(Progress, props)
 
-    const classes = cx(
-      'ui',
-      color,
-      size,
-      useKeyOnly(active || indicating, 'active'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(error, 'error'),
-      useKeyOnly(indicating, 'indicating'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(success || this.isAutoSuccess(), 'success'),
-      useKeyOnly(warning, 'warning'),
-      useValueAndKey(attached, 'attached'),
-      'progress',
-      className,
-    )
-    const rest = getUnhandledProps(Progress, this.props)
-    const ElementType = getElementType(Progress, this.props)
-    const percent = this.getPercent() || 0
+  return (
+    <ElementType
+      {...rest}
+      className={classes}
+      data-percent={Math.floor(calculatedPercent)}
+      ref={ref}
+    >
+      <div className='bar' style={{ width: `${calculatedPercent}%` }}>
+        {renderProgress()}
+      </div>
+      {renderLabel()}
+    </ElementType>
+  )
+})
 
-    return (
-      <ElementType {...rest} className={classes} data-percent={Math.floor(percent)}>
-        <div className='bar' style={{ width: `${percent}%` }}>
-          {this.renderProgress(percent)}
-        </div>
-        {this.renderLabel()}
-      </ElementType>
-    )
-  }
-}
-
+Progress.displayName = 'Progress'
 Progress.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
