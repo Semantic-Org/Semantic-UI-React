@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import { cloneElement, Component } from 'react'
+import * as React from 'react'
 
 import { makeDebugger, normalizeTransitionDuration, SUI, useKeyOnly } from '../../lib'
 import TransitionGroup from './TransitionGroup'
@@ -29,15 +29,7 @@ const TRANSITION_STYLE_TYPE = {
 /**
  * A transition is an animation usually used to move content in or out of view.
  */
-export default class Transition extends Component {
-  /** @deprecated Static properties will be removed in v2. */
-  static INITIAL = TRANSITION_STATUS_INITIAL
-  static ENTERED = TRANSITION_STATUS_ENTERED
-  static ENTERING = TRANSITION_STATUS_ENTERING
-  static EXITED = TRANSITION_STATUS_EXITED
-  static EXITING = TRANSITION_STATUS_EXITING
-  static UNMOUNTED = TRANSITION_STATUS_UNMOUNTED
-
+export default class Transition extends React.Component {
   static Group = TransitionGroup
 
   state = {
@@ -171,7 +163,7 @@ export default class Transition extends Component {
       return null
     }
 
-    return cloneElement(children, {
+    return React.cloneElement(children, {
       className: this.computeClasses(),
       style: this.computeStyle(),
       ...(process.env.NODE_ENV !== 'production' && {
