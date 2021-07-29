@@ -14,7 +14,7 @@ import {
 /**
  * A modal can contain content.
  */
-function ModalContent(props) {
+const ModalContent = React.forwardRef(function (props, ref) {
   const { children, className, content, image, scrolling } = props
 
   const classes = cx(
@@ -27,12 +27,13 @@ function ModalContent(props) {
   const ElementType = getElementType(ModalContent, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+ModalContent.displayName = 'ModalContent'
 ModalContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

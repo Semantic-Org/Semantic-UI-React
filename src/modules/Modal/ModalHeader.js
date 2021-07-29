@@ -13,19 +13,20 @@ import {
 /**
  * A modal can have a header.
  */
-function ModalHeader(props) {
+const ModalHeader = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('header', className)
   const rest = getUnhandledProps(ModalHeader, props)
   const ElementType = getElementType(ModalHeader, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+ModalHeader.displayName = 'ModalHeader'
 ModalHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

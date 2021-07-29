@@ -13,19 +13,20 @@ import {
 /**
  * A PopupContent displays the content body of a Popover.
  */
-export default function PopupContent(props) {
+const PopupContent = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(PopupContent, props)
   const ElementType = getElementType(PopupContent, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+PopupContent.displayName = 'PopupContent'
 PopupContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -41,3 +42,5 @@ PopupContent.propTypes = {
 }
 
 PopupContent.create = createShorthandFactory(PopupContent, (children) => ({ children }))
+
+export default PopupContent
