@@ -4,31 +4,43 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  ModernAutoControlledComponent as Component,
   childrenUtils,
   createHTMLIframe,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   useKeyOnly,
+  useAutoControlledValue,
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
 /**
  * An embed displays content from other websites like YouTube videos or Google Maps.
  */
-export default class Embed extends Component {
-  getSrc() {
-    const {
-      autoplay = true,
-      brandedUI = false,
-      color = '#444444',
-      hd = true,
-      id,
-      source,
-      url,
-    } = this.props
+const Embed = React.forwardRef(function (props, ref) {
+  const {
+    aspectRatio,
+    autoplay = true,
+    brandedUI = false,
+    children,
+    className,
+    color = '#444444',
+    content,
+    hd = true,
+    icon,
+    id,
+    iframe,
+    placeholder,
+    source,
+    url,
+  } = props
+  const [active, setActive] = useAutoControlledValue({
+    state: props.active,
+    defaultState: props.defaultActive,
+    initialState: false,
+  })
 
+  const getSrc = () => {
     if (source === 'youtube') {
       return [
         `//www.youtube.com/embed/${id}`,
@@ -57,49 +69,35 @@ export default class Embed extends Component {
     return url
   }
 
-  handleClick = (e) => {
-    const { active } = this.state
-
-    _.invoke(this.props, 'onClick', e, { ...this.props, active: true })
-    if (!active) this.setState({ active: true })
+  const handleClick = (e) => {
+    _.invoke(props, 'onClick', e, { ...props, active: true })
+    if (!active) {
+      setActive(true)
+    }
   }
 
-  render() {
-    const { aspectRatio, className, icon, placeholder } = this.props
-    const { active } = this.state
+  const renderEmbed = () => {
+    if (!active) {
+      return null
+    }
 
-    const classes = cx('ui', aspectRatio, useKeyOnly(active, 'active'), 'embed', className)
-    const rest = getUnhandledProps(Embed, this.props)
-    const ElementType = getElementType(Embed, this.props)
+    if (!childrenUtils.isNil(children)) {
+      return <div className='embed'>{children}</div>
+    }
 
-    const iconShorthand = icon !== undefined ? icon : 'video play'
-
-    return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {Icon.create(iconShorthand, { autoGenerateKey: false })}
-        {placeholder && <img className='placeholder' src={placeholder} />}
-        {this.renderEmbed()}
-      </ElementType>
-    )
-  }
-
-  renderEmbed() {
-    const { children, content, iframe, source } = this.props
-    const { active } = this.state
-
-    if (!active) return null
-    if (!childrenUtils.isNil(children)) return <div className='embed'>{children}</div>
-    if (!childrenUtils.isNil(content)) return <div className='embed'>{content}</div>
+    if (!childrenUtils.isNil(content)) {
+      return <div className='embed'>{content}</div>
+    }
 
     return (
       <div className='embed'>
-        {createHTMLIframe(childrenUtils.isNil(iframe) ? this.getSrc() : iframe, {
+        {createHTMLIframe(childrenUtils.isNil(iframe) ? getSrc() : iframe, {
           defaultProps: {
             allowFullScreen: false,
             frameBorder: 0,
             height: '100%',
             scrolling: 'no',
-            src: this.getSrc(),
+            src: getSrc(),
             title: `Embedded content from ${source}.`,
             width: '100%',
           },
@@ -108,8 +106,23 @@ export default class Embed extends Component {
       </div>
     )
   }
-}
 
+  const classes = cx('ui', aspectRatio, useKeyOnly(active, 'active'), 'embed', className)
+  const rest = getUnhandledProps(Embed, props)
+  const ElementType = getElementType(Embed, props)
+
+  const iconShorthand = icon !== undefined ? icon : 'video play'
+
+  return (
+    <ElementType {...rest} className={classes} onClick={handleClick} ref={ref}>
+      {Icon.create(iconShorthand, { autoGenerateKey: false })}
+      {placeholder && <img className='placeholder' src={placeholder} />}
+      {renderEmbed()}
+    </ElementType>
+  )
+})
+
+Embed.displayName = 'Embed'
 Embed.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -177,4 +190,4 @@ Embed.propTypes = {
   url: customPropTypes.every([customPropTypes.disallow(['source']), PropTypes.string]),
 }
 
-Embed.autoControlledProps = ['active']
+export default Embed

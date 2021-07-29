@@ -24,6 +24,7 @@ const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Checkbox', () => {
   common.isConformant(Checkbox)
+  common.forwardsRef(Checkbox, { tagName: 'input' })
   common.hasUIClassName(Checkbox)
 
   common.propKeyOnlyToClassName(Checkbox, 'checked')
@@ -110,6 +111,7 @@ describe('Checkbox', () => {
       domEvent.click(input)
       input.indeterminate.should.be.true()
     })
+
     it('can not be indeterminate', () => {
       wrapperMount(<Checkbox indeterminate={false} />)
       const input = document.querySelector('.ui.checkbox input')
