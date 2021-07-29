@@ -15,7 +15,7 @@ import Segment from '../../elements/Segment/Segment'
 /**
  * A tab pane holds the content of a tab.
  */
-function TabPane(props) {
+const TabPane = React.forwardRef(function (props, ref) {
   const { active, children, className, content, loading } = props
 
   const classes = cx(useKeyOnly(active, 'active'), useKeyOnly(loading, 'loading'), 'tab', className)
@@ -23,22 +23,24 @@ function TabPane(props) {
   const ElementType = getElementType(TabPane, props)
 
   const calculatedDefaultProps = {}
+
   if (ElementType === Segment) {
     calculatedDefaultProps.attached = 'bottom'
   }
 
   return (
-    <ElementType {...calculatedDefaultProps} {...rest} className={classes}>
+    <ElementType {...calculatedDefaultProps} {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
 TabPane.defaultProps = {
   as: Segment,
   active: true,
 }
 
+TabPane.displayName = 'TabPane'
 TabPane.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
