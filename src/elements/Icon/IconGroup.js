@@ -8,19 +8,21 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps, SUI 
 /**
  * Several icons can be used together as a group.
  */
-function IconGroup(props) {
+const IconGroup = React.forwardRef(function (props, ref) {
   const { children, className, content, size } = props
+
   const classes = cx(size, 'icons', className)
   const rest = getUnhandledProps(IconGroup, props)
   const ElementType = getElementType(IconGroup, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+IconGroup.displayName = 'IconGroup'
 IconGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

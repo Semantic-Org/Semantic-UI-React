@@ -7,19 +7,21 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps, SUI 
 /**
  * A group of images.
  */
-function ImageGroup(props) {
+const ImageGroup = React.forwardRef(function (props, ref) {
   const { children, className, content, size } = props
+
   const classes = cx('ui', size, className, 'images')
   const rest = getUnhandledProps(ImageGroup, props)
   const ElementType = getElementType(ImageGroup, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+ImageGroup.displayName = 'ImageGroup'
 ImageGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
