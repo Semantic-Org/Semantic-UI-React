@@ -2,18 +2,16 @@ import _ from 'lodash'
 import React, { createElement } from 'react'
 
 import { createShorthand } from 'src/lib'
-import { consoleUtil } from 'test/utils'
+import { consoleUtil, getComponentName } from 'test/utils'
 import { noDefaultClassNameFromProp } from './classNameHelpers'
 import helpers from './commonHelpers'
 
 const shorthandComponentName = (ShorthandComponent) => {
-  if (typeof ShorthandComponent === 'string') return ShorthandComponent
+  if (typeof ShorthandComponent === 'string') {
+    return ShorthandComponent
+  }
 
-  return (
-    _.get(ShorthandComponent, 'prototype.constructor.name') ||
-    ShorthandComponent.displayName ||
-    ShorthandComponent.name
-  )
+  return getComponentName(ShorthandComponent)
 }
 
 /**
@@ -78,7 +76,7 @@ export default (Component, options = {}) => {
 
     if (alwaysPresent || (Component.defaultProps && Component.defaultProps[propKey])) {
       it(`has default ${name} when not defined`, () => {
-        shallow(<Component {...requiredProps} />).should.have.descendants(name)
+        shallow(<Component {...requiredProps} />).should.have.descendants(ShorthandComponent)
       })
     } else {
       if (!parentIsFragment) {
@@ -86,7 +84,7 @@ export default (Component, options = {}) => {
       }
 
       it(`has no ${name} when not defined`, () => {
-        shallow(<Component {...requiredProps} />).should.not.have.descendants(name)
+        shallow(<Component {...requiredProps} />).should.not.have.descendants(ShorthandComponent)
       })
     }
 
