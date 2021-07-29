@@ -1,10 +1,12 @@
 import * as React from 'react'
 
 /**
+ * Assigns a value to a React ref.
+ *
  * @param {React.Ref} ref
  * @param {HTMLElement} value
  */
-function setRef(ref, value) {
+export function setRef(ref, value) {
   if (typeof ref === 'function') {
     ref(value)
   } else if (ref) {
