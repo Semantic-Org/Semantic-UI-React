@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  ModernAutoControlledComponent as Component,
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  useAutoControlledValue,
 } from '../../lib'
 import Grid from '../../collections/Grid/Grid'
 import GridColumn from '../../collections/Grid/GridColumn'
@@ -18,21 +18,25 @@ import TabPane from './TabPane'
  * @see Menu
  * @see Segment
  */
-class Tab extends Component {
-  getInitialAutoControlledState() {
-    return { activeIndex: 0 }
+const Tab = React.forwardRef(function (props, ref) {
+  const { grid, menu, panes, menuPosition, renderActiveOnly } = props
+
+  const [activeIndex, setActiveIndex] = useAutoControlledValue({
+    state: props.activeIndex,
+    defaultState: props.defaultActiveIndex,
+    initialState: 0,
+  })
+
+  const handleItemClick = (e, { index }) => {
+    _.invoke(props, 'onTabChange', e, { ...props, activeIndex: index })
+    setActiveIndex(index)
   }
 
-  handleItemClick = (e, { index }) => {
-    _.invoke(this.props, 'onTabChange', e, { ...this.props, activeIndex: index })
-    this.setState({ activeIndex: index })
-  }
+  const renderItems = () => {
+    if (renderActiveOnly) {
+      return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', props)
+    }
 
-  renderItems() {
-    const { panes, renderActiveOnly } = this.props
-    const { activeIndex } = this.state
-
-    if (renderActiveOnly) return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props)
     return _.map(panes, ({ pane }, index) =>
       TabPane.create(pane, {
         overrideProps: {
@@ -42,10 +46,7 @@ class Tab extends Component {
     )
   }
 
-  renderMenu() {
-    const { menu, panes, menuPosition } = this.props
-    const { activeIndex } = this.state
-
+  const renderMenu = () => {
     if (menu.tabular === true && menuPosition === 'right') {
       menu.tabular = 'right'
     }
@@ -54,55 +55,57 @@ class Tab extends Component {
       autoGenerateKey: false,
       overrideProps: {
         items: _.map(panes, 'menuItem'),
-        onItemClick: this.handleItemClick,
+        onItemClick: handleItemClick,
         activeIndex,
       },
     })
   }
 
-  renderVertical(menu) {
-    const { grid, menuPosition } = this.props
+  const renderVertical = (menuElement) => {
     const { paneWidth, tabWidth, ...gridProps } = grid
 
-    const position = menuPosition || (menu.props.tabular === 'right' && 'right') || 'left'
+    const position = menuPosition || (menuElement.props.tabular === 'right' && 'right') || 'left'
 
     return (
       <Grid {...gridProps}>
         {position === 'left' &&
-          GridColumn.create({ width: tabWidth, children: menu }, { autoGenerateKey: false })}
+          GridColumn.create({ width: tabWidth, children: menuElement }, { autoGenerateKey: false })}
         {GridColumn.create(
           {
             width: paneWidth,
-            children: this.renderItems(),
+            children: renderItems(),
             stretched: true,
           },
           { autoGenerateKey: false },
         )}
         {position === 'right' &&
-          GridColumn.create({ width: tabWidth, children: menu }, { autoGenerateKey: false })}
+          GridColumn.create({ width: tabWidth, children: menuElement }, { autoGenerateKey: false })}
       </Grid>
     )
   }
 
-  render() {
-    const menu = this.renderMenu()
-    const rest = getUnhandledProps(Tab, this.props)
-    const ElementType = getElementType(Tab, this.props)
+  const menuElement = renderMenu()
+  const rest = getUnhandledProps(Tab, props)
+  const ElementType = getElementType(Tab, props)
 
-    if (menu.props.vertical) {
-      return <ElementType {...rest}>{this.renderVertical(menu)}</ElementType>
-    }
-
+  if (menuElement.props.vertical) {
     return (
-      <ElementType {...rest}>
-        {menu.props.attached !== 'bottom' && menu}
-        {this.renderItems()}
-        {menu.props.attached === 'bottom' && menu}
+      <ElementType {...rest} ref={ref}>
+        {renderVertical(menuElement)}
       </ElementType>
     )
   }
-}
 
+  return (
+    <ElementType {...rest} ref={ref}>
+      {menuElement.props.attached !== 'bottom' && menuElement}
+      {renderItems()}
+      {menuElement.props.attached === 'bottom' && menuElement}
+    </ElementType>
+  )
+})
+
+Tab.displayName = 'Tab'
 Tab.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
