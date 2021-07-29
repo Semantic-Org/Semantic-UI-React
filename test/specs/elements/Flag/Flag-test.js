@@ -7,6 +7,7 @@ const requiredProps = { name: 'us' }
 
 describe('Flag', () => {
   common.isConformant(Flag, { requiredProps })
+  common.forwardsRef(Flag, { isMemoized: true, requiredProps, tagName: 'i' })
 
   common.implementsCreateMethod(Flag)
 
