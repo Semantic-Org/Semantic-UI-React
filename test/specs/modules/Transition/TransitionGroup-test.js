@@ -7,13 +7,13 @@ import * as common from 'test/specs/commonTests'
 let wrapper
 
 const wrapperMount = (...args) => (wrapper = mount(...args))
-const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('TransitionGroup', () => {
   common.isConformant(TransitionGroup, {
     rendersFragmentByDefault: true,
     rendersChildren: false,
   })
+  common.forwardsRef(TransitionGroup, { requiredProps: { as: 'div' } })
 
   beforeEach(() => {
     wrapper = undefined
@@ -25,50 +25,50 @@ describe('TransitionGroup', () => {
 
   describe('children', () => {
     it('wraps all children to Transition', () => {
-      shallow(
+      wrapperMount(
         <TransitionGroup>
           <div />
           <div />
           <div />
         </TransitionGroup>,
       )
-        .children()
-        .everyWhere((item) => item.type().should.equal(Transition))
+
+      wrapper.children().everyWhere((item) => item.type().should.equal(Transition))
     })
 
     it('passes props to children', () => {
-      shallow(
+      wrapperMount(
         <TransitionGroup animation='scale' directional duration={1500}>
           <div />
           <div />
           <div />
         </TransitionGroup>,
       )
-        .children()
-        .everyWhere((item) => {
-          item.should.have.prop('animation', 'scale')
-          item.should.have.prop('directional', true)
-          item.should.have.prop('duration', 1500)
-          item.type().should.equal(Transition)
-        })
+
+      wrapper.children().everyWhere((item) => {
+        item.should.have.prop('animation', 'scale')
+        item.should.have.prop('directional', true)
+        item.should.have.prop('duration', 1500)
+        item.type().should.equal(Transition)
+      })
     })
 
     it('wraps new child to Transition and sets transitionOnMount to true', () => {
-      wrapperShallow(
+      wrapperMount(
         <TransitionGroup>
           <div key='first' />
         </TransitionGroup>,
       )
       wrapper.setProps({ children: [<div key='first' />, <div key='second' />] })
 
-      const child = wrapper.childAt(1)
-      child.key().should.equal('.$second')
-      child.type().should.equal(Transition)
-      child.should.have.prop('transitionOnMount', true)
+      const secondChild = wrapper.childAt(1)
+      secondChild.key().should.equal('.$second')
+      secondChild.type().should.equal(Transition)
+      secondChild.should.have.prop('transitionOnMount', true)
     })
 
     it('skips invalid children', () => {
-      wrapperShallow(
+      wrapperMount(
         <TransitionGroup>
           <div key='first' />
         </TransitionGroup>,
@@ -81,7 +81,7 @@ describe('TransitionGroup', () => {
     })
 
     it('sets visible to false when child was removed', () => {
-      wrapperShallow(
+      wrapperMount(
         <TransitionGroup>
           <div key='first' />
           <div key='second' />
