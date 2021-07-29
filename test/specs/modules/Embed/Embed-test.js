@@ -14,10 +14,9 @@ const assertIframeSrc = (props, srcPart) => {
 
 describe('Embed', () => {
   common.isConformant(Embed)
+  common.forwardsRef(Embed)
   common.hasUIClassName(Embed)
-  common.rendersChildren(Embed, {
-    requiredProps: { active: true },
-  })
+  common.rendersChildren(Embed, { requiredProps: { active: true } })
 
   common.implementsHTMLIFrameProp(Embed, {
     alwaysPresent: true,

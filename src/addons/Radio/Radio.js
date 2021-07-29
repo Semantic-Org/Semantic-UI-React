@@ -9,17 +9,19 @@ import Checkbox from '../../modules/Checkbox'
  * @see Checkbox
  * @see Form
  */
-function Radio(props) {
+const Radio = React.forwardRef(function (props, ref) {
   const { slider, toggle, type } = props
+
   const rest = getUnhandledProps(Radio, props)
   // const ElementType = getElementType(Radio, props)
   // radio, slider, toggle are exclusive
   // use an undefined radio if slider or toggle are present
   const radio = !(slider || toggle) || undefined
 
-  return <Checkbox {...rest} type={type} radio={radio} slider={slider} toggle={toggle} />
-}
+  return <Checkbox {...rest} type={type} radio={radio} slider={slider} toggle={toggle} ref={ref} />
+})
 
+Radio.displayName = 'Radio'
 Radio.propTypes = {
   /** Format to emphasize the current selection state. */
   slider: Checkbox.propTypes.slider,
