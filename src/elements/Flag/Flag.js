@@ -1,6 +1,6 @@
 import cx from 'clsx'
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React from 'react'
 
 import {
   createShorthandFactory,
@@ -509,17 +509,16 @@ export const names = [
 /**
  * A flag is is used to represent a political state.
  */
-class Flag extends PureComponent {
-  render() {
-    const { className, name } = this.props
-    const classes = cx(name, 'flag', className)
-    const rest = getUnhandledProps(Flag, this.props)
-    const ElementType = getElementType(Flag, this.props)
+const Flag = React.forwardRef(function (props, ref) {
+  const { className, name } = props
+  const classes = cx(name, 'flag', className)
+  const rest = getUnhandledProps(Flag, props)
+  const ElementType = getElementType(Flag, props)
 
-    return <ElementType {...rest} className={classes} />
-  }
-}
+  return <ElementType {...rest} className={classes} ref={ref} />
+})
 
+Flag.displayName = 'Flag'
 Flag.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -535,6 +534,10 @@ Flag.defaultProps = {
   as: 'i',
 }
 
-Flag.create = createShorthandFactory(Flag, (value) => ({ name: value }))
+// Heads up!
+// .create() factories should be defined on exported component to be visible as static properties
+const MemoFlag = React.memo(Flag)
 
-export default Flag
+MemoFlag.create = createShorthandFactory(MemoFlag, (value) => ({ name: value }))
+
+export default MemoFlag
