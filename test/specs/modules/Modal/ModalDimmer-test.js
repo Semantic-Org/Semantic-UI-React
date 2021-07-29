@@ -5,6 +5,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('ModalDimmer', () => {
   common.isConformant(ModalDimmer)
+  common.forwardsRef(ModalDimmer)
   common.hasUIClassName(ModalDimmer)
   common.rendersChildren(ModalDimmer)
 

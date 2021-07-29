@@ -3,6 +3,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('ModalContent', () => {
   common.isConformant(ModalContent)
+  common.forwardsRef(ModalContent)
   common.rendersChildren(ModalContent)
 
   common.implementsCreateMethod(ModalContent)
