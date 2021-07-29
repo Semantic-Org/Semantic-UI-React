@@ -6,18 +6,19 @@ import { consoleUtil, sandbox } from 'test/utils'
 /**
  * Assert a Component correctly implements a shorthand create method.
  * @param {React.ElementType} Component The component to test
- * @param {{ requiredProps?: Object, tagName?: string }} options Options for a test
+ * @param {{ isMemoized?: Boolean, requiredProps?: Object, tagName?: string }} options
  */
 export default function forwardsRef(Component, options = {}) {
   describe('forwardsRef', () => {
-    const { requiredProps = {}, tagName = 'div' } = options
+    const { isMemoized = false, requiredProps = {}, tagName = 'div' } = options
+    const RootComponent = isMemoized ? Component.type : Component
 
     it('is produced by React.forwardRef() call', () => {
-      expect(ReactIs.isForwardRef(<Component {...requiredProps} />)).to.equal(true)
+      expect(ReactIs.isForwardRef(<RootComponent {...requiredProps} />)).to.equal(true)
     })
 
     it('a render function is anonymous', () => {
-      const innerFunctionName = Component.render.name
+      const innerFunctionName = RootComponent.render.name
       expect(innerFunctionName).to.equal('')
     })
 

@@ -4,6 +4,7 @@ import React from 'react'
 
 import * as common from 'test/specs/commonTests'
 import { consoleUtil, domEvent, sandbox } from 'test/utils'
+import Icon from 'src/elements/Icon/Icon'
 import Label from 'src/elements/Label/Label'
 import Dropdown from 'src/modules/Dropdown/Dropdown'
 import DropdownDivider from 'src/modules/Dropdown/DropdownDivider'
@@ -377,7 +378,7 @@ describe('Dropdown', () => {
       const onChange = sandbox.spy()
       wrapperShallow(<Dropdown clearable onChange={onChange} />)
 
-      wrapper.find('Icon').simulate('click', { stopPropagation: _.noop })
+      wrapper.find(Icon).simulate('click', { stopPropagation: _.noop })
       onChange.should.have.not.been.called()
     })
 
@@ -385,7 +386,7 @@ describe('Dropdown', () => {
       const onChange = sandbox.spy()
       wrapperShallow(<Dropdown clearable multiple onChange={onChange} />)
 
-      wrapper.find('Icon').simulate('click', { stopPropagation: _.noop })
+      wrapper.find(Icon).simulate('click', { stopPropagation: _.noop })
       onChange.should.have.not.been.called()
     })
 
@@ -1413,7 +1414,7 @@ describe('Dropdown', () => {
       // https://github.com/Semantic-Org/Semantic-UI-React/issues/2600
       const onOpen = sandbox.spy()
       wrapperShallow(<Dropdown options={options} selection search onOpen={onOpen} />)
-        .find('Icon')
+        .find(Icon)
         .simulate('click', { stopPropagation: _.noop })
 
       onOpen.should.have.been.calledOnce()
