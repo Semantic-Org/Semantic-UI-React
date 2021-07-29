@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -15,45 +15,45 @@ import Button from '../../elements/Button'
 /**
  * A modal can contain a row of actions.
  */
-export default class ModalActions extends Component {
-  handleButtonOverrides = (predefinedProps) => ({
-    onClick: (e, buttonProps) => {
-      _.invoke(predefinedProps, 'onClick', e, buttonProps)
-      _.invoke(this.props, 'onActionClick', e, buttonProps)
-    },
-  })
+const ModalActions = React.forwardRef(function (props, ref) {
+  const { actions, children, className, content } = props
 
-  render() {
-    const { actions, children, className, content } = this.props
-    const classes = cx('actions', className)
-    const rest = getUnhandledProps(ModalActions, this.props)
-    const ElementType = getElementType(ModalActions, this.props)
+  const classes = cx('actions', className)
+  const rest = getUnhandledProps(ModalActions, props)
+  const ElementType = getElementType(ModalActions, props)
 
-    if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType {...rest} className={classes}>
-          {children}
-        </ElementType>
-      )
-    }
-    if (!childrenUtils.isNil(content)) {
-      return (
-        <ElementType {...rest} className={classes}>
-          {content}
-        </ElementType>
-      )
-    }
-
+  if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
-        {_.map(actions, (action) =>
-          Button.create(action, { overrideProps: this.handleButtonOverrides }),
-        )}
+      <ElementType {...rest} className={classes} ref={ref}>
+        {children}
       </ElementType>
     )
   }
-}
+  if (!childrenUtils.isNil(content)) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {content}
+      </ElementType>
+    )
+  }
 
+  return (
+    <ElementType {...rest} className={classes} ref={ref}>
+      {_.map(actions, (action) =>
+        Button.create(action, {
+          overrideProps: (predefinedProps) => ({
+            onClick: (e, buttonProps) => {
+              _.invoke(predefinedProps, 'onClick', e, buttonProps)
+              _.invoke(props, 'onActionClick', e, buttonProps)
+            },
+          }),
+        }),
+      )}
+    </ElementType>
+  )
+})
+
+ModalActions.displayName = 'ModalActions'
 ModalActions.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -80,3 +80,5 @@ ModalActions.propTypes = {
 }
 
 ModalActions.create = createShorthandFactory(ModalActions, (actions) => ({ actions }))
+
+export default ModalActions
