@@ -1,11 +1,9 @@
-import { Ref } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { createRef } from 'react'
+import React from 'react'
 
 import {
-  ModernAutoControlledComponent as Component,
   createHTMLLabel,
   customPropTypes,
   getElementType,
@@ -14,6 +12,9 @@ import {
   makeDebugger,
   partitionHTMLProps,
   useKeyOnly,
+  useAutoControlledValue,
+  useMergedRefs,
+  useIsomorphicLayoutEffect,
 } from '../../lib'
 
 const debug = makeDebugger('checkbox')
@@ -23,39 +24,92 @@ const debug = makeDebugger('checkbox')
  * @see Form
  * @see Radio
  */
-export default class Checkbox extends Component {
-  inputRef = createRef()
-  labelRef = createRef()
+const Checkbox = React.forwardRef(function (props, ref) {
+  const {
+    className,
+    disabled,
+    label,
+    id,
+    name,
+    radio,
+    readOnly,
+    slider,
+    tabIndex,
+    toggle,
+    type,
+    value,
+  } = props
 
-  componentDidMount() {
-    this.setIndeterminate()
-  }
+  const [checked, setChecked] = useAutoControlledValue({
+    state: props.checked,
+    defaultState: props.defaultChecked,
+    initialState: false,
+  })
+  const [indeterminate, setIndeterminate] = useAutoControlledValue({
+    state: props.indeterminate,
+    defaultState: props.defaultIndeterminate,
+    initialState: false,
+  })
 
-  componentDidUpdate() {
-    this.setIndeterminate()
-  }
+  const inputRef = useMergedRefs(React.useRef(), ref)
+  const labelRef = React.useRef()
 
-  canToggle = () => {
-    const { disabled, radio, readOnly } = this.props
-    const { checked } = this.state
+  const isClickFromMouse = React.useRef()
 
+  // ----------------------------------------
+  // Effects
+  // ----------------------------------------
+
+  useIsomorphicLayoutEffect(() => {
+    // Note: You can't directly set the indeterminate prop on the input, so we
+    // need to maintain a ref to the input and set it manually whenever the
+    // component updates.
+    if (inputRef.current) {
+      inputRef.current.indeterminate = !!indeterminate
+    }
+  })
+
+  // ----------------------------------------
+  // Helpers
+  // ----------------------------------------
+
+  const canToggle = () => {
     return !disabled && !readOnly && !(radio && checked)
   }
 
-  computeTabIndex = () => {
-    const { disabled, tabIndex } = this.props
+  const computeTabIndex = () => {
+    if (!_.isNil(tabIndex)) {
+      return tabIndex
+    }
 
-    if (!_.isNil(tabIndex)) return tabIndex
     return disabled ? -1 : 0
   }
 
-  handleClick = (e) => {
-    debug('handleClick()', _.get(e, 'target.tagName'))
-    const { id } = this.props
-    const { checked, indeterminate } = this.state
+  // ----------------------------------------
+  // Handlers
+  // ----------------------------------------
 
-    const isInputClick = _.invoke(this.inputRef.current, 'contains', e.target)
-    const isLabelClick = _.invoke(this.labelRef.current, 'contains', e.target)
+  const handleChange = (e) => {
+    if (!canToggle()) {
+      return
+    }
+
+    debug('handleChange()', _.get(e, 'target.tagName'))
+
+    _.invoke(props, 'onChange', e, {
+      ...props,
+      checked: !checked,
+      indeterminate: false,
+    })
+    setChecked(!checked)
+    setIndeterminate(false)
+  }
+
+  const handleClick = (e) => {
+    debug('handleClick()', _.get(e, 'target.tagName'))
+
+    const isInputClick = _.invoke(inputRef.current, 'contains', e.target)
+    const isLabelClick = _.invoke(labelRef.current, 'contains', e.target)
     const isRootClick = !isLabelClick && !isInputClick
 
     const hasId = !_.isNil(id)
@@ -63,23 +117,23 @@ export default class Checkbox extends Component {
 
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3351
     if (!isLabelClickAndForwardedToInput) {
-      _.invoke(this.props, 'onClick', e, {
-        ...this.props,
+      _.invoke(props, 'onClick', e, {
+        ...props,
         checked: !checked,
         indeterminate: !!indeterminate,
       })
     }
 
-    if (this.isClickFromMouse) {
-      this.isClickFromMouse = false
+    if (isClickFromMouse.current) {
+      isClickFromMouse.current = false
 
       if (isLabelClick && !hasId) {
-        this.handleChange(e)
+        handleChange(e)
       }
 
       // Changes should be triggered for the slider variation
       if (isRootClick) {
-        this.handleChange(e)
+        handleChange(e)
       }
 
       if (isLabelClick && hasId) {
@@ -90,32 +144,17 @@ export default class Checkbox extends Component {
     }
   }
 
-  handleChange = (e) => {
-    const { checked } = this.state
-
-    if (!this.canToggle()) return
-    debug('handleChange()', _.get(e, 'target.tagName'))
-
-    _.invoke(this.props, 'onChange', e, {
-      ...this.props,
-      checked: !checked,
-      indeterminate: false,
-    })
-    this.setState({ checked: !checked, indeterminate: false })
-  }
-
-  handleMouseDown = (e) => {
+  const handleMouseDown = (e) => {
     debug('handleMouseDown()')
-    const { checked, indeterminate } = this.state
 
-    _.invoke(this.props, 'onMouseDown', e, {
-      ...this.props,
+    _.invoke(props, 'onMouseDown', e, {
+      ...props,
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
 
     if (!e.defaultPrevented) {
-      _.invoke(this.inputRef.current, 'focus')
+      _.invoke(inputRef.current, 'focus')
     }
 
     // Heads up!
@@ -123,98 +162,75 @@ export default class Checkbox extends Component {
     e.preventDefault()
   }
 
-  handleMouseUp = (e) => {
+  const handleMouseUp = (e) => {
     debug('handleMouseUp()')
-    const { checked, indeterminate } = this.state
 
-    this.isClickFromMouse = true
-    _.invoke(this.props, 'onMouseUp', e, {
-      ...this.props,
+    isClickFromMouse.current = true
+    _.invoke(props, 'onMouseUp', e, {
+      ...props,
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
   }
 
-  // Note: You can't directly set the indeterminate prop on the input, so we
-  // need to maintain a ref to the input and set it manually whenever the
-  // component updates.
-  setIndeterminate = () => {
-    const { indeterminate } = this.state
+  // ----------------------------------------
+  // Render
+  // ----------------------------------------
 
-    _.set(this.inputRef, 'current.indeterminate', !!indeterminate)
-  }
+  const classes = cx(
+    'ui',
+    useKeyOnly(checked, 'checked'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(indeterminate, 'indeterminate'),
+    // auto apply fitted class to compact white space when there is no label
+    // https://semantic-ui.com/modules/checkbox.html#fitted
+    useKeyOnly(_.isNil(label), 'fitted'),
+    useKeyOnly(radio, 'radio'),
+    useKeyOnly(readOnly, 'read-only'),
+    useKeyOnly(slider, 'slider'),
+    useKeyOnly(toggle, 'toggle'),
+    'checkbox',
+    className,
+  )
+  const unhandled = getUnhandledProps(Checkbox, props)
+  const ElementType = getElementType(Checkbox, props)
+  const [htmlInputProps, rest] = partitionHTMLProps(unhandled, { htmlProps: htmlInputAttrs })
 
-  render() {
-    const {
-      className,
-      disabled,
-      label,
-      id,
-      name,
-      radio,
-      readOnly,
-      slider,
-      toggle,
-      type,
-      value,
-    } = this.props
-    const { checked, indeterminate } = this.state
+  // Heads Up!
+  // Do not remove empty labels, they are required by SUI CSS
+  const labelElement = createHTMLLabel(label, {
+    defaultProps: { htmlFor: id },
+    autoGenerateKey: false,
+  }) || <label htmlFor={id} />
 
-    const classes = cx(
-      'ui',
-      useKeyOnly(checked, 'checked'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(indeterminate, 'indeterminate'),
-      // auto apply fitted class to compact white space when there is no label
-      // https://semantic-ui.com/modules/checkbox.html#fitted
-      useKeyOnly(_.isNil(label), 'fitted'),
-      useKeyOnly(radio, 'radio'),
-      useKeyOnly(readOnly, 'read-only'),
-      useKeyOnly(slider, 'slider'),
-      useKeyOnly(toggle, 'toggle'),
-      'checkbox',
-      className,
-    )
-    const unhandled = getUnhandledProps(Checkbox, this.props)
-    const ElementType = getElementType(Checkbox, this.props)
-    const [htmlInputProps, rest] = partitionHTMLProps(unhandled, { htmlProps: htmlInputAttrs })
+  return (
+    <ElementType
+      {...rest}
+      className={classes}
+      onClick={handleClick}
+      onChange={handleChange}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+    >
+      <input
+        {...htmlInputProps}
+        checked={checked}
+        className='hidden'
+        disabled={disabled}
+        id={id}
+        name={name}
+        readOnly
+        ref={inputRef}
+        tabIndex={computeTabIndex()}
+        type={type}
+        value={value}
+      />
+      {React.cloneElement(labelElement, { ref: labelRef })}
+    </ElementType>
+  )
+})
 
-    // Heads Up!
-    // Do not remove empty labels, they are required by SUI CSS
-    const labelElement = createHTMLLabel(label, {
-      defaultProps: { htmlFor: id },
-      autoGenerateKey: false,
-    }) || <label htmlFor={id} />
-
-    return (
-      <ElementType
-        {...rest}
-        className={classes}
-        onClick={this.handleClick}
-        onChange={this.handleChange}
-        onMouseDown={this.handleMouseDown}
-        onMouseUp={this.handleMouseUp}
-      >
-        <Ref innerRef={this.inputRef}>
-          <input
-            {...htmlInputProps}
-            checked={checked}
-            className='hidden'
-            disabled={disabled}
-            id={id}
-            name={name}
-            readOnly
-            tabIndex={this.computeTabIndex()}
-            type={type}
-            value={value}
-          />
-        </Ref>
-        <Ref innerRef={this.labelRef}>{labelElement}</Ref>
-      </ElementType>
-    )
-  }
-}
-
+Checkbox.displayName = 'Checkbox'
 Checkbox.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -307,4 +323,4 @@ Checkbox.defaultProps = {
   type: 'checkbox',
 }
 
-Checkbox.autoControlledProps = ['checked', 'indeterminate']
+export default Checkbox
