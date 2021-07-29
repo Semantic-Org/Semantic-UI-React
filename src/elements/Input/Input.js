@@ -1,8 +1,7 @@
-import { handleRef } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Children, cloneElement, Component, createRef } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -14,6 +13,7 @@ import {
   partitionHTMLProps,
   useKeyOnly,
   useValueAndKey,
+  setRef,
 } from '../../lib'
 import Button from '../Button'
 import Icon from '../Icon'
@@ -26,146 +26,144 @@ import Label from '../Label'
  * @see Icon
  * @see Label
  */
-class Input extends Component {
-  inputRef = createRef()
+const Input = React.forwardRef(function (props, ref) {
+  const {
+    action,
+    actionPosition,
+    children,
+    className,
+    disabled,
+    error,
+    fluid,
+    focus,
+    icon,
+    iconPosition,
+    input,
+    inverted,
+    label,
+    labelPosition,
+    loading,
+    size,
+    tabIndex,
+    transparent,
+    type,
+  } = props
 
-  computeIcon = () => {
-    const { loading, icon } = this.props
+  const computeIcon = () => {
+    if (!_.isNil(icon)) {
+      return icon
+    }
 
-    if (!_.isNil(icon)) return icon
-    if (loading) return 'spinner'
+    if (loading) {
+      return 'spinner'
+    }
   }
 
-  computeTabIndex = () => {
-    const { disabled, tabIndex } = this.props
+  const computeTabIndex = () => {
+    if (!_.isNil(tabIndex)) {
+      return tabIndex
+    }
 
-    if (!_.isNil(tabIndex)) return tabIndex
-    if (disabled) return -1
+    if (disabled) {
+      return -1
+    }
   }
 
-  focus = () => this.inputRef.current.focus()
+  const handleChange = (e) => {
+    const newValue = _.get(e, 'target.value')
 
-  select = () => this.inputRef.current.select()
-
-  handleChange = (e) => {
-    const value = _.get(e, 'target.value')
-
-    _.invoke(this.props, 'onChange', e, { ...this.props, value })
+    _.invoke(props, 'onChange', e, { ...props, value: newValue })
   }
 
-  handleChildOverrides = (child, defaultProps) => ({
-    ...defaultProps,
-    ...child.props,
-    ref: (c) => {
-      handleRef(child.ref, c)
-      this.inputRef.current = c
-    },
-  })
-
-  partitionProps = () => {
-    const { disabled, type } = this.props
-
-    const tabIndex = this.computeTabIndex()
-    const unhandled = getUnhandledProps(Input, this.props)
-    const [htmlInputProps, rest] = partitionHTMLProps(unhandled)
+  const partitionProps = () => {
+    const unhandledProps = getUnhandledProps(Input, props)
+    const [htmlInputProps, rest] = partitionHTMLProps(unhandledProps)
 
     return [
       {
         ...htmlInputProps,
         disabled,
         type,
-        tabIndex,
-        onChange: this.handleChange,
-        ref: this.inputRef,
+        tabIndex: computeTabIndex(),
+        onChange: handleChange,
+        ref,
       },
       rest,
     ]
   }
 
-  render() {
-    const {
-      action,
-      actionPosition,
-      children,
-      className,
-      disabled,
-      error,
-      fluid,
-      focus,
-      icon,
-      iconPosition,
-      input,
-      inverted,
-      label,
-      labelPosition,
-      loading,
-      size,
-      transparent,
-      type,
-    } = this.props
+  const classes = cx(
+    'ui',
+    size,
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(error, 'error'),
+    useKeyOnly(fluid, 'fluid'),
+    useKeyOnly(focus, 'focus'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(loading, 'loading'),
+    useKeyOnly(transparent, 'transparent'),
+    useValueAndKey(actionPosition, 'action') || useKeyOnly(action, 'action'),
+    useValueAndKey(iconPosition, 'icon') || useKeyOnly(icon || loading, 'icon'),
+    useValueAndKey(labelPosition, 'labeled') || useKeyOnly(label, 'labeled'),
+    'input',
+    className,
+  )
+  const ElementType = getElementType(Input, props)
+  const [htmlInputProps, rest] = partitionProps()
 
-    const classes = cx(
-      'ui',
-      size,
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(error, 'error'),
-      useKeyOnly(fluid, 'fluid'),
-      useKeyOnly(focus, 'focus'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(loading, 'loading'),
-      useKeyOnly(transparent, 'transparent'),
-      useValueAndKey(actionPosition, 'action') || useKeyOnly(action, 'action'),
-      useValueAndKey(iconPosition, 'icon') || useKeyOnly(icon || loading, 'icon'),
-      useValueAndKey(labelPosition, 'labeled') || useKeyOnly(label, 'labeled'),
-      'input',
-      className,
-    )
-    const ElementType = getElementType(Input, this.props)
-    const [htmlInputProps, rest] = this.partitionProps()
+  // Render with children
+  // ----------------------------------------
+  if (!childrenUtils.isNil(children)) {
+    // add htmlInputProps to the `<input />` child
+    const childElements = _.map(React.Children.toArray(children), (child) => {
+      if (child.type === 'input') {
+        return React.cloneElement(child, {
+          ...htmlInputProps,
+          ...child.props,
+          ref: (c) => {
+            setRef(child.ref, c)
+            setRef(ref, c)
+          },
+        })
+      }
 
-    // Render with children
-    // ----------------------------------------
-    if (!childrenUtils.isNil(children)) {
-      // add htmlInputProps to the `<input />` child
-      const childElements = _.map(Children.toArray(children), (child) => {
-        if (child.type !== 'input') return child
-        return cloneElement(child, this.handleChildOverrides(child, htmlInputProps))
-      })
-
-      return (
-        <ElementType {...rest} className={classes}>
-          {childElements}
-        </ElementType>
-      )
-    }
-
-    // Render Shorthand
-    // ----------------------------------------
-    const actionElement = Button.create(action, { autoGenerateKey: false })
-    const labelElement = Label.create(label, {
-      defaultProps: {
-        className: cx(
-          'label',
-          // add 'left|right corner'
-          _.includes(labelPosition, 'corner') && labelPosition,
-        ),
-      },
-      autoGenerateKey: false,
+      return child
     })
 
     return (
       <ElementType {...rest} className={classes}>
-        {actionPosition === 'left' && actionElement}
-        {labelPosition !== 'right' && labelElement}
-        {createHTMLInput(input || type, { defaultProps: htmlInputProps, autoGenerateKey: false })}
-        {Icon.create(this.computeIcon(), { autoGenerateKey: false })}
-        {actionPosition !== 'left' && actionElement}
-        {labelPosition === 'right' && labelElement}
+        {childElements}
       </ElementType>
     )
   }
-}
 
+  // Render Shorthand
+  // ----------------------------------------
+  const actionElement = Button.create(action, { autoGenerateKey: false })
+  const labelElement = Label.create(label, {
+    defaultProps: {
+      className: cx(
+        'label',
+        // add 'left|right corner'
+        _.includes(labelPosition, 'corner') && labelPosition,
+      ),
+    },
+    autoGenerateKey: false,
+  })
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {actionPosition === 'left' && actionElement}
+      {labelPosition !== 'right' && labelElement}
+      {createHTMLInput(input || type, { defaultProps: htmlInputProps, autoGenerateKey: false })}
+      {Icon.create(computeIcon(), { autoGenerateKey: false })}
+      {actionPosition !== 'left' && actionElement}
+      {labelPosition === 'right' && labelElement}
+    </ElementType>
+  )
+})
+
+Input.displayName = 'Input'
 Input.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
