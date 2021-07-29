@@ -6,6 +6,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Radio', () => {
   common.isConformant(Radio)
+  common.forwardsRef(Radio, { tagName: 'input' })
 
   it('renders a radio Checkbox', () => {
     const wrapper = shallow(<Radio />)

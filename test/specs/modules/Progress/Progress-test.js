@@ -7,6 +7,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Progress', () => {
   common.isConformant(Progress)
+  common.forwardsRef(Progress)
   common.hasUIClassName(Progress)
   common.rendersChildren(Progress)
 
@@ -41,26 +42,26 @@ describe('Progress', () => {
     it('applies the success class when percent >= 100%', () => {
       const wrapper = shallow(<Progress autoSuccess />)
 
-      wrapper.setProps({ percent: 100, autoSuccess: true }).should.have.have.className('success')
+      wrapper.setProps({ percent: 100, autoSuccess: true })
+      wrapper.should.have.have.className('success')
 
-      wrapper.setProps({ percent: 99, autoSuccess: true }).should.not.have.have.className('success')
+      wrapper.setProps({ percent: 99, autoSuccess: true })
+      wrapper.should.not.have.have.className('success')
 
-      wrapper.setProps({ percent: 101, autoSuccess: true }).should.have.have.className('success')
+      wrapper.setProps({ percent: 101, autoSuccess: true })
+      wrapper.should.have.have.className('success')
     })
     it('applies the success class when value >= total', () => {
       const wrapper = shallow(<Progress autoSuccess />)
 
-      wrapper
-        .setProps({ total: 1, value: 1, autoSuccess: true })
-        .should.have.have.className('success')
+      wrapper.setProps({ total: 1, value: 1, autoSuccess: true })
+      wrapper.should.have.have.className('success')
 
-      wrapper
-        .setProps({ total: 1, value: 0, autoSuccess: true })
-        .should.not.have.have.className('success')
+      wrapper.setProps({ total: 1, value: 0, autoSuccess: true })
+      wrapper.should.not.have.have.className('success')
 
-      wrapper
-        .setProps({ total: 1, value: 2, autoSuccess: true })
-        .should.have.have.className('success')
+      wrapper.setProps({ total: 1, value: 2, autoSuccess: true })
+      wrapper.should.have.have.className('success')
     })
   })
 
