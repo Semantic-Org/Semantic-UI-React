@@ -5,6 +5,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('TabPane', () => {
   common.isConformant(TabPane)
+  common.forwardsRef(TabPane)
 
   common.implementsCreateMethod(TabPane)
 

@@ -7,6 +7,8 @@ import { sandbox } from 'test/utils'
 
 describe('Tab', () => {
   common.isConformant(Tab)
+  common.forwardsRef(Tab)
+  common.forwardsRef(Tab, { requiredProps: { menu: { vertical: true } } })
   common.hasSubcomponents(Tab, [TabPane])
 
   const panes = [
