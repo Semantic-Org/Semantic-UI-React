@@ -6,6 +6,8 @@ import { sandbox } from 'test/utils'
 
 describe('ModalActions', () => {
   common.isConformant(ModalActions)
+  common.forwardsRef(ModalActions)
+  common.forwardsRef(ModalActions, { requiredProps: { children: <span /> } })
   common.rendersChildren(ModalActions)
 
   common.implementsCreateMethod(ModalActions)

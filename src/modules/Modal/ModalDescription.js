@@ -7,19 +7,20 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A modal can contain a description with one or more paragraphs.
  */
-function ModalDescription(props) {
+const ModalDescription = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('description', className)
   const rest = getUnhandledProps(ModalDescription, props)
   const ElementType = getElementType(ModalDescription, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+ModalDescription.displayName = 'ModalDescription'
 ModalDescription.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
