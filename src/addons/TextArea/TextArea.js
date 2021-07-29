@@ -1,50 +1,45 @@
-import { Ref } from '@fluentui/react-component-ref'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, createRef } from 'react'
+import React from 'react'
 
-import { getElementType, getUnhandledProps } from '../../lib'
+import { getElementType, getUnhandledProps, useMergedRefs } from '../../lib'
 
 /**
  * A TextArea can be used to allow for extended user input.
  * @see Form
  */
-class TextArea extends Component {
-  ref = createRef()
+const TextArea = React.forwardRef(function (props, ref) {
+  const { rows, value } = props
+  const elementRef = useMergedRefs(ref, React.useRef())
 
-  focus = () => this.ref.current.focus()
+  const handleChange = (e) => {
+    const newValue = _.get(e, 'target.value')
 
-  handleChange = (e) => {
-    const value = _.get(e, 'target.value')
-
-    _.invoke(this.props, 'onChange', e, { ...this.props, value })
+    _.invoke(props, 'onChange', e, { ...props, value: newValue })
   }
 
-  handleInput = (e) => {
-    const value = _.get(e, 'target.value')
+  const handleInput = (e) => {
+    const newValue = _.get(e, 'target.value')
 
-    _.invoke(this.props, 'onInput', e, { ...this.props, value })
+    _.invoke(props, 'onInput', e, { ...props, value: newValue })
   }
 
-  render() {
-    const { rows, value } = this.props
-    const rest = getUnhandledProps(TextArea, this.props)
-    const ElementType = getElementType(TextArea, this.props)
+  const rest = getUnhandledProps(TextArea, props)
+  const ElementType = getElementType(TextArea, props)
 
-    return (
-      <Ref innerRef={this.ref}>
-        <ElementType
-          {...rest}
-          onChange={this.handleChange}
-          onInput={this.handleInput}
-          rows={rows}
-          value={value}
-        />
-      </Ref>
-    )
-  }
-}
+  return (
+    <ElementType
+      {...rest}
+      onChange={handleChange}
+      onInput={handleInput}
+      ref={elementRef}
+      rows={rows}
+      value={value}
+    />
+  )
+})
 
+TextArea.displayName = 'TextArea'
 TextArea.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
