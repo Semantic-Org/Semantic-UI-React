@@ -2,266 +2,273 @@ import { isRefObject } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component, createRef } from 'react'
+import React from 'react'
 
 import {
   customPropTypes,
-  eventStack,
   getElementType,
   getUnhandledProps,
   isBrowser,
+  useEventCallback,
+  useIsomorphicLayoutEffect,
 } from '../../lib'
 
 /**
  * Sticky content stays fixed to the browser viewport while another column of content is visible on the page.
  */
-export default class Sticky extends Component {
-  state = {
-    active: true,
-    sticky: false,
-  }
+const Sticky = React.forwardRef(function (props, ref) {
+  const {
+    active,
+    bottomOffset,
+    children,
+    className,
+    context,
+    offset,
+    scrollContext,
+    styleElement,
+  } = props
 
-  stickyRef = createRef()
-  triggerRef = createRef()
+  const [sticky, setSticky] = React.useState(false)
+  const [bound, setBound] = React.useState()
+  const [bottom, setBottom] = React.useState()
+  const [pushing, setPushing] = React.useState()
+  const [top, setTop] = React.useState()
 
-  componentDidMount() {
-    if (!isBrowser()) return
-    const { active } = this.state
+  const stickyRef = React.useRef()
+  const triggerRef = React.useRef()
 
-    if (active) {
-      this.handleUpdate()
-      this.addListeners(this.props.scrollContext)
-    }
-  }
+  const triggerRect = React.useRef()
+  const contextRect = React.useRef()
+  const stickyRect = React.useRef()
 
-  static getDerivedStateFromProps(props, state) {
-    if (state.active !== props.active && !props.active) {
-      return { active: props.active, sticky: false }
-    }
-
-    return { active: props.active }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.active === this.state.active) {
-      if (prevProps.scrollContext !== this.props.scrollContext) {
-        this.removeListeners(prevProps.scrollContext)
-        this.addListeners(this.props.scrollContext)
-      }
-
-      return
-    }
-
-    if (this.state.active) {
-      this.handleUpdate()
-      this.addListeners(this.props.scrollContext)
-      return
-    }
-
-    this.removeListeners(prevProps.scrollContext)
-  }
-
-  componentWillUnmount() {
-    if (!isBrowser()) return
-    const { active } = this.state
-
-    if (active) {
-      this.removeListeners(this.props.scrollContext)
-      cancelAnimationFrame(this.frameId)
-    }
-  }
-
-  // ----------------------------------------
-  // Events
-  // ----------------------------------------
-
-  addListeners = (scrollContext) => {
-    const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
-
-    if (scrollContextNode) {
-      eventStack.sub('resize', this.handleUpdate, { target: scrollContextNode })
-      eventStack.sub('scroll', this.handleUpdate, { target: scrollContextNode })
-    }
-  }
-
-  removeListeners = (scrollContext) => {
-    const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
-
-    if (scrollContextNode) {
-      eventStack.unsub('resize', this.handleUpdate, { target: scrollContextNode })
-      eventStack.unsub('scroll', this.handleUpdate, { target: scrollContextNode })
-    }
-  }
-
-  // ----------------------------------------
-  // Handlers
-  // ----------------------------------------
-
-  update = (e) => {
-    const { pushing } = this.state
-
-    this.ticking = false
-    this.assignRects()
-
-    if (pushing) {
-      if (this.didReachStartingPoint()) return this.stickToContextTop(e)
-      if (this.didTouchScreenBottom()) return this.stickToScreenBottom(e)
-      return this.stickToContextBottom(e)
-    }
-
-    if (this.isOversized()) {
-      if (this.contextRect.top > 0) return this.stickToContextTop(e)
-      if (this.contextRect.bottom < window.innerHeight) return this.stickToContextBottom(e)
-    }
-
-    if (this.didTouchScreenTop()) {
-      if (this.didReachContextBottom()) return this.stickToContextBottom(e)
-      return this.stickToScreenTop(e)
-    }
-
-    return this.stickToContextTop(e)
-  }
-
-  handleUpdate = (e) => {
-    if (!this.ticking) {
-      this.ticking = true
-      this.frameId = requestAnimationFrame(() => this.update(e))
-    }
-  }
+  const frameId = React.useRef()
+  const ticking = React.useRef()
 
   // ----------------------------------------
   // Helpers
   // ----------------------------------------
 
-  assignRects = () => {
-    const { context } = this.props
+  const assignRects = () => {
     const contextNode = isRefObject(context) ? context.current : context || document.body
 
-    this.triggerRect = this.triggerRef.current.getBoundingClientRect()
-    this.contextRect = contextNode.getBoundingClientRect()
-    this.stickyRect = this.stickyRef.current.getBoundingClientRect()
+    triggerRect.current = triggerRef.current.getBoundingClientRect()
+    contextRect.current = contextNode.getBoundingClientRect()
+    stickyRect.current = stickyRef.current.getBoundingClientRect()
   }
 
-  computeStyle() {
-    const { styleElement } = this.props
-    const { bottom, bound, sticky, top } = this.state
+  const computeStyle = () => {
+    if (!sticky) {
+      return styleElement
+    }
 
-    if (!sticky) return styleElement
     return {
       bottom: bound ? 0 : bottom,
       top: bound ? undefined : top,
-      width: this.triggerRect.width,
+      width: triggerRect.current.width,
       ...styleElement,
     }
   }
 
   // Return true when the component reached the bottom of the context
-  didReachContextBottom = () => {
-    const { offset } = this.props
-
-    return this.stickyRect.height + offset >= this.contextRect.bottom
-  }
+  const didReachContextBottom = () =>
+    stickyRect.current.height + offset >= contextRect.current.bottom
 
   // Return true when the component reached the starting point
-  didReachStartingPoint = () => this.stickyRect.top <= this.triggerRect.top
+  const didReachStartingPoint = () => stickyRect.current.top <= triggerRect.current.top
 
   // Return true when the top of the screen overpasses the Sticky component
-  didTouchScreenTop = () => this.triggerRect.top < this.props.offset
+  const didTouchScreenTop = () => triggerRect.current.top < offset
 
   // Return true when the bottom of the screen overpasses the Sticky component
-  didTouchScreenBottom = () => {
-    const { bottomOffset } = this.props
-
-    return this.contextRect.bottom + bottomOffset > window.innerHeight
-  }
+  const didTouchScreenBottom = () => contextRect.current.bottom + bottomOffset > window.innerHeight
 
   // Return true if the height of the component is higher than the window
-  isOversized = () => this.stickyRect.height > window.innerHeight
+  const isOversized = () => stickyRect.current.height > window.innerHeight
 
   // ----------------------------------------
   // Stick helpers
   // ----------------------------------------
 
   // If true, the component will stick to the bottom of the screen instead of the top
-  pushing = (pushing) => {
-    const { pushing: possible } = this.props
-
-    if (possible) this.setState({ pushing })
+  const togglePushing = (value) => {
+    if (props.pushing) {
+      setPushing(value)
+    }
   }
 
-  stick = (e, bound) => {
-    this.setState({ bound, sticky: true })
-    _.invoke(this.props, 'onStick', e, this.props)
+  const setSticked = (e, newBound) => {
+    setBound(newBound)
+    setSticky(true)
+
+    _.invoke(props, 'onStick', e, props)
   }
 
-  unstick = (e, bound) => {
-    this.setState({ bound, sticky: false })
-    _.invoke(this.props, 'onUnstick', e, this.props)
+  const setUnsticked = (e, newBound) => {
+    setBound(newBound)
+    setSticky(false)
+
+    _.invoke(props, 'onUnstick', e, props)
   }
 
-  stickToContextBottom = (e) => {
-    _.invoke(this.props, 'onBottom', e, this.props)
+  const stickToContextBottom = (e) => {
+    setSticked(e, true)
+    togglePushing(true)
 
-    this.stick(e, true)
-    this.pushing(true)
+    _.invoke(props, 'onBottom', e, props)
   }
 
-  stickToContextTop = (e) => {
-    _.invoke(this.props, 'onTop', e, this.props)
+  const stickToContextTop = (e) => {
+    setUnsticked(e, false)
+    togglePushing(false)
 
-    this.unstick(e, false)
-    this.pushing(false)
+    _.invoke(props, 'onTop', e, props)
   }
 
-  stickToScreenBottom = (e) => {
-    const { bottomOffset: bottom } = this.props
+  const stickToScreenBottom = (e) => {
+    setSticked(e, false)
 
-    this.stick(e, false)
-    this.setState({ bottom, top: null })
+    setBottom(bottomOffset)
+    setTop(null)
   }
 
-  stickToScreenTop = (e) => {
-    const { offset: top } = this.props
+  const stickToScreenTop = (e) => {
+    setSticked(e, false)
 
-    this.stick(e, false)
-    this.setState({ top, bottom: null })
+    setBottom(null)
+    setTop(offset)
   }
+
+  // ----------------------------------------
+  // Handlers
+  // ----------------------------------------
+
+  const update = (e) => {
+    ticking.current = false
+    assignRects()
+
+    if (pushing) {
+      if (didReachStartingPoint()) {
+        stickToContextTop(e)
+        return
+      }
+
+      if (didTouchScreenBottom()) {
+        stickToScreenBottom(e)
+        return
+      }
+
+      stickToContextBottom(e)
+      return
+    }
+
+    if (isOversized()) {
+      if (contextRect.current.top > 0) {
+        stickToContextTop(e)
+        return
+      }
+
+      if (contextRect.current.bottom < window.innerHeight) {
+        stickToContextBottom(e)
+        return
+      }
+    }
+
+    if (didTouchScreenTop()) {
+      if (didReachContextBottom()) {
+        stickToContextBottom(e)
+        return
+      }
+
+      stickToScreenTop(e)
+      return
+    }
+
+    stickToContextTop(e)
+  }
+
+  const handleUpdate = useEventCallback((e) => {
+    if (!ticking.current) {
+      ticking.current = true
+      frameId.current = requestAnimationFrame(() => update(e))
+    }
+  })
+
+  // ----------------------------------------
+  // State control
+  // ----------------------------------------
+
+  useIsomorphicLayoutEffect(() => {
+    if (!active) {
+      setSticky(false)
+    }
+  }, [active])
+
+  // ----------------------------------------
+  // Effects
+  // ----------------------------------------
+
+  useIsomorphicLayoutEffect(() => {
+    if (active) {
+      handleUpdate()
+    }
+  }, [active])
+
+  React.useEffect(() => {
+    return () => {
+      cancelAnimationFrame(frameId.current)
+    }
+  }, [])
+
+  // ----------------------------------------
+  // Document events
+  // ----------------------------------------
+
+  React.useEffect(() => {
+    const scrollContextNode = isRefObject(scrollContext) ? scrollContext.current : scrollContext
+
+    if (active && scrollContextNode) {
+      scrollContextNode?.addEventListener('resize', handleUpdate)
+      scrollContextNode?.addEventListener('scroll', handleUpdate)
+    }
+
+    return () => {
+      scrollContextNode?.removeEventListener('resize', handleUpdate)
+      scrollContextNode?.removeEventListener('scroll', handleUpdate)
+    }
+  }, [active, scrollContext])
 
   // ----------------------------------------
   // Render
   // ----------------------------------------
 
-  render() {
-    const { children, className } = this.props
-    const { bottom, bound, sticky } = this.state
-    const rest = getUnhandledProps(Sticky, this.props)
-    const ElementType = getElementType(Sticky, this.props)
+  const rest = getUnhandledProps(Sticky, props)
+  const ElementType = getElementType(Sticky, props)
 
-    const containerClasses = cx(
-      sticky && 'ui',
-      sticky && 'stuck-container',
-      sticky && (bound ? 'bound-container' : 'fixed-container'),
-      className,
-    )
-    const elementClasses = cx(
-      'ui',
-      sticky && (bound ? 'bound bottom' : 'fixed'),
-      sticky && !bound && (bottom === null ? 'top' : 'bottom'),
-      'sticky',
-    )
-    const triggerStyles = sticky && this.stickyRect ? { height: this.stickyRect.height } : {}
+  const containerClasses = cx(
+    sticky && 'ui',
+    sticky && 'stuck-container',
+    sticky && (bound ? 'bound-container' : 'fixed-container'),
+    className,
+  )
+  const elementClasses = cx(
+    'ui',
+    sticky && (bound ? 'bound bottom' : 'fixed'),
+    sticky && !bound && (bottom === null ? 'top' : 'bottom'),
+    'sticky',
+  )
+  const triggerStyles = sticky ? { height: stickyRect.current?.height } : {}
 
-    return (
-      <ElementType {...rest} className={containerClasses}>
-        <div ref={this.triggerRef} style={triggerStyles} />
-        <div className={elementClasses} ref={this.stickyRef} style={this.computeStyle()}>
-          {children}
-        </div>
-      </ElementType>
-    )
-  }
-}
+  return (
+    <ElementType {...rest} className={containerClasses} ref={ref}>
+      <div ref={triggerRef} style={triggerStyles} />
+      <div className={elementClasses} ref={stickyRef} style={computeStyle()}>
+        {children}
+      </div>
+    </ElementType>
+  )
+})
 
+Sticky.displayName = 'Sticky'
 Sticky.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -332,3 +339,5 @@ Sticky.defaultProps = {
   offset: 0,
   scrollContext: isBrowser() ? window : null,
 }
+
+export default Sticky
