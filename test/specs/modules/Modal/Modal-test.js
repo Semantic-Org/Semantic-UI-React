@@ -421,6 +421,25 @@ describe('Modal', () => {
       domEvent.click(document.body)
       onClose.should.not.have.been.called()
     })
+
+    it('handles unmount without errors', () => {
+      function ControlledExample() {
+        const [open, setState] = React.useState(true)
+
+        return (
+          <>
+            {open && <Modal open onClose={() => setState(false)} />}
+            <button id='close-button' />
+          </>
+        )
+      }
+
+      wrapperMount(<ControlledExample />)
+      assertBodyContains('.ui.modal')
+
+      domEvent.keyDown(document, { key: 'Escape' })
+      assertBodyContains('.ui.modal', false)
+    })
   })
 
   describe('closeOnEscape', () => {
