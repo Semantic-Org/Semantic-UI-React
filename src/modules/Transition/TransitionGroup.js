@@ -2,7 +2,14 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { getElementType, getUnhandledProps, makeDebugger, SUI, useEventCallback } from '../../lib'
+import {
+  getElementType,
+  getUnhandledProps,
+  makeDebugger,
+  SUI,
+  useEventCallback,
+  useForceUpdate,
+} from '../../lib'
 import { getChildMapping, mergeChildMappings } from './utils/childMapping'
 import wrapChild from './utils/wrapChild'
 
@@ -21,11 +28,10 @@ const debug = makeDebugger('transition_group')
 function useWrappedChildren(children, animation, duration, directional) {
   debug('wrapChildren()')
 
-  const [, forceUpdate] = React.useReducer((x) => x + 1, 0)
-
+  const forceUpdate = useForceUpdate()
   const previousChildren = React.useRef()
-  let wrappedChildren
 
+  let wrappedChildren
   React.useEffect(() => {
     previousChildren.current = wrappedChildren
   })
