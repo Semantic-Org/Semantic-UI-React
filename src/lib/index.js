@@ -49,6 +49,7 @@ export { makeDebugger }
 export useAutoControlledValue from './hooks/useAutoControlledValue'
 export useClassNamesOnNode from './hooks/useClassNamesOnNode'
 export useEventCallback from './hooks/useEventCallback'
+export useForceUpdate from './hooks/useForceUpdate'
 export useIsomorphicLayoutEffect from './hooks/useIsomorphicLayoutEffect'
 export useMergedRefs, { setRef } from './hooks/useMergedRefs'
 export usePrevious from './hooks/usePrevious'
