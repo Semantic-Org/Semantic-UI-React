@@ -14,6 +14,7 @@ import {
   useKeyOnly,
   useIsomorphicLayoutEffect,
   useEventCallback,
+  useForceUpdate,
   useMergedRefs,
   usePrevious,
 } from '../../lib'
@@ -30,7 +31,7 @@ function useAnimationTick(visible) {
   const tickIncrement = !!visible === !!previousVisible ? 0 : 1
 
   const animationTick = React.useRef(0)
-  const [, forceUpdate] = React.useReducer((x) => x + 1, 0)
+  const forceUpdate = useForceUpdate()
 
   const currentTick = animationTick.current + tickIncrement
   const resetAnimationTick = React.useCallback(() => {

@@ -106,23 +106,22 @@ describe('TransitionablePortal', () => {
   })
 
   describe('open', () => {
-    it('does not block update of state on a portal close', () => {
+    it('blocks update of state on a portal close', () => {
       const wrapper = mount(<TransitionablePortal {...requiredProps} open />)
-      wrapper.should.have.descendants('.in#children')
+      wrapper.find('#children').should.have.className('in')
 
       domEvent.click(document.body)
-      wrapper.update()
-      wrapper.should.have.descendants('.out#children')
+      wrapper.find('#children').should.have.className('in')
     })
 
     it('passes `open` prop to Transition when defined', () => {
       const wrapper = mount(<TransitionablePortal {...requiredProps} />)
 
       wrapper.setProps({ open: true })
-      wrapper.should.have.descendants('.in#children')
+      wrapper.find('#children').should.have.className('in')
 
       wrapper.setProps({ open: false })
-      wrapper.should.have.descendants('.out#children')
+      wrapper.find('#children').should.have.className('out')
     })
 
     it('does not pass `open` prop to Transition when not defined', () => {
