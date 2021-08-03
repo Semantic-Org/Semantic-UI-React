@@ -5,6 +5,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('SearchCategory', () => {
   common.isConformant(SearchCategory)
+  common.forwardsRef(SearchCategory)
   common.rendersChildren(SearchCategory)
 
   describe('children', () => {

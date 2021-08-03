@@ -3,6 +3,7 @@ import React from 'react'
 
 function SearchCategoryLayout(props) {
   const { categoryContent, resultsContent } = props
+
   return (
     <>
       <div className='name'>{categoryContent}</div>
