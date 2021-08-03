@@ -154,6 +154,7 @@ export RatingIcon from './modules/Rating/RatingIcon'
 
 export Search from './modules/Search'
 export SearchCategory from './modules/Search/SearchCategory'
+export SearchCategoryLayout from './modules/Search/SearchCategoryLayout'
 export SearchResult from './modules/Search/SearchResult'
 export SearchResults from './modules/Search/SearchResults'
 

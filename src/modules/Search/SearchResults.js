@@ -4,19 +4,20 @@ import React from 'react'
 
 import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
 
-function SearchResults(props) {
+const SearchResults = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('results transition', className)
   const rest = getUnhandledProps(SearchResults, props)
   const ElementType = getElementType(SearchResults, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+SearchResults.displayName = 'SearchResults'
 SearchResults.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
