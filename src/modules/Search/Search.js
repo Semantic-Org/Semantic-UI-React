@@ -22,6 +22,7 @@ import {
 } from '../../lib'
 import Input from '../../elements/Input'
 import SearchCategory from './SearchCategory'
+import SearchCategoryLayout from './SearchCategoryLayout'
 import SearchResult from './SearchResult'
 import SearchResults from './SearchResults'
 
@@ -683,5 +684,6 @@ Search.defaultProps = {
 Search.autoControlledProps = ['open', 'value']
 
 Search.Category = SearchCategory
+Search.CategoryLayout = SearchCategoryLayout
 Search.Result = SearchResult
 Search.Results = SearchResults

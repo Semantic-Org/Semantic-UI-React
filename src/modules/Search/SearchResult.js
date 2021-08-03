@@ -1,6 +1,7 @@
 import cx from 'clsx'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   createHTMLImage,
@@ -30,32 +31,29 @@ const defaultRenderer = ({ image, price, title, description }) => [
   </div>,
 ]
 
-export default class SearchResult extends Component {
-  handleClick = (e) => {
-    const { onClick } = this.props
+const SearchResult = React.forwardRef(function (props, ref) {
+  const { active, className, renderer } = props
 
-    if (onClick) onClick(e, this.props)
+  const handleClick = (e) => {
+    _.invoke(props, 'onClick', e, props)
   }
 
-  render() {
-    const { active, className, renderer } = this.props
+  const classes = cx(useKeyOnly(active, 'active'), 'result', className)
+  const rest = getUnhandledProps(SearchResult, props)
+  const ElementType = getElementType(SearchResult, props)
 
-    const classes = cx(useKeyOnly(active, 'active'), 'result', className)
-    const rest = getUnhandledProps(SearchResult, this.props)
-    const ElementType = getElementType(SearchResult, this.props)
+  // Note: You technically only need the 'content' wrapper when there's an
+  // image. However, optionally wrapping it makes this function a lot more
+  // complicated and harder to read. Since always wrapping it doesn't affect
+  // the style in any way let's just do that.
+  return (
+    <ElementType {...rest} className={classes} onClick={handleClick} ref={ref}>
+      {renderer(props)}
+    </ElementType>
+  )
+})
 
-    // Note: You technically only need the 'content' wrapper when there's an
-    // image. However, optionally wrapping it makes this function a lot more
-    // complicated and harder to read. Since always wrapping it doesn't affect
-    // the style in any way let's just do that.
-    return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {renderer(this.props)}
-      </ElementType>
-    )
-  }
-}
-
+SearchResult.displayName = 'SearchResult'
 SearchResult.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -104,3 +102,5 @@ SearchResult.propTypes = {
 SearchResult.defaultProps = {
   renderer: defaultRenderer,
 }
+
+export default SearchResult
