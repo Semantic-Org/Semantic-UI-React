@@ -11,8 +11,9 @@ import {
 } from '../../lib'
 import SearchCategoryLayout from './SearchCategoryLayout'
 
-function SearchCategory(props) {
+const SearchCategory = React.forwardRef(function (props, ref) {
   const { active, children, className, content, layoutRenderer, renderer } = props
+
   const classes = cx(useKeyOnly(active, 'active'), 'category', className)
   const rest = getUnhandledProps(SearchCategory, props)
   const ElementType = getElementType(SearchCategory, props)
@@ -21,17 +22,18 @@ function SearchCategory(props) {
   const resultsContent = childrenUtils.isNil(children) ? content : children
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {layoutRenderer({ categoryContent, resultsContent })}
     </ElementType>
   )
-}
+})
 
 SearchCategory.defaultProps = {
   layoutRenderer: SearchCategoryLayout,
   renderer: ({ name }) => name,
 }
 
+SearchCategory.displayName = 'SearchCategory'
 SearchCategory.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
