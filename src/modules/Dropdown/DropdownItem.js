@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -20,83 +20,82 @@ import Label from '../../elements/Label'
 /**
  * An item sub-component for Dropdown component.
  */
-class DropdownItem extends Component {
-  handleClick = (e) => {
-    _.invoke(this.props, 'onClick', e, this.props)
+const DropdownItem = React.forwardRef(function (props, ref) {
+  const {
+    active,
+    children,
+    className,
+    content,
+    disabled,
+    description,
+    flag,
+    icon,
+    image,
+    label,
+    selected,
+    text,
+  } = props
+
+  const handleClick = (e) => {
+    _.invoke(props, 'onClick', e, props)
   }
 
-  render() {
-    const {
-      active,
-      children,
-      className,
-      content,
-      disabled,
-      description,
-      flag,
-      icon,
-      image,
-      label,
-      selected,
-      text,
-    } = this.props
+  const classes = cx(
+    useKeyOnly(active, 'active'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(selected, 'selected'),
+    'item',
+    className,
+  )
+  // add default dropdown icon if item contains another menu
+  const iconName = _.isNil(icon)
+    ? childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
+    : icon
+  const rest = getUnhandledProps(DropdownItem, props)
+  const ElementType = getElementType(DropdownItem, props)
+  const ariaOptions = {
+    role: 'option',
+    'aria-disabled': disabled,
+    'aria-checked': active,
+    'aria-selected': selected,
+  }
 
-    const classes = cx(
-      useKeyOnly(active, 'active'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(selected, 'selected'),
-      'item',
-      className,
-    )
-    // add default dropdown icon if item contains another menu
-    const iconName = _.isNil(icon)
-      ? childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
-      : icon
-    const rest = getUnhandledProps(DropdownItem, this.props)
-    const ElementType = getElementType(DropdownItem, this.props)
-    const ariaOptions = {
-      role: 'option',
-      'aria-disabled': disabled,
-      'aria-checked': active,
-      'aria-selected': selected,
-    }
-
-    if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
-    }
-
-    const flagElement = Flag.create(flag, { autoGenerateKey: false })
-    const iconElement = Icon.create(iconName, { autoGenerateKey: false })
-    const imageElement = Image.create(image, { autoGenerateKey: false })
-    const labelElement = Label.create(label, { autoGenerateKey: false })
-    const descriptionElement = createShorthand('span', (val) => ({ children: val }), description, {
-      defaultProps: { className: 'description' },
-      autoGenerateKey: false,
-    })
-    const textElement = createShorthand(
-      'span',
-      (val) => ({ children: val }),
-      childrenUtils.isNil(content) ? text : content,
-      { defaultProps: { className: 'text' }, autoGenerateKey: false },
-    )
-
+  if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
-        {imageElement}
-        {iconElement}
-        {flagElement}
-        {labelElement}
-        {descriptionElement}
-        {textElement}
+      <ElementType {...rest} {...ariaOptions} className={classes} onClick={handleClick} ref={ref}>
+        {children}
       </ElementType>
     )
   }
-}
 
+  const flagElement = Flag.create(flag, { autoGenerateKey: false })
+  const iconElement = Icon.create(iconName, { autoGenerateKey: false })
+  const imageElement = Image.create(image, { autoGenerateKey: false })
+  const labelElement = Label.create(label, { autoGenerateKey: false })
+  const descriptionElement = createShorthand('span', (val) => ({ children: val }), description, {
+    defaultProps: { className: 'description' },
+    autoGenerateKey: false,
+  })
+  const textElement = createShorthand(
+    'span',
+    (val) => ({ children: val }),
+    childrenUtils.isNil(content) ? text : content,
+    { defaultProps: { className: 'text' }, autoGenerateKey: false },
+  )
+
+  return (
+    <ElementType {...rest} {...ariaOptions} className={classes} onClick={handleClick} ref={ref}>
+      {imageElement}
+      {iconElement}
+      {flagElement}
+      {labelElement}
+      {descriptionElement}
+      {textElement}
+    </ElementType>
+  )
+})
+
+DropdownItem.displayName = 'DropdownItem'
 DropdownItem.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

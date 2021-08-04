@@ -1,16 +1,21 @@
-import { createElement } from 'react'
+import * as React from 'react'
 
 const exampleContext = require.context('docs/src/examples', true, /\w+Example\w*\.js$/)
+let wrapper
 
 describe('examples', () => {
+  afterEach(() => {
+    wrapper.unmount()
+  })
+
   exampleContext.keys().forEach((path) => {
     const filename = path.replace(/^.*\/(\w+\.js)$/, '$1')
 
     it(`${filename} renders without console activity`, () => {
-      // TODO also render the example's path in a <ComponentExample /> just as the docs do
-      const wrapper = mount(createElement(exampleContext(path).default))
+      const Component = exampleContext(path).default
 
-      wrapper.unmount()
+      wrapper = mount(React.createElement(Component))
+      wrapper.should.not.be.blank()
     })
   })
 })

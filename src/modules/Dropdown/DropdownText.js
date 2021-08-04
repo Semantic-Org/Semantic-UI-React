@@ -13,19 +13,27 @@ import {
 /**
  * A dropdown contains a selected value.
  */
-function DropdownText(props) {
+const DropdownText = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('divider', className)
   const rest = getUnhandledProps(DropdownText, props)
   const ElementType = getElementType(DropdownText, props)
 
   return (
-    <ElementType aria-atomic aria-live='polite' role='alert' {...rest} className={classes}>
+    <ElementType
+      aria-atomic
+      aria-live='polite'
+      role='alert'
+      {...rest}
+      className={classes}
+      ref={ref}
+    >
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+DropdownText.displayName = 'DropdownText'
 DropdownText.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
