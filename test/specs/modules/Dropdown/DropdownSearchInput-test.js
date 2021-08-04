@@ -6,7 +6,8 @@ import { sandbox } from 'test/utils'
 import DropdownSearchInput from 'src/modules/Dropdown/DropdownSearchInput'
 
 describe('DropdownSearchInput', () => {
-  common.hasValidTypings(DropdownSearchInput)
+  common.isConformant(DropdownSearchInput)
+  common.forwardsRef(DropdownSearchInput, { tagName: 'input' })
 
   describe('aria', () => {
     it('should have aria-autocomplete', () => {
