@@ -1,40 +1,42 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
-import { createShorthandFactory, getUnhandledProps } from '../../lib'
+import { createShorthandFactory, getElementType, getUnhandledProps } from '../../lib'
 
 /**
  * A search item sub-component for Dropdown component.
  */
-class DropdownSearchInput extends Component {
-  handleChange = (e) => {
-    const value = _.get(e, 'target.value')
+const DropdownSearchInput = React.forwardRef(function (props, ref) {
+  const { autoComplete, className, tabIndex, type, value } = props
 
-    _.invoke(this.props, 'onChange', e, { ...this.props, value })
+  const handleChange = (e) => {
+    const newValue = _.get(e, 'target.value')
+
+    _.invoke(props, 'onChange', e, { ...props, value: newValue })
   }
 
-  render() {
-    const { autoComplete, className, tabIndex, type, value } = this.props
-    const classes = cx('search', className)
-    const rest = getUnhandledProps(DropdownSearchInput, this.props)
+  const classes = cx('search', className)
+  const ElementType = getElementType(DropdownSearchInput, props)
+  const rest = getUnhandledProps(DropdownSearchInput, props)
 
-    return (
-      <input
-        {...rest}
-        aria-autocomplete='list'
-        autoComplete={autoComplete}
-        className={classes}
-        onChange={this.handleChange}
-        tabIndex={tabIndex}
-        type={type}
-        value={value}
-      />
-    )
-  }
-}
+  return (
+    <ElementType
+      aria-autocomplete='list'
+      {...rest}
+      autoComplete={autoComplete}
+      className={classes}
+      onChange={handleChange}
+      ref={ref}
+      tabIndex={tabIndex}
+      type={type}
+      value={value}
+    />
+  )
+})
 
+DropdownSearchInput.displayName = 'DropdownSearchInput'
 DropdownSearchInput.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -56,6 +58,7 @@ DropdownSearchInput.propTypes = {
 }
 
 DropdownSearchInput.defaultProps = {
+  as: 'input',
   autoComplete: 'off',
   type: 'text',
 }
