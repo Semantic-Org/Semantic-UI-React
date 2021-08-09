@@ -36,7 +36,7 @@ export interface StrictGridProps {
   /** Represents column count per row in Grid. */
   columns?: SemanticWIDTHS | 'equal'
 
-  /** A grid can be combined with a container to use avaiable layout and alignment. */
+  /** A grid can be combined with a container to use available layout and alignment. */
   container?: boolean
 
   /** A grid can have dividers between its columns. */
@@ -60,7 +60,7 @@ export interface StrictGridProps {
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
   stackable?: boolean
 
-  /** An can stretch its contents to take up the entire grid height. */
+  /** A grid can stretch its contents to take up the entire grid height. */
   stretched?: boolean
 
   /** A grid can specify its text alignment. */
