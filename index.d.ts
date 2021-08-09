@@ -26,7 +26,7 @@ export {
   StrictPortalInnerProps,
 } from './dist/commonjs/addons/Portal/PortalInner'
 export { default as Radio, RadioProps, StrictRadioProps } from './dist/commonjs/addons/Radio'
-export { default as Select, SelectProps } from './dist/commonjs/addons/Select'
+export { default as Select, SelectProps, StrictSelectProps } from './dist/commonjs/addons/Select'
 export {
   default as TextArea,
   TextAreaProps,
@@ -50,7 +50,11 @@ export {
 } from './dist/commonjs/behaviors/Visibility'
 
 // Collections
-export { default as Breadcrumb, BreadcrumbProps } from './dist/commonjs/collections/Breadcrumb'
+export {
+  default as Breadcrumb,
+  BreadcrumbProps,
+  StrictBreadcrumbProps,
+} from './dist/commonjs/collections/Breadcrumb'
 export {
   default as BreadcrumbDivider,
   BreadcrumbDividerProps,
