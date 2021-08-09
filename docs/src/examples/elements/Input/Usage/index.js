@@ -10,6 +10,11 @@ const InputUsageExamples = () => (
       examplePath='elements/Input/Usage/InputExampleRefFocus'
     />
     <ComponentExample
+      title='Input Element'
+      description='You can pass props (specially data attributes) to input by including an input element in children.'
+      examplePath='elements/Input/Usage/InputExampleInputElementProps'
+    />
+    <ComponentExample
       title='Datalist'
       description={
         <span>
