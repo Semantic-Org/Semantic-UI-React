@@ -159,6 +159,9 @@ export interface StrictSearchProps {
 
   /** A search can have different sizes. */
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
+
+  /** A search can show placeholder text when empty. */
+  placeholder?: string
 }
 
 export interface SearchResultData extends SearchProps {
