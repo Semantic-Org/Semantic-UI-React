@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import { InView } from 'react-intersection-observer'
 import {
   Container,
   Divider,
@@ -11,7 +12,6 @@ import {
   List,
   Menu,
   Segment,
-  Visibility,
 } from 'semantic-ui-react'
 
 const menuStyle = {
@@ -99,13 +99,8 @@ export default class StickyLayout extends Component {
     }
   }
 
-  stickOverlay = () => this.setState({ overlayFixed: true })
-
-  stickTopMenu = () => this.setState({ menuFixed: true })
-
-  unStickOverlay = () => this.setState({ overlayFixed: false })
-
-  unStickTopMenu = () => this.setState({ menuFixed: false })
+  toggleOverlay = (inView) => this.setState({ overlayFixed: !inView })
+  toggleTopMenu = (inView) => this.setState({ menuFixed: !inView })
 
   render() {
     const { menuFixed, overlayFixed, overlayRect } = this.state
@@ -134,11 +129,8 @@ export default class StickyLayout extends Component {
         {/* Attaching the top menu is a simple operation, we only switch `fixed` prop and add another style if it has
             gone beyond the scope of visibility
           */}
-        <Visibility
-          onBottomPassed={this.stickTopMenu}
-          onBottomVisible={this.unStickTopMenu}
-          once={false}
-        >
+
+        <InView onChange={this.toggleTopMenu}>
           <Menu
             borderless
             fixed={menuFixed ? 'top' : undefined}
@@ -173,7 +165,7 @@ export default class StickyLayout extends Component {
               </Menu.Menu>
             </Container>
           </Menu>
-        </Visibility>
+        </InView>
 
         <Container text>
           {_.times(3, (i) => (
@@ -186,13 +178,9 @@ export default class StickyLayout extends Component {
               An empty Visibility element controls the need to change the fixing of element below, it also uses height
               and width params received from its ref for correct display.
             */}
-          <Visibility
-            offset={80}
-            once={false}
-            onTopPassed={this.stickOverlay}
-            onTopVisible={this.unStickOverlay}
-            style={overlayFixed ? { ...overlayStyle, ...overlayRect } : {}}
-          />
+          <InView onChange={this.toggleOverlay} rootMargin='0px 0px 80px 0px'>
+            <div style={overlayFixed ? { ...overlayStyle, ...overlayRect } : {}} />
+          </InView>
 
           <div ref={this.handleOverlayRef} style={overlayFixed ? fixedOverlayStyle : overlayStyle}>
             <Menu
