@@ -4,6 +4,7 @@
 import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { InView } from 'react-intersection-observer'
 import {
   Button,
   Container,
@@ -16,7 +17,6 @@ import {
   Menu,
   Segment,
   Sidebar,
-  Visibility,
 } from 'semantic-ui-react'
 
 const { MediaContextProvider, Media } = createMedia({
@@ -72,8 +72,7 @@ HomepageHeading.propTypes = {
 class DesktopContainer extends Component {
   state = {}
 
-  hideFixedMenu = () => this.setState({ fixed: false })
-  showFixedMenu = () => this.setState({ fixed: true })
+  toggleFixedMenu = (inView) => this.setState({ fixed: !inView })
 
   render() {
     const { children } = this.props
@@ -81,11 +80,7 @@ class DesktopContainer extends Component {
 
     return (
       <Media greaterThan='mobile'>
-        <Visibility
-          once={false}
-          onBottomPassed={this.showFixedMenu}
-          onBottomPassedReverse={this.hideFixedMenu}
-        >
+        <InView onChange={this.toggleFixedMenu}>
           <Segment
             inverted
             textAlign='center'
@@ -118,7 +113,7 @@ class DesktopContainer extends Component {
             </Menu>
             <HomepageHeading />
           </Segment>
-        </Visibility>
+        </InView>
 
         {children}
       </Media>

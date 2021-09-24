@@ -39,16 +39,6 @@ export {
   StrictTransitionablePortalProps,
 } from './dist/commonjs/addons/TransitionablePortal'
 
-// Behaviors
-export {
-  default as Visibility,
-  VisibilityCalculations,
-  VisibilityEventData,
-  VisibilityOnPassed,
-  VisibilityProps,
-  StrictVisibilityProps,
-} from './dist/commonjs/behaviors/Visibility'
-
 // Collections
 export { default as Breadcrumb, BreadcrumbProps } from './dist/commonjs/collections/Breadcrumb'
 export {

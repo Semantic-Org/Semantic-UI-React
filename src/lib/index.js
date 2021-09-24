@@ -35,7 +35,6 @@ export createPaginationItems from './createPaginationItems'
 export * as SUI from './SUI'
 
 export { numberToWordMap, numberToWord } from './numberToWord'
-export normalizeOffset from './normalizeOffset'
 export normalizeTransitionDuration from './normalizeTransitionDuration'
 export objectDiff from './objectDiff'
 
