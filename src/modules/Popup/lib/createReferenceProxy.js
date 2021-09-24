@@ -1,5 +1,5 @@
-import { isRefObject } from '@fluentui/react-component-ref'
 import _ from 'lodash'
+import { isRefObject } from '../../../lib'
 
 class ReferenceProxy {
   constructor(refObject) {

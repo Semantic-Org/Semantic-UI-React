@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { createPortal } from 'react-dom'
 
-import { customPropTypes, isBrowser, makeDebugger, useEventCallback } from '../../lib'
+import { isBrowser, makeDebugger, useEventCallback } from '../../lib'
 import usePortalElement from './usePortalElement'
 
 const debug = makeDebugger('PortalInner')
@@ -38,9 +38,6 @@ PortalInner.displayName = 'PortalInner'
 PortalInner.propTypes = {
   /** Primary content. */
   children: PropTypes.node.isRequired,
-
-  /** Called with a ref to the inner node. */
-  innerRef: customPropTypes.ref,
 
   /** The node where the portal should mount. */
   mountNode: PropTypes.any,
