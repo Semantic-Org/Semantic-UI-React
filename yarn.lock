@@ -1100,14 +1100,6 @@
   dependencies:
     "@babel/runtime" "^7.10.4"
 
-"@fluentui/react-component-ref@~0.63.0":
-  version "0.63.0"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-component-ref/-/react-component-ref-0.63.0.tgz#8973552cdeb63363c396ca8bdefdf4ae061687c4"
-  integrity sha512-s4Wawk3Jp/cLRu3QlCtRMm1jYMi8fq7PLd6I2VYb397NgpLdMbO4/edqDHbDhKiVWRIulrOqWlRLR5YXjkXQ7A==
-  dependencies:
-    "@babel/runtime" "^7.10.4"
-    react-is "^16.6.3"
-
 "@hapi/address@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-4.1.0.tgz#d60c5c0d930e77456fdcde2598e77302e2955e1d"

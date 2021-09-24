@@ -84,8 +84,8 @@ function dropdownInputIsFocused() {
 }
 
 const dropdownMenuIsOpen = () => {
-  wrapper.childAt(0).should.have.className('active')
-  wrapper.childAt(0).should.have.className('visible')
+  wrapper.should.have.className('active')
+  wrapper.should.have.className('visible')
 
   const menu = wrapper.find('DropdownMenu')
   try {
@@ -262,19 +262,19 @@ describe('Dropdown', () => {
     it('defaults to 0', () => {
       wrapperShallow(<Dropdown options={options} />)
 
-      wrapper.childAt(0).should.have.prop('tabIndex', 0)
+      wrapper.should.have.prop('tabIndex', 0)
     })
 
     it('defaults to -1 when disabled', () => {
       wrapperShallow(<Dropdown disabled options={options} />)
 
-      wrapper.childAt(0).should.have.prop('tabIndex', -1)
+      wrapper.should.have.prop('tabIndex', -1)
     })
 
     it('applies when defined', () => {
       wrapperShallow(<Dropdown options={options} tabIndex={1} />)
 
-      wrapper.childAt(0).should.have.prop('tabIndex', 1)
+      wrapper.should.have.prop('tabIndex', 1)
     })
 
     describe('tabIndex', () => {
@@ -435,7 +435,7 @@ describe('Dropdown', () => {
       const event = { foo: 'bar' }
 
       wrapperShallow(<Dropdown onBlur={onBlur} />)
-      wrapper.childAt(0).simulate('blur', event)
+      wrapper.simulate('blur', event)
 
       onBlur.should.have.been.calledOnce()
       onBlur.should.have.been.calledWithMatch(event)
@@ -445,12 +445,12 @@ describe('Dropdown', () => {
       wrapperShallow(<Dropdown selectOnBlur options={options} />)
 
       const instance = wrapper.instance()
-      wrapper.childAt(0).simulate('click', { stopPropagation: _.noop })
+      wrapper.simulate('click', { stopPropagation: _.noop })
       dropdownMenuIsOpen()
       sandbox.spy(instance, 'handleChange')
 
       const event = { stopPropagation: _.noop }
-      wrapper.childAt(0).simulate('blur', event)
+      wrapper.simulate('blur', event)
 
       instance.handleChange.should.have.been.calledWithMatch(event, options[0].value)
     })
@@ -478,7 +478,7 @@ describe('Dropdown', () => {
     it('sets searchQuery state to empty', () => {
       wrapperMount(<Dropdown defaultSearchQuery='foo' search />)
 
-      wrapper.childAt(0).simulate('blur')
+      wrapper.simulate('blur')
       wrapper.find('input.search').should.have.value('')
     })
 
