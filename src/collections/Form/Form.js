@@ -23,7 +23,6 @@ import FormTextArea from './FormTextArea'
  * @see Message
  * @see Radio
  * @see Select
- * @see Visibility
  */
 class Form extends Component {
   handleSubmit = (e, ...args) => {
