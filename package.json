@@ -69,7 +69,6 @@
   "dependencies": {
     "@babel/runtime": "^7.10.5",
     "@fluentui/react-component-event-listener": "~0.51.6",
-    "@fluentui/react-component-ref": "~0.51.6",
     "@popperjs/core": "^2.6.0",
     "@semantic-ui-react/event-stack": "^3.1.2",
     "clsx": "^1.1.1",

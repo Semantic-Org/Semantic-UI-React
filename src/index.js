@@ -1,6 +1,3 @@
-// Third party
-export { Ref } from '@fluentui/react-component-ref'
-
 // Addons
 export Confirm from './addons/Confirm'
 export Pagination from './addons/Pagination'

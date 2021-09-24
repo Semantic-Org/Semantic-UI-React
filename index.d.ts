@@ -1,7 +1,3 @@
-// Third party
-
-export { Ref, RefProps } from '@fluentui/react-component-ref'
-
 // Addons
 
 export {
