@@ -6,7 +6,6 @@ import {
   Header,
   Image,
   Rail,
-  Ref,
   Segment,
   Sticky,
 } from 'semantic-ui-react'
@@ -26,33 +25,31 @@ export default class StickyExampleActive extends Component {
     return (
       <Grid centered columns={3}>
         <Grid.Column>
-          <Ref innerRef={this.contextRef}>
-            <Segment>
-              {_.times(10, (i) => (
-                <Placeholder key={i} />
-              ))}
+          <Segment ref={this.contextRef}>
+            {_.times(10, (i) => (
+              <Placeholder key={i} />
+            ))}
 
-              <Rail position='left'>
-                <Sticky context={this.contextRef}>
-                  <Segment>
-                    <Checkbox
-                      checked={active}
-                      label='Activate Sticky on right'
-                      onChange={this.handleToggle}
-                      toggle
-                    />
-                  </Segment>
-                </Sticky>
-              </Rail>
+            <Rail position='left'>
+              <Sticky context={this.contextRef}>
+                <Segment>
+                  <Checkbox
+                    checked={active}
+                    label='Activate Sticky on right'
+                    onChange={this.handleToggle}
+                    toggle
+                  />
+                </Segment>
+              </Sticky>
+            </Rail>
 
-              <Rail position='right'>
-                <Sticky active={active} context={this.contextRef}>
-                  <Header as='h3'>Stuck Content</Header>
-                  <Image src='/images/wireframe/image.png' />
-                </Sticky>
-              </Rail>
-            </Segment>
-          </Ref>
+            <Rail position='right'>
+              <Sticky active={active} context={this.contextRef}>
+                <Header as='h3'>Stuck Content</Header>
+                <Image src='/images/wireframe/image.png' />
+              </Sticky>
+            </Rail>
+          </Segment>
         </Grid.Column>
       </Grid>
     )
