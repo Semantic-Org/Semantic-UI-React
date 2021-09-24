@@ -12,9 +12,6 @@ export Select from './addons/Select'
 export TextArea from './addons/TextArea'
 export TransitionablePortal from './addons/TransitionablePortal'
 
-// Behaviors
-export Visibility from './behaviors/Visibility'
-
 // Collections
 export Breadcrumb from './collections/Breadcrumb'
 export BreadcrumbDivider from './collections/Breadcrumb/BreadcrumbDivider'
