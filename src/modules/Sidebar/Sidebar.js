@@ -1,5 +1,4 @@
 import { EventListener, documentRef } from '@fluentui/react-component-event-listener'
-import { isRefObject } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -11,6 +10,7 @@ import {
   doesNodeContainClick,
   getUnhandledProps,
   getElementType,
+  isRefObject,
   useKeyOnly,
   useIsomorphicLayoutEffect,
   useEventCallback,
