@@ -1,4 +1,3 @@
-import { isRefObject } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -8,6 +7,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  isRefObject,
   isBrowser,
   useEventCallback,
   useIsomorphicLayoutEffect,

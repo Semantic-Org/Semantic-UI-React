@@ -37,6 +37,7 @@ export * as SUI from './SUI'
 export { numberToWordMap, numberToWord } from './numberToWord'
 export normalizeTransitionDuration from './normalizeTransitionDuration'
 export objectDiff from './objectDiff'
+export isRefObject from './isRefObject'
 
 // Heads up! We import/export for this module to safely remove it with "babel-plugin-filter-imports"
 export { makeDebugger }

@@ -3,7 +3,7 @@ import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Link } from 'react-static'
-import { Menu, Icon, Input, Ref } from 'semantic-ui-react'
+import { Menu, Icon, Input } from 'semantic-ui-react'
 
 import CarbonAd from 'docs/src/components/CarbonAd/CarbonAd'
 import Logo from 'docs/src/components/Logo/Logo'
@@ -229,16 +229,15 @@ class Sidebar extends Component {
               </Menu.Menu>
             </Menu.Item>
             <Menu.Item fitted>
-              <Ref innerRef={this.handleSearchRef}>
-                <Input
-                  fluid
-                  icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
-                  placeholder='Press "/" to filter components'
-                  value={query}
-                  onChange={this.handleSearchChange}
-                  onKeyDown={this.handleSearchKeyDown}
-                />
-              </Ref>
+              <Input
+                fluid
+                icon={{ name: 'filter', color: 'teal', inverted: true, bordered: true }}
+                placeholder='Press "/" to filter components'
+                ref={this.handleSearchRef}
+                value={query}
+                onChange={this.handleSearchChange}
+                onKeyDown={this.handleSearchKeyDown}
+              />
             </Menu.Item>
             {query ? this.renderSearchItems() : this.menuItemsByType}
           </Menu>

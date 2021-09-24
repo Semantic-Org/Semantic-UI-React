@@ -1,6 +1,6 @@
-import { isRefObject } from '@fluentui/react-component-ref'
 import React from 'react'
 
+import isRefObject from '../isRefObject'
 import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 
 const CLASS_NAME_DELITIMITER = /\s+/

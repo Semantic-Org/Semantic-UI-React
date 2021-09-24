@@ -5,7 +5,6 @@ import {
   Header,
   Image,
   Menu,
-  Ref,
   Segment,
   Sidebar,
 } from 'semantic-ui-react'
@@ -42,12 +41,10 @@ const SidebarExampleTarget = () => {
             <Menu.Item as='a'>Channels</Menu.Item>
           </Sidebar>
 
-          <Ref innerRef={segmentRef}>
-            <Segment secondary>
-              <Header as='h3'>Clickable area</Header>
-              <p>When you will click there, the sidebar will be closed.</p>
-            </Segment>
-          </Ref>
+          <Segment secondary ref={segmentRef}>
+            <Header as='h3'>Clickable area</Header>
+            <p>When you will click there, the sidebar will be closed.</p>
+          </Segment>
 
           <Segment>
             <Header as='h3'>Application Content</Header>

@@ -1,5 +1,4 @@
 import EventStack from '@semantic-ui-react/event-stack'
-import { Ref } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
@@ -765,6 +764,7 @@ export default class Dropdown extends Component {
       _.invoke(predefinedProps, 'onChange', e, inputProps)
       this.handleSearchChange(e, inputProps)
     },
+    ref: this.searchRef,
   })
 
   hasValue = () => {
@@ -901,18 +901,15 @@ export default class Dropdown extends Component {
     const { searchQuery } = this.state
 
     return (
-      search && (
-        <Ref innerRef={this.searchRef}>
-          {DropdownSearchInput.create(searchInput, {
-            defaultProps: {
-              style: { width: this.computeSearchInputWidth() },
-              tabIndex: this.computeSearchInputTabIndex(),
-              value: searchQuery,
-            },
-            overrideProps: this.handleSearchInputOverrides,
-          })}
-        </Ref>
-      )
+      search &&
+      DropdownSearchInput.create(searchInput, {
+        defaultProps: {
+          style: { width: this.computeSearchInputWidth() },
+          tabIndex: this.computeSearchInputTabIndex(),
+          value: searchQuery,
+        },
+        overrideProps: this.handleSearchInputOverrides,
+      })
     )
   }
 
@@ -1085,35 +1082,34 @@ export default class Dropdown extends Component {
     const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
 
     return (
-      <Ref innerRef={this.ref}>
-        <ElementType
-          {...rest}
-          {...ariaOptions}
-          className={classes}
-          onBlur={this.handleBlur}
-          onClick={this.handleClick}
-          onKeyDown={this.handleKeyDown}
-          onMouseDown={this.handleMouseDown}
-          onFocus={this.handleFocus}
-          onChange={this.handleChange}
-          tabIndex={this.computeTabIndex()}
-        >
-          {this.renderLabels()}
-          {this.renderSearchInput()}
-          {this.renderSearchSizer()}
-          {trigger || this.renderText()}
-          {Icon.create(icon, {
-            overrideProps: this.handleIconOverrides,
-            autoGenerateKey: false,
-          })}
-          {this.renderMenu()}
+      <ElementType
+        {...rest}
+        {...ariaOptions}
+        className={classes}
+        onBlur={this.handleBlur}
+        onClick={this.handleClick}
+        onKeyDown={this.handleKeyDown}
+        onMouseDown={this.handleMouseDown}
+        onFocus={this.handleFocus}
+        onChange={this.handleChange}
+        tabIndex={this.computeTabIndex()}
+        ref={this.ref}
+      >
+        {this.renderLabels()}
+        {this.renderSearchInput()}
+        {this.renderSearchSizer()}
+        {trigger || this.renderText()}
+        {Icon.create(icon, {
+          overrideProps: this.handleIconOverrides,
+          autoGenerateKey: false,
+        })}
+        {this.renderMenu()}
 
-          {open && <EventStack name='keydown' on={this.closeOnEscape} />}
-          {open && <EventStack name='click' on={this.closeOnDocumentClick} />}
+        {open && <EventStack name='keydown' on={this.closeOnEscape} />}
+        {open && <EventStack name='click' on={this.closeOnDocumentClick} />}
 
-          {focus && <EventStack name='keydown' on={this.removeItemOnBackspace} />}
-        </ElementType>
-      </Ref>
+        {focus && <EventStack name='keydown' on={this.removeItemOnBackspace} />}
+      </ElementType>
     )
   }
 }
