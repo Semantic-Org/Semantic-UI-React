@@ -129,6 +129,7 @@ export default class Search extends Component {
     debug(result)
 
     _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
+    this.close();
   }
 
   handleSelectionChange = (e) => {
@@ -176,7 +177,6 @@ export default class Search extends Component {
     // notify the onResultSelect prop that the user is trying to change value
     this.setValue(result.title)
     this.handleResultSelect(e, result)
-    this.close()
   }
 
   closeOnDocumentClick = (e) => {
@@ -224,7 +224,6 @@ export default class Search extends Component {
     // notify the onResultSelect prop that the user is trying to change value
     this.setValue(result.title)
     this.handleResultSelect(e, result)
-    this.close()
   }
 
   handleItemMouseDown = (e) => {
