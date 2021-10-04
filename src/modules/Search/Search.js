@@ -129,7 +129,7 @@ export default class Search extends Component {
     debug(result)
 
     _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
-    this.close();
+    this.close()
   }
 
   handleSelectionChange = (e) => {
