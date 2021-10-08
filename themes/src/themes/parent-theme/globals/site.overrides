@@ -66,13 +66,13 @@
 
 @font-face {
   font-family: 'FlorenceIcons';
-  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.eot?');
-  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.eot?#iefix')
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.2.eot?');
+  src: url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.2.eot?#iefix')
       format('embedded-opentype'),
-    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.woff2?') format('woff2'),
-    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.woff?') format('woff'),
-    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.ttf?') format('truetype'),
-    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.1.svg?#FlorenceIcons')
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.2.woff2?') format('woff2'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.2.woff?') format('woff'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.2.ttf?') format('truetype'),
+    url('https://florenceapp-assets.s3.amazonaws.com/fonts/florence.0.0.2.svg?#FlorenceIcons')
       format('svg');
   font-weight: normal;
   font-style: normal;
