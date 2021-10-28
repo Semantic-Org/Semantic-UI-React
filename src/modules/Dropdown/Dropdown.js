@@ -600,6 +600,7 @@ export default class Dropdown extends Component {
       'aria-busy': loading,
       'aria-disabled': disabled,
       'aria-expanded': !!open,
+      'aria-label': 'Dropdown Element',
     }
     if (ariaOptions.role === 'listbox') {
       ariaOptions['aria-multiselectable'] = multiple
