@@ -19,7 +19,7 @@ describe('Breadcrumb', () => {
 
   const sections = [
     { key: 'home', content: 'Home', link: true },
-    { key: 't-shirt', content: 'T-Shirt', href: 'google.com' },
+    { key: 't-shirt', content: 'T-Shirt', href: 'example.com' },
   ]
 
   it('renders children with `sections` prop', () => {

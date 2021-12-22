@@ -165,7 +165,7 @@ describe('Embed', () => {
 
   describe('url', () => {
     it('passes url to iframe', () => {
-      const url = 'https://google.com'
+      const url = 'https://example.com'
 
       shallow(<Embed active url={url} />)
         .find('iframe')

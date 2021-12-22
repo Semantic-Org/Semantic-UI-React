@@ -49,7 +49,7 @@ describe('Image', () => {
 
   describe('href', () => {
     it('renders an a tag', () => {
-      shallow(<Image href='http://google.com' />)
+      shallow(<Image href='http://example.com' />)
         .type()
         .should.equal('a')
     })
