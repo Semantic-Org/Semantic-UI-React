@@ -59,8 +59,8 @@ class Modal extends Component {
   handleClose = (e) => {
     debug('close()')
 
-    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
     this.setState({ open: false })
+    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
   }
 
   handleDocumentMouseDown = (e) => {
@@ -80,8 +80,8 @@ class Modal extends Component {
     )
       return
 
-    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
     this.setState({ open: false })
+    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
   }
 
   handleIconOverrides = (predefinedProps) => ({

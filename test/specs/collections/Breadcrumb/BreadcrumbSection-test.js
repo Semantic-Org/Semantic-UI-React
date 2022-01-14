@@ -26,10 +26,10 @@ describe('BreadcrumbSection', () => {
     })
 
     it('should have attr `href` when has prop', () => {
-      const section = shallow(<BreadcrumbSection href='http://google.com' />)
+      const section = shallow(<BreadcrumbSection href='http://example.com' />)
 
       section.should.have.tagName('a')
-      section.should.have.attr('href').and.equal('http://google.com')
+      section.should.have.attr('href').and.equal('http://example.com')
     })
   })
 
