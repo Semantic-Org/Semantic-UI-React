@@ -378,7 +378,7 @@ Modal.propTypes = {
 
   /**
    * NOTE: Any unhandled props that are defined in Modal are passed-through
-   * to the wrapping Modal.
+   * to the inner Portal.
    */
 }
 
