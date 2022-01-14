@@ -743,7 +743,7 @@ describe('Search', () => {
     })
 
     it(`will not merge for a function`, () => {
-      // TODO: V3 remove this test and simplify the implementation
+      // TODO: V4 remove this test and simplify the implementation
       consoleUtil.disableOnce()
 
       wrapperMount(<Search input={{ input: (Component, props) => <Component {...props} /> }} />)
@@ -751,6 +751,13 @@ describe('Search', () => {
 
       input.should.have.prop('autoComplete', 'off')
       input.should.have.not.className('prompt')
+    })
+
+    it(`"placeholder" in passed to an "input"`, () => {
+      wrapperMount(<Search placeholder="foo" />)
+      const input = wrapper.find('input')
+
+      input.should.have.prop('placeholder', 'foo')
     })
   })
 
