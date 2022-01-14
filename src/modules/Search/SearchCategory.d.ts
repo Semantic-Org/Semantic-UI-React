@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { SemanticShorthandContent } from '../../generic'
+import { SearchCategoryLayoutProps } from './SearchCategoryLayout'
 import SearchResult from './SearchResult'
 
 export interface SearchCategoryProps extends StrictSearchCategoryProps {
@@ -29,14 +30,10 @@ export interface StrictSearchCategoryProps {
   /**
    * Renders the SearchCategory layout.
    *
-   * @param {object} categoryContent - The Renderable SearchCategory contents.
-   * @param {object} resultsContent - The Renderable SearchResult contents.
+   * @param {object} props - The SearchCategoryLayout props object.
    * @returns {*} - Renderable SearchCategory layout.
    */
-  layoutRenderer?: (
-    categoryContent: React.ReactElement<any>,
-    resultsContent: React.ReactElement<any>,
-  ) => React.ReactElement<any>
+  layoutRenderer?: (props: Pick<SearchCategoryLayoutProps, 'categoryContent' | 'resultsContent'>) => React.ReactElement<any>
 
   /**
    * Renders the category contents.

@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "The official Semantic-UI-React integration.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
