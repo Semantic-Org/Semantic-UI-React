@@ -1,5 +1,28 @@
 # Change Log
 
+## v2.0.4 (2021-09-23)
+
+#### :bug: Bug Fix
+* [#4275](https://github.com/Semantic-Org/Semantic-UI-React/pull/4275) fix(types): export types for StrictBreadcrumbProps & StrictSelectProps ([@layershifter](https://github.com/layershifter))
+* [#4181](https://github.com/Semantic-Org/Semantic-UI-React/pull/4181) fix(Dropdown): update event types ([@aboyce](https://github.com/aboyce))
+* [#4259](https://github.com/Semantic-Org/Semantic-UI-React/pull/4259) fix(Modal|Portal): fix an error with unsafe setState() ([@layershifter](https://github.com/layershifter))
+
+#### :memo: Documentation
+* [#4228](https://github.com/Semantic-Org/Semantic-UI-React/pull/4228) docs(Introduction): Update broken link for renamed component AutoControlledComponent ([@gmferise](https://github.com/gmferise))
+* [#4221](https://github.com/Semantic-Org/Semantic-UI-React/pull/4221) docs(Usage): update "CDN (no bundler)" section ([@layershifter](https://github.com/layershifter))
+* [#4174](https://github.com/Semantic-Org/Semantic-UI-React/pull/4174) docs(theming) update theme.config override example ([@the133448](https://github.com/the133448))
+* [#4218](https://github.com/Semantic-Org/Semantic-UI-React/pull/4218) docs(misc): fix typos in props descriptions + make minor text change ([@katieraby](https://github.com/katieraby))
+
+#### :house: Internal
+* [#4220](https://github.com/Semantic-Org/Semantic-UI-React/pull/4220) chore: update Lodash to latest ([@layershifter](https://github.com/layershifter))
+
+#### Committers: 5
+- Adam Boyce ([@aboyce](https://github.com/aboyce))
+- Gavin Ferise ([@gmferise](https://github.com/gmferise))
+- Katie ([@katieraby](https://github.com/katieraby))
+- Oleksandr Fediashov ([@layershifter](https://github.com/layershifter))
+- [@the133448](https://github.com/the133448)
+
 ## v2.0.3 (2021-01-20)
 
 #### :bug: Bug Fix

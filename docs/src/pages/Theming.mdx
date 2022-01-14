@@ -83,11 +83,13 @@ yarn remove semantic-ui semantic-ui-css
 Create React App does not support LESS out of the box; we propose to use [`@craco/craco`](https://www.npmjs.com/package/@craco/craco) to add its support and avoid `eject`. You have to install required packages:
 
 ```bash
-npm install @craco/craco @semantic-ui-react/craco-less semantic-ui-less --save-dev
+npm install @craco/craco @semantic-ui-react/craco-less --save-dev
+npm install semantic-ui-less --save
 ```
 
 ```bash
-yarn add @craco/craco @semantic-ui-react/craco-less semantic-ui-less --dev
+yarn add @craco/craco @semantic-ui-react/craco-less --dev
+yarn add semantic-ui-less
 ```
 
 And then update your `package.json` and create `craco.config.js`:

@@ -6,7 +6,7 @@ const ImageExampleLink = () => (
     src='/images/wireframe/image-text.png'
     as='a'
     size='medium'
-    href='http://google.com'
+    href='http://example.com'
     target='_blank'
   />
 )
