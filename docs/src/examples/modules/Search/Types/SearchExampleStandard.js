@@ -67,6 +67,7 @@ function SearchExampleStandard() {
       <Grid.Column width={6}>
         <Search
           loading={loading}
+          placeholder='Search...'
           onResultSelect={(e, data) =>
             dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })
           }

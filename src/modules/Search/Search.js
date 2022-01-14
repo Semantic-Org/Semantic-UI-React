@@ -369,7 +369,7 @@ export default class Search extends Component {
   // ----------------------------------------
 
   renderSearchInput = (rest) => {
-    const { icon, input } = this.props
+    const { icon, input, placeholder } = this.props
     const { value } = this.state
 
     return Input.create(input, {
@@ -382,6 +382,7 @@ export default class Search extends Component {
         onClick: this.handleInputClick,
         tabIndex: '0',
         value,
+        placeholder,
       },
       // Nested shorthand props need special treatment to survive the shallow merge
       overrideProps: overrideSearchInputProps,
@@ -666,6 +667,9 @@ Search.propTypes = {
 
   /** A search can have different sizes. */
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+
+  /** A search can show placeholder text when empty. */
+  placeholder: PropTypes.string,
 }
 
 Search.defaultProps = {
@@ -674,6 +678,7 @@ Search.defaultProps = {
   minCharacters: 1,
   noResultsMessage: 'No results found.',
   showNoResults: true,
+  placeholder: '',
 }
 
 Search.autoControlledProps = ['open', 'value']
