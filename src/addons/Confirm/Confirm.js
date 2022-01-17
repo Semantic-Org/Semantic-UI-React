@@ -7,7 +7,7 @@ import Button from '../../elements/Button'
 import Modal from '../../modules/Modal'
 
 /**
- * A Confirm modal gives the user a choice to confirm or cancel an action/
+ * A Confirm modal gives the user a choice to confirm or cancel an action.
  * @see Modal
  */
 class Confirm extends Component {
