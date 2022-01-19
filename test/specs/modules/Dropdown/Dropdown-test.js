@@ -2037,6 +2037,28 @@ describe('Dropdown', () => {
       items.at(1).key().should.equal('bar')
       items.at(2).key().should.equal('baz')
     })
+
+    it('invokes "onClick" on item and handles', () => {
+      const onItemClick = sandbox.spy()
+      const customOptions = [
+        { key: 'foo', text: 'foo', value: 'foo' },
+        { key: 'bar', text: 'bar', value: 'bar', onClick: onItemClick },
+      ]
+
+      wrapperMount(<Dropdown options={customOptions} />)
+      dropdownMenuIsClosed()
+
+      wrapper.simulate('click')
+      wrapper.simulate('focus')
+      dropdownMenuIsOpen()
+
+      wrapper.find('.item').at(1).simulate('click')
+      dropdownMenuIsClosed()
+      wrapper.find('.item').at(1).should.have.className('selected')
+
+      onItemClick.should.have.been.calledOnce()
+      onItemClick.should.have.been.calledWithMatch({ type: 'click' }, { value: 'bar' })
+    })
   })
 
   describe('search', () => {
