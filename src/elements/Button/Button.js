@@ -97,6 +97,7 @@ class Button extends Component {
       secondary,
       size,
       toggle,
+      type,
     } = this.props
 
     const baseClasses = cx(
@@ -144,6 +145,7 @@ class Button extends Component {
               className={buttonClasses}
               aria-pressed={toggle ? !!active : undefined}
               disabled={disabled}
+              type={type}
               tabIndex={tabIndex}
             >
               {Icon.create(icon, { autoGenerateKey: false })} {content}
@@ -167,6 +169,7 @@ class Button extends Component {
           disabled={(disabled && ElementType === 'button') || undefined}
           onClick={this.handleClick}
           role={role}
+          type={type}
           tabIndex={tabIndex}
         >
           {hasChildren && children}
@@ -296,6 +299,9 @@ Button.propTypes = {
 
   /** A button can be formatted to toggle on and off. */
   toggle: PropTypes.bool,
+
+  /** The type of the HTML element. */
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
 }
 
 Button.defaultProps = {
