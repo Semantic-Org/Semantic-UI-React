@@ -341,7 +341,7 @@ Modal.propTypes = {
   onClose: PropTypes.func,
 
   /**
-   * Called when the portal is mounted on the DOM.
+   * Called when the modal is mounted on the DOM.
    *
    * @param {null}
    * @param {object} data - All props.
@@ -357,7 +357,7 @@ Modal.propTypes = {
   onOpen: PropTypes.func,
 
   /**
-   * Called when the portal is unmounted from the DOM.
+   * Called when the modal is unmounted from the DOM.
    *
    * @param {null}
    * @param {object} data - All props.
@@ -373,12 +373,12 @@ Modal.propTypes = {
   /** Custom styles. */
   style: PropTypes.object,
 
-  /** Element to be rendered in-place where the portal is defined. */
+  /** Element to be rendered in-place where the modal is defined. */
   trigger: PropTypes.node,
 
   /**
-   * NOTE: Any unhandled props that are defined in Portal are passed-through
-   * to the wrapping Portal.
+   * NOTE: Any unhandled props that are defined in Modal are passed-through
+   * to the inner Portal.
    */
 }
 

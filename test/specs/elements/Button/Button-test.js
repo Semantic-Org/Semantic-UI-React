@@ -260,6 +260,26 @@ describe('Button', () => {
     })
   })
 
+  describe('type', () => {
+    it('is not set by default', () => {
+      mount(<Button />)
+        .find('button')
+        .should.not.have.prop('type')
+    })
+
+    it('is passed to <button />', () => {
+      mount(<Button type='submit' />)
+        .find('button')
+        .should.have.prop('type', 'submit')
+    })
+
+    it('is passed to <button /> when "label" is defined', () => {
+      mount(<Button label='Foo' type='submit' />)
+        .find('button')
+        .should.have.prop('type', 'submit')
+    })
+  })
+
   describe('tabIndex', () => {
     it('is not set by default', () => {
       shallow(<Button />, { autoNesting: true }).should.not.have.prop('tabIndex')

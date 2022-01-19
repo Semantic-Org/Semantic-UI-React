@@ -5,6 +5,7 @@ import { InputProps } from '../../elements/Input'
 import SearchCategory, { SearchCategoryProps } from './SearchCategory'
 import SearchResult, { SearchResultProps } from './SearchResult'
 import SearchResults from './SearchResults'
+import { SearchCategoryLayoutProps } from './SearchCategoryLayout'
 
 export interface SearchProps extends StrictSearchProps {
   [key: string]: any
@@ -61,11 +62,10 @@ export interface StrictSearchProps {
   /**
    * Renders the SearchCategory layout.
    *
-   * @param {object} categoryContent - The Renderable SearchCategory contents.
-   * @param {object} resultsContent - The Renderable SearchResult contents.
+   * @param {object} props - The SearchCategoryLayout props object.
    * @returns {*} - Renderable SearchCategory layout.
    */
-  categoryLayoutRenderer?: (props: SearchCategoryProps) => React.ReactElement<any>
+  categoryLayoutRenderer?: (props: Pick<SearchCategoryLayoutProps, 'categoryContent' | 'resultsContent'>) => React.ReactElement<any>
 
   /**
    * Renders the SearchCategory contents.
@@ -159,6 +159,9 @@ export interface StrictSearchProps {
 
   /** A search can have different sizes. */
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
+
+  /** A search can show placeholder text when empty. */
+  placeholder?: string
 }
 
 export interface SearchResultData extends SearchProps {
