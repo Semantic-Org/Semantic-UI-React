@@ -113,6 +113,9 @@ export interface StrictButtonProps {
 
   /** A button can be formatted to toggle on and off. */
   toggle?: boolean
+
+  /** The type of the HTML element. */
+  type?: 'submit' | 'reset' | 'button'
 }
 
 declare class Button extends React.Component<ButtonProps> {

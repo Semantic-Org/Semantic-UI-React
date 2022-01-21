@@ -976,15 +976,25 @@ export default class Dropdown extends Component {
       : (optValue) => optValue === value
 
     return _.map(options, (opt, i) =>
-      DropdownItem.create({
-        active: isActive(opt.value),
-        onClick: this.handleItemClick,
-        selected: selectedIndex === i,
-        ...opt,
-        key: getKeyOrValue(opt.key, opt.value),
-        // Needed for handling click events on disabled items
-        style: { ...opt.style, pointerEvents: 'all' },
-      }),
+      DropdownItem.create(
+        {
+          active: isActive(opt.value),
+          selected: selectedIndex === i,
+          ...opt,
+          key: getKeyOrValue(opt.key, opt.value),
+          // Needed for handling click events on disabled items
+          style: { ...opt.style, pointerEvents: 'all' },
+        },
+        {
+          generateKey: false,
+          overrideProps: (predefinedProps) => ({
+            onClick: (e, item) => {
+              predefinedProps.onClick?.(e, item)
+              this.handleItemClick(e, item)
+            },
+          }),
+        },
+      ),
     )
   }
 

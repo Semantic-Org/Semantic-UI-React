@@ -9,7 +9,9 @@ export interface FormButtonProps extends StrictFormButtonProps {
   [key: string]: any
 }
 
-export interface StrictFormButtonProps extends StrictFormFieldProps, StrictButtonProps {
+export interface StrictFormButtonProps
+  extends StrictFormFieldProps,
+    Omit<StrictButtonProps, 'type'> {
   /** An element type to render as (string or function). */
   as?: any
 

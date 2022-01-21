@@ -196,8 +196,8 @@ class Portal extends Component {
   close = (e) => {
     debug('close()')
 
-    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
     this.setState({ open: false })
+    _.invoke(this.props, 'onClose', e, { ...this.props, open: false })
   }
 
   closeWithTimeout = (e, delay) => {

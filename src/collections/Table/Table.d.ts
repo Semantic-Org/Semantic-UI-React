@@ -28,7 +28,7 @@ export interface StrictTableProps {
   /** A table can reduce its complexity to increase readability. */
   basic?: boolean | 'very'
 
-  /** A table may be divided each row into separate cells. */
+  /** A table may be divided into individual cells. */
   celled?: boolean | 'internally'
 
   /** Primary content. */
