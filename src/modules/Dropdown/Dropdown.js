@@ -279,6 +279,7 @@ export default class Dropdown extends Component {
 
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
+    // prevent selecting disabled items
     if (_.isNil(selectedValue) || !open || disabled) {
       return value
     }

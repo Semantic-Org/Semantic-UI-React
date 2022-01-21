@@ -2278,6 +2278,25 @@ describe('Dropdown', () => {
 
       wrapper.should.have.state('focus', true)
     })
+
+    it('does not selected "disabled" item after blur', () => {
+      const customOptions = [
+        { key: 'foo', text: 'foo', value: 'foo' },
+        { key: 'bar', text: 'bar', value: 'bar', disabled: true },
+      ]
+
+      wrapperMount(<Dropdown options={customOptions} selection search />)
+
+      wrapper.simulate('focus')
+      dropdownMenuIsOpen()
+
+      wrapper.find('input.search').simulate('change', { target: { value: 'bar' } })
+      wrapper.find('input.search').getDOMNode().blur()
+      wrapper.simulate('blur')
+
+      dropdownMenuIsClosed()
+      wrapper.find('.item.disabled').should.have.not.className('selected')
+    })
   })
 
   describe('searchInput', () => {
