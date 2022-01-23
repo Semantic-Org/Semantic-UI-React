@@ -13,6 +13,8 @@ import {
 
 /**
  * Visibility provides a set of callbacks for when a content appears in the viewport.
+ *
+ * @deprecated This component is deprecated and will be removed in next major release.
  */
 export default class Visibility extends Component {
   calculations = {

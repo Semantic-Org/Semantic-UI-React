@@ -107,7 +107,7 @@ export default async () => {
           exampleSources,
           sidebarSections,
           displayName: 'Ref',
-          deprecated: false,
+          deprecated: true,
           seeTags: [],
         }
       },
