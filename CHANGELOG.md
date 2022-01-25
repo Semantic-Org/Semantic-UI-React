@@ -1,5 +1,28 @@
 # Change Log
 
+## v2.1.0 (2022-01-25)
+
+#### :rocket: New Feature
+* [#4282](https://github.com/Semantic-Org/Semantic-UI-React/pull/4282) feat(Search): add "placeholder" & documentation ([@rohanrav](https://github.com/rohanrav))
+
+#### :bug: Bug Fix
+* [#4199](https://github.com/Semantic-Org/Semantic-UI-React/pull/4199) fix(Dropdown): do not select disabled items on blur ([@tiangueu-cesar](https://github.com/tiangueu-cesar))
+* [#4322](https://github.com/Semantic-Org/Semantic-UI-React/pull/4322) fix(Dropdown): handle "onClick" on options ([@layershifter](https://github.com/layershifter))
+* [#4321](https://github.com/Semantic-Org/Semantic-UI-React/pull/4321) fix(Button): handle `type` properly ([@layershifter](https://github.com/layershifter))
+* [#4309](https://github.com/Semantic-Org/Semantic-UI-React/pull/4309) fix(Search): type definition for layout renderer ([@bhbs](https://github.com/bhbs))
+
+#### :memo: Documentation
+* [#4319](https://github.com/Semantic-Org/Semantic-UI-React/pull/4319) docs(Modal): fix minor confirm modal typo ([@cmcode-dev](https://github.com/cmcode-dev))
+* [#4317](https://github.com/Semantic-Org/Semantic-UI-React/pull/4317) docs(TextArea): fix verbiage in TextArea docs ([@cmcode-dev](https://github.com/cmcode-dev))
+* [#4291](https://github.com/Semantic-Org/Semantic-UI-React/pull/4291) docs(Modal): update props' description ([@bonellia](https://github.com/bonellia))
+* [#4195](https://github.com/Semantic-Org/Semantic-UI-React/pull/4195) docs(Embed): fix typo ([@Hypnosphi](https://github.com/Hypnosphi))
+* [#4278](https://github.com/Semantic-Org/Semantic-UI-React/pull/4278) docs(MenuExampleStackable): Adding alt for logo ([@akhil-naidu](https://github.com/akhil-naidu))
+* [#4311](https://github.com/Semantic-Org/Semantic-UI-React/pull/4311) docs: change links from google.com to example.com ([@kotoko](https://github.com/kotoko))
+* [#4297](https://github.com/Semantic-Org/Semantic-UI-React/pull/4297) docs(theming) list semantic-ui-less in dependencies ([@natanlao](https://github.com/natanlao))
+
+#### :house: Internal
+* [#4316](https://github.com/Semantic-Org/Semantic-UI-React/pull/4316) chore: bump Percy, Puppeteer & caniuse-lite ([@layershifter](https://github.com/layershifter))
+
 ## v2.0.4 (2021-09-23)
 
 #### :bug: Bug Fix
