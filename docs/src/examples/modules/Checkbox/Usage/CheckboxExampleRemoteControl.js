@@ -1,20 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button, Checkbox } from 'semantic-ui-react'
 
-export default class CheckboxExampleRemoteControl extends Component {
-  state = { checked: false }
-  toggle = () => this.setState((prevState) => ({ checked: !prevState.checked }))
+function CheckboxExampleRemoteControl() {
+  const [checked, setChecked] = React.useState(false)
 
-  render() {
-    return (
-      <div>
-        <Button onClick={this.toggle}>Toggle it</Button>
-        <Checkbox
-          label='Check this box'
-          onChange={this.toggle}
-          checked={this.state.checked}
-        />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Button onClick={() => setChecked((prevChecked) => !prevChecked)}>
+        Toggle it
+      </Button>
+      <Checkbox
+        label='Check this box'
+        onChange={(e, data) => setChecked(data.checked)}
+        checked={checked}
+      />
+    </div>
+  )
 }
+
+export default CheckboxExampleRemoteControl
