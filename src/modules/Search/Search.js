@@ -678,7 +678,6 @@ Search.defaultProps = {
   minCharacters: 1,
   noResultsMessage: 'No results found.',
   showNoResults: true,
-  placeholder: '',
 }
 
 Search.autoControlledProps = ['open', 'value']
