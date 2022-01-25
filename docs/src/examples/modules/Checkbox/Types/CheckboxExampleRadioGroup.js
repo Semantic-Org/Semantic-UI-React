@@ -3,7 +3,6 @@ import { Form, Checkbox } from 'semantic-ui-react'
 
 function CheckboxExampleRadioGroup() {
   const [value, setValue] = React.useState('this')
-  const handleChange = (e, data) => setValue({ value: data.value })
 
   return (
     <Form>
@@ -17,7 +16,7 @@ function CheckboxExampleRadioGroup() {
           name='checkboxRadioGroup'
           value='this'
           checked={value === 'this'}
-          onChange={handleChange}
+          onChange={(e, data) => setValue(data.value)}
         />
       </Form.Field>
       <Form.Field>
@@ -27,7 +26,7 @@ function CheckboxExampleRadioGroup() {
           name='checkboxRadioGroup'
           value='that'
           checked={value === 'that'}
-          onChange={handleChange}
+          onChange={(e, data) => setValue(data.value)}
         />
       </Form.Field>
     </Form>
