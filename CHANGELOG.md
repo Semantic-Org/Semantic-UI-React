@@ -1,5 +1,13 @@
 # Change Log
 
+## v2.1.1 (2022-01-25)
+
+#### :bug: Bug Fix
+* [#4327](https://github.com/Semantic-Org/Semantic-UI-React/pull/4327) fix(Search): remove "placeholder" from "defaultProps" ([@layershifter](https://github.com/layershifter))
+
+#### :memo: Documentation
+* [#4328](https://github.com/Semantic-Org/Semantic-UI-React/pull/4328) docs(Checkbox): minor rework to use hooks, better show controlled mode ([@layershifter](https://github.com/layershifter))
+
 ## v2.1.0 (2022-01-25)
 
 #### :rocket: New Feature
