@@ -28,6 +28,7 @@ const shorthandComponentName = (ShorthandComponent) => {
  * @param {function} options.mapValueToProps A function that maps a primitive value to the Component props.
  * @param {Boolean} [options.parentIsFragment=false] A flag that shows the type of the Component to test.
  * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {boolean} [options.rendersPortal=false] Does this component render a Portal powered component?
  * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
  * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
@@ -38,6 +39,7 @@ export default (Component, options = {}) => {
     autoGenerateKey = true,
     mapValueToProps,
     parentIsFragment = false,
+    rendersPortal = false,
     propKey,
     ShorthandComponent,
     shorthandDefaultProps = {},
@@ -79,7 +81,7 @@ export default (Component, options = {}) => {
         shallow(<Component {...requiredProps} />).should.have.descendants(ShorthandComponent)
       })
     } else {
-      if (!parentIsFragment) {
+      if (!parentIsFragment && !rendersPortal) {
         noDefaultClassNameFromProp(Component, propKey, [], options)
       }
 
