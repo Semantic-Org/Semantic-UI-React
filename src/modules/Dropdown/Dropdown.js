@@ -64,7 +64,11 @@ function renderItemContent(item) {
  * @see Select
  * @see Menu
  */
-export default class Dropdown extends Component {
+const Dropdown = React.forwardRef((props, ref) => {
+  return <DropdownInner {...props} innerRef={ref} />
+})
+
+class DropdownInner extends Component {
   searchRef = createRef()
   sizerRef = createRef()
   ref = createRef()
@@ -1431,6 +1435,7 @@ Dropdown.propTypes = {
   wrapSelection: PropTypes.bool,
 }
 
+Dropdown.displayName = 'Dropdown'
 Dropdown.defaultProps = {
   additionLabel: 'Add ',
   additionPosition: 'top',
@@ -1448,7 +1453,12 @@ Dropdown.defaultProps = {
   wrapSelection: true,
 }
 
-Dropdown.autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
+DropdownInner.autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
+
+if (process.env.NODE_ENV !== 'production') {
+  DropdownInner.defaultProps = Dropdown.defaultProps
+  DropdownInner.propTypes = Dropdown.propTypes
+}
 
 Dropdown.Divider = DropdownDivider
 Dropdown.Header = DropdownHeader
@@ -1456,3 +1466,5 @@ Dropdown.Item = DropdownItem
 Dropdown.Menu = DropdownMenu
 Dropdown.SearchInput = DropdownSearchInput
 Dropdown.Text = DropdownText
+
+export default Dropdown
