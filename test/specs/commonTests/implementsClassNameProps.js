@@ -56,8 +56,9 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
       const element = React.createElement(Component, { ...requiredProps, [propKey]: true })
       const wrapper = mount(element)
 
+      // ".should.have.className" with "mount" renderer does not handle properly cases when "className" contains
+      // multiple classes. That's why ".split()" is required.
       className.split(' ').forEach((classNamePart) => {
-        // TODO: Sidebar
         wrapper.childAt(0).should.have.className(classNamePart)
       })
     })

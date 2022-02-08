@@ -10,6 +10,8 @@ const getUnhandledProps = (Component, props) => {
   const { handledProps = [] } = Component
 
   return Object.keys(props).reduce((acc, prop) => {
+    // "childKey" and "innerRef" are internal props of Semantic UI React
+    // "innerRef" can be removed when "Search" & "Dropdown components will be removed to be functional
     if (prop === 'childKey' || prop === 'innerRef') return acc
     if (handledProps.indexOf(prop) === -1) acc[prop] = props[prop]
     return acc

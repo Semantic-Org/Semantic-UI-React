@@ -103,16 +103,25 @@ describe('Search', () => {
   })
 
   describe('isMouseDown', () => {
-    // TODO: find out how to test this
-    // it('tracks when the mouse is down', () => {
-    //   wrapperMount(<Search />).simulate('mousedown')
-    //
-    //   wrapper.instance().isMouseDown.should.equal(true)
-    //
-    //   domEvent.mouseUp(document)
-    //
-    //   wrapper.instance().isMouseDown.should.equal(false)
-    // })
+    it('tracks when the mouse is down', () => {
+      // To understand this test please check componentDidUpdate() on Search component
+      wrapperMount(<Search minCharacters={0} />)
+      searchResultsIsClosed()
+
+      // When ".isMouseDown === false" a focus event will not open Search results
+      wrapper.simulate('mousedown')
+      wrapper.simulate('focus')
+      searchResultsIsClosed()
+
+      // Reset to default component state
+      wrapper.simulate('blur')
+      domEvent.mouseUp(document.body)
+
+      // When ".isMouseDown === true" a focus event will open Search results
+      wrapper.simulate('mouseup')
+      wrapper.simulate('focus')
+      searchResultsIsOpen()
+    })
   })
 
   describe('icon', () => {
