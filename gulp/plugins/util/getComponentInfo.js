@@ -18,6 +18,7 @@ const getComponentInfo = (filepath) => {
   const filename = path.basename(absPath)
   const filenameWithoutExt = path.basename(absPath, path.extname(absPath))
 
+  const componentName = path.parse(filename).name
   // singular form of the component's ../../ directory
   // "element" for "src/elements/Button/Button.js"
   const componentType = path.basename(path.dirname(dir)).replace(/s$/, '')
@@ -27,18 +28,21 @@ const getComponentInfo = (filepath) => {
     ...defaultHandlers,
     parserCustomHandler,
   ])
+
   if (!components.length) {
     throw new Error(`Could not find a component definition in "${filepath}".`)
   }
-  if (components.length > 1) {
+
+  const info = components.find((component) => component.displayName === componentName)
+
+  if (!info) {
     throw new Error(
       [
-        `Found more than one component definition in "${filepath}".`,
-        'This is currently not supported, please ensure your module only defines a single React component.',
+        `Failed to find a component definition for "${componentName}" in "${filepath}".`,
+        'Please ensure your module defines matching React component.',
       ].join(' '),
     )
   }
-  const info = components[0]
 
   // remove keys we don't use
   delete info.methods

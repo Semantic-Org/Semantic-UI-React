@@ -1,4 +1,4 @@
-import { createElement } from 'react'
+import React from 'react'
 import _ from 'lodash'
 
 import { consoleUtil } from 'test/utils'
@@ -37,12 +37,11 @@ export const propKeyAndValueToClassName = (Component, propKey, propValues, optio
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.className=propKey] The className to assert exists.
- * @param {Number} [options.nestingLevel=0] The nesting level of the component.
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {Object} [options.className=propKey] The className to assert exists.
  */
 export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
-  const { className = propKey, nestingLevel = 0, requiredProps = {} } = options
+  const { className = propKey, requiredProps = {} } = options
   const { assertRequired } = helpers('propKeyOnlyToClassName', Component)
 
   describe(`${propKey} (common)`, () => {
@@ -53,20 +52,25 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
 
     it('adds prop name to className', () => {
       consoleUtil.disableOnce()
-      shallow(createElement(Component, { ...requiredProps, [propKey]: true }), {
-        autoNesting: true,
-        nestingLevel,
-      }).should.have.className(className)
+
+      const element = React.createElement(Component, { ...requiredProps, [propKey]: true })
+      const wrapper = mount(element)
+
+      // ".should.have.className" with "mount" renderer does not handle properly cases when "className" contains
+      // multiple classes. That's why ".split()" is required.
+      className.split(' ').forEach((classNamePart) => {
+        wrapper.childAt(0).should.have.className(classNamePart)
+      })
     })
 
     it('does not add prop value to className', () => {
       consoleUtil.disableOnce()
 
       const value = 'foo-bar-baz'
-      shallow(createElement(Component, { ...requiredProps, [propKey]: value }), {
-        autoNesting: true,
-        nestingLevel,
-      }).should.not.have.className(value)
+      const element = React.createElement(Component, { ...requiredProps, [propKey]: value })
+      const wrapper = mount(element)
+
+      wrapper.childAt(0).should.not.have.className(value)
     })
   })
 }
@@ -96,13 +100,15 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
     })
 
     it('adds only the name to className when true', () => {
-      shallow(createElement(Component, { ...requiredProps, [propKey]: true }), {
+      shallow(React.createElement(Component, { ...requiredProps, [propKey]: true }), {
         autoNesting: true,
       }).should.have.className(className)
     })
 
     it('adds no className when false', () => {
-      const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: false }))
+      const wrapper = shallow(
+        React.createElement(Component, { ...requiredProps, [propKey]: false }),
+      )
 
       wrapper.should.not.have.className(className)
       wrapper.should.not.have.className('true')
@@ -138,7 +144,7 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
 
     it('adds prop value to className', () => {
       propValues.forEach((propValue) => {
-        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }), {
+        shallow(React.createElement(Component, { ...requiredProps, [propKey]: propValue }), {
           autoNesting: true,
           nestingLevel,
         }).should.have.className(propValue)
@@ -149,7 +155,7 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
       consoleUtil.disableOnce()
 
       propValues.forEach((propValue) => {
-        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }), {
+        shallow(React.createElement(Component, { ...requiredProps, [propKey]: propValue }), {
           autoNesting: true,
           nestingLevel,
         }).should.not.have.className(propKey)
