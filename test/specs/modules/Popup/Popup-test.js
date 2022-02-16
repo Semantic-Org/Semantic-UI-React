@@ -162,6 +162,24 @@ describe('Popup', () => {
       onClose.should.have.been.calledOnce()
       onClose.should.have.been.calledWithMatch({}, { content: 'foo', onClose, trigger })
     })
+
+    it('not hide on scroll from inside a popup', () => {
+      const onClose = sandbox.spy()
+      const child = <div data-child />
+
+      wrapperMount(
+        <Popup hideOnScroll onClose={onClose} trigger={trigger}>
+          {child}
+        </Popup>,
+      )
+      wrapper.find('button').simulate('click')
+
+      domEvent.scroll(document.querySelector('[data-child]'))
+      onClose.should.not.have.been.called()
+
+      domEvent.scroll(window)
+      onClose.should.have.been.calledOnce()
+    })
   })
 
   describe('hoverable', () => {

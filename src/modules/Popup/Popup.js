@@ -36,6 +36,7 @@ export default class Popup extends Component {
   zIndexWasSynced = false
 
   triggerRef = React.createRef()
+  elementRef = React.createRef()
 
   static getDerivedStateFromProps(props, state) {
     if (state.closed || state.disabled) return {}
@@ -101,6 +102,12 @@ export default class Popup extends Component {
   }
 
   hideOnScroll = (e) => {
+    // Do not hide the popup when scroll comes from inside the popup
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/4305
+    if (_.isElement(e.target) && this.elementRef.current.contains(e.target)) {
+      return
+    }
+
     debug('hideOnScroll()')
     this.setState({ closed: true })
 
@@ -179,7 +186,7 @@ export default class Popup extends Component {
     }
 
     const innerElement = (
-      <ElementType {...contentRestProps} className={classes} style={styles}>
+      <ElementType {...contentRestProps} className={classes} style={styles} ref={this.elementRef}>
         {childrenUtils.isNil(children) ? (
           <>
             {PopupHeader.create(header, { autoGenerateKey: false })}
