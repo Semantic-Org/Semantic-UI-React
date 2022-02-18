@@ -118,7 +118,6 @@ describe('Search', () => {
       domEvent.mouseUp(document.body)
 
       // When ".isMouseDown === true" a focus event will open Search results
-      wrapper.simulate('mouseup')
       wrapper.simulate('focus')
       searchResultsIsOpen()
     })
