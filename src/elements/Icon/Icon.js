@@ -148,15 +148,15 @@ Icon.propTypes = {
   'aria-label': PropTypes.string,
 }
 
-Icon.defaultProps = {
-  as: 'i',
-}
-
 // Heads up!
 // .create() factories should be defined on exported component to be visible as static properties
 const MemoIcon = React.memo(Icon)
 
 MemoIcon.Group = IconGroup
 MemoIcon.create = createShorthandFactory(MemoIcon, (value) => ({ name: value }))
+
+MemoIcon.defaultProps = {
+  as: 'i',
+}
 
 export default MemoIcon

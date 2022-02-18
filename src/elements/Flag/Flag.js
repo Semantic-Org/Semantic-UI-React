@@ -530,14 +530,13 @@ Flag.propTypes = {
   name: customPropTypes.suggest(names),
 }
 
-Flag.defaultProps = {
-  as: 'i',
-}
-
 // Heads up!
 // .create() factories should be defined on exported component to be visible as static properties
 const MemoFlag = React.memo(Flag)
 
 MemoFlag.create = createShorthandFactory(MemoFlag, (value) => ({ name: value }))
+MemoFlag.defaultProps = {
+  as: 'i',
+}
 
 export default MemoFlag
