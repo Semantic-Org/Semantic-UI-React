@@ -32,12 +32,14 @@ describe('Confirm', () => {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: Modal.Header,
+    rendersPortal: true,
     mapValueToProps: (content) => ({ content }),
   })
   common.implementsShorthandProp(Confirm, {
     autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: Modal.Content,
+    rendersPortal: true,
     mapValueToProps: (content) => ({ content }),
   })
 
