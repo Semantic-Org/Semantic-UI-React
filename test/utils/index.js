@@ -1,4 +1,3 @@
-export assertBodyClasses from './assertBodyClasses'
 export * from './assertNodeContains'
 export assertWithTimeout from './assertWithTimeout'
 export consoleUtil from './consoleUtil'
