@@ -22,6 +22,7 @@ describe('DropdownItem', () => {
   common.implementsImageProp(DropdownItem, { autoGenerateKey: false })
 
   common.implementsShorthandProp(DropdownItem, {
+    assertExactMatch: false,
     autoGenerateKey: false,
     propKey: 'flag',
     ShorthandComponent: Flag,

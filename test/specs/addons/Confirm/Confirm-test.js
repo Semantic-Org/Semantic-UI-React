@@ -34,6 +34,7 @@ describe('Confirm', () => {
     ShorthandComponent: Modal.Header,
     rendersPortal: true,
     mapValueToProps: (content) => ({ content }),
+    requiredProps: { open: true },
   })
   common.implementsShorthandProp(Confirm, {
     autoGenerateKey: false,
@@ -41,6 +42,7 @@ describe('Confirm', () => {
     ShorthandComponent: Modal.Content,
     rendersPortal: true,
     mapValueToProps: (content) => ({ content }),
+    requiredProps: { open: true },
   })
 
   describe('children', () => {
