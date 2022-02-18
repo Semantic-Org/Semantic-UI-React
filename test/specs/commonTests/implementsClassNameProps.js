@@ -55,12 +55,11 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
 
       const element = React.createElement(Component, { ...requiredProps, [propKey]: true })
       const wrapper = mount(element)
+      const elementClassName = wrapper.childAt(0).getDOMNode().className
 
       // ".should.have.className" with "mount" renderer does not handle properly cases when "className" contains
-      // multiple classes. That's why ".split()" is required.
-      className.split(' ').forEach((classNamePart) => {
-        wrapper.childAt(0).should.have.className(classNamePart)
-      })
+      // multiple classes.
+      expect(elementClassName).include(className)
     })
 
     it('does not add prop value to className', () => {
@@ -100,15 +99,13 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
     })
 
     it('adds only the name to className when true', () => {
-      shallow(React.createElement(Component, { ...requiredProps, [propKey]: true }), {
-        autoNesting: true,
-      }).should.have.className(className)
+      const wrapper = mount(React.createElement(Component, { ...requiredProps, [propKey]: true }))
+
+      wrapper.should.have.className(className)
     })
 
     it('adds no className when false', () => {
-      const wrapper = shallow(
-        React.createElement(Component, { ...requiredProps, [propKey]: false }),
-      )
+      const wrapper = mount(React.createElement(Component, { ...requiredProps, [propKey]: false }))
 
       wrapper.should.not.have.className(className)
       wrapper.should.not.have.className('true')
