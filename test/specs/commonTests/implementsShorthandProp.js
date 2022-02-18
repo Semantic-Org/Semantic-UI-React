@@ -58,6 +58,12 @@ export default (Component, options = {}) => {
       : options.ShorthandComponent
 
   describe(`${propKey} shorthand prop (common)`, () => {
+    let wrapper
+
+    afterEach(() => {
+      if (wrapper && wrapper.unmount) wrapper.unmount()
+    })
+
     assertRequired(Component, 'a `Component`')
     assertRequired(_.isPlainObject(options), 'an `options` object')
     assertRequired(propKey, 'a `propKey`')
@@ -70,7 +76,7 @@ export default (Component, options = {}) => {
         overrideProps: shorthandOverrideProps,
         autoGenerateKey,
       })
-      const wrapper = mount(React.createElement(Component, { ...requiredProps, [propKey]: value }))
+      wrapper = mount(React.createElement(Component, { ...requiredProps, [propKey]: value }))
 
       const result = wrapper.find(ShorthandComponent)
 
@@ -86,7 +92,7 @@ export default (Component, options = {}) => {
 
     if (alwaysPresent || (Component.defaultProps && Component.defaultProps[propKey])) {
       it(`has default ${name} when not defined`, () => {
-        const wrapper = mount(React.createElement(Component, requiredProps))
+        wrapper = mount(React.createElement(Component, requiredProps))
 
         wrapper.should.have.descendants(ShorthandComponent)
       })
@@ -96,7 +102,7 @@ export default (Component, options = {}) => {
       }
 
       it(`has no ${name} when not defined`, () => {
-        const wrapper = mount(React.createElement(Component, requiredProps))
+        wrapper = mount(React.createElement(Component, requiredProps))
 
         wrapper.should.not.have.descendants(ShorthandComponent)
       })
@@ -105,7 +111,7 @@ export default (Component, options = {}) => {
     if (!alwaysPresent) {
       it(`has no ${name} when null`, () => {
         const element = React.createElement(Component, { ...requiredProps, [propKey]: null })
-        const wrapper = mount(element)
+        wrapper = mount(element)
 
         wrapper.should.not.have.descendants(ShorthandComponent)
       })
