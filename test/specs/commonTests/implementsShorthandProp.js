@@ -44,12 +44,14 @@ export default (Component, options = {}) => {
     propKey,
     shorthandDefaultProps = {},
     shorthandOverrideProps = {},
-    rendersPortal = false,
     requiredProps = {},
   } = options
   const { assertRequired } = helpers('implementsShorthandProp', Component)
 
   const assertMethod = assertExactMatch ? 'equals' : 'matchesElement'
+  // Heads up!
+  // Enzyme does handle properly React.memo() in find and always returns inner component
+  // That's why we should unwrap it, otherwise "wrapper.find(Component)" is not equal to "Component" 💥
   const ShorthandComponent =
     options.ShorthandComponent.$$typeof === ReactIs.Memo
       ? options.ShorthandComponent.type
