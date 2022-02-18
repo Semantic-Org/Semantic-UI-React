@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import React, { createElement } from 'react'
+import React from 'react'
+import ReactIs from 'react-is'
 
 import { createShorthand } from 'src/lib'
 import { consoleUtil, getComponentName } from 'test/utils'
@@ -41,15 +42,28 @@ export default (Component, options = {}) => {
     parentIsFragment = false,
     rendersPortal = false,
     propKey,
-    ShorthandComponent,
     shorthandDefaultProps = {},
     shorthandOverrideProps = {},
     requiredProps = {},
   } = options
   const { assertRequired } = helpers('implementsShorthandProp', Component)
-  const assertMethod = assertExactMatch ? 'contain' : 'containMatchingElement'
+
+  const assertMethod = assertExactMatch ? 'equals' : 'matchesElement'
+  // Heads up!
+  // Enzyme does handle properly React.memo() in find and always returns inner component
+  // That's why we should unwrap it, otherwise "wrapper.find(Component)" is not equal to "Component" 💥
+  const ShorthandComponent =
+    options.ShorthandComponent.$$typeof === ReactIs.Memo
+      ? options.ShorthandComponent.type
+      : options.ShorthandComponent
 
   describe(`${propKey} shorthand prop (common)`, () => {
+    let wrapper
+
+    afterEach(() => {
+      if (wrapper && wrapper.unmount) wrapper.unmount()
+    })
+
     assertRequired(Component, 'a `Component`')
     assertRequired(_.isPlainObject(options), 'an `options` object')
     assertRequired(propKey, 'a `propKey`')
@@ -62,23 +76,25 @@ export default (Component, options = {}) => {
         overrideProps: shorthandOverrideProps,
         autoGenerateKey,
       })
-      const element = createElement(Component, { ...requiredProps, [propKey]: value })
-      const wrapper = shallow(element)
+      wrapper = mount(React.createElement(Component, { ...requiredProps, [propKey]: value }))
 
-      wrapper.should[assertMethod](expectedShorthandElement)
+      const result = wrapper.find(ShorthandComponent)
+
+      expect(result[assertMethod](expectedShorthandElement)).to.equal(true)
 
       // Enzyme's .key() method is not consistent with React for elements with
       // no key (`undefined` vs `null`), so use the underlying element instead
       // Will fail if more than one element of this type is found
       if (autoGenerateKey) {
-        const shorthandElement = wrapper.find(ShorthandComponent).getElement()
-        expect(shorthandElement.key).to.equal(expectedShorthandElement.key, "key doesn't match")
+        expect(result.getElement().key).to.equal(expectedShorthandElement.key, "key doesn't match")
       }
     }
 
     if (alwaysPresent || (Component.defaultProps && Component.defaultProps[propKey])) {
       it(`has default ${name} when not defined`, () => {
-        shallow(<Component {...requiredProps} />).should.have.descendants(ShorthandComponent)
+        wrapper = mount(React.createElement(Component, requiredProps))
+
+        wrapper.should.have.descendants(ShorthandComponent)
       })
     } else {
       if (!parentIsFragment && !rendersPortal) {
@@ -86,15 +102,18 @@ export default (Component, options = {}) => {
       }
 
       it(`has no ${name} when not defined`, () => {
-        shallow(<Component {...requiredProps} />).should.not.have.descendants(ShorthandComponent)
+        wrapper = mount(React.createElement(Component, requiredProps))
+
+        wrapper.should.not.have.descendants(ShorthandComponent)
       })
     }
 
     if (!alwaysPresent) {
       it(`has no ${name} when null`, () => {
-        shallow(
-          createElement(Component, { ...requiredProps, [propKey]: null }),
-        ).should.not.have.descendants(ShorthandComponent)
+        const element = React.createElement(Component, { ...requiredProps, [propKey]: null })
+        wrapper = mount(element)
+
+        wrapper.should.not.have.descendants(ShorthandComponent)
       })
     }
 

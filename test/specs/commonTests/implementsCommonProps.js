@@ -110,6 +110,7 @@ export const implementsHTMLLabelProp = (Component, options = {}) => {
  */
 export const implementsIconProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
+    assertExactMatch: false,
     propKey: 'icon',
     ShorthandComponent: Icon,
     mapValueToProps: (val) => ({ name: val }),
