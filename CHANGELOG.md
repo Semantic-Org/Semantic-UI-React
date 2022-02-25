@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.1.2 (2022-02-17)
+
+#### :bug: Bug Fix
+* [#4337](https://github.com/Semantic-Org/Semantic-UI-React/pull/4337) fix(Popup): do not hide Popup with "hideOnScroll" when scroll comes from inside the Popup ([@oskarwrobel](https://github.com/oskarwrobel))
+
 ## v2.1.1 (2022-01-25)
 
 #### :bug: Bug Fix
