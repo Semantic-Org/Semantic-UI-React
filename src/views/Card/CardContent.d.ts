@@ -38,6 +38,6 @@ export interface StrictCardContentProps {
   textAlign?: 'center' | 'left' | 'right'
 }
 
-declare const CardContent: React.StatelessComponent<CardContentProps>
+declare const CardContent: React.FC<CardContentProps>
 
 export default CardContent

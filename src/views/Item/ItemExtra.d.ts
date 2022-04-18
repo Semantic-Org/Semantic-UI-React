@@ -19,6 +19,6 @@ export interface StrictItemExtraProps {
   content?: SemanticShorthandContent
 }
 
-declare const ItemExtra: React.StatelessComponent<ItemExtraProps>
+declare const ItemExtra: React.FC<ItemExtraProps>
 
 export default ItemExtra

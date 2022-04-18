@@ -19,6 +19,6 @@ export interface StrictPopupHeaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const PopupHeader: React.StatelessComponent<PopupHeaderProps>
+declare const PopupHeader: React.FC<PopupHeaderProps>
 
 export default PopupHeader

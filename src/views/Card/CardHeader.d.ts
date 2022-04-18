@@ -22,6 +22,6 @@ export interface StrictCardHeaderProps {
   textAlign?: 'center' | 'left' | 'right'
 }
 
-declare const CardHeader: React.StatelessComponent<CardHeaderProps>
+declare const CardHeader: React.FC<CardHeaderProps>
 
 export default CardHeader

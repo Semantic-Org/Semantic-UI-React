@@ -44,6 +44,6 @@ export interface StrictStatisticGroupProps {
   widths?: SemanticWIDTHS
 }
 
-declare const StatisticGroup: React.StatelessComponent<StatisticGroupProps>
+declare const StatisticGroup: React.FC<StatisticGroupProps>
 
 export default StatisticGroup

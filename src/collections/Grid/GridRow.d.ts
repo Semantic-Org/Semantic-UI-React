@@ -51,6 +51,6 @@ export interface StrictGridRowProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-declare const GridRow: React.StatelessComponent<GridRowProps>
+declare const GridRow: React.FC<GridRowProps>
 
 export default GridRow

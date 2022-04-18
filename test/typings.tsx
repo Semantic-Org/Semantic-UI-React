@@ -32,7 +32,7 @@ export const ShorthandItemFuncAssert = () => (
         ),
       }}
     />
-    <Button label={{ children: <div className='bar' /> }} />
+    <Button label={{ children: () => <div className='bar' /> }} />
   </>
 )
 

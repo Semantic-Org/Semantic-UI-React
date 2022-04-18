@@ -39,6 +39,6 @@ export interface StrictListContentProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-declare const ListContent: React.StatelessComponent<ListContentProps>
+declare const ListContent: React.FC<ListContentProps>
 
 export default ListContent

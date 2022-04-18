@@ -30,7 +30,7 @@ export interface StrictPlaceholderProps {
   inverted?: boolean
 }
 
-interface PlaceholderComponent extends React.StatelessComponent<PlaceholderProps> {
+interface PlaceholderComponent extends React.FC<PlaceholderProps> {
   Header: typeof PlaceholderHeader
   Line: typeof PlaceholderLine
   Image: typeof PlaceholderImage

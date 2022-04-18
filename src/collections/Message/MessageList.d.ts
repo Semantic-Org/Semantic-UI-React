@@ -21,6 +21,6 @@ export interface StrictMessageListProps {
   items?: SemanticShorthandCollection<MessageItemProps>
 }
 
-declare const MessageList: React.StatelessComponent<MessageListProps>
+declare const MessageList: React.FC<MessageListProps>
 
 export default MessageList

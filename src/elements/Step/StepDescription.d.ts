@@ -19,6 +19,6 @@ export interface StrictStepDescriptionProps {
   content?: SemanticShorthandContent
 }
 
-declare const StepDescription: React.StatelessComponent<StepDescriptionProps>
+declare const StepDescription: React.FC<StepDescriptionProps>
 
 export default StepDescription

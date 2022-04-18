@@ -19,6 +19,6 @@ export interface StrictCommentActionsProps {
   content?: SemanticShorthandContent
 }
 
-declare const CommentActions: React.StatelessComponent<CommentActionsProps>
+declare const CommentActions: React.FC<CommentActionsProps>
 
 export default CommentActions

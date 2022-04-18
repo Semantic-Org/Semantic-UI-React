@@ -15,6 +15,6 @@ export interface StrictSearchCategoryLayoutProps {
   resultsContent: React.ReactElement<any>
 }
 
-declare const SearchCategoryLayout: React.StatelessComponent<SearchCategoryLayoutProps>
+declare const SearchCategoryLayout: React.FC<SearchCategoryLayoutProps>
 
 export default SearchCategoryLayout

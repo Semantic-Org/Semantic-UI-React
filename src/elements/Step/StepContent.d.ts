@@ -28,6 +28,6 @@ export interface StrictStepContentProps {
   title?: SemanticShorthandItem<StepTitleProps>
 }
 
-declare const StepContent: React.StatelessComponent<StepContentProps>
+declare const StepContent: React.FC<StepContentProps>
 
 export default StepContent

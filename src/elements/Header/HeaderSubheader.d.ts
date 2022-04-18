@@ -19,6 +19,6 @@ export interface StrictHeaderSubheaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const HeaderSubHeader: React.StatelessComponent<HeaderSubheaderProps>
+declare const HeaderSubHeader: React.FC<HeaderSubheaderProps>
 
 export default HeaderSubHeader

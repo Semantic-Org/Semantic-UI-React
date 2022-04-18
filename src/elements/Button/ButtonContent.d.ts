@@ -25,6 +25,6 @@ export interface StrictButtonContentProps {
   visible?: boolean
 }
 
-declare const ButtonContent: React.StatelessComponent<ButtonContentProps>
+declare const ButtonContent: React.FC<ButtonContentProps>
 
 export default ButtonContent

@@ -19,6 +19,6 @@ export interface StrictStatisticLabelProps {
   content?: SemanticShorthandContent
 }
 
-declare const StatisticLabel: React.StatelessComponent<StatisticLabelProps>
+declare const StatisticLabel: React.FC<StatisticLabelProps>
 
 export default StatisticLabel

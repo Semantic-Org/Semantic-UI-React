@@ -19,6 +19,6 @@ export interface StrictLabelDetailProps {
   content?: SemanticShorthandContent
 }
 
-declare const LabelDetail: React.StatelessComponent<LabelDetailProps>
+declare const LabelDetail: React.FC<LabelDetailProps>
 
 export default LabelDetail

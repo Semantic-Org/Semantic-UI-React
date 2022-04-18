@@ -19,6 +19,6 @@ export interface StrictModalDescriptionProps {
   content?: SemanticShorthandContent
 }
 
-declare const ModalDescription: React.StatelessComponent<ModalDescriptionProps>
+declare const ModalDescription: React.FC<ModalDescriptionProps>
 
 export default ModalDescription

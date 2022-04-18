@@ -33,7 +33,9 @@ export interface StrictSearchCategoryProps {
    * @param {object} props - The SearchCategoryLayout props object.
    * @returns {*} - Renderable SearchCategory layout.
    */
-  layoutRenderer?: (props: Pick<SearchCategoryLayoutProps, 'categoryContent' | 'resultsContent'>) => React.ReactElement<any>
+  layoutRenderer?: (
+    props: Pick<SearchCategoryLayoutProps, 'categoryContent' | 'resultsContent'>,
+  ) => React.ReactElement<any>
 
   /**
    * Renders the category contents.
@@ -47,6 +49,6 @@ export interface StrictSearchCategoryProps {
   results?: typeof SearchResult[]
 }
 
-declare const SearchCategory: React.StatelessComponent<SearchCategoryProps>
+declare const SearchCategory: React.FC<SearchCategoryProps>
 
 export default SearchCategory

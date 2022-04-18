@@ -25,6 +25,6 @@ export interface StrictModalContentProps {
   scrolling?: boolean
 }
 
-declare const ModalContent: React.StatelessComponent<ModalContentProps>
+declare const ModalContent: React.FC<ModalContentProps>
 
 export default ModalContent

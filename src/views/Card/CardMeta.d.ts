@@ -22,6 +22,6 @@ export interface StrictCardMetaProps {
   textAlign?: 'center' | 'left' | 'right'
 }
 
-declare const CardMeta: React.StatelessComponent<CardMetaProps>
+declare const CardMeta: React.FC<CardMetaProps>
 
 export default CardMeta

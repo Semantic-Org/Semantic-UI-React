@@ -31,6 +31,6 @@ export interface StrictLabelGroupProps {
   tag?: boolean
 }
 
-declare const LabelGroup: React.StatelessComponent<LabelGroupProps>
+declare const LabelGroup: React.FC<LabelGroupProps>
 
 export default LabelGroup

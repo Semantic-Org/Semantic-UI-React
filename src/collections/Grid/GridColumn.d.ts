@@ -67,6 +67,6 @@ export interface StrictGridColumnProps {
   width?: SemanticWIDTHS
 }
 
-declare const GridColumn: React.StatelessComponent<GridColumnProps>
+declare const GridColumn: React.FC<GridColumnProps>
 
 export default GridColumn

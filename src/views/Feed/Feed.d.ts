@@ -32,7 +32,7 @@ export interface StrictFeedProps {
   size?: 'small' | 'large'
 }
 
-interface FeedComponent extends React.StatelessComponent<FeedProps> {
+interface FeedComponent extends React.FC<FeedProps> {
   Content: typeof FeedContent
   Date: typeof FeedDate
   Event: typeof FeedEvent

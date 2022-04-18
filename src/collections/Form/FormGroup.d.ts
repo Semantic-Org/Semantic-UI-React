@@ -28,6 +28,6 @@ export interface StrictFormGroupProps {
   widths?: SemanticWIDTHS | 'equal'
 }
 
-declare const FormGroup: React.StatelessComponent<FormGroupProps>
+declare const FormGroup: React.FC<FormGroupProps>
 
 export default FormGroup

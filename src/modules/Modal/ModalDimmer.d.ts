@@ -34,6 +34,6 @@ export interface StrictModalDimmerProps {
   scrolling?: boolean
 }
 
-declare const ModalDimmer: React.StatelessComponent<ModalDimmerProps>
+declare const ModalDimmer: React.FC<ModalDimmerProps>
 
 export default ModalDimmer

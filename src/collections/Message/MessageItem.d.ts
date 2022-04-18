@@ -19,6 +19,6 @@ export interface StrictMessageItemProps {
   content?: SemanticShorthandContent
 }
 
-declare const MessageItem: React.StatelessComponent<MessageItemProps>
+declare const MessageItem: React.FC<MessageItemProps>
 
 export default MessageItem

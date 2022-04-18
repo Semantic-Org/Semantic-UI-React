@@ -22,6 +22,6 @@ export interface StrictStatisticValueProps {
   text?: boolean
 }
 
-declare const StatisticValue: React.StatelessComponent<StatisticValueProps>
+declare const StatisticValue: React.FC<StatisticValueProps>
 
 export default StatisticValue

@@ -24,6 +24,6 @@ export interface StrictFeedMetaProps {
   like?: SemanticShorthandItem<FeedLikeProps>
 }
 
-declare const FeedMeta: React.StatelessComponent<FeedMetaProps>
+declare const FeedMeta: React.FC<FeedMetaProps>
 
 export default FeedMeta

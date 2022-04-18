@@ -43,6 +43,6 @@ export interface StrictCardGroupProps {
   textAlign?: 'center' | 'left' | 'right'
 }
 
-declare const CardGroup: React.StatelessComponent<CardGroupProps>
+declare const CardGroup: React.FC<CardGroupProps>
 
 export default CardGroup

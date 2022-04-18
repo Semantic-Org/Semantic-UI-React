@@ -19,6 +19,6 @@ export interface StrictCommentTextProps {
   content?: SemanticShorthandContent
 }
 
-declare const CommentText: React.StatelessComponent<CommentTextProps>
+declare const CommentText: React.FC<CommentTextProps>
 
 export default CommentText

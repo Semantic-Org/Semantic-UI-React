@@ -19,6 +19,6 @@ export interface StrictItemHeaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const ItemHeader: React.StatelessComponent<ItemHeaderProps>
+declare const ItemHeader: React.FC<ItemHeaderProps>
 
 export default ItemHeader

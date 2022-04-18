@@ -61,7 +61,7 @@ export interface StrictHeaderProps {
   textAlign?: SemanticTEXTALIGNMENTS
 }
 
-interface HeaderComponent extends React.StatelessComponent<HeaderProps> {
+interface HeaderComponent extends React.FC<HeaderProps> {
   Content: typeof HeaderContent
   Subheader: typeof HeaderSubHeader
 }

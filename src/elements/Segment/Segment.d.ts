@@ -89,7 +89,7 @@ export interface StrictSegmentProps {
   vertical?: boolean
 }
 
-interface SegmentComponent extends React.StatelessComponent<SegmentProps> {
+interface SegmentComponent extends React.FC<SegmentProps> {
   Group: typeof SegmentGroup
   Inline: typeof SegmentInline
 }

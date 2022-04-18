@@ -24,6 +24,6 @@ export interface StrictFormSelectProps extends StrictFormFieldProps, StrictSelec
   options: DropdownItemProps[]
 }
 
-declare const FormSelect: React.StatelessComponent<FormSelectProps>
+declare const FormSelect: React.FC<FormSelectProps>
 
 export default FormSelect

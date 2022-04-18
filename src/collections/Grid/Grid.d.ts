@@ -70,7 +70,7 @@ export interface StrictGridProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-interface GridComponent extends React.StatelessComponent<GridProps> {
+interface GridComponent extends React.FC<GridProps> {
   Column: typeof GridColumn
   Row: typeof GridRow
 }

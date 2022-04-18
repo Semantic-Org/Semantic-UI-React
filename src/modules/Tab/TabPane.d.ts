@@ -25,6 +25,6 @@ export interface StrictTabPaneProps {
   loading?: boolean
 }
 
-declare const TabPane: React.StatelessComponent<TabPaneProps>
+declare const TabPane: React.FC<TabPaneProps>
 
 export default TabPane

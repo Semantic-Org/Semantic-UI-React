@@ -22,6 +22,6 @@ export interface StrictAccordionContentProps {
   content?: SemanticShorthandContent
 }
 
-declare const AccordionContent: React.StatelessComponent<AccordionContentProps>
+declare const AccordionContent: React.FC<AccordionContentProps>
 
 export default AccordionContent

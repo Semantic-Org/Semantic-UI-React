@@ -19,6 +19,6 @@ export interface StrictSearchResultsProps {
   content?: SemanticShorthandContent
 }
 
-declare const SearchResults: React.StatelessComponent<SearchResultsProps>
+declare const SearchResults: React.FC<SearchResultsProps>
 
 export default SearchResults

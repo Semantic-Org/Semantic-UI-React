@@ -15,6 +15,6 @@ export interface StrictFormTextAreaProps extends StrictFormFieldProps, StrictTex
   control?: any
 }
 
-declare const FormTextArea: React.StatelessComponent<FormTextAreaProps>
+declare const FormTextArea: React.FC<FormTextAreaProps>
 
 export default FormTextArea

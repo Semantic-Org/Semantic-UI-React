@@ -58,7 +58,7 @@ export interface StrictFormProps {
   widths?: 'equal'
 }
 
-export interface FormComponent extends React.StatelessComponent<FormProps> {
+export interface FormComponent extends React.FC<FormProps> {
   Field: typeof FormField
   Button: typeof FormButton
   Checkbox: typeof FormCheckbox

@@ -25,6 +25,6 @@ export interface StrictRevealContentProps {
   visible?: boolean
 }
 
-declare const RevealContent: React.StatelessComponent<RevealContentProps>
+declare const RevealContent: React.FC<RevealContentProps>
 
 export default RevealContent

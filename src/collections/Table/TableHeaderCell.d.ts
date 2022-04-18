@@ -16,6 +16,6 @@ export interface StrictTableHeaderCellProps extends StrictTableCellProps {
   sorted?: 'ascending' | 'descending'
 }
 
-declare const TableHeaderCell: React.StatelessComponent<TableHeaderCellProps>
+declare const TableHeaderCell: React.FC<TableHeaderCellProps>
 
 export default TableHeaderCell

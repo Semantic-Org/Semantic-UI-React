@@ -19,8 +19,7 @@ export interface StrictPlaceholderParagraphProps {
   content?: SemanticShorthandContent
 }
 
-interface PlaceholderParagraphComponent
-  extends React.StatelessComponent<PlaceholderParagraphProps> {}
+interface PlaceholderParagraphComponent extends React.FC<PlaceholderParagraphProps> {}
 
 declare const PlaceholderParagraph: PlaceholderParagraphComponent
 

@@ -10,7 +10,7 @@ export interface FormButtonProps extends StrictFormButtonProps {
 }
 
 export interface StrictFormButtonProps
-  extends StrictFormFieldProps,
+  extends Omit<StrictFormFieldProps, 'label'>,
     Omit<StrictButtonProps, 'type'> {
   /** An element type to render as (string or function). */
   as?: any
@@ -22,6 +22,6 @@ export interface StrictFormButtonProps
   label?: SemanticShorthandItem<LabelProps>
 }
 
-declare const FormButton: React.StatelessComponent<FormButtonProps>
+declare const FormButton: React.FC<FormButtonProps>
 
 export default FormButton

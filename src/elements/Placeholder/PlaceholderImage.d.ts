@@ -18,7 +18,7 @@ export interface StrictPlaceholderImageProps {
   rectangular?: boolean
 }
 
-interface PlaceholderImageComponent extends React.StatelessComponent<PlaceholderImageProps> {}
+interface PlaceholderImageComponent extends React.FC<PlaceholderImageProps> {}
 
 declare const PlaceholderImage: PlaceholderImageComponent
 

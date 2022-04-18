@@ -19,6 +19,6 @@ export interface StrictItemDescriptionProps {
   content?: SemanticShorthandContent
 }
 
-declare const ItemDescription: React.StatelessComponent<ItemDescriptionProps>
+declare const ItemDescription: React.FC<ItemDescriptionProps>
 
 export default ItemDescription

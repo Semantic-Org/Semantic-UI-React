@@ -49,7 +49,7 @@ export interface StrictStatisticProps {
   value?: SemanticShorthandContent
 }
 
-interface StatisticComponent extends React.StatelessComponent<StatisticProps> {
+interface StatisticComponent extends React.FC<StatisticProps> {
   Group: typeof StatisticGroup
   Label: typeof StatisticLabel
   Value: typeof StatisticValue

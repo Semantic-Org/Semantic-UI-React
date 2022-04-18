@@ -19,6 +19,6 @@ export interface StrictPopupContentProps {
   content?: SemanticShorthandContent
 }
 
-declare const PopupContent: React.StatelessComponent<PopupContentProps>
+declare const PopupContent: React.FC<PopupContentProps>
 
 export default PopupContent

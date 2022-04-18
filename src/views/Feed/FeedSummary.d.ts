@@ -28,6 +28,6 @@ export interface StrictFeedSummaryProps {
   user?: SemanticShorthandItem<FeedUserProps>
 }
 
-declare const FeedSummary: React.StatelessComponent<FeedSummaryProps>
+declare const FeedSummary: React.FC<FeedSummaryProps>
 
 export default FeedSummary

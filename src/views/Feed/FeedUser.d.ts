@@ -19,6 +19,6 @@ export interface StrictFeedUserProps {
   content?: SemanticShorthandContent
 }
 
-declare const FeedUser: React.StatelessComponent<FeedUserProps>
+declare const FeedUser: React.FC<FeedUserProps>
 
 export default FeedUser

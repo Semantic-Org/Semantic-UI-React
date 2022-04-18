@@ -31,7 +31,7 @@ export interface StrictCommentProps {
   content?: SemanticShorthandContent
 }
 
-interface CommentComponent extends React.StatelessComponent<CommentProps> {
+interface CommentComponent extends React.FC<CommentProps> {
   Action: typeof CommentAction
   Actions: typeof CommentActions
   Author: typeof CommentAuthor

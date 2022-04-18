@@ -31,6 +31,6 @@ export interface StrictCommentGroupProps {
   threaded?: boolean
 }
 
-declare const CommentGroup: React.StatelessComponent<CommentGroupProps>
+declare const CommentGroup: React.FC<CommentGroupProps>
 
 export default CommentGroup
