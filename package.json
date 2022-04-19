@@ -197,8 +197,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-test-renderer": "^17.0.0",
-    "react-universal-component": "^3.0.3",
-    "@types/react": "18.0.5"
+    "react-universal-component": "^3.0.3"
   },
   "changelog": {
     "repo": "Semantic-Org/Semantic-UI-React",

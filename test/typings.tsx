@@ -5,6 +5,7 @@ export const BasicAssert = () => (
   <>
     <Button />
     <Button content='Foo' />
+    <Button>Foo</Button>
   </>
 )
 
