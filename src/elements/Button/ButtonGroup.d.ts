@@ -82,6 +82,6 @@ export interface StrictButtonGroupProps {
   widths?: SemanticWIDTHS
 }
 
-declare const ButtonGroup: React.StatelessComponent<ButtonGroupProps>
+declare const ButtonGroup: React.FC<ButtonGroupProps>
 
 export default ButtonGroup

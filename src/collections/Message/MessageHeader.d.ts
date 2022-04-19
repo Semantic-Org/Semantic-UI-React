@@ -19,6 +19,6 @@ export interface StrictMessageHeaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const MessageHeader: React.StatelessComponent<MessageHeaderProps>
+declare const MessageHeader: React.FC<MessageHeaderProps>
 
 export default MessageHeader

@@ -37,6 +37,6 @@ export interface StrictLoaderProps {
   size?: SemanticSIZES
 }
 
-declare const Loader: React.StatelessComponent<LoaderProps>
+declare const Loader: React.FC<LoaderProps>
 
 export default Loader

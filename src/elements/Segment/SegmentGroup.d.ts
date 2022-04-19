@@ -39,6 +39,6 @@ export interface StrictSegmentGroupProps {
   stacked?: boolean
 }
 
-declare const SegmentGroup: React.StatelessComponent<SegmentGroupProps>
+declare const SegmentGroup: React.FC<SegmentGroupProps>
 
 export default SegmentGroup

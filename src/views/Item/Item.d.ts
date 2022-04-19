@@ -42,7 +42,7 @@ export interface StrictItemProps {
   meta?: SemanticShorthandItem<ItemMetaProps>
 }
 
-interface ItemComponent extends React.StatelessComponent<ItemProps> {
+interface ItemComponent extends React.FC<ItemProps> {
   Content: typeof ItemContent
   Description: typeof ItemDescription
   Extra: typeof ItemExtra

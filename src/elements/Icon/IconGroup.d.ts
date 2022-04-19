@@ -24,6 +24,6 @@ export interface StrictIconGroupProps {
   size?: IconSizeProp
 }
 
-declare const IconGroup: React.StatelessComponent<IconGroupProps>
+declare const IconGroup: React.FC<IconGroupProps>
 
 export default IconGroup

@@ -37,6 +37,6 @@ export interface StrictRailProps {
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 }
 
-declare const Rail: React.StatelessComponent<RailProps>
+declare const Rail: React.FC<RailProps>
 
 export default Rail

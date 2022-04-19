@@ -19,6 +19,6 @@ export interface StrictCommentMetadataProps {
   content?: SemanticShorthandContent
 }
 
-declare const CommentMetadata: React.StatelessComponent<CommentMetadataProps>
+declare const CommentMetadata: React.FC<CommentMetadataProps>
 
 export default CommentMetadata

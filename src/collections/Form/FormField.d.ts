@@ -57,6 +57,6 @@ export interface StrictFormFieldProps {
   width?: SemanticWIDTHS
 }
 
-declare const FormField: React.StatelessComponent<FormFieldProps>
+declare const FormField: React.FC<FormFieldProps>
 
 export default FormField

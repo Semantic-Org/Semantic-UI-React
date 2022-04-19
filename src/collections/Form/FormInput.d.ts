@@ -9,7 +9,9 @@ export interface FormInputProps extends StrictFormInputProps {
   [key: string]: any
 }
 
-export interface StrictFormInputProps extends StrictFormFieldProps, StrictInputProps {
+export interface StrictFormInputProps
+  extends Omit<StrictFormFieldProps, 'label'>,
+    StrictInputProps {
   /** An element type to render as (string or function). */
   as?: any
 
@@ -23,6 +25,6 @@ export interface StrictFormInputProps extends StrictFormFieldProps, StrictInputP
   label?: SemanticShorthandItem<LabelProps>
 }
 
-declare const FormInput: React.StatelessComponent<FormInputProps>
+declare const FormInput: React.FC<FormInputProps>
 
 export default FormInput

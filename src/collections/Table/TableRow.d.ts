@@ -48,6 +48,6 @@ export interface StrictTableRowProps {
   warning?: boolean
 }
 
-declare const TableRow: React.StatelessComponent<TableRowProps>
+declare const TableRow: React.FC<TableRowProps>
 
 export default TableRow

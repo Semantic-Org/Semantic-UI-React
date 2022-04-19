@@ -16,6 +16,6 @@ export interface StrictRadioProps extends StrictCheckboxProps {
   type?: 'checkbox' | 'radio'
 }
 
-declare const Radio: React.StatelessComponent<RadioProps>
+declare const Radio: React.FC<RadioProps>
 
 export default Radio

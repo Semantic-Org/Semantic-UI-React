@@ -19,6 +19,6 @@ export interface StrictListListProps {
   content?: SemanticShorthandContent
 }
 
-declare const ListList: React.StatelessComponent<ListListProps>
+declare const ListList: React.FC<ListListProps>
 
 export default ListList

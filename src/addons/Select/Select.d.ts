@@ -15,7 +15,7 @@ export interface StrictSelectProps extends StrictDropdownProps {
   options: DropdownItemProps[]
 }
 
-interface SelectComponent extends React.StatelessComponent<SelectProps> {
+interface SelectComponent extends React.FC<SelectProps> {
   Divider: typeof DropdownDivider
   Header: typeof DropdownHeader
   Item: typeof DropdownItem

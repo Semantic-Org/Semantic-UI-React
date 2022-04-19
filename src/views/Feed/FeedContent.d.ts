@@ -39,6 +39,6 @@ export interface StrictFeedContentProps {
   summary?: SemanticShorthandItem<FeedSummaryProps>
 }
 
-declare const FeedContent: React.StatelessComponent<FeedContentProps>
+declare const FeedContent: React.FC<FeedContentProps>
 
 export default FeedContent

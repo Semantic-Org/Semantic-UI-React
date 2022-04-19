@@ -24,6 +24,6 @@ export interface StrictBreadcrumbDividerProps {
   icon?: SemanticShorthandItem<IconProps>
 }
 
-declare const BreadcrumbDivider: React.StatelessComponent<BreadcrumbDividerProps>
+declare const BreadcrumbDivider: React.FC<BreadcrumbDividerProps>
 
 export default BreadcrumbDivider

@@ -5,6 +5,7 @@ export const BasicAssert = () => (
   <>
     <Button />
     <Button content='Foo' />
+    <Button>Foo</Button>
   </>
 )
 
@@ -32,7 +33,7 @@ export const ShorthandItemFuncAssert = () => (
         ),
       }}
     />
-    <Button label={{ children: <div className='bar' /> }} />
+    <Button label={{ children: () => <div className='bar' /> }} />
   </>
 )
 

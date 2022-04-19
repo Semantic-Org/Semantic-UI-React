@@ -18,6 +18,6 @@ export interface StrictFormDropdownProps extends StrictFormFieldProps, StrictDro
   error?: any
 }
 
-declare const FormDropdown: React.StatelessComponent<FormDropdownProps>
+declare const FormDropdown: React.FC<FormDropdownProps>
 
 export default FormDropdown

@@ -82,7 +82,7 @@ export interface StrictListProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-interface ListComponent extends React.StatelessComponent<ListProps> {
+interface ListComponent extends React.FC<ListProps> {
   Content: typeof ListContent
   Description: typeof ListDescription
   Header: typeof ListHeader

@@ -51,6 +51,6 @@ export interface StrictAdvertisementProps {
     | 'small square'
 }
 
-declare const Advertisement: React.StatelessComponent<AdvertisementProps>
+declare const Advertisement: React.FC<AdvertisementProps>
 
 export default Advertisement

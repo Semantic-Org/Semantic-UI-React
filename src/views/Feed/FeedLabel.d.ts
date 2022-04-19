@@ -27,6 +27,6 @@ export interface StrictFeedLabelProps {
   image?: SemanticShorthandItem<HtmlImageProps>
 }
 
-declare const FeedLabel: React.StatelessComponent<FeedLabelProps>
+declare const FeedLabel: React.FC<FeedLabelProps>
 
 export default FeedLabel

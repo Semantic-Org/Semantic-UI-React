@@ -18,6 +18,6 @@ export interface StrictFormRadioProps extends StrictFormFieldProps, StrictRadioP
   type?: 'checkbox' | 'radio'
 }
 
-declare const FormRadio: React.StatelessComponent<FormRadioProps>
+declare const FormRadio: React.FC<FormRadioProps>
 
 export default FormRadio

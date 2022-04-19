@@ -19,6 +19,6 @@ export interface StrictListDescriptionProps {
   content?: SemanticShorthandContent
 }
 
-declare const ListDescription: React.StatelessComponent<ListDescriptionProps>
+declare const ListDescription: React.FC<ListDescriptionProps>
 
 export default ListDescription

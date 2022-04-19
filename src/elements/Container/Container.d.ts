@@ -28,6 +28,6 @@ export interface StrictContainerProps {
   textAlign?: SemanticTEXTALIGNMENTS
 }
 
-declare const Container: React.StatelessComponent<ContainerProps>
+declare const Container: React.FC<ContainerProps>
 
 export default Container

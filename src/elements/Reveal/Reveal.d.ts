@@ -41,7 +41,7 @@ export interface StrictRevealProps {
   instant?: boolean
 }
 
-interface RevealComponent extends React.StatelessComponent<RevealProps> {
+interface RevealComponent extends React.FC<RevealProps> {
   Content: typeof RevealContent
 }
 

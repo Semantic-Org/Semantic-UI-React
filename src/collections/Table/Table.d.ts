@@ -115,7 +115,7 @@ export interface StrictTableProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-interface TableComponent extends React.StatelessComponent<TableProps> {
+interface TableComponent extends React.FC<TableProps> {
   Body: typeof TableBody
   Cell: typeof TableCell
   Footer: typeof TableFooter

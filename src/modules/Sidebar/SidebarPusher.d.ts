@@ -22,6 +22,6 @@ export interface StrictSidebarPusherProps {
   dimmed?: boolean
 }
 
-declare const SidebarPusher: React.StatelessComponent<SidebarPusherProps>
+declare const SidebarPusher: React.FC<SidebarPusherProps>
 
 export default SidebarPusher

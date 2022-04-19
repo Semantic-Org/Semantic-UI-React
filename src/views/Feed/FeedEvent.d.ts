@@ -47,6 +47,6 @@ export interface StrictFeedEventProps {
   summary?: SemanticShorthandItem<FeedSummaryProps>
 }
 
-declare const FeedEvent: React.StatelessComponent<FeedEventProps>
+declare const FeedEvent: React.FC<FeedEventProps>
 
 export default FeedEvent

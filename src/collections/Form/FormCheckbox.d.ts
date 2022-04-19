@@ -18,6 +18,6 @@ export interface StrictFormCheckboxProps extends StrictFormFieldProps, StrictChe
   type?: 'checkbox' | 'radio'
 }
 
-declare const FormCheckbox: React.StatelessComponent<FormCheckboxProps>
+declare const FormCheckbox: React.FC<FormCheckboxProps>
 
 export default FormCheckbox

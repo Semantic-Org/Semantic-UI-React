@@ -84,7 +84,7 @@ export interface StrictImageProps {
   wrapped?: boolean
 }
 
-interface ImageComponent extends React.StatelessComponent<ImageProps> {
+interface ImageComponent extends React.FC<ImageProps> {
   Group: typeof ImageGroup
 }
 

@@ -22,7 +22,7 @@ export interface StrictPlaceholderHeaderProps {
   image?: boolean
 }
 
-interface PlaceholderHeaderComponent extends React.StatelessComponent<PlaceholderHeaderProps> {}
+interface PlaceholderHeaderComponent extends React.FC<PlaceholderHeaderProps> {}
 
 declare const PlaceholderHeader: PlaceholderHeaderComponent
 

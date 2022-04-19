@@ -15,6 +15,6 @@ export interface StrictCommentAvatarProps {
   src?: string
 }
 
-declare const CommentAvatar: React.StatelessComponent<CommentAvatarProps>
+declare const CommentAvatar: React.FC<CommentAvatarProps>
 
 export default CommentAvatar

@@ -15,7 +15,7 @@ export interface StrictPlaceholderLineProps {
   length?: 'full' | 'very long' | 'long' | 'medium' | 'short' | 'very short'
 }
 
-interface PlaceholderLineComponent extends React.StatelessComponent<PlaceholderLineProps> {}
+interface PlaceholderLineComponent extends React.FC<PlaceholderLineProps> {}
 
 declare const PlaceholderLine: PlaceholderLineComponent
 

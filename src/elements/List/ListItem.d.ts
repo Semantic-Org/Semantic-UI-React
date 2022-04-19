@@ -54,6 +54,6 @@ export interface StrictListItemProps {
   value?: string
 }
 
-declare const ListItem: React.StatelessComponent<ListItemProps>
+declare const ListItem: React.FC<ListItemProps>
 
 export default ListItem

@@ -40,6 +40,6 @@ export interface StrictDividerProps {
   vertical?: boolean
 }
 
-declare const Divider: React.StatelessComponent<DividerProps>
+declare const Divider: React.FC<DividerProps>
 
 export default Divider

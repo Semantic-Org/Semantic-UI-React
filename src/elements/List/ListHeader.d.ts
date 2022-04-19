@@ -19,6 +19,6 @@ export interface StrictListHeaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const ListHeader: React.StatelessComponent<ListHeaderProps>
+declare const ListHeader: React.FC<ListHeaderProps>
 
 export default ListHeader

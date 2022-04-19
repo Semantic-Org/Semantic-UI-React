@@ -19,6 +19,6 @@ export interface StrictItemMetaProps {
   content?: SemanticShorthandContent
 }
 
-declare const ItemMeta: React.StatelessComponent<ItemMetaProps>
+declare const ItemMeta: React.FC<ItemMetaProps>
 
 export default ItemMeta

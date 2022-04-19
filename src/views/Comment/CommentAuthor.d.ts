@@ -19,6 +19,6 @@ export interface StrictCommentAuthorProps {
   content?: SemanticShorthandContent
 }
 
-declare const CommentAuthor: React.StatelessComponent<CommentAuthorProps>
+declare const CommentAuthor: React.FC<CommentAuthorProps>
 
 export default CommentAuthor

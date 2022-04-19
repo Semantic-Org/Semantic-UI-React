@@ -19,7 +19,7 @@ export interface StrictSegmentInlineProps {
   content?: SemanticShorthandContent
 }
 
-interface SegmentInlineComponent extends React.StatelessComponent<SegmentInlineProps> {}
+interface SegmentInlineComponent extends React.FC<SegmentInlineProps> {}
 
 declare const SegmentInline: SegmentInlineComponent
 

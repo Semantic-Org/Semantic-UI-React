@@ -24,6 +24,6 @@ export interface StrictFeedLikeProps {
   icon?: SemanticShorthandItem<IconProps>
 }
 
-declare const FeedLike: React.StatelessComponent<FeedLikeProps>
+declare const FeedLike: React.FC<FeedLikeProps>
 
 export default FeedLike

@@ -22,6 +22,6 @@ export interface StrictCardDescriptionProps {
   textAlign?: 'center' | 'left' | 'right'
 }
 
-declare const CardDescription: React.StatelessComponent<CardDescriptionProps>
+declare const CardDescription: React.FC<CardDescriptionProps>
 
 export default CardDescription

@@ -15,6 +15,6 @@ export interface StrictButtonOrProps {
   text?: number | string
 }
 
-declare const ButtonOr: React.StatelessComponent<ButtonOrProps>
+declare const ButtonOr: React.FC<ButtonOrProps>
 
 export default ButtonOr

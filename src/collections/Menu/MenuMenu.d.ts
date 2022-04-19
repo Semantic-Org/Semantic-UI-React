@@ -22,6 +22,6 @@ export interface StrictMenuMenuProps {
   position?: 'left' | 'right'
 }
 
-declare const MenuMenu: React.StatelessComponent<MenuMenuProps>
+declare const MenuMenu: React.FC<MenuMenuProps>
 
 export default MenuMenu

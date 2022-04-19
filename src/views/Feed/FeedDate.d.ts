@@ -19,6 +19,6 @@ export interface StrictFeedDateProps {
   content?: SemanticShorthandContent
 }
 
-declare const FeedDate: React.StatelessComponent<FeedDateProps>
+declare const FeedDate: React.FC<FeedDateProps>
 
 export default FeedDate

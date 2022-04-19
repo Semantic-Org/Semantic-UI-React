@@ -22,6 +22,6 @@ export interface StrictImageGroupProps {
   size?: SemanticSIZES
 }
 
-declare const ImageGroup: React.StatelessComponent<ImageGroupProps>
+declare const ImageGroup: React.FC<ImageGroupProps>
 
 export default ImageGroup

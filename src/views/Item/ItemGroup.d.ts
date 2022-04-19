@@ -36,6 +36,6 @@ export interface StrictItemGroupProps {
   unstackable?: boolean
 }
 
-declare const ItemGroup: React.StatelessComponent<ItemGroupProps>
+declare const ItemGroup: React.FC<ItemGroupProps>
 
 export default ItemGroup

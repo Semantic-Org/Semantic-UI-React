@@ -15,6 +15,6 @@ export interface StrictTableBodyProps {
   className?: string
 }
 
-declare const TableBody: React.StatelessComponent<TableBodyProps>
+declare const TableBody: React.FC<TableBodyProps>
 
 export default TableBody

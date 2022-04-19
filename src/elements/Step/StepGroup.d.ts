@@ -72,6 +72,6 @@ export interface StrictStepGroupProps {
     | 'eight'
 }
 
-declare const StepGroup: React.StatelessComponent<StepGroupProps>
+declare const StepGroup: React.FC<StepGroupProps>
 
 export default StepGroup

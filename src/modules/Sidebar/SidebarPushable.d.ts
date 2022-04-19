@@ -19,6 +19,6 @@ export interface StrictSidebarPushableProps {
   content?: SemanticShorthandContent
 }
 
-declare const SidebarPushable: React.StatelessComponent<SidebarPushableProps>
+declare const SidebarPushable: React.FC<SidebarPushableProps>
 
 export default SidebarPushable

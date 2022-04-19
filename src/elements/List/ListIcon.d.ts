@@ -15,6 +15,6 @@ export interface StrictListIconProps extends StrictIconProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-declare const ListIcon: React.StatelessComponent<ListIconProps>
+declare const ListIcon: React.FC<ListIconProps>
 
 export default ListIcon

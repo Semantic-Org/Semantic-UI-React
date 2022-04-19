@@ -28,6 +28,6 @@ export interface StrictDropdownMenuProps {
   scrolling?: boolean
 }
 
-declare const DropdownMenu: React.StatelessComponent<DropdownMenuProps>
+declare const DropdownMenu: React.FC<DropdownMenuProps>
 
 export default DropdownMenu

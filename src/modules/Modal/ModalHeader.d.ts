@@ -19,6 +19,6 @@ export interface StrictModalHeaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const ModalHeader: React.StatelessComponent<ModalHeaderProps>
+declare const ModalHeader: React.FC<ModalHeaderProps>
 
 export default ModalHeader

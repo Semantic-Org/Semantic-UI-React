@@ -5,6 +5,6 @@ export interface ItemImageProps extends ImageProps {}
 
 export interface StrictItemImageProps extends StrictImageProps {}
 
-declare const ItemImage: React.StatelessComponent<ItemImageProps>
+declare const ItemImage: React.FC<ItemImageProps>
 
 export default ItemImage
