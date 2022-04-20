@@ -101,7 +101,7 @@ const FormField = React.forwardRef(function (props, ref) {
     'aria-describedby': ariaDescribedBy,
     'aria-invalid': error ? true : undefined,
   }
-  const controlProps = { ...rest, content, children, disabled, required, type, id }
+  const controlProps = { ...rest, content, children, disabled, required, type, id, ref }
 
   // wrap HTML checkboxes/radios in the label
   if (control === 'input' && (type === 'checkbox' || type === 'radio')) {
@@ -109,7 +109,7 @@ const FormField = React.forwardRef(function (props, ref) {
       <ElementType className={classes}>
         <label>
           {errorLabelBefore}
-          {createElement(control, { ...ariaAttrs, ...controlProps, ref })} {label}
+          {createElement(control, { ...ariaAttrs, ...controlProps })} {label}
           {errorLabelAfter}
         </label>
       </ElementType>
@@ -121,7 +121,7 @@ const FormField = React.forwardRef(function (props, ref) {
     return (
       <ElementType className={classes}>
         {errorLabelBefore}
-        {createElement(control, { ...ariaAttrs, ...controlProps, label, ref })}
+        {createElement(control, { ...ariaAttrs, ...controlProps, label })}
         {errorLabelAfter}
       </ElementType>
     )
@@ -138,7 +138,7 @@ const FormField = React.forwardRef(function (props, ref) {
         autoGenerateKey: false,
       })}
       {errorLabelBefore}
-      {createElement(control, { ...ariaAttrs, ...controlProps, ref })}
+      {createElement(control, { ...ariaAttrs, ...controlProps })}
       {errorLabelAfter}
     </ElementType>
   )
