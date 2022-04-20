@@ -27,7 +27,7 @@ import Radio from '../../addons/Radio'
  * @see Radio
  * @see Select
  */
-function FormField(props) {
+const FormField = React.forwardRef(function (props, ref) {
   const {
     children,
     className,
@@ -77,14 +77,14 @@ function FormField(props) {
   if (_.isNil(control)) {
     if (_.isNil(label)) {
       return (
-        <ElementType {...rest} className={classes} id={id}>
+        <ElementType {...rest} className={classes} id={id} ref={ref}>
           {childrenUtils.isNil(children) ? content : children}
         </ElementType>
       )
     }
 
     return (
-      <ElementType {...rest} className={classes} id={id}>
+      <ElementType {...rest} className={classes} id={id} ref={ref}>
         {errorLabelBefore}
         {createHTMLLabel(label, { autoGenerateKey: false })}
         {errorLabelAfter}
@@ -109,7 +109,7 @@ function FormField(props) {
       <ElementType className={classes}>
         <label>
           {errorLabelBefore}
-          {createElement(control, { ...ariaAttrs, ...controlProps })} {label}
+          {createElement(control, { ...ariaAttrs, ...controlProps, ref })} {label}
           {errorLabelAfter}
         </label>
       </ElementType>
@@ -121,7 +121,7 @@ function FormField(props) {
     return (
       <ElementType className={classes}>
         {errorLabelBefore}
-        {createElement(control, { ...ariaAttrs, ...controlProps, label })}
+        {createElement(control, { ...ariaAttrs, ...controlProps, label, ref })}
         {errorLabelAfter}
       </ElementType>
     )
@@ -138,11 +138,13 @@ function FormField(props) {
         autoGenerateKey: false,
       })}
       {errorLabelBefore}
-      {createElement(control, { ...ariaAttrs, ...controlProps })}
+      {createElement(control, { ...ariaAttrs, ...controlProps, ref })}
       {errorLabelAfter}
     </ElementType>
   )
-}
+})
+
+FormField.displayName = 'FormField'
 
 FormField.propTypes = {
   /** An element type to render as (string or function). */

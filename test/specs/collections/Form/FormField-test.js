@@ -246,4 +246,8 @@ describe('FormField', () => {
         .should.have.prop('aria-invalid', true)
     })
   })
+
+  describe.only('forwards ref', () => {
+    common.forwardsRef(FormField)
+  })
 })
