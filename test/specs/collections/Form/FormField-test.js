@@ -13,6 +13,41 @@ describe('FormField', () => {
   common.isConformant(FormField)
   common.rendersChildren(FormField)
 
+  // No Control
+  common.forwardsRef(FormField)
+  common.forwardsRef(FormField, {
+    tagName: 'div',
+    requiredProps: {
+      children: <input />,
+    },
+  })
+
+  // HTML Checkbox/Radio Control
+  common.forwardsRef(FormField, {
+    tagName: 'input',
+    requiredProps: { control: 'input', type: 'radio' },
+  })
+  common.forwardsRef(FormField, {
+    tagName: 'input',
+    requiredProps: { control: 'input', type: 'checkbox' },
+  })
+
+  // Checkbox/Radio Control
+  common.forwardsRef(FormField, {
+    tagName: 'input',
+    requiredProps: { control: Checkbox },
+  })
+  common.forwardsRef(FormField, {
+    tagName: 'input',
+    requiredProps: { control: Radio },
+  })
+
+  // Other Control
+  common.forwardsRef(FormField, {
+    tagName: 'input',
+    requiredProps: { control: 'input' },
+  })
+
   common.implementsHTMLLabelProp(FormField, { autoGenerateKey: false })
   common.implementsWidthProp(FormField, SUI.WIDTHS, {
     canEqual: false,
@@ -245,26 +280,5 @@ describe('FormField', () => {
         .find('input')
         .should.have.prop('aria-invalid', true)
     })
-  })
-
-  common.forwardsRef(FormField)
-  common.forwardsRef(FormField, {
-    tagName: 'input',
-    requiredProps: { control: 'input' },
-  })
-  common.forwardsRef(FormField, {
-    tagName: 'input',
-    requiredProps: { control: 'input', type: 'radio' },
-  })
-  common.forwardsRef(FormField, {
-    tagName: 'input',
-    requiredProps: { control: 'input', type: 'checkbox' },
-  })
-
-  common.forwardsRef(FormField, {
-    tagName: 'div',
-    requiredProps: {
-      children: <input />,
-    },
   })
 })
