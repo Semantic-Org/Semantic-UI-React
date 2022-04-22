@@ -27,7 +27,7 @@ import Radio from '../../addons/Radio'
  * @see Radio
  * @see Select
  */
-function FormField(props) {
+const FormField = React.forwardRef(function (props, ref) {
   const {
     children,
     className,
@@ -77,14 +77,14 @@ function FormField(props) {
   if (_.isNil(control)) {
     if (_.isNil(label)) {
       return (
-        <ElementType {...rest} className={classes} id={id}>
+        <ElementType {...rest} className={classes} id={id} ref={ref}>
           {childrenUtils.isNil(children) ? content : children}
         </ElementType>
       )
     }
 
     return (
-      <ElementType {...rest} className={classes} id={id}>
+      <ElementType {...rest} className={classes} id={id} ref={ref}>
         {errorLabelBefore}
         {createHTMLLabel(label, { autoGenerateKey: false })}
         {errorLabelAfter}
@@ -101,7 +101,7 @@ function FormField(props) {
     'aria-describedby': ariaDescribedBy,
     'aria-invalid': error ? true : undefined,
   }
-  const controlProps = { ...rest, content, children, disabled, required, type, id }
+  const controlProps = { ...rest, content, children, disabled, required, type, id, ref }
 
   // wrap HTML checkboxes/radios in the label
   if (control === 'input' && (type === 'checkbox' || type === 'radio')) {
@@ -142,7 +142,9 @@ function FormField(props) {
       {errorLabelAfter}
     </ElementType>
   )
-}
+})
+
+FormField.displayName = 'FormField'
 
 FormField.propTypes = {
   /** An element type to render as (string or function). */
