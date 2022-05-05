@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import { getElementType, getUnhandledProps, SUI, useKeyOnly, useWidthProp } from '../../lib'
 import FormButton from './FormButton'
@@ -24,56 +24,54 @@ import FormTextArea from './FormTextArea'
  * @see Radio
  * @see Select
  */
-class Form extends Component {
-  handleSubmit = (e, ...args) => {
-    const { action } = this.props
+const Form = React.forwardRef(function (props, ref) {
+  const {
+    action,
+    children,
+    className,
+    error,
+    inverted,
+    loading,
+    reply,
+    size,
+    success,
+    unstackable,
+    warning,
+    widths,
+  } = props
 
+  const handleSubmit = (e, ...args) => {
     // Heads up! Third party libs can pass own data as first argument, we need to check that it has preventDefault()
     // method.
     if (typeof action !== 'string') _.invoke(e, 'preventDefault')
-    _.invoke(this.props, 'onSubmit', e, this.props, ...args)
+    _.invoke(props, 'onSubmit', e, props, ...args)
   }
 
-  render() {
-    const {
-      action,
-      children,
-      className,
-      error,
-      inverted,
-      loading,
-      reply,
-      size,
-      success,
-      unstackable,
-      warning,
-      widths,
-    } = this.props
+  const classes = cx(
+    'ui',
+    size,
+    useKeyOnly(error, 'error'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(loading, 'loading'),
+    useKeyOnly(reply, 'reply'),
+    useKeyOnly(success, 'success'),
+    useKeyOnly(unstackable, 'unstackable'),
+    useKeyOnly(warning, 'warning'),
+    useWidthProp(widths, null, true),
+    'form',
+    className,
+  )
+  const rest = getUnhandledProps(Form, props)
+  const ElementType = getElementType(Form, props)
 
-    const classes = cx(
-      'ui',
-      size,
-      useKeyOnly(error, 'error'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(loading, 'loading'),
-      useKeyOnly(reply, 'reply'),
-      useKeyOnly(success, 'success'),
-      useKeyOnly(unstackable, 'unstackable'),
-      useKeyOnly(warning, 'warning'),
-      useWidthProp(widths, null, true),
-      'form',
-      className,
-    )
-    const rest = getUnhandledProps(Form, this.props)
-    const ElementType = getElementType(Form, this.props)
+  return (
+    <ElementType {...rest} action={action} className={classes} onSubmit={handleSubmit} ref={ref}>
+      {children}
+    </ElementType>
+  )
+})
 
-    return (
-      <ElementType {...rest} action={action} className={classes} onSubmit={this.handleSubmit}>
-        {children}
-      </ElementType>
-    )
-  }
-}
+Form.displayName = 'Form'
 
 Form.propTypes = {
   /** An element type to render as (string or function). */
