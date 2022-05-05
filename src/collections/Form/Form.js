@@ -24,7 +24,7 @@ import FormTextArea from './FormTextArea'
  * @see Radio
  * @see Select
  */
-const Form = (props) => {
+const Form = React.forwardRef(function (props, ref) {
   const {
     action,
     children,
@@ -65,11 +65,13 @@ const Form = (props) => {
   const ElementType = getElementType(Form, props)
 
   return (
-    <ElementType {...rest} action={action} className={classes} onSubmit={handleSubmit}>
+    <ElementType {...rest} action={action} className={classes} onSubmit={handleSubmit} ref={ref}>
       {children}
     </ElementType>
   )
-}
+})
+
+Form.displayName = 'Form'
 
 Form.propTypes = {
   /** An element type to render as (string or function). */
