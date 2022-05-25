@@ -68,17 +68,17 @@
   "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
   "dependencies": {
     "@babel/runtime": "^7.10.5",
-    "@fluentui/react-component-event-listener": "~0.51.6",
-    "@fluentui/react-component-ref": "~0.51.6",
+    "@fluentui/react-component-event-listener": "~0.63.0",
+    "@fluentui/react-component-ref": "~0.63.0",
     "@popperjs/core": "^2.6.0",
-    "@semantic-ui-react/event-stack": "^3.1.2",
+    "@semantic-ui-react/event-stack": "^3.1.3",
     "clsx": "^1.1.1",
     "keyboard-key": "^1.1.0",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.6 || ^17.0.0",
-    "react-popper": "^2.2.4",
+    "react-is": "^16.8.6 || ^17.0.0 || ^18.0.0",
+    "react-popper": "^2.3.0",
     "shallowequal": "^1.1.0"
   },
   "devDependencies": {
@@ -186,8 +186,8 @@
     "webpack-dev-middleware": "^3.7.2"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "resolutions": {
     "babel-plugin-universal-import": "^2.0.2",
