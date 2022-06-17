@@ -2,7 +2,7 @@ import FormGroup from 'src/collections/Form/FormGroup'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 
-describe.only('FormGroup', () => {
+describe('FormGroup', () => {
   common.isConformant(FormGroup)
   common.rendersChildren(FormGroup, {
     rendersContent: false,

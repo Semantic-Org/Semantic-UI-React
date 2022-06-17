@@ -4,7 +4,7 @@ import FormButton from 'src/collections/Form/FormButton'
 import Button from 'src/elements/Button/Button'
 import * as common from 'test/specs/commonTests'
 
-describe.only('FormButton', () => {
+describe('FormButton', () => {
   common.isConformant(FormButton, {
     ignoredTypingsProps: ['label'],
   })
