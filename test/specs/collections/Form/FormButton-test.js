@@ -4,7 +4,7 @@ import FormButton from 'src/collections/Form/FormButton'
 import Button from 'src/elements/Button/Button'
 import * as common from 'test/specs/commonTests'
 
-describe('FormButton', () => {
+describe.only('FormButton', () => {
   common.isConformant(FormButton, {
     ignoredTypingsProps: ['label'],
   })
@@ -15,4 +15,6 @@ describe('FormButton', () => {
       .find('FormField')
       .should.have.prop('control', Button)
   })
+
+  common.forwardsRef(FormButton, { tagName: 'button' })
 })
