@@ -16,4 +16,6 @@ describe('FormGroup', () => {
   common.propKeyOnlyToClassName(FormGroup, 'grouped')
   common.propKeyOnlyToClassName(FormGroup, 'inline')
   common.propKeyOnlyToClassName(FormGroup, 'unstackable')
+
+  common.forwardsRef(FormGroup)
 })

@@ -10,13 +10,15 @@ import FormField from './FormField'
  * @see Checkbox
  * @see Form
  */
-function FormCheckbox(props) {
+const FormCheckbox = React.forwardRef((props, ref) => {
   const { control } = props
   const rest = getUnhandledProps(FormCheckbox, props)
   const ElementType = getElementType(FormCheckbox, props)
 
-  return <ElementType {...rest} control={control} />
-}
+  return <ElementType {...rest} control={control} ref={ref} />
+})
+
+FormCheckbox.displayName = 'FormCheckbox'
 
 FormCheckbox.propTypes = {
   /** An element type to render as (string or function). */

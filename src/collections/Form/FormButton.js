@@ -10,13 +10,15 @@ import FormField from './FormField'
  * @see Button
  * @see Form
  */
-function FormButton(props) {
+const FormButton = React.forwardRef((props, ref) => {
   const { control } = props
   const rest = getUnhandledProps(FormButton, props)
   const ElementType = getElementType(FormButton, props)
 
-  return <ElementType {...rest} control={control} />
-}
+  return <ElementType {...rest} control={control} ref={ref} />
+})
+
+FormButton.displayName = 'FormButton'
 
 FormButton.propTypes = {
   /** An element type to render as (string or function). */

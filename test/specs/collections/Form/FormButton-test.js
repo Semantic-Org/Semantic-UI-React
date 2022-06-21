@@ -15,4 +15,6 @@ describe('FormButton', () => {
       .find('FormField')
       .should.have.prop('control', Button)
   })
+
+  common.forwardsRef(FormButton, { tagName: 'button' })
 })
