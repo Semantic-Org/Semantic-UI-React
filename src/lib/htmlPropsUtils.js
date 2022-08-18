@@ -14,6 +14,7 @@ export const htmlInputAttrs = [
   'autoFocus',
   'checked',
   'disabled',
+  'enterKeyHint',
   'form',
   'id',
   'inputMode',
