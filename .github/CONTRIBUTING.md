@@ -390,7 +390,7 @@ describe('Menu', () => {
 })
 ```
 
-The last argument to a common test is always `options`.  You can configure the test here.  Example, if your component requires certain props to render, you can pass in `requiredProps`:
+The last argument to a common test is always `options`.  You can configure the test here. For example, if your component requires certain props to render, you can pass in `requiredProps`:
 
 ```js
 import * as common from 'test/specs/commonTests'
@@ -419,7 +419,7 @@ This is the only required test.  It ensures a consistent baseline for the framew
 
 ### Visual testing
 
-We are using [Percy](https://percy.io/) and Cypress to perform visual testing of our components. To create a new visual
+We are using [Percy](https://percy.io/) and [Cypress](https://www.cypress.io/) to perform visual testing of our components. To create a new visual
 test there should an example in our docs that can be served by Cypress and a corresponding Cypress test, for example:
 - `cypress/integration/Popup/Popup.visual.js` contains visual tests
 - `docs/src/examples/modules/Popup/Visual/PopupVisualInsideModal.js` contains an example that will be used for visual 
@@ -437,7 +437,7 @@ function MyComponent(props) {
 }
 ```
 
-If you're component requires event handlers, it is a stateful class component. Want to know [why][15]?
+If your component requires event handlers, it is a stateful class component. Want to know [why][15]?
 
 ```js
 class MyComponent extends Component {
@@ -464,7 +464,7 @@ TODO
 - [Props](#props)
 - [Examples](#examples)
 
-Our docs are generated from docblock comments, `propTypes`, and hand written examples.
+Our docs are generated from docblock comments, `propTypes`, and hand-written examples.
 
 ### Website
 
