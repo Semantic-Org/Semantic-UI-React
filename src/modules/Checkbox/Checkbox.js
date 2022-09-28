@@ -73,7 +73,10 @@ export default class Checkbox extends Component {
     if (this.isClickFromMouse) {
       this.isClickFromMouse = false
 
-      if (isLabelClick && !hasId) {
+      if (isLabelClick) {
+        // Prevents two clicks from being fired rom the "input" click: https://github.com/Semantic-Org/Semantic-UI-React/issues/3433
+        // and also allows onChange to fire https://github.com/Semantic-Org/Semantic-UI-React/issues/3737
+        e.preventDefault()
         this.handleChange(e)
       }
 
@@ -82,11 +85,11 @@ export default class Checkbox extends Component {
         this.handleChange(e)
       }
 
-      if (isLabelClick && hasId) {
-        // To prevent two clicks from being fired from the component we have to stop the propagation
-        // from the "input" click: https://github.com/Semantic-Org/Semantic-UI-React/issues/3433
-        e.stopPropagation()
-      }
+      // if (isLabelClick && hasId) {
+      //   // To prevent two clicks from being fired from the component we have to stop the propagation
+      //   // from the "input" click: https://github.com/Semantic-Org/Semantic-UI-React/issues/3433
+      //   e.stopPropagation()
+      // }
     }
   }
 

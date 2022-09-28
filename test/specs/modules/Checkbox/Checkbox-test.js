@@ -241,15 +241,6 @@ describe('Checkbox', () => {
       )
     })
 
-    it('is not called when on change when "id" is passed', () => {
-      const onChange = sandbox.spy()
-      wrapperMount(<Checkbox id='foo' onChange={onChange} />)
-
-      wrapper.find('label').simulate('mouseup')
-      wrapper.find('label').simulate('click')
-      onChange.should.have.not.been.called()
-    })
-
     it('is called when click is done on nested element', () => {
       const onChange = sandbox.spy()
       wrapperMount(<Checkbox label={{ children: <span>Foo</span> }} onChange={onChange} />)
@@ -407,13 +398,6 @@ describe('Checkbox', () => {
         events: {
           input: ['click'],
         },
-      },
-      {
-        description: 'click on label with "id": fires on mouse click',
-        events: {
-          label: ['mouseup', 'click'],
-        },
-        id: 'foo',
       },
       {
         description: 'click on input with "id": fires on mouse click',
