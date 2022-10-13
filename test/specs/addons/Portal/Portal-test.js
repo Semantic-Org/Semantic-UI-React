@@ -171,7 +171,7 @@ describe('Portal', () => {
           <p />
         </Portal>,
       )
-      wrapper.instance().contentRef.current.tagName.should.equal('P')
+      wrapper.instance().state.contentRef.tagName.should.equal('P')
     })
 
     it('maintains ref to DOM node with React component', () => {
@@ -182,7 +182,7 @@ describe('Portal', () => {
           <EmptyComponent />
         </Portal>,
       )
-      wrapper.instance().contentRef.current.tagName.should.equal('P')
+      wrapper.instance().state.contentRef.tagName.should.equal('P')
     })
   })
 
