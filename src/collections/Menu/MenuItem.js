@@ -61,14 +61,14 @@ export default class MenuItem extends Component {
 
     if (!childrenUtils.isNil(children)) {
       return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+        <ElementType {...rest} className={classes} onClick={this.handleClick} tabIndex={0}>
           {children}
         </ElementType>
       )
     }
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
+      <ElementType {...rest} className={classes} onClick={this.handleClick} tabIndex={0}>
         {Icon.create(icon, { autoGenerateKey: false })}
         {childrenUtils.isNil(content) ? _.startCase(name) : content}
       </ElementType>
