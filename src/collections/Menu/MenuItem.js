@@ -25,6 +25,14 @@ export default class MenuItem extends Component {
     if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
   }
 
+  handleKeyPress = (e) => {
+    if (e.charCode === 13) {
+      const { disabled } = this.props
+
+      if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
+    }
+  }
+
   render() {
     const {
       active,
@@ -39,6 +47,7 @@ export default class MenuItem extends Component {
       link,
       name,
       onClick,
+      onKeyPress,
       position,
     } = this.props
 
@@ -55,20 +64,32 @@ export default class MenuItem extends Component {
       className,
     )
     const ElementType = getElementType(MenuItem, this.props, () => {
-      if (onClick) return 'a'
+      if (onClick || onKeyPress) return 'a'
     })
     const rest = getUnhandledProps(MenuItem, this.props)
 
     if (!childrenUtils.isNil(children)) {
       return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick} tabIndex={0}>
+        <ElementType
+          {...rest}
+          className={classes}
+          onClick={this.handleClick}
+          onKeyPress={this.handleKeyPress}
+          tabIndex={0}
+        >
           {children}
         </ElementType>
       )
     }
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick} tabIndex={0}>
+      <ElementType
+        {...rest}
+        className={classes}
+        onClick={this.handleClick}
+        onKeyPress={this.handleKeyPress}
+        tabIndex={0}
+      >
         {Icon.create(icon, { autoGenerateKey: false })}
         {childrenUtils.isNil(content) ? _.startCase(name) : content}
       </ElementType>
@@ -124,6 +145,8 @@ MenuItem.propTypes = {
    * @param {object} data - All props.
    */
   onClick: PropTypes.func,
+
+  onKeyPress: PropTypes.func,
 
   /** A menu item can take left or right position. */
   position: PropTypes.oneOf(['left', 'right']),
