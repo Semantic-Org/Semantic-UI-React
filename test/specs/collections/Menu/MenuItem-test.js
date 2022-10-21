@@ -70,7 +70,7 @@ describe('MenuItem', () => {
   })
 
   describe('onKeyPress', () => {
-    it('is called with (e, data) when clicked', () => {
+    it('is called with (e, data) on Enter keyPress', () => {
       const onKeyPress = sandbox.spy()
       const event = { keyCode: 13 }
       const props = { tabIndex: 0 }
@@ -79,6 +79,32 @@ describe('MenuItem', () => {
 
       onKeyPress.should.have.been.calledOnce()
       onKeyPress.should.have.been.calledWithMatch(event, props)
+    })
+
+    it('is called with (e, data) on Space keyPress', () => {
+      const onKeyPress = sandbox.spy()
+      const event = { keyCode: 32, preventDefault: sandbox.spy() }
+      const props = { tabIndex: 0 }
+
+      shallow(<MenuItem onKeyPress={onKeyPress} {...props} />).simulate('keypress', event)
+
+      onKeyPress.should.have.been.calledOnce()
+      onKeyPress.should.have.been.calledWithMatch(event, props)
+    })
+
+    it('is not called when disabled', () => {
+      const onKeyPress = sandbox.spy()
+      const onClick = sandbox.spy()
+      const event = { keyCode: 13 }
+      const props = { tabIndex: -1 }
+
+      shallow(<MenuItem disabled onClick={onClick} onKeyPress={onKeyPress} {...props} />).simulate(
+        'keypress',
+        event,
+      )
+
+      onClick.should.have.callCount(0)
+      onKeyPress.should.have.callCount(0)
     })
   })
 

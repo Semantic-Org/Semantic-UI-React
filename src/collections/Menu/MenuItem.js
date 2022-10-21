@@ -26,13 +26,16 @@ export default class MenuItem extends Component {
   }
 
   handleKeyPress = (e) => {
-    _.invoke(this.props, 'onKeyPress', e, this.props)
-    if (e.charCode === 13 || e.charCode === 32) {
-      // Prevent the default action to stop scrolling when space is pressed
-      e.preventDefault()
+    const { disabled } = this.props
+    if (!disabled) {
+      _.invoke(this.props, 'onKeyPress', e, this.props)
 
-      const { disabled } = this.props
-      if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
+      if (e.charCode === 13 || e.charCode === 32) {
+        // Prevent the default action to stop scrolling when space is pressed
+        e.preventDefault()
+
+        _.invoke(this.props, 'onClick', e, this.props)
+      }
     }
   }
 
