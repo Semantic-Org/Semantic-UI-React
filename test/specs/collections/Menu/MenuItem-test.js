@@ -75,7 +75,7 @@ describe('MenuItem', () => {
       const event = { keyCode: 13 }
       const props = { tabIndex: 0 }
 
-      shallow(<MenuItem onKeyPress={onKeyPress} {...props} />).simulate('keydown', event)
+      shallow(<MenuItem onKeyPress={onKeyPress} {...props} />).simulate('keypress', event)
 
       onKeyPress.should.have.been.calledOnce()
       onKeyPress.should.have.been.calledWithMatch(event, props)

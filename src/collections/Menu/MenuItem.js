@@ -77,7 +77,7 @@ export default class MenuItem extends Component {
           {...rest}
           className={classes}
           onClick={this.handleClick}
-          onKeyPress={this.handleKeyDown}
+          onKeyPress={this.handleKeyPress}
           tabIndex={disabled ? -1 : 0}
         >
           {children}
