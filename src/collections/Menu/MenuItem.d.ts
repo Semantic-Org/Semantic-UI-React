@@ -63,7 +63,7 @@ export interface StrictMenuItemProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onKeyPress?: (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => void
+  onKeyDown?: (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => void
 
   /** A menu item can take left or right position. */
   position?: 'left' | 'right'

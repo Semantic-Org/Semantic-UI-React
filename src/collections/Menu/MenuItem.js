@@ -25,10 +25,13 @@ export default class MenuItem extends Component {
     if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
   }
 
-  handleKeyPress = (e) => {
-    if (e.charCode === 13) {
-      const { disabled } = this.props
+  handleKeyDown = (e) => {
+    _.invoke(this.props, 'onKeyDown', e, this.props)
+    if (e.charCode === 13 || e.charCode === 32) {
+      // Prevent the default action to stop scrolling when space is pressed
+      e.preventDefault()
 
+      const { disabled } = this.props
       if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
     }
   }
@@ -47,7 +50,7 @@ export default class MenuItem extends Component {
       link,
       name,
       onClick,
-      onKeyPress,
+      onKeyDown,
       position,
     } = this.props
 
@@ -64,7 +67,7 @@ export default class MenuItem extends Component {
       className,
     )
     const ElementType = getElementType(MenuItem, this.props, () => {
-      if (onClick || onKeyPress) return 'a'
+      if (onClick || onKeyDown) return 'a'
     })
     const rest = getUnhandledProps(MenuItem, this.props)
 
@@ -74,8 +77,8 @@ export default class MenuItem extends Component {
           {...rest}
           className={classes}
           onClick={this.handleClick}
-          onKeyPress={this.handleKeyPress}
-          tabIndex={0}
+          onKeyDown={this.handleKeyDown}
+          tabIndex={disabled ? -1 : 0}
         >
           {children}
         </ElementType>
@@ -87,8 +90,8 @@ export default class MenuItem extends Component {
         {...rest}
         className={classes}
         onClick={this.handleClick}
-        onKeyPress={this.handleKeyPress}
-        tabIndex={0}
+        onKeyDown={this.handleKeyDown}
+        tabIndex={disabled ? -1 : 0}
       >
         {Icon.create(icon, { autoGenerateKey: false })}
         {childrenUtils.isNil(content) ? _.startCase(name) : content}
@@ -146,7 +149,14 @@ MenuItem.propTypes = {
    */
   onClick: PropTypes.func,
 
-  onKeyPress: PropTypes.func,
+  /**
+   * Called on key press specifically on 'enter'. When passed, the component will render as an `a`
+   * tag by default instead of a `div`.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onKeyDown: PropTypes.func,
 
   /** A menu item can take left or right position. */
   position: PropTypes.oneOf(['left', 'right']),

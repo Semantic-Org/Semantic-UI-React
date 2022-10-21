@@ -68,4 +68,18 @@ describe('MenuItem', () => {
       shallow(<MenuItem onClick={() => null} />).should.have.tagName('a')
     })
   })
+
+  describe('tabIndex', () => {
+    it('defaults to 0', () => {
+      shallow(<MenuItem />).should.have.prop('tabIndex', 0)
+    })
+
+    it('defaults to 0 as <a>', () => {
+      shallow(<MenuItem as='a' />).should.have.prop('tabIndex', 0)
+    })
+
+    it('defaults to -1 when disabled', () => {
+      shallow(<MenuItem disabled />).should.have.prop('tabIndex', -1)
+    })
+  })
 })
