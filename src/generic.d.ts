@@ -70,7 +70,7 @@ export type ShorthandRenderFunction<C extends React.ElementType, P> = (
   props: P,
 ) => React.ReactNode
 
-export type SemanticShorthandCollection<TProps> = SemanticShorthandItem<TProps>[]
+export type SemanticShorthandCollection<TProps extends Record<string, any>> = SemanticShorthandItem<TProps>[]
 export type SemanticShorthandContent = React.ReactNode
 export type SemanticShorthandItem<TProps extends Record<string, any>> =
   | React.ReactNode
