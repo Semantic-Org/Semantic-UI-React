@@ -25,11 +25,13 @@ export default class MenuItem extends Component {
     if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
   }
 
-  handleKeyDown = (e) => {
-    _.invoke(this.props, 'onKeyDown', e, this.props)
-    if (e.charCode === 13) {
-      const { disabled } = this.props
+  handleKeyPress = (e) => {
+    _.invoke(this.props, 'onKeyPress', e, this.props)
+    if (e.charCode === 13 || e.charCode === 32) {
+      // Prevent the default action to stop scrolling when space is pressed
+      e.preventDefault()
 
+      const { disabled } = this.props
       if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
     }
   }
@@ -48,7 +50,7 @@ export default class MenuItem extends Component {
       link,
       name,
       onClick,
-      onKeyDown,
+      onKeyPress,
       position,
     } = this.props
 
@@ -65,7 +67,7 @@ export default class MenuItem extends Component {
       className,
     )
     const ElementType = getElementType(MenuItem, this.props, () => {
-      if (onClick || onKeyDown) return 'a'
+      if (onClick || onKeyPress) return 'a'
     })
     const rest = getUnhandledProps(MenuItem, this.props)
 
@@ -75,7 +77,7 @@ export default class MenuItem extends Component {
           {...rest}
           className={classes}
           onClick={this.handleClick}
-          onKeyDown={this.handleKeyDown}
+          onKeyPress={this.handleKeyDown}
           tabIndex={disabled ? -1 : 0}
         >
           {children}
@@ -88,7 +90,7 @@ export default class MenuItem extends Component {
         {...rest}
         className={classes}
         onClick={this.handleClick}
-        onKeyDown={this.handleKeyDown}
+        onKeyPress={this.handleKeyPress}
         tabIndex={disabled ? -1 : 0}
       >
         {Icon.create(icon, { autoGenerateKey: false })}
@@ -154,7 +156,7 @@ MenuItem.propTypes = {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onKeyDown: PropTypes.func,
+  onKeyPress: PropTypes.func,
 
   /** A menu item can take left or right position. */
   position: PropTypes.oneOf(['left', 'right']),
