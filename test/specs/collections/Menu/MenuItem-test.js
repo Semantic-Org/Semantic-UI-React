@@ -69,6 +69,19 @@ describe('MenuItem', () => {
     })
   })
 
+  describe('onKeyDown', () => {
+    it('is called with (e, data) when clicked', () => {
+      const onKeyDown = sandbox.spy()
+      const event = { keyCode: 13 }
+      const props = { tabIndex: 0 }
+
+      shallow(<MenuItem onKeyDown={onKeyDown} {...props} />).simulate('keydown', event)
+
+      onKeyDown.should.have.been.calledOnce()
+      onKeyDown.should.have.been.calledWithMatch(event, props)
+    })
+  })
+
   describe('tabIndex', () => {
     it('defaults to 0', () => {
       shallow(<MenuItem />).should.have.prop('tabIndex', 0)

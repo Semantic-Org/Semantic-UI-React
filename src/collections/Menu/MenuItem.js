@@ -27,11 +27,9 @@ export default class MenuItem extends Component {
 
   handleKeyDown = (e) => {
     _.invoke(this.props, 'onKeyDown', e, this.props)
-    if (e.charCode === 13 || e.charCode === 32) {
-      // Prevent the default action to stop scrolling when space is pressed
-      e.preventDefault()
-
+    if (e.charCode === 13) {
       const { disabled } = this.props
+
       if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
     }
   }
