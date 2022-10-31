@@ -72,7 +72,7 @@ describe('MenuItem', () => {
   describe('onKeyPress', () => {
     it('is called with (e, data) on Enter keyPress', () => {
       const onKeyPress = sandbox.spy()
-      const event = { keyCode: 13 }
+      const event = { charCode: 13, preventDefault: sandbox.spy() }
       const props = { tabIndex: 0 }
 
       shallow(<MenuItem onKeyPress={onKeyPress} {...props} />).simulate('keypress', event)
@@ -83,7 +83,7 @@ describe('MenuItem', () => {
 
     it('is called with (e, data) on Space keyPress', () => {
       const onKeyPress = sandbox.spy()
-      const event = { keyCode: 32, preventDefault: sandbox.spy() }
+      const event = { charCode: 32, preventDefault: sandbox.spy() }
       const props = { tabIndex: 0 }
 
       shallow(<MenuItem onKeyPress={onKeyPress} {...props} />).simulate('keypress', event)
@@ -92,19 +92,42 @@ describe('MenuItem', () => {
       onKeyPress.should.have.been.calledWithMatch(event, props)
     })
 
+    it('does not call onClick when non space/enter key is pressed', () => {
+      const onClick = sandbox.spy()
+      const event = { charCode: 14, preventDefault: sandbox.spy() }
+
+      shallow(<MenuItem onClick={onClick} />).simulate('keypress', event)
+
+      onClick.should.not.have.been.called()
+      event.preventDefault.should.not.have.been.called()
+    })
+
     it('is not called when disabled', () => {
       const onKeyPress = sandbox.spy()
       const onClick = sandbox.spy()
-      const event = { keyCode: 13 }
+      const event = { charCode: 13 }
       const props = { tabIndex: -1 }
 
       shallow(<MenuItem disabled onClick={onClick} onKeyPress={onKeyPress} {...props} />).simulate(
         'keypress',
         event,
       )
+      shallow(<MenuItem disabled onClick={onClick} onKeyPress={onKeyPress} {...props} />).simulate(
+        'click',
+      )
 
       onClick.should.have.callCount(0)
       onKeyPress.should.have.callCount(0)
+    })
+
+    it('prevent default is called', () => {
+      const onKeyPress = sandbox.spy()
+      const event = { charCode: 32, preventDefault: sandbox.spy() }
+      const props = { tabIndex: 0 }
+
+      shallow(<MenuItem onKeyPress={onKeyPress} {...props} />).simulate('keypress', event)
+
+      event.preventDefault.should.have.been.calledOnce()
     })
   })
 
