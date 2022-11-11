@@ -43,7 +43,7 @@ class Input extends Component {
     if (disabled) return -1
   }
 
-  focus = () => this.inputRef.current.focus()
+  focus = (options) => this.inputRef.current.focus(options)
 
   select = () => this.inputRef.current.select()
 
