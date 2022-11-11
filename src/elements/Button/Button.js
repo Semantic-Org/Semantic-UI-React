@@ -51,7 +51,7 @@ class Button extends Component {
     if (ElementType === 'div') return 0
   }
 
-  focus = () => _.invoke(this.ref.current, 'focus')
+  focus = (options) => _.invoke(this.ref.current, 'focus', options)
 
   handleClick = (e) => {
     const { disabled } = this.props

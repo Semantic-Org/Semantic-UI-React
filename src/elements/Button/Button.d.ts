@@ -123,7 +123,7 @@ declare class Button extends React.Component<ButtonProps> {
   static Group: typeof ButtonGroup
   static Or: typeof ButtonOr
 
-  focus: () => void
+  focus: (options?: FocusOptions) => void
 }
 
 export default Button
