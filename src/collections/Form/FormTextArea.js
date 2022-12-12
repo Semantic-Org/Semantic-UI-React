@@ -10,14 +10,15 @@ import FormField from './FormField'
  * @see Form
  * @see TextArea
  */
-function FormTextArea(props) {
+const FormTextArea = React.forwardRef(function (props, ref) {
   const { control } = props
   const rest = getUnhandledProps(FormTextArea, props)
   const ElementType = getElementType(FormTextArea, props)
 
-  return <ElementType {...rest} control={control} />
-}
+  return <ElementType {...rest} control={control} ref={ref} />
+})
 
+FormTextArea.displayName = 'FormTextArea'
 FormTextArea.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
