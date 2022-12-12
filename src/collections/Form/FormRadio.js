@@ -10,14 +10,15 @@ import FormField from './FormField'
  * @see Form
  * @see Radio
  */
-function FormRadio(props) {
+const FormRadio = React.forwardRef(function (props, ref) {
   const { control } = props
   const rest = getUnhandledProps(FormRadio, props)
   const ElementType = getElementType(FormRadio, props)
 
-  return <ElementType {...rest} control={control} />
-}
+  return <ElementType {...rest} control={control} ref={ref} />
+})
 
+FormRadio.displayName = 'FormRadio'
 FormRadio.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
