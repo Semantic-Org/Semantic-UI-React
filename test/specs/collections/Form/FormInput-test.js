@@ -51,6 +51,7 @@ describe('FormInput', () => {
     ignoredTypingsProps: ['label', 'error'],
   })
   common.labelImplementsHtmlForProp(FormInput)
+  common.forwardsRef(FormInput, { tagName: 'input' })
 
   it('renders a FormField with a Input control', () => {
     shallow(<FormInput />)
