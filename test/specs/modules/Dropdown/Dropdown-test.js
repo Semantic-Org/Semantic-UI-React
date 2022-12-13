@@ -100,6 +100,7 @@ describe('Dropdown', () => {
   })
 
   common.isConformant(Dropdown)
+  common.forwardsRef(Dropdown)
   common.hasUIClassName(Dropdown)
   common.hasSubcomponents(Dropdown, [
     DropdownDivider,

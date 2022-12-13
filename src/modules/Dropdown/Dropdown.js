@@ -15,6 +15,7 @@ import {
   getUnhandledProps,
   makeDebugger,
   objectDiff,
+  setRef,
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
@@ -72,6 +73,11 @@ class DropdownInner extends Component {
   searchRef = createRef()
   sizerRef = createRef()
   ref = createRef()
+
+  handleRef = (el) => {
+    this.ref.current = el
+    setRef(this.props.innerRef, el)
+  }
 
   getInitialAutoControlledState() {
     return { focus: false, searchQuery: '' }
@@ -1097,7 +1103,7 @@ class DropdownInner extends Component {
         onFocus={this.handleFocus}
         onChange={this.handleChange}
         tabIndex={this.computeTabIndex()}
-        ref={this.ref}
+        ref={this.handleRef}
       >
         {this.renderLabels()}
         {this.renderSearchInput()}
