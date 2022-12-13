@@ -24,7 +24,6 @@ const debug = makeDebugger('portal')
  * @see Confirm
  */
 class Portal extends Component {
-  contentRef = React.createRef()
   triggerRef = React.createRef()
   latestDocumentMouseDownEvent = null
 
@@ -44,15 +43,15 @@ class Portal extends Component {
 
   handleDocumentClick = (e) => {
     const { closeOnDocumentClick } = this.props
+    const { contentRef } = this.state
     const currentMouseDownEvent = this.latestDocumentMouseDownEvent
     this.latestDocumentMouseDownEvent = null
 
     if (
-      !this.contentRef.current || // no portal
+      !contentRef || // no portal
       doesNodeContainClick(this.triggerRef.current, e) || // event happened in trigger (delegate to trigger handlers)
-      (currentMouseDownEvent &&
-        doesNodeContainClick(this.contentRef.current, currentMouseDownEvent)) || // event originated in the portal but was ended outside
-      doesNodeContainClick(this.contentRef.current, e) // event happened in the portal
+      (currentMouseDownEvent && doesNodeContainClick(contentRef, currentMouseDownEvent)) || // event originated in the portal but was ended outside
+      doesNodeContainClick(contentRef, e) // event happened in the portal
     ) {
       return
     } // ignore the click
@@ -76,12 +75,13 @@ class Portal extends Component {
   // ----------------------------------------
 
   handlePortalMouseLeave = (e) => {
+    const { contentRef } = this.state
     const { closeOnPortalMouseLeave, mouseLeaveDelay } = this.props
 
     if (!closeOnPortalMouseLeave) return
 
     // Do not close the portal when 'mouseleave' is triggered by children
-    if (e.target !== this.contentRef.current) return
+    if (e.target !== contentRef) return
 
     debug('handlePortalMouseLeave()')
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
@@ -99,6 +99,7 @@ class Portal extends Component {
   }
 
   handleTriggerBlur = (e, ...rest) => {
+    const { contentRef } = this.state
     const { trigger, closeOnTriggerBlur } = this.props
 
     // Call original event handler
@@ -107,7 +108,7 @@ class Portal extends Component {
     // IE 11 doesn't work with relatedTarget in blur events
     const target = e.relatedTarget || document.activeElement
     // do not close if focus is given to the portal
-    const didFocusPortal = _.invoke(this.contentRef.current, 'contains', target)
+    const didFocusPortal = _.invoke(contentRef, 'contains', target)
 
     if (!closeOnTriggerBlur || didFocusPortal) return
 
@@ -225,9 +226,13 @@ class Portal extends Component {
     handleRef(this.props.triggerRef, c)
   }
 
+  updateContentRef = (ref) => {
+    this.setState({ contentRef: ref })
+  }
+
   render() {
     const { children, eventPool, mountNode, trigger } = this.props
-    const { open } = this.state
+    const { open, contentRef } = this.state
 
     /* istanbul ignore else */
     if (process.env.NODE_ENV !== 'production') {
@@ -239,7 +244,7 @@ class Portal extends Component {
         {open && (
           <>
             <PortalInner
-              innerRef={this.contentRef}
+              innerRef={this.updateContentRef}
               mountNode={mountNode}
               onMount={this.handleMount}
               onUnmount={this.handleUnmount}
@@ -251,13 +256,13 @@ class Portal extends Component {
               name='mouseleave'
               on={this.handlePortalMouseLeave}
               pool={eventPool}
-              target={this.contentRef}
+              target={contentRef}
             />
             <EventStack
               name='mouseenter'
               on={this.handlePortalMouseEnter}
               pool={eventPool}
-              target={this.contentRef}
+              target={contentRef}
             />
             <EventStack name='mousedown' on={this.handleDocumentMouseDown} pool={eventPool} />
             <EventStack name='click' on={this.handleDocumentClick} pool={eventPool} />
