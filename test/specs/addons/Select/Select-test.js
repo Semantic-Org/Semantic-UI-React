@@ -11,6 +11,7 @@ const requiredProps = {
 describe('Select', () => {
   common.isConformant(Select, { requiredProps })
   common.hasSubcomponents(Select, [Dropdown.Divider, Dropdown.Header, Dropdown.Item, Dropdown.Menu])
+  common.forwardsRef(Select)
 
   it('renders a selection Dropdown', () => {
     shallow(<Select {...requiredProps} />)

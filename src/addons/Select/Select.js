@@ -8,10 +8,11 @@ import Dropdown from '../../modules/Dropdown'
  * @see Dropdown
  * @see Form
  */
-function Select(props) {
-  return <Dropdown {...props} selection />
-}
+const Select = React.forwardRef(function (props, ref) {
+  return <Dropdown {...props} selection ref={ref} />
+})
 
+Select.displayName = 'Select'
 Select.propTypes = {
   /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
   options: PropTypes.arrayOf(PropTypes.shape(Dropdown.Item.propTypes)).isRequired,
