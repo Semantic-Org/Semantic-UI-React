@@ -11,7 +11,7 @@ const requiredProps = {
 describe('FormSelect', () => {
   common.isConformant(FormSelect, { requiredProps, ignoredTypingsProps: ['error'] })
   common.labelImplementsHtmlForProp(FormSelect, { requiredProps })
-  common.forwardsRef(FormSelect)
+  common.forwardsRef(FormSelect, { requiredProps })
 
   it('renders a FormField with a Select control', () => {
     shallow(<FormSelect {...requiredProps} />)
