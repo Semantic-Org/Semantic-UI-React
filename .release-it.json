@@ -1,0 +1,9 @@
+{
+  "github": {
+    "release": false
+  },
+  "npm": {
+    "publishArgs": "--registry=https://registry.npmjs.org",
+    "skipChecks": true
+  }
+}

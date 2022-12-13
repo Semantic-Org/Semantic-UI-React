@@ -7,7 +7,7 @@ general:
 
 docker_defaults: &docker_defaults
   docker:
-    - image: circleci/node:12-browsers
+    - image: circleci/node:16-browsers
   working_directory: ~/project/semantic-ui-react
 
 environment:
