@@ -56,6 +56,15 @@ export interface StrictMenuItemProps {
    */
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => void
 
+  /**
+   * Called on key press, specifically on 'enter'. When passed, the component will render as an `a`
+   * tag by default instead of a `div`.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onKeyPress?: (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => void
+
   /** A menu item can take left or right position. */
   position?: 'left' | 'right'
 }
