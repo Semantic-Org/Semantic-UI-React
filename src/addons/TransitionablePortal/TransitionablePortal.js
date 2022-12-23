@@ -58,9 +58,17 @@ export default class TransitionablePortal extends Component {
   handleTransitionHide = (nothing, data) => {
     debug('handleTransitionHide()')
     const { portalOpen } = this.state
+    const { open } = this.props
 
     this.setState({ transitionVisible: false })
-    _.invoke(this.props, 'onClose', null, { ...data, portalOpen: false, transitionVisible: false })
+
+    if (_.isUndefined(open) || open) {
+      _.invoke(this.props, 'onClose', null, {
+        ...data,
+        portalOpen: false,
+        transitionVisible: false,
+      })
+    }
     _.invoke(this.props, 'onHide', null, { ...data, portalOpen, transitionVisible: false })
   }
 

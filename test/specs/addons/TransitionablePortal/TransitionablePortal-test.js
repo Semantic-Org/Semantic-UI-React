@@ -83,6 +83,17 @@ describe('TransitionablePortal', () => {
       }, done)
     })
 
+    it('is not called if portal already closed ', () => {
+      const onClose = sandbox.spy()
+
+      wrapperMount(
+        <TransitionablePortal {...requiredProps} onClose={onClose} transition={quickTransition} />,
+      )
+
+      wrapper.setProps({ open: false })
+      onClose.should.not.have.been.called()
+    })
+
     it('changes `portalOpen` to false', () => {
       wrapperMount(
         <TransitionablePortal
