@@ -23,6 +23,7 @@ class Progress extends Component {
 
     if (!_.isUndefined(percent)) return percent
     if (!_.isUndefined(total) && !_.isUndefined(value)) return (value / total) * 100
+    if (!_.isUndefined(value)) return value
   }
 
   computeValueText = (percent) => {
@@ -34,13 +35,9 @@ class Progress extends Component {
   }
 
   getPercent = () => {
-    const { precision, progress, total, value } = this.props
+    const { precision } = this.props
     const percent = _.clamp(this.calculatePercent(), 0, 100)
 
-    if (!_.isUndefined(total) && !_.isUndefined(value) && progress === 'value') {
-      return (value / total) * 100
-    }
-    if (progress === 'value') return value
     if (_.isUndefined(precision)) return percent
     return _.round(percent, precision)
   }
@@ -164,7 +161,12 @@ Progress.propTypes = {
   precision: PropTypes.number,
 
   /** A progress bar can contain a text value indicating current progress. */
-  progress: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['percent', 'ratio', 'value'])]),
+  progress: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(['percent']),
+    customPropTypes.every([PropTypes.oneOf(['value']), customPropTypes.demand(['value'])]),
+    customPropTypes.every([PropTypes.oneOf(['ratio']), customPropTypes.demand(['value', 'total'])]),
+  ]),
 
   /** A progress bar can vary in size. */
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'mini', 'huge', 'massive')),
