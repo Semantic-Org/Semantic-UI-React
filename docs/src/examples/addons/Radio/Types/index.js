@@ -7,6 +7,11 @@ import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 const RadioTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
+      title='Radio onChange'
+      description='Radio toggle should work when id is passed.'
+      examplePath='addons/Radio/Types/RadioOnchangeExample'
+    />
+    <ComponentExample
       title='Radio'
       description='A radio for checking.'
       examplePath='addons/Radio/Types/RadioExampleRadio'
