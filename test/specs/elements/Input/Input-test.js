@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Icon from 'src/elements/Icon/Icon'
 import Input from 'src/elements/Input/Input'
 import { htmlInputProps } from 'src/lib'
 import * as common from 'test/specs/commonTests'
@@ -50,6 +51,7 @@ describe('Input', () => {
       onTouchStart: 'input',
     },
   })
+  common.forwardsRef(Input, { tagName: 'input' })
   common.hasUIClassName(Input)
   common.rendersChildren(Input, {
     rendersContent: false,
@@ -128,9 +130,11 @@ describe('Input', () => {
         const wrapper = shallow(<Input {...{ [propName]: propValue }} />)
 
         // account for overloading the onChange prop
-        const expectedValue = propName === 'onChange' ? wrapper.instance().handleChange : propValue
-
-        wrapper.find('input').should.have.prop(propName, expectedValue)
+        if (propName === 'onChange') {
+          wrapper.find('input').should.have.prop(propName).to.be.a('function')
+        } else {
+          wrapper.find('input').should.have.prop(propName, propValue)
+        }
       })
 
       it(`passes \`${propName}\` to the <input> when using children`, () => {
@@ -142,77 +146,47 @@ describe('Input', () => {
         )
 
         // account for overloading the onChange prop
-        const expectedValue = propName === 'onChange' ? wrapper.instance().handleChange : propValue
-
-        wrapper.find('input').should.have.prop(propName, expectedValue)
+        if (propName === 'onChange') {
+          wrapper.find('input').should.have.prop(propName).to.be.a('function')
+        } else {
+          wrapper.find('input').should.have.prop(propName, propValue)
+        }
       })
-    })
-  })
-
-  describe('focus', () => {
-    it('can be set via a ref', () => {
-      const mountNode = document.createElement('div')
-      document.body.appendChild(mountNode)
-
-      const wrapper = mount(<Input />, { attachTo: mountNode })
-      wrapper.instance().focus()
-
-      const input = document.querySelector('.ui.input input')
-      document.activeElement.should.equal(input)
-
-      wrapper.detach()
-      document.body.removeChild(mountNode)
-    })
-  })
-
-  describe('select', () => {
-    it('can be set via a ref', () => {
-      const mountNode = document.createElement('div')
-      document.body.appendChild(mountNode)
-
-      const value = 'expect this text to be selected'
-      const wrapper = mount(<Input value={value} />, { attachTo: mountNode })
-      wrapper.instance().select()
-
-      window.getSelection().toString().should.equal(value)
-
-      wrapper.detach()
-      document.body.removeChild(mountNode)
     })
   })
 
   describe('loading', () => {
     it("don't add icon if it's defined", () => {
       shallow(<Input icon='user' loading />)
-        .find('Icon')
+        .find(Icon)
         .should.have.prop('name', 'user')
     })
 
     it("adds icon if it's not defined", () => {
       shallow(<Input loading />)
-        .find('Icon')
+        .find(Icon)
         .should.have.prop('name', 'spinner')
     })
   })
 
   describe('onChange', () => {
     it('is called with (e, data) on change', () => {
-      const spy = sandbox.spy()
+      const onChange = sandbox.spy()
       const e = { target: { value: 'name' } }
-      const props = { 'data-foo': 'bar', onChange: spy }
+      const props = { 'data-foo': 'bar', onChange }
 
       const wrapper = shallow(<Input {...props} />)
 
       wrapper.find('input').simulate('change', e)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
 
     it('is called with (e, data) on change when using children', () => {
-      const spy = sandbox.spy()
+      const onChange = sandbox.spy()
       const e = { target: { value: 'name' } }
-      const props = { 'data-foo': 'bar', onChange: spy }
+      const props = { 'data-foo': 'bar', onChange }
 
       const wrapper = shallow(
         <Input {...props}>
@@ -222,28 +196,60 @@ describe('Input', () => {
 
       wrapper.find('input').simulate('change', e)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
   })
 
   describe('ref', () => {
+    it('"focus" can be set via a ref', () => {
+      const inputRef = React.createRef()
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<Input ref={inputRef} />, { attachTo: mountNode })
+      inputRef.current.focus()
+
+      const input = document.querySelector('.ui.input input')
+      document.activeElement.should.equal(input)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+
+    it('"select" can be set via a ref', () => {
+      const inputRef = React.createRef()
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const value = 'expect this text to be selected'
+      const wrapper = mount(<Input ref={inputRef} value={value} />, { attachTo: mountNode })
+      inputRef.current.select()
+
+      window.getSelection().toString().should.equal(value)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+
     it('maintains ref on child node', () => {
-      const ref = sandbox.spy()
+      const elementRef = sandbox.spy()
+      const inputRef = sandbox.spy()
+
       const mountNode = document.createElement('div')
       document.body.appendChild(mountNode)
 
       const wrapper = mount(
-        <Input>
-          <input ref={ref} />
+        <Input ref={inputRef}>
+          <input ref={elementRef} />
         </Input>,
         { attachTo: mountNode },
       )
       const input = document.querySelector('.ui.input input')
 
-      ref.should.have.been.calledOnce()
-      ref.should.have.been.calledWithMatch(input)
-      wrapper.instance().inputRef.current.should.equal(input)
+      elementRef.should.have.been.calledOnce()
+      elementRef.should.have.been.calledWithMatch(input)
+      inputRef.should.have.been.calledWithMatch(input)
 
       wrapper.detach()
       document.body.removeChild(mountNode)
@@ -291,41 +297,36 @@ describe('Input', () => {
   describe('icon', () => {
     it('is second child', () => {
       shallow(<Input icon='search' />)
-        .children()
-        .at(1)
-        .is('Icon')
+        .childAt(1)
+        .is(Icon)
         .should.be.true()
     })
 
     it('is third child with action positioned left', () => {
       shallow(<Input icon='search' action='foo' actionPosition='left' />)
-        .children()
-        .at(2)
-        .is('Icon')
+        .childAt(2)
+        .is(Icon)
         .should.be.true()
     })
 
     it('is third child with label', () => {
       shallow(<Input icon='search' label='foo' />)
-        .children()
-        .at(2)
-        .is('Icon')
+        .childAt(2)
+        .is(Icon)
         .should.be.true()
     })
 
     it('is second child with action', () => {
       shallow(<Input icon='search' iconPosition='left' action='foo' />)
-        .children()
-        .at(1)
-        .is('Icon')
+        .childAt(1)
+        .is(Icon)
         .should.be.true()
     })
 
     it('is second child with label positioned right', () => {
       shallow(<Input icon='search' iconPosition='left' label='foo' labelPosition='right' />)
-        .children()
-        .at(1)
-        .is('Icon')
+        .childAt(1)
+        .is(Icon)
         .should.be.true()
     })
   })

@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React from 'react'
 
 import {
   createShorthandFactory,
@@ -9,88 +9,89 @@ import {
   getElementType,
   getUnhandledProps,
   SUI,
+  useEventCallback,
   useKeyOnly,
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
 import IconGroup from './IconGroup'
 
+function getAriaProps(props) {
+  const ariaOptions = {}
+  const { 'aria-label': ariaLabel, 'aria-hidden': ariaHidden } = props
+
+  if (_.isNil(ariaLabel)) {
+    ariaOptions['aria-hidden'] = 'true'
+  } else {
+    ariaOptions['aria-label'] = ariaLabel
+  }
+
+  if (!_.isNil(ariaHidden)) {
+    ariaOptions['aria-hidden'] = ariaHidden
+  }
+
+  return ariaOptions
+}
+
 /**
  * An icon is a glyph used to represent something else.
  * @see Image
  */
-class Icon extends PureComponent {
-  getIconAriaOptions() {
-    const ariaOptions = {}
-    const { 'aria-label': ariaLabel, 'aria-hidden': ariaHidden } = this.props
+const Icon = React.forwardRef(function (props, ref) {
+  const {
+    bordered,
+    circular,
+    className,
+    color,
+    corner,
+    disabled,
+    fitted,
+    flipped,
+    inverted,
+    link,
+    loading,
+    name,
+    rotated,
+    size,
+  } = props
 
-    if (_.isNil(ariaLabel)) {
-      ariaOptions['aria-hidden'] = 'true'
-    } else {
-      ariaOptions['aria-label'] = ariaLabel
-    }
+  const classes = cx(
+    color,
+    name,
+    size,
+    useKeyOnly(bordered, 'bordered'),
+    useKeyOnly(circular, 'circular'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(fitted, 'fitted'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(link, 'link'),
+    useKeyOnly(loading, 'loading'),
+    useKeyOrValueAndKey(corner, 'corner'),
+    useValueAndKey(flipped, 'flipped'),
+    useValueAndKey(rotated, 'rotated'),
+    'icon',
+    className,
+  )
 
-    if (!_.isNil(ariaHidden)) {
-      ariaOptions['aria-hidden'] = ariaHidden
-    }
+  const rest = getUnhandledProps(Icon, props)
+  const ElementType = getElementType(Icon, props)
+  const ariaProps = getAriaProps(props)
 
-    return ariaOptions
-  }
-
-  handleClick = (e) => {
-    const { disabled } = this.props
-
+  const handleClick = useEventCallback((e) => {
     if (disabled) {
       e.preventDefault()
       return
     }
 
-    _.invoke(this.props, 'onClick', e, this.props)
-  }
+    _.invoke(props, 'onClick', e, props)
+  })
 
-  render() {
-    const {
-      bordered,
-      circular,
-      className,
-      color,
-      corner,
-      disabled,
-      fitted,
-      flipped,
-      inverted,
-      link,
-      loading,
-      name,
-      rotated,
-      size,
-    } = this.props
+  return (
+    <ElementType {...rest} {...ariaProps} className={classes} onClick={handleClick} ref={ref} />
+  )
+})
 
-    const classes = cx(
-      color,
-      name,
-      size,
-      useKeyOnly(bordered, 'bordered'),
-      useKeyOnly(circular, 'circular'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(fitted, 'fitted'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(link, 'link'),
-      useKeyOnly(loading, 'loading'),
-      useKeyOrValueAndKey(corner, 'corner'),
-      useValueAndKey(flipped, 'flipped'),
-      useValueAndKey(rotated, 'rotated'),
-      'icon',
-      className,
-    )
-    const rest = getUnhandledProps(Icon, this.props)
-    const ElementType = getElementType(Icon, this.props)
-    const ariaOptions = this.getIconAriaOptions()
-
-    return <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick} />
-  }
-}
-
+Icon.displayName = 'Icon'
 Icon.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -147,12 +148,15 @@ Icon.propTypes = {
   'aria-label': PropTypes.string,
 }
 
-Icon.defaultProps = {
+// Heads up!
+// .create() factories should be defined on exported component to be visible as static properties
+const MemoIcon = React.memo(Icon)
+
+MemoIcon.Group = IconGroup
+MemoIcon.create = createShorthandFactory(MemoIcon, (value) => ({ name: value }))
+
+MemoIcon.defaultProps = {
   as: 'i',
 }
 
-Icon.Group = IconGroup
-
-Icon.create = createShorthandFactory(Icon, (value) => ({ name: value }))
-
-export default Icon
+export default MemoIcon

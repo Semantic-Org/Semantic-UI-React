@@ -19,7 +19,7 @@ import Button from './Button'
 /**
  * Buttons can be grouped.
  */
-function ButtonGroup(props) {
+const ButtonGroup = React.forwardRef(function (props, ref) {
   const {
     attached,
     basic,
@@ -71,19 +71,20 @@ function ButtonGroup(props) {
 
   if (_.isNil(buttons)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {childrenUtils.isNil(children) ? content : children}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {_.map(buttons, (button) => Button.create(button))}
     </ElementType>
   )
-}
+})
 
+ButtonGroup.displayName = 'ButtonGroup'
 ButtonGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

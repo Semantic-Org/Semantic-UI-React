@@ -4,19 +4,20 @@ import React from 'react'
 
 import { getElementType, getUnhandledProps } from '../../lib'
 
-function TableBody(props) {
+const TableBody = React.forwardRef(function (props, ref) {
   const { children, className } = props
   const classes = cx(className)
   const rest = getUnhandledProps(TableBody, props)
   const ElementType = getElementType(TableBody, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {children}
     </ElementType>
   )
-}
+})
 
+TableBody.displayName = 'TableBody'
 TableBody.defaultProps = {
   as: 'tbody',
 }

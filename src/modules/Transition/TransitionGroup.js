@@ -2,64 +2,72 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { getElementType, getUnhandledProps, makeDebugger, SUI } from '../../lib'
+import {
+  getElementType,
+  getUnhandledProps,
+  makeDebugger,
+  SUI,
+  useEventCallback,
+  useForceUpdate,
+} from '../../lib'
 import { getChildMapping, mergeChildMappings } from './utils/childMapping'
 import wrapChild from './utils/wrapChild'
 
 const debug = makeDebugger('transition_group')
 
 /**
- * A Transition.Group animates children as they mount and unmount.
+ * Wraps all children elements with proper callbacks and props.
+ *
+ * @param {React.ReactNode} children
+ * @param {Stream} animation
+ * @param {Number|String|Object} duration
+ * @param {Boolean} directional
+ *
+ * @return {Object}
  */
-export default class TransitionGroup extends React.Component {
-  state = {
-    // Keeping a callback under the state is a hack to make it accessible under getDerivedStateFromProps()
-    handleOnHide: (nothing, childProps) => {
-      debug('handleOnHide', childProps)
-      const { reactKey } = childProps
+function useWrappedChildren(children, animation, duration, directional) {
+  debug('wrapChildren()')
 
-      this.setState((state) => {
-        const children = { ...state.children }
-        delete children[reactKey]
+  const forceUpdate = useForceUpdate()
+  const previousChildren = React.useRef()
 
-        return { children }
-      })
-    },
-  }
+  let wrappedChildren
+  React.useEffect(() => {
+    previousChildren.current = wrappedChildren
+  })
 
-  static getDerivedStateFromProps(props, state) {
-    debug('getDerivedStateFromProps()')
+  const handleChildHide = useEventCallback((nothing, childProps) => {
+    debug('handleOnHide', childProps)
+    const { reactKey } = childProps
 
-    const { animation, duration, directional } = props
-    const { children: prevMapping } = state
+    delete previousChildren.current[reactKey]
+    forceUpdate()
+  })
 
-    // A short circuit for an initial render as there will be no `prevMapping`
-    if (typeof prevMapping === 'undefined') {
-      return {
-        children: _.mapValues(getChildMapping(props.children), (child) =>
-          wrapChild(child, state.handleOnHide, {
-            animation,
-            duration,
-            directional,
-          }),
-        ),
-      }
-    }
+  // A short circuit for an initial render as there will be no `prevMapping`
+  if (typeof previousChildren.current === 'undefined') {
+    wrappedChildren = _.mapValues(getChildMapping(children), (child) =>
+      wrapChild(child, handleChildHide, {
+        animation,
+        duration,
+        directional,
+      }),
+    )
+  } else {
+    const nextMapping = getChildMapping(children)
+    wrappedChildren = mergeChildMappings(previousChildren.current, nextMapping)
 
-    const nextMapping = getChildMapping(props.children)
-    const children = mergeChildMappings(prevMapping, nextMapping)
+    _.forEach(wrappedChildren, (child, key) => {
+      const hasPrev = previousChildren.current[key]
+      const hasNext = nextMapping[key]
 
-    _.forEach(children, (child, key) => {
-      const hasPrev = _.has(prevMapping, key)
-      const hasNext = _.has(nextMapping, key)
-
-      const { [key]: prevChild } = prevMapping
+      const prevChild = previousChildren.current[key]
       const isLeaving = !_.get(prevChild, 'props.visible')
 
       // Heads up!
       // An item is new (entering), it will be picked from `nextChildren`, so it should be wrapped
       if (hasNext && (!hasPrev || isLeaving)) {
-        children[key] = wrapChild(child, state.handleOnHide, {
+        wrappedChildren[key] = wrapChild(child, handleChildHide, {
           animation,
           duration,
           directional,
@@ -72,7 +80,7 @@ export default class TransitionGroup extends React.Component {
       // An item is old (exiting), it will be picked from `prevChildren`, so it has been already
       // wrapped, so should be only updated
       if (!hasNext && hasPrev && !isLeaving) {
-        children[key] = React.cloneElement(prevChild, { visible: false })
+        wrappedChildren[key] = React.cloneElement(prevChild, { visible: false })
         return
       }
 
@@ -83,7 +91,7 @@ export default class TransitionGroup extends React.Component {
         props: { visible, transitionOnMount },
       } = prevChild
 
-      children[key] = wrapChild(child, state.handleOnHide, {
+      wrappedChildren[key] = wrapChild(child, handleChildHide, {
         animation,
         duration,
         directional,
@@ -91,23 +99,36 @@ export default class TransitionGroup extends React.Component {
         visible,
       })
     })
-
-    return { children }
   }
 
-  render() {
-    debug('render')
-    debug('props', this.props)
-    debug('state', this.state)
-
-    const { children } = this.state
-    const ElementType = getElementType(TransitionGroup, this.props)
-    const rest = getUnhandledProps(TransitionGroup, this.props)
-
-    return <ElementType {...rest}>{_.values(children)}</ElementType>
-  }
+  return wrappedChildren
 }
 
+/**
+ * A Transition.Group animates children as they mount and unmount.
+ */
+const TransitionGroup = React.forwardRef(function (props, ref) {
+  debug('render')
+  debug('props', props)
+
+  const children = useWrappedChildren(
+    props.children,
+    props.animation,
+    props.duration,
+    props.directional,
+  )
+
+  const ElementType = getElementType(TransitionGroup, props)
+  const rest = getUnhandledProps(TransitionGroup, props)
+
+  return (
+    <ElementType {...rest} ref={ref}>
+      {_.values(children)}
+    </ElementType>
+  )
+})
+
+TransitionGroup.displayName = 'TransitionGroup'
 TransitionGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -137,3 +158,5 @@ TransitionGroup.defaultProps = {
   animation: 'fade',
   duration: 500,
 }
+
+export default TransitionGroup

@@ -7,6 +7,8 @@ import { sandbox } from 'test/utils'
 
 describe('MenuItem', () => {
   common.isConformant(MenuItem)
+  common.forwardsRef(MenuItem)
+  common.forwardsRef(MenuItem, { requiredProps: { children: <span /> } })
   common.rendersChildren(MenuItem)
 
   common.implementsCreateMethod(MenuItem)
@@ -23,8 +25,14 @@ describe('MenuItem', () => {
   common.propValueOnlyToClassName(MenuItem, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(MenuItem, 'position', ['left', 'right'])
 
-  it('renders a `div` by default', () => {
-    shallow(<MenuItem />).should.have.tagName('div')
+  describe('as', () => {
+    it('renders a `div` by default', () => {
+      shallow(<MenuItem />).should.have.tagName('div')
+    })
+
+    it('renders an `a` tag', () => {
+      shallow(<MenuItem onClick={() => null} />).should.have.tagName('a')
+    })
   })
 
   describe('name', () => {
@@ -48,24 +56,19 @@ describe('MenuItem', () => {
   describe('onClick', () => {
     it('is called with (e, data) when clicked', () => {
       const onClick = sandbox.spy()
-      const event = { target: null }
       const props = { name: 'home', index: 0 }
 
-      shallow(<MenuItem onClick={onClick} {...props} />).simulate('click', event)
+      mount(<MenuItem onClick={onClick} {...props} />).simulate('click')
 
       onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch(event, props)
+      onClick.should.have.been.calledWithMatch({ type: 'click' }, props)
     })
 
     it('is not called when is disabled', () => {
       const onClick = sandbox.spy()
 
-      shallow(<MenuItem disabled onClick={onClick} />).simulate('click')
+      mount(<MenuItem disabled onClick={onClick} />).simulate('click')
       onClick.should.have.callCount(0)
-    })
-
-    it('renders an `a` tag', () => {
-      shallow(<MenuItem onClick={() => null} />).should.have.tagName('a')
     })
   })
 })

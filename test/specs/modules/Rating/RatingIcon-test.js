@@ -7,6 +7,7 @@ import { sandbox } from 'test/utils'
 
 describe('RatingIcon', () => {
   common.isConformant(RatingIcon)
+  common.forwardsRef(RatingIcon, { tagName: 'i' })
 
   common.propKeyOnlyToClassName(RatingIcon, 'active')
   common.propKeyOnlyToClassName(RatingIcon, 'selected')

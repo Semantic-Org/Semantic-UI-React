@@ -1,6 +1,3 @@
-// Third party
-export { Ref } from '@fluentui/react-component-ref'
-
 // Addons
 export Confirm from './addons/Confirm'
 export Pagination from './addons/Pagination'
@@ -11,9 +8,6 @@ export Radio from './addons/Radio'
 export Select from './addons/Select'
 export TextArea from './addons/TextArea'
 export TransitionablePortal from './addons/TransitionablePortal'
-
-// Behaviors
-export Visibility from './behaviors/Visibility'
 
 // Collections
 export Breadcrumb from './collections/Breadcrumb'
@@ -154,6 +148,7 @@ export RatingIcon from './modules/Rating/RatingIcon'
 
 export Search from './modules/Search'
 export SearchCategory from './modules/Search/SearchCategory'
+export SearchCategoryLayout from './modules/Search/SearchCategoryLayout'
 export SearchResult from './modules/Search/SearchResult'
 export SearchResults from './modules/Search/SearchResults'
 

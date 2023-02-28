@@ -11,7 +11,6 @@ import Portal from 'src/addons/Portal/Portal'
 
 import {
   assertNodeContains,
-  assertBodyClasses,
   assertBodyContains,
   assertWithTimeout,
   domEvent,
@@ -29,16 +28,6 @@ let wrapper
 // wrap the render methods to update a global wrapper that is unmounted after each test
 const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
-
-// cleanup in `useEffect()` is executed async, so we need to perform a proper cleanup first to avoid
-// collisions with other tests
-function waitForClassesCleanup(done, customAssertions = () => {}) {
-  wrapper.unmount()
-  assertWithTimeout(() => {
-    assertBodyClasses('dimmed', false)
-    customAssertions()
-  }, done)
-}
 
 describe('Modal', () => {
   beforeEach(() => {
@@ -72,12 +61,16 @@ describe('Modal', () => {
     propKey: 'header',
     ShorthandComponent: ModalHeader,
     mapValueToProps: (content) => ({ content }),
+    rendersPortal: true,
+    requiredProps: { open: true },
   })
   common.implementsShorthandProp(Modal, {
     autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: ModalContent,
     mapValueToProps: (content) => ({ content }),
+    rendersPortal: true,
+    requiredProps: { open: true },
   })
 
   // Heads up!
@@ -246,67 +239,24 @@ describe('Modal', () => {
   })
 
   describe('dimmer', () => {
-    it('adds a "dimmer" className to the body', (done) => {
+    it('renders ModalDimmer by default', () => {
       wrapperMount(<Modal open />)
-
-      assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
-      waitForClassesCleanup(done)
+      wrapper.should.have.descendants('ModalDimmer')
     })
 
-    describe('can be "true"', () => {
-      it('adds/removes body classes "dimmable dimmed" on mount/unmount', (done) => {
-        assertBodyClasses('dimmable dimmed', false)
-
-        wrapperMount(<Modal open dimmer />)
-        assertBodyClasses('dimmable dimmed')
-
-        wrapper.setProps({ open: false })
-        assertBodyClasses('dimmable dimmed', false)
-
-        waitForClassesCleanup(done)
-      })
+    it('renders ModalDimmer when is "true"', () => {
+      wrapperMount(<Modal open dimmer />)
+      wrapper.should.have.descendants('ModalDimmer')
     })
 
-    describe('blurring', () => {
-      it('adds/removes body classes "dimmable dimmed blurring" on mount/unmount', (done) => {
-        assertBodyClasses('dimmable dimmed blurring', false)
-
-        wrapperMount(<Modal open dimmer='blurring' />)
-        assertBodyClasses('dimmable dimmed blurring')
-
-        wrapper.setProps({ open: false })
-        assertBodyClasses('dimmable dimmed blurring', false)
-
-        waitForClassesCleanup(done)
-      })
-
-      it('adds a dimmer to the body', (done) => {
-        wrapperMount(<Modal open dimmer='blurring' />)
-
-        assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
-        waitForClassesCleanup(done)
-      })
+    it('passes "blurring" to ModalDimmer', () => {
+      wrapperMount(<Modal open dimmer='blurring' />)
+      wrapper.find('ModalDimmer').should.have.prop('blurring', true)
     })
 
-    describe('inverted', () => {
-      it('adds/removes body classes "dimmable dimmed" on mount/unmount', (done) => {
-        assertBodyClasses('dimmable dimmed', false)
-
-        wrapperMount(<Modal open dimmer />)
-        assertBodyClasses('dimmable dimmed')
-
-        wrapper.setProps({ open: false })
-        assertBodyClasses('dimmable dimmed', false)
-
-        waitForClassesCleanup(done)
-      })
-
-      it('adds an inverted dimmer to the body', (done) => {
-        wrapperMount(<Modal open dimmer='inverted' />)
-
-        assertBodyContains('.ui.inverted.page.modals.dimmer.transition.visible.active')
-        waitForClassesCleanup(done)
-      })
+    it('passes "inverted" to ModalDimmer', () => {
+      wrapperMount(<Modal open dimmer='inverted' />)
+      wrapper.find('ModalDimmer').should.have.prop('inverted', true)
     })
 
     describe('object', () => {
@@ -327,7 +277,7 @@ describe('Modal', () => {
 
       wrapper.find('#trigger').simulate('click')
       onOpen.should.have.been.calledOnce()
-      onOpen.should.have.been.calledWithMatch({}, { open: true })
+      onOpen.should.have.been.calledWithMatch({ type: 'click' }, { open: true })
     })
 
     it('is not called on body click', () => {
@@ -550,16 +500,15 @@ describe('Modal', () => {
       window.innerHeight = innerHeight
     })
 
-    it('does not add the scrolling class to the body by default', (done) => {
+    it('does not pass "scrolling" by default', () => {
       wrapperMount(<Modal open />)
-
-      assertBodyClasses('scrolling', false)
-      waitForClassesCleanup(done)
+      wrapper.find('ModalDimmer').should.have.prop('scrolling', false)
     })
 
-    it('does not add the scrolling class to the body when equal to the window height', (done) => {
+    it('does not pass "scrolling" when equal to the window height', (done) => {
       /* 101 is `padding * 2 + 1, see Modal/utils */
       const height = window.innerHeight - 101
+
       wrapperMount(
         <Modal open style={{ height }}>
           foo
@@ -567,73 +516,46 @@ describe('Modal', () => {
       )
 
       requestAnimationFrame(() => {
-        assertBodyClasses('scrolling', false)
+        wrapper.update()
+        wrapper.find('ModalDimmer').should.have.prop('scrolling', false)
+
         done()
       })
     })
 
-    it('adds the scrolling class to the body when taller than the window', (done) => {
+    it('passes "scrolling" when taller than the window', (done) => {
       window.innerHeight = 10
       wrapperMount(<Modal open>foo</Modal>)
 
       requestAnimationFrame(() => {
-        assertBodyClasses('scrolling')
+        wrapper.update()
+        wrapper.find('ModalDimmer').should.have.prop('scrolling', true)
+
         done()
       })
     })
 
-    it('adds/removes the scrolling class to the body when the window grows/shrinks', (done) => {
-      assertBodyClasses('scrolling', false)
-
-      wrapperMount(<Modal open>foo</Modal>)
+    it('passes "scrolling" when the window grows/shrinks', (done) => {
+      wrapperMount(
+        <Modal open>
+          <span />
+        </Modal>,
+      )
       window.innerHeight = 10
 
       assertWithTimeout(
         () => {
-          assertBodyClasses('scrolling')
+          wrapper.update()
+          wrapper.find('ModalDimmer').should.have.prop('scrolling', true)
+
           window.innerHeight = 10000
         },
         () =>
           assertWithTimeout(() => {
-            assertBodyClasses('scrolling', false)
+            wrapper.update()
+            wrapper.find('ModalDimmer').should.have.prop('scrolling', false)
           }, done),
       )
-    })
-
-    it('adds the scrolling class to the body after re-open', (done) => {
-      assertBodyClasses('scrolling', false)
-
-      window.innerHeight = 10
-      wrapperMount(<Modal defaultOpen>foo</Modal>)
-
-      assertWithTimeout(
-        () => {
-          assertBodyClasses('scrolling')
-          domEvent.click('.ui.dimmer')
-        },
-        () =>
-          assertWithTimeout(
-            () => {
-              assertBodyClasses('scrolling', false)
-              wrapper.setProps({ open: true })
-            },
-            () =>
-              assertWithTimeout(() => {
-                assertBodyClasses('scrolling')
-              }, done),
-          ),
-      )
-    })
-
-    it('removes the scrolling class from the body on unmount', (done) => {
-      assertBodyClasses('scrolling', false)
-
-      window.innerHeight = 10
-      wrapperMount(<Modal open>foo</Modal>)
-
-      waitForClassesCleanup(done, () => {
-        assertBodyClasses('scrolling', false)
-      })
     })
   })
 

@@ -1,3 +1,6 @@
+import faker from 'faker'
+import React from 'react'
+
 import ItemContent from 'src/views/Item/ItemContent'
 import ItemDescription from 'src/views/Item/ItemDescription'
 import ItemExtra from 'src/views/Item/ItemExtra'
@@ -7,6 +10,9 @@ import * as common from 'test/specs/commonTests'
 
 describe('ItemContent', () => {
   common.isConformant(ItemContent)
+  common.forwardsRef(ItemContent)
+  common.forwardsRef(ItemContent, { requiredProps: { children: <span /> } })
+  common.forwardsRef(ItemContent, { requiredProps: { content: faker.lorem.word() } })
   common.rendersChildren(ItemContent)
 
   common.implementsShorthandProp(ItemContent, {

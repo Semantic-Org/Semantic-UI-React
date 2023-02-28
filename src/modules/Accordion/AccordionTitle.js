@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   childrenUtils,
@@ -10,40 +10,42 @@ import {
   getElementType,
   getUnhandledProps,
   useKeyOnly,
+  useEventCallback,
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
 /**
  * A title sub-component for Accordion component.
  */
-export default class AccordionTitle extends Component {
-  handleClick = (e) => _.invoke(this.props, 'onClick', e, this.props)
+const AccordionTitle = React.forwardRef(function (props, ref) {
+  const { active, children, className, content, icon } = props
 
-  render() {
-    const { active, children, className, content, icon } = this.props
+  const classes = cx(useKeyOnly(active, 'active'), 'title', className)
+  const rest = getUnhandledProps(AccordionTitle, props)
+  const ElementType = getElementType(AccordionTitle, props)
+  const iconValue = _.isNil(icon) ? 'dropdown' : icon
 
-    const classes = cx(useKeyOnly(active, 'active'), 'title', className)
-    const rest = getUnhandledProps(AccordionTitle, this.props)
-    const ElementType = getElementType(AccordionTitle, this.props)
-    const iconValue = _.isNil(icon) ? 'dropdown' : icon
+  const handleClick = useEventCallback((e) => {
+    _.invoke(props, 'onClick', e, props)
+  })
 
-    if (!childrenUtils.isNil(children)) {
-      return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
-    }
-
+  if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {Icon.create(iconValue, { autoGenerateKey: false })}
-        {content}
+      <ElementType {...rest} className={classes} onClick={handleClick} ref={ref}>
+        {children}
       </ElementType>
     )
   }
-}
 
+  return (
+    <ElementType {...rest} className={classes} onClick={handleClick} ref={ref}>
+      {Icon.create(iconValue, { autoGenerateKey: false })}
+      {content}
+    </ElementType>
+  )
+})
+
+AccordionTitle.displayName = 'AccordionTitle'
 AccordionTitle.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -75,3 +77,5 @@ AccordionTitle.propTypes = {
   onClick: PropTypes.func,
 }
 AccordionTitle.create = createShorthandFactory(AccordionTitle, (content) => ({ content }))
+
+export default AccordionTitle

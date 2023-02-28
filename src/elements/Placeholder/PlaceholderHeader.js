@@ -13,19 +13,20 @@ import {
 /**
  * A placeholder can contain a header.
  */
-function PlaceholderHeader(props) {
+const PlaceholderHeader = React.forwardRef(function (props, ref) {
   const { children, className, content, image } = props
   const classes = cx(useKeyOnly(image, 'image'), 'header', className)
   const rest = getUnhandledProps(PlaceholderHeader, props)
   const ElementType = getElementType(PlaceholderHeader, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+PlaceholderHeader.displayName = 'PlaceholderHeader'
 PlaceholderHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

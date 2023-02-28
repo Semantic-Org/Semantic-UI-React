@@ -9,6 +9,7 @@ import { sandbox } from 'test/utils'
 
 describe('Icon', () => {
   common.isConformant(Icon)
+  common.forwardsRef(Icon, { isMemoized: true, tagName: 'i' })
   common.hasSubcomponents(Icon, [IconGroup])
 
   common.implementsCreateMethod(Icon)

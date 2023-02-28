@@ -1,8 +1,5 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../../generic'
-import SearchResult from './SearchResult'
-
 export interface SearchCategoryLayoutProps extends StrictSearchCategoryLayoutProps {
   [key: string]: any
 }

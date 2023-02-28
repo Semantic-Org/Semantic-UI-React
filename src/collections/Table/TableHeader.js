@@ -13,23 +13,24 @@ import {
 /**
  * A table can have a header.
  */
-function TableHeader(props) {
+const TableHeader = React.forwardRef(function (props, ref) {
   const { children, className, content, fullWidth } = props
   const classes = cx(useKeyOnly(fullWidth, 'full-width'), className)
   const rest = getUnhandledProps(TableHeader, props)
   const ElementType = getElementType(TableHeader, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
 TableHeader.defaultProps = {
   as: 'thead',
 }
 
+TableHeader.displayName = 'TableHeader'
 TableHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

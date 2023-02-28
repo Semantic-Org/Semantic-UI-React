@@ -8,9 +8,6 @@ export interface StrictPortalInnerProps {
   /** Primary content. */
   children: React.ReactNode
 
-  /** Called with a ref to the inner node. */
-  innerRef?: React.Ref<any>
-
   /** The node where the portal should mount. */
   mountNode?: any
 

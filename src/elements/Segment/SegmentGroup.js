@@ -15,7 +15,7 @@ import {
 /**
  * A group of segments can be formatted to appear together.
  */
-function SegmentGroup(props) {
+const SegmentGroup = React.forwardRef(function (props, ref) {
   const { children, className, compact, content, horizontal, piled, raised, size, stacked } = props
 
   const classes = cx(
@@ -33,12 +33,13 @@ function SegmentGroup(props) {
   const ElementType = getElementType(SegmentGroup, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+SegmentGroup.displayName = 'SegmentGroup'
 SegmentGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

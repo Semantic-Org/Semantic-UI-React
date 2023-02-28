@@ -13,8 +13,9 @@ import {
 /**
  * A dropdown menu can contain a menu.
  */
-function DropdownMenu(props) {
+const DropdownMenu = React.forwardRef(function (props, ref) {
   const { children, className, content, direction, open, scrolling } = props
+
   const classes = cx(
     direction,
     useKeyOnly(open, 'visible'),
@@ -26,12 +27,13 @@ function DropdownMenu(props) {
   const ElementType = getElementType(DropdownMenu, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+DropdownMenu.displayName = 'DropdownMenu'
 DropdownMenu.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

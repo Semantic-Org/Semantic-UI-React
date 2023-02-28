@@ -7,19 +7,20 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A comment can contain content.
  */
-function CommentContent(props) {
+const CommentContent = React.forwardRef(function (props, ref) {
   const { className, children, content } = props
   const classes = cx(className, 'content')
   const rest = getUnhandledProps(CommentContent, props)
   const ElementType = getElementType(CommentContent, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+CommentContent.displayName = 'CommentContent'
 CommentContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

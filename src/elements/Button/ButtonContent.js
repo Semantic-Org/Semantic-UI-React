@@ -13,8 +13,9 @@ import {
 /**
  * Used in some Button types, such as `animated`.
  */
-function ButtonContent(props) {
+const ButtonContent = React.forwardRef(function (props, ref) {
   const { children, className, content, hidden, visible } = props
+
   const classes = cx(
     useKeyOnly(visible, 'visible'),
     useKeyOnly(hidden, 'hidden'),
@@ -25,12 +26,13 @@ function ButtonContent(props) {
   const ElementType = getElementType(ButtonContent, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+ButtonContent.displayName = 'ButtonContent'
 ButtonContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

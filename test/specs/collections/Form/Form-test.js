@@ -34,6 +34,10 @@ describe('Form', () => {
     rendersContent: false,
   })
 
+  common.forwardsRef(Form, {
+    tagName: 'form',
+    requiredProps: { children: <input /> },
+  })
   common.implementsWidthProp(Form, [], {
     propKey: 'widths',
   })

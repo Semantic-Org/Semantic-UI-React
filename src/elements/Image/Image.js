@@ -25,7 +25,7 @@ import ImageGroup from './ImageGroup'
  * An image is a graphic representation of something.
  * @see Icon
  */
-function Image(props) {
+const Image = React.forwardRef(function (props, ref) {
   const {
     avatar,
     bordered,
@@ -68,8 +68,10 @@ function Image(props) {
     'image',
     className,
   )
+
   const rest = getUnhandledProps(Image, props)
   const [imgTagProps, rootProps] = partitionHTMLProps(rest, { htmlProps: htmlImageProps })
+
   const ElementType = getElementType(Image, props, () => {
     if (
       !_.isNil(dimmer) ||
@@ -83,33 +85,36 @@ function Image(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
   if (!childrenUtils.isNil(content)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {content}
       </ElementType>
     )
   }
 
   if (ElementType === 'img') {
-    return <ElementType {...rootProps} {...imgTagProps} className={classes} />
+    return <ElementType {...rootProps} {...imgTagProps} className={classes} ref={ref} />
   }
+
   return (
     <ElementType {...rootProps} className={classes} href={href}>
       {Dimmer.create(dimmer, { autoGenerateKey: false })}
       {Label.create(label, { autoGenerateKey: false })}
-      <img {...imgTagProps} />
+
+      <img {...imgTagProps} ref={ref} />
     </ElementType>
   )
-}
+})
 
 Image.Group = ImageGroup
 
+Image.displayName = 'Image'
 Image.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

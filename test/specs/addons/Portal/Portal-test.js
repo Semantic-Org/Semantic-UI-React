@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { act } from 'react-dom/test-utils'
 
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
@@ -147,7 +148,9 @@ describe('Portal', () => {
       )
 
       wrapper.setProps({ open: false, children: <p /> })
-      wrapper.unmount()
+      act(() => {
+        wrapper.unmount()
+      })
       onUnmount.should.have.been.calledOnce()
     })
 
@@ -159,30 +162,10 @@ describe('Portal', () => {
         </Portal>,
       )
 
-      wrapper.unmount()
+      act(() => {
+        wrapper.unmount()
+      })
       onUnmount.should.have.been.calledOnce()
-    })
-  })
-
-  describe('portalNode', () => {
-    it('maintains ref to DOM node with host element', () => {
-      wrapperMount(
-        <Portal open>
-          <p />
-        </Portal>,
-      )
-      wrapper.instance().contentRef.current.tagName.should.equal('P')
-    })
-
-    it('maintains ref to DOM node with React component', () => {
-      const EmptyComponent = () => <p />
-
-      wrapperMount(
-        <Portal open>
-          <EmptyComponent />
-        </Portal>,
-      )
-      wrapper.instance().contentRef.current.tagName.should.equal('P')
     })
   })
 
@@ -260,6 +243,25 @@ describe('Portal', () => {
           color: 'blue',
         })
       })
+    })
+  })
+
+  describe('triggerRef', () => {
+    it('calls itself and an original ref', () => {
+      const elementRef = React.createRef()
+      const triggerRef = React.createRef()
+
+      wrapperMount(
+        <Portal trigger={<div id='trigger' ref={elementRef} />} triggerRef={triggerRef}>
+          <p />
+        </Portal>,
+      )
+      const element = wrapper.getDOMNode()
+
+      expect(element.tagName).to.equal('DIV')
+
+      expect(elementRef.current).to.equal(element)
+      expect(triggerRef.current).to.equal(element)
     })
   })
 
@@ -710,28 +712,6 @@ describe('Portal', () => {
         document.body.removeChild(input)
         done()
       }, 0)
-    })
-  })
-
-  describe('triggerRef', () => {
-    it('maintains ref on the trigger', () => {
-      const triggerRef = sandbox.spy()
-      const mountNode = document.createElement('div')
-      document.body.appendChild(mountNode)
-
-      wrapperMount(
-        <Portal trigger={<button id='trigger' />} triggerRef={triggerRef}>
-          <p />
-        </Portal>,
-        { attachTo: mountNode },
-      )
-      const trigger = document.querySelector('#trigger')
-
-      triggerRef.should.have.been.calledOnce()
-      triggerRef.should.have.been.calledWithMatch(trigger)
-
-      wrapper.detach()
-      document.body.removeChild(mountNode)
     })
   })
 })

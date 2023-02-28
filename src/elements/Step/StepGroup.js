@@ -22,7 +22,7 @@ const numberMap = _.pickBy(numberToWordMap, (val, key) => key <= 8)
 /**
  * A set of steps.
  */
-function StepGroup(props) {
+const StepGroup = React.forwardRef(function (props, ref) {
   const {
     attached,
     children,
@@ -55,26 +55,27 @@ function StepGroup(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
   if (!childrenUtils.isNil(content)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {content}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {_.map(items, (item) => Step.create(item))}
     </ElementType>
   )
-}
+})
 
+StepGroup.displayName = 'StepGroup'
 StepGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

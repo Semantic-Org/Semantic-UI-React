@@ -9,6 +9,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('Accordion', () => {
   common.isConformant(Accordion)
+  common.forwardsRef(Accordion)
   common.hasSubcomponents(Accordion, [
     AccordionAccordion,
     AccordionContent,

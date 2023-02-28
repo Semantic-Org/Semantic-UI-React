@@ -14,10 +14,9 @@ const assertIframeSrc = (props, srcPart) => {
 
 describe('Embed', () => {
   common.isConformant(Embed)
+  common.forwardsRef(Embed)
   common.hasUIClassName(Embed)
-  common.rendersChildren(Embed, {
-    requiredProps: { active: true },
-  })
+  common.rendersChildren(Embed, { requiredProps: { active: true } })
 
   common.implementsHTMLIFrameProp(Embed, {
     alwaysPresent: true,
@@ -48,17 +47,21 @@ describe('Embed', () => {
 
   describe('active', () => {
     it('defaults to false', () => {
-      shallow(<Embed />).should.have.not.state('active')
+      mount(<Embed />).should.have.not.className('active')
     })
 
-    it('passes to state', () => {
-      shallow(<Embed active />).should.have.state('active', true)
+    it('applies className', () => {
+      mount(<Embed active />).should.have.className('active')
     })
 
     it('renders nothing when false', () => {
-      const children = 'child text'
+      const wrapper = mount(
+        <Embed>
+          <p id='foo' />
+        </Embed>,
+      )
 
-      shallow(<Embed>{children}</Embed>).should.not.contain(<div className='embed'>{children}</div>)
+      wrapper.should.not.have.descendants('#foo')
     })
   })
 
@@ -90,9 +93,8 @@ describe('Embed', () => {
 
   describe('defaultActive', () => {
     it('sets the initial active state', () => {
-      shallow(<Embed defaultActive />).should.have.state('active', true)
-
-      shallow(<Embed defaultActive={false} />).should.have.state('active', false)
+      mount(<Embed defaultActive />).should.have.className('active')
+      mount(<Embed defaultActive={false} />).should.have.not.className('active')
     })
   })
 
@@ -118,23 +120,18 @@ describe('Embed', () => {
   })
 
   describe('onClick', () => {
-    it('omitted when not defined', () => {
-      const click = () => shallow(<Embed />).simulate('click')
-      expect(click).to.not.throw()
-    })
-
-    it('updates state', () => {
+    it('sets to active state', () => {
       const wrapper = mount(<Embed />)
 
       wrapper.simulate('click')
-      wrapper.should.have.state('active', true)
+      wrapper.should.have.className('active')
     })
 
-    it('omits state update if active', () => {
+    it('skips state update if active', () => {
       const wrapper = mount(<Embed active />)
 
       wrapper.simulate('click')
-      wrapper.should.have.state('active', true)
+      wrapper.should.have.className('active')
     })
   })
 

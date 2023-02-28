@@ -8,6 +8,7 @@ import Flag from 'src/elements/Flag'
 
 describe('DropdownItem', () => {
   common.isConformant(DropdownItem)
+  common.forwardsRef(DropdownItem)
   common.rendersChildren(DropdownItem, {
     rendersContent: false,
   })
@@ -21,6 +22,7 @@ describe('DropdownItem', () => {
   common.implementsImageProp(DropdownItem, { autoGenerateKey: false })
 
   common.implementsShorthandProp(DropdownItem, {
+    assertExactMatch: false,
     autoGenerateKey: false,
     propKey: 'flag',
     ShorthandComponent: Flag,

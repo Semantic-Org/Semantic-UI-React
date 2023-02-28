@@ -24,6 +24,7 @@ const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
 describe('Checkbox', () => {
   common.isConformant(Checkbox)
+  common.forwardsRef(Checkbox, { tagName: 'input' })
   common.hasUIClassName(Checkbox)
 
   common.propKeyOnlyToClassName(Checkbox, 'checked')
@@ -110,6 +111,7 @@ describe('Checkbox', () => {
       domEvent.click(input)
       input.indeterminate.should.be.true()
     })
+
     it('can not be indeterminate', () => {
       wrapperMount(<Checkbox indeterminate={false} />)
       const input = document.querySelector('.ui.checkbox input')
@@ -482,22 +484,32 @@ describe('Checkbox', () => {
 
         render() {
           const handler = isOnClick ? { onClick: this.toggle } : { onChange: this.toggle }
-          return <Checkbox label='Check this box' checked={this.state.checked} {...handler} />
+
+          return (
+            <Checkbox
+              data-checked={this.state.checked}
+              label='Check this box'
+              checked={this.state.checked}
+              {...handler}
+            />
+          )
         }
       }
 
     it('toggles state on "change" with "setState" as function', () => {
-      const ControlledCheckbox = getControlledCheckbox(false)
-      wrapperMount(<ControlledCheckbox />)
-      domEvent.fire(document.querySelector('input'), 'click')
-      wrapper.state().should.eql({ checked: true })
+      const TestComponent = getControlledCheckbox(false)
+      wrapperMount(<TestComponent />)
+
+      domEvent.click('input')
+      wrapper.should.not.have.descendants('[data-checked=true]')
     })
 
     it('toggles state on "click" with "setState" as function', () => {
-      const ControlledCheckbox = getControlledCheckbox(true)
-      wrapperMount(<ControlledCheckbox />)
-      domEvent.fire(document.querySelector('input'), 'click')
-      wrapper.state().should.eql({ checked: true })
+      const TestComponent = getControlledCheckbox(true)
+      wrapperMount(<TestComponent />)
+
+      domEvent.click('input')
+      wrapper.should.not.have.descendants('[data-checked=true]')
     })
   })
 })

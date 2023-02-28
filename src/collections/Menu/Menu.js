@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  ModernAutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
   createShorthandFactory,
@@ -15,6 +14,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
   useWidthProp,
+  useAutoControlledValue,
 } from '../../lib'
 import MenuHeader from './MenuHeader'
 import MenuItem from './MenuItem'
@@ -24,90 +24,95 @@ import MenuMenu from './MenuMenu'
  * A menu displays grouped navigation actions.
  * @see Dropdown
  */
-class Menu extends Component {
-  handleItemOverrides = (predefinedProps) => ({
-    onClick: (e, itemProps) => {
-      const { index } = itemProps
-
-      this.setState({ activeIndex: index })
-
-      _.invoke(predefinedProps, 'onClick', e, itemProps)
-      _.invoke(this.props, 'onItemClick', e, itemProps)
-    },
+const Menu = React.forwardRef(function (props, ref) {
+  const {
+    attached,
+    borderless,
+    children,
+    className,
+    color,
+    compact,
+    fixed,
+    floated,
+    fluid,
+    icon,
+    inverted,
+    items,
+    pagination,
+    pointing,
+    secondary,
+    size,
+    stackable,
+    tabular,
+    text,
+    vertical,
+    widths,
+  } = props
+  const [activeIndex, setActiveIndex] = useAutoControlledValue({
+    state: props.activeIndex,
+    defaultState: props.defaultActiveIndex,
+    initialState: -1,
   })
 
-  renderItems() {
-    const { items } = this.props
-    const { activeIndex } = this.state
+  const classes = cx(
+    'ui',
+    color,
+    size,
+    useKeyOnly(borderless, 'borderless'),
+    useKeyOnly(compact, 'compact'),
+    useKeyOnly(fluid, 'fluid'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(pagination, 'pagination'),
+    useKeyOnly(pointing, 'pointing'),
+    useKeyOnly(secondary, 'secondary'),
+    useKeyOnly(stackable, 'stackable'),
+    useKeyOnly(text, 'text'),
+    useKeyOnly(vertical, 'vertical'),
+    useKeyOrValueAndKey(attached, 'attached'),
+    useKeyOrValueAndKey(floated, 'floated'),
+    useKeyOrValueAndKey(icon, 'icon'),
+    useKeyOrValueAndKey(tabular, 'tabular'),
+    useValueAndKey(fixed, 'fixed'),
+    useWidthProp(widths, 'item'),
+    className,
+    'menu',
+  )
+  const rest = getUnhandledProps(Menu, props)
+  const ElementType = getElementType(Menu, props)
 
-    return _.map(items, (item, index) =>
-      MenuItem.create(item, {
-        defaultProps: {
-          active: parseInt(activeIndex, 10) === index,
-          index,
-        },
-        overrideProps: this.handleItemOverrides,
-      }),
-    )
-  }
-
-  render() {
-    const {
-      attached,
-      borderless,
-      children,
-      className,
-      color,
-      compact,
-      fixed,
-      floated,
-      fluid,
-      icon,
-      inverted,
-      pagination,
-      pointing,
-      secondary,
-      size,
-      stackable,
-      tabular,
-      text,
-      vertical,
-      widths,
-    } = this.props
-    const classes = cx(
-      'ui',
-      color,
-      size,
-      useKeyOnly(borderless, 'borderless'),
-      useKeyOnly(compact, 'compact'),
-      useKeyOnly(fluid, 'fluid'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(pagination, 'pagination'),
-      useKeyOnly(pointing, 'pointing'),
-      useKeyOnly(secondary, 'secondary'),
-      useKeyOnly(stackable, 'stackable'),
-      useKeyOnly(text, 'text'),
-      useKeyOnly(vertical, 'vertical'),
-      useKeyOrValueAndKey(attached, 'attached'),
-      useKeyOrValueAndKey(floated, 'floated'),
-      useKeyOrValueAndKey(icon, 'icon'),
-      useKeyOrValueAndKey(tabular, 'tabular'),
-      useValueAndKey(fixed, 'fixed'),
-      useWidthProp(widths, 'item'),
-      className,
-      'menu',
-    )
-    const rest = getUnhandledProps(Menu, this.props)
-    const ElementType = getElementType(Menu, this.props)
-
+  if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
-        {childrenUtils.isNil(children) ? this.renderItems() : children}
+      <ElementType {...rest} className={classes} ref={ref}>
+        {children}
       </ElementType>
     )
   }
-}
 
+  return (
+    <ElementType {...rest} className={classes} ref={ref}>
+      {_.map(items, (item, index) =>
+        MenuItem.create(item, {
+          defaultProps: {
+            active: parseInt(activeIndex, 10) === index,
+            index,
+          },
+          overrideProps: (predefinedProps) => ({
+            onClick: (e, itemProps) => {
+              const itemIndex = itemProps.index
+
+              setActiveIndex(itemIndex)
+
+              _.invoke(predefinedProps, 'onClick', e, itemProps)
+              _.invoke(props, 'onItemClick', e, itemProps)
+            },
+          }),
+        }),
+      )}
+    </ElementType>
+  )
+})
+
+Menu.displayName = 'Menu'
 Menu.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -189,8 +194,6 @@ Menu.propTypes = {
   /** A menu can have its items divided evenly. */
   widths: PropTypes.oneOf(SUI.WIDTHS),
 }
-
-Menu.autoControlledProps = ['activeIndex']
 
 Menu.Header = MenuHeader
 Menu.Item = MenuItem

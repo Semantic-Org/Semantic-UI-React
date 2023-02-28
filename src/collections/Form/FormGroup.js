@@ -15,7 +15,7 @@ import {
  * A set of fields can appear grouped together.
  * @see Form
  */
-function FormGroup(props) {
+const FormGroup = React.forwardRef((props, ref) => {
   const { children, className, grouped, inline, unstackable, widths } = props
 
   const classes = cx(
@@ -30,11 +30,13 @@ function FormGroup(props) {
   const ElementType = getElementType(FormGroup, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {children}
     </ElementType>
   )
-}
+})
+
+FormGroup.displayName = 'FormGroup'
 
 FormGroup.propTypes = {
   /** An element type to render as (string or function). */

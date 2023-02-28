@@ -1,5 +1,4 @@
 import EventStack from '@semantic-ui-react/event-stack'
-import { Ref } from '@fluentui/react-component-ref'
 import cx from 'clsx'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
@@ -16,6 +15,7 @@ import {
   getUnhandledProps,
   makeDebugger,
   objectDiff,
+  setRef,
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
@@ -65,10 +65,19 @@ function renderItemContent(item) {
  * @see Select
  * @see Menu
  */
-export default class Dropdown extends Component {
+const Dropdown = React.forwardRef((props, ref) => {
+  return <DropdownInner {...props} innerRef={ref} />
+})
+
+class DropdownInner extends Component {
   searchRef = createRef()
   sizerRef = createRef()
   ref = createRef()
+
+  handleRef = (el) => {
+    this.ref.current = el
+    setRef(this.props.innerRef, el)
+  }
 
   getInitialAutoControlledState() {
     return { focus: false, searchQuery: '' }
@@ -765,6 +774,7 @@ export default class Dropdown extends Component {
       _.invoke(predefinedProps, 'onChange', e, inputProps)
       this.handleSearchChange(e, inputProps)
     },
+    ref: this.searchRef,
   })
 
   hasValue = () => {
@@ -901,18 +911,15 @@ export default class Dropdown extends Component {
     const { searchQuery } = this.state
 
     return (
-      search && (
-        <Ref innerRef={this.searchRef}>
-          {DropdownSearchInput.create(searchInput, {
-            defaultProps: {
-              style: { width: this.computeSearchInputWidth() },
-              tabIndex: this.computeSearchInputTabIndex(),
-              value: searchQuery,
-            },
-            overrideProps: this.handleSearchInputOverrides,
-          })}
-        </Ref>
-      )
+      search &&
+      DropdownSearchInput.create(searchInput, {
+        defaultProps: {
+          style: { width: this.computeSearchInputWidth() },
+          tabIndex: this.computeSearchInputTabIndex(),
+          value: searchQuery,
+        },
+        overrideProps: this.handleSearchInputOverrides,
+      })
     )
   }
 
@@ -1085,35 +1092,34 @@ export default class Dropdown extends Component {
     const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
 
     return (
-      <Ref innerRef={this.ref}>
-        <ElementType
-          {...rest}
-          {...ariaOptions}
-          className={classes}
-          onBlur={this.handleBlur}
-          onClick={this.handleClick}
-          onKeyDown={this.handleKeyDown}
-          onMouseDown={this.handleMouseDown}
-          onFocus={this.handleFocus}
-          onChange={this.handleChange}
-          tabIndex={this.computeTabIndex()}
-        >
-          {this.renderLabels()}
-          {this.renderSearchInput()}
-          {this.renderSearchSizer()}
-          {trigger || this.renderText()}
-          {Icon.create(icon, {
-            overrideProps: this.handleIconOverrides,
-            autoGenerateKey: false,
-          })}
-          {this.renderMenu()}
+      <ElementType
+        {...rest}
+        {...ariaOptions}
+        className={classes}
+        onBlur={this.handleBlur}
+        onClick={this.handleClick}
+        onKeyDown={this.handleKeyDown}
+        onMouseDown={this.handleMouseDown}
+        onFocus={this.handleFocus}
+        onChange={this.handleChange}
+        tabIndex={this.computeTabIndex()}
+        ref={this.handleRef}
+      >
+        {this.renderLabels()}
+        {this.renderSearchInput()}
+        {this.renderSearchSizer()}
+        {trigger || this.renderText()}
+        {Icon.create(icon, {
+          overrideProps: this.handleIconOverrides,
+          autoGenerateKey: false,
+        })}
+        {this.renderMenu()}
 
-          {open && <EventStack name='keydown' on={this.closeOnEscape} />}
-          {open && <EventStack name='click' on={this.closeOnDocumentClick} />}
+        {open && <EventStack name='keydown' on={this.closeOnEscape} />}
+        {open && <EventStack name='click' on={this.closeOnDocumentClick} />}
 
-          {focus && <EventStack name='keydown' on={this.removeItemOnBackspace} />}
-        </ElementType>
-      </Ref>
+        {focus && <EventStack name='keydown' on={this.removeItemOnBackspace} />}
+      </ElementType>
     )
   }
 }
@@ -1435,6 +1441,7 @@ Dropdown.propTypes = {
   wrapSelection: PropTypes.bool,
 }
 
+Dropdown.displayName = 'Dropdown'
 Dropdown.defaultProps = {
   additionLabel: 'Add ',
   additionPosition: 'top',
@@ -1452,7 +1459,12 @@ Dropdown.defaultProps = {
   wrapSelection: true,
 }
 
-Dropdown.autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
+DropdownInner.autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
+
+if (process.env.NODE_ENV !== 'production') {
+  DropdownInner.defaultProps = Dropdown.defaultProps
+  DropdownInner.propTypes = Dropdown.propTypes
+}
 
 Dropdown.Divider = DropdownDivider
 Dropdown.Header = DropdownHeader
@@ -1460,3 +1472,5 @@ Dropdown.Item = DropdownItem
 Dropdown.Menu = DropdownMenu
 Dropdown.SearchInput = DropdownSearchInput
 Dropdown.Text = DropdownText
+
+export default Dropdown

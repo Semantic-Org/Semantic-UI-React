@@ -1,15 +1,14 @@
-import _ from 'lodash'
 import React, { isValidElement } from 'react'
-import { consoleUtil } from 'test/utils'
+import { consoleUtil, getComponentName } from 'test/utils'
 
 /**
  * Assert a Component correctly implements a shorthand create method.
  * @param {React.Component|Function} Component The component to test.
  */
-export default (Component) => {
-  const { name } = _.get(Component, 'prototype.constructor.name')
-
+export default function implementsCreateMethod(Component) {
   describe('create shorthand method (common)', () => {
+    const name = getComponentName(Component)
+
     beforeEach(() => {
       // we generate prop values which may throw warnings
       // prevent failures due to console activity

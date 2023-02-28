@@ -7,19 +7,20 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * Header content wraps the main content when there is an adjacent Icon or Image.
  */
-function HeaderContent(props) {
+const HeaderContent = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(HeaderContent, props)
   const ElementType = getElementType(HeaderContent, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+HeaderContent.displayName = 'HeaderContent'
 HeaderContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

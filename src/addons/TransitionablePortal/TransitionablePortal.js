@@ -1,113 +1,127 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import Portal from '../Portal'
 import Transition from '../../modules/Transition'
 import { TRANSITION_STATUS_ENTERING } from '../../modules/Transition/utils/computeStatuses'
-import { getUnhandledProps, makeDebugger } from '../../lib'
+import { getUnhandledProps, makeDebugger, useForceUpdate } from '../../lib'
 
 const debug = makeDebugger('transitionable_portal')
 
-/**
- * A sugar for `Portal` and `Transition`.
- * @see Portal
- * @see Transition
- */
-export default class TransitionablePortal extends Component {
-  state = {}
+function usePortalState(props) {
+  const portalOpen = React.useRef(false)
+  const forceUpdate = useForceUpdate()
 
-  // ----------------------------------------
-  // Lifecycle
-  // ----------------------------------------
+  const setPortalOpen = React.useCallback((value) => {
+    portalOpen.current = value
+    forceUpdate()
+  }, [])
 
-  static getDerivedStateFromProps(props, state) {
+  React.useEffect(() => {
+    if (!_.isUndefined(props.open)) {
+      portalOpen.current = props.open
+    }
+  }, [props.open])
+
+  if (_.isUndefined(props.open)) {
     // This is definitely a hack :(
     //
     // It's coupled with handlePortalClose() for force set the state of `portalOpen` omitting
     // props.open. It's related to implementation of the component itself as `onClose()` will be
     // called after a transition will end.
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/2382
-    if (state.portalOpen === -1) {
-      return { portalOpen: false }
+    if (portalOpen.current === -1) {
+      return [false, setPortalOpen]
     }
 
-    if (_.isUndefined(props.open)) {
-      return null
-    }
-
-    return { portalOpen: props.open }
+    return [portalOpen.current, setPortalOpen]
   }
+
+  return [props.open, setPortalOpen]
+}
+
+/**
+ * A sugar for `Portal` and `Transition`.
+ * @see Portal
+ * @see Transition
+ */
+function TransitionablePortal(props) {
+  const { children, transition } = props
+
+  const [portalOpen, setPortalOpen] = usePortalState(props)
+  const [transitionVisible, setTransitionVisible] = React.useState(false)
+
+  const open = portalOpen || transitionVisible
 
   // ----------------------------------------
   // Callback handling
   // ----------------------------------------
 
-  handlePortalClose = () => {
+  const handlePortalClose = () => {
     debug('handlePortalClose()')
-
-    this.setState({ portalOpen: -1 })
+    setPortalOpen(-1)
   }
 
-  handlePortalOpen = () => {
+  const handlePortalOpen = () => {
     debug('handlePortalOpen()')
-
-    this.setState({ portalOpen: true })
+    setPortalOpen(true)
   }
 
-  handleTransitionHide = (nothing, data) => {
+  const handleTransitionHide = (nothing, data) => {
     debug('handleTransitionHide()')
-    const { portalOpen } = this.state
 
-    this.setState({ transitionVisible: false })
-    _.invoke(this.props, 'onClose', null, { ...data, portalOpen: false, transitionVisible: false })
-    _.invoke(this.props, 'onHide', null, { ...data, portalOpen, transitionVisible: false })
+    setTransitionVisible(false)
+    _.invoke(props, 'onClose', null, { ...data, portalOpen: false, transitionVisible: false })
+    _.invoke(props, 'onHide', null, { ...data, portalOpen, transitionVisible: false })
   }
 
-  handleTransitionStart = (nothing, data) => {
+  const handleTransitionStart = (nothing, data) => {
     debug('handleTransitionStart()')
-    const { portalOpen } = this.state
     const { status } = data
-    const transitionVisible = status === TRANSITION_STATUS_ENTERING
+    const nextTransitionVisible = status === TRANSITION_STATUS_ENTERING
 
-    _.invoke(this.props, 'onStart', null, { ...data, portalOpen, transitionVisible })
+    _.invoke(props, 'onStart', null, {
+      ...data,
+      portalOpen,
+      transitionVisible: nextTransitionVisible,
+    })
 
     // Heads up! TransitionablePortal fires onOpen callback on the start of transition animation
-    if (!transitionVisible) return
+    if (!nextTransitionVisible) {
+      return
+    }
 
-    this.setState({ transitionVisible })
-    _.invoke(this.props, 'onOpen', null, { ...data, transitionVisible, portalOpen: true })
+    setTransitionVisible(nextTransitionVisible)
+    _.invoke(props, 'onOpen', null, {
+      ...data,
+      transitionVisible: nextTransitionVisible,
+      portalOpen: true,
+    })
   }
 
   // ----------------------------------------
   // Render
   // ----------------------------------------
 
-  render() {
-    debug('render()', this.state)
+  const rest = getUnhandledProps(TransitionablePortal, props)
 
-    const { children, transition } = this.props
-    const { portalOpen, transitionVisible } = this.state
-
-    const open = portalOpen || transitionVisible
-    const rest = getUnhandledProps(TransitionablePortal, this.props)
-
-    return (
-      <Portal {...rest} open={open} onOpen={this.handlePortalOpen} onClose={this.handlePortalClose}>
-        <Transition
-          {...transition}
-          transitionOnMount
-          onStart={this.handleTransitionStart}
-          onHide={this.handleTransitionHide}
-          visible={portalOpen}
-        >
-          {children}
-        </Transition>
-      </Portal>
-    )
-  }
+  return (
+    <Portal {...rest} open={open} onOpen={handlePortalOpen} onClose={handlePortalClose}>
+      <Transition
+        {...transition}
+        transitionOnMount
+        onStart={handleTransitionStart}
+        onHide={handleTransitionHide}
+        visible={portalOpen}
+      >
+        {children}
+      </Transition>
+    </Portal>
+  )
 }
 
+TransitionablePortal.displayName = 'TransitionablePortal'
 TransitionablePortal.propTypes = {
   /** Primary content. */
   children: PropTypes.node.isRequired,
@@ -157,3 +171,5 @@ TransitionablePortal.defaultProps = {
     duration: 400,
   },
 }
+
+export default TransitionablePortal

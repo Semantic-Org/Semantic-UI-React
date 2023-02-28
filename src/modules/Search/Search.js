@@ -22,6 +22,7 @@ import {
 } from '../../lib'
 import Input from '../../elements/Input'
 import SearchCategory from './SearchCategory'
+import SearchCategoryLayout from './SearchCategoryLayout'
 import SearchResult from './SearchResult'
 import SearchResults from './SearchResults'
 
@@ -43,7 +44,11 @@ const overrideSearchInputProps = (predefinedProps) => {
 /**
  * A search module allows a user to query for results from a selection of data
  */
-export default class Search extends Component {
+const Search = React.forwardRef((props, ref) => {
+  return <SearchInner {...props} innerRef={ref} />
+})
+
+class SearchInner extends Component {
   static getAutoControlledStateFromProps(props, state) {
     debug('getAutoControlledStateFromProps()')
 
@@ -475,9 +480,9 @@ export default class Search extends Component {
     debug('render()')
     debug('props', this.props)
     debug('state', this.state)
-    const { searchClasses, focus, open } = this.state
 
-    const { aligned, category, className, fluid, loading, size } = this.props
+    const { searchClasses, focus, open } = this.state
+    const { aligned, category, className, innerRef, fluid, loading, size } = this.props
 
     // Classes
     const classes = cx(
@@ -506,6 +511,7 @@ export default class Search extends Component {
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
         onMouseDown={this.handleMouseDown}
+        ref={innerRef}
       >
         {this.renderSearchInput(htmlInputProps)}
         {this.renderResultsMenu()}
@@ -514,6 +520,7 @@ export default class Search extends Component {
   }
 }
 
+Search.displayName = 'Search'
 Search.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -680,8 +687,16 @@ Search.defaultProps = {
   showNoResults: true,
 }
 
-Search.autoControlledProps = ['open', 'value']
+SearchInner.autoControlledProps = ['open', 'value']
+
+if (process.env.NODE_ENV !== 'production') {
+  SearchInner.defaultProps = Search.defaultProps
+  SearchInner.propTypes = Search.propTypes
+}
 
 Search.Category = SearchCategory
+Search.CategoryLayout = SearchCategoryLayout
 Search.Result = SearchResult
 Search.Results = SearchResults
+
+export default Search

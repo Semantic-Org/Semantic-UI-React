@@ -14,4 +14,6 @@ describe('FormCheckbox', () => {
       .find('FormField')
       .should.have.prop('control', Checkbox)
   })
+
+  common.forwardsRef(FormCheckbox, { tagName: 'input' })
 })

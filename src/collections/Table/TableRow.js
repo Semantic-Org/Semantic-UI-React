@@ -19,7 +19,7 @@ import TableCell from './TableCell'
 /**
  * A table can have rows.
  */
-function TableRow(props) {
+const TableRow = React.forwardRef(function (props, ref) {
   const {
     active,
     cellAs,
@@ -51,24 +51,25 @@ function TableRow(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {_.map(cells, (cell) => TableCell.create(cell, { defaultProps: { as: cellAs } }))}
     </ElementType>
   )
-}
+})
 
 TableRow.defaultProps = {
   as: 'tr',
   cellAs: 'td',
 }
 
+TableRow.displayName = 'TableRow'
 TableRow.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

@@ -34,18 +34,17 @@ describe('TextArea', () => {
     if (attachTo) document.body.removeChild(attachTo)
   })
 
-  common.isConformant(TextArea, {
-    eventTargets: {
-      onChange: 'textarea',
-    },
-  })
+  common.isConformant(TextArea)
+  common.forwardsRef(TextArea, { tagName: 'textarea' })
 
   describe('focus', () => {
     it('can be set via a ref', () => {
-      wrapperMount(<TextArea />)
+      const ref = React.createRef()
+
+      wrapperMount(<TextArea ref={ref} />)
       const element = document.querySelector('textarea')
 
-      wrapper.instance().focus()
+      ref.current.focus()
       document.activeElement.should.equal(element)
     })
   })

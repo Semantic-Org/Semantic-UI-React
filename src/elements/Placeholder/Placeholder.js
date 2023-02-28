@@ -17,7 +17,7 @@ import PlaceholderParagraph from './PlaceholderParagraph'
 /**
  * A placeholder is used to reserve space for content that soon will appear in a layout.
  */
-function Placeholder(props) {
+const Placeholder = React.forwardRef(function (props, ref) {
   const { children, className, content, fluid, inverted } = props
   const classes = cx(
     'ui',
@@ -30,12 +30,13 @@ function Placeholder(props) {
   const ElementType = getElementType(Placeholder, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+Placeholder.displayName = 'Placeholder'
 Placeholder.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

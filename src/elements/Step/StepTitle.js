@@ -13,19 +13,20 @@ import {
 /**
  * A step can contain a title.
  */
-function StepTitle(props) {
+const StepTitle = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('title', className)
   const rest = getUnhandledProps(StepTitle, props)
   const ElementType = getElementType(StepTitle, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+StepTitle.displayName = 'StepTitle'
 StepTitle.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

@@ -14,7 +14,7 @@ import {
 /**
  * A statistic can contain a numeric, icon, image, or text value.
  */
-function StatisticValue(props) {
+const StatisticValue = React.forwardRef(function (props, ref) {
   const { children, className, content, text } = props
 
   const classes = cx(useKeyOnly(text, 'text'), 'value', className)
@@ -22,12 +22,13 @@ function StatisticValue(props) {
   const ElementType = getElementType(StatisticValue, props)
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-}
+})
 
+StatisticValue.displayName = 'StatisticValue'
 StatisticValue.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

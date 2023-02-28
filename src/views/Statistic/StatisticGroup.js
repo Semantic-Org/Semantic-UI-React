@@ -17,7 +17,7 @@ import Statistic from './Statistic'
 /**
  * A group of statistics.
  */
-function StatisticGroup(props) {
+const StatisticGroup = React.forwardRef(function (props, ref) {
   const { children, className, color, content, horizontal, inverted, items, size, widths } = props
 
   const classes = cx(
@@ -35,26 +35,27 @@ function StatisticGroup(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
   }
   if (!childrenUtils.isNil(content)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {content}
       </ElementType>
     )
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {_.map(items, (item) => Statistic.create(item))}
     </ElementType>
   )
-}
+})
 
+StatisticGroup.displayName = 'StatisticGroup'
 StatisticGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

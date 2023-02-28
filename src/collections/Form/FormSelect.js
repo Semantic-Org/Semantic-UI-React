@@ -11,14 +11,15 @@ import FormField from './FormField'
  * @see Form
  * @see Select
  */
-function FormSelect(props) {
+const FormSelect = React.forwardRef(function (props, ref) {
   const { control, options } = props
   const rest = getUnhandledProps(FormSelect, props)
   const ElementType = getElementType(FormSelect, props)
 
-  return <ElementType {...rest} control={control} options={options} />
-}
+  return <ElementType {...rest} control={control} options={options} ref={ref} />
+})
 
+FormSelect.displayName = 'FormSelect'
 FormSelect.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

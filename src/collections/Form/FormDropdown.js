@@ -10,14 +10,15 @@ import FormField from './FormField'
  * @see Dropdown
  * @see Form
  */
-function FormDropdown(props) {
+const FormDropdown = React.forwardRef(function (props, ref) {
   const { control } = props
   const rest = getUnhandledProps(FormDropdown, props)
   const ElementType = getElementType(FormDropdown, props)
 
-  return <ElementType {...rest} control={control} />
-}
+  return <ElementType {...rest} control={control} ref={ref} />
+})
 
+FormDropdown.displayName = 'FormDropdown'
 FormDropdown.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

@@ -8,6 +8,7 @@ describe('FormRadio', () => {
   common.isConformant(FormRadio, {
     ignoredTypingsProps: ['type'],
   })
+  common.forwardsRef(FormRadio, { tagName: 'input' })
 
   it('renders a FormField with a Radio control', () => {
     shallow(<FormRadio />)

@@ -1,12 +1,19 @@
 import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
+import ReactIs from 'react-is'
 import ReactDOMServer from 'react-dom/server'
 import * as semanticUIReact from 'semantic-ui-react'
 
 import { componentInfoContext } from 'docs/src/utils'
-import { assertBodyContains, consoleUtil, sandbox, syntheticEvent } from 'test/utils'
-import helpers from './commonHelpers'
+import {
+  assertBodyContains,
+  consoleUtil,
+  getComponentName,
+  getComponentProps,
+  sandbox,
+  syntheticEvent,
+} from 'test/utils'
 import hasValidTypings from './hasValidTypings'
 
 /**
@@ -20,7 +27,7 @@ import hasValidTypings from './hasValidTypings'
  * @param {boolean} [options.rendersPortal=false] Does this component render a Portal powered component?
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
-export default (Component, options = {}) => {
+export default function isConformant(Component, options = {}) {
   const {
     eventTargets = {},
     nestingLevel = 0,
@@ -29,25 +36,26 @@ export default (Component, options = {}) => {
     rendersFragmentByDefault = false,
     rendersPortal = false,
   } = options
-  const { throwError } = helpers('isConformant', Component)
+  const constructorName = getComponentName(Component)
 
-  const componentType = typeof Component
-
-  // make sure components are properly exported
-  if (componentType !== 'function') {
-    throwError(`Components should export a class or function, got: ${componentType}.`)
-  }
-
-  // tests depend on Component constructor names, enforce them
-  const constructorName = Component.prototype.constructor.name
-  if (!constructorName) {
-    throwError(
-      [
-        'Component is not a named function. This should help identify it:\n\n',
-        `${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
-      ].join(''),
+  it('a valid component should be exported', () => {
+    expect(ReactIs.isValidElementType(Component)).to.equal(
+      true,
+      `Components should export a class or function, got: ${typeof Component}.`,
     )
-  }
+  })
+
+  it('a component should be a function/class or "displayName" should be defined', () => {
+    if (!constructorName) {
+      throw new Error(
+        [
+          'Component is not a named function and does not have a "displayName".',
+          'This should help identify it:\n\n',
+          `${ReactDOMServer.renderToStaticMarkup(<Component {...requiredProps} />)}`,
+        ].join(''),
+      )
+    }
+  })
 
   const info = componentInfoContext.byDisplayName[constructorName]
 
@@ -65,7 +73,7 @@ export default (Component, options = {}) => {
   const isTopLevelAPIProp = _.has(semanticUIReact, constructorName)
 
   // find the apiPath in the semanticUIReact object
-  const foundAsSubcomponent = _.isFunction(_.get(semanticUIReact, info.apiPath))
+  const foundAsSubcomponent = ReactIs.isValidElementType(_.get(semanticUIReact, info.apiPath))
 
   // require all components to be exported at the top level
   it('is exported at the top level', () => {
@@ -192,20 +200,22 @@ export default (Component, options = {}) => {
   }
 
   describe('handles props', () => {
+    const componentProps = getComponentProps(Component)
+
     it('defines handled props in Component.handledProps', () => {
-      Component.should.have.any.keys('handledProps')
-      Component.handledProps.should.be.an('array')
+      componentProps.should.have.any.keys('handledProps')
+      componentProps.handledProps.should.be.an('array')
     })
 
     it('Component.handledProps includes all handled props', () => {
       const computedProps = _.union(
-        Component.autoControlledProps,
-        _.keys(Component.defaultProps),
-        _.keys(Component.propTypes),
+        componentProps.autoControlledProps,
+        _.keys(componentProps.defaultProps),
+        _.keys(componentProps.propTypes),
       )
       const expectedProps = _.uniq(computedProps).sort()
 
-      Component.handledProps.should.to.deep.equal(
+      componentProps.handledProps.should.to.deep.equal(
         expectedProps,
         'It seems that not all props were defined in Component.handledProps, you need to check that they are equal ' +
           'to the union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes',
@@ -216,7 +226,7 @@ export default (Component, options = {}) => {
   // ----------------------------------------
   // Events
   // ----------------------------------------
-  if (rendersChildren) {
+  if (rendersChildren && !rendersPortal) {
     it('handles events transparently', () => {
       // Events should be handled transparently, working just as they would in vanilla React.
       // Example, both of these handler()s should be called with the same event:
@@ -241,13 +251,14 @@ export default (Component, options = {}) => {
             'data-simulate-event-here': true,
           }
 
-          const wrapper = shallow(
+          consoleUtil.disableOnce()
+          const wrapper = mount(
             <Component as={rendersFragmentByDefault ? 'div' : undefined} {...props} />,
           )
 
           const eventTarget = eventTargets[listenerName]
             ? wrapper.find(eventTargets[listenerName])
-            : wrapper.find('[data-simulate-event-here]')
+            : wrapper.find('[data-simulate-event-here]').hostNodes()
 
           eventTarget.simulate(eventName, eventShape)
 
@@ -275,18 +286,19 @@ export default (Component, options = {}) => {
             errorMessage = 'was not called with (event, data)'
           }
 
+          // A handled should be called once
+          handlerSpy.should.have.been.calledOnce()
+
           // Components should return the event first, then any data
-          handlerSpy
-            .calledWithMatch(...expectedArgs)
-            .should.equal(
-              true,
-              [
-                `<${info.displayName} ${listenerName}={${handlerName}} />\n`,
-                `${leftPad} ^ ${errorMessage}`,
-                'It was called with args:',
-                JSON.stringify(handlerSpy.args, null, 2),
-              ].join('\n'),
-            )
+          handlerSpy.calledWithMatch(...expectedArgs).should.equal(
+            true,
+            [
+              `<${info.displayName} ${listenerName}={${handlerName}} />\n`,
+              `${leftPad} ^ ${errorMessage}`,
+              'It was called with args:',
+              //       JSON.stringify(handlerSpy.args, null, 2),
+            ].join('\n'),
+          )
         })
       })
     })
@@ -304,78 +316,81 @@ export default (Component, options = {}) => {
   // ----------------------------------------
   // Handles className
   // ----------------------------------------
-  if (rendersChildren) {
-    describe('className (common)', () => {
-      it(`has the Semantic UI className "${info.componentClassName}"`, () => {
-        const wrapper = render(<Component {...requiredProps} />)
-        // don't test components with no className at all (i.e. MessageItem)
-        if (wrapper.prop('className')) {
-          wrapper.should.have.className(info.componentClassName)
-        }
-      })
+  if (_.has(Component.propTypes, 'className')) {
+    if (rendersChildren) {
+      describe('className (common)', () => {
+        it(`has the Semantic UI className "${info.componentClassName}"`, () => {
+          const wrapper = render(<Component {...requiredProps} />)
+          // don't test components with no className at all (i.e. MessageItem)
+          if (wrapper.prop('className')) {
+            wrapper.should.have.className(info.componentClassName)
+          }
+        })
 
-      it("applies user's className to root component", () => {
-        const className = 'is-conformant-class-string'
+        it("applies user's className to root component", () => {
+          const className = 'is-conformant-class-string'
 
-        // Portal powered components can render to two elements, a trigger and the actual component
-        // The actual component is shown when the portal is open
-        // If a trigger is rendered, open the portal and make assertions on the portal element
-        if (rendersPortal) {
-          const mountNode = document.createElement('div')
-          document.body.appendChild(mountNode)
+          // Portal powered components can render to two elements, a trigger and the actual component
+          // The actual component is shown when the portal is open
+          // If a trigger is rendered, open the portal and make assertions on the portal element
+          if (rendersPortal) {
+            const mountNode = document.createElement('div')
+            document.body.appendChild(mountNode)
 
-          const wrapper = mount(<Component {...requiredProps} className={className} />, {
-            attachTo: mountNode,
+            const wrapper = mount(<Component {...requiredProps} className={className} />, {
+              attachTo: mountNode,
+            })
+            wrapper.setProps({ open: true })
+
+            // portals/popups/etc may render the component to somewhere besides descendants
+            // we look for the component anywhere in the DOM
+            assertBodyContains(`.${className}`)
+
+            wrapper.detach()
+            document.body.removeChild(mountNode)
+          } else {
+            shallow(
+              <Component
+                as={rendersFragmentByDefault ? 'div' : undefined}
+                {...requiredProps}
+                className={className}
+              />,
+              {
+                autoNesting: true,
+                nestingLevel,
+              },
+            ).should.have.className(className)
+          }
+        })
+
+        it("user's className does not override the default classes", () => {
+          const defaultClasses = shallow(<Component {...requiredProps} />, {
+            autoNesting: true,
+            nestingLevel,
+          }).prop('className')
+
+          if (!defaultClasses) return
+
+          const userClasses = faker.hacker.verb()
+          const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />, {
+            autoNesting: true,
+            nestingLevel,
+          }).prop('className')
+
+          defaultClasses.split(' ').forEach((defaultClass) => {
+            mixedClasses.should.include(
+              defaultClass,
+              [
+                'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+                'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+              ].join(' '),
+            )
           })
-          wrapper.setProps({ open: true })
-
-          // portals/popups/etc may render the component to somewhere besides descendants
-          // we look for the component anywhere in the DOM
-          assertBodyContains(`.${className}`)
-
-          wrapper.detach()
-          document.body.removeChild(mountNode)
-        } else {
-          shallow(
-            <Component
-              as={rendersFragmentByDefault ? 'div' : undefined}
-              {...requiredProps}
-              className={className}
-            />,
-            {
-              autoNesting: true,
-              nestingLevel,
-            },
-          ).should.have.className(className)
-        }
-      })
-
-      it("user's className does not override the default classes", () => {
-        const defaultClasses = shallow(<Component {...requiredProps} />, {
-          autoNesting: true,
-          nestingLevel,
-        }).prop('className')
-
-        if (!defaultClasses) return
-
-        const userClasses = faker.hacker.verb()
-        const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />, {
-          autoNesting: true,
-          nestingLevel,
-        }).prop('className')
-
-        defaultClasses.split(' ').forEach((defaultClass) => {
-          mixedClasses.should.include(
-            defaultClass,
-            [
-              'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
-              'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
-            ].join(' '),
-          )
         })
       })
-    })
+    }
   }
+
   // ----------------------------------------
   // Test typings
   // ----------------------------------------

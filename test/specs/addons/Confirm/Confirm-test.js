@@ -26,19 +26,23 @@ describe('Confirm', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
-  common.isConformant(Confirm)
+  common.isConformant(Confirm, { rendersPortal: true })
 
   common.implementsShorthandProp(Confirm, {
     autoGenerateKey: false,
     propKey: 'header',
     ShorthandComponent: Modal.Header,
+    rendersPortal: true,
     mapValueToProps: (content) => ({ content }),
+    requiredProps: { open: true },
   })
   common.implementsShorthandProp(Confirm, {
     autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: Modal.Content,
+    rendersPortal: true,
     mapValueToProps: (content) => ({ content }),
+    requiredProps: { open: true },
   })
 
   describe('children', () => {

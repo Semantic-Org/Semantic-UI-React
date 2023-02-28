@@ -5,13 +5,25 @@ import * as common from 'test/specs/commonTests'
 
 describe('ModalDimmer', () => {
   common.isConformant(ModalDimmer)
+  common.forwardsRef(ModalDimmer)
   common.hasUIClassName(ModalDimmer)
   common.rendersChildren(ModalDimmer)
 
   common.propKeyOnlyToClassName(ModalDimmer, 'inverted')
 
+  it('has required classes', () => {
+    const wrapper = mount(<ModalDimmer mountNode={null} />)
+
+    expect(wrapper).to.have.className('page')
+    expect(wrapper).to.have.className('modals')
+    expect(wrapper).to.have.className('dimmer')
+    expect(wrapper).to.have.className('transition')
+    expect(wrapper).to.have.className('visible')
+    expect(wrapper).to.have.className('active')
+  })
+
   describe('children', () => {
-    it('adds classes to "MountNode"', () => {
+    it('adds classes to "mountNode"', () => {
       const element = document.createElement('div')
       mount(<ModalDimmer mountNode={element} />)
 
@@ -21,7 +33,7 @@ describe('ModalDimmer', () => {
   })
 
   describe('blurring', () => {
-    it('adds nothing "MountNode" by default', () => {
+    it('adds nothing "mountNode" by default', () => {
       const element = document.createElement('div')
       mount(<ModalDimmer mountNode={element} />)
 

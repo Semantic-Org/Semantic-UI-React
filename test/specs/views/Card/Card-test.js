@@ -13,6 +13,11 @@ import { sandbox } from 'test/utils'
 
 describe('Card', () => {
   common.isConformant(Card)
+
+  common.forwardsRef(Card)
+  common.forwardsRef(Card, { requiredProps: { children: <span /> } })
+  common.forwardsRef(Card, { requiredProps: { content: faker.lorem.word() } })
+
   common.hasSubcomponents(Card, [CardContent, CardDescription, CardGroup, CardHeader, CardMeta])
   common.hasUIClassName(Card)
   common.rendersChildren(Card)
@@ -44,6 +49,14 @@ describe('Card', () => {
       const wrapper = shallow(<Card onClick={handleClick} />)
 
       wrapper.should.have.tagName('a')
+    })
+
+    it('is called with (e, data) when clicked', () => {
+      const onClick = sandbox.spy()
+      mount(<Card onClick={onClick} />).simulate('click')
+
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch({ type: 'click' }, { onClick })
     })
   })
 

@@ -25,7 +25,7 @@ import TableRow from './TableRow'
 /**
  * A table displays a collections of data grouped into rows.
  */
-function Table(props) {
+const Table = React.forwardRef(function (props, ref) {
   const {
     attached,
     basic,
@@ -88,7 +88,7 @@ function Table(props) {
 
   if (!childrenUtils.isNil(children)) {
     return (
-      <ElementType {...rest} className={classes}>
+      <ElementType {...rest} className={classes} ref={ref}>
         {children}
       </ElementType>
     )
@@ -104,7 +104,7 @@ function Table(props) {
   )
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} className={classes} ref={ref}>
       {headerElement}
       <TableBody>
         {renderBodyRow &&
@@ -113,8 +113,9 @@ function Table(props) {
       {footerRow && <TableFooter>{TableRow.create(footerRow)}</TableFooter>}
     </ElementType>
   )
-}
+})
 
+Table.displayName = 'Table'
 Table.defaultProps = {
   as: 'table',
 }

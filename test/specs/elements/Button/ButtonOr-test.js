@@ -6,6 +6,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('ButtonOr', () => {
   common.isConformant(ButtonOr)
+  common.forwardsRef(ButtonOr)
 
   describe('text', () => {
     it('should not define attr when not defined', () => {

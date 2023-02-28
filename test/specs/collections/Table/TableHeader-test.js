@@ -5,6 +5,7 @@ import TableHeader from 'src/collections/Table/TableHeader'
 
 describe('TableHeader', () => {
   common.isConformant(TableHeader)
+  common.forwardsRef(TableHeader, { tagName: 'thead' })
   common.rendersChildren(TableHeader)
 
   common.propKeyOnlyToClassName(TableHeader, 'fullWidth', {

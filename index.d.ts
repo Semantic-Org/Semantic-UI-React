@@ -1,7 +1,3 @@
-// Third party
-
-export { Ref, RefProps } from '@fluentui/react-component-ref'
-
 // Addons
 
 export {
@@ -38,16 +34,6 @@ export {
   TransitionablePortalState,
   StrictTransitionablePortalProps,
 } from './dist/commonjs/addons/TransitionablePortal'
-
-// Behaviors
-export {
-  default as Visibility,
-  VisibilityCalculations,
-  VisibilityEventData,
-  VisibilityOnPassed,
-  VisibilityProps,
-  StrictVisibilityProps,
-} from './dist/commonjs/behaviors/Visibility'
 
 // Collections
 export {
