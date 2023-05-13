@@ -12,8 +12,8 @@ import AccordionContent from './AccordionContent'
 class AccordionPanel extends Component {
   handleTitleOverrides = (predefinedProps) => ({
     onClick: (e, titleProps) => {
-      _.invoke(predefinedProps, 'onClick', e, titleProps)
-      _.invoke(this.props, 'onTitleClick', e, titleProps)
+      predefinedProps.onClick?.(e, titleProps)
+      this.props.onTitleClick?.(e, titleProps)
     },
   })
 

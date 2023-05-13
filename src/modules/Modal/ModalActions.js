@@ -43,8 +43,8 @@ const ModalActions = React.forwardRef(function (props, ref) {
         Button.create(action, {
           overrideProps: (predefinedProps) => ({
             onClick: (e, buttonProps) => {
-              _.invoke(predefinedProps, 'onClick', e, buttonProps)
-              _.invoke(props, 'onActionClick', e, buttonProps)
+              predefinedProps.onClick?.(e, buttonProps)
+              props.onActionClick?.(e, buttonProps)
             },
           }),
         }),

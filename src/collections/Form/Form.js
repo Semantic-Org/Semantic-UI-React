@@ -43,8 +43,8 @@ const Form = React.forwardRef(function (props, ref) {
   const handleSubmit = (e, ...args) => {
     // Heads up! Third party libs can pass own data as first argument, we need to check that it has preventDefault()
     // method.
-    if (typeof action !== 'string') _.invoke(e, 'preventDefault')
-    _.invoke(props, 'onSubmit', e, props, ...args)
+    if (typeof action !== 'string') e.preventDefault?.()
+    props.onSubmit?.(e, props, ...args)
   }
 
   const classes = cx(

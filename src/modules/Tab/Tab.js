@@ -34,13 +34,13 @@ const Tab = React.forwardRef(function (props, ref) {
   })
 
   const handleItemClick = (e, { index }) => {
-    _.invoke(props, 'onTabChange', e, { ...props, activeIndex: index })
+    props.onTabChange?.(e, { ...props, activeIndex: index })
     setActiveIndex(index)
   }
 
   const renderItems = () => {
     if (renderActiveOnly) {
-      return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', props)
+      return panes?.[activeIndex]?.render?.(props)
     }
 
     return _.map(panes, ({ pane }, index) =>
