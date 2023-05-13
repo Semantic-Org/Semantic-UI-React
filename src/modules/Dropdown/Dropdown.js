@@ -194,7 +194,7 @@ class DropdownInner extends Component {
   // can't rely on props.value if we are controlled
   handleChange = (e, value) => {
     debug('handleChange()', value)
-    _.invoke(this.props, 'onChange', e, { ...this.props, value })
+    this.props.onChange?.(e, { ...this.props, value })
   }
 
   closeOnChange = (e) => {
@@ -305,7 +305,7 @@ class DropdownInner extends Component {
       // Heads up! This event handler should be called after `onChange`
       // Notify the onAddItem prop if this is a new value
       if (item['data-additional']) {
-        _.invoke(this.props, 'onAddItem', e, { ...this.props, value: selectedValue })
+        this.props.onAddItem?.(e, { ...this.props, value: selectedValue })
       }
     }
 
@@ -374,7 +374,7 @@ class DropdownInner extends Component {
     this.clearSearchQuery()
 
     if (search) {
-      _.invoke(this.searchRef.current, 'focus')
+      this.searchRef.current?.focus?.()
     }
   }
 
@@ -415,7 +415,7 @@ class DropdownInner extends Component {
     debug('handleMouseDown()')
 
     this.isMouseDown = true
-    _.invoke(this.props, 'onMouseDown', e, this.props)
+    this.props.onMouseDown?.(e, this.props)
     document.addEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
@@ -432,20 +432,20 @@ class DropdownInner extends Component {
     const { minCharacters, search } = this.props
     const { open, searchQuery } = this.state
 
-    _.invoke(this.props, 'onClick', e, this.props)
+    this.props.onClick?.(e, this.props)
     // prevent closeOnDocumentClick()
     e.stopPropagation()
 
     if (!search) return this.toggle(e)
     if (open) {
-      _.invoke(this.searchRef.current, 'focus')
+      this.searchRef.current?.focus?.()
       return
     }
     if (searchQuery.length >= minCharacters || minCharacters === 1) {
       this.open(e)
       return
     }
-    _.invoke(this.searchRef.current, 'focus')
+    this.searchRef.current?.focus?.()
   }
 
   handleIconClick = (e) => {
@@ -453,7 +453,7 @@ class DropdownInner extends Component {
     const hasValue = this.hasValue()
     debug('handleIconClick()', { e, clearable, hasValue })
 
-    _.invoke(this.props, 'onClick', e, this.props)
+    this.props.onClick?.(e, this.props)
     // prevent handleClick()
     e.stopPropagation()
 
@@ -497,9 +497,9 @@ class DropdownInner extends Component {
     this.clearSearchQuery()
 
     if (search) {
-      _.invoke(this.searchRef.current, 'focus')
+      this.searchRef.current?.focus?.()
     } else {
-      _.invoke(this.ref.current, 'focus')
+      this.ref.current?.focus?.()
     }
 
     this.closeOnChange(e)
@@ -507,7 +507,7 @@ class DropdownInner extends Component {
     // Heads up! This event handler should be called after `onChange`
     // Notify the onAddItem prop if this is a new value
     if (isAdditionItem) {
-      _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
+      this.props.onAddItem?.(e, { ...this.props, value })
     }
   }
 
@@ -517,7 +517,7 @@ class DropdownInner extends Component {
 
     if (focus) return
 
-    _.invoke(this.props, 'onFocus', e, this.props)
+    this.props.onFocus?.(e, this.props)
     this.setState({ focus: true })
   }
 
@@ -533,7 +533,7 @@ class DropdownInner extends Component {
     // do not "blur" when the mouse is down inside of the Dropdown
     if (this.isMouseDown) return
 
-    _.invoke(this.props, 'onBlur', e, this.props)
+    this.props.onBlur?.(e, this.props)
 
     if (selectOnBlur && !multiple) {
       this.makeSelectedItemActive(e, this.state.selectedIndex)
@@ -555,7 +555,7 @@ class DropdownInner extends Component {
     const { open } = this.state
     const newQuery = value
 
-    _.invoke(this.props, 'onSearchChange', e, { ...this.props, searchQuery: newQuery })
+    this.props.onSearchChange?.(e, { ...this.props, searchQuery: newQuery })
     this.setState({ searchQuery: newQuery, selectedIndex: 0 })
 
     // open search dropdown on search query
@@ -573,7 +573,7 @@ class DropdownInner extends Component {
     this.openOnSpace(e)
     this.selectItemOnEnter(e)
 
-    _.invoke(this.props, 'onKeyDown', e)
+    this.props.onKeyDown?.(e)
   }
 
   // ----------------------------------------
@@ -648,7 +648,7 @@ class DropdownInner extends Component {
     e.stopPropagation()
 
     this.setState({ selectedLabel: labelProps.value })
-    _.invoke(this.props, 'onLabelClick', e, labelProps)
+    this.props.onLabelClick?.(e, labelProps)
   }
 
   handleLabelRemove = (e, labelProps) => {
@@ -720,7 +720,7 @@ class DropdownInner extends Component {
     return {
       className: classes,
       onClick: (e) => {
-        _.invoke(predefinedProps, 'onClick', e, predefinedProps)
+        predefinedProps.onClick?.(e, predefinedProps)
         this.handleIconClick(e)
       },
     }
@@ -771,7 +771,7 @@ class DropdownInner extends Component {
 
   handleSearchInputOverrides = (predefinedProps) => ({
     onChange: (e, inputProps) => {
-      _.invoke(predefinedProps, 'onChange', e, inputProps)
+      predefinedProps.onChange?.(e, inputProps)
       this.handleSearchChange(e, inputProps)
     },
     ref: this.searchRef,
@@ -834,9 +834,9 @@ class DropdownInner extends Component {
     debug('open()', { disabled, search, open: this.state.open })
 
     if (disabled) return
-    if (search) _.invoke(this.searchRef.current, 'focus')
+    if (search) this.searchRef.current?.focus?.()
 
-    _.invoke(this.props, 'onOpen', e, this.props)
+    this.props.onOpen?.(e, this.props)
 
     if (triggerSetState) {
       this.setState({ open: true })
@@ -848,7 +848,7 @@ class DropdownInner extends Component {
     debug('close()', { open: this.state.open })
 
     if (this.state.open) {
-      _.invoke(this.props, 'onClose', e, this.props)
+      this.props.onClose?.(e, this.props)
       this.setState({ open: false }, callback)
     }
   }

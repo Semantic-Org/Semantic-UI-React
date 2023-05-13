@@ -58,7 +58,7 @@ const Rating = React.forwardRef(function (props, ref) {
     setRating(newRating)
     setIsSelecting(false)
 
-    _.invoke(props, 'onRate', e, { ...props, rating: newRating })
+    props.onRate?.(e, { ...props, rating: newRating })
   }
 
   const handleIconMouseEnter = (e, { index }) => {
@@ -71,7 +71,7 @@ const Rating = React.forwardRef(function (props, ref) {
   }
 
   const handleMouseLeave = (...args) => {
-    _.invoke(props, 'onMouseLeave', ...args)
+    props.onMouseLeave?.(...args)
 
     if (disabled) {
       return

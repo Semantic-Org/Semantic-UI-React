@@ -96,7 +96,7 @@ const Checkbox = React.forwardRef(function (props, ref) {
 
     debug('handleChange()', _.get(e, 'target.tagName'))
 
-    _.invoke(props, 'onChange', e, {
+    props.onChange?.(e, {
       ...props,
       checked: !checked,
       indeterminate: false,
@@ -108,8 +108,8 @@ const Checkbox = React.forwardRef(function (props, ref) {
   const handleClick = (e) => {
     debug('handleClick()', _.get(e, 'target.tagName'))
 
-    const isInputClick = _.invoke(inputRef.current, 'contains', e.target)
-    const isLabelClick = _.invoke(labelRef.current, 'contains', e.target)
+    const isInputClick = inputRef.current.contains?.(e.target)
+    const isLabelClick = labelRef.current.contains?.(e.target)
     const isRootClick = !isLabelClick && !isInputClick
 
     const hasId = !_.isNil(id)
@@ -117,7 +117,7 @@ const Checkbox = React.forwardRef(function (props, ref) {
 
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3351
     if (!isLabelClickAndForwardedToInput) {
-      _.invoke(props, 'onClick', e, {
+      props.onClick?.(e, {
         ...props,
         checked: !checked,
         indeterminate: !!indeterminate,
@@ -147,14 +147,14 @@ const Checkbox = React.forwardRef(function (props, ref) {
   const handleMouseDown = (e) => {
     debug('handleMouseDown()')
 
-    _.invoke(props, 'onMouseDown', e, {
+    props.onMouseDown?.(e, {
       ...props,
       checked: !!checked,
       indeterminate: !!indeterminate,
     })
 
     if (!e.defaultPrevented) {
-      _.invoke(inputRef.current, 'focus')
+      inputRef.current?.focus?.()
     }
 
     // Heads up!
@@ -166,7 +166,7 @@ const Checkbox = React.forwardRef(function (props, ref) {
     debug('handleMouseUp()')
 
     isClickFromMouse.current = true
-    _.invoke(props, 'onMouseUp', e, {
+    props.onMouseUp?.(e, {
       ...props,
       checked: !!checked,
       indeterminate: !!indeterminate,

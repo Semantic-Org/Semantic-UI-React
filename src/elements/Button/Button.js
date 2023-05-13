@@ -136,7 +136,7 @@ const Button = React.forwardRef(function (props, ref) {
       return
     }
 
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
   }
 
   if (!_.isNil(label)) {

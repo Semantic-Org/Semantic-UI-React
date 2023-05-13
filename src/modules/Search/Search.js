@@ -133,14 +133,14 @@ class SearchInner extends Component {
     debug('handleResultSelect()')
     debug(result)
 
-    _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
+    this.props.onResultSelect?.(e, { ...this.props, result })
   }
 
   handleSelectionChange = (e) => {
     debug('handleSelectionChange()')
 
     const result = this.getSelectedResult()
-    _.invoke(this.props, 'onSelectionChange', e, { ...this.props, result })
+    this.props.onSelectionChange?.(e, { ...this.props, result })
   }
 
   closeOnEscape = (e) => {
@@ -198,7 +198,7 @@ class SearchInner extends Component {
     debug('handleMouseDown()')
 
     this.isMouseDown = true
-    _.invoke(this.props, 'onMouseDown', e, this.props)
+    this.props.onMouseDown?.(e, this.props)
     eventStack.sub('mouseup', this.handleDocumentMouseUp)
   }
 
@@ -243,14 +243,14 @@ class SearchInner extends Component {
   handleFocus = (e) => {
     debug('handleFocus()')
 
-    _.invoke(this.props, 'onFocus', e, this.props)
+    this.props.onFocus?.(e, this.props)
     this.setState({ focus: true })
   }
 
   handleBlur = (e) => {
     debug('handleBlur()')
 
-    _.invoke(this.props, 'onBlur', e, this.props)
+    this.props.onBlur?.(e, this.props)
     this.setState({ focus: false })
   }
 
@@ -263,7 +263,7 @@ class SearchInner extends Component {
     const { open } = this.state
     const newQuery = e.target.value
 
-    _.invoke(this.props, 'onSearchChange', e, { ...this.props, value: newQuery })
+    this.props.onSearchChange?.(e, { ...this.props, value: newQuery })
 
     // open search dropdown on search query
     if (newQuery.length < minCharacters) {

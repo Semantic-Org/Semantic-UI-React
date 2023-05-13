@@ -55,7 +55,7 @@ const MenuItem = React.forwardRef(function (props, ref) {
 
   const handleClick = useEventCallback((e) => {
     if (!disabled) {
-      _.invoke(props, 'onClick', e, props)
+      props.onClick?.(e, props)
     }
   })
 

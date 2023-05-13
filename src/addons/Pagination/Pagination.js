@@ -38,7 +38,7 @@ const Pagination = React.forwardRef(function (props, ref) {
     }
 
     setActivePage(nextActivePage)
-    _.invoke(props, 'onPageChange', e, { ...props, activePage: nextActivePage })
+    props.onPageChange?.(e, { ...props, activePage: nextActivePage })
   }
 
   const handleItemOverrides = (active, type, value) => (predefinedProps) => ({
@@ -46,7 +46,7 @@ const Pagination = React.forwardRef(function (props, ref) {
     type,
     key: `${type}-${value}`,
     onClick: (e, itemProps) => {
-      _.invoke(predefinedProps, 'onClick', e, itemProps)
+      predefinedProps.onClick?.(e, itemProps)
 
       if (itemProps.type !== 'ellipsisItem') {
         handleItemClick(e, itemProps)

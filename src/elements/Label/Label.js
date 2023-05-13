@@ -78,7 +78,7 @@ const Label = React.forwardRef(function (props, ref) {
   const ElementType = getElementType(Label, props)
 
   const handleClick = useEventCallback((e) => {
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
   })
 
   if (!childrenUtils.isNil(children)) {
@@ -102,8 +102,8 @@ const Label = React.forwardRef(function (props, ref) {
           autoGenerateKey: false,
           overrideProps: (predefinedProps) => ({
             onClick: (e) => {
-              _.invoke(predefinedProps, 'onClick', e)
-              _.invoke(props, 'onRemove', e, props)
+              predefinedProps.onClick?.(e)
+              props.onRemove?.(e, props)
             },
           }),
         })}

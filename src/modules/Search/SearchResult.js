@@ -35,7 +35,7 @@ const SearchResult = React.forwardRef(function (props, ref) {
   const { active, className, renderer } = props
 
   const handleClick = (e) => {
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
   }
 
   const classes = cx(useKeyOnly(active, 'active'), 'result', className)

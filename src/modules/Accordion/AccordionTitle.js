@@ -26,7 +26,7 @@ const AccordionTitle = React.forwardRef(function (props, ref) {
   const iconValue = _.isNil(icon) ? 'dropdown' : icon
 
   const handleClick = useEventCallback((e) => {
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
   })
 
   if (!childrenUtils.isNil(children)) {

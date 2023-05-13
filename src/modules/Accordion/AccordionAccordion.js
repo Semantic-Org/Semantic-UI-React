@@ -60,7 +60,7 @@ const AccordionAccordion = React.forwardRef(function (props, ref) {
     const { index } = titleProps
 
     setActiveIndex(computeNewIndex(exclusive, activeIndex, index))
-    _.invoke(props, 'onTitleClick', e, titleProps)
+    props.onTitleClick?.(e, titleProps)
   })
 
   if (process.env.NODE_ENV !== 'production') {

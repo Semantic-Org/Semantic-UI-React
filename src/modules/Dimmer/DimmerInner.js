@@ -47,13 +47,13 @@ const DimmerInner = React.forwardRef(function (props, ref) {
   }, [active])
 
   const handleClick = (e) => {
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
 
     if (contentRef.current !== e.target && doesNodeContainClick(contentRef.current, e)) {
       return
     }
 
-    _.invoke(props, 'onClickOutside', e, props)
+    props.onClickOutside?.(e, props)
   }
 
   const classes = cx(
