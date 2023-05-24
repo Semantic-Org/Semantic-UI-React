@@ -3,7 +3,7 @@ import { Advertisement } from 'semantic-ui-react'
 
 const AdvertisementExampleAdvertisement = () => (
   <Advertisement unit='medium rectangle'>
-    <img src='/images/wireframe/image.png' />
+    <img alt="avatar" src='/images/wireframe/image.png' />
   </Advertisement>
 )
 

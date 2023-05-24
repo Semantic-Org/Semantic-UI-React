@@ -15,7 +15,7 @@ describe('FeedLabel', () => {
   describe('image prop', () => {
     it('renders <img> with string', () => {
       const src = faker.image.imageUrl()
-      const wrapper = shallow(<FeedLabel image={src} />)
+      const wrapper = shallow(<FeedLabel alt="faker" image={src} />)
 
       wrapper.should.have.descendants('img')
       wrapper.find('img').should.have.prop('src', src)
@@ -23,7 +23,7 @@ describe('FeedLabel', () => {
 
     it('renders node', () => {
       const src = faker.image.imageUrl()
-      const img = <img src={src} />
+      const img = <img alt="faker" src={src} />
       const wrapper = shallow(<FeedLabel image={img} />)
 
       wrapper.should.have.descendants('img')

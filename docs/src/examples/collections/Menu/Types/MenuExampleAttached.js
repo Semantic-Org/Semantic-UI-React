@@ -42,7 +42,7 @@ const MenuExampleAttached = () => (
     </Menu>
 
     <Segment attached='bottom'>
-      <img src='/images/wireframe/paragraph.png' />
+      <img alt="WireFrame" src='/images/wireframe/paragraph.png' />
     </Segment>
   </div>
 )

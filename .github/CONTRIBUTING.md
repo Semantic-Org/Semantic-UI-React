@@ -317,7 +317,7 @@ Sometimes it is convenient to use props to generate markup.  Example, the [Label
 
 ```html
 <a class="ui image label">
-  <img src="veronika.jpg">
+  <img  src="veronika.jpg">
   Veronika
   <div class="detail">Friend</div>
 </a>

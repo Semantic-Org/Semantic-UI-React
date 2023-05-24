@@ -4,15 +4,15 @@ import { Label } from 'semantic-ui-react'
 const LabelExampleImage = () => (
   <div>
     <Label as='a' image>
-      <img src='/images/avatar/small/joe.jpg' />
+      <img alt="avatar" src='/images/avatar/small/joe.jpg' />
       Joe
     </Label>
     <Label as='a' image>
-      <img src='/images/avatar/small/elliot.jpg' />
+      <img alt="avatar" src='/images/avatar/small/elliot.jpg' />
       Elliot
     </Label>
     <Label as='a' image>
-      <img src='/images/avatar/small/stevie.jpg' />
+      <img alt="avatar" src='/images/avatar/small/stevie.jpg' />
       Stevie
     </Label>
   </div>

@@ -1,7 +1,7 @@
 <!-- Logo -->
 <p align="center">
   <a href="https://react.semantic-ui.com">
-    <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/logo.png">
+    <img alt="Logo" height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/logo.png">
   </a>
 </p>
 
@@ -36,9 +36,9 @@ See the [**Documentation**][2] for an introduction, usage information, and examp
 ## Built With
 
 <p align="center">
-  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/amazon-logo.png" />
-  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/netflix-logo.png" />
-  <img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/microsoft-logo.png" />
+  <img alt="Amazon" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/amazon-logo.png" />
+  <img height="50" alt="Netflix" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/netflix-logo.png" />
+  <img height="50" alt="Microsoft" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/microsoft-logo.png" />
 </p>
 
 - Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
@@ -122,7 +122,7 @@ Created by [@levithomason][26] and an amazing community of [contributors][20].
 
 Made possible only by [@jlukic][32] authoring [Semantic UI][5].
 
-Blazing deployments by <a href="https://vercel.com/?utm_source=semantic-ui-react"><img height="12" width="14" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/vercel-logo.svg" /> Vercel</a>.
+Blazing deployments by <a href="https://vercel.com/?utm_source=semantic-ui-react"><img alt="Logo" height="12" width="14" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/public/vercel-logo.svg" /> Vercel</a>.
 
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
 [2]: https://react.semantic-ui.com/

@@ -535,7 +535,7 @@ const ResponsiveLayout = () => (
     <Container>
       <Menu stackable>
         <Menu.Item>
-          <img src='/logo.png' />
+          <img alt="logo" src='/logo.png' />
         </Menu.Item>
         <Menu.Item>Features</Menu.Item>
         <Menu.Item>Testimonials</Menu.Item>
@@ -547,7 +547,7 @@ const ResponsiveLayout = () => (
     <Container>
       <Item.Group divided>
         <Item>
-          <Item.Image src='/images/wireframe/image.png' />
+          <Item.Image alt="Wireframe" src='/images/wireframe/image.png' />
           <Item.Content>
             <Item.Header as='a'>Content Header</Item.Header>
             <Item.Meta>
@@ -558,14 +558,14 @@ const ResponsiveLayout = () => (
               A description which may flow for several lines and give context to the content.
             </Item.Description>
             <Item.Extra>
-              <Image avatar circular src='/images/wireframe/square-image.png' />
+              <Image avatar circular alt="Wireframe"  src='/images/wireframe/square-image.png' />
               Username
             </Item.Extra>
           </Item.Content>
         </Item>
 
         <Item>
-          <Item.Image src='/images/wireframe/image.png' />
+          <Item.Image alt="Wireframe" src='/images/wireframe/image.png' />
           <Item.Content>
             <Item.Header as='a'>Content Header</Item.Header>
             <Item.Meta>
@@ -585,7 +585,7 @@ const ResponsiveLayout = () => (
           </Item.Content>
         </Item>
         <Item>
-          <Item.Image src='/images/wireframe/image.png' />
+          <Item.Image alt="Wireframe" src='/images/wireframe/image.png' />
           <Item.Content>
             <Item.Header as='a'>Content Header</Item.Header>
             <Item.Meta>

@@ -8,7 +8,7 @@ const LabelExampleImage = () => (
       Elliot
     </Label>
     <Label as='a'>
-      <img src='/images/avatar/small/stevie.jpg' />
+      <img alt="avatar" src='/images/avatar/small/stevie.jpg' />
       Stevie
     </Label>
   </div>

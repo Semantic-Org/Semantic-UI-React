@@ -112,7 +112,7 @@ class CarbonAdNative extends PureComponent {
 
     return (
       <a id={id} href={ad.statlink} target='_blank' rel='noopener noreferrer'>
-        <img src={ad.image} />
+        <img src={ad.image} alt="Ad" />
         <span>{ad.company}</span>
         {' — '}
         <span>{ad.description}</span>
@@ -125,14 +125,14 @@ class CarbonAdNative extends PureComponent {
         />
 
         {/* Impression */}
-        <img src={`${ad.statimp}`} style={{ display: 'none' }} />
+        <img  alt="Ad" src={`${ad.statimp}`} style={{ display: 'none' }} />
 
         {/* Pixel */}
         {ad.pixel &&
           ad.pixel
             .split('||')
             .map((pixel, i) => (
-              <img
+              <img alt="Ad"
                 key={i}
                 src={`${pixel.replace('[timestamp]', ad.timestamp)}`}
                 style={{ display: 'none' }}

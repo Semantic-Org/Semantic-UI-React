@@ -116,7 +116,7 @@ const Embed = React.forwardRef(function (props, ref) {
   return (
     <ElementType {...rest} className={classes} onClick={handleClick} ref={ref}>
       {Icon.create(iconShorthand, { autoGenerateKey: false })}
-      {placeholder && <img className='placeholder' src={placeholder} />}
+      {placeholder && <img alt="Placeholder" className='placeholder' src={placeholder} />}
       {renderEmbed()}
     </ElementType>
   )

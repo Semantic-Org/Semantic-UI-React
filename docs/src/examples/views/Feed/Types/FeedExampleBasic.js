@@ -5,7 +5,7 @@ const FeedExampleBasic = () => (
   <Feed>
     <Feed.Event>
       <Feed.Label>
-        <img src='/images/avatar/small/elliot.jpg' />
+        <img alt="avatar" src='/images/avatar/small/elliot.jpg' />
       </Feed.Label>
       <Feed.Content>
         <Feed.Summary>
@@ -29,10 +29,10 @@ const FeedExampleBasic = () => (
         </Feed.Summary>
         <Feed.Extra images>
           <a>
-            <img src='/images/wireframe/image.png' />
+            <img alt="WireFrame" src='/images/wireframe/image.png' />
           </a>
           <a>
-            <img src='/images/wireframe/image.png' />
+            <img alt="Wireframe" src='/images/wireframe/image.png' />
           </a>
         </Feed.Extra>
         <Feed.Meta>
@@ -89,10 +89,10 @@ const FeedExampleBasic = () => (
         </Feed.Summary>
         <Feed.Extra images>
           <a>
-            <img src='/images/wireframe/image.png' />
+            <img alt="Wireframe" src='/images/wireframe/image.png' />
           </a>
           <a>
-            <img src='/images/wireframe/image.png' />
+            <img alt="Wireframe" src='/images/wireframe/image.png' />
           </a>
         </Feed.Extra>
         <Feed.Meta>
