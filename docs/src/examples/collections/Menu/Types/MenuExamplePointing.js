@@ -35,7 +35,7 @@ export default class MenuExamplePointing extends Component {
         </Menu>
 
         <Segment>
-          <img  alt="Wireframe" src='/images/wireframe/paragraph.png' />
+          <img alt="Wireframe" src='/images/wireframe/paragraph.png' />
         </Segment>
       </div>
     )

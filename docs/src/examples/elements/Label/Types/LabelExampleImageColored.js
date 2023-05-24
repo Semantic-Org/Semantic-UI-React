@@ -14,7 +14,7 @@ const LabelExampleImage = () => (
       <Label.Detail>Friend</Label.Detail>
     </Label>
     <Label as='a' color='yellow' image>
-      <img  alt="avatar" src='/images/avatar/small/christian.jpg' />
+      <img alt="avatar" src='/images/avatar/small/christian.jpg' />
       Christian
       <Label.Detail>Co-worker</Label.Detail>
     </Label>

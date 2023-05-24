@@ -558,7 +558,7 @@ const ResponsiveLayout = () => (
               A description which may flow for several lines and give context to the content.
             </Item.Description>
             <Item.Extra>
-              <Image avatar circular alt="Wireframe"  src='/images/wireframe/square-image.png' />
+              <Image avatar circular alt="Wireframe" src='/images/wireframe/square-image.png' />
               Username
             </Item.Extra>
           </Item.Content>

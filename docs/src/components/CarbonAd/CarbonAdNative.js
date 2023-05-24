@@ -125,14 +125,15 @@ class CarbonAdNative extends PureComponent {
         />
 
         {/* Impression */}
-        <img  alt="Ad" src={`${ad.statimp}`} style={{ display: 'none' }} />
+        <img alt="Ad" src={`${ad.statimp}`} style={{ display: 'none' }} />
 
         {/* Pixel */}
         {ad.pixel &&
           ad.pixel
             .split('||')
             .map((pixel, i) => (
-              <img alt="Ad"
+              <img 
+                alt="Ad"
                 key={i}
                 src={`${pixel.replace('[timestamp]', ad.timestamp)}`}
                 style={{ display: 'none' }}

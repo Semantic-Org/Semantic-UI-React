@@ -44,7 +44,7 @@ const FeedExampleSizeLarge = () => (
 
         <Feed.Extra images>
           <a>
-            <img  alt="Wireframe" src='/images/wireframe/image.png' />
+            <img alt="Wireframe" src='/images/wireframe/image.png' />
           </a>
           <a>
             <img alt="Wireframe" src='/images/wireframe/image.png' />
