@@ -18,6 +18,8 @@ export interface PopupProps extends StrictPopupProps {
 }
 
 export interface StrictPopupProps extends StrictPortalProps {
+  /** Whether the popup is visible. */
+  open?: boolean;
   /** An element type to render as (string or function). */
   as?: any
 

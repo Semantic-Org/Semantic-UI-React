@@ -18,3 +18,6 @@ const PopupStatesExamples = () => (
 )
 
 export default PopupStatesExamples
+
+import PopupExampleOpen from './PopupExampleOpen'
+export { PopupExampleOpen }
