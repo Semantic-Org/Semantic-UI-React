@@ -96,7 +96,7 @@ const Button = React.forwardRef(function (props, ref) {
     secondary,
     size,
     toggle,
-    type
+    type,
   } = props
   const elementRef = useMergedRefs(ref, React.useRef())
 

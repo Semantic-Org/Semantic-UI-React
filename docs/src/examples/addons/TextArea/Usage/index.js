@@ -9,7 +9,8 @@ const TextAreaUsageExamples = () => (
     <Segment>
       <Message warning>
         <Message.Header>Auto height</Message.Header>
-        We don't support `autoHeight` anymore. If you need this feature you can use{' '}
+        We don't support `autoHeight` anymore. If you need this feature you can
+        use{' '}
         <a
           href='https://www.npmjs.com/package/react-textarea-autosize'
           rel='noopener noreferrer'

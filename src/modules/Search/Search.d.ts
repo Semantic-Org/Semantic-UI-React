@@ -65,7 +65,9 @@ export interface StrictSearchProps {
    * @param {object} props - The SearchCategoryLayout props object.
    * @returns {*} - Renderable SearchCategory layout.
    */
-  categoryLayoutRenderer?: (props: Pick<SearchCategoryLayoutProps, 'categoryContent' | 'resultsContent'>) => React.ReactElement<any>
+  categoryLayoutRenderer?: (
+    props: Pick<SearchCategoryLayoutProps, 'categoryContent' | 'resultsContent'>,
+  ) => React.ReactElement<any>
 
   /**
    * Renders the SearchCategory contents.

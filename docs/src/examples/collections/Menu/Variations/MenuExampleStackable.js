@@ -12,7 +12,7 @@ export default class MenuExampleStackable extends Component {
     return (
       <Menu stackable>
         <Menu.Item>
-          <img alt="logo" src='/logo.png' />
+          <img alt='logo' src='/logo.png' />
         </Menu.Item>
 
         <Menu.Item

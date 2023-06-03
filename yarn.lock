@@ -4100,9 +4100,9 @@ caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
   integrity sha512-Zb46wD9OWbQ82uZPOEGCr/FG0zFWMBBvgl/bcHOxSkhxEG4BwzXGqLbY7QHzSXg5d13lTh3Gpl3jPi8gvL3EIg==
 
 caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30001093:
-  version "1.0.30001299"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001299.tgz#d753bf6444ed401eb503cbbe17aa3e1451b5a68c"
-  integrity sha512-iujN4+x7QzqA2NCSrS5VUy+4gLmRd4xv6vbBBsmfVqTx8bLAD8097euLqQgKxSVLvxjSDcvF1T/i9ocgnUFexw==
+  version "1.0.30001492"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001492.tgz"
+  integrity sha512-2efF8SAZwgAX1FJr87KWhvuJxnGJKOnctQa8xLOskAXNXq8oiuqgl6u1kk3fFpsp3GgvzlRjiK1sl63hNtFADw==
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
