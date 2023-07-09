@@ -1,5 +1,19 @@
 # Change Log
 
+## v3.0.0-beta.0 (2023-02-28)
+
+> Migration guide is available here ➡️ https://react.semantic-ui.com/migration-guide/
+
+#### :rocket: New Feature
+
+- [#4233](https://github.com/Semantic-Org/Semantic-UI-React/pull/4233) All components support native [ref forwarding](https://reactjs.org/docs/forwarding-refs.html) 🎉
+
+#### :boom: Breaking Change
+
+- [#4286](https://github.com/Semantic-Org/Semantic-UI-React/pull/4286) chore: remove `Ref` component
+- [#4257](https://github.com/Semantic-Org/Semantic-UI-React/pull/4257) chore: remove `Visibility` component
+- [#4266](https://github.com/Semantic-Org/Semantic-UI-React/pull/4266) chore: remove some static props on `Transition` component
+
 ## v2.1.4 (2022-11-23)
 
 #### :bug: Bug Fix
