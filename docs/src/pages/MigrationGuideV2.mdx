@@ -1,0 +1,87 @@
+export const meta = {
+  title: 'Migration Guide to v2',
+  prevPage: { title: 'Migration Guide to v3', href: '/migration-guide' },
+}
+
+This is a reference for upgrading your application to v2 of Semantic UI React. While there's a lot covered here, you probably won't need to do everything for your app.
+
+## Upgrade of `react-popper` for `Popup`
+
+_Popper.js v1 is out of date, v2 was released in Dec 2019, time to upgrade 🚀_
+
+### `offset` can't be specified as string anymore
+
+Previously it was possible to pass different units to the offset prop as units. This behavior was changed and `offset` accepts a tuple or a function. Examples in our docs were also updated.
+
+```diff
+ <>
+-  <Popup offset="50px" />
++  <Popup offset={[50, 0]} />
+   <br />
+-  <Popup offset="-100%p" />
++  <Popup offset={({ popper }) => [-popper.width, 0]} />
+ </>
+```
+
+### `popperModifiers` should be defined as array now
+
+The `popperModifiers` prop should be defined as an array with changed format (see [Popper docs](https://popper.js.org/docs/v2/migration-guide/#10-update-modifiers)).
+
+```diff
+-<Popup popperModifiers={{ preventOverflow: { padding: 0 } }} />
++<Popup popperModifiers={[{ name: 'preventOverflow', options: { padding: 0 } }]} />
+```
+
+### a wrapping element around `Popup`
+
+We started to use an additional wrapping element around `Popup` for positioning, see [Semantic-Org/Semantic-UI-React#3947](https://github.com/Semantic-Org/Semantic-UI-React/pull/3947) for more details. To pass props to this element `popper` shorthand can be used, see [an example](/modules/popup/#usage-position-fixed).
+
+⚠️We also made a fix in [Semantic-Org/Semantic-UI-React#4094](https://github.com/Semantic-Org/Semantic-UI-React/pull/4094) to transfer `zIndex` value to avoid any breaks.
+
+## `Responsive` component was removed
+
+`Responsive` component was deprecated in 1.1.0. There are two main reasons for the removal: there is no connection between breakpoints and pure SSR (server side rendering) support.
+
+[@artsy/fresnel](https://github.com/artsy/fresnel) was proposed as a replacement as it properly handles SSR scenarios.
+
+```diff
++import { createMedia } from "@artsy/fresnel";
+import React from "react";
+-import { Responsive, Segment } from "semantic-ui-react";
++import { Segment } from "semantic-ui-react";
+
++const AppMedia = createMedia({
++  breakpoints: {
++    mobile: 320,
++    tablet: 768,
++    computer: 992,
++    largeScreen: 1200,
++    widescreen: 1920
++  }
++});
++const mediaStyles = AppMedia.createMediaStyle();
++const { Media, MediaContextProvider } = AppMedia;
+
+-const App = () => (
+-  <Responsive as={Segment} {...Responsive.onlyMobile}>
+-    Mobile
+-  </Responsive>
+-)
++const App = () => (
++  <>
++    <style>{mediaStyles}</style>
++    <MediaContextProvider>
++      <Segment as={Media} at="mobile">
++        Mobile
++      </Segment>
++    </MediaContextProvider>
++  </>
++);
+```
+
+The full migration guide is available in [Semantic-Org/Semantic-UI-React#4008](https://github.com/Semantic-Org/Semantic-UI-React/pull/4008), it contains more detailed explanation and examples for Next.js & Gatsby.
+
+## `MountNode` component was removed
+
+`MountNode` component was deprecated in 1.1.0. The main reason for the removal is that the component should not be a part of the public API as it solves our specific issue with the `Modal` component.
+Additional details are available in [Semantic-Org/Semantic-UI-React#4027](https://github.com/Semantic-Org/Semantic-UI-React/pull/4027).

@@ -1,87 +1,141 @@
+import { Message } from 'semantic-ui-react'
+
 export const meta = {
-  title: 'Migration Guide',
+  title: 'Migration Guide to v3',
   prevPage: { title: 'Prototypes', href: '/prototypes' },
 }
 
-This is a reference for upgrading your application to v2 of Semantic UI React. While there's a lot covered here, you probably won't need to do everything for your app.
+This is a reference for upgrading your application to v3 of Semantic UI React.
 
-## Upgrade of `react-popper` for `Popup`
+<Message
+  info
+  size='tiny'
+  header='Looking to upgrade your app to v2?'
+  content={
+    <>
+      Migration guide to Semantic UI React is available <a href='/migration-guide-v-2'>here</a>.
+    </>
+  }
+/>
 
-_Popper.js v1 is out of date, v2 was released in Dec 2019, time to upgrade 🚀_
+## Native ref support
 
-### `offset` can't be specified as string anymore
+<Message
+  compact
+  content='This change can be considered as improvement. You should not be affected if you did not used `ref` on Semantic UI React components.'
+  header='Risk: low'
+  size='mini'
+  color='teal'
+/>
 
-Previously it was possible to pass different units to the offset prop as units. This behavior was changed and `offset` accepts a tuple or a function. Examples in our docs were also updated.
+The main change in v3 is the support of [native refs to components](https://react.dev/reference/react/forwardRef) to avoid usage of [deprecated `ReactDOM.findDOMNode()`](https://react.dev/reference/react-dom/findDOMNode). It means that `ref` prop can be used to get a reference to the underlying DOM element instead of a React component instance.
 
-```diff
- <>
--  <Popup offset="50px" />
-+  <Popup offset={[50, 0]} />
-   <br />
--  <Popup offset="-100%p" />
-+  <Popup offset={({ popper }) => [-popper.width, 0]} />
- </>
+For example, you can use `ref` to get a reference to the underlying DOM element of `Button` component:
+
+```jsx
+import { Button } from 'semantic-ui-react'
+
+const App = () => {
+  const buttonRef = React.useRef()
+
+  React.useEffect(() => {
+    console.log(buttonRef.current)
+  }, [])
+
+  return <Button ref={buttonRef} />
+}
 ```
 
-### `popperModifiers` should be defined as array now
+All components from Semantic UI React v3 support native ref forwarding.
 
-The `popperModifiers` prop should be defined as an array with changed format (see [Popper docs](https://popper.js.org/docs/v2/migration-guide/#10-update-modifiers)).
+### Note on `Button`, `Input`, `TextArea`
 
-```diff
--<Popup popperModifiers={{ preventOverflow: { padding: 0 } }} />
-+<Popup popperModifiers={[{ name: 'preventOverflow', options: { padding: 0 } }]} />
-```
+`Button`, `Input` and `TextArea` implemented some methods like `focus()` and `blur()` on their class instances. However, now you will get a reference to the underlying DOM element instead of a React component instance. You should be able to call these methods directly on the DOM element without any issues.
 
-### a wrapping element around `Popup`
+## Removal of `Ref` component
 
-We started to use an additional wrapping element around `Popup` for positioning, see [Semantic-Org/Semantic-UI-React#3947](https://github.com/Semantic-Org/Semantic-UI-React/pull/3947) for more details. To pass props to this element `popper` shorthand can be used, see [an example](/modules/popup/#usage-position-fixed).
+<Message
+  compact
+  content='You will be affected if you use `Ref` component.'
+  header='Risk: high'
+  size='mini'
+  color='orange'
+/>
 
-⚠️We also made a fix in [Semantic-Org/Semantic-UI-React#4094](https://github.com/Semantic-Org/Semantic-UI-React/pull/4094) to transfer `zIndex` value to avoid any breaks.
-
-## `Responsive` component was removed
-
-`Responsive` component was deprecated in 1.1.0. There are two main reasons for the removal: there is no connection between breakpoints and pure SSR (server side rendering) support.
-
-[@artsy/fresnel](https://github.com/artsy/fresnel) was proposed as a replacement as it properly handles SSR scenarios.
+Because of the native ref support, `Ref` component is no longer needed and was removed as it used deprecated APIs.
 
 ```diff
-+import { createMedia } from "@artsy/fresnel";
-import React from "react";
--import { Responsive, Segment } from "semantic-ui-react";
-+import { Segment } from "semantic-ui-react";
-
-+const AppMedia = createMedia({
-+  breakpoints: {
-+    mobile: 320,
-+    tablet: 768,
-+    computer: 992,
-+    largeScreen: 1200,
-+    widescreen: 1920
-+  }
-+});
-+const mediaStyles = AppMedia.createMediaStyle();
-+const { Media, MediaContextProvider } = AppMedia;
-
--const App = () => (
--  <Responsive as={Segment} {...Responsive.onlyMobile}>
--    Mobile
--  </Responsive>
--)
-+const App = () => (
-+  <>
-+    <style>{mediaStyles}</style>
-+    <MediaContextProvider>
-+      <Segment as={Media} at="mobile">
-+        Mobile
-+      </Segment>
-+    </MediaContextProvider>
-+  </>
-+);
+function App() {
+-  return (
+-    <Ref innerRef={buttonRef}>
+-      <Button />
+-    </Ref>
+-  )
++  return <Button ref={buttonRef} />
+}
 ```
 
-The full migration guide is available in [Semantic-Org/Semantic-UI-React#4008](https://github.com/Semantic-Org/Semantic-UI-React/pull/4008), it contains more detailed explanation and examples for Next.js & Gatsby.
+As we exported `Ref` component and recommended its usage everywhere we moved out `Ref` component to a separate package (`@semantic-ui-react/component-ref`). This means that you can use it already with both v2 & v3 to make the upgrade smoother.
 
-## `MountNode` component was removed
+```diff
+-import { Ref } from "semantic-ui-react";
++import Ref from "@semantic-ui-react/component-ref";
+```
 
-`MountNode` component was deprecated in 1.1.0. The main reason for the removal is that the component should not be a part of the public API as it solves our specific issue with the `Modal` component.
-Additional details are available in [Semantic-Org/Semantic-UI-React#4027](https://github.com/Semantic-Org/Semantic-UI-React/pull/4027).
+<Message compact size='tiny' warning>
+  `@semantic-ui-react/component-ref` is considered as a deprecated package, we don't plan maintain
+  it, so please consider migration anyway. It also will not receive fixes related to usage of
+  deprecated APIs from React.
+</Message>
+
+More details on this change in [Semantic-Org/Semantic-UI-React#4286](https://github.com/Semantic-Org/Semantic-UI-React/pull/4286).
+
+## Removal of `Visibity` component
+
+<Message
+  compact
+  content='You will be affected if you use `Visibility` component.'
+  header='Risk: high'
+  size='mini'
+  color='orange'
+/>
+
+The main reason is performance that is far away from native APIs. We suggest to use [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) directly or via React wrappers, for example: [react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer).
+
+As it's not a straightforward replacement that may cause issues with adoption we moved out `Visibility` component to a separate package (`@semantic-ui-react/component-visibility`). This means that you can use it already with v2 or upcoming v3:
+
+```diff
+-import { Visibility } from "semantic-ui-react";
++import Visibility from "@semantic-ui-react/component-visibility";
+```
+
+<Message compact size='tiny' warning>
+  `@semantic-ui-react/component-visibility` is considered as a deprecated package, we don't plan
+  maintain it, so please consider migration anyway. It also will not receive fixes related to usage
+  of deprecated APIs from React.
+</Message>
+
+More details on this change in [Semantic-Org/Semantic-UI-React#4257](https://github.com/Semantic-Org/Semantic-UI-React/pull/4257).
+
+### Removal of static properties on `Transition` component
+
+<Message
+  compact
+  content='These properties were never referenced in documentation or suggested to be used.'
+  header='Risk: negligible'
+  size='mini'
+  color='green'
+/>
+
+Some static properties on `Transition` component were removed:
+
+```diff
+-  static INITIAL = TRANSITION_STATUS_INITIAL
+-  static ENTERED = TRANSITION_STATUS_ENTERED
+-  static ENTERING = TRANSITION_STATUS_ENTERING
+-  static EXITED = TRANSITION_STATUS_EXITED
+-  static EXITING = TRANSITION_STATUS_EXITING
+-  static UNMOUNTED = TRANSITION_STATUS_UNMOUNTED
+```
+
+This properties should not be used in public APIs, but it's still a breaking change.
