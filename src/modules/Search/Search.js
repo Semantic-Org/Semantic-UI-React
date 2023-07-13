@@ -134,6 +134,7 @@ class SearchInner extends Component {
     debug(result)
 
     _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
+    this.close()
   }
 
   handleSelectionChange = (e) => {
@@ -181,7 +182,6 @@ class SearchInner extends Component {
     // notify the onResultSelect prop that the user is trying to change value
     this.setValue(result.title)
     this.handleResultSelect(e, result)
-    this.close()
   }
 
   closeOnDocumentClick = (e) => {
@@ -229,7 +229,6 @@ class SearchInner extends Component {
     // notify the onResultSelect prop that the user is trying to change value
     this.setValue(result.title)
     this.handleResultSelect(e, result)
-    this.close()
   }
 
   handleItemMouseDown = (e) => {
