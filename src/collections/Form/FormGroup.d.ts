@@ -15,6 +15,9 @@ export interface StrictFormGroupProps {
   /** Additional classes. */
   className?: string
 
+  /** A Form Group can be disabled. */
+  disabled?: boolean
+
   /** Fields can show related choices. */
   grouped?: boolean
 
