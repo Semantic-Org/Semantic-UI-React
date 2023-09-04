@@ -16,9 +16,10 @@ import {
  * @see Form
  */
 const FormGroup = React.forwardRef((props, ref) => {
-  const { children, className, disabled, grouped, inline, unstackable, widths } = props
+  const { children, className, disabled, error, grouped, inline, unstackable, widths } = props
 
   const classes = cx(
+    useKeyOnly(error, 'error'),
     useKeyOnly(disabled, 'disabled'),
     useKeyOnly(grouped, 'grouped'),
     useKeyOnly(inline, 'inline'),
@@ -51,6 +52,9 @@ FormGroup.propTypes = {
 
   /** A Form Group can be disabled. */
   disabled: PropTypes.bool,
+
+  /** A Form Group can have error. */
+  error: PropTypes.bool,
 
   /** Fields can show related choices. */
   grouped: customPropTypes.every([customPropTypes.disallow(['inline']), PropTypes.bool]),
