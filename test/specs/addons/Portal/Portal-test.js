@@ -7,6 +7,7 @@ import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
 import Portal from 'src/addons/Portal/Portal'
 import PortalInner from 'src/addons/Portal/PortalInner'
+import wait from 'test/utils/wait'
 
 let wrapper
 
@@ -370,6 +371,38 @@ describe('Portal', () => {
 
         done()
       }, 1)
+    })
+
+    /**
+     * e--l--d--v
+     * ^: mouseenter
+     *    ^: BEFORE_DELAY: mouseleave
+     *       ^: expected DELAY
+     *          ^: final validation
+     */
+    it('does not open the portal when leave before delay', async () => {
+      const DELAY = 20
+      const BEFORE_DELAY = 10
+
+      wrapperMount(
+        <Portal trigger={<button />} openOnTriggerMouseEnter mouseEnterDelay={DELAY}>
+          <p />
+        </Portal>,
+      )
+
+      wrapper.should.not.have.descendants(PortalInner)
+      wrapper.find('button').simulate('mouseenter')
+
+      await wait(BEFORE_DELAY)
+
+      wrapper.update()
+      wrapper.should.not.have.descendants(PortalInner)
+      wrapper.find('button').simulate('mouseleave')
+
+      await wait(DELAY)
+
+      wrapper.update()
+      wrapper.should.not.have.descendants(PortalInner)
     })
   })
 
