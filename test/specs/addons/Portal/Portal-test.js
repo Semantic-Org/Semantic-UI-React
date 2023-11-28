@@ -440,6 +440,50 @@ describe('Portal', () => {
         done()
       }, 1)
     })
+
+    /**
+     * e--l--e--d--v
+     * ^: mouseenter
+     *    ^: mouseleave
+     *       ^: BEFORE_DELAY: reenter
+     *          ^: expected DELAY
+     *             ^: final validation
+     */
+    it('does not close the portal when reenter before delay', async () => {
+      const DELAY = 20
+      const BEFORE_DELAY = 10
+
+      wrapperMount(
+        <Portal
+          trigger={<button />}
+          openOnTriggerMouseEnter
+          closeOnTriggerMouseLeave
+          mouseLeaveDelay={DELAY}
+        >
+          <p />
+        </Portal>,
+      )
+
+      wrapper.should.not.have.descendants(PortalInner)
+      wrapper.find('button').simulate('mouseenter')
+
+      await wait(BEFORE_DELAY)
+
+      wrapper.update()
+      wrapper.should.have.descendants(PortalInner)
+      wrapper.find('button').simulate('mouseleave')
+
+      await wait(BEFORE_DELAY)
+
+      wrapper.update()
+      wrapper.should.have.descendants(PortalInner)
+      wrapper.find('button').simulate('mouseenter')
+
+      await wait(DELAY)
+
+      wrapper.update()
+      wrapper.should.have.descendants(PortalInner)
+    })
   })
 
   describe('closeOnPortalMouseLeave', () => {
