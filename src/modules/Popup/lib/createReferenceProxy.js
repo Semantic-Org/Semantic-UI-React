@@ -21,6 +21,10 @@ class ReferenceProxy {
   get parentNode() {
     return this.ref.current ? this.ref.current.parentNode : undefined
   }
+
+  get contextElement() {
+    return this.ref.current;
+  }
 }
 
 /**
