@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.1.5 (2023-12-10)
+
+#### :bug: Bug Fix
+* [#4446](https://github.com/Semantic-Org/Semantic-UI-React/pull/4446) fix(Popup): fix positioning in scrollable container ([@CoryDuncan](https://github.com/CoryDuncan))
+
 ## v2.1.4 (2022-11-23)
 
 #### :bug: Bug Fix
