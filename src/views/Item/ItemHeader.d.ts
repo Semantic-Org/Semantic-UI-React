@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface ItemHeaderProps extends StrictItemHeaderProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictItemHeaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const ItemHeader: React.FC<ItemHeaderProps>
+declare const ItemHeader: ForwardRefComponent<ItemHeaderProps, HTMLDivElement>
 
 export default ItemHeader

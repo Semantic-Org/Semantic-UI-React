@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticCOLORS,
   SemanticShorthandCollection,
   SemanticShorthandItem,
@@ -115,7 +116,7 @@ export interface StrictTableProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-interface TableComponent extends React.FC<TableProps> {
+declare const Table: ForwardRefComponent<TableProps, HTMLTableElement> & {
   Body: typeof TableBody
   Cell: typeof TableCell
   Footer: typeof TableFooter
@@ -123,7 +124,5 @@ interface TableComponent extends React.FC<TableProps> {
   HeaderCell: typeof TableHeaderCell
   Row: typeof TableRow
 }
-
-declare const Table: TableComponent
 
 export default Table

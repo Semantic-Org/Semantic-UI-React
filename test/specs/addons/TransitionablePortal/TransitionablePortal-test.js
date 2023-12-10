@@ -13,6 +13,7 @@ describe('TransitionablePortal', () => {
   common.isConformant(TransitionablePortal, {
     rendersPortal: true,
     requiredProps,
+    forwardsRef: false,
   })
 
   describe('children', () => {

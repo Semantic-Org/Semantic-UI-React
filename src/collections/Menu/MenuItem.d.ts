@@ -1,6 +1,11 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticCOLORS,
+  SemanticShorthandContent,
+  SemanticShorthandItem,
+} from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
 export interface MenuItemProps extends StrictMenuItemProps {
@@ -60,6 +65,6 @@ export interface StrictMenuItemProps {
   position?: 'left' | 'right'
 }
 
-declare const MenuItem: React.ComponentClass<MenuItemProps>
+declare const MenuItem: ForwardRefComponent<MenuItemProps, HTMLDivElement>
 
 export default MenuItem

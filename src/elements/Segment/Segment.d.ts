@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticCOLORS,
   SemanticFLOATS,
   SemanticShorthandContent,
@@ -89,11 +90,9 @@ export interface StrictSegmentProps {
   vertical?: boolean
 }
 
-interface SegmentComponent extends React.FC<SegmentProps> {
+declare const Segment: ForwardRefComponent<SegmentProps, HTMLDivElement> & {
   Group: typeof SegmentGroup
   Inline: typeof SegmentInline
 }
-
-declare const Segment: SegmentComponent
 
 export default Segment

@@ -1,6 +1,11 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticCOLORS,
+  SemanticShorthandContent,
+  SemanticShorthandItem,
+} from '../../generic'
 import { ImageProps } from '../../elements/Image'
 import CardContent from './CardContent'
 import CardDescription, { CardDescriptionProps } from './CardDescription'
@@ -68,14 +73,12 @@ export interface StrictCardProps {
   raised?: boolean
 }
 
-interface CardComponent extends React.ComponentClass<CardProps> {
+declare const Card: ForwardRefComponent<CardProps, HTMLDivElement> & {
   Content: typeof CardContent
   Description: typeof CardDescription
   Group: typeof CardGroup
   Header: typeof CardHeader
   Meta: typeof CardMeta
 }
-
-declare const Card: CardComponent
 
 export default Card

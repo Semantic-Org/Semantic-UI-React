@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface CommentActionsProps extends StrictCommentActionsProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictCommentActionsProps {
   content?: SemanticShorthandContent
 }
 
-declare const CommentActions: React.FC<CommentActionsProps>
+declare const CommentActions: ForwardRefComponent<CommentActionsProps, HTMLDivElement>
 
 export default CommentActions

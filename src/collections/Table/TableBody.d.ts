@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface TableBodyProps extends StrictTableBodyProps {
   [key: string]: any
@@ -15,6 +16,6 @@ export interface StrictTableBodyProps {
   className?: string
 }
 
-declare const TableBody: React.FC<TableBodyProps>
+declare const TableBody: ForwardRefComponent<TableBodyProps, HTMLTableSectionElement>
 
 export default TableBody

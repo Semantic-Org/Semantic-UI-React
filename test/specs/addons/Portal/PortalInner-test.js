@@ -10,6 +10,7 @@ describe('PortalInner', () => {
   common.isConformant(PortalInner, {
     rendersChildren: false,
     requiredProps: { children: <p /> },
+    forwardsRef: false,
   })
 
   describe('children', () => {

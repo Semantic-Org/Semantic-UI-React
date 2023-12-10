@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface DropdownMenuProps extends StrictDropdownMenuProps {
   [key: string]: any
@@ -28,6 +28,6 @@ export interface StrictDropdownMenuProps {
   scrolling?: boolean
 }
 
-declare const DropdownMenu: React.FC<DropdownMenuProps>
+declare const DropdownMenu: ForwardRefComponent<DropdownMenuProps, HTMLDivElement>
 
 export default DropdownMenu

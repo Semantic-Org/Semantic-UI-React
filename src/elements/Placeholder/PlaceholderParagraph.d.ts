@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface PlaceholderParagraphProps extends StrictPlaceholderParagraphProps {
   [key: string]: any
@@ -19,8 +19,6 @@ export interface StrictPlaceholderParagraphProps {
   content?: SemanticShorthandContent
 }
 
-interface PlaceholderParagraphComponent extends React.FC<PlaceholderParagraphProps> {}
-
-declare const PlaceholderParagraph: PlaceholderParagraphComponent
+declare const PlaceholderParagraph: ForwardRefComponent<PlaceholderParagraphProps, HTMLDivElement>
 
 export default PlaceholderParagraph

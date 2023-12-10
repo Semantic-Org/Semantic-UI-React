@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
 export interface FeedLikeProps extends StrictFeedLikeProps {
@@ -24,6 +24,6 @@ export interface StrictFeedLikeProps {
   icon?: SemanticShorthandItem<IconProps>
 }
 
-declare const FeedLike: React.FC<FeedLikeProps>
+declare const FeedLike: ForwardRefComponent<FeedLikeProps, HTMLDivElement>
 
 export default FeedLike

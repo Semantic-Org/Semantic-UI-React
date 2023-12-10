@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { FeedDateProps } from './FeedDate'
 import { FeedUserProps } from './FeedUser'
 
@@ -28,6 +28,6 @@ export interface StrictFeedSummaryProps {
   user?: SemanticShorthandItem<FeedUserProps>
 }
 
-declare const FeedSummary: React.FC<FeedSummaryProps>
+declare const FeedSummary: ForwardRefComponent<FeedSummaryProps, HTMLDivElement>
 
 export default FeedSummary

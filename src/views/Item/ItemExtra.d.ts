@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface ItemExtraProps extends StrictItemExtraProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictItemExtraProps {
   content?: SemanticShorthandContent
 }
 
-declare const ItemExtra: React.FC<ItemExtraProps>
+declare const ItemExtra: ForwardRefComponent<ItemExtraProps, HTMLDivElement>
 
 export default ItemExtra

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface StatisticValueProps extends StrictStatisticValueProps {
   [key: string]: any
@@ -22,6 +22,6 @@ export interface StrictStatisticValueProps {
   text?: boolean
 }
 
-declare const StatisticValue: React.FC<StatisticValueProps>
+declare const StatisticValue: ForwardRefComponent<StatisticValueProps, HTMLDivElement>
 
 export default StatisticValue

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface CommentGroupProps extends StrictCommentGroupProps {
   [key: string]: any
@@ -31,6 +31,6 @@ export interface StrictCommentGroupProps {
   threaded?: boolean
 }
 
-declare const CommentGroup: React.FC<CommentGroupProps>
+declare const CommentGroup: ForwardRefComponent<CommentGroupProps, HTMLDivElement>
 
 export default CommentGroup

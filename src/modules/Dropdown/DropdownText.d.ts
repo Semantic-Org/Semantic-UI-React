@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface DropdownTextProps extends StrictDropdownTextProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictDropdownTextProps {
   content?: SemanticShorthandContent
 }
 
-declare const DropdownText: React.FunctionComponent<DropdownTextProps>
+declare const DropdownText: ForwardRefComponent<DropdownTextProps, HTMLDivElement>
 
 export default DropdownText

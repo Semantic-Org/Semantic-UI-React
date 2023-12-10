@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticCOLORS,
   SemanticFLOATS,
   SemanticShorthandContent,
@@ -118,12 +119,10 @@ export interface StrictButtonProps {
   type?: 'submit' | 'reset' | 'button'
 }
 
-declare class Button extends React.Component<ButtonProps> {
-  static Content: typeof ButtonContent
-  static Group: typeof ButtonGroup
-  static Or: typeof ButtonOr
-
-  focus: (options?: FocusOptions) => void
+declare const Button: ForwardRefComponent<ButtonProps, HTMLButtonElement> & {
+  Content: typeof ButtonContent
+  Group: typeof ButtonGroup
+  Or: typeof ButtonOr
 }
 
 export default Button

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface TableHeaderProps extends StrictTableHeaderProps {
   [key: string]: any
@@ -22,6 +22,6 @@ export interface StrictTableHeaderProps {
   fullWidth?: boolean
 }
 
-declare const TableHeader: React.FC<TableHeaderProps>
+declare const TableHeader: ForwardRefComponent<TableHeaderProps, HTMLTableSectionElement>
 
 export default TableHeader

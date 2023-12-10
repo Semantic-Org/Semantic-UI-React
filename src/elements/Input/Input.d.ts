@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { HtmlInputrops, SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, HtmlInputrops, SemanticShorthandItem } from '../../generic'
 import { LabelProps } from '../Label'
 
 export interface InputProps extends StrictInputProps {
@@ -81,9 +81,6 @@ export interface InputOnChangeData extends InputProps {
   value: string
 }
 
-declare class Input extends React.Component<InputProps> {
-  focus: (options?: FocusOptions) => void
-  select: () => void
-}
+declare const Input: ForwardRefComponent<InputProps, HTMLInputElement>
 
 export default Input

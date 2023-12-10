@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface CardDescriptionProps extends StrictCardDescriptionProps {
   [key: string]: any
@@ -22,6 +22,6 @@ export interface StrictCardDescriptionProps {
   textAlign?: 'center' | 'left' | 'right'
 }
 
-declare const CardDescription: React.FC<CardDescriptionProps>
+declare const CardDescription: ForwardRefComponent<CardDescriptionProps, HTMLDivElement>
 
 export default CardDescription

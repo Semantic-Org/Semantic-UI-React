@@ -1,8 +1,13 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticFLOATS, SemanticTEXTALIGNMENTS } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticCOLORS,
+  SemanticFLOATS,
+  SemanticTEXTALIGNMENTS,
+} from '../../generic'
 import HeaderContent from './HeaderContent'
-import HeaderSubHeader from './HeaderSubheader'
+import HeaderSubheader from './HeaderSubheader'
 
 export interface HeaderProps extends StrictHeaderProps {
   [key: string]: any
@@ -61,11 +66,9 @@ export interface StrictHeaderProps {
   textAlign?: SemanticTEXTALIGNMENTS
 }
 
-interface HeaderComponent extends React.FC<HeaderProps> {
+declare const Header: ForwardRefComponent<HeaderProps, HTMLDivElement> & {
   Content: typeof HeaderContent
-  Subheader: typeof HeaderSubHeader
+  Subheader: typeof HeaderSubheader
 }
-
-declare const Header: HeaderComponent
 
 export default Header

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface LabelDetailProps extends StrictLabelDetailProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictLabelDetailProps {
   content?: SemanticShorthandContent
 }
 
-declare const LabelDetail: React.FC<LabelDetailProps>
+declare const LabelDetail: ForwardRefComponent<LabelDetailProps, HTMLDivElement>
 
 export default LabelDetail

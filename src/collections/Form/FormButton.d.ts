@@ -1,6 +1,4 @@
-import * as React from 'react'
-
-import { SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandItem } from '../../generic'
 import { StrictButtonProps } from '../../elements/Button'
 import { LabelProps } from '../../elements/Label'
 import { StrictFormFieldProps } from './FormField'
@@ -22,6 +20,6 @@ export interface StrictFormButtonProps
   label?: SemanticShorthandItem<LabelProps>
 }
 
-declare const FormButton: React.FC<FormButtonProps>
+declare const FormButton: ForwardRefComponent<FormButtonProps, HTMLButtonElement>
 
 export default FormButton

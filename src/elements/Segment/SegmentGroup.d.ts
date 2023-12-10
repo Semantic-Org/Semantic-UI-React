@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 import { SegmentSizeProp } from './Segment'
 
 export interface SegmentGroupProps extends StrictSegmentGroupProps {
@@ -39,6 +39,6 @@ export interface StrictSegmentGroupProps {
   stacked?: boolean
 }
 
-declare const SegmentGroup: React.FC<SegmentGroupProps>
+declare const SegmentGroup: ForwardRefComponent<SegmentGroupProps, HTMLDivElement>
 
 export default SegmentGroup

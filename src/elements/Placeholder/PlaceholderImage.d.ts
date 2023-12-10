@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface PlaceholderImageProps extends StrictPlaceholderImageProps {
   [key: string]: any
@@ -18,8 +19,6 @@ export interface StrictPlaceholderImageProps {
   rectangular?: boolean
 }
 
-interface PlaceholderImageComponent extends React.FC<PlaceholderImageProps> {}
-
-declare const PlaceholderImage: PlaceholderImageComponent
+declare const PlaceholderImage: ForwardRefComponent<PlaceholderImageProps, HTMLDivElement>
 
 export default PlaceholderImage

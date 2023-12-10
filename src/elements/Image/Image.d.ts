@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticFLOATS,
   SemanticShorthandContent,
   SemanticShorthandItem,
@@ -84,10 +85,8 @@ export interface StrictImageProps {
   wrapped?: boolean
 }
 
-interface ImageComponent extends React.FC<ImageProps> {
+declare const Image: ForwardRefComponent<ImageProps, HTMLImageElement> & {
   Group: typeof ImageGroup
 }
-
-declare const Image: ImageComponent
 
 export default Image

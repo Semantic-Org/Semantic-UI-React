@@ -1,6 +1,11 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticFLOATS, SemanticShorthandContent } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticCOLORS,
+  SemanticFLOATS,
+  SemanticShorthandContent,
+} from '../../generic'
 import StatisticGroup from './StatisticGroup'
 import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'
@@ -49,12 +54,10 @@ export interface StrictStatisticProps {
   value?: SemanticShorthandContent
 }
 
-interface StatisticComponent extends React.FC<StatisticProps> {
+declare const Statistic: ForwardRefComponent<StatisticProps, HTMLDivElement> & {
   Group: typeof StatisticGroup
   Label: typeof StatisticLabel
   Value: typeof StatisticValue
 }
-
-declare const Statistic: StatisticComponent
 
 export default Statistic

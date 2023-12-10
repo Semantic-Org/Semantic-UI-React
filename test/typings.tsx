@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button, Dropdown } from '../index'
+import { Button, Dropdown, Icon } from '../index'
 
 export const BasicAssert = () => (
   <>
@@ -8,6 +8,18 @@ export const BasicAssert = () => (
     <Button>Foo</Button>
   </>
 )
+
+export const RefAssert = () => {
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
+  const iconRef = React.useRef<HTMLElement>(null)
+
+  return (
+    <>
+      <Button ref={buttonRef} />
+      <Icon name='history' ref={iconRef} />
+    </>
+  )
+}
 
 export const ShorthandItemElementAssert = () => (
   <Dropdown additionLabel={<i style={{ color: 'red' }}>Custom Language: </i>} />

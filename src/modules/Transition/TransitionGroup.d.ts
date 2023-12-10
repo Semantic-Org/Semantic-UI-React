@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticTRANSITIONS } from '../../generic'
+import { ForwardRefComponent, SemanticTRANSITIONS } from '../../generic'
 import { TransitionPropDuration } from './Transition'
 
 export interface TransitionGroupProps extends StrictTransitionGroupProps {
@@ -24,8 +24,6 @@ export interface StrictTransitionGroupProps {
   duration?: number | string | TransitionPropDuration
 }
 
-interface TransitionGroupComponent extends React.ComponentClass<TransitionGroupProps> {}
-
-declare const TransitionGroup: TransitionGroupComponent
+declare const TransitionGroup: ForwardRefComponent<TransitionGroupProps, HTMLDivElement>
 
 export default TransitionGroup

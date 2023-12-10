@@ -1,6 +1,4 @@
-import * as React from 'react'
-
-import { SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandItem } from '../../generic'
 import { LabelProps } from '../../elements/Label'
 import { StrictInputProps } from '../../elements/Input'
 import { StrictFormFieldProps } from './FormField'
@@ -25,6 +23,6 @@ export interface StrictFormInputProps
   label?: SemanticShorthandItem<LabelProps>
 }
 
-declare const FormInput: React.FC<FormInputProps>
+declare const FormInput: ForwardRefComponent<FormInputProps, HTMLInputElement>
 
 export default FormInput

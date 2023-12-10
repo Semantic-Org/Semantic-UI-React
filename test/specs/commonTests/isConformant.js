@@ -26,6 +26,7 @@ import hasValidTypings from './hasValidTypings'
  * @param {boolean} [options.rendersFragmentByDefault=false] Does this component renders React.Fragment by default?
  * @param {boolean} [options.rendersPortal=false] Does this component render a Portal powered component?
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
+ * @param {Object} [options.forwardsRef=true] Indicates if component forwards refs.
  */
 export default function isConformant(Component, options = {}) {
   const {
@@ -394,5 +395,5 @@ export default function isConformant(Component, options = {}) {
   // ----------------------------------------
   // Test typings
   // ----------------------------------------
-  hasValidTypings(Component, info, options)
+  hasValidTypings(Component, options)
 }

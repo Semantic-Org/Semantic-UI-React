@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface SidebarPushableProps extends StrictSidebarPushableProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictSidebarPushableProps {
   content?: SemanticShorthandContent
 }
 
-declare const SidebarPushable: React.FC<SidebarPushableProps>
+declare const SidebarPushable: ForwardRefComponent<SidebarPushableProps, HTMLDivElement>
 
 export default SidebarPushable

@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticCOLORS,
   SemanticShorthandCollection,
   SemanticShorthandContent,
@@ -44,6 +45,6 @@ export interface StrictStatisticGroupProps {
   widths?: SemanticWIDTHS
 }
 
-declare const StatisticGroup: React.FC<StatisticGroupProps>
+declare const StatisticGroup: ForwardRefComponent<StatisticGroupProps, HTMLDivElement>
 
 export default StatisticGroup

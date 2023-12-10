@@ -1,5 +1,10 @@
 import * as React from 'react'
-import { SemanticCOLORS, SemanticShorthandContent, SemanticSIZES } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticCOLORS,
+  SemanticShorthandContent,
+  SemanticSIZES,
+} from '../../generic'
 
 export interface LabelGroupProps extends StrictLabelGroupProps {
   [key: string]: any
@@ -31,6 +36,6 @@ export interface StrictLabelGroupProps {
   tag?: boolean
 }
 
-declare const LabelGroup: React.FC<LabelGroupProps>
+declare const LabelGroup: ForwardRefComponent<LabelGroupProps, HTMLDivElement>
 
 export default LabelGroup

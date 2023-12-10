@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticSIZES, SemanticShorthandContent } from '../../generic'
+import { SemanticSIZES, SemanticShorthandContent, ForwardRefComponent } from '../../generic'
 
 export interface ImageGroupProps extends StrictImageGroupProps {
   [key: string]: any
@@ -22,6 +22,6 @@ export interface StrictImageGroupProps {
   size?: SemanticSIZES
 }
 
-declare const ImageGroup: React.FC<ImageGroupProps>
+declare const ImageGroup: ForwardRefComponent<ImageGroupProps, HTMLDivElement>
 
 export default ImageGroup

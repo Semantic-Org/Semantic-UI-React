@@ -1,5 +1,6 @@
 import * as React from 'react'
 import RatingIcon from './RatingIcon'
+import { ForwardRefComponent } from '../../generic'
 
 export interface RatingProps extends StrictRatingProps {
   [key: string]: any
@@ -46,10 +47,8 @@ export interface StrictRatingProps {
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge' | 'massive'
 }
 
-interface RatingComponent extends React.ComponentClass<RatingProps> {
+declare const Rating: ForwardRefComponent<RatingProps, HTMLDivElement> & {
   Icon: typeof RatingIcon
 }
-
-declare const Rating: RatingComponent
 
 export default Rating

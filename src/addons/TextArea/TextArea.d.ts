@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface TextAreaProps extends StrictTextAreaProps {
   [key: string]: any
@@ -31,8 +32,6 @@ export interface StrictTextAreaProps {
   value?: number | string
 }
 
-declare class TextArea extends React.Component<TextAreaProps> {
-  focus: () => void
-}
+declare const TextArea: ForwardRefComponent<TextAreaProps, HTMLTextAreaElement>
 
 export default TextArea

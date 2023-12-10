@@ -9,6 +9,7 @@ import FormInput from './FormInput'
 import FormRadio from './FormRadio'
 import FormSelect from './FormSelect'
 import FormTextArea from './FormTextArea'
+import { ForwardRefComponent } from '../../generic'
 
 export interface FormProps extends StrictFormProps {
   [key: string]: any
@@ -58,7 +59,7 @@ export interface StrictFormProps {
   widths?: 'equal'
 }
 
-export interface FormComponent extends React.FC<FormProps> {
+declare const Form: ForwardRefComponent<FormProps, HTMLFormElement> & {
   Field: typeof FormField
   Button: typeof FormButton
   Checkbox: typeof FormCheckbox
@@ -69,7 +70,5 @@ export interface FormComponent extends React.FC<FormProps> {
   Select: typeof FormSelect
   TextArea: typeof FormTextArea
 }
-
-declare const Form: FormComponent
 
 export default Form

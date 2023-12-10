@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface AdvertisementProps extends StrictAdvertisementProps {
   [key: string]: any
@@ -51,6 +51,6 @@ export interface StrictAdvertisementProps {
     | 'small square'
 }
 
-declare const Advertisement: React.FC<AdvertisementProps>
+declare const Advertisement: ForwardRefComponent<AdvertisementProps, HTMLDivElement>
 
 export default Advertisement

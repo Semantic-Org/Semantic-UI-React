@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface SearchResultProps extends StrictSearchResultProps {
   [key: string]: any
@@ -50,6 +50,6 @@ export interface StrictSearchResultProps {
   title: string
 }
 
-declare const SearchResult: React.ComponentClass<SearchResultProps>
+declare const SearchResult: ForwardRefComponent<SearchResultProps, HTMLDivElement>
 
 export default SearchResult

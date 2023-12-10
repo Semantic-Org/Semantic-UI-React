@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticICONS } from '../../generic'
+import { ForwardRefComponent, SemanticCOLORS, SemanticICONS } from '../../generic'
 import IconGroup from './IconGroup'
 
 export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
@@ -63,8 +63,8 @@ export interface StrictIconProps {
   'aria-label'?: string
 }
 
-declare class Icon extends React.PureComponent<IconProps> {
-  static Group: typeof IconGroup
+declare const Icon: ForwardRefComponent<IconProps, HTMLElement> & {
+  Group: typeof IconGroup
 }
 
 export default Icon

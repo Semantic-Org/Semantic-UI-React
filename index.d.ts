@@ -52,12 +52,7 @@ export {
   StrictBreadcrumbSectionProps,
 } from './dist/commonjs/collections/Breadcrumb/BreadcrumbSection'
 
-export {
-  default as Form,
-  FormComponent,
-  FormProps,
-  StrictFormProps,
-} from './dist/commonjs/collections/Form'
+export { default as Form, FormProps, StrictFormProps } from './dist/commonjs/collections/Form'
 export {
   default as FormButton,
   FormButtonProps,

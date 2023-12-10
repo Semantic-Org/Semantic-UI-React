@@ -7,7 +7,7 @@ import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
 describe('AccordionPanel', () => {
-  common.isConformant(AccordionPanel, { rendersChildren: false })
+  common.isConformant(AccordionPanel, { rendersChildren: false, forwardsRef: false })
 
   common.implementsShorthandProp(AccordionPanel, {
     assertExactMatch: false,

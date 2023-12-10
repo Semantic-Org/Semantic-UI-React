@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandCollection } from '../../generic'
 import { MessageItemProps } from './MessageItem'
 
 export interface MessageListProps extends StrictMessageListProps {
@@ -21,6 +21,6 @@ export interface StrictMessageListProps {
   items?: SemanticShorthandCollection<MessageItemProps>
 }
 
-declare const MessageList: React.FC<MessageListProps>
+declare const MessageList: ForwardRefComponent<MessageListProps, HTMLUListElement>
 
 export default MessageList

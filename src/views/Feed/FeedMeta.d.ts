@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { FeedLikeProps } from './FeedLike'
 
 export interface FeedMetaProps extends StrictFeedMetaProps {
@@ -24,6 +24,6 @@ export interface StrictFeedMetaProps {
   like?: SemanticShorthandItem<FeedLikeProps>
 }
 
-declare const FeedMeta: React.FC<FeedMetaProps>
+declare const FeedMeta: ForwardRefComponent<FeedMetaProps, HTMLDivElement>
 
 export default FeedMeta

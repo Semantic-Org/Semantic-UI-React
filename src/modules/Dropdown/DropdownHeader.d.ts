@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
 export interface DropdownHeaderProps extends StrictDropdownHeaderProps {
@@ -24,6 +24,6 @@ export interface StrictDropdownHeaderProps {
   icon?: SemanticShorthandItem<IconProps>
 }
 
-declare const DropdownHeader: React.ComponentClass<DropdownHeaderProps>
+declare const DropdownHeader: ForwardRefComponent<DropdownHeaderProps, HTMLDivElement>
 
 export default DropdownHeader

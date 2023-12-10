@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
@@ -43,6 +44,6 @@ export interface StrictItemContentProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-declare const ItemContent: React.ComponentClass<ItemContentProps>
+declare const ItemContent: ForwardRefComponent<ItemContentProps, HTMLDivElement>
 
 export default ItemContent

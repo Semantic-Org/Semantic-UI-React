@@ -7,6 +7,7 @@ import {
   SemanticShorthandCollection,
   SemanticSIZES,
   SemanticWIDTHS,
+  ForwardRefComponent,
 } from '../../generic'
 import { ButtonProps } from './Button'
 
@@ -82,6 +83,6 @@ export interface StrictButtonGroupProps {
   widths?: SemanticWIDTHS
 }
 
-declare const ButtonGroup: React.FC<ButtonGroupProps>
+declare const ButtonGroup: ForwardRefComponent<ButtonGroupProps, HTMLDivElement>
 
 export default ButtonGroup

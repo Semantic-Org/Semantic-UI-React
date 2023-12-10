@@ -1,5 +1,9 @@
 import * as React from 'react'
-import { SemanticShorthandContent, SemanticTEXTALIGNMENTS } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticShorthandContent,
+  SemanticTEXTALIGNMENTS,
+} from '../../generic'
 
 export interface ContainerProps extends StrictContainerProps {
   [key: string]: any
@@ -28,6 +32,6 @@ export interface StrictContainerProps {
   textAlign?: SemanticTEXTALIGNMENTS
 }
 
-declare const Container: React.FC<ContainerProps>
+declare const Container: ForwardRefComponent<ContainerProps, HTMLDivElement>
 
 export default Container

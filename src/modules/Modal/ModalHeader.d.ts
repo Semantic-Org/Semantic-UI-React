@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface ModalHeaderProps extends StrictModalHeaderProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictModalHeaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const ModalHeader: React.FC<ModalHeaderProps>
+declare const ModalHeader: ForwardRefComponent<ModalHeaderProps, HTMLDivElement>
 
 export default ModalHeader

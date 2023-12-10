@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticCOLORS,
   SemanticShorthandCollection,
   SemanticShorthandContent,
@@ -88,13 +89,11 @@ export interface StrictMessageProps {
   warning?: boolean
 }
 
-interface MessageComponent extends React.ComponentClass<MessageProps> {
+declare const Message: ForwardRefComponent<MessageProps, HTMLDivElement> & {
   Content: typeof MessageContent
   Header: typeof MessageHeader
   List: typeof MessageList
   Item: typeof MessageItem
 }
-
-declare const Message: MessageComponent
 
 export default Message

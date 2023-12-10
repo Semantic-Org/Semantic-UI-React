@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface ButtonContentProps extends StrictButtonContentProps {
   [key: string]: any
@@ -25,6 +25,6 @@ export interface StrictButtonContentProps {
   visible?: boolean
 }
 
-declare const ButtonContent: React.FC<ButtonContentProps>
+declare const ButtonContent: ForwardRefComponent<ButtonContentProps, HTMLDivElement>
 
 export default ButtonContent

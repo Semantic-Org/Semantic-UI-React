@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface HeaderSubheaderProps extends StrictHeaderSubheaderProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictHeaderSubheaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const HeaderSubHeader: React.FC<HeaderSubheaderProps>
+declare const HeaderSubheader: ForwardRefComponent<HeaderSubheaderProps, HTMLDivElement>
 
-export default HeaderSubHeader
+export default HeaderSubheader

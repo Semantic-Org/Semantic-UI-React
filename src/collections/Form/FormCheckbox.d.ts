@@ -1,6 +1,5 @@
-import * as React from 'react'
-
 import { StrictCheckboxProps } from '../../modules/Checkbox'
+import { ForwardRefComponent } from '../../generic'
 import { StrictFormFieldProps } from './FormField'
 
 export interface FormCheckboxProps extends StrictFormCheckboxProps {
@@ -18,6 +17,6 @@ export interface StrictFormCheckboxProps extends StrictFormFieldProps, StrictChe
   type?: 'checkbox' | 'radio'
 }
 
-declare const FormCheckbox: React.FC<FormCheckboxProps>
+declare const FormCheckbox: ForwardRefComponent<FormCheckboxProps, HTMLInputElement>
 
 export default FormCheckbox

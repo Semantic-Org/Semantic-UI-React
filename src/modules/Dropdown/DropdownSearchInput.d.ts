@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface DropdownSearchInputProps extends StrictDropdownSearchInputProps {
   [key: string]: any
@@ -24,6 +24,6 @@ export interface StrictDropdownSearchInputProps {
   value?: number | string
 }
 
-declare const DropdownSearchInput: React.ComponentClass<DropdownSearchInputProps>
+declare const DropdownSearchInput: ForwardRefComponent<DropdownSearchInputProps, HTMLInputElement>
 
 export default DropdownSearchInput

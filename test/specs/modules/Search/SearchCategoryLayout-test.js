@@ -9,5 +9,9 @@ const requiredProps = {
 }
 
 describe('SearchCategoryLayout', () => {
-  common.isConformant(SearchCategoryLayout, { requiredProps, rendersChildren: false })
+  common.isConformant(SearchCategoryLayout, {
+    requiredProps,
+    forwardsRef: false,
+    rendersChildren: false,
+  })
 })

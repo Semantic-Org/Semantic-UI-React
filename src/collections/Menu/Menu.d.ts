@@ -1,6 +1,11 @@
 import * as React from 'react'
 
-import { SemanticCOLORS, SemanticShorthandCollection, SemanticWIDTHS } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticCOLORS,
+  SemanticShorthandCollection,
+  SemanticWIDTHS,
+} from '../../generic'
 import MenuHeader from './MenuHeader'
 import MenuItem, { MenuItemProps } from './MenuItem'
 import MenuMenu from './MenuMenu'
@@ -91,12 +96,10 @@ export interface StrictMenuProps {
   widths?: SemanticWIDTHS
 }
 
-interface MenuComponent extends React.ComponentClass<MenuProps> {
+declare const Menu: ForwardRefComponent<MenuProps, HTMLDivElement> & {
   Header: typeof MenuHeader
   Item: typeof MenuItem
   Menu: typeof MenuMenu
 }
-
-declare const Menu: MenuComponent
 
 export default Menu

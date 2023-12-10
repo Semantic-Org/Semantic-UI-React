@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticShorthandCollection,
   SemanticShorthandContent,
   SemanticShorthandItem,
@@ -38,11 +39,9 @@ export interface StrictBreadcrumbProps {
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 }
 
-interface BreadcrumbComponent extends React.ComponentClass<BreadcrumbProps> {
+declare const Breadcrumb: ForwardRefComponent<BreadcrumbProps, HTMLDivElement> & {
   Divider: typeof BreadcrumbDivider
   Section: typeof BreadcrumbSection
 }
-
-declare const Breadcrumb: BreadcrumbComponent
 
 export default Breadcrumb

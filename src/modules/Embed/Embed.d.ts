@@ -1,6 +1,11 @@
 import * as React from 'react'
 
-import { HtmlIframeProps, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import {
+  ForwardRefComponent,
+  HtmlIframeProps,
+  SemanticShorthandContent,
+  SemanticShorthandItem,
+} from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
 export interface EmbedProps extends StrictEmbedProps {
@@ -68,6 +73,6 @@ export interface StrictEmbedProps {
   url?: string
 }
 
-declare const Embed: React.ComponentClass<EmbedProps>
+declare const Embed: ForwardRefComponent<EmbedProps, HTMLDivElement>
 
 export default Embed

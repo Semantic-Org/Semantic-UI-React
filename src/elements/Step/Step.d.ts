@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../Icon'
 import StepContent from './StepContent'
 import StepDescription, { StepDescriptionProps } from './StepDescription'
@@ -61,13 +61,11 @@ export interface StrictStepProps {
   title?: SemanticShorthandItem<StepTitleProps>
 }
 
-interface StepComponent extends React.ComponentClass<StepProps> {
+declare const Step: ForwardRefComponent<StepProps, HTMLDivElement> & {
   Content: typeof StepContent
   Description: typeof StepDescription
   Group: typeof StepGroup
   Title: typeof StepTitle
 }
-
-declare const Step: StepComponent
 
 export default Step

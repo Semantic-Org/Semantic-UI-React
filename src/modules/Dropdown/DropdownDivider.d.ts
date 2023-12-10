@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface DropdownDividerProps extends StrictDropdownDividerProps {
   [key: string]: any
@@ -12,6 +12,6 @@ export interface StrictDropdownDividerProps {
   className?: string
 }
 
-declare const DropdownDivider: React.ComponentClass<DropdownDividerProps>
+declare const DropdownDivider: ForwardRefComponent<DropdownDividerProps, HTMLDivElement>
 
 export default DropdownDivider

@@ -1,10 +1,9 @@
-import * as React from 'react'
-
 import { StrictDropdownProps } from '../../modules/Dropdown'
 import DropdownDivider from '../../modules/Dropdown/DropdownDivider'
 import DropdownHeader from '../../modules/Dropdown/DropdownHeader'
 import DropdownItem, { DropdownItemProps } from '../../modules/Dropdown/DropdownItem'
 import DropdownMenu from '../../modules/Dropdown/DropdownMenu'
+import { ForwardRefComponent } from '../../generic'
 
 export interface SelectProps extends StrictSelectProps {
   [key: string]: any
@@ -15,13 +14,11 @@ export interface StrictSelectProps extends StrictDropdownProps {
   options: DropdownItemProps[]
 }
 
-interface SelectComponent extends React.FC<SelectProps> {
+declare const Select: ForwardRefComponent<SelectProps, HTMLDivElement> & {
   Divider: typeof DropdownDivider
   Header: typeof DropdownHeader
   Item: typeof DropdownItem
   Menu: typeof DropdownMenu
 }
-
-declare const Select: SelectComponent
 
 export default Select

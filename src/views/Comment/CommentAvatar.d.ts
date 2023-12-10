@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface CommentAvatarProps extends StrictCommentAvatarProps {
   [key: string]: any
@@ -15,6 +15,6 @@ export interface StrictCommentAvatarProps {
   src?: string
 }
 
-declare const CommentAvatar: React.FC<CommentAvatarProps>
+declare const CommentAvatar: ForwardRefComponent<CommentAvatarProps, HTMLDivElement>
 
 export default CommentAvatar

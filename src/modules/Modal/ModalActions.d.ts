@@ -1,7 +1,11 @@
 import * as React from 'react'
 
 import { ButtonProps } from '../../elements/Button'
-import { SemanticShorthandCollection, SemanticShorthandContent } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticShorthandCollection,
+  SemanticShorthandContent,
+} from '../../generic'
 
 export interface ModalActionsProps extends StrictModalActionsProps {
   [key: string]: any
@@ -32,6 +36,6 @@ export interface StrictModalActionsProps {
   onActionClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: ButtonProps) => void
 }
 
-declare const ModalActions: React.ComponentClass<ModalActionsProps>
+declare const ModalActions: ForwardRefComponent<ModalActionsProps, HTMLDivElement>
 
 export default ModalActions

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface DividerProps extends StrictDividerProps {
   [key: string]: any
@@ -40,6 +40,6 @@ export interface StrictDividerProps {
   vertical?: boolean
 }
 
-declare const Divider: React.FC<DividerProps>
+declare const Divider: ForwardRefComponent<DividerProps, HTMLDivElement>
 
 export default Divider

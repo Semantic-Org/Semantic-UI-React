@@ -38,7 +38,7 @@ describe('Popup', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
-  common.isConformant(Popup, { rendersChildren: false, rendersPortal: true })
+  common.isConformant(Popup, { rendersChildren: false, rendersPortal: true, forwardsRef: false })
   common.hasSubcomponents(Popup, [PopupHeader, PopupContent])
 
   // Heads up!

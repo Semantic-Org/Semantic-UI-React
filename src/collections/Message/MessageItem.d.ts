@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface MessageItemProps extends StrictMessageItemProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictMessageItemProps {
   content?: SemanticShorthandContent
 }
 
-declare const MessageItem: React.FC<MessageItemProps>
+declare const MessageItem: ForwardRefComponent<MessageItemProps, HTMLLIElement>
 
 export default MessageItem

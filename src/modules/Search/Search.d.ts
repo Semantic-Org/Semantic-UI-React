@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandItem } from '../../generic'
 import { InputProps } from '../../elements/Input'
 import SearchCategory, { SearchCategoryProps } from './SearchCategory'
 import SearchResult, { SearchResultProps } from './SearchResult'
@@ -65,7 +65,9 @@ export interface StrictSearchProps {
    * @param {object} props - The SearchCategoryLayout props object.
    * @returns {*} - Renderable SearchCategory layout.
    */
-  categoryLayoutRenderer?: (props: Pick<SearchCategoryLayoutProps, 'categoryContent' | 'resultsContent'>) => React.ReactElement<any>
+  categoryLayoutRenderer?: (
+    props: Pick<SearchCategoryLayoutProps, 'categoryContent' | 'resultsContent'>,
+  ) => React.ReactElement<any>
 
   /**
    * Renders the SearchCategory contents.
@@ -168,12 +170,10 @@ export interface SearchResultData extends SearchProps {
   result: any
 }
 
-interface SearchComponent extends React.ComponentClass<SearchProps> {
+declare const Search: ForwardRefComponent<SearchProps, HTMLDivElement> & {
   Category: typeof SearchCategory
   Result: typeof SearchResult
   Results: typeof SearchResults
 }
-
-declare const Search: SearchComponent
 
 export default Search
