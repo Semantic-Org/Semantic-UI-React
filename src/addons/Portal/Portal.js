@@ -215,7 +215,7 @@ function Portal(props) {
   }
 
   const handleTriggerMouseLeave = (e, ...rest) => {
-    clearTimeout(mouseEnterTimer)
+    clearTimeout(mouseEnterTimer.current)
 
     // Call original event handler
     _.invoke(trigger, 'props.onMouseLeave', e, ...rest)
@@ -229,7 +229,7 @@ function Portal(props) {
   }
 
   const handleTriggerMouseEnter = (e, ...rest) => {
-    clearTimeout(mouseLeaveTimer)
+    clearTimeout(mouseLeaveTimer.current)
 
     // Call original event handler
     _.invoke(trigger, 'props.onMouseEnter', e, ...rest)
