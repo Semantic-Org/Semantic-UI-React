@@ -1,6 +1,10 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticShorthandContent } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticShorthandCollection,
+  SemanticShorthandContent,
+} from '../../generic'
 import { StepProps } from './Step'
 
 export interface StepGroupProps extends StrictStepGroupProps {
@@ -72,6 +76,6 @@ export interface StrictStepGroupProps {
     | 'eight'
 }
 
-declare const StepGroup: React.FC<StepGroupProps>
+declare const StepGroup: ForwardRefComponent<StepGroupProps, HTMLDivElement>
 
 export default StepGroup

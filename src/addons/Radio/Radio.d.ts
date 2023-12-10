@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 import { StrictCheckboxProps } from '../../modules/Checkbox'
 
 export interface RadioProps extends StrictRadioProps {
@@ -16,6 +16,6 @@ export interface StrictRadioProps extends StrictCheckboxProps {
   type?: 'checkbox' | 'radio'
 }
 
-declare const Radio: React.FC<RadioProps>
+declare const Radio: ForwardRefComponent<RadioProps, HTMLInputElement>
 
 export default Radio

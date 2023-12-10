@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface PlaceholderHeaderProps extends StrictPlaceholderHeaderProps {
   [key: string]: any
@@ -22,8 +22,6 @@ export interface StrictPlaceholderHeaderProps {
   image?: boolean
 }
 
-interface PlaceholderHeaderComponent extends React.FC<PlaceholderHeaderProps> {}
-
-declare const PlaceholderHeader: PlaceholderHeaderComponent
+declare const PlaceholderHeader: ForwardRefComponent<PlaceholderHeaderProps, HTMLDivElement>
 
 export default PlaceholderHeader

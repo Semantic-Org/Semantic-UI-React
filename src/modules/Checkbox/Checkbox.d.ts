@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { HtmlLabelProps, SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, HtmlLabelProps, SemanticShorthandItem } from '../../generic'
 
 export interface CheckboxProps extends StrictCheckboxProps {
   [key: string]: any
@@ -93,6 +93,6 @@ export interface StrictCheckboxProps {
   value?: number | string
 }
 
-declare const Checkbox: React.ComponentClass<CheckboxProps>
+declare const Checkbox: ForwardRefComponent<CheckboxProps, HTMLDivElement>
 
 export default Checkbox

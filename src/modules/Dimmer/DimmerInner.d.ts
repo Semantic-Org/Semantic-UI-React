@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface DimmerInnerProps extends StrictDimmerInnerProps {
   [key: string]: any
@@ -53,6 +53,6 @@ export interface StrictDimmerInnerProps {
   verticalAlign?: 'bottom' | 'top'
 }
 
-declare class DimmerInner extends React.Component<DimmerInnerProps> {}
+declare const DimmerInner: ForwardRefComponent<DimmerInnerProps, HTMLDivElement>
 
 export default DimmerInner

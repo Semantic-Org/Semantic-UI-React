@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticFLOATS,
   SemanticShorthandCollection,
   SemanticShorthandContent,
@@ -82,7 +83,7 @@ export interface StrictListProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-interface ListComponent extends React.FC<ListProps> {
+declare const List: ForwardRefComponent<ListProps, HTMLDivElement> & {
   Content: typeof ListContent
   Description: typeof ListDescription
   Header: typeof ListHeader
@@ -90,7 +91,5 @@ interface ListComponent extends React.FC<ListProps> {
   Item: typeof ListItem
   List: typeof ListList
 }
-
-declare const List: ListComponent
 
 export default List

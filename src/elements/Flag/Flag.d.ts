@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export type FlagNameValues =
   | 'ad'
@@ -511,6 +512,6 @@ export interface StrictFlagProps {
   name: FlagNameValues
 }
 
-declare class Flag extends React.PureComponent<FlagProps> {}
+declare const Flag: ForwardRefComponent<FlagProps, HTMLElement>
 
 export default Flag

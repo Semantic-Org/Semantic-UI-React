@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   HtmlLabelProps,
   SemanticShorthandContent,
   SemanticShorthandItem,
@@ -57,6 +58,6 @@ export interface StrictFormFieldProps {
   width?: SemanticWIDTHS
 }
 
-declare const FormField: React.FC<FormFieldProps>
+declare const FormField: ForwardRefComponent<FormFieldProps, HTMLElement>
 
 export default FormField

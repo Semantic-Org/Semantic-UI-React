@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface StickyProps extends StrictStickyProps {
   [key: string]: any
@@ -68,6 +69,6 @@ export interface StrictStickyProps {
   styleElement?: React.CSSProperties
 }
 
-declare const Sticky: React.ComponentClass<StickyProps>
+declare const Sticky: ForwardRefComponent<StickyProps, HTMLDivElement>
 
 export default Sticky

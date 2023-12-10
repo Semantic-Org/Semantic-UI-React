@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 import SidebarPushable from './SidebarPushable'
 import SidebarPusher from './SidebarPusher'
@@ -69,11 +69,9 @@ export interface StrictSidebarProps {
   width?: 'very thin' | 'thin' | 'wide' | 'very wide'
 }
 
-interface SidebarComponent extends React.ComponentClass<SidebarProps> {
+declare const Sidebar: ForwardRefComponent<SidebarProps, HTMLDivElement> & {
   Pushable: typeof SidebarPushable
   Pusher: typeof SidebarPusher
 }
-
-declare const Sidebar: SidebarComponent
 
 export default Sidebar

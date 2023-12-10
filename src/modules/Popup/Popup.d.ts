@@ -141,11 +141,9 @@ export interface StrictPopupProps extends StrictPortalProps {
   wide?: boolean | 'very'
 }
 
-interface PopupComponent extends React.ComponentClass<PopupProps> {
+declare const Popup: React.FC<PopupProps> & {
   Content: typeof PopupContent
   Header: typeof PopupHeader
 }
-
-declare const Popup: PopupComponent
 
 export default Popup

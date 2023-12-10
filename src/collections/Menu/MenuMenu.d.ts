@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface MenuMenuProps extends StrictMenuMenuProps {
   [key: string]: any
@@ -22,6 +22,6 @@ export interface StrictMenuMenuProps {
   position?: 'left' | 'right'
 }
 
-declare const MenuMenu: React.FC<MenuMenuProps>
+declare const MenuMenu: ForwardRefComponent<MenuMenuProps, HTMLDivElement>
 
 export default MenuMenu

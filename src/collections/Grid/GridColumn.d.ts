@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {
+  ForwardRefComponent,
   SemanticCOLORS,
   SemanticFLOATS,
   SemanticTEXTALIGNMENTS,
@@ -67,6 +68,6 @@ export interface StrictGridColumnProps {
   width?: SemanticWIDTHS
 }
 
-declare const GridColumn: React.FC<GridColumnProps>
+declare const GridColumn: ForwardRefComponent<GridColumnProps, HTMLDivElement>
 
 export default GridColumn

@@ -1,7 +1,5 @@
-import * as React from 'react'
-
 import { ImageProps, StrictImageProps } from '../../elements/Image'
-import { SemanticSIZES } from '../../generic'
+import { ForwardRefComponent, SemanticSIZES } from '../../generic'
 
 export interface ItemImageProps extends ImageProps {
   [key: string]: any
@@ -15,6 +13,6 @@ export interface StrictItemImageProps extends StrictImageProps {
   size?: SemanticSIZES
 }
 
-declare const ItemImage: React.FC<ItemImageProps>
+declare const ItemImage: ForwardRefComponent<ItemImageProps, HTMLImageElement>
 
 export default ItemImage

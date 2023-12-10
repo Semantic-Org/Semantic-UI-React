@@ -1,6 +1,11 @@
 import * as React from 'react'
 
-import { HtmlImageProps, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import {
+  ForwardRefComponent,
+  HtmlImageProps,
+  SemanticShorthandContent,
+  SemanticShorthandItem,
+} from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
 export interface FeedLabelProps extends StrictFeedLabelProps {
@@ -27,6 +32,6 @@ export interface StrictFeedLabelProps {
   image?: SemanticShorthandItem<HtmlImageProps>
 }
 
-declare const FeedLabel: React.FC<FeedLabelProps>
+declare const FeedLabel: ForwardRefComponent<FeedLabelProps, HTMLDivElement>
 
 export default FeedLabel

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface CardMetaProps extends StrictCardMetaProps {
   [key: string]: any
@@ -22,6 +22,6 @@ export interface StrictCardMetaProps {
   textAlign?: 'center' | 'left' | 'right'
 }
 
-declare const CardMeta: React.FC<CardMetaProps>
+declare const CardMeta: ForwardRefComponent<CardMetaProps, HTMLDivElement>
 
 export default CardMeta

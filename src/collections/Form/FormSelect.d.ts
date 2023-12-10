@@ -1,10 +1,7 @@
-import * as React from 'react'
-
 import { StrictSelectProps } from '../../addons/Select'
 import { DropdownItemProps } from '../../modules/Dropdown/DropdownItem'
 import { StrictFormFieldProps } from './FormField'
-import { SemanticShorthandItem } from '../../generic'
-import { LabelProps } from '../../elements/Label'
+import { ForwardRefComponent } from '../../generic'
 
 export interface FormSelectProps extends StrictFormSelectProps {
   [key: string]: any
@@ -24,6 +21,6 @@ export interface StrictFormSelectProps extends StrictFormFieldProps, StrictSelec
   options: DropdownItemProps[]
 }
 
-declare const FormSelect: React.FC<FormSelectProps>
+declare const FormSelect: ForwardRefComponent<FormSelectProps, HTMLDivElement>
 
 export default FormSelect

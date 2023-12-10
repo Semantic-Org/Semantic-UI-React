@@ -3,6 +3,7 @@ import {
   HtmlImageProps,
   SemanticShorthandContent,
   SemanticShorthandCollection,
+  ForwardRefComponent,
 } from '../../generic'
 
 export interface FeedExtraProps extends StrictFeedExtraProps {
@@ -29,6 +30,6 @@ export interface StrictFeedExtraProps {
   text?: boolean
 }
 
-declare const FeedExtra: React.FC<FeedExtraProps>
+declare const FeedExtra: ForwardRefComponent<FeedExtraProps, HTMLDivElement>
 
 export default FeedExtra

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface RatingIconProps extends StrictRatingIconProps {
   [key: string]: any
@@ -45,6 +46,6 @@ export interface StrictRatingIconProps {
   selected?: boolean
 }
 
-declare const RatingIcon: React.ComponentClass<RatingIconProps>
+declare const RatingIcon: ForwardRefComponent<RatingIconProps, HTMLElement>
 
 export default RatingIcon

@@ -1,6 +1,10 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticShorthandContent } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticShorthandCollection,
+  SemanticShorthandContent,
+} from '../../generic'
 import { ItemProps } from './Item'
 
 export interface ItemGroupProps extends StrictItemGroupProps {
@@ -36,6 +40,6 @@ export interface StrictItemGroupProps {
   unstackable?: boolean
 }
 
-declare const ItemGroup: React.FC<ItemGroupProps>
+declare const ItemGroup: ForwardRefComponent<ItemGroupProps, HTMLDivElement>
 
 export default ItemGroup

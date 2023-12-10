@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandCollection } from '../../generic'
 import { AccordionPanelProps } from './AccordionPanel'
 import { AccordionTitleProps } from './AccordionTitle'
 
@@ -39,6 +39,6 @@ export interface StrictAccordionAccordionProps {
   panels?: SemanticShorthandCollection<AccordionPanelProps>
 }
 
-declare const AccordionAccordion: React.ComponentClass<AccordionAccordionProps>
+declare const AccordionAccordion: ForwardRefComponent<AccordionAccordionProps, HTMLDivElement>
 
 export default AccordionAccordion

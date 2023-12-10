@@ -4,6 +4,7 @@ import AccordionAccordion, { StrictAccordionAccordionProps } from './AccordionAc
 import AccordionContent from './AccordionContent'
 import AccordionPanel from './AccordionPanel'
 import AccordionTitle from './AccordionTitle'
+import { ForwardRefComponent } from '../../generic'
 
 export interface AccordionProps extends StrictAccordionProps {
   [key: string]: any
@@ -23,13 +24,11 @@ export interface StrictAccordionProps extends StrictAccordionAccordionProps {
   styled?: boolean
 }
 
-interface AccordionComponent extends React.ComponentClass<AccordionProps> {
+declare const Accordion: ForwardRefComponent<AccordionProps, HTMLDivElement> & {
   Accordion: typeof AccordionAccordion
   Content: typeof AccordionContent
   Panel: typeof AccordionPanel
   Title: typeof AccordionTitle
 }
-
-declare const Accordion: AccordionComponent
 
 export default Accordion

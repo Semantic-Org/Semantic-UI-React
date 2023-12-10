@@ -1,6 +1,11 @@
 import * as React from 'react'
 
-import { SemanticTEXTALIGNMENTS, SemanticVERTICALALIGNMENTS, SemanticWIDTHS } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticTEXTALIGNMENTS,
+  SemanticVERTICALALIGNMENTS,
+  SemanticWIDTHS,
+} from '../../generic'
 import GridColumn from './GridColumn'
 import GridRow from './GridRow'
 
@@ -70,11 +75,9 @@ export interface StrictGridProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-interface GridComponent extends React.FC<GridProps> {
+declare const Grid: ForwardRefComponent<GridProps, HTMLDivElement> & {
   Column: typeof GridColumn
   Row: typeof GridRow
 }
-
-declare const Grid: GridComponent
 
 export default Grid

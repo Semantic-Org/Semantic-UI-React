@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 import CommentAction from './CommentAction'
 import CommentActions from './CommentActions'
 import CommentAuthor from './CommentAuthor'
@@ -31,7 +31,7 @@ export interface StrictCommentProps {
   content?: SemanticShorthandContent
 }
 
-interface CommentComponent extends React.FC<CommentProps> {
+declare const Comment: ForwardRefComponent<CommentProps, HTMLDivElement> & {
   Action: typeof CommentAction
   Actions: typeof CommentActions
   Author: typeof CommentAuthor
@@ -41,7 +41,5 @@ interface CommentComponent extends React.FC<CommentProps> {
   Metadata: typeof CommentMetadata
   Text: typeof CommentText
 }
-
-declare const Comment: CommentComponent
 
 export default Comment

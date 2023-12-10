@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface RevealContentProps extends StrictRevealContentProps {
   [key: string]: any
@@ -25,6 +25,6 @@ export interface StrictRevealContentProps {
   visible?: boolean
 }
 
-declare const RevealContent: React.FC<RevealContentProps>
+declare const RevealContent: ForwardRefComponent<RevealContentProps, HTMLDivElement>
 
 export default RevealContent

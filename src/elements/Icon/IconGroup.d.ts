@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 import { IconSizeProp } from './Icon'
 
 export interface IconGroupProps extends StrictIconGroupProps {
@@ -24,6 +24,6 @@ export interface StrictIconGroupProps {
   size?: IconSizeProp
 }
 
-declare const IconGroup: React.FC<IconGroupProps>
+declare const IconGroup: ForwardRefComponent<IconGroupProps, HTMLElement>
 
 export default IconGroup

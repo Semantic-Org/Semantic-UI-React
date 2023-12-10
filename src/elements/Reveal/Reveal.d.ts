@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 import RevealContent from './RevealContent'
 
 export interface RevealProps extends StrictRevealProps {
@@ -41,10 +41,6 @@ export interface StrictRevealProps {
   instant?: boolean
 }
 
-interface RevealComponent extends React.FC<RevealProps> {
-  Content: typeof RevealContent
-}
-
-declare const Reveal: RevealComponent
+declare const Reveal: ForwardRefComponent<RevealProps, HTMLDivElement>
 
 export default Reveal

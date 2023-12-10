@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandItem } from '../../generic'
 import { StrictPortalProps } from '../../addons/Portal'
 import ModalActions, { ModalActionsProps } from './ModalActions'
 import ModalContent, { ModalContentProps } from './ModalContent'
@@ -111,14 +111,12 @@ export interface StrictModalProps extends StrictPortalProps {
   trigger?: React.ReactNode
 }
 
-interface ModalComponent extends React.ComponentClass<ModalProps> {
+declare const Modal: ForwardRefComponent<ModalProps, HTMLDivElement> & {
   Actions: typeof ModalActions
   Content: typeof ModalContent
   Description: typeof ModalDescription
   Dimmer: typeof ModalDimmer
   Header: typeof ModalHeader
 }
-
-declare const Modal: ModalComponent
 
 export default Modal

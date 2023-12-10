@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import { IconProps } from '../../elements/Icon'
 
 export interface BreadcrumbDividerProps extends StrictBreadcrumbDividerProps {
@@ -24,6 +24,6 @@ export interface StrictBreadcrumbDividerProps {
   icon?: SemanticShorthandItem<IconProps>
 }
 
-declare const BreadcrumbDivider: React.FC<BreadcrumbDividerProps>
+declare const BreadcrumbDivider: ForwardRefComponent<BreadcrumbDividerProps, HTMLDivElement>
 
 export default BreadcrumbDivider

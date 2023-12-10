@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface FeedDateProps extends StrictFeedDateProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictFeedDateProps {
   content?: SemanticShorthandContent
 }
 
-declare const FeedDate: React.FC<FeedDateProps>
+declare const FeedDate: ForwardRefComponent<FeedDateProps, HTMLDivElement>
 
 export default FeedDate

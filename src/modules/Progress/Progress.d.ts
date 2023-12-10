@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {
+  ForwardRefComponent,
   HtmlLabelProps,
   SemanticCOLORS,
   SemanticShorthandContent,
@@ -75,6 +76,6 @@ export interface StrictProgressProps {
   warning?: boolean
 }
 
-declare const Progress: React.ComponentClass<ProgressProps>
+declare const Progress: ForwardRefComponent<ProgressProps, HTMLDivElement>
 
 export default Progress

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface TabPaneProps extends StrictTabPaneProps {
   [key: string]: any
@@ -25,6 +25,6 @@ export interface StrictTabPaneProps {
   loading?: boolean
 }
 
-declare const TabPane: React.FC<TabPaneProps>
+declare const TabPane: ForwardRefComponent<TabPaneProps, HTMLDivElement>
 
 export default TabPane

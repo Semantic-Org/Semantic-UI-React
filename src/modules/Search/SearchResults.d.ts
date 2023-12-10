@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface SearchResultsProps extends StrictSearchResultsProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictSearchResultsProps {
   content?: SemanticShorthandContent
 }
 
-declare const SearchResults: React.FC<SearchResultsProps>
+declare const SearchResults: ForwardRefComponent<SearchResultsProps, HTMLDivElement>
 
 export default SearchResults

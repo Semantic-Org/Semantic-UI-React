@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticFLOATS, SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticFLOATS, SemanticShorthandContent } from '../../generic'
 
 export interface RailProps extends StrictRailProps {
   [key: string]: any
@@ -37,6 +37,6 @@ export interface StrictRailProps {
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
 }
 
-declare const Rail: React.FC<RailProps>
+declare const Rail: ForwardRefComponent<RailProps, HTMLDivElement>
 
 export default Rail

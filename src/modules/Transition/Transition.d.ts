@@ -81,12 +81,6 @@ export interface TransitionPropDuration {
 
 interface TransitionComponent extends React.ComponentClass<TransitionProps> {
   Group: typeof TransitionGroup
-
-  ENTERED: 'ENTERED'
-  ENTERING: 'ENTERING'
-  EXITED: 'EXITED'
-  EXITING: 'EXITING'
-  UNMOUNTED: 'UNMOUNTED'
 }
 
 declare const Transition: TransitionComponent

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandItem } from '../../generic'
 import { ImageProps } from '../Image'
 import { ListContentProps } from './ListContent'
 import { ListDescriptionProps } from './ListDescription'
@@ -54,6 +54,6 @@ export interface StrictListItemProps {
   value?: string
 }
 
-declare const ListItem: React.FC<ListItemProps>
+declare const ListItem: ForwardRefComponent<ListItemProps, HTMLDivElement>
 
 export default ListItem

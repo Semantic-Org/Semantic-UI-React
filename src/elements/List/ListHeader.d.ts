@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface ListHeaderProps extends StrictListHeaderProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictListHeaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const ListHeader: React.FC<ListHeaderProps>
+declare const ListHeader: ForwardRefComponent<ListHeaderProps, HTMLDivElement>
 
 export default ListHeader

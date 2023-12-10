@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 import { StrictTableHeaderProps } from './TableHeader'
 
 export interface TableFooterProps extends StrictTableFooterProps {
@@ -10,6 +10,6 @@ export interface StrictTableFooterProps extends StrictTableHeaderProps {
   as?: any
 }
 
-declare const TableFooter: React.FC<TableFooterProps>
+declare const TableFooter: ForwardRefComponent<TableFooterProps, HTMLTableSectionElement>
 
 export default TableFooter

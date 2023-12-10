@@ -7,6 +7,7 @@ const isInterface = ({ kind }) => kind === SyntaxKind.InterfaceDeclaration
 const isExportModifier = ({ kind }) => kind === SyntaxKind.ExportKeyword
 const isPropertySignature = ({ kind }) => kind === SyntaxKind.PropertySignature
 const isTypeReference = ({ kind }) => kind === SyntaxKind.TypeReference
+const isIntersectionType = ({ kind }) => kind === SyntaxKind.IntersectionType
 const isShorthandProperty = (node) => {
   if (!isPropertySignature(node) || !isTypeReference(node.type)) return false
   return _.includes(
@@ -15,6 +16,7 @@ const isShorthandProperty = (node) => {
   )
 }
 const isStringKeyword = ({ kind }) => kind === SyntaxKind.StringKeyword
+const isVariableDeclaration = ({ kind }) => kind === SyntaxKind.VariableDeclaration
 
 const getProps = (members) => {
   const props = _.filter(members, isPropertySignature)
@@ -60,6 +62,28 @@ export const getInterfaces = (nodes) => {
     props: getProps(members),
     shorthands: getShorthands(members),
   }))
+}
+
+export const getComponentType = (nodes, componentName) => {
+  return nodes.find((node) => isVariableDeclaration(node) && node.name.text === componentName)
+}
+
+export const isForwardRefComponent = (componentType) => {
+  if (isIntersectionType(componentType.type)) {
+    if (Array.isArray(componentType.type.types)) {
+      if (componentType.type.types.length === 2) {
+        const [type] = componentType.type.types
+
+        return type.typeName.text === 'ForwardRefComponent'
+      }
+    }
+  }
+
+  if (isTypeReference(componentType.type)) {
+    return componentType.type.typeName.text === 'ForwardRefComponent'
+  }
+
+  return false
 }
 
 export const hasAnySignature = (nodes) => {

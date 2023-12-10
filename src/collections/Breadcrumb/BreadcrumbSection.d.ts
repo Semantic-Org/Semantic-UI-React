@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface BreadcrumbSectionProps extends StrictBreadcrumbSectionProps {
   [key: string]: any
@@ -37,6 +37,6 @@ export interface StrictBreadcrumbSectionProps {
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: BreadcrumbSectionProps) => void
 }
 
-declare const BreadcrumbSection: React.ComponentClass<BreadcrumbSectionProps>
+declare const BreadcrumbSection: ForwardRefComponent<BreadcrumbSectionProps, HTMLDivElement>
 
 export default BreadcrumbSection

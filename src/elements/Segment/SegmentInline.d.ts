@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface SegmentInlineProps extends StrictSegmentInlineProps {
   [key: string]: any
@@ -19,8 +19,6 @@ export interface StrictSegmentInlineProps {
   content?: SemanticShorthandContent
 }
 
-interface SegmentInlineComponent extends React.FC<SegmentInlineProps> {}
-
-declare const SegmentInline: SegmentInlineComponent
+declare const SegmentInline: ForwardRefComponent<SegmentInlineProps, HTMLDivElement>
 
 export default SegmentInline

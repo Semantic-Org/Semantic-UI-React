@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface StatisticLabelProps extends StrictStatisticLabelProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictStatisticLabelProps {
   content?: SemanticShorthandContent
 }
 
-declare const StatisticLabel: React.FC<StatisticLabelProps>
+declare const StatisticLabel: ForwardRefComponent<StatisticLabelProps, HTMLDivElement>
 
 export default StatisticLabel

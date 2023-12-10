@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticWIDTHS } from '../../generic'
+import { ForwardRefComponent, SemanticWIDTHS } from '../../generic'
 
 export interface FormGroupProps extends StrictFormGroupProps {
   [key: string]: any
@@ -34,6 +34,6 @@ export interface StrictFormGroupProps {
   widths?: SemanticWIDTHS | 'equal'
 }
 
-declare const FormGroup: React.FC<FormGroupProps>
+declare const FormGroup: ForwardRefComponent<FormGroupProps, HTMLInputElement>
 
 export default FormGroup

@@ -3,7 +3,14 @@ import _ from 'lodash'
 import { customPropTypes } from 'src/lib'
 import { componentInfoContext } from 'docs/src/utils'
 import { getComponentName, getComponentProps } from 'test/utils'
-import { getNodes, getInterfaces, hasAnySignature, requireTs } from './tsHelpers'
+import {
+  getNodes,
+  getInterfaces,
+  hasAnySignature,
+  requireTs,
+  getComponentType,
+  isForwardRefComponent,
+} from './tsHelpers'
 
 const isShorthand = (propType) =>
   _.includes(
@@ -23,14 +30,14 @@ const shorthandMap = {
 /**
  * Assert Component has the valid typings.
  * @param {React.Component|Function} Component A component that should conform.
- * @param {Object} [componentInfo] The *.info.json for the Component
  * @param {Object} [options={}]
  * @param {array} [options.ignoredTypingsProps=[]] Props that will be ignored in tests.
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
+ * @param {Object} [options.forwardsRef=true] Indicates if component forwards refs.
  */
-export default function hasValidTypings(Component, componentInfo, options = {}) {
+export default function hasValidTypings(Component, options = {}) {
   const { displayName, repoPath } = componentInfoContext.byDisplayName[getComponentName(Component)]
-  const { ignoredTypingsProps = [], requiredProps } = options
+  const { ignoredTypingsProps = [], forwardsRef = true, requiredProps } = options
 
   const tsFile = repoPath.replace('src/', '').replace('.js', '.d.ts')
   const tsContent = requireTs(tsFile)
@@ -43,12 +50,25 @@ export default function hasValidTypings(Component, componentInfo, options = {}) 
     })
 
     const tsNodes = getNodes(tsFile, tsContent)
+    const componentType = getComponentType(tsNodes, displayName)
 
     const propsInterfaceName = `${displayName}Props`
     const strictInterfaceName = `Strict${displayName}Props`
 
     const propsInterfaceObject = _.find(getInterfaces(tsNodes), { name: propsInterfaceName })
     const strictInterfaceObject = _.find(getInterfaces(tsNodes), { name: strictInterfaceName })
+
+    describe(`component ${displayName}`, () => {
+      it('has component type', () => {
+        componentType.should.to.be.an('object')
+      })
+
+      if (forwardsRef) {
+        it('is ForwardRefComponent', () => {
+          isForwardRefComponent(componentType).should.to.equal(true)
+        })
+      }
+    })
 
     describe(`interface ${propsInterfaceName}`, () => {
       it('has interface', () => {

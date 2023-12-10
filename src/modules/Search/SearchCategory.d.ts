@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 import { SearchCategoryLayoutProps } from './SearchCategoryLayout'
 import SearchResult from './SearchResult'
 
@@ -49,6 +49,6 @@ export interface StrictSearchCategoryProps {
   results?: typeof SearchResult[]
 }
 
-declare const SearchCategory: React.FC<SearchCategoryProps>
+declare const SearchCategory: ForwardRefComponent<SearchCategoryProps, HTMLDivElement>
 
 export default SearchCategory

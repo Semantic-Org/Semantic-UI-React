@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 import ItemContent from './ItemContent'
 import ItemDescription, { ItemDescriptionProps } from './ItemDescription'
 import ItemExtra, { ItemExtraProps } from './ItemExtra'
@@ -42,7 +42,7 @@ export interface StrictItemProps {
   meta?: SemanticShorthandItem<ItemMetaProps>
 }
 
-interface ItemComponent extends React.FC<ItemProps> {
+declare const Item: ForwardRefComponent<ItemProps, HTMLDivElement> & {
   Content: typeof ItemContent
   Description: typeof ItemDescription
   Extra: typeof ItemExtra
@@ -51,7 +51,5 @@ interface ItemComponent extends React.FC<ItemProps> {
   Image: typeof ItemImage
   Meta: typeof ItemMeta
 }
-
-declare const Item: ItemComponent
 
 export default Item

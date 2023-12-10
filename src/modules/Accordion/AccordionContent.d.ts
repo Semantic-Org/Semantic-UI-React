@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface AccordionContentProps extends StrictAccordionContentProps {
   [key: string]: any
@@ -22,6 +22,6 @@ export interface StrictAccordionContentProps {
   content?: SemanticShorthandContent
 }
 
-declare const AccordionContent: React.FC<AccordionContentProps>
+declare const AccordionContent: ForwardRefComponent<AccordionContentProps, HTMLDivElement>
 
 export default AccordionContent

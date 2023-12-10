@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandItem } from '../../generic'
 import TabPane, { TabPaneProps } from './TabPane'
 
 export interface TabProps extends StrictTabProps {
@@ -58,10 +58,6 @@ export interface StrictTabProps {
   renderActiveOnly?: boolean
 }
 
-interface TabComponent extends React.ComponentClass<TabProps> {
-  Pane: typeof TabPane
-}
-
-declare const Tab: TabComponent
+declare const Tab: ForwardRefComponent<TabProps, HTMLDivElement>
 
 export default Tab

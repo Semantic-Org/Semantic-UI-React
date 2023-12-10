@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticCOLORS,
   SemanticShorthandContent,
   SemanticShorthandItem,
@@ -98,11 +99,9 @@ export interface StrictLabelProps {
   tag?: boolean
 }
 
-interface LabelComponent extends React.ComponentClass<LabelProps> {
+declare const Label: ForwardRefComponent<LabelProps, HTMLDivElement> & {
   Detail: typeof LabelDetail
   Group: typeof LabelGroup
 }
-
-declare const Label: LabelComponent
 
 export default Label

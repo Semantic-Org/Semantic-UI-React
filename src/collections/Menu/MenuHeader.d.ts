@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface MenuHeaderProps extends StrictMenuHeaderProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictMenuHeaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const MenuHeader: React.ComponentClass<MenuHeaderProps>
+declare const MenuHeader: ForwardRefComponent<MenuHeaderProps, HTMLDivElement>
 
 export default MenuHeader

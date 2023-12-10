@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandItem } from '../../generic'
 import PaginationItem, { PaginationItemProps } from './PaginationItem'
 
 export interface PaginationProps extends StrictPaginationProps {
@@ -56,8 +56,8 @@ export interface StrictPaginationProps {
   totalPages: number | string
 }
 
-declare class Pagination extends React.Component<PaginationProps> {
-  static Item: typeof PaginationItem
+declare const Pagination: ForwardRefComponent<PaginationProps, HTMLDivElement> & {
+  Item: typeof PaginationItem
 }
 
 export default Pagination

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface DimmerDimmableProps extends StrictDimmerDimmableProps {
   [key: string]: any
@@ -25,6 +25,6 @@ export interface StrictDimmerDimmableProps {
   dimmed?: boolean
 }
 
-declare const DimmerDimmable: React.ComponentClass<DimmerDimmableProps>
+declare const DimmerDimmable: ForwardRefComponent<DimmerDimmableProps, HTMLDivElement>
 
 export default DimmerDimmable

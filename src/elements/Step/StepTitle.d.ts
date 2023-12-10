@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface StepTitleProps extends StrictStepTitleProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictStepTitleProps {
   content?: SemanticShorthandContent
 }
 
-declare const StepTitle: React.FC<StepTitleProps>
+declare const StepTitle: ForwardRefComponent<StepTitleProps, HTMLDivElement>
 
 export default StepTitle

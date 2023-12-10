@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface ListListProps extends StrictListListProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictListListProps {
   content?: SemanticShorthandContent
 }
 
-declare const ListList: React.FC<ListListProps>
+declare const ListList: ForwardRefComponent<ListListProps, HTMLDivElement>
 
 export default ListList

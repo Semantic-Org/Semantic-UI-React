@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface ModalDimmerProps extends StrictModalDimmerProps {
   [key: string]: any
@@ -34,6 +34,6 @@ export interface StrictModalDimmerProps {
   scrolling?: boolean
 }
 
-declare const ModalDimmer: React.FC<ModalDimmerProps>
+declare const ModalDimmer: ForwardRefComponent<ModalDimmerProps, HTMLDivElement>
 
 export default ModalDimmer

@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { StrictTableCellProps } from './TableCell'
+import { ForwardRefComponent } from '../../generic'
 
 export interface TableHeaderCellProps extends StrictTableHeaderCellProps {
   [key: string]: any
@@ -16,6 +16,6 @@ export interface StrictTableHeaderCellProps extends StrictTableCellProps {
   sorted?: 'ascending' | 'descending'
 }
 
-declare const TableHeaderCell: React.FC<TableHeaderCellProps>
+declare const TableHeaderCell: ForwardRefComponent<TableHeaderCellProps, HTMLTableCellElement>
 
 export default TableHeaderCell

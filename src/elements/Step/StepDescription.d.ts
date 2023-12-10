@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface StepDescriptionProps extends StrictStepDescriptionProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictStepDescriptionProps {
   content?: SemanticShorthandContent
 }
 
-declare const StepDescription: React.FC<StepDescriptionProps>
+declare const StepDescription: ForwardRefComponent<StepDescriptionProps, HTMLDivElement>
 
 export default StepDescription

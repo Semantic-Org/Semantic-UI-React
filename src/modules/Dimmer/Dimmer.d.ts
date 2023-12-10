@@ -1,5 +1,4 @@
-import * as React from 'react'
-
+import { ForwardRefComponent } from '../../generic'
 import DimmerDimmable from './DimmerDimmable'
 import DimmerInner from './DimmerInner'
 
@@ -15,11 +14,9 @@ export interface StrictDimmerProps {
   page?: boolean
 }
 
-interface DimmerComponent extends React.ComponentClass<DimmerProps> {
+declare const Dimmer: ForwardRefComponent<DimmerProps, HTMLDivElement> & {
   Dimmable: typeof DimmerDimmable
   Inner: typeof DimmerInner
 }
-
-declare const Dimmer: DimmerComponent
 
 export default Dimmer

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface SidebarPusherProps extends StrictSidebarPusherProps {
   [key: string]: any
@@ -22,6 +22,6 @@ export interface StrictSidebarPusherProps {
   dimmed?: boolean
 }
 
-declare const SidebarPusher: React.FC<SidebarPusherProps>
+declare const SidebarPusher: ForwardRefComponent<SidebarPusherProps, HTMLDivElement>
 
 export default SidebarPusher

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface ModalDescriptionProps extends StrictModalDescriptionProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictModalDescriptionProps {
   content?: SemanticShorthandContent
 }
 
-declare const ModalDescription: React.FC<ModalDescriptionProps>
+declare const ModalDescription: ForwardRefComponent<ModalDescriptionProps, HTMLDivElement>
 
 export default ModalDescription

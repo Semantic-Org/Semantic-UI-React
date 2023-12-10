@@ -97,8 +97,8 @@ export interface StrictPortalProps {
   triggerRef?: React.Ref<any>
 }
 
-declare class Portal extends React.Component<PortalProps> {
-  static Inner: typeof PortalInner
+declare const Portal: React.FC<PortalProps> & {
+  Inner: typeof PortalInner
 }
 
 export default Portal

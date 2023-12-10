@@ -1,6 +1,5 @@
-import * as React from 'react'
-
 import { StrictDropdownProps } from '../../modules/Dropdown'
+import { ForwardRefComponent } from '../../generic'
 import { StrictFormFieldProps } from './FormField'
 
 export interface FormDropdownProps extends StrictFormDropdownProps {
@@ -18,6 +17,6 @@ export interface StrictFormDropdownProps extends StrictFormFieldProps, StrictDro
   error?: any
 }
 
-declare const FormDropdown: React.FC<FormDropdownProps>
+declare const FormDropdown: ForwardRefComponent<FormDropdownProps, HTMLDivElement>
 
 export default FormDropdown

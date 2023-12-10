@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem, SemanticShorthandContent } from '../../generic'
+import { SemanticShorthandItem, SemanticShorthandContent, ForwardRefComponent } from '../../generic'
 import { StepDescriptionProps } from './StepDescription'
 import { StepTitleProps } from './StepTitle'
 
@@ -28,6 +28,6 @@ export interface StrictStepContentProps {
   title?: SemanticShorthandItem<StepTitleProps>
 }
 
-declare const StepContent: React.FC<StepContentProps>
+declare const StepContent: ForwardRefComponent<StepContentProps, HTMLDivElement>
 
 export default StepContent

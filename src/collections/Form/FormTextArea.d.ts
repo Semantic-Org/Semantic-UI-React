@@ -1,6 +1,5 @@
-import * as React from 'react'
-
 import { StrictTextAreaProps } from '../../addons/TextArea'
+import { ForwardRefComponent } from '../../generic'
 import { StrictFormFieldProps } from './FormField'
 
 export interface FormTextAreaProps extends StrictFormTextAreaProps {
@@ -15,6 +14,6 @@ export interface StrictFormTextAreaProps extends StrictFormFieldProps, StrictTex
   control?: any
 }
 
-declare const FormTextArea: React.FC<FormTextAreaProps>
+declare const FormTextArea: ForwardRefComponent<FormTextAreaProps, HTMLTextAreaElement>
 
 export default FormTextArea

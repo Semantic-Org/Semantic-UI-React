@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface ButtonOrProps extends StrictButtonOrProps {
   [key: string]: any
@@ -15,6 +15,6 @@ export interface StrictButtonOrProps {
   text?: number | string
 }
 
-declare const ButtonOr: React.FC<ButtonOrProps>
+declare const ButtonOr: ForwardRefComponent<ButtonOrProps, HTMLDivElement>
 
 export default ButtonOr

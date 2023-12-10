@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface ModalContentProps extends StrictModalContentProps {
   [key: string]: any
@@ -25,6 +25,6 @@ export interface StrictModalContentProps {
   scrolling?: boolean
 }
 
-declare const ModalContent: React.FC<ModalContentProps>
+declare const ModalContent: ForwardRefComponent<ModalContentProps, HTMLDivElement>
 
 export default ModalContent

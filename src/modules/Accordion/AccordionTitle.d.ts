@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { IconProps } from '../../elements/Icon'
-import { SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
 
 export interface AccordionTitleProps extends StrictAccordionTitleProps {
   [key: string]: any
@@ -38,6 +38,6 @@ export interface StrictAccordionTitleProps {
   onClick?: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void
 }
 
-declare const AccordionTitle: React.ComponentClass<AccordionTitleProps>
+declare const AccordionTitle: ForwardRefComponent<AccordionTitleProps, HTMLDivElement>
 
 export default AccordionTitle

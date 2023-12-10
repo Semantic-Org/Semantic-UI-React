@@ -1,6 +1,11 @@
 import * as React from 'react'
 
-import { HtmlSpanProps, SemanticShorthandContent, SemanticShorthandItem } from '../../generic'
+import {
+  ForwardRefComponent,
+  HtmlSpanProps,
+  SemanticShorthandContent,
+  SemanticShorthandItem,
+} from '../../generic'
 import { FlagProps } from '../../elements/Flag'
 import { IconProps } from '../../elements/Icon'
 import { ImageProps } from '../../elements/Image'
@@ -65,6 +70,6 @@ export interface StrictDropdownItemProps {
   value?: boolean | number | string
 }
 
-declare const DropdownItem: React.ComponentClass<DropdownItemProps>
+declare const DropdownItem: ForwardRefComponent<DropdownItemProps, HTMLDivElement>
 
 export default DropdownItem

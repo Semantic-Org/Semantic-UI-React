@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface PaginationItemProps extends StrictPaginationItemProps {
   [key: string]: any
@@ -31,6 +32,6 @@ export interface StrictPaginationItemProps {
   type?: 'ellipsisItem' | 'firstItem' | 'prevItem' | 'pageItem' | 'nextItem' | 'lastItem'
 }
 
-declare class PaginationItem extends React.Component<PaginationItemProps> {}
+declare const PaginationItem: ForwardRefComponent<PaginationItemProps, HTMLDivElement>
 
 export default PaginationItem

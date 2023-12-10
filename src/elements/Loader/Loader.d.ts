@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent, SemanticSIZES } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent, SemanticSIZES } from '../../generic'
 
 export interface LoaderProps extends StrictLoaderProps {
   [key: string]: any
@@ -37,6 +37,6 @@ export interface StrictLoaderProps {
   size?: SemanticSIZES
 }
 
-declare const Loader: React.FC<LoaderProps>
+declare const Loader: ForwardRefComponent<LoaderProps, HTMLDivElement>
 
 export default Loader

@@ -1,6 +1,4 @@
-import * as React from 'react'
-
-import { SemanticVERTICALALIGNMENTS } from '../../generic'
+import { ForwardRefComponent, SemanticVERTICALALIGNMENTS } from '../../generic'
 import { StrictIconProps } from '../Icon'
 
 export interface ListIconProps extends StrictListIconProps {
@@ -15,6 +13,6 @@ export interface StrictListIconProps extends StrictIconProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS
 }
 
-declare const ListIcon: React.FC<ListIconProps>
+declare const ListIcon: ForwardRefComponent<ListIconProps, HTMLElement>
 
 export default ListIcon

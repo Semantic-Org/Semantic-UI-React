@@ -6,6 +6,7 @@ import DropdownHeader from './DropdownHeader'
 import DropdownItem, { DropdownItemProps } from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
 import DropdownSearchInput from './DropdownSearchInput'
+import { ForwardRefComponent } from '../../generic'
 
 export interface DropdownProps extends StrictDropdownProps {
   [key: string]: any
@@ -298,14 +299,12 @@ export interface DropdownOnSearchChangeData extends DropdownProps {
   searchQuery: string
 }
 
-interface DropdownComponent extends React.ComponentClass<DropdownProps> {
+declare const Dropdown: ForwardRefComponent<DropdownProps, HTMLDivElement> & {
   Divider: typeof DropdownDivider
   Header: typeof DropdownHeader
   Item: typeof DropdownItem
   Menu: typeof DropdownMenu
   SearchInput: typeof DropdownSearchInput
 }
-
-declare const Dropdown: DropdownComponent
 
 export default Dropdown

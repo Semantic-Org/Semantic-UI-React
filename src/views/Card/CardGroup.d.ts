@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticShorthandCollection,
   SemanticShorthandContent,
   SemanticWIDTHS,
@@ -43,6 +44,6 @@ export interface StrictCardGroupProps {
   textAlign?: 'center' | 'left' | 'right'
 }
 
-declare const CardGroup: React.FC<CardGroupProps>
+declare const CardGroup: ForwardRefComponent<CardGroupProps, HTMLDivElement>
 
 export default CardGroup

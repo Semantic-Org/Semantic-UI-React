@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SemanticShorthandContent } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandContent } from '../../generic'
 
 export interface PopupHeaderProps extends StrictPopupHeaderProps {
   [key: string]: any
@@ -19,6 +19,6 @@ export interface StrictPopupHeaderProps {
   content?: SemanticShorthandContent
 }
 
-declare const PopupHeader: React.FC<PopupHeaderProps>
+declare const PopupHeader: ForwardRefComponent<PopupHeaderProps, HTMLDivElement>
 
 export default PopupHeader

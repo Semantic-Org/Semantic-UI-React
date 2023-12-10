@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SemanticShorthandItem } from '../../generic'
+import { ForwardRefComponent, SemanticShorthandItem } from '../../generic'
 import { ButtonProps } from '../../elements/Button'
 import { StrictModalProps } from '../../modules/Modal'
 import { ModalContentProps } from '../../modules/Modal/ModalContent'
@@ -42,10 +42,10 @@ export interface StrictConfirmProps extends StrictModalProps {
   /** Whether or not the modal is visible. */
   open?: boolean
 
-  /** A confirm can vary in size. */
+  /** A Confirm can vary in size. */
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'fullscreen'
 }
 
-declare const Confirm: React.ComponentClass<ConfirmProps>
+declare const Confirm: ForwardRefComponent<ConfirmProps, HTMLDivElement>
 
 export default Confirm

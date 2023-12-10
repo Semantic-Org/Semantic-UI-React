@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  ForwardRefComponent,
   SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
@@ -65,6 +66,6 @@ export interface StrictTableCellProps {
   width?: SemanticWIDTHS
 }
 
-declare const TableCell: React.FC<TableCellProps>
+declare const TableCell: ForwardRefComponent<TableCellProps, HTMLTableCellElement>
 
 export default TableCell

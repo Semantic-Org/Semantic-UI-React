@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ForwardRefComponent } from '../../generic'
 
 export interface PlaceholderLineProps extends StrictPlaceholderLineProps {
   [key: string]: any
@@ -15,8 +16,6 @@ export interface StrictPlaceholderLineProps {
   length?: 'full' | 'very long' | 'long' | 'medium' | 'short' | 'very short'
 }
 
-interface PlaceholderLineComponent extends React.FC<PlaceholderLineProps> {}
-
-declare const PlaceholderLine: PlaceholderLineComponent
+declare const PlaceholderLine: ForwardRefComponent<PlaceholderLineProps, HTMLDivElement>
 
 export default PlaceholderLine

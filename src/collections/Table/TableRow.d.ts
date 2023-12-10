@@ -1,6 +1,10 @@
 import * as React from 'react'
 
-import { SemanticShorthandCollection, SemanticVERTICALALIGNMENTS } from '../../generic'
+import {
+  ForwardRefComponent,
+  SemanticShorthandCollection,
+  SemanticVERTICALALIGNMENTS,
+} from '../../generic'
 import { TableCellProps } from './TableCell'
 
 export interface TableRowProps extends StrictTableRowProps {
@@ -48,6 +52,6 @@ export interface StrictTableRowProps {
   warning?: boolean
 }
 
-declare const TableRow: React.FC<TableRowProps>
+declare const TableRow: ForwardRefComponent<TableRowProps, HTMLTableCellElement>
 
 export default TableRow
