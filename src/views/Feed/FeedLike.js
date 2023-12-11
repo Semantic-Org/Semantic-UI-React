@@ -1,3 +1,4 @@
+import { defaults } from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -8,7 +9,8 @@ import Icon from '../../elements/Icon'
 /**
  * A feed can contain a like element.
  */
-const FeedLike = React.forwardRef(function (props, ref) {
+const FeedLike = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const { children, className, content, icon } = props
 
   const classes = cx('like', className)
@@ -31,8 +33,10 @@ const FeedLike = React.forwardRef(function (props, ref) {
   )
 })
 
-FeedLike.defaultProps = {
-  as: 'a',
+function getDefaultProps() {
+  return {
+    as: 'a',
+  }
 }
 
 FeedLike.displayName = 'FeedLike'

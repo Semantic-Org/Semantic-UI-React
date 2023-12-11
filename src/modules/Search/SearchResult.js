@@ -1,5 +1,6 @@
+import _, { defaults } from 'lodash'
 import cx from 'clsx'
-import _ from 'lodash'
+
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -31,7 +32,8 @@ const defaultRenderer = ({ image, price, title, description }) => [
   </div>,
 ]
 
-const SearchResult = React.forwardRef(function (props, ref) {
+const SearchResult = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const { active, className, renderer } = props
 
   const handleClick = (e) => {
@@ -99,8 +101,10 @@ SearchResult.propTypes = {
   title: PropTypes.string.isRequired,
 }
 
-SearchResult.defaultProps = {
-  renderer: defaultRenderer,
+function getDefaultProps() {
+  return {
+    renderer: defaultRenderer,
+  }
 }
 
 export default SearchResult

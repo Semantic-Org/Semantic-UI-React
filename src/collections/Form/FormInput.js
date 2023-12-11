@@ -1,3 +1,4 @@
+import { defaults } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -10,7 +11,8 @@ import FormField from './FormField'
  * @see Form
  * @see Input
  */
-const FormInput = React.forwardRef(function (props, ref) {
+const FormInput = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const { control } = props
   const rest = getUnhandledProps(FormInput, props)
   const ElementType = getElementType(FormInput, props)
@@ -27,9 +29,11 @@ FormInput.propTypes = {
   control: FormField.propTypes.control,
 }
 
-FormInput.defaultProps = {
-  as: FormField,
-  control: Input,
+function getDefaultProps() {
+  return {
+    as: FormField,
+    control: Input,
+  }
 }
 
 export default FormInput

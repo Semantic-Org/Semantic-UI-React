@@ -1,5 +1,6 @@
+import _, { defaults } from 'lodash'
 import cx from 'clsx'
-import _ from 'lodash'
+
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -24,7 +25,8 @@ const debug = makeDebugger('checkbox')
  * @see Form
  * @see Radio
  */
-const Checkbox = React.forwardRef(function (props, ref) {
+const Checkbox = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const {
     className,
     disabled,
@@ -319,8 +321,10 @@ Checkbox.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
-Checkbox.defaultProps = {
-  type: 'checkbox',
+function getDefaultProps() {
+  return {
+    type: 'checkbox',
+  }
 }
 
 export default Checkbox

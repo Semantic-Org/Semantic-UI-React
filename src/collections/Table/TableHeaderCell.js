@@ -1,3 +1,4 @@
+import { defaults } from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -8,7 +9,8 @@ import TableCell from './TableCell'
 /**
  * A table can have a header cell.
  */
-const TableHeaderCell = React.forwardRef(function (props, ref) {
+const TableHeaderCell = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const { as, className, sorted } = props
   const classes = cx(useValueAndKey(sorted, 'sorted'), className)
   const rest = getUnhandledProps(TableHeaderCell, props)
@@ -28,8 +30,10 @@ TableHeaderCell.propTypes = {
   sorted: PropTypes.oneOf(['ascending', 'descending']),
 }
 
-TableHeaderCell.defaultProps = {
-  as: 'th',
+function getDefaultProps() {
+  return {
+    as: 'th',
+  }
 }
 
 export default TableHeaderCell

@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import _, { defaults } from 'lodash'
+
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -25,7 +26,8 @@ import ImageGroup from './ImageGroup'
  * An image is a graphic representation of something.
  * @see Icon
  */
-const Image = React.forwardRef(function (props, ref) {
+const Image = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const {
     avatar,
     bordered,
@@ -183,9 +185,11 @@ Image.propTypes = {
   wrapped: PropTypes.bool,
 }
 
-Image.defaultProps = {
-  as: 'img',
-  ui: true,
+function getDefaultProps() {
+  return {
+    as: 'img',
+    ui: true,
+  }
 }
 
 Image.create = createShorthandFactory(Image, (value) => ({ src: value }))

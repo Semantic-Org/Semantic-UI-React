@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import _, { defaults } from 'lodash'
+
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -18,7 +19,8 @@ import TabPane from './TabPane'
  * @see Menu
  * @see Segment
  */
-const Tab = React.forwardRef(function (props, ref) {
+const Tab = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const { grid, menu, panes, menuPosition, renderActiveOnly } = props
 
   const [activeIndex, setActiveIndex] = useAutoControlledValue({
@@ -157,10 +159,12 @@ Tab.propTypes = {
 
 Tab.autoControlledProps = ['activeIndex']
 
-Tab.defaultProps = {
-  grid: { paneWidth: 12, tabWidth: 4 },
-  menu: { attached: true, tabular: true },
-  renderActiveOnly: true,
+function getDefaultProps() {
+  return {
+    grid: { paneWidth: 12, tabWidth: 4 },
+    menu: { attached: true, tabular: true },
+    renderActiveOnly: true,
+  }
 }
 
 Tab.Pane = TabPane

@@ -1,5 +1,6 @@
+import _, { defaults } from 'lodash'
 import cx from 'clsx'
-import _ from 'lodash'
+
 import PropTypes from 'prop-types'
 import React from 'react'
 import shallowEqual from 'shallowequal'
@@ -33,7 +34,8 @@ const debug = makeDebugger('modal')
  * @see Confirm
  * @see Portal
  */
-const Modal = React.forwardRef(function (props, ref) {
+const Modal = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const {
     actions,
     basic,
@@ -398,12 +400,14 @@ Modal.propTypes = {
    */
 }
 
-Modal.defaultProps = {
-  centered: true,
-  dimmer: true,
-  closeOnDimmerClick: true,
-  closeOnDocumentClick: false,
-  eventPool: 'Modal',
+function getDefaultProps() {
+  return {
+    centered: true,
+    dimmer: true,
+    closeOnDimmerClick: true,
+    closeOnDocumentClick: false,
+    eventPool: 'Modal',
+  }
 }
 
 Modal.Actions = ModalActions

@@ -1,3 +1,4 @@
+import { defaults } from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -13,7 +14,8 @@ import {
 /**
  * A table can have a header.
  */
-const TableHeader = React.forwardRef(function (props, ref) {
+const TableHeader = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const { children, className, content, fullWidth } = props
   const classes = cx(useKeyOnly(fullWidth, 'full-width'), className)
   const rest = getUnhandledProps(TableHeader, props)
@@ -26,8 +28,10 @@ const TableHeader = React.forwardRef(function (props, ref) {
   )
 })
 
-TableHeader.defaultProps = {
-  as: 'thead',
+function getDefaultProps() {
+  return {
+    as: 'thead',
+  }
 }
 
 TableHeader.displayName = 'TableHeader'

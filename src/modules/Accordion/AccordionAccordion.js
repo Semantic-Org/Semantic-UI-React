@@ -1,5 +1,6 @@
+import _, { defaults } from 'lodash'
 import cx from 'clsx'
-import _ from 'lodash'
+
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -44,7 +45,8 @@ function computeNewIndex(exclusive, activeIndex, itemIndex) {
 /**
  * An Accordion can contain sub-accordions.
  */
-const AccordionAccordion = React.forwardRef(function (props, ref) {
+const AccordionAccordion = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const { className, children, exclusive, panels } = props
   const [activeIndex, setActiveIndex] = useAutoControlledValue({
     state: props.activeIndex,
@@ -92,8 +94,10 @@ const AccordionAccordion = React.forwardRef(function (props, ref) {
   )
 })
 
-AccordionAccordion.defaultProps = {
-  exclusive: true,
+function getDefaultProps() {
+  return {
+    exclusive: true,
+  }
 }
 
 AccordionAccordion.displayName = 'AccordionAccordion'

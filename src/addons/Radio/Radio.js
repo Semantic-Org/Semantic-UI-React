@@ -1,3 +1,4 @@
+import { defaults } from 'lodash'
 import React from 'react'
 
 import { getUnhandledProps } from '../../lib'
@@ -9,7 +10,8 @@ import Checkbox from '../../modules/Checkbox'
  * @see Checkbox
  * @see Form
  */
-const Radio = React.forwardRef(function (props, ref) {
+const Radio = React.forwardRef(function (partialProps, ref) {
+  const props = defaults(partialProps, getDefaultProps())
   const { slider, toggle, type } = props
 
   const rest = getUnhandledProps(Radio, props)
@@ -33,8 +35,10 @@ Radio.propTypes = {
   type: Checkbox.propTypes.type,
 }
 
-Radio.defaultProps = {
-  type: 'radio',
+function getDefaultProps() {
+  return {
+    type: 'radio',
+  }
 }
 
 export default Radio
