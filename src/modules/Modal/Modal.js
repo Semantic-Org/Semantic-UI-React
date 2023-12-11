@@ -33,7 +33,8 @@ const debug = makeDebugger('modal')
  * @see Confirm
  * @see Portal
  */
-const Modal = React.forwardRef(function (props, ref) {
+const Modal = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const {
     actions,
     basic,
@@ -398,12 +399,14 @@ Modal.propTypes = {
    */
 }
 
-Modal.defaultProps = {
-  centered: true,
-  dimmer: true,
-  closeOnDimmerClick: true,
-  closeOnDocumentClick: false,
-  eventPool: 'Modal',
+function getDefaultProps() {
+  return {
+    centered: true,
+    dimmer: true,
+    closeOnDimmerClick: true,
+    closeOnDocumentClick: false,
+    eventPool: 'Modal',
+  }
 }
 
 Modal.Actions = ModalActions

@@ -25,7 +25,8 @@ import TableRow from './TableRow'
 /**
  * A table displays a collections of data grouped into rows.
  */
-const Table = React.forwardRef(function (props, ref) {
+const Table = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const {
     attached,
     basic,
@@ -116,8 +117,10 @@ const Table = React.forwardRef(function (props, ref) {
 })
 
 Table.displayName = 'Table'
-Table.defaultProps = {
-  as: 'table',
+function getDefaultProps() {
+  return {
+    as: 'table',
+  }
 }
 
 Table.propTypes = {

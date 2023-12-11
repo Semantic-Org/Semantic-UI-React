@@ -14,7 +14,8 @@ import PaginationItem from './PaginationItem'
 /**
  * A component to render a pagination.
  */
-const Pagination = React.forwardRef(function (props, ref) {
+const Pagination = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const {
     'aria-label': ariaLabel,
     boundaryRange,
@@ -129,28 +130,30 @@ Pagination.propTypes = {
   totalPages: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 }
 
-Pagination.defaultProps = {
-  'aria-label': 'Pagination Navigation',
-  boundaryRange: 1,
-  ellipsisItem: '...',
-  firstItem: {
-    'aria-label': 'First item',
-    content: '«',
-  },
-  lastItem: {
-    'aria-label': 'Last item',
-    content: '»',
-  },
-  nextItem: {
-    'aria-label': 'Next item',
-    content: '⟩',
-  },
-  pageItem: {},
-  prevItem: {
-    'aria-label': 'Previous item',
-    content: '⟨',
-  },
-  siblingRange: 1,
+function getDefaultProps() {
+  return {
+    'aria-label': 'Pagination Navigation',
+    boundaryRange: 1,
+    ellipsisItem: '...',
+    firstItem: {
+      'aria-label': 'First item',
+      content: '«',
+    },
+    lastItem: {
+      'aria-label': 'Last item',
+      content: '»',
+    },
+    nextItem: {
+      'aria-label': 'Next item',
+      content: '⟩',
+    },
+    pageItem: {},
+    prevItem: {
+      'aria-label': 'Previous item',
+      content: '⟨',
+    },
+    siblingRange: 1,
+  }
 }
 
 Pagination.Item = PaginationItem

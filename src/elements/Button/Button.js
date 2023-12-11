@@ -70,7 +70,8 @@ function hasIconClass(props) {
  * @see Icon
  * @see Label
  */
-const Button = React.forwardRef(function (props, ref) {
+const Button = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const {
     active,
     animated,
@@ -96,7 +97,7 @@ const Button = React.forwardRef(function (props, ref) {
     secondary,
     size,
     toggle,
-    type
+    type,
   } = props
   const elementRef = useMergedRefs(ref, React.useRef())
 
@@ -315,8 +316,10 @@ Button.propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
 }
 
-Button.defaultProps = {
-  as: 'button',
+function getDefaultProps() {
+  return {
+    as: 'button',
+  }
 }
 
 Button.Content = ButtonContent

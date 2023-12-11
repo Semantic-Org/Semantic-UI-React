@@ -16,7 +16,8 @@ import {
 /**
  * Sticky content stays fixed to the browser viewport while another column of content is visible on the page.
  */
-const Sticky = React.forwardRef(function (props, ref) {
+const Sticky = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const {
     active,
     bottomOffset,
@@ -333,11 +334,13 @@ Sticky.propTypes = {
   styleElement: PropTypes.object,
 }
 
-Sticky.defaultProps = {
-  active: true,
-  bottomOffset: 0,
-  offset: 0,
-  scrollContext: isBrowser() ? window : null,
+function getDefaultProps() {
+  return {
+    active: true,
+    bottomOffset: 0,
+    offset: 0,
+    scrollContext: isBrowser() ? window : null,
+  }
 }
 
 export default Sticky

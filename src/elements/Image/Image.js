@@ -25,7 +25,8 @@ import ImageGroup from './ImageGroup'
  * An image is a graphic representation of something.
  * @see Icon
  */
-const Image = React.forwardRef(function (props, ref) {
+const Image = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const {
     avatar,
     bordered,
@@ -183,9 +184,11 @@ Image.propTypes = {
   wrapped: PropTypes.bool,
 }
 
-Image.defaultProps = {
-  as: 'img',
-  ui: true,
+function getDefaultProps() {
+  return {
+    as: 'img',
+    ui: true,
+  }
 }
 
 Image.create = createShorthandFactory(Image, (value) => ({ src: value }))

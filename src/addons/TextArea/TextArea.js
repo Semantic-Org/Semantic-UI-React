@@ -8,7 +8,8 @@ import { getElementType, getUnhandledProps, useMergedRefs } from '../../lib'
  * A TextArea can be used to allow for extended user input.
  * @see Form
  */
-const TextArea = React.forwardRef(function (props, ref) {
+const TextArea = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const { rows, value } = props
   const elementRef = useMergedRefs(ref, React.useRef())
 
@@ -65,9 +66,11 @@ TextArea.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 
-TextArea.defaultProps = {
-  as: 'textarea',
-  rows: 3,
+function getDefaultProps() {
+  return {
+    as: 'textarea',
+    rows: 3,
+  }
 }
 
 export default TextArea

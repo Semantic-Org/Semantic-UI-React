@@ -15,7 +15,8 @@ import RatingIcon from './RatingIcon'
 /**
  * A rating indicates user interest in content.
  */
-const Rating = React.forwardRef(function (props, ref) {
+const Rating = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const { className, clearable, disabled, icon, maxRating, size } = props
 
   const [rating, setRating] = useAutoControlledValue({
@@ -151,9 +152,11 @@ Rating.propTypes = {
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
 }
 
-Rating.defaultProps = {
-  clearable: 'auto',
-  maxRating: 1,
+function getDefaultProps() {
+  return {
+    clearable: 'auto',
+    maxRating: 1,
+  }
 }
 
 Rating.Icon = RatingIcon

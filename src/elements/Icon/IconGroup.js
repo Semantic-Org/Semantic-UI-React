@@ -8,7 +8,8 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps, SUI 
 /**
  * Several icons can be used together as a group.
  */
-const IconGroup = React.forwardRef(function (props, ref) {
+const IconGroup = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const { children, className, content, size } = props
 
   const classes = cx(size, 'icons', className)
@@ -40,8 +41,10 @@ IconGroup.propTypes = {
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 }
 
-IconGroup.defaultProps = {
-  as: 'i',
+function getDefaultProps() {
+  return {
+    as: 'i',
+  }
 }
 
 export default IconGroup

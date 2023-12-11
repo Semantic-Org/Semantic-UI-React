@@ -8,7 +8,8 @@ import { createShorthandFactory, getElementType, getUnhandledProps } from '../..
 /**
  * A search item sub-component for Dropdown component.
  */
-const DropdownSearchInput = React.forwardRef(function (props, ref) {
+const DropdownSearchInput = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const { autoComplete, className, tabIndex, type, value } = props
 
   const handleChange = (e) => {
@@ -57,10 +58,12 @@ DropdownSearchInput.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 
-DropdownSearchInput.defaultProps = {
-  as: 'input',
-  autoComplete: 'off',
-  type: 'text',
+function getDefaultProps() {
+  return {
+    as: 'input',
+    autoComplete: 'off',
+    type: 'text',
+  }
 }
 
 DropdownSearchInput.create = createShorthandFactory(DropdownSearchInput, (type) => ({ type }))

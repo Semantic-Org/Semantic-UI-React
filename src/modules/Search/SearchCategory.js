@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -11,7 +12,8 @@ import {
 } from '../../lib'
 import SearchCategoryLayout from './SearchCategoryLayout'
 
-const SearchCategory = React.forwardRef(function (props, ref) {
+const SearchCategory = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const { active, children, className, content, layoutRenderer, renderer } = props
 
   const classes = cx(useKeyOnly(active, 'active'), 'category', className)
@@ -28,9 +30,11 @@ const SearchCategory = React.forwardRef(function (props, ref) {
   )
 })
 
-SearchCategory.defaultProps = {
-  layoutRenderer: SearchCategoryLayout,
-  renderer: ({ name }) => name,
+function getDefaultProps() {
+  return {
+    layoutRenderer: SearchCategoryLayout,
+    renderer: ({ name }) => name,
+  }
 }
 
 SearchCategory.displayName = 'SearchCategory'

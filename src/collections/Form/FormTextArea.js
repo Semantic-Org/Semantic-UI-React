@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -10,7 +11,8 @@ import FormField from './FormField'
  * @see Form
  * @see TextArea
  */
-const FormTextArea = React.forwardRef(function (props, ref) {
+const FormTextArea = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const { control } = props
   const rest = getUnhandledProps(FormTextArea, props)
   const ElementType = getElementType(FormTextArea, props)
@@ -27,9 +29,11 @@ FormTextArea.propTypes = {
   control: FormField.propTypes.control,
 }
 
-FormTextArea.defaultProps = {
-  as: FormField,
-  control: TextArea,
+function getDefaultProps() {
+  return {
+    as: FormField,
+    control: TextArea,
+  }
 }
 
 export default FormTextArea

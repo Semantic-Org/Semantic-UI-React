@@ -31,7 +31,8 @@ const defaultRenderer = ({ image, price, title, description }) => [
   </div>,
 ]
 
-const SearchResult = React.forwardRef(function (props, ref) {
+const SearchResult = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const { active, className, renderer } = props
 
   const handleClick = (e) => {
@@ -99,8 +100,10 @@ SearchResult.propTypes = {
   title: PropTypes.string.isRequired,
 }
 
-SearchResult.defaultProps = {
-  renderer: defaultRenderer,
+function getDefaultProps() {
+  return {
+    renderer: defaultRenderer,
+  }
 }
 
 export default SearchResult

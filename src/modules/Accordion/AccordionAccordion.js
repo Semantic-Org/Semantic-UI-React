@@ -44,7 +44,8 @@ function computeNewIndex(exclusive, activeIndex, itemIndex) {
 /**
  * An Accordion can contain sub-accordions.
  */
-const AccordionAccordion = React.forwardRef(function (props, ref) {
+const AccordionAccordion = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const { className, children, exclusive, panels } = props
   const [activeIndex, setActiveIndex] = useAutoControlledValue({
     state: props.activeIndex,
@@ -92,8 +93,10 @@ const AccordionAccordion = React.forwardRef(function (props, ref) {
   )
 })
 
-AccordionAccordion.defaultProps = {
-  exclusive: true,
+function getDefaultProps() {
+  return {
+    exclusive: true,
+  }
 }
 
 AccordionAccordion.displayName = 'AccordionAccordion'

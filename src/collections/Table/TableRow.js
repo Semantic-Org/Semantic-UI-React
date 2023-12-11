@@ -19,7 +19,8 @@ import TableCell from './TableCell'
 /**
  * A table can have rows.
  */
-const TableRow = React.forwardRef(function (props, ref) {
+const TableRow = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const {
     active,
     cellAs,
@@ -64,9 +65,11 @@ const TableRow = React.forwardRef(function (props, ref) {
   )
 })
 
-TableRow.defaultProps = {
-  as: 'tr',
-  cellAs: 'td',
+function getDefaultProps() {
+  return {
+    as: 'tr',
+    cellAs: 'td',
+  }
 }
 
 TableRow.displayName = 'TableRow'

@@ -111,7 +111,8 @@ function usePositioningEffect(popperDependencies, positionUpdate) {
 /**
  * A Popup displays additional information on top of a page.
  */
-const Popup = React.forwardRef(function (props, ref) {
+const Popup = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const {
     basic,
     className,
@@ -469,13 +470,15 @@ Popup.propTypes = {
   wide: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
 }
 
-Popup.defaultProps = {
-  disabled: false,
-  eventsEnabled: true,
-  on: ['click', 'hover'],
-  pinned: false,
-  popperModifiers: [],
-  position: 'top left',
+function getDefaultProps() {
+  return {
+    disabled: false,
+    eventsEnabled: true,
+    on: ['click', 'hover'],
+    pinned: false,
+    popperModifiers: [],
+    position: 'top left',
+  }
 }
 
 Popup.Content = PopupContent

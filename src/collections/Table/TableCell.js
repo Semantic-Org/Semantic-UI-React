@@ -20,7 +20,8 @@ import Icon from '../../elements/Icon'
 /**
  * A table row can have cells.
  */
-const TableCell = React.forwardRef(function (props, ref) {
+const TableCell = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const {
     active,
     children,
@@ -74,8 +75,10 @@ const TableCell = React.forwardRef(function (props, ref) {
   )
 })
 
-TableCell.defaultProps = {
-  as: 'td',
+function getDefaultProps() {
+  return {
+    as: 'td',
+  }
 }
 
 TableCell.displayName = 'TableCell'

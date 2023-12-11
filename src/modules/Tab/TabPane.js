@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -15,7 +16,8 @@ import Segment from '../../elements/Segment/Segment'
 /**
  * A tab pane holds the content of a tab.
  */
-const TabPane = React.forwardRef(function (props, ref) {
+const TabPane = React.forwardRef(function (partialProps, ref) {
+  const props = _.defaults(partialProps, getDefaultProps())
   const { active, children, className, content, loading } = props
 
   const classes = cx(useKeyOnly(active, 'active'), useKeyOnly(loading, 'loading'), 'tab', className)
@@ -35,9 +37,11 @@ const TabPane = React.forwardRef(function (props, ref) {
   )
 })
 
-TabPane.defaultProps = {
-  as: Segment,
-  active: true,
+function getDefaultProps() {
+  return {
+    as: Segment,
+    active: true,
+  }
 }
 
 TabPane.displayName = 'TabPane'
