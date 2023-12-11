@@ -25,9 +25,11 @@ async function defaultProps(code) {
   lines.splice(
     functionExpressionIndex + 1,
     0,
-    `const props = defaults(partialProps, getDefaultProps())`,
+    `const props = _.defaults(partialProps, getDefaultProps())`,
   )
-  lines.unshift('import { defaults } from "lodash"')
+  if (!lines.find((line) => line.includes("import _ from 'lodash'"))) {
+    lines.unshift("import _ from 'lodash'")
+  }
   const result = lines.join('\n')
   return result
 }
