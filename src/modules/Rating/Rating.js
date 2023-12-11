@@ -1,6 +1,5 @@
-import _, { defaults } from 'lodash'
 import cx from 'clsx'
-
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -16,8 +15,7 @@ import RatingIcon from './RatingIcon'
 /**
  * A rating indicates user interest in content.
  */
-const Rating = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const Rating = React.forwardRef(function (props, ref) {
   const { className, clearable, disabled, icon, maxRating, size } = props
 
   const [rating, setRating] = useAutoControlledValue({
@@ -153,11 +151,9 @@ Rating.propTypes = {
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
 }
 
-function getDefaultProps() {
-  return {
-    clearable: 'auto',
-    maxRating: 1,
-  }
+Rating.defaultProps = {
+  clearable: 'auto',
+  maxRating: 1,
 }
 
 Rating.Icon = RatingIcon

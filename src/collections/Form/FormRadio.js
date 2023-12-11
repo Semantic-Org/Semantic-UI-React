@@ -1,4 +1,3 @@
-import { defaults } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -11,8 +10,7 @@ import FormField from './FormField'
  * @see Form
  * @see Radio
  */
-const FormRadio = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const FormRadio = React.forwardRef(function (props, ref) {
   const { control } = props
   const rest = getUnhandledProps(FormRadio, props)
   const ElementType = getElementType(FormRadio, props)
@@ -29,11 +27,9 @@ FormRadio.propTypes = {
   control: FormField.propTypes.control,
 }
 
-function getDefaultProps() {
-  return {
-    as: FormField,
-    control: Radio,
-  }
+FormRadio.defaultProps = {
+  as: FormField,
+  control: Radio,
 }
 
 export default FormRadio

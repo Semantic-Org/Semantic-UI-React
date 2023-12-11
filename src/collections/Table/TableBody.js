@@ -1,12 +1,10 @@
-import { defaults } from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import { getElementType, getUnhandledProps } from '../../lib'
 
-const TableBody = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const TableBody = React.forwardRef(function (props, ref) {
   const { children, className } = props
   const classes = cx(className)
   const rest = getUnhandledProps(TableBody, props)
@@ -20,10 +18,8 @@ const TableBody = React.forwardRef(function (partialProps, ref) {
 })
 
 TableBody.displayName = 'TableBody'
-function getDefaultProps() {
-  return {
-    as: 'tbody',
-  }
+TableBody.defaultProps = {
+  as: 'tbody',
 }
 
 TableBody.propTypes = {

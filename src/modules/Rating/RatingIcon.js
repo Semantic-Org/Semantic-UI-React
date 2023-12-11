@@ -1,7 +1,6 @@
-import _, { defaults } from 'lodash'
 import cx from 'clsx'
 import keyboardKey from 'keyboard-key'
-
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -10,8 +9,7 @@ import { getElementType, getUnhandledProps, useKeyOnly } from '../../lib'
 /**
  * An internal icon sub-component for Rating component
  */
-const RatingIcon = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const RatingIcon = React.forwardRef(function (props, ref) {
   const { active, className, selected } = props
 
   const classes = cx(
@@ -99,10 +97,8 @@ RatingIcon.propTypes = {
   selected: PropTypes.bool,
 }
 
-function getDefaultProps() {
-  return {
-    as: 'i',
-  }
+RatingIcon.defaultProps = {
+  as: 'i',
 }
 
 export default RatingIcon

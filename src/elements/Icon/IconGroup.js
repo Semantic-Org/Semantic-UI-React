@@ -1,6 +1,5 @@
-import _, { defaults } from 'lodash'
 import cx from 'clsx'
-
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -9,8 +8,7 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps, SUI 
 /**
  * Several icons can be used together as a group.
  */
-const IconGroup = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const IconGroup = React.forwardRef(function (props, ref) {
   const { children, className, content, size } = props
 
   const classes = cx(size, 'icons', className)
@@ -42,10 +40,8 @@ IconGroup.propTypes = {
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 }
 
-function getDefaultProps() {
-  return {
-    as: 'i',
-  }
+IconGroup.defaultProps = {
+  as: 'i',
 }
 
 export default IconGroup

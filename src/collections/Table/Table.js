@@ -1,5 +1,4 @@
-import _, { defaults } from 'lodash'
-
+import _ from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -26,8 +25,7 @@ import TableRow from './TableRow'
 /**
  * A table displays a collections of data grouped into rows.
  */
-const Table = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const Table = React.forwardRef(function (props, ref) {
   const {
     attached,
     basic,
@@ -118,10 +116,8 @@ const Table = React.forwardRef(function (partialProps, ref) {
 })
 
 Table.displayName = 'Table'
-function getDefaultProps() {
-  return {
-    as: 'table',
-  }
+Table.defaultProps = {
+  as: 'table',
 }
 
 Table.propTypes = {

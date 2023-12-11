@@ -1,5 +1,4 @@
-import _, { defaults } from 'lodash'
-
+import _ from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -20,8 +19,7 @@ import TableCell from './TableCell'
 /**
  * A table can have rows.
  */
-const TableRow = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const TableRow = React.forwardRef(function (props, ref) {
   const {
     active,
     cellAs,
@@ -66,11 +64,9 @@ const TableRow = React.forwardRef(function (partialProps, ref) {
   )
 })
 
-function getDefaultProps() {
-  return {
-    as: 'tr',
-    cellAs: 'td',
-  }
+TableRow.defaultProps = {
+  as: 'tr',
+  cellAs: 'td',
 }
 
 TableRow.displayName = 'TableRow'

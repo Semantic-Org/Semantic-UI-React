@@ -1,4 +1,3 @@
-import { defaults } from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -8,8 +7,7 @@ import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } fro
 /**
  * A feed can contain a user element.
  */
-const FeedUser = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const FeedUser = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('user', className)
   const rest = getUnhandledProps(FeedUser, props)
@@ -37,10 +35,8 @@ FeedUser.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-function getDefaultProps() {
-  return {
-    as: 'a',
-  }
+FeedUser.defaultProps = {
+  as: 'a',
 }
 
 export default FeedUser

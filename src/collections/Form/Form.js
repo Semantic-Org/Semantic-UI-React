@@ -1,6 +1,5 @@
-import _, { defaults } from 'lodash'
 import cx from 'clsx'
-
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -25,8 +24,7 @@ import FormTextArea from './FormTextArea'
  * @see Radio
  * @see Select
  */
-const Form = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const Form = React.forwardRef(function (props, ref) {
   const {
     action,
     children,
@@ -119,10 +117,8 @@ Form.propTypes = {
   widths: PropTypes.oneOf(['equal']),
 }
 
-function getDefaultProps() {
-  return {
-    as: 'form',
-  }
+Form.defaultProps = {
+  as: 'form',
 }
 
 Form.Field = FormField

@@ -1,6 +1,5 @@
-import _, { defaults } from 'lodash'
 import cx from 'clsx'
-
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -27,8 +26,7 @@ import Label from '../Label'
  * @see Icon
  * @see Label
  */
-const Input = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const Input = React.forwardRef(function (props, ref) {
   const {
     action,
     actionPosition,
@@ -236,10 +234,8 @@ Input.propTypes = {
   type: PropTypes.string,
 }
 
-function getDefaultProps() {
-  return {
-    type: 'text',
-  }
+Input.defaultProps = {
+  type: 'text',
 }
 
 Input.create = createShorthandFactory(Input, (type) => ({ type }))

@@ -1,5 +1,4 @@
-import _, { defaults } from 'lodash'
-
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -11,8 +10,7 @@ import Modal from '../../modules/Modal'
  * A Confirm modal gives the user a choice to confirm or cancel an action.
  * @see Modal
  */
-const Confirm = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const Confirm = React.forwardRef(function (props, ref) {
   const { cancelButton, confirmButton, content, header, open, size } = props
   const rest = getUnhandledProps(Confirm, props)
 
@@ -98,13 +96,11 @@ Confirm.propTypes = {
   size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'fullscreen']),
 }
 
-function getDefaultProps() {
-  return {
-    cancelButton: 'Cancel',
-    confirmButton: 'OK',
-    content: 'Are you sure?',
-    size: 'small',
-  }
+Confirm.defaultProps = {
+  cancelButton: 'Cancel',
+  confirmButton: 'OK',
+  content: 'Are you sure?',
+  size: 'small',
 }
 
 export default Confirm

@@ -1,4 +1,3 @@
-import { defaults } from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -14,8 +13,7 @@ import {
 /**
  * A comment can contain an action.
  */
-const CommentAction = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const CommentAction = React.forwardRef(function (props, ref) {
   const { active, className, children, content } = props
 
   const classes = cx(useKeyOnly(active, 'active'), className)
@@ -29,10 +27,8 @@ const CommentAction = React.forwardRef(function (partialProps, ref) {
   )
 })
 
-function getDefaultProps() {
-  return {
-    as: 'a',
-  }
+CommentAction.defaultProps = {
+  as: 'a',
 }
 
 CommentAction.displayName = 'CommentAction'

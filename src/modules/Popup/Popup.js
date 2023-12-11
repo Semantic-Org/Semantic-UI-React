@@ -1,7 +1,6 @@
-import _, { defaults } from 'lodash'
 import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'clsx'
-
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Popper } from 'react-popper'
@@ -112,8 +111,7 @@ function usePositioningEffect(popperDependencies, positionUpdate) {
 /**
  * A Popup displays additional information on top of a page.
  */
-const Popup = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const Popup = React.forwardRef(function (props, ref) {
   const {
     basic,
     className,
@@ -471,15 +469,13 @@ Popup.propTypes = {
   wide: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
 }
 
-function getDefaultProps() {
-  return {
-    disabled: false,
-    eventsEnabled: true,
-    on: ['click', 'hover'],
-    pinned: false,
-    popperModifiers: [],
-    position: 'top left',
-  }
+Popup.defaultProps = {
+  disabled: false,
+  eventsEnabled: true,
+  on: ['click', 'hover'],
+  pinned: false,
+  popperModifiers: [],
+  position: 'top left',
 }
 
 Popup.Content = PopupContent

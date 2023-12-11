@@ -1,6 +1,5 @@
-import _, { defaults } from 'lodash'
 import cx from 'clsx'
-
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -71,8 +70,7 @@ function hasIconClass(props) {
  * @see Icon
  * @see Label
  */
-const Button = React.forwardRef(function (partialProps, ref) {
-  const props = defaults(partialProps, getDefaultProps())
+const Button = React.forwardRef(function (props, ref) {
   const {
     active,
     animated,
@@ -98,7 +96,7 @@ const Button = React.forwardRef(function (partialProps, ref) {
     secondary,
     size,
     toggle,
-    type,
+    type
   } = props
   const elementRef = useMergedRefs(ref, React.useRef())
 
@@ -317,10 +315,8 @@ Button.propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
 }
 
-function getDefaultProps() {
-  return {
-    as: 'button',
-  }
+Button.defaultProps = {
+  as: 'button',
 }
 
 Button.Content = ButtonContent
