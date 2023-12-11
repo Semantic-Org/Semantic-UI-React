@@ -6,6 +6,14 @@
     "browser": true
   },
   "rules": {
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": true,
+        "variables": true
+      }
+    ],
     "newline-per-chained-call": "off",
     "class-methods-use-this": "off",
     "consistent-return": "off",
