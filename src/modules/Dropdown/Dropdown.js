@@ -278,7 +278,7 @@ class DropdownInner extends Component {
     }
   }
 
-  makeSelectedItemActive = (e, selectedIndex) => {
+  makeSelectedItemActive = (e, selectedIndex, allowReselection) => {
     const { open, value } = this.state
     const { multiple } = this.props
 
@@ -297,7 +297,8 @@ class DropdownInner extends Component {
     const newValue = multiple ? _.union(value, [selectedValue]) : selectedValue
     const valueHasChanged = multiple ? !!_.difference(newValue, value).length : newValue !== value
 
-    if (valueHasChanged) {
+    // when use allowReselection then can be select same value
+    if (allowReselection || valueHasChanged) {
       // notify the onChange prop that the user is trying to change value
       this.setState({ value: newValue })
       this.handleChange(e, newValue)
@@ -314,7 +315,7 @@ class DropdownInner extends Component {
 
   selectItemOnEnter = (e) => {
     debug('selectItemOnEnter()', keyboardKey.getKey(e))
-    const { search } = this.props
+    const { search, allowReselection = false } = this.props
     const { open, selectedIndex } = this.state
 
     if (!open) {
@@ -351,7 +352,7 @@ class DropdownInner extends Component {
       return
     }
 
-    const nextValue = this.makeSelectedItemActive(e, selectedIndex)
+    const nextValue = this.makeSelectedItemActive(e, selectedIndex, allowReselection)
 
     // This is required as selected value may be the same
     this.setState({
@@ -464,7 +465,7 @@ class DropdownInner extends Component {
     }
   }
 
-  handleItemClick = (e, item) => {
+  handleItemClick = (e, item, allowReselection) => {
     debug('handleItemClick()', item)
 
     const { multiple, search } = this.props
@@ -489,7 +490,8 @@ class DropdownInner extends Component {
       : newValue !== currentValue
 
     // notify the onChange prop that the user is trying to change value
-    if (valueHasChanged) {
+    // when use allowReselection then can be select same value
+    if (allowReselection || valueHasChanged) {
       this.setState({ value: newValue })
       this.handleChange(e, newValue)
     }
@@ -522,8 +524,6 @@ class DropdownInner extends Component {
   }
 
   handleBlur = (e) => {
-    debug('handleBlur()')
-
     // Heads up! Don't remove this.
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/1315
     const currentTarget = _.get(e, 'currentTarget')
@@ -956,7 +956,7 @@ class DropdownInner extends Component {
   }
 
   renderOptions = () => {
-    const { lazyLoad, multiple, search, noResultsMessage } = this.props
+    const { lazyLoad, multiple, search, noResultsMessage, allowReselection = false } = this.props
     const { open, selectedIndex, value } = this.state
 
     // lazy load, only render options when open
@@ -998,7 +998,7 @@ class DropdownInner extends Component {
           overrideProps: (predefinedProps) => ({
             onClick: (e, item) => {
               predefinedProps.onClick?.(e, item)
-              this.handleItemClick(e, item)
+              this.handleItemClick(e, item, allowReselection)
             },
           }),
         },
@@ -1142,6 +1142,11 @@ Dropdown.propTypes = {
     customPropTypes.demand(['options', 'selection', 'search']),
     PropTypes.bool,
   ]),
+
+  /**
+   * Allow user to trigger onChange events even when reselecting same value.
+   */
+  allowReselection: PropTypes.bool,
 
   /** A Dropdown can reduce its complexity. */
   basic: PropTypes.bool,
