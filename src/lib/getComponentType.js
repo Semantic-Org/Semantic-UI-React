@@ -2,18 +2,19 @@
  * Returns a createElement() type based on the props of the Component.
  * Useful for calculating what type a component should render as.
  *
- * @param {function} Component A function or ReactClass.
  * @param {object} props A ReactElement props object
- * @param {function} [getDefault] A function that returns a default element type.
- * @returns {string|function} A ReactElement type
+ * @param {object} [options={}]
+ * @param {string|Function} [options.defaultAs] A default element type.
+ * @param {Function} [options.getDefault] A function that returns a default element type.
+ * @returns {string|Function} A ReactElement type
  */
-function getElementType(Component, props, getDefault) {
-  const { defaultProps = {} } = Component
+function getComponentType(props, options = {}) {
+  const { defaultAs, getDefault } = options
 
   // ----------------------------------------
   // user defined "as" element type
 
-  if (props.as && props.as !== defaultProps.as) return props.as
+  if (props.as && props.as !== defaultAs) return props.as
 
   // ----------------------------------------
   // computed default element type
@@ -31,7 +32,7 @@ function getElementType(Component, props, getDefault) {
   // ----------------------------------------
   // use defaultProp or 'div'
 
-  return defaultProps.as || 'div'
+  return defaultAs || 'div'
 }
 
-export default getElementType
+export default getComponentType
