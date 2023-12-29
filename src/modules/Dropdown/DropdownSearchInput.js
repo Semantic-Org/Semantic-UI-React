@@ -3,14 +3,13 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { createShorthandFactory, getElementType, getUnhandledProps } from '../../lib'
+import { createShorthandFactory, getComponentType, getUnhandledProps } from '../../lib'
 
 /**
  * A search item sub-component for Dropdown component.
  */
-const DropdownSearchInput = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
-  const { autoComplete, className, tabIndex, type, value } = props
+const DropdownSearchInput = React.forwardRef(function (props, ref) {
+  const { autoComplete = 'off', className, tabIndex, type = 'text', value } = props
 
   const handleChange = (e) => {
     const newValue = _.get(e, 'target.value')
@@ -19,7 +18,7 @@ const DropdownSearchInput = React.forwardRef(function (partialProps, ref) {
   }
 
   const classes = cx('search', className)
-  const ElementType = getElementType(DropdownSearchInput, props)
+  const ElementType = getComponentType(props, { defaultAs: 'input' })
   const rest = getUnhandledProps(DropdownSearchInput, props)
 
   return (
@@ -56,14 +55,6 @@ DropdownSearchInput.propTypes = {
 
   /** Stored value. */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-}
-
-function getDefaultProps() {
-  return {
-    as: 'input',
-    autoComplete: 'off',
-    type: 'text',
-  }
 }
 
 DropdownSearchInput.create = createShorthandFactory(DropdownSearchInput, (type) => ({ type }))

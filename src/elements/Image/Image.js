@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   htmlImageProps,
   partitionHTMLProps,
@@ -25,8 +25,7 @@ import ImageGroup from './ImageGroup'
  * An image is a graphic representation of something.
  * @see Icon
  */
-const Image = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const Image = React.forwardRef(function (props, ref) {
   const {
     avatar,
     bordered,
@@ -48,7 +47,7 @@ const Image = React.forwardRef(function (partialProps, ref) {
     spaced,
     verticalAlign,
     wrapped,
-    ui,
+    ui = true,
   } = props
 
   const classes = cx(
@@ -73,15 +72,18 @@ const Image = React.forwardRef(function (partialProps, ref) {
   const rest = getUnhandledProps(Image, props)
   const [imgTagProps, rootProps] = partitionHTMLProps(rest, { htmlProps: htmlImageProps })
 
-  const ElementType = getElementType(Image, props, () => {
-    if (
-      !_.isNil(dimmer) ||
-      !_.isNil(label) ||
-      !_.isNil(wrapped) ||
-      !childrenUtils.isNil(children)
-    ) {
-      return 'div'
-    }
+  const ElementType = getComponentType(props, {
+    defaultAs: 'img',
+    getDefault: () => {
+      if (
+        !_.isNil(dimmer) ||
+        !_.isNil(label) ||
+        !_.isNil(wrapped) ||
+        !childrenUtils.isNil(children)
+      ) {
+        return 'div'
+      }
+    },
   })
 
   if (!childrenUtils.isNil(children)) {
@@ -182,13 +184,6 @@ Image.propTypes = {
 
   /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
   wrapped: PropTypes.bool,
-}
-
-function getDefaultProps() {
-  return {
-    as: 'img',
-    ui: true,
-  }
 }
 
 Image.create = createShorthandFactory(Image, (value) => ({ src: value }))

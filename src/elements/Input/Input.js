@@ -8,7 +8,7 @@ import {
   createHTMLInput,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   partitionHTMLProps,
   useKeyOnly,
@@ -26,8 +26,7 @@ import Label from '../Label'
  * @see Icon
  * @see Label
  */
-const Input = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const Input = React.forwardRef(function (props, ref) {
   const {
     action,
     actionPosition,
@@ -47,7 +46,7 @@ const Input = React.forwardRef(function (partialProps, ref) {
     size,
     tabIndex,
     transparent,
-    type,
+    type = 'text',
   } = props
 
   const computeIcon = () => {
@@ -109,7 +108,7 @@ const Input = React.forwardRef(function (partialProps, ref) {
     'input',
     className,
   )
-  const ElementType = getElementType(Input, props)
+  const ElementType = getComponentType(props)
   const [htmlInputProps, rest] = partitionProps()
 
   // Render with children
@@ -233,12 +232,6 @@ Input.propTypes = {
 
   /** The HTML input type. */
   type: PropTypes.string,
-}
-
-function getDefaultProps() {
-  return {
-    type: 'text',
-  }
 }
 
 Input.create = createShorthandFactory(Input, (type) => ({ type }))
