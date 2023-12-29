@@ -90,10 +90,9 @@ export default (Component, options = {}) => {
       }
     }
 
-    if (alwaysPresent || (Component.defaultProps && Component.defaultProps[propKey])) {
+    if (alwaysPresent) {
       it(`has default ${name} when not defined`, () => {
         wrapper = mount(React.createElement(Component, requiredProps))
-
         wrapper.should.have.descendants(ShorthandComponent)
       })
     } else {

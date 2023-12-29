@@ -88,8 +88,7 @@ describe('Image', () => {
 
   describe('ui', () => {
     it('is true by default', () => {
-      Image.defaultProps.should.have.any.keys('ui')
-      Image.defaultProps.ui.should.equal(true)
+      shallow(<Image />).should.have.className('ui')
     })
     it('adds the "ui" className when true', () => {
       shallow(<Image ui />).should.have.className('ui')

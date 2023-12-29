@@ -211,7 +211,6 @@ export default function isConformant(Component, options = {}) {
     it('Component.handledProps includes all handled props', () => {
       const computedProps = _.union(
         componentProps.autoControlledProps,
-        _.keys(componentProps.defaultProps),
         _.keys(componentProps.propTypes),
       )
       const expectedProps = _.uniq(computedProps).sort()
@@ -219,7 +218,7 @@ export default function isConformant(Component, options = {}) {
       componentProps.handledProps.should.to.deep.equal(
         expectedProps,
         'It seems that not all props were defined in Component.handledProps, you need to check that they are equal ' +
-          'to the union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes',
+          'to the union of Component.autoControlledProps and keys of Component.propTypes',
       )
     })
   })
@@ -311,6 +310,15 @@ export default function isConformant(Component, options = {}) {
   describe('_meta', () => {
     it('does not exist', () => {
       expect(Component._meta).to.be.undefined()
+    })
+  })
+
+  // ----------------------------------------
+  // Has no deprecated .defaultProps
+  // ----------------------------------------
+  describe('defaultProps', () => {
+    it('does not exist', () => {
+      expect(Component.defaultProps).to.be.undefined()
     })
   })
 
