@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -7,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -16,13 +15,12 @@ import Segment from '../../elements/Segment/Segment'
 /**
  * A tab pane holds the content of a tab.
  */
-const TabPane = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
-  const { active, children, className, content, loading } = props
+const TabPane = React.forwardRef(function (props, ref) {
+  const { active = true, children, className, content, loading } = props
 
   const classes = cx(useKeyOnly(active, 'active'), useKeyOnly(loading, 'loading'), 'tab', className)
   const rest = getUnhandledProps(TabPane, props)
-  const ElementType = getElementType(TabPane, props)
+  const ElementType = getComponentType(props, { defaultAs: Segment })
 
   const calculatedDefaultProps = {}
 
@@ -36,13 +34,6 @@ const TabPane = React.forwardRef(function (partialProps, ref) {
     </ElementType>
   )
 })
-
-function getDefaultProps() {
-  return {
-    as: Segment,
-    active: true,
-  }
-}
 
 TabPane.displayName = 'TabPane'
 TabPane.propTypes = {
