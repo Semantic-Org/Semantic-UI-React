@@ -37,13 +37,12 @@ export const noClassNameFromBoolProps = (Component, propKey, propValues, options
 }
 
 export const noDefaultClassNameFromProp = (Component, propKey, propValues, options = {}) => {
-  const { defaultProps = {} } = Component
-  const { className = propKey, requiredProps = {} } = options
+  const { className = propKey, requiredProps = {}, defaultValue } = options
 
   // required props may include a prop that creates a className
   // if so, we cannot assert that it doesn't exist by default because it is required to exist
   // skip assertions for required props
-  if (propKey in defaultProps) return
+  if (defaultValue) return
   if (propKey in requiredProps) return
 
   it('is not included in className when not defined', () => {

@@ -20,7 +20,9 @@ describe('Sidebar', () => {
     'slide out',
     'slide along',
   ])
-  common.propValueOnlyToClassName(Sidebar, 'direction', ['top', 'right', 'bottom', 'left'])
+  common.propValueOnlyToClassName(Sidebar, 'direction', ['top', 'right', 'bottom', 'left'], {
+    defaultValue: 'left',
+  })
   common.propValueOnlyToClassName(Sidebar, 'width', ['very thin', 'thin', 'wide', 'very wide'])
 
   describe('componentWillUnmount', () => {

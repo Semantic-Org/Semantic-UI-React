@@ -10,8 +10,9 @@ import TableCell from './TableCell'
  */
 const TableHeaderCell = React.forwardRef(function (props, ref) {
   const { as = 'th', className, sorted } = props
+
   const classes = cx(useValueAndKey(sorted, 'sorted'), className)
-  const rest = getUnhandledProps(props)
+  const rest = getUnhandledProps(TableHeaderCell, props)
 
   return <TableCell {...rest} as={as} className={classes} ref={ref} />
 })

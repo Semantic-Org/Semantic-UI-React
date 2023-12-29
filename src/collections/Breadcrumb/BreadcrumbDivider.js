@@ -8,7 +8,7 @@ import {
   createShorthandFactory,
   customPropTypes,
   getUnhandledProps,
-  getElementType,
+  getComponentType,
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
@@ -20,7 +20,7 @@ const BreadcrumbDivider = React.forwardRef(function (props, ref) {
 
   const classes = cx('divider', className)
   const rest = getUnhandledProps(BreadcrumbDivider, props)
-  const ElementType = getElementType(BreadcrumbDivider, props)
+  const ElementType = getComponentType(props)
 
   if (!_.isNil(icon)) {
     return Icon.create(icon, {

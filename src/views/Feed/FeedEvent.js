@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { createShorthand, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { createShorthand, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
@@ -25,7 +25,7 @@ const FeedEvent = React.forwardRef(function (props, ref) {
 
   const classes = cx('event', className)
   const rest = getUnhandledProps(FeedEvent, props)
-  const ElementType = getElementType(FeedEvent, props)
+  const ElementType = getComponentType(props)
 
   const hasContentProp = content || date || extraImages || extraText || meta || summary
   const contentProps = { content, date, extraImages, extraText, meta, summary }

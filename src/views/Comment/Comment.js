@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -26,7 +26,7 @@ const Comment = React.forwardRef(function (props, ref) {
 
   const classes = cx(useKeyOnly(collapsed, 'collapsed'), 'comment', className)
   const rest = getUnhandledProps(Comment, props)
-  const ElementType = getElementType(Comment, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

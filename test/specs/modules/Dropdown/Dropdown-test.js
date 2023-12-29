@@ -112,6 +112,7 @@ describe('Dropdown', () => {
   ])
 
   common.implementsIconProp(Dropdown, {
+    defaultValue: 'search',
     assertExactMatch: false,
     autoGenerateKey: false,
   })
@@ -682,7 +683,6 @@ describe('Dropdown', () => {
 
   describe('icon', () => {
     it('defaults to a dropdown icon', () => {
-      Dropdown.defaultProps.icon.should.equal('dropdown')
       wrapperMount(<Dropdown />).should.contain.descendants('.dropdown.icon')
     })
 

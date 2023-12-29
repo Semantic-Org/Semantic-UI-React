@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useClassNamesOnNode,
   useKeyOnly,
@@ -34,7 +34,7 @@ const ModalDimmer = React.forwardRef(function (props, ref) {
   )
 
   const rest = getUnhandledProps(ModalDimmer, props)
-  const ElementType = getElementType(ModalDimmer, props)
+  const ElementType = getComponentType(props)
 
   useClassNamesOnNode(mountNode, bodyClasses)
 

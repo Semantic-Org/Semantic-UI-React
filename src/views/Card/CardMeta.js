@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useTextAlignProp,
@@ -19,7 +19,7 @@ const CardMeta = React.forwardRef(function (props, ref) {
   const { children, className, content, textAlign } = props
   const classes = cx(useTextAlignProp(textAlign), 'meta', className)
   const rest = getUnhandledProps(CardMeta, props)
-  const ElementType = getElementType(CardMeta, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

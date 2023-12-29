@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   numberToWordMap,
   SUI,
@@ -51,7 +51,7 @@ const StepGroup = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(StepGroup, props)
-  const ElementType = getElementType(StepGroup, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

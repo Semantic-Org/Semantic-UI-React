@@ -420,7 +420,11 @@ describe('Modal', () => {
 
   describe('closeOnDocumentClick', () => {
     it('is false by default', () => {
-      Modal.defaultProps.closeOnDocumentClick.should.equal(false)
+      wrapperMount(<Modal defaultOpen />)
+
+      assertBodyContains('.ui.dimmer')
+      domEvent.click(document.body)
+      assertBodyContains('.ui.dimmer', true)
     })
     it('closes the modal on document click when true', () => {
       wrapperMount(<Modal defaultOpen closeOnDocumentClick />)

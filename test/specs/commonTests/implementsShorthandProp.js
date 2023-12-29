@@ -30,12 +30,14 @@ const shorthandComponentName = (ShorthandComponent) => {
  * @param {Boolean} [options.parentIsFragment=false] A flag that shows the type of the Component to test.
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {boolean} [options.rendersPortal=false] Does this component render a Portal powered component?
+ * @param {boolean|string} [options.defaultValue] The default value for the shorthand prop.
  * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
  * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export default (Component, options = {}) => {
   const {
     alwaysPresent,
+    defaultValue,
     assertExactMatch = true,
     autoGenerateKey = true,
     mapValueToProps,
@@ -100,14 +102,16 @@ export default (Component, options = {}) => {
         noDefaultClassNameFromProp(Component, propKey, [], options)
       }
 
-      it(`has no ${name} when not defined`, () => {
-        wrapper = mount(React.createElement(Component, requiredProps))
+      if (!defaultValue) {
+        it(`has no ${name} when not defined`, () => {
+          wrapper = mount(React.createElement(Component, requiredProps))
 
-        wrapper.should.not.have.descendants(ShorthandComponent)
-      })
+          wrapper.should.not.have.descendants(ShorthandComponent)
+        })
+      }
     }
 
-    if (!alwaysPresent) {
+    if (!alwaysPresent && !defaultValue) {
       it(`has no ${name} when null`, () => {
         const element = React.createElement(Component, { ...requiredProps, [propKey]: null })
         wrapper = mount(element)

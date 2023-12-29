@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -67,7 +67,7 @@ const ButtonGroup = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(ButtonGroup, props)
-  const ElementType = getElementType(ButtonGroup, props)
+  const ElementType = getComponentType(props)
 
   if (_.isNil(buttons)) {
     return (

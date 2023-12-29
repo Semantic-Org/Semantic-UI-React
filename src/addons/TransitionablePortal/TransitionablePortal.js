@@ -47,7 +47,13 @@ function usePortalState(props) {
  * @see Transition
  */
 function TransitionablePortal(props) {
-  const { children, transition } = props
+  const {
+    children,
+    transition = {
+      animation: 'scale',
+      duration: 400,
+    },
+  } = props
 
   const [portalOpen, setPortalOpen] = usePortalState(props)
   const [transitionVisible, setTransitionVisible] = React.useState(false)
@@ -163,13 +169,6 @@ TransitionablePortal.propTypes = {
 
   /** Transition props. */
   transition: PropTypes.object,
-}
-
-TransitionablePortal.defaultProps = {
-  transition: {
-    animation: 'scale',
-    duration: 400,
-  },
 }
 
 export default TransitionablePortal

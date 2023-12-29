@@ -7,7 +7,7 @@ import {
   childrenUtils,
   customPropTypes,
   createShorthandFactory,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -78,7 +78,7 @@ const Menu = React.forwardRef(function (props, ref) {
     'menu',
   )
   const rest = getUnhandledProps(Menu, props)
-  const ElementType = getElementType(Menu, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

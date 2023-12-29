@@ -2,13 +2,13 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 
 const SearchResults = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('results transition', className)
   const rest = getUnhandledProps(SearchResults, props)
-  const ElementType = getElementType(SearchResults, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

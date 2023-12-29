@@ -83,6 +83,7 @@ const Pagination = React.forwardRef(function (props, ref) {
   const paginationItemTypes = {
     firstItem,
     lastItem,
+    ellipsisItem,
     nextItem,
     pageItem,
     prevItem,

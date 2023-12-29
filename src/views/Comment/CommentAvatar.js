@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   createHTMLImage,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   htmlImageProps,
   partitionHTMLProps,
@@ -19,7 +19,7 @@ const CommentAvatar = React.forwardRef(function (props, ref) {
   const classes = cx('avatar', className)
   const rest = getUnhandledProps(CommentAvatar, props)
   const [imageProps, rootProps] = partitionHTMLProps(rest, { htmlProps: htmlImageProps })
-  const ElementType = getElementType(CommentAvatar, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rootProps} className={classes} ref={ref}>

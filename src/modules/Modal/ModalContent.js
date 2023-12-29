@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -24,7 +24,7 @@ const ModalContent = React.forwardRef(function (props, ref) {
     'content',
   )
   const rest = getUnhandledProps(ModalContent, props)
-  const ElementType = getElementType(ModalContent, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

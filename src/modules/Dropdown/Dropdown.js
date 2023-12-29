@@ -11,7 +11,7 @@ import {
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   makeDebugger,
   objectDiff,
@@ -66,7 +66,44 @@ function renderItemContent(item) {
  * @see Menu
  */
 const Dropdown = React.forwardRef((props, ref) => {
-  return <DropdownInner {...props} innerRef={ref} />
+  const {
+    additionLabel = 'Add ',
+    additionPosition = 'top',
+    closeOnBlur = true,
+    closeOnEscape = true,
+    deburr = false,
+    icon = 'dropdown',
+    minCharacters = 1,
+    noResultsMessage = 'No results found.',
+    openOnFocus = true,
+    renderLabel = renderItemContent,
+    searchInput = 'text',
+    selectOnBlur = true,
+    selectOnNavigation = true,
+    wrapSelection = true,
+    ...rest
+  } = props
+
+  return (
+    <DropdownInner
+      additionLabel={additionLabel}
+      additionPosition={additionPosition}
+      closeOnBlur={closeOnBlur}
+      closeOnEscape={closeOnEscape}
+      deburr={deburr}
+      icon={icon}
+      minCharacters={minCharacters}
+      noResultsMessage={noResultsMessage}
+      openOnFocus={openOnFocus}
+      renderLabel={renderLabel}
+      searchInput={searchInput}
+      selectOnBlur={selectOnBlur}
+      selectOnNavigation={selectOnNavigation}
+      wrapSelection={wrapSelection}
+      {...rest}
+      innerRef={ref}
+    />
+  )
 })
 
 class DropdownInner extends Component {
@@ -1088,7 +1125,7 @@ class DropdownInner extends Component {
       className,
     )
     const rest = getUnhandledProps(Dropdown, this.props)
-    const ElementType = getElementType(Dropdown, this.props)
+    const ElementType = getComponentType(this.props)
     const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
 
     return (
@@ -1442,27 +1479,10 @@ Dropdown.propTypes = {
 }
 
 Dropdown.displayName = 'Dropdown'
-Dropdown.defaultProps = {
-  additionLabel: 'Add ',
-  additionPosition: 'top',
-  closeOnBlur: true,
-  closeOnEscape: true,
-  deburr: false,
-  icon: 'dropdown',
-  minCharacters: 1,
-  noResultsMessage: 'No results found.',
-  openOnFocus: true,
-  renderLabel: renderItemContent,
-  searchInput: 'text',
-  selectOnBlur: true,
-  selectOnNavigation: true,
-  wrapSelection: true,
-}
 
 DropdownInner.autoControlledProps = ['open', 'searchQuery', 'selectedLabel', 'value', 'upward']
 
 if (process.env.NODE_ENV !== 'production') {
-  DropdownInner.defaultProps = Dropdown.defaultProps
   DropdownInner.propTypes = Dropdown.propTypes
 }
 

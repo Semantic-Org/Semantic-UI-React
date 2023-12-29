@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useVerticalAlignProp,
@@ -23,7 +23,7 @@ const ItemContent = React.forwardRef(function (props, ref) {
 
   const classes = cx(useVerticalAlignProp(verticalAlign), 'content', className)
   const rest = getUnhandledProps(ItemContent, props)
-  const ElementType = getElementType(ItemContent, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

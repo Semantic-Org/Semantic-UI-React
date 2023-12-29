@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps, SUI } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps, SUI } from '../../lib'
 
 /**
  * A group of images.
@@ -12,7 +12,7 @@ const ImageGroup = React.forwardRef(function (props, ref) {
 
   const classes = cx('ui', size, className, 'images')
   const rest = getUnhandledProps(ImageGroup, props)
-  const ElementType = getElementType(ImageGroup, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

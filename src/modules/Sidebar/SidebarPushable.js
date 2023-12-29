@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 
 /**
  * A pushable sub-component for Sidebar.
@@ -11,7 +11,7 @@ const SidebarPushable = React.forwardRef(function (props, ref) {
   const { className, children, content } = props
   const classes = cx('pushable', className)
   const rest = getUnhandledProps(SidebarPushable, props)
-  const ElementType = getElementType(SidebarPushable, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

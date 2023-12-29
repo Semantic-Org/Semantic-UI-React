@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 
@@ -18,7 +18,7 @@ const PopupHeader = React.forwardRef(function (props, ref) {
 
   const classes = cx('header', className)
   const rest = getUnhandledProps(PopupHeader, props)
-  const ElementType = getElementType(PopupHeader, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

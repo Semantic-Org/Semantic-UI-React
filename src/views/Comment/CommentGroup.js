@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -28,7 +28,7 @@ const CommentGroup = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(CommentGroup, props)
-  const ElementType = getElementType(CommentGroup, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

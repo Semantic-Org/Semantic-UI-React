@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -17,7 +17,7 @@ const PlaceholderHeader = React.forwardRef(function (props, ref) {
   const { children, className, content, image } = props
   const classes = cx(useKeyOnly(image, 'image'), 'header', className)
   const rest = getUnhandledProps(PlaceholderHeader, props)
-  const ElementType = getElementType(PlaceholderHeader, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

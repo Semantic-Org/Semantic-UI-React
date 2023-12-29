@@ -2,16 +2,17 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 
 /**
  * A placeholder can contain a paragraph.
  */
 const PlaceholderParagraph = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
+
   const classes = cx('paragraph', className)
   const rest = getUnhandledProps(PlaceholderParagraph, props)
-  const ElementType = getElementType(PlaceholderParagraph, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -19,7 +19,7 @@ const AccordionContent = React.forwardRef(function (props, ref) {
 
   const classes = cx('content', useKeyOnly(active, 'active'), className)
   const rest = getUnhandledProps(AccordionContent, props)
-  const ElementType = getElementType(AccordionContent, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -19,7 +19,7 @@ const FeedLabel = React.forwardRef(function (props, ref) {
 
   const classes = cx('label', className)
   const rest = getUnhandledProps(FeedLabel, props)
-  const ElementType = getElementType(FeedLabel, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useValueAndKey,
@@ -61,7 +61,7 @@ const Header = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Header, props)
-  const ElementType = getElementType(Header, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

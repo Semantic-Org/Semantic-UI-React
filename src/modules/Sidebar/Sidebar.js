@@ -9,7 +9,7 @@ import {
   customPropTypes,
   doesNodeContainClick,
   getUnhandledProps,
-  getElementType,
+  getComponentType,
   isRefObject,
   useKeyOnly,
   useIsomorphicLayoutEffect,
@@ -50,7 +50,16 @@ function useAnimationTick(visible) {
  * A sidebar hides additional content beside a page.
  */
 const Sidebar = React.forwardRef((props, ref) => {
-  const { animation, className, children, content, direction, target, visible, width } = props
+  const {
+    animation,
+    className,
+    children,
+    content,
+    direction = 'left',
+    target = documentRef,
+    visible = false,
+    width,
+  } = props
 
   const [animationTick, resetAnimationTick] = useAnimationTick(visible)
   const elementRef = useMergedRefs(ref, React.useRef())
@@ -107,7 +116,7 @@ const Sidebar = React.forwardRef((props, ref) => {
     className,
   )
   const rest = getUnhandledProps(Sidebar, props)
-  const ElementType = getElementType(Sidebar, props)
+  const ElementType = getComponentType(props)
   const targetProp = isRefObject(target) ? { targetRef: target } : { target }
 
   return (
@@ -188,12 +197,6 @@ Sidebar.propTypes = {
 
   /** Sidebar width. */
   width: PropTypes.oneOf(['very thin', 'thin', 'wide', 'very wide']),
-}
-
-Sidebar.defaultProps = {
-  direction: 'left',
-  target: documentRef,
-  visible: false,
 }
 
 Sidebar.animationDuration = 500

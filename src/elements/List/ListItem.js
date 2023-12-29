@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
   useEventCallback,
@@ -35,7 +35,7 @@ const ListItem = React.forwardRef(function (props, ref) {
     value,
   } = props
 
-  const ElementType = getElementType(ListItem, props)
+  const ElementType = getComponentType(props)
   const classes = cx(
     useKeyOnly(active, 'active'),
     useKeyOnly(disabled, 'disabled'),

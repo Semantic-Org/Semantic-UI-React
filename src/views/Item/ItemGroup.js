@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
   useKeyOrValueAndKey,
@@ -29,7 +29,7 @@ const ItemGroup = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(ItemGroup, props)
-  const ElementType = getElementType(ItemGroup, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

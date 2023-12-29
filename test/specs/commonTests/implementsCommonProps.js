@@ -105,6 +105,7 @@ export const implementsHTMLLabelProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {boolean|string} [options.defaultValue] The default value for the shorthand prop.
  * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
  * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */

@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -46,7 +46,7 @@ const Statistic = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Statistic, props)
-  const ElementType = getElementType(Statistic, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

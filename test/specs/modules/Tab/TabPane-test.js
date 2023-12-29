@@ -9,7 +9,7 @@ describe('TabPane', () => {
 
   common.implementsCreateMethod(TabPane)
 
-  common.propKeyOnlyToClassName(TabPane, 'active')
+  common.propKeyOnlyToClassName(TabPane, 'active', { defaultValue: 'left' })
   common.propKeyOnlyToClassName(TabPane, 'loading')
 
   it('renders a Segment by default', () => {

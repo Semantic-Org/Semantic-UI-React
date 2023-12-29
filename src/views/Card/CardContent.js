@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthand,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -25,7 +25,7 @@ const CardContent = React.forwardRef(function (props, ref) {
 
   const classes = cx(useKeyOnly(extra, 'extra'), useTextAlignProp(textAlign), 'content', className)
   const rest = getUnhandledProps(CardContent, props)
-  const ElementType = getElementType(CardContent, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

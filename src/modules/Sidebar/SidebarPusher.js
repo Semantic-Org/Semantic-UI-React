@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -18,7 +18,7 @@ const SidebarPusher = React.forwardRef(function (props, ref) {
 
   const classes = cx('pusher', useKeyOnly(dimmed, 'dimmed'), className)
   const rest = getUnhandledProps(SidebarPusher, props)
-  const ElementType = getElementType(SidebarPusher, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

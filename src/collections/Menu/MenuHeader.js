@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 
 /**
  * A menu item may include a header or may itself be a header.
@@ -11,7 +11,7 @@ const MenuHeader = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('header', className)
   const rest = getUnhandledProps(MenuHeader, props)
-  const ElementType = getElementType(MenuHeader, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

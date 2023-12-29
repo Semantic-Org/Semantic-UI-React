@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 
@@ -18,7 +18,7 @@ const MessageHeader = React.forwardRef(function (props, ref) {
 
   const classes = cx('header', className)
   const rest = getUnhandledProps(MessageHeader, props)
-  const ElementType = getElementType(MessageHeader, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

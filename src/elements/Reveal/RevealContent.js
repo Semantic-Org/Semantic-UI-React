@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -24,7 +24,7 @@ const RevealContent = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(RevealContent, props)
-  const ElementType = getElementType(RevealContent, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

@@ -35,7 +35,9 @@ const debug = makeDebugger('popup')
  */
 function getPortalProps(props) {
   const portalProps = {}
-  const normalizedOn = _.isArray(props.on) ? props.on ?? ['click', 'hover'] : [props.on]
+
+  const on = props.on ?? ['click', 'hover']
+  const normalizedOn = _.isArray(on) ? on : [on]
 
   if (props.hoverable) {
     portalProps.closeOnPortalMouseLeave = true

@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLIframe,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
   useAutoControlledValue,
@@ -109,7 +109,7 @@ const Embed = React.forwardRef(function (props, ref) {
 
   const classes = cx('ui', aspectRatio, useKeyOnly(active, 'active'), 'embed', className)
   const rest = getUnhandledProps(Embed, props)
-  const ElementType = getElementType(Embed, props)
+  const ElementType = getComponentType(props)
 
   const iconShorthand = icon !== undefined ? icon : 'video play'
 

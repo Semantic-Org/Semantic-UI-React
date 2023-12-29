@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLParagraph,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -68,7 +68,7 @@ const Message = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Message, props)
-  const ElementType = getElementType(Message, props)
+  const ElementType = getComponentType(props)
 
   const handleDismiss = useEventCallback((e) => {
     _.invoke(props, 'onDismiss', e, props)

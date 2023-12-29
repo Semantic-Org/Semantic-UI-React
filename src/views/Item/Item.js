@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 import ItemContent from './ItemContent'
 import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'
@@ -19,7 +19,7 @@ const Item = React.forwardRef(function (props, ref) {
 
   const classes = cx('item', className)
   const rest = getUnhandledProps(Item, props)
-  const ElementType = getElementType(Item, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 
 /**
  * An event or an event summary can contain a date.
@@ -11,7 +11,7 @@ const FeedDate = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('date', className)
   const rest = getUnhandledProps(FeedDate, props)
-  const ElementType = getElementType(FeedDate, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

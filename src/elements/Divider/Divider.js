@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -40,7 +40,7 @@ const Divider = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Divider, props)
-  const ElementType = getElementType(Divider, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

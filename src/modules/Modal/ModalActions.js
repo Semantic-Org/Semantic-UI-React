@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 import Button from '../../elements/Button'
@@ -20,7 +20,7 @@ const ModalActions = React.forwardRef(function (props, ref) {
 
   const classes = cx('actions', className)
   const rest = getUnhandledProps(ModalActions, props)
-  const ElementType = getElementType(ModalActions, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

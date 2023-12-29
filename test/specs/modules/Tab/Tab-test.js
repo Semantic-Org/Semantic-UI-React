@@ -127,22 +127,18 @@ describe('Tab', () => {
     it('is set when clicking an item', () => {
       const wrapper = mount(<Tab panes={panes} />)
 
-      wrapper.find('TabPane[active]').should.contain.text('Tab 1 Content')
+      wrapper.find('TabPane').should.contain.text('Tab 1')
 
       wrapper.find('MenuItem').at(1).simulate('click')
-
-      wrapper.find('TabPane[active]').should.contain.text('Tab 2 Content')
+      wrapper.find('TabPane').should.contain.text('Tab 2 Content')
     })
 
     it('can be set via props', () => {
       const wrapper = mount(<Tab panes={panes} activeIndex={1} />)
 
-      wrapper.find('TabPane[active]').should.contain.text('Tab 2 Content')
+      wrapper.find('TabPane').should.contain.text('Tab 2 Content')
 
-      wrapper
-        .setProps({ activeIndex: 2 })
-        .find('TabPane[active]')
-        .should.contain.text('Tab 3 Content')
+      wrapper.setProps({ activeIndex: 2 }).find('TabPane').should.contain.text('Tab 3 Content')
     })
 
     it('determines which pane render method is called', () => {

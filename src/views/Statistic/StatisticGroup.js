@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -31,7 +31,7 @@ const StatisticGroup = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(StatisticGroup, props)
-  const ElementType = getElementType(StatisticGroup, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

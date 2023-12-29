@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -60,7 +60,7 @@ const Grid = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Grid, props)
-  const ElementType = getElementType(Grid, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

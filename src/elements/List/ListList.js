@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -17,7 +17,7 @@ const ListList = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
 
   const rest = getUnhandledProps(ListList, props)
-  const ElementType = getElementType(ListList, props)
+  const ElementType = getComponentType(props)
   const classes = cx(useKeyOnly(ElementType !== 'ul' && ElementType !== 'ol', 'list'), className)
 
   return (

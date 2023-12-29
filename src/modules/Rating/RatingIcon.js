@@ -19,7 +19,7 @@ const RatingIcon = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(RatingIcon, props)
-  const ElementType = getComponentType(props, { as: 'i' })
+  const ElementType = getComponentType(props, { defaultAs: 'i' })
 
   const handleClick = (e) => {
     _.invoke(props, 'onClick', e, props)

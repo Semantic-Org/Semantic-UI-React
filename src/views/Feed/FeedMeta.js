@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthand,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 import FeedLike from './FeedLike'
@@ -19,7 +19,7 @@ const FeedMeta = React.forwardRef(function (props, ref) {
 
   const classes = cx('meta', className)
   const rest = getUnhandledProps(FeedMeta, props)
-  const ElementType = getElementType(FeedMeta, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

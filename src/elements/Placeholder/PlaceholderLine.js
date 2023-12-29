@@ -2,16 +2,17 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { getElementType, getUnhandledProps } from '../../lib'
+import { getComponentType, getUnhandledProps } from '../../lib'
 
 /**
  * A placeholder can contain have lines of text.
  */
 const PlaceholderLine = React.forwardRef(function (props, ref) {
   const { className, length } = props
+
   const classes = cx('line', length, className)
   const rest = getUnhandledProps(PlaceholderLine, props)
-  const ElementType = getElementType(PlaceholderLine, props)
+  const ElementType = getComponentType(props)
 
   return <ElementType {...rest} className={classes} ref={ref} />
 })
