@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLLabel,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -53,7 +53,7 @@ const FormField = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(FormField, props)
-  const ElementType = getElementType(FormField, props)
+  const ElementType = getComponentType(props)
 
   const errorPointing = _.get(error, 'pointing', 'above')
   const errorLabel = Label.create(error, {
@@ -145,7 +145,6 @@ const FormField = React.forwardRef(function (props, ref) {
 })
 
 FormField.displayName = 'FormField'
-
 FormField.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

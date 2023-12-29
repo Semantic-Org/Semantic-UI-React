@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -29,7 +29,7 @@ const FormGroup = React.forwardRef((props, ref) => {
     className,
   )
   const rest = getUnhandledProps(FormGroup, props)
-  const ElementType = getElementType(FormGroup, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>
@@ -39,7 +39,6 @@ const FormGroup = React.forwardRef((props, ref) => {
 })
 
 FormGroup.displayName = 'FormGroup'
-
 FormGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
