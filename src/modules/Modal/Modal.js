@@ -9,7 +9,7 @@ import {
   customPropTypes,
   doesNodeContainClick,
   eventStack,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   isBrowser,
   makeDebugger,
@@ -33,20 +33,19 @@ const debug = makeDebugger('modal')
  * @see Confirm
  * @see Portal
  */
-const Modal = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const Modal = React.forwardRef(function (props, ref) {
   const {
     actions,
     basic,
-    centered,
+    centered = true,
     children,
     className,
     closeIcon,
-    closeOnDimmerClick,
-    closeOnDocumentClick,
+    closeOnDimmerClick = true,
+    closeOnDocumentClick = false,
     content,
-    dimmer,
-    eventPool,
+    dimmer = true,
+    eventPool = 'Modal',
     header,
     size,
     style,
@@ -186,7 +185,7 @@ const Modal = React.forwardRef(function (partialProps, ref) {
       'modal transition visible active',
       className,
     )
-    const ElementType = getElementType(Modal, props)
+    const ElementType = getComponentType(props)
 
     const closeIconName = closeIcon === true ? 'close' : closeIcon
     const closeIconJSX = Icon.create(closeIconName, {
@@ -397,16 +396,6 @@ Modal.propTypes = {
    * NOTE: Any unhandled props that are defined in Modal are passed-through
    * to the inner Portal.
    */
-}
-
-function getDefaultProps() {
-  return {
-    centered: true,
-    dimmer: true,
-    closeOnDimmerClick: true,
-    closeOnDocumentClick: false,
-    eventPool: 'Modal',
-  }
 }
 
 Modal.Actions = ModalActions

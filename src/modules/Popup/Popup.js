@@ -10,7 +10,7 @@ import {
   childrenUtils,
   createHTMLDivision,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   makeDebugger,
   SUI,
@@ -35,7 +35,7 @@ const debug = makeDebugger('popup')
  */
 function getPortalProps(props) {
   const portalProps = {}
-  const normalizedOn = _.isArray(props.on) ? props.on : [props.on]
+  const normalizedOn = _.isArray(props.on) ? props.on ?? ['click', 'hover'] : [props.on]
 
   if (props.hoverable) {
     portalProps.closeOnPortalMouseLeave = true
@@ -111,25 +111,24 @@ function usePositioningEffect(popperDependencies, positionUpdate) {
 /**
  * A Popup displays additional information on top of a page.
  */
-const Popup = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const Popup = React.forwardRef(function (props, ref) {
   const {
     basic,
     className,
     content,
     context,
     children,
-    disabled,
-    eventsEnabled,
+    disabled = false,
+    eventsEnabled = true,
     flowing,
     header,
     inverted,
     offset,
-    pinned,
+    pinned = false,
     popper,
     popperDependencies,
-    popperModifiers,
-    position,
+    popperModifiers = [],
+    position = 'top left',
     positionFixed,
     size,
     style,
@@ -231,7 +230,7 @@ const Popup = React.forwardRef(function (partialProps, ref) {
       'popup transition visible',
       className,
     )
-    const ElementType = getElementType(Popup, props)
+    const ElementType = getComponentType(props)
 
     const styles = {
       // Heads up! We need default styles to get working correctly `flowing`
@@ -468,17 +467,6 @@ Popup.propTypes = {
 
   /** Popup width. */
   wide: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['very'])]),
-}
-
-function getDefaultProps() {
-  return {
-    disabled: false,
-    eventsEnabled: true,
-    on: ['click', 'hover'],
-    pinned: false,
-    popperModifiers: [],
-    position: 'top left',
-  }
 }
 
 Popup.Content = PopupContent

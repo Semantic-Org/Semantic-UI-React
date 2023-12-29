@@ -6,7 +6,7 @@ import React from 'react'
 import {
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -31,9 +31,8 @@ const defaultRenderer = ({ image, price, title, description }) => [
   </div>,
 ]
 
-const SearchResult = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
-  const { active, className, renderer } = props
+const SearchResult = React.forwardRef(function (props, ref) {
+  const { active, className, renderer = defaultRenderer } = props
 
   const handleClick = (e) => {
     _.invoke(props, 'onClick', e, props)
@@ -41,7 +40,7 @@ const SearchResult = React.forwardRef(function (partialProps, ref) {
 
   const classes = cx(useKeyOnly(active, 'active'), 'result', className)
   const rest = getUnhandledProps(SearchResult, props)
-  const ElementType = getElementType(SearchResult, props)
+  const ElementType = getComponentType(props)
 
   // Note: You technically only need the 'content' wrapper when there's an
   // image. However, optionally wrapping it makes this function a lot more
@@ -98,12 +97,6 @@ SearchResult.propTypes = {
 
   /** Display title. */
   title: PropTypes.string.isRequired,
-}
-
-function getDefaultProps() {
-  return {
-    renderer: defaultRenderer,
-  }
 }
 
 export default SearchResult

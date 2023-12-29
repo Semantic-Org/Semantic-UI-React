@@ -5,7 +5,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   isRefObject,
   isBrowser,
@@ -16,16 +16,15 @@ import {
 /**
  * Sticky content stays fixed to the browser viewport while another column of content is visible on the page.
  */
-const Sticky = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const Sticky = React.forwardRef(function (props, ref) {
   const {
-    active,
-    bottomOffset,
+    active = true,
+    bottomOffset = 0,
     children,
     className,
     context,
-    offset,
-    scrollContext,
+    offset = 0,
+    scrollContext = isBrowser() ? window : null,
     styleElement,
   } = props
 
@@ -243,7 +242,7 @@ const Sticky = React.forwardRef(function (partialProps, ref) {
   // ----------------------------------------
 
   const rest = getUnhandledProps(Sticky, props)
-  const ElementType = getElementType(Sticky, props)
+  const ElementType = getComponentType(props)
 
   const containerClasses = cx(
     sticky && 'ui',
@@ -332,15 +331,6 @@ Sticky.propTypes = {
 
   /** Custom style for sticky element. */
   styleElement: PropTypes.object,
-}
-
-function getDefaultProps() {
-  return {
-    active: true,
-    bottomOffset: 0,
-    offset: 0,
-    scrollContext: isBrowser() ? window : null,
-  }
 }
 
 export default Sticky
