@@ -10,9 +10,15 @@ import Modal from '../../modules/Modal'
  * A Confirm modal gives the user a choice to confirm or cancel an action.
  * @see Modal
  */
-const Confirm = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
-  const { cancelButton, confirmButton, content, header, open, size } = props
+const Confirm = React.forwardRef(function (props, ref) {
+  const {
+    cancelButton = 'Cancel',
+    confirmButton = 'OK',
+    content = 'Are you sure?',
+    header,
+    open,
+    size = 'small',
+  } = props
   const rest = getUnhandledProps(Confirm, props)
 
   const handleCancel = (e) => {
@@ -95,15 +101,6 @@ Confirm.propTypes = {
 
   /** A Confirm can vary in size */
   size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'fullscreen']),
-}
-
-function getDefaultProps() {
-  return {
-    cancelButton: 'Cancel',
-    confirmButton: 'OK',
-    content: 'Are you sure?',
-    size: 'small',
-  }
 }
 
 export default Confirm
