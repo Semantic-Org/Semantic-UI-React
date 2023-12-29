@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -20,8 +20,7 @@ import Icon from '../../elements/Icon'
 /**
  * A table row can have cells.
  */
-const TableCell = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const TableCell = React.forwardRef(function (props, ref) {
   const {
     active,
     children,
@@ -57,7 +56,7 @@ const TableCell = React.forwardRef(function (partialProps, ref) {
     className,
   )
   const rest = getUnhandledProps(TableCell, props)
-  const ElementType = getElementType(TableCell, props)
+  const ElementType = getComponentType(props, { defaultAs: 'td' })
 
   if (!childrenUtils.isNil(children)) {
     return (
@@ -74,12 +73,6 @@ const TableCell = React.forwardRef(function (partialProps, ref) {
     </ElementType>
   )
 })
-
-function getDefaultProps() {
-  return {
-    as: 'td',
-  }
-}
 
 TableCell.displayName = 'TableCell'
 TableCell.propTypes = {

@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 import MessageItem from './MessageItem'
@@ -15,13 +15,12 @@ import MessageItem from './MessageItem'
 /**
  * A message can contain a list of items.
  */
-const MessageList = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const MessageList = React.forwardRef(function (props, ref) {
   const { children, className, items } = props
 
   const classes = cx('list', className)
   const rest = getUnhandledProps(MessageList, props)
-  const ElementType = getElementType(MessageList, props)
+  const ElementType = getComponentType(props, { defaultAs: 'ul' })
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>
@@ -43,12 +42,6 @@ MessageList.propTypes = {
 
   /** Shorthand Message.Items. */
   items: customPropTypes.collectionShorthand,
-}
-
-function getDefaultProps() {
-  return {
-    as: 'ul',
-  }
 }
 
 MessageList.create = createShorthandFactory(MessageList, (val) => ({ items: val }))

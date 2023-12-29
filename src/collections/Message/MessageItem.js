@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -7,20 +6,19 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 
 /**
  * A message list can contain an item.
  */
-const MessageItem = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const MessageItem = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
 
   const classes = cx('content', className)
   const rest = getUnhandledProps(MessageItem, props)
-  const ElementType = getElementType(MessageItem, props)
+  const ElementType = getComponentType(props, { defaultAs: 'li' })
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>
@@ -42,12 +40,6 @@ MessageItem.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
-}
-
-function getDefaultProps() {
-  return {
-    as: 'li',
-  }
 }
 
 MessageItem.create = createShorthandFactory(MessageItem, (content) => ({ content }))

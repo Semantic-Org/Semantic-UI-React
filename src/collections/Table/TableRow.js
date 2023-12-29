@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -19,11 +19,10 @@ import TableCell from './TableCell'
 /**
  * A table can have rows.
  */
-const TableRow = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const TableRow = React.forwardRef(function (props, ref) {
   const {
     active,
-    cellAs,
+    cellAs = 'td',
     cells,
     children,
     className,
@@ -48,7 +47,7 @@ const TableRow = React.forwardRef(function (partialProps, ref) {
     className,
   )
   const rest = getUnhandledProps(TableRow, props)
-  const ElementType = getElementType(TableRow, props)
+  const ElementType = getComponentType(props, { defaultAs: 'tr' })
 
   if (!childrenUtils.isNil(children)) {
     return (
@@ -64,13 +63,6 @@ const TableRow = React.forwardRef(function (partialProps, ref) {
     </ElementType>
   )
 })
-
-function getDefaultProps() {
-  return {
-    as: 'tr',
-    cellAs: 'td',
-  }
-}
 
 TableRow.displayName = 'TableRow'
 TableRow.propTypes = {

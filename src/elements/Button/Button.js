@@ -7,7 +7,7 @@ import {
   childrenUtils,
   customPropTypes,
   createShorthandFactory,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -70,8 +70,7 @@ function hasIconClass(props) {
  * @see Icon
  * @see Label
  */
-const Button = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const Button = React.forwardRef(function (props, ref) {
   const {
     active,
     animated,
@@ -124,10 +123,13 @@ const Button = React.forwardRef(function (partialProps, ref) {
   const wrapperClasses = cx(useKeyOnly(disabled, 'disabled'), useValueAndKey(floated, 'floated'))
 
   const rest = getUnhandledProps(Button, props)
-  const ElementType = getElementType(Button, props, () => {
-    if (!_.isNil(attached) || !_.isNil(label)) {
-      return 'div'
-    }
+  const ElementType = getComponentType(props, {
+    defaultAs: 'button',
+    getDefault: () => {
+      if (!_.isNil(attached) || !_.isNil(label)) {
+        return 'div'
+      }
+    },
   })
   const tabIndex = computeTabIndex(ElementType, disabled, props.tabIndex)
 
@@ -314,12 +316,6 @@ Button.propTypes = {
 
   /** The type of the HTML element. */
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
-}
-
-function getDefaultProps() {
-  return {
-    as: 'button',
-  }
 }
 
 Button.Content = ButtonContent

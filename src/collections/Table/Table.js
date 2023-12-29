@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -25,8 +25,7 @@ import TableRow from './TableRow'
 /**
  * A table displays a collections of data grouped into rows.
  */
-const Table = React.forwardRef(function (partialProps, ref) {
-  const props = _.defaults(partialProps, getDefaultProps())
+const Table = React.forwardRef(function (props, ref) {
   const {
     attached,
     basic,
@@ -85,7 +84,7 @@ const Table = React.forwardRef(function (partialProps, ref) {
     className,
   )
   const rest = getUnhandledProps(Table, props)
-  const ElementType = getElementType(Table, props)
+  const ElementType = getComponentType(props, { defaultAs: 'table' })
 
   if (!childrenUtils.isNil(children)) {
     return (
@@ -117,12 +116,6 @@ const Table = React.forwardRef(function (partialProps, ref) {
 })
 
 Table.displayName = 'Table'
-function getDefaultProps() {
-  return {
-    as: 'table',
-  }
-}
-
 Table.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
