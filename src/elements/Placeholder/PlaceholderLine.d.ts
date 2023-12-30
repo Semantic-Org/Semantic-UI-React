@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { ForwardRefComponent } from '../../generic'
 
 export interface PlaceholderLineProps extends StrictPlaceholderLineProps {

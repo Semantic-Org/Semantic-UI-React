@@ -9,7 +9,7 @@
     "newline-per-chained-call": "off",
     "class-methods-use-this": "off",
     "consistent-return": "off",
-    "complexity": ["warn", 10],
+    "complexity": "off",
     "global-require": "off",
     "func-names": "off",
     "lines-between-class-members": "off",

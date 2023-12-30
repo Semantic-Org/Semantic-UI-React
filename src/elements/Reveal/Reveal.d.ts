@@ -41,6 +41,8 @@ export interface StrictRevealProps {
   instant?: boolean
 }
 
-declare const Reveal: ForwardRefComponent<RevealProps, HTMLDivElement>
+declare const Reveal: ForwardRefComponent<RevealProps, HTMLDivElement> & {
+  Content: typeof RevealContent
+}
 
 export default Reveal
