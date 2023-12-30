@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import AccordionAccordion, { StrictAccordionAccordionProps } from './AccordionAccordion'
 import AccordionContent from './AccordionContent'
 import AccordionPanel from './AccordionPanel'

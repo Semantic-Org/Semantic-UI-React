@@ -23,7 +23,7 @@ class ReferenceProxy {
   }
 
   get contextElement() {
-    return this.ref.current;
+    return this.ref.current
   }
 }
 
