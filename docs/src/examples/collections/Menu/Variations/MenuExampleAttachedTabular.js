@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import { MenuItem, Menu, Segment } from 'semantic-ui-react'
 
 export default class MenuExampleAttachedTabular extends Component {
   state = { activeItem: 'tab1' }
@@ -12,12 +12,12 @@ export default class MenuExampleAttachedTabular extends Component {
     return (
       <div>
         <Menu attached='top' tabular>
-          <Menu.Item
+          <MenuItem
             name='tab1'
             active={activeItem === 'tab1'}
             onClick={this.handleItemClick}
           />
-          <Menu.Item
+          <MenuItem
             name='tab2'
             active={activeItem === 'tab2'}
             onClick={this.handleItemClick}

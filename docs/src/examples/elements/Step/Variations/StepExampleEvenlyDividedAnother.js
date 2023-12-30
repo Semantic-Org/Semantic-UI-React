@@ -1,21 +1,27 @@
 import React from 'react'
-import { Icon, Step } from 'semantic-ui-react'
+import {
+  StepTitle,
+  StepGroup,
+  StepContent,
+  Icon,
+  Step,
+} from 'semantic-ui-react'
 
 const StepExampleEvenlyDividedAnother = () => (
-  <Step.Group widths={2}>
+  <StepGroup widths={2}>
     <Step active>
       <Icon name='credit card' />
-      <Step.Content>
-        <Step.Title>Billing</Step.Title>
-      </Step.Content>
+      <StepContent>
+        <StepTitle>Billing</StepTitle>
+      </StepContent>
     </Step>
     <Step disabled>
       <Icon name='info' />
-      <Step.Content>
-        <Step.Title>Confirm Order</Step.Title>
-      </Step.Content>
+      <StepContent>
+        <StepTitle>Confirm Order</StepTitle>
+      </StepContent>
     </Step>
-  </Step.Group>
+  </StepGroup>
 )
 
 export default StepExampleEvenlyDividedAnother

@@ -1,12 +1,12 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { ButtonOr, ButtonGroup, Button } from 'semantic-ui-react'
 
 const ButtonExampleGroupOrSize = () => (
-  <Button.Group size='large'>
+  <ButtonGroup size='large'>
     <Button>One</Button>
-    <Button.Or />
+    <ButtonOr />
     <Button>Three</Button>
-  </Button.Group>
+  </ButtonGroup>
 )
 
 export default ButtonExampleGroupOrSize

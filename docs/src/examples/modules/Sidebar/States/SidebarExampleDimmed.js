@@ -1,5 +1,9 @@
 import React from 'react'
 import {
+  SidebarPusher,
+  SidebarPushable,
+  MenuItem,
+  GridColumn,
   Checkbox,
   Grid,
   Header,
@@ -15,16 +19,16 @@ const SidebarExampleDimmed = () => {
 
   return (
     <Grid columns={1}>
-      <Grid.Column>
+      <GridColumn>
         <Checkbox
           checked={visible}
           label={{ children: <code>visible</code> }}
           onChange={(e, data) => setVisible(data.checked)}
         />
-      </Grid.Column>
+      </GridColumn>
 
-      <Grid.Column>
-        <Sidebar.Pushable as={Segment}>
+      <GridColumn>
+        <SidebarPushable as={Segment}>
           <Sidebar
             as={Menu}
             animation='overlay'
@@ -35,28 +39,28 @@ const SidebarExampleDimmed = () => {
             visible={visible}
             width='thin'
           >
-            <Menu.Item as='a'>
+            <MenuItem as='a'>
               <Icon name='home' />
               Home
-            </Menu.Item>
-            <Menu.Item as='a'>
+            </MenuItem>
+            <MenuItem as='a'>
               <Icon name='gamepad' />
               Games
-            </Menu.Item>
-            <Menu.Item as='a'>
+            </MenuItem>
+            <MenuItem as='a'>
               <Icon name='camera' />
               Channels
-            </Menu.Item>
+            </MenuItem>
           </Sidebar>
 
-          <Sidebar.Pusher dimmed={visible}>
+          <SidebarPusher dimmed={visible}>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
               <Image src='/images/wireframe/paragraph.png' />
             </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </Grid.Column>
+          </SidebarPusher>
+        </SidebarPushable>
+      </GridColumn>
     </Grid>
   )
 }

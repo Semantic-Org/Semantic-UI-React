@@ -1,44 +1,54 @@
 import React from 'react'
-import { Card, Feed } from 'semantic-ui-react'
+import {
+  FeedSummary,
+  FeedLabel,
+  FeedEvent,
+  FeedDate,
+  FeedContent,
+  CardHeader,
+  CardContent,
+  Card,
+  Feed,
+} from 'semantic-ui-react'
 
 const CardExampleContentBlock = () => (
   <Card>
-    <Card.Content>
-      <Card.Header>Recent Activity</Card.Header>
-    </Card.Content>
-    <Card.Content>
+    <CardContent>
+      <CardHeader>Recent Activity</CardHeader>
+    </CardContent>
+    <CardContent>
       <Feed>
-        <Feed.Event>
-          <Feed.Label image='/images/avatar/small/jenny.jpg' />
-          <Feed.Content>
-            <Feed.Date content='1 day ago' />
-            <Feed.Summary>
+        <FeedEvent>
+          <FeedLabel image='/images/avatar/small/jenny.jpg' />
+          <FeedContent>
+            <FeedDate content='1 day ago' />
+            <FeedSummary>
               You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
+            </FeedSummary>
+          </FeedContent>
+        </FeedEvent>
 
-        <Feed.Event>
-          <Feed.Label image='/images/avatar/small/molly.png' />
-          <Feed.Content>
-            <Feed.Date content='3 days ago' />
-            <Feed.Summary>
+        <FeedEvent>
+          <FeedLabel image='/images/avatar/small/molly.png' />
+          <FeedContent>
+            <FeedDate content='3 days ago' />
+            <FeedSummary>
               You added <a>Molly Malone</a> as a friend.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
+            </FeedSummary>
+          </FeedContent>
+        </FeedEvent>
 
-        <Feed.Event>
-          <Feed.Label image='/images/avatar/small/elliot.jpg' />
-          <Feed.Content>
-            <Feed.Date content='4 days ago' />
-            <Feed.Summary>
+        <FeedEvent>
+          <FeedLabel image='/images/avatar/small/elliot.jpg' />
+          <FeedContent>
+            <FeedDate content='4 days ago' />
+            <FeedSummary>
               You added <a>Elliot Baker</a> to your <a>musicians</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
+            </FeedSummary>
+          </FeedContent>
+        </FeedEvent>
       </Feed>
-    </Card.Content>
+    </CardContent>
   </Card>
 )
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 const colors = [
   'red',
@@ -28,17 +28,17 @@ class ExampleMenu extends Component {
 
     return (
       <Menu color={color} widths={3}>
-        <Menu.Item
+        <MenuItem
           name='home'
           active={activeItem === 'home'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='messages'
           active={activeItem === 'messages'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='friends'
           active={activeItem === 'friends'}
           onClick={this.handleItemClick}

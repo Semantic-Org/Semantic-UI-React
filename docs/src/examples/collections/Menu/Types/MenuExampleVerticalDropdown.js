@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { Dropdown, Menu } from 'semantic-ui-react'
+import {
+  DropdownMenu,
+  DropdownItem,
+  DropdownHeader,
+  MenuItem,
+  Dropdown,
+  Menu,
+} from 'semantic-ui-react'
 
 export default class MenuExampleVerticalDropdown extends Component {
   state = { activeItem: 'account' }
@@ -11,23 +18,23 @@ export default class MenuExampleVerticalDropdown extends Component {
 
     return (
       <Menu secondary vertical>
-        <Menu.Item
+        <MenuItem
           name='account'
           active={activeItem === 'account'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='settings'
           active={activeItem === 'settings'}
           onClick={this.handleItemClick}
         />
         <Dropdown item text='Display Options'>
-          <Dropdown.Menu>
-            <Dropdown.Header>Text Size</Dropdown.Header>
-            <Dropdown.Item>Small</Dropdown.Item>
-            <Dropdown.Item>Medium</Dropdown.Item>
-            <Dropdown.Item>Large</Dropdown.Item>
-          </Dropdown.Menu>
+          <DropdownMenu>
+            <DropdownHeader>Text Size</DropdownHeader>
+            <DropdownItem>Small</DropdownItem>
+            <DropdownItem>Medium</DropdownItem>
+            <DropdownItem>Large</DropdownItem>
+          </DropdownMenu>
         </Dropdown>
       </Menu>
     )

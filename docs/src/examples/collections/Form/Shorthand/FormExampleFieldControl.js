@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {
+  FormGroup,
+  FormField,
   Button,
   Checkbox,
   Form,
@@ -24,58 +26,58 @@ class FormExampleFieldControl extends Component {
     const { value } = this.state
     return (
       <Form>
-        <Form.Group widths='equal'>
-          <Form.Field
+        <FormGroup widths='equal'>
+          <FormField
             control={Input}
             label='First name'
             placeholder='First name'
           />
-          <Form.Field
+          <FormField
             control={Input}
             label='Last name'
             placeholder='Last name'
           />
-          <Form.Field
+          <FormField
             control={Select}
             label='Gender'
             options={options}
             placeholder='Gender'
           />
-        </Form.Group>
-        <Form.Group inline>
+        </FormGroup>
+        <FormGroup inline>
           <label>Quantity</label>
-          <Form.Field
+          <FormField
             control={Radio}
             label='One'
             value='1'
             checked={value === '1'}
             onChange={this.handleChange}
           />
-          <Form.Field
+          <FormField
             control={Radio}
             label='Two'
             value='2'
             checked={value === '2'}
             onChange={this.handleChange}
           />
-          <Form.Field
+          <FormField
             control={Radio}
             label='Three'
             value='3'
             checked={value === '3'}
             onChange={this.handleChange}
           />
-        </Form.Group>
-        <Form.Field
+        </FormGroup>
+        <FormField
           control={TextArea}
           label='About'
           placeholder='Tell us more about you...'
         />
-        <Form.Field
+        <FormField
           control={Checkbox}
           label='I agree to the Terms and Conditions'
         />
-        <Form.Field control={Button}>Submit</Form.Field>
+        <FormField control={Button}>Submit</FormField>
       </Form>
     )
   }

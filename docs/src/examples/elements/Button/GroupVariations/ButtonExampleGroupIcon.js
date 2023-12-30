@@ -1,8 +1,8 @@
 import React from 'react'
-import { Button, Icon } from 'semantic-ui-react'
+import { ButtonGroup, Button, Icon } from 'semantic-ui-react'
 
 const ButtonExampleGroupIcon = () => (
-  <Button.Group icon>
+  <ButtonGroup icon>
     <Button>
       <Icon name='play' />
     </Button>
@@ -12,7 +12,7 @@ const ButtonExampleGroupIcon = () => (
     <Button>
       <Icon name='shuffle' />
     </Button>
-  </Button.Group>
+  </ButtonGroup>
 )
 
 export default ButtonExampleGroupIcon

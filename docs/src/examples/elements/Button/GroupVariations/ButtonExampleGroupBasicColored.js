@@ -1,8 +1,8 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { ButtonGroup, Button } from 'semantic-ui-react'
 
 const ButtonExampleGroupBasicColored = () => (
-  <Button.Group>
+  <ButtonGroup>
     <Button basic color='red'>
       One
     </Button>
@@ -12,7 +12,7 @@ const ButtonExampleGroupBasicColored = () => (
     <Button basic color='blue'>
       Three
     </Button>
-  </Button.Group>
+  </ButtonGroup>
 )
 
 export default ButtonExampleGroupBasicColored

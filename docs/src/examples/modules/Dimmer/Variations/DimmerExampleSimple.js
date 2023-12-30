@@ -1,8 +1,8 @@
 import React from 'react'
-import { Dimmer, Image, Segment } from 'semantic-ui-react'
+import { DimmerDimmable, Dimmer, Image, Segment } from 'semantic-ui-react'
 
 const DimmerExampleSimple = () => (
-  <Dimmer.Dimmable as={Segment} dimmed>
+  <DimmerDimmable as={Segment} dimmed>
     <Dimmer simple />
 
     <p>
@@ -11,7 +11,7 @@ const DimmerExampleSimple = () => (
     <p>
       <Image src='/images/wireframe/short-paragraph.png' />
     </p>
-  </Dimmer.Dimmable>
+  </DimmerDimmable>
 )
 
 export default DimmerExampleSimple

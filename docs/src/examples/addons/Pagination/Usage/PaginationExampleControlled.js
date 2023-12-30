@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Input, Pagination, Segment } from 'semantic-ui-react'
+import { GridColumn, Grid, Input, Pagination, Segment } from 'semantic-ui-react'
 
 export default class PaginationExampleControlled extends Component {
   state = { activePage: 1 }
@@ -13,7 +13,7 @@ export default class PaginationExampleControlled extends Component {
 
     return (
       <Grid columns={2} verticalAlign='middle'>
-        <Grid.Column>
+        <GridColumn>
           <Segment secondary>
             <div>activePage: {activePage}</div>
             <Input
@@ -24,14 +24,14 @@ export default class PaginationExampleControlled extends Component {
               value={activePage}
             />
           </Segment>
-        </Grid.Column>
-        <Grid.Column>
+        </GridColumn>
+        <GridColumn>
           <Pagination
             activePage={activePage}
             onPageChange={this.handlePaginationChange}
             totalPages={5}
           />
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

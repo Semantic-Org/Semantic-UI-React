@@ -1,12 +1,12 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
+import { FormField, Form } from 'semantic-ui-react'
 
 const FormExampleField = () => (
   <Form>
-    <Form.Field>
+    <FormField>
       <label>User Input</label>
       <input />
-    </Form.Field>
+    </FormField>
   </Form>
 )
 

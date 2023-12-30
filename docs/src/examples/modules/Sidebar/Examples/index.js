@@ -1,5 +1,13 @@
 import React from 'react'
-import { Icon, Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Icon,
+  Table,
+} from 'semantic-ui-react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -15,88 +23,88 @@ const SidebarExamplesExamples = () => (
       examplePath='modules/Sidebar/Examples/SidebarExampleTransitions'
     >
       <Table celled definition>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell />
-            <Table.HeaderCell>Multiple Visible</Table.HeaderCell>
-            <Table.HeaderCell>Supports Vertical Sidebars</Table.HeaderCell>
-            <Table.HeaderCell>Supports Horizontal Sidebars</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>Overlay</Table.Cell>
-            <Table.Cell>
+        <TableHeader>
+          <TableRow>
+            <TableHeaderCell />
+            <TableHeaderCell>Multiple Visible</TableHeaderCell>
+            <TableHeaderCell>Supports Vertical Sidebars</TableHeaderCell>
+            <TableHeaderCell>Supports Horizontal Sidebars</TableHeaderCell>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>Overlay</TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Push</Table.Cell>
-            <Table.Cell>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Push</TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Scale Down</Table.Cell>
-            <Table.Cell>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Scale Down</TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='red' name='cancel' />
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Uncover</Table.Cell>
-            <Table.Cell>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Uncover</TableCell>
+            <TableCell>
               <Icon color='red' name='cancel' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='red' name='cancel' />
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Slide Along</Table.Cell>
-            <Table.Cell>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Slide Along</TableCell>
+            <TableCell>
               <Icon color='red' name='cancel' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='red' name='cancel' />
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Slide Out</Table.Cell>
-            <Table.Cell>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Slide Out</TableCell>
+            <TableCell>
               <Icon color='red' name='cancel' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='green' name='check' />
-            </Table.Cell>
-            <Table.Cell>
+            </TableCell>
+            <TableCell>
               <Icon color='red' name='cancel' />
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
+            </TableCell>
+          </TableRow>
+        </TableBody>
       </Table>
     </ComponentExample>
     <ComponentExample

@@ -1,21 +1,34 @@
 import React from 'react'
-import { Button, Comment, Form } from 'semantic-ui-react'
+import {
+  CommentText,
+  CommentMetadata,
+  CommentGroup,
+  CommentContent,
+  CommentAvatar,
+  CommentActions,
+  CommentAction,
+  CommentAuthor,
+  FormTextArea,
+  Button,
+  Comment,
+  Form,
+} from 'semantic-ui-react'
 
 const CommentExampleReplyForm = () => (
-  <Comment.Group>
+  <CommentGroup>
     <Comment>
-      <Comment.Avatar as='a' src='/images/avatar/small/steve.jpg' />
-      <Comment.Content>
-        <Comment.Author as='a'>Steve Jobes</Comment.Author>
-        <Comment.Metadata>
+      <CommentAvatar as='a' src='/images/avatar/small/steve.jpg' />
+      <CommentContent>
+        <CommentAuthor as='a'>Steve Jobes</CommentAuthor>
+        <CommentMetadata>
           <div>2 days ago</div>
-        </Comment.Metadata>
-        <Comment.Text>Revolutionary!</Comment.Text>
-        <Comment.Actions>
-          <Comment.Action active>Reply</Comment.Action>
-        </Comment.Actions>
+        </CommentMetadata>
+        <CommentText>Revolutionary!</CommentText>
+        <CommentActions>
+          <CommentAction active>Reply</CommentAction>
+        </CommentActions>
         <Form reply>
-          <Form.TextArea />
+          <FormTextArea />
           <Button
             content='Add Reply'
             labelPosition='left'
@@ -23,9 +36,9 @@ const CommentExampleReplyForm = () => (
             primary
           />
         </Form>
-      </Comment.Content>
+      </CommentContent>
     </Comment>
-  </Comment.Group>
+  </CommentGroup>
 )
 
 export default CommentExampleReplyForm

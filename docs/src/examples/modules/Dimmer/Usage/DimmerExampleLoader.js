@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { Button, Dimmer, Image, Loader, Segment } from 'semantic-ui-react'
+import {
+  DimmerDimmable,
+  ButtonGroup,
+  Button,
+  Dimmer,
+  Image,
+  Loader,
+  Segment,
+} from 'semantic-ui-react'
 
 export default class DimmerExampleLoader extends Component {
   state = {}
@@ -12,7 +20,7 @@ export default class DimmerExampleLoader extends Component {
 
     return (
       <div>
-        <Dimmer.Dimmable as={Segment} dimmed={active}>
+        <DimmerDimmable as={Segment} dimmed={active}>
           <Dimmer active={active} inverted>
             <Loader>Loading</Loader>
           </Dimmer>
@@ -23,12 +31,12 @@ export default class DimmerExampleLoader extends Component {
           <p>
             <Image src='/images/wireframe/short-paragraph.png' />
           </p>
-        </Dimmer.Dimmable>
+        </DimmerDimmable>
 
-        <Button.Group>
+        <ButtonGroup>
           <Button icon='plus' onClick={this.handleShow} />
           <Button icon='minus' onClick={this.handleHide} />
-        </Button.Group>
+        </ButtonGroup>
       </div>
     )
   }

@@ -1,5 +1,10 @@
 import React from 'react'
-import { Dropdown } from 'semantic-ui-react'
+import {
+  DropdownMenu,
+  DropdownItem,
+  DropdownHeader,
+  Dropdown,
+} from 'semantic-ui-react'
 
 const friendOptions = [
   {
@@ -31,12 +36,12 @@ const DropdownExampleImage = () => (
     button
     className='icon'
   >
-    <Dropdown.Menu>
-      <Dropdown.Header content='People You Might Know' />
+    <DropdownMenu>
+      <DropdownHeader content='People You Might Know' />
       {friendOptions.map((option) => (
-        <Dropdown.Item key={option.value} {...option} />
+        <DropdownItem key={option.value} {...option} />
       ))}
-    </Dropdown.Menu>
+    </DropdownMenu>
   </Dropdown>
 )
 

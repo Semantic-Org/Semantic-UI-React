@@ -1,33 +1,40 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleStackable = () => (
   <Table stackable>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Status</Table.HeaderCell>
-        <Table.HeaderCell textAlign='right'>Notes</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Status</TableHeaderCell>
+        <TableHeaderCell textAlign='right'>Notes</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>John</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell textAlign='right'>None</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jamie</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell textAlign='right'>Requires call</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jill</Table.Cell>
-        <Table.Cell>Denied</Table.Cell>
-        <Table.Cell textAlign='right'>None</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+    <TableBody>
+      <TableRow>
+        <TableCell>John</TableCell>
+        <TableCell>Approved</TableCell>
+        <TableCell textAlign='right'>None</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jamie</TableCell>
+        <TableCell>Approved</TableCell>
+        <TableCell textAlign='right'>Requires call</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jill</TableCell>
+        <TableCell>Denied</TableCell>
+        <TableCell textAlign='right'>None</TableCell>
+      </TableRow>
+    </TableBody>
   </Table>
 )
 

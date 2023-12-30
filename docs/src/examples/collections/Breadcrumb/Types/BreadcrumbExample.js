@@ -1,13 +1,17 @@
 import React from 'react'
-import { Breadcrumb } from 'semantic-ui-react'
+import {
+  BreadcrumbSection,
+  BreadcrumbDivider,
+  Breadcrumb,
+} from 'semantic-ui-react'
 
 const BreadcrumbExample = () => (
   <Breadcrumb>
-    <Breadcrumb.Section link>Home</Breadcrumb.Section>
-    <Breadcrumb.Divider />
-    <Breadcrumb.Section link>Store</Breadcrumb.Section>
-    <Breadcrumb.Divider />
-    <Breadcrumb.Section active>T-Shirt</Breadcrumb.Section>
+    <BreadcrumbSection link>Home</BreadcrumbSection>
+    <BreadcrumbDivider />
+    <BreadcrumbSection link>Store</BreadcrumbSection>
+    <BreadcrumbDivider />
+    <BreadcrumbSection active>T-Shirt</BreadcrumbSection>
   </Breadcrumb>
 )
 

@@ -1,5 +1,10 @@
 import React from 'react'
-import { Message } from 'semantic-ui-react'
+import {
+  MessageItem,
+  MessageList,
+  MessageHeader,
+  Message,
+} from 'semantic-ui-react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -7,21 +12,21 @@ import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 const TabTypesExamples = () => (
   <ExampleSection title='Types'>
     <Message info>
-      <Message.Header>
+      <MessageHeader>
         Controlling <code>Tab</code> pane re-renders
-      </Message.Header>
-      <Message.List>
-        <Message.Item>
+      </MessageHeader>
+      <MessageList>
+        <MessageItem>
           <code>renderActiveOnly</code> (default) Only the active pane is
           rendered. Switching tabs unmounts the current pane and mounts the new
           pane.
-        </Message.Item>
-        <Message.Item>
+        </MessageItem>
+        <MessageItem>
           <code>renderActiveOnly={'{false}'}</code> All panes are rendered on
           Tab mount. Switching tabs hides the current pane and shows the new
           pane, without unmounting panes.
-        </Message.Item>
-      </Message.List>
+        </MessageItem>
+      </MessageList>
     </Message>
 
     <ComponentExample

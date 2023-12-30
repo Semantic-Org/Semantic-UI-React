@@ -1,30 +1,30 @@
 import React from 'react'
-import { Divider, Form, Label } from 'semantic-ui-react'
+import { FormField, Divider, Form, Label } from 'semantic-ui-react'
 
 const LabelExamplePointing = () => (
   <Form>
-    <Form.Field>
+    <FormField>
       <input type='text' placeholder='First name' />
       <Label pointing>Please enter a value</Label>
-    </Form.Field>
+    </FormField>
     <Divider />
 
-    <Form.Field>
+    <FormField>
       <Label pointing='below'>Please enter a value</Label>
       <input type='text' placeholder='Last Name' />
-    </Form.Field>
+    </FormField>
     <Divider />
 
-    <Form.Field inline>
+    <FormField inline>
       <input type='text' placeholder='Username' />
       <Label pointing='left'>That name is taken!</Label>
-    </Form.Field>
+    </FormField>
     <Divider />
 
-    <Form.Field inline>
+    <FormField inline>
       <Label pointing='right'>Your password must be 6 characters or more</Label>
       <input type='password' placeholder='Password' />
-    </Form.Field>
+    </FormField>
   </Form>
 )
 

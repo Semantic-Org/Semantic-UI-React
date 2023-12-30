@@ -1,26 +1,32 @@
 import React from 'react'
-import { Image, List } from 'semantic-ui-react'
+import {
+  ListItem,
+  ListHeader,
+  ListContent,
+  Image,
+  List,
+} from 'semantic-ui-react'
 
 const ListExampleRelaxedHorizontal = () => (
   <List horizontal relaxed>
-    <List.Item>
+    <ListItem>
       <Image avatar src='/images/avatar/small/daniel.jpg' />
-      <List.Content>
-        <List.Header as='a'>Daniel Louise</List.Header>
-      </List.Content>
-    </List.Item>
-    <List.Item>
+      <ListContent>
+        <ListHeader as='a'>Daniel Louise</ListHeader>
+      </ListContent>
+    </ListItem>
+    <ListItem>
       <Image avatar src='/images/avatar/small/stevie.jpg' />
-      <List.Content>
-        <List.Header as='a'>Stevie Feliciano</List.Header>
-      </List.Content>
-    </List.Item>
-    <List.Item>
+      <ListContent>
+        <ListHeader as='a'>Stevie Feliciano</ListHeader>
+      </ListContent>
+    </ListItem>
+    <ListItem>
       <Image avatar src='/images/avatar/small/elliot.jpg' />
-      <List.Content>
-        <List.Header as='a'>Elliot Fu</List.Header>
-      </List.Content>
-    </List.Item>
+      <ListContent>
+        <ListHeader as='a'>Elliot Fu</ListHeader>
+      </ListContent>
+    </ListItem>
   </List>
 )
 

@@ -1,77 +1,90 @@
 import React from 'react'
-import { Button, Comment, Form, Header } from 'semantic-ui-react'
+import {
+  CommentText,
+  CommentMetadata,
+  CommentGroup,
+  CommentContent,
+  CommentAvatar,
+  CommentActions,
+  CommentAuthor,
+  FormTextArea,
+  Button,
+  Comment,
+  Form,
+  Header,
+} from 'semantic-ui-react'
 
 const CommentExampleMinimal = () => (
-  <Comment.Group minimal>
+  <CommentGroup minimal>
     <Header as='h3' dividing>
       Comments
     </Header>
 
     <Comment>
-      <Comment.Avatar as='a' src='/images/avatar/small/matt.jpg' />
-      <Comment.Content>
-        <Comment.Author as='a'>Matt</Comment.Author>
-        <Comment.Metadata>
+      <CommentAvatar as='a' src='/images/avatar/small/matt.jpg' />
+      <CommentContent>
+        <CommentAuthor as='a'>Matt</CommentAuthor>
+        <CommentMetadata>
           <span>Today at 5:42PM</span>
-        </Comment.Metadata>
-        <Comment.Text>How artistic!</Comment.Text>
-        <Comment.Actions>
+        </CommentMetadata>
+        <CommentText>How artistic!</CommentText>
+        <CommentActions>
           <a>Reply</a>
-        </Comment.Actions>
-      </Comment.Content>
+        </CommentActions>
+      </CommentContent>
     </Comment>
 
     <Comment>
-      <Comment.Avatar as='a' src='/images/avatar/small/elliot.jpg' />
-      <Comment.Content>
-        <Comment.Author as='a'>Elliot Fu</Comment.Author>
-        <Comment.Metadata>
+      <CommentAvatar as='a' src='/images/avatar/small/elliot.jpg' />
+      <CommentContent>
+        <CommentAuthor as='a'>Elliot Fu</CommentAuthor>
+        <CommentMetadata>
           <span>Yesterday at 12:30AM</span>
-        </Comment.Metadata>
-        <Comment.Text>
+        </CommentMetadata>
+        <CommentText>
           <p>This has been very useful for my research. Thanks as well!</p>
-        </Comment.Text>
-        <Comment.Actions>
+        </CommentText>
+        <CommentActions>
           <a>Reply</a>
-        </Comment.Actions>
-      </Comment.Content>
+        </CommentActions>
+      </CommentContent>
 
-      <Comment.Group>
+      <CommentGroup>
         <Comment>
-          <Comment.Avatar as='a' src='/images/avatar/small/jenny.jpg' />
-          <Comment.Content>
-            <Comment.Author as='a'>Jenny Hess</Comment.Author>
-            <Comment.Metadata>
+          <CommentAvatar as='a' src='/images/avatar/small/jenny.jpg' />
+          <CommentContent>
+            <CommentAuthor as='a'>Jenny Hess</CommentAuthor>
+            <CommentMetadata>
               <span>Just now</span>
-            </Comment.Metadata>
-            <Comment.Text>Elliot you are always so right :)</Comment.Text>
-            <Comment.Actions>
+            </CommentMetadata>
+            <CommentText>Elliot you are always so right :)</CommentText>
+            <CommentActions>
               <a>Reply</a>
-            </Comment.Actions>
-          </Comment.Content>
+            </CommentActions>
+          </CommentContent>
         </Comment>
-      </Comment.Group>
+      </CommentGroup>
     </Comment>
 
     <Comment>
-      <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
-      <Comment.Content>
-        <Comment.Author as='a'>Joe Henderson</Comment.Author>
-        <Comment.Metadata>
+      <CommentAvatar as='a' src='/images/avatar/small/joe.jpg' />
+      <CommentContent>
+        <CommentAuthor as='a'>Joe Henderson</CommentAuthor>
+        <CommentMetadata>
           <span>5 days ago</span>
-        </Comment.Metadata>
-        <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
-        <Comment.Actions>
+        </CommentMetadata>
+        <CommentText>Dude, this is awesome. Thanks so much</CommentText>
+        <CommentActions>
           <a>Reply</a>
-        </Comment.Actions>
-      </Comment.Content>
+        </CommentActions>
+      </CommentContent>
     </Comment>
 
     <Form reply>
-      <Form.TextArea />
+      <FormTextArea />
       <Button content='Add Reply' labelPosition='left' icon='edit' primary />
     </Form>
-  </Comment.Group>
+  </CommentGroup>
 )
 
 export default CommentExampleMinimal

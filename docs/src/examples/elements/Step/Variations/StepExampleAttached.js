@@ -1,61 +1,70 @@
 import React from 'react'
-import { Icon, Image, Segment, Step } from 'semantic-ui-react'
+import {
+  StepTitle,
+  StepGroup,
+  StepDescription,
+  StepContent,
+  Icon,
+  Image,
+  Segment,
+  Step,
+} from 'semantic-ui-react'
 
 const StepExampleAttached = () => (
   <div>
-    <Step.Group attached='top'>
+    <StepGroup attached='top'>
       <Step>
         <Icon name='truck' />
-        <Step.Content>
-          <Step.Title>Shipping</Step.Title>
-          <Step.Description>Choose your shipping options</Step.Description>
-        </Step.Content>
+        <StepContent>
+          <StepTitle>Shipping</StepTitle>
+          <StepDescription>Choose your shipping options</StepDescription>
+        </StepContent>
       </Step>
 
       <Step active>
         <Icon name='payment' />
-        <Step.Content>
-          <Step.Title>Billing</Step.Title>
-          <Step.Description>Enter billing information</Step.Description>
-        </Step.Content>
+        <StepContent>
+          <StepTitle>Billing</StepTitle>
+          <StepDescription>Enter billing information</StepDescription>
+        </StepContent>
       </Step>
 
       <Step disabled>
         <Icon name='info' />
-        <Step.Content>
-          <Step.Title>Confirm Order</Step.Title>
-        </Step.Content>
+        <StepContent>
+          <StepTitle>Confirm Order</StepTitle>
+        </StepContent>
       </Step>
-    </Step.Group>
+    </StepGroup>
 
     <Segment attached>
       <Image src='/images/wireframe/paragraph.png' />
     </Segment>
 
-    <Step.Group attached='bottom'>
+    <StepGroup attached='bottom'>
       <Step>
         <Icon name='truck' />
-        <Step.Content>
-          <Step.Title>Shipping</Step.Title>
-          <Step.Description>Choose your shipping options</Step.Description>
-        </Step.Content>
+        <StepContent>
+          <StepTitle>Shipping</StepTitle>
+          <StepDescription>Choose your shipping options</StepDescription>
+        </StepContent>
       </Step>
 
       <Step active>
         <Icon name='payment' />
-        <Step.Content>
-          <Step.Title>Billing</Step.Title>
-          <Step.Description>Enter billing information</Step.Description>
-        </Step.Content>
+        <StepContent>
+          <StepTitle>Billing</StepTitle>
+          <StepDescription>Enter billing information</StepDescription>
+        </StepContent>
       </Step>
 
       <Step disabled>
         <Icon name='info' />
-        <Step.Content>
-          <Step.Title>Confirm Order</Step.Title>
-        </Step.Content>
+        <StepContent>
+          <StepTitle>Confirm Order</StepTitle>
+        </StepContent>
       </Step>
-    </Step.Group>
+    </StepGroup>
   </div>
 )
 

@@ -1,22 +1,22 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
+import { FormInput, FormCheckbox, Form } from 'semantic-ui-react'
 
 const FormExampleFieldErrorLabel = () => (
   <Form>
-    <Form.Input
+    <FormInput
       error={{ content: 'Please enter your first name', pointing: 'below' }}
       fluid
       label='First name'
       placeholder='First name'
       id='form-input-first-name'
     />
-    <Form.Input
+    <FormInput
       error='Please enter your last name'
       fluid
       label='Last name'
       placeholder='Last name'
     />
-    <Form.Checkbox
+    <FormCheckbox
       label='I agree to the Terms and Conditions'
       error={{
         content: 'You must agree to the terms and conditions',

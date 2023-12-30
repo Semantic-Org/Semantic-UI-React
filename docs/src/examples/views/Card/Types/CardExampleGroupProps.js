@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'semantic-ui-react'
+import { CardGroup } from 'semantic-ui-react'
 
 const items = [
   {
@@ -22,6 +22,6 @@ const items = [
   },
 ]
 
-const CardExampleGroupProps = () => <Card.Group items={items} />
+const CardExampleGroupProps = () => <CardGroup items={items} />
 
 export default CardExampleGroupProps

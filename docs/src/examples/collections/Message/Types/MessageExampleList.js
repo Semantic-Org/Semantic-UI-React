@@ -1,13 +1,18 @@
 import React from 'react'
-import { Message } from 'semantic-ui-react'
+import {
+  MessageItem,
+  MessageList,
+  MessageHeader,
+  Message,
+} from 'semantic-ui-react'
 
 const MessageExampleList = () => (
   <Message>
-    <Message.Header>New Site Features</Message.Header>
-    <Message.List>
-      <Message.Item>You can now have cover images on blog pages</Message.Item>
-      <Message.Item>Drafts will now auto-save while writing</Message.Item>
-    </Message.List>
+    <MessageHeader>New Site Features</MessageHeader>
+    <MessageList>
+      <MessageItem>You can now have cover images on blog pages</MessageItem>
+      <MessageItem>Drafts will now auto-save while writing</MessageItem>
+    </MessageList>
   </Message>
 )
 

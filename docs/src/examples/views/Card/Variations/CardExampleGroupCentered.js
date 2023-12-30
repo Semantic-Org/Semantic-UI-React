@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'semantic-ui-react'
+import { CardGroup } from 'semantic-ui-react'
 
 const items = [
   {
@@ -16,6 +16,6 @@ const items = [
   },
 ]
 
-const CardExampleGroupCentered = () => <Card.Group centered items={items} />
+const CardExampleGroupCentered = () => <CardGroup centered items={items} />
 
 export default CardExampleGroupCentered

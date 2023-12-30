@@ -1,52 +1,60 @@
 import React from 'react'
-import { Grid, Placeholder, Segment } from 'semantic-ui-react'
+import {
+  PlaceholderParagraph,
+  PlaceholderLine,
+  PlaceholderHeader,
+  GridColumn,
+  Grid,
+  Placeholder,
+  Segment,
+} from 'semantic-ui-react'
 
 const PlaceholderExampleGrid = () => (
   <Grid columns={3} stackable>
-    <Grid.Column>
+    <GridColumn>
       <Segment raised>
         <Placeholder>
-          <Placeholder.Header image>
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder.Header>
-          <Placeholder.Paragraph>
-            <Placeholder.Line length='medium' />
-            <Placeholder.Line length='short' />
-          </Placeholder.Paragraph>
+          <PlaceholderHeader image>
+            <PlaceholderLine />
+            <PlaceholderLine />
+          </PlaceholderHeader>
+          <PlaceholderParagraph>
+            <PlaceholderLine length='medium' />
+            <PlaceholderLine length='short' />
+          </PlaceholderParagraph>
         </Placeholder>
       </Segment>
-    </Grid.Column>
+    </GridColumn>
 
-    <Grid.Column>
+    <GridColumn>
       <Segment raised>
         <Placeholder>
-          <Placeholder.Header image>
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder.Header>
-          <Placeholder.Paragraph>
-            <Placeholder.Line length='medium' />
-            <Placeholder.Line length='short' />
-          </Placeholder.Paragraph>
+          <PlaceholderHeader image>
+            <PlaceholderLine />
+            <PlaceholderLine />
+          </PlaceholderHeader>
+          <PlaceholderParagraph>
+            <PlaceholderLine length='medium' />
+            <PlaceholderLine length='short' />
+          </PlaceholderParagraph>
         </Placeholder>
       </Segment>
-    </Grid.Column>
+    </GridColumn>
 
-    <Grid.Column>
+    <GridColumn>
       <Segment raised>
         <Placeholder>
-          <Placeholder.Header image>
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder.Header>
-          <Placeholder.Paragraph>
-            <Placeholder.Line length='medium' />
-            <Placeholder.Line length='short' />
-          </Placeholder.Paragraph>
+          <PlaceholderHeader image>
+            <PlaceholderLine />
+            <PlaceholderLine />
+          </PlaceholderHeader>
+          <PlaceholderParagraph>
+            <PlaceholderLine length='medium' />
+            <PlaceholderLine length='short' />
+          </PlaceholderParagraph>
         </Placeholder>
       </Segment>
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 

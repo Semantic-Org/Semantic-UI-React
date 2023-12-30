@@ -1,28 +1,35 @@
 import React from 'react'
-import { Card } from 'semantic-ui-react'
+import {
+  CardMeta,
+  CardHeader,
+  CardGroup,
+  CardDescription,
+  CardContent,
+  Card,
+} from 'semantic-ui-react'
 
 const CardExampleHeaderCard = () => (
-  <Card.Group>
+  <CardGroup>
     <Card>
-      <Card.Content>
-        <Card.Header>Matthew Harris</Card.Header>
-        <Card.Meta>Co-Worker</Card.Meta>
-        <Card.Description>
+      <CardContent>
+        <CardHeader>Matthew Harris</CardHeader>
+        <CardMeta>Co-Worker</CardMeta>
+        <CardDescription>
           Matthew is a pianist living in Nashville.
-        </Card.Description>
-      </Card.Content>
+        </CardDescription>
+      </CardContent>
     </Card>
 
     <Card>
-      <Card.Content>
-        <Card.Header content='Jake Smith' />
-        <Card.Meta content='Musicians' />
-        <Card.Description content='Jake is a drummer living in New York.' />
-      </Card.Content>
+      <CardContent>
+        <CardHeader content='Jake Smith' />
+        <CardMeta content='Musicians' />
+        <CardDescription content='Jake is a drummer living in New York.' />
+      </CardContent>
     </Card>
 
     <Card>
-      <Card.Content
+      <CardContent
         header='Elliot Baker'
         meta='Friend'
         description='Elliot is a music producer living in Chicago.'
@@ -34,7 +41,7 @@ const CardExampleHeaderCard = () => (
       meta='Friend'
       description='Jenny is a student studying Media Management at the New School'
     />
-  </Card.Group>
+  </CardGroup>
 )
 
 export default CardExampleHeaderCard

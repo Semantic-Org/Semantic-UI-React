@@ -1,5 +1,12 @@
 import React from 'react'
-import { Button, Icon, Modal } from 'semantic-ui-react'
+import {
+  ModalHeader,
+  ModalContent,
+  ModalActions,
+  Button,
+  Icon,
+  Modal,
+} from 'semantic-ui-react'
 
 function exampleReducer(state, action) {
   switch (action.type) {
@@ -43,18 +50,18 @@ const ModalExampleSize = () => {
         open={open}
         onClose={() => dispatch({ type: 'close' })}
       >
-        <Modal.Header>Delete Your Account</Modal.Header>
-        <Modal.Content>
+        <ModalHeader>Delete Your Account</ModalHeader>
+        <ModalContent>
           <p>Are you sure you want to delete your account</p>
-        </Modal.Content>
-        <Modal.Actions>
+        </ModalContent>
+        <ModalActions>
           <Button negative onClick={() => dispatch({ type: 'close' })}>
             No
           </Button>
           <Button positive onClick={() => dispatch({ type: 'close' })}>
             Yes
           </Button>
-        </Modal.Actions>
+        </ModalActions>
       </Modal>
     </>
   )

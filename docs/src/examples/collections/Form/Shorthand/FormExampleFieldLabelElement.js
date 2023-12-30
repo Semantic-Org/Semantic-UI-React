@@ -1,9 +1,9 @@
 import React from 'react'
-import { Checkbox, Form } from 'semantic-ui-react'
+import { FormField, Checkbox, Form } from 'semantic-ui-react'
 
 const FormExampleFieldLabelElement = () => (
   <Form>
-    <Form.Field
+    <FormField
       control={Checkbox}
       label={<label>I agree to the Terms and Conditions</label>}
     />

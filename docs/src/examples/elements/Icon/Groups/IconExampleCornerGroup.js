@@ -1,11 +1,11 @@
 import React from 'react'
-import { Icon } from 'semantic-ui-react'
+import { IconGroup, Icon } from 'semantic-ui-react'
 
 const IconExampleCornerGroup = () => (
-  <Icon.Group size='huge'>
+  <IconGroup size='huge'>
     <Icon name='puzzle' />
     <Icon corner name='add' />
-  </Icon.Group>
+  </IconGroup>
 )
 
 export default IconExampleCornerGroup

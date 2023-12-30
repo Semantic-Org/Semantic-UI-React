@@ -1,20 +1,20 @@
 import React from 'react'
-import { Form, Input } from 'semantic-ui-react'
+import { FormGroup, FormField, Form, Input } from 'semantic-ui-react'
 
 const FormExampleInlineGroupedFields = () => (
   <Form>
-    <Form.Group inline>
-      <Form.Field>
+    <FormGroup inline>
+      <FormField>
         <label>Phone Number</label>
         <Input placeholder='(xxx)' />
-      </Form.Field>
-      <Form.Field>
+      </FormField>
+      <FormField>
         <Input placeholder='xxx' />
-      </Form.Field>
-      <Form.Field>
+      </FormField>
+      <FormField>
         <Input placeholder='xxxx' />
-      </Form.Field>
-    </Form.Group>
+      </FormField>
+    </FormGroup>
   </Form>
 )
 

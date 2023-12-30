@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Message } from 'semantic-ui-react'
+import { MenuItem, Menu, Message } from 'semantic-ui-react'
 
 export default class MenuExampleLinkItem extends Component {
   state = {}
@@ -11,11 +11,11 @@ export default class MenuExampleLinkItem extends Component {
     return (
       <div>
         <Menu vertical>
-          <Menu.Item href='//example.com' target='_blank'>
+          <MenuItem href='//example.com' target='_blank'>
             Visit another website
-          </Menu.Item>
-          <Menu.Item link>Link via prop</Menu.Item>
-          <Menu.Item onClick={this.handleClick}>Javascript Link</Menu.Item>
+          </MenuItem>
+          <MenuItem link>Link via prop</MenuItem>
+          <MenuItem onClick={this.handleClick}>Javascript Link</MenuItem>
         </Menu>
 
         {message && <Message content={message} />}

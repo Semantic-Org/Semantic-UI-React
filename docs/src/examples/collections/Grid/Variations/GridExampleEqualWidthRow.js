@@ -1,41 +1,41 @@
 import React from 'react'
-import { Grid, Segment } from 'semantic-ui-react'
+import { GridRow, GridColumn, Grid, Segment } from 'semantic-ui-react'
 
 const GridExampleEqualWidthRow = () => (
   <Grid columns='equal'>
-    <Grid.Row>
-      <Grid.Column>
+    <GridRow>
+      <GridColumn>
         <Segment>1</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>2</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>3</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>4</Segment>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row>
-      <Grid.Column>
+      </GridColumn>
+    </GridRow>
+    <GridRow>
+      <GridColumn>
         <Segment>1</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>2</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>3</Segment>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row>
-      <Grid.Column>
+      </GridColumn>
+    </GridRow>
+    <GridRow>
+      <GridColumn>
         <Segment>1</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>2</Segment>
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
   </Grid>
 )
 

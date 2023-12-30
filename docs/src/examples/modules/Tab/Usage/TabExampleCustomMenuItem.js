@@ -1,18 +1,18 @@
 import React from 'react'
-import { Label, Menu, Tab } from 'semantic-ui-react'
+import { TabPane, MenuItem, Label, Tab } from 'semantic-ui-react'
 
 const panes = [
   {
     menuItem: { key: 'users', icon: 'users', content: 'Users' },
-    render: () => <Tab.Pane>Tab 1 Content</Tab.Pane>,
+    render: () => <TabPane>Tab 1 Content</TabPane>,
   },
   {
     menuItem: (
-      <Menu.Item key='messages'>
+      <MenuItem key='messages'>
         Messages<Label>15</Label>
-      </Menu.Item>
+      </MenuItem>
     ),
-    render: () => <Tab.Pane>Tab 2 Content</Tab.Pane>,
+    render: () => <TabPane>Tab 2 Content</TabPane>,
   },
 ]
 

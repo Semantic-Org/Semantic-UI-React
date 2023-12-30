@@ -1,30 +1,37 @@
 import React from 'react'
-import { Icon, Item } from 'semantic-ui-react'
+import {
+  ItemImage,
+  ItemHeader,
+  ItemGroup,
+  ItemContent,
+  Icon,
+  Item,
+} from 'semantic-ui-react'
 
 const ItemExampleRatings = () => (
-  <Item.Group>
+  <ItemGroup>
     <Item>
-      <Item.Image size='tiny' src='/images/avatar/large/jenny.jpg' />
+      <ItemImage size='tiny' src='/images/avatar/large/jenny.jpg' />
 
-      <Item.Content verticalAlign='middle'>
-        <Item.Header>
+      <ItemContent verticalAlign='middle'>
+        <ItemHeader>
           <Icon name='like' />
           Veronika Ossi
-        </Item.Header>
-      </Item.Content>
+        </ItemHeader>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='/images/avatar/large/justen.jpg' />
+      <ItemImage size='tiny' src='/images/avatar/large/justen.jpg' />
 
-      <Item.Content verticalAlign='middle'>
-        <Item.Header>
+      <ItemContent verticalAlign='middle'>
+        <ItemHeader>
           <Icon name='favorite' />
           Justen Kitsune
-        </Item.Header>
-      </Item.Content>
+        </ItemHeader>
+      </ItemContent>
     </Item>
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleRatings

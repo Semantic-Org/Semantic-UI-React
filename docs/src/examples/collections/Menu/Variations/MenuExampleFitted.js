@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 export default class MenuExampleFitted extends Component {
   state = {}
@@ -11,32 +11,32 @@ export default class MenuExampleFitted extends Component {
 
     return (
       <Menu>
-        <Menu.Item
+        <MenuItem
           name='default'
           active={activeItem === 'default'}
           fitted
           onClick={this.handleItemClick}
         >
           No padding whatsoever
-        </Menu.Item>
+        </MenuItem>
 
-        <Menu.Item
+        <MenuItem
           name='horizontally'
           active={activeItem === 'horizontally'}
           fitted='horizontally'
           onClick={this.handleItemClick}
         >
           No horizontal padding
-        </Menu.Item>
+        </MenuItem>
 
-        <Menu.Item
+        <MenuItem
           name='vertically'
           active={activeItem === 'vertically'}
           fitted='vertically'
           onClick={this.handleItemClick}
         >
           No vertical padding
-        </Menu.Item>
+        </MenuItem>
       </Menu>
     )
   }

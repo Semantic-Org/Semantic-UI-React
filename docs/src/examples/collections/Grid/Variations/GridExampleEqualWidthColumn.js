@@ -1,17 +1,17 @@
 import React from 'react'
-import { Grid, Segment } from 'semantic-ui-react'
+import { GridColumn, Grid, Segment } from 'semantic-ui-react'
 
 const GridExampleEqualWidthColumn = () => (
   <Grid columns='equal'>
-    <Grid.Column>
+    <GridColumn>
       <Segment>1</Segment>
-    </Grid.Column>
-    <Grid.Column width={8}>
+    </GridColumn>
+    <GridColumn width={8}>
       <Segment>2</Segment>
-    </Grid.Column>
-    <Grid.Column>
+    </GridColumn>
+    <GridColumn>
       <Segment>3</Segment>
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 

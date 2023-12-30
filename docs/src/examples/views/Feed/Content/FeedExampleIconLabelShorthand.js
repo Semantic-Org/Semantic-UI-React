@@ -1,21 +1,21 @@
 import React from 'react'
-import { Feed } from 'semantic-ui-react'
+import { FeedLabel, FeedEvent, FeedContent, Feed } from 'semantic-ui-react'
 
 const FeedExampleIconLabelShorthand = () => (
   <Feed>
-    <Feed.Event
+    <FeedEvent
       icon='pencil'
       date='Today'
       summary="You posted on your friend Stevie Feliciano's wall."
     />
 
-    <Feed.Event>
-      <Feed.Label icon='pencil' />
-      <Feed.Content
+    <FeedEvent>
+      <FeedLabel icon='pencil' />
+      <FeedContent
         date='Today'
         summary="You posted on your friend Stevie Feliciano's wall."
       />
-    </Feed.Event>
+    </FeedEvent>
   </Feed>
 )
 

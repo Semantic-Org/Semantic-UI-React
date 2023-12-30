@@ -1,12 +1,12 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { ButtonGroup, Button } from 'semantic-ui-react'
 
 const ButtonExampleGroupIconShorthand = () => (
-  <Button.Group>
+  <ButtonGroup>
     <Button icon='play' />
     <Button icon='pause' />
     <Button icon='shuffle' />
-  </Button.Group>
+  </ButtonGroup>
 )
 
 export default ButtonExampleGroupIconShorthand

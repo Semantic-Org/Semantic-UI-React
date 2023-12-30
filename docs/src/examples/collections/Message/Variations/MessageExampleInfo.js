@@ -1,9 +1,9 @@
 import React from 'react'
-import { Message } from 'semantic-ui-react'
+import { MessageHeader, Message } from 'semantic-ui-react'
 
 const MessageExampleInfo = () => (
   <Message info>
-    <Message.Header>Was this what you wanted?</Message.Header>
+    <MessageHeader>Was this what you wanted?</MessageHeader>
     <p>Did you know it's been a while?</p>
   </Message>
 )

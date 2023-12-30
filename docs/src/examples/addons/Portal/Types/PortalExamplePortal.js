@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Button, Grid, Header, Label, Segment, Portal } from 'semantic-ui-react'
+import {
+  SegmentGroup,
+  GridColumn,
+  Button,
+  Grid,
+  Header,
+  Label,
+  Segment,
+  Portal,
+} from 'semantic-ui-react'
 
 export default class PortalExamplePortal extends Component {
   state = {
@@ -34,7 +43,7 @@ export default class PortalExamplePortal extends Component {
 
     return (
       <Grid columns={2}>
-        <Grid.Column>
+        <GridColumn>
           <Portal
             closeOnTriggerClick
             openOnTriggerClick
@@ -61,9 +70,9 @@ export default class PortalExamplePortal extends Component {
               <p>To close, simply click the close button or click away</p>
             </Segment>
           </Portal>
-        </Grid.Column>
-        <Grid.Column>
-          <Segment.Group>
+        </GridColumn>
+        <GridColumn>
+          <SegmentGroup>
             <Segment>
               <Button
                 compact
@@ -82,8 +91,8 @@ export default class PortalExamplePortal extends Component {
                 ))}
               </pre>
             </Segment>
-          </Segment.Group>
-        </Grid.Column>
+          </SegmentGroup>
+        </GridColumn>
       </Grid>
     )
   }

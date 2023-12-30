@@ -1,6 +1,14 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Button, Image, List, Transition } from 'semantic-ui-react'
+import {
+  TransitionGroup,
+  ListItem,
+  ListContent,
+  ButtonGroup,
+  Button,
+  Image,
+  List,
+} from 'semantic-ui-react'
 
 const users = ['ade', 'chris', 'christian', 'daniel', 'elliot', 'helen']
 
@@ -20,7 +28,7 @@ export default class TransitionExampleGroup extends Component {
 
     return (
       <div>
-        <Button.Group>
+        <ButtonGroup>
           <Button
             disabled={items.length === 0}
             icon='minus'
@@ -31,9 +39,9 @@ export default class TransitionExampleGroup extends Component {
             icon='plus'
             onClick={this.handleAdd}
           />
-        </Button.Group>
+        </ButtonGroup>
 
-        <Transition.Group
+        <TransitionGroup
           as={List}
           duration={200}
           divided
@@ -41,12 +49,12 @@ export default class TransitionExampleGroup extends Component {
           verticalAlign='middle'
         >
           {items.map((item) => (
-            <List.Item key={item}>
+            <ListItem key={item}>
               <Image avatar src={`/images/avatar/small/${item}.jpg`} />
-              <List.Content header={_.startCase(item)} />
-            </List.Item>
+              <ListContent header={_.startCase(item)} />
+            </ListItem>
           ))}
-        </Transition.Group>
+        </TransitionGroup>
       </div>
     )
   }

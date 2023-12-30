@@ -1,5 +1,9 @@
 import React from 'react'
 import {
+  SidebarPushable,
+  SegmentGroup,
+  MenuItem,
+  GridColumn,
   Checkbox,
   Grid,
   Header,
@@ -15,16 +19,16 @@ const SidebarExampleTarget = () => {
 
   return (
     <Grid columns={1}>
-      <Grid.Column>
+      <GridColumn>
         <Checkbox
           checked={visible}
           label={{ children: <code>visible</code> }}
           onChange={(e, data) => setVisible(data.checked)}
         />
-      </Grid.Column>
+      </GridColumn>
 
-      <Grid.Column>
-        <Sidebar.Pushable as={Segment.Group} raised>
+      <GridColumn>
+        <SidebarPushable as={SegmentGroup} raised>
           <Sidebar
             as={Menu}
             animation='overlay'
@@ -36,9 +40,9 @@ const SidebarExampleTarget = () => {
             visible={visible}
             width='thin'
           >
-            <Menu.Item as='a'>Home</Menu.Item>
-            <Menu.Item as='a'>Games</Menu.Item>
-            <Menu.Item as='a'>Channels</Menu.Item>
+            <MenuItem as='a'>Home</MenuItem>
+            <MenuItem as='a'>Games</MenuItem>
+            <MenuItem as='a'>Channels</MenuItem>
           </Sidebar>
 
           <Segment secondary ref={segmentRef}>
@@ -50,8 +54,8 @@ const SidebarExampleTarget = () => {
             <Header as='h3'>Application Content</Header>
             <Image src='/images/wireframe/paragraph.png' />
           </Segment>
-        </Sidebar.Pushable>
-      </Grid.Column>
+        </SidebarPushable>
+      </GridColumn>
     </Grid>
   )
 }

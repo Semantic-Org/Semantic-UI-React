@@ -1,11 +1,11 @@
 import React from 'react'
-import { Segment } from 'semantic-ui-react'
+import { SegmentGroup, Segment } from 'semantic-ui-react'
 
 const SegmentExampleCompactGroup = () => (
-  <Segment.Group compact>
+  <SegmentGroup compact>
     <Segment>Pellentesque habitant morbi</Segment>
     <Segment>Pellentesque habitant morbi</Segment>
-  </Segment.Group>
+  </SegmentGroup>
 )
 
 export default SegmentExampleCompactGroup

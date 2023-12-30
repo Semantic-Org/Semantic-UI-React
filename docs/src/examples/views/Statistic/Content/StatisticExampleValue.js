@@ -1,37 +1,44 @@
 import React from 'react'
-import { Icon, Image, Statistic } from 'semantic-ui-react'
+import {
+  StatisticValue,
+  StatisticLabel,
+  StatisticGroup,
+  Icon,
+  Image,
+  Statistic,
+} from 'semantic-ui-react'
 
 const StatisticExampleValue = () => (
-  <Statistic.Group>
+  <StatisticGroup>
     <Statistic>
-      <Statistic.Value>22</Statistic.Value>
-      <Statistic.Label>Saves</Statistic.Label>
+      <StatisticValue>22</StatisticValue>
+      <StatisticLabel>Saves</StatisticLabel>
     </Statistic>
 
     <Statistic>
-      <Statistic.Value text>
+      <StatisticValue text>
         Three
         <br />
         Thousand
-      </Statistic.Value>
-      <Statistic.Label>Signups</Statistic.Label>
+      </StatisticValue>
+      <StatisticLabel>Signups</StatisticLabel>
     </Statistic>
 
     <Statistic>
-      <Statistic.Value>
+      <StatisticValue>
         <Icon name='plane' />5
-      </Statistic.Value>
-      <Statistic.Label>Flights</Statistic.Label>
+      </StatisticValue>
+      <StatisticLabel>Flights</StatisticLabel>
     </Statistic>
 
     <Statistic>
-      <Statistic.Value>
+      <StatisticValue>
         <Image src='/images/avatar/small/joe.jpg' inline circular />
         42
-      </Statistic.Value>
-      <Statistic.Label>Team Members</Statistic.Label>
+      </StatisticValue>
+      <StatisticLabel>Team Members</StatisticLabel>
     </Statistic>
-  </Statistic.Group>
+  </StatisticGroup>
 )
 
 export default StatisticExampleValue

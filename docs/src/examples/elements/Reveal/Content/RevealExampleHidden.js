@@ -1,14 +1,14 @@
 import React from 'react'
-import { Image, Reveal } from 'semantic-ui-react'
+import { RevealContent, Image, Reveal } from 'semantic-ui-react'
 
 const RevealExampleHidden = () => (
   <Reveal animated='small fade'>
-    <Reveal.Content visible>
+    <RevealContent visible>
       <Image src='/images/wireframe/square-image.png' size='small' />
-    </Reveal.Content>
-    <Reveal.Content hidden>
+    </RevealContent>
+    <RevealContent hidden>
       <Image src='/images/avatar/large/ade.jpg' size='small' />
-    </Reveal.Content>
+    </RevealContent>
   </Reveal>
 )
 

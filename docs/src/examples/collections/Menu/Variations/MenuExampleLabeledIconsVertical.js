@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Menu } from 'semantic-ui-react'
+import { MenuItem, Icon, Menu } from 'semantic-ui-react'
 
 export default class MenuExampleLabeledIconsVertical extends Component {
   state = { activeItem: 'gamepad' }
@@ -11,32 +11,32 @@ export default class MenuExampleLabeledIconsVertical extends Component {
 
     return (
       <Menu icon='labeled' vertical>
-        <Menu.Item
+        <MenuItem
           name='gamepad'
           active={activeItem === 'gamepad'}
           onClick={this.handleItemClick}
         >
           <Icon name='gamepad' />
           Games
-        </Menu.Item>
+        </MenuItem>
 
-        <Menu.Item
+        <MenuItem
           name='video camera'
           active={activeItem === 'video camera'}
           onClick={this.handleItemClick}
         >
           <Icon name='video camera' />
           Channels
-        </Menu.Item>
+        </MenuItem>
 
-        <Menu.Item
+        <MenuItem
           name='video play'
           active={activeItem === 'video play'}
           onClick={this.handleItemClick}
         >
           <Icon name='video play' />
           Videos
-        </Menu.Item>
+        </MenuItem>
       </Menu>
     )
   }

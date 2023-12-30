@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Segment } from 'semantic-ui-react'
+import { HeaderSubheader, Header, Segment } from 'semantic-ui-react'
 
 const square = { width: 175, height: 175 }
 
@@ -8,13 +8,13 @@ const SegmentExampleCircular = () => (
     <Segment circular style={square}>
       <Header as='h2'>
         Sale!
-        <Header.Subheader>$10.99</Header.Subheader>
+        <HeaderSubheader>$10.99</HeaderSubheader>
       </Header>
     </Segment>
     <Segment circular inverted style={square}>
       <Header as='h2' inverted>
         Buy Now
-        <Header.Subheader>$10.99</Header.Subheader>
+        <HeaderSubheader>$10.99</HeaderSubheader>
       </Header>
     </Segment>
   </div>

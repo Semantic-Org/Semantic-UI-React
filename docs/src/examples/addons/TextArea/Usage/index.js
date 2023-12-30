@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Message, Segment } from 'semantic-ui-react'
+import { MessageHeader, Button, Message, Segment } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -8,8 +8,9 @@ const TextAreaUsageExamples = () => (
   <ExampleSection title='Usage'>
     <Segment>
       <Message warning>
-        <Message.Header>Auto height</Message.Header>
-        We don't support `autoHeight` anymore. If you need this feature you can use{' '}
+        <MessageHeader>Auto height</MessageHeader>
+        We don't support `autoHeight` anymore. If you need this feature you can
+        use{' '}
         <a
           href='https://www.npmjs.com/package/react-textarea-autosize'
           rel='noopener noreferrer'

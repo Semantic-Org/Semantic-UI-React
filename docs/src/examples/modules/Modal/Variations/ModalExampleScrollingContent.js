@@ -1,5 +1,14 @@
 import React from 'react'
-import { Button, Icon, Image, Modal } from 'semantic-ui-react'
+import {
+  ModalHeader,
+  ModalDescription,
+  ModalContent,
+  ModalActions,
+  Button,
+  Icon,
+  Image,
+  Modal,
+} from 'semantic-ui-react'
 
 const ModalExampleScrollingContent = () => {
   const [open, setOpen] = React.useState(false)
@@ -11,11 +20,11 @@ const ModalExampleScrollingContent = () => {
       onOpen={() => setOpen(true)}
       trigger={<Button>Scrolling Content Modal</Button>}
     >
-      <Modal.Header>Profile Picture</Modal.Header>
-      <Modal.Content image scrolling>
+      <ModalHeader>Profile Picture</ModalHeader>
+      <ModalContent image scrolling>
         <Image size='medium' src='/images/wireframe/image.png' wrapped />
 
-        <Modal.Description>
+        <ModalDescription>
           <p>
             This is an example of expanded content that will cause the modal's
             dimmer to scroll.
@@ -50,13 +59,13 @@ const ModalExampleScrollingContent = () => {
             style={{ marginBottom: 10 }}
           />
           <Image src='/images/wireframe/paragraph.png' />
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
+        </ModalDescription>
+      </ModalContent>
+      <ModalActions>
         <Button onClick={() => setOpen(false)} primary>
           Proceed <Icon name='chevron right' />
         </Button>
-      </Modal.Actions>
+      </ModalActions>
     </Modal>
   )
 }

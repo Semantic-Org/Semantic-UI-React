@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 export default class MenuExampleVerticalText extends Component {
   state = { activeItem: 'closest' }
@@ -11,18 +11,18 @@ export default class MenuExampleVerticalText extends Component {
 
     return (
       <Menu text vertical>
-        <Menu.Item header>Sort By</Menu.Item>
-        <Menu.Item
+        <MenuItem header>Sort By</MenuItem>
+        <MenuItem
           name='closest'
           active={activeItem === 'closest'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='mostComments'
           active={activeItem === 'mostComments'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='mostPopular'
           active={activeItem === 'mostPopular'}
           onClick={this.handleItemClick}

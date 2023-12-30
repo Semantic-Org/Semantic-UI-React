@@ -1,5 +1,11 @@
 import React from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import {
+  ModalHeader,
+  ModalContent,
+  ModalActions,
+  Button,
+  Modal,
+} from 'semantic-ui-react'
 
 function exampleReducer(state, action) {
   switch (action.type) {
@@ -38,19 +44,19 @@ function ModalExampleDimmer() {
         open={open}
         onClose={() => dispatch({ type: 'CLOSE_MODAL' })}
       >
-        <Modal.Header>Use Google's location service?</Modal.Header>
-        <Modal.Content>
+        <ModalHeader>Use Google's location service?</ModalHeader>
+        <ModalContent>
           Let Google help apps determine location. This means sending anonymous
           location data to Google, even when no apps are running.
-        </Modal.Content>
-        <Modal.Actions>
+        </ModalContent>
+        <ModalActions>
           <Button negative onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
             Disagree
           </Button>
           <Button positive onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
             Agree
           </Button>
-        </Modal.Actions>
+        </ModalActions>
       </Modal>
     </div>
   )

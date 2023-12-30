@@ -1,18 +1,18 @@
 import React from 'react'
-import { Grid, Image, Segment } from 'semantic-ui-react'
+import { GridColumn, Grid, Image, Segment } from 'semantic-ui-react'
 
 const GridExampleStackable = () => (
   <Grid stackable columns={2}>
-    <Grid.Column>
+    <GridColumn>
       <Segment>
         <Image src='/images/wireframe/paragraph.png' />
       </Segment>
-    </Grid.Column>
-    <Grid.Column>
+    </GridColumn>
+    <GridColumn>
       <Segment>
         <Image src='/images/wireframe/paragraph.png' />
       </Segment>
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 

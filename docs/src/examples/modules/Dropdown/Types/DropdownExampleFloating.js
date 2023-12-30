@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Dropdown } from 'semantic-ui-react'
+import { ButtonGroup, Button, Dropdown } from 'semantic-ui-react'
 
 const options = [
   { key: 'edit', icon: 'edit', text: 'Edit Post', value: 'edit' },
@@ -8,7 +8,7 @@ const options = [
 ]
 
 const DropdownExampleFloating = () => (
-  <Button.Group color='teal'>
+  <ButtonGroup color='teal'>
     <Button>Save</Button>
     <Dropdown
       className='button icon'
@@ -16,7 +16,7 @@ const DropdownExampleFloating = () => (
       options={options}
       trigger={<></>}
     />
-  </Button.Group>
+  </ButtonGroup>
 )
 
 export default DropdownExampleFloating

@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React, { Component, createRef } from 'react'
 import {
+  GridColumn,
   Checkbox,
   Grid,
   Header,
@@ -24,7 +25,7 @@ export default class StickyExampleActive extends Component {
 
     return (
       <Grid centered columns={3}>
-        <Grid.Column>
+        <GridColumn>
           <Segment ref={this.contextRef}>
             {_.times(10, (i) => (
               <Placeholder key={i} />
@@ -50,7 +51,7 @@ export default class StickyExampleActive extends Component {
               </Sticky>
             </Rail>
           </Segment>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

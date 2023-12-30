@@ -1,19 +1,26 @@
 import React from 'react'
-import { Feed } from 'semantic-ui-react'
+import {
+  FeedSummary,
+  FeedLabel,
+  FeedEvent,
+  FeedDate,
+  FeedContent,
+  Feed,
+} from 'semantic-ui-react'
 
 const FeedExampleSummaryDate = () => (
   <Feed>
-    <Feed.Event>
-      <Feed.Label>
+    <FeedEvent>
+      <FeedLabel>
         <img src='/images/avatar/small/jenny.jpg' />
-      </Feed.Label>
-      <Feed.Content>
-        <Feed.Summary>
+      </FeedLabel>
+      <FeedContent>
+        <FeedSummary>
           You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-          <Feed.Date>3 days ago</Feed.Date>
-        </Feed.Summary>
-      </Feed.Content>
-    </Feed.Event>
+          <FeedDate>3 days ago</FeedDate>
+        </FeedSummary>
+      </FeedContent>
+    </FeedEvent>
   </Feed>
 )
 

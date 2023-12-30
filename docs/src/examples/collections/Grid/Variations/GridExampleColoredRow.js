@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import { GridRow, GridColumn, Grid } from 'semantic-ui-react'
 
 const colors = [
   'red',
@@ -21,9 +21,9 @@ const colors = [
 const GridColoredRowExample = () => (
   <Grid padded>
     {colors.map((color) => (
-      <Grid.Row color={color} key={color}>
-        <Grid.Column>{_.capitalize(color)}</Grid.Column>
-      </Grid.Row>
+      <GridRow color={color} key={color}>
+        <GridColumn>{_.capitalize(color)}</GridColumn>
+      </GridRow>
     ))}
   </Grid>
 )

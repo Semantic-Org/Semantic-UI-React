@@ -1,6 +1,12 @@
 import _ from 'lodash'
 import React, { Component, createRef } from 'react'
 import {
+  ItemMeta,
+  ItemImage,
+  ItemHeader,
+  ItemGroup,
+  ItemContent,
+  GridColumn,
   Grid,
   Header,
   Image,
@@ -19,7 +25,7 @@ export default class StickyExampleOversized extends Component {
   render() {
     return (
       <Grid centered columns={3}>
-        <Grid.Column>
+        <GridColumn>
           <Segment ref={this.contextRef}>
             {_.times(15, (i) => (
               <Placeholder key={i} />
@@ -27,20 +33,20 @@ export default class StickyExampleOversized extends Component {
 
             <Rail position='left'>
               <Sticky context={this.contextRef}>
-                <Item.Group divided>
+                <ItemGroup divided>
                   {_.times(12, (i) => (
                     <Item key={i}>
-                      <Item.Image
+                      <ItemImage
                         size='tiny'
                         src='/images/wireframe/image.png'
                       />
-                      <Item.Content>
-                        <Item.Header as='a'>Followup Article</Item.Header>
-                        <Item.Meta>By Author</Item.Meta>
-                      </Item.Content>
+                      <ItemContent>
+                        <ItemHeader as='a'>Followup Article</ItemHeader>
+                        <ItemMeta>By Author</ItemMeta>
+                      </ItemContent>
                     </Item>
                   ))}
-                </Item.Group>
+                </ItemGroup>
               </Sticky>
             </Rail>
 
@@ -51,7 +57,7 @@ export default class StickyExampleOversized extends Component {
               </Sticky>
             </Rail>
           </Segment>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

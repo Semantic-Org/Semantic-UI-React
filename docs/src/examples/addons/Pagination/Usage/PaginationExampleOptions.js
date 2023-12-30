@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Grid, Form, Pagination, Segment } from 'semantic-ui-react'
+import {
+  GridColumn,
+  FormInput,
+  FormGroup,
+  FormCheckbox,
+  Grid,
+  Form,
+  Pagination,
+  Segment,
+} from 'semantic-ui-react'
 
 export default class PaginationExampleCustomization extends Component {
   state = {
@@ -32,7 +41,7 @@ export default class PaginationExampleCustomization extends Component {
 
     return (
       <Grid columns={1}>
-        <Grid.Column>
+        <GridColumn>
           <Pagination
             activePage={activePage}
             boundaryRange={boundaryRange}
@@ -47,12 +56,12 @@ export default class PaginationExampleCustomization extends Component {
             prevItem={showPreviousAndNextNav ? undefined : null}
             nextItem={showPreviousAndNextNav ? undefined : null}
           />
-        </Grid.Column>
+        </GridColumn>
 
-        <Grid.Column>
+        <GridColumn>
           <Form as={Segment}>
-            <Form.Group widths={2}>
-              <Form.Input
+            <FormGroup widths={2}>
+              <FormInput
                 label='Active page'
                 name='activePage'
                 min={1}
@@ -60,7 +69,7 @@ export default class PaginationExampleCustomization extends Component {
                 type='number'
                 value={activePage}
               />
-              <Form.Input
+              <FormInput
                 label='Total pages'
                 name='totalPages'
                 min={1}
@@ -68,9 +77,9 @@ export default class PaginationExampleCustomization extends Component {
                 type='number'
                 value={totalPages}
               />
-            </Form.Group>
-            <Form.Group widths={2}>
-              <Form.Input
+            </FormGroup>
+            <FormGroup widths={2}>
+              <FormInput
                 label='Boundary pages range'
                 name='boundaryRange'
                 min={0}
@@ -78,7 +87,7 @@ export default class PaginationExampleCustomization extends Component {
                 type='number'
                 value={boundaryRange}
               />
-              <Form.Input
+              <FormInput
                 label='Sibling pages range'
                 name='siblingRange'
                 min={0}
@@ -86,29 +95,29 @@ export default class PaginationExampleCustomization extends Component {
                 type='number'
                 value={siblingRange}
               />
-            </Form.Group>
-            <Form.Group inline>
-              <Form.Checkbox
+            </FormGroup>
+            <FormGroup inline>
+              <FormCheckbox
                 checked={showEllipsis}
                 label='Show ellipsis'
                 name='showEllipsis'
                 onChange={this.handleCheckboxChange}
               />
-              <Form.Checkbox
+              <FormCheckbox
                 checked={showFirstAndLastNav}
                 label='Show first and last nav pages'
                 name='showFirstAndLastNav'
                 onChange={this.handleCheckboxChange}
               />
-              <Form.Checkbox
+              <FormCheckbox
                 checked={showPreviousAndNextNav}
                 label='Show previous and next nav pages'
                 name='showPreviousAndNextNav'
                 onChange={this.handleCheckboxChange}
               />
-            </Form.Group>
+            </FormGroup>
           </Form>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

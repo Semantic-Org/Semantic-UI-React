@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown, Header, Icon } from 'semantic-ui-react'
+import { HeaderContent, Dropdown, Header, Icon } from 'semantic-ui-react'
 
 const options = [
   {
@@ -25,7 +25,7 @@ const options = [
 const DropdownExampleInlineTwo = () => (
   <Header as='h4'>
     <Icon name='trophy' />
-    <Header.Content>
+    <HeaderContent>
       Trending repos{' '}
       <Dropdown
         inline
@@ -33,7 +33,7 @@ const DropdownExampleInlineTwo = () => (
         options={options}
         defaultValue={options[0].value}
       />
-    </Header.Content>
+    </HeaderContent>
   </Header>
 )
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Step } from 'semantic-ui-react'
+import { StepGroup } from 'semantic-ui-react'
 
 const steps = [
   {
@@ -18,6 +18,6 @@ const steps = [
   { key: 'confirm', disabled: true, icon: 'info', title: 'Confirm Order' },
 ]
 
-const StepExampleGroupShorthand = () => <Step.Group items={steps} />
+const StepExampleGroupShorthand = () => <StepGroup items={steps} />
 
 export default StepExampleGroupShorthand

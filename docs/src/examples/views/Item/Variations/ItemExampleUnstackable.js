@@ -1,18 +1,18 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import { ItemImage, ItemGroup, Item } from 'semantic-ui-react'
 
 const ItemExampleImages = () => (
-  <Item.Group divided unstackable>
+  <ItemGroup divided unstackable>
     <Item>
-      <Item.Image src='/images/wireframe/image.png' />
+      <ItemImage src='/images/wireframe/image.png' />
     </Item>
 
     <Item>
-      <Item.Image src='/images/wireframe/image.png' />
+      <ItemImage src='/images/wireframe/image.png' />
     </Item>
 
     <Item image='/images/wireframe/image.png' />
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleImages

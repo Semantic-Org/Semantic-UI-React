@@ -1,28 +1,35 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleDefinition = () => (
   <Table definition>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell />
-        <Table.HeaderCell>Arguments</Table.HeaderCell>
-        <Table.HeaderCell>Description</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell />
+        <TableHeaderCell>Arguments</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>reset rating</Table.Cell>
-        <Table.Cell>None</Table.Cell>
-        <Table.Cell>Resets rating to default value</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>set rating</Table.Cell>
-        <Table.Cell>rating (integer)</Table.Cell>
-        <Table.Cell>Sets the current star rating to specified value</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+    <TableBody>
+      <TableRow>
+        <TableCell>reset rating</TableCell>
+        <TableCell>None</TableCell>
+        <TableCell>Resets rating to default value</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>set rating</TableCell>
+        <TableCell>rating (integer)</TableCell>
+        <TableCell>Sets the current star rating to specified value</TableCell>
+      </TableRow>
+    </TableBody>
   </Table>
 )
 

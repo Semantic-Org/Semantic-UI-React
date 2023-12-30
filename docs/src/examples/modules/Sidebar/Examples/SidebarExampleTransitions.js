@@ -1,5 +1,11 @@
 import React from 'react'
 import {
+  SidebarPusher,
+  SidebarPushable,
+  ButtonGroup,
+  MenuItem,
+  GridRow,
+  GridColumn,
   Button,
   Checkbox,
   Grid,
@@ -19,22 +25,22 @@ const HorizontalSidebar = ({ animation, direction, visible }) => (
     visible={visible}
   >
     <Grid textAlign='center'>
-      <Grid.Row columns={1}>
-        <Grid.Column>
+      <GridRow columns={1}>
+        <GridColumn>
           <Header as='h3'>New Content Awaits</Header>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row columns={3}>
-        <Grid.Column>
+        </GridColumn>
+      </GridRow>
+      <GridRow columns={3}>
+        <GridColumn>
           <Image src='/images/wireframe/media-paragraph.png' />
-        </Grid.Column>
-        <Grid.Column>
+        </GridColumn>
+        <GridColumn>
           <Image src='/images/wireframe/media-paragraph.png' />
-        </Grid.Column>
-        <Grid.Column>
+        </GridColumn>
+        <GridColumn>
           <Image src='/images/wireframe/media-paragraph.png' />
-        </Grid.Column>
-      </Grid.Row>
+        </GridColumn>
+      </GridRow>
     </Grid>
   </Sidebar>
 )
@@ -50,18 +56,18 @@ const VerticalSidebar = ({ animation, direction, visible }) => (
     visible={visible}
     width='thin'
   >
-    <Menu.Item as='a'>
+    <MenuItem as='a'>
       <Icon name='home' />
       Home
-    </Menu.Item>
-    <Menu.Item as='a'>
+    </MenuItem>
+    <MenuItem as='a'>
       <Icon name='gamepad' />
       Games
-    </Menu.Item>
-    <Menu.Item as='a'>
+    </MenuItem>
+    <MenuItem as='a'>
       <Icon name='camera' />
       Channels
-    </Menu.Item>
+    </MenuItem>
   </Sidebar>
 )
 
@@ -101,7 +107,7 @@ function SidebarExampleTransitions() {
       />
 
       <Header as='h5'>Direction</Header>
-      <Button.Group>
+      <ButtonGroup>
         <Button
           active={direction === 'left'}
           onClick={() =>
@@ -134,7 +140,7 @@ function SidebarExampleTransitions() {
         >
           Bottom
         </Button>
-      </Button.Group>
+      </ButtonGroup>
 
       <Header as='h5'>All Direction Animations</Header>
       <Button
@@ -185,7 +191,7 @@ function SidebarExampleTransitions() {
         Slide Out
       </Button>
 
-      <Sidebar.Pushable as={Segment} style={{ overflow: 'hidden' }}>
+      <SidebarPushable as={Segment} style={{ overflow: 'hidden' }}>
         {vertical && (
           <HorizontalSidebar
             animation={animation}
@@ -201,13 +207,13 @@ function SidebarExampleTransitions() {
           />
         )}
 
-        <Sidebar.Pusher dimmed={dimmed && visible}>
+        <SidebarPusher dimmed={dimmed && visible}>
           <Segment basic>
             <Header as='h3'>Application Content</Header>
             <Image src='/images/wireframe/paragraph.png' />
           </Segment>
-        </Sidebar.Pusher>
-      </Sidebar.Pushable>
+        </SidebarPusher>
+      </SidebarPushable>
     </div>
   )
 }

@@ -1,18 +1,18 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { ButtonGroup, Button } from 'semantic-ui-react'
 
 const ButtonExampleGroupFloated = () => (
   <div>
-    <Button.Group floated='left'>
+    <ButtonGroup floated='left'>
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>
-    </Button.Group>
-    <Button.Group floated='right'>
+    </ButtonGroup>
+    <ButtonGroup floated='right'>
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>
-    </Button.Group>
+    </ButtonGroup>
   </div>
 )
 

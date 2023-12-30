@@ -1,11 +1,11 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import { ListItem, List } from 'semantic-ui-react'
 
 const ListExampleItem = () => (
   <List>
-    <List.Item>1</List.Item>
-    <List.Item>2</List.Item>
-    <List.Item>3</List.Item>
+    <ListItem>1</ListItem>
+    <ListItem>2</ListItem>
+    <ListItem>3</ListItem>
   </List>
 )
 

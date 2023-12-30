@@ -1,10 +1,10 @@
 import React from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 const MenuExampleHover = () => (
   <Menu compact>
-    <Menu.Item as='a'>A link</Menu.Item>
-    <Menu.Item link>div Link</Menu.Item>
+    <MenuItem as='a'>A link</MenuItem>
+    <MenuItem link>div Link</MenuItem>
   </Menu>
 )
 

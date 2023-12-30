@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { Button, Dimmer, Image, Segment } from 'semantic-ui-react'
+import {
+  DimmerDimmable,
+  ButtonGroup,
+  Button,
+  Dimmer,
+  Image,
+  Segment,
+} from 'semantic-ui-react'
 
 export default class DimmerExampleInverted extends Component {
   state = {}
@@ -12,7 +19,7 @@ export default class DimmerExampleInverted extends Component {
 
     return (
       <div>
-        <Dimmer.Dimmable as={Segment} dimmed={active}>
+        <DimmerDimmable as={Segment} dimmed={active}>
           <Dimmer active={active} inverted onClickOutside={this.handleHide} />
 
           <p>
@@ -21,12 +28,12 @@ export default class DimmerExampleInverted extends Component {
           <p>
             <Image src='/images/wireframe/paragraph.png' />
           </p>
-        </Dimmer.Dimmable>
+        </DimmerDimmable>
 
-        <Button.Group>
+        <ButtonGroup>
           <Button icon='plus' onClick={this.handleShow} />
           <Button icon='minus' onClick={this.handleHide} />
-        </Button.Group>
+        </ButtonGroup>
       </div>
     )
   }

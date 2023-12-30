@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button, Form, Message } from 'semantic-ui-react'
+import { FormInput, Button, Form, Message } from 'semantic-ui-react'
 
 const FormExampleError = () => (
   <Form error>
-    <Form.Input label='Email' placeholder='joe@schmoe.com' />
+    <FormInput label='Email' placeholder='joe@schmoe.com' />
     <Message
       error
       header='Action Forbidden'

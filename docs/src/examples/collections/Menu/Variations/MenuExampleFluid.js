@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 export default class MenuExampleFluid extends Component {
   state = {}
@@ -11,17 +11,17 @@ export default class MenuExampleFluid extends Component {
 
     return (
       <Menu fluid vertical>
-        <Menu.Item
+        <MenuItem
           name='run'
           active={activeItem === 'run'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='walk'
           active={activeItem === 'walk'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='bike'
           active={activeItem === 'bike'}
           onClick={this.handleItemClick}

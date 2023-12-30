@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Grid, Image, Rail, Segment } from 'semantic-ui-react'
+import { GridColumn, Grid, Image, Rail, Segment } from 'semantic-ui-react'
 
 const Wrapper = ({ children }) => (
   <Grid columns={3} textAlign='center'>
-    <Grid.Column>
+    <GridColumn>
       <Segment>
         <Image src='/images/wireframe/paragraph.png' />
         {children}
       </Segment>
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 

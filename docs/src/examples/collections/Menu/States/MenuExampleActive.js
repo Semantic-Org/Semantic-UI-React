@@ -1,9 +1,9 @@
 import React from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 const MenuExampleActive = () => (
   <Menu compact>
-    <Menu.Item active>Link</Menu.Item>
+    <MenuItem active>Link</MenuItem>
   </Menu>
 )
 

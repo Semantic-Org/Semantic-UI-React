@@ -1,13 +1,13 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { ButtonGroup, Button } from 'semantic-ui-react'
 
 const ButtonExampleGroupIconSize = () => (
-  <Button.Group basic size='small'>
+  <ButtonGroup basic size='small'>
     <Button icon='file' />
     <Button icon='save' />
     <Button icon='upload' />
     <Button icon='download' />
-  </Button.Group>
+  </ButtonGroup>
 )
 
 export default ButtonExampleGroupIconSize

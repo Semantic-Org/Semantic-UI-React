@@ -1,9 +1,9 @@
 import React from 'react'
-import { Grid, Image } from 'semantic-ui-react'
+import { GridColumn, Grid, Image } from 'semantic-ui-react'
 
 const LabelExampleRibbonImage = () => (
   <Grid columns={2}>
-    <Grid.Column>
+    <GridColumn>
       <Image
         fluid
         label={{
@@ -15,9 +15,9 @@ const LabelExampleRibbonImage = () => (
         }}
         src='/images/wireframe/image.png'
       />
-    </Grid.Column>
+    </GridColumn>
 
-    <Grid.Column>
+    <GridColumn>
       <Image
         fluid
         label={{
@@ -29,7 +29,7 @@ const LabelExampleRibbonImage = () => (
         }}
         src='/images/wireframe/image.png'
       />
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 

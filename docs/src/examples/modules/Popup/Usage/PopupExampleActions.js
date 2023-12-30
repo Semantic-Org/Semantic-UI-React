@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button, Grid, Input, Popup } from 'semantic-ui-react'
+import { GridColumn, Button, Grid, Input, Popup } from 'semantic-ui-react'
 
 const PopupExampleActions = () => (
   <Grid columns={1}>
-    <Grid.Column>
+    <GridColumn>
       <Popup
         trigger={<Button icon='add' content='Add a friend' />}
         content='Sends an email invite to a friend.'
@@ -23,15 +23,15 @@ const PopupExampleActions = () => (
         content='You may search by genre, header, year and actors'
         on='focus'
       />
-    </Grid.Column>
-    <Grid.Column>
+    </GridColumn>
+    <GridColumn>
       <Popup
         trigger={<Button>Click me or Hover me</Button>}
         header='Movie Search'
         content='Multiple events can trigger a popup'
         on={['hover', 'click']}
       />
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 

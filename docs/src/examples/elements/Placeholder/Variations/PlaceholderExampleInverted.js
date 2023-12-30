@@ -1,18 +1,24 @@
 import React from 'react'
-import { Placeholder, Segment } from 'semantic-ui-react'
+import {
+  PlaceholderParagraph,
+  PlaceholderLine,
+  PlaceholderHeader,
+  Placeholder,
+  Segment,
+} from 'semantic-ui-react'
 
 const PlaceholderExampleInverted = () => (
   <Segment inverted>
     <Placeholder inverted>
-      <Placeholder.Header image>
-        <Placeholder.Line />
-        <Placeholder.Line />
-      </Placeholder.Header>
-      <Placeholder.Paragraph>
-        <Placeholder.Line />
-        <Placeholder.Line />
-        <Placeholder.Line />
-      </Placeholder.Paragraph>
+      <PlaceholderHeader image>
+        <PlaceholderLine />
+        <PlaceholderLine />
+      </PlaceholderHeader>
+      <PlaceholderParagraph>
+        <PlaceholderLine />
+        <PlaceholderLine />
+        <PlaceholderLine />
+      </PlaceholderParagraph>
     </Placeholder>
   </Segment>
 )

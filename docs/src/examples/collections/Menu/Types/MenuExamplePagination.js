@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 export default class MenuExamplePagination extends Component {
   state = { activeItem: '10' }
@@ -11,23 +11,23 @@ export default class MenuExamplePagination extends Component {
 
     return (
       <Menu pagination>
-        <Menu.Item
+        <MenuItem
           name='1'
           active={activeItem === '1'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item disabled>...</Menu.Item>
-        <Menu.Item
+        <MenuItem disabled>...</MenuItem>
+        <MenuItem
           name='10'
           active={activeItem === '10'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='11'
           active={activeItem === '11'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='12'
           active={activeItem === '12'}
           onClick={this.handleItemClick}

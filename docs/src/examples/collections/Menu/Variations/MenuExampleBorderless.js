@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 export default class MenuExampleBorderless extends Component {
   state = { activeItem: '1' }
@@ -11,32 +11,32 @@ export default class MenuExampleBorderless extends Component {
 
     return (
       <Menu borderless>
-        <Menu.Item
+        <MenuItem
           name='1'
           active={activeItem === '1'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='2'
           active={activeItem === '2'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='3'
           active={activeItem === '3'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='4'
           active={activeItem === '4'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='5'
           active={activeItem === '5'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='6'
           active={activeItem === '6'}
           onClick={this.handleItemClick}

@@ -1,14 +1,14 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { ButtonOr, ButtonGroup, Button } from 'semantic-ui-react'
 
 const ButtonExampleMultipleConditionals = () => (
-  <Button.Group>
+  <ButtonGroup>
     <Button>One</Button>
-    <Button.Or />
+    <ButtonOr />
     <Button>Two</Button>
-    <Button.Or />
+    <ButtonOr />
     <Button>Three</Button>
-  </Button.Group>
+  </ButtonGroup>
 )
 
 export default ButtonExampleMultipleConditionals

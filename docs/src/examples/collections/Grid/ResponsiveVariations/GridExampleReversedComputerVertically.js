@@ -1,20 +1,20 @@
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import { GridRow, GridColumn, Grid } from 'semantic-ui-react'
 
 const GridExampleReversedComputerVertically = () => (
   <Grid reversed='computer vertically'>
-    <Grid.Row>
-      <Grid.Column>Computer Row 4</Grid.Column>
-    </Grid.Row>
-    <Grid.Row>
-      <Grid.Column>Computer Row 3</Grid.Column>
-    </Grid.Row>
-    <Grid.Row>
-      <Grid.Column>Computer Row 2</Grid.Column>
-    </Grid.Row>
-    <Grid.Row>
-      <Grid.Column>Computer Row 1</Grid.Column>
-    </Grid.Row>
+    <GridRow>
+      <GridColumn>Computer Row 4</GridColumn>
+    </GridRow>
+    <GridRow>
+      <GridColumn>Computer Row 3</GridColumn>
+    </GridRow>
+    <GridRow>
+      <GridColumn>Computer Row 2</GridColumn>
+    </GridRow>
+    <GridRow>
+      <GridColumn>Computer Row 1</GridColumn>
+    </GridRow>
   </Grid>
 )
 

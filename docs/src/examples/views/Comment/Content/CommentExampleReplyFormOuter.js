@@ -1,16 +1,29 @@
 import React from 'react'
-import { Button, Comment, Form } from 'semantic-ui-react'
+import {
+  CommentText,
+  CommentMetadata,
+  CommentGroup,
+  CommentContent,
+  CommentAvatar,
+  CommentActions,
+  CommentAction,
+  CommentAuthor,
+  FormTextArea,
+  Button,
+  Comment,
+  Form,
+} from 'semantic-ui-react'
 
 const CommentExampleReplyFormOuter = () => (
-  <Comment.Group>
+  <CommentGroup>
     <Comment>
-      <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
-      <Comment.Content>
-        <Comment.Author>Joe Henderson</Comment.Author>
-        <Comment.Metadata>
+      <CommentAvatar as='a' src='/images/avatar/small/joe.jpg' />
+      <CommentContent>
+        <CommentAuthor>Joe Henderson</CommentAuthor>
+        <CommentMetadata>
           <div>1 day ago</div>
-        </Comment.Metadata>
-        <Comment.Text>
+        </CommentMetadata>
+        <CommentText>
           <p>
             The hours, minutes and seconds stand as visible reminders that your
             effort put them all there.
@@ -19,32 +32,32 @@ const CommentExampleReplyFormOuter = () => (
             Preserve until your next run, when the watch lets you see how
             Impermanent your efforts are.
           </p>
-        </Comment.Text>
-        <Comment.Actions>
-          <Comment.Action>Reply</Comment.Action>
-        </Comment.Actions>
-      </Comment.Content>
+        </CommentText>
+        <CommentActions>
+          <CommentAction>Reply</CommentAction>
+        </CommentActions>
+      </CommentContent>
     </Comment>
 
     <Comment>
-      <Comment.Avatar as='a' src='/images/avatar/small/christian.jpg' />
-      <Comment.Content>
-        <Comment.Author>Christian Rocha</Comment.Author>
-        <Comment.Metadata>
+      <CommentAvatar as='a' src='/images/avatar/small/christian.jpg' />
+      <CommentContent>
+        <CommentAuthor>Christian Rocha</CommentAuthor>
+        <CommentMetadata>
           <div>2 days ago</div>
-        </Comment.Metadata>
-        <Comment.Text>I re-tweeted this.</Comment.Text>
-        <Comment.Actions>
-          <Comment.Action>Reply</Comment.Action>
-        </Comment.Actions>
-      </Comment.Content>
+        </CommentMetadata>
+        <CommentText>I re-tweeted this.</CommentText>
+        <CommentActions>
+          <CommentAction>Reply</CommentAction>
+        </CommentActions>
+      </CommentContent>
     </Comment>
 
     <Form reply>
-      <Form.TextArea />
+      <FormTextArea />
       <Button content='Add Comment' labelPosition='left' icon='edit' primary />
     </Form>
-  </Comment.Group>
+  </CommentGroup>
 )
 
 export default CommentExampleReplyFormOuter

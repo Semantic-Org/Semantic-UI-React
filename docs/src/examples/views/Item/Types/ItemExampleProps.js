@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import { ItemGroup } from 'semantic-ui-react'
 
 const items = [
   {
@@ -20,6 +20,6 @@ const items = [
   },
 ]
 
-const ItemExampleProps = () => <Item.Group items={items} />
+const ItemExampleProps = () => <ItemGroup items={items} />
 
 export default ItemExampleProps

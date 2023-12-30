@@ -1,6 +1,12 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Divider, Statistic } from 'semantic-ui-react'
+import {
+  StatisticValue,
+  StatisticLabel,
+  StatisticGroup,
+  Divider,
+  Statistic,
+} from 'semantic-ui-react'
 
 const sizes = ['mini', 'tiny', 'small', 'large', 'huge']
 
@@ -24,20 +30,20 @@ export default class StatisticExampleSizeGroup extends Component {
 
         <Divider hidden />
 
-        <Statistic.Group size={size}>
+        <StatisticGroup size={size}>
           <Statistic>
-            <Statistic.Value>22</Statistic.Value>
-            <Statistic.Label>Faves</Statistic.Label>
+            <StatisticValue>22</StatisticValue>
+            <StatisticLabel>Faves</StatisticLabel>
           </Statistic>
           <Statistic>
-            <Statistic.Value>31,200</Statistic.Value>
-            <Statistic.Label>Views</Statistic.Label>
+            <StatisticValue>31,200</StatisticValue>
+            <StatisticLabel>Views</StatisticLabel>
           </Statistic>
           <Statistic>
-            <Statistic.Value>22</Statistic.Value>
-            <Statistic.Label>Members</Statistic.Label>
+            <StatisticValue>22</StatisticValue>
+            <StatisticLabel>Members</StatisticLabel>
           </Statistic>
-        </Statistic.Group>
+        </StatisticGroup>
       </div>
     )
   }

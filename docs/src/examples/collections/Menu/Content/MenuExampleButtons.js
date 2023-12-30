@@ -1,15 +1,15 @@
 import React from 'react'
-import { Button, Menu } from 'semantic-ui-react'
+import { MenuItem, Button, Menu } from 'semantic-ui-react'
 
 const MenuExampleButtons = () => (
   <Menu>
-    <Menu.Item>
+    <MenuItem>
       <Button primary>Sign up</Button>
-    </Menu.Item>
+    </MenuItem>
 
-    <Menu.Item>
+    <MenuItem>
       <Button>Log-in</Button>
-    </Menu.Item>
+    </MenuItem>
   </Menu>
 )
 

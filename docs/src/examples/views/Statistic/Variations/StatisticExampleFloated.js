@@ -1,11 +1,16 @@
 import React from 'react'
-import { Segment, Statistic } from 'semantic-ui-react'
+import {
+  StatisticValue,
+  StatisticLabel,
+  Segment,
+  Statistic,
+} from 'semantic-ui-react'
 
 const StatisticExampleFloated = () => (
   <Segment>
     <Statistic floated='right'>
-      <Statistic.Value>2,204</Statistic.Value>
-      <Statistic.Label>Views</Statistic.Label>
+      <StatisticValue>2,204</StatisticValue>
+      <StatisticLabel>Views</StatisticLabel>
     </Statistic>
 
     <p>
@@ -24,8 +29,8 @@ const StatisticExampleFloated = () => (
     </p>
 
     <Statistic floated='left'>
-      <Statistic.Value>2,204</Statistic.Value>
-      <Statistic.Label>Views</Statistic.Label>
+      <StatisticValue>2,204</StatisticValue>
+      <StatisticLabel>Views</StatisticLabel>
     </Statistic>
 
     <p>

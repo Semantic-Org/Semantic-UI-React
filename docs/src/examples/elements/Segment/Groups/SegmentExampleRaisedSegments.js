@@ -1,12 +1,12 @@
 import React from 'react'
-import { Segment } from 'semantic-ui-react'
+import { SegmentGroup, Segment } from 'semantic-ui-react'
 
 const SegmentExampleRaisedSegments = () => (
-  <Segment.Group raised>
+  <SegmentGroup raised>
     <Segment>Left</Segment>
     <Segment>Middle</Segment>
     <Segment>Right</Segment>
-  </Segment.Group>
+  </SegmentGroup>
 )
 
 export default SegmentExampleRaisedSegments

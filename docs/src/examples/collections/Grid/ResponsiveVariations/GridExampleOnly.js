@@ -1,71 +1,71 @@
 import React from 'react'
-import { Grid, Segment } from 'semantic-ui-react'
+import { GridRow, GridColumn, Grid, Segment } from 'semantic-ui-react'
 
 const GridExampleOnly = () => (
   <Grid>
-    <Grid.Row columns={2} only='large screen'>
-      <Grid.Column>
+    <GridRow columns={2} only='large screen'>
+      <GridColumn>
         <Segment>Large Screen</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Large Screen</Segment>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row columns={2} only='widescreen'>
-      <Grid.Column>
+      </GridColumn>
+    </GridRow>
+    <GridRow columns={2} only='widescreen'>
+      <GridColumn>
         <Segment>Widescreen</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Widescreen</Segment>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row columns={2} only='mobile'>
-      <Grid.Column>
+      </GridColumn>
+    </GridRow>
+    <GridRow columns={2} only='mobile'>
+      <GridColumn>
         <Segment>Mobile</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Mobile</Segment>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row columns={3}>
-      <Grid.Column only='computer'>
+      </GridColumn>
+    </GridRow>
+    <GridRow columns={3}>
+      <GridColumn only='computer'>
         <Segment>Computer</Segment>
-      </Grid.Column>
-      <Grid.Column only='tablet mobile'>
+      </GridColumn>
+      <GridColumn only='tablet mobile'>
         <Segment>Tablet and Mobile</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>All Sizes</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>All Sizes</Segment>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row columns={4} only='computer'>
-      <Grid.Column>
+      </GridColumn>
+    </GridRow>
+    <GridRow columns={4} only='computer'>
+      <GridColumn>
         <Segment>Computer</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Computer</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Computer</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Computer</Segment>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row columns={3} only='tablet'>
-      <Grid.Column>
+      </GridColumn>
+    </GridRow>
+    <GridRow columns={3} only='tablet'>
+      <GridColumn>
         <Segment>Tablet</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Tablet</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Tablet</Segment>
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
   </Grid>
 )
 

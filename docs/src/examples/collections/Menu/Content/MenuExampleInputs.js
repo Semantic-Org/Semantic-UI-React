@@ -1,18 +1,18 @@
 import React from 'react'
-import { Input, Menu } from 'semantic-ui-react'
+import { MenuItem, Input, Menu } from 'semantic-ui-react'
 
 const MenuExampleInputs = () => (
   <Menu>
-    <Menu.Item>
+    <MenuItem>
       <Input className='icon' icon='search' placeholder='Search...' />
-    </Menu.Item>
+    </MenuItem>
 
-    <Menu.Item position='right'>
+    <MenuItem position='right'>
       <Input
         action={{ type: 'submit', content: 'Go' }}
         placeholder='Navigate to...'
       />
-    </Menu.Item>
+    </MenuItem>
   </Menu>
 )
 

@@ -1,21 +1,28 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleFixedLine = () => (
   <Table celled fixed singleLine>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Status</Table.HeaderCell>
-        <Table.HeaderCell>Description</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Status</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>John</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell
+    <TableBody>
+      <TableRow>
+        <TableCell>John</TableCell>
+        <TableCell>Approved</TableCell>
+        <TableCell
           title={[
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
             'et dolore magna aliqua.',
@@ -23,19 +30,19 @@ const TableExampleFixedLine = () => (
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jamie</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>Shorter description</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jill</Table.Cell>
-        <Table.Cell>Denied</Table.Cell>
-        <Table.Cell>Shorter description</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jamie</TableCell>
+        <TableCell>Approved</TableCell>
+        <TableCell>Shorter description</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jill</TableCell>
+        <TableCell>Denied</TableCell>
+        <TableCell>Shorter description</TableCell>
+      </TableRow>
+    </TableBody>
   </Table>
 )
 

@@ -1,14 +1,14 @@
 import React from 'react'
-import { Form, Checkbox } from 'semantic-ui-react'
+import { FormField, Form, Checkbox } from 'semantic-ui-react'
 
 const CheckboxExampleDisabled = () => (
   <Form>
-    <Form.Field>
+    <FormField>
       <Checkbox label='Disabled' disabled />
-    </Form.Field>
-    <Form.Field>
+    </FormField>
+    <FormField>
       <Checkbox toggle label='Disabled' disabled />
-    </Form.Field>
+    </FormField>
   </Form>
 )
 

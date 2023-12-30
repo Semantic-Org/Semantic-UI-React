@@ -1,6 +1,14 @@
 import _ from 'lodash'
 import React, { Component, createRef } from 'react'
-import { Grid, Header, Image, Rail, Segment, Sticky } from 'semantic-ui-react'
+import {
+  GridColumn,
+  Grid,
+  Header,
+  Image,
+  Rail,
+  Segment,
+  Sticky,
+} from 'semantic-ui-react'
 
 const Placeholder = () => <Image src='/images/wireframe/paragraph.png' />
 
@@ -10,7 +18,7 @@ export default class StickyExamplePushing extends Component {
   render() {
     return (
       <Grid centered columns={3}>
-        <Grid.Column>
+        <GridColumn>
           <Segment ref={this.contextRef}>
             {_.times(10, (i) => (
               <Placeholder key={i} />
@@ -34,7 +42,7 @@ export default class StickyExamplePushing extends Component {
               </Sticky>
             </Rail>
           </Segment>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

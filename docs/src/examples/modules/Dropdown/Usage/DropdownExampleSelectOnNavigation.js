@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Grid, Dropdown, Form } from 'semantic-ui-react'
+import { GridColumn, FormField, Grid, Dropdown, Form } from 'semantic-ui-react'
 
 const getOptions = (number, prefix = 'Choice ') =>
   _.times(number, (index) => ({
@@ -20,9 +20,9 @@ export default class DropdownExampleSelectOnNavigation extends Component {
   render() {
     return (
       <Grid columns='equal'>
-        <Grid.Column>
+        <GridColumn>
           <Form>
-            <Form.Field>
+            <FormField>
               <label>Default selectOnNavigation</label>
               <Dropdown
                 selection
@@ -31,8 +31,8 @@ export default class DropdownExampleSelectOnNavigation extends Component {
                 placeholder='I change value on keyboard navigation'
                 onChange={this.handleChange}
               />
-            </Form.Field>
-            <Form.Field>
+            </FormField>
+            <FormField>
               <label>{'selectOnNavigation={false}'}</label>
               <Dropdown
                 selectOnNavigation={false}
@@ -42,13 +42,13 @@ export default class DropdownExampleSelectOnNavigation extends Component {
                 placeholder='I do not change value on keyboard navigation'
                 onChange={this.handleChange}
               />
-            </Form.Field>
+            </FormField>
           </Form>
-        </Grid.Column>
-        <Grid.Column>
+        </GridColumn>
+        <GridColumn>
           Dropdown values:
           <pre>{JSON.stringify(this.state, null, 2)}</pre>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

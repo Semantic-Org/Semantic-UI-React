@@ -31,8 +31,8 @@ const ModalVariationsExamples = () => (
       examplePath='modules/Modal/Variations/ModalExampleScrolling'
     >
       <Message warning>
-        <code>&lt;Modal.Content image /&gt;</code> requires an image with
-        wrapped markup: <code>&lt;Image wrapped /&gt; </code>
+        <code>&lt;ModalContent image /&gt;</code> requires an image with wrapped
+        markup: <code>&lt;Image wrapped /&gt; </code>
       </Message>
     </ComponentExample>
   </ExampleSection>

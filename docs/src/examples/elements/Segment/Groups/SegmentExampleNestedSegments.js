@@ -1,21 +1,21 @@
 import React from 'react'
-import { Segment } from 'semantic-ui-react'
+import { SegmentGroup, Segment } from 'semantic-ui-react'
 
 const SegmentExampleNestedSegments = () => (
-  <Segment.Group>
+  <SegmentGroup>
     <Segment>Top</Segment>
-    <Segment.Group>
+    <SegmentGroup>
       <Segment>Nested Top</Segment>
       <Segment>Nested Middle</Segment>
       <Segment>Nested Bottom</Segment>
-    </Segment.Group>
-    <Segment.Group horizontal>
+    </SegmentGroup>
+    <SegmentGroup horizontal>
       <Segment>Top</Segment>
       <Segment>Middle</Segment>
       <Segment>Bottom</Segment>
-    </Segment.Group>
+    </SegmentGroup>
     <Segment>Bottom</Segment>
-  </Segment.Group>
+  </SegmentGroup>
 )
 
 export default SegmentExampleNestedSegments

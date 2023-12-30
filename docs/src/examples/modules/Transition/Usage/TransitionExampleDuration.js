@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { Form, Grid, Image, Transition } from 'semantic-ui-react'
+import {
+  GridColumn,
+  FormInput,
+  FormButton,
+  Form,
+  Grid,
+  Image,
+  Transition,
+} from 'semantic-ui-react'
 
 export default class TransitionExampleDuration extends Component {
   state = { hide: 500, show: 500, visible: true }
@@ -13,8 +21,8 @@ export default class TransitionExampleDuration extends Component {
 
     return (
       <Grid columns={2}>
-        <Grid.Column as={Form}>
-          <Form.Input
+        <GridColumn as={Form}>
+          <FormInput
             label={`Hide duration: ${hide}ms `}
             min={100}
             max={5000}
@@ -24,7 +32,7 @@ export default class TransitionExampleDuration extends Component {
             type='range'
             value={hide}
           />
-          <Form.Input
+          <FormInput
             label={`Show duration: ${show}ms `}
             min={100}
             max={5000}
@@ -34,14 +42,14 @@ export default class TransitionExampleDuration extends Component {
             type='range'
             value={show}
           />
-          <Form.Button content='Run' onClick={this.toggleVisibility} />
-        </Grid.Column>
+          <FormButton content='Run' onClick={this.toggleVisibility} />
+        </GridColumn>
 
-        <Grid.Column>
+        <GridColumn>
           <Transition duration={{ hide, show }} visible={visible}>
             <Image centered size='small' src='/images/leaves/3.png' />
           </Transition>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

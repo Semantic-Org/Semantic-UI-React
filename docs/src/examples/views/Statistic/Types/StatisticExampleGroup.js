@@ -1,22 +1,27 @@
 import React from 'react'
-import { Statistic } from 'semantic-ui-react'
+import {
+  StatisticValue,
+  StatisticLabel,
+  StatisticGroup,
+  Statistic,
+} from 'semantic-ui-react'
 
 const StatisticExampleGroup = () => (
   <div>
-    <Statistic.Group>
+    <StatisticGroup>
       <Statistic>
-        <Statistic.Value>22</Statistic.Value>
-        <Statistic.Label>Faves</Statistic.Label>
+        <StatisticValue>22</StatisticValue>
+        <StatisticLabel>Faves</StatisticLabel>
       </Statistic>
       <Statistic>
-        <Statistic.Value>31,200</Statistic.Value>
-        <Statistic.Label>Views</Statistic.Label>
+        <StatisticValue>31,200</StatisticValue>
+        <StatisticLabel>Views</StatisticLabel>
       </Statistic>
       <Statistic>
-        <Statistic.Value>22</Statistic.Value>
-        <Statistic.Label>Members</Statistic.Label>
+        <StatisticValue>22</StatisticValue>
+        <StatisticLabel>Members</StatisticLabel>
       </Statistic>
-    </Statistic.Group>
+    </StatisticGroup>
   </div>
 )
 

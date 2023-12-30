@@ -1,16 +1,23 @@
 import React from 'react'
-import { Icon, Step } from 'semantic-ui-react'
+import {
+  StepTitle,
+  StepGroup,
+  StepDescription,
+  StepContent,
+  Icon,
+  Step,
+} from 'semantic-ui-react'
 
 const StepExampleIcon = () => (
-  <Step.Group>
+  <StepGroup>
     <Step>
       <Icon name='truck' />
-      <Step.Content>
-        <Step.Title>Shipping</Step.Title>
-        <Step.Description>Choose your shipping options</Step.Description>
-      </Step.Content>
+      <StepContent>
+        <StepTitle>Shipping</StepTitle>
+        <StepDescription>Choose your shipping options</StepDescription>
+      </StepContent>
     </Step>
-  </Step.Group>
+  </StepGroup>
 )
 
 export default StepExampleIcon

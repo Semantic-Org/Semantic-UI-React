@@ -1,18 +1,26 @@
 import React from 'react'
-import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
+import {
+  GridColumn,
+  FormInput,
+  Button,
+  Divider,
+  Form,
+  Grid,
+  Segment,
+} from 'semantic-ui-react'
 
 const DividerExampleVerticalForm = () => (
   <Segment placeholder>
     <Grid columns={2} relaxed='very' stackable>
-      <Grid.Column>
+      <GridColumn>
         <Form>
-          <Form.Input
+          <FormInput
             icon='user'
             iconPosition='left'
             label='Username'
             placeholder='Username'
           />
-          <Form.Input
+          <FormInput
             icon='lock'
             iconPosition='left'
             label='Password'
@@ -21,11 +29,11 @@ const DividerExampleVerticalForm = () => (
 
           <Button content='Login' primary />
         </Form>
-      </Grid.Column>
+      </GridColumn>
 
-      <Grid.Column verticalAlign='middle'>
+      <GridColumn verticalAlign='middle'>
         <Button content='Sign up' icon='signup' size='big' />
-      </Grid.Column>
+      </GridColumn>
     </Grid>
 
     <Divider vertical>Or</Divider>

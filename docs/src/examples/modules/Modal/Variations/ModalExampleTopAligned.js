@@ -1,5 +1,12 @@
 import React from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import {
+  ModalHeader,
+  ModalDescription,
+  ModalContent,
+  ModalActions,
+  Button,
+  Modal,
+} from 'semantic-ui-react'
 
 function ModalExampleTopAligned() {
   const [open, setOpen] = React.useState(false)
@@ -12,15 +19,15 @@ function ModalExampleTopAligned() {
       onOpen={() => setOpen(true)}
       trigger={<Button>Show Modal</Button>}
     >
-      <Modal.Header>Thank you!</Modal.Header>
-      <Modal.Content>
-        <Modal.Description>
+      <ModalHeader>Thank you!</ModalHeader>
+      <ModalContent>
+        <ModalDescription>
           Your subscription has been confirmed
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
+        </ModalDescription>
+      </ModalContent>
+      <ModalActions>
         <Button onClick={() => setOpen(false)}>OK</Button>
-      </Modal.Actions>
+      </ModalActions>
     </Modal>
   )
 }

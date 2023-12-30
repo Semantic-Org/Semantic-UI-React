@@ -1,28 +1,28 @@
 import React from 'react'
-import { Grid, Image } from 'semantic-ui-react'
+import { GridRow, GridColumn, Grid, Image } from 'semantic-ui-react'
 
 const GridExampleRows = () => (
   <Grid columns={3}>
-    <Grid.Row>
-      <Grid.Column>
+    <GridRow>
+      <GridColumn>
         <Image src='/images/wireframe/paragraph.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/paragraph.png' />
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
 
-    <Grid.Row>
-      <Grid.Column>
+    <GridRow>
+      <GridColumn>
         <Image src='/images/wireframe/paragraph.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/paragraph.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/paragraph.png' />
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
   </Grid>
 )
 

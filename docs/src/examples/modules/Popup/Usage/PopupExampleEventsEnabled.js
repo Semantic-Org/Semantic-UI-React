@@ -1,5 +1,12 @@
 import React from 'react'
-import { Button, Checkbox, Divider, Grid, Popup } from 'semantic-ui-react'
+import {
+  GridColumn,
+  Button,
+  Checkbox,
+  Divider,
+  Grid,
+  Popup,
+} from 'semantic-ui-react'
 
 const PopupExampleEventsEnabled = () => {
   const [eventsEnabled, setEventsEnabled] = React.useState(true)
@@ -7,7 +14,7 @@ const PopupExampleEventsEnabled = () => {
 
   return (
     <Grid columns={2}>
-      <Grid.Column>
+      <GridColumn>
         <Checkbox
           checked={open}
           label={{ children: <code>open</code> }}
@@ -19,9 +26,9 @@ const PopupExampleEventsEnabled = () => {
           label={{ children: <code>eventsEnabled</code> }}
           onChange={(e, data) => setEventsEnabled(data.checked)}
         />
-      </Grid.Column>
+      </GridColumn>
 
-      <Grid.Column>
+      <GridColumn>
         <Popup
           content='Hello'
           eventsEnabled={eventsEnabled}
@@ -31,7 +38,7 @@ const PopupExampleEventsEnabled = () => {
           open={open}
           trigger={<Button content='A trigger' />}
         />
-      </Grid.Column>
+      </GridColumn>
     </Grid>
   )
 }

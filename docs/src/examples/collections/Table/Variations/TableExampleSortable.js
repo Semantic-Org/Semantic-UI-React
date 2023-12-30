@@ -1,6 +1,13 @@
 import _ from 'lodash'
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Table,
+} from 'semantic-ui-react'
 
 const tableData = [
   { name: 'John', age: 15, gender: 'Male' },
@@ -41,37 +48,37 @@ function TableExampleSortable() {
 
   return (
     <Table sortable celled fixed>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell
             sorted={column === 'name' ? direction : null}
             onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
           >
             Name
-          </Table.HeaderCell>
-          <Table.HeaderCell
+          </TableHeaderCell>
+          <TableHeaderCell
             sorted={column === 'age' ? direction : null}
             onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'age' })}
           >
             Age
-          </Table.HeaderCell>
-          <Table.HeaderCell
+          </TableHeaderCell>
+          <TableHeaderCell
             sorted={column === 'gender' ? direction : null}
             onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'gender' })}
           >
             Gender
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
+          </TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {data.map(({ age, gender, name }) => (
-          <Table.Row key={name}>
-            <Table.Cell>{name}</Table.Cell>
-            <Table.Cell>{age}</Table.Cell>
-            <Table.Cell>{gender}</Table.Cell>
-          </Table.Row>
+          <TableRow key={name}>
+            <TableCell>{name}</TableCell>
+            <TableCell>{age}</TableCell>
+            <TableCell>{gender}</TableCell>
+          </TableRow>
         ))}
-      </Table.Body>
+      </TableBody>
     </Table>
   )
 }

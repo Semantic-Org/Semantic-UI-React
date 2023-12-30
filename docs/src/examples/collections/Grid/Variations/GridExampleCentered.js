@@ -1,38 +1,38 @@
 import React from 'react'
-import { Grid, Image } from 'semantic-ui-react'
+import { GridRow, GridColumn, Grid, Image } from 'semantic-ui-react'
 
 const GridExampleCentered = () => (
   <Grid centered columns={2}>
-    <Grid.Column>
+    <GridColumn>
       <Image src='/images/wireframe/image.png' />
-    </Grid.Column>
+    </GridColumn>
 
-    <Grid.Row centered columns={4}>
-      <Grid.Column>
+    <GridRow centered columns={4}>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
 
-    <Grid.Row centered columns={4}>
-      <Grid.Column>
+    <GridRow centered columns={4}>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
   </Grid>
 )
 

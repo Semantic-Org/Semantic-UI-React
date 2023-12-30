@@ -1,5 +1,13 @@
 import React from 'react'
-import { Feed } from 'semantic-ui-react'
+import {
+  FeedSummary,
+  FeedLabel,
+  FeedExtra,
+  FeedEvent,
+  FeedDate,
+  FeedContent,
+  Feed,
+} from 'semantic-ui-react'
 
 const image = '/images/avatar/small/laura.jpg'
 const date = '3 days ago'
@@ -8,26 +16,26 @@ const extraText = "Have you seen what's going on in Israel? Can you believe it."
 
 const FeedExampleExtraTextShorthand = () => (
   <Feed>
-    <Feed.Event
+    <FeedEvent
       image={image}
       date={date}
       summary={summary}
       extraText={extraText}
     />
 
-    <Feed.Event>
-      <Feed.Label image={image} />
-      <Feed.Content date={date} summary={summary} extraText={extraText} />
-    </Feed.Event>
+    <FeedEvent>
+      <FeedLabel image={image} />
+      <FeedContent date={date} summary={summary} extraText={extraText} />
+    </FeedEvent>
 
-    <Feed.Event>
-      <Feed.Label image={image} />
-      <Feed.Content>
-        <Feed.Date content={date} />
-        <Feed.Summary content={summary} />
-        <Feed.Extra text content={extraText} />
-      </Feed.Content>
-    </Feed.Event>
+    <FeedEvent>
+      <FeedLabel image={image} />
+      <FeedContent>
+        <FeedDate content={date} />
+        <FeedSummary content={summary} />
+        <FeedExtra text content={extraText} />
+      </FeedContent>
+    </FeedEvent>
   </Feed>
 )
 

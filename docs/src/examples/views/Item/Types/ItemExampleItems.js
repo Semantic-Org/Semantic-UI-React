@@ -1,34 +1,44 @@
 import React from 'react'
-import { Image, Item } from 'semantic-ui-react'
+import {
+  ItemMeta,
+  ItemImage,
+  ItemHeader,
+  ItemGroup,
+  ItemExtra,
+  ItemDescription,
+  ItemContent,
+  Image,
+  Item,
+} from 'semantic-ui-react'
 
 const ItemExampleItems = () => (
-  <Item.Group>
+  <ItemGroup>
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
 
-      <Item.Content>
-        <Item.Header as='a'>Header</Item.Header>
-        <Item.Meta>Description</Item.Meta>
-        <Item.Description>
+      <ItemContent>
+        <ItemHeader as='a'>Header</ItemHeader>
+        <ItemMeta>Description</ItemMeta>
+        <ItemDescription>
           <Image src='/images/wireframe/short-paragraph.png' />
-        </Item.Description>
-        <Item.Extra>Additional Details</Item.Extra>
-      </Item.Content>
+        </ItemDescription>
+        <ItemExtra>Additional Details</ItemExtra>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
 
-      <Item.Content>
-        <Item.Header as='a'>Header</Item.Header>
-        <Item.Meta>Description</Item.Meta>
-        <Item.Description>
+      <ItemContent>
+        <ItemHeader as='a'>Header</ItemHeader>
+        <ItemMeta>Description</ItemMeta>
+        <ItemDescription>
           <Image src='/images/wireframe/short-paragraph.png' />
-        </Item.Description>
-        <Item.Extra>Additional Details</Item.Extra>
-      </Item.Content>
+        </ItemDescription>
+        <ItemExtra>Additional Details</ItemExtra>
+      </ItemContent>
     </Item>
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleItems

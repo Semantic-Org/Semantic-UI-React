@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import { MenuItem, Menu, Segment } from 'semantic-ui-react'
 
 export default class MenuExampleAttachedToSegment extends Component {
   state = { activeItem: 'section1' }
@@ -12,21 +12,21 @@ export default class MenuExampleAttachedToSegment extends Component {
     return (
       <div>
         <Menu attached='top'>
-          <Menu.Item
+          <MenuItem
             name='section1'
             active={activeItem === 'section1'}
             onClick={this.handleItemClick}
           >
             Section 1
-          </Menu.Item>
+          </MenuItem>
 
-          <Menu.Item
+          <MenuItem
             name='section2'
             active={activeItem === 'section2'}
             onClick={this.handleItemClick}
           >
             Section 2
-          </Menu.Item>
+          </MenuItem>
         </Menu>
 
         <Segment attached>
@@ -44,21 +44,21 @@ export default class MenuExampleAttachedToSegment extends Component {
         </Segment>
 
         <Menu attached='bottom'>
-          <Menu.Item
+          <MenuItem
             name='section1'
             active={activeItem === 'section1'}
             onClick={this.handleItemClick}
           >
             Section 1
-          </Menu.Item>
+          </MenuItem>
 
-          <Menu.Item
+          <MenuItem
             name='section2'
             active={activeItem === 'section2'}
             onClick={this.handleItemClick}
           >
             Section 2
-          </Menu.Item>
+          </MenuItem>
         </Menu>
       </div>
     )

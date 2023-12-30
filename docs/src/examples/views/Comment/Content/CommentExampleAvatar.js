@@ -1,15 +1,21 @@
 import React from 'react'
-import { Comment } from 'semantic-ui-react'
+import {
+  CommentGroup,
+  CommentContent,
+  CommentAvatar,
+  CommentAuthor,
+  Comment,
+} from 'semantic-ui-react'
 
 const CommentExampleAvatar = () => (
-  <Comment.Group>
+  <CommentGroup>
     <Comment>
-      <Comment.Avatar src='/images/avatar/small/elliot.jpg' />
-      <Comment.Content>
-        <Comment.Author as='a'>Elliot Fu</Comment.Author>
-      </Comment.Content>
+      <CommentAvatar src='/images/avatar/small/elliot.jpg' />
+      <CommentContent>
+        <CommentAuthor as='a'>Elliot Fu</CommentAuthor>
+      </CommentContent>
     </Comment>
-  </Comment.Group>
+  </CommentGroup>
 )
 
 export default CommentExampleAvatar

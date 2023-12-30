@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import {
+  GridColumn,
+  FormSelect,
+  FormInput,
+  FormButton,
   Form,
   Grid,
   Header,
@@ -50,16 +54,16 @@ export default class TransitionablePortalExampleTransition extends Component {
 
     return (
       <Grid columns={2}>
-        <Grid.Column>
+        <GridColumn>
           <Form>
-            <Form.Select
+            <FormSelect
               label='Choose transition'
               name='animation'
               onChange={this.handleChange}
               options={options}
               value={animation}
             />
-            <Form.Input
+            <FormInput
               label={`Duration: ${duration}ms `}
               min={100}
               max={2000}
@@ -69,7 +73,7 @@ export default class TransitionablePortalExampleTransition extends Component {
               type='range'
               value={duration}
             />
-            <Form.Button
+            <FormButton
               content={open ? 'Close Portal' : 'Open Portal'}
               negative={open}
               positive={!open}
@@ -94,7 +98,7 @@ export default class TransitionablePortalExampleTransition extends Component {
               <p>To close, simply click the close button or click away</p>
             </Segment>
           </TransitionablePortal>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

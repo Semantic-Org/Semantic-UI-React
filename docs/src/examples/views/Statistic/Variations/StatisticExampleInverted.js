@@ -1,59 +1,64 @@
 import React from 'react'
-import { Segment, Statistic } from 'semantic-ui-react'
+import {
+  StatisticValue,
+  StatisticLabel,
+  Segment,
+  Statistic,
+} from 'semantic-ui-react'
 
 const StatisticExampleInverted = () => (
   <Segment inverted>
     <Statistic inverted>
-      <Statistic.Value>54</Statistic.Value>
-      <Statistic.Label>inverted</Statistic.Label>
+      <StatisticValue>54</StatisticValue>
+      <StatisticLabel>inverted</StatisticLabel>
     </Statistic>
     <Statistic color='red' inverted>
-      <Statistic.Value>27</Statistic.Value>
-      <Statistic.Label>red</Statistic.Label>
+      <StatisticValue>27</StatisticValue>
+      <StatisticLabel>red</StatisticLabel>
     </Statistic>
     <Statistic color='orange' inverted>
-      <Statistic.Value>8'</Statistic.Value>
-      <Statistic.Label>orange</Statistic.Label>
+      <StatisticValue>8'</StatisticValue>
+      <StatisticLabel>orange</StatisticLabel>
     </Statistic>
     <Statistic color='yellow' inverted>
-      <Statistic.Value>28</Statistic.Value>
-      <Statistic.Label>yellow</Statistic.Label>
+      <StatisticValue>28</StatisticValue>
+      <StatisticLabel>yellow</StatisticLabel>
     </Statistic>
     <Statistic color='olive' inverted>
-      <Statistic.Value>7'</Statistic.Value>
-      <Statistic.Label>olive</Statistic.Label>
+      <StatisticValue>7'</StatisticValue>
+      <StatisticLabel>olive</StatisticLabel>
     </Statistic>
     <Statistic color='green' inverted>
-      <Statistic.Value>14</Statistic.Value>
-      <Statistic.Label>green</Statistic.Label>
+      <StatisticValue>14</StatisticValue>
+      <StatisticLabel>green</StatisticLabel>
     </Statistic>
     <Statistic color='teal' inverted>
-      <Statistic.Value>82</Statistic.Value>
-      <Statistic.Label>teal</Statistic.Label>
+      <StatisticValue>82</StatisticValue>
+      <StatisticLabel>teal</StatisticLabel>
     </Statistic>
     <Statistic color='blue' inverted>
-      <Statistic.Value>1'</Statistic.Value>
-      <Statistic.Label>blue</Statistic.Label>
+      <StatisticValue>1'</StatisticValue>
+      <StatisticLabel>blue</StatisticLabel>
     </Statistic>
     <Statistic color='violet' inverted>
-      <Statistic.Value>22</Statistic.Value>
-      <Statistic.Label>violet</Statistic.Label>
+      <StatisticValue>22</StatisticValue>
+      <StatisticLabel>violet</StatisticLabel>
     </Statistic>
     <Statistic color='purple' inverted>
-      <Statistic.Value>23</Statistic.Value>
-      <Statistic.Label>purple</Statistic.Label>
+      <StatisticValue>23</StatisticValue>
+      <StatisticLabel>purple</StatisticLabel>
     </Statistic>
     <Statistic color='pink' inverted>
-      <Statistic.Value>15</Statistic.Value>
-      <Statistic.Label>pink</Statistic.Label>
+      <StatisticValue>15</StatisticValue>
+      <StatisticLabel>pink</StatisticLabel>
     </Statistic>
     <Statistic color='brown' inverted>
-      <Statistic.Value>36</Statistic.Value>
-      <Statistic.Label>brown</Statistic.Label>
+      <StatisticValue>36</StatisticValue>
+      <StatisticLabel>brown</StatisticLabel>
     </Statistic>
     <Statistic color='grey' inverted>
-      <Statistic.Value>49</Statistic.Value>
-      <Statistic.Label>grey</Statistic.Label>
+      <StatisticValue>49</StatisticValue>
+      <StatisticLabel>grey</StatisticLabel>
     </Statistic>
   </Segment>
 )

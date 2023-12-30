@@ -1,12 +1,12 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { ButtonGroup, Button } from 'semantic-ui-react'
 
 const ButtonExampleGroupLabeledIcon = () => (
-  <Button.Group vertical labeled icon>
+  <ButtonGroup vertical labeled icon>
     <Button icon='play' content='Play' />
     <Button icon='pause' content='Pause' />
     <Button icon='shuffle' content='Shuffle' />
-  </Button.Group>
+  </ButtonGroup>
 )
 
 export default ButtonExampleGroupLabeledIcon

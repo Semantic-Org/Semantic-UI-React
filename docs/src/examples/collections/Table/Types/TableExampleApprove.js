@@ -1,52 +1,63 @@
 import React from 'react'
-import { Button, Checkbox, Icon, Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableFooter,
+  TableCell,
+  TableBody,
+  Button,
+  Checkbox,
+  Icon,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleApprove = () => (
   <Table compact celled definition>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell />
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Registration Date</Table.HeaderCell>
-        <Table.HeaderCell>E-mail address</Table.HeaderCell>
-        <Table.HeaderCell>Premium Plan</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell />
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Registration Date</TableHeaderCell>
+        <TableHeaderCell>E-mail address</TableHeaderCell>
+        <TableHeaderCell>Premium Plan</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell collapsing>
+    <TableBody>
+      <TableRow>
+        <TableCell collapsing>
           <Checkbox slider />
-        </Table.Cell>
-        <Table.Cell>John Lilki</Table.Cell>
-        <Table.Cell>September 14, 2013</Table.Cell>
-        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-        <Table.Cell>No</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell collapsing>
+        </TableCell>
+        <TableCell>John Lilki</TableCell>
+        <TableCell>September 14, 2013</TableCell>
+        <TableCell>jhlilk22@yahoo.com</TableCell>
+        <TableCell>No</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell collapsing>
           <Checkbox slider />
-        </Table.Cell>
-        <Table.Cell>Jamie Harington</Table.Cell>
-        <Table.Cell>January 11, 2014</Table.Cell>
-        <Table.Cell>jamieharingonton@yahoo.com</Table.Cell>
-        <Table.Cell>Yes</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell collapsing>
+        </TableCell>
+        <TableCell>Jamie Harington</TableCell>
+        <TableCell>January 11, 2014</TableCell>
+        <TableCell>jamieharingonton@yahoo.com</TableCell>
+        <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell collapsing>
           <Checkbox slider />
-        </Table.Cell>
-        <Table.Cell>Jill Lewis</Table.Cell>
-        <Table.Cell>May 11, 2014</Table.Cell>
-        <Table.Cell>jilsewris22@yahoo.com</Table.Cell>
-        <Table.Cell>Yes</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+        </TableCell>
+        <TableCell>Jill Lewis</TableCell>
+        <TableCell>May 11, 2014</TableCell>
+        <TableCell>jilsewris22@yahoo.com</TableCell>
+        <TableCell>Yes</TableCell>
+      </TableRow>
+    </TableBody>
 
-    <Table.Footer fullWidth>
-      <Table.Row>
-        <Table.HeaderCell />
-        <Table.HeaderCell colSpan='4'>
+    <TableFooter fullWidth>
+      <TableRow>
+        <TableHeaderCell />
+        <TableHeaderCell colSpan='4'>
           <Button
             floated='right'
             icon
@@ -60,9 +71,9 @@ const TableExampleApprove = () => (
           <Button disabled size='small'>
             Approve All
           </Button>
-        </Table.HeaderCell>
-      </Table.Row>
-    </Table.Footer>
+        </TableHeaderCell>
+      </TableRow>
+    </TableFooter>
   </Table>
 )
 

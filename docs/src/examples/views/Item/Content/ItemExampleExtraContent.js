@@ -1,37 +1,47 @@
 import React from 'react'
-import { Icon, Image, Item } from 'semantic-ui-react'
+import {
+  ItemImage,
+  ItemHeader,
+  ItemGroup,
+  ItemExtra,
+  ItemDescription,
+  ItemContent,
+  Icon,
+  Image,
+  Item,
+} from 'semantic-ui-react'
 
 const paragraph = <Image src='/images/wireframe/short-paragraph.png' />
 
 const ItemExampleExtraContent = () => (
-  <Item.Group>
+  <ItemGroup>
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
 
-      <Item.Content>
-        <Item.Header as='a'>Cute Dog</Item.Header>
-        <Item.Description>{paragraph}</Item.Description>
-        <Item.Extra>
+      <ItemContent>
+        <ItemHeader as='a'>Cute Dog</ItemHeader>
+        <ItemDescription>{paragraph}</ItemDescription>
+        <ItemExtra>
           <Icon color='green' name='check' /> 121 Votes
-        </Item.Extra>
-      </Item.Content>
+        </ItemExtra>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
 
-      <Item.Content>
-        <Item.Header as='a'>Cute Dog</Item.Header>
-        <Item.Description>{paragraph}</Item.Description>
-        <Item.Extra content='121 Votes' />
-      </Item.Content>
+      <ItemContent>
+        <ItemHeader as='a'>Cute Dog</ItemHeader>
+        <ItemDescription>{paragraph}</ItemDescription>
+        <ItemExtra content='121 Votes' />
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
-      <Item.Content header='Cute Dog' extra='121 Votes' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
+      <ItemContent header='Cute Dog' extra='121 Votes' />
     </Item>
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleExtraContent

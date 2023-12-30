@@ -2,7 +2,14 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import faker from 'faker'
 import React, { Component } from 'react'
-import { Search, Grid, Header, Segment, Label } from 'semantic-ui-react'
+import {
+  GridColumn,
+  Search,
+  Grid,
+  Header,
+  Segment,
+  Label,
+} from 'semantic-ui-react'
 
 const categoryLayoutRenderer = ({ categoryContent, resultsContent }) => (
   <div>
@@ -90,7 +97,7 @@ export default class SearchExampleCategory extends Component {
 
     return (
       <Grid>
-        <Grid.Column width={8}>
+        <GridColumn width={8}>
           <Search
             category
             categoryLayoutRenderer={categoryLayoutRenderer}
@@ -104,8 +111,8 @@ export default class SearchExampleCategory extends Component {
             results={results}
             value={value}
           />
-        </Grid.Column>
-        <Grid.Column width={8}>
+        </GridColumn>
+        <GridColumn width={8}>
           <Segment>
             <Header>State</Header>
             <pre style={{ overflowX: 'auto' }}>
@@ -116,7 +123,7 @@ export default class SearchExampleCategory extends Component {
               {JSON.stringify(source, null, 2)}
             </pre>
           </Segment>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

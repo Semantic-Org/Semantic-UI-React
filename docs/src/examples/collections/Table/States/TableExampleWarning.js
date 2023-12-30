@@ -1,44 +1,52 @@
 import React from 'react'
-import { Icon, Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Icon,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleWarning = () => (
   <Table celled>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Status</Table.HeaderCell>
-        <Table.HeaderCell>Notes</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Status</TableHeaderCell>
+        <TableHeaderCell>Notes</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>No Name Specified</Table.Cell>
-        <Table.Cell>Unknown</Table.Cell>
-        <Table.Cell>None</Table.Cell>
-      </Table.Row>
-      <Table.Row warning>
-        <Table.Cell>Jimmy</Table.Cell>
-        <Table.Cell>
+    <TableBody>
+      <TableRow>
+        <TableCell>No Name Specified</TableCell>
+        <TableCell>Unknown</TableCell>
+        <TableCell>None</TableCell>
+      </TableRow>
+      <TableRow warning>
+        <TableCell>Jimmy</TableCell>
+        <TableCell>
           <Icon name='attention' />
           Requires Action
-        </Table.Cell>
-        <Table.Cell>None</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jamie</Table.Cell>
-        <Table.Cell>Unknown</Table.Cell>
-        <Table.Cell warning>
+        </TableCell>
+        <TableCell>None</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jamie</TableCell>
+        <TableCell>Unknown</TableCell>
+        <TableCell warning>
           <Icon name='attention' />
           Hostile
-        </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jill</Table.Cell>
-        <Table.Cell>Unknown</Table.Cell>
-        <Table.Cell>None</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jill</TableCell>
+        <TableCell>Unknown</TableCell>
+        <TableCell>None</TableCell>
+      </TableRow>
+    </TableBody>
   </Table>
 )
 

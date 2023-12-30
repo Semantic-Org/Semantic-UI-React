@@ -1,8 +1,18 @@
 import React from 'react'
-import { Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import {
+  SidebarPusher,
+  SidebarPushable,
+  MenuItem,
+  Header,
+  Icon,
+  Image,
+  Menu,
+  Segment,
+  Sidebar,
+} from 'semantic-ui-react'
 
 const SidebarExampleVisible = () => (
-  <Sidebar.Pushable as={Segment}>
+  <SidebarPushable as={Segment}>
     <Sidebar
       as={Menu}
       animation='overlay'
@@ -12,27 +22,27 @@ const SidebarExampleVisible = () => (
       visible
       width='thin'
     >
-      <Menu.Item as='a'>
+      <MenuItem as='a'>
         <Icon name='home' />
         Home
-      </Menu.Item>
-      <Menu.Item as='a'>
+      </MenuItem>
+      <MenuItem as='a'>
         <Icon name='gamepad' />
         Games
-      </Menu.Item>
-      <Menu.Item as='a'>
+      </MenuItem>
+      <MenuItem as='a'>
         <Icon name='camera' />
         Channels
-      </Menu.Item>
+      </MenuItem>
     </Sidebar>
 
-    <Sidebar.Pusher>
+    <SidebarPusher>
       <Segment basic>
         <Header as='h3'>Application Content</Header>
         <Image src='/images/wireframe/paragraph.png' />
       </Segment>
-    </Sidebar.Pusher>
-  </Sidebar.Pushable>
+    </SidebarPusher>
+  </SidebarPushable>
 )
 
 export default SidebarExampleVisible

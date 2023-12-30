@@ -1,23 +1,23 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import { ItemImage, ItemGroup, ItemContent, Item } from 'semantic-ui-react'
 
 const ItemExampleContents = () => (
-  <Item.Group divided>
+  <ItemGroup divided>
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
-      <Item.Content verticalAlign='middle'>Content A</Item.Content>
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
+      <ItemContent verticalAlign='middle'>Content A</ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
-      <Item.Content verticalAlign='middle'>Content B</Item.Content>
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
+      <ItemContent verticalAlign='middle'>Content B</ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
-      <Item.Content content='Content C' verticalAlign='middle' />
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
+      <ItemContent content='Content C' verticalAlign='middle' />
     </Item>
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleContents

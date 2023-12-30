@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Button, Dimmer, Header, Image, Segment } from 'semantic-ui-react'
+import {
+  DimmerDimmable,
+  ImageGroup,
+  ButtonGroup,
+  Button,
+  Dimmer,
+  Header,
+  Image,
+  Segment,
+} from 'semantic-ui-react'
 
 export default class DimmerExampleDimmer extends Component {
   state = {}
@@ -12,22 +21,22 @@ export default class DimmerExampleDimmer extends Component {
 
     return (
       <div>
-        <Dimmer.Dimmable as={Segment} dimmed={active}>
+        <DimmerDimmable as={Segment} dimmed={active}>
           <Header as='h3'>Overlayable Section</Header>
-          <Image.Group size='small' className='ui small images'>
+          <ImageGroup size='small' className='ui small images'>
             <Image src='/images/wireframe/image.png' />
             <Image src='/images/wireframe/image.png' />
             <Image src='/images/wireframe/image.png' />
-          </Image.Group>
+          </ImageGroup>
           <Image size='medium' src='/images/wireframe/media-paragraph.png' />
 
           <Dimmer active={active} onClickOutside={this.handleHide} />
-        </Dimmer.Dimmable>
+        </DimmerDimmable>
 
-        <Button.Group>
+        <ButtonGroup>
           <Button icon='plus' onClick={this.handleShow} />
           <Button icon='minus' onClick={this.handleHide} />
-        </Button.Group>
+        </ButtonGroup>
       </div>
     )
   }

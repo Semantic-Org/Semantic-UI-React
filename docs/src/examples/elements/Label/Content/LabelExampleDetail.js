@@ -1,10 +1,10 @@
 import React from 'react'
-import { Label } from 'semantic-ui-react'
+import { LabelDetail, Label } from 'semantic-ui-react'
 
 const LabelExampleDetail = () => (
   <Label>
     Dogs
-    <Label.Detail>214</Label.Detail>
+    <LabelDetail>214</LabelDetail>
   </Label>
 )
 

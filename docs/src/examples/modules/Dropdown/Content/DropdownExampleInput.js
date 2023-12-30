@@ -1,5 +1,12 @@
 import React from 'react'
-import { Dropdown, Input } from 'semantic-ui-react'
+import {
+  DropdownMenu,
+  DropdownItem,
+  DropdownHeader,
+  DropdownDivider,
+  Dropdown,
+  Input,
+} from 'semantic-ui-react'
 
 const DropdownExampleInput = () => (
   <Dropdown
@@ -10,24 +17,24 @@ const DropdownExampleInput = () => (
     button
     className='icon'
   >
-    <Dropdown.Menu>
-      <Dropdown.Header content='Search Issues' />
+    <DropdownMenu>
+      <DropdownHeader content='Search Issues' />
       <Input icon='search' iconPosition='left' name='search' />
-      <Dropdown.Header icon='tags' content='Filter by tag' />
-      <Dropdown.Divider />
-      <Dropdown.Item
+      <DropdownHeader icon='tags' content='Filter by tag' />
+      <DropdownDivider />
+      <DropdownItem
         label={{ color: 'red', empty: true, circular: true }}
         text='Important'
       />
-      <Dropdown.Item
+      <DropdownItem
         label={{ color: 'blue', empty: true, circular: true }}
         text='Announcement'
       />
-      <Dropdown.Item
+      <DropdownItem
         label={{ color: 'black', empty: true, circular: true }}
         text='Discussion'
       />
-    </Dropdown.Menu>
+    </DropdownMenu>
   </Dropdown>
 )
 

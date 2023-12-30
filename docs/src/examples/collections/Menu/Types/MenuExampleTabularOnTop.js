@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Menu, Segment } from 'semantic-ui-react'
+import { MenuMenu, MenuItem, Input, Menu, Segment } from 'semantic-ui-react'
 
 export default class MenuExampleTabularOnTop extends Component {
   state = { activeItem: 'bio' }
@@ -12,25 +12,25 @@ export default class MenuExampleTabularOnTop extends Component {
     return (
       <div>
         <Menu attached='top' tabular>
-          <Menu.Item
+          <MenuItem
             name='bio'
             active={activeItem === 'bio'}
             onClick={this.handleItemClick}
           />
-          <Menu.Item
+          <MenuItem
             name='photos'
             active={activeItem === 'photos'}
             onClick={this.handleItemClick}
           />
-          <Menu.Menu position='right'>
-            <Menu.Item>
+          <MenuMenu position='right'>
+            <MenuItem>
               <Input
                 transparent
                 icon={{ name: 'search', link: true }}
                 placeholder='Search users...'
               />
-            </Menu.Item>
-          </Menu.Menu>
+            </MenuItem>
+          </MenuMenu>
         </Menu>
 
         <Segment attached='bottom'>

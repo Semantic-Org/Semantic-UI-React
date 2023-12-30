@@ -1,25 +1,35 @@
 import React, { Component } from 'react'
-import { Accordion, Form, Menu } from 'semantic-ui-react'
+import {
+  AccordionTitle,
+  AccordionContent,
+  MenuItem,
+  FormRadio,
+  FormGroup,
+  FormCheckbox,
+  Accordion,
+  Form,
+  Menu,
+} from 'semantic-ui-react'
 
 const ColorForm = (
   <Form>
-    <Form.Group grouped>
-      <Form.Checkbox label='Red' name='color' value='red' />
-      <Form.Checkbox label='Orange' name='color' value='orange' />
-      <Form.Checkbox label='Green' name='color' value='green' />
-      <Form.Checkbox label='Blue' name='color' value='blue' />
-    </Form.Group>
+    <FormGroup grouped>
+      <FormCheckbox label='Red' name='color' value='red' />
+      <FormCheckbox label='Orange' name='color' value='orange' />
+      <FormCheckbox label='Green' name='color' value='green' />
+      <FormCheckbox label='Blue' name='color' value='blue' />
+    </FormGroup>
   </Form>
 )
 
 const SizeForm = (
   <Form>
-    <Form.Group grouped>
-      <Form.Radio label='Small' name='size' type='radio' value='small' />
-      <Form.Radio label='Medium' name='size' type='radio' value='medium' />
-      <Form.Radio label='Large' name='size' type='radio' value='large' />
-      <Form.Radio label='X-Large' name='size' type='radio' value='x-large' />
-    </Form.Group>
+    <FormGroup grouped>
+      <FormRadio label='Small' name='size' type='radio' value='small' />
+      <FormRadio label='Medium' name='size' type='radio' value='medium' />
+      <FormRadio label='Large' name='size' type='radio' value='large' />
+      <FormRadio label='X-Large' name='size' type='radio' value='x-large' />
+    </FormGroup>
   </Form>
 )
 
@@ -39,25 +49,25 @@ export default class AccordionExampleMenu extends Component {
 
     return (
       <Accordion as={Menu} vertical>
-        <Menu.Item>
-          <Accordion.Title
+        <MenuItem>
+          <AccordionTitle
             active={activeIndex === 0}
             content='Size'
             index={0}
             onClick={this.handleClick}
           />
-          <Accordion.Content active={activeIndex === 0} content={SizeForm} />
-        </Menu.Item>
+          <AccordionContent active={activeIndex === 0} content={SizeForm} />
+        </MenuItem>
 
-        <Menu.Item>
-          <Accordion.Title
+        <MenuItem>
+          <AccordionTitle
             active={activeIndex === 1}
             content='Colors'
             index={1}
             onClick={this.handleClick}
           />
-          <Accordion.Content active={activeIndex === 1} content={ColorForm} />
-        </Menu.Item>
+          <AccordionContent active={activeIndex === 1} content={ColorForm} />
+        </MenuItem>
       </Accordion>
     )
   }

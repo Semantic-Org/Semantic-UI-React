@@ -1,38 +1,47 @@
 import React from 'react'
-import { Image, Item } from 'semantic-ui-react'
+import {
+  ItemMeta,
+  ItemImage,
+  ItemHeader,
+  ItemGroup,
+  ItemDescription,
+  ItemContent,
+  Image,
+  Item,
+} from 'semantic-ui-react'
 
 const paragraph = <Image src='/images/wireframe/short-paragraph.png' />
 
 const ItemExampleMetadata = () => (
-  <Item.Group>
+  <ItemGroup>
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
 
-      <Item.Content>
-        <Item.Header>Arrowhead Valley Camp</Item.Header>
-        <Item.Meta>
+      <ItemContent>
+        <ItemHeader>Arrowhead Valley Camp</ItemHeader>
+        <ItemMeta>
           <span className='price'>$1200</span>
           <span className='stay'>1 Month</span>
-        </Item.Meta>
-        <Item.Description>{paragraph}</Item.Description>
-      </Item.Content>
+        </ItemMeta>
+        <ItemDescription>{paragraph}</ItemDescription>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
 
-      <Item.Content>
-        <Item.Header>Buck's Homebrew Stayaway</Item.Header>
-        <Item.Meta content='$1000 2 Weeks' />
-        <Item.Description>{paragraph}</Item.Description>
-      </Item.Content>
+      <ItemContent>
+        <ItemHeader>Buck's Homebrew Stayaway</ItemHeader>
+        <ItemMeta content='$1000 2 Weeks' />
+        <ItemDescription>{paragraph}</ItemDescription>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
-      <Item.Content header='Arrowhead Valley Camp' meta='$1200 1 Month' />
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
+      <ItemContent header='Arrowhead Valley Camp' meta='$1200 1 Month' />
     </Item>
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleMetadata

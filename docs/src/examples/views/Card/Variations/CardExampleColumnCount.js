@@ -1,10 +1,10 @@
 import React from 'react'
-import { Card } from 'semantic-ui-react'
+import { CardGroup, Card } from 'semantic-ui-react'
 
 const src = '/images/wireframe/image.png'
 
 const CardExampleColumnCount = () => (
-  <Card.Group itemsPerRow={6}>
+  <CardGroup itemsPerRow={6}>
     <Card raised image={src} />
     <Card raised image={src} />
     <Card raised image={src} />
@@ -17,7 +17,7 @@ const CardExampleColumnCount = () => (
     <Card raised image={src} />
     <Card raised image={src} />
     <Card raised image={src} />
-  </Card.Group>
+  </CardGroup>
 )
 
 export default CardExampleColumnCount

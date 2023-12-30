@@ -1,22 +1,28 @@
 import React from 'react'
-import { Segment, Statistic } from 'semantic-ui-react'
+import {
+  StatisticValue,
+  StatisticLabel,
+  StatisticGroup,
+  Segment,
+  Statistic,
+} from 'semantic-ui-react'
 
 const StatisticExampleInvertedGroup = () => (
   <Segment inverted>
-    <Statistic.Group inverted>
+    <StatisticGroup inverted>
       <Statistic>
-        <Statistic.Value>22</Statistic.Value>
-        <Statistic.Label>Faves</Statistic.Label>
+        <StatisticValue>22</StatisticValue>
+        <StatisticLabel>Faves</StatisticLabel>
       </Statistic>
       <Statistic>
-        <Statistic.Value>31,200</Statistic.Value>
-        <Statistic.Label>Views</Statistic.Label>
+        <StatisticValue>31,200</StatisticValue>
+        <StatisticLabel>Views</StatisticLabel>
       </Statistic>
       <Statistic>
-        <Statistic.Value>22</Statistic.Value>
-        <Statistic.Label>Members</Statistic.Label>
+        <StatisticValue>22</StatisticValue>
+        <StatisticLabel>Members</StatisticLabel>
       </Statistic>
-    </Statistic.Group>
+    </StatisticGroup>
   </Segment>
 )
 

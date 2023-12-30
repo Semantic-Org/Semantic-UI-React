@@ -1,22 +1,31 @@
 import React from 'react'
-import { Button, Card, Image } from 'semantic-ui-react'
+import {
+  CardMeta,
+  CardHeader,
+  CardGroup,
+  CardDescription,
+  CardContent,
+  Button,
+  Card,
+  Image,
+} from 'semantic-ui-react'
 
 const CardExampleGroups = () => (
-  <Card.Group>
+  <CardGroup>
     <Card>
-      <Card.Content>
+      <CardContent>
         <Image
           floated='right'
           size='mini'
           src='/images/avatar/large/steve.jpg'
         />
-        <Card.Header>Steve Sanders</Card.Header>
-        <Card.Meta>Friends of Elliot</Card.Meta>
-        <Card.Description>
+        <CardHeader>Steve Sanders</CardHeader>
+        <CardMeta>Friends of Elliot</CardMeta>
+        <CardDescription>
           Steve wants to add you to the group <strong>best friends</strong>
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
+        </CardDescription>
+      </CardContent>
+      <CardContent extra>
         <div className='ui two buttons'>
           <Button basic color='green'>
             Approve
@@ -25,22 +34,22 @@ const CardExampleGroups = () => (
             Decline
           </Button>
         </div>
-      </Card.Content>
+      </CardContent>
     </Card>
     <Card>
-      <Card.Content>
+      <CardContent>
         <Image
           floated='right'
           size='mini'
           src='/images/avatar/large/molly.png'
         />
-        <Card.Header>Molly Thomas</Card.Header>
-        <Card.Meta>New User</Card.Meta>
-        <Card.Description>
+        <CardHeader>Molly Thomas</CardHeader>
+        <CardMeta>New User</CardMeta>
+        <CardDescription>
           Molly wants to add you to the group <strong>musicians</strong>
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
+        </CardDescription>
+      </CardContent>
+      <CardContent extra>
         <div className='ui two buttons'>
           <Button basic color='green'>
             Approve
@@ -49,22 +58,22 @@ const CardExampleGroups = () => (
             Decline
           </Button>
         </div>
-      </Card.Content>
+      </CardContent>
     </Card>
     <Card>
-      <Card.Content>
+      <CardContent>
         <Image
           floated='right'
           size='mini'
           src='/images/avatar/large/jenny.jpg'
         />
-        <Card.Header>Jenny Lawrence</Card.Header>
-        <Card.Meta>New User</Card.Meta>
-        <Card.Description>
+        <CardHeader>Jenny Lawrence</CardHeader>
+        <CardMeta>New User</CardMeta>
+        <CardDescription>
           Jenny requested permission to view your contact details
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
+        </CardDescription>
+      </CardContent>
+      <CardContent extra>
         <div className='ui two buttons'>
           <Button basic color='green'>
             Approve
@@ -73,9 +82,9 @@ const CardExampleGroups = () => (
             Decline
           </Button>
         </div>
-      </Card.Content>
+      </CardContent>
     </Card>
-  </Card.Group>
+  </CardGroup>
 )
 
 export default CardExampleGroups

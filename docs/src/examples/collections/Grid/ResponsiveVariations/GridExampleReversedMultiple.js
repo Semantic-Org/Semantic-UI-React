@@ -1,13 +1,13 @@
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import { GridRow, GridColumn, Grid } from 'semantic-ui-react'
 
 const GridExampleReversedMultiple = () => (
   <Grid reversed='computer tablet' columns='equal'>
-    <Grid.Row>
-      <Grid.Column>Computer and Tablet Fourth</Grid.Column>
-      <Grid.Column>Computer and Tablet Third</Grid.Column>
-      <Grid.Column>Computer and Tablet Second</Grid.Column>
-    </Grid.Row>
+    <GridRow>
+      <GridColumn>Computer and Tablet Fourth</GridColumn>
+      <GridColumn>Computer and Tablet Third</GridColumn>
+      <GridColumn>Computer and Tablet Second</GridColumn>
+    </GridRow>
   </Grid>
 )
 

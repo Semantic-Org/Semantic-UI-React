@@ -1,6 +1,12 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Divider, Statistic } from 'semantic-ui-react'
+import {
+  StatisticValue,
+  StatisticLabel,
+  StatisticGroup,
+  Divider,
+  Statistic,
+} from 'semantic-ui-react'
 
 const colors = [
   'red',
@@ -37,20 +43,20 @@ export default class StatisticExampleColoredGroup extends Component {
 
         <Divider hidden />
 
-        <Statistic.Group color={color}>
+        <StatisticGroup color={color}>
           <Statistic>
-            <Statistic.Value>22</Statistic.Value>
-            <Statistic.Label>Faves</Statistic.Label>
+            <StatisticValue>22</StatisticValue>
+            <StatisticLabel>Faves</StatisticLabel>
           </Statistic>
           <Statistic>
-            <Statistic.Value>31,200</Statistic.Value>
-            <Statistic.Label>Views</Statistic.Label>
+            <StatisticValue>31,200</StatisticValue>
+            <StatisticLabel>Views</StatisticLabel>
           </Statistic>
           <Statistic>
-            <Statistic.Value>22</Statistic.Value>
-            <Statistic.Label>Members</Statistic.Label>
+            <StatisticValue>22</StatisticValue>
+            <StatisticLabel>Members</StatisticLabel>
           </Statistic>
-        </Statistic.Group>
+        </StatisticGroup>
       </div>
     )
   }

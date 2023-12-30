@@ -1,34 +1,34 @@
 import React from 'react'
-import { Grid, Segment } from 'semantic-ui-react'
+import { GridRow, GridColumn, Grid, Segment } from 'semantic-ui-react'
 
 const GridExampleOnlyMultiple = () => (
   <Grid>
-    <Grid.Row columns={2} only='mobile tablet'>
-      <Grid.Column>
+    <GridRow columns={2} only='mobile tablet'>
+      <GridColumn>
         <Segment>Mobile</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Tablet</Segment>
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
 
-    <Grid.Row columns={2} only='tablet computer'>
-      <Grid.Column>
+    <GridRow columns={2} only='tablet computer'>
+      <GridColumn>
         <Segment>Tablet</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Computer</Segment>
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
 
-    <Grid.Row columns={2} only='large screen widescreen'>
-      <Grid.Column>
+    <GridRow columns={2} only='large screen widescreen'>
+      <GridColumn>
         <Segment>Large Screen</Segment>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Segment>Widescreen</Segment>
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
   </Grid>
 )
 

@@ -6,29 +6,29 @@ import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import { Message } from 'semantic-ui-react'
 
 const subcomponentComparison = {
-  shorthand: "<Form.Input label='Enter Password' type='password' />",
-  longhand: `<Form.Field>
+  shorthand: "<FormInput label='Enter Password' type='password' />",
+  longhand: `<FormField>
   <label>Enter Password</label>
   <Input type='password' />
-</Form.Field>`,
+</FormField>`,
 }
 
 const componentPropComparison = {
   shorthand:
-    "<Form.Field label='Date' control={CustomCalendar} start='1' end='7' />",
-  longhand: `<Form.Field>
+    "<FormField label='Date' control={CustomCalendar} start='1' end='7' />",
+  longhand: `<FormField>
   <label>Date</label>
   <CustomCalendar start='1' end='7' />
-</Form.Field>`,
+</FormField>`,
 }
 
 const htmlComparison = {
   shorthand:
-    "<Form.Field label='Quantity' control='input' type='number' max={5} />",
-  longhand: `<Form.Field>
+    "<FormField label='Quantity' control='input' type='number' max={5} />",
+  longhand: `<FormField>
   <label>Quantity</label>
   <input type='number' max={5} />
-</Form.Field>`,
+</FormField>`,
 }
 
 const Compare = ({ longhand, shorthand }) => (
@@ -93,7 +93,7 @@ const FormTypesExamples = () => (
 
     <ComponentExample
       title='Accessible Labels'
-      description='Adding an id to a shorthand Form.Field adds a matching htmlFor prop to the label. In case of an error, the aria-describedby prop is used to connect the error label to the form field.'
+      description='Adding an id to a shorthand FormField adds a matching htmlFor prop to the label. In case of an error, the aria-describedby prop is used to connect the error label to the form field.'
       examplePath='collections/Form/Shorthand/FormExampleFieldControlId'
     />
 

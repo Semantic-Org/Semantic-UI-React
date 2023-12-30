@@ -1,37 +1,45 @@
 import React from 'react'
-import { Image as ImageComponent, Item } from 'semantic-ui-react'
+import {
+  ItemImage,
+  ItemHeader,
+  ItemGroup,
+  ItemDescription,
+  ItemContent,
+  Image as ImageComponent,
+  Item,
+} from 'semantic-ui-react'
 
 const paragraph = <ImageComponent src='/images/wireframe/short-paragraph.png' />
 
 const ItemExampleLink = () => (
-  <Item.Group link>
+  <ItemGroup link>
     <Item>
-      <Item.Image size='tiny' src='/images/avatar/large/stevie.jpg' />
+      <ItemImage size='tiny' src='/images/avatar/large/stevie.jpg' />
 
-      <Item.Content>
-        <Item.Header>Stevie Feliciano</Item.Header>
-        <Item.Description>{paragraph}</Item.Description>
-      </Item.Content>
+      <ItemContent>
+        <ItemHeader>Stevie Feliciano</ItemHeader>
+        <ItemDescription>{paragraph}</ItemDescription>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='/images/avatar/large/veronika.jpg' />
+      <ItemImage size='tiny' src='/images/avatar/large/veronika.jpg' />
 
-      <Item.Content>
-        <Item.Header>Veronika Ossi</Item.Header>
-        <Item.Description>{paragraph}</Item.Description>
-      </Item.Content>
+      <ItemContent>
+        <ItemHeader>Veronika Ossi</ItemHeader>
+        <ItemDescription>{paragraph}</ItemDescription>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='/images/avatar/large/jenny.jpg' />
+      <ItemImage size='tiny' src='/images/avatar/large/jenny.jpg' />
 
-      <Item.Content>
-        <Item.Header>Jenny Hess</Item.Header>
-        <Item.Description>{paragraph}</Item.Description>
-      </Item.Content>
+      <ItemContent>
+        <ItemHeader>Jenny Hess</ItemHeader>
+        <ItemDescription>{paragraph}</ItemDescription>
+      </ItemContent>
     </Item>
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleLink

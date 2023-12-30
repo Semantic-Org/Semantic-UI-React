@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import { FormInput, FormGroup, FormButton, Form } from 'semantic-ui-react'
 
 class FormExampleClearOnSubmit extends Component {
   state = {}
@@ -13,21 +13,21 @@ class FormExampleClearOnSubmit extends Component {
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Form.Group>
-          <Form.Input
+        <FormGroup>
+          <FormInput
             placeholder='Name'
             name='name'
             value={name}
             onChange={this.handleChange}
           />
-          <Form.Input
+          <FormInput
             placeholder='Email'
             name='email'
             value={email}
             onChange={this.handleChange}
           />
-          <Form.Button content='Submit' />
-        </Form.Group>
+          <FormButton content='Submit' />
+        </FormGroup>
       </Form>
     )
   }

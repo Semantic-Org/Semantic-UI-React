@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Message } from 'semantic-ui-react'
+import { MessageHeader, MessageContent, Icon, Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -14,11 +14,11 @@ const StepGroupsExamples = () => (
     >
       <Message positive icon>
         <Icon name='mobile' />
-        <Message.Content>
-          <Message.Header>Responsive Element</Message.Header>
+        <MessageContent>
+          <MessageHeader>Responsive Element</MessageHeader>
           Steps will automatically stack on mobile. To make steps automatically
           stack for tablet use the <code>stackable='tablet'</code> variation.
-        </Message.Content>
+        </MessageContent>
       </Message>
     </ComponentExample>
     <ShorthandExample examplePath='elements/Step/Groups/StepExampleGroupShorthand' />
