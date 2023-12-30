@@ -4,7 +4,7 @@ import _ from 'lodash'
 import path from 'path'
 import through from 'through2'
 
-import { parseDocSection } from './util'
+import parseDocSection from './util/parseDocSection.mjs'
 
 const SECTION_ORDER = {
   Types: 1,

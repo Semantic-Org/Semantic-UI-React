@@ -2,7 +2,7 @@ import Vinyl from 'vinyl'
 import gutil from 'gulp-util'
 import through from 'through2'
 
-import { getComponentInfo } from './util'
+import getComponentInfo from './util/getComponentInfo.mjs'
 
 const pluginName = 'gulp-react-docgen'
 
