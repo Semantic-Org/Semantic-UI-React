@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useAutoControlledValue,
   useEventCallback,
@@ -45,7 +45,7 @@ function computeNewIndex(exclusive, activeIndex, itemIndex) {
  * An Accordion can contain sub-accordions.
  */
 const AccordionAccordion = React.forwardRef(function (props, ref) {
-  const { className, children, exclusive, panels } = props
+  const { className, children, exclusive = true, panels } = props
   const [activeIndex, setActiveIndex] = useAutoControlledValue({
     state: props.activeIndex,
     defaultState: props.defaultActiveIndex,
@@ -54,7 +54,7 @@ const AccordionAccordion = React.forwardRef(function (props, ref) {
 
   const classes = cx('accordion', className)
   const rest = getUnhandledProps(AccordionAccordion, props)
-  const ElementType = getElementType(AccordionAccordion, props)
+  const ElementType = getComponentType(props)
 
   const handleTitleClick = useEventCallback((e, titleProps) => {
     const { index } = titleProps
@@ -91,10 +91,6 @@ const AccordionAccordion = React.forwardRef(function (props, ref) {
     </ElementType>
   )
 })
-
-AccordionAccordion.defaultProps = {
-  exclusive: true,
-}
 
 AccordionAccordion.displayName = 'AccordionAccordion'
 AccordionAccordion.propTypes = {

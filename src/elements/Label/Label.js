@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -75,7 +75,7 @@ const Label = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Label, props)
-  const ElementType = getElementType(Label, props)
+  const ElementType = getComponentType(props)
 
   const handleClick = useEventCallback((e) => {
     _.invoke(props, 'onClick', e, props)

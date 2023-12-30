@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -19,7 +19,7 @@ const DropdownHeader = React.forwardRef(function (props, ref) {
 
   const classes = cx('header', className)
   const rest = getUnhandledProps(DropdownHeader, props)
-  const ElementType = getElementType(DropdownHeader, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

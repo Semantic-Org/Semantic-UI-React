@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 
@@ -17,7 +17,7 @@ const DropdownText = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('divider', className)
   const rest = getUnhandledProps(DropdownText, props)
-  const ElementType = getElementType(DropdownText, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType

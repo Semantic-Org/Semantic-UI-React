@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 import Icon from '../../elements/Icon'
 
 /**
@@ -13,7 +13,7 @@ const FeedLike = React.forwardRef(function (props, ref) {
 
   const classes = cx('like', className)
   const rest = getUnhandledProps(FeedLike, props)
-  const ElementType = getElementType(FeedLike, props)
+  const ElementType = getComponentType(props, { defaultAs: 'a' })
 
   if (!childrenUtils.isNil(children)) {
     return (
@@ -30,10 +30,6 @@ const FeedLike = React.forwardRef(function (props, ref) {
     </ElementType>
   )
 })
-
-FeedLike.defaultProps = {
-  as: 'a',
-}
 
 FeedLike.displayName = 'FeedLike'
 FeedLike.propTypes = {

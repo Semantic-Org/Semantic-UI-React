@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 
 /**
  * A message can contain a content.
@@ -11,7 +11,7 @@ const MessageContent = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(MessageContent, props)
-  const ElementType = getElementType(MessageContent, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

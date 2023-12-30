@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -84,7 +84,7 @@ const Table = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Table, props)
-  const ElementType = getElementType(Table, props)
+  const ElementType = getComponentType(props, { defaultAs: 'table' })
 
   if (!childrenUtils.isNil(children)) {
     return (
@@ -116,10 +116,6 @@ const Table = React.forwardRef(function (props, ref) {
 })
 
 Table.displayName = 'Table'
-Table.defaultProps = {
-  as: 'table',
-}
-
 Table.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

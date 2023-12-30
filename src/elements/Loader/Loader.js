@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -42,7 +42,7 @@ const Loader = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Loader, props)
-  const ElementType = getElementType(Loader, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

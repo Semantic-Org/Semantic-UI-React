@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -16,7 +16,7 @@ import RatingIcon from './RatingIcon'
  * A rating indicates user interest in content.
  */
 const Rating = React.forwardRef(function (props, ref) {
-  const { className, clearable, disabled, icon, maxRating, size } = props
+  const { className, clearable = 'auto', disabled, icon, maxRating = 1, size } = props
 
   const [rating, setRating] = useAutoControlledValue({
     state: props.rating,
@@ -36,7 +36,7 @@ const Rating = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Rating, props)
-  const ElementType = getElementType(Rating, props)
+  const ElementType = getComponentType(props)
 
   const handleIconClick = (e, { index }) => {
     if (disabled) {
@@ -149,11 +149,6 @@ Rating.propTypes = {
 
   /** A progress bar can vary in size. */
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
-}
-
-Rating.defaultProps = {
-  clearable: 'auto',
-  maxRating: 1,
 }
 
 Rating.Icon = RatingIcon

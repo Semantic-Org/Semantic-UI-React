@@ -9,7 +9,7 @@ import {
   ModernAutoControlledComponent as Component,
   customPropTypes,
   eventStack,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   htmlInputAttrs,
   isBrowser,
@@ -45,7 +45,26 @@ const overrideSearchInputProps = (predefinedProps) => {
  * A search module allows a user to query for results from a selection of data
  */
 const Search = React.forwardRef((props, ref) => {
-  return <SearchInner {...props} innerRef={ref} />
+  const {
+    icon = 'search',
+    input = 'text',
+    minCharacters = 1,
+    noResultsMessage = 'No results found.',
+    showNoResults = true,
+    ...rest
+  } = props
+
+  return (
+    <SearchInner
+      icon={icon}
+      input={input}
+      minCharacters={minCharacters}
+      noResultsMessage={noResultsMessage}
+      showNoResults={showNoResults}
+      {...rest}
+      innerRef={ref}
+    />
+  )
 })
 
 class SearchInner extends Component {
@@ -499,7 +518,7 @@ class SearchInner extends Component {
       className,
     )
     const unhandled = getUnhandledProps(Search, this.props)
-    const ElementType = getElementType(Search, this.props)
+    const ElementType = getComponentType(this.props)
     const [htmlInputProps, rest] = partitionHTMLProps(unhandled, {
       htmlProps: htmlInputAttrs,
     })
@@ -679,18 +698,9 @@ Search.propTypes = {
   placeholder: PropTypes.string,
 }
 
-Search.defaultProps = {
-  icon: 'search',
-  input: 'text',
-  minCharacters: 1,
-  noResultsMessage: 'No results found.',
-  showNoResults: true,
-}
-
 SearchInner.autoControlledProps = ['open', 'value']
 
 if (process.env.NODE_ENV !== 'production') {
-  SearchInner.defaultProps = Search.defaultProps
   SearchInner.propTypes = Search.propTypes
 }
 

@@ -125,7 +125,6 @@ describe('Search', () => {
 
   describe('icon', () => {
     it('defaults to a search icon', () => {
-      Search.defaultProps.icon.should.equal('search')
       wrapperMount(<Search />).should.contain.descendants('.search.icon')
     })
   })

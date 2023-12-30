@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 import StepDescription from './StepDescription'
@@ -19,7 +19,7 @@ const StepContent = React.forwardRef(function (props, ref) {
   const { children, className, content, description, title } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(StepContent, props)
-  const ElementType = getElementType(StepContent, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getUnhandledProps, getElementType, SUI } from '../../lib'
+import { childrenUtils, customPropTypes, getUnhandledProps, getComponentType, SUI } from '../../lib'
 import BreadcrumbDivider from './BreadcrumbDivider'
 import BreadcrumbSection from './BreadcrumbSection'
 
@@ -15,7 +15,7 @@ const Breadcrumb = React.forwardRef(function (props, ref) {
 
   const classes = cx('ui', size, 'breadcrumb', className)
   const rest = getUnhandledProps(Breadcrumb, props)
-  const ElementType = getElementType(Breadcrumb, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

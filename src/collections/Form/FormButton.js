@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { getElementType, getUnhandledProps } from '../../lib'
+import { getComponentType, getUnhandledProps } from '../../lib'
 import Button from '../../elements/Button'
 import FormField from './FormField'
 
@@ -11,26 +11,21 @@ import FormField from './FormField'
  * @see Form
  */
 const FormButton = React.forwardRef((props, ref) => {
-  const { control } = props
+  const { control = Button } = props
+
   const rest = getUnhandledProps(FormButton, props)
-  const ElementType = getElementType(FormButton, props)
+  const ElementType = getComponentType(props, { defaultAs: FormField })
 
   return <ElementType {...rest} control={control} ref={ref} />
 })
 
 FormButton.displayName = 'FormButton'
-
 FormButton.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
 
   /** A FormField control prop. */
   control: FormField.propTypes.control,
-}
-
-FormButton.defaultProps = {
-  as: FormField,
-  control: Button,
 }
 
 export default FormButton

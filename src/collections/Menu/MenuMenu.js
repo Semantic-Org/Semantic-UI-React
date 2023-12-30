@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 
 /**
  * A menu can contain a sub menu.
@@ -12,7 +12,7 @@ const MenuMenu = React.forwardRef(function (props, ref) {
 
   const classes = cx(position, 'menu', className)
   const rest = getUnhandledProps(MenuMenu, props)
-  const ElementType = getElementType(MenuMenu, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

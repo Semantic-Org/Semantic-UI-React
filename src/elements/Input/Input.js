@@ -8,7 +8,7 @@ import {
   createHTMLInput,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   partitionHTMLProps,
   useKeyOnly,
@@ -46,7 +46,7 @@ const Input = React.forwardRef(function (props, ref) {
     size,
     tabIndex,
     transparent,
-    type,
+    type = 'text',
   } = props
 
   const computeIcon = () => {
@@ -108,7 +108,7 @@ const Input = React.forwardRef(function (props, ref) {
     'input',
     className,
   )
-  const ElementType = getElementType(Input, props)
+  const ElementType = getComponentType(props)
   const [htmlInputProps, rest] = partitionProps()
 
   // Render with children
@@ -232,10 +232,6 @@ Input.propTypes = {
 
   /** The HTML input type. */
   type: PropTypes.string,
-}
-
-Input.defaultProps = {
-  type: 'text',
 }
 
 Input.create = createShorthandFactory(Input, (type) => ({ type }))

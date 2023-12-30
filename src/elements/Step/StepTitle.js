@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 
@@ -17,7 +17,7 @@ const StepTitle = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
   const classes = cx('title', className)
   const rest = getUnhandledProps(StepTitle, props)
-  const ElementType = getElementType(StepTitle, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

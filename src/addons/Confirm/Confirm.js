@@ -11,7 +11,14 @@ import Modal from '../../modules/Modal'
  * @see Modal
  */
 const Confirm = React.forwardRef(function (props, ref) {
-  const { cancelButton, confirmButton, content, header, open, size } = props
+  const {
+    cancelButton = 'Cancel',
+    confirmButton = 'OK',
+    content = 'Are you sure?',
+    header,
+    open,
+    size = 'small',
+  } = props
   const rest = getUnhandledProps(Confirm, props)
 
   const handleCancel = (e) => {
@@ -94,13 +101,6 @@ Confirm.propTypes = {
 
   /** A Confirm can vary in size */
   size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'fullscreen']),
-}
-
-Confirm.defaultProps = {
-  cancelButton: 'Cancel',
-  confirmButton: 'OK',
-  content: 'Are you sure?',
-  size: 'small',
 }
 
 export default Confirm

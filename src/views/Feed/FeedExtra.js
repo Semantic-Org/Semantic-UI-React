@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLImage,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -25,7 +25,7 @@ const FeedExtra = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(FeedExtra, props)
-  const ElementType = getElementType(FeedExtra, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

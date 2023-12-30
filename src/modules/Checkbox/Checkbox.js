@@ -6,7 +6,7 @@ import React from 'react'
 import {
   createHTMLLabel,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   htmlInputAttrs,
   makeDebugger,
@@ -36,7 +36,7 @@ const Checkbox = React.forwardRef(function (props, ref) {
     slider,
     tabIndex,
     toggle,
-    type,
+    type = 'checkbox',
     value,
   } = props
 
@@ -193,7 +193,7 @@ const Checkbox = React.forwardRef(function (props, ref) {
     className,
   )
   const unhandled = getUnhandledProps(Checkbox, props)
-  const ElementType = getElementType(Checkbox, props)
+  const ElementType = getComponentType(props)
   const [htmlInputProps, rest] = partitionHTMLProps(unhandled, { htmlProps: htmlInputAttrs })
 
   // Heads Up!
@@ -317,10 +317,6 @@ Checkbox.propTypes = {
 
   /** The HTML input value. */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-}
-
-Checkbox.defaultProps = {
-  type: 'checkbox',
 }
 
 export default Checkbox

@@ -2,16 +2,17 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 
 /**
  * A feed can contain a user element.
  */
 const FeedUser = React.forwardRef(function (props, ref) {
   const { children, className, content } = props
+
   const classes = cx('user', className)
   const rest = getUnhandledProps(FeedUser, props)
-  const ElementType = getElementType(FeedUser, props)
+  const ElementType = getComponentType(props, { defaultAs: 'a' })
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>
@@ -33,10 +34,6 @@ FeedUser.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
-}
-
-FeedUser.defaultProps = {
-  as: 'a',
 }
 
 export default FeedUser

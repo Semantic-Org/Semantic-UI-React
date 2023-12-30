@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { customPropTypes, getElementType, getUnhandledProps, useKeyOnly } from '../../lib'
+import { customPropTypes, getComponentType, getUnhandledProps, useKeyOnly } from '../../lib'
 
 /**
  * A placeholder can contain an image.
@@ -16,7 +16,7 @@ const PlaceholderImage = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(PlaceholderImage, props)
-  const ElementType = getElementType(PlaceholderImage, props)
+  const ElementType = getComponentType(props)
 
   return <ElementType {...rest} className={classes} ref={ref} />
 })

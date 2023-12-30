@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useValueAndKey,
@@ -28,7 +28,7 @@ const ListContent = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(ListContent, props)
-  const ElementType = getElementType(ListContent, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

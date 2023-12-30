@@ -37,6 +37,7 @@ export const propKeyAndValueToClassName = (Component, propKey, propValues, optio
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.className=propKey] The className to assert exists.
+ * @param {boolean|string} [options.defaultValue] The default value for the shorthand prop.
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {Object} [options.className=propKey] The className to assert exists.
  */
@@ -80,6 +81,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
  * @param {String} propKey A props key.
  * @param {array} propValues Array of possible values of prop.
  * @param {Object} [options={}]
+ * @param {boolean|string} [options.defaultValue] The default value for the shorthand prop.
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {Object} [options.className=propKey] The className to assert exists.
  */
@@ -125,6 +127,7 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
  * @param {array} propValues Array of possible props values.
  * @param {Object} [options={}]
  * @param {Object} [options.className=propKey] The className to assert exists.
+ * @param {boolean|string} [options.defaultValue] The default value for the shorthand prop.
  * @param {Number} [options.nestingLevel=0] The nesting level of the component.
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  */

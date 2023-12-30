@@ -8,7 +8,7 @@ import {
   createShorthand,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -52,7 +52,7 @@ const DropdownItem = React.forwardRef(function (props, ref) {
     ? childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
     : icon
   const rest = getUnhandledProps(DropdownItem, props)
-  const ElementType = getElementType(DropdownItem, props)
+  const ElementType = getComponentType(props)
   const ariaOptions = {
     role: 'option',
     'aria-disabled': disabled,

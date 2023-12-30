@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
   useEventCallback,
@@ -53,10 +53,12 @@ const Step = React.forwardRef(function (props, ref) {
   )
 
   const rest = getUnhandledProps(Step, props)
-  const ElementType = getElementType(Step, props, () => {
-    if (onClick) {
-      return 'a'
-    }
+  const ElementType = getComponentType(props, {
+    getDefault: () => {
+      if (onClick) {
+        return 'a'
+      }
+    },
   })
 
   if (!childrenUtils.isNil(children)) {

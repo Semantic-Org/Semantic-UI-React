@@ -37,6 +37,7 @@ describe('Confirm', () => {
     requiredProps: { open: true },
   })
   common.implementsShorthandProp(Confirm, {
+    defaultValue: 'OK',
     autoGenerateKey: false,
     propKey: 'content',
     ShorthandComponent: Modal.Content,
@@ -67,7 +68,12 @@ describe('Confirm', () => {
 
   describe('cancelButton', () => {
     it('is "Cancel" by default', () => {
-      Confirm.defaultProps.cancelButton.should.equal('Cancel')
+      shallow(<Confirm />)
+        .find('Button')
+        .first()
+        .shallow()
+        .childAt(0)
+        .should.have.text('Cancel')
     })
     it('sets the cancel button text', () => {
       shallow(<Confirm cancelButton='foo' />)
@@ -81,7 +87,11 @@ describe('Confirm', () => {
 
   describe('confirmButton', () => {
     it('is "OK" by default', () => {
-      Confirm.defaultProps.confirmButton.should.equal('OK')
+      shallow(<Confirm />)
+        .find('Button[primary]')
+        .shallow()
+        .childAt(0)
+        .should.have.text('OK')
     })
     it('sets the confirm button text', () => {
       shallow(<Confirm confirmButton='foo' />)

@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -18,7 +18,7 @@ const CommentAction = React.forwardRef(function (props, ref) {
 
   const classes = cx(useKeyOnly(active, 'active'), className)
   const rest = getUnhandledProps(CommentAction, props)
-  const ElementType = getElementType(CommentAction, props)
+  const ElementType = getComponentType(props, { defaultAs: 'a' })
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>
@@ -26,10 +26,6 @@ const CommentAction = React.forwardRef(function (props, ref) {
     </ElementType>
   )
 })
-
-CommentAction.defaultProps = {
-  as: 'a',
-}
 
 CommentAction.displayName = 'CommentAction'
 CommentAction.propTypes = {

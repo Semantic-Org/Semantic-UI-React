@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -48,8 +48,10 @@ const MenuItem = React.forwardRef(function (props, ref) {
     'item',
     className,
   )
-  const ElementType = getElementType(MenuItem, props, () => {
-    if (onClick) return 'a'
+  const ElementType = getComponentType(props, {
+    getDefault: () => {
+      if (onClick) return 'a'
+    },
   })
   const rest = getUnhandledProps(MenuItem, props)
 

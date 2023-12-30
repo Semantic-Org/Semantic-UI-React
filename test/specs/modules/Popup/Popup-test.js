@@ -113,7 +113,6 @@ describe('Popup', () => {
   describe('eventsEnabled ', () => {
     it(`is "true" by default`, () => {
       wrapperMount(<Popup open />)
-      wrapper.should.have.prop('eventsEnabled', true)
 
       const modifiers = wrapper.find('Popper').prop('modifiers')
       const eventListeners = _.find(modifiers, (m) => m.name === 'eventListeners')

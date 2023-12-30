@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createHTMLDivision,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -141,7 +141,7 @@ const Progress = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Progress, props)
-  const ElementType = getElementType(Progress, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { getElementType, getUnhandledProps } from '../../lib'
+import { getComponentType, getUnhandledProps } from '../../lib'
 import Input from '../../elements/Input'
 import FormField from './FormField'
 
@@ -11,9 +11,10 @@ import FormField from './FormField'
  * @see Input
  */
 const FormInput = React.forwardRef(function (props, ref) {
-  const { control } = props
+  const { control = Input } = props
+
   const rest = getUnhandledProps(FormInput, props)
-  const ElementType = getElementType(FormInput, props)
+  const ElementType = getComponentType(props, { defaultAs: FormField })
 
   return <ElementType {...rest} control={control} ref={ref} />
 })
@@ -25,11 +26,6 @@ FormInput.propTypes = {
 
   /** A FormField control prop. */
   control: FormField.propTypes.control,
-}
-
-FormInput.defaultProps = {
-  as: FormField,
-  control: Input,
 }
 
 export default FormInput

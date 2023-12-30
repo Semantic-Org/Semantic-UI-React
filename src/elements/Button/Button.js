@@ -7,7 +7,7 @@ import {
   childrenUtils,
   customPropTypes,
   createShorthandFactory,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -96,7 +96,7 @@ const Button = React.forwardRef(function (props, ref) {
     secondary,
     size,
     toggle,
-    type
+    type,
   } = props
   const elementRef = useMergedRefs(ref, React.useRef())
 
@@ -123,10 +123,13 @@ const Button = React.forwardRef(function (props, ref) {
   const wrapperClasses = cx(useKeyOnly(disabled, 'disabled'), useValueAndKey(floated, 'floated'))
 
   const rest = getUnhandledProps(Button, props)
-  const ElementType = getElementType(Button, props, () => {
-    if (!_.isNil(attached) || !_.isNil(label)) {
-      return 'div'
-    }
+  const ElementType = getComponentType(props, {
+    defaultAs: 'button',
+    getDefault: () => {
+      if (!_.isNil(attached) || !_.isNil(label)) {
+        return 'div'
+      }
+    },
   })
   const tabIndex = computeTabIndex(ElementType, disabled, props.tabIndex)
 
@@ -313,10 +316,6 @@ Button.propTypes = {
 
   /** The type of the HTML element. */
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
-}
-
-Button.defaultProps = {
-  as: 'button',
 }
 
 Button.Content = ButtonContent

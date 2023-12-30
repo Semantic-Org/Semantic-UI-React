@@ -4,7 +4,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { getElementType, getUnhandledProps, useKeyOnly } from '../../lib'
+import { getComponentType, getUnhandledProps, useKeyOnly } from '../../lib'
 
 /**
  * An internal icon sub-component for Rating component
@@ -19,7 +19,7 @@ const RatingIcon = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(RatingIcon, props)
-  const ElementType = getElementType(RatingIcon, props)
+  const ElementType = getComponentType(props, { defaultAs: 'i' })
 
   const handleClick = (e) => {
     _.invoke(props, 'onClick', e, props)
@@ -95,10 +95,6 @@ RatingIcon.propTypes = {
 
   /** Indicates selection of an icon. */
   selected: PropTypes.bool,
-}
-
-RatingIcon.defaultProps = {
-  as: 'i',
 }
 
 export default RatingIcon

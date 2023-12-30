@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
   useEventCallback,
@@ -22,7 +22,7 @@ const AccordionTitle = React.forwardRef(function (props, ref) {
 
   const classes = cx(useKeyOnly(active, 'active'), 'title', className)
   const rest = getUnhandledProps(AccordionTitle, props)
-  const ElementType = getElementType(AccordionTitle, props)
+  const ElementType = getComponentType(props)
   const iconValue = _.isNil(icon) ? 'dropdown' : icon
 
   const handleClick = useEventCallback((e) => {

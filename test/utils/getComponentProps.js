@@ -13,7 +13,6 @@ export default function getComponentProps(Component) {
 
   return {
     autoControlledProps: Component.autoControlledProps,
-    defaultProps: Component.defaultProps,
     handledProps: Component.handledProps,
     propTypes: Component.propTypes,
   }

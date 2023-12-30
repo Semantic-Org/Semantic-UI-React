@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps, SUI } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps, SUI } from '../../lib'
 
 /**
  * Several icons can be used together as a group.
@@ -13,7 +13,7 @@ const IconGroup = React.forwardRef(function (props, ref) {
 
   const classes = cx(size, 'icons', className)
   const rest = getUnhandledProps(IconGroup, props)
-  const ElementType = getElementType(IconGroup, props)
+  const ElementType = getComponentType(props, { defaultAs: 'i' })
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>
@@ -38,10 +38,6 @@ IconGroup.propTypes = {
 
   /** Size of the icon group. */
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
-}
-
-IconGroup.defaultProps = {
-  as: 'i',
 }
 
 export default IconGroup

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   makeDebugger,
   SUI,
@@ -19,7 +19,7 @@ const debug = makeDebugger('transition_group')
  * Wraps all children elements with proper callbacks and props.
  *
  * @param {React.ReactNode} children
- * @param {Stream} animation
+ * @param {String} animation
  * @param {Number|String|Object} duration
  * @param {Boolean} directional
  *
@@ -113,12 +113,12 @@ const TransitionGroup = React.forwardRef(function (props, ref) {
 
   const children = useWrappedChildren(
     props.children,
-    props.animation,
-    props.duration,
+    props.animation ?? 'fade',
+    props.duration ?? 500,
     props.directional,
   )
 
-  const ElementType = getElementType(TransitionGroup, props)
+  const ElementType = getComponentType(props, { defaultAs: React.Fragment })
   const rest = getUnhandledProps(TransitionGroup, props)
 
   return (
@@ -151,12 +151,6 @@ TransitionGroup.propTypes = {
     }),
     PropTypes.string,
   ]),
-}
-
-TransitionGroup.defaultProps = {
-  as: React.Fragment,
-  animation: 'fade',
-  duration: 500,
 }
 
 export default TransitionGroup

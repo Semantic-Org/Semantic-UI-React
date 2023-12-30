@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { getElementType, getUnhandledProps } from '../../lib'
+import { getComponentType, getUnhandledProps } from '../../lib'
 import Radio from '../../addons/Radio'
 import FormField from './FormField'
 
@@ -11,9 +11,10 @@ import FormField from './FormField'
  * @see Radio
  */
 const FormRadio = React.forwardRef(function (props, ref) {
-  const { control } = props
+  const { control = Radio } = props
+
   const rest = getUnhandledProps(FormRadio, props)
-  const ElementType = getElementType(FormRadio, props)
+  const ElementType = getComponentType(props, { defaultAs: FormField })
 
   return <ElementType {...rest} control={control} ref={ref} />
 })
@@ -25,11 +26,6 @@ FormRadio.propTypes = {
 
   /** A FormField control prop. */
   control: FormField.propTypes.control,
-}
-
-FormRadio.defaultProps = {
-  as: FormField,
-  control: Radio,
 }
 
 export default FormRadio

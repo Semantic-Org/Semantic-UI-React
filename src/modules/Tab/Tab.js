@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useAutoControlledValue,
 } from '../../lib'
@@ -19,7 +19,13 @@ import TabPane from './TabPane'
  * @see Segment
  */
 const Tab = React.forwardRef(function (props, ref) {
-  const { grid, menu, panes, menuPosition, renderActiveOnly } = props
+  const {
+    grid = { paneWidth: 12, tabWidth: 4 },
+    menu = { attached: true, tabular: true },
+    menuPosition,
+    panes,
+    renderActiveOnly = true,
+  } = props
 
   const [activeIndex, setActiveIndex] = useAutoControlledValue({
     state: props.activeIndex,
@@ -86,7 +92,7 @@ const Tab = React.forwardRef(function (props, ref) {
 
   const menuElement = renderMenu()
   const rest = getUnhandledProps(Tab, props)
-  const ElementType = getElementType(Tab, props)
+  const ElementType = getComponentType(props)
 
   if (menuElement.props.vertical) {
     return (
@@ -153,14 +159,6 @@ Tab.propTypes = {
 
   /** A Tab can render only active pane. */
   renderActiveOnly: PropTypes.bool,
-}
-
-Tab.autoControlledProps = ['activeIndex']
-
-Tab.defaultProps = {
-  grid: { paneWidth: 12, tabWidth: 4 },
-  menu: { attached: true, tabular: true },
-  renderActiveOnly: true,
 }
 
 Tab.Pane = TabPane

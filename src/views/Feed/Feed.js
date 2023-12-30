@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps, SUI } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps, SUI } from '../../lib'
 import FeedContent from './FeedContent'
 import FeedDate from './FeedDate'
 import FeedEvent from './FeedEvent'
@@ -22,7 +22,7 @@ const Feed = React.forwardRef(function (props, ref) {
 
   const classes = cx('ui', size, 'feed', className)
   const rest = getUnhandledProps(Feed, props)
-  const ElementType = getElementType(Feed, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -25,7 +25,7 @@ const Advertisement = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Advertisement, props)
-  const ElementType = getElementType(Advertisement, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} data-text={test} ref={ref}>

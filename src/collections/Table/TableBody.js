@@ -2,13 +2,14 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { getElementType, getUnhandledProps } from '../../lib'
+import { getComponentType, getUnhandledProps } from '../../lib'
 
 const TableBody = React.forwardRef(function (props, ref) {
   const { children, className } = props
+
   const classes = cx(className)
   const rest = getUnhandledProps(TableBody, props)
-  const ElementType = getElementType(TableBody, props)
+  const ElementType = getComponentType(props, { defaultAs: 'tbody' })
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>
@@ -18,10 +19,6 @@ const TableBody = React.forwardRef(function (props, ref) {
 })
 
 TableBody.displayName = 'TableBody'
-TableBody.defaultProps = {
-  as: 'tbody',
-}
-
 TableBody.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,

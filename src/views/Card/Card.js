@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -52,10 +52,12 @@ const Card = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Card, props)
-  const ElementType = getElementType(Card, props, () => {
-    if (onClick) {
-      return 'a'
-    }
+  const ElementType = getComponentType(props, {
+    getDefault: () => {
+      if (onClick) {
+        return 'a'
+      }
+    },
   })
 
   const handleClick = useEventCallback((e) => {

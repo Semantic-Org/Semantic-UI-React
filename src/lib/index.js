@@ -17,8 +17,8 @@ export * as customPropTypes from './customPropTypes'
 export eventStack from './eventStack'
 
 export * from './factories'
+export getComponentType from './getComponentType'
 export getUnhandledProps from './getUnhandledProps'
-export getElementType from './getElementType'
 
 export {
   htmlInputAttrs,

@@ -9,7 +9,8 @@ import TableCell from './TableCell'
  * A table can have a header cell.
  */
 const TableHeaderCell = React.forwardRef(function (props, ref) {
-  const { as, className, sorted } = props
+  const { as = 'th', className, sorted } = props
+
   const classes = cx(useValueAndKey(sorted, 'sorted'), className)
   const rest = getUnhandledProps(TableHeaderCell, props)
 
@@ -26,10 +27,6 @@ TableHeaderCell.propTypes = {
 
   /** A header cell can be sorted in ascending or descending order. */
   sorted: PropTypes.oneOf(['ascending', 'descending']),
-}
-
-TableHeaderCell.defaultProps = {
-  as: 'th',
 }
 
 export default TableHeaderCell

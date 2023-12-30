@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { childrenUtils, customPropTypes, getElementType, getUnhandledProps } from '../../lib'
+import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
 
 /**
  * A comment can contain an author.
@@ -11,7 +11,7 @@ const CommentAuthor = React.forwardRef(function (props, ref) {
   const { className, children, content } = props
   const classes = cx('author', className)
   const rest = getUnhandledProps(CommentAuthor, props)
-  const ElementType = getElementType(CommentAuthor, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

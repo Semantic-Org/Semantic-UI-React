@@ -16,11 +16,28 @@ import PaginationItem from './PaginationItem'
  */
 const Pagination = React.forwardRef(function (props, ref) {
   const {
-    'aria-label': ariaLabel,
-    boundaryRange,
+    'aria-label': ariaLabel = 'Pagination Navigation',
+    boundaryRange = 1,
     disabled,
-    ellipsisItem,
-    siblingRange,
+    ellipsisItem = '...',
+    firstItem = {
+      'aria-label': 'First item',
+      content: '«',
+    },
+    lastItem = {
+      'aria-label': 'Last item',
+      content: '»',
+    },
+    nextItem = {
+      'aria-label': 'Next item',
+      content: '⟩',
+    },
+    pageItem = {},
+    prevItem = {
+      'aria-label': 'Previous item',
+      content: '⟨',
+    },
+    siblingRange = 1,
     totalPages,
   } = props
   const [activePage, setActivePage] = useAutoControlledValue({
@@ -63,10 +80,19 @@ const Pagination = React.forwardRef(function (props, ref) {
   })
   const rest = getUnhandledProps(Pagination, props)
 
+  const paginationItemTypes = {
+    firstItem,
+    lastItem,
+    ellipsisItem,
+    nextItem,
+    pageItem,
+    prevItem,
+  }
+
   return (
     <Menu {...rest} aria-label={ariaLabel} pagination role='navigation' ref={ref}>
       {_.map(items, ({ active, type, value }) =>
-        PaginationItem.create(props[type], {
+        PaginationItem.create(paginationItemTypes[type], {
           defaultProps: {
             content: value,
             disabled,
@@ -127,30 +153,6 @@ Pagination.propTypes = {
 
   /** Total number of pages. */
   totalPages: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-}
-
-Pagination.defaultProps = {
-  'aria-label': 'Pagination Navigation',
-  boundaryRange: 1,
-  ellipsisItem: '...',
-  firstItem: {
-    'aria-label': 'First item',
-    content: '«',
-  },
-  lastItem: {
-    'aria-label': 'Last item',
-    content: '»',
-  },
-  nextItem: {
-    'aria-label': 'Next item',
-    content: '⟩',
-  },
-  pageItem: {},
-  prevItem: {
-    'aria-label': 'Previous item',
-    content: '⟨',
-  },
-  siblingRange: 1,
 }
 
 Pagination.Item = PaginationItem

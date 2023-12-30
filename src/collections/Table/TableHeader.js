@@ -5,7 +5,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -15,9 +15,10 @@ import {
  */
 const TableHeader = React.forwardRef(function (props, ref) {
   const { children, className, content, fullWidth } = props
+
   const classes = cx(useKeyOnly(fullWidth, 'full-width'), className)
   const rest = getUnhandledProps(TableHeader, props)
-  const ElementType = getElementType(TableHeader, props)
+  const ElementType = getComponentType(props, { defaultAs: 'thead' })
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>
@@ -25,10 +26,6 @@ const TableHeader = React.forwardRef(function (props, ref) {
     </ElementType>
   )
 })
-
-TableHeader.defaultProps = {
-  as: 'thead',
-}
 
 TableHeader.displayName = 'TableHeader'
 TableHeader.propTypes = {

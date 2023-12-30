@@ -7,7 +7,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -56,7 +56,7 @@ const TableCell = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(TableCell, props)
-  const ElementType = getElementType(TableCell, props)
+  const ElementType = getComponentType(props, { defaultAs: 'td' })
 
   if (!childrenUtils.isNil(children)) {
     return (
@@ -73,10 +73,6 @@ const TableCell = React.forwardRef(function (props, ref) {
     </ElementType>
   )
 })
-
-TableCell.defaultProps = {
-  as: 'td',
-}
 
 TableCell.displayName = 'TableCell'
 TableCell.propTypes = {

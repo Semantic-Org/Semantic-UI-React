@@ -8,7 +8,7 @@ import {
   createShorthandFactory,
   customPropTypes,
   getUnhandledProps,
-  getElementType,
+  getComponentType,
   useKeyOnly,
   useEventCallback,
 } from '../../lib'
@@ -21,8 +21,10 @@ const BreadcrumbSection = React.forwardRef(function (props, ref) {
 
   const classes = cx(useKeyOnly(active, 'active'), 'section', className)
   const rest = getUnhandledProps(BreadcrumbSection, props)
-  const ElementType = getElementType(BreadcrumbSection, props, () => {
-    if (link || onClick) return 'a'
+  const ElementType = getComponentType(props, {
+    getDefault: () => {
+      if (link || onClick) return 'a'
+    },
   })
 
   const handleClick = useEventCallback((e) => _.invoke(props, 'onClick', e, props))

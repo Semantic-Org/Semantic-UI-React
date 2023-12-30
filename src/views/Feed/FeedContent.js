@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthand,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 import FeedDate from './FeedDate'
@@ -19,7 +19,7 @@ const FeedContent = React.forwardRef(function (props, ref) {
 
   const classes = cx('content', className)
   const rest = getUnhandledProps(FeedContent, props)
-  const ElementType = getElementType(FeedContent, props)
+  const ElementType = getComponentType(props)
 
   if (!childrenUtils.isNil(children)) {
     return (

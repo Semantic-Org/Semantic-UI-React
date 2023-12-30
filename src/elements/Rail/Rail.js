@@ -6,7 +6,7 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useKeyOnly,
@@ -41,7 +41,7 @@ const Rail = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Rail, props)
-  const ElementType = getElementType(Rail, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

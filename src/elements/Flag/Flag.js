@@ -5,7 +5,7 @@ import React from 'react'
 import {
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
 } from '../../lib'
 
@@ -507,13 +507,13 @@ export const names = [
 ]
 
 /**
- * A flag is is used to represent a political state.
+ * A flag is used to represent a political state.
  */
 const Flag = React.forwardRef(function (props, ref) {
   const { className, name } = props
   const classes = cx(name, 'flag', className)
   const rest = getUnhandledProps(Flag, props)
-  const ElementType = getElementType(Flag, props)
+  const ElementType = getComponentType(props, { defaultAs: 'i' })
 
   return <ElementType {...rest} className={classes} ref={ref} />
 })
@@ -535,8 +535,5 @@ Flag.propTypes = {
 const MemoFlag = React.memo(Flag)
 
 MemoFlag.create = createShorthandFactory(MemoFlag, (value) => ({ name: value }))
-MemoFlag.defaultProps = {
-  as: 'i',
-}
 
 export default MemoFlag

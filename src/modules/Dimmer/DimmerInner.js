@@ -7,7 +7,7 @@ import {
   childrenUtils,
   customPropTypes,
   doesNodeContainClick,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
   useVerticalAlignProp,
@@ -68,7 +68,7 @@ const DimmerInner = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(DimmerInner, props)
-  const ElementType = getElementType(DimmerInner, props)
+  const ElementType = getComponentType(props)
 
   const childrenContent = childrenUtils.isNil(children) ? content : children
 

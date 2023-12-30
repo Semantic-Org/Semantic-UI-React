@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { getElementType, getUnhandledProps, SUI, useKeyOnly, useWidthProp } from '../../lib'
+import { getComponentType, getUnhandledProps, SUI, useKeyOnly, useWidthProp } from '../../lib'
 import FormButton from './FormButton'
 import FormCheckbox from './FormCheckbox'
 import FormDropdown from './FormDropdown'
@@ -62,7 +62,7 @@ const Form = React.forwardRef(function (props, ref) {
     className,
   )
   const rest = getUnhandledProps(Form, props)
-  const ElementType = getElementType(Form, props)
+  const ElementType = getComponentType(props, { defaultAs: 'form' })
 
   return (
     <ElementType {...rest} action={action} className={classes} onSubmit={handleSubmit} ref={ref}>
@@ -115,10 +115,6 @@ Form.propTypes = {
 
   /** Forms can automatically divide fields to be equal width. */
   widths: PropTypes.oneOf(['equal']),
-}
-
-Form.defaultProps = {
-  as: 'form',
 }
 
 Form.Field = FormField

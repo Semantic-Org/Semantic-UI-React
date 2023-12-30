@@ -6,7 +6,7 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -19,7 +19,7 @@ const StatisticValue = React.forwardRef(function (props, ref) {
 
   const classes = cx(useKeyOnly(text, 'text'), 'value', className)
   const rest = getUnhandledProps(StatisticValue, props)
-  const ElementType = getElementType(StatisticValue, props)
+  const ElementType = getComponentType(props)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

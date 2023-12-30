@@ -6,7 +6,7 @@ import React from 'react'
 import {
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  getComponentType,
   getUnhandledProps,
   SUI,
   useEventCallback,
@@ -74,7 +74,7 @@ const Icon = React.forwardRef(function (props, ref) {
   )
 
   const rest = getUnhandledProps(Icon, props)
-  const ElementType = getElementType(Icon, props)
+  const ElementType = getComponentType(props, { defaultAs: 'i' })
   const ariaProps = getAriaProps(props)
 
   const handleClick = useEventCallback((e) => {
@@ -154,9 +154,5 @@ const MemoIcon = React.memo(Icon)
 
 MemoIcon.Group = IconGroup
 MemoIcon.create = createShorthandFactory(MemoIcon, (value) => ({ name: value }))
-
-MemoIcon.defaultProps = {
-  as: 'i',
-}
 
 export default MemoIcon
