@@ -1,7 +1,7 @@
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 
 import { getComponentType, getUnhandledProps, SUI, useKeyOnly, useWidthProp } from '../../lib'
 import FormButton from './FormButton'

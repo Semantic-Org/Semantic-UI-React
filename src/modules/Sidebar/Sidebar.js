@@ -2,7 +2,7 @@ import { EventListener, documentRef } from '@fluentui/react-component-event-list
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 
 import {
   childrenUtils,

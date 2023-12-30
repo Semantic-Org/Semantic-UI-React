@@ -1,6 +1,6 @@
 import cx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 
 import { getUnhandledProps, useValueAndKey } from '../../lib'
 import TableCell from './TableCell'

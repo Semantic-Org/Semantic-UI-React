@@ -24,7 +24,7 @@
  *    hoisted and exposed by the HOC.
  */
 import _ from 'lodash'
-import React from 'react'
+import * as React from 'react'
 
 const getDefaultPropName = (prop) => `default${prop[0].toUpperCase() + prop.slice(1)}`
 
