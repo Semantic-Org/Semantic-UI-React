@@ -1,26 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button, Confirm } from 'semantic-ui-react'
 
-class ConfirmExampleHeader extends Component {
-  state = { open: false }
+function ConfirmExampleHeader() {
+  const [open, setOpen] = React.useState(false)
 
-  show = () => this.setState({ open: true })
-  handleConfirm = () => this.setState({ open: false })
-  handleCancel = () => this.setState({ open: false })
+  const show = () => setOpen(true)
+  const handleConfirm = () => setOpen(false)
+  const handleCancel = () => setOpen(false)
 
-  render() {
-    return (
-      <div>
-        <Button onClick={this.show}>Show</Button>
-        <Confirm
-          open={this.state.open}
-          header='This is a custom header'
-          onCancel={this.handleCancel}
-          onConfirm={this.handleConfirm}
-        />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Button onClick={show}>Show</Button>
+      <Confirm
+        open={open}
+        header='This is a custom header'
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+      />
+    </div>
+  )
 }
 
 export default ConfirmExampleHeader
