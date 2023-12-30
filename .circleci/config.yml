@@ -5,9 +5,12 @@ general:
     ignore:
       - gh-pages
 
+orbs:
+  browser-tools: circleci/browser-tools@1.4.6
+
 docker_defaults: &docker_defaults
   docker:
-    - image: circleci/node:16-browsers
+    - image: cimg/node:16.16-browsers
   working_directory: ~/project/semantic-ui-react
 
 environment:
@@ -32,6 +35,7 @@ jobs:
           key: v6-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+      - browser-tools/install-chrome
       - persist_to_workspace:
           root: ~/
           paths:

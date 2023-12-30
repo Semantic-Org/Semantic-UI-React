@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import traverse from '@babel/traverse'
+import { traverse } from '@babel/core'
 
-import parseBuffer from './parseBuffer'
+import parseBuffer from './parseBuffer.mjs'
 
 const getJSXAttributes = (jsxPath) =>
   _.map(_.get(jsxPath, 'node.attributes'), (attr) => ({

@@ -1,22 +1,20 @@
-import { task, src, dest, lastRun, parallel, series, watch } from 'gulp'
-import loadPlugins from 'gulp-load-plugins'
+import gulp from 'gulp'
 import path from 'path'
-import { build, reloadRoutes, start } from 'react-static/node'
 import rimraf from 'rimraf'
 
-import sh from '../sh'
-import config from '../../config'
-import gulpComponentMenu from '../plugins/gulp-component-menu'
-import gulpExampleMenu from '../plugins/gulp-example-menu'
-import gulpExampleSources from '../plugins/gulp-example-source'
-import gulpReactDocgen from '../plugins/gulp-react-docgen'
+import sh from '../sh.mjs'
+import gulpComponentMenu from '../plugins/gulp-component-menu.mjs'
+import gulpExampleMenu from '../plugins/gulp-example-menu.mjs'
+import gulpExampleSources from '../plugins/gulp-example-source.mjs'
+import gulpReactDocgen from '../plugins/gulp-react-docgen.mjs'
 
-const { paths } = config
-const g = loadPlugins()
-const { log } = g.util
+const { paths } = (await import('../../config.js')).default
+const { build, reloadRoutes, start } = await import('react-static/node/index.js')
+
+const { task, src, dest, lastRun, parallel, series, watch } = gulp
 
 const handleWatchChange = (filename) =>
-  log(`File ${path.basename(filename)} was changed, running tasks...`)
+  console.log(`File ${path.basename(filename)} was changed, running tasks...`)
 
 /**
  * Converts paths with globs to supported by chokidar, is more specific for Windows where

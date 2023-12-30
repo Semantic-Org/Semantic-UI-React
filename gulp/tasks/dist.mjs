@@ -1,17 +1,17 @@
-import { dest, task, series, src, parallel } from 'gulp'
+import gulp from 'gulp'
 import rimraf from 'rimraf'
 
-import sh from '../sh'
-import config from '../../config'
+import sh from '../sh.mjs'
 
-const { paths } = config
+const { dest, task, series, src, parallel } = gulp
+const { paths } = (await import('../../config.js')).default
 
 // ----------------------------------------
 // Clean
 // ----------------------------------------
 
 task('clean:dist', (cb) => {
-  rimraf(`${config.paths.dist()}/*`, cb)
+  rimraf(`${paths.dist()}/*`, cb)
 })
 
 // ----------------------------------------

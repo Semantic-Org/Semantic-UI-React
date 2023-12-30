@@ -1,13 +1,14 @@
 import _ from 'lodash'
 import path from 'path'
-import { defaultHandlers, parse, resolver } from 'react-docgen'
+import { builtinResolvers, defaultHandlers, parse } from 'react-docgen'
 import fs from 'fs'
 
-import config from '../../../config'
-import parseDefaultValue from './parseDefaultValue'
-import parseDocblock from './parseDocblock'
-import parserCustomHandler from './parserCustomHandler'
-import parseType from './parseType'
+import parseDefaultValue from './parseDefaultValue.mjs'
+import parseDocblock from './parseDocblock.mjs'
+import parserCustomHandler from './parserCustomHandler.mjs'
+import parseType from './parseType.mjs'
+
+const config = (await import('../../../config.js')).default
 
 const getComponentInfo = (filepath) => {
   const absPath = path.resolve(process.cwd(), filepath)
@@ -24,10 +25,11 @@ const getComponentInfo = (filepath) => {
   const componentType = path.basename(path.dirname(dir)).replace(/s$/, '')
 
   // start with react-docgen info
-  const components = parse(contents, resolver.findAllComponentDefinitions, [
-    ...defaultHandlers,
-    parserCustomHandler,
-  ])
+  const resolver = new builtinResolvers.FindAllDefinitionsResolver()
+  const components = parse(contents, {
+    resolver,
+    handlers: [...defaultHandlers, parserCustomHandler],
+  })
 
   if (!components.length) {
     throw new Error(`Could not find a component definition in "${filepath}".`)
