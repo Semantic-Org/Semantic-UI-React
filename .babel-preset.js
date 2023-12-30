@@ -33,6 +33,12 @@ const plugins = [
   // modules and avoid modules that prevent tree-shaking:
   // https://github.com/lodash/lodash/issues/4119
   'lodash',
+  [
+    'transform-next-use-client',
+    {
+      customClientImports: ['useAutoControlledValue', 'useEventCallback', 'useMergedRefs'],
+    },
+  ],
   // CJS modules are not tree-shakable in any bundler by default
   // https://github.com/formium/tsdx#using-lodash
   (isESBuild || isUMDBuild) && [

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import ReactIs from 'react-is'
 
 import { useMergedRefs } from '../../lib'

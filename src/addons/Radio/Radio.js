@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 import { getUnhandledProps } from '../../lib'
 import Checkbox from '../../modules/Checkbox'

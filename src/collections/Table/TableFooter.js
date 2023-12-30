@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 
 import { getUnhandledProps } from '../../lib'
 import TableHeader from './TableHeader'

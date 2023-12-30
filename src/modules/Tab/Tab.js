@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 
 import {
   customPropTypes,

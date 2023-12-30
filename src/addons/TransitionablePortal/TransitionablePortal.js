@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 
 import Portal from '../Portal'
 import Transition from '../../modules/Transition'

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import isBrowser from '../isBrowser'
 
 // useLayoutEffect() produces a warning with SSR rendering

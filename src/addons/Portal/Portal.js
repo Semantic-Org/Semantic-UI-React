@@ -2,7 +2,7 @@ import EventStack from '@semantic-ui-react/event-stack'
 import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 
 import {
   customPropTypes,
@@ -25,17 +25,17 @@ const debug = makeDebugger('portal')
 function Portal(props) {
   const {
     children,
-    closeOnDocumentClick,
-    closeOnEscape,
+    closeOnDocumentClick = true,
+    closeOnEscape = true,
     closeOnPortalMouseLeave,
     closeOnTriggerBlur,
     closeOnTriggerClick,
     closeOnTriggerMouseLeave,
-    eventPool,
+    eventPool = 'default',
     mountNode,
     mouseEnterDelay,
     mouseLeaveDelay,
-    openOnTriggerClick,
+    openOnTriggerClick = true,
     openOnTriggerFocus,
     openOnTriggerMouseEnter,
   } = props
@@ -376,13 +376,6 @@ Portal.propTypes = {
 
   /** Called with a ref to the trigger node. */
   triggerRef: customPropTypes.ref,
-}
-
-Portal.defaultProps = {
-  closeOnDocumentClick: true,
-  closeOnEscape: true,
-  eventPool: 'default',
-  openOnTriggerClick: true,
 }
 
 Portal.Inner = PortalInner

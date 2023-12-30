@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
+import * as React from 'react'
 
 // There are times when we need to calculate the options based on a value
 // that hasn't yet been persisted to state.

@@ -281,7 +281,19 @@ describe('Portal', () => {
 
   describe('openOnTriggerClick', () => {
     it('defaults to true', () => {
-      Portal.defaultProps.openOnTriggerClick.should.equal(true)
+      const onTriggerClick = sandbox.spy()
+      const trigger = <button onClick={onTriggerClick}>button</button>
+
+      wrapperMount(
+        <Portal trigger={trigger}>
+          <p />
+        </Portal>,
+      )
+      wrapper.should.not.have.descendants(PortalInner)
+
+      wrapper.find('button').simulate('click')
+      wrapper.should.have.descendants(PortalInner)
+      onTriggerClick.should.have.been.calledOnce()
     })
 
     it('does not open the portal on trigger click when false', () => {
