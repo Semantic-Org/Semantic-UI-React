@@ -1,5 +1,26 @@
 # Change Log
 
+## v3.0.0-beta.2 (2023-12-30)
+
+#### :rocket: New Feature
+* [#4437](https://github.com/Semantic-Org/Semantic-UI-React/pull/4437) feat(FormGroup): add error prop to FormGroup ([@felixmosh](https://github.com/felixmosh))
+* [#4436](https://github.com/Semantic-Org/Semantic-UI-React/pull/4436) feat(Form.Group): add disabled prop ([@naman1608](https://github.com/naman1608))
+
+#### :bug: Bug Fix
+* [#4447](https://github.com/Semantic-Org/Semantic-UI-React/pull/4447) fix(typings): update types to support `ref` ([@layershifter](https://github.com/layershifter))
+* [#4446](https://github.com/Semantic-Org/Semantic-UI-React/pull/4446) fix(Popup): fix positioning in scrollable container ([@CoryDuncan](https://github.com/CoryDuncan))
+* [#4445](https://github.com/Semantic-Org/Semantic-UI-React/pull/4445) fix(Portal): fix event handling for mouseEnter/mouseLeave ([@tourman](https://github.com/tourman))
+
+#### :memo: Documentation
+* [#4431](https://github.com/Semantic-Org/Semantic-UI-React/pull/4431) docs: add migration guide to v3 ([@layershifter](https://github.com/layershifter))
+
+#### :house: Internal
+* [#4456](https://github.com/Semantic-Org/Semantic-UI-React/pull/4456) chore: remove "dot-syntax" from examples ([@layershifter](https://github.com/layershifter))
+* [#4455](https://github.com/Semantic-Org/Semantic-UI-React/pull/4455) chore: fix lint warnings ([@layershifter](https://github.com/layershifter))
+* [#4452](https://github.com/Semantic-Org/Semantic-UI-React/pull/4452) chore: add "use client" directive in components where it's needed ([@layershifter](https://github.com/layershifter))
+* [#4454](https://github.com/Semantic-Org/Semantic-UI-React/pull/4454) chore: bump Babel & react-docgen ([@layershifter](https://github.com/layershifter))
+* [#4449](https://github.com/Semantic-Org/Semantic-UI-React/pull/4449) chore: remove usage of deprecated `.defaultProps` ([@tourman](https://github.com/tourman))
+
 ## v2.1.5 (2023-12-10)
 
 #### :bug: Bug Fix
