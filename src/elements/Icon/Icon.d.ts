@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import { ForwardRefComponent, SemanticCOLORS, SemanticICONS } from '../../generic'
 import IconGroup from './IconGroup'
 

@@ -7,7 +7,6 @@ import {
   SemanticShorthandItem,
   SemanticSIZES,
   SemanticVERTICALALIGNMENTS,
-  SemanticWIDTHS,
 } from '../../generic'
 import { DimmerProps } from '../../modules/Dimmer'
 import { LabelProps } from '../Label'

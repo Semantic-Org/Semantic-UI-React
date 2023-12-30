@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { ForwardRefComponent, SemanticShorthandItem } from '../../generic'
-import TabPane, { TabPaneProps } from './TabPane'
+import { TabPaneProps } from './TabPane'
 
 export interface TabProps extends StrictTabProps {
   [key: string]: any
