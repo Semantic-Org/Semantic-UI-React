@@ -1,22 +1,29 @@
 import React from 'react'
-import { Dropdown, Menu } from 'semantic-ui-react'
+import {
+  DropdownMenu,
+  DropdownItem,
+  DropdownDivider,
+  MenuItem,
+  Dropdown,
+  Menu,
+} from 'semantic-ui-react'
 
 const DropdownExamplePointingTwo = () => (
   <Menu vertical>
-    <Menu.Item>Home</Menu.Item>
+    <MenuItem>Home</MenuItem>
     <Dropdown text='Messages' pointing='left' className='link item'>
-      <Dropdown.Menu>
-        <Dropdown.Item>Inbox</Dropdown.Item>
-        <Dropdown.Item>Starred</Dropdown.Item>
-        <Dropdown.Item>Sent Mail</Dropdown.Item>
-        <Dropdown.Item>Drafts (143)</Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item>Spam (1009)</Dropdown.Item>
-        <Dropdown.Item>Trash</Dropdown.Item>
-      </Dropdown.Menu>
+      <DropdownMenu>
+        <DropdownItem>Inbox</DropdownItem>
+        <DropdownItem>Starred</DropdownItem>
+        <DropdownItem>Sent Mail</DropdownItem>
+        <DropdownItem>Drafts (143)</DropdownItem>
+        <DropdownDivider />
+        <DropdownItem>Spam (1009)</DropdownItem>
+        <DropdownItem>Trash</DropdownItem>
+      </DropdownMenu>
     </Dropdown>
-    <Menu.Item>Browse</Menu.Item>
-    <Menu.Item>Help</Menu.Item>
+    <MenuItem>Browse</MenuItem>
+    <MenuItem>Help</MenuItem>
   </Menu>
 )
 

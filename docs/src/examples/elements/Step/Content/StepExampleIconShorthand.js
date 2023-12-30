@@ -1,14 +1,14 @@
 import React from 'react'
-import { Step } from 'semantic-ui-react'
+import { StepGroup, Step } from 'semantic-ui-react'
 
 const StepExampleIconShorthand = () => (
-  <Step.Group>
+  <StepGroup>
     <Step
       icon='truck'
       title='Shipping'
       description='Choose your shipping options'
     />
-  </Step.Group>
+  </StepGroup>
 )
 
 export default StepExampleIconShorthand

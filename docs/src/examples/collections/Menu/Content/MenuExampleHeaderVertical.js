@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuMenu, MenuItem, MenuHeader, Menu } from 'semantic-ui-react'
 
 export default class MenuExampleHeaderVertical extends Component {
   state = {}
@@ -10,83 +10,83 @@ export default class MenuExampleHeaderVertical extends Component {
 
     return (
       <Menu vertical>
-        <Menu.Item>
-          <Menu.Header>Products</Menu.Header>
+        <MenuItem>
+          <MenuHeader>Products</MenuHeader>
 
-          <Menu.Menu>
-            <Menu.Item
+          <MenuMenu>
+            <MenuItem
               name='enterprise'
               active={activeItem === 'enterprise'}
               onClick={this.handleItemClick}
             />
-            <Menu.Item
+            <MenuItem
               name='consumer'
               active={activeItem === 'consumer'}
               onClick={this.handleItemClick}
             />
-          </Menu.Menu>
-        </Menu.Item>
+          </MenuMenu>
+        </MenuItem>
 
-        <Menu.Item>
-          <Menu.Header>CMS Solutions</Menu.Header>
+        <MenuItem>
+          <MenuHeader>CMS Solutions</MenuHeader>
 
-          <Menu.Menu>
-            <Menu.Item
+          <MenuMenu>
+            <MenuItem
               name='rails'
               active={activeItem === 'rails'}
               onClick={this.handleItemClick}
             />
-            <Menu.Item
+            <MenuItem
               name='python'
               active={activeItem === 'python'}
               onClick={this.handleItemClick}
             />
-            <Menu.Item
+            <MenuItem
               name='php'
               active={activeItem === 'php'}
               onClick={this.handleItemClick}
             />
-          </Menu.Menu>
-        </Menu.Item>
+          </MenuMenu>
+        </MenuItem>
 
-        <Menu.Item>
-          <Menu.Header>Hosting</Menu.Header>
+        <MenuItem>
+          <MenuHeader>Hosting</MenuHeader>
 
-          <Menu.Menu>
-            <Menu.Item
+          <MenuMenu>
+            <MenuItem
               name='shared'
               active={activeItem === 'shared'}
               onClick={this.handleItemClick}
             />
-            <Menu.Item
+            <MenuItem
               name='dedicated'
               active={activeItem === 'dedicated'}
               onClick={this.handleItemClick}
             />
-          </Menu.Menu>
-        </Menu.Item>
+          </MenuMenu>
+        </MenuItem>
 
-        <Menu.Item>
-          <Menu.Header>Support</Menu.Header>
+        <MenuItem>
+          <MenuHeader>Support</MenuHeader>
 
-          <Menu.Menu>
-            <Menu.Item
+          <MenuMenu>
+            <MenuItem
               name='email'
               active={activeItem === 'email'}
               onClick={this.handleItemClick}
             >
               E-mail Support
-            </Menu.Item>
+            </MenuItem>
 
-            <Menu.Item
+            <MenuItem
               name='faq'
               active={activeItem === 'faq'}
               onClick={this.handleItemClick}
             >
               FAQs
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu.Item>
+            </MenuItem>
+          </MenuMenu>
+        </MenuItem>
       </Menu>
     )
   }

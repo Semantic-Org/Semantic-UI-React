@@ -1,9 +1,9 @@
 import React from 'react'
-import { Message } from 'semantic-ui-react'
+import { MessageHeader, Message } from 'semantic-ui-react'
 
 const MessageExampleWarning = () => (
   <Message warning>
-    <Message.Header>You must register before you can do that!</Message.Header>
+    <MessageHeader>You must register before you can do that!</MessageHeader>
     <p>Visit our registration page, then try again.</p>
   </Message>
 )

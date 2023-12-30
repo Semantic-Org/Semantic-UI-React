@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message } from 'semantic-ui-react'
+import { MessageList, MessageHeader, Message } from 'semantic-ui-react'
 
 const items = [
   'You can now have cover images on blog pages',
@@ -8,8 +8,8 @@ const items = [
 
 const MessageExampleListItemsProp = () => (
   <Message>
-    <Message.Header>New Site Features</Message.Header>
-    <Message.List items={items} />
+    <MessageHeader>New Site Features</MessageHeader>
+    <MessageList items={items} />
   </Message>
 )
 

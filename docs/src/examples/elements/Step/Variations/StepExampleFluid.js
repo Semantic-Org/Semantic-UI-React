@@ -1,31 +1,40 @@
 import React from 'react'
-import { Icon, Grid, Step } from 'semantic-ui-react'
+import {
+  StepTitle,
+  StepGroup,
+  StepDescription,
+  StepContent,
+  GridColumn,
+  Icon,
+  Grid,
+  Step,
+} from 'semantic-ui-react'
 
 const StepExampleFluid = () => (
   <Grid columns={2}>
-    <Grid.Column>
-      <Step.Group fluid vertical>
+    <GridColumn>
+      <StepGroup fluid vertical>
         <Step completed>
           <Icon name='truck' />
-          <Step.Content>
-            <Step.Title>Shipping</Step.Title>
-            <Step.Description>Choose your shipping options</Step.Description>
-          </Step.Content>
+          <StepContent>
+            <StepTitle>Shipping</StepTitle>
+            <StepDescription>Choose your shipping options</StepDescription>
+          </StepContent>
         </Step>
 
         <Step active>
           <Icon name='dollar' />
-          <Step.Content>
-            <Step.Title>Billing</Step.Title>
-            <Step.Description>Enter billing information</Step.Description>
-          </Step.Content>
+          <StepContent>
+            <StepTitle>Billing</StepTitle>
+            <StepDescription>Enter billing information</StepDescription>
+          </StepContent>
         </Step>
-      </Step.Group>
-    </Grid.Column>
+      </StepGroup>
+    </GridColumn>
 
-    <Grid.Column>
+    <GridColumn>
       <p>The steps take up the entire column width</p>
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 

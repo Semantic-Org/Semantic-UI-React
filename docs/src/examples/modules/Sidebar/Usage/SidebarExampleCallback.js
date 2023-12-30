@@ -1,5 +1,10 @@
 import React from 'react'
 import {
+  SidebarPusher,
+  SidebarPushable,
+  SegmentGroup,
+  MenuItem,
+  GridColumn,
   Button,
   Checkbox,
   Grid,
@@ -36,16 +41,16 @@ const SidebarExampleCallback = () => {
 
   return (
     <Grid>
-      <Grid.Column width={16}>
+      <GridColumn width={16}>
         <Checkbox
           checked={visible}
           label={{ children: <code>visible</code> }}
           onChange={(e, data) => setVisible(data.checked)}
         />
-      </Grid.Column>
+      </GridColumn>
 
-      <Grid.Column width={8}>
-        <Sidebar.Pushable as={Segment}>
+      <GridColumn width={8}>
+        <SidebarPushable as={Segment}>
           <Sidebar
             as={Menu}
             animation='overlay'
@@ -62,22 +67,22 @@ const SidebarExampleCallback = () => {
             visible={visible}
             width='thin'
           >
-            <Menu.Item as='a'>Home</Menu.Item>
-            <Menu.Item as='a'>Games</Menu.Item>
-            <Menu.Item as='a'>Channels</Menu.Item>
+            <MenuItem as='a'>Home</MenuItem>
+            <MenuItem as='a'>Games</MenuItem>
+            <MenuItem as='a'>Channels</MenuItem>
           </Sidebar>
 
-          <Sidebar.Pusher>
+          <SidebarPusher>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
               <Image src='/images/wireframe/paragraph.png' />
             </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </Grid.Column>
+          </SidebarPusher>
+        </SidebarPushable>
+      </GridColumn>
 
-      <Grid.Column width={8}>
-        <Segment.Group>
+      <GridColumn width={8}>
+        <SegmentGroup>
           <Segment>
             <Button
               compact
@@ -96,8 +101,8 @@ const SidebarExampleCallback = () => {
               ))}
             </pre>
           </Segment>
-        </Segment.Group>
-      </Grid.Column>
+        </SegmentGroup>
+      </GridColumn>
     </Grid>
   )
 }

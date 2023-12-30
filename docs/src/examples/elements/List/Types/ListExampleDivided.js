@@ -1,29 +1,36 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import {
+  ListItem,
+  ListIcon,
+  ListHeader,
+  ListDescription,
+  ListContent,
+  List,
+} from 'semantic-ui-react'
 
 const ListExampleDivided = () => (
   <List divided relaxed>
-    <List.Item>
-      <List.Icon name='github' size='large' verticalAlign='middle' />
-      <List.Content>
-        <List.Header as='a'>Semantic-Org/Semantic-UI</List.Header>
-        <List.Description as='a'>Updated 10 mins ago</List.Description>
-      </List.Content>
-    </List.Item>
-    <List.Item>
-      <List.Icon name='github' size='large' verticalAlign='middle' />
-      <List.Content>
-        <List.Header as='a'>Semantic-Org/Semantic-UI-Docs</List.Header>
-        <List.Description as='a'>Updated 22 mins ago</List.Description>
-      </List.Content>
-    </List.Item>
-    <List.Item>
-      <List.Icon name='github' size='large' verticalAlign='middle' />
-      <List.Content>
-        <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
-        <List.Description as='a'>Updated 34 mins ago</List.Description>
-      </List.Content>
-    </List.Item>
+    <ListItem>
+      <ListIcon name='github' size='large' verticalAlign='middle' />
+      <ListContent>
+        <ListHeader as='a'>Semantic-Org/Semantic-UI</ListHeader>
+        <ListDescription as='a'>Updated 10 mins ago</ListDescription>
+      </ListContent>
+    </ListItem>
+    <ListItem>
+      <ListIcon name='github' size='large' verticalAlign='middle' />
+      <ListContent>
+        <ListHeader as='a'>Semantic-Org/Semantic-UI-Docs</ListHeader>
+        <ListDescription as='a'>Updated 22 mins ago</ListDescription>
+      </ListContent>
+    </ListItem>
+    <ListItem>
+      <ListIcon name='github' size='large' verticalAlign='middle' />
+      <ListContent>
+        <ListHeader as='a'>Semantic-Org/Semantic-UI-Meteor</ListHeader>
+        <ListDescription as='a'>Updated 34 mins ago</ListDescription>
+      </ListContent>
+    </ListItem>
   </List>
 )
 

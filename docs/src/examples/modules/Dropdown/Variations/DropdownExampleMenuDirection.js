@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Dropdown } from 'semantic-ui-react'
+import { MenuMenu, Menu, Dropdown } from 'semantic-ui-react'
 
 const options = [
   { key: 1, text: 'This is a super long item', value: 1 },
@@ -16,7 +16,7 @@ const DropdownExampleMenuDirection = () => (
       direction='right'
       options={options}
     />
-    <Menu.Menu position='right'>
+    <MenuMenu position='right'>
       <Dropdown
         item
         simple
@@ -24,7 +24,7 @@ const DropdownExampleMenuDirection = () => (
         direction='right'
         options={options}
       />
-    </Menu.Menu>
+    </MenuMenu>
   </Menu>
 )
 

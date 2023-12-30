@@ -1,14 +1,14 @@
 import React from 'react'
-import { Form, Radio } from 'semantic-ui-react'
+import { FormField, Form, Radio } from 'semantic-ui-react'
 
 const RadioExampleDisabled = () => (
   <Form>
-    <Form.Field>
+    <FormField>
       <Radio label='Disabled' disabled />
-    </Form.Field>
-    <Form.Field>
+    </FormField>
+    <FormField>
       <Radio toggle label='Disabled' disabled />
-    </Form.Field>
+    </FormField>
   </Form>
 )
 

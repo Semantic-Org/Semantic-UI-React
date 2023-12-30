@@ -1,5 +1,14 @@
 import React from 'react'
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import {
+  ModalHeader,
+  ModalDescription,
+  ModalContent,
+  ModalActions,
+  Button,
+  Header,
+  Image,
+  Modal,
+} from 'semantic-ui-react'
 
 function ModalExampleModal() {
   const [open, setOpen] = React.useState(false)
@@ -11,19 +20,19 @@ function ModalExampleModal() {
       open={open}
       trigger={<Button>Show Modal</Button>}
     >
-      <Modal.Header>Select a Photo</Modal.Header>
-      <Modal.Content image>
+      <ModalHeader>Select a Photo</ModalHeader>
+      <ModalContent image>
         <Image size='medium' src='/images/avatar/large/rachel.png' wrapped />
-        <Modal.Description>
+        <ModalDescription>
           <Header>Default Profile Image</Header>
           <p>
             We've found the following gravatar image associated with your e-mail
             address.
           </p>
           <p>Is it okay to use this photo?</p>
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
+        </ModalDescription>
+      </ModalContent>
+      <ModalActions>
         <Button color='black' onClick={() => setOpen(false)}>
           Nope
         </Button>
@@ -34,7 +43,7 @@ function ModalExampleModal() {
           onClick={() => setOpen(false)}
           positive
         />
-      </Modal.Actions>
+      </ModalActions>
     </Modal>
   )
 }

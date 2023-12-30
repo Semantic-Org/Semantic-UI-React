@@ -1,12 +1,12 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import { ListItem, List } from 'semantic-ui-react'
 
 const ListExampleLink = () => (
   <List link>
-    <List.Item active>Home</List.Item>
-    <List.Item as='a'>About</List.Item>
-    <List.Item as='a'>Jobs</List.Item>
-    <List.Item as='a'>Team</List.Item>
+    <ListItem active>Home</ListItem>
+    <ListItem as='a'>About</ListItem>
+    <ListItem as='a'>Jobs</ListItem>
+    <ListItem as='a'>Team</ListItem>
   </List>
 )
 

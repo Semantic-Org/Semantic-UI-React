@@ -1,54 +1,66 @@
 import React from 'react'
-import { Icon, Label, Menu, Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableFooter,
+  TableCell,
+  TableBody,
+  MenuItem,
+  Icon,
+  Label,
+  Menu,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExamplePagination = () => (
   <Table celled>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Header</Table.HeaderCell>
-        <Table.HeaderCell>Header</Table.HeaderCell>
-        <Table.HeaderCell>Header</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Header</TableHeaderCell>
+        <TableHeaderCell>Header</TableHeaderCell>
+        <TableHeaderCell>Header</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>
+    <TableBody>
+      <TableRow>
+        <TableCell>
           <Label ribbon>First</Label>
-        </Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+        </TableCell>
+        <TableCell>Cell</TableCell>
+        <TableCell>Cell</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Cell</TableCell>
+        <TableCell>Cell</TableCell>
+        <TableCell>Cell</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Cell</TableCell>
+        <TableCell>Cell</TableCell>
+        <TableCell>Cell</TableCell>
+      </TableRow>
+    </TableBody>
 
-    <Table.Footer>
-      <Table.Row>
-        <Table.HeaderCell colSpan='3'>
+    <TableFooter>
+      <TableRow>
+        <TableHeaderCell colSpan='3'>
           <Menu floated='right' pagination>
-            <Menu.Item as='a' icon>
+            <MenuItem as='a' icon>
               <Icon name='chevron left' />
-            </Menu.Item>
-            <Menu.Item as='a'>1</Menu.Item>
-            <Menu.Item as='a'>2</Menu.Item>
-            <Menu.Item as='a'>3</Menu.Item>
-            <Menu.Item as='a'>4</Menu.Item>
-            <Menu.Item as='a' icon>
+            </MenuItem>
+            <MenuItem as='a'>1</MenuItem>
+            <MenuItem as='a'>2</MenuItem>
+            <MenuItem as='a'>3</MenuItem>
+            <MenuItem as='a'>4</MenuItem>
+            <MenuItem as='a' icon>
               <Icon name='chevron right' />
-            </Menu.Item>
+            </MenuItem>
           </Menu>
-        </Table.HeaderCell>
-      </Table.Row>
-    </Table.Footer>
+        </TableHeaderCell>
+      </TableRow>
+    </TableFooter>
   </Table>
 )
 

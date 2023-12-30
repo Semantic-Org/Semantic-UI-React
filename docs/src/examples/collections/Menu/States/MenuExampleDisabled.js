@@ -1,9 +1,9 @@
 import React from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 const MenuExampleDisabled = () => (
   <Menu compact>
-    <Menu.Item disabled>Link</Menu.Item>
+    <MenuItem disabled>Link</MenuItem>
   </Menu>
 )
 

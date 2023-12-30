@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Form, Grid, Image, Transition } from 'semantic-ui-react'
+import {
+  TransitionGroup,
+  GridColumn,
+  FormSelect,
+  FormInput,
+  FormButton,
+  Form,
+  Grid,
+  Image,
+} from 'semantic-ui-react'
 
 const transitions = [
   'browse',
@@ -46,15 +55,15 @@ export default class TransitionExampleSingleExplorer extends Component {
 
     return (
       <Grid columns={2}>
-        <Grid.Column as={Form}>
-          <Form.Select
+        <GridColumn as={Form}>
+          <FormSelect
             label='Choose transition'
             name='animation'
             onChange={this.handleChange}
             options={options}
             value={animation}
           />
-          <Form.Input
+          <FormInput
             label={`Duration: ${duration}ms `}
             min={100}
             max={2000}
@@ -64,19 +73,19 @@ export default class TransitionExampleSingleExplorer extends Component {
             type='range'
             value={duration}
           />
-          <Form.Button
+          <FormButton
             content={visible ? 'Unmount' : 'Mount'}
             onClick={this.handleVisibility}
           />
-        </Grid.Column>
+        </GridColumn>
 
-        <Grid.Column>
-          <Transition.Group animation={animation} duration={duration}>
+        <GridColumn>
+          <TransitionGroup animation={animation} duration={duration}>
             {visible && (
               <Image centered size='small' src='/images/leaves/4.png' />
             )}
-          </Transition.Group>
-        </Grid.Column>
+          </TransitionGroup>
+        </GridColumn>
       </Grid>
     )
   }

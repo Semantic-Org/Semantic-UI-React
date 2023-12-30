@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { Button, Dropdown, Menu } from 'semantic-ui-react'
+import {
+  DropdownMenu,
+  DropdownItem,
+  MenuMenu,
+  MenuItem,
+  Button,
+  Dropdown,
+  Menu,
+} from 'semantic-ui-react'
 
 export default class MenuExampleSizeTiny extends Component {
   state = { activeItem: 'home' }
@@ -11,30 +19,30 @@ export default class MenuExampleSizeTiny extends Component {
 
     return (
       <Menu size='tiny'>
-        <Menu.Item
+        <MenuItem
           name='home'
           active={activeItem === 'home'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='messages'
           active={activeItem === 'messages'}
           onClick={this.handleItemClick}
         />
 
-        <Menu.Menu position='right'>
+        <MenuMenu position='right'>
           <Dropdown item text='Language'>
-            <Dropdown.Menu>
-              <Dropdown.Item>English</Dropdown.Item>
-              <Dropdown.Item>Russian</Dropdown.Item>
-              <Dropdown.Item>Spanish</Dropdown.Item>
-            </Dropdown.Menu>
+            <DropdownMenu>
+              <DropdownItem>English</DropdownItem>
+              <DropdownItem>Russian</DropdownItem>
+              <DropdownItem>Spanish</DropdownItem>
+            </DropdownMenu>
           </Dropdown>
 
-          <Menu.Item>
+          <MenuItem>
             <Button primary>Sign Up</Button>
-          </Menu.Item>
-        </Menu.Menu>
+          </MenuItem>
+        </MenuMenu>
       </Menu>
     )
   }

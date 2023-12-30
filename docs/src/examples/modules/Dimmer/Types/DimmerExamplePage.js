@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { Button, Dimmer, Header, Icon } from 'semantic-ui-react'
+import {
+  HeaderSubheader,
+  Button,
+  Dimmer,
+  Header,
+  Icon,
+} from 'semantic-ui-react'
 
 export default class DimmerExamplePage extends Component {
   state = {}
@@ -23,7 +29,7 @@ export default class DimmerExamplePage extends Component {
           <Header as='h2' icon inverted>
             <Icon name='heart' />
             Dimmed Message!
-            <Header.Subheader>Dimmer sub-header</Header.Subheader>
+            <HeaderSubheader>Dimmer sub-header</HeaderSubheader>
           </Header>
         </Dimmer>
       </div>

@@ -1,16 +1,16 @@
 import React from 'react'
-import { Feed } from 'semantic-ui-react'
+import { FeedLabel, FeedEvent, FeedContent, Feed } from 'semantic-ui-react'
 
 const FeedExampleImageLabel = () => (
   <Feed>
-    <Feed.Event>
-      <Feed.Label>
+    <FeedEvent>
+      <FeedLabel>
         <img src='/images/avatar/small/elliot.jpg' />
-      </Feed.Label>
-      <Feed.Content>
+      </FeedLabel>
+      <FeedContent>
         You added Elliot Fu to the group <a>Coworkers</a>
-      </Feed.Content>
-    </Feed.Event>
+      </FeedContent>
+    </FeedEvent>
   </Feed>
 )
 

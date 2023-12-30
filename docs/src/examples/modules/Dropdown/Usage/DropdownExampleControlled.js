@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dropdown, Grid, Segment } from 'semantic-ui-react'
+import { GridColumn, Dropdown, Grid, Segment } from 'semantic-ui-react'
 
 const options = [
   { key: 1, text: 'One', value: 1 },
@@ -17,7 +17,7 @@ export default class DropdownExampleControlled extends Component {
 
     return (
       <Grid columns={2}>
-        <Grid.Column>
+        <GridColumn>
           <Dropdown
             onChange={this.handleChange}
             options={options}
@@ -25,12 +25,12 @@ export default class DropdownExampleControlled extends Component {
             selection
             value={value}
           />
-        </Grid.Column>
-        <Grid.Column>
+        </GridColumn>
+        <GridColumn>
           <Segment secondary>
             <pre>Current value: {value}</pre>
           </Segment>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

@@ -1,20 +1,20 @@
 import React from 'react'
-import { Image, List } from 'semantic-ui-react'
+import { ListItem, ListContent, Image, List } from 'semantic-ui-react'
 
 const ListExampleVerticallyAligned = () => (
   <List horizontal>
-    <List.Item>
+    <ListItem>
       <Image avatar src='/images/wireframe/square-image.png' />
-      <List.Content verticalAlign='top'>Top Aligned</List.Content>
-    </List.Item>
-    <List.Item>
+      <ListContent verticalAlign='top'>Top Aligned</ListContent>
+    </ListItem>
+    <ListItem>
       <Image avatar src='/images/wireframe/square-image.png' />
-      <List.Content verticalAlign='middle'>Middle</List.Content>
-    </List.Item>
-    <List.Item>
+      <ListContent verticalAlign='middle'>Middle</ListContent>
+    </ListItem>
+    <ListItem>
       <Image avatar src='/images/wireframe/square-image.png' />
-      <List.Content verticalAlign='bottom'>Bottom</List.Content>
-    </List.Item>
+      <ListContent verticalAlign='bottom'>Bottom</ListContent>
+    </ListItem>
   </List>
 )
 

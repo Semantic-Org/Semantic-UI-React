@@ -1,5 +1,11 @@
 import React from 'react'
-import { Dropdown } from 'semantic-ui-react'
+import {
+  DropdownMenu,
+  DropdownItem,
+  DropdownHeader,
+  DropdownDivider,
+  Dropdown,
+} from 'semantic-ui-react'
 
 const DropdownExampleLabel = () => (
   <Dropdown
@@ -10,22 +16,22 @@ const DropdownExampleLabel = () => (
     button
     className='icon'
   >
-    <Dropdown.Menu>
-      <Dropdown.Header icon='tags' content='Filter by tag' />
-      <Dropdown.Divider />
-      <Dropdown.Item
+    <DropdownMenu>
+      <DropdownHeader icon='tags' content='Filter by tag' />
+      <DropdownDivider />
+      <DropdownItem
         label={{ color: 'red', empty: true, circular: true }}
         text='Important'
       />
-      <Dropdown.Item
+      <DropdownItem
         label={{ color: 'blue', empty: true, circular: true }}
         text='Announcement'
       />
-      <Dropdown.Item
+      <DropdownItem
         label={{ color: 'black', empty: true, circular: true }}
         text='Discussion'
       />
-    </Dropdown.Menu>
+    </DropdownMenu>
   </Dropdown>
 )
 

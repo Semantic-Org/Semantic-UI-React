@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import faker from 'faker'
 import React, { Component } from 'react'
-import { Button, Dropdown, Grid, Header } from 'semantic-ui-react'
+import { GridColumn, Button, Dropdown, Grid, Header } from 'semantic-ui-react'
 
 const getOptions = () =>
   _.times(3, () => {
@@ -52,7 +52,7 @@ class DropdownExampleRemote extends Component {
 
     return (
       <Grid>
-        <Grid.Column width={8}>
+        <GridColumn width={8}>
           <p>
             <Button onClick={this.fetchOptions}>Fetch</Button>
             <Button onClick={this.selectRandom} disabled={_.isEmpty(options)}>
@@ -88,11 +88,11 @@ class DropdownExampleRemote extends Component {
             disabled={isFetching}
             loading={isFetching}
           />
-        </Grid.Column>
-        <Grid.Column width={8}>
+        </GridColumn>
+        <GridColumn width={8}>
           <Header>State</Header>
           <pre>{JSON.stringify(this.state, null, 2)}</pre>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

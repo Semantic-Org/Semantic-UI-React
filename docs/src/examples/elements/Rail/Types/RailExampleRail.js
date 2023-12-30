@@ -1,9 +1,9 @@
 import React from 'react'
-import { Grid, Image, Rail, Segment } from 'semantic-ui-react'
+import { GridColumn, Grid, Image, Rail, Segment } from 'semantic-ui-react'
 
 const RailExampleRail = () => (
   <Grid centered columns={3}>
-    <Grid.Column>
+    <GridColumn>
       <Segment>
         <Image src='/images/wireframe/paragraph.png' />
 
@@ -15,7 +15,7 @@ const RailExampleRail = () => (
           <Segment>Right Rail Content</Segment>
         </Rail>
       </Segment>
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 

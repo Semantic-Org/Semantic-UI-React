@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 export default class MenuExampleTabular extends Component {
   state = { activeItem: 'bio' }
@@ -11,12 +11,12 @@ export default class MenuExampleTabular extends Component {
 
     return (
       <Menu tabular>
-        <Menu.Item
+        <MenuItem
           name='bio'
           active={activeItem === 'bio'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='photos'
           active={activeItem === 'photos'}
           onClick={this.handleItemClick}

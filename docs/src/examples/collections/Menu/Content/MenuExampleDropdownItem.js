@@ -1,14 +1,14 @@
 import React from 'react'
-import { Dropdown, Menu } from 'semantic-ui-react'
+import { DropdownMenu, DropdownItem, Dropdown, Menu } from 'semantic-ui-react'
 
 const MenuExampleDropdownItem = () => (
   <Menu vertical>
     <Dropdown item text='Categories'>
-      <Dropdown.Menu>
-        <Dropdown.Item>Electronics</Dropdown.Item>
-        <Dropdown.Item>Automotive</Dropdown.Item>
-        <Dropdown.Item>Home</Dropdown.Item>
-      </Dropdown.Menu>
+      <DropdownMenu>
+        <DropdownItem>Electronics</DropdownItem>
+        <DropdownItem>Automotive</DropdownItem>
+        <DropdownItem>Home</DropdownItem>
+      </DropdownMenu>
     </Dropdown>
   </Menu>
 )

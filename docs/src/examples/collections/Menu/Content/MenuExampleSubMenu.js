@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Dropdown, Icon, Input, Menu } from 'semantic-ui-react'
+import {
+  DropdownMenu,
+  DropdownItem,
+  MenuMenu,
+  MenuItem,
+  Dropdown,
+  Icon,
+  Input,
+  Menu,
+} from 'semantic-ui-react'
 
 export default class MenuExampleSubMenu extends Component {
   state = {}
@@ -11,59 +20,59 @@ export default class MenuExampleSubMenu extends Component {
 
     return (
       <Menu vertical>
-        <Menu.Item>
+        <MenuItem>
           <Input placeholder='Search...' />
-        </Menu.Item>
+        </MenuItem>
 
-        <Menu.Item>
+        <MenuItem>
           Home
-          <Menu.Menu>
-            <Menu.Item
+          <MenuMenu>
+            <MenuItem
               name='search'
               active={activeItem === 'search'}
               onClick={this.handleItemClick}
             >
               Search
-            </Menu.Item>
-            <Menu.Item
+            </MenuItem>
+            <MenuItem
               name='add'
               active={activeItem === 'add'}
               onClick={this.handleItemClick}
             >
               Add
-            </Menu.Item>
-            <Menu.Item
+            </MenuItem>
+            <MenuItem
               name='about'
               active={activeItem === 'about'}
               onClick={this.handleItemClick}
             >
               Remove
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu.Item>
+            </MenuItem>
+          </MenuMenu>
+        </MenuItem>
 
-        <Menu.Item
+        <MenuItem
           name='browse'
           active={activeItem === 'browse'}
           onClick={this.handleItemClick}
         >
           <Icon name='grid layout' />
           Browse
-        </Menu.Item>
-        <Menu.Item
+        </MenuItem>
+        <MenuItem
           name='messages'
           active={activeItem === 'messages'}
           onClick={this.handleItemClick}
         >
           Messages
-        </Menu.Item>
+        </MenuItem>
 
         <Dropdown item text='More'>
-          <Dropdown.Menu>
-            <Dropdown.Item icon='edit' text='Edit Profile' />
-            <Dropdown.Item icon='globe' text='Choose Language' />
-            <Dropdown.Item icon='settings' text='Account Settings' />
-          </Dropdown.Menu>
+          <DropdownMenu>
+            <DropdownItem icon='edit' text='Edit Profile' />
+            <DropdownItem icon='globe' text='Choose Language' />
+            <DropdownItem icon='settings' text='Account Settings' />
+          </DropdownMenu>
         </Dropdown>
       </Menu>
     )

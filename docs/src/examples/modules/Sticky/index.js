@@ -9,8 +9,8 @@ const StickyExamples = () => (
   <div>
     <Message warning>
       <code>Sticky</code> behavior is erratic inside{' '}
-      <code>Sidebar.Pushable</code>. To avoid issues, place <code>Sticky</code>{' '}
-      outside of any <code>Sidebar.Pushable</code> element. See{' '}
+      <code>SidebarPushable</code>. To avoid issues, place <code>Sticky</code>{' '}
+      outside of any <code>SidebarPushable</code> element. See{' '}
       <a href='https://github.com/Semantic-Org/Semantic-UI-React/issues/2897'>
         Semantic-Org/Semantic-UI-React#2897
       </a>{' '}

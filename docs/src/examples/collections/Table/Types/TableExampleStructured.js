@@ -1,62 +1,70 @@
 import React from 'react'
-import { Icon, Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Icon,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleStructured = () => (
   <Table celled structured>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell rowSpan='2'>Name</Table.HeaderCell>
-        <Table.HeaderCell rowSpan='2'>Type</Table.HeaderCell>
-        <Table.HeaderCell rowSpan='2'>Files</Table.HeaderCell>
-        <Table.HeaderCell colSpan='3'>Languages</Table.HeaderCell>
-      </Table.Row>
-      <Table.Row>
-        <Table.HeaderCell>Ruby</Table.HeaderCell>
-        <Table.HeaderCell>JavaScript</Table.HeaderCell>
-        <Table.HeaderCell>Python</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell rowSpan='2'>Name</TableHeaderCell>
+        <TableHeaderCell rowSpan='2'>Type</TableHeaderCell>
+        <TableHeaderCell rowSpan='2'>Files</TableHeaderCell>
+        <TableHeaderCell colSpan='3'>Languages</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableHeaderCell>Ruby</TableHeaderCell>
+        <TableHeaderCell>JavaScript</TableHeaderCell>
+        <TableHeaderCell>Python</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>Alpha Team</Table.Cell>
-        <Table.Cell>Project 1</Table.Cell>
-        <Table.Cell textAlign='right'>2</Table.Cell>
-        <Table.Cell textAlign='center'>
+    <TableBody>
+      <TableRow>
+        <TableCell>Alpha Team</TableCell>
+        <TableCell>Project 1</TableCell>
+        <TableCell textAlign='right'>2</TableCell>
+        <TableCell textAlign='center'>
           <Icon color='green' name='checkmark' size='large' />
-        </Table.Cell>
-        <Table.Cell />
-        <Table.Cell />
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell rowSpan='3'>Beta Team</Table.Cell>
-        <Table.Cell>Project 1</Table.Cell>
-        <Table.Cell textAlign='right'>52</Table.Cell>
-        <Table.Cell textAlign='center'>
+        </TableCell>
+        <TableCell />
+        <TableCell />
+      </TableRow>
+      <TableRow>
+        <TableCell rowSpan='3'>Beta Team</TableCell>
+        <TableCell>Project 1</TableCell>
+        <TableCell textAlign='right'>52</TableCell>
+        <TableCell textAlign='center'>
           <Icon color='green' name='checkmark' size='large' />
-        </Table.Cell>
-        <Table.Cell />
-        <Table.Cell />
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Project 2</Table.Cell>
-        <Table.Cell textAlign='right'>12</Table.Cell>
-        <Table.Cell />
-        <Table.Cell textAlign='center'>
+        </TableCell>
+        <TableCell />
+        <TableCell />
+      </TableRow>
+      <TableRow>
+        <TableCell>Project 2</TableCell>
+        <TableCell textAlign='right'>12</TableCell>
+        <TableCell />
+        <TableCell textAlign='center'>
           <Icon color='green' name='checkmark' size='large' />
-        </Table.Cell>
-        <Table.Cell />
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Project 3</Table.Cell>
-        <Table.Cell textAlign='right'>21</Table.Cell>
-        <Table.Cell textAlign='center'>
+        </TableCell>
+        <TableCell />
+      </TableRow>
+      <TableRow>
+        <TableCell>Project 3</TableCell>
+        <TableCell textAlign='right'>21</TableCell>
+        <TableCell textAlign='center'>
           <Icon color='green' name='checkmark' size='large' />
-        </Table.Cell>
-        <Table.Cell />
-        <Table.Cell />
-      </Table.Row>
-    </Table.Body>
+        </TableCell>
+        <TableCell />
+        <TableCell />
+      </TableRow>
+    </TableBody>
   </Table>
 )
 

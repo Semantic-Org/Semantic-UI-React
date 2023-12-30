@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Menu, Segment } from 'semantic-ui-react'
+import { MenuMenu, MenuItem, Icon, Menu, Segment } from 'semantic-ui-react'
 
 export default class MenuExampleTabularOnBottom extends Component {
   state = { activeItem: 'active' }
@@ -16,40 +16,40 @@ export default class MenuExampleTabularOnBottom extends Component {
         </Segment>
 
         <Menu attached='bottom' tabular>
-          <Menu.Item
+          <MenuItem
             name='active'
             active={activeItem === 'active'}
             onClick={this.handleItemClick}
           >
             Active Project
-          </Menu.Item>
+          </MenuItem>
 
-          <Menu.Item
+          <MenuItem
             name='2'
             active={activeItem === '2'}
             onClick={this.handleItemClick}
           >
             Project #2
-          </Menu.Item>
+          </MenuItem>
 
-          <Menu.Item
+          <MenuItem
             name='3'
             active={activeItem === '3'}
             onClick={this.handleItemClick}
           >
             Project #3
-          </Menu.Item>
+          </MenuItem>
 
-          <Menu.Menu position='right'>
-            <Menu.Item
+          <MenuMenu position='right'>
+            <MenuItem
               name='new-tab'
               active={activeItem === 'new-tab'}
               onClick={this.handleItemClick}
             >
               <Icon name='add' />
               New Tab
-            </Menu.Item>
-          </Menu.Menu>
+            </MenuItem>
+          </MenuMenu>
         </Menu>
       </div>
     )

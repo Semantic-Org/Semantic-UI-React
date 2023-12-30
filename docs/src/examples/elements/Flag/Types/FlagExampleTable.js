@@ -1,5 +1,13 @@
 import React from 'react'
-import { Table, Flag } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Table,
+  Flag,
+} from 'semantic-ui-react'
 
 const countries = [
   { name: 'Afghanistan', countryCode: 'af' },
@@ -253,24 +261,24 @@ const flagRenderer = (item) => <Flag name={item.countryCode} />
 
 const FlagExampleTable = () => (
   <Table>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Country</Table.HeaderCell>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Country Code</Table.HeaderCell>
-        <Table.HeaderCell>Alias</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
-    <Table.Body>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Country</TableHeaderCell>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Country Code</TableHeaderCell>
+        <TableHeaderCell>Alias</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
       {countries.map((country) => (
-        <Table.Row key={country.countryCode}>
-          <Table.Cell>{flagRenderer(country)}</Table.Cell>
-          <Table.Cell>{country.name}</Table.Cell>
-          <Table.Cell>{country.countryCode}</Table.Cell>
-          <Table.Cell>{country.alias}</Table.Cell>
-        </Table.Row>
+        <TableRow key={country.countryCode}>
+          <TableCell>{flagRenderer(country)}</TableCell>
+          <TableCell>{country.name}</TableCell>
+          <TableCell>{country.countryCode}</TableCell>
+          <TableCell>{country.alias}</TableCell>
+        </TableRow>
       ))}
-    </Table.Body>
+    </TableBody>
   </Table>
 )
 

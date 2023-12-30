@@ -1,42 +1,49 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleFixed = () => (
   <Table fixed>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Status</Table.HeaderCell>
-        <Table.HeaderCell>Description</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Status</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>John</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>
+    <TableBody>
+      <TableRow>
+        <TableCell>John</TableCell>
+        <TableCell>Approved</TableCell>
+        <TableCell>
           John is an interesting boy but sometimes you don't really have enough
           room to describe everything you'd like
-        </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jamie</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jamie</TableCell>
+        <TableCell>Approved</TableCell>
+        <TableCell>
           Jamie is a kind girl but sometimes you don't really have enough room
           to describe everything you'd like
-        </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jill</Table.Cell>
-        <Table.Cell>Denied</Table.Cell>
-        <Table.Cell>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jill</TableCell>
+        <TableCell>Denied</TableCell>
+        <TableCell>
           Jill is an alright girl but sometimes you don't really have enough
           room to describe everything you'd like
-        </Table.Cell>
-      </Table.Row>
-    </Table.Body>
+        </TableCell>
+      </TableRow>
+    </TableBody>
   </Table>
 )
 

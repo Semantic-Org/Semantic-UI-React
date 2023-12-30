@@ -1,11 +1,11 @@
 import React from 'react'
-import { Icon } from 'semantic-ui-react'
+import { IconGroup, Icon } from 'semantic-ui-react'
 
 const IconExampleIconGroup = () => (
-  <Icon.Group size='huge'>
+  <IconGroup size='huge'>
     <Icon size='big' name='circle outline' />
     <Icon name='user' />
-  </Icon.Group>
+  </IconGroup>
 )
 
 export default IconExampleIconGroup

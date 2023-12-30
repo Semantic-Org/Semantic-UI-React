@@ -1,21 +1,21 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import { ListList, ListItem, List } from 'semantic-ui-react'
 
 const ListExampleBulletedSimple = () => (
   <List as='ul'>
-    <List.Item as='li'>Gaining Access</List.Item>
-    <List.Item as='li'>Inviting Friends</List.Item>
-    <List.Item as='li'>
+    <ListItem as='li'>Gaining Access</ListItem>
+    <ListItem as='li'>Inviting Friends</ListItem>
+    <ListItem as='li'>
       Benefits
-      <List.List as='ul'>
-        <List.Item as='li'>
+      <ListList as='ul'>
+        <ListItem as='li'>
           <a href='#'>Link to somewhere</a>
-        </List.Item>
-        <List.Item as='li'>Rebates</List.Item>
-        <List.Item as='li'>Discounts</List.Item>
-      </List.List>
-    </List.Item>
-    <List.Item as='li'>Warranty</List.Item>
+        </ListItem>
+        <ListItem as='li'>Rebates</ListItem>
+        <ListItem as='li'>Discounts</ListItem>
+      </ListList>
+    </ListItem>
+    <ListItem as='li'>Warranty</ListItem>
   </List>
 )
 

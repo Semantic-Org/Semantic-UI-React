@@ -1,34 +1,34 @@
 import React from 'react'
-import { Icon, Table } from 'semantic-ui-react'
+import { TableRow, TableCell, TableBody, Icon, Table } from 'semantic-ui-react'
 
 const TableExampleCollapsingCell = () => (
   <Table>
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell collapsing>
+    <TableBody>
+      <TableRow>
+        <TableCell collapsing>
           <Icon name='folder' />
           node_modules
-        </Table.Cell>
-        <Table.Cell>Initial commit</Table.Cell>
-        <Table.Cell>10 hours ago</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
+        </TableCell>
+        <TableCell>Initial commit</TableCell>
+        <TableCell>10 hours ago</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
           <Icon name='folder' />
           test
-        </Table.Cell>
-        <Table.Cell>Initial commit</Table.Cell>
-        <Table.Cell>10 hours ago</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
+        </TableCell>
+        <TableCell>Initial commit</TableCell>
+        <TableCell>10 hours ago</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
           <Icon name='folder' />
           build
-        </Table.Cell>
-        <Table.Cell>Initial commit</Table.Cell>
-        <Table.Cell>10 hours ago</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+        </TableCell>
+        <TableCell>Initial commit</TableCell>
+        <TableCell>10 hours ago</TableCell>
+      </TableRow>
+    </TableBody>
   </Table>
 )
 

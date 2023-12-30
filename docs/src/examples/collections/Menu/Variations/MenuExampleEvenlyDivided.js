@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 export default class MenuExampleEvenlyDivided extends Component {
   state = {}
@@ -11,17 +11,17 @@ export default class MenuExampleEvenlyDivided extends Component {
 
     return (
       <Menu fluid widths={3}>
-        <Menu.Item
+        <MenuItem
           name='buy'
           active={activeItem === 'buy'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='sell'
           active={activeItem === 'sell'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
+        <MenuItem
           name='rent'
           active={activeItem === 'rent'}
           onClick={this.handleItemClick}

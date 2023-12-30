@@ -1,6 +1,17 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Button, Checkbox, Grid, Segment, Table } from 'semantic-ui-react'
+import {
+  SegmentGroup,
+  TableRow,
+  TableCell,
+  TableBody,
+  GridColumn,
+  Button,
+  Checkbox,
+  Grid,
+  Segment,
+  Table,
+} from 'semantic-ui-react'
 
 export default class CheckboxExampleDOMComparison extends Component {
   state = {
@@ -48,16 +59,16 @@ export default class CheckboxExampleDOMComparison extends Component {
 
     return (
       <Grid>
-        <Grid.Column width={10}>
+        <GridColumn width={10}>
           <Table>
-            <Table.Body>
-              <Table.Row>
-                <Table.Cell collapsing>
+            <TableBody>
+              <TableRow>
+                <TableCell collapsing>
                   <Button compact onClick={this.toggle}>
                     Toggle
                   </Button>
-                </Table.Cell>
-                <Table.Cell>
+                </TableCell>
+                <TableCell>
                   <Checkbox
                     checked={suirChecked}
                     label='SUIR Checkbox'
@@ -77,19 +88,19 @@ export default class CheckboxExampleDOMComparison extends Component {
                     onMouseDown={this.handleMouseDown}
                     onMouseUp={this.handleMouseUp}
                   />
-                </Table.Cell>
-                <Table.Cell collapsing>
+                </TableCell>
+                <TableCell collapsing>
                   <code>{`{ checked: ${suirChecked} }`}</code>
-                </Table.Cell>
-              </Table.Row>
+                </TableCell>
+              </TableRow>
 
-              <Table.Row>
-                <Table.Cell>
+              <TableRow>
+                <TableCell>
                   <Button compact onClick={this.toggleDOM}>
                     Toggle
                   </Button>
-                </Table.Cell>
-                <Table.Cell>
+                </TableCell>
+                <TableCell>
                   <label>
                     <input
                       checked={domChecked}
@@ -113,17 +124,17 @@ export default class CheckboxExampleDOMComparison extends Component {
                     type='checkbox'
                   />
                   <label htmlFor='dom-checkbox'> DOM Checkbox with id</label>
-                </Table.Cell>
-                <Table.Cell>
+                </TableCell>
+                <TableCell>
                   <code>{`{ checked: ${domChecked} }`}</code>
-                </Table.Cell>
-              </Table.Row>
-            </Table.Body>
+                </TableCell>
+              </TableRow>
+            </TableBody>
           </Table>
-        </Grid.Column>
+        </GridColumn>
 
-        <Grid.Column width={6}>
-          <Segment.Group>
+        <GridColumn width={6}>
+          <SegmentGroup>
             <Segment>
               <Button
                 compact
@@ -142,8 +153,8 @@ export default class CheckboxExampleDOMComparison extends Component {
                 ))}
               </pre>
             </Segment>
-          </Segment.Group>
-        </Grid.Column>
+          </SegmentGroup>
+        </GridColumn>
       </Grid>
     )
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion } from 'semantic-ui-react'
+import { AccordionAccordion, Accordion } from 'semantic-ui-react'
 
 const level1Panels = [
   { key: 'panel-1a', title: 'Level 1A', content: 'Level 1A Contents' },
@@ -9,7 +9,7 @@ const level1Panels = [
 const Level1Content = (
   <div>
     Welcome to level 1
-    <Accordion.Accordion panels={level1Panels} />
+    <AccordionAccordion panels={level1Panels} />
   </div>
 )
 
@@ -21,7 +21,7 @@ const level2Panels = [
 const Level2Content = (
   <div>
     Welcome to level 2
-    <Accordion.Accordion panels={level2Panels} />
+    <AccordionAccordion panels={level2Panels} />
   </div>
 )
 

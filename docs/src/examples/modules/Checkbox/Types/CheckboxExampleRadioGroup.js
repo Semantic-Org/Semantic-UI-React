@@ -1,15 +1,15 @@
 import React from 'react'
-import { Form, Checkbox } from 'semantic-ui-react'
+import { FormField, Form, Checkbox } from 'semantic-ui-react'
 
 function CheckboxExampleRadioGroup() {
   const [value, setValue] = React.useState('this')
 
   return (
     <Form>
-      <Form.Field>
+      <FormField>
         Selected value: <b>{value}</b>
-      </Form.Field>
-      <Form.Field>
+      </FormField>
+      <FormField>
         <Checkbox
           radio
           label='Choose this'
@@ -18,8 +18,8 @@ function CheckboxExampleRadioGroup() {
           checked={value === 'this'}
           onChange={(e, data) => setValue(data.value)}
         />
-      </Form.Field>
-      <Form.Field>
+      </FormField>
+      <FormField>
         <Checkbox
           radio
           label='Or that'
@@ -28,7 +28,7 @@ function CheckboxExampleRadioGroup() {
           checked={value === 'that'}
           onChange={(e, data) => setValue(data.value)}
         />
-      </Form.Field>
+      </FormField>
     </Form>
   )
 }

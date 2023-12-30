@@ -1,41 +1,49 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableFooter,
+  TableCell,
+  TableBody,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleInverted = () => (
   <Table inverted>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Status</Table.HeaderCell>
-        <Table.HeaderCell>Notes</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Status</TableHeaderCell>
+        <TableHeaderCell>Notes</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>John</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>None</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jamie</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>Requires call</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jill</Table.Cell>
-        <Table.Cell>Denied</Table.Cell>
-        <Table.Cell>None</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+    <TableBody>
+      <TableRow>
+        <TableCell>John</TableCell>
+        <TableCell>Approved</TableCell>
+        <TableCell>None</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jamie</TableCell>
+        <TableCell>Approved</TableCell>
+        <TableCell>Requires call</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jill</TableCell>
+        <TableCell>Denied</TableCell>
+        <TableCell>None</TableCell>
+      </TableRow>
+    </TableBody>
 
-    <Table.Footer>
-      <Table.Row>
-        <Table.HeaderCell>3 People</Table.HeaderCell>
-        <Table.HeaderCell>2 Approved</Table.HeaderCell>
-        <Table.HeaderCell />
-      </Table.Row>
-    </Table.Footer>
+    <TableFooter>
+      <TableRow>
+        <TableHeaderCell>3 People</TableHeaderCell>
+        <TableHeaderCell>2 Approved</TableHeaderCell>
+        <TableHeaderCell />
+      </TableRow>
+    </TableFooter>
   </Table>
 )
 

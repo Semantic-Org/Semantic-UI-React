@@ -1,5 +1,9 @@
 import React from 'react'
 import {
+  SidebarPusher,
+  SidebarPushable,
+  MenuItem,
+  GridColumn,
   Checkbox,
   Grid,
   Header,
@@ -15,16 +19,16 @@ const SidebarExampleMultiple = () => {
 
   return (
     <Grid columns={1}>
-      <Grid.Column>
+      <GridColumn>
         <Checkbox
           checked={visible}
           label={{ children: <code>visible</code> }}
           onChange={(e, data) => setVisible(data.checked)}
         />
-      </Grid.Column>
+      </GridColumn>
 
-      <Grid.Column>
-        <Sidebar.Pushable as={Segment}>
+      <GridColumn>
+        <SidebarPushable as={Segment}>
           <Sidebar
             as={Menu}
             animation='overlay'
@@ -36,18 +40,18 @@ const SidebarExampleMultiple = () => {
             visible={visible}
             width='thin'
           >
-            <Menu.Item as='a'>
+            <MenuItem as='a'>
               <Icon name='home' />
               Home
-            </Menu.Item>
-            <Menu.Item as='a'>
+            </MenuItem>
+            <MenuItem as='a'>
               <Icon name='gamepad' />
               Games
-            </Menu.Item>
-            <Menu.Item as='a'>
+            </MenuItem>
+            <MenuItem as='a'>
               <Icon name='camera' />
               Channels
-            </Menu.Item>
+            </MenuItem>
           </Sidebar>
 
           <Sidebar
@@ -58,23 +62,23 @@ const SidebarExampleMultiple = () => {
             vertical
             visible={visible}
           >
-            <Menu.Item as='a' header>
+            <MenuItem as='a' header>
               File Permissions
-            </Menu.Item>
-            <Menu.Item as='a'>Share on Social</Menu.Item>
-            <Menu.Item as='a'>Share by E-mail</Menu.Item>
-            <Menu.Item as='a'>Edit Permissions</Menu.Item>
-            <Menu.Item as='a'>Delete Permanently</Menu.Item>
+            </MenuItem>
+            <MenuItem as='a'>Share on Social</MenuItem>
+            <MenuItem as='a'>Share by E-mail</MenuItem>
+            <MenuItem as='a'>Edit Permissions</MenuItem>
+            <MenuItem as='a'>Delete Permanently</MenuItem>
           </Sidebar>
 
-          <Sidebar.Pusher>
+          <SidebarPusher>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
               <Image src='/images/wireframe/paragraph.png' />
             </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </Grid.Column>
+          </SidebarPusher>
+        </SidebarPushable>
+      </GridColumn>
     </Grid>
   )
 }

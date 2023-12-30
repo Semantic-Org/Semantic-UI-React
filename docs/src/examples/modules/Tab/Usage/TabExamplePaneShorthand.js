@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Label, Tab } from 'semantic-ui-react'
+import { TabPane, ListItem, List, Label, Tab } from 'semantic-ui-react'
 
 const panes = [
   {
@@ -28,15 +28,15 @@ const panes = [
   {
     menuItem: 'Tab 4',
     pane: (
-      <Tab.Pane key='tab4'>
+      <TabPane key='tab4'>
         <p>This tab has complex content</p>
 
         <List>
-          <List.Item>Apples</List.Item>
-          <List.Item>Pears</List.Item>
-          <List.Item>Oranges</List.Item>
+          <ListItem>Apples</ListItem>
+          <ListItem>Pears</ListItem>
+          <ListItem>Oranges</ListItem>
         </List>
-      </Tab.Pane>
+      </TabPane>
     ),
   },
 ]

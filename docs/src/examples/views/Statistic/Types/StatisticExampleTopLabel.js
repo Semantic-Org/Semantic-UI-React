@@ -1,10 +1,10 @@
 import React from 'react'
-import { Statistic } from 'semantic-ui-react'
+import { StatisticValue, StatisticLabel, Statistic } from 'semantic-ui-react'
 
 const StatisticExampleTopLabel = () => (
   <Statistic>
-    <Statistic.Label>Views</Statistic.Label>
-    <Statistic.Value>40,509</Statistic.Value>
+    <StatisticLabel>Views</StatisticLabel>
+    <StatisticValue>40,509</StatisticValue>
   </Statistic>
 )
 

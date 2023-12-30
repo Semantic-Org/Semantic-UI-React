@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Divider, Tab } from 'semantic-ui-react'
+import { TabPane, Divider, Tab } from 'semantic-ui-react'
 
 const colors = [
   'red',
@@ -20,15 +20,15 @@ const colors = [
 const panes = [
   {
     menuItem: 'Tab 1',
-    render: () => <Tab.Pane attached={false}>Tab 1 Content</Tab.Pane>,
+    render: () => <TabPane attached={false}>Tab 1 Content</TabPane>,
   },
   {
     menuItem: 'Tab 2',
-    render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane>,
+    render: () => <TabPane attached={false}>Tab 2 Content</TabPane>,
   },
   {
     menuItem: 'Tab 3',
-    render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane>,
+    render: () => <TabPane attached={false}>Tab 3 Content</TabPane>,
   },
 ]
 

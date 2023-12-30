@@ -1,5 +1,14 @@
 import React from 'react'
-import { Button, Checkbox, Grid, Modal } from 'semantic-ui-react'
+import {
+  ModalHeader,
+  ModalContent,
+  ModalActions,
+  GridColumn,
+  Button,
+  Checkbox,
+  Grid,
+  Modal,
+} from 'semantic-ui-react'
 
 function exampleReducer(state, action) {
   switch (action.type) {
@@ -27,7 +36,7 @@ function ModalExampleCloseConfig() {
 
   return (
     <Grid columns={1}>
-      <Grid.Column>
+      <GridColumn>
         <Checkbox
           checked={closeOnEscape}
           label={{ children: <code>closeOnEscape</code> }}
@@ -43,9 +52,9 @@ function ModalExampleCloseConfig() {
             dispatch({ type: 'CONFIG_CLOSE_ON_DIMMER_CLICK', value: checked })
           }
         />
-      </Grid.Column>
+      </GridColumn>
 
-      <Grid.Column>
+      <GridColumn>
         <Modal
           closeOnEscape={closeOnEscape}
           closeOnDimmerClick={closeOnDimmerClick}
@@ -54,20 +63,20 @@ function ModalExampleCloseConfig() {
           onClose={() => dispatch({ type: 'CLOSE_MODAL' })}
           trigger={<Button>Show Modal</Button>}
         >
-          <Modal.Header>Delete Your Account</Modal.Header>
-          <Modal.Content>
+          <ModalHeader>Delete Your Account</ModalHeader>
+          <ModalContent>
             <p>Are you sure you want to delete your account</p>
-          </Modal.Content>
-          <Modal.Actions>
+          </ModalContent>
+          <ModalActions>
             <Button onClick={() => dispatch({ type: 'CLOSE_MODAL' })} negative>
               No
             </Button>
             <Button onClick={() => dispatch({ type: 'CLOSE_MODAL' })} positive>
               Yes
             </Button>
-          </Modal.Actions>
+          </ModalActions>
         </Modal>
-      </Grid.Column>
+      </GridColumn>
     </Grid>
   )
 }

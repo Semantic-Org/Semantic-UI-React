@@ -1,52 +1,52 @@
 import React from 'react'
-import { Grid, Image } from 'semantic-ui-react'
+import { GridRow, GridColumn, Grid, Image } from 'semantic-ui-react'
 
 const GridExampleColumnCount = () => (
   <Grid>
-    <Grid.Row columns={3}>
-      <Grid.Column>
+    <GridRow columns={3}>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
 
-    <Grid.Row columns={4}>
-      <Grid.Column>
+    <GridRow columns={4}>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
 
-    <Grid.Row columns={5}>
-      <Grid.Column>
+    <GridRow columns={5}>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
   </Grid>
 )
 

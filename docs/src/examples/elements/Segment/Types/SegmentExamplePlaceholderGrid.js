@@ -1,5 +1,7 @@
 import React from 'react'
 import {
+  GridRow,
+  GridColumn,
   Button,
   Divider,
   Grid,
@@ -14,24 +16,24 @@ const SegmentExamplePlaceholderGrid = () => (
     <Grid columns={2} stackable textAlign='center'>
       <Divider vertical>Or</Divider>
 
-      <Grid.Row verticalAlign='middle'>
-        <Grid.Column>
+      <GridRow verticalAlign='middle'>
+        <GridColumn>
           <Header icon>
             <Icon name='search' />
             Find Country
           </Header>
 
           <Search placeholder='Search countries...' />
-        </Grid.Column>
+        </GridColumn>
 
-        <Grid.Column>
+        <GridColumn>
           <Header icon>
             <Icon name='world' />
             Add New Country
           </Header>
           <Button primary>Create</Button>
-        </Grid.Column>
-      </Grid.Row>
+        </GridColumn>
+      </GridRow>
     </Grid>
   </Segment>
 )

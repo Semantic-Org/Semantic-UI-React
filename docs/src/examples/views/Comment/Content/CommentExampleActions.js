@@ -1,28 +1,38 @@
 import React from 'react'
-import { Comment, Icon } from 'semantic-ui-react'
+import {
+  CommentText,
+  CommentGroup,
+  CommentContent,
+  CommentAvatar,
+  CommentActions,
+  CommentAction,
+  CommentAuthor,
+  Comment,
+  Icon,
+} from 'semantic-ui-react'
 
 const CommentExampleActions = () => (
-  <Comment.Group>
+  <CommentGroup>
     <Comment>
-      <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
-      <Comment.Content>
-        <Comment.Author>Tom Lukic</Comment.Author>
-        <Comment.Text>
+      <CommentAvatar as='a' src='/images/avatar/small/joe.jpg' />
+      <CommentContent>
+        <CommentAuthor>Tom Lukic</CommentAuthor>
+        <CommentText>
           This will be great for business reports. I will definitely download
           this.
-        </Comment.Text>
-        <Comment.Actions>
-          <Comment.Action>Reply</Comment.Action>
-          <Comment.Action>Save</Comment.Action>
-          <Comment.Action>Hide</Comment.Action>
-          <Comment.Action>
+        </CommentText>
+        <CommentActions>
+          <CommentAction>Reply</CommentAction>
+          <CommentAction>Save</CommentAction>
+          <CommentAction>Hide</CommentAction>
+          <CommentAction>
             <Icon name='expand' />
             Full-screen
-          </Comment.Action>
-        </Comment.Actions>
-      </Comment.Content>
+          </CommentAction>
+        </CommentActions>
+      </CommentContent>
     </Comment>
-  </Comment.Group>
+  </CommentGroup>
 )
 
 export default CommentExampleActions

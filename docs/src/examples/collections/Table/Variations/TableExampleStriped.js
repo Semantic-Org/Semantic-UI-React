@@ -1,67 +1,74 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleStriped = () => (
   <Table striped>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Date Joined</Table.HeaderCell>
-        <Table.HeaderCell>E-mail</Table.HeaderCell>
-        <Table.HeaderCell>Called</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Date Joined</TableHeaderCell>
+        <TableHeaderCell>E-mail</TableHeaderCell>
+        <TableHeaderCell>Called</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>John Lilki</Table.Cell>
-        <Table.Cell>September 14, 2013</Table.Cell>
-        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-        <Table.Cell>No</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jamie Harington</Table.Cell>
-        <Table.Cell>January 11, 2014</Table.Cell>
-        <Table.Cell>jamieharingonton@yahoo.com</Table.Cell>
-        <Table.Cell>Yes</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jill Lewis</Table.Cell>
-        <Table.Cell>May 11, 2014</Table.Cell>
-        <Table.Cell>jilsewris22@yahoo.com</Table.Cell>
-        <Table.Cell>Yes</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>John Lilki</Table.Cell>
-        <Table.Cell>September 14, 2013</Table.Cell>
-        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-        <Table.Cell>No</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>John Lilki</Table.Cell>
-        <Table.Cell>September 14, 2013</Table.Cell>
-        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-        <Table.Cell>No</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jamie Harington</Table.Cell>
-        <Table.Cell>January 11, 2014</Table.Cell>
-        <Table.Cell>jamieharingonton@yahoo.com</Table.Cell>
-        <Table.Cell>Yes</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jill Lewis</Table.Cell>
-        <Table.Cell>May 11, 2014</Table.Cell>
-        <Table.Cell>jilsewris22@yahoo.com</Table.Cell>
-        <Table.Cell>Yes</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>John Lilki</Table.Cell>
-        <Table.Cell>September 14, 2013</Table.Cell>
-        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-        <Table.Cell>No</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+    <TableBody>
+      <TableRow>
+        <TableCell>John Lilki</TableCell>
+        <TableCell>September 14, 2013</TableCell>
+        <TableCell>jhlilk22@yahoo.com</TableCell>
+        <TableCell>No</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jamie Harington</TableCell>
+        <TableCell>January 11, 2014</TableCell>
+        <TableCell>jamieharingonton@yahoo.com</TableCell>
+        <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jill Lewis</TableCell>
+        <TableCell>May 11, 2014</TableCell>
+        <TableCell>jilsewris22@yahoo.com</TableCell>
+        <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>John Lilki</TableCell>
+        <TableCell>September 14, 2013</TableCell>
+        <TableCell>jhlilk22@yahoo.com</TableCell>
+        <TableCell>No</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>John Lilki</TableCell>
+        <TableCell>September 14, 2013</TableCell>
+        <TableCell>jhlilk22@yahoo.com</TableCell>
+        <TableCell>No</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jamie Harington</TableCell>
+        <TableCell>January 11, 2014</TableCell>
+        <TableCell>jamieharingonton@yahoo.com</TableCell>
+        <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jill Lewis</TableCell>
+        <TableCell>May 11, 2014</TableCell>
+        <TableCell>jilsewris22@yahoo.com</TableCell>
+        <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>John Lilki</TableCell>
+        <TableCell>September 14, 2013</TableCell>
+        <TableCell>jhlilk22@yahoo.com</TableCell>
+        <TableCell>No</TableCell>
+      </TableRow>
+    </TableBody>
   </Table>
 )
 

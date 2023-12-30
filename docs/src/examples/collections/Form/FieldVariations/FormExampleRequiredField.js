@@ -1,12 +1,12 @@
 import React from 'react'
-import { Form, Input } from 'semantic-ui-react'
+import { FormField, Form, Input } from 'semantic-ui-react'
 
 const FormExampleRequiredField = () => (
   <Form>
-    <Form.Field required>
+    <FormField required>
       <label>Last name</label>
       <Input placeholder='Full name' />
-    </Form.Field>
+    </FormField>
   </Form>
 )
 

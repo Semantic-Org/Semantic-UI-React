@@ -1,31 +1,31 @@
 import React from 'react'
-import { Grid, Image } from 'semantic-ui-react'
+import { GridRow, GridColumn, Grid, Image } from 'semantic-ui-react'
 
 const GridExampleDividedPhrase = () => (
   <Grid columns='three' divided>
-    <Grid.Row>
-      <Grid.Column>
+    <GridRow>
+      <GridColumn>
         <Image src='/images/wireframe/media-paragraph.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/media-paragraph.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/media-paragraph.png' />
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
 
-    <Grid.Row>
-      <Grid.Column>
+    <GridRow>
+      <GridColumn>
         <Image src='/images/wireframe/media-paragraph.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/media-paragraph.png' />
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Image src='/images/wireframe/media-paragraph.png' />
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
   </Grid>
 )
 

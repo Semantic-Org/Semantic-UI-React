@@ -1,5 +1,13 @@
 import React, { Component, createRef } from 'react'
-import { Image, Input, Menu, Segment, Sticky } from 'semantic-ui-react'
+import {
+  MenuMenu,
+  MenuItem,
+  Image,
+  Input,
+  Menu,
+  Segment,
+  Sticky,
+} from 'semantic-ui-react'
 import _ from 'lodash'
 
 export default class StickyExampleAboveContent extends Component {
@@ -14,17 +22,17 @@ export default class StickyExampleAboveContent extends Component {
             tabular
             style={{ backgroundColor: '#fff', paddingTop: '1em' }}
           >
-            <Menu.Item as='a' active name='bio' />
-            <Menu.Item as='a' active={false} name='photos' />
-            <Menu.Menu position='right'>
-              <Menu.Item>
+            <MenuItem as='a' active name='bio' />
+            <MenuItem as='a' active={false} name='photos' />
+            <MenuMenu position='right'>
+              <MenuItem>
                 <Input
                   transparent
                   icon={{ name: 'search', link: true }}
                   placeholder='Search users...'
                 />
-              </Menu.Item>
-            </Menu.Menu>
+              </MenuItem>
+            </MenuMenu>
           </Menu>
         </Sticky>
         <Segment attached='bottom'>

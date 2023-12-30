@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuMenu, MenuItem, Menu } from 'semantic-ui-react'
 
 export default class MenuExampleMenus extends Component {
   state = {}
@@ -11,39 +11,39 @@ export default class MenuExampleMenus extends Component {
 
     return (
       <Menu>
-        <Menu.Item
+        <MenuItem
           name='browse'
           active={activeItem === 'browse'}
           onClick={this.handleItemClick}
         >
           Browse
-        </Menu.Item>
+        </MenuItem>
 
-        <Menu.Item
+        <MenuItem
           name='submit'
           active={activeItem === 'submit'}
           onClick={this.handleItemClick}
         >
           Submit
-        </Menu.Item>
+        </MenuItem>
 
-        <Menu.Menu position='right'>
-          <Menu.Item
+        <MenuMenu position='right'>
+          <MenuItem
             name='signup'
             active={activeItem === 'signup'}
             onClick={this.handleItemClick}
           >
             Sign Up
-          </Menu.Item>
+          </MenuItem>
 
-          <Menu.Item
+          <MenuItem
             name='help'
             active={activeItem === 'help'}
             onClick={this.handleItemClick}
           >
             Help
-          </Menu.Item>
-        </Menu.Menu>
+          </MenuItem>
+        </MenuMenu>
       </Menu>
     )
   }

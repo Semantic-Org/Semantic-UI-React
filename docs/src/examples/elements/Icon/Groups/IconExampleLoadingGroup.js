@@ -1,16 +1,16 @@
 import React from 'react'
-import { Icon } from 'semantic-ui-react'
+import { IconGroup, Icon } from 'semantic-ui-react'
 
 const IconExampleLoadingGroup = () => (
   <div>
-    <Icon.Group size='huge'>
+    <IconGroup size='huge'>
       <Icon size='big' color='red' name='dont' />
       <Icon color='black' name='user' />
-    </Icon.Group>
-    <Icon.Group size='huge'>
+    </IconGroup>
+    <IconGroup size='huge'>
       <Icon loading size='big' name='circle notch' />
       <Icon name='user' />
-    </Icon.Group>
+    </IconGroup>
   </div>
 )
 

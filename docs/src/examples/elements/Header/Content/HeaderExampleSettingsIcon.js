@@ -1,13 +1,13 @@
 import React from 'react'
-import { Header, Icon } from 'semantic-ui-react'
+import { HeaderSubheader, HeaderContent, Header, Icon } from 'semantic-ui-react'
 
 const HeaderExampleSettingsIcon = () => (
   <Header as='h2'>
     <Icon name='settings' />
-    <Header.Content>
+    <HeaderContent>
       Account Settings
-      <Header.Subheader>Manage your preferences</Header.Subheader>
-    </Header.Content>
+      <HeaderSubheader>Manage your preferences</HeaderSubheader>
+    </HeaderContent>
   </Header>
 )
 

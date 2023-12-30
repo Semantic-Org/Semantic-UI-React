@@ -1,27 +1,33 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import {
+  ItemImage,
+  ItemHeader,
+  ItemGroup,
+  ItemContent,
+  Item,
+} from 'semantic-ui-react'
 
 const ItemExampleHeaders = () => (
-  <Item.Group>
+  <ItemGroup>
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
-      <Item.Content verticalAlign='middle'>
-        <Item.Header as='a'>12 Years a Slave</Item.Header>
-      </Item.Content>
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
+      <ItemContent verticalAlign='middle'>
+        <ItemHeader as='a'>12 Years a Slave</ItemHeader>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
-      <Item.Content verticalAlign='middle'>
-        <Item.Header as='a' content='My Neighbor Totoro' />
-      </Item.Content>
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
+      <ItemContent verticalAlign='middle'>
+        <ItemHeader as='a' content='My Neighbor Totoro' />
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='/images/wireframe/image.png' />
-      <Item.Content header='Watchmen' verticalAlign='middle' />
+      <ItemImage size='tiny' src='/images/wireframe/image.png' />
+      <ItemContent header='Watchmen' verticalAlign='middle' />
     </Item>
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleHeaders

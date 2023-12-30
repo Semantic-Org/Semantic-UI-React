@@ -1,12 +1,12 @@
 import React from 'react'
-import { Header } from 'semantic-ui-react'
+import { HeaderSubheader, Header } from 'semantic-ui-react'
 
 const HeaderExampleSubheader = () => (
   <Header as='h2'>
     Account Settings
-    <Header.Subheader>
+    <HeaderSubheader>
       Manage your account settings and set email preferences
-    </Header.Subheader>
+    </HeaderSubheader>
   </Header>
 )
 

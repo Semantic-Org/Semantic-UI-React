@@ -1,19 +1,27 @@
 import React from 'react'
-import { Feed, Icon } from 'semantic-ui-react'
+import {
+  FeedSummary,
+  FeedLabel,
+  FeedEvent,
+  FeedDate,
+  FeedContent,
+  Feed,
+  Icon,
+} from 'semantic-ui-react'
 
 const FeedExampleIconLabel = () => (
   <Feed>
-    <Feed.Event>
-      <Feed.Label>
+    <FeedEvent>
+      <FeedLabel>
         <Icon name='pencil' />
-      </Feed.Label>
-      <Feed.Content>
-        <Feed.Date>Today</Feed.Date>
-        <Feed.Summary>
+      </FeedLabel>
+      <FeedContent>
+        <FeedDate>Today</FeedDate>
+        <FeedSummary>
           You posted on your friend <a>Stevie Feliciano's</a> wall.
-        </Feed.Summary>
-      </Feed.Content>
-    </Feed.Event>
+        </FeedSummary>
+      </FeedContent>
+    </FeedEvent>
   </Feed>
 )
 

@@ -1,6 +1,21 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Button, Card, Divider, Image, Placeholder } from 'semantic-ui-react'
+import {
+  CardMeta,
+  CardHeader,
+  CardGroup,
+  CardDescription,
+  CardContent,
+  PlaceholderParagraph,
+  PlaceholderLine,
+  PlaceholderImage,
+  PlaceholderHeader,
+  Button,
+  Card,
+  Divider,
+  Image,
+  Placeholder,
+} from 'semantic-ui-react'
 
 const cards = [
   {
@@ -44,46 +59,46 @@ export default class PlaceholderExampleCard extends Component {
         </Button>
         <Divider />
 
-        <Card.Group doubling itemsPerRow={3} stackable>
+        <CardGroup doubling itemsPerRow={3} stackable>
           {_.map(cards, (card) => (
             <Card key={card.header}>
               {loading ? (
                 <Placeholder>
-                  <Placeholder.Image square />
+                  <PlaceholderImage square />
                 </Placeholder>
               ) : (
                 <Image src={card.avatar} />
               )}
 
-              <Card.Content>
+              <CardContent>
                 {loading ? (
                   <Placeholder>
-                    <Placeholder.Header>
-                      <Placeholder.Line length='very short' />
-                      <Placeholder.Line length='medium' />
-                    </Placeholder.Header>
-                    <Placeholder.Paragraph>
-                      <Placeholder.Line length='short' />
-                    </Placeholder.Paragraph>
+                    <PlaceholderHeader>
+                      <PlaceholderLine length='very short' />
+                      <PlaceholderLine length='medium' />
+                    </PlaceholderHeader>
+                    <PlaceholderParagraph>
+                      <PlaceholderLine length='short' />
+                    </PlaceholderParagraph>
                   </Placeholder>
                 ) : (
                   <>
-                    <Card.Header>{card.header}</Card.Header>
-                    <Card.Meta>{card.date}</Card.Meta>
-                    <Card.Description>{card.description}</Card.Description>
+                    <CardHeader>{card.header}</CardHeader>
+                    <CardMeta>{card.date}</CardMeta>
+                    <CardDescription>{card.description}</CardDescription>
                   </>
                 )}
-              </Card.Content>
+              </CardContent>
 
-              <Card.Content extra>
+              <CardContent extra>
                 <Button disabled={loading} primary>
                   Add
                 </Button>
                 <Button disabled={loading}>Delete</Button>
-              </Card.Content>
+              </CardContent>
             </Card>
           ))}
-        </Card.Group>
+        </CardGroup>
       </>
     )
   }

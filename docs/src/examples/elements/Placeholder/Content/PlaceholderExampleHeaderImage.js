@@ -1,12 +1,16 @@
 import React from 'react'
-import { Placeholder } from 'semantic-ui-react'
+import {
+  PlaceholderLine,
+  PlaceholderHeader,
+  Placeholder,
+} from 'semantic-ui-react'
 
 const PlaceholderExampleHeaderImage = () => (
   <Placeholder>
-    <Placeholder.Header image>
-      <Placeholder.Line />
-      <Placeholder.Line />
-    </Placeholder.Header>
+    <PlaceholderHeader image>
+      <PlaceholderLine />
+      <PlaceholderLine />
+    </PlaceholderHeader>
   </Placeholder>
 )
 

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Message } from 'semantic-ui-react'
+import { MessageHeader, Message } from 'semantic-ui-react'
 
 const MessageExampleNegative = () => (
   <Message negative>
-    <Message.Header>We're sorry we can't apply that discount</Message.Header>
+    <MessageHeader>We're sorry we can't apply that discount</MessageHeader>
     <p>That offer has expired</p>
   </Message>
 )

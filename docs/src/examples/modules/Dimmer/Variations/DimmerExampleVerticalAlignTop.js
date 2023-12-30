@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { Button, Dimmer, Header, Image, Segment } from 'semantic-ui-react'
+import {
+  DimmerDimmable,
+  ButtonGroup,
+  Button,
+  Dimmer,
+  Header,
+  Image,
+  Segment,
+} from 'semantic-ui-react'
 
 export default class DimmerExampleVerticalAlignTop extends Component {
   state = {}
@@ -12,7 +20,7 @@ export default class DimmerExampleVerticalAlignTop extends Component {
 
     return (
       <div>
-        <Dimmer.Dimmable as={Segment} dimmed={active}>
+        <DimmerDimmable as={Segment} dimmed={active}>
           <p>
             <Image src='/images/wireframe/short-paragraph.png' />
           </p>
@@ -32,12 +40,12 @@ export default class DimmerExampleVerticalAlignTop extends Component {
             <Button primary>Add</Button>
             <Button>View</Button>
           </Dimmer>
-        </Dimmer.Dimmable>
+        </DimmerDimmable>
 
-        <Button.Group>
+        <ButtonGroup>
           <Button icon='plus' onClick={this.handleShow} />
           <Button icon='minus' onClick={this.handleHide} />
-        </Button.Group>
+        </ButtonGroup>
       </div>
     )
   }

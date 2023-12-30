@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message, Icon } from 'semantic-ui-react'
+import { MessageHeader, MessageContent, Message, Icon } from 'semantic-ui-react'
 
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
@@ -8,8 +8,8 @@ const FormFormUsageExamples = () => (
   <ExampleSection title='Usage'>
     <Message info icon>
       <Icon name='pointing right' />
-      <Message.Content>
-        <Message.Header>Tip</Message.Header>
+      <MessageContent>
+        <MessageHeader>Tip</MessageHeader>
         <p>
           Our <code>{'<Form />'}</code> handles data just like a vanilla React{' '}
           <code>{'<form />'}</code>. See React's
@@ -23,7 +23,7 @@ const FormFormUsageExamples = () => (
           </a>
           docs for more.
         </p>
-      </Message.Content>
+      </MessageContent>
     </Message>
     <ComponentExample
       title='Capture Values'

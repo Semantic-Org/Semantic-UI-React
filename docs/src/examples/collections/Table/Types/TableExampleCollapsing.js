@@ -1,65 +1,76 @@
 import React from 'react'
-import { Header, Image, Table } from 'semantic-ui-react'
+import {
+  HeaderSubheader,
+  HeaderContent,
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Header,
+  Image,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleCollapsing = () => (
   <Table basic='very' celled collapsing>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Employee</Table.HeaderCell>
-        <Table.HeaderCell>Correct Guesses</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Employee</TableHeaderCell>
+        <TableHeaderCell>Correct Guesses</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>
+    <TableBody>
+      <TableRow>
+        <TableCell>
           <Header as='h4' image>
             <Image src='/images/avatar/small/lena.png' rounded size='mini' />
-            <Header.Content>
+            <HeaderContent>
               Lena
-              <Header.Subheader>Human Resources</Header.Subheader>
-            </Header.Content>
+              <HeaderSubheader>Human Resources</HeaderSubheader>
+            </HeaderContent>
           </Header>
-        </Table.Cell>
-        <Table.Cell>22</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
+        </TableCell>
+        <TableCell>22</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
           <Header as='h4' image>
             <Image src='/images/avatar/small/matthew.png' rounded size='mini' />
-            <Header.Content>
+            <HeaderContent>
               Matthew
-              <Header.Subheader>Fabric Design</Header.Subheader>
-            </Header.Content>
+              <HeaderSubheader>Fabric Design</HeaderSubheader>
+            </HeaderContent>
           </Header>
-        </Table.Cell>
-        <Table.Cell>15</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
+        </TableCell>
+        <TableCell>15</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
           <Header as='h4' image>
             <Image src='/images/avatar/small/lindsay.png' rounded size='mini' />
-            <Header.Content>
+            <HeaderContent>
               Lindsay
-              <Header.Subheader>Entertainment</Header.Subheader>
-            </Header.Content>
+              <HeaderSubheader>Entertainment</HeaderSubheader>
+            </HeaderContent>
           </Header>
-        </Table.Cell>
-        <Table.Cell>12</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
+        </TableCell>
+        <TableCell>12</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
           <Header as='h4' image>
             <Image src='/images/avatar/small/mark.png' rounded size='mini' />
-            <Header.Content>
+            <HeaderContent>
               Mark
-              <Header.Subheader>Executive</Header.Subheader>
-            </Header.Content>
+              <HeaderSubheader>Executive</HeaderSubheader>
+            </HeaderContent>
           </Header>
-        </Table.Cell>
-        <Table.Cell>11</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+        </TableCell>
+        <TableCell>11</TableCell>
+      </TableRow>
+    </TableBody>
   </Table>
 )
 

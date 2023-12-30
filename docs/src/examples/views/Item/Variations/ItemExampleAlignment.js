@@ -1,32 +1,38 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import {
+  ItemImage,
+  ItemHeader,
+  ItemGroup,
+  ItemContent,
+  Item,
+} from 'semantic-ui-react'
 
 const ItemExampleAlignment = () => (
-  <Item.Group>
+  <ItemGroup>
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
 
-      <Item.Content verticalAlign='top'>
-        <Item.Header>Top Aligned</Item.Header>
-      </Item.Content>
+      <ItemContent verticalAlign='top'>
+        <ItemHeader>Top Aligned</ItemHeader>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
 
-      <Item.Content verticalAlign='middle'>
-        <Item.Header>Middle Aligned</Item.Header>
-      </Item.Content>
+      <ItemContent verticalAlign='middle'>
+        <ItemHeader>Middle Aligned</ItemHeader>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
 
-      <Item.Content verticalAlign='bottom'>
-        <Item.Header>Bottom Aligned</Item.Header>
-      </Item.Content>
+      <ItemContent verticalAlign='bottom'>
+        <ItemHeader>Bottom Aligned</ItemHeader>
+      </ItemContent>
     </Item>
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleAlignment

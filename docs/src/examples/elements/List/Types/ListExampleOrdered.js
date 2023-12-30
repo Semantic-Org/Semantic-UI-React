@@ -1,19 +1,19 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import { ListList, ListItem, List } from 'semantic-ui-react'
 
 const ListExampleOrdered = () => (
   <List ordered>
-    <List.Item as='a'>Getting Started</List.Item>
-    <List.Item as='a'>Introduction</List.Item>
-    <List.Item>
+    <ListItem as='a'>Getting Started</ListItem>
+    <ListItem as='a'>Introduction</ListItem>
+    <ListItem>
       <a>Languages</a>
-      <List.List>
-        <List.Item as='a'>HTML</List.Item>
-        <List.Item as='a'>Javascript</List.Item>
-        <List.Item as='a'>CSS</List.Item>
-      </List.List>
-    </List.Item>
-    <List.Item as='a'>Review</List.Item>
+      <ListList>
+        <ListItem as='a'>HTML</ListItem>
+        <ListItem as='a'>Javascript</ListItem>
+        <ListItem as='a'>CSS</ListItem>
+      </ListList>
+    </ListItem>
+    <ListItem as='a'>Review</ListItem>
   </List>
 )
 

@@ -1,19 +1,19 @@
 import React from 'react'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { FormField, Button, Checkbox, Form } from 'semantic-ui-react'
 
 const FormExampleForm = () => (
   <Form>
-    <Form.Field>
+    <FormField>
       <label>First Name</label>
       <input placeholder='First Name' />
-    </Form.Field>
-    <Form.Field>
+    </FormField>
+    <FormField>
       <label>Last Name</label>
       <input placeholder='Last Name' />
-    </Form.Field>
-    <Form.Field>
+    </FormField>
+    <FormField>
       <Checkbox label='I agree to the Terms and Conditions' />
-    </Form.Field>
+    </FormField>
     <Button type='submit'>Submit</Button>
   </Form>
 )

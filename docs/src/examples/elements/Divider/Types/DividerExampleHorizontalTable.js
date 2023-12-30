@@ -1,5 +1,13 @@
 import React from 'react'
-import { Divider, Header, Icon, Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableCell,
+  TableBody,
+  Divider,
+  Header,
+  Icon,
+  Table,
+} from 'semantic-ui-react'
 
 const DividerExampleHorizontalTable = () => (
   <>
@@ -23,24 +31,24 @@ const DividerExampleHorizontalTable = () => (
     </Divider>
 
     <Table definition>
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell width={2}>Size</Table.Cell>
-          <Table.Cell>1" x 2"</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Weight</Table.Cell>
-          <Table.Cell>6 ounces</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Color</Table.Cell>
-          <Table.Cell>Yellowish</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Odor</Table.Cell>
-          <Table.Cell>Not Much Usually</Table.Cell>
-        </Table.Row>
-      </Table.Body>
+      <TableBody>
+        <TableRow>
+          <TableCell width={2}>Size</TableCell>
+          <TableCell>1" x 2"</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Weight</TableCell>
+          <TableCell>6 ounces</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Color</TableCell>
+          <TableCell>Yellowish</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Odor</TableCell>
+          <TableCell>Not Much Usually</TableCell>
+        </TableRow>
+      </TableBody>
     </Table>
   </>
 )

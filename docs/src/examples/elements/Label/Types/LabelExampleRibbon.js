@@ -1,9 +1,9 @@
 import React from 'react'
-import { Grid, Image, Label, Segment } from 'semantic-ui-react'
+import { GridColumn, Grid, Image, Label, Segment } from 'semantic-ui-react'
 
 const LabelExampleRibbon = () => (
   <Grid columns={2}>
-    <Grid.Column>
+    <GridColumn>
       <Segment raised>
         <Label as='a' color='red' ribbon>
           Overview
@@ -19,9 +19,9 @@ const LabelExampleRibbon = () => (
 
         <Image src='/images/wireframe/paragraph.png' />
       </Segment>
-    </Grid.Column>
+    </GridColumn>
 
-    <Grid.Column>
+    <GridColumn>
       <Segment>
         <Label as='a' color='orange' ribbon='right'>
           Specs
@@ -33,7 +33,7 @@ const LabelExampleRibbon = () => (
         </Label>
         <Image src='/images/wireframe/paragraph.png' />
       </Segment>
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 

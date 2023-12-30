@@ -1,20 +1,20 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import { ListItem, List } from 'semantic-ui-react'
 
 const ListExampleFloatedHorizontal = () => (
   <div>
     <List floated='right' horizontal>
-      <List.Item disabled href='#'>
+      <ListItem disabled href='#'>
         © GitHub, Inc.
-      </List.Item>
-      <List.Item href='#'>Terms</List.Item>
-      <List.Item href='#'>Privacy</List.Item>
-      <List.Item href='#'>Contact</List.Item>
+      </ListItem>
+      <ListItem href='#'>Terms</ListItem>
+      <ListItem href='#'>Privacy</ListItem>
+      <ListItem href='#'>Contact</ListItem>
     </List>
 
     <List horizontal>
-      <List.Item href='#'>About Us</List.Item>
-      <List.Item href='#'>Jobs</List.Item>
+      <ListItem href='#'>About Us</ListItem>
+      <ListItem href='#'>Jobs</ListItem>
     </List>
   </div>
 )

@@ -1,19 +1,19 @@
 import React from 'react'
-import { Button, Segment } from 'semantic-ui-react'
+import { ButtonGroup, Button, Segment } from 'semantic-ui-react'
 
 const ButtonExampleVerticallyAttachedGroup = () => (
   <div>
-    <Button.Group attached='top'>
+    <ButtonGroup attached='top'>
       <Button>One</Button>
       <Button>Two</Button>
-    </Button.Group>
+    </ButtonGroup>
     <Segment attached>
       <img src='/images/wireframe/paragraph.png' />
     </Segment>
-    <Button.Group attached='bottom'>
+    <ButtonGroup attached='bottom'>
       <Button>One</Button>
       <Button>Two</Button>
-    </Button.Group>
+    </ButtonGroup>
   </div>
 )
 

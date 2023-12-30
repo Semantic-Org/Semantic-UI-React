@@ -1,13 +1,13 @@
 import React from 'react'
-import { Step } from 'semantic-ui-react'
+import { StepTitle, StepGroup, StepDescription, Step } from 'semantic-ui-react'
 
 const StepExampleDescription = () => (
-  <Step.Group>
+  <StepGroup>
     <Step>
-      <Step.Title>Shipping</Step.Title>
-      <Step.Description>Choose your shipping options</Step.Description>
+      <StepTitle>Shipping</StepTitle>
+      <StepDescription>Choose your shipping options</StepDescription>
     </Step>
-  </Step.Group>
+  </StepGroup>
 )
 
 export default StepExampleDescription

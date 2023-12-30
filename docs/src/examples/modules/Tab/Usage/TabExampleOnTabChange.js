@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Segment, Tab } from 'semantic-ui-react'
+import { TabPane, Segment, Tab } from 'semantic-ui-react'
 
 const panes = [
-  { menuItem: 'Tab 1', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
-  { menuItem: 'Tab 2', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-  { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+  { menuItem: 'Tab 1', render: () => <TabPane>Tab 1 Content</TabPane> },
+  { menuItem: 'Tab 2', render: () => <TabPane>Tab 2 Content</TabPane> },
+  { menuItem: 'Tab 3', render: () => <TabPane>Tab 3 Content</TabPane> },
 ]
 
 class TabExampleOnTabChange extends Component {

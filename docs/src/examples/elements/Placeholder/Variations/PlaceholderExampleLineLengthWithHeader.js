@@ -1,16 +1,21 @@
 import React from 'react'
-import { Placeholder } from 'semantic-ui-react'
+import {
+  PlaceholderParagraph,
+  PlaceholderLine,
+  PlaceholderHeader,
+  Placeholder,
+} from 'semantic-ui-react'
 
 const PlaceholderExampleLineLengthWithHeader = () => (
   <Placeholder>
-    <Placeholder.Header image>
-      <Placeholder.Line length='medium' />
-      <Placeholder.Line length='full' />
-    </Placeholder.Header>
-    <Placeholder.Paragraph>
-      <Placeholder.Line length='full' />
-      <Placeholder.Line length='medium' />
-    </Placeholder.Paragraph>
+    <PlaceholderHeader image>
+      <PlaceholderLine length='medium' />
+      <PlaceholderLine length='full' />
+    </PlaceholderHeader>
+    <PlaceholderParagraph>
+      <PlaceholderLine length='full' />
+      <PlaceholderLine length='medium' />
+    </PlaceholderParagraph>
   </Placeholder>
 )
 

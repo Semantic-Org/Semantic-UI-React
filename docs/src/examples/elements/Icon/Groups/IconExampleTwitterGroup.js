@@ -1,12 +1,12 @@
 import React from 'react'
-import { Header, Icon } from 'semantic-ui-react'
+import { IconGroup, Header, Icon } from 'semantic-ui-react'
 
 const IconExampleTwitterGroup = () => (
   <Header as='h2'>
-    <Icon.Group size='large'>
+    <IconGroup size='large'>
       <Icon name='twitter' />
       <Icon corner name='add' />
-    </Icon.Group>
+    </IconGroup>
     Add on Twitter
   </Header>
 )

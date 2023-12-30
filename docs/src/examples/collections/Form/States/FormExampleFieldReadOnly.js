@@ -1,12 +1,12 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
+import { FormInput, FormGroup, Form } from 'semantic-ui-react'
 
 const FormExampleFieldReadOnly = () => (
   <Form>
-    <Form.Group widths='equal'>
-      <Form.Input fluid label='First name' placeholder='Read only' readOnly />
-      <Form.Input fluid label='Last name' placeholder='Read only' readOnly />
-    </Form.Group>
+    <FormGroup widths='equal'>
+      <FormInput fluid label='First name' placeholder='Read only' readOnly />
+      <FormInput fluid label='Last name' placeholder='Read only' readOnly />
+    </FormGroup>
   </Form>
 )
 

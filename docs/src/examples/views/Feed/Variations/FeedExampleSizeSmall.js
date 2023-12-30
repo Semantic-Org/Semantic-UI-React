@@ -1,41 +1,47 @@
 import React from 'react'
-import { Feed, Header } from 'semantic-ui-react'
+import {
+  FeedSummary,
+  FeedEvent,
+  FeedContent,
+  Feed,
+  Header,
+} from 'semantic-ui-react'
 
 const FeedExampleSizeSmall = () => (
   <Feed size='small'>
     <Header as='h4'>Followers Activity</Header>
 
-    <Feed.Event>
-      <Feed.Content>
-        <Feed.Summary>
+    <FeedEvent>
+      <FeedContent>
+        <FeedSummary>
           <a>Elliot Fu</a> added <a>Jenny Hess</a> as a friend
-        </Feed.Summary>
-      </Feed.Content>
-    </Feed.Event>
+        </FeedSummary>
+      </FeedContent>
+    </FeedEvent>
 
-    <Feed.Event>
-      <Feed.Content>
-        <Feed.Summary>
+    <FeedEvent>
+      <FeedContent>
+        <FeedSummary>
           <a>Stevie Feliciano</a> added <a>Elliot Fu</a> as a friend
-        </Feed.Summary>
-      </Feed.Content>
-    </Feed.Event>
+        </FeedSummary>
+      </FeedContent>
+    </FeedEvent>
 
-    <Feed.Event>
-      <Feed.Content>
-        <Feed.Summary>
+    <FeedEvent>
+      <FeedContent>
+        <FeedSummary>
           <a>Helen Troy</a> added <a>Christian Rocha</a> as a friend
-        </Feed.Summary>
-      </Feed.Content>
-    </Feed.Event>
+        </FeedSummary>
+      </FeedContent>
+    </FeedEvent>
 
-    <Feed.Event>
-      <Feed.Content>
-        <Feed.Summary>
+    <FeedEvent>
+      <FeedContent>
+        <FeedSummary>
           <a>Christian Rocha</a> signed up for the site.
-        </Feed.Summary>
-      </Feed.Content>
-    </Feed.Event>
+        </FeedSummary>
+      </FeedContent>
+    </FeedEvent>
   </Feed>
 )
 

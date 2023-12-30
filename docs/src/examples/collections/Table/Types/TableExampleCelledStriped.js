@@ -1,53 +1,61 @@
 import React from 'react'
-import { Icon, Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Icon,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleCelledStriped = () => (
   <Table celled striped>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell colSpan='3'>Git Repository</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell colSpan='3'>Git Repository</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell collapsing>
+    <TableBody>
+      <TableRow>
+        <TableCell collapsing>
           <Icon name='folder' /> node_modules
-        </Table.Cell>
-        <Table.Cell>Initial commit</Table.Cell>
-        <Table.Cell collapsing textAlign='right'>
+        </TableCell>
+        <TableCell>Initial commit</TableCell>
+        <TableCell collapsing textAlign='right'>
           10 hours ago
-        </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
           <Icon name='folder' /> test
-        </Table.Cell>
-        <Table.Cell>Initial commit</Table.Cell>
-        <Table.Cell textAlign='right'>10 hours ago</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
+        </TableCell>
+        <TableCell>Initial commit</TableCell>
+        <TableCell textAlign='right'>10 hours ago</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
           <Icon name='folder' /> build
-        </Table.Cell>
-        <Table.Cell>Initial commit</Table.Cell>
-        <Table.Cell textAlign='right'>10 hours ago</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
+        </TableCell>
+        <TableCell>Initial commit</TableCell>
+        <TableCell textAlign='right'>10 hours ago</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
           <Icon name='file outline' /> package.json
-        </Table.Cell>
-        <Table.Cell>Initial commit</Table.Cell>
-        <Table.Cell textAlign='right'>10 hours ago</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
+        </TableCell>
+        <TableCell>Initial commit</TableCell>
+        <TableCell textAlign='right'>10 hours ago</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
           <Icon name='file outline' /> Gruntfile.js
-        </Table.Cell>
-        <Table.Cell>Initial commit</Table.Cell>
-        <Table.Cell textAlign='right'>10 hours ago</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+        </TableCell>
+        <TableCell>Initial commit</TableCell>
+        <TableCell textAlign='right'>10 hours ago</TableCell>
+      </TableRow>
+    </TableBody>
   </Table>
 )
 

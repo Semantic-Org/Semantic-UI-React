@@ -1,51 +1,59 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableFooter,
+  TableCell,
+  TableBody,
+  Table,
+} from 'semantic-ui-react'
 
 const TableExampleColumnCount = () => (
   <Table columns={5}>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Status</Table.HeaderCell>
-        <Table.HeaderCell>Age</Table.HeaderCell>
-        <Table.HeaderCell>Gender</Table.HeaderCell>
-        <Table.HeaderCell>Notes</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Status</TableHeaderCell>
+        <TableHeaderCell>Age</TableHeaderCell>
+        <TableHeaderCell>Gender</TableHeaderCell>
+        <TableHeaderCell>Notes</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
 
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>John</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>22</Table.Cell>
-        <Table.Cell>Male</Table.Cell>
-        <Table.Cell>None</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jamie</Table.Cell>
-        <Table.Cell>Approved</Table.Cell>
-        <Table.Cell>32</Table.Cell>
-        <Table.Cell>Male</Table.Cell>
-        <Table.Cell>Requires call</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jill</Table.Cell>
-        <Table.Cell>Denied</Table.Cell>
-        <Table.Cell>22</Table.Cell>
-        <Table.Cell>Other</Table.Cell>
-        <Table.Cell>None</Table.Cell>
-      </Table.Row>
-    </Table.Body>
+    <TableBody>
+      <TableRow>
+        <TableCell>John</TableCell>
+        <TableCell>Approved</TableCell>
+        <TableCell>22</TableCell>
+        <TableCell>Male</TableCell>
+        <TableCell>None</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jamie</TableCell>
+        <TableCell>Approved</TableCell>
+        <TableCell>32</TableCell>
+        <TableCell>Male</TableCell>
+        <TableCell>Requires call</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Jill</TableCell>
+        <TableCell>Denied</TableCell>
+        <TableCell>22</TableCell>
+        <TableCell>Other</TableCell>
+        <TableCell>None</TableCell>
+      </TableRow>
+    </TableBody>
 
-    <Table.Footer>
-      <Table.Row>
-        <Table.HeaderCell>3 People</Table.HeaderCell>
-        <Table.HeaderCell>2 Approved</Table.HeaderCell>
-        <Table.HeaderCell />
-        <Table.HeaderCell />
-        <Table.HeaderCell />
-      </Table.Row>
-    </Table.Footer>
+    <TableFooter>
+      <TableRow>
+        <TableHeaderCell>3 People</TableHeaderCell>
+        <TableHeaderCell>2 Approved</TableHeaderCell>
+        <TableHeaderCell />
+        <TableHeaderCell />
+        <TableHeaderCell />
+      </TableRow>
+    </TableFooter>
   </Table>
 )
 

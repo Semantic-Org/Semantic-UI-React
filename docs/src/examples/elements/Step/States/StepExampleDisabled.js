@@ -1,10 +1,10 @@
 import React from 'react'
-import { Step } from 'semantic-ui-react'
+import { StepGroup, Step } from 'semantic-ui-react'
 
 const StepExampleDisabled = () => (
-  <Step.Group>
+  <StepGroup>
     <Step disabled>Billing</Step>
-  </Step.Group>
+  </StepGroup>
 )
 
 export default StepExampleDisabled

@@ -1,11 +1,11 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import { ListItem, List } from 'semantic-ui-react'
 
 const ListExampleHorizontalBulleted = () => (
   <List bulleted horizontal link>
-    <List.Item as='a'>Terms and Conditions</List.Item>
-    <List.Item as='a'>Privacy Policy</List.Item>
-    <List.Item as='a'>Contact Us</List.Item>
+    <ListItem as='a'>Terms and Conditions</ListItem>
+    <ListItem as='a'>Privacy Policy</ListItem>
+    <ListItem as='a'>Contact Us</ListItem>
   </List>
 )
 

@@ -1,31 +1,31 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import { ListItem, List } from 'semantic-ui-react'
 
 const ListExampleOrderedValue = () => (
   <List as='ol'>
-    <List.Item as='li' value='*'>
+    <ListItem as='li' value='*'>
       Signing Up
-    </List.Item>
-    <List.Item as='li' value='*'>
+    </ListItem>
+    <ListItem as='li' value='*'>
       User Benefits
-    </List.Item>
-    <List.Item as='li' value='*'>
+    </ListItem>
+    <ListItem as='li' value='*'>
       User Types
-      <List.Item as='ol'>
-        <List.Item as='li' value='-'>
+      <ListItem as='ol'>
+        <ListItem as='li' value='-'>
           Admin
-        </List.Item>
-        <List.Item as='li' value='-'>
+        </ListItem>
+        <ListItem as='li' value='-'>
           Power User
-        </List.Item>
-        <List.Item as='li' value='-'>
+        </ListItem>
+        <ListItem as='li' value='-'>
           Regular User
-        </List.Item>
-      </List.Item>
-    </List.Item>
-    <List.Item as='li' value='*'>
+        </ListItem>
+      </ListItem>
+    </ListItem>
+    <ListItem as='li' value='*'>
       Deleting Your Account
-    </List.Item>
+    </ListItem>
   </List>
 )
 

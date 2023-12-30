@@ -1,6 +1,14 @@
 import faker from 'faker'
 import React from 'react'
-import { Button, Header, Placeholder, Popup } from 'semantic-ui-react'
+import {
+  PlaceholderParagraph,
+  PlaceholderLine,
+  PlaceholderHeader,
+  Button,
+  Header,
+  Placeholder,
+  Popup,
+} from 'semantic-ui-react'
 
 const PopupExamplePopperDependencies = () => {
   const [data, setData] = React.useState(null)
@@ -30,14 +38,14 @@ const PopupExamplePopperDependencies = () => {
     >
       {data === null ? (
         <Placeholder style={{ minWidth: '200px' }}>
-          <Placeholder.Header>
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder.Header>
-          <Placeholder.Paragraph>
-            <Placeholder.Line length='medium' />
-            <Placeholder.Line length='short' />
-          </Placeholder.Paragraph>
+          <PlaceholderHeader>
+            <PlaceholderLine />
+            <PlaceholderLine />
+          </PlaceholderHeader>
+          <PlaceholderParagraph>
+            <PlaceholderLine length='medium' />
+            <PlaceholderLine length='short' />
+          </PlaceholderParagraph>
         </Placeholder>
       ) : (
         <>

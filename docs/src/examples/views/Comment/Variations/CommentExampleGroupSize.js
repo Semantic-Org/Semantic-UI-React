@@ -1,136 +1,146 @@
 import React from 'react'
-import { Comment, Header } from 'semantic-ui-react'
+import {
+  CommentText,
+  CommentMetadata,
+  CommentGroup,
+  CommentContent,
+  CommentAvatar,
+  CommentActions,
+  CommentAuthor,
+  Comment,
+  Header,
+} from 'semantic-ui-react'
 
 const CommentExampleGroupSize = () => (
   <div>
-    <Comment.Group size='mini'>
+    <CommentGroup size='mini'>
       <Header as='h3' dividing>
         Mini Comments
       </Header>
 
       <Comment>
-        <Comment.Avatar as='a' src='/images/avatar/small/matt.jpg' />
-        <Comment.Content>
-          <Comment.Author as='a'>Matt</Comment.Author>
-          <Comment.Metadata>
+        <CommentAvatar as='a' src='/images/avatar/small/matt.jpg' />
+        <CommentContent>
+          <CommentAuthor as='a'>Matt</CommentAuthor>
+          <CommentMetadata>
             <span>Today at 5:42PM</span>
-          </Comment.Metadata>
-          <Comment.Text>How artistic!</Comment.Text>
-          <Comment.Actions>
+          </CommentMetadata>
+          <CommentText>How artistic!</CommentText>
+          <CommentActions>
             <a>Reply</a>
-          </Comment.Actions>
-        </Comment.Content>
+          </CommentActions>
+        </CommentContent>
       </Comment>
       <Comment>
-        <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
-        <Comment.Content>
-          <Comment.Author as='a'>Joe Henderson</Comment.Author>
-          <Comment.Metadata>
+        <CommentAvatar as='a' src='/images/avatar/small/joe.jpg' />
+        <CommentContent>
+          <CommentAuthor as='a'>Joe Henderson</CommentAuthor>
+          <CommentMetadata>
             <span>5 days ago</span>
-          </Comment.Metadata>
-          <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
-          <Comment.Actions>
+          </CommentMetadata>
+          <CommentText>Dude, this is awesome. Thanks so much</CommentText>
+          <CommentActions>
             <a>Reply</a>
-          </Comment.Actions>
-        </Comment.Content>
+          </CommentActions>
+        </CommentContent>
       </Comment>
-    </Comment.Group>
-    <Comment.Group size='small'>
+    </CommentGroup>
+    <CommentGroup size='small'>
       <Header as='h3' dividing>
         Small Comments
       </Header>
 
       <Comment>
-        <Comment.Avatar as='a' src='/images/avatar/small/matt.jpg' />
-        <Comment.Content>
-          <Comment.Author as='a'>Matt</Comment.Author>
-          <Comment.Metadata>
+        <CommentAvatar as='a' src='/images/avatar/small/matt.jpg' />
+        <CommentContent>
+          <CommentAuthor as='a'>Matt</CommentAuthor>
+          <CommentMetadata>
             <span>Today at 5:42PM</span>
-          </Comment.Metadata>
-          <Comment.Text>How artistic!</Comment.Text>
-          <Comment.Actions>
+          </CommentMetadata>
+          <CommentText>How artistic!</CommentText>
+          <CommentActions>
             <a>Reply</a>
-          </Comment.Actions>
-        </Comment.Content>
+          </CommentActions>
+        </CommentContent>
       </Comment>
       <Comment>
-        <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
-        <Comment.Content>
-          <Comment.Author as='a'>Joe Henderson</Comment.Author>
-          <Comment.Metadata>
+        <CommentAvatar as='a' src='/images/avatar/small/joe.jpg' />
+        <CommentContent>
+          <CommentAuthor as='a'>Joe Henderson</CommentAuthor>
+          <CommentMetadata>
             <span>5 days ago</span>
-          </Comment.Metadata>
-          <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
-          <Comment.Actions>
+          </CommentMetadata>
+          <CommentText>Dude, this is awesome. Thanks so much</CommentText>
+          <CommentActions>
             <a>Reply</a>
-          </Comment.Actions>
-        </Comment.Content>
+          </CommentActions>
+        </CommentContent>
       </Comment>
-    </Comment.Group>
-    <Comment.Group size='large'>
+    </CommentGroup>
+    <CommentGroup size='large'>
       <Header as='h3' dividing>
         Large Comments
       </Header>
 
       <Comment>
-        <Comment.Avatar as='a' src='/images/avatar/small/matt.jpg' />
-        <Comment.Content>
-          <Comment.Author as='a'>Matt</Comment.Author>
-          <Comment.Metadata>
+        <CommentAvatar as='a' src='/images/avatar/small/matt.jpg' />
+        <CommentContent>
+          <CommentAuthor as='a'>Matt</CommentAuthor>
+          <CommentMetadata>
             <span>Today at 5:42PM</span>
-          </Comment.Metadata>
-          <Comment.Text>How artistic!</Comment.Text>
-          <Comment.Actions>
+          </CommentMetadata>
+          <CommentText>How artistic!</CommentText>
+          <CommentActions>
             <a>Reply</a>
-          </Comment.Actions>
-        </Comment.Content>
+          </CommentActions>
+        </CommentContent>
       </Comment>
       <Comment>
-        <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
-        <Comment.Content>
-          <Comment.Author as='a'>Joe Henderson</Comment.Author>
-          <Comment.Metadata>
+        <CommentAvatar as='a' src='/images/avatar/small/joe.jpg' />
+        <CommentContent>
+          <CommentAuthor as='a'>Joe Henderson</CommentAuthor>
+          <CommentMetadata>
             <span>5 days ago</span>
-          </Comment.Metadata>
-          <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
-          <Comment.Actions>
+          </CommentMetadata>
+          <CommentText>Dude, this is awesome. Thanks so much</CommentText>
+          <CommentActions>
             <a>Reply</a>
-          </Comment.Actions>
-        </Comment.Content>
+          </CommentActions>
+        </CommentContent>
       </Comment>
-    </Comment.Group>
-    <Comment.Group size='massive'>
+    </CommentGroup>
+    <CommentGroup size='massive'>
       <Header as='h3' dividing>
         Massive Comments
       </Header>
 
       <Comment>
-        <Comment.Avatar as='a' src='/images/avatar/small/matt.jpg' />
-        <Comment.Content>
-          <Comment.Author as='a'>Matt</Comment.Author>
-          <Comment.Metadata>
+        <CommentAvatar as='a' src='/images/avatar/small/matt.jpg' />
+        <CommentContent>
+          <CommentAuthor as='a'>Matt</CommentAuthor>
+          <CommentMetadata>
             <span>Today at 5:42PM</span>
-          </Comment.Metadata>
-          <Comment.Text>How artistic!</Comment.Text>
-          <Comment.Actions>
+          </CommentMetadata>
+          <CommentText>How artistic!</CommentText>
+          <CommentActions>
             <a>Reply</a>
-          </Comment.Actions>
-        </Comment.Content>
+          </CommentActions>
+        </CommentContent>
       </Comment>
       <Comment>
-        <Comment.Avatar as='a' src='/images/avatar/small/joe.jpg' />
-        <Comment.Content>
-          <Comment.Author as='a'>Joe Henderson</Comment.Author>
-          <Comment.Metadata>
+        <CommentAvatar as='a' src='/images/avatar/small/joe.jpg' />
+        <CommentContent>
+          <CommentAuthor as='a'>Joe Henderson</CommentAuthor>
+          <CommentMetadata>
             <span>5 days ago</span>
-          </Comment.Metadata>
-          <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
-          <Comment.Actions>
+          </CommentMetadata>
+          <CommentText>Dude, this is awesome. Thanks so much</CommentText>
+          <CommentActions>
             <a>Reply</a>
-          </Comment.Actions>
-        </Comment.Content>
+          </CommentActions>
+        </CommentContent>
       </Comment>
-    </Comment.Group>
+    </CommentGroup>
   </div>
 )
 

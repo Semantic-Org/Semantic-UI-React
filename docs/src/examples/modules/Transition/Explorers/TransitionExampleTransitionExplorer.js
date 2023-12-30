@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Form, Grid, Image, Transition } from 'semantic-ui-react'
+import {
+  GridColumn,
+  FormSelect,
+  FormInput,
+  FormButton,
+  Form,
+  Grid,
+  Image,
+  Transition,
+} from 'semantic-ui-react'
 
 const transitions = [
   'jiggle',
@@ -29,15 +38,15 @@ export default class TransitionExampleTransitionExplorer extends Component {
 
     return (
       <Grid columns={2}>
-        <Grid.Column as={Form}>
-          <Form.Select
+        <GridColumn as={Form}>
+          <FormSelect
             label='Choose transition'
             name='animation'
             onChange={this.handleChange}
             options={options}
             value={animation}
           />
-          <Form.Input
+          <FormInput
             label={`Duration: ${duration}ms `}
             min={100}
             max={2000}
@@ -47,10 +56,10 @@ export default class TransitionExampleTransitionExplorer extends Component {
             type='range'
             value={duration}
           />
-          <Form.Button content='Run' onClick={this.toggleVisibility} />
-        </Grid.Column>
+          <FormButton content='Run' onClick={this.toggleVisibility} />
+        </GridColumn>
 
-        <Grid.Column>
+        <GridColumn>
           <Transition
             animation={animation}
             duration={duration}
@@ -58,7 +67,7 @@ export default class TransitionExampleTransitionExplorer extends Component {
           >
             <Image centered size='small' src='/images/leaves/5.png' />
           </Transition>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

@@ -1,12 +1,20 @@
 import React from 'react'
-import { Accordion, Button, Form, Segment } from 'semantic-ui-react'
+import {
+  FormInput,
+  FormGroup,
+  FormField,
+  Accordion,
+  Button,
+  Form,
+  Segment,
+} from 'semantic-ui-react'
 
 const panels = [
   {
     key: 'details',
     title: 'Optional Details',
     content: {
-      as: Form.Input,
+      as: FormInput,
       label: 'Maiden Name',
       placeholder: 'Maiden Name',
     },
@@ -16,11 +24,11 @@ const panels = [
 const AccordionExampleForm = () => (
   <Segment>
     <Form>
-      <Form.Group widths={2}>
-        <Form.Input label='First Name' placeholder='First Name' />
-        <Form.Input label='Last Name' placeholder='Last Name' />
-      </Form.Group>
-      <Accordion as={Form.Field} panels={panels} />
+      <FormGroup widths={2}>
+        <FormInput label='First Name' placeholder='First Name' />
+        <FormInput label='Last Name' placeholder='Last Name' />
+      </FormGroup>
+      <Accordion as={FormField} panels={panels} />
 
       <Button secondary>Sign Up</Button>
     </Form>

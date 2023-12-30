@@ -1,11 +1,11 @@
 import React from 'react'
-import { Icon, Label } from 'semantic-ui-react'
+import { LabelDetail, Icon, Label } from 'semantic-ui-react'
 
 const LabelExampleLinkDetail = () => (
   <Label>
     <Icon name='mail' />
     23
-    <Label.Detail>View Mail</Label.Detail>
+    <LabelDetail>View Mail</LabelDetail>
   </Label>
 )
 

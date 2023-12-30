@@ -1,28 +1,34 @@
 import React from 'react'
-import { Step } from 'semantic-ui-react'
+import {
+  StepTitle,
+  StepGroup,
+  StepDescription,
+  StepContent,
+  Step,
+} from 'semantic-ui-react'
 
 const StepExampleOrdered = () => (
-  <Step.Group ordered>
+  <StepGroup ordered>
     <Step completed>
-      <Step.Content>
-        <Step.Title>Shipping</Step.Title>
-        <Step.Description>Choose your shipping options</Step.Description>
-      </Step.Content>
+      <StepContent>
+        <StepTitle>Shipping</StepTitle>
+        <StepDescription>Choose your shipping options</StepDescription>
+      </StepContent>
     </Step>
 
     <Step completed>
-      <Step.Content>
-        <Step.Title>Billing</Step.Title>
-        <Step.Description>Enter billing information</Step.Description>
-      </Step.Content>
+      <StepContent>
+        <StepTitle>Billing</StepTitle>
+        <StepDescription>Enter billing information</StepDescription>
+      </StepContent>
     </Step>
 
     <Step active>
-      <Step.Content>
-        <Step.Title>Confirm Order</Step.Title>
-      </Step.Content>
+      <StepContent>
+        <StepTitle>Confirm Order</StepTitle>
+      </StepContent>
     </Step>
-  </Step.Group>
+  </StepGroup>
 )
 
 export default StepExampleOrdered

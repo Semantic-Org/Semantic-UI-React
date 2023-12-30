@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import {
+  FormTextArea,
+  FormSelect,
+  FormRadio,
+  FormInput,
+  FormGroup,
+  FormCheckbox,
+  FormButton,
+  Form,
+} from 'semantic-ui-react'
 
 const options = [
   { key: 'm', text: 'Male', value: 'male' },
@@ -16,40 +25,40 @@ class FormExampleSubcomponentControl extends Component {
     const { value } = this.state
     return (
       <Form>
-        <Form.Group widths='equal'>
-          <Form.Input fluid label='First name' placeholder='First name' />
-          <Form.Input fluid label='Last name' placeholder='Last name' />
-          <Form.Select
+        <FormGroup widths='equal'>
+          <FormInput fluid label='First name' placeholder='First name' />
+          <FormInput fluid label='Last name' placeholder='Last name' />
+          <FormSelect
             fluid
             label='Gender'
             options={options}
             placeholder='Gender'
           />
-        </Form.Group>
-        <Form.Group inline>
+        </FormGroup>
+        <FormGroup inline>
           <label>Size</label>
-          <Form.Radio
+          <FormRadio
             label='Small'
             value='sm'
             checked={value === 'sm'}
             onChange={this.handleChange}
           />
-          <Form.Radio
+          <FormRadio
             label='Medium'
             value='md'
             checked={value === 'md'}
             onChange={this.handleChange}
           />
-          <Form.Radio
+          <FormRadio
             label='Large'
             value='lg'
             checked={value === 'lg'}
             onChange={this.handleChange}
           />
-        </Form.Group>
-        <Form.TextArea label='About' placeholder='Tell us more about you...' />
-        <Form.Checkbox label='I agree to the Terms and Conditions' />
-        <Form.Button>Submit</Form.Button>
+        </FormGroup>
+        <FormTextArea label='About' placeholder='Tell us more about you...' />
+        <FormCheckbox label='I agree to the Terms and Conditions' />
+        <FormButton>Submit</FormButton>
       </Form>
     )
   }

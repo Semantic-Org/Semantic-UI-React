@@ -1,5 +1,12 @@
 import React from 'react'
-import { Button, Grid, Header, Popup, Segment } from 'semantic-ui-react'
+import {
+  GridColumn,
+  Button,
+  Grid,
+  Header,
+  Popup,
+  Segment,
+} from 'semantic-ui-react'
 
 const timeoutLength = 2500
 
@@ -22,7 +29,7 @@ class PopupExampleControlled extends React.Component {
   render() {
     return (
       <Grid>
-        <Grid.Column width={8}>
+        <GridColumn width={8}>
           <Popup
             trigger={<Button content='Open controlled popup' />}
             content={`This message will self-destruct in ${
@@ -34,13 +41,13 @@ class PopupExampleControlled extends React.Component {
             onOpen={this.handleOpen}
             position='top right'
           />
-        </Grid.Column>
-        <Grid.Column width={8}>
+        </GridColumn>
+        <GridColumn width={8}>
           <Header>State</Header>
           <Segment secondary>
             <pre>{JSON.stringify(this.state, null, 2)}</pre>
           </Segment>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

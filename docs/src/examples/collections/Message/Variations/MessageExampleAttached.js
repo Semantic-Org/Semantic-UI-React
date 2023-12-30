@@ -1,5 +1,13 @@
 import React from 'react'
-import { Button, Form, Icon, Message } from 'semantic-ui-react'
+import {
+  FormInput,
+  FormGroup,
+  FormCheckbox,
+  Button,
+  Form,
+  Icon,
+  Message,
+} from 'semantic-ui-react'
 
 const MessageExampleAttached = () => (
   <div>
@@ -9,23 +17,23 @@ const MessageExampleAttached = () => (
       content='Fill out the form below to sign-up for a new account'
     />
     <Form className='attached fluid segment'>
-      <Form.Group widths='equal'>
-        <Form.Input
+      <FormGroup widths='equal'>
+        <FormInput
           fluid
           label='First Name'
           placeholder='First Name'
           type='text'
         />
-        <Form.Input
+        <FormInput
           fluid
           label='Last Name'
           placeholder='Last Name'
           type='text'
         />
-      </Form.Group>
-      <Form.Input label='Username' placeholder='Username' type='text' />
-      <Form.Input label='Password' type='password' />
-      <Form.Checkbox inline label='I agree to the terms and conditions' />
+      </FormGroup>
+      <FormInput label='Username' placeholder='Username' type='text' />
+      <FormInput label='Password' type='password' />
+      <FormCheckbox inline label='I agree to the terms and conditions' />
       <Button color='blue'>Submit</Button>
     </Form>
     <Message attached='bottom' warning>

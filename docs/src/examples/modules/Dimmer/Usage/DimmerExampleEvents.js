@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Dimmer, Header, Image } from 'semantic-ui-react'
+import { DimmerDimmable, Button, Header, Image } from 'semantic-ui-react'
 
 export default class DimmerExampleEvents extends Component {
   state = {}
@@ -21,7 +21,7 @@ export default class DimmerExampleEvents extends Component {
     )
 
     return (
-      <Dimmer.Dimmable
+      <DimmerDimmable
         as={Image}
         dimmed={active}
         dimmer={{ active, content }}

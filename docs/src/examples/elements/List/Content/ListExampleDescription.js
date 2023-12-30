@@ -1,46 +1,53 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import {
+  ListItem,
+  ListIcon,
+  ListHeader,
+  ListDescription,
+  ListContent,
+  List,
+} from 'semantic-ui-react'
 
 const ListExampleDescription = () => (
   <List>
-    <List.Item>
-      <List.Icon name='marker' />
-      <List.Content>
-        <List.Header as='a'>Krowlewskie Jadlo</List.Header>
-        <List.Description>
+    <ListItem>
+      <ListIcon name='marker' />
+      <ListContent>
+        <ListHeader as='a'>Krowlewskie Jadlo</ListHeader>
+        <ListDescription>
           An excellent polish restaurant, quick delivery and hearty, filling
           meals.
-        </List.Description>
-      </List.Content>
-    </List.Item>
-    <List.Item>
-      <List.Icon name='marker' />
-      <List.Content>
-        <List.Header as='a'>Xian Famous Foods</List.Header>
-        <List.Description>
+        </ListDescription>
+      </ListContent>
+    </ListItem>
+    <ListItem>
+      <ListIcon name='marker' />
+      <ListContent>
+        <ListHeader as='a'>Xian Famous Foods</ListHeader>
+        <ListDescription>
           A taste of Shaanxi's delicious culinary traditions, with delights like
           spicy cold noodles and lamb burgers.
-        </List.Description>
-      </List.Content>
-    </List.Item>
-    <List.Item>
-      <List.Icon name='marker' />
-      <List.Content>
-        <List.Header as='a'>Sapporo Haru</List.Header>
-        <List.Description>
+        </ListDescription>
+      </ListContent>
+    </ListItem>
+    <ListItem>
+      <ListIcon name='marker' />
+      <ListContent>
+        <ListHeader as='a'>Sapporo Haru</ListHeader>
+        <ListDescription>
           Greenpoint's best choice for quick and delicious sushi.
-        </List.Description>
-      </List.Content>
-    </List.Item>
-    <List.Item>
-      <List.Icon name='marker' />
-      <List.Content>
-        <List.Header as='a'>Enid's</List.Header>
-        <List.Description>
+        </ListDescription>
+      </ListContent>
+    </ListItem>
+    <ListItem>
+      <ListIcon name='marker' />
+      <ListContent>
+        <ListHeader as='a'>Enid's</ListHeader>
+        <ListDescription>
           At night a bar, during the day a delicious brunch spot.
-        </List.Description>
-      </List.Content>
-    </List.Item>
+        </ListDescription>
+      </ListContent>
+    </ListItem>
   </List>
 )
 

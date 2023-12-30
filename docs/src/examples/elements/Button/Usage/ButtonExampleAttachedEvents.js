@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Grid, Segment } from 'semantic-ui-react'
+import { GridColumn, Button, Grid, Segment } from 'semantic-ui-react'
 
 export default class ButtonExampleAttachedEvents extends Component {
   state = { log: [] }
@@ -22,7 +22,7 @@ export default class ButtonExampleAttachedEvents extends Component {
 
     return (
       <Grid>
-        <Grid.Column width={8}>
+        <GridColumn width={8}>
           <Segment attached='top'>
             The button below accepts clicks with mouse and key presses with
             Space Bar or Enter.
@@ -33,8 +33,8 @@ export default class ButtonExampleAttachedEvents extends Component {
             onClick={this.handleClick}
             onKeyPress={this.handleKeyPress}
           />
-        </Grid.Column>
-        <Grid.Column width={8}>
+        </GridColumn>
+        <GridColumn width={8}>
           <Segment>
             <pre style={{ height: 100, overflowY: 'scroll' }}>
               {log.map((e, i) => (
@@ -42,7 +42,7 @@ export default class ButtonExampleAttachedEvents extends Component {
               ))}
             </pre>
           </Segment>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

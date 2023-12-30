@@ -1,23 +1,23 @@
 import React from 'react'
-import { Button, Icon } from 'semantic-ui-react'
+import { ButtonContent, Button, Icon } from 'semantic-ui-react'
 
 const ButtonExampleAnimated = () => (
   <div>
     <Button animated>
-      <Button.Content visible>Next</Button.Content>
-      <Button.Content hidden>
+      <ButtonContent visible>Next</ButtonContent>
+      <ButtonContent hidden>
         <Icon name='arrow right' />
-      </Button.Content>
+      </ButtonContent>
     </Button>
     <Button animated='vertical'>
-      <Button.Content hidden>Shop</Button.Content>
-      <Button.Content visible>
+      <ButtonContent hidden>Shop</ButtonContent>
+      <ButtonContent visible>
         <Icon name='shop' />
-      </Button.Content>
+      </ButtonContent>
     </Button>
     <Button animated='fade'>
-      <Button.Content visible>Sign-up for a Pro account</Button.Content>
-      <Button.Content hidden>$12.99 a month</Button.Content>
+      <ButtonContent visible>Sign-up for a Pro account</ButtonContent>
+      <ButtonContent hidden>$12.99 a month</ButtonContent>
     </Button>
   </div>
 )

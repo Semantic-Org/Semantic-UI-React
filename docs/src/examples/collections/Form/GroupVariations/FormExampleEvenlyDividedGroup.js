@@ -1,22 +1,22 @@
 import React from 'react'
-import { Form, Input } from 'semantic-ui-react'
+import { FormGroup, FormField, Form, Input } from 'semantic-ui-react'
 
 const FormExampleEvenlyDividedGroup = () => (
   <Form>
-    <Form.Group widths='equal'>
-      <Form.Field>
+    <FormGroup widths='equal'>
+      <FormField>
         <label>First name</label>
         <Input fluid placeholder='First name' />
-      </Form.Field>
-      <Form.Field>
+      </FormField>
+      <FormField>
         <label>Middle name</label>
         <Input fluid placeholder='Middle name' />
-      </Form.Field>
-      <Form.Field>
+      </FormField>
+      <FormField>
         <label>Last name</label>
         <Input fluid placeholder='Last name' />
-      </Form.Field>
-    </Form.Group>
+      </FormField>
+    </FormGroup>
   </Form>
 )
 

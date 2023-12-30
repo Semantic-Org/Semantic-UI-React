@@ -1,5 +1,12 @@
 import React from 'react'
-import { Dropdown, Input } from 'semantic-ui-react'
+import {
+  DropdownMenu,
+  DropdownItem,
+  DropdownHeader,
+  DropdownDivider,
+  Dropdown,
+  Input,
+} from 'semantic-ui-react'
 
 const tagOptions = [
   {
@@ -67,16 +74,16 @@ const DropdownExampleSearchInMenu = () => (
     button
     className='icon'
   >
-    <Dropdown.Menu>
+    <DropdownMenu>
       <Input icon='search' iconPosition='left' className='search' />
-      <Dropdown.Divider />
-      <Dropdown.Header icon='tags' content='Tag Label' />
-      <Dropdown.Menu scrolling>
+      <DropdownDivider />
+      <DropdownHeader icon='tags' content='Tag Label' />
+      <DropdownMenu scrolling>
         {tagOptions.map((option) => (
-          <Dropdown.Item key={option.value} {...option} />
+          <DropdownItem key={option.value} {...option} />
         ))}
-      </Dropdown.Menu>
-    </Dropdown.Menu>
+      </DropdownMenu>
+    </DropdownMenu>
   </Dropdown>
 )
 

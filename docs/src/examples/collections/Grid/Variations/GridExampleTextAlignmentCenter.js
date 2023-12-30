@@ -1,27 +1,27 @@
 import React from 'react'
-import { Grid, Menu } from 'semantic-ui-react'
+import { MenuItem, GridRow, GridColumn, Grid, Menu } from 'semantic-ui-react'
 
 const GridExampleTextAlignmentCenter = () => (
   <Grid textAlign='center' columns={3}>
-    <Grid.Row>
-      <Grid.Column>
+    <GridRow>
+      <GridColumn>
         <Menu fluid vertical>
-          <Menu.Item className='header'>Cats</Menu.Item>
+          <MenuItem className='header'>Cats</MenuItem>
         </Menu>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Menu fluid vertical>
-          <Menu.Item className='header'>Dogs</Menu.Item>
-          <Menu.Item>Poodle</Menu.Item>
-          <Menu.Item>Cockerspaniel</Menu.Item>
+          <MenuItem className='header'>Dogs</MenuItem>
+          <MenuItem>Poodle</MenuItem>
+          <MenuItem>Cockerspaniel</MenuItem>
         </Menu>
-      </Grid.Column>
-      <Grid.Column>
+      </GridColumn>
+      <GridColumn>
         <Menu fluid vertical>
-          <Menu.Item className='header'>Monkeys</Menu.Item>
+          <MenuItem className='header'>Monkeys</MenuItem>
         </Menu>
-      </Grid.Column>
-    </Grid.Row>
+      </GridColumn>
+    </GridRow>
   </Grid>
 )
 

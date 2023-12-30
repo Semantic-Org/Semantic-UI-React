@@ -1,19 +1,19 @@
 import React from 'react'
-import { Button, Divider } from 'semantic-ui-react'
+import { ButtonGroup, Button, Divider } from 'semantic-ui-react'
 
 const ButtonExampleGroupBasic = () => (
   <div>
-    <Button.Group basic>
+    <ButtonGroup basic>
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>
-    </Button.Group>
+    </ButtonGroup>
     <Divider />
-    <Button.Group basic vertical>
+    <ButtonGroup basic vertical>
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>
-    </Button.Group>
+    </ButtonGroup>
   </div>
 )
 

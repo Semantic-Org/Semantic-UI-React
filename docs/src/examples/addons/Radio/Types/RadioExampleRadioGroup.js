@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Radio } from 'semantic-ui-react'
+import { FormField, Form, Radio } from 'semantic-ui-react'
 
 export default class RadioExampleRadioGroup extends Component {
   state = {}
@@ -8,10 +8,10 @@ export default class RadioExampleRadioGroup extends Component {
   render() {
     return (
       <Form>
-        <Form.Field>
+        <FormField>
           Selected value: <b>{this.state.value}</b>
-        </Form.Field>
-        <Form.Field>
+        </FormField>
+        <FormField>
           <Radio
             label='Choose this'
             name='radioGroup'
@@ -19,8 +19,8 @@ export default class RadioExampleRadioGroup extends Component {
             checked={this.state.value === 'this'}
             onChange={this.handleChange}
           />
-        </Form.Field>
-        <Form.Field>
+        </FormField>
+        <FormField>
           <Radio
             label='Or that'
             name='radioGroup'
@@ -28,7 +28,7 @@ export default class RadioExampleRadioGroup extends Component {
             checked={this.state.value === 'that'}
             onChange={this.handleChange}
           />
-        </Form.Field>
+        </FormField>
       </Form>
     )
   }

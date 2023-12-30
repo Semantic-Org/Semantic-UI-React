@@ -1,30 +1,36 @@
 import React from 'react'
-import { Card, Placeholder } from 'semantic-ui-react'
+import {
+  CardGroup,
+  CardContent,
+  PlaceholderImage,
+  Card,
+  Placeholder,
+} from 'semantic-ui-react'
 
 const PlaceholderExampleImageSquare = () => (
-  <Card.Group itemsPerRow={3}>
+  <CardGroup itemsPerRow={3}>
     <Card>
-      <Card.Content>
+      <CardContent>
         <Placeholder>
-          <Placeholder.Image square />
+          <PlaceholderImage square />
         </Placeholder>
-      </Card.Content>
+      </CardContent>
     </Card>
     <Card>
-      <Card.Content>
+      <CardContent>
         <Placeholder>
-          <Placeholder.Image square />
+          <PlaceholderImage square />
         </Placeholder>
-      </Card.Content>
+      </CardContent>
     </Card>
     <Card>
-      <Card.Content>
+      <CardContent>
         <Placeholder>
-          <Placeholder.Image square />
+          <PlaceholderImage square />
         </Placeholder>
-      </Card.Content>
+      </CardContent>
     </Card>
-  </Card.Group>
+  </CardGroup>
 )
 
 export default PlaceholderExampleImageSquare

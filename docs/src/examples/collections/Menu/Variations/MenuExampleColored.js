@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { MenuItem, Menu } from 'semantic-ui-react'
 
 const colorsA = ['red', 'orange', 'yellow', 'olive', 'green', 'teal']
 const colorsB = ['blue', 'violet', 'purple', 'pink', 'brown', 'grey']
@@ -17,7 +17,7 @@ export default class MenuExampleColored extends Component {
       <div>
         <Menu>
           {colorsA.map((c) => (
-            <Menu.Item
+            <MenuItem
               key={c}
               name={c}
               active={activeA === c}
@@ -29,7 +29,7 @@ export default class MenuExampleColored extends Component {
 
         <Menu>
           {colorsB.map((c) => (
-            <Menu.Item
+            <MenuItem
               key={c}
               name={c}
               active={activeB === c}

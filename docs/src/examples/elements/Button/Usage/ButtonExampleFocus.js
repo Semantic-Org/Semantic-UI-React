@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react'
-import { Button, Grid } from 'semantic-ui-react'
+import { GridColumn, Button, Grid } from 'semantic-ui-react'
 
 export default class ButtonExampleFocus extends Component {
   buttonRef = createRef()
@@ -8,16 +8,16 @@ export default class ButtonExampleFocus extends Component {
   render() {
     return (
       <Grid>
-        <Grid.Column width={8}>
+        <GridColumn width={8}>
           <Button
             content='A button that can be focused'
             primary
             ref={this.buttonRef}
           />
-        </Grid.Column>
-        <Grid.Column width={8}>
+        </GridColumn>
+        <GridColumn width={8}>
           <Button content='Set focused' onClick={this.handleClick} />
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message } from 'semantic-ui-react'
+import { MessageItem, MessageList, Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -13,16 +13,16 @@ const TransitionTypesExamples = () => (
     >
       <Message warning>
         <p>Do not unmount a Transition child or else it cannot be animated.</p>
-        <Message.List>
-          <Message.Item>
+        <MessageList>
+          <MessageItem>
             Use the <code>unmountOnHide</code> prop to unmount the child after
             the animation exits.
-          </Message.Item>
-          <Message.Item>
-            Use a <code>Transition.Group</code> to animate children as they
-            mount and unmount.
-          </Message.Item>
-        </Message.List>
+          </MessageItem>
+          <MessageItem>
+            Use a <code>TransitionGroup</code> to animate children as they mount
+            and unmount.
+          </MessageItem>
+        </MessageList>
       </Message>
     </ComponentExample>
     <ComponentExample

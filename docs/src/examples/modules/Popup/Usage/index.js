@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Message } from 'semantic-ui-react'
+import { MessageItem, MessageList, Button, Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/src/components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/src/components/ComponentDoc/ExampleSection'
@@ -25,18 +25,18 @@ const PopupUsageExamples = () => (
           . The basic offset accepts an array with two numbers in the form{' '}
           <code>[skidding, distance].</code>
         </p>
-        <Message.List>
-          <Message.Item>
+        <MessageList>
+          <MessageItem>
             <code>skidding</code> displaces the <code>Popup</code> along the
             reference element
-          </Message.Item>
-          <Message.Item>
+          </MessageItem>
+          <MessageItem>
             <code>distance</code> displaces the <code>Popup</code> away from, or
             toward, the reference element in the direction of its placement. A
             positive number displaces it further away, while a negative number
             lets it overlap the reference
-          </Message.Item>
-        </Message.List>
+          </MessageItem>
+        </MessageList>
       </Message>
       <Button
         content='Popper.JS: offset'

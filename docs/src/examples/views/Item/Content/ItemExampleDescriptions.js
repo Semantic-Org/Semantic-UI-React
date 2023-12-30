@@ -1,5 +1,12 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import {
+  ItemImage,
+  ItemHeader,
+  ItemGroup,
+  ItemDescription,
+  ItemContent,
+  Item,
+} from 'semantic-ui-react'
 
 const description = [
   'Cute dogs come in a variety of shapes and sizes. Some cute dogs are cute for their adorable faces, others for their',
@@ -7,36 +14,36 @@ const description = [
 ].join(' ')
 
 const ItemExampleDescriptions = () => (
-  <Item.Group>
+  <ItemGroup>
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
 
-      <Item.Content>
-        <Item.Header as='a'>Cute Dog</Item.Header>
-        <Item.Description>
+      <ItemContent>
+        <ItemHeader as='a'>Cute Dog</ItemHeader>
+        <ItemDescription>
           <p>{description}</p>
           <p>
             Many people also have their own barometers for what makes a cute
             dog.
           </p>
-        </Item.Description>
-      </Item.Content>
+        </ItemDescription>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
 
-      <Item.Content>
-        <Item.Header as='a'>Cute Dog</Item.Header>
-        <Item.Description content={description} />
-      </Item.Content>
+      <ItemContent>
+        <ItemHeader as='a'>Cute Dog</ItemHeader>
+        <ItemDescription content={description} />
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
-      <Item.Content header='Cute Dog' description={description} />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
+      <ItemContent header='Cute Dog' description={description} />
     </Item>
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleDescriptions

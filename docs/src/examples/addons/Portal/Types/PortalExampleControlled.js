@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { Button, Grid, Header, Segment, Portal } from 'semantic-ui-react'
+import {
+  GridColumn,
+  Button,
+  Grid,
+  Header,
+  Segment,
+  Portal,
+} from 'semantic-ui-react'
 
 export default class PortalExampleControlled extends Component {
   state = { open: false }
@@ -12,7 +19,7 @@ export default class PortalExampleControlled extends Component {
 
     return (
       <Grid columns={2}>
-        <Grid.Column>
+        <GridColumn>
           <Button
             content='Open Portal'
             disabled={open}
@@ -40,7 +47,7 @@ export default class PortalExampleControlled extends Component {
               />
             </Segment>
           </Portal>
-        </Grid.Column>
+        </GridColumn>
       </Grid>
     )
   }

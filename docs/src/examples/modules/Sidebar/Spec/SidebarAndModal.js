@@ -1,5 +1,9 @@
 import React from 'react'
 import {
+  SidebarPusher,
+  SidebarPushable,
+  MenuItem,
+  GridColumn,
   Button,
   Grid,
   Header,
@@ -22,10 +26,10 @@ const SidebarAndModal = () => {
         Toggle
       </Button>
       <Grid columns={1}>
-        <Grid.Column>Hello world!</Grid.Column>
+        <GridColumn>Hello world!</GridColumn>
 
-        <Grid.Column>
-          <Sidebar.Pushable as={Segment}>
+        <GridColumn>
+          <SidebarPushable as={Segment}>
             <Sidebar
               as={Menu}
               animation='overlay'
@@ -37,21 +41,21 @@ const SidebarAndModal = () => {
               visible={visible}
               width='thin'
             >
-              <Menu.Item as='a' data-tid='sidebar-home'>
+              <MenuItem as='a' data-tid='sidebar-home'>
                 <Icon name='home' />
                 Home
-              </Menu.Item>
-              <Menu.Item as='a'>
+              </MenuItem>
+              <MenuItem as='a'>
                 <Icon name='gamepad' />
                 Games
-              </Menu.Item>
-              <Menu.Item as='a'>
+              </MenuItem>
+              <MenuItem as='a'>
                 <Icon name='camera' />
                 Channels
-              </Menu.Item>
+              </MenuItem>
             </Sidebar>
 
-            <Sidebar.Pusher>
+            <SidebarPusher>
               <Segment basic style={{ minHeight: '50vh' }}>
                 <Header as='h3'>Application Content</Header>
                 <Modal
@@ -74,9 +78,9 @@ const SidebarAndModal = () => {
                   ]}
                 />
               </Segment>
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
-        </Grid.Column>
+            </SidebarPusher>
+          </SidebarPushable>
+        </GridColumn>
       </Grid>
     </>
   )

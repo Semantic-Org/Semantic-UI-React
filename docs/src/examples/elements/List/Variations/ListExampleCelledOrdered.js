@@ -1,18 +1,18 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import { ListList, ListItem, List } from 'semantic-ui-react'
 
 const ListExampleCelledOrdered = () => (
   <List celled ordered>
-    <List.Item>Cats</List.Item>
-    <List.Item>Horses</List.Item>
-    <List.Item>
+    <ListItem>Cats</ListItem>
+    <ListItem>Horses</ListItem>
+    <ListItem>
       Dogs
-      <List.List>
-        <List.Item>Labradoodles</List.Item>
-        <List.Item>Shiba Inu</List.Item>
-        <List.Item>Mastiff</List.Item>
-      </List.List>
-    </List.Item>
+      <ListList>
+        <ListItem>Labradoodles</ListItem>
+        <ListItem>Shiba Inu</ListItem>
+        <ListItem>Mastiff</ListItem>
+      </ListList>
+    </ListItem>
   </List>
 )
 

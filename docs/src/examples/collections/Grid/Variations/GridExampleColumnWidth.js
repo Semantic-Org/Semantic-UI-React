@@ -1,17 +1,17 @@
 import React from 'react'
-import { Grid, Image } from 'semantic-ui-react'
+import { GridColumn, Grid, Image } from 'semantic-ui-react'
 
 const GridExampleColumnWidth = () => (
   <Grid>
-    <Grid.Column width={4}>
+    <GridColumn width={4}>
       <Image src='/images/wireframe/image.png' />
-    </Grid.Column>
-    <Grid.Column width={9}>
+    </GridColumn>
+    <GridColumn width={9}>
       <Image src='/images/wireframe/paragraph.png' />
-    </Grid.Column>
-    <Grid.Column width={3}>
+    </GridColumn>
+    <GridColumn width={3}>
       <Image src='/images/wireframe/media-paragraph.png' />
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 

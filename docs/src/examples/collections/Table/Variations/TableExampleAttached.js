@@ -1,23 +1,30 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import {
+  TableRow,
+  TableHeaderCell,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Table,
+} from 'semantic-ui-react'
 
 const header = (
-  <Table.Header>
-    <Table.Row>
-      <Table.HeaderCell>Header</Table.HeaderCell>
-      <Table.HeaderCell>Header</Table.HeaderCell>
-      <Table.HeaderCell>Header</Table.HeaderCell>
-    </Table.Row>
-  </Table.Header>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Header</TableHeaderCell>
+      <TableHeaderCell>Header</TableHeaderCell>
+      <TableHeaderCell>Header</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
 )
 const body = (
-  <Table.Body>
-    <Table.Row>
-      <Table.Cell>Cell</Table.Cell>
-      <Table.Cell>Cell</Table.Cell>
-      <Table.Cell>Cell</Table.Cell>
-    </Table.Row>
-  </Table.Body>
+  <TableBody>
+    <TableRow>
+      <TableCell>Cell</TableCell>
+      <TableCell>Cell</TableCell>
+      <TableCell>Cell</TableCell>
+    </TableRow>
+  </TableBody>
 )
 
 const TableExampleAttached = () => (

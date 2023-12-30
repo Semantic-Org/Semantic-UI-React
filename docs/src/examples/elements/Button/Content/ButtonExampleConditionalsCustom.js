@@ -1,12 +1,12 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { ButtonOr, ButtonGroup, Button } from 'semantic-ui-react'
 
 const ButtonExampleConditionalsCustom = () => (
-  <Button.Group>
+  <ButtonGroup>
     <Button>un</Button>
-    <Button.Or text='ou' />
+    <ButtonOr text='ou' />
     <Button positive>deux</Button>
-  </Button.Group>
+  </ButtonGroup>
 )
 
 export default ButtonExampleConditionalsCustom

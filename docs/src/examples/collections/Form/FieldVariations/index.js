@@ -21,7 +21,7 @@ const FormFieldVariationsExamples = () => (
       examplePath='collections/Form/FieldVariations/FormExampleRequiredField'
     />
     <ComponentExample
-      description='Form.Field shorthand can also be required.'
+      description='FormField shorthand can also be required.'
       examplePath='collections/Form/FieldVariations/FormExampleRequiredFieldShorthand'
     />
   </ExampleSection>

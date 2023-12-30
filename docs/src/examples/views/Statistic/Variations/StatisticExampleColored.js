@@ -1,57 +1,62 @@
 import React from 'react'
-import { Statistic } from 'semantic-ui-react'
+import {
+  StatisticValue,
+  StatisticLabel,
+  StatisticGroup,
+  Statistic,
+} from 'semantic-ui-react'
 
 const StatisticExampleColored = () => (
-  <Statistic.Group>
+  <StatisticGroup>
     <Statistic color='red'>
-      <Statistic.Value>27</Statistic.Value>
-      <Statistic.Label>red</Statistic.Label>
+      <StatisticValue>27</StatisticValue>
+      <StatisticLabel>red</StatisticLabel>
     </Statistic>
     <Statistic color='orange'>
-      <Statistic.Value>8'</Statistic.Value>
-      <Statistic.Label>orange</Statistic.Label>
+      <StatisticValue>8'</StatisticValue>
+      <StatisticLabel>orange</StatisticLabel>
     </Statistic>
     <Statistic color='yellow'>
-      <Statistic.Value>28</Statistic.Value>
-      <Statistic.Label>yellow</Statistic.Label>
+      <StatisticValue>28</StatisticValue>
+      <StatisticLabel>yellow</StatisticLabel>
     </Statistic>
     <Statistic color='olive'>
-      <Statistic.Value>7'</Statistic.Value>
-      <Statistic.Label>olive</Statistic.Label>
+      <StatisticValue>7'</StatisticValue>
+      <StatisticLabel>olive</StatisticLabel>
     </Statistic>
     <Statistic color='green'>
-      <Statistic.Value>14</Statistic.Value>
-      <Statistic.Label>green</Statistic.Label>
+      <StatisticValue>14</StatisticValue>
+      <StatisticLabel>green</StatisticLabel>
     </Statistic>
     <Statistic color='teal'>
-      <Statistic.Value>82</Statistic.Value>
-      <Statistic.Label>teal</Statistic.Label>
+      <StatisticValue>82</StatisticValue>
+      <StatisticLabel>teal</StatisticLabel>
     </Statistic>
     <Statistic color='blue'>
-      <Statistic.Value>1'</Statistic.Value>
-      <Statistic.Label>blue</Statistic.Label>
+      <StatisticValue>1'</StatisticValue>
+      <StatisticLabel>blue</StatisticLabel>
     </Statistic>
     <Statistic color='violet'>
-      <Statistic.Value>22</Statistic.Value>
-      <Statistic.Label>violet</Statistic.Label>
+      <StatisticValue>22</StatisticValue>
+      <StatisticLabel>violet</StatisticLabel>
     </Statistic>
     <Statistic color='purple'>
-      <Statistic.Value>23</Statistic.Value>
-      <Statistic.Label>purple</Statistic.Label>
+      <StatisticValue>23</StatisticValue>
+      <StatisticLabel>purple</StatisticLabel>
     </Statistic>
     <Statistic color='pink'>
-      <Statistic.Value>15</Statistic.Value>
-      <Statistic.Label>pink</Statistic.Label>
+      <StatisticValue>15</StatisticValue>
+      <StatisticLabel>pink</StatisticLabel>
     </Statistic>
     <Statistic color='brown'>
-      <Statistic.Value>36</Statistic.Value>
-      <Statistic.Label>brown</Statistic.Label>
+      <StatisticValue>36</StatisticValue>
+      <StatisticLabel>brown</StatisticLabel>
     </Statistic>
     <Statistic color='grey'>
-      <Statistic.Value>49</Statistic.Value>
-      <Statistic.Label>grey</Statistic.Label>
+      <StatisticValue>49</StatisticValue>
+      <StatisticLabel>grey</StatisticLabel>
     </Statistic>
-  </Statistic.Group>
+  </StatisticGroup>
 )
 
 export default StatisticExampleColored

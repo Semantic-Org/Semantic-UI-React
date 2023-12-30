@@ -1,5 +1,15 @@
 import React from 'react'
-import { Button, Grid, Label, Modal, Segment } from 'semantic-ui-react'
+import {
+  ModalHeader,
+  ModalContent,
+  ModalActions,
+  GridColumn,
+  Button,
+  Grid,
+  Label,
+  Modal,
+  Segment,
+} from 'semantic-ui-react'
 
 function exampleReducer(state, action) {
   switch (action.type) {
@@ -45,7 +55,7 @@ function ModalExampleCloseConfig() {
 
   return (
     <Grid>
-      <Grid.Column width={4}>
+      <GridColumn width={4}>
         <Modal
           onOpen={(e) =>
             dispatch({ event: e.type, name: 'onOpen', type: 'OPEN_MODAL' })
@@ -56,11 +66,11 @@ function ModalExampleCloseConfig() {
           open={open}
           trigger={<Button>Open a modal</Button>}
         >
-          <Modal.Header>Delete Your Account</Modal.Header>
-          <Modal.Content>
+          <ModalHeader>Delete Your Account</ModalHeader>
+          <ModalContent>
             <p>Are you sure you want to delete your account</p>
-          </Modal.Content>
-          <Modal.Actions>
+          </ModalContent>
+          <ModalActions>
             <Button
               onClick={(e) =>
                 dispatch({
@@ -85,10 +95,10 @@ function ModalExampleCloseConfig() {
             >
               Yes
             </Button>
-          </Modal.Actions>
+          </ModalActions>
         </Modal>
-      </Grid.Column>
-      <Grid.Column width={12}>
+      </GridColumn>
+      <GridColumn width={12}>
         {log.length > 0 && (
           <Segment attached='top' secondary>
             {log.map((entry, i) => (
@@ -114,7 +124,7 @@ function ModalExampleCloseConfig() {
             Clear
           </Button>
         </Segment>
-      </Grid.Column>
+      </GridColumn>
     </Grid>
   )
 }

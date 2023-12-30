@@ -1,47 +1,54 @@
 import React from 'react'
-import { Image, List } from 'semantic-ui-react'
+import {
+  ListItem,
+  ListHeader,
+  ListDescription,
+  ListContent,
+  Image,
+  List,
+} from 'semantic-ui-react'
 
 const ListExampleRelaxed = () => (
   <List relaxed>
-    <List.Item>
+    <ListItem>
       <Image avatar src='/images/avatar/small/daniel.jpg' />
-      <List.Content>
-        <List.Header as='a'>Daniel Louise</List.Header>
-        <List.Description>
+      <ListContent>
+        <ListHeader as='a'>Daniel Louise</ListHeader>
+        <ListDescription>
           Last seen watching{' '}
           <a>
             <b>Arrested Development</b>
           </a>{' '}
           just now.
-        </List.Description>
-      </List.Content>
-    </List.Item>
-    <List.Item>
+        </ListDescription>
+      </ListContent>
+    </ListItem>
+    <ListItem>
       <Image avatar src='/images/avatar/small/stevie.jpg' />
-      <List.Content>
-        <List.Header as='a'>Stevie Feliciano</List.Header>
-        <List.Description>
+      <ListContent>
+        <ListHeader as='a'>Stevie Feliciano</ListHeader>
+        <ListDescription>
           Last seen watching{' '}
           <a>
             <b>Bob's Burgers</b>
           </a>{' '}
           10 hours ago.
-        </List.Description>
-      </List.Content>
-    </List.Item>
-    <List.Item>
+        </ListDescription>
+      </ListContent>
+    </ListItem>
+    <ListItem>
       <Image avatar src='/images/avatar/small/elliot.jpg' />
-      <List.Content>
-        <List.Header as='a'>Elliot Fu</List.Header>
-        <List.Description>
+      <ListContent>
+        <ListHeader as='a'>Elliot Fu</ListHeader>
+        <ListDescription>
           Last seen watching{' '}
           <a>
             <b>The Godfather Part 2</b>
           </a>{' '}
           yesterday.
-        </List.Description>
-      </List.Content>
-    </List.Item>
+        </ListDescription>
+      </ListContent>
+    </ListItem>
   </List>
 )
 

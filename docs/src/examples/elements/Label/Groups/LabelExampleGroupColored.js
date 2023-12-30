@@ -1,20 +1,20 @@
 import React from 'react'
-import { Icon, Label } from 'semantic-ui-react'
+import { LabelGroup, LabelDetail, Icon, Label } from 'semantic-ui-react'
 
 const LabelExampleGroupSize = () => (
-  <Label.Group color='blue'>
+  <LabelGroup color='blue'>
     <Label as='a'>
       Fun
       <Icon name='close' />
     </Label>
     <Label as='a'>
       Happy
-      <Label.Detail>22</Label.Detail>
+      <LabelDetail>22</LabelDetail>
     </Label>
     <Label as='a'>Smart</Label>
     <Label as='a'>Insane</Label>
     <Label as='a'>Exciting</Label>
-  </Label.Group>
+  </LabelGroup>
 )
 
 export default LabelExampleGroupSize

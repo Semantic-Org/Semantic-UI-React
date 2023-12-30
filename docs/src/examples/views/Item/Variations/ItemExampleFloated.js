@@ -1,46 +1,56 @@
 import React from 'react'
-import { Button, Image, Item } from 'semantic-ui-react'
+import {
+  ItemImage,
+  ItemHeader,
+  ItemGroup,
+  ItemExtra,
+  ItemDescription,
+  ItemContent,
+  Button,
+  Image,
+  Item,
+} from 'semantic-ui-react'
 
 const paragraph = <Image src='/images/wireframe/short-paragraph.png' />
 
 const ItemExampleFloated = () => (
-  <Item.Group relaxed>
+  <ItemGroup relaxed>
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
 
-      <Item.Content verticalAlign='middle'>
-        <Item.Header>Content A</Item.Header>
-        <Item.Description>{paragraph}</Item.Description>
-        <Item.Extra>
+      <ItemContent verticalAlign='middle'>
+        <ItemHeader>Content A</ItemHeader>
+        <ItemDescription>{paragraph}</ItemDescription>
+        <ItemExtra>
           <Button floated='right'>Action</Button>
-        </Item.Extra>
-      </Item.Content>
+        </ItemExtra>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
 
-      <Item.Content verticalAlign='middle'>
-        <Item.Header>Content B</Item.Header>
-        <Item.Description>{paragraph}</Item.Description>
-        <Item.Extra>
+      <ItemContent verticalAlign='middle'>
+        <ItemHeader>Content B</ItemHeader>
+        <ItemDescription>{paragraph}</ItemDescription>
+        <ItemExtra>
           <Button floated='right'>Action</Button>
-        </Item.Extra>
-      </Item.Content>
+        </ItemExtra>
+      </ItemContent>
     </Item>
 
     <Item>
-      <Item.Image size='small' src='/images/wireframe/image.png' />
+      <ItemImage size='small' src='/images/wireframe/image.png' />
 
-      <Item.Content verticalAlign='middle'>
-        <Item.Header>Content C</Item.Header>
-        <Item.Description>{paragraph}</Item.Description>
-        <Item.Extra>
+      <ItemContent verticalAlign='middle'>
+        <ItemHeader>Content C</ItemHeader>
+        <ItemDescription>{paragraph}</ItemDescription>
+        <ItemExtra>
           <Button floated='right'>Action</Button>
-        </Item.Extra>
-      </Item.Content>
+        </ItemExtra>
+      </ItemContent>
     </Item>
-  </Item.Group>
+  </ItemGroup>
 )
 
 export default ItemExampleFloated

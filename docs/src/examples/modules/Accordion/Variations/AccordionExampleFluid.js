@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { Accordion, Icon } from 'semantic-ui-react'
+import {
+  AccordionTitle,
+  AccordionContent,
+  Accordion,
+  Icon,
+} from 'semantic-ui-react'
 
 export default class AccordionExampleFluid extends Component {
   state = { activeIndex: 0 }
@@ -17,47 +22,47 @@ export default class AccordionExampleFluid extends Component {
 
     return (
       <Accordion fluid styled>
-        <Accordion.Title
+        <AccordionTitle
           active={activeIndex === 0}
           index={0}
           onClick={this.handleClick}
         >
           <Icon name='dropdown' />
           What is a dog?
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 0}>
+        </AccordionTitle>
+        <AccordionContent active={activeIndex === 0}>
           <p>
             A dog is a type of domesticated animal. Known for its loyalty and
             faithfulness, it can be found as a welcome guest in many households
             across the world.
           </p>
-        </Accordion.Content>
+        </AccordionContent>
 
-        <Accordion.Title
+        <AccordionTitle
           active={activeIndex === 1}
           index={1}
           onClick={this.handleClick}
         >
           <Icon name='dropdown' />
           What kinds of dogs are there?
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 1}>
+        </AccordionTitle>
+        <AccordionContent active={activeIndex === 1}>
           <p>
             There are many breeds of dogs. Each breed varies in size and
             temperament. Owners often select a breed of dog that they find to be
             compatible with their own lifestyle and desires from a companion.
           </p>
-        </Accordion.Content>
+        </AccordionContent>
 
-        <Accordion.Title
+        <AccordionTitle
           active={activeIndex === 2}
           index={2}
           onClick={this.handleClick}
         >
           <Icon name='dropdown' />
           How do you acquire a dog?
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 2}>
+        </AccordionTitle>
+        <AccordionContent active={activeIndex === 2}>
           <p>
             Three common ways for a prospective owner to acquire a dog is from
             pet shops, private owners, or shelters.
@@ -69,7 +74,7 @@ export default class AccordionExampleFluid extends Component {
             finding your dog from a shelter, helps give a good home to a dog who
             may not find one so readily.
           </p>
-        </Accordion.Content>
+        </AccordionContent>
       </Accordion>
     )
   }

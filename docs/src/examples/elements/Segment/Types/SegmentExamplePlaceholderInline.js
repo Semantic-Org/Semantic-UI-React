@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Icon, Segment } from 'semantic-ui-react'
+import { SegmentInline, Button, Header, Icon, Segment } from 'semantic-ui-react'
 
 const SegmentExamplePlaceholderInline = () => (
   <Segment placeholder>
@@ -7,10 +7,10 @@ const SegmentExamplePlaceholderInline = () => (
       <Icon name='search' />
       We don't have any documents matching your query.
     </Header>
-    <Segment.Inline>
+    <SegmentInline>
       <Button primary>Clear Query</Button>
       <Button>Add Document</Button>
-    </Segment.Inline>
+    </SegmentInline>
   </Segment>
 )
 
