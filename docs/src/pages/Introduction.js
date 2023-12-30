@@ -39,7 +39,7 @@ const ButtonHTML = `<button class="ui small green button">
 </button>`
 const LabelJSX = "<Label image='veronika.jpg' />"
 const LabelHTML = `<div class="ui image label">
-  <img src="veronika.jpg">
+  <img  src="veronika.jpg">
 </div>`
 const RatingJSX = '<Rating rating={1} maxRating={5} />'
 const RatingHTML = `<div

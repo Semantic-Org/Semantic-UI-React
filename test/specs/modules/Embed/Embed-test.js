@@ -115,7 +115,7 @@ describe('Embed', () => {
     it('renders img when defined', () => {
       const url = '/images/wireframe/image.png'
 
-      shallow(<Embed placeholder={url} />).should.contain(<img className='placeholder' src={url} />)
+      shallow(<Embed placeholder={url} />).should.contain(<img alt="Placeholder" className='placeholder' src={url} />)
     })
   })
 

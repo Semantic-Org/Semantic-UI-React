@@ -5,7 +5,7 @@ const FeedExampleSummaryDate = () => (
   <Feed>
     <Feed.Event>
       <Feed.Label>
-        <img src='/images/avatar/small/jenny.jpg' />
+        <img alt="avatar" src='/images/avatar/small/jenny.jpg' />
       </Feed.Label>
       <Feed.Content>
         <Feed.Summary>

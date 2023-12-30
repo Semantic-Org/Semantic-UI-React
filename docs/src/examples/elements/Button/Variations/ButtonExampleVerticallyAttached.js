@@ -5,7 +5,7 @@ const ButtonExampleVerticallyAttached = () => (
   <div>
     <Button attached='top'>Top</Button>
     <Segment attached>
-      <img src='/images/wireframe/paragraph.png' />
+      <img alt="Wireframe" src='/images/wireframe/paragraph.png' />
     </Segment>
     <Button attached='bottom'>Bottom</Button>
   </div>

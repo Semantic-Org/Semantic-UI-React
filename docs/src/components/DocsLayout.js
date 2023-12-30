@@ -64,7 +64,7 @@ class DocsLayout extends Component {
             <Grid.Column {...bottomColumnWidth} textAlign='center'>
               Blazing deployments by{' '}
               <a href='https://vercel.com/?utm_source=semantic-ui-react'>
-                <img height='12' width='14' src='/vercel-logo.svg' /> Vercel
+                <img height='12' width='14' alt="Vercel-Logo" src='/vercel-logo.svg' /> Vercel
               </a>
               .
             </Grid.Column>
