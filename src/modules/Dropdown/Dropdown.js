@@ -739,11 +739,16 @@ class DropdownInner extends Component {
       nextIndex = lastIndex
     }
 
-    if (options[nextIndex].disabled) {
-      return this.getSelectedIndexAfterMove(offset, nextIndex)
+    if (!options[nextIndex].disabled) {
+      return nextIndex
     }
 
-    return nextIndex
+    // if 'wrapSelection' is set to false, keep reference to last enabled index to avoid infinite loop
+    // where options has disabled items at start or end
+    if (!wrapSelection) {
+      return this.getSelectedIndexAfterMove(offset + Math.sign(offset), startIndex)
+    }
+    return this.getSelectedIndexAfterMove(offset, nextIndex)
   }
 
   // ----------------------------------------
