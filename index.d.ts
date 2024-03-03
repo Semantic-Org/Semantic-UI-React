@@ -509,12 +509,7 @@ export {
   StrictRatingIconProps,
 } from './dist/commonjs/modules/Rating/RatingIcon'
 
-export {
-  default as Search,
-  SearchProps,
-  SearchResultData,
-  StrictSearchProps,
-} from './dist/commonjs/modules/Search'
+export { default as Search, SearchProps, StrictSearchProps } from './dist/commonjs/modules/Search'
 export {
   default as SearchCategory,
   SearchCategoryProps,

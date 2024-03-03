@@ -93,49 +93,60 @@ export interface StrictSearchProps {
    * Called on blur.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onBlur?: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void
+  onBlur?: (event: React.MouseEvent<HTMLElement>, props: SearchProps) => void
 
   /**
    * Called on focus.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onFocus?: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void
+  onFocus?: (event: React.MouseEvent<HTMLElement>, props: SearchProps) => void
 
   /**
    * Called on mousedown.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onMouseDown?: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void
+  onMouseDown?: (event: React.MouseEvent<HTMLElement>, props: SearchProps) => void
 
   /**
    * Called when a result is selected.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
+   * @param {any} result - The search result.
    */
-  onResultSelect?: (event: React.MouseEvent<HTMLDivElement>, data: SearchResultData) => void
+  onResultSelect?: (
+    event: React.MouseEvent<HTMLDivElement>,
+    props: SearchProps,
+    result: any,
+  ) => void
 
   /**
    * Called on search input change.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props, includes current value of search input.
+   * @param {object} props - All props.
+   * @param {string} query - Current value of search input.
    */
-  onSearchChange?: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void
+  onSearchChange?: (event: React.MouseEvent<HTMLElement>, props: SearchProps, query: string) => void
 
   /**
    * Called when the active selection index is changed.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
+   * @param {any} result - The search result.
    */
-  onSelectionChange?: (event: React.MouseEvent<HTMLElement>, data: SearchResultData) => void
+  onSelectionChange?: (
+    event: React.MouseEvent<HTMLElement>,
+    props: SearchProps,
+    result: any,
+  ) => void
 
   // ------------------------------------
   // Style
@@ -164,10 +175,6 @@ export interface StrictSearchProps {
 
   /** A search can show placeholder text when empty. */
   placeholder?: string
-}
-
-export interface SearchResultData extends SearchProps {
-  result: any
 }
 
 declare const Search: ForwardRefComponent<SearchProps, HTMLDivElement> & {
