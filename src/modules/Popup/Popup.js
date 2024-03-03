@@ -171,12 +171,12 @@ const Popup = React.forwardRef(function (props, ref) {
 
   const handleClose = (e) => {
     debug('handleClose()')
-    _.invoke(props, 'onClose', e, { ...props, open: false })
+    _.invoke(props, 'onClose', e, props, false)
   }
 
   const handleOpen = (e) => {
     debug('handleOpen()')
-    _.invoke(props, 'onOpen', e, { ...props, open: true })
+    _.invoke(props, 'onOpen', e, props, true)
   }
 
   const hideOnScroll = (e) => {
