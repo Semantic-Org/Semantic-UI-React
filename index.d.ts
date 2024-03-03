@@ -426,7 +426,6 @@ export {
 export {
   default as Dropdown,
   DropdownProps,
-  DropdownOnSearchChangeData,
   StrictDropdownProps,
 } from './dist/commonjs/modules/Dropdown'
 export {

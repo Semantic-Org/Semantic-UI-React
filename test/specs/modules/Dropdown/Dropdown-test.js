@@ -394,7 +394,7 @@ describe('Dropdown', () => {
       wrapper.find('i.clear').simulate('click', event)
 
       onChange.should.have.been.calledOnce()
-      onChange.should.have.been.calledWithMatch(event, { value: '' })
+      onChange.should.have.been.calledWithMatch(event, {}, '')
       wrapper.should.have.exactly(1).descendants('.selected.item')
       wrapper.find('.item').at(0).should.have.className('selected')
     })
@@ -416,7 +416,7 @@ describe('Dropdown', () => {
       wrapper.find('i.clear').simulate('click', event)
 
       onChange.should.have.been.calledOnce()
-      onChange.should.have.been.calledWithMatch(event, { value: [] })
+      onChange.should.have.been.calledWithMatch(event, {}, [])
       wrapper.should.have.exactly(1).descendants('.selected.item')
       wrapper.find('.item').at(0).should.have.className('selected')
     })
@@ -1627,11 +1627,6 @@ describe('Dropdown', () => {
     })
 
     describe('selecting items', () => {
-      let spy
-      beforeEach(() => {
-        spy = sandbox.spy()
-      })
-
       it('does not close the menu on clicking on a label', () => {
         const value = _.map(options, 'value')
         const randomIndex = _.random(options.length - 1)
@@ -1659,19 +1654,26 @@ describe('Dropdown', () => {
       })
 
       it('calls onLabelClick', () => {
+        const onLabelClick = sandbox.spy()
         const value = _.map(options, 'value')
         const randomIndex = _.random(options.length - 1)
         const randomValue = value[randomIndex]
 
         wrapperMount(
-          <Dropdown options={options} selection multiple value={value} onLabelClick={spy} />,
+          <Dropdown
+            options={options}
+            selection
+            multiple
+            value={value}
+            onLabelClick={onLabelClick}
+          />,
         )
           .simulate('click', nativeEvent)
           .find('Label')
           .at(randomIndex)
           .simulate('click', nativeEvent)
 
-        spy.should.have.been.calledWithMatch({}, { value: randomValue })
+        onLabelClick.should.have.been.calledWithMatch({}, { value: randomValue })
       })
 
       it('refocuses search on select', () => {
@@ -1693,38 +1695,40 @@ describe('Dropdown', () => {
         const randomIndex = _.random(options.length - 1)
         const randomValue = value[randomIndex]
         const expected = _.without(value, randomValue)
-        const spy = sandbox.spy()
-        wrapperMount(<Dropdown options={options} selection value={value} multiple onChange={spy} />)
+        const onChange = sandbox.spy()
+        wrapperMount(
+          <Dropdown options={options} selection value={value} multiple onChange={onChange} />,
+        )
 
         wrapper.find('.delete.icon').at(randomIndex).simulate('click')
 
-        spy.should.have.been.calledOnce()
-        spy.should.have.been.calledWithMatch({}, { value: expected })
+        onChange.should.have.been.calledOnce()
+        onChange.should.have.been.calledWithMatch({}, {}, expected)
       })
     })
   })
 
   describe('removing items on backspace', () => {
-    let spy
+    let onChange
     beforeEach(() => {
-      spy = sandbox.spy()
+      onChange = sandbox.spy()
     })
 
     it('does nothing without selected items', () => {
-      wrapperMount(<Dropdown options={options} selection multiple search onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection multiple search onChange={onChange} />)
 
       // open
       wrapper.simulate('click')
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      spy.should.not.have.been.called()
+      onChange.should.not.have.been.called()
     })
     it('removes the last item when there is no search query', () => {
       const value = _.map(options, 'value')
       const expected = _.dropRight(value)
       wrapperMount(
-        <Dropdown options={options} selection value={value} multiple search onChange={spy} />,
+        <Dropdown options={options} selection value={value} multiple search onChange={onChange} />,
       )
 
       // open
@@ -1732,8 +1736,8 @@ describe('Dropdown', () => {
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, { value: expected })
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch({}, {}, expected)
     })
 
     it('removes the last item when there is no search query when uncontrolled', () => {
@@ -1746,7 +1750,7 @@ describe('Dropdown', () => {
           defaultValue={value}
           multiple
           search
-          onChange={spy}
+          onChange={onChange}
         />,
       )
 
@@ -1754,8 +1758,8 @@ describe('Dropdown', () => {
       wrapper.simulate('click')
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, { value: expected })
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch({}, {}, expected)
     })
 
     it('does not remove the last item when there is a search query', () => {
@@ -1763,7 +1767,7 @@ describe('Dropdown', () => {
       const searchQuery = _.sample(options).text
       const value = _.map(options, 'value')
       wrapperMount(
-        <Dropdown options={options} selection value={value} multiple search onChange={spy} />,
+        <Dropdown options={options} selection value={value} multiple search onChange={onChange} />,
       )
 
       // open and simulate search
@@ -1772,105 +1776,111 @@ describe('Dropdown', () => {
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      spy.should.not.have.been.called()
+      onChange.should.not.have.been.called()
     })
     it('does not remove items for multiple dropdowns without search', () => {
       const value = _.map(options, 'value')
-      wrapperMount(<Dropdown options={options} selection value={value} multiple onChange={spy} />)
+      wrapperMount(
+        <Dropdown options={options} selection value={value} multiple onChange={onChange} />,
+      )
 
       // open
       wrapper.simulate('click')
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      spy.should.not.have.been.called()
+      onChange.should.not.have.been.called()
     })
   })
 
   describe('onChange', () => {
-    let spy
+    let onChange
     beforeEach(() => {
-      spy = sandbox.spy()
+      onChange = sandbox.spy()
     })
 
     it('is called with event and value on item click', () => {
       const randomIndex = _.random(options.length - 1)
       const randomValue = options[randomIndex].value
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection onChange={onChange} />)
         .simulate('click')
         .find('DropdownItem')
         .at(randomIndex)
         .simulate('click')
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, { value: randomValue })
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch({}, {}, randomValue)
     })
     it('is not called when value is not changed on item click', () => {
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection onChange={onChange} />)
 
       wrapper.simulate('click').find('DropdownItem').at(0).simulate('click')
-      spy.should.have.been.calledOnce()
+      onChange.should.have.been.calledOnce()
       // TODO: try reenable after Enzyme update
       // https://github.com/Semantic-Org/Semantic-UI-React/pull/3747#issuecomment-522018329
       // dropdownMenuIsClosed()
 
       wrapper.simulate('click').find('DropdownItem').at(0).simulate('click')
-      spy.should.have.been.calledOnce()
+      onChange.should.have.been.calledOnce()
       // TODO: try reenable after Enzyme update
       // dropdownMenuIsClosed()
     })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstValue = options[0].value
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />).simulate('click')
+      wrapperMount(<Dropdown options={options} selection onChange={onChange} />).simulate('click')
 
       wrapper.simulate('keydown', { key: 'Enter' })
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, { value: firstValue })
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch({}, {}, firstValue)
     })
     it('is called with event and value when blurring', () => {
       const firstValue = options[0].value
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection onChange={onChange} />)
         .simulate('focus') // open, highlights first item
         .simulate('blur') // blur should activate selected item
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, { value: firstValue })
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch({}, {}, firstValue)
     })
     it('is not called on blur when closed', () => {
-      wrapperMount(<Dropdown options={options} selection open={false} onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection open={false} onChange={onChange} />)
         .simulate('focus')
         .simulate('blur')
 
-      spy.should.not.have.been.called()
+      onChange.should.not.have.been.called()
     })
     it('is not called on blur when selectOnBlur is false', () => {
-      wrapperMount(<Dropdown options={options} selection onChange={spy} selectOnBlur={false} />)
+      wrapperMount(
+        <Dropdown options={options} selection onChange={onChange} selectOnBlur={false} />,
+      )
         .simulate('focus')
         .simulate('click')
 
       wrapper.simulate('blur')
 
-      spy.should.not.have.been.called()
+      onChange.should.not.have.been.called()
     })
     it('is not called on blur with multiple select', () => {
-      wrapperMount(<Dropdown options={options} selection onChange={spy} multiple />)
+      wrapperMount(<Dropdown options={options} selection onChange={onChange} multiple />)
         .simulate('focus')
         .simulate('click')
 
       wrapper.simulate('blur')
 
-      spy.should.not.have.been.called()
+      onChange.should.not.have.been.called()
     })
     it('is not called when updating the value prop', () => {
       const value = _.sample(options).value
       const next = _.sample(_.without(options, value)).value
 
-      wrapperMount(<Dropdown options={options} selection value={value} onChange={spy} />).setProps({
+      wrapperMount(
+        <Dropdown options={options} selection value={value} onChange={onChange} />,
+      ).setProps({
         value: next,
       })
 
-      spy.should.not.have.been.called()
+      onChange.should.not.have.been.called()
     })
   })
 
@@ -1946,18 +1956,18 @@ describe('Dropdown', () => {
 
   describe('onSearchChange', () => {
     it('is called with (event, value) on search input change', () => {
-      const spy = sandbox.spy()
-      wrapperMount(<Dropdown options={options} search selection onSearchChange={spy} />)
+      const onSearchChange = sandbox.spy()
+      wrapperMount(<Dropdown options={options} search selection onSearchChange={onSearchChange} />)
         .find('input.search')
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(
+      onSearchChange.should.have.been.calledOnce()
+      onSearchChange.should.have.been.calledWithMatch(
         { target: { value: 'a' } },
         {
           search: true,
-          searchQuery: 'a',
         },
+        'a',
       )
     })
 
@@ -2709,7 +2719,7 @@ describe('Dropdown', () => {
 
       onChange.should.have.been.calledOnce()
       onAddItem.should.have.been.calledOnce()
-      onAddItem.should.have.been.calledWithMatch({}, { value: 'boo' })
+      onAddItem.should.have.been.calledWithMatch({}, {}, 'boo')
       onAddItem.should.have.been.calledImmediatelyAfter(onChange)
     })
 
@@ -2734,7 +2744,7 @@ describe('Dropdown', () => {
 
       onChange.should.have.been.calledOnce()
       onAddItem.should.have.been.calledOnce()
-      onAddItem.should.have.been.calledWithMatch({}, { value: 'boo' })
+      onAddItem.should.have.been.calledWithMatch({}, {}, 'boo')
       onAddItem.should.have.been.calledImmediatelyAfter(onChange)
     })
 

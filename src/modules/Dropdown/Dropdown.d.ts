@@ -126,49 +126,57 @@ export interface StrictDropdownProps {
    * Called when a user adds a new item. Use this to update the options list.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and the new item's value.
+   * @param {object} props - All props.
    */
-  onAddItem?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void
+  onAddItem?: (
+    event: React.SyntheticEvent<HTMLElement>,
+    props: DropdownProps,
+    value: boolean | number | string | (boolean | number | string)[],
+  ) => void
 
   /**
    * Called on blur.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onBlur?: (event: React.FocusEvent<HTMLElement>, data: DropdownProps) => void
+  onBlur?: (event: React.FocusEvent<HTMLElement>, props: DropdownProps) => void
 
   /**
    * Called when the user attempts to change the value.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and proposed value.
+   * @param {object} props - All props.
    */
-  onChange?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void
+  onChange?: (
+    event: React.SyntheticEvent<HTMLElement>,
+    props: DropdownProps,
+    value: boolean | number | string | (boolean | number | string)[],
+  ) => void
 
   /**
    * Called on click.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLElement>, data: DropdownProps) => void
+  onClick?: (event: React.MouseEvent<HTMLElement>, props: DropdownProps) => void
 
   /**
    * Called when a close event happens.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onClose?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void
+  onClose?: (event: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => void
 
   /**
    * Called on focus.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onFocus?: (event: React.FocusEvent<HTMLElement>, data: DropdownProps) => void
+  onFocus?: (event: React.FocusEvent<HTMLElement>, props: DropdownProps) => void
 
   /**
    * Called when a multi-select label is clicked.
@@ -182,27 +190,29 @@ export interface StrictDropdownProps {
    * Called on mousedown.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onMouseDown?: (event: React.MouseEvent<HTMLElement>, data: DropdownProps) => void
+  onMouseDown?: (event: React.MouseEvent<HTMLElement>, props: DropdownProps) => void
 
   /**
    * Called when an open event happens.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onOpen?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void
+  onOpen?: (event: React.SyntheticEvent<HTMLElement>, props: DropdownProps) => void
 
   /**
    * Called on search input change.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props, includes current value of searchQuery.
+   * @param {object} props - All props.
+   * @param {string} searchQuery - Current value of searchQuery.
    */
   onSearchChange?: (
     event: React.SyntheticEvent<HTMLElement>,
-    data: DropdownOnSearchChangeData,
+    data: DropdownProps,
+    searchQuery: string,
   ) => void
 
   /** Controls whether or not the dropdown menu is displayed. */
@@ -290,13 +300,6 @@ export interface StrictDropdownProps {
    * or go to the first when ArrowDown is pressed on the last( aka infinite selection )
    */
   wrapSelection?: boolean
-}
-
-/* TODO: replace with DropdownProps when #1829 will be fixed:
- * https://github.com/Semantic-Org/Semantic-UI-React/issues/1829
- */
-export interface DropdownOnSearchChangeData extends DropdownProps {
-  searchQuery: string
 }
 
 declare const Dropdown: ForwardRefComponent<DropdownProps, HTMLDivElement> & {
