@@ -34,7 +34,7 @@ const Tab = React.forwardRef(function (props, ref) {
   })
 
   const handleItemClick = (e, { index }) => {
-    _.invoke(props, 'onTabChange', e, { ...props, activeIndex: index })
+    _.invoke(props, 'onTabChange', e, props, index)
     setActiveIndex(index)
   }
 
