@@ -254,12 +254,7 @@ export {
   StrictImageGroupProps,
 } from './dist/commonjs/elements/Image/ImageGroup'
 
-export {
-  default as Input,
-  InputProps,
-  InputOnChangeData,
-  StrictInputProps,
-} from './dist/commonjs/elements/Input'
+export { default as Input, InputProps, StrictInputProps } from './dist/commonjs/elements/Input'
 
 export { default as Label, LabelProps, StrictLabelProps } from './dist/commonjs/elements/Label'
 export {

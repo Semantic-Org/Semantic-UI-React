@@ -1,1 +1,1 @@
-export { default, InputProps, StrictInputProps, InputOnChangeData } from './Input'
+export { default, InputProps, StrictInputProps } from './Input'
