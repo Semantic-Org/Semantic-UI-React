@@ -36,9 +36,10 @@ export interface StrictRatingProps {
    * Called after user selects a new rating.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and proposed rating.
+   * @param {object} props - All props.
+   * @param {number} props - New rating.
    */
-  onRate?: (event: React.MouseEvent<HTMLDivElement>, data: RatingProps) => void
+  onRate?: (event: React.MouseEvent<HTMLDivElement>, props: RatingProps, rating: number) => void
 
   /** The current number of active icons. */
   rating?: number | string
