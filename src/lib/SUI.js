@@ -1936,6 +1936,7 @@ export const ICON_ALIASES = [
   'lightning',
   'like',
   'line graph',
+  'linkedin in',
   'linkedin square',
   'linkify',
   'lira',
