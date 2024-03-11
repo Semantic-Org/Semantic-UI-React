@@ -1967,6 +1967,7 @@ export type SemanticICONS =
   | 'lightning'
   | 'like'
   | 'line graph'
+  | 'linkedin in'
   | 'linkedin square'
   | 'linkify'
   | 'lira'
