@@ -154,11 +154,11 @@ describe('Tab', () => {
   })
 
   describe('onTabChange', () => {
-    it('is called with (e, { ...props, activeIndex }) a menu item is clicked', () => {
+    it('is called when a menu item is clicked', () => {
       const activeIndex = 1
-      const spy = sandbox.spy()
+      const onTabChange = sandbox.spy()
       const event = { fake: 'event' }
-      const props = { onTabChange: spy, panes }
+      const props = { onTabChange, panes }
 
       mount(<Tab {...props} />)
         .find('MenuItem')
@@ -167,30 +167,29 @@ describe('Tab', () => {
 
       // Since React will have generated a key the returned tab won't match
       // exactly so match on the props instead.
-      spy.should.have.been.calledOnce()
-      spy.firstCall.args[0].should.have.property('fake', 'event')
-      spy.firstCall.args[1].should.have.property('activeIndex', 1)
-      spy.firstCall.args[1].should.have.property('onTabChange', spy)
-      spy.firstCall.args[1].should.have.property('panes', panes)
+      onTabChange.should.have.been.calledOnce()
+      onTabChange.should.have.been.calledWithMatch(event, props, 1)
     })
     it('is called with the new proposed activeIndex, not the current', () => {
-      const spy = sandbox.spy()
+      const onTabChange = sandbox.spy()
 
-      const items = mount(<Tab activeIndex={-1} onTabChange={spy} panes={panes} />).find('MenuItem')
+      const items = mount(<Tab activeIndex={-1} onTabChange={onTabChange} panes={panes} />).find(
+        'MenuItem',
+      )
 
-      spy.should.have.callCount(0)
+      onTabChange.should.have.callCount(0)
 
       items.at(0).simulate('click')
-      spy.should.have.callCount(1)
-      spy.lastCall.args[1].should.have.property('activeIndex', 0)
+      onTabChange.should.have.callCount(1)
+      onTabChange.lastCall.args[2].should.equal(0)
 
       items.at(1).simulate('click')
-      spy.should.have.callCount(2)
-      spy.lastCall.args[1].should.have.property('activeIndex', 1)
+      onTabChange.should.have.callCount(2)
+      onTabChange.lastCall.args[2].should.equal(1)
 
       items.at(2).simulate('click')
-      spy.should.have.callCount(3)
-      spy.lastCall.args[1].should.have.property('activeIndex', 2)
+      onTabChange.should.have.callCount(3)
+      onTabChange.lastCall.args[2].should.equal(2)
     })
   })
 

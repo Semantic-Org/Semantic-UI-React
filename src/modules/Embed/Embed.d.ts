@@ -59,9 +59,10 @@ export interface StrictEmbedProps {
    * Called on click.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and proposed value.
+   * @param {object} props - All props.
+   * @param {boolean} active - Whether the embed is active.
    */
-  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: EmbedProps) => void
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, props: EmbedProps, active: boolean) => void
 
   /** A placeholder image for embed. */
   placeholder?: string

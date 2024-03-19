@@ -71,7 +71,7 @@ const Sidebar = React.forwardRef((props, ref) => {
     const callback = visible ? 'onShow' : 'onHidden'
 
     resetAnimationTick()
-    _.invoke(props, callback, null, props)
+    _.invoke(props, callback, null, props, visible)
   })
 
   const handleAnimationStart = useEventCallback(() => {
@@ -85,13 +85,13 @@ const Sidebar = React.forwardRef((props, ref) => {
       return
     }
 
-    _.invoke(props, callback, null, props)
+    _.invoke(props, callback, null, props, visible)
   })
 
   const handleDocumentClick = (e) => {
     if (!doesNodeContainClick(elementRef.current, e)) {
       skipNextCallback.current = true
-      _.invoke(props, 'onHide', e, { ...props, visible: false })
+      _.invoke(props, 'onHide', e, props, false)
     }
   }
 

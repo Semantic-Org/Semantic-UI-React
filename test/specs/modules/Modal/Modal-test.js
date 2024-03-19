@@ -277,7 +277,7 @@ describe('Modal', () => {
 
       wrapper.find('#trigger').simulate('click')
       onOpen.should.have.been.calledOnce()
-      onOpen.should.have.been.calledWithMatch({ type: 'click' }, { open: true })
+      onOpen.should.have.been.calledWithMatch({ type: 'click' }, {}, true)
     })
 
     it('is not called on body click', () => {
@@ -296,7 +296,7 @@ describe('Modal', () => {
 
       domEvent.click('.ui.dimmer')
       onClose.should.have.been.calledOnce()
-      onClose.should.have.been.calledWithMatch({}, { open: false })
+      onClose.should.have.been.calledWithMatch({}, {}, false)
     })
 
     it('is called on click outside of the modal', () => {
@@ -305,6 +305,7 @@ describe('Modal', () => {
 
       domEvent.click(document.querySelector('.ui.modal').parentNode)
       onClose.should.have.been.calledOnce()
+      onClose.should.have.been.calledWithMatch({}, {}, false)
     })
 
     it('is not called on mousedown inside and mouseup outside of the modal', () => {
@@ -338,6 +339,7 @@ describe('Modal', () => {
 
       domEvent.keyDown(document, { key: 'Escape' })
       onClose.should.have.been.calledOnce()
+      onClose.should.have.been.calledWithMatch({}, {}, false)
     })
 
     it('is not called when the open prop changes to false', () => {

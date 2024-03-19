@@ -108,7 +108,7 @@ const Modal = React.forwardRef(function (props, ref) {
     debug('close()')
 
     setOpen(false)
-    _.invoke(props, 'onClose', e, { ...props, open: false })
+    _.invoke(props, 'onClose', e, props, false)
   }
 
   const handleDocumentMouseDown = (e) => {
@@ -129,14 +129,14 @@ const Modal = React.forwardRef(function (props, ref) {
       return
 
     setOpen(false)
-    _.invoke(props, 'onClose', e, { ...props, open: false })
+    _.invoke(props, 'onClose', e, props, false)
   }
 
   const handleOpen = (e) => {
     debug('open()')
 
     setOpen(true)
-    _.invoke(props, 'onOpen', e, { ...props, open: true })
+    _.invoke(props, 'onOpen', e, props, true)
   }
 
   const handlePortalMount = (e) => {

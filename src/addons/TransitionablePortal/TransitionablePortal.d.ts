@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { TransitionEventData, TransitionProps } from '../../modules/Transition/Transition'
+import { TransitionProps, TRANSITION_STATUSES } from '../../modules/Transition/Transition'
 import { PortalProps } from '../Portal/Portal'
 
 export interface TransitionablePortalProps extends StrictTransitionablePortalProps {
@@ -15,33 +15,37 @@ export interface StrictTransitionablePortalProps {
    * Called when a close event happens.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and internal state.
+   * @param {object} props - All props.
+   * @param {object} state - Internal state.
    */
-  onClose?: (nothing: null, data: PortalProps & TransitionablePortalState) => void
+  onClose?: (nothing: null, props: PortalProps, state: TransitionablePortalState) => void
 
   /**
    * Callback on each transition that changes visibility to hidden.
    *
    * @param {null}
-   * @param {object} data - All props with status.
+   * @param {object} props - All props.
+   * @param {object} state - Internal state.
    */
-  onHide?: (nothing: null, data: TransitionEventData & TransitionablePortalState) => void
+  onHide?: (nothing: null, props: TransitionProps, state: TransitionablePortalState) => void
 
   /**
    * Called when an open event happens.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and internal state.
+   * @param {object} props - All props.
+   * @param {object} state - Internal state.
    */
-  onOpen?: (nothing: null, data: PortalProps & TransitionablePortalState) => void
+  onOpen?: (nothing: null, props: PortalProps, state: TransitionablePortalState) => void
 
   /**
    * Callback on animation start.
    *
    * @param {null}
-   * @param {object} data - All props with status.
+   * @param {object} props - All props.
+   * @param {object} state - Internal state.
    */
-  onStart?: (nothing: null, data: TransitionEventData & TransitionablePortalState) => void
+  onStart?: (nothing: null, props: TransitionProps, state: TransitionablePortalState) => void
 
   /** Controls whether or not the portal is displayed. */
   open?: boolean
@@ -51,6 +55,7 @@ export interface StrictTransitionablePortalProps {
 }
 
 export interface TransitionablePortalState {
+  transitionStatus: TRANSITION_STATUSES
   portalOpen: boolean
   transitionVisible: boolean
 }

@@ -25,7 +25,7 @@ describe('TransitionablePortal', () => {
   })
 
   describe('onClose', () => {
-    it('is called with (null, data) on a click outside', (done) => {
+    it('is called on a click outside', (done) => {
       const onClose = sandbox.spy()
       const wrapper = mount(
         <TransitionablePortal
@@ -41,7 +41,7 @@ describe('TransitionablePortal', () => {
 
       assertWithTimeout(() => {
         onClose.should.have.been.calledOnce()
-        onClose.should.have.been.calledWithMatch(null, { portalOpen: false })
+        onClose.should.have.been.calledWithMatch(null, {}, { portalOpen: false })
 
         wrapper.unmount()
       }, done)
@@ -60,7 +60,7 @@ describe('TransitionablePortal', () => {
   })
 
   describe('onHide', () => {
-    it('is called with (null, data) when exiting transition finished', (done) => {
+    it('is called when exiting transition finished', (done) => {
       const onHide = sandbox.spy()
       const wrapper = mount(
         <TransitionablePortal
@@ -75,11 +75,16 @@ describe('TransitionablePortal', () => {
       wrapper.setProps({ open: false })
       assertWithTimeout(() => {
         onHide.should.have.been.calledOnce()
-        onHide.should.have.been.calledWithMatch(null, {
-          ...quickTransition,
-          portalOpen: false,
-          transitionVisible: false,
-        })
+        onHide.should.have.been.calledWithMatch(
+          null,
+          {
+            ...quickTransition,
+          },
+          {
+            portalOpen: false,
+            transitionVisible: false,
+          },
+        )
 
         wrapper.unmount()
       }, done)
@@ -87,7 +92,7 @@ describe('TransitionablePortal', () => {
   })
 
   describe('onOpen', () => {
-    it('is called with (null, data) when opens', () => {
+    it('is called when opens', () => {
       const onOpen = sandbox.spy()
       const wrapper = mount(
         <TransitionablePortal {...requiredProps} onOpen={onOpen} trigger={<button />} />,
@@ -95,7 +100,7 @@ describe('TransitionablePortal', () => {
 
       wrapper.find('button').simulate('click')
       onOpen.should.have.been.calledOnce()
-      onOpen.should.have.been.calledWithMatch(null, { portalOpen: true })
+      onOpen.should.have.been.calledWithMatch(null, {}, { portalOpen: true })
     })
 
     it('renders contents', () => {

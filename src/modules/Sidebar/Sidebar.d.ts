@@ -31,33 +31,34 @@ export interface StrictSidebarProps {
    * Called before a sidebar begins to animate out.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
+   * @param {boolean} visible - Whether the sidebar is visible.
    */
-  onHide?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
+  onHide?: (event: React.MouseEvent<HTMLElement>, props: SidebarProps, visible: boolean) => void
 
   /**
    * Called after a sidebar has finished animating out.
    *
    * @param {null}
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onHidden?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
+  onHidden?: (event: React.MouseEvent<HTMLElement>, props: SidebarProps) => void
 
   /**
    * Called when a sidebar has finished animating in.
    *
    * @param {null}
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onShow?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
+  onShow?: (event: React.MouseEvent<HTMLElement>, props: SidebarProps) => void
 
   /**
    * Called when a sidebar begins animating in.
    *
    * @param {null}
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onVisible?: (event: React.MouseEvent<HTMLElement>, data: SidebarProps) => void
+  onVisible?: (event: React.MouseEvent<HTMLElement>, props: SidebarProps) => void
 
   /** A sidebar can handle clicks on the passed element. */
   target?: Document | Window | HTMLElement | React.RefObject<HTMLElement>

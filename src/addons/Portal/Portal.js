@@ -61,7 +61,7 @@ function Portal(props) {
     debug('open()')
 
     setOpen(true)
-    _.invoke(props, 'onOpen', e, { ...props, open: true })
+    _.invoke(props, 'onOpen', e, props, true)
   }
 
   const openPortalWithTimeout = (e, delay) => {
@@ -77,7 +77,7 @@ function Portal(props) {
     debug('close()')
 
     setOpen(false)
-    _.invoke(props, 'onClose', e, { ...props, open: false })
+    _.invoke(props, 'onClose', e, props, false)
   }
 
   const closePortalWithTimeout = (e, delay) => {

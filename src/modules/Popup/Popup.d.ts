@@ -74,33 +74,35 @@ export interface StrictPopupProps extends StrictPortalProps {
    * Called when a close event happens.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
+   * @param {boolean} open - Whether the popup is displayed.
    */
-  onClose?: (event: React.MouseEvent<HTMLElement>, data: PopupProps) => void
+  onClose?: (event: React.MouseEvent<HTMLElement>, props: PopupProps, open: boolean) => void
 
   /**
    * Called when the portal is mounted on the DOM.
    *
    * @param {null}
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onMount?: (nothing: null, data: PopupProps) => void
+  onMount?: (nothing: null, props: PopupProps) => void
 
   /**
    * Called when an open event happens.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
+   * @param {boolean} open - Whether the popup is displayed
    */
-  onOpen?: (event: React.MouseEvent<HTMLElement>, data: PopupProps) => void
+  onOpen?: (event: React.MouseEvent<HTMLElement>, props: PopupProps, open: boolean) => void
 
   /**
    * Called when the portal is unmounted from the DOM.
    *
    * @param {null}
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onUnmount?: (nothing: null, data: PopupProps) => void
+  onUnmount?: (nothing: null, props: PopupProps) => void
 
   /** Disables automatic repositioning of the component, it will always be placed according to the position value. */
   pinned?: boolean

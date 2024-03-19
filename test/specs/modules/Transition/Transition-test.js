@@ -396,16 +396,19 @@ describe('Transition', () => {
   })
 
   describe('onComplete', () => {
-    it('is called with (null, props) when transition completed', (done) => {
+    it('is called when transition completes', (done) => {
       const onComplete = sandbox.spy()
       const handleComplete = (...args) => {
         onComplete(...args)
 
         onComplete.should.have.been.calledOnce()
-        onComplete.should.have.been.calledWithMatch(null, {
-          duration: 0,
-          status: TRANSITION_STATUS_ENTERED,
-        })
+        onComplete.should.have.been.calledWithMatch(
+          null,
+          {
+            duration: 0,
+          },
+          TRANSITION_STATUS_ENTERED,
+        )
 
         done()
       }
@@ -440,16 +443,19 @@ describe('Transition', () => {
   })
 
   describe('onHide', () => {
-    it('is called with (null, props) when hidden', (done) => {
+    it('is called when hidden', (done) => {
       const onHide = sandbox.spy()
       const handleHide = (...args) => {
         onHide(...args)
 
         onHide.should.have.been.calledOnce()
-        onHide.should.have.been.calledWithMatch(null, {
-          duration: 0,
-          status: TRANSITION_STATUS_EXITED,
-        })
+        onHide.should.have.been.calledWithMatch(
+          null,
+          {
+            duration: 0,
+          },
+          TRANSITION_STATUS_EXITED,
+        )
 
         done()
       }
@@ -509,16 +515,19 @@ describe('Transition', () => {
   })
 
   describe('onShow', () => {
-    it('is called with (null, props) when shown', (done) => {
+    it('is called when shown', (done) => {
       const onShow = sandbox.spy()
       const handleShow = (...args) => {
         onShow(...args)
 
         onShow.should.have.been.calledOnce()
-        onShow.should.have.been.calledWithMatch(null, {
-          duration: 0,
-          status: TRANSITION_STATUS_ENTERED,
-        })
+        onShow.should.have.been.calledWithMatch(
+          null,
+          {
+            duration: 0,
+          },
+          TRANSITION_STATUS_ENTERED,
+        )
 
         done()
       }
@@ -552,16 +561,19 @@ describe('Transition', () => {
   })
 
   describe('onStart', () => {
-    it('is called with (null, props) when transition started', (done) => {
+    it('is called when transition started', (done) => {
       const onStart = sandbox.spy()
       const handleStart = (...args) => {
         onStart(...args)
 
         onStart.should.have.been.calledOnce()
-        onStart.should.have.been.calledWithMatch(null, {
-          duration: 0,
-          status: TRANSITION_STATUS_ENTERING,
-        })
+        onStart.should.have.been.calledWithMatch(
+          null,
+          {
+            duration: 0,
+          },
+          TRANSITION_STATUS_ENTERING,
+        )
 
         done()
       }

@@ -45,9 +45,14 @@ export interface StrictPaginationProps {
    * Called on change of an active page.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
+   * @param {number} activePage - Index of the newly active page.
    */
-  onPageChange?: (event: React.MouseEvent<HTMLAnchorElement>, data: PaginationProps) => void
+  onPageChange?: (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    props: PaginationProps,
+    activePage: number,
+  ) => void
 
   /** Number of always visible pages before and after the current one. */
   siblingRange?: number | string

@@ -32,33 +32,37 @@ export interface StrictTransitionProps {
    * Callback on each transition that changes visibility to shown.
    *
    * @param {null}
-   * @param {object} data - All props with status.
+   * @param {object} props - All props.
+   * @param {TRANSITION_STATUSES} status - Transition status.
    */
-  onComplete?: (nothing: null, data: TransitionEventData) => void
+  onComplete?: (nothing: null, props: TransitionProps, status: TRANSITION_STATUSES) => void
 
   /**
    * Callback on each transition that changes visibility to hidden.
    *
    * @param {null}
-   * @param {object} data - All props with status.
+   * @param {object} props - All props.
+   * @param {TRANSITION_STATUSES} status - Transition status.
    */
-  onHide?: (nothing: null, data: TransitionEventData) => void
+  onHide?: (nothing: null, props: TransitionProps, status: TRANSITION_STATUSES) => void
 
   /**
    * Callback on each transition that changes visibility to shown.
    *
    * @param {null}
-   * @param {object} data - All props with status.
+   * @param {object} props - All props.
+   * @param {TRANSITION_STATUSES} status - Transition status.
    */
-  onShow?: (nothing: null, data: TransitionEventData) => void
+  onShow?: (nothing: null, props: TransitionProps, status: TRANSITION_STATUSES) => void
 
   /**
    * Callback on animation start.
    *
    * @param {null}
-   * @param {object} data - All props with status.
+   * @param {object} props - All props.
+   * @param {TRANSITION_STATUSES} status - Transition status.
    */
-  onStart?: (nothing: null, data: TransitionEventData) => void
+  onStart?: (nothing: null, props: TransitionProps, status: TRANSITION_STATUSES) => void
 
   /** React's key of the element. */
   reactKey?: string
@@ -68,10 +72,6 @@ export interface StrictTransitionProps {
 
   /** Unmount the component (remove it from the DOM) when it is not shown. */
   unmountOnHide?: boolean
-}
-
-export interface TransitionEventData extends TransitionProps {
-  status: TRANSITION_STATUSES
 }
 
 export interface TransitionPropDuration {

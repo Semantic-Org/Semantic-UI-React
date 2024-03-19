@@ -150,7 +150,7 @@ describe('Popup', () => {
       assertInBody('.ui.popup.visible', false)
     })
 
-    it('is called with (e, props) when scroll', () => {
+    it('is called on scroll', () => {
       const onClose = sandbox.spy()
 
       wrapperMount(<Popup content='foo' hideOnScroll onClose={onClose} trigger={trigger} />)
@@ -159,7 +159,7 @@ describe('Popup', () => {
       domEvent.scroll(window)
 
       onClose.should.have.been.calledOnce()
-      onClose.should.have.been.calledWithMatch({}, { content: 'foo', onClose, trigger })
+      onClose.should.have.been.calledWithMatch({}, { content: 'foo', onClose, trigger }, false)
     })
 
     it('not hide on scroll from inside a popup', () => {
@@ -178,6 +178,7 @@ describe('Popup', () => {
 
       domEvent.scroll(window)
       onClose.should.have.been.calledOnce()
+      onClose.should.have.been.calledWithMatch({}, {}, false)
     })
   })
 
@@ -222,6 +223,7 @@ describe('Popup', () => {
 
       domEvent.click('body')
       onClose.should.have.been.calledOnce()
+      onClose.should.have.been.calledWithMatch({}, {}, false)
     })
 
     it('is called when pressing escape', () => {
@@ -230,6 +232,7 @@ describe('Popup', () => {
 
       domEvent.keyDown(document, { key: 'Escape' })
       onClose.should.have.been.calledOnce()
+      onClose.should.have.been.calledWithMatch({}, {}, false)
     })
 
     it('is not called when the open prop changes to false', () => {
@@ -252,7 +255,7 @@ describe('Popup', () => {
 
       wrapper.find('#trigger').simulate('click')
       onOpen.should.have.been.calledOnce()
-      onOpen.should.have.been.calledWithMatch({}, { open: true })
+      onOpen.should.have.been.calledWithMatch({}, {}, true)
     })
   })
 
@@ -267,7 +270,7 @@ describe('Popup', () => {
 
       domEvent.click(document.body)
       onClose.should.have.been.called()
-      onClose.should.have.been.calledWithMatch({}, { open: false })
+      onClose.should.have.been.calledWithMatch({}, {}, false)
     })
   })
 

@@ -30,11 +30,15 @@ export interface StrictTabProps {
    * Called on tab change.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - The proposed new Tab.Pane.
-   * @param {object} data.activeIndex - The new proposed activeIndex.
-   * @param {object} data.panes - Props of the new proposed active pane.
+   * @param {object} props - The proposed new Tab.Pane.
+   * @param {object} props.panes - Props of the new proposed active pane.
+   * @param {number} activeIndex - The current activeIndex.
    */
-  onTabChange?: (event: React.MouseEvent<HTMLDivElement>, data: TabProps) => void
+  onTabChange?: (
+    event: React.MouseEvent<HTMLDivElement>,
+    props: TabProps,
+    activeIndex: number,
+  ) => void
 
   /**
    * Array of objects describing each Menu.Item and Tab.Pane:

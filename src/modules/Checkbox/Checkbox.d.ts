@@ -43,33 +43,61 @@ export interface StrictCheckboxProps {
    * Called when the user attempts to change the checked state.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and proposed checked/indeterminate state.
+   * @param {object} props - All props.
+   * @param {boolean} checked - Current checked state.
+   * @param {boolean} indeterminate - Current indeterminate state.
    */
-  onChange?: (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => void
+  onChange?: (
+    event: React.FormEvent<HTMLInputElement>,
+    props: CheckboxProps,
+    checked: boolean,
+    indeterminate: boolean,
+  ) => void
 
   /**
    * Called when the checkbox or label is clicked.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and current checked/indeterminate state.
+   * @param {object} props - All props.
+   * @param {boolean} checked - Current checked state.
+   * @param {boolean} indeterminate - Current indeterminate state.
    */
-  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void
+  onClick?: (
+    event: React.MouseEvent<HTMLInputElement>,
+    props: CheckboxProps,
+    checked: boolean,
+    indeterminate: boolean,
+  ) => void
 
   /**
    * Called when the user presses down on the mouse.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and current checked/indeterminate state.
+   * @param {object} props - All props.
+   * @param {boolean} checked - Current checked state.
+   * @param {boolean} indeterminate - Current indeterminate state.
    */
-  onMouseDown?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void
+  onMouseDown?: (
+    event: React.MouseEvent<HTMLInputElement>,
+    props: CheckboxProps,
+    checked: boolean,
+    indeterminate: boolean,
+  ) => void
 
   /**
    * Called when the user releases the mouse.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and current checked/indeterminate state.
+   * @param {object} props - All props.
+   * @param {boolean} checked - Current checked state.
+   * @param {boolean} indeterminate - Current indeterminate state.
    */
-  onMouseUp?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void
+  onMouseUp?: (
+    event: React.MouseEvent<HTMLInputElement>,
+    props: CheckboxProps,
+    checked: boolean,
+    indeterminate: boolean,
+  ) => void
 
   /** Format as a radio element. This means it is an exclusive option. */
   radio?: boolean

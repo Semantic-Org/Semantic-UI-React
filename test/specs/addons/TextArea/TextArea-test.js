@@ -50,7 +50,7 @@ describe('TextArea', () => {
   })
 
   describe('onChange', () => {
-    it('is called with (e, data) on change', () => {
+    it('is called with (e, props, value) on change', () => {
       const onChange = sandbox.spy()
       const e = { target: { value: 'name' } }
       const props = { 'data-foo': 'bar', onChange }
@@ -59,12 +59,12 @@ describe('TextArea', () => {
       wrapper.find('textarea').simulate('change', e)
 
       onChange.should.have.been.calledOnce()
-      onChange.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      onChange.should.have.been.calledWithMatch(e, props, e.target.value)
     })
   })
 
   describe('onInput', () => {
-    it('is called with (e, data) on input', () => {
+    it('is called with (e, props, value) on input', () => {
       const onInput = sandbox.spy()
       const e = { target: { value: 'name' } }
       const props = { 'data-foo': 'bar', onInput }
@@ -73,7 +73,7 @@ describe('TextArea', () => {
       wrapper.find('textarea').simulate('input', e)
 
       onInput.should.have.been.calledOnce()
-      onInput.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      onInput.should.have.been.calledWithMatch(e, props, e.target.value)
     })
   })
 

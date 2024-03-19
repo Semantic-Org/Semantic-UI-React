@@ -48,7 +48,7 @@ describe('Sidebar', () => {
 
       wrapper.setProps({ visible: false })
       onHide.should.have.been.calledOnce()
-      onHide.should.have.been.calledWithMatch(null, { visible: false })
+      onHide.should.have.been.calledWithMatch(null, {}, false)
     })
 
     it('is called when a click on the document was done', () => {
@@ -58,7 +58,7 @@ describe('Sidebar', () => {
 
       domEvent.click(document)
       onHide.should.have.been.calledOnce()
-      onHide.should.have.been.calledWithMatch({}, { visible: false })
+      onHide.should.have.been.calledWithMatch({}, {}, false)
     })
 
     it('is called when a click on the document was done only once', () => {
@@ -68,6 +68,7 @@ describe('Sidebar', () => {
       domEvent.click(document)
       wrapper.setProps({ visible: false })
       onHide.should.have.been.calledOnce()
+      onHide.should.have.been.calledWithMatch({}, {}, false)
     })
 
     it('is not called when a click was done inside the component', () => {
@@ -101,7 +102,7 @@ describe('Sidebar', () => {
 
       setTimeout(() => {
         onHidden.should.have.been.calledOnce()
-        onHidden.should.have.been.calledWithMatch(null, { visible: false })
+        onHidden.should.have.been.calledWithMatch(null, {}, false)
 
         done()
       }, 0)
@@ -134,7 +135,7 @@ describe('Sidebar', () => {
 
       wrapper.setProps({ visible: true })
       onVisible.should.have.been.calledOnce()
-      onVisible.should.have.been.calledWithMatch(null, { visible: true })
+      onVisible.should.have.been.calledWithMatch(null, {}, true)
     })
   })
 

@@ -231,7 +231,7 @@ class DropdownInner extends Component {
   // can't rely on props.value if we are controlled
   handleChange = (e, value) => {
     debug('handleChange()', value)
-    _.invoke(this.props, 'onChange', e, { ...this.props, value })
+    _.invoke(this.props, 'onChange', e, this.props, value)
   }
 
   closeOnChange = (e) => {
@@ -342,7 +342,7 @@ class DropdownInner extends Component {
       // Heads up! This event handler should be called after `onChange`
       // Notify the onAddItem prop if this is a new value
       if (item['data-additional']) {
-        _.invoke(this.props, 'onAddItem', e, { ...this.props, value: selectedValue })
+        _.invoke(this.props, 'onAddItem', e, this.props, selectedValue)
       }
     }
 
@@ -544,7 +544,7 @@ class DropdownInner extends Component {
     // Heads up! This event handler should be called after `onChange`
     // Notify the onAddItem prop if this is a new value
     if (isAdditionItem) {
-      _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
+      _.invoke(this.props, 'onAddItem', e, this.props, value)
     }
   }
 
@@ -592,7 +592,7 @@ class DropdownInner extends Component {
     const { open } = this.state
     const newQuery = value
 
-    _.invoke(this.props, 'onSearchChange', e, { ...this.props, searchQuery: newQuery })
+    _.invoke(this.props, 'onSearchChange', e, this.props, newQuery)
     this.setState({ searchQuery: newQuery, selectedIndex: 0 })
 
     // open search dropdown on search query

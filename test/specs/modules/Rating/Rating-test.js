@@ -241,16 +241,16 @@ describe('Rating', () => {
 
   describe('onRate', () => {
     it('is called with (event, { rating, maxRating } on icon click', () => {
-      const spy = sandbox.spy()
+      const onRate = sandbox.spy()
       const event = { fake: 'event data' }
 
-      mount(<Rating maxRating={3} onRate={spy} />)
+      mount(<Rating maxRating={3} onRate={onRate} />)
         .find('RatingIcon')
         .last()
         .simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, { rating: 3, maxRating: 3 })
+      onRate.should.have.been.calledOnce()
+      onRate.should.have.been.calledWithMatch(event, { maxRating: 3 }, 3)
     })
   })
 
