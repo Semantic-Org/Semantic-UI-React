@@ -88,8 +88,8 @@ const List = React.forwardRef(function (props, ref) {
         ListItem.create(item, {
           overrideProps: (predefinedProps) => ({
             onClick: (e, itemProps) => {
-              _.invoke(predefinedProps, 'onClick', e, itemProps)
-              _.invoke(props, 'onItemClick', e, itemProps)
+              predefinedProps.onClick?.(e, itemProps)
+              props.onItemClick?.(e, itemProps)
             },
           }),
         }),

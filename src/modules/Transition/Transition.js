@@ -97,14 +97,14 @@ export default class Transition extends React.Component {
     }
 
     if (!prevState.animating && this.state.animating) {
-      _.invoke(this.props, 'onStart', null, { ...this.props, status: this.state.status })
+      this.props.onStart?.(null, { ...this.props, status: this.state.status })
     }
 
     if (prevState.animating && !this.state.animating) {
       const callback = this.state.status === TRANSITION_STATUS_ENTERED ? 'onShow' : 'onHide'
 
-      _.invoke(this.props, 'onComplete', null, { ...this.props, status: this.state.status })
-      _.invoke(this.props, callback, null, { ...this.props, status: this.state.status })
+      this.props.onComplete?.(null, { ...this.props, status: this.state.status })
+      this.props[callback]?.(null, { ...this.props, status: this.state.status })
     }
   }
 

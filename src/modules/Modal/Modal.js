@@ -108,7 +108,7 @@ const Modal = React.forwardRef(function (props, ref) {
     debug('close()')
 
     setOpen(false)
-    _.invoke(props, 'onClose', e, { ...props, open: false })
+    props.onClose?.(e, { ...props, open: false })
   }
 
   const handleDocumentMouseDown = (e) => {
@@ -129,14 +129,14 @@ const Modal = React.forwardRef(function (props, ref) {
       return
 
     setOpen(false)
-    _.invoke(props, 'onClose', e, { ...props, open: false })
+    props.onClose?.(e, { ...props, open: false })
   }
 
   const handleOpen = (e) => {
     debug('open()')
 
     setOpen(true)
-    _.invoke(props, 'onOpen', e, { ...props, open: true })
+    props.onOpen?.(e, { ...props, open: true })
   }
 
   const handlePortalMount = (e) => {
@@ -153,7 +153,7 @@ const Modal = React.forwardRef(function (props, ref) {
       pool: eventPool,
       target: dimmerRef.current,
     })
-    _.invoke(props, 'onMount', e, props)
+    props.onMount?.(e, props)
   }
 
   const handlePortalUnmount = (e) => {
@@ -168,7 +168,7 @@ const Modal = React.forwardRef(function (props, ref) {
       pool: eventPool,
       target: dimmerRef.current,
     })
-    _.invoke(props, 'onUnmount', e, props)
+    props.onUnmount?.(e, props)
   }
 
   // ----------------------------------------
@@ -191,7 +191,7 @@ const Modal = React.forwardRef(function (props, ref) {
     const closeIconJSX = Icon.create(closeIconName, {
       overrideProps: (predefinedProps) => ({
         onClick: (e) => {
-          _.invoke(predefinedProps, 'onClick', e)
+          predefinedProps.onClick?.(e)
           handleClose(e)
         },
       }),
@@ -212,8 +212,8 @@ const Modal = React.forwardRef(function (props, ref) {
             {ModalActions.create(actions, {
               overrideProps: (predefinedProps) => ({
                 onActionClick: (e, actionProps) => {
-                  _.invoke(predefinedProps, 'onActionClick', e, actionProps)
-                  _.invoke(props, 'onActionClick', e, props)
+                  predefinedProps.onActionClick?.(e, actionProps)
+                  props.onActionClick?.(e, props)
 
                   handleClose(e)
                 },

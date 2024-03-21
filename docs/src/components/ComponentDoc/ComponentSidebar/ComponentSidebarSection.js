@@ -20,7 +20,7 @@ export default class ComponentSidebarSection extends PureComponent {
   }
 
   handleItemClick = (examplePath) => (e) => {
-    _.invoke(this.props, 'onItemClick', e, { examplePath })
+    this.props.onItemClick?.(e, { examplePath })
   }
 
   handleTitleClick = () => {

@@ -71,7 +71,7 @@ const Message = React.forwardRef(function (props, ref) {
   const ElementType = getComponentType(props)
 
   const handleDismiss = useEventCallback((e) => {
-    _.invoke(props, 'onDismiss', e, props)
+    props.onDismiss?.(e, props)
   })
   const dismissIcon = onDismiss && <Icon name='close' onClick={handleDismiss} />
 

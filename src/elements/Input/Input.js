@@ -72,7 +72,7 @@ const Input = React.forwardRef(function (props, ref) {
   const handleChange = (e) => {
     const newValue = _.get(e, 'target.value')
 
-    _.invoke(props, 'onChange', e, { ...props, value: newValue })
+    props.onChange?.(e, { ...props, value: newValue })
   }
 
   const partitionProps = () => {

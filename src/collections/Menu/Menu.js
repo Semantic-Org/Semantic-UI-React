@@ -102,8 +102,8 @@ const Menu = React.forwardRef(function (props, ref) {
 
               setActiveIndex(itemIndex)
 
-              _.invoke(predefinedProps, 'onClick', e, itemProps)
-              _.invoke(props, 'onItemClick', e, itemProps)
+              predefinedProps.onClick?.(e, itemProps)
+              props.onItemClick?.(e, itemProps)
             },
           }),
         }),

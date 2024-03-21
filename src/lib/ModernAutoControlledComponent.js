@@ -72,7 +72,7 @@ export default class ModernAutoControlledComponent extends React.Component {
     super(...args)
 
     const { autoControlledProps, getAutoControlledStateFromProps } = this.constructor
-    const state = _.invoke(this, 'getInitialAutoControlledState', this.props) || {}
+    const state = this.getInitialAutoControlledState?.(this.props) || {}
 
     if (process.env.NODE_ENV !== 'production') {
       const { defaultProps, name, propTypes, getDerivedStateFromProps } = this.constructor

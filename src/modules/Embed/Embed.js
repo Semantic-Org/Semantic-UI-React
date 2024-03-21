@@ -70,7 +70,7 @@ const Embed = React.forwardRef(function (props, ref) {
   }
 
   const handleClick = (e) => {
-    _.invoke(props, 'onClick', e, { ...props, active: true })
+    props.onClick?.(e, { ...props, active: true })
     if (!active) {
       setActive(true)
     }

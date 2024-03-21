@@ -22,20 +22,20 @@ const Confirm = React.forwardRef(function (props, ref) {
   const rest = getUnhandledProps(Confirm, props)
 
   const handleCancel = (e) => {
-    _.invoke(props, 'onCancel', e, props)
+    props.onCancel?.(e, props)
   }
 
   const handleCancelOverrides = (predefinedProps) => ({
     onClick: (e, buttonProps) => {
-      _.invoke(predefinedProps, 'onClick', e, buttonProps)
+      predefinedProps.onClick?.(e, buttonProps)
       handleCancel(e)
     },
   })
 
   const handleConfirmOverrides = (predefinedProps) => ({
     onClick: (e, buttonProps) => {
-      _.invoke(predefinedProps, 'onClick', e, buttonProps)
-      _.invoke(props, 'onConfirm', e, props)
+      predefinedProps.onClick?.(e, buttonProps)
+      props.onConfirm?.(e, props)
     },
   })
 

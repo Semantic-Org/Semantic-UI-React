@@ -37,7 +37,7 @@ const DropdownItem = React.forwardRef(function (props, ref) {
   } = props
 
   const handleClick = (e) => {
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
   }
 
   const classes = cx(
