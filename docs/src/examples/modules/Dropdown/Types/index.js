@@ -26,7 +26,14 @@ const DropdownTypesExamples = () => (
       description='A selection dropdown can allow a user to search through a large list of choices.'
       examplePath='modules/Dropdown/Types/DropdownExampleSearchSelection'
     />
-    <ComponentExample examplePath='modules/Dropdown/Types/DropdownExampleSearchSelectionTwo' />
+    <ComponentExample
+      title='Search Selection with Text'
+      examplePath='modules/Dropdown/Types/DropdownExampleSearchSelectionTwo'
+    />
+    <ComponentExample
+      title='Search Selection with Icon'
+      examplePath='modules/Dropdown/Types/DropdownExampleSearchSelectionIcon'
+    />
     {/* Possibly add state selection example. */}
     <ComponentExample
       title='Multiple Selection'

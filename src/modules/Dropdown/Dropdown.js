@@ -39,7 +39,7 @@ const getKeyAndValues = (options) =>
   options ? options.map((option) => _.pick(option, ['key', 'value'])) : options
 
 function renderItemContent(item) {
-  const { flag, image, text } = item
+  const { flag, image, icon, text } = item
 
   // TODO: remove this in v3
   // This maintains compatibility with Shorthand API in v1 as this might be called in "Label.create()"
@@ -52,6 +52,7 @@ function renderItemContent(item) {
       <>
         {Flag.create(flag)}
         {Image.create(image)}
+        {Icon.create(icon)}
 
         {text}
       </>
