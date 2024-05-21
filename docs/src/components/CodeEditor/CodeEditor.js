@@ -150,6 +150,7 @@ class CodeEditor extends React.Component {
 
 CodeEditor.propTypes = {
   active: PropTypes.bool,
+  onChange: PropTypes.func,
   showCursor: PropTypes.bool,
   value: PropTypes.string.isRequired,
 }

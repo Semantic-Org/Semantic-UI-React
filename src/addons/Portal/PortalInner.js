@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import { createPortal } from 'react-dom'

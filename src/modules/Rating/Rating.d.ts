@@ -33,6 +33,13 @@ export interface StrictRatingProps {
   maxRating?: number | string
 
   /**
+   * Called after user moves cursor out of element.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   */
+  onMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void
+
+  /**
    * Called after user selects a new rating.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.

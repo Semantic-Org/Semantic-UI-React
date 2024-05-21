@@ -48,6 +48,14 @@ export interface StrictIconProps {
   /** Name of the icon. */
   name?: SemanticICONS
 
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: IconProps) => void
+
   /** Icon can rotated. */
   rotated?: 'clockwise' | 'counterclockwise'
 

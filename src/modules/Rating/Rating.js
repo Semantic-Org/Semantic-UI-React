@@ -137,6 +137,13 @@ Rating.propTypes = {
   maxRating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
   /**
+   * Called after user moves cursor out of element.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   */
+  onMouseLeave: PropTypes.func,
+
+  /**
    * Called after user selects a new rating.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.

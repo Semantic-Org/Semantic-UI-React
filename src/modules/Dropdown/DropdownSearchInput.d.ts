@@ -14,6 +14,14 @@ export interface StrictDropdownSearchInputProps {
   /** Additional classes. */
   className?: string
 
+  /**
+   * Called on change.
+   *
+   * @param {SyntheticEvent} event - The React SyntheticEvent object
+   * @param {object} data - All props and the event value.
+   */
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, data: DropdownSearchInputProps) => void
+
   /** An input can receive focus. */
   tabIndex?: number | string
 

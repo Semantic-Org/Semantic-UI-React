@@ -1,6 +1,5 @@
 import { EventListener, documentRef } from '@fluentui/react-component-event-listener'
 import cx from 'clsx'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
