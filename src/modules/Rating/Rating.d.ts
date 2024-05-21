@@ -37,7 +37,7 @@ export interface StrictRatingProps {
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    */
-  onMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void
+  onMouseLeave?: (event: React.MouseEvent<HTMLDivElement>) => void
 
   /**
    * Called after user selects a new rating.
