@@ -70962,7 +70962,7 @@ var MDXContent = exports.default = /*#__PURE__*/function (_React$Component) {
       name: "inlineCode",
       components: components,
       parentName: "h2"
-    }, "Visibity"), " component"), /*#__PURE__*/_react.default.createElement(_semanticUiReact.Message, {
+    }, "Visibility"), " component"), /*#__PURE__*/_react.default.createElement(_semanticUiReact.Message, {
       compact: true,
       content: "You will be affected if you use `Visibility` component.",
       header: "Risk: high",
