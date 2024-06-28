@@ -20,7 +20,7 @@ const Document = ({ Body, children, Head, Html, siteData: { dev, versions } }) =
       />
 
       <script src='https://cdn.jsdelivr.net/npm/core-js-bundle/minified.js' />
-      <script src='https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver' />
+      <script src='https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=IntersectionObserver' />
       <script
         src={`https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${versions.anchor}/anchor.min.js`}
       />
