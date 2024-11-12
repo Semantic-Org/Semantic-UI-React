@@ -124,6 +124,7 @@ const Popup = React.forwardRef(function (props, ref) {
     eventsEnabled = true,
     flowing,
     header,
+    hideOnScroll,
     inverted,
     offset,
     pinned = false,
@@ -179,8 +180,8 @@ const Popup = React.forwardRef(function (props, ref) {
     _.invoke(props, 'onOpen', e, { ...props, open: true })
   }
 
-  const hideOnScroll = (e) => {
-    debug('hideOnScroll()')
+  const handleHideOnScroll = (e) => {
+    debug('handleHideOnScroll()')
 
     // Do not hide the popup when scroll comes from inside the popup
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/4305
@@ -253,7 +254,7 @@ const Popup = React.forwardRef(function (props, ref) {
         ) : (
           children
         )}
-        {hideOnScroll && <EventStack on={hideOnScroll} name='scroll' target='window' />}
+        {hideOnScroll && <EventStack on={handleHideOnScroll} name='scroll' target='window' />}
       </ElementType>
     )
 
