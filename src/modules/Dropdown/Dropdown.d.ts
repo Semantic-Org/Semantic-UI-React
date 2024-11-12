@@ -28,6 +28,11 @@ export interface StrictDropdownProps {
    */
   allowAdditions?: boolean
 
+  /**
+   * Allow user to trigger onChange events even when reselecting same value.
+   */
+  allowReselection?: boolean
+
   /** A Dropdown can reduce its complexity. */
   basic?: boolean
 

@@ -78,6 +78,11 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleAdditionLabelComponent'
     />
     <ComponentExample
+      title='Allow Reselection'
+      description='Using allowReselection to trigger onChange events even when reselecting same value.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleAllowReselection'
+    />
+    <ComponentExample
       title='Trigger'
       description='A dropdown can render a node in place of the text.'
       examplePath='modules/Dropdown/Usage/DropdownExampleTrigger'
