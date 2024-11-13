@@ -450,10 +450,15 @@ class DropdownInner extends Component {
 
   handleMouseDown = (e) => {
     debug('handleMouseDown()')
+    const { open } = this.state
 
     this.isMouseDown = true
     _.invoke(this.props, 'onMouseDown', e, this.props)
     document.addEventListener('mouseup', this.handleDocumentMouseUp)
+
+    if (open) {
+      _.invoke(this.ref.current, 'focus')
+    }
   }
 
   handleDocumentMouseUp = () => {
