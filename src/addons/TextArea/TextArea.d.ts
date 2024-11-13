@@ -29,7 +29,7 @@ export interface StrictTextAreaProps {
   rows?: number | string
 
   /** The value of the textarea. */
-  value?: number | string
+  value?: string
 }
 
 declare const TextArea: ForwardRefComponent<TextAreaProps, HTMLTextAreaElement>

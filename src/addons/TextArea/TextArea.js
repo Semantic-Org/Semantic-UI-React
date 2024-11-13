@@ -34,7 +34,7 @@ const TextArea = React.forwardRef(function (props, ref) {
       onInput={handleInput}
       ref={elementRef}
       rows={rows}
-      value={value}
+      value={value !== undefined ? String(value) : ''}
     />
   )
 })
