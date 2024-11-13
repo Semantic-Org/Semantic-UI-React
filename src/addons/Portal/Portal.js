@@ -9,6 +9,7 @@ import {
   doesNodeContainClick,
   makeDebugger,
   useAutoControlledValue,
+  useEventCallback,
 } from '../../lib'
 import useTrigger from './utils/useTrigger'
 import PortalInner from './PortalInner'
@@ -74,12 +75,12 @@ function Portal(props) {
     return setTimeout(() => openPortal(eventClone), delay || 0)
   }
 
-  const closePortal = (e) => {
+  const closePortal = useEventCallback((e) => {
     debug('close()')
 
     setOpen(false)
     _.invoke(props, 'onClose', e, { ...props, open: false })
-  }
+  })
 
   const closePortalWithTimeout = (e, delay) => {
     debug('closeWithTimeout()', delay)
