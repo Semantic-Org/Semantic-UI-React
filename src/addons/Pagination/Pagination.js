@@ -55,7 +55,7 @@ const Pagination = React.forwardRef(function (props, ref) {
     }
 
     setActivePage(nextActivePage)
-    _.invoke(props, 'onPageChange', e, { ...props, activePage: nextActivePage })
+    _.invoke(props, 'onPageChange', e, props, nextActivePage)
   }
 
   const handleItemOverrides = (active, type, value) => (predefinedProps) => ({

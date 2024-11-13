@@ -1,1 +1,1 @@
-export { default, SearchProps, StrictSearchProps, SearchResultData } from './Search'
+export { default, SearchProps, StrictSearchProps } from './Search'

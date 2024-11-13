@@ -170,7 +170,7 @@ describe('Input', () => {
   })
 
   describe('onChange', () => {
-    it('is called with (e, data) on change', () => {
+    it('is called on change', () => {
       const onChange = sandbox.spy()
       const e = { target: { value: 'name' } }
       const props = { 'data-foo': 'bar', onChange }
@@ -180,10 +180,10 @@ describe('Input', () => {
       wrapper.find('input').simulate('change', e)
 
       onChange.should.have.been.calledOnce()
-      onChange.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      onChange.should.have.been.calledWithMatch(e, props, e.target.value)
     })
 
-    it('is called with (e, data) on change when using children', () => {
+    it('is called on change when using children', () => {
       const onChange = sandbox.spy()
       const e = { target: { value: 'name' } }
       const props = { 'data-foo': 'bar', onChange }
@@ -197,7 +197,7 @@ describe('Input', () => {
       wrapper.find('input').simulate('change', e)
 
       onChange.should.have.been.calledOnce()
-      onChange.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      onChange.should.have.been.calledWithMatch(e, props, e.target.value)
     })
   })
 

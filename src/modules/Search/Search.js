@@ -152,14 +152,14 @@ class SearchInner extends Component {
     debug('handleResultSelect()')
     debug(result)
 
-    _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
+    _.invoke(this.props, 'onResultSelect', e, this.props, result)
   }
 
   handleSelectionChange = (e) => {
     debug('handleSelectionChange()')
 
     const result = this.getSelectedResult()
-    _.invoke(this.props, 'onSelectionChange', e, { ...this.props, result })
+    _.invoke(this.props, 'onSelectionChange', e, this.props, result)
   }
 
   closeOnEscape = (e) => {
@@ -282,7 +282,7 @@ class SearchInner extends Component {
     const { open } = this.state
     const newQuery = e.target.value
 
-    _.invoke(this.props, 'onSearchChange', e, { ...this.props, value: newQuery })
+    _.invoke(this.props, 'onSearchChange', e, this.props, newQuery)
 
     // open search dropdown on search query
     if (newQuery.length < minCharacters) {

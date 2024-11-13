@@ -74,21 +74,28 @@ function TransitionablePortal(props) {
     setPortalOpen(true)
   }
 
-  const handleTransitionHide = (nothing, data) => {
+  const handleTransitionHide = (nothing, data, status) => {
     debug('handleTransitionHide()')
 
     setTransitionVisible(false)
-    _.invoke(props, 'onClose', null, { ...data, portalOpen: false, transitionVisible: false })
-    _.invoke(props, 'onHide', null, { ...data, portalOpen, transitionVisible: false })
+    _.invoke(props, 'onClose', null, data, {
+      transitionStatus: status,
+      portalOpen: false,
+      transitionVisible: false,
+    })
+    _.invoke(props, 'onHide', null, data, {
+      transitionStatus: status,
+      portalOpen,
+      transitionVisible: false,
+    })
   }
 
-  const handleTransitionStart = (nothing, data) => {
+  const handleTransitionStart = (nothing, data, status) => {
     debug('handleTransitionStart()')
-    const { status } = data
     const nextTransitionVisible = status === TRANSITION_STATUS_ENTERING
 
-    _.invoke(props, 'onStart', null, {
-      ...data,
+    _.invoke(props, 'onStart', null, data, {
+      transitionStatus: status,
       portalOpen,
       transitionVisible: nextTransitionVisible,
     })
@@ -99,8 +106,8 @@ function TransitionablePortal(props) {
     }
 
     setTransitionVisible(nextTransitionVisible)
-    _.invoke(props, 'onOpen', null, {
-      ...data,
+    _.invoke(props, 'onOpen', null, data, {
+      transitionStatus: status,
       transitionVisible: nextTransitionVisible,
       portalOpen: true,
     })

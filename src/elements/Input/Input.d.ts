@@ -60,9 +60,10 @@ export interface StrictInputProps {
    * Called on change.
    *
    * @param {ChangeEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and a proposed value.
+   * @param {object} props - All props.
+   * @param {string} value - The value of the input.
    */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, props: InputProps, value: string) => void
 
   /** An Input can vary in size. */
   size?: 'mini' | 'small' | 'large' | 'big' | 'huge' | 'massive'
@@ -75,10 +76,6 @@ export interface StrictInputProps {
 
   /** The HTML input type. */
   type?: string
-}
-
-export interface InputOnChangeData extends InputProps {
-  value: string
 }
 
 declare const Input: ForwardRefComponent<InputProps, HTMLInputElement>

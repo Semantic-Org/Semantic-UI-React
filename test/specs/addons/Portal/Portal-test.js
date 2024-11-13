@@ -181,7 +181,7 @@ describe('Portal', () => {
 
       wrapper.find('#trigger').simulate('click')
       onOpen.should.have.been.calledOnce()
-      onOpen.should.have.been.calledWithMatch({}, { open: true })
+      onOpen.should.have.been.calledWithMatch({}, {}, true)
     })
   })
 
@@ -196,7 +196,7 @@ describe('Portal', () => {
 
       domEvent.click(document.body)
       onClose.should.have.been.called()
-      onClose.should.have.been.calledWithMatch({}, { open: false })
+      onClose.should.have.been.calledWithMatch({}, {}, false)
     })
   })
 

@@ -254,12 +254,7 @@ export {
   StrictImageGroupProps,
 } from './dist/commonjs/elements/Image/ImageGroup'
 
-export {
-  default as Input,
-  InputProps,
-  InputOnChangeData,
-  StrictInputProps,
-} from './dist/commonjs/elements/Input'
+export { default as Input, InputProps, StrictInputProps } from './dist/commonjs/elements/Input'
 
 export { default as Label, LabelProps, StrictLabelProps } from './dist/commonjs/elements/Label'
 export {
@@ -431,7 +426,6 @@ export {
 export {
   default as Dropdown,
   DropdownProps,
-  DropdownOnSearchChangeData,
   StrictDropdownProps,
 } from './dist/commonjs/modules/Dropdown'
 export {
@@ -514,12 +508,7 @@ export {
   StrictRatingIconProps,
 } from './dist/commonjs/modules/Rating/RatingIcon'
 
-export {
-  default as Search,
-  SearchProps,
-  SearchResultData,
-  StrictSearchProps,
-} from './dist/commonjs/modules/Search'
+export { default as Search, SearchProps, StrictSearchProps } from './dist/commonjs/modules/Search'
 export {
   default as SearchCategory,
   SearchCategoryProps,

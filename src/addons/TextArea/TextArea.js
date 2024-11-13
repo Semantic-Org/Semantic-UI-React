@@ -15,13 +15,13 @@ const TextArea = React.forwardRef(function (props, ref) {
   const handleChange = (e) => {
     const newValue = _.get(e, 'target.value')
 
-    _.invoke(props, 'onChange', e, { ...props, value: newValue })
+    _.invoke(props, 'onChange', e, props, newValue)
   }
 
   const handleInput = (e) => {
     const newValue = _.get(e, 'target.value')
 
-    _.invoke(props, 'onInput', e, { ...props, value: newValue })
+    _.invoke(props, 'onInput', e, props, newValue)
   }
 
   const rest = getUnhandledProps(TextArea, props)

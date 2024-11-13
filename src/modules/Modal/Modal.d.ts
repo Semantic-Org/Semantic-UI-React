@@ -62,41 +62,43 @@ export interface StrictModalProps extends StrictPortalProps {
    * Action onClick handler when using shorthand `actions`.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onActionClick?: (event: React.MouseEvent<HTMLElement>, data: ModalProps) => void
+  onActionClick?: (event: React.MouseEvent<HTMLElement>, props: ModalProps) => void
 
   /**
    * Called when a close event happens.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
+   * @param {boolean} open - Whether the modal is displayed.
    */
-  onClose?: (event: React.MouseEvent<HTMLElement>, data: ModalProps) => void
+  onClose?: (event: React.MouseEvent<HTMLElement>, props: ModalProps, open: boolean) => void
 
   /**
    * Called when the portal is mounted on the DOM.
    *
    * @param {null}
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onMount?: (nothing: null, data: ModalProps) => void
+  onMount?: (nothing: null, props: ModalProps) => void
 
   /**
    * Called when an open event happens.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} props - All props.
+   * @param {boolean} open - Whether the modal is displayed.
    */
-  onOpen?: (event: React.MouseEvent<HTMLElement>, data: ModalProps) => void
+  onOpen?: (event: React.MouseEvent<HTMLElement>, props: ModalProps, open: boolean) => void
 
   /**
    * Called when the portal is unmounted from the DOM.
    *
    * @param {null}
-   * @param {object} data - All props.
+   * @param {object} props - All props.
    */
-  onUnmount?: (nothing: null, data: ModalProps) => void
+  onUnmount?: (nothing: null, props: ModalProps) => void
 
   /** Controls whether or not the Modal is displayed. */
   open?: boolean

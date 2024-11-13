@@ -13,17 +13,27 @@ export interface StrictTextAreaProps {
    * Called on change.
    *
    * @param {SyntheticEvent} event - The React SyntheticEvent object
-   * @param {object} data - All props and the event value.
+   * @param {object} props - All props.
+   * @param {string} value - The value of the textarea.
    */
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, data: TextAreaProps) => void
+  onChange?: (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    props: TextAreaProps,
+    value: string,
+  ) => void
 
   /**
    * Called on input.
    *
    * @param {SyntheticEvent} event - The React SyntheticEvent object
-   * @param {object} data - All props and the event value.
+   * @param {object} props - All props.
+   * @param {string} value - The value of the textarea.
    */
-  onInput?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaProps) => void
+  onInput?: (
+    event: React.FormEvent<HTMLTextAreaElement>,
+    props: TextAreaProps,
+    value: string,
+  ) => void
 
   /** Indicates row count for a TextArea. */
   rows?: number | string

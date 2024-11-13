@@ -24,7 +24,7 @@ describe('Pagination', () => {
   })
 
   describe('onPageChange', () => {
-    it('is called with (e, data) when clicked on a pagination item', () => {
+    it('is called when clicked a pagination item is clicked', () => {
       const onPageChange = sandbox.spy()
       const onPageItemClick = sandbox.spy()
 
@@ -40,7 +40,7 @@ describe('Pagination', () => {
       wrapper.find('PaginationItem').at(4).simulate('click')
 
       onPageChange.should.have.been.calledOnce()
-      onPageChange.should.have.been.calledWithMatch({ type: 'click' }, { activePage: 3 })
+      onPageChange.should.have.been.calledWithMatch({ type: 'click' }, {}, 3)
       onPageItemClick.should.have.been.calledOnce()
       onPageItemClick.should.have.been.calledWithMatch({ type: 'click' }, { value: 3 })
     })

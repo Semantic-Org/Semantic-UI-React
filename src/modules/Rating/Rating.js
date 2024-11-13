@@ -58,7 +58,7 @@ const Rating = React.forwardRef(function (props, ref) {
     setRating(newRating)
     setIsSelecting(false)
 
-    _.invoke(props, 'onRate', e, { ...props, rating: newRating })
+    _.invoke(props, 'onRate', e, props, newRating)
   }
 
   const handleIconMouseEnter = (e, { index }) => {
