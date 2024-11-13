@@ -1,4 +1,3 @@
-import EventStack from '@semantic-ui-react/event-stack'
 import cx from 'clsx'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
@@ -14,9 +13,9 @@ import {
   getUnhandledProps,
   makeDebugger,
   SUI,
+  useIsomorphicLayoutEffect,
   useKeyOnly,
   useKeyOrValueAndKey,
-  useIsomorphicLayoutEffect,
   useMergedRefs,
   usePrevious,
 } from '../../lib'
@@ -180,23 +179,38 @@ const Popup = React.forwardRef(function (props, ref) {
     _.invoke(props, 'onOpen', e, { ...props, open: true })
   }
 
-  const handleHideOnScroll = (e) => {
-    debug('handleHideOnScroll()')
-
-    // Do not hide the popup when scroll comes from inside the popup
-    // https://github.com/Semantic-Org/Semantic-UI-React/issues/4305
-    if (_.isElement(e.target) && elementRef.current.contains(e.target)) {
+  React.useEffect(() => {
+    if (!hideOnScroll || closed || disabled) {
       return
     }
+    const abortController = new AbortController()
 
-    setClosed(true)
+    window.addEventListener(
+      'scroll',
+      (e) => {
+        debug('handleHideOnScroll()')
 
-    timeoutId.current = setTimeout(() => {
-      setClosed(false)
-    }, 50)
+        // Do not hide the popup when scroll comes from inside the popup
+        // https://github.com/Semantic-Org/Semantic-UI-React/issues/4305
+        if (_.isElement(e.target) && elementRef.current.contains(e.target)) {
+          return
+        }
 
-    handleClose(e)
-  }
+        setClosed(true)
+
+        timeoutId.current = setTimeout(() => {
+          setClosed(false)
+        }, 50)
+
+        handleClose(e)
+      },
+      { signal: abortController.signal },
+    )
+
+    return () => {
+      abortController.abort()
+    }
+  }, [closed, disabled, elementRef, handleClose, hideOnScroll])
 
   const handlePortalMount = (e) => {
     debug('handlePortalMount()')
@@ -254,7 +268,6 @@ const Popup = React.forwardRef(function (props, ref) {
         ) : (
           children
         )}
-        {hideOnScroll && <EventStack on={handleHideOnScroll} name='scroll' target='window' />}
       </ElementType>
     )
 
