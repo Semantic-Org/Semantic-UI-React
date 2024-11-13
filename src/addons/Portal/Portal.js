@@ -38,6 +38,7 @@ function Portal(props) {
     openOnTriggerClick = true,
     openOnTriggerFocus,
     openOnTriggerMouseEnter,
+    hideOnScroll = false,
   } = props
 
   const [open, setOpen] = useAutoControlledValue({
@@ -145,6 +146,33 @@ function Portal(props) {
   // ----------------------------------------
   // Component Event Handlers
   // ----------------------------------------
+
+  React.useEffect(() => {
+    if (!hideOnScroll) {
+      return
+    }
+    const abortController = new AbortController()
+
+    window.addEventListener(
+      'scroll',
+      (e) => {
+        debug('handleHideOnScroll()')
+
+        // Do not hide the popup when scroll comes from inside the popup
+        // https://github.com/Semantic-Org/Semantic-UI-React/issues/4305
+        if (_.isElement(e.target) && contentRef.current.contains(e.target)) {
+          return
+        }
+
+        closePortal(e)
+      },
+      { signal: abortController.signal, passive: true },
+    )
+
+    return () => {
+      abortController.abort()
+    }
+  }, [closePortal, hideOnScroll])
 
   const handlePortalMouseLeave = (e) => {
     if (!closeOnPortalMouseLeave) {
@@ -317,6 +345,9 @@ Portal.propTypes = {
 
   /** Event pool namespace that is used to handle component events */
   eventPool: PropTypes.string,
+
+  /** Hide the Popup when scrolling the window. */
+  hideOnScroll: PropTypes.bool,
 
   /** The node where the portal should mount. */
   mountNode: PropTypes.any,

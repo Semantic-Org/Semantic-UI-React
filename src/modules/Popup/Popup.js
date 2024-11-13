@@ -71,11 +71,10 @@ function getPortalProps(props) {
  * Splits props for Portal & Popup.
  *
  * @param {Object} unhandledProps
- * @param {Boolean} closed
  * @param {Boolean} disabled
  */
-function partitionPortalProps(unhandledProps, closed, disabled) {
-  if (closed || disabled) {
+function partitionPortalProps(unhandledProps, disabled) {
+  if (disabled) {
     return {}
   }
 
@@ -123,7 +122,7 @@ const Popup = React.forwardRef(function (props, ref) {
     eventsEnabled = true,
     flowing,
     header,
-    hideOnScroll,
+    hideOnScroll = false,
     inverted,
     offset,
     pinned = false,
@@ -138,18 +137,11 @@ const Popup = React.forwardRef(function (props, ref) {
     wide,
   } = props
 
-  const [closed, setClosed] = React.useState(false)
-
   const unhandledProps = getUnhandledProps(Popup, props)
-  const { contentRestProps, portalRestProps } = partitionPortalProps(
-    unhandledProps,
-    closed,
-    disabled,
-  )
+  const { contentRestProps, portalRestProps } = partitionPortalProps(unhandledProps, disabled)
 
   const elementRef = useMergedRefs(ref)
   const positionUpdate = React.useRef()
-  const timeoutId = React.useRef()
   const triggerRef = React.useRef()
   const zIndexWasSynced = React.useRef(false)
 
@@ -158,12 +150,6 @@ const Popup = React.forwardRef(function (props, ref) {
   // ----------------------------------------
 
   usePositioningEffect(popperDependencies, positionUpdate)
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timeoutId.current)
-    }
-  }, [])
 
   // ----------------------------------------
   // Handlers
@@ -178,39 +164,6 @@ const Popup = React.forwardRef(function (props, ref) {
     debug('handleOpen()')
     _.invoke(props, 'onOpen', e, { ...props, open: true })
   }
-
-  React.useEffect(() => {
-    if (!hideOnScroll || closed || disabled) {
-      return
-    }
-    const abortController = new AbortController()
-
-    window.addEventListener(
-      'scroll',
-      (e) => {
-        debug('handleHideOnScroll()')
-
-        // Do not hide the popup when scroll comes from inside the popup
-        // https://github.com/Semantic-Org/Semantic-UI-React/issues/4305
-        if (_.isElement(e.target) && elementRef.current.contains(e.target)) {
-          return
-        }
-
-        setClosed(true)
-
-        timeoutId.current = setTimeout(() => {
-          setClosed(false)
-        }, 50)
-
-        handleClose(e)
-      },
-      { signal: abortController.signal },
-    )
-
-    return () => {
-      abortController.abort()
-    }
-  }, [closed, disabled, elementRef, handleClose, hideOnScroll])
 
   const handlePortalMount = (e) => {
     debug('handlePortalMount()')
@@ -289,7 +242,7 @@ const Popup = React.forwardRef(function (props, ref) {
     })
   }
 
-  if (closed || disabled) {
+  if (disabled) {
     return trigger
   }
 
@@ -348,6 +301,7 @@ const Popup = React.forwardRef(function (props, ref) {
       onUnmount={handlePortalUnmount}
       trigger={trigger}
       triggerRef={triggerRef}
+      hideOnScroll={hideOnScroll}
     >
       <Popper
         modifiers={modifiers}
