@@ -1,6 +1,5 @@
 import cx from 'clsx'
 import keyboardKey from 'keyboard-key'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -22,24 +21,24 @@ const RatingIcon = React.forwardRef(function (props, ref) {
   const ElementType = getComponentType(props, { defaultAs: 'i' })
 
   const handleClick = (e) => {
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
   }
 
   const handleKeyUp = (e) => {
-    _.invoke(props, 'onKeyUp', e, props)
+    props.onKeyUp?.(e, props)
 
     switch (keyboardKey.getCode(e)) {
       case keyboardKey.Enter:
       case keyboardKey.Spacebar:
         e.preventDefault()
-        _.invoke(props, 'onClick', e, props)
+        props.onClick?.(e, props)
         break
       default:
     }
   }
 
   const handleMouseEnter = (e) => {
-    _.invoke(props, 'onMouseEnter', e, props)
+    props.onMouseEnter?.(e, props)
   }
 
   return (

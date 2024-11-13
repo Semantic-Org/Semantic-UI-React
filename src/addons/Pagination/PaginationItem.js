@@ -1,5 +1,4 @@
 import keyboardKey from 'keyboard-key'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -14,14 +13,14 @@ const PaginationItem = React.forwardRef(function (props, ref) {
   const disabled = props.disabled || type === 'ellipsisItem'
 
   const handleClick = (e) => {
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
   }
 
   const handleKeyDown = (e) => {
-    _.invoke(props, 'onKeyDown', e, props)
+    props.onKeyDown?.(e, props)
 
     if (keyboardKey.getCode(e) === keyboardKey.Enter) {
-      _.invoke(props, 'onClick', e, props)
+      props.onClick?.(e, props)
     }
   }
 

@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -12,8 +11,8 @@ import AccordionContent from './AccordionContent'
 class AccordionPanel extends Component {
   handleTitleOverrides = (predefinedProps) => ({
     onClick: (e, titleProps) => {
-      _.invoke(predefinedProps, 'onClick', e, titleProps)
-      _.invoke(this.props, 'onTitleClick', e, titleProps)
+      predefinedProps.onClick?.(e, titleProps)
+      this.props.onTitleClick?.(e, titleProps)
     },
   })
 

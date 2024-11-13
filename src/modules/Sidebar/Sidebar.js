@@ -1,6 +1,5 @@
 import { EventListener, documentRef } from '@fluentui/react-component-event-listener'
 import cx from 'clsx'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -71,7 +70,7 @@ const Sidebar = React.forwardRef((props, ref) => {
     const callback = visible ? 'onShow' : 'onHidden'
 
     resetAnimationTick()
-    _.invoke(props, callback, null, props)
+    props[callback]?.(null, props)
   })
 
   const handleAnimationStart = useEventCallback(() => {
@@ -85,13 +84,13 @@ const Sidebar = React.forwardRef((props, ref) => {
       return
     }
 
-    _.invoke(props, callback, null, props)
+    props[callback]?.(null, props)
   })
 
   const handleDocumentClick = (e) => {
     if (!doesNodeContainClick(elementRef.current, e)) {
       skipNextCallback.current = true
-      _.invoke(props, 'onHide', e, { ...props, visible: false })
+      props.onHide?.(e, { ...props, visible: false })
     }
   }
 

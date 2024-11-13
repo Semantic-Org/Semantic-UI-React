@@ -1,5 +1,4 @@
 import cx from 'clsx'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -70,7 +69,7 @@ const Embed = React.forwardRef(function (props, ref) {
   }
 
   const handleClick = (e) => {
-    _.invoke(props, 'onClick', e, { ...props, active: true })
+    props.onClick?.(e, { ...props, active: true })
     if (!active) {
       setActive(true)
     }

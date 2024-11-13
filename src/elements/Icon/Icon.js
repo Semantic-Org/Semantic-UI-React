@@ -83,7 +83,7 @@ const Icon = React.forwardRef(function (props, ref) {
       return
     }
 
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
   })
 
   return (
@@ -134,6 +134,14 @@ Icon.propTypes = {
 
   /** Name of the icon. */
   name: customPropTypes.suggest(SUI.ALL_ICONS_IN_ALL_CONTEXTS),
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: PropTypes.func,
 
   /** Icon can rotated. */
   rotated: PropTypes.oneOf(['clockwise', 'counterclockwise']),

@@ -1,6 +1,5 @@
 import EventStack from '@semantic-ui-react/event-stack'
 import keyboardKey from 'keyboard-key'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -61,7 +60,7 @@ function Portal(props) {
     debug('open()')
 
     setOpen(true)
-    _.invoke(props, 'onOpen', e, { ...props, open: true })
+    props.onOpen?.(e, { ...props, open: true })
   }
 
   const openPortalWithTimeout = (e, delay) => {
@@ -77,7 +76,7 @@ function Portal(props) {
     debug('close()')
 
     setOpen(false)
-    _.invoke(props, 'onClose', e, { ...props, open: false })
+    props.onClose?.(e, { ...props, open: false })
   }
 
   const closePortalWithTimeout = (e, delay) => {
@@ -173,12 +172,12 @@ function Portal(props) {
 
   const handleTriggerBlur = (e, ...rest) => {
     // Call original event handler
-    _.invoke(trigger, 'props.onBlur', e, ...rest)
+    trigger.props.onBlur?.(e, ...rest)
 
     // IE 11 doesn't work with relatedTarget in blur events
     const target = e.relatedTarget || document.activeElement
     // do not close if focus is given to the portal
-    const didFocusPortal = _.invoke(contentRef.current, 'contains', target)
+    const didFocusPortal = contentRef.current.contains?.(target)
 
     if (!closeOnTriggerBlur || didFocusPortal) {
       return
@@ -190,7 +189,7 @@ function Portal(props) {
 
   const handleTriggerClick = (e, ...rest) => {
     // Call original event handler
-    _.invoke(trigger, 'props.onClick', e, ...rest)
+    trigger.props.onClick?.(e, ...rest)
 
     if (open && closeOnTriggerClick) {
       debug('handleTriggerClick() - close')
@@ -204,7 +203,7 @@ function Portal(props) {
 
   const handleTriggerFocus = (e, ...rest) => {
     // Call original event handler
-    _.invoke(trigger, 'props.onFocus', e, ...rest)
+    trigger.props.onFocus?.(e, ...rest)
 
     if (!openOnTriggerFocus) {
       return
@@ -218,7 +217,7 @@ function Portal(props) {
     clearTimeout(mouseEnterTimer.current)
 
     // Call original event handler
-    _.invoke(trigger, 'props.onMouseLeave', e, ...rest)
+    trigger.props.onMouseLeave?.(e, ...rest)
 
     if (!closeOnTriggerMouseLeave) {
       return
@@ -232,7 +231,7 @@ function Portal(props) {
     clearTimeout(mouseLeaveTimer.current)
 
     // Call original event handler
-    _.invoke(trigger, 'props.onMouseEnter', e, ...rest)
+    trigger.props.onMouseEnter?.(e, ...rest)
 
     if (!openOnTriggerMouseEnter) {
       return
@@ -248,8 +247,8 @@ function Portal(props) {
         <>
           <PortalInner
             mountNode={mountNode}
-            onMount={() => _.invoke(props, 'onMount', null, props)}
-            onUnmount={() => _.invoke(props, 'onUnmount', null, props)}
+            onMount={() => props.onMount?.(null, props)}
+            onUnmount={() => props.onUnmount?.(null, props)}
             ref={contentRef}
           >
             {children}

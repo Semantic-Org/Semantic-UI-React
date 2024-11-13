@@ -58,7 +58,7 @@ const Rating = React.forwardRef(function (props, ref) {
     setRating(newRating)
     setIsSelecting(false)
 
-    _.invoke(props, 'onRate', e, { ...props, rating: newRating })
+    props.onRate?.(e, { ...props, rating: newRating })
   }
 
   const handleIconMouseEnter = (e, { index }) => {
@@ -71,7 +71,7 @@ const Rating = React.forwardRef(function (props, ref) {
   }
 
   const handleMouseLeave = (...args) => {
-    _.invoke(props, 'onMouseLeave', ...args)
+    props.onMouseLeave?.(...args)
 
     if (disabled) {
       return
@@ -135,6 +135,13 @@ Rating.propTypes = {
 
   /** The total number of icons. */
   maxRating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /**
+   * Called after user moves cursor out of element.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   */
+  onMouseLeave: PropTypes.func,
 
   /**
    * Called after user selects a new rating.

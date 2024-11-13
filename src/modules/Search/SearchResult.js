@@ -1,5 +1,4 @@
 import cx from 'clsx'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -35,7 +34,7 @@ const SearchResult = React.forwardRef(function (props, ref) {
   const { active, className, renderer = defaultRenderer } = props
 
   const handleClick = (e) => {
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
   }
 
   const classes = cx(useKeyOnly(active, 'active'), 'result', className)

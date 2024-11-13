@@ -14,7 +14,7 @@ const DropdownSearchInput = React.forwardRef(function (props, ref) {
   const handleChange = (e) => {
     const newValue = _.get(e, 'target.value')
 
-    _.invoke(props, 'onChange', e, { ...props, value: newValue })
+    props.onChange?.(e, { ...props, value: newValue })
   }
 
   const classes = cx('search', className)
@@ -46,6 +46,14 @@ DropdownSearchInput.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /**
+   * Called when the user attempts to change the value.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and proposed value.
+   */
+  onChange: PropTypes.func,
 
   /** An input can receive focus. */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

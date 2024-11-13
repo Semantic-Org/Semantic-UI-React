@@ -1,5 +1,4 @@
 import cx from 'clsx'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -27,7 +26,7 @@ const BreadcrumbSection = React.forwardRef(function (props, ref) {
     },
   })
 
-  const handleClick = useEventCallback((e) => _.invoke(props, 'onClick', e, props))
+  const handleClick = useEventCallback((e) => props.onClick?.(e, props))
 
   return (
     <ElementType {...rest} className={classes} href={href} onClick={handleClick} ref={ref}>

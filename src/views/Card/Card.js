@@ -1,5 +1,4 @@
 import cx from 'clsx'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -61,7 +60,7 @@ const Card = React.forwardRef(function (props, ref) {
   })
 
   const handleClick = useEventCallback((e) => {
-    _.invoke(props, 'onClick', e, props)
+    props.onClick?.(e, props)
   })
 
   if (!childrenUtils.isNil(children)) {
