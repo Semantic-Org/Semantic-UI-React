@@ -172,12 +172,12 @@ const Popup = React.forwardRef(function (props, ref) {
 
   const handleClose = (e) => {
     debug('handleClose()')
-    _.invoke(props, 'onClose', e, { ...props, open: false })
+    props.onClose?.(e, { ...props, open: false })
   }
 
   const handleOpen = (e) => {
     debug('handleOpen()')
-    _.invoke(props, 'onOpen', e, { ...props, open: true })
+    props.onOpen?.(e, { ...props, open: true })
   }
 
   const handleHideOnScroll = (e) => {
@@ -200,14 +200,14 @@ const Popup = React.forwardRef(function (props, ref) {
 
   const handlePortalMount = (e) => {
     debug('handlePortalMount()')
-    _.invoke(props, 'onMount', e, props)
+    props.onMount?.(e, props)
   }
 
   const handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
 
     positionUpdate.current = null
-    _.invoke(props, 'onUnmount', e, props)
+    props.onUnmount?.(e, props)
   }
 
   // ----------------------------------------

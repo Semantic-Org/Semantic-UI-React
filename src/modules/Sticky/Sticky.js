@@ -100,28 +100,28 @@ const Sticky = React.forwardRef(function (props, ref) {
     setBound(newBound)
     setSticky(true)
 
-    _.invoke(props, 'onStick', e, props)
+    props.onStick?.(e, props)
   }
 
   const setUnsticked = (e, newBound) => {
     setBound(newBound)
     setSticky(false)
 
-    _.invoke(props, 'onUnstick', e, props)
+    props.onUnstick?.(e, props)
   }
 
   const stickToContextBottom = (e) => {
     setSticked(e, true)
     togglePushing(true)
 
-    _.invoke(props, 'onBottom', e, props)
+    props.onBottom?.(e, props)
   }
 
   const stickToContextTop = (e) => {
     setUnsticked(e, false)
     togglePushing(false)
 
-    _.invoke(props, 'onTop', e, props)
+    props.onTop?.(e, props)
   }
 
   const stickToScreenBottom = (e) => {

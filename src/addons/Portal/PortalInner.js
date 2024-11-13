@@ -12,8 +12,8 @@ const debug = makeDebugger('PortalInner')
  * An inner component that allows you to render children outside their parent.
  */
 const PortalInner = React.forwardRef(function (props, ref) {
-  const handleMount = useEventCallback(() => _.invoke(props, 'onMount', null, props))
-  const handleUnmount = useEventCallback(() => _.invoke(props, 'onUnmount', null, props))
+  const handleMount = useEventCallback(() => props.onMount?.(null, props))
+  const handleUnmount = useEventCallback(() => props.onUnmount?.(null, props))
 
   const element = usePortalElement(props.children, ref)
 

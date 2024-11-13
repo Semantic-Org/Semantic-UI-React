@@ -7,7 +7,7 @@ class ReferenceProxy {
   }
 
   getBoundingClientRect() {
-    return _.invoke(this.ref.current, 'getBoundingClientRect') || {}
+    return this.ref.current?.getBoundingClientRect?.() || {}
   }
 
   get clientWidth() {

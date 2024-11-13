@@ -16,10 +16,10 @@ const doesNodeContainClick = (node, e) => {
 
   // if there is an e.target and it is in the document, use a simple node.contains() check
   if (e.target) {
-    _.invoke(e.target, 'setAttribute', 'data-suir-click-target', true)
+    e.target.setAttribute?.('data-suir-click-target', true)
 
     if (document.querySelector('[data-suir-click-target=true]')) {
-      _.invoke(e.target, 'removeAttribute', 'data-suir-click-target')
+      e.target.removeAttribute?.('data-suir-click-target')
 
       if (typeof node.contains === 'function') {
         return node.contains(e.target)

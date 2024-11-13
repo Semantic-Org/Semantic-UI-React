@@ -53,7 +53,7 @@ class CarbonAd extends Component {
       // https://github.com/Semantic-Org/Semantic-UI-React/pull/3215
       if (!isLoading) {
         isLoading = true
-        _.invoke(window._carbonads, 'refresh')
+        window._carbonads.refresh?.()
         waitForLoad()
       }
     })
