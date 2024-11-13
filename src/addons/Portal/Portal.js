@@ -152,26 +152,23 @@ function Portal(props) {
     if (!hideOnScroll) {
       return
     }
-    const abortController = new AbortController()
 
-    window.addEventListener(
-      'scroll',
-      (e) => {
-        debug('handleHideOnScroll()')
+    const handleScroll = (e) => {
+      debug('handleHideOnScroll()')
 
-        // Do not hide the popup when scroll comes from inside the popup
-        // https://github.com/Semantic-Org/Semantic-UI-React/issues/4305
-        if (_.isElement(e.target) && contentRef.current.contains(e.target)) {
-          return
-        }
+      // Do not hide the popup when scroll comes from inside the popup
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/4305
+      if (_.isElement(e.target) && contentRef.current.contains(e.target)) {
+        return
+      }
 
-        closePortal(e)
-      },
-      { signal: abortController.signal, passive: true },
-    )
+      closePortal(e)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
-      abortController.abort()
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [closePortal, hideOnScroll])
 
