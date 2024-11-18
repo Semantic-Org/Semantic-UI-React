@@ -8,7 +8,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -17,7 +17,7 @@ import {
 const AccordionContent = React.forwardRef(function (props, ref) {
   const { active, children, className, content } = props
 
-  const classes = cx('content', useKeyOnly(active, 'active'), className)
+  const classes = cx('content', getKeyOnly(active, 'active'), className)
   const rest = getUnhandledProps(AccordionContent, props)
   const ElementType = getComponentType(props)
 

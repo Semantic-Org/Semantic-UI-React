@@ -7,7 +7,7 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
+  getKeyOnly,
   useAutoControlledValue,
 } from '../../lib'
 import RatingIcon from './RatingIcon'
@@ -30,8 +30,8 @@ const Rating = React.forwardRef(function (props, ref) {
     'ui',
     icon,
     size,
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(isSelecting && !disabled && selectedIndex >= 0, 'selected'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(isSelecting && !disabled && selectedIndex >= 0, 'selected'),
     'rating',
     className,
   )

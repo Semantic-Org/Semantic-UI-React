@@ -13,7 +13,7 @@ import {
   getUnhandledProps,
   isBrowser,
   makeDebugger,
-  useKeyOnly,
+  getKeyOnly,
   useAutoControlledValue,
   useMergedRefs,
 } from '../../lib'
@@ -179,9 +179,9 @@ const Modal = React.forwardRef(function (props, ref) {
     const classes = cx(
       'ui',
       size,
-      useKeyOnly(basic, 'basic'),
-      useKeyOnly(legacy, 'legacy'),
-      useKeyOnly(scrolling, 'scrolling'),
+      getKeyOnly(basic, 'basic'),
+      getKeyOnly(legacy, 'legacy'),
+      getKeyOnly(scrolling, 'scrolling'),
       'modal transition visible active',
       className,
     )

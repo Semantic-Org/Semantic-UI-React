@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -17,8 +17,8 @@ const DimmerDimmable = React.forwardRef(function (props, ref) {
   const { blurring, className, children, content, dimmed } = props
 
   const classes = cx(
-    useKeyOnly(blurring, 'blurring'),
-    useKeyOnly(dimmed, 'dimmed'),
+    getKeyOnly(blurring, 'blurring'),
+    getKeyOnly(dimmed, 'dimmed'),
     'dimmable',
     className,
   )

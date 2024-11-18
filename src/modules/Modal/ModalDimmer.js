@@ -9,7 +9,7 @@ import {
   getComponentType,
   getUnhandledProps,
   useClassNamesOnNode,
-  useKeyOnly,
+  getKeyOnly,
   useMergedRefs,
 } from '../../lib'
 
@@ -22,15 +22,15 @@ const ModalDimmer = React.forwardRef(function (props, ref) {
 
   const classes = cx(
     'ui',
-    useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(!centered, 'top aligned'),
+    getKeyOnly(inverted, 'inverted'),
+    getKeyOnly(!centered, 'top aligned'),
     'page modals dimmer transition visible active',
     className,
   )
   const bodyClasses = cx(
     'dimmable dimmed',
-    useKeyOnly(blurring, 'blurring'),
-    useKeyOnly(scrolling, 'scrolling'),
+    getKeyOnly(blurring, 'blurring'),
+    getKeyOnly(scrolling, 'scrolling'),
   )
 
   const rest = getUnhandledProps(ModalDimmer, props)

@@ -10,8 +10,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useValueAndKey,
+  getKeyOnly,
+  getValueAndKey,
 } from '../../lib'
 
 /**
@@ -129,14 +129,14 @@ const Progress = React.forwardRef(function (props, ref) {
     'ui',
     color,
     size,
-    useKeyOnly(active || indicating, 'active'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(error, 'error'),
-    useKeyOnly(indicating, 'indicating'),
-    useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(success || isAutoSuccess, 'success'),
-    useKeyOnly(warning, 'warning'),
-    useValueAndKey(attached, 'attached'),
+    getKeyOnly(active || indicating, 'active'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(error, 'error'),
+    getKeyOnly(indicating, 'indicating'),
+    getKeyOnly(inverted, 'inverted'),
+    getKeyOnly(success || isAutoSuccess, 'success'),
+    getKeyOnly(warning, 'warning'),
+    getValueAndKey(attached, 'attached'),
     'progress',
     className,
   )

@@ -9,7 +9,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
   useEventCallback,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -20,7 +20,7 @@ import Icon from '../../elements/Icon'
 const AccordionTitle = React.forwardRef(function (props, ref) {
   const { active, children, className, content, icon } = props
 
-  const classes = cx(useKeyOnly(active, 'active'), 'title', className)
+  const classes = cx(getKeyOnly(active, 'active'), 'title', className)
   const rest = getUnhandledProps(AccordionTitle, props)
   const ElementType = getComponentType(props)
   const iconValue = _.isNil(icon) ? 'dropdown' : icon

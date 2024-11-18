@@ -9,7 +9,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
   useAutoControlledValue,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -107,7 +107,7 @@ const Embed = React.forwardRef(function (props, ref) {
     )
   }
 
-  const classes = cx('ui', aspectRatio, useKeyOnly(active, 'active'), 'embed', className)
+  const classes = cx('ui', aspectRatio, getKeyOnly(active, 'active'), 'embed', className)
   const rest = getUnhandledProps(Embed, props)
   const ElementType = getComponentType(props)
 

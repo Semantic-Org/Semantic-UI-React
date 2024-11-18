@@ -11,7 +11,7 @@ import {
   htmlInputAttrs,
   makeDebugger,
   partitionHTMLProps,
-  useKeyOnly,
+  getKeyOnly,
   useAutoControlledValue,
   useMergedRefs,
   useIsomorphicLayoutEffect,
@@ -179,16 +179,16 @@ const Checkbox = React.forwardRef(function (props, ref) {
 
   const classes = cx(
     'ui',
-    useKeyOnly(checked, 'checked'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(indeterminate, 'indeterminate'),
+    getKeyOnly(checked, 'checked'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(indeterminate, 'indeterminate'),
     // auto apply fitted class to compact white space when there is no label
     // https://semantic-ui.com/modules/checkbox.html#fitted
-    useKeyOnly(_.isNil(label), 'fitted'),
-    useKeyOnly(radio, 'radio'),
-    useKeyOnly(readOnly, 'read-only'),
-    useKeyOnly(slider, 'slider'),
-    useKeyOnly(toggle, 'toggle'),
+    getKeyOnly(_.isNil(label), 'fitted'),
+    getKeyOnly(radio, 'radio'),
+    getKeyOnly(readOnly, 'read-only'),
+    getKeyOnly(slider, 'slider'),
+    getKeyOnly(toggle, 'toggle'),
     'checkbox',
     className,
   )

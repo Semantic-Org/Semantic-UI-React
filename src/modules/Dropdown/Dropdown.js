@@ -16,8 +16,8 @@ import {
   makeDebugger,
   objectDiff,
   setRef,
-  useKeyOnly,
-  useKeyOrValueAndKey,
+  getKeyOnly,
+  getKeyOrValueAndKey,
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
@@ -1051,7 +1051,7 @@ class DropdownInner extends Component {
     // single menu child
     if (!childrenUtils.isNil(children)) {
       const menuChild = Children.only(children)
-      const className = cx(direction, useKeyOnly(open, 'visible'), menuChild.props.className)
+      const className = cx(direction, getKeyOnly(open, 'visible'), menuChild.props.className)
 
       return cloneElement(menuChild, { className, ...ariaOptions })
     }
@@ -1096,31 +1096,31 @@ class DropdownInner extends Component {
     // Classes
     const classes = cx(
       'ui',
-      useKeyOnly(open, 'active visible'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(error, 'error'),
-      useKeyOnly(loading, 'loading'),
+      getKeyOnly(open, 'active visible'),
+      getKeyOnly(disabled, 'disabled'),
+      getKeyOnly(error, 'error'),
+      getKeyOnly(loading, 'loading'),
 
-      useKeyOnly(basic, 'basic'),
-      useKeyOnly(button, 'button'),
-      useKeyOnly(compact, 'compact'),
-      useKeyOnly(fluid, 'fluid'),
-      useKeyOnly(floating, 'floating'),
-      useKeyOnly(inline, 'inline'),
+      getKeyOnly(basic, 'basic'),
+      getKeyOnly(button, 'button'),
+      getKeyOnly(compact, 'compact'),
+      getKeyOnly(fluid, 'fluid'),
+      getKeyOnly(floating, 'floating'),
+      getKeyOnly(inline, 'inline'),
       // TODO: consider augmentation to render Dropdowns as Button/Menu, solves icon/link item issues
       // https://github.com/Semantic-Org/Semantic-UI-React/issues/401#issuecomment-240487229
       // TODO: the icon class is only required when a dropdown is a button
-      // useKeyOnly(icon, 'icon'),
-      useKeyOnly(labeled, 'labeled'),
-      useKeyOnly(item, 'item'),
-      useKeyOnly(multiple, 'multiple'),
-      useKeyOnly(search, 'search'),
-      useKeyOnly(selection, 'selection'),
-      useKeyOnly(simple, 'simple'),
-      useKeyOnly(scrolling, 'scrolling'),
-      useKeyOnly(upward, 'upward'),
+      // getKeyOnly(icon, 'icon'),
+      getKeyOnly(labeled, 'labeled'),
+      getKeyOnly(item, 'item'),
+      getKeyOnly(multiple, 'multiple'),
+      getKeyOnly(search, 'search'),
+      getKeyOnly(selection, 'selection'),
+      getKeyOnly(simple, 'simple'),
+      getKeyOnly(scrolling, 'scrolling'),
+      getKeyOnly(upward, 'upward'),
 
-      useKeyOrValueAndKey(pointing, 'pointing'),
+      getKeyOrValueAndKey(pointing, 'pointing'),
       'dropdown',
       className,
     )
