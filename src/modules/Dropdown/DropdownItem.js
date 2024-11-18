@@ -10,7 +10,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 import Flag from '../../elements/Flag'
 import Icon from '../../elements/Icon'
@@ -41,9 +41,9 @@ const DropdownItem = React.forwardRef(function (props, ref) {
   }
 
   const classes = cx(
-    useKeyOnly(active, 'active'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(selected, 'selected'),
+    getKeyOnly(active, 'active'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(selected, 'selected'),
     'item',
     className,
   )

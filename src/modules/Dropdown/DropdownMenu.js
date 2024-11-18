@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -18,8 +18,8 @@ const DropdownMenu = React.forwardRef(function (props, ref) {
 
   const classes = cx(
     direction,
-    useKeyOnly(open, 'visible'),
-    useKeyOnly(scrolling, 'scrolling'),
+    getKeyOnly(open, 'visible'),
+    getKeyOnly(scrolling, 'scrolling'),
     'menu transition',
     className,
   )
