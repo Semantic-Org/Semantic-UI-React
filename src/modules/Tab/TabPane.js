@@ -8,7 +8,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 import Segment from '../../elements/Segment/Segment'
 
@@ -18,7 +18,7 @@ import Segment from '../../elements/Segment/Segment'
 const TabPane = React.forwardRef(function (props, ref) {
   const { active = true, children, className, content, loading } = props
 
-  const classes = cx(useKeyOnly(active, 'active'), useKeyOnly(loading, 'loading'), 'tab', className)
+  const classes = cx(getKeyOnly(active, 'active'), getKeyOnly(loading, 'loading'), 'tab', className)
   const rest = getUnhandledProps(TabPane, props)
   const ElementType = getComponentType(props, { defaultAs: Segment })
 
