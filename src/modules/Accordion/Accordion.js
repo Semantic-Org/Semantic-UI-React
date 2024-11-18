@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { getUnhandledProps, useKeyOnly } from '../../lib'
+import { getUnhandledProps, getKeyOnly } from '../../lib'
 import AccordionAccordion from './AccordionAccordion'
 import AccordionContent from './AccordionContent'
 import AccordionPanel from './AccordionPanel'
@@ -16,9 +16,9 @@ const Accordion = React.forwardRef(function (props, ref) {
 
   const classes = cx(
     'ui',
-    useKeyOnly(fluid, 'fluid'),
-    useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(styled, 'styled'),
+    getKeyOnly(fluid, 'fluid'),
+    getKeyOnly(inverted, 'inverted'),
+    getKeyOnly(styled, 'styled'),
     className,
   )
   const rest = getUnhandledProps(Accordion, props)
