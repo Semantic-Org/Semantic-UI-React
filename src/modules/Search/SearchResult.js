@@ -8,7 +8,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 // Note: You technically only need the 'content' wrapper when there's an
@@ -38,7 +38,7 @@ const SearchResult = React.forwardRef(function (props, ref) {
     _.invoke(props, 'onClick', e, props)
   }
 
-  const classes = cx(useKeyOnly(active, 'active'), 'result', className)
+  const classes = cx(getKeyOnly(active, 'active'), 'result', className)
   const rest = getUnhandledProps(SearchResult, props)
   const ElementType = getComponentType(props)
 

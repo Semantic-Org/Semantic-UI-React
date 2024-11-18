@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 import SearchCategoryLayout from './SearchCategoryLayout'
 
@@ -21,7 +21,7 @@ const SearchCategory = React.forwardRef(function (props, ref) {
     renderer = ({ name }) => name,
   } = props
 
-  const classes = cx(useKeyOnly(active, 'active'), 'category', className)
+  const classes = cx(getKeyOnly(active, 'active'), 'category', className)
   const rest = getUnhandledProps(SearchCategory, props)
   const ElementType = getComponentType(props)
 

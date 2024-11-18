@@ -17,8 +17,8 @@ import {
   objectDiff,
   partitionHTMLProps,
   SUI,
-  useKeyOnly,
-  useValueAndKey,
+  getKeyOnly,
+  getValueAndKey,
 } from '../../lib'
 import Input from '../../elements/Input'
 import SearchCategory from './SearchCategory'
@@ -509,11 +509,11 @@ class SearchInner extends Component {
       open && 'active visible',
       size,
       searchClasses,
-      useKeyOnly(category, 'category'),
-      useKeyOnly(focus, 'focus'),
-      useKeyOnly(fluid, 'fluid'),
-      useKeyOnly(loading, 'loading'),
-      useValueAndKey(aligned, 'aligned'),
+      getKeyOnly(category, 'category'),
+      getKeyOnly(focus, 'focus'),
+      getKeyOnly(fluid, 'fluid'),
+      getKeyOnly(loading, 'loading'),
+      getValueAndKey(aligned, 'aligned'),
       'search',
       className,
     )
