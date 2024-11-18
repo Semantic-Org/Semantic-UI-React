@@ -5,12 +5,19 @@ export * as childrenUtils from './childrenUtils'
 
 export {
   useKeyOnly,
+  getKeyOnly,
   useKeyOrValueAndKey,
+  getKeyOrValueAndKey,
   useValueAndKey,
+  getValueAndKey,
   useMultipleProp,
+  getMultipleProp,
   useTextAlignProp,
+  getTextAlignProp,
   useVerticalAlignProp,
+  getVerticalAlignProp,
   useWidthProp,
+  getWidthProp,
 } from './classNameBuilders'
 
 export * as customPropTypes from './customPropTypes'
