@@ -8,7 +8,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -19,8 +19,8 @@ const ModalContent = React.forwardRef(function (props, ref) {
 
   const classes = cx(
     className,
-    useKeyOnly(image, 'image'),
-    useKeyOnly(scrolling, 'scrolling'),
+    getKeyOnly(image, 'image'),
+    getKeyOnly(scrolling, 'scrolling'),
     'content',
   )
   const rest = getUnhandledProps(ModalContent, props)
