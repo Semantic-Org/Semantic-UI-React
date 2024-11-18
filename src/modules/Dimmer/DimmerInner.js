@@ -9,8 +9,8 @@ import {
   doesNodeContainClick,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
-  useVerticalAlignProp,
+  getKeyOnly,
+  getVerticalAlignProp,
   useIsomorphicLayoutEffect,
   useMergedRefs,
 } from '../../lib'
@@ -58,12 +58,12 @@ const DimmerInner = React.forwardRef(function (props, ref) {
 
   const classes = cx(
     'ui',
-    useKeyOnly(active, 'active transition visible'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(page, 'page'),
-    useKeyOnly(simple, 'simple'),
-    useVerticalAlignProp(verticalAlign),
+    getKeyOnly(active, 'active transition visible'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(inverted, 'inverted'),
+    getKeyOnly(page, 'page'),
+    getKeyOnly(simple, 'simple'),
+    getVerticalAlignProp(verticalAlign),
     'dimmer',
     className,
   )
