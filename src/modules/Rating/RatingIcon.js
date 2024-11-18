@@ -4,7 +4,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { getComponentType, getUnhandledProps, useKeyOnly } from '../../lib'
+import { getComponentType, getUnhandledProps, getKeyOnly } from '../../lib'
 
 /**
  * An internal icon sub-component for Rating component
@@ -13,8 +13,8 @@ const RatingIcon = React.forwardRef(function (props, ref) {
   const { active, className, selected } = props
 
   const classes = cx(
-    useKeyOnly(active, 'active'),
-    useKeyOnly(selected, 'selected'),
+    getKeyOnly(active, 'active'),
+    getKeyOnly(selected, 'selected'),
     'icon',
     className,
   )
