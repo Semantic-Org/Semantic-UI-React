@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { makeDebugger, normalizeTransitionDuration, SUI, useKeyOnly } from '../../lib'
+import { makeDebugger, normalizeTransitionDuration, SUI, getKeyOnly } from '../../lib'
 import TransitionGroup from './TransitionGroup'
 import {
   computeStatuses,
@@ -125,16 +125,16 @@ export default class Transition extends React.Component {
       return cx(
         animation,
         childClasses,
-        useKeyOnly(animating, 'animating'),
-        useKeyOnly(status === TRANSITION_STATUS_ENTERING, 'in'),
-        useKeyOnly(status === TRANSITION_STATUS_EXITING, 'out'),
-        useKeyOnly(status === TRANSITION_STATUS_EXITED, 'hidden'),
-        useKeyOnly(status !== TRANSITION_STATUS_EXITED, 'visible'),
+        getKeyOnly(animating, 'animating'),
+        getKeyOnly(status === TRANSITION_STATUS_ENTERING, 'in'),
+        getKeyOnly(status === TRANSITION_STATUS_EXITING, 'out'),
+        getKeyOnly(status === TRANSITION_STATUS_EXITED, 'hidden'),
+        getKeyOnly(status !== TRANSITION_STATUS_EXITED, 'visible'),
         'transition',
       )
     }
 
-    return cx(animation, childClasses, useKeyOnly(animating, 'animating transition'))
+    return cx(animation, childClasses, getKeyOnly(animating, 'animating transition'))
   }
 
   computeStyle = () => {
