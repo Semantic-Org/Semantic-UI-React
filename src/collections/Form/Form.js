@@ -3,7 +3,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { getComponentType, getUnhandledProps, SUI, useKeyOnly, useWidthProp } from '../../lib'
+import { getComponentType, getUnhandledProps, SUI, getKeyOnly, getWidthProp } from '../../lib'
 import FormButton from './FormButton'
 import FormCheckbox from './FormCheckbox'
 import FormDropdown from './FormDropdown'
@@ -50,14 +50,14 @@ const Form = React.forwardRef(function (props, ref) {
   const classes = cx(
     'ui',
     size,
-    useKeyOnly(error, 'error'),
-    useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(loading, 'loading'),
-    useKeyOnly(reply, 'reply'),
-    useKeyOnly(success, 'success'),
-    useKeyOnly(unstackable, 'unstackable'),
-    useKeyOnly(warning, 'warning'),
-    useWidthProp(widths, null, true),
+    getKeyOnly(error, 'error'),
+    getKeyOnly(inverted, 'inverted'),
+    getKeyOnly(loading, 'loading'),
+    getKeyOnly(reply, 'reply'),
+    getKeyOnly(success, 'success'),
+    getKeyOnly(unstackable, 'unstackable'),
+    getKeyOnly(warning, 'warning'),
+    getWidthProp(widths, null, true),
     'form',
     className,
   )

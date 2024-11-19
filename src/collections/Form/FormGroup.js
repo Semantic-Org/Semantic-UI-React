@@ -7,8 +7,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useWidthProp,
+  getKeyOnly,
+  getWidthProp,
 } from '../../lib'
 
 /**
@@ -19,12 +19,12 @@ const FormGroup = React.forwardRef((props, ref) => {
   const { children, className, disabled, error, grouped, inline, unstackable, widths } = props
 
   const classes = cx(
-    useKeyOnly(error, 'error'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(grouped, 'grouped'),
-    useKeyOnly(inline, 'inline'),
-    useKeyOnly(unstackable, 'unstackable'),
-    useWidthProp(widths, null, true),
+    getKeyOnly(error, 'error'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(grouped, 'grouped'),
+    getKeyOnly(inline, 'inline'),
+    getKeyOnly(unstackable, 'unstackable'),
+    getWidthProp(widths, null, true),
     'fields',
     className,
   )
