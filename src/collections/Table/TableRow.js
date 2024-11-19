@@ -10,9 +10,9 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useTextAlignProp,
-  useVerticalAlignProp,
+  getKeyOnly,
+  getTextAlignProp,
+  getVerticalAlignProp,
 } from '../../lib'
 import TableCell from './TableCell'
 
@@ -36,14 +36,14 @@ const TableRow = React.forwardRef(function (props, ref) {
   } = props
 
   const classes = cx(
-    useKeyOnly(active, 'active'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(error, 'error'),
-    useKeyOnly(negative, 'negative'),
-    useKeyOnly(positive, 'positive'),
-    useKeyOnly(warning, 'warning'),
-    useTextAlignProp(textAlign),
-    useVerticalAlignProp(verticalAlign),
+    getKeyOnly(active, 'active'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(error, 'error'),
+    getKeyOnly(negative, 'negative'),
+    getKeyOnly(positive, 'positive'),
+    getKeyOnly(warning, 'warning'),
+    getTextAlignProp(textAlign),
+    getVerticalAlignProp(verticalAlign),
     className,
   )
   const rest = getUnhandledProps(TableRow, props)
