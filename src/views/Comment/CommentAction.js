@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -16,7 +16,7 @@ import {
 const CommentAction = React.forwardRef(function (props, ref) {
   const { active, className, children, content } = props
 
-  const classes = cx(useKeyOnly(active, 'active'), className)
+  const classes = cx(getKeyOnly(active, 'active'), className)
   const rest = getUnhandledProps(CommentAction, props)
   const ElementType = getComponentType(props, { defaultAs: 'a' })
 
