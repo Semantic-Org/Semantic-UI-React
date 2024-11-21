@@ -22,11 +22,6 @@ import { numberToWord } from './numberToWord'
 export const getKeyOnly = (val, key) => val && key
 
 /**
- * @deprecated
- */
-export const useKeyOnly = getKeyOnly
-
-/**
  * Props that require both a key and value to create a className.
  * @param {*} val A props value
  * @param {string} key A props key
@@ -36,11 +31,6 @@ export const useKeyOnly = getKeyOnly
  * <div class="ui left corner label"></div>
  */
 export const getValueAndKey = (val, key) => val && val !== true && `${val} ${key}`
-
-/**
- * @deprecated
- */
-export const useValueAndKey = getValueAndKey
 
 /**
  * Props whose key will be used in className, or value and key.
@@ -56,11 +46,6 @@ export const useValueAndKey = getValueAndKey
  * <div class="ui left pointing label"></div>
  */
 export const getKeyOrValueAndKey = (val, key) => val && (val === true ? key : `${val} ${key}`)
-
-/**
- * @deprecated
- */
-export const useKeyOrValueAndKey = getKeyOrValueAndKey
 
 //
 // Prop to className exceptions
@@ -90,11 +75,6 @@ export const getMultipleProp = (val, key) => {
 }
 
 /**
- * @deprecated
- */
-export const useMultipleProp = getMultipleProp
-
-/**
  * The "textAlign" prop follows the useValueAndKey except when the value is "justified'.
  * In this case, only the class "justified" is used, ignoring the "aligned" class.
  * @param {*} val The value of the "textAlign" prop
@@ -111,11 +91,6 @@ export const getTextAlignProp = (val) =>
   val === 'justified' ? 'justified' : getValueAndKey(val, 'aligned')
 
 /**
- * @deprecated
- */
-export const useTextAlignProp = getTextAlignProp
-
-/**
  * The "verticalAlign" prop follows the useValueAndKey.
  *
  * @param {*} val The value of the "verticalAlign" prop
@@ -125,11 +100,6 @@ export const useTextAlignProp = getTextAlignProp
  * <div class="ui middle aligned grid"></div>
  */
 export const getVerticalAlignProp = (val) => getValueAndKey(val, 'aligned')
-
-/**
- * @deprecated
- */
-export const useVerticalAlignProp = getVerticalAlignProp
 
 /**
  * Create "X", "X wide" and "equal width" classNames.
@@ -162,8 +132,3 @@ export const getWidthProp = (val, widthClass = '', canEqual = false) => {
   }
   return numberToWord(val)
 }
-
-/**
- * @deprecated
- */
-export const useWidthProp = getWidthProp
