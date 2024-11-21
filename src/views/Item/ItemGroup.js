@@ -8,8 +8,8 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
-  useKeyOrValueAndKey,
+  getKeyOnly,
+  getKeyOrValueAndKey,
 } from '../../lib'
 import Item from './Item'
 
@@ -21,10 +21,10 @@ const ItemGroup = React.forwardRef(function (props, ref) {
 
   const classes = cx(
     'ui',
-    useKeyOnly(divided, 'divided'),
-    useKeyOnly(link, 'link'),
-    useKeyOnly(unstackable, 'unstackable'),
-    useKeyOrValueAndKey(relaxed, 'relaxed'),
+    getKeyOnly(divided, 'divided'),
+    getKeyOnly(link, 'link'),
+    getKeyOnly(unstackable, 'unstackable'),
+    getKeyOrValueAndKey(relaxed, 'relaxed'),
     'items',
     className,
   )
