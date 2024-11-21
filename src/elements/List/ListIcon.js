@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { createShorthandFactory, getUnhandledProps, SUI, useVerticalAlignProp } from '../../lib'
+import { createShorthandFactory, getUnhandledProps, SUI, getVerticalAlignProp } from '../../lib'
 import Icon from '../Icon/Icon'
 
 /**
@@ -10,7 +10,7 @@ import Icon from '../Icon/Icon'
  */
 const ListIcon = React.forwardRef(function (props, ref) {
   const { className, verticalAlign } = props
-  const classes = cx(useVerticalAlignProp(verticalAlign), className)
+  const classes = cx(getVerticalAlignProp(verticalAlign), className)
   const rest = getUnhandledProps(ListIcon, props)
 
   return <Icon {...rest} className={classes} ref={ref} />
