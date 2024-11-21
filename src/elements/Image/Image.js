@@ -12,10 +12,10 @@ import {
   htmlImageProps,
   partitionHTMLProps,
   SUI,
-  useKeyOnly,
-  useKeyOrValueAndKey,
-  useValueAndKey,
-  useVerticalAlignProp,
+  getKeyOnly,
+  getKeyOrValueAndKey,
+  getValueAndKey,
+  getVerticalAlignProp,
 } from '../../lib'
 import Dimmer from '../../modules/Dimmer'
 import Label from '../Label/Label'
@@ -51,20 +51,20 @@ const Image = React.forwardRef(function (props, ref) {
   } = props
 
   const classes = cx(
-    useKeyOnly(ui, 'ui'),
+    getKeyOnly(ui, 'ui'),
     size,
-    useKeyOnly(avatar, 'avatar'),
-    useKeyOnly(bordered, 'bordered'),
-    useKeyOnly(circular, 'circular'),
-    useKeyOnly(centered, 'centered'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(fluid, 'fluid'),
-    useKeyOnly(hidden, 'hidden'),
-    useKeyOnly(inline, 'inline'),
-    useKeyOnly(rounded, 'rounded'),
-    useKeyOrValueAndKey(spaced, 'spaced'),
-    useValueAndKey(floated, 'floated'),
-    useVerticalAlignProp(verticalAlign, 'aligned'),
+    getKeyOnly(avatar, 'avatar'),
+    getKeyOnly(bordered, 'bordered'),
+    getKeyOnly(circular, 'circular'),
+    getKeyOnly(centered, 'centered'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(fluid, 'fluid'),
+    getKeyOnly(hidden, 'hidden'),
+    getKeyOnly(inline, 'inline'),
+    getKeyOnly(rounded, 'rounded'),
+    getKeyOrValueAndKey(spaced, 'spaced'),
+    getValueAndKey(floated, 'floated'),
+    getVerticalAlignProp(verticalAlign, 'aligned'),
     'image',
     className,
   )
