@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -19,8 +19,8 @@ const Advertisement = React.forwardRef(function (props, ref) {
   const classes = cx(
     'ui',
     unit,
-    useKeyOnly(centered, 'centered'),
-    useKeyOnly(test, 'test'),
+    getKeyOnly(centered, 'centered'),
+    getKeyOnly(test, 'test'),
     'ad',
     className,
   )
