@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 import RevealContent from './RevealContent'
 
@@ -20,9 +20,9 @@ const Reveal = React.forwardRef(function (props, ref) {
   const classes = cx(
     'ui',
     animated,
-    useKeyOnly(active, 'active'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(instant, 'instant'),
+    getKeyOnly(active, 'active'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(instant, 'instant'),
     'reveal',
     className,
   )

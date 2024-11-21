@@ -9,7 +9,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
   useEventCallback,
 } from '../../lib'
 import Image from '../Image'
@@ -37,9 +37,9 @@ const ListItem = React.forwardRef(function (props, ref) {
 
   const ElementType = getComponentType(props)
   const classes = cx(
-    useKeyOnly(active, 'active'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(ElementType !== 'li', 'item'),
+    getKeyOnly(active, 'active'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(ElementType !== 'li', 'item'),
     className,
   )
   const rest = getUnhandledProps(ListItem, props)

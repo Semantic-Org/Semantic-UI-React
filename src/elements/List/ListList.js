@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -18,7 +18,7 @@ const ListList = React.forwardRef(function (props, ref) {
 
   const rest = getUnhandledProps(ListList, props)
   const ElementType = getComponentType(props)
-  const classes = cx(useKeyOnly(ElementType !== 'ul' && ElementType !== 'ol', 'list'), className)
+  const classes = cx(getKeyOnly(ElementType !== 'ul' && ElementType !== 'ol', 'list'), className)
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>

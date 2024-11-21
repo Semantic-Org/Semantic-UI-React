@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 import PlaceholderHeader from './PlaceholderHeader'
 import PlaceholderImage from './PlaceholderImage'
@@ -21,8 +21,8 @@ const Placeholder = React.forwardRef(function (props, ref) {
   const { children, className, content, fluid, inverted } = props
   const classes = cx(
     'ui',
-    useKeyOnly(fluid, 'fluid'),
-    useKeyOnly(inverted, 'inverted'),
+    getKeyOnly(fluid, 'fluid'),
+    getKeyOnly(inverted, 'inverted'),
     'placeholder',
     className,
   )
