@@ -9,7 +9,7 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -21,11 +21,11 @@ const SegmentGroup = React.forwardRef(function (props, ref) {
   const classes = cx(
     'ui',
     size,
-    useKeyOnly(compact, 'compact'),
-    useKeyOnly(horizontal, 'horizontal'),
-    useKeyOnly(piled, 'piled'),
-    useKeyOnly(raised, 'raised'),
-    useKeyOnly(stacked, 'stacked'),
+    getKeyOnly(compact, 'compact'),
+    getKeyOnly(horizontal, 'horizontal'),
+    getKeyOnly(piled, 'piled'),
+    getKeyOnly(raised, 'raised'),
+    getKeyOnly(stacked, 'stacked'),
     'segments',
     className,
   )
