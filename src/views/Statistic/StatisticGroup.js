@@ -9,8 +9,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useWidthProp,
+  getKeyOnly,
+  getWidthProp,
 } from '../../lib'
 import Statistic from './Statistic'
 
@@ -24,9 +24,9 @@ const StatisticGroup = React.forwardRef(function (props, ref) {
     'ui',
     color,
     size,
-    useKeyOnly(horizontal, 'horizontal'),
-    useKeyOnly(inverted, 'inverted'),
-    useWidthProp(widths),
+    getKeyOnly(horizontal, 'horizontal'),
+    getKeyOnly(inverted, 'inverted'),
+    getWidthProp(widths),
     'statistics',
     className,
   )

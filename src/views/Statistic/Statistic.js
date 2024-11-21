@@ -10,8 +10,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useValueAndKey,
+  getKeyOnly,
+  getValueAndKey,
 } from '../../lib'
 import StatisticGroup from './StatisticGroup'
 import StatisticLabel from './StatisticLabel'
@@ -39,9 +39,9 @@ const Statistic = React.forwardRef(function (props, ref) {
     'ui',
     color,
     size,
-    useValueAndKey(floated, 'floated'),
-    useKeyOnly(horizontal, 'horizontal'),
-    useKeyOnly(inverted, 'inverted'),
+    getValueAndKey(floated, 'floated'),
+    getKeyOnly(horizontal, 'horizontal'),
+    getKeyOnly(inverted, 'inverted'),
     'statistic',
     className,
   )
