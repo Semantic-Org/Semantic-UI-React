@@ -10,9 +10,9 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useKeyOrValueAndKey,
-  useValueAndKey,
+  getKeyOnly,
+  getKeyOrValueAndKey,
+  getValueAndKey,
   useMergedRefs,
 } from '../../lib'
 import Icon from '../Icon/Icon'
@@ -103,24 +103,24 @@ const Button = React.forwardRef(function (props, ref) {
   const baseClasses = cx(
     color,
     size,
-    useKeyOnly(active, 'active'),
-    useKeyOnly(basic, 'basic'),
-    useKeyOnly(circular, 'circular'),
-    useKeyOnly(compact, 'compact'),
-    useKeyOnly(fluid, 'fluid'),
-    useKeyOnly(hasIconClass(props), 'icon'),
-    useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(loading, 'loading'),
-    useKeyOnly(negative, 'negative'),
-    useKeyOnly(positive, 'positive'),
-    useKeyOnly(primary, 'primary'),
-    useKeyOnly(secondary, 'secondary'),
-    useKeyOnly(toggle, 'toggle'),
-    useKeyOrValueAndKey(animated, 'animated'),
-    useKeyOrValueAndKey(attached, 'attached'),
+    getKeyOnly(active, 'active'),
+    getKeyOnly(basic, 'basic'),
+    getKeyOnly(circular, 'circular'),
+    getKeyOnly(compact, 'compact'),
+    getKeyOnly(fluid, 'fluid'),
+    getKeyOnly(hasIconClass(props), 'icon'),
+    getKeyOnly(inverted, 'inverted'),
+    getKeyOnly(loading, 'loading'),
+    getKeyOnly(negative, 'negative'),
+    getKeyOnly(positive, 'positive'),
+    getKeyOnly(primary, 'primary'),
+    getKeyOnly(secondary, 'secondary'),
+    getKeyOnly(toggle, 'toggle'),
+    getKeyOrValueAndKey(animated, 'animated'),
+    getKeyOrValueAndKey(attached, 'attached'),
   )
-  const labeledClasses = cx(useKeyOrValueAndKey(labelPosition || !!label, 'labeled'))
-  const wrapperClasses = cx(useKeyOnly(disabled, 'disabled'), useValueAndKey(floated, 'floated'))
+  const labeledClasses = cx(getKeyOrValueAndKey(labelPosition || !!label, 'labeled'))
+  const wrapperClasses = cx(getKeyOnly(disabled, 'disabled'), getValueAndKey(floated, 'floated'))
 
   const rest = getUnhandledProps(Button, props)
   const ElementType = getComponentType(props, {
