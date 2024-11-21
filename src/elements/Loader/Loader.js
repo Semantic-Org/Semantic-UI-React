@@ -8,8 +8,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useKeyOrValueAndKey,
+  getKeyOnly,
+  getKeyOrValueAndKey,
 } from '../../lib'
 
 /**
@@ -32,12 +32,12 @@ const Loader = React.forwardRef(function (props, ref) {
   const classes = cx(
     'ui',
     size,
-    useKeyOnly(active, 'active'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(indeterminate, 'indeterminate'),
-    useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(children || content, 'text'),
-    useKeyOrValueAndKey(inline, 'inline'),
+    getKeyOnly(active, 'active'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(indeterminate, 'indeterminate'),
+    getKeyOnly(inverted, 'inverted'),
+    getKeyOnly(children || content, 'text'),
+    getKeyOrValueAndKey(inline, 'inline'),
     'loader',
     className,
   )
