@@ -10,8 +10,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useTextAlignProp,
+  getKeyOnly,
+  getTextAlignProp,
 } from '../../lib'
 import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
@@ -23,7 +23,7 @@ import CardMeta from './CardMeta'
 const CardContent = React.forwardRef(function (props, ref) {
   const { children, className, content, description, extra, header, meta, textAlign } = props
 
-  const classes = cx(useKeyOnly(extra, 'extra'), useTextAlignProp(textAlign), 'content', className)
+  const classes = cx(getKeyOnly(extra, 'extra'), getTextAlignProp(textAlign), 'content', className)
   const rest = getUnhandledProps(CardContent, props)
   const ElementType = getComponentType(props)
 

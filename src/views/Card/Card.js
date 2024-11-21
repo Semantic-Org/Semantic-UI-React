@@ -9,7 +9,7 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
+  getKeyOnly,
   useEventCallback,
 } from '../../lib'
 import Image from '../../elements/Image'
@@ -44,10 +44,10 @@ const Card = React.forwardRef(function (props, ref) {
   const classes = cx(
     'ui',
     color,
-    useKeyOnly(centered, 'centered'),
-    useKeyOnly(fluid, 'fluid'),
-    useKeyOnly(link, 'link'),
-    useKeyOnly(raised, 'raised'),
+    getKeyOnly(centered, 'centered'),
+    getKeyOnly(fluid, 'fluid'),
+    getKeyOnly(link, 'link'),
+    getKeyOnly(raised, 'raised'),
     'card',
     className,
   )
