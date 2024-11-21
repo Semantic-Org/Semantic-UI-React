@@ -8,7 +8,7 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -21,8 +21,8 @@ const LabelGroup = React.forwardRef(function (props, ref) {
     'ui',
     color,
     size,
-    useKeyOnly(circular, 'circular'),
-    useKeyOnly(tag, 'tag'),
+    getKeyOnly(circular, 'circular'),
+    getKeyOnly(tag, 'tag'),
     'labels',
     className,
   )

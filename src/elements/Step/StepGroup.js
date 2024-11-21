@@ -10,10 +10,10 @@ import {
   getUnhandledProps,
   numberToWordMap,
   SUI,
-  useKeyOnly,
-  useKeyOrValueAndKey,
-  useValueAndKey,
-  useWidthProp,
+  getKeyOnly,
+  getKeyOrValueAndKey,
+  getValueAndKey,
+  getWidthProp,
 } from '../../lib'
 import Step from './Step'
 
@@ -40,13 +40,13 @@ const StepGroup = React.forwardRef(function (props, ref) {
   const classes = cx(
     'ui',
     size,
-    useKeyOnly(fluid, 'fluid'),
-    useKeyOnly(ordered, 'ordered'),
-    useKeyOnly(unstackable, 'unstackable'),
-    useKeyOnly(vertical, 'vertical'),
-    useKeyOrValueAndKey(attached, 'attached'),
-    useValueAndKey(stackable, 'stackable'),
-    useWidthProp(widths),
+    getKeyOnly(fluid, 'fluid'),
+    getKeyOnly(ordered, 'ordered'),
+    getKeyOnly(unstackable, 'unstackable'),
+    getKeyOnly(vertical, 'vertical'),
+    getKeyOrValueAndKey(attached, 'attached'),
+    getValueAndKey(stackable, 'stackable'),
+    getWidthProp(widths),
     'steps',
     className,
   )

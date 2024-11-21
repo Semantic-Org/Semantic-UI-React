@@ -9,8 +9,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useValueAndKey,
-  useVerticalAlignProp,
+  getValueAndKey,
+  getVerticalAlignProp,
 } from '../../lib'
 import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'
@@ -22,8 +22,8 @@ const ListContent = React.forwardRef(function (props, ref) {
   const { children, className, content, description, floated, header, verticalAlign } = props
 
   const classes = cx(
-    useValueAndKey(floated, 'floated'),
-    useVerticalAlignProp(verticalAlign),
+    getValueAndKey(floated, 'floated'),
+    getVerticalAlignProp(verticalAlign),
     'content',
     className,
   )

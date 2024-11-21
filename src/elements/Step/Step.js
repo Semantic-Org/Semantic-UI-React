@@ -9,7 +9,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
   useEventCallback,
 } from '../../lib'
 import Icon from '../Icon'
@@ -44,10 +44,10 @@ const Step = React.forwardRef(function (props, ref) {
   })
 
   const classes = cx(
-    useKeyOnly(active, 'active'),
-    useKeyOnly(completed, 'completed'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(link, 'link'),
+    getKeyOnly(active, 'active'),
+    getKeyOnly(completed, 'completed'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(link, 'link'),
     'step',
     className,
   )

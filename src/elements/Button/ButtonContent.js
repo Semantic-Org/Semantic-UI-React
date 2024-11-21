@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -17,8 +17,8 @@ const ButtonContent = React.forwardRef(function (props, ref) {
   const { children, className, content, hidden, visible } = props
 
   const classes = cx(
-    useKeyOnly(visible, 'visible'),
-    useKeyOnly(hidden, 'hidden'),
+    getKeyOnly(visible, 'visible'),
+    getKeyOnly(hidden, 'hidden'),
     'content',
     className,
   )

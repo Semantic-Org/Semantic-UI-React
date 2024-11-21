@@ -8,8 +8,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useTextAlignProp,
+  getKeyOnly,
+  getTextAlignProp,
 } from '../../lib'
 
 /**
@@ -19,9 +19,9 @@ const Container = React.forwardRef(function (props, ref) {
   const { children, className, content, fluid, text, textAlign } = props
   const classes = cx(
     'ui',
-    useKeyOnly(text, 'text'),
-    useKeyOnly(fluid, 'fluid'),
-    useTextAlignProp(textAlign),
+    getKeyOnly(text, 'text'),
+    getKeyOnly(fluid, 'fluid'),
+    getTextAlignProp(textAlign),
     'container',
     className,
   )

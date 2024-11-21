@@ -9,8 +9,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useKeyOrValueAndKey,
+  getKeyOnly,
+  getKeyOrValueAndKey,
 } from '../../lib'
 
 /**
@@ -33,10 +33,10 @@ const Rail = React.forwardRef(function (props, ref) {
     'ui',
     position,
     size,
-    useKeyOnly(attached, 'attached'),
-    useKeyOnly(dividing, 'dividing'),
-    useKeyOnly(internal, 'internal'),
-    useKeyOrValueAndKey(close, 'close'),
+    getKeyOnly(attached, 'attached'),
+    getKeyOnly(dividing, 'dividing'),
+    getKeyOnly(internal, 'internal'),
+    getKeyOrValueAndKey(close, 'close'),
     'rail',
     className,
   )
