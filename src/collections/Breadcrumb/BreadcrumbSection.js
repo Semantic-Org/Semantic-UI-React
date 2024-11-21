@@ -9,7 +9,7 @@ import {
   customPropTypes,
   getUnhandledProps,
   getComponentType,
-  useKeyOnly,
+  getKeyOnly,
   useEventCallback,
 } from '../../lib'
 
@@ -19,7 +19,7 @@ import {
 const BreadcrumbSection = React.forwardRef(function (props, ref) {
   const { active, children, className, content, href, link, onClick } = props
 
-  const classes = cx(useKeyOnly(active, 'active'), 'section', className)
+  const classes = cx(getKeyOnly(active, 'active'), 'section', className)
   const rest = getUnhandledProps(BreadcrumbSection, props)
   const ElementType = getComponentType(props, {
     getDefault: () => {

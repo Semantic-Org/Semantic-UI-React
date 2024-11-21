@@ -10,10 +10,10 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useTextAlignProp,
-  useVerticalAlignProp,
-  useWidthProp,
+  getKeyOnly,
+  getTextAlignProp,
+  getVerticalAlignProp,
+  getWidthProp,
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
@@ -41,18 +41,18 @@ const TableCell = React.forwardRef(function (props, ref) {
   } = props
 
   const classes = cx(
-    useKeyOnly(active, 'active'),
-    useKeyOnly(collapsing, 'collapsing'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(error, 'error'),
-    useKeyOnly(negative, 'negative'),
-    useKeyOnly(positive, 'positive'),
-    useKeyOnly(selectable, 'selectable'),
-    useKeyOnly(singleLine, 'single line'),
-    useKeyOnly(warning, 'warning'),
-    useTextAlignProp(textAlign),
-    useVerticalAlignProp(verticalAlign),
-    useWidthProp(width, 'wide'),
+    getKeyOnly(active, 'active'),
+    getKeyOnly(collapsing, 'collapsing'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(error, 'error'),
+    getKeyOnly(negative, 'negative'),
+    getKeyOnly(positive, 'positive'),
+    getKeyOnly(selectable, 'selectable'),
+    getKeyOnly(singleLine, 'single line'),
+    getKeyOnly(warning, 'warning'),
+    getTextAlignProp(textAlign),
+    getVerticalAlignProp(verticalAlign),
+    getWidthProp(width, 'wide'),
     className,
   )
   const rest = getUnhandledProps(TableCell, props)

@@ -10,8 +10,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useWidthProp,
+  getKeyOnly,
+  getWidthProp,
 } from '../../lib'
 import Label from '../../elements/Label'
 import Checkbox from '../../modules/Checkbox'
@@ -44,11 +44,11 @@ const FormField = React.forwardRef(function (props, ref) {
   } = props
 
   const classes = cx(
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(error, 'error'),
-    useKeyOnly(inline, 'inline'),
-    useKeyOnly(required, 'required'),
-    useWidthProp(width, 'wide'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(error, 'error'),
+    getKeyOnly(inline, 'inline'),
+    getKeyOnly(required, 'required'),
+    getWidthProp(width, 'wide'),
     'field',
     className,
   )

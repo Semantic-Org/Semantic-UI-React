@@ -10,8 +10,8 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useKeyOrValueAndKey,
+  getKeyOnly,
+  getKeyOrValueAndKey,
   useEventCallback,
 } from '../../lib'
 import Icon from '../../elements/Icon'
@@ -39,12 +39,12 @@ const MenuItem = React.forwardRef(function (props, ref) {
   const classes = cx(
     color,
     position,
-    useKeyOnly(active, 'active'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(icon === true || (icon && !(name || content)), 'icon'),
-    useKeyOnly(header, 'header'),
-    useKeyOnly(link, 'link'),
-    useKeyOrValueAndKey(fitted, 'fitted'),
+    getKeyOnly(active, 'active'),
+    getKeyOnly(disabled, 'disabled'),
+    getKeyOnly(icon === true || (icon && !(name || content)), 'icon'),
+    getKeyOnly(header, 'header'),
+    getKeyOnly(link, 'link'),
+    getKeyOrValueAndKey(fitted, 'fitted'),
     'item',
     className,
   )

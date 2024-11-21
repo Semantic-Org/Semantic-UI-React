@@ -2,7 +2,7 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { getUnhandledProps, useValueAndKey } from '../../lib'
+import { getUnhandledProps, getValueAndKey } from '../../lib'
 import TableCell from './TableCell'
 
 /**
@@ -11,7 +11,7 @@ import TableCell from './TableCell'
 const TableHeaderCell = React.forwardRef(function (props, ref) {
   const { as = 'th', className, sorted } = props
 
-  const classes = cx(useValueAndKey(sorted, 'sorted'), className)
+  const classes = cx(getValueAndKey(sorted, 'sorted'), className)
   const rest = getUnhandledProps(TableHeaderCell, props)
 
   return <TableCell {...rest} as={as} className={classes} ref={ref} />

@@ -7,11 +7,11 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useMultipleProp,
-  useTextAlignProp,
-  useVerticalAlignProp,
-  useWidthProp,
+  getKeyOnly,
+  getMultipleProp,
+  getTextAlignProp,
+  getVerticalAlignProp,
+  getWidthProp,
 } from '../../lib'
 
 /**
@@ -34,14 +34,14 @@ const GridRow = React.forwardRef(function (props, ref) {
 
   const classes = cx(
     color,
-    useKeyOnly(centered, 'centered'),
-    useKeyOnly(divided, 'divided'),
-    useKeyOnly(stretched, 'stretched'),
-    useMultipleProp(only, 'only'),
-    useMultipleProp(reversed, 'reversed'),
-    useTextAlignProp(textAlign),
-    useVerticalAlignProp(verticalAlign),
-    useWidthProp(columns, 'column', true),
+    getKeyOnly(centered, 'centered'),
+    getKeyOnly(divided, 'divided'),
+    getKeyOnly(stretched, 'stretched'),
+    getMultipleProp(only, 'only'),
+    getMultipleProp(reversed, 'reversed'),
+    getTextAlignProp(textAlign),
+    getVerticalAlignProp(verticalAlign),
+    getWidthProp(columns, 'column', true),
     'row',
     className,
   )
