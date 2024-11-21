@@ -1,5 +1,4 @@
 import EventStack from '@semantic-ui-react/event-stack'
-import keyboardKey from 'keyboard-key'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
@@ -130,18 +129,6 @@ function Portal(props) {
       debug('handleDocumentClick()')
       closePortal(e)
     }
-  }
-
-  const handleEscape = (e) => {
-    if (!closeOnEscape) {
-      return
-    }
-    if (keyboardKey.getCode(e) !== keyboardKey.Escape) {
-      return
-    }
-
-    debug('handleEscape()')
-    closePortal(e)
   }
 
   // ----------------------------------------
@@ -277,6 +264,8 @@ function Portal(props) {
             onMount={() => _.invoke(props, 'onMount', null, props)}
             onUnmount={() => _.invoke(props, 'onUnmount', null, props)}
             ref={contentRef}
+            onClose={closePortal}
+            closeOnEscape={closeOnEscape}
           >
             {children}
           </PortalInner>
@@ -295,7 +284,6 @@ function Portal(props) {
           />
           <EventStack name='mousedown' on={handleDocumentMouseDown} pool={eventPool} />
           <EventStack name='click' on={handleDocumentClick} pool={eventPool} />
-          <EventStack name='keydown' on={handleEscape} pool={eventPool} />
         </>
       )}
       {trigger &&
