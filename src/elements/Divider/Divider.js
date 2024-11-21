@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -29,13 +29,13 @@ const Divider = React.forwardRef(function (props, ref) {
 
   const classes = cx(
     'ui',
-    useKeyOnly(clearing, 'clearing'),
-    useKeyOnly(fitted, 'fitted'),
-    useKeyOnly(hidden, 'hidden'),
-    useKeyOnly(horizontal, 'horizontal'),
-    useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(section, 'section'),
-    useKeyOnly(vertical, 'vertical'),
+    getKeyOnly(clearing, 'clearing'),
+    getKeyOnly(fitted, 'fitted'),
+    getKeyOnly(hidden, 'hidden'),
+    getKeyOnly(horizontal, 'horizontal'),
+    getKeyOnly(inverted, 'inverted'),
+    getKeyOnly(section, 'section'),
+    getKeyOnly(vertical, 'vertical'),
     'divider',
     className,
   )
