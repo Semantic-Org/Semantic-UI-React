@@ -64,6 +64,9 @@ const AccordionAccordion = React.forwardRef(function (props, ref) {
   })
 
   if (process.env.NODE_ENV !== 'production') {
+    // Following eslint error is ignored because process.env.NODE_ENV does not change during runtime,
+    // so it is not actually a problem because the useEffect will be called either always or never
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       /* eslint-disable no-console */
       if (exclusive && typeof activeIndex !== 'number') {
