@@ -6,10 +6,12 @@ import { isBrowser } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
+const doNothing = () => {}
+
 describe('PortalInner', () => {
   common.isConformant(PortalInner, {
     rendersChildren: false,
-    requiredProps: { children: <p /> },
+    requiredProps: { children: <p />, closeOnEscape: false, onClose: doNothing },
     forwardsRef: false,
   })
 
@@ -24,7 +26,7 @@ describe('PortalInner', () => {
 
     it('renders `null` when during Server-Side Rendering', () => {
       mount(
-        <PortalInner>
+        <PortalInner onClose={doNothing} closeOnEscape>
           <p />
         </PortalInner>,
       ).should.be.blank()
@@ -37,7 +39,7 @@ describe('PortalInner', () => {
       const elementRef = React.createRef()
 
       const wrapper = mount(
-        <PortalInner ref={portalRef}>
+        <PortalInner ref={portalRef} onClose={doNothing} closeOnEscape>
           <p ref={elementRef} />
         </PortalInner>,
       )
@@ -57,7 +59,7 @@ describe('PortalInner', () => {
       const elementRef = React.createRef()
 
       const wrapper = mount(
-        <PortalInner ref={portalRef}>
+        <PortalInner ref={portalRef} onClose={doNothing} closeOnEscape>
           <CustomComponent ref={elementRef} />
         </PortalInner>,
       )
@@ -75,7 +77,7 @@ describe('PortalInner', () => {
 
       const portalRef = React.createRef()
       const wrapper = mount(
-        <PortalInner ref={portalRef}>
+        <PortalInner ref={portalRef} onClose={doNothing} closeOnEscape>
           <CustomComponent />
         </PortalInner>,
       )
@@ -91,7 +93,7 @@ describe('PortalInner', () => {
     it('called when mounting', () => {
       const onMount = sandbox.spy()
       mount(
-        <PortalInner onMount={onMount}>
+        <PortalInner onMount={onMount} onClose={doNothing} closeOnEscape>
           <p />
         </PortalInner>,
       )
@@ -104,7 +106,7 @@ describe('PortalInner', () => {
     it('is called only once when unmounting', () => {
       const onUnmount = sandbox.spy()
       const wrapper = mount(
-        <PortalInner onUnmount={onUnmount}>
+        <PortalInner onUnmount={onUnmount} onClose={doNothing} closeOnEscape>
           <p />
         </PortalInner>,
       )

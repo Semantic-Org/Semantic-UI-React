@@ -26,6 +26,12 @@ export interface StrictPortalInnerProps {
    * @param {object} data - All props.
    */
   onUnmount?: (nothing: null, data: PortalInnerProps) => void
+
+  /** Callback called when inner component decides that (respecting the configuration) Portal should close */
+  onClose: (event: React.MouseEvent<HTMLElement>) => void
+
+  /** Controls whether the onClose callback should be invoked when escape is pressed. */
+  closeOnEscape: boolean
 }
 
 declare const PortalInner: React.FC<PortalInnerProps>
