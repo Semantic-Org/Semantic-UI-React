@@ -430,6 +430,7 @@ class DropdownInner extends Component {
 
     this.setState({ value: newValue })
     this.handleChange(e, newValue)
+    this.closeOnChange(e)
   }
 
   closeOnDocumentClick = (e) => {
@@ -701,6 +702,7 @@ class DropdownInner extends Component {
 
     this.setState({ value: newValue })
     this.handleChange(e, newValue)
+    this.closeOnChange(e)
   }
 
   getSelectedIndexAfterMove = (offset, startIndex = this.state.selectedIndex) => {
