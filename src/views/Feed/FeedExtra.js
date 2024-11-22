@@ -9,7 +9,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -19,8 +19,8 @@ const FeedExtra = React.forwardRef(function (props, ref) {
   const { children, className, content, images, text } = props
 
   const classes = cx(
-    useKeyOnly(images, 'images'),
-    useKeyOnly(content || text, 'text'),
+    getKeyOnly(images, 'images'),
+    getKeyOnly(content || text, 'text'),
     'extra',
     className,
   )

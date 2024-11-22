@@ -7,7 +7,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 import CommentAction from './CommentAction'
 import CommentActions from './CommentActions'
@@ -24,7 +24,7 @@ import CommentText from './CommentText'
 const Comment = React.forwardRef(function (props, ref) {
   const { className, children, collapsed, content } = props
 
-  const classes = cx(useKeyOnly(collapsed, 'collapsed'), 'comment', className)
+  const classes = cx(getKeyOnly(collapsed, 'collapsed'), 'comment', className)
   const rest = getUnhandledProps(Comment, props)
   const ElementType = getComponentType(props)
 

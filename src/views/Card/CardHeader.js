@@ -9,7 +9,7 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useTextAlignProp,
+  getTextAlignProp,
 } from '../../lib'
 
 /**
@@ -17,7 +17,7 @@ import {
  */
 const CardHeader = React.forwardRef(function (props, ref) {
   const { children, className, content, textAlign } = props
-  const classes = cx(useTextAlignProp(textAlign), 'header', className)
+  const classes = cx(getTextAlignProp(textAlign), 'header', className)
   const rest = getUnhandledProps(CardHeader, props)
   const ElementType = getComponentType(props)
 

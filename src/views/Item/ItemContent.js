@@ -8,7 +8,7 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useVerticalAlignProp,
+  getVerticalAlignProp,
 } from '../../lib'
 import ItemHeader from './ItemHeader'
 import ItemDescription from './ItemDescription'
@@ -21,7 +21,7 @@ import ItemMeta from './ItemMeta'
 const ItemContent = React.forwardRef(function (props, ref) {
   const { children, className, content, description, extra, header, meta, verticalAlign } = props
 
-  const classes = cx(useVerticalAlignProp(verticalAlign), 'content', className)
+  const classes = cx(getVerticalAlignProp(verticalAlign), 'content', className)
   const rest = getUnhandledProps(ItemContent, props)
   const ElementType = getComponentType(props)
 

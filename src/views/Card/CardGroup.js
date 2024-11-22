@@ -9,9 +9,9 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
-  useTextAlignProp,
-  useWidthProp,
+  getKeyOnly,
+  getTextAlignProp,
+  getWidthProp,
 } from '../../lib'
 import Card from './Card'
 
@@ -33,11 +33,11 @@ const CardGroup = React.forwardRef(function (props, ref) {
 
   const classes = cx(
     'ui',
-    useKeyOnly(centered, 'centered'),
-    useKeyOnly(doubling, 'doubling'),
-    useKeyOnly(stackable, 'stackable'),
-    useTextAlignProp(textAlign),
-    useWidthProp(itemsPerRow),
+    getKeyOnly(centered, 'centered'),
+    getKeyOnly(doubling, 'doubling'),
+    getKeyOnly(stackable, 'stackable'),
+    getTextAlignProp(textAlign),
+    getWidthProp(itemsPerRow),
     'cards',
     className,
   )

@@ -9,7 +9,7 @@ import {
   getComponentType,
   getUnhandledProps,
   SUI,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -21,9 +21,9 @@ const CommentGroup = React.forwardRef(function (props, ref) {
   const classes = cx(
     'ui',
     size,
-    useKeyOnly(collapsed, 'collapsed'),
-    useKeyOnly(minimal, 'minimal'),
-    useKeyOnly(threaded, 'threaded'),
+    getKeyOnly(collapsed, 'collapsed'),
+    getKeyOnly(minimal, 'minimal'),
+    getKeyOnly(threaded, 'threaded'),
     'comments',
     className,
   )

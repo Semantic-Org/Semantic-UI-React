@@ -8,7 +8,7 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-  useKeyOnly,
+  getKeyOnly,
 } from '../../lib'
 
 /**
@@ -17,7 +17,7 @@ import {
 const StatisticValue = React.forwardRef(function (props, ref) {
   const { children, className, content, text } = props
 
-  const classes = cx(useKeyOnly(text, 'text'), 'value', className)
+  const classes = cx(getKeyOnly(text, 'text'), 'value', className)
   const rest = getUnhandledProps(StatisticValue, props)
   const ElementType = getComponentType(props)
 
