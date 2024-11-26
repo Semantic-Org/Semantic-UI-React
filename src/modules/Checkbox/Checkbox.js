@@ -219,7 +219,6 @@ const Checkbox = React.forwardRef(function (props, ref) {
         disabled={disabled}
         id={id}
         name={name}
-        readOnly
         ref={inputRef}
         tabIndex={computeTabIndex()}
         type={type}
