@@ -2880,6 +2880,62 @@ describe('Dropdown', () => {
         .at(options.length - 1)
         .should.have.prop('selected', true)
     })
+    it("does not move up on arrow up when second item is selected and first item is disabled when open and 'wrapSelection' is false", () => {
+      const optionsWithFirstItemDisabled = options.map((o, i) => ({ ...o, disabled: i === 0 }))
+
+      wrapperMount(
+        <Dropdown options={optionsWithFirstItemDisabled} selection wrapSelection={false} />,
+      )
+
+      // open
+      wrapper.simulate('click').find('DropdownItem').at(1).should.have.prop('selected', true)
+
+      // arrow up
+      wrapper.simulate('keydown', { key: 'ArrowUp' })
+
+      // selection should not move to last item
+      // should keep on first enabled item instead
+      wrapper.find('DropdownItem').at(1).should.have.prop('selected', true)
+      wrapper
+        .find('DropdownItem')
+        .at(options.length - 1)
+        .should.have.prop('selected', false)
+      wrapper.find('DropdownItem').first().should.have.prop('disabled', true)
+    })
+    it("does not move down on arrow down when second last item is selected and last item is disabled when open and 'wrapSelection' is false", () => {
+      const optionsWithLastItemDisabled = options.map((o, i) => ({
+        ...o,
+        disabled: i === options.length - 1,
+      }))
+
+      wrapperMount(
+        <Dropdown options={optionsWithLastItemDisabled} selection wrapSelection={false} />,
+      )
+
+      // open and make last enabled item selected
+      wrapper.simulate('click')
+      wrapper.simulate('keydown', { key: 'ArrowDown' })
+      wrapper.simulate('keydown', { key: 'ArrowDown' })
+      wrapper.simulate('keydown', { key: 'ArrowDown' })
+      wrapper.simulate('keydown', { key: 'ArrowDown' })
+
+      wrapper
+        .find('DropdownItem')
+        .at(options.length - 2)
+        .should.have.prop('selected', true)
+
+      // selection should not move to first item, should keep on last enabled item instead
+      wrapper.simulate('keydown', { key: 'ArrowDown' })
+      wrapper.find('DropdownItem').at(0).should.have.prop('selected', false)
+      wrapper
+        .find('DropdownItem')
+        .at(options.length - 2)
+        .should.have.prop('selected', true)
+      wrapper
+        .find('DropdownItem')
+        .at(options.length - 1)
+        .should.have.prop('disabled', true)
+    })
   })
 
   describe('upward', () => {
