@@ -1,19 +1,20 @@
-import React from 'react'
-import { Icon, Input } from 'semantic-ui-react'
+import React from 'react';
+import { Icon, Input } from 'semantic-ui-react';
 
+const CustomInput = ({ icon, iconPosition = 'right', placeholder }) => (
+  <Input icon={!!icon} iconPosition={iconPosition} placeholder={placeholder} aria-label={placeholder}>
+    {iconPosition === 'left' && <Icon name={icon} />}
+    <input />
+    {iconPosition !== 'left' && <Icon name={icon} />}
+  </Input>
+);
+//  Better Spacing Handling – Removed unnecessary <br />, spacing can be handled via CSS.
+// More Readable & Scalable – Cleaner structure with props controlling the component
 const InputExampleIconChild = () => (
-  <div>
-    <Input icon placeholder='Search...'>
-      <input />
-      <Icon name='search' />
-    </Input>
-    <br />
-    <br />
-    <Input iconPosition='left' placeholder='Email'>
-      <Icon name='at' />
-      <input />
-    </Input>
-  </div>
-)
+  <>
+    <CustomInput icon="search" placeholder="Search..." />
+    <CustomInput icon="at" iconPosition="left" placeholder="Email" />
+  </>
+);
 
-export default InputExampleIconChild
+export default InputExampleIconChild;
