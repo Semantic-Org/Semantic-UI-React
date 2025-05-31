@@ -229,12 +229,11 @@ const Popup = React.forwardRef(function (props, ref) {
     // A wrapping `div` there is a pure magic, it's required as Popper warns on margins that are
     // defined by SUI CSS. It also means that this `div` will be positioned instead of `content`.
     return createHTMLDivision(popper || {}, {
-      overrideProps: {
+        ooverrideProps: {
+        ...popper?.attributes?.popper,
         children: innerElement,
         ref: popperRef,
         style: {
-          // Fixes layout for floated elements
-          // https://github.com/Semantic-Org/Semantic-UI-React/issues/4092
           display: 'flex',
           ...popperStyle,
         },
