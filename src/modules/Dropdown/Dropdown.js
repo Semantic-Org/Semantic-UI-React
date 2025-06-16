@@ -73,6 +73,7 @@ const Dropdown = React.forwardRef((props, ref) => {
     closeOnEscape = true,
     deburr = false,
     icon = 'dropdown',
+    lazyLoad = true,
     minCharacters = 1,
     noResultsMessage = 'No results found.',
     openOnFocus = true,
@@ -92,6 +93,7 @@ const Dropdown = React.forwardRef((props, ref) => {
       closeOnEscape={closeOnEscape}
       deburr={deburr}
       icon={icon}
+      lazyLoad={lazyLoad}
       minCharacters={minCharacters}
       noResultsMessage={noResultsMessage}
       openOnFocus={openOnFocus}
