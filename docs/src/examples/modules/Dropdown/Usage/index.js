@@ -8,6 +8,12 @@ import ShorthandExample from 'docs/src/components/ComponentDoc/ShorthandExample'
 const DropdownUsageExamples = () => (
   <ExampleSection title='Usage'>
     <ComponentExample
+      title='Lazy Load Content'
+      description='A dropdown can lazy load its content for better performance.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleLazyLoadContent'
+    />
+
+    <ComponentExample
       title='Open On Focus'
       description='A dropdown that opens when it is focussed on.'
       examplePath='modules/Dropdown/Usage/DropdownExampleOpenOnFocus'
