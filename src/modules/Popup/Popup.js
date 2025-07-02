@@ -186,6 +186,7 @@ const Popup = React.forwardRef(function (props, ref) {
     ref: popperRef,
     update,
     style: popperStyle,
+    attributes: popperAttributes = {},
   }) => {
     positionUpdate.current = update
 
@@ -232,6 +233,7 @@ const Popup = React.forwardRef(function (props, ref) {
       overrideProps: {
         children: innerElement,
         ref: popperRef,
+        ...popperAttributes?.popper,
         style: {
           // Fixes layout for floated elements
           // https://github.com/Semantic-Org/Semantic-UI-React/issues/4092
