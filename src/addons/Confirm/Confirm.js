@@ -12,8 +12,8 @@ import Modal from '../../modules/Modal'
  */
 const Confirm = React.forwardRef(function (props, ref) {
   const {
-    cancelButton = 'Cancel',
-    confirmButton = 'OK',
+    cancelButton = 'Never Mind',
+    confirmButton = 'Fix It',
     content = 'Are you sure?',
     header,
     open,
