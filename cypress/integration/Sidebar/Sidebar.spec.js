@@ -1,27 +1,49 @@
 /// <reference types="cypress" />
 
-describe('Sidebar: spec', () => {
-  it('with a Menu', () => {
-    cy.visit('/maximize/sidebar-and-menu/')
+const SELECTORS = {
+  menu: '[data-tid="menu"]',
+  menuItem: '[data-tid="menu-item"]',
+  modalOpen: '[data-tid="button-modal-open"]',
+  modalClose: '[data-tid="button-modal-close"]',
+  modalContent: '[data-tid="modal-content"]',
+  sidebarToggle: '[data-tid="button-sidebar-toggle"]',
+  sidebarHome: '[data-tid="sidebar-home"]',
+  sidebar: '[data-tid="sidebar"]',
+};
 
-    cy.get('[data-tid="menu"]').should('be.visible')
-    cy.get('[data-tid="menu-item"]').should('be.visible')
-  })
+const URLS = {
+  sidebarMenu: '/maximize/sidebar-and-menu/',
+  sidebarModal: '/maximize/sidebar-and-modal/',
+};
 
-  it('with a Modal', () => {
-    cy.visit('/maximize/sidebar-and-modal/')
+describe('Sidebar', () => {
+  describe('with a Menu', () => {
+    beforeEach(() => cy.visit(URLS.sidebarMenu));
 
-    cy.get('[data-tid="button-modal-open"]').click()
-    cy.get('[data-tid="modal-content"]').should('be.visible')
+    it('renders menu and menu items', () => {
+      cy.get(SELECTORS.menu).should('be.visible');
+      cy.get(SELECTORS.menuItem).should('be.visible');
+    });
+  });
 
-    cy.get('[data-tid="button-modal-close"]').click()
-    cy.get('[data-tid="modal-content"]').should('not.be.visible')
+  describe('with a Modal', () => {
+    beforeEach(() => cy.visit(URLS.sidebarModal));
 
-    cy.get('[data-tid="button-sidebar-toggle"]').click()
-    cy.get('[data-tid="sidebar-home"]').click()
-    cy.get('[data-tid="sidebar"]').should('be.visible')
+    it('opens and closes the modal', () => {
+      cy.get(SELECTORS.modalOpen).click();
+      cy.get(SELECTORS.modalContent).should('be.visible');
 
-    cy.get('[data-tid="button-sidebar-toggle"]').click()
-    cy.get('[data-tid="sidebar"]').should('not.be.visible')
-  })
-})
+      cy.get(SELECTORS.modalClose).click();
+      cy.get(SELECTORS.modalContent).should('not.be.visible');
+    });
+
+    it('toggles the sidebar visibility', () => {
+      cy.get(SELECTORS.sidebarToggle).click();
+      cy.get(SELECTORS.sidebarHome).click();
+      cy.get(SELECTORS.sidebar).should('be.visible');
+
+      cy.get(SELECTORS.sidebarToggle).click();
+      cy.get(SELECTORS.sidebar).should('not.be.visible');
+    });
+  });
+});
