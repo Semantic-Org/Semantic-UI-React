@@ -1,29 +1,37 @@
 import cx from 'clsx'
-import _ from 'lodash'
-import PropTypes from 'prop-types'
 import * as React from 'react'
-
-import { createShorthandFactory, getComponentType, getUnhandledProps } from '../../lib'
+import {
+  createShorthandFactory,
+  getComponentType,
+  getUnhandledProps,
+} from './lib'
 
 /**
  * A search item sub-component for Dropdown component.
  */
-const DropdownSearchInput = React.forwardRef(function (props, ref) {
-  const { autoComplete = 'off', className, tabIndex, type = 'text', value } = props
+const DropdownSearchInput = React.forwardRef((props, ref) => {
+  const {
+    autoComplete = 'off',
+    className,
+    onChange,
+    tabIndex,
+    type = 'text',
+    value,
+  } = props
 
   const handleChange = (e) => {
-    const newValue = _.get(e, 'target.value')
-
-    _.invoke(props, 'onChange', e, { ...props, value: newValue })
+    const newValue = e.target.value
+    onChange?.(e, { ...props, value: newValue })
   }
 
   const classes = cx('search', className)
+
   const ElementType = getComponentType(props, { defaultAs: 'input' })
   const rest = getUnhandledProps(DropdownSearchInput, props)
 
   return (
     <ElementType
-      aria-autocomplete='list'
+      aria-autocomplete="list"
       {...rest}
       autoComplete={autoComplete}
       className={classes}
@@ -37,26 +45,11 @@ const DropdownSearchInput = React.forwardRef(function (props, ref) {
 })
 
 DropdownSearchInput.displayName = 'DropdownSearchInput'
-DropdownSearchInput.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.elementType,
-
-  /** An input can have the auto complete. */
-  autoComplete: PropTypes.string,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /** An input can receive focus. */
-  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-  /** The HTML input type. */
-  type: PropTypes.string,
-
-  /** Stored value. */
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-}
-
-DropdownSearchInput.create = createShorthandFactory(DropdownSearchInput, (type) => ({ type }))
+DropdownSearchInput.create = createShorthandFactory(
+  DropdownSearchInput,
+  (type) => {
+    return { type }
+  }
+)
 
 export default DropdownSearchInput

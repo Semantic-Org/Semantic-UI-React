@@ -1,27 +1,24 @@
+/* eslint-disable react-hooks/static-components */
 import cx from 'clsx'
-import PropTypes from 'prop-types'
-import * as React from 'react'
 
 import {
-  childrenUtils,
   createShorthandFactory,
-  customPropTypes,
   getComponentType,
   getUnhandledProps,
-} from '../../lib'
-import Icon from '../../elements/Icon'
+} from './lib'
 
 /**
  * A dropdown menu can contain a header.
  */
-const DropdownHeader = React.forwardRef(function (props, ref) {
+function DropdownHeader(props) {
+  const { ref } = props
   const { children, className, content, icon } = props
 
   const classes = cx('header', className)
   const rest = getUnhandledProps(DropdownHeader, props)
   const ElementType = getComponentType(props)
 
-  if (!childrenUtils.isNil(children)) {
+  if (children != null) {
     return (
       <ElementType {...rest} className={classes} ref={ref}>
         {children}
@@ -31,30 +28,16 @@ const DropdownHeader = React.forwardRef(function (props, ref) {
 
   return (
     <ElementType {...rest} className={classes} ref={ref}>
-      {Icon.create(icon, { autoGenerateKey: false })}
+      {icon && <i className={`${icon} icon`} aria-hidden="true" />}
+
       {content}
     </ElementType>
   )
-})
-
-DropdownHeader.displayName = 'DropdownHeader'
-DropdownHeader.propTypes = {
-  /** An element type to render as (string or function) */
-  as: PropTypes.elementType,
-
-  /** Primary content. */
-  children: PropTypes.node,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /** Shorthand for primary content. */
-  content: customPropTypes.contentShorthand,
-
-  /** Shorthand for Icon. */
-  icon: customPropTypes.itemShorthand,
 }
 
-DropdownHeader.create = createShorthandFactory(DropdownHeader, (content) => ({ content }))
+DropdownHeader.displayName = 'DropdownHeader'
+DropdownHeader.create = createShorthandFactory(DropdownHeader, (content) => {
+  return { content }
+})
 
 export default DropdownHeader

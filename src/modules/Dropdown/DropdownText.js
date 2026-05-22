@@ -1,19 +1,19 @@
+/* eslint-disable react-hooks/static-components */
 import cx from 'clsx'
-import PropTypes from 'prop-types'
-import * as React from 'react'
 
 import {
   childrenUtils,
   createShorthandFactory,
-  customPropTypes,
   getComponentType,
   getUnhandledProps,
-} from '../../lib'
+} from './lib'
 
 /**
  * A dropdown contains a selected value.
  */
-const DropdownText = React.forwardRef(function (props, ref) {
+function DropdownText(props) {
+  const { ref } = props
+
   const { children, className, content } = props
   const classes = cx('divider', className)
   const rest = getUnhandledProps(DropdownText, props)
@@ -21,9 +21,9 @@ const DropdownText = React.forwardRef(function (props, ref) {
 
   return (
     <ElementType
-      aria-atomic
-      aria-live='polite'
-      role='alert'
+      aria-atomic="true"
+      aria-live="polite"
+      role="alert"
       {...rest}
       className={classes}
       ref={ref}
@@ -31,23 +31,11 @@ const DropdownText = React.forwardRef(function (props, ref) {
       {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
-})
-
-DropdownText.displayName = 'DropdownText'
-DropdownText.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.elementType,
-
-  /** Primary content. */
-  children: PropTypes.node,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /** Shorthand for primary content. */
-  content: customPropTypes.contentShorthand,
 }
 
-DropdownText.create = createShorthandFactory(DropdownText, (val) => ({ content: val }))
+DropdownText.displayName = 'DropdownText'
+DropdownText.create = createShorthandFactory(DropdownText, (val) => {
+  return { content: val }
+})
 
 export default DropdownText

@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import getMenuOptions from './getMenuOptions'
 
 export default function getSelectedIndex(config) {
@@ -15,26 +14,23 @@ export default function getSelectedIndex(config) {
     value,
   } = config
 
-  const menuOptions = getMenuOptions({
-    value,
-    options,
-    searchQuery,
+  const menuOptions =
+    getMenuOptions({
+      value,
+      options,
+      searchQuery,
 
-    additionLabel,
-    additionPosition,
-    allowAdditions,
-    deburr,
-    multiple,
-    search,
-  })
-  const enabledIndexes = _.reduce(
-    menuOptions,
-    (memo, item, index) => {
-      if (!item.disabled) memo.push(index)
-      return memo
-    },
-    [],
-  )
+      additionLabel,
+      additionPosition,
+      allowAdditions,
+      deburr,
+      multiple,
+      search,
+    }) || []
+  const enabledIndexes = menuOptions.reduce((memo, item, index) => {
+    if (!item.disabled) memo.push(index)
+    return memo
+  }, [])
 
   let newSelectedIndex
 
@@ -45,11 +41,14 @@ export default function getSelectedIndex(config) {
     // Select the currently active item, if none, use the first item.
     // Multiple selects remove active items from the list,
     // their initial selected index should be 0.
-    newSelectedIndex = multiple
-      ? firstIndex
-      : _.findIndex(menuOptions, ['value', value]) || enabledIndexes[0]
+    const activeIndex = menuOptions.findIndex((item) => {
+      return item.value === value
+    })
+    newSelectedIndex = multiple ? firstIndex : activeIndex || enabledIndexes[0]
   } else if (multiple) {
-    newSelectedIndex = _.find(enabledIndexes, (index) => index >= selectedIndex)
+    newSelectedIndex = enabledIndexes.find((index) => {
+      return index >= selectedIndex
+    })
 
     // multiple selects remove options from the menu as they are made active
     // keep the selected index within range of the remaining items
@@ -57,15 +56,19 @@ export default function getSelectedIndex(config) {
       newSelectedIndex = enabledIndexes[enabledIndexes.length - 1]
     }
   } else {
-    const activeIndex = _.findIndex(menuOptions, ['value', value])
+    const activeIndex = menuOptions.findIndex((item) => {
+      return item.value === value
+    })
 
     // regular selects can only have one active item
     // set the selected index to the currently active item
-    newSelectedIndex = _.includes(enabledIndexes, activeIndex) ? activeIndex : undefined
+    newSelectedIndex = enabledIndexes.includes(activeIndex)
+      ? activeIndex
+      : undefined
   }
 
   if (!newSelectedIndex || newSelectedIndex < 0) {
-    newSelectedIndex = enabledIndexes[0]
+    ;[newSelectedIndex] = enabledIndexes
   }
 
   return newSelectedIndex
