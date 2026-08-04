@@ -4,6 +4,7 @@ import React from 'react'
 
 import * as common from 'test/specs/commonTests'
 import { consoleUtil, domEvent, sandbox } from 'test/utils'
+import Checkbox from 'src/modules/Checkbox/Checkbox'
 import Icon from 'src/elements/Icon/Icon'
 import Label from 'src/elements/Label/Label'
 import Dropdown from 'src/modules/Dropdown/Dropdown'
@@ -2525,6 +2526,51 @@ describe('Dropdown', () => {
 
       menu.should.have.className('menu')
       menu.should.have.className('foo-bar')
+    })
+  })
+
+  describe('Checkbox child', () => {
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/2121
+    it("invokes the Checkbox's onClick handler when rendered inside a Dropdown.Item", () => {
+      const onClick = sandbox.spy()
+
+      wrapperMount(
+        <Dropdown text='required prop'>
+          <Dropdown.Menu>
+            <Dropdown.Item>
+              <Checkbox label='foo' onClick={onClick} />
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>,
+      )
+
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      wrapper.find('.ui.checkbox').simulate('click')
+
+      onClick.should.have.been.calledOnce()
+    })
+
+    it("invokes the Checkbox's onClick handler when rendered inside a Dropdown.Header", () => {
+      const onClick = sandbox.spy()
+
+      wrapperMount(
+        <Dropdown text='required prop'>
+          <Dropdown.Menu>
+            <Dropdown.Header>
+              <Checkbox label='foo' onClick={onClick} />
+            </Dropdown.Header>
+          </Dropdown.Menu>
+        </Dropdown>,
+      )
+
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      wrapper.find('.ui.checkbox').simulate('click')
+
+      onClick.should.have.been.calledOnce()
     })
   })
 
