@@ -15,7 +15,7 @@ export interface StrictTextAreaProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, data: TextAreaProps) => void
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, data: TextAreaOnChangeData) => void
 
   /**
    * Called on input.
@@ -23,13 +23,18 @@ export interface StrictTextAreaProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onInput?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaProps) => void
+  onInput?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaOnChangeData) => void
 
   /** Indicates row count for a TextArea. */
   rows?: number | string
 
   /** The value of the textarea. */
   value?: number | string
+}
+
+export interface TextAreaOnChangeData extends TextAreaProps {
+  /** The value of the textarea, always a string when returned via callback. */
+  value: string
 }
 
 declare const TextArea: ForwardRefComponent<TextAreaProps, HTMLTextAreaElement>
