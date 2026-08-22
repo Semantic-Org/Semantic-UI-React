@@ -513,7 +513,7 @@ describe('Modal', () => {
       wrapperMount(<Modal open dimmer={{ scrolling: true }} />)
 
       wrapper.find('ModalDimmer').should.have.prop('scrolling', true)
-      assertBodyContains('.dimmable.dimmed.scrolling')
+      document.body.classList.contains('scrolling').should.be.true()
     })
 
     it('does not pass "scrolling" when equal to the window height', (done) => {
