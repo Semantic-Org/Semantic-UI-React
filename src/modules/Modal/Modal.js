@@ -280,7 +280,10 @@ const Modal = React.forwardRef(function (props, ref) {
           children: renderContent(rest),
           centered,
           mountNode,
-          scrolling,
+          scrolling:
+            _.isPlainObject(dimmer) && dimmer.scrolling !== undefined
+              ? dimmer.scrolling
+              : scrolling,
           ref: dimmerRef,
         },
       })}

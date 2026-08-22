@@ -509,6 +509,13 @@ describe('Modal', () => {
       wrapper.find('ModalDimmer').should.have.prop('scrolling', false)
     })
 
+    it('passes "scrolling" when dimmer={{ scrolling: true }} is provided', () => {
+      wrapperMount(<Modal open dimmer={{ scrolling: true }} />)
+
+      wrapper.find('ModalDimmer').should.have.prop('scrolling', true)
+      assertBodyContains('.dimmable.dimmed.scrolling')
+    })
+
     it('does not pass "scrolling" when equal to the window height', (done) => {
       /* 101 is `padding * 2 + 1, see Modal/utils */
       const height = window.innerHeight - 101
