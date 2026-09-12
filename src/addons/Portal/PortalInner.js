@@ -1,38 +1,56 @@
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import { createPortal } from 'react-dom'
 
-import { isBrowser, makeDebugger, useEventCallback } from '../../lib'
+import {
+  isBrowser,
+  makeDebugger,
+  useEventCallback,
+} from '../../../dropdown/lib'
 import usePortalElement from './usePortalElement'
 
 const debug = makeDebugger('PortalInner')
 
-/**
- * An inner component that allows you to render children outside their parent.
- */
-const PortalInner = React.forwardRef(function (props, ref) {
-  const handleMount = useEventCallback(() => _.invoke(props, 'onMount', null, props))
-  const handleUnmount = useEventCallback(() => _.invoke(props, 'onUnmount', null, props))
+const PortalInner = React.forwardRef(
+  (
+    { children, mountNode = null, onMount = () => {}, onUnmount = () => {} },
+    ref
+  ) => {
+    const handleMount = useEventCallback(() => {
+      return onMount(null, {
+        children,
+        mountNode,
+        onMount,
+        onUnmount,
+      })
+    })
+    const handleUnmount = useEventCallback(() => {
+      return onUnmount(null, {
+        children,
+        mountNode,
+        onMount,
+        onUnmount,
+      })
+    })
 
-  const element = usePortalElement(props.children, ref)
+    const element = usePortalElement(children, ref)
 
-  React.useEffect(() => {
-    debug('componentDidMount()')
-    handleMount()
+    React.useEffect(() => {
+      debug('componentDidMount()')
+      handleMount()
+      return () => {
+        debug('componentWillUnmount()')
+        handleUnmount()
+      }
+    }, [handleMount, handleUnmount])
 
-    return () => {
-      debug('componentWillUnmount()')
-      handleUnmount()
+    if (!isBrowser()) {
+      return null
     }
-  }, [])
 
-  if (!isBrowser()) {
-    return null
+    return createPortal(element, mountNode || document.body)
   }
-
-  return createPortal(element, props.mountNode || document.body)
-})
+)
 
 PortalInner.displayName = 'PortalInner'
 PortalInner.propTypes = {
@@ -40,11 +58,10 @@ PortalInner.propTypes = {
   children: PropTypes.node.isRequired,
 
   /** The node where the portal should mount. */
-  mountNode: PropTypes.any,
+  mountNode: PropTypes.instanceOf(Element),
 
   /**
    * Called when the portal is mounted on the DOM
-   *
    * @param {null}
    * @param {object} data - All props.
    */
@@ -52,11 +69,9 @@ PortalInner.propTypes = {
 
   /**
    * Called when the portal is unmounted from the DOM
-   *
    * @param {null}
    * @param {object} data - All props.
    */
   onUnmount: PropTypes.func,
 }
-
 export default PortalInner
