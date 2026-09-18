@@ -685,7 +685,16 @@ describe('Dropdown', () => {
     it('defaults to a dropdown icon', () => {
       wrapperMount(<Dropdown />).should.contain.descendants('.dropdown.icon')
     })
+    it('adds the icon class when used as a Menu.Item with an icon', () => {
+      wrapperMount(
+        <Dropdown item icon>
+          <Icon name='dropdown' />
+        </Dropdown>,
+      )
 
+      wrapper.should.have.className('item')
+      wrapper.should.have.className('icon')
+    })
     it('always opens a dropdown on click', () => {
       wrapperMount(<Dropdown options={options} selection search />)
         .find('i.icon')

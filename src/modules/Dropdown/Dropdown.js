@@ -1110,7 +1110,7 @@ class DropdownInner extends Component {
       // TODO: consider augmentation to render Dropdowns as Button/Menu, solves icon/link item issues
       // https://github.com/Semantic-Org/Semantic-UI-React/issues/401#issuecomment-240487229
       // TODO: the icon class is only required when a dropdown is a button
-      // getKeyOnly(icon, 'icon'),
+      getKeyOnly(icon, 'icon'),
       getKeyOnly(labeled, 'labeled'),
       getKeyOnly(item, 'item'),
       getKeyOnly(multiple, 'multiple'),
