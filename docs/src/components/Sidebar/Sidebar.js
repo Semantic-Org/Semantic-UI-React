@@ -174,7 +174,10 @@ class Sidebar extends Component {
     const { query } = this.state
 
     return (
-      <div style={{ ...style, display: 'flex', flexDirection: 'column', flex: 1 }}>
+      <div
+        className='docs-sidebar'
+        style={{ ...style, display: 'flex', flexDirection: 'column', flex: 1 }}
+      >
         <div style={{ flex: 1, overflowY: 'scroll' }}>
           <Menu fluid inverted vertical borderless compact>
             <Menu.Item>

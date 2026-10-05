@@ -148,3 +148,22 @@ code:not([class*='language-'])::after {
 .token.inserted {
   color: #7ec699;
 }
+
+@media (max-width: 910px) {
+  .docs-sidebar .ui.inverted.vertical.menu .item {
+    font-size: 14px;
+    line-height: 1.6;
+    padding-top: 0.9em;
+    padding-bottom: 0.9em;
+  }
+
+  .docs-sidebar .ui.inverted.vertical.menu .header {
+    font-size: 15px;
+    color: #ffffff;
+  }
+
+  .docs-sidebar .ui.inverted.vertical.menu .menu .item {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+  }
+}
