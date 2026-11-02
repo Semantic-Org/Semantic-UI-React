@@ -224,6 +224,22 @@ describe('Dropdown', () => {
   })
 
   describe('disabled', () => {
+    it('does not change value if disabled while open', () => {
+      const onChange = sandbox.spy()
+      const onItemClick = sandbox.spy()
+      options[1].onClick = onItemClick
+      wrapperMount(
+        <Dropdown open selection options={options} defaultValue={options[0].value} onChange={onChange} />,
+      )
+      wrapper.setProps({ disabled: true })
+      wrapper
+        .find(DropdownItem)
+        .at(1)
+        .simulate('click', { nativeEvent: { stopImmediatePropagation: () => {} } })
+      onChange.should.not.have.been.called()
+      onItemClick.should.not.have.been.called()
+    })
+
     it('does not open on click', () => {
       wrapperMount(<Dropdown options={options} disabled />)
 

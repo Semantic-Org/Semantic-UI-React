@@ -326,7 +326,7 @@ class DropdownInner extends Component {
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
     // prevent selecting disabled items
-    if (_.isNil(selectedValue) || !open || disabled) {
+    if (_.isNil(selectedValue) || !open || disabled || this.props.disabled) {
       return value
     }
 
@@ -1026,6 +1026,7 @@ class DropdownInner extends Component {
           active: isActive(opt.value),
           selected: selectedIndex === i,
           ...opt,
+          disabled: this.props.disabled || opt.disabled,
           key: getKeyOrValue(opt.key, opt.value),
           // Needed for handling click events on disabled items
           style: { ...opt.style, pointerEvents: 'all' },
@@ -1034,7 +1035,7 @@ class DropdownInner extends Component {
           generateKey: false,
           overrideProps: (predefinedProps) => ({
             onClick: (e, item) => {
-              predefinedProps.onClick?.(e, item)
+              if (!item.disabled) predefinedProps.onClick?.(e, item)
               this.handleItemClick(e, item)
             },
           }),
