@@ -25,16 +25,18 @@ export function setRef(ref, value) {
  * @return {React.Ref} A function with an attached "current" prop, so that it can be treated like a React.RefObject.
  */
 export default function useMergedRefs(refA, refB) {
-  const mergedCallback = React.useCallback(
-    (value) => {
-      // Update the "current" prop hanging on the function.
-      mergedCallback.current = value
+  const currentRef = React.useRef(null)
 
-      setRef(refA, value)
-      setRef(refB, value)
-    },
-    [refA, refB],
-  )
-
-  return mergedCallback
+  return React.useMemo(() => {
+    return {
+      get current() {
+        return currentRef.current
+      },
+      set current(value) {
+        currentRef.current = value
+        setRef(refA, value)
+        setRef(refB, value)
+      },
+    }
+  }, [refA, refB])
 }
