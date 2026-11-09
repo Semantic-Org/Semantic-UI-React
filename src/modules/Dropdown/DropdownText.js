@@ -34,6 +34,7 @@ function DropdownText(props) {
 }
 
 DropdownText.displayName = 'DropdownText'
+DropdownText.handledProps = ['children', 'className', 'content', 'ref']
 DropdownText.create = createShorthandFactory(DropdownText, (val) => {
   return { content: val }
 })
