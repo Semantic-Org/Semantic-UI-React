@@ -9,19 +9,19 @@ import {
   getComponentType,
   getUnhandledProps,
   getKeyOnly,
-} from '../../lib'
+} from '../dropdown/lib'
 
 /**
  * A modal can contain content.
  */
-const ModalContent = React.forwardRef(function (props, ref) {
+const ModalContent = React.forwardRef((props, ref) => {
   const { children, className, content, image, scrolling } = props
 
   const classes = cx(
     className,
     getKeyOnly(image, 'image'),
     getKeyOnly(scrolling, 'scrolling'),
-    'content',
+    'content'
   )
   const rest = getUnhandledProps(ModalContent, props)
   const ElementType = getComponentType(props)
@@ -34,6 +34,7 @@ const ModalContent = React.forwardRef(function (props, ref) {
 })
 
 ModalContent.displayName = 'ModalContent'
+
 ModalContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -54,6 +55,18 @@ ModalContent.propTypes = {
   scrolling: PropTypes.bool,
 }
 
-ModalContent.create = createShorthandFactory(ModalContent, (content) => ({ content }))
+// 린트 에러 해결을 위해 defaultProps 추가
+ModalContent.defaultProps = {
+  as: 'div',
+  children: null,
+  className: '',
+  content: null,
+  image: false,
+  scrolling: false,
+}
+
+ModalContent.create = createShorthandFactory(ModalContent, (content) => {
+  return { content }
+})
 
 export default ModalContent

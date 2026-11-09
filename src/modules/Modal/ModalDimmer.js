@@ -7,47 +7,57 @@ import {
   createShorthandFactory,
   customPropTypes,
   getComponentType,
-  getUnhandledProps,
   useClassNamesOnNode,
   getKeyOnly,
   useMergedRefs,
-} from '../../lib'
+} from '../dropdown/lib'
 
-/**
- * A modal has a dimmer.
- */
-const ModalDimmer = React.forwardRef(function (props, ref) {
-  const { blurring, children, className, centered, content, inverted, mountNode, scrolling } = props
-  const elementRef = useMergedRefs(ref, React.useRef())
+const ModalDimmer = React.forwardRef(
+  (
+    {
+      as,
+      blurring = false,
+      children,
+      className,
+      centered = true,
+      content,
+      inverted = false,
+      mountNode,
+      scrolling = false,
+      ...rest
+    },
+    ref
+  ) => {
+    const elementRef = useMergedRefs(ref, React.useRef())
 
-  const classes = cx(
-    'ui',
-    getKeyOnly(inverted, 'inverted'),
-    getKeyOnly(!centered, 'top aligned'),
-    'page modals dimmer transition visible active',
-    className,
-  )
-  const bodyClasses = cx(
-    'dimmable dimmed',
-    getKeyOnly(blurring, 'blurring'),
-    getKeyOnly(scrolling, 'scrolling'),
-  )
+    const classes = cx(
+      'ui',
+      getKeyOnly(inverted, 'inverted'),
+      getKeyOnly(!centered, 'top aligned'),
+      'page modals dimmer transition visible active',
+      className
+    )
+    const bodyClasses = cx(
+      'dimmable dimmed',
+      getKeyOnly(blurring, 'blurring'),
+      getKeyOnly(scrolling, 'scrolling')
+    )
 
-  const rest = getUnhandledProps(ModalDimmer, props)
-  const ElementType = getComponentType(props)
+    const ElementType = getComponentType({ as })
 
-  useClassNamesOnNode(mountNode, bodyClasses)
+    useClassNamesOnNode(mountNode, bodyClasses)
 
-  React.useEffect(() => {
-    elementRef.current?.style?.setProperty('display', 'flex', 'important')
-  }, [])
+    React.useEffect(() => {
+      elementRef.current?.style?.setProperty('display', 'flex', 'important')
+    }, [elementRef])
 
-  return (
-    <ElementType {...rest} className={classes} ref={elementRef}>
-      {childrenUtils.isNil(children) ? content : children}
-    </ElementType>
-  )
-})
+    return (
+      <ElementType {...rest} className={classes} ref={elementRef}>
+        {childrenUtils.isNil(children) ? content : children}
+      </ElementType>
+    )
+  }
+)
 
 ModalDimmer.displayName = 'ModalDimmer'
 ModalDimmer.propTypes = {
@@ -73,12 +83,13 @@ ModalDimmer.propTypes = {
   inverted: PropTypes.bool,
 
   /** The node where the modal should mount. Defaults to document.body. */
-  mountNode: PropTypes.any,
+  mountNode: PropTypes.instanceOf(Element),
 
   /** A dimmer can make body scrollable. */
   scrolling: PropTypes.bool,
 }
 
-ModalDimmer.create = createShorthandFactory(ModalDimmer, (content) => ({ content }))
-
+ModalDimmer.create = createShorthandFactory(ModalDimmer, (content) => {
+  return { content }
+})
 export default ModalDimmer

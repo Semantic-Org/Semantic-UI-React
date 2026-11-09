@@ -2,12 +2,17 @@ import cx from 'clsx'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { childrenUtils, customPropTypes, getComponentType, getUnhandledProps } from '../../lib'
+import {
+  childrenUtils,
+  customPropTypes,
+  getComponentType,
+  getUnhandledProps,
+} from '../dropdown/lib'
 
 /**
  * A modal can contain a description with one or more paragraphs.
  */
-const ModalDescription = React.forwardRef(function (props, ref) {
+const ModalDescription = React.forwardRef((props, ref) => {
   const { children, className, content } = props
   const classes = cx('description', className)
   const rest = getUnhandledProps(ModalDescription, props)
@@ -21,6 +26,7 @@ const ModalDescription = React.forwardRef(function (props, ref) {
 })
 
 ModalDescription.displayName = 'ModalDescription'
+
 ModalDescription.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -33,6 +39,13 @@ ModalDescription.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
+}
+
+ModalDescription.defaultProps = {
+  as: 'div',
+  children: null,
+  className: '',
+  content: null,
 }
 
 export default ModalDescription

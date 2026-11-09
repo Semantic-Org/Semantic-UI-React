@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useMergedRefs } from '../../../lib'
+import { useMergedRefs } from '../../../../dropdown/lib'
 import validateTrigger from './validateTrigger'
 
 /**

@@ -1,19 +1,17 @@
 import * as React from 'react'
-import ReactIs from 'react-is'
-
-import { useMergedRefs } from '../../lib'
+import { useMergedRefs } from '../../../dropdown/lib'
 
 /**
- * Assigns merged ref to an existing element is possible or wraps it with an additional "div".
+ * Assigns a merged ref to an existing element if possible, or wraps it with an additional "div".
  *
  * @param {React.ReactNode} node
  * @param {React.Ref} userRef
  */
 export default function usePortalElement(node, userRef) {
-  const ref = useMergedRefs(node.ref, userRef)
+  const ref = useMergedRefs(node?.props?.ref, userRef)
 
   if (React.isValidElement(node)) {
-    if (ReactIs.isForwardRef(node)) {
+    if (node.type?.$$typeof === Symbol.for('react.forward_ref')) {
       return React.cloneElement(node, { ref })
     }
 
@@ -23,7 +21,7 @@ export default function usePortalElement(node, userRef) {
   }
 
   return (
-    <div data-suir-portal='true' ref={ref}>
+    <div data-suir-portal="true" ref={ref}>
       {node}
     </div>
   )

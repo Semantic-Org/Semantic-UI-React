@@ -8,12 +8,12 @@ import {
   customPropTypes,
   getComponentType,
   getUnhandledProps,
-} from '../../lib'
+} from '../dropdown/lib'
 
 /**
  * A modal can have a header.
  */
-const ModalHeader = React.forwardRef(function (props, ref) {
+const ModalHeader = React.forwardRef((props, ref) => {
   const { children, className, content } = props
   const classes = cx('header', className)
   const rest = getUnhandledProps(ModalHeader, props)
@@ -27,6 +27,7 @@ const ModalHeader = React.forwardRef(function (props, ref) {
 })
 
 ModalHeader.displayName = 'ModalHeader'
+
 ModalHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.elementType,
@@ -41,6 +42,15 @@ ModalHeader.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ModalHeader.create = createShorthandFactory(ModalHeader, (content) => ({ content }))
+ModalHeader.defaultProps = {
+  as: 'div',
+  children: null,
+  className: '',
+  content: null,
+}
+
+ModalHeader.create = createShorthandFactory(ModalHeader, (content) => {
+  return { content }
+})
 
 export default ModalHeader

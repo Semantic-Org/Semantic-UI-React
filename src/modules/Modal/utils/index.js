@@ -51,4 +51,6 @@ export const getLegacyStyles = (isFitted, centered, modalRect) => {
 
 // https://github.com/Semantic-Org/Semantic-UI/blob/2.4.1/src/definitions/modules/modal.js#L631
 /* istanbul ignore next */
-export const isLegacy = () => !window.ActiveXObject && 'ActiveXObject' in window
+export const isLegacy = () => {
+  return !window.ActiveXObject && 'ActiveXObject' in window
+}
